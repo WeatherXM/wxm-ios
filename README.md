@@ -25,7 +25,7 @@ Once is ready for review open a new pull request and when is ready merge in base
 - Submit the version using the "Automatically manage signing" option. Ask the team for access in [appstore connect](https://appstoreconnect.apple.com)
 - [Create a new GitHub release](https://github.com/WeatherXM/wxm-ios/releases/new) out of main with the title being the version name (`X.X.X`).
 - Upload dsyms in [firebase crashlytics portal](https://console.firebase.google.com/u/1/project/weatherxm-321811/crashlytics/app/ios:com.weatherxm.app/dsyms). To get the dsyms go to `Window` -> `Organizer` -> Choose the uploaded archive -> Show In Finder -> Show Package Contents -> Compress dsyms folder and upload it
-- Once the app is "ready for sale" in app store connect make an announcement on Discord using [this template](https://docs.google.com/document/d/1U5_c8qvHTYPKzTJMKDRyJ6lnWswHiQMZ_3TILrIp0-A/edit#heading=h.804cjvu6wcee)
+- Once the app is "ready for sale" in app store connect make an announcement on Discord using [this template](https://outline.weatherxm.com/doc/templates-for-update-announcements-Uiek4uZYjE)
 ## Xcode Cloud
 You can declare a job in [XCode cloud](https://developer.apple.com/xcode-cloud/) to submit a new version for review or testing. For this reason there is a `ci_post_clone` scripts which generates the `.netrc` file mentioned above and the `/Configuration/Production/Config.xcconfig` file. To inject the necessary variables you should declare the following as `Environment variables` in your workflow. Keep in mind that every http url value should contain a `$()` before the secnond slash. Just like described in config templates
 
