@@ -1,0 +1,204 @@
+//
+//  MeApiRequestBuilder.swift
+//  DataLayer
+//
+//  Created by Danae Kikue Dimou on 18/5/22.
+//
+
+import Alamofire
+import DomainLayer
+import Foundation
+
+enum MeApiRequestBuilder: URLRequestConvertible {
+    // MARK: - URLRequestConvertible
+
+    func asURLRequest() throws -> URLRequest {
+        let url = try NetworkConstants.baseUrl.asURL()
+
+        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        // Http method
+        urlRequest.httpMethod = method.rawValue
+        // Common Headers
+        urlRequest.setValue(acceptField.rawValue, forHTTPHeaderField: NetworkConstants.HttpHeaderField.acceptType.rawValue)
+        urlRequest.setValue(NetworkConstants.ContentType.json.rawValue, forHTTPHeaderField: NetworkConstants.HttpHeaderField.contentType.rawValue)
+
+        // Encoding
+        let encoding: ParameterEncoding = {
+            switch method {
+            case .get:
+                return URLEncoding.default
+            default:
+                return JSONEncoding.default
+            }
+        }()
+
+        return try encoding.encode(urlRequest, with: parameters)
+    }
+
+    case getUser
+    case getUserWallet
+    case saveUserWallet(address: String)
+    case getDevices
+    case claimDevice(claimDeviceBody: ClaimDeviceBody)
+    case disclaimDevice(serialNumber: String)
+    case getFirmwares(testSearch: String)
+    case getUserDeviceById(deviceId: String)
+    case getUserDeviceInfoById(deviceId: String)
+    case getUserDeviceHistoryById(deviceId: String, fromDate: String, toDate: String, exclude: String)
+    case getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String)
+    case getUserDeviceTokensTransactionsById(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?)
+    case getDeviceFirmwareById(deviceId: String)
+    case setFriendlyName(deviceId: String, name: String)
+    case deleteFriendlyName(deviceId: String)
+    case deleteAccount
+    case follow(deviceId: String)
+    case unfollow(deviceId: String)
+	case setDeviceLocation(deviceId: String, lat: Double, lon: Double)
+
+    // MARK: - HttpMethod
+
+    // This returns the HttpMethod type. It's used to determine the type if several endpoints are peresent
+	private var method: HTTPMethod {
+		switch self {
+			case .getUser, .getUserWallet, .getDevices, .getFirmwares, .getUserDeviceById, .getUserDeviceHistoryById, .getUserDeviceForecastById, .getUserDeviceTokensTransactionsById, .getDeviceFirmwareById, .getUserDeviceInfoById:
+				return .get
+			case .saveUserWallet, .claimDevice, .setFriendlyName, .disclaimDevice, .follow, .setDeviceLocation:
+				return .post
+			case .deleteAccount, .deleteFriendlyName, .unfollow:
+				return .delete
+		}
+	}
+
+    // MARK: - Headers
+
+    private var acceptField: NetworkConstants.ContentType {
+        switch self {
+        case .getDeviceFirmwareById:
+            return .octetStream
+        default:
+            return .json
+        }
+    }
+
+    // MARK: - Path
+
+    // The path is the part following the base url
+    private var path: String {
+        switch self {
+            case .getUser, .deleteAccount:
+                return "me"
+            case .getUserWallet:
+                return "me/wallet"
+            case .saveUserWallet:
+                return "me/wallet"
+            case .getDevices:
+                return "me/devices"
+            case .claimDevice:
+                return "me/devices/claim"
+            case .disclaimDevice:
+                return "me/devices/disclaim"
+            case .getFirmwares:
+                return "me/devices/firmware"
+            case let .getUserDeviceById(deviceId):
+                return "me/devices/\(deviceId)"
+            case let .getUserDeviceInfoById(deviceId):
+                return "me/devices/\(deviceId)/info"
+            case let .getUserDeviceHistoryById(deviceId, _, _, _):
+                return "me/devices/\(deviceId)/history"
+            case let .getUserDeviceForecastById(deviceId, _, _, _):
+                return "me/devices/\(deviceId)/forecast"
+            case let .getUserDeviceTokensTransactionsById(deviceId, _, _, _, _, _):
+                return "me/devices/\(deviceId)/tokens/transactions"
+            case let .getDeviceFirmwareById(deviceId: deviceId):
+                return "me/devices/\(deviceId)/firmware"
+            case let .setFriendlyName(deviceId, _):
+                return "me/devices/\(deviceId)/friendlyName"
+            case let .deleteFriendlyName(deviceId):
+                return "me/devices/\(deviceId)/friendlyName"
+            case let .follow(deviceId):
+                return "me/devices/\(deviceId)/follow"
+            case let .unfollow(deviceId):
+                return "me/devices/\(deviceId)/follow"
+			case let .setDeviceLocation(deviceId, _, _):
+				return "me/devices/\(deviceId)/location"
+        }
+    }
+
+    // MARK: - Parameters
+
+    // This is the queries part, it's optional because an endpoint can be without parameters
+	private var parameters: Parameters? {
+		switch self {
+			case let .saveUserWallet(address):
+				return [ParameterConstants.Me.address: address]
+			case let .claimDevice(claimDeviceBody):
+				return claimDeviceBody.dictionaryRepresentation
+			case let .disclaimDevice(serialNumber):
+				return [ParameterConstants.Me.serialNumber: serialNumber]
+			case let .getFirmwares(testSearch):
+				return [ParameterConstants.Me.testSearch: testSearch]
+			case let .getUserDeviceHistoryById(_, fromDate, toDate, exclude):
+				return [
+					ParameterConstants.Me.fromDate: fromDate,
+					ParameterConstants.Me.toDate: toDate,
+					ParameterConstants.Me.exclude: exclude,
+				]
+			case let .getUserDeviceForecastById(_, fromDate, toDate, exclude):
+				if exclude.isEmpty {
+					return [
+						ParameterConstants.Me.fromDate: fromDate,
+						ParameterConstants.Me.toDate: toDate,
+					]
+				} else {
+					return [
+						ParameterConstants.Me.fromDate: fromDate,
+						ParameterConstants.Me.toDate: toDate,
+						ParameterConstants.Me.exclude: exclude,
+					]
+				}
+
+			case let .getUserDeviceTokensTransactionsById(_, page, pageSize, timezone, fromDate, toDate):
+				var parameters: Parameters = [:]
+				if let pageSize = pageSize {
+					parameters[ParameterConstants.Me.pageSize] = pageSize
+				}
+				if let toDate = toDate {
+					parameters[ParameterConstants.Me.toDate] = toDate
+				}
+				parameters[ParameterConstants.Me.page] = page
+				parameters[ParameterConstants.Me.fromDate] = fromDate
+				parameters[ParameterConstants.Me.timezone] = timezone
+				return parameters
+			case let .setFriendlyName(_, name):
+				return [ParameterConstants.Me.friendlyName: name]
+			case let .setDeviceLocation(_, lat, lon):
+				return [ParameterConstants.Me.lat: lat,
+						ParameterConstants.Me.lon: lon]
+			default:
+				return nil
+		}
+    }
+}
+
+extension MeApiRequestBuilder: MockResponseBuilder {
+    var mockFileName: String? {
+        switch self {
+            case .getDevices:
+                return "get_user_devices"
+            case .getUserDeviceById:
+                return "get_user_device"
+            case .getUserDeviceTokensTransactionsById:
+                return "get_transactions_empty"
+            case .getUserDeviceHistoryById:
+                return "get_device_history"
+            case .getUserDeviceInfoById:
+                return "get_device_info_helium"
+            case .getUserWallet:
+                return "get_user_wallet"
+            case .getUserDeviceForecastById:
+                return "get_user_device_forecast"
+            default:
+                return nil
+        }
+    }
+}

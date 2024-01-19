@@ -1,0 +1,234 @@
+//
+//  Router.swift
+//  wxm-ios
+//
+//  Created by Pantelis Giazitsis on 25/7/23.
+//
+
+import Foundation
+import SwiftUI
+
+enum Route: Hashable, Equatable {
+	static func == (lhs: Route, rhs: Route) -> Bool {
+		lhs.hashValue == rhs.hashValue
+	}
+
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(stringRepresentation)
+
+		switch self {
+			case .stationDetails(let vm):
+				hasher.combine(vm)
+			case .deviceInfo(let vm):
+				hasher.combine(vm)
+			case .viewMoreAlerts(let vm):
+				hasher.combine(vm)
+			case .wallet(let vm):
+				hasher.combine(vm)
+			case .history(let vm):
+				hasher.combine(vm)
+			case .netStats(let vm):
+				hasher.combine(vm)
+			case .transactions(let vm):
+				hasher.combine(vm)
+			case .settings(let vm):
+				hasher.combine(vm)
+			case .claimDevice(let viaBT):
+				hasher.combine(viaBT)
+			case .deleteAccount(let vm):
+				hasher.combine(vm)
+			case .survey(let userId, let appId):
+				hasher.combine("\(userId)-\(appId)")
+			case .signIn(let vm):
+				hasher.combine(vm)
+			case .register(let vm):
+				hasher.combine(vm)
+			case .resetPassword(let vm):
+				hasher.combine(vm)
+			case .explorerList(let vm):
+				hasher.combine(vm)
+			case .rewardDetails(let vm):
+				hasher.combine(vm)
+			case .webView(let title, let url, let params, _):
+				hasher.combine("\(title)-\(url)-\(params)")
+			case .selectStationLocation(let vm):
+				hasher.combine(vm)
+        }
+    }
+
+	var stringRepresentation: String {
+		switch self {
+			case .stationDetails:
+				"stationDetails"
+			case .deviceInfo:
+				"deviceInfo"
+			case .viewMoreAlerts:
+				"viewMoreAlerts"
+			case .wallet:
+				"wallet"
+			case .history:
+				"history"
+			case .netStats:
+				"netStats"
+			case .transactions:
+				"transactions"
+			case .settings:
+				"settings"
+			case .claimDevice:
+				"claimDevice"
+			case .deleteAccount:
+				"deleteAccount"
+			case .survey:
+				"survey"
+			case .signIn:
+				"signIn"
+			case .register:
+				"register"
+			case .resetPassword:
+				"resetPassword"
+			case .explorerList:
+				"explorerList"
+			case .rewardDetails:
+				"rewardDetails"
+			case .webView:
+				"wabView"
+			case .selectStationLocation:
+				"selectStationLocation"
+		}
+	}
+
+    case stationDetails(StationDetailsViewModel)
+    case deviceInfo(DeviceInfoViewModel)
+    case viewMoreAlerts(AlertsViewModel)
+    case wallet(MyWalletViewModel)
+    case history(HistoryContainerViewModel)
+    case netStats(NetworkStatsViewModel)
+    case transactions(TransactionDetailsViewModel)
+    case settings(SettingsViewModel)
+    case claimDevice(Bool)
+    case deleteAccount(DeleteAccountViewModel)
+    case survey(String, String)
+    case signIn(SignInViewModel)
+    case register(RegisterViewModel)
+    case resetPassword(ResetPasswordViewModel)
+    case explorerList(ExplorerStationsListViewModel)
+	case rewardDetails(RewardDetailsViewModel)
+	case webView(String, String, [DisplayLinkParams: String]?, DeepLinkHandler.QueryParamsCallBack?)
+	case selectStationLocation(SelectStationLocationViewModel)
+}
+
+extension Route {
+	@ViewBuilder
+	var view: some View {
+		switch self {
+			case .stationDetails(let stationDetailsViewModel):
+				StationDetailsContainerView(viewModel: stationDetailsViewModel)
+			case .deviceInfo(let deviceInfoViewModel):
+				NavigationContainerView {
+					DeviceInfoView(viewModel: deviceInfoViewModel)
+				}
+			case .viewMoreAlerts(let viewMoreAlertsViewModel):
+				NavigationContainerView {
+					MultipleAlertsView(viewModel: viewMoreAlertsViewModel)
+				}
+			case .wallet(let myWalletViewModel):
+				NavigationContainerView {
+					MyWalletView(viewModel: myWalletViewModel)
+				}
+			case .history(let historyViewModel):
+				HistoryContainerView(viewModel: historyViewModel)
+			case .netStats(let netStatsViewModel):
+				NavigationContainerView {
+					NetworkStatsView(viewModel: netStatsViewModel)
+				}
+			case .transactions(let transactionsViewModel):
+				NavigationContainerView {
+					TransactionDetailsView(viewModel: transactionsViewModel)
+				}
+			case .settings(let settingsViewModel):
+				CustomNavigationLinkView {
+					SettingsView(settingsViewModel: settingsViewModel)
+				}
+			case .claimDevice(let viaBluetooth):
+				ClaimDeviceNavView(
+					swinjectHelper: SwinjectHelper.shared,
+					claimViaBluetooth: viaBluetooth
+				)
+			case .deleteAccount(let deleteAccountViewModel):
+				CustomNavigationLinkView {
+					DeleteAccountView(viewModel: deleteAccountViewModel)
+				}
+			case .survey(let userId, let appId):
+				CustomNavigationLinkView {
+					WebView(userID: userId, appID: appId)
+				}
+			case .signIn(let signInViewModel):
+				CustomNavigationLinkView {
+					SignInView(viewModel: signInViewModel)
+				}
+			case .register(let registerViewModel):
+				CustomNavigationLinkView {
+					RegisterView(viewModel: registerViewModel)
+				}
+			case .resetPassword(let resetPassViewModel):
+				CustomNavigationLinkView {
+					ResetPasswordView(viewModel: resetPassViewModel)
+				}
+			case .explorerList(let explorerListViewModel):
+				NavigationContainerView {
+					ExplorerStationsListView(viewModel: explorerListViewModel)
+				}
+			case .rewardDetails(let rewardDetailsViewModel):
+				RewardDetailsView(viewModel: rewardDetailsViewModel)
+			case .webView(let title, let url, let params, let callback):
+				WebContainerView(title: title, url: url, params: params, redirectParamsCallback: callback)
+			case .selectStationLocation(let selectStationLocationViewModel):
+				NavigationContainerView {
+					SelectStationLocationView(viewModel: selectStationLocationViewModel)
+				}
+		}
+	}
+}
+
+class Router: ObservableObject {
+
+    static let shared = Router()
+
+	@Published var path: [Route] = []
+	/// We use this to add an, almost, invisible ovelray above `NavigationStack` to fix an issue with dragging gestures of sheet/popover and navigation stack
+	/// More info https://stackoverflow.com/questions/71714592/sheet-dismiss-gesture-with-swipe-back-gesture-causes-app-to-freeze
+	@Published var showDummyOverlay: Bool = false
+	
+    let navigationHost = HostingWrapper()
+
+    private init() {}
+
+    func navigateTo(_ route: Route) {
+		guard path.last != route else {
+			return
+		}
+		
+        if #available(iOS 16.0, *) {
+            self.path.append(route)
+        } else {
+            let hostingVC = UIHostingController(rootView: route.view)
+            (navigationHost.hostingController as? UINavigationController)?.pushViewController(hostingVC, animated: true)
+        }
+    }
+
+    func popToRoot() {
+        if #available(iOS 16.0, *) {
+            self.path = .init()
+        } else {
+            (navigationHost.hostingController as? UINavigationController)?.popToRootViewController(animated: true)
+        }
+    }
+
+    func pop() {
+        if #available(iOS 16.0, *) {
+            self.path.removeLast()
+        } else {
+            (navigationHost.hostingController as? UINavigationController)?.popViewController(animated: true)
+        }
+    }
+}

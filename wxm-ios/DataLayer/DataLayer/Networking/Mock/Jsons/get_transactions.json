@@ -1,0 +1,289 @@
+{
+	"total_pages" : 1,
+	"data" : [
+		{
+			"timestamp" : "2023-03-21T07:00:04+02:00",
+			"daily_reward" : 9.0540197013028276,
+			"actual_reward" : 5.0540197013028276,
+			"total_rewards" : 1787.8177960129844,
+			"validation_score" : 1,
+			"timeline": {
+				"timestamp": "2022-06-03T14:45:06+02:00",
+				"reward_scores": [
+					1.0,
+					1.0,
+					1.0,
+					1.0,
+					1.0,
+					0.26,
+					1.0,
+					1.0,
+					0.1,
+					1.0,
+					1.0,
+					1.0,
+					0.0,
+					1.0,
+					1.0,
+					1.0,
+					1.0,
+					1.0,
+					1.0,
+					1.0,
+					0.85,
+					1.0,
+					1.0,
+					1.0
+				]
+			},
+			"errors": {
+				"qod": [
+					{
+						"error": "SPIKES",
+						"affects": [
+							{
+								"parameter": "temperature",
+								"ratio": 0.7
+							},
+							{
+								"parameter": "wind_speed",
+								"ratio": 0.5
+							}
+						]
+					},
+					{
+						"error": "SHORT_CONST",
+						"affects": [
+							{
+								"parameter": "precipitation_rate",
+								"ratio": 0.7
+							}
+						]
+					}
+				],
+				"pol": [
+					{
+						"error": "LOCATION_NOT_VERIFIED",
+						"ratio": 0.8
+					}
+				],
+				"rm": [
+					{
+						"error": "NO_WALLET"
+					}
+				]
+			}
+		},
+		{
+			"timestamp" : "2023-03-20T07:00:06+02:00",
+			"daily_reward" : 9.1031948881789138,
+			"actual_reward" : 9.1031948881789138,
+			"total_rewards" : 1778.7637763116816,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-19T07:00:04+02:00",
+			"daily_reward" : 9.1587913854066212,
+			"actual_reward" : 9.1587913854066212,
+			"total_rewards" : 1769.6605814235027,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-18T07:00:05+02:00",
+			"daily_reward" : 9.272046859746176,
+			"actual_reward" : 9.272046859746176,
+			"total_rewards" : 1760.501790038096,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-17T07:00:04+02:00",
+			"daily_reward" : 9.272046859746176,
+			"actual_reward" : 9.272046859746176,
+			"total_rewards" : 1751.22974317835,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-16T07:00:05+02:00",
+			"daily_reward" : 9.3175277959450629,
+			"actual_reward" : 9.3175277959450629,
+			"total_rewards" : 1741.9576963186039,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-15T07:00:06+02:00",
+			"daily_reward" : 9.4724069148936163,
+			"actual_reward" : 9.4724069148936163,
+			"total_rewards" : 1732.6401685226588,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-14T07:00:02+02:00",
+			"daily_reward" : 9.5582019456558207,
+			"actual_reward" : 9.5582019456558207,
+			"total_rewards" : 1723.1677616077652,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-13T07:00:02+02:00",
+			"daily_reward" : 9.6227625802093879,
+			"actual_reward" : 9.6227625802093879,
+			"total_rewards" : 1713.6095596621094,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-12T07:00:02+02:00",
+			"daily_reward" : 9.7047002724795632,
+			"actual_reward" : 9.7047002724795632,
+			"total_rewards" : 1703.9867970819,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-11T07:00:02+02:00",
+			"daily_reward" : 9.7047002724795632,
+			"actual_reward" : 9.7047002724795632,
+			"total_rewards" : 1694.2820968094204,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-10T07:00:12+02:00",
+			"daily_reward" : 9.7113156100886169,
+			"actual_reward" : 9.7113156100886169,
+			"total_rewards" : 1684.5773965369408,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-09T07:00:06+02:00",
+			"daily_reward" : 9.757876712328768,
+			"actual_reward" : 9.757876712328768,
+			"total_rewards" : 1674.8660809268522,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-08T07:00:05+02:00",
+			"daily_reward" : 9.7813250944043943,
+			"actual_reward" : 9.7813250944043943,
+			"total_rewards" : 1665.1082042145233,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-07T07:00:06+02:00",
+			"daily_reward" : 9.8150189459180162,
+			"actual_reward" : 9.8150189459180162,
+			"total_rewards" : 1655.326879120119,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-06T07:00:05+02:00",
+			"daily_reward" : 9.8831078737426292,
+			"actual_reward" : 9.8831078737426292,
+			"total_rewards" : 1645.511860174201,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-05T07:00:06+02:00",
+			"daily_reward" : 9.9556254367575114,
+			"actual_reward" : 9.9556254367575114,
+			"total_rewards" : 1635.6287523004585,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-04T07:00:03+02:00",
+			"daily_reward" : 9.9556254367575114,
+			"actual_reward" : 9.9556254367575114,
+			"total_rewards" : 1625.6731268637009,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-03T07:00:06+02:00",
+			"daily_reward" : 10.086017699115045,
+			"actual_reward" : 9.6825769911504427,
+			"total_rewards" : 1615.7175014269433,
+			"validation_score" : 0.95999999999999996
+		},
+		{
+			"timestamp" : "2023-03-02T07:00:06+02:00",
+			"daily_reward" : 10.165180164109882,
+			"actual_reward" : 10.165180164109882,
+			"total_rewards" : 1606.0349244357928,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-03-01T07:00:04+02:00",
+			"daily_reward" : 10.165180164109882,
+			"actual_reward" : 10.165180164109882,
+			"total_rewards" : 1595.869744271683,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-02-28T07:00:05+02:00",
+			"daily_reward" : 10.304882459312839,
+			"actual_reward" : 10.304882459312839,
+			"total_rewards" : 1585.7045641075731,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-02-27T07:00:05+02:00",
+			"daily_reward" : 10.368631732168851,
+			"actual_reward" : 9.953886462882096,
+			"total_rewards" : 1575.3996816482602,
+			"validation_score" : 0.95999999999999996
+		},
+		{
+			"timestamp" : "2023-02-26T07:00:06+02:00",
+			"daily_reward" : 10.440820813484793,
+			"actual_reward" : 10.440820813484793,
+			"total_rewards" : 1565.4457951853781,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-02-25T07:00:05+02:00",
+			"daily_reward" : 10.486934118513066,
+			"actual_reward" : 10.067456753772543,
+			"total_rewards" : 1555.0049743718932,
+			"validation_score" : 0.95999999999999996
+		},
+		{
+			"timestamp" : "2023-02-24T07:00:05+02:00",
+			"daily_reward" : 10.521787296898079,
+			"actual_reward" : 10.521787296898079,
+			"total_rewards" : 1544.9375176181206,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-02-23T07:00:03+02:00",
+			"daily_reward" : 10.537352071005918,
+			"actual_reward" : 10.537352071005918,
+			"total_rewards" : 1534.4157303212226,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-02-22T07:00:06+02:00",
+			"daily_reward" : 10.556872915894775,
+			"actual_reward" : 10.556872915894775,
+			"total_rewards" : 1523.8783782502167,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-02-21T07:00:05+02:00",
+			"daily_reward" : 10.572541743970316,
+			"actual_reward" : 10.572541743970316,
+			"total_rewards" : 1513.321505334322,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-02-20T07:00:05+02:00",
+			"daily_reward" : 10.596132391223502,
+			"actual_reward" : 10.596132391223502,
+			"total_rewards" : 1502.7489635903517,
+			"validation_score" : 1
+		},
+		{
+			"timestamp" : "2023-02-19T07:00:06+02:00",
+			"daily_reward" : 10.615871833084947,
+			"actual_reward" : 10.615871833084947,
+			"total_rewards" : 1492.1528311991281,
+			"validation_score" : 1
+		}
+	],
+	"has_next_page" : false
+}

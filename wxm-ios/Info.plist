@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Account</key>
+	<string>$(Account)</string>
+	<key>ApiUrl</key>
+	<string>$(ApiUrl)</string>
+	<key>AppStoreUrl</key>
+	<string>$(AppStoreUrl)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+			<key>CFBundleURLName</key>
+			<string>com.weatherxm.app</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>weatherxm</string>
+			</array>
+		</dict>
+	</array>
+	<key>ClaimTokenUrl</key>
+	<string>$(ClaimTokenUrl)</string>
+	<key>FirebaseAutomaticScreenReportingEnabled</key>
+	<false/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlemail</string>
+		<string>ms-outlook</string>
+		<string>ymail</string>
+		<string>readdle-spark</string>
+		<string>metamask</string>
+		<string>trust</string>
+		<string>zerion</string>
+		<string>cbwallet</string>
+		<string>safepalwallet</string>
+		<string>exodus</string>
+		<string>imtokenv2</string>
+		<string>dfw</string>
+		<string>bnc</string>
+		<string>blockchain-wallet</string>
+		<string>rainbow</string>
+	</array>
+	<key>MBXAccessToken</key>
+	<string>$(MBXAccessToken)</string>
+	<key>Password</key>
+	<string>$(Password)</string>
+	<key>SupportUrl</key>
+	<string>$(SupportUrl)</string>
+	<key>TeamId</key>
+	<string>$(TeamId)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Font Awesome 6 Brands-Regular-400.otf</string>
+		<string>Font Awesome 6 Duotone-Solid-900.otf</string>
+		<string>Font Awesome 6 Pro-Light-300.otf</string>
+		<string>Font Awesome 6 Pro-Regular-400.otf</string>
+		<string>Font Awesome 6 Pro-Solid-900.otf</string>
+		<string>Font Awesome 6 Pro-Thin-100.otf</string>
+		<string>Font Awesome 6 Sharp-Regular-400.otf</string>
+		<string>Font Awesome 6 Sharp-Solid-900.otf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+	</array>
+	<key>UserAccessTokenService</key>
+	<string>$(UserAccessTokenService)</string>
+	<key>UserRefreshTokenService</key>
+	<string>$(UserRefreshTokenService)</string>
+	<key>Username</key>
+	<string>$(Username)</string>
+</dict>
+</plist>

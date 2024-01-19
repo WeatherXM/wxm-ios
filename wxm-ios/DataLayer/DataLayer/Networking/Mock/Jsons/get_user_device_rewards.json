@@ -1,0 +1,164 @@
+{
+  "latest" : {
+	"lost_rewards" : 0.95909196352926962,
+	"period_max_reward" : 4.0231573001976839,
+	"annotations" : {
+	  "qod" : [
+		{
+		  "annotation" : "SHORT_CONST",
+		  "affects" : [
+			{
+			  "ratio" : 98,
+			  "parameter" : "wind_speed"
+			},
+			{
+			  "ratio" : 65,
+			  "parameter" : "wind_direction"
+			}
+		  ]
+		},
+		{
+		  "annotation" : "LONG_CONST",
+		  "affects" : [
+			{
+			  "ratio" : 100,
+			  "parameter" : "wind_speed"
+			}
+		  ]
+		},
+		{
+		  "annotation" : "NO_DATA",
+		  "affects" : [
+			{
+			  "ratio" : 1,
+			  "parameter" : "temperature"
+			},
+			{
+			  "ratio" : 1,
+			  "parameter" : "humidity"
+			},
+			{
+			  "ratio" : 1,
+			  "parameter" : "wind_speed"
+			},
+			{
+			  "ratio" : 1,
+			  "parameter" : "wind_direction"
+			},
+			{
+			  "ratio" : 1,
+			  "parameter" : "pressure"
+			},
+			{
+			  "ratio" : 1,
+			  "parameter" : "illuminance"
+			},
+			{
+			  "ratio" : 1,
+			  "parameter" : "precipitation_accumulated"
+			}
+		  ]
+		}
+	  ],
+	  "pol" : [
+
+	  ],
+	  "rm" : [
+
+	  ]
+	},
+	"tx_hash" : "0x12d5a27185e2843358e962a2313416090a11501f625513c12b95c01ec5d4222b",
+	"actual_reward" : 3.0640653366684143,
+	"reward_score" : 76,
+	"timestamp" : "2024-01-11T02:00:00+02:00",
+	"timeline" : {
+	  "reference_date" : "2024-01-10T00:00:00+00:00",
+	  "reward_scores" : [
+		71,
+		71,
+		71,
+		71,
+		71,
+		71,
+		71,
+		80,
+		85,
+		85,
+		85,
+		85,
+		84,
+		82,
+		85,
+		80,
+		71,
+		71,
+		71,
+		71,
+		71,
+		71,
+		71,
+		71
+	  ]
+	}
+  },
+  "weekly" : {
+	"lost_rewards" : 8.1529899702385151,
+	"period_max_reward" : 24.190233119113167,
+	"to_date" : "2024-01-11T23:59:59+02:00",
+	"actual_reward" : 16.037243148874651,
+	"timeline" : {
+	  "reward_scores" : [
+		57,
+		59,
+		66,
+		68,
+		69,
+		76
+	  ]
+	},
+	"reward_score" : 65,
+	"from_date" : "2024-01-06T00:00:00+02:00"
+  },
+  "monthly" : {
+	"lost_rewards" : 35.615601782350595,
+	"period_max_reward" : 115.58981860360869,
+	"to_date" : "2024-01-11T23:59:59+02:00",
+	"actual_reward" : 79.974216821258125,
+	"timeline" : {
+	  "reward_scores" : [
+		77,
+		74,
+		78,
+		71,
+		72,
+		70,
+		78,
+		76,
+		72,
+		71,
+		60,
+		51,
+		0,
+		56,
+		62,
+		66,
+		68,
+		73,
+		71,
+		71,
+		71,
+		71,
+		67,
+		57,
+		59,
+		66,
+		68,
+		69,
+		76
+	  ]
+	},
+	"reward_score" : 66,
+	"from_date" : "2023-12-14T00:00:00+02:00"
+  },
+  "total_rewards" : 1222.4461972890285
+}

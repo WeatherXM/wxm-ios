@@ -1,0 +1,121 @@
+//
+//  BottomSheetModifier.swift
+//  wxm-ios
+//
+//  Created by Pantelis Giazitsis on 29/5/23.
+//
+
+import SwiftUI
+import Toolkit
+
+struct BottomSheetModifier<V: View>: ViewModifier {
+    @Binding var show: Bool
+    var fitContent: Bool = false
+    var initialDetentId: UISheetPresentationController.Detent.Identifier?
+    let content: () -> V
+    @State private var hostingWrapper: HostingWrapper = HostingWrapper()
+    @State private var contentSize: CGSize = .zero
+
+    func body(content: Content) -> some View {
+        content
+            .if(fitContent) { view in
+                view.customSheet(isPresented: $show) { _ in
+                    VStack {
+                        Capsule()
+                            .foregroundColor(Color(colorEnum: .layer2))
+                            .frame(width: 40.0, height: 5.0)
+                            .padding(.top)
+
+                        self.content()
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .WXMCardStyle(
+                        backgroundColor: Color(colorEnum: .layer1),
+                        insideHorizontalPadding: 0,
+                        insideVerticalPadding: 0
+                    )
+                }
+            }
+            .if(!fitContent) { view in
+                view.onChange(of: show) { _ in
+                    if show, hostingWrapper.hostingController == nil {
+                        let controller = BottomSheetHostingController(rootView: self.content())
+
+                        (controller.presentationController as? UISheetPresentationController)?.detents = [.medium(), .large()]
+                        (controller.presentationController as? UISheetPresentationController)?.selectedDetentIdentifier = initialDetentId
+
+						/*
+						 For some crazy reason the following line causes a memory leak in versions < iOS 17.
+						 So the easiest and cleaner solution is to omit the grabber.
+						 https://developer.apple.com/forums/thread/729183
+						 */
+						if #available(iOS 17.0, *) {
+							(controller.presentationController as? UISheetPresentationController)?.prefersGrabberVisible = true
+						}
+                        
+						controller.willDismissCallback = {
+                            show = false
+                        }
+                        UIApplication.shared.topViewController?.present(controller, animated: true)
+                        hostingWrapper.hostingController = controller
+                    } else if !show {
+                        hostingWrapper.hostingController?.dismiss(animated: true)
+                    }
+                }
+            }
+    }
+
+    private class BottomSheetHostingController: UIHostingController<V> {
+
+        var willDismissCallback: VoidCallback?
+
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            if isBeingDismissed {
+                willDismissCallback?()
+            }
+        }
+    }
+}
+
+extension View {
+
+    @ViewBuilder
+    func bottomSheet<Content: View>(show: Binding<Bool>,
+                                    fitContent: Bool = false,
+                                    initialDetentId: UISheetPresentationController.Detent.Identifier? = nil,
+                                    content: @escaping () -> Content) -> some View {
+        modifier(BottomSheetModifier(show: show, fitContent: fitContent, initialDetentId: initialDetentId, content: content))
+    }
+
+	@ViewBuilder
+	func bottomInfoView(info: (title: String?, description: String)?) -> some View {
+		ZStack {
+			Color(colorEnum: .layer1)
+				.ignoresSafeArea()
+
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				if let info = info {
+					HStack {
+						if let title = info.title {
+							Text(title)
+								.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+								.foregroundColor(Color(colorEnum: .text))
+						}
+
+						Spacer()
+					}
+
+					HStack {
+						Text(info.description.attributedMarkdown ?? "")
+							.font(.system(size: CGFloat(.mediumFontSize)))
+							.foregroundColor(Color(colorEnum: .text))
+
+						Spacer()
+					}
+				}
+			}
+			.padding(CGFloat(.largeSidePadding))
+		}
+	}
+}

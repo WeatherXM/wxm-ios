@@ -1,0 +1,961 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2612AC202AB45F3C00285896 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC1F2AB45F3C00285896 /* Filters.swift */; };
+		2612AC222AB4621A00285896 /* FiltersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC212AB4621A00285896 /* FiltersRepository.swift */; };
+		2612AC262AB46AF200285896 /* FiltersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC252AB46AF200285896 /* FiltersUseCase.swift */; };
+		261FFAB6299B9E8F00FCDC65 /* UpdateFirmwareUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FFAB5299B9E8F00FCDC65 /* UpdateFirmwareUseCase.swift */; };
+		26348E0C2A434CCB000846C6 /* NetworkSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E0B2A434CCB000846C6 /* NetworkSearchResponse.swift */; };
+		26348E0E2A44360A000846C6 /* LocationCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E0D2A44360A000846C6 /* LocationCoordinates.swift */; };
+		26348E102A44369C000846C6 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E0F2A44369C000846C6 /* Connectivity.swift */; };
+		264BDA0E298AC7DD005C1F82 /* FirmwareUpdateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */; };
+		264C105F2AF3D76800F6FF3E /* WeatherField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C105E2AF3D76800F6FF3E /* WeatherField.swift */; };
+		264C10612AF3DBA100F6FF3E /* DeviceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */; };
+		26504E3D2A7A4753008E2B59 /* NetworkResultsConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26504E3C2A7A4753008E2B59 /* NetworkResultsConverter.swift */; };
+		2664830629C218D900748F9C /* NetworkDevicesInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664830529C218D900748F9C /* NetworkDevicesInfoResponse.swift */; };
+		2664830829C21A8300748F9C /* NetworkDevicesTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664830729C21A8300748F9C /* NetworkDevicesTypes.swift */; };
+		266D17F92AC71280007CDB06 /* WidgetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266D17F82AC71280007CDB06 /* WidgetUseCase.swift */; };
+		267401702A375D3800E54E35 /* NetworkStatsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2674016F2A375D3800E54E35 /* NetworkStatsResponse.swift */; };
+		267401722A37687000E54E35 /* NetworkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267401712A37687000E54E35 /* NetworkUseCase.swift */; };
+		267401742A3768AF00E54E35 /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267401732A3768AF00E54E35 /* NetworkRepository.swift */; };
+		267A37852AEBC38A00469126 /* NetworkDeviceTokensResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37842AEBC38A00469126 /* NetworkDeviceTokensResponse.swift */; };
+		2683A4C22ADEB39800D5C205 /* CountryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2683A4C12ADEB39800D5C205 /* CountryInfo.swift */; };
+		26A3B3DE2B18E41F0002F35F /* NetworkUserRewardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3DD2B18E41F0002F35F /* NetworkUserRewardsResponse.swift */; };
+		26A4117329B887E800A2C10B /* DeviceInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4117229B887E800A2C10B /* DeviceInfoUseCase.swift */; };
+		26A4117529B88A3D00A2C10B /* DeviceInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4117429B88A3D00A2C10B /* DeviceInfoRepository.swift */; };
+		26A961A02A78FFDD00A0E7B9 /* RewardsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9619F2A78FFDD00A0E7B9 /* RewardsUseCase.swift */; };
+		26AB9F452A7A8D8C00855912 /* Geocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F442A7A8D8C00855912 /* Geocoder.swift */; };
+		26AF27782A0B8B090067A1B8 /* UnitsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF27772A0B8B090067A1B8 /* UnitsEnum.swift */; };
+		26C904C12A77DA5A0047A388 /* DeviceDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C904C02A77DA5A0047A388 /* DeviceDetailsUseCase.swift */; };
+		26C904C32A77DBA90047A388 /* DeviceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C904C22A77DBA90047A388 /* DeviceDetails.swift */; };
+		26D47E882A1633E10078723A /* NetworkDeviceHistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E872A1633E10078723A /* NetworkDeviceHistoryResponse.swift */; };
+		26D47E9A2A1779310078723A /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E992A1779310078723A /* SettingsUseCase.swift */; };
+		26D47E9C2A177A0F0078723A /* SettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E9B2A177A0F0078723A /* SettingsRepository.swift */; };
+		26DD42C829AF5547008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42C729AF5547008E277E /* Toolkit.framework */; };
+		4D1C95CA28FC766D001F66C9 /* DeviceLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C95C928FC766D001F66C9 /* DeviceLocationRepository.swift */; };
+		4D1C95D528FCB248001F66C9 /* DeviceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C95D428FCB248001F66C9 /* DeviceLocation.swift */; };
+		4D1C95D728FD3CB9001F66C9 /* DeviceLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C95D628FD3CB9001F66C9 /* DeviceLocationUseCase.swift */; };
+		4D35F7EE28F6005A009AA3CE /* HeliumDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35F7ED28F6005A009AA3CE /* HeliumDevice.swift */; };
+		4D49D8F9294DD65600987DE6 /* Turf in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D8F8294DD65600987DE6 /* Turf */; };
+		4D49D8FC294DD79F00987DE6 /* MapboxCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D8FB294DD79F00987DE6 /* MapboxCommon */; };
+		4D49D907294DE32400987DE6 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D906294DE32400987DE6 /* MapboxMaps */; };
+		4D5AE32E28EA4882006F2EBA /* BluetoothDevicesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AE32D28EA4882006F2EBA /* BluetoothDevicesRepository.swift */; };
+		4DE3A56E293EA58300BCDD8A /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3A56D293EA58300BCDD8A /* Frequency.swift */; };
+		74D6B41C28379D8A00274A90 /* NetworkDevicesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D6B41B28379D8A00274A90 /* NetworkDevicesResponse.swift */; };
+		9929BB0528BF667900ED3CDE /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9929BB0428BF667900ED3CDE /* Charts */; };
+		9929BB0E28BF76EF00ED3CDE /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9929BB0D28BF76EF00ED3CDE /* Double+.swift */; };
+		992D764328B7C83F00DFE504 /* HistoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992D764228B7C83F00DFE504 /* HistoryUseCase.swift */; };
+		995A0CD728C0A4BB0015DAA1 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A0CD628C0A4BB0015DAA1 /* UserDefaultsRepository.swift */; };
+		995A0CE528C0B6D90015DAA1 /* MainUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A0CE428C0B6D90015DAA1 /* MainUseCase.swift */; };
+		995A0CEE28C0B93C0015DAA1 /* UserDefaults+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A0CED28C0B93C0015DAA1 /* UserDefaults+Constants.swift */; };
+		9968B17B28ACFD1F00320413 /* ExplorerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B17A28ACFD1F00320413 /* ExplorerRepository.swift */; };
+		9968B17E28ACFE6900320413 /* PublicHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B17D28ACFE6900320413 /* PublicHex.swift */; };
+		9968B18028ACFFDF00320413 /* PublicDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B17F28ACFFDF00320413 /* PublicDevice.swift */; };
+		9968B1B328AD0C2D00320413 /* ExplorerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B1B228AD0C2D00320413 /* ExplorerUseCase.swift */; };
+		9968B1B528AD0C5600320413 /* ExplorerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B1B428AD0C5600320413 /* ExplorerData.swift */; };
+		9968B1B828AD0E7400320413 /* PublicHexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B1B728AD0E7400320413 /* PublicHexError.swift */; };
+		99A31FA928D0C1F7003BE981 /* TokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A31FA828D0C1F7003BE981 /* TokenUseCase.swift */; };
+		99A31FAC28D0C25C003BE981 /* UITransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A31FAB28D0C25C003BE981 /* UITransaction.swift */; };
+		99BA878828BCF4D9004611AC /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BA878728BCF4D9004611AC /* Collection+.swift */; };
+		B5611E7F2834D5FC0092F204 /* NetworkFirmwareResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5611E7E2834D5FC0092F204 /* NetworkFirmwareResponse.swift */; };
+		B5611E812834E0150092F204 /* NetworkDeviceForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5611E802834E0150092F204 /* NetworkDeviceForecastResponse.swift */; };
+		B5611E852834E4F60092F204 /* NetworkDeviceIDTransactionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5611E842834E4F60092F204 /* NetworkDeviceIDTransactionsResponse.swift */; };
+		B5667D6B2833D37000C08B57 /* NetworkUserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5667D6A2833D37000C08B57 /* NetworkUserInfoResponse.swift */; };
+		B5667D722833DF4000C08B57 /* ClaimDeviceBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5667D712833DF4000C08B57 /* ClaimDeviceBody.swift */; };
+		B56A25EA28A0F18500928141 /* KeychainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56A25E928A0F18500928141 /* KeychainRepository.swift */; };
+		B56A25EC28A0F2A900928141 /* KeychainUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56A25EB28A0F2A900928141 /* KeychainUseCase.swift */; };
+		B5799E9128254DCD00FEBB85 /* DomainLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = B5799E9028254DCD00FEBB85 /* DomainLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5E6B85D28338BF20060D050 /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6B85C28338BF20060D050 /* AuthUseCase.swift */; };
+		B5E6B85F28338C150060D050 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6B85E28338C150060D050 /* AuthRepository.swift */; };
+		B5E6B86128338CAB0060D050 /* NetworkTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6B86028338CAB0060D050 /* NetworkTokenResponse.swift */; };
+		B5E6B86328338DD10060D050 /* NetworkErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6B86228338DD10060D050 /* NetworkErrorResponse.swift */; };
+		B5E6B8812833AB4A0060D050 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B5E6B8802833AB4A0060D050 /* Alamofire */; };
+		B5E6B8872833B7360060D050 /* DevicesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6B8862833B7360060D050 /* DevicesUseCase.swift */; };
+		B5E6B8892833B75D0060D050 /* MeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6B8882833B75D0060D050 /* MeUseCase.swift */; };
+		B5E6B88B2833B7730060D050 /* MeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6B88A2833B7730060D050 /* MeRepository.swift */; };
+		B5E6B88D2833B77E0060D050 /* DevicesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6B88C2833B77E0060D050 /* DevicesRepository.swift */; };
+		B5E6B8952833C15C0060D050 /* EmptyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6B8942833C15C0060D050 /* EmptyEntity.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2612AC1F2AB45F3C00285896 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		2612AC212AB4621A00285896 /* FiltersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersRepository.swift; sourceTree = "<group>"; };
+		2612AC252AB46AF200285896 /* FiltersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersUseCase.swift; sourceTree = "<group>"; };
+		261FFAB5299B9E8F00FCDC65 /* UpdateFirmwareUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFirmwareUseCase.swift; sourceTree = "<group>"; };
+		26348E0B2A434CCB000846C6 /* NetworkSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSearchResponse.swift; sourceTree = "<group>"; };
+		26348E0D2A44360A000846C6 /* LocationCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinates.swift; sourceTree = "<group>"; };
+		26348E0F2A44369C000846C6 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
+		264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateRepository.swift; sourceTree = "<group>"; };
+		264C105E2AF3D76800F6FF3E /* WeatherField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherField.swift; sourceTree = "<group>"; };
+		264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAnnotation.swift; sourceTree = "<group>"; };
+		26504E3C2A7A4753008E2B59 /* NetworkResultsConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResultsConverter.swift; sourceTree = "<group>"; };
+		2664830529C218D900748F9C /* NetworkDevicesInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicesInfoResponse.swift; sourceTree = "<group>"; };
+		2664830729C21A8300748F9C /* NetworkDevicesTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicesTypes.swift; sourceTree = "<group>"; };
+		266D17F82AC71280007CDB06 /* WidgetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetUseCase.swift; sourceTree = "<group>"; };
+		2674016F2A375D3800E54E35 /* NetworkStatsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsResponse.swift; sourceTree = "<group>"; };
+		267401712A37687000E54E35 /* NetworkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUseCase.swift; sourceTree = "<group>"; };
+		267401732A3768AF00E54E35 /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
+		267A37842AEBC38A00469126 /* NetworkDeviceTokensResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceTokensResponse.swift; sourceTree = "<group>"; };
+		2683A4C12ADEB39800D5C205 /* CountryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryInfo.swift; sourceTree = "<group>"; };
+		26A3B3DD2B18E41F0002F35F /* NetworkUserRewardsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUserRewardsResponse.swift; sourceTree = "<group>"; };
+		26A4117229B887E800A2C10B /* DeviceInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoUseCase.swift; sourceTree = "<group>"; };
+		26A4117429B88A3D00A2C10B /* DeviceInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoRepository.swift; sourceTree = "<group>"; };
+		26A9619F2A78FFDD00A0E7B9 /* RewardsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsUseCase.swift; sourceTree = "<group>"; };
+		26AB9F442A7A8D8C00855912 /* Geocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geocoder.swift; sourceTree = "<group>"; };
+		26AF27772A0B8B090067A1B8 /* UnitsEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsEnum.swift; sourceTree = "<group>"; };
+		26C904C02A77DA5A0047A388 /* DeviceDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsUseCase.swift; sourceTree = "<group>"; };
+		26C904C22A77DBA90047A388 /* DeviceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetails.swift; sourceTree = "<group>"; };
+		26D47E872A1633E10078723A /* NetworkDeviceHistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceHistoryResponse.swift; sourceTree = "<group>"; };
+		26D47E992A1779310078723A /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
+		26D47E9B2A177A0F0078723A /* SettingsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepository.swift; sourceTree = "<group>"; };
+		26DD42C729AF5547008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D1C95C928FC766D001F66C9 /* DeviceLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationRepository.swift; sourceTree = "<group>"; };
+		4D1C95D428FCB248001F66C9 /* DeviceLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocation.swift; sourceTree = "<group>"; };
+		4D1C95D628FD3CB9001F66C9 /* DeviceLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationUseCase.swift; sourceTree = "<group>"; };
+		4D35F7ED28F6005A009AA3CE /* HeliumDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumDevice.swift; sourceTree = "<group>"; };
+		4D5AE32D28EA4882006F2EBA /* BluetoothDevicesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevicesRepository.swift; sourceTree = "<group>"; };
+		4DE3A56D293EA58300BCDD8A /* Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
+		74D6B41B28379D8A00274A90 /* NetworkDevicesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicesResponse.swift; sourceTree = "<group>"; };
+		9929BB0D28BF76EF00ED3CDE /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
+		992D764228B7C83F00DFE504 /* HistoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUseCase.swift; sourceTree = "<group>"; };
+		995A0CD628C0A4BB0015DAA1 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
+		995A0CE428C0B6D90015DAA1 /* MainUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUseCase.swift; sourceTree = "<group>"; };
+		995A0CED28C0B93C0015DAA1 /* UserDefaults+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Constants.swift"; sourceTree = "<group>"; };
+		9968B17A28ACFD1F00320413 /* ExplorerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerRepository.swift; sourceTree = "<group>"; };
+		9968B17D28ACFE6900320413 /* PublicHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHex.swift; sourceTree = "<group>"; };
+		9968B17F28ACFFDF00320413 /* PublicDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicDevice.swift; sourceTree = "<group>"; };
+		9968B1B228AD0C2D00320413 /* ExplorerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerUseCase.swift; sourceTree = "<group>"; };
+		9968B1B428AD0C5600320413 /* ExplorerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerData.swift; sourceTree = "<group>"; };
+		9968B1B728AD0E7400320413 /* PublicHexError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHexError.swift; sourceTree = "<group>"; };
+		9968B1BD28AD19E900320413 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		99A31FA828D0C1F7003BE981 /* TokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUseCase.swift; sourceTree = "<group>"; };
+		99A31FAB28D0C25C003BE981 /* UITransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITransaction.swift; sourceTree = "<group>"; };
+		99BA878728BCF4D9004611AC /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
+		B5611E7E2834D5FC0092F204 /* NetworkFirmwareResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFirmwareResponse.swift; sourceTree = "<group>"; };
+		B5611E802834E0150092F204 /* NetworkDeviceForecastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceForecastResponse.swift; sourceTree = "<group>"; };
+		B5611E842834E4F60092F204 /* NetworkDeviceIDTransactionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceIDTransactionsResponse.swift; sourceTree = "<group>"; };
+		B5667D6A2833D37000C08B57 /* NetworkUserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUserInfoResponse.swift; sourceTree = "<group>"; };
+		B5667D712833DF4000C08B57 /* ClaimDeviceBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBody.swift; sourceTree = "<group>"; };
+		B56A25E928A0F18500928141 /* KeychainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainRepository.swift; sourceTree = "<group>"; };
+		B56A25EB28A0F2A900928141 /* KeychainUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainUseCase.swift; sourceTree = "<group>"; };
+		B5799E8D28254DCD00FEBB85 /* DomainLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DomainLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5799E9028254DCD00FEBB85 /* DomainLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DomainLayer.h; sourceTree = "<group>"; };
+		B5E6B85C28338BF20060D050 /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
+		B5E6B85E28338C150060D050 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		B5E6B86028338CAB0060D050 /* NetworkTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTokenResponse.swift; sourceTree = "<group>"; };
+		B5E6B86228338DD10060D050 /* NetworkErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorResponse.swift; sourceTree = "<group>"; };
+		B5E6B8862833B7360060D050 /* DevicesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesUseCase.swift; sourceTree = "<group>"; };
+		B5E6B8882833B75D0060D050 /* MeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeUseCase.swift; sourceTree = "<group>"; };
+		B5E6B88A2833B7730060D050 /* MeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeRepository.swift; sourceTree = "<group>"; };
+		B5E6B88C2833B77E0060D050 /* DevicesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesRepository.swift; sourceTree = "<group>"; };
+		B5E6B8942833C15C0060D050 /* EmptyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyEntity.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B5799E8A28254DCD00FEBB85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5E6B8812833AB4A0060D050 /* Alamofire in Frameworks */,
+				9929BB0528BF667900ED3CDE /* Charts in Frameworks */,
+				4D49D8FC294DD79F00987DE6 /* MapboxCommon in Frameworks */,
+				4D49D907294DE32400987DE6 /* MapboxMaps in Frameworks */,
+				26DD42C829AF5547008E277E /* Toolkit.framework in Frameworks */,
+				4D49D8F9294DD65600987DE6 /* Turf in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		26348E092A434C5F000846C6 /* Explorer */ = {
+			isa = PBXGroup;
+			children = (
+				9968B1B428AD0C5600320413 /* ExplorerData.swift */,
+			);
+			path = Explorer;
+			sourceTree = "<group>";
+		};
+		2674016E2A375D0900E54E35 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				26348E0B2A434CCB000846C6 /* NetworkSearchResponse.swift */,
+				2674016F2A375D3800E54E35 /* NetworkStatsResponse.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		74D6B41A28379D4F00274A90 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				2664830529C218D900748F9C /* NetworkDevicesInfoResponse.swift */,
+				74D6B41B28379D8A00274A90 /* NetworkDevicesResponse.swift */,
+				2664830729C21A8300748F9C /* NetworkDevicesTypes.swift */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
+		992D763F28B7C81500DFE504 /* DomainModels */ = {
+			isa = PBXGroup;
+			children = (
+				26348E092A434C5F000846C6 /* Explorer */,
+				26C904C22A77DBA90047A388 /* DeviceDetails.swift */,
+				4D1C95D428FCB248001F66C9 /* DeviceLocation.swift */,
+				2612AC1F2AB45F3C00285896 /* Filters.swift */,
+				4DE3A56D293EA58300BCDD8A /* Frequency.swift */,
+				4D35F7ED28F6005A009AA3CE /* HeliumDevice.swift */,
+				99A31FAB28D0C25C003BE981 /* UITransaction.swift */,
+				2683A4C12ADEB39800D5C205 /* CountryInfo.swift */,
+				264C105E2AF3D76800F6FF3E /* WeatherField.swift */,
+				264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */,
+			);
+			path = DomainModels;
+			sourceTree = "<group>";
+		};
+		9968B17C28ACFE5900320413 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9968B17F28ACFFDF00320413 /* PublicDevice.swift */,
+				9968B17D28ACFE6900320413 /* PublicHex.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		9968B1B628AD0E6100320413 /* DomainErrors */ = {
+			isa = PBXGroup;
+			children = (
+				9968B1B728AD0E7400320413 /* PublicHexError.swift */,
+			);
+			path = DomainErrors;
+			sourceTree = "<group>";
+		};
+		9968B1BC28AD19E900320413 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9968B1BD28AD19E900320413 /* CoreLocation.framework */,
+				26DD42C729AF5547008E277E /* Toolkit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		99BA878628BCF4CE004611AC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				99BA878728BCF4D9004611AC /* Collection+.swift */,
+				9929BB0D28BF76EF00ED3CDE /* Double+.swift */,
+				995A0CED28C0B93C0015DAA1 /* UserDefaults+Constants.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		99DC02B228D85D5D009F53F9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				26AB9F442A7A8D8C00855912 /* Geocoder.swift */,
+				26504E3C2A7A4753008E2B59 /* NetworkResultsConverter.swift */,
+				26AF27772A0B8B090067A1B8 /* UnitsEnum.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		B51243E92825502A00B66A31 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				B51243EF2825507D00B66A31 /* Codables */,
+				9968B1B628AD0E6100320413 /* DomainErrors */,
+				992D763F28B7C81500DFE504 /* DomainModels */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		B51243ED2825505F00B66A31 /* DomainRepositoryInterfaces */ = {
+			isa = PBXGroup;
+			children = (
+				B5E6B85E28338C150060D050 /* AuthRepository.swift */,
+				4D5AE32D28EA4882006F2EBA /* BluetoothDevicesRepository.swift */,
+				26A4117429B88A3D00A2C10B /* DeviceInfoRepository.swift */,
+				4D1C95C928FC766D001F66C9 /* DeviceLocationRepository.swift */,
+				B5E6B88C2833B77E0060D050 /* DevicesRepository.swift */,
+				9968B17A28ACFD1F00320413 /* ExplorerRepository.swift */,
+				2612AC212AB4621A00285896 /* FiltersRepository.swift */,
+				264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */,
+				B56A25E928A0F18500928141 /* KeychainRepository.swift */,
+				B5E6B88A2833B7730060D050 /* MeRepository.swift */,
+				267401732A3768AF00E54E35 /* NetworkRepository.swift */,
+				26D47E9B2A177A0F0078723A /* SettingsRepository.swift */,
+				995A0CD628C0A4BB0015DAA1 /* UserDefaultsRepository.swift */,
+			);
+			path = DomainRepositoryInterfaces;
+			sourceTree = "<group>";
+		};
+		B51243EE2825506D00B66A31 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				B5E6B85C28338BF20060D050 /* AuthUseCase.swift */,
+				26C904C02A77DA5A0047A388 /* DeviceDetailsUseCase.swift */,
+				26A4117229B887E800A2C10B /* DeviceInfoUseCase.swift */,
+				4D1C95D628FD3CB9001F66C9 /* DeviceLocationUseCase.swift */,
+				B5E6B8862833B7360060D050 /* DevicesUseCase.swift */,
+				9968B1B228AD0C2D00320413 /* ExplorerUseCase.swift */,
+				2612AC252AB46AF200285896 /* FiltersUseCase.swift */,
+				992D764228B7C83F00DFE504 /* HistoryUseCase.swift */,
+				B56A25EB28A0F2A900928141 /* KeychainUseCase.swift */,
+				995A0CE428C0B6D90015DAA1 /* MainUseCase.swift */,
+				B5E6B8882833B75D0060D050 /* MeUseCase.swift */,
+				267401712A37687000E54E35 /* NetworkUseCase.swift */,
+				26A9619F2A78FFDD00A0E7B9 /* RewardsUseCase.swift */,
+				26D47E992A1779310078723A /* SettingsUseCase.swift */,
+				99A31FA828D0C1F7003BE981 /* TokenUseCase.swift */,
+				261FFAB5299B9E8F00FCDC65 /* UpdateFirmwareUseCase.swift */,
+				266D17F82AC71280007CDB06 /* WidgetUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		B51243EF2825507D00B66A31 /* Codables */ = {
+			isa = PBXGroup;
+			children = (
+				B5E6B86428338DD90060D050 /* Auth */,
+				9968B17C28ACFE5900320413 /* Cells */,
+				74D6B41A28379D4F00274A90 /* Devices */,
+				B5E6B86828338F460060D050 /* Error */,
+				B5E6B8832833ACAF0060D050 /* Me */,
+				2674016E2A375D0900E54E35 /* Network */,
+				26348E0F2A44369C000846C6 /* Connectivity.swift */,
+				B5E6B8942833C15C0060D050 /* EmptyEntity.swift */,
+				26348E0D2A44360A000846C6 /* LocationCoordinates.swift */,
+			);
+			path = Codables;
+			sourceTree = "<group>";
+		};
+		B5667D6F2833DF2000C08B57 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B5611E802834E0150092F204 /* NetworkDeviceForecastResponse.swift */,
+				26D47E872A1633E10078723A /* NetworkDeviceHistoryResponse.swift */,
+				267A37842AEBC38A00469126 /* NetworkDeviceTokensResponse.swift */,
+				B5611E842834E4F60092F204 /* NetworkDeviceIDTransactionsResponse.swift */,
+				B5611E7E2834D5FC0092F204 /* NetworkFirmwareResponse.swift */,
+				B5667D6A2833D37000C08B57 /* NetworkUserInfoResponse.swift */,
+				26A3B3DD2B18E41F0002F35F /* NetworkUserRewardsResponse.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B5667D702833DF2700C08B57 /* Body */ = {
+			isa = PBXGroup;
+			children = (
+				B5667D712833DF4000C08B57 /* ClaimDeviceBody.swift */,
+			);
+			path = Body;
+			sourceTree = "<group>";
+		};
+		B5799E8328254DCD00FEBB85 = {
+			isa = PBXGroup;
+			children = (
+				B5799E8F28254DCD00FEBB85 /* DomainLayer */,
+				B5799E8E28254DCD00FEBB85 /* Products */,
+				9968B1BC28AD19E900320413 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B5799E8E28254DCD00FEBB85 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5799E8D28254DCD00FEBB85 /* DomainLayer.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5799E8F28254DCD00FEBB85 /* DomainLayer */ = {
+			isa = PBXGroup;
+			children = (
+				B51243ED2825505F00B66A31 /* DomainRepositoryInterfaces */,
+				B51243E92825502A00B66A31 /* Entities */,
+				99BA878628BCF4CE004611AC /* Extensions */,
+				B51243EE2825506D00B66A31 /* UseCases */,
+				99DC02B228D85D5D009F53F9 /* Utils */,
+				B5799E9028254DCD00FEBB85 /* DomainLayer.h */,
+			);
+			path = DomainLayer;
+			sourceTree = "<group>";
+		};
+		B5E6B86428338DD90060D050 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				B5E6B86028338CAB0060D050 /* NetworkTokenResponse.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		B5E6B86828338F460060D050 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				B5E6B86228338DD10060D050 /* NetworkErrorResponse.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		B5E6B8832833ACAF0060D050 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				B5667D702833DF2700C08B57 /* Body */,
+				B5667D6F2833DF2000C08B57 /* Network */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B5799E8828254DCD00FEBB85 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5799E9128254DCD00FEBB85 /* DomainLayer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B5799E8C28254DCD00FEBB85 /* DomainLayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5799E9428254DCD00FEBB85 /* Build configuration list for PBXNativeTarget "DomainLayer" */;
+			buildPhases = (
+				B5799E8828254DCD00FEBB85 /* Headers */,
+				B5799E8928254DCD00FEBB85 /* Sources */,
+				B5799E8A28254DCD00FEBB85 /* Frameworks */,
+				B5799E8B28254DCD00FEBB85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DomainLayer;
+			packageProductDependencies = (
+				B5E6B8802833AB4A0060D050 /* Alamofire */,
+				9929BB0428BF667900ED3CDE /* Charts */,
+				4D49D8F8294DD65600987DE6 /* Turf */,
+				4D49D8FB294DD79F00987DE6 /* MapboxCommon */,
+				4D49D906294DE32400987DE6 /* MapboxMaps */,
+			);
+			productName = DomainLayer;
+			productReference = B5799E8D28254DCD00FEBB85 /* DomainLayer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B5799E8428254DCD00FEBB85 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					B5799E8C28254DCD00FEBB85 = {
+						CreatedOnToolsVersion = 13.3;
+						LastSwiftMigration = 1330;
+					};
+				};
+			};
+			buildConfigurationList = B5799E8728254DCD00FEBB85 /* Build configuration list for PBXProject "DomainLayer" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B5799E8328254DCD00FEBB85;
+			packageReferences = (
+				B5E6B87F2833AB4A0060D050 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				9929BB0328BF667900ED3CDE /* XCRemoteSwiftPackageReference "Charts" */,
+				4D49D8F6294DD61300987DE6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
+				4D49D8F7294DD65600987DE6 /* XCRemoteSwiftPackageReference "turf-swift" */,
+				4D49D8FA294DD79F00987DE6 /* XCRemoteSwiftPackageReference "mapbox-common-ios" */,
+			);
+			productRefGroup = B5799E8E28254DCD00FEBB85 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B5799E8C28254DCD00FEBB85 /* DomainLayer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B5799E8B28254DCD00FEBB85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B5799E8928254DCD00FEBB85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5E6B85F28338C150060D050 /* AuthRepository.swift in Sources */,
+				B5E6B85D28338BF20060D050 /* AuthUseCase.swift in Sources */,
+				4D5AE32E28EA4882006F2EBA /* BluetoothDevicesRepository.swift in Sources */,
+				B5667D722833DF4000C08B57 /* ClaimDeviceBody.swift in Sources */,
+				99BA878828BCF4D9004611AC /* Collection+.swift in Sources */,
+				26348E102A44369C000846C6 /* Connectivity.swift in Sources */,
+				26C904C32A77DBA90047A388 /* DeviceDetails.swift in Sources */,
+				26C904C12A77DA5A0047A388 /* DeviceDetailsUseCase.swift in Sources */,
+				26A4117529B88A3D00A2C10B /* DeviceInfoRepository.swift in Sources */,
+				26A4117329B887E800A2C10B /* DeviceInfoUseCase.swift in Sources */,
+				4D1C95D528FCB248001F66C9 /* DeviceLocation.swift in Sources */,
+				4D1C95CA28FC766D001F66C9 /* DeviceLocationRepository.swift in Sources */,
+				4D1C95D728FD3CB9001F66C9 /* DeviceLocationUseCase.swift in Sources */,
+				B5E6B88D2833B77E0060D050 /* DevicesRepository.swift in Sources */,
+				2683A4C22ADEB39800D5C205 /* CountryInfo.swift in Sources */,
+				B5E6B8872833B7360060D050 /* DevicesUseCase.swift in Sources */,
+				9929BB0E28BF76EF00ED3CDE /* Double+.swift in Sources */,
+				B5E6B8952833C15C0060D050 /* EmptyEntity.swift in Sources */,
+				9968B1B528AD0C5600320413 /* ExplorerData.swift in Sources */,
+				9968B17B28ACFD1F00320413 /* ExplorerRepository.swift in Sources */,
+				9968B1B328AD0C2D00320413 /* ExplorerUseCase.swift in Sources */,
+				264C105F2AF3D76800F6FF3E /* WeatherField.swift in Sources */,
+				2612AC202AB45F3C00285896 /* Filters.swift in Sources */,
+				2612AC222AB4621A00285896 /* FiltersRepository.swift in Sources */,
+				26A3B3DE2B18E41F0002F35F /* NetworkUserRewardsResponse.swift in Sources */,
+				2612AC262AB46AF200285896 /* FiltersUseCase.swift in Sources */,
+				264BDA0E298AC7DD005C1F82 /* FirmwareUpdateRepository.swift in Sources */,
+				4DE3A56E293EA58300BCDD8A /* Frequency.swift in Sources */,
+				26AB9F452A7A8D8C00855912 /* Geocoder.swift in Sources */,
+				4D35F7EE28F6005A009AA3CE /* HeliumDevice.swift in Sources */,
+				992D764328B7C83F00DFE504 /* HistoryUseCase.swift in Sources */,
+				B56A25EA28A0F18500928141 /* KeychainRepository.swift in Sources */,
+				B56A25EC28A0F2A900928141 /* KeychainUseCase.swift in Sources */,
+				26348E0E2A44360A000846C6 /* LocationCoordinates.swift in Sources */,
+				995A0CE528C0B6D90015DAA1 /* MainUseCase.swift in Sources */,
+				B5E6B88B2833B7730060D050 /* MeRepository.swift in Sources */,
+				B5E6B8892833B75D0060D050 /* MeUseCase.swift in Sources */,
+				B5611E812834E0150092F204 /* NetworkDeviceForecastResponse.swift in Sources */,
+				26D47E882A1633E10078723A /* NetworkDeviceHistoryResponse.swift in Sources */,
+				267A37852AEBC38A00469126 /* NetworkDeviceTokensResponse.swift in Sources */,
+				B5611E852834E4F60092F204 /* NetworkDeviceIDTransactionsResponse.swift in Sources */,
+				2664830629C218D900748F9C /* NetworkDevicesInfoResponse.swift in Sources */,
+				74D6B41C28379D8A00274A90 /* NetworkDevicesResponse.swift in Sources */,
+				2664830829C21A8300748F9C /* NetworkDevicesTypes.swift in Sources */,
+				B5E6B86328338DD10060D050 /* NetworkErrorResponse.swift in Sources */,
+				B5611E7F2834D5FC0092F204 /* NetworkFirmwareResponse.swift in Sources */,
+				267401742A3768AF00E54E35 /* NetworkRepository.swift in Sources */,
+				26504E3D2A7A4753008E2B59 /* NetworkResultsConverter.swift in Sources */,
+				26348E0C2A434CCB000846C6 /* NetworkSearchResponse.swift in Sources */,
+				266D17F92AC71280007CDB06 /* WidgetUseCase.swift in Sources */,
+				267401702A375D3800E54E35 /* NetworkStatsResponse.swift in Sources */,
+				B5E6B86128338CAB0060D050 /* NetworkTokenResponse.swift in Sources */,
+				267401722A37687000E54E35 /* NetworkUseCase.swift in Sources */,
+				B5667D6B2833D37000C08B57 /* NetworkUserInfoResponse.swift in Sources */,
+				9968B18028ACFFDF00320413 /* PublicDevice.swift in Sources */,
+				9968B17E28ACFE6900320413 /* PublicHex.swift in Sources */,
+				9968B1B828AD0E7400320413 /* PublicHexError.swift in Sources */,
+				26A961A02A78FFDD00A0E7B9 /* RewardsUseCase.swift in Sources */,
+				26D47E9C2A177A0F0078723A /* SettingsRepository.swift in Sources */,
+				26D47E9A2A1779310078723A /* SettingsUseCase.swift in Sources */,
+				99A31FA928D0C1F7003BE981 /* TokenUseCase.swift in Sources */,
+				99A31FAC28D0C25C003BE981 /* UITransaction.swift in Sources */,
+				264C10612AF3DBA100F6FF3E /* DeviceAnnotation.swift in Sources */,
+				26AF27782A0B8B090067A1B8 /* UnitsEnum.swift in Sources */,
+				261FFAB6299B9E8F00FCDC65 /* UpdateFirmwareUseCase.swift in Sources */,
+				995A0CEE28C0B93C0015DAA1 /* UserDefaults+Constants.swift in Sources */,
+				995A0CD728C0A4BB0015DAA1 /* UserDefaultsRepository.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		26E2B3AF2982714300ED9B58 /* Mock */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Mock;
+		};
+		26E2B3B02982714300ED9B58 /* Mock */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = G6DMWDA6X5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.threenitas.wxm-ios.DomainLayer";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = MOCK;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Mock;
+		};
+		B5799E9228254DCD00FEBB85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B5799E9328254DCD00FEBB85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B5799E9528254DCD00FEBB85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = G6DMWDA6X5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.threenitas.wxm-ios.DomainLayer";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B5799E9628254DCD00FEBB85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = G6DMWDA6X5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.threenitas.wxm-ios.DomainLayer";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B5799E8728254DCD00FEBB85 /* Build configuration list for PBXProject "DomainLayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5799E9228254DCD00FEBB85 /* Debug */,
+				26E2B3AF2982714300ED9B58 /* Mock */,
+				B5799E9328254DCD00FEBB85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5799E9428254DCD00FEBB85 /* Build configuration list for PBXNativeTarget "DomainLayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5799E9528254DCD00FEBB85 /* Debug */,
+				26E2B3B02982714300ED9B58 /* Mock */,
+				B5799E9628254DCD00FEBB85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4D49D8F6294DD61300987DE6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		4D49D8F7294DD65600987DE6 /* XCRemoteSwiftPackageReference "turf-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/turf-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
+		4D49D8FA294DD79F00987DE6 /* XCRemoteSwiftPackageReference "mapbox-common-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-common-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 23.2.0;
+			};
+		};
+		9929BB0328BF667900ED3CDE /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		B5E6B87F2833AB4A0060D050 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4D49D8F8294DD65600987DE6 /* Turf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D49D8F7294DD65600987DE6 /* XCRemoteSwiftPackageReference "turf-swift" */;
+			productName = Turf;
+		};
+		4D49D8FB294DD79F00987DE6 /* MapboxCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D49D8FA294DD79F00987DE6 /* XCRemoteSwiftPackageReference "mapbox-common-ios" */;
+			productName = MapboxCommon;
+		};
+		4D49D906294DE32400987DE6 /* MapboxMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D49D8F6294DD61300987DE6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			productName = MapboxMaps;
+		};
+		9929BB0428BF667900ED3CDE /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9929BB0328BF667900ED3CDE /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+		B5E6B8802833AB4A0060D050 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5E6B87F2833AB4A0060D050 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B5799E8428254DCD00FEBB85 /* Project object */;
+}

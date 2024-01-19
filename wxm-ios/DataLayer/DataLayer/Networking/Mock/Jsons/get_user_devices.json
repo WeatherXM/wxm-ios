@@ -1,0 +1,108 @@
+[
+  {
+    "id": "45ccb1e0-77df-11ed-960f-d7d4cf200cc9",
+    "name": "Staion Name A",
+    "label": "2C:F7:F1:C0:42:40:00:0D",
+    "location": {
+      "lat": 37.97282058661004,
+      "lon": 23.651339117978722
+    },
+    "timezone": "Europe/Athens",
+    "relation": "owned",
+    "address": "Somewhere in the world",
+    "profile": "Helium",
+    "attributes": {
+      "claimedAt": "2023-03-01T17:21:23+02:00",
+      "firmware": {
+        "current": "2.3.0",
+        "assigned": "2.3.0-internal"
+      },
+      "hex3": {
+        "index": "831edafffffffff",
+        "polygon": [
+          {
+            "lat": 38.644236094151005,
+            "lon": 22.784148869958848
+          },
+          {
+            "lat": 37.983542598121375,
+            "lon": 22.754162161175188
+          },
+          {
+            "lat": 37.6303425743379,
+            "lon": 23.47478087300285
+          },
+          {
+            "lat": 37.93511272705379,
+            "lon": 24.22974113863726
+          },
+          {
+            "lat": 38.5954640496184,
+            "lon": 24.270130249021037
+          },
+          {
+            "lat": 38.951438520683396,
+            "lon": 23.545178032093393
+          }
+        ],
+        "center": {
+          "lat": 38.29225710202074,
+          "lon": 23.50973159680952
+        }
+      },
+      "hex7": {
+        "index": "871eda750ffffff",
+        "polygon": [
+          {
+            "lat": 37.97061313218039,
+            "lon": 23.628439025654682
+          },
+          {
+            "lat": 37.95710575635591,
+            "lon": 23.62770629174598
+          },
+          {
+            "lat": 37.94983924168456,
+            "lon": 23.642394668336376
+          },
+          {
+            "lat": 37.95607893564099,
+            "lon": 23.65781754795612
+          },
+          {
+            "lat": 37.96958615439062,
+            "lon": 23.65855458239535
+          },
+          {
+            "lat": 37.97685383669051,
+            "lon": 23.64386443687226
+          }
+        ],
+        "center": {
+          "lat": 37.96334709215799,
+          "lon": 23.643129447388414
+        }
+      },
+      "isActive": false,
+      "lastWeatherStationActivity": "2023-03-01T18:11:56+02:00",
+      "lastActiveAt": "2023-03-01T18:11:56+02:00"
+    },
+    "current_weather": {
+      "timestamp": "2023-03-01T18:11:56+02:00",
+      "temperature": 20.7,
+      "humidity": 54,
+      "wind_speed": 0,
+      "wind_gust": 0,
+      "wind_direction": 258,
+      "uv_index": 0,
+      "precipitation": 0,
+      "pressure": 1010.1,
+      "feels_like": 20.7,
+      "icon": "partly-cloudy-day"
+    },
+    "rewards": {
+      "actual_reward": 10.165180164109882,
+      "total_rewards": 323.64723442479493
+    }
+  }
+]

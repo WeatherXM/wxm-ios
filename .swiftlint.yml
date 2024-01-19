@@ -1,0 +1,38 @@
+disabled_rules:
+  - void_function_in_ternary
+  - vertical_parameter_alignment
+trailing_whitespace:
+  ignores_empty_lines: true
+line_length: 180
+file_length:
+  warning: 500
+  error: 700
+type_name:
+  allowed_symbols: "_"
+  min_length: 3 # only warning
+  max_length: # warning and error
+    warning: 40
+    error: 50
+identifier_name:
+  min_length: 2
+  allowed_symbols: "_"
+switch_case_alignment:
+  indented_cases: true
+function_body_length:
+  error: 150
+cyclomatic_complexity:
+  ignores_case_statements: true
+nesting:
+  type_level: 
+    warning: 2
+force_try:
+  severity: warning
+force_cast:
+  severity: warning
+large_tuple: 
+  warning: 3
+  error: 4
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - R.generated.swift
+  - .build # Where Swift Package Manager checks out dependency sources

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "pressure_icon_small.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "network_stats_icon.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

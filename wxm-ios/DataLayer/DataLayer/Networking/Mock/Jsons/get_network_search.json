@@ -1,0 +1,24 @@
+{
+  "devices": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c953f66afb6",
+      "name": "Unexpected Station Name",
+      "connectivity": "wifi",
+      "cell_index": "871fa0aaeffffff",
+      "cell_center": {
+        "lat": 37.9838,
+        "lon": 23.7275
+      }
+    }
+  ],
+  "addresses": [
+    {
+      "name": "Greece",
+      "place": "Greece",
+      "center": {
+        "lat": 37.9838,
+        "lon": 23.7275
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+
+MBXAccessToken = {mapbox access token};
+
+UserAccessTokenService = accessTokenService;
+
+UserRefreshTokenService = refreshTokenService;
+
+Account = weatherXM;
+
+TeamId = {The developer team id};
+
+ // A trick to avoid parse issues caused form double slashes of the following urls is to add "$()" after "https:/", 
+ // eg. https:/$()/api.myapi.com/api/v1" 
+
+ApiUrl = {The api url};
+
+ClaimTokenUrl = {The DApp url for the claim flow};
+
+AppStoreUrl = {The app store url};

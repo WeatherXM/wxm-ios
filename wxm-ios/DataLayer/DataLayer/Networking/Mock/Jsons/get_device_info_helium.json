@@ -1,0 +1,20 @@
+{
+  "claimed_at" : "2023-10-20T15:19:17+03:00",
+  "name" : "Station Name Helium",
+  "gateway" : {
+	"model" : "WS2000"
+  },
+  "weather_station" : {
+	"last_tx_rssi" : "-112",
+	"dev_eui" : "2C:F7:F1:C0:42:40:00:0D",
+	"last_activity" : "2023-12-13T13:08:27+02:00",
+	"bat_state" : "ok",
+	"firmware" : {
+	  "current" : "3.0.0",
+	  "assigned" : "3.0.0"
+	},
+	"model" : "WS2000",
+	"hw_version" : "1.1.0",
+	"last_hs_name" : "warm-fuchsia-sheep"
+  }
+}

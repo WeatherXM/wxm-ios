@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "account_filled_icon.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

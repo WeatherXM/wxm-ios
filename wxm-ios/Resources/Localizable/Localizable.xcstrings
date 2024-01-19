@@ -1,0 +1,6502 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    " " : {
+
+    },
+    "-" : {
+
+    },
+    "**%@**%@%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "**%1$@**%2$@%3$@"
+          }
+        }
+      }
+    },
+    "%.2f %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$.2f %2$@"
+          }
+        }
+      }
+    },
+    "%@" : {
+
+    },
+    "%@ **[%@](%@)**" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ **[%2$@](%3$@)**"
+          }
+        }
+      }
+    },
+    "%@ **%@°**" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ **%2$@°**"
+          }
+        }
+      }
+    },
+    "%@%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@%2$@"
+          }
+        }
+      }
+    },
+    "+ %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "+ %1$@ %2$@"
+          }
+        }
+      }
+    },
+    "about" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About"
+          }
+        }
+      }
+    },
+    "account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account"
+          }
+        }
+      }
+    },
+    "add_wallet_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Wallet Now"
+          }
+        }
+      }
+    },
+    "address_added" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sucess: Address Saved"
+          }
+        }
+      }
+    },
+    "alerts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alerts"
+          }
+        }
+      }
+    },
+    "alerts_station_offline_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"The station is offline. Check that it has batteries and internet connection. If the problem persists, contact our support team at [support.weatherxm.com](https://support.weatherxm.com)\""
+          }
+        }
+      }
+    },
+    "alerts_station_offline_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Offline"
+          }
+        }
+      }
+    },
+    "analytics_app_usage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App usage data"
+          }
+        }
+      }
+    },
+    "analytics_caption" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can always update your preferences in the app settings."
+          }
+        }
+      }
+    },
+    "analytics_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To improve your app experience, we are using anonymous analytics, for collecting crashes and other anonymous in-app events. We do not collect ANY identifying information. Everything we collect, will be used internally to improve your experience with WeatherXM. **All data are anonymised!**"
+          }
+        }
+      }
+    },
+    "analytics_identifying_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identifying information"
+          }
+        }
+      }
+    },
+    "analytics_personal_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal data"
+          }
+        }
+      }
+    },
+    "analytics_system_version" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System version"
+          }
+        }
+      }
+    },
+    "analytics_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Improving your experience"
+          }
+        }
+      }
+    },
+    "analytics_what_we_collect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What we collect"
+          }
+        }
+      }
+    },
+    "analytics_what_we_do_not_collect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What we don’t collect"
+          }
+        }
+      }
+    },
+    "app_update_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A new update of this app has been released. Please click the button below to go to the App Store and update the app."
+          }
+        }
+      }
+    },
+    "app_update_no_update_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue without updating"
+          }
+        }
+      }
+    },
+    "app_update_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Update"
+          }
+        }
+      }
+    },
+    "app_update_update_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update"
+          }
+        }
+      }
+    },
+    "app_update_whats_new_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What's New"
+          }
+        }
+      }
+    },
+    "app_version" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Version"
+          }
+        }
+      }
+    },
+    "bluetooth_go_to_settings_grant_access" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to Settings and Grant Access"
+          }
+        }
+      }
+    },
+    "bluetooth_no_access_text_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In order to connect your device, the WeatherXM app needs access to Bluetooth. If you do not wish to provide such access, please tap on %@ below."
+          }
+        }
+      }
+    },
+    "bluetooth_no_access_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Bluetooth Access"
+          }
+        }
+      }
+    },
+    "bluetooth_no_devices_found_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We could not find any WeatherXM devices. Please try to scan again! Or, you can try claiming your device manually below."
+          }
+        }
+      }
+    },
+    "bluetooth_no_devices_found_text_markdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We could not find any WeatherXM devices. Please try to **scan again**! Or, you can try claiming your device manually below."
+          }
+        }
+      }
+    },
+    "bluetooth_no_devices_found_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Devices Found"
+          }
+        }
+      }
+    },
+    "bluetooth_off_text_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In order to connect your device, the WeatherXM app needs access to Bluetooth. If you do not wish to turn Bluetooth on, please tap on %@ below."
+          }
+        }
+      }
+    },
+    "bluetooth_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth is off"
+          }
+        }
+      }
+    },
+    "bluetooth_unsupported_text_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your device does not support Bluetooth, please tap on %@ below."
+          }
+        }
+      }
+    },
+    "bluetooth_unsupported_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bluetooth is not supported"
+          }
+        }
+      }
+    },
+    "cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "celsius_symbol" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "°C"
+          }
+        }
+      }
+    },
+    "change" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change"
+          }
+        }
+      }
+    },
+    "changing_requency" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changing Frequency"
+          }
+        }
+      }
+    },
+    "claim_device_alread_claimed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This device has already been claimed."
+          }
+        }
+      }
+    },
+    "claim_device_bluetooth_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pair"
+          }
+        }
+      }
+    },
+    "claim_device_cancel_claim_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel Claiming"
+          }
+        }
+      }
+    },
+    "claim_device_claiming_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This device is not in claiming mode or the secret provided is invalid."
+          }
+        }
+      }
+    },
+    "claim_device_claiming_error_m5" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This device is not in claiming mode."
+          }
+        }
+      }
+    },
+    "claim_device_claiming_text_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sit tight, we're pairing your account with your WeatherXM device! %@"
+          }
+        }
+      }
+    },
+    "claim_device_claiming_text_information" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This step might take up to two minutes due to Helium network bandwidth limitations!"
+          }
+        }
+      }
+    },
+    "claim_device_claiming_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claiming Station..."
+          }
+        }
+      }
+    },
+    "claim_device_confirm_location_confirm_and_claim" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm and Proceed"
+          }
+        }
+      }
+    },
+    "claim_device_confirm_location_no_access_to_services_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your location can be set automatically by allowing WeatherXM to access it via the Settings app."
+          }
+        }
+      }
+    },
+    "claim_device_confirm_location_no_access_to_services_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cannot access your location"
+          }
+        }
+      }
+    },
+    "claim_device_confirm_location_search_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search for location"
+          }
+        }
+      }
+    },
+    "claim_device_confirm_location_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location of Installation"
+          }
+        }
+      }
+    },
+    "claim_device_connection_bullet_1_bold" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"WXM M5 XXX\""
+          }
+        }
+      }
+    },
+    "claim_device_connection_bullet_1_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open your phone's WiFi manager, and connect to the %@ network (this is your M5 device)."
+          }
+        }
+      }
+    },
+    "claim_device_connection_bullet_2_bold" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10.10.1.1"
+          }
+        }
+      }
+    },
+    "claim_device_connection_bullet_2_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After connecting to the M5, open your browser, and type %@ to view the available networks page."
+          }
+        }
+      }
+    },
+    "claim_device_connection_bullet_3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose the WiFi network you'd like to connect your M5 to and transmit data."
+          }
+        }
+      }
+    },
+    "claim_device_connection_failed_markdown_text_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong with the connection. Make sure you are **near your weather station and retry** to connect. If connection still fails, please **unpair the station and restart the claiming process** - check our %@ \n\nAlternatively, you can contact our support at %@"
+          }
+        }
+      }
+    },
+    "claim_device_connection_failed_text_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong with the connection. Make sure you are near your weather station and retry to connect. If connection still fails, please unpair the station and restart the claiming process - check our %@\n\nAlternatively, you can contact our support at %@"
+          }
+        }
+      }
+    },
+    "claim_device_connection_failed_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connection Failed"
+          }
+        }
+      }
+    },
+    "claim_device_connection_step_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connection"
+          }
+        }
+      }
+    },
+    "claim_device_connection_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you're having difficulty completing this step, make sure you watch the instructional video below!"
+          }
+        }
+      }
+    },
+    "claim_device_connection_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect M5 via WiFi"
+          }
+        }
+      }
+    },
+    "claim_device_dev_EUI_field_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter dev EUI"
+          }
+        }
+      }
+    },
+    "claim_device_device_helium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helium"
+          }
+        }
+      }
+    },
+    "claim_device_device_id_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "claim_device_enter_serial_number_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the device’s serial number"
+          }
+        }
+      }
+    },
+    "claim_device_error_connection_time_out" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server taking too long to respond. Please check your connection and try again."
+          }
+        }
+      }
+    },
+    "claim_device_error_generic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It’s not you, it’s us! Please try again."
+          }
+        }
+      }
+    },
+    "claim_device_error_invalid_id" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Dev EUI is invalid."
+          }
+        }
+      }
+    },
+    "claim_device_error_invalid_id_m5" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The device serial number is invalid."
+          }
+        }
+      }
+    },
+    "claim_device_error_invalid_location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The location provided is invalid."
+          }
+        }
+      }
+    },
+    "claim_device_error_no_internet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please, check your internet connection and try again."
+          }
+        }
+      }
+    },
+    "claim_device_failed_text_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station claiming failed.\n%@\nIf the problem persists, please contact our support team at %@"
+          }
+        }
+      }
+    },
+    "claim_device_failed_text_link_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[support.weatherxm.com](https://support.weatherxm.com)"
+          }
+        }
+      }
+    },
+    "claim_device_failed_text_link_url" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "support.weatherxm.com"
+          }
+        }
+      }
+    },
+    "claim_device_failed_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claiming Failed"
+          }
+        }
+      }
+    },
+    "claim_device_failed_troubleshooting_text_link_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "troubleshooting guide"
+          }
+        }
+      }
+    },
+    "claim_device_frequncy_step_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequency"
+          }
+        }
+      }
+    },
+    "claim_device_helium_invalid_eui_key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wrong combination of DevEUI and Device Key"
+          }
+        }
+      }
+    },
+    "claim_device_i_ve_connect_my_m5_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I've Connect My M5"
+          }
+        }
+      }
+    },
+    "claim_device_i_ve_reset_my_device_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I've Reset My Device"
+          }
+        }
+      }
+    },
+    "claim_device_information_bold" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**12:34:56:78:9A:BC:DE:F0:12**"
+          }
+        }
+      }
+    },
+    "claim_device_information_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Device's serial number can be found in the M5 (shown after automatic reboot, or in the settings screen - swipe right to view). You can also find this information on the box of your station.\n\nIt is 18 characters long and looks like this: %@. Please type only the letters and numbers."
+          }
+        }
+      }
+    },
+    "claim_device_key_field_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the Device Key"
+          }
+        }
+      }
+    },
+    "claim_device_location_acknowledge_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I hereby acknowledge that the location above is the correct one, and can be used to verify the eligibility of this station's rewards."
+          }
+        }
+      }
+    },
+    "claim_device_location_step_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location"
+          }
+        }
+      }
+    },
+    "claim_device_manually_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim Device Manually"
+          }
+        }
+      }
+    },
+    "claim_device_not_found" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not find such a device."
+          }
+        }
+      }
+    },
+    "claim_device_reset_section_1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Push the RESET button at the bottom of your WeatherXM device to enable bluetooth pairing. This will expire in 5 minutes. After that, you will need to push it again to restart the pairing!"
+          }
+        }
+      }
+    },
+    "claim_device_reset_section_1_markdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Push the **RESET button** at the bottom of your WeatherXM device to enable bluetooth pairing. **This will expire in 5 minutes. After that, you will need to push it again to restart the pairing!**"
+          }
+        }
+      }
+    },
+    "claim_device_reset_section_2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the \"I've reset my device\" button below."
+          }
+        }
+      }
+    },
+    "claim_device_reset_section_2_markdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the **\"I've reset my device\"** button below."
+          }
+        }
+      }
+    },
+    "claim_device_reset_station_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset Station"
+          }
+        }
+      }
+    },
+    "claim_device_reset_step_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        }
+      }
+    },
+    "claim_device_retry_claim_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry Claiming"
+          }
+        }
+      }
+    },
+    "claim_device_scan_again" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan Again"
+          }
+        }
+      }
+    },
+    "claim_device_scanning_for_wxm_devices" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scanning for WeatherXM Devices"
+          }
+        }
+      }
+    },
+    "claim_device_select_device_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select your device from the list below"
+          }
+        }
+      }
+    },
+    "claim_device_select_device_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Device"
+          }
+        }
+      }
+    },
+    "claim_device_select_type" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select your device type"
+          }
+        }
+      }
+    },
+    "claim_device_step_claiming" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claiming Station"
+          }
+        }
+      }
+    },
+    "claim_device_step_setting_frequency" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setting Station Frequency"
+          }
+        }
+      }
+    },
+    "claim_device_success_text_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station is claimed under your account!\n%@"
+          }
+        }
+      }
+    },
+    "claim_device_success_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Claimed"
+          }
+        }
+      }
+    },
+    "claim_device_type_ws1000_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim Device Manually"
+          }
+        }
+      }
+    },
+    "claim_device_type_ws1000_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WS 1000 | M5"
+          }
+        }
+      }
+    },
+    "claim_device_type_ws2000_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim Device via Bluetooth"
+          }
+        }
+      }
+    },
+    "claim_device_type_ws2000_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WS 2000 | Helium"
+          }
+        }
+      }
+    },
+    "claim_device_update_firmware_alert_go_to_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to Station"
+          }
+        }
+      }
+    },
+    "claim_device_update_firmware_alert_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We highly recommend you update your Station’s firmware! This will improve the experience you’ll have with your WeatherXM station!"
+          }
+        }
+      }
+    },
+    "claim_device_update_firmware_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Firmware"
+          }
+        }
+      }
+    },
+    "claim_device_update_firmware_alert_update" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update"
+          }
+        }
+      }
+    },
+    "claim_device_update_firmware_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Firmware"
+          }
+        }
+      }
+    },
+    "claim_device_update_firmware_info_markdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There is a brand new firmware update for your station.\n**We highly recommend you update, as this will improve the experience you’ll have with your WeatherXM station!**"
+          }
+        }
+      }
+    },
+    "claim_device_verify_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verify"
+          }
+        }
+      }
+    },
+    "claim_device_verify_step_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verify"
+          }
+        }
+      }
+    },
+    "claim_device_verify_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verify Your Device"
+          }
+        }
+      }
+    },
+    "claim_device_view_station_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Station"
+          }
+        }
+      }
+    },
+    "claim_device_ws1000_device_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim WS1000 Device"
+          }
+        }
+      }
+    },
+    "claim_device_ws2000_device_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim WS2000 Device"
+          }
+        }
+      }
+    },
+    "clear" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear"
+          }
+        }
+      }
+    },
+    "confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
+          }
+        }
+      }
+    },
+    "confirm_password_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm Password to Proceed"
+          }
+        }
+      }
+    },
+    "connect_to_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect to Station"
+          }
+        }
+      }
+    },
+    "contact_support" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contact Support"
+          }
+        }
+      }
+    },
+    "create_account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Account"
+          }
+        }
+      }
+    },
+    "daily" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily"
+          }
+        }
+      }
+    },
+    "daily_precip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily Precip."
+          }
+        }
+      }
+    },
+    "daily_precipitation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily Precipitation"
+          }
+        }
+      }
+    },
+    "dark" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
+          }
+        }
+      }
+    },
+    "days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Days"
+          }
+        }
+      }
+    },
+    "DEBUG - Go to next" : {
+
+    },
+    "delete_account_cancel_deletion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel Deletion"
+          }
+        }
+      }
+    },
+    "delete_account_contact_support" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you have any questions regarding your data and the deletion of your account, please contact our support team at **[support.weatherxm.com](https://support.weatherxm.com)**"
+          }
+        }
+      }
+    },
+    "delete_account_delete_account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Account"
+          }
+        }
+      }
+    },
+    "delete_account_failed_contact_support_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please make sure to mention that you’re facing an %@ for faster resolution"
+          }
+        }
+      }
+    },
+    "delete_account_failed_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deletion failed, please try again! If the problem persists, please contact our support team at [support.weatherxm.com](https://support.weatherxm.com)"
+          }
+        }
+      }
+    },
+    "delete_account_failure_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deletion Failed"
+          }
+        }
+      }
+    },
+    "delete_account_general_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By deleting your account, you will **no longer be eligible to gain $WXM rewards**, and, you will **no longer be able to view your station data** in the WeatherXM apps."
+          }
+        }
+      }
+    },
+    "delete_account_go_to_sign_in_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to Signin Screen"
+          }
+        }
+      }
+    },
+    "delete_account_more_info_link" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Read more about account deletion here.](https://google.com)"
+          }
+        }
+      }
+    },
+    "delete_account_no_collect_data_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We do not collect nor store any other personal data!"
+          }
+        }
+      }
+    },
+    "delete_account_not_delete_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The $WXM rewards you’ve collected. These are yours forever!"
+          }
+        }
+      }
+    },
+    "delete_account_not_delete_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This **will not delete**:"
+          }
+        }
+      }
+    },
+    "delete_account_not_delete_weather_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The weather data you’ve shared with the network."
+          }
+        }
+      }
+    },
+    "delete_account_removing_account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleting Account..."
+          }
+        }
+      }
+    },
+    "delete_account_retry_deletion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry Deleting"
+          }
+        }
+      }
+    },
+    "delete_account_successful_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We hate to see you go, and would like to hear why this happened.  We’d appreciate it if you could share your feedback with us! It will only take 5 minutes and will help us understand what went wrong!"
+          }
+        }
+      }
+    },
+    "delete_account_successful_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account Deleted"
+          }
+        }
+      }
+    },
+    "delete_account_take_survey_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take a Short Survey"
+          }
+        }
+      }
+    },
+    "delete_account_text_markdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By deleting your account, you will **no longer be eligible to gain $WXM rewards,** and you will **no longer be able to view your station data** in the WeatherXM apps.\n\nThis **will delete** the following data: • Your name. • Your email address. • Your station(s) details, their location, and their token rewards history.  This **will not delete**: • The weather data you’ve shared with the network. • The $WXM rewards you’ve collected. These are yours forever!  We do not collect nor store any other personal data!  If you have any questions regarding your data and the deletion of your account, please contact our support team at [support.weatherxm.com](https://support.weatherxm.com)."
+          }
+        }
+      }
+    },
+    "delete_account_to_delete_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your email address."
+          }
+        }
+      }
+    },
+    "delete_account_to_delete_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your name."
+          }
+        }
+      }
+    },
+    "delete_account_to_delete_personal_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station(s) details, their location, and rewards history."
+          }
+        }
+      }
+    },
+    "delete_account_to_delete_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This **will delete** the following data:"
+          }
+        }
+      }
+    },
+    "delete_account_understand_deletion_terms" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I have read, understand and agree on what deleting my Weather XM account means, as described above."
+          }
+        }
+      }
+    },
+    "deny" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deny"
+          }
+        }
+      }
+    },
+    "device_info_button_change_frequency" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Frequency"
+          }
+        }
+      }
+    },
+    "device_info_button_change_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Station’s  Name"
+          }
+        }
+      }
+    },
+    "device_info_button_enter_maintenance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Maintenance Mode"
+          }
+        }
+      }
+    },
+    "device_info_button_reboot" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reboot Station"
+          }
+        }
+      }
+    },
+    "device_info_button_reconfigure_wifi" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reconfigure WiFi"
+          }
+        }
+      }
+    },
+    "device_info_button_remove" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove Station"
+          }
+        }
+      }
+    },
+    "device_info_claim_date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claimed at"
+          }
+        }
+      }
+    },
+    "device_info_edit_name_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This name is private and only visible to you when you’re logged in."
+          }
+        }
+      }
+    },
+    "device_info_edit_name_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Station’s Name"
+          }
+        }
+      }
+    },
+    "device_info_followed_contact_support_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See something wrong? Contact Support"
+          }
+        }
+      }
+    },
+    "device_info_low_battery_warning_markdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We’ve detected that your station’s battery level is **Low**.\nPlease replace the batteries as soon as possible, as **this may affect your WXM rewards and data**."
+          }
+        }
+      }
+    },
+    "device_info_owned_station_location_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The deployment location you set for this station is **%@**. If the location you see on the map doesn’t match the actual deployment location, press the button below to edit."
+          }
+        }
+      }
+    },
+    "device_info_remove_station_account_confirmation_markdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In order to remove your station you need to confirm you are the owner of this account.\n**Please type in your password to remove your station.**"
+          }
+        }
+      }
+    },
+    "device_info_station_back_to_settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back to Settings"
+          }
+        }
+      }
+    },
+    "device_info_station_frequency" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station's Frequency"
+          }
+        }
+      }
+    },
+    "device_info_station_frequency_change_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequency Change Failed"
+          }
+        }
+      }
+    },
+    "device_info_station_frequency_change_failure_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station frequency change failed, please try again! If the problem persists, please contact our support team at [support.weatherxm.com](https://support.weatherxm.com) \n\nPlease make sure to mention that you’re facing an Error **\"%@\"** for faster resolution"
+          }
+        }
+      }
+    },
+    "device_info_station_frequency_changed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequency Changed"
+          }
+        }
+      }
+    },
+    "device_info_station_frequency_changed_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station’s frequency changed and it’s now %@."
+          }
+        }
+      }
+    },
+    "device_info_station_helium_frequency_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change the frequency this station operates. To do this, make sure you’re close to your station, and that you’ve selected the appropriate frequency for your country.   A list of the countries and their respective frequencies can be **[found here](%@)**"
+          }
+        }
+      }
+    },
+    "device_info_station_info_ATECC" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ATECC S/N"
+          }
+        }
+      }
+    },
+    "device_info_station_info_battery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Battery Level"
+          }
+        }
+      }
+    },
+    "device_info_station_info_dev_EUI" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DevEUI"
+          }
+        }
+      }
+    },
+    "device_info_station_info_firmware_version" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firmware Version"
+          }
+        }
+      }
+    },
+    "device_info_station_info_GPS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GPS - Number of connected satellites"
+          }
+        }
+      }
+    },
+    "device_info_station_info_hardware_version" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hardware Version"
+          }
+        }
+      }
+    },
+    "device_info_station_info_last_hotspot" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Hotspot Seen"
+          }
+        }
+      }
+    },
+    "device_info_station_info_last_RSSI" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last tx RSSI"
+          }
+        }
+      }
+    },
+    "device_info_station_info_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Public Name (in Explorer)"
+          }
+        }
+      }
+    },
+    "device_info_station_info_serial_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Device Serial Number"
+          }
+        }
+      }
+    },
+    "device_info_station_info_wifi_signal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WiFi Signal - RSSI"
+          }
+        }
+      }
+    },
+    "device_info_station_information" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Information"
+          }
+        }
+      }
+    },
+    "device_info_station_location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Location"
+          }
+        }
+      }
+    },
+    "device_info_station_location_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Location"
+          }
+        }
+      }
+    },
+    "device_info_station_location_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The deployment location that the station owner has set is **%@**."
+          }
+        }
+      }
+    },
+    "device_info_station_m5_frequency_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You must set your M5’s frequency to be the same as your station’s in order to receive and transmit data.\n\n**Setting the wrong frequency will result in loss of communication with your station, and will affect your $WXM rewards!**"
+          }
+        }
+      }
+    },
+    "device_info_station_maintenance_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set your Station to maintenance mode so you can perform the necessary actions to keep it functioning.\n\nThis will not affect your rewards if done according to our rules, find out **[more here](%@)**"
+          }
+        }
+      }
+    },
+    "device_info_station_maintenance_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maintenance mode (%@)"
+          }
+        }
+      }
+    },
+    "device_info_station_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station's Name"
+          }
+        }
+      }
+    },
+    "device_info_station_reboot" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reboot Station"
+          }
+        }
+      }
+    },
+    "device_info_station_reboot_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This action will enable other devices to pair via bluetooth with the Station. Up to 7 devices can be paired with this station.  Using a previously paired device, get in proximity to your station, and tap the button bellow."
+          }
+        }
+      }
+    },
+    "device_info_station_reboot_error_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station reboot failed, please try again! If the problem persists, please contact our support team at [support.weatherxm.com](https://support.weatherxm.com) \n\n Please make sure to mention that you’re facing an Error **\"%@\"** for faster resolution"
+          }
+        }
+      }
+    },
+    "device_info_station_reboot_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reboot Failed"
+          }
+        }
+      }
+    },
+    "device_info_station_rebooted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Rebooted"
+          }
+        }
+      }
+    },
+    "device_info_station_rebooted_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station is rebooted.\nYou now have a 5 minutes window to pair the station with another device! Station can be paired with up to 7 devices."
+          }
+        }
+      }
+    },
+    "device_info_station_reconfigure_wifi" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reconfigure WiFi"
+          }
+        }
+      }
+    },
+    "device_info_station_reconfigure_wifi_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update M5’s WiFi network connection"
+          }
+        }
+      }
+    },
+    "device_info_station_remove" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove Station"
+          }
+        }
+      }
+    },
+    "device_info_station_remove_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unclaim and remove this station from your account. You will not lose any allocated rewards, but you will not be able to view the station’s data or earn additional rewards in the future.\n**[Learn more about it here](%@)**"
+          }
+        }
+      }
+    },
+    "device_info_station_remove_warning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This action is not reversible!"
+          }
+        }
+      }
+    },
+    "device_info_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Settings"
+          }
+        }
+      }
+    },
+    "device_serial_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Device Serial Number"
+          }
+        }
+      }
+    },
+    "dew_point" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dew Point"
+          }
+        }
+      }
+    },
+    "display" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Display"
+          }
+        }
+      }
+    },
+    "dont_have_account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't have an account?"
+          }
+        }
+      }
+    },
+    "email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        }
+      }
+    },
+    "empty_generic_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seems there is nothing to show, please retry!"
+          }
+        }
+      }
+    },
+    "empty_generic_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing to show..."
+          }
+        }
+      }
+    },
+    "error_anom_increase_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anomalies were detected in some weather measurements %@. This could be due to **bad deployment**, or sometimes due to a **faulty sensor**. Check our installation guide for more information about how to properly deploy your station."
+          }
+        }
+      }
+    },
+    "error_anom_increase_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anomalous Increase"
+          }
+        }
+      }
+    },
+    "error_cell_capacity_reached_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station excluded from rewards because the cell’s capacity was reached. You need to relocate your station to a different cell."
+          }
+        }
+      }
+    },
+    "error_cell_capacity_reached_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell capacity reached"
+          }
+        }
+      }
+    },
+    "error_deep_link_invalid_url" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid Url"
+          }
+        }
+      }
+    },
+    "error_frozen_sensor_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not measure wind speed, wind direction is constant and the temperature is below zero. **Frozen sensor**."
+          }
+        }
+      }
+    },
+    "error_frozen_sensor_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frozen sensor"
+          }
+        }
+      }
+    },
+    "error_generic_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops! Something went wrong."
+          }
+        }
+      }
+    },
+    "error_history_generic_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fetching history failed"
+          }
+        }
+      }
+    },
+    "error_history_no_data_on_day" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops! Could not load data from network."
+          }
+        }
+      }
+    },
+    "error_location_not_verified_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station reported a GPS location, but it is different from the location set during station claiming."
+          }
+        }
+      }
+    },
+    "error_location_not_verified_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location not verified"
+          }
+        }
+      }
+    },
+    "error_login_invalid_credentials" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login failed: Invalid email or password"
+          }
+        }
+      }
+    },
+    "error_long_const_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some weather measurements %@ have not changed for 24 hours. This could be due to a **faulty sensor** or **bad deployment**. Read more on our troubleshooting guide."
+          }
+        }
+      }
+    },
+    "error_long_const_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Constant Values"
+          }
+        }
+      }
+    },
+    "error_network_generic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please, check your internet connection and try again."
+          }
+        }
+      }
+    },
+    "error_network_timed_out" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server taking too long to respond. Please check your connection and try again."
+          }
+        }
+      }
+    },
+    "error_no_data_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station sent no weather data in the aggregated time window. This could be due to **connection issues**, or your stations batteries have run out. Please, make sure that your station is properly connected."
+          }
+        }
+      }
+    },
+    "error_no_data_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No data"
+          }
+        }
+      }
+    },
+    "error_no_internet_access" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No internet access. Please, check your internet connection and try again."
+          }
+        }
+      }
+    },
+    "error_no_location_data_helium_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station did not report any GPS location in the aggregated time window. Make sure your station is properly deployed. Check our installation guide for more information about how to properly deploy your station."
+          }
+        }
+      }
+    },
+    "error_no_location_data_m5_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station did not report any GPS location in the aggregated time window. Make sure your station is properly deployed and the GPS antenna is connected. Check our installation guide for more information about how to properly deploy your station."
+          }
+        }
+      }
+    },
+    "error_no_location_data_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No location"
+          }
+        }
+      }
+    },
+    "error_no_median_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There seem to be gaps in the station's data. This could be due to **connection issues**. Please, make sure that your station is properly connected. Read more on our troubleshooting guide."
+          }
+        }
+      }
+    },
+    "error_no_median_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not enough data"
+          }
+        }
+      }
+    },
+    "error_no_wallet_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In order to participate in our daily reward scheme you need to connect a wallet."
+          }
+        }
+      }
+    },
+    "error_no_wallet_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No wallet"
+          }
+        }
+      }
+    },
+    "error_obc_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some measurements %@ were found to have out of bound values, compared to sensor specifications. This could be due to a **faulty sensor** or **outdated firmware.**"
+          }
+        }
+      }
+    },
+    "error_obc_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Values Out Of Bounds"
+          }
+        }
+      }
+    },
+    "error_pol_threshold_not_reached_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station excluded from rewards because its Proof-of-Location (PoL) score was too low. This can happen if the station is not reporting any GPS data, or the GPS location doesn’t match the location added while claiming. Read more about the PoL algorithm."
+          }
+        }
+      }
+    },
+    "error_pol_threshold_not_reached_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PoL Threshold not reached"
+          }
+        }
+      }
+    },
+    "error_qod_threshold_not_reached_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station excluded from rewards because its Quality-of-Data (QoD) score was too low. This might be due to **bad deployment** or **faulty sensors**. Read more about the QoD algorithm."
+          }
+        }
+      }
+    },
+    "error_qod_threshold_not_reached_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QoD Threshold not reached"
+          }
+        }
+      }
+    },
+    "error_relocated_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station excluded from rewards because it was relocated from its initial location."
+          }
+        }
+      }
+    },
+    "error_relocated_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station relocated"
+          }
+        }
+      }
+    },
+    "error_short_const_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some weather measurements %@ have not changed in the aggregated time window. This could be due to a **faulty sensor** or **bad deployment**. Read more on our troubleshooting guide."
+          }
+        }
+      }
+    },
+    "error_short_const_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Constant values"
+          }
+        }
+      }
+    },
+    "error_signup_user_already_exists1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signup failed: User with email "
+          }
+        }
+      }
+    },
+    "error_signup_user_already_exists2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " already exists."
+          }
+        }
+      }
+    },
+    "error_spikes_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abnormal spikes were detected in some weather measurements %@. This could be due to a **faulty sensor** or **bad deployment**. Check our installation guide for more information about how to properly deploy your station."
+          }
+        }
+      }
+    },
+    "error_spikes_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extreme Spikes"
+          }
+        }
+      }
+    },
+    "error_unidentified_anomalous_change_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidentified anomalies were detected in some weather measurements %@. This could be due to **bad deployment**, or sometimes due to a **faulty sensor**. Check our installation guide for more information about how to properly deploy your station."
+          }
+        }
+      }
+    },
+    "error_unidentified_anomalous_change_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidentified change"
+          }
+        }
+      }
+    },
+    "error_unidentified_spike_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidentified abnormal spikes were detected in some weather measurements %@. This could be due to a **faulty sensor** or **bad deployment**. Check our installation guide for more information about how to properly deploy your station."
+          }
+        }
+      }
+    },
+    "error_unidentified_spike_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidentified spikes"
+          }
+        }
+      }
+    },
+    "error_unknown_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There seems to be an unknown issue with your station. Please make sure you are running the latest version of our mobile app and your station is upgraded to the latest firmware."
+          }
+        }
+      }
+    },
+    "error_unknown_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown error"
+          }
+        }
+      }
+    },
+    "error_unowned_anom_increase_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anomalies were detected in some weather measurements %@. This could be due to **bad deployment**, or sometimes due to a **faulty sensor**."
+          }
+        }
+      }
+    },
+    "error_unowned_cell_capacity_reached_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station excluded from rewards because the cell’s capacity was reached."
+          }
+        }
+      }
+    },
+    "error_unowned_long_const_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some weather measurements %@ have not changed for 24 hours. This could be due to a **faulty sensor** or **bad deployment**."
+          }
+        }
+      }
+    },
+    "error_unowned_no_data_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No weather data found in the aggregated time window. Possible **connection issues**."
+          }
+        }
+      }
+    },
+    "error_unowned_no_location_data_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station did not report any GPS location in the aggregated time window."
+          }
+        }
+      }
+    },
+    "error_unowned_no_median_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There seem to be gaps in the data of this station. This could be due to **connection issues**. "
+          }
+        }
+      }
+    },
+    "error_unowned_no_wallet_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This station did not receive any rewards because the owner has not added a wallet."
+          }
+        }
+      }
+    },
+    "error_unowned_pol_threshold_not_reached_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station excluded from rewards because its Proof-of-Location (PoL) score was too low."
+          }
+        }
+      }
+    },
+    "error_unowned_qod_threshold_not_reached_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station excluded from rewards because its Quality-of-Data (QoD) score was too low."
+          }
+        }
+      }
+    },
+    "error_unowned_short_const_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some weather measurements %@ have not changed in the aggregated time window. This could be due to a **faulty sensor** or **bad deployment**."
+          }
+        }
+      }
+    },
+    "error_unowned_spikes_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abnormal spikes were detected in some weather measurements %@. This could be due to a **faulty sensor** or **bad deployment**."
+          }
+        }
+      }
+    },
+    "error_unowned_unidentified_anomalous_change_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidentified anomalies were detected in some weather measurements %@. This could be due to **bad deployment**, or sometimes due to a **faulty sensor**."
+          }
+        }
+      }
+    },
+    "error_unowned_unidentified_spike_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidentified abnormal spikes were detected in some weather measurements %@. This could be due to a **faulty sensor** or **bad deployment**."
+          }
+        }
+      }
+    },
+    "error_unowned_unknown_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There seems to be an unknown issue with this station. Please make sure you are running the latest version of our mobile app."
+          }
+        }
+      }
+    },
+    "error_unsupported_application_version" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unsupported error occurred. Please make sure this app is updated to the latest version."
+          }
+        }
+      }
+    },
+    "error_user_device_not_found" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not find the requested device"
+          }
+        }
+      }
+    },
+    "explorer_location_not_found" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location not found"
+          }
+        }
+      }
+    },
+    "explorer_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explorer"
+          }
+        }
+      }
+    },
+    "fahrenheit_symbol" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "°F"
+          }
+        }
+      }
+    },
+    "failed_station_connection_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong with the connection. Make sure you are **near your weather station and retry** to connect. If connection still fails, please **unpair the station and retry** - check our\n\n %@ \n\nAlternatively, you can contact our support at %@"
+          }
+        }
+      }
+    },
+    "failed_to_connect_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to connect"
+          }
+        }
+      }
+    },
+    "favorite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite"
+          }
+        }
+      }
+    },
+    "favorites_login_alert_text_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login to add **%@** to your favorites to see historical & forecast data."
+          }
+        }
+      }
+    },
+    "favorites_login_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to favorites?"
+          }
+        }
+      }
+    },
+    "feels_like" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feels Like"
+          }
+        }
+      }
+    },
+    "filters_filter_favorites_only" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites only"
+          }
+        }
+      }
+    },
+    "filters_filter_owned_only" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Owned only"
+          }
+        }
+      }
+    },
+    "filters_filter_show_all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show all"
+          }
+        }
+      }
+    },
+    "filters_filter_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter"
+          }
+        }
+      }
+    },
+    "filters_group_by_no_grouping" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No grouping"
+          }
+        }
+      }
+    },
+    "filters_group_by_relationship" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relationship (Owned, Favorite)"
+          }
+        }
+      }
+    },
+    "filters_group_by_status" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status (Active, Inactive)"
+          }
+        }
+      }
+    },
+    "filters_group_by_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group by"
+          }
+        }
+      }
+    },
+    "filters_reset" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        }
+      }
+    },
+    "filters_sort_by_date_added" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date added"
+          }
+        }
+      }
+    },
+    "filters_sort_by_last_active" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Active"
+          }
+        }
+      }
+    },
+    "filters_sort_by_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        }
+      }
+    },
+    "filters_sort_by_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by"
+          }
+        }
+      }
+    },
+    "filters_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort & Filter"
+          }
+        }
+      }
+    },
+    "finish" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish"
+          }
+        }
+      }
+    },
+    "firmware_update_description_downloading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update download in progress.\n**Do not switch off the Application!**"
+          }
+        }
+      }
+    },
+    "firmware_update_description_installing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Make sure you don't move away from your station as you might loose Bluetooth connection!**"
+          }
+        }
+      }
+    },
+    "firmware_update_download_file_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to download"
+          }
+        }
+      }
+    },
+    "firmware_update_failed_connection_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connection Failed"
+          }
+        }
+      }
+    },
+    "firmware_update_failure_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry Updating"
+          }
+        }
+      }
+    },
+    "firmware_update_failure_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update failed, please try again! If the problem persists, please contact our support team at [support.weatherxm.com](https://support.weatherxm.com)\n\nPlease make sure to mention that you’re facing an Error **\"%@\"** for faster resolution"
+          }
+        }
+      }
+    },
+    "firmware_update_failure_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Failed"
+          }
+        }
+      }
+    },
+    "firmware_update_install_error_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to install: %@"
+          }
+        }
+      }
+    },
+    "firmware_update_step_download" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download Firmware Update"
+          }
+        }
+      }
+    },
+    "firmware_update_step_install" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install Firmware Update"
+          }
+        }
+      }
+    },
+    "firmware_update_success_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Station"
+          }
+        }
+      }
+    },
+    "firmware_update_success_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station is updated to the latest Firmware!"
+          }
+        }
+      }
+    },
+    "firmware_update_success_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Updated!"
+          }
+        }
+      }
+    },
+    "firmware_update_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Station"
+          }
+        }
+      }
+    },
+    "firmware_update_title_connecting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connecting to Station..."
+          }
+        }
+      }
+    },
+    "firmware_update_title_downloading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloading Update..."
+          }
+        }
+      }
+    },
+    "firmware_update_title_installing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installing Update..."
+          }
+        }
+      }
+    },
+    "first_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First Name"
+          }
+        }
+      }
+    },
+    "follow_alert_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ seems offline at the moment. You can still add it to your favorites, but keep in mind that its data may not be correct."
+          }
+        }
+      }
+    },
+    "follow_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to favorites?"
+          }
+        }
+      }
+    },
+    "following" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
+          }
+        }
+      }
+    },
+    "following_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d Favorites"
+          }
+        }
+      }
+    },
+    "forgot_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forgot Password?"
+          }
+        }
+      }
+    },
+    "go_to_settings_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to Settings"
+          }
+        }
+      }
+    },
+    "good" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good"
+          }
+        }
+      }
+    },
+    "gust" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gust"
+          }
+        }
+      }
+    },
+    "hidden_content_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add **%@** to your favorites to see historical & forecast data."
+          }
+        }
+      }
+    },
+    "hidden_content_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hidden content"
+          }
+        }
+      }
+    },
+    "history_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History"
+          }
+        }
+      }
+    },
+    "home_following_weather_stations_empty_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow WXM Devices"
+          }
+        }
+      }
+    },
+    "home_following_weather_stations_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browse the explorer map and add stations to your favorites. They will show up here."
+          }
+        }
+      }
+    },
+    "home_following_weather_stations_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No favorites yet?"
+          }
+        }
+      }
+    },
+    "home_owned_weather_stations_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim your WXM device by clicking the **+ button.**"
+          }
+        }
+      }
+    },
+    "home_owned_weather_stations_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No stations yet?"
+          }
+        }
+      }
+    },
+    "home_total_weather_stations_empty_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Explorer Map"
+          }
+        }
+      }
+    },
+    "home_total_weather_stations_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim your WXM device by clicking the **+ button** or browse the map and add stations to your favorites."
+          }
+        }
+      }
+    },
+    "home_total_weather_stations_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No stations yet?"
+          }
+        }
+      }
+    },
+    "humidity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Humidity"
+          }
+        }
+      }
+    },
+    "illuminance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Illuminance"
+          }
+        }
+      }
+    },
+    "invalid_location_error_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid location"
+          }
+        }
+      }
+    },
+    "issues_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d Issues"
+          }
+        }
+      }
+    },
+    "just_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Just now"
+          }
+        }
+      }
+    },
+    "last_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Name"
+          }
+        }
+      }
+    },
+    "last_updated_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last updated on %@"
+          }
+        }
+      }
+    },
+    "light" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
+          }
+        }
+      }
+    },
+    "logout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logout"
+          }
+        }
+      }
+    },
+    "logout_alert_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to logout?"
+          }
+        }
+      }
+    },
+    "logout_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logout?"
+          }
+        }
+      }
+    },
+    "low" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low"
+          }
+        }
+      }
+    },
+    "mail_leave_message_note" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please leave your message below this line"
+          }
+        }
+      }
+    },
+    "mandatory_email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email *"
+          }
+        }
+      }
+    },
+    "net_stats_active" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active"
+          }
+        }
+      }
+    },
+    "net_stats_active_weather_stations_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The number of weather stations that were active during the last day."
+          }
+        }
+      }
+    },
+    "net_stats_active_weather_stations_info_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active Weather Stations"
+          }
+        }
+      }
+    },
+    "net_stats_buy_station_card_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buy Station"
+          }
+        }
+      }
+    },
+    "net_stats_buy_station_card_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earn %.0f $WXM/mo"
+          }
+        }
+      }
+    },
+    "net_stats_buy_station_card_info_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The average amount of tokens rewarded to a weather station in the last 30 days."
+          }
+        }
+      }
+    },
+    "net_stats_buy_station_card_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join the weather revolution"
+          }
+        }
+      }
+    },
+    "net_stats_claimed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claimed"
+          }
+        }
+      }
+    },
+    "net_stats_claimed_weather_stations_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The number of weather stations already claimed by users."
+          }
+        }
+      }
+    },
+    "net_stats_claimed_weather_stations_info_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claimed Weather Stations"
+          }
+        }
+      }
+    },
+    "net_stats_daily_minted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily Minted"
+          }
+        }
+      }
+    },
+    "net_stats_daily_minted_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This number represents the amount of $WXM tokens that were minted yesterday."
+          }
+        }
+      }
+    },
+    "net_stats_data_days_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The amount of daily weather data generated by stations. One station generates one weather-station-day if it provides high quality data throughout the day."
+          }
+        }
+      }
+    },
+    "net_stats_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server busy, site may have moved or you lost your dial-up Internet connection"
+          }
+        }
+      }
+    },
+    "net_stats_empty_tile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Service Unavailable"
+          }
+        }
+      }
+    },
+    "net_stats_last_days_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last %d Days"
+          }
+        }
+      }
+    },
+    "net_stats_last_run" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Run"
+          }
+        }
+      }
+    },
+    "net_stats_manufacturer_cta_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contact Us"
+          }
+        }
+      }
+    },
+    "net_stats_manufacturer_cta_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join the ecosystem"
+          }
+        }
+      }
+    },
+    "net_stats_manufacturer_cta_tile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you a station manufacturer?"
+          }
+        }
+      }
+    },
+    "net_stats_network_statistics" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network Statistics"
+          }
+        }
+      }
+    },
+    "net_stats_total_allocated_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station owners are rewarded in $WXM for providing data to the WeatherXM Network."
+          }
+        }
+      }
+    },
+    "net_stats_total_supply" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Supply"
+          }
+        }
+      }
+    },
+    "net_stats_total_supply_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This number represents the amount of $WXM tokens in existence (minus tokens verifiably burned)."
+          }
+        }
+      }
+    },
+    "net_stats_total_weather_stations_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The number of weather stations manufactured and registered on the network."
+          }
+        }
+      }
+    },
+    "net_stats_total_weather_stations_info_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Weather Stations"
+          }
+        }
+      }
+    },
+    "net_stats_weather_station_days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weather Station-Days"
+          }
+        }
+      }
+    },
+    "net_stats_weather_stations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weather Stations"
+          }
+        }
+      }
+    },
+    "net_stats_wxm_rewards_tile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "$WXM Rewards"
+          }
+        }
+      }
+    },
+    "net_stats_wxm_token_description_markdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deployed on Testnet - **[Read more here](%@)**"
+          }
+        }
+      }
+    },
+    "net_stats_wxm_token_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "$WXM Token"
+          }
+        }
+      }
+    },
+    "network_max" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network Max"
+          }
+        }
+      }
+    },
+    "no" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
+          }
+        }
+      }
+    },
+    "no_email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No associated email"
+          }
+        }
+      }
+    },
+    "no_transaction_desc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please come back later!"
+          }
+        }
+      }
+    },
+    "no_transaction_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oh, no! No transactions yet?"
+          }
+        }
+      }
+    },
+    "offline_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Offline"
+          }
+        }
+      }
+    },
+    "ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "owned" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Owned"
+          }
+        }
+      }
+    },
+    "owned_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d Owned"
+          }
+        }
+      }
+    },
+    "password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password"
+          }
+        }
+      }
+    },
+    "percentage_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.0f%%"
+          }
+        }
+      }
+    },
+    "precip_rate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precip. Rate"
+          }
+        }
+      }
+    },
+    "precipitation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precipitation"
+          }
+        }
+      }
+    },
+    "precipitation_probability" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precipitation Probability"
+          }
+        }
+      }
+    },
+    "precipitation_rate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precipitation Rate"
+          }
+        }
+      }
+    },
+    "pressure" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pressure"
+          }
+        }
+      }
+    },
+    "pressure_abs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pressure (abs)"
+          }
+        }
+      }
+    },
+    "profile_allocated_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allocated Rewards"
+          }
+        }
+      }
+    },
+    "profile_claim_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim"
+          }
+        }
+      }
+    },
+    "profile_claim_flow_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim Allocated Rewards"
+          }
+        }
+      }
+    },
+    "profile_my_wallet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Wallet"
+          }
+        }
+      }
+    },
+    "profile_no_rewards_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No allocated rewards yet."
+          }
+        }
+      }
+    },
+    "profile_no_rewards_warning_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buy a station"
+          }
+        }
+      }
+    },
+    "profile_no_rewards_warning_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join the weather revolution! Buy a weather station and start earning $WXM tokens."
+          }
+        }
+      }
+    },
+    "profile_no_rewards_warning_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start earning now!"
+          }
+        }
+      }
+    },
+    "profile_no_wallet_address_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No wallet added yet!"
+          }
+        }
+      }
+    },
+    "profile_no_wallet_address_error_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect your wallet to participate in our daily reward scheme."
+          }
+        }
+      }
+    },
+    "profile_no_wallet_address_error_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are losing rewards!"
+          }
+        }
+      }
+    },
+    "profile_prefs_settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preferences & Settings"
+          }
+        }
+      }
+    },
+    "profile_prefs_settings_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set your preferences and app settings"
+          }
+        }
+      }
+    },
+    "profile_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Profile"
+          }
+        }
+      }
+    },
+    "profile_title_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hello"
+          }
+        }
+      }
+    },
+    "profile_total_claimed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Claimed"
+          }
+        }
+      }
+    },
+    "profile_total_claimed_info_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Claimed reflects the tokens you've successfully claimed and withdrawn into your personal wallet. These are the rewards you've converted from your earned tokens for personal use or other purposes."
+          }
+        }
+      }
+    },
+    "profile_total_claimed_info_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Claimed"
+          }
+        }
+      }
+    },
+    "profile_total_earned" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Earned"
+          }
+        }
+      }
+    },
+    "profile_total_earned_info_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Earned represents the sum of all tokens generated by your weather stations. It's the overall amount you've earned since you started contributing data to WeatherXM."
+          }
+        }
+      }
+    },
+    "profile_total_earned_info_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Earned"
+          }
+        }
+      }
+    },
+    "rain_rate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rain Rate"
+          }
+        }
+      }
+    },
+    "rate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rate"
+          }
+        }
+      }
+    },
+    "rebooting_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rebooting Station"
+          }
+        }
+      }
+    },
+    "register_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signup with your email and your account will be created shortly."
+          }
+        }
+      }
+    },
+    "reload" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reload"
+          }
+        }
+      }
+    },
+    "reset_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the email associated with your weatherXM account and we will send you a password reset link."
+          }
+        }
+      }
+    },
+    "reset_password_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password Reset"
+          }
+        }
+      }
+    },
+    "retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        }
+      }
+    },
+    "reward_details_contact_support_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Need more help? Contact Support"
+          }
+        }
+      }
+    },
+    "reward_details_edit_location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Location"
+          }
+        }
+      }
+    },
+    "reward_details_max_rewards_info_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The maximum rewards you could earn in that reward distribution if you had a perfect 100%% reward score. You can read more about our reward mechanism [here](%@)."
+          }
+        }
+      }
+    },
+    "reward_details_max_rewards_info_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Rewards"
+          }
+        }
+      }
+    },
+    "reward_details_read_more" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read more"
+          }
+        }
+      }
+    },
+    "reward_details_reward_score_info_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A score from 0-1 (0-100%) which takes into account multiple factors in order to calculate the rewards you will earn on any given date. You can read more about these factors and our reward mechanism [here](%@)."
+          }
+        }
+      }
+    },
+    "reward_details_reward_score_info_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reward Score"
+          }
+        }
+      }
+    },
+    "reward_details_timeline_info_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timeline for the reference day of the actual rewards, as these are calculated taking into account the performance of the weather station for that day.   Note that **all times and dates are in UTC**, whereas this station is in the **%@** timezone.  You can read more about our reward mechanism [here](%@)."
+          }
+        }
+      }
+    },
+    "reward_details_timeline_info_missing_tz_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timeline for the reference day of the actual rewards, as these are calculated taking into account the performance of the weather station for that day.   Note that **all times and dates are in UTC**.  You can read more about our reward mechanism [here](%@)."
+          }
+        }
+      }
+    },
+    "reward_details_timeline_info_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timeline"
+          }
+        }
+      }
+    },
+    "reward_details_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reward Details"
+          }
+        }
+      }
+    },
+    "reward_details_view_transaction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View transaction"
+          }
+        }
+      }
+    },
+    "reward_problem_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find out more about this problem"
+          }
+        }
+      }
+    },
+    "reward_problem_no_wallet_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Wallet Now"
+          }
+        }
+      }
+    },
+    "reward_problem_upgrade_firmware_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgrade Station Firmware"
+          }
+        }
+      }
+    },
+    "reward_problems_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Lost %@ $WXM** because of the following problems."
+          }
+        }
+      }
+    },
+    "reward_problems_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problems Found"
+          }
+        }
+      }
+    },
+    "reward_problems_zero_lost_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some station problems found but did not lose any rewards."
+          }
+        }
+      }
+    },
+    "reward_score_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reward Score"
+          }
+        }
+      }
+    },
+    "save" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      }
+    },
+    "scanner_guide" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Place a QR Code inside the viewfinder rectangle to scan it"
+          }
+        }
+      }
+    },
+    "search_field_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search station name or address"
+          }
+        }
+      }
+    },
+    "search_no_recent_results_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search for station name or address. Most recent results appear here."
+          }
+        }
+      }
+    },
+    "search_no_recent_results_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No recent results"
+          }
+        }
+      }
+    },
+    "search_no_results_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try searching for something else or check for spelling mistakes"
+          }
+        }
+      }
+    },
+    "search_no_results_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your search returned no results"
+          }
+        }
+      }
+    },
+    "search_result_recent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recent"
+          }
+        }
+      }
+    },
+    "search_term_limit_message_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The search query must be at least %d characters long."
+          }
+        }
+      }
+    },
+    "select_frequency_acknowledge_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I hereby acknowledge that the frequency selected above is the correct one for the country you've installed and will operate this station in."
+          }
+        }
+      }
+    },
+    "select_frequency_link_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A list of the countries and their respective frequencies can be %@."
+          }
+        }
+      }
+    },
+    "select_frequency_list_link" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "found here"
+          }
+        }
+      }
+    },
+    "select_frequency_quit_claiming_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quit Claiming"
+          }
+        }
+      }
+    },
+    "select_frequency_selected_from_country_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (Recommmended for %@)"
+          }
+        }
+      }
+    },
+    "select_frequency_selected_from_location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (Recommmended for your location)"
+          }
+        }
+      }
+    },
+    "select_frequency_selected_from_location_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Given the location of installation you defined in the previous step, we've selected the appropriate frequency for %@."
+          }
+        }
+      }
+    },
+    "select_frequency_setting_failed_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not set the device frequency. Please try again, and if the problem persists, contact support."
+          }
+        }
+      }
+    },
+    "select_frequency_setting_failed_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setting Frequency Failed"
+          }
+        }
+      }
+    },
+    "select_frequency_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frequency"
+          }
+        }
+      }
+    },
+    "select_frequency_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helium's LoRaWAN network requires that you set your station's frequency for gateway configuration for the country you've installed your station."
+          }
+        }
+      }
+    },
+    "select_frequency_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set Your Station's Frequency"
+          }
+        }
+      }
+    },
+    "select_frequency_try_again_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try Again"
+          }
+        }
+      }
+    },
+    "select_station_location_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm Location"
+          }
+        }
+      }
+    },
+    "select_station_location_search_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search for location"
+          }
+        }
+      }
+    },
+    "select_station_location_terms_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I acknowledge that the deployment location above is correct and can be used to verify the eligibility of the station’s rewards."
+          }
+        }
+      }
+    },
+    "select_station_location_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Station Location"
+          }
+        }
+      }
+    },
+    "select_station_location_warning_text_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station relocation is subject to a relocation fee. [Read more here](%@)"
+          }
+        }
+      }
+    },
+    "send_email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send email"
+          }
+        }
+      }
+    },
+    "settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
+    "settings_contact_support_descritpion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visit our support portal's knowledge base or open a new ticket and we'll get back to you as soon as possible."
+          }
+        }
+      }
+    },
+    "settings_delete_account_caption" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permanently delete your account, and data."
+          }
+        }
+      }
+    },
+    "settings_delete_account_warning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is not reversible!"
+          }
+        }
+      }
+    },
+    "settings_delete_my_account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete My Account"
+          }
+        }
+      }
+    },
+    "settings_documentation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documentation"
+          }
+        }
+      }
+    },
+    "settings_documentation_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read more about the project, find out how rewards work, tutorials on how to setup your station, troubleshooting guides and more."
+          }
+        }
+      }
+    },
+    "settings_help" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Help"
+          }
+        }
+      }
+    },
+    "settings_option_analytics_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Help us learn and improve WeatherXM experience for you and others!"
+          }
+        }
+      }
+    },
+    "settings_option_analytics_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send anonymized data for analytics"
+          }
+        }
+      }
+    },
+    "settings_weather_units" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weather Units"
+          }
+        }
+      }
+    },
+    "share" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share"
+          }
+        }
+      }
+    },
+    "sign_in" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign In"
+          }
+        }
+      }
+    },
+    "sign_in_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login with your email and your password to access your account"
+          }
+        }
+      }
+    },
+    "sign_up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign Up"
+          }
+        }
+      }
+    },
+    "solar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solar"
+          }
+        }
+      }
+    },
+    "solar_radiation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radiation"
+          }
+        }
+      }
+    },
+    "sounds_good" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sounds good!"
+          }
+        }
+      }
+    },
+    "speed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speed"
+          }
+        }
+      }
+    },
+    "station_details_detailed_rewards_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See Detailed $WXM Rewards"
+          }
+        }
+      }
+    },
+    "station_details_forecast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forecast"
+          }
+        }
+      }
+    },
+    "station_details_got_rewards_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Got %d%%"
+          }
+        }
+      }
+    },
+    "station_details_lost_rewards_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lost %d%%"
+          }
+        }
+      }
+    },
+    "station_details_no_weather_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops! No weather data."
+          }
+        }
+      }
+    },
+    "station_details_no_weather_data_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No weather data found for your device."
+          }
+        }
+      }
+    },
+    "station_details_no_weather_data_description_for_date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No weather data found for your device\nfor "
+          }
+        }
+      }
+    },
+    "station_details_observations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Observations"
+          }
+        }
+      }
+    },
+    "station_details_observations_follow_cta_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add weather station to your favorites to see historical & forecast data."
+          }
+        }
+      }
+    },
+    "station_details_observations_logged_out_cta_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login to add this weather station to your favorites and see historical & forecast data."
+          }
+        }
+      }
+    },
+    "station_details_owned_rewards_error_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identify & Fix Problems"
+          }
+        }
+      }
+    },
+    "station_details_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewards"
+          }
+        }
+      }
+    },
+    "station_details_rewards_error_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See Detailed Problems"
+          }
+        }
+      }
+    },
+    "station_details_rewards_error_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Lost %@ $WXM** because of station problems."
+          }
+        }
+      }
+    },
+    "station_details_rewards_error_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problems Found"
+          }
+        }
+      }
+    },
+    "station_details_rewards_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**IMPORTANT:** $WXM token is deployed on testnet. Rewards will be recalculated and rewarded again after WXM mainnet token launch. Actual rewards may differ from the ones you see in the chart above."
+          }
+        }
+      }
+    },
+    "station_details_rewards_latest" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latest"
+          }
+        }
+      }
+    },
+    "station_details_rewards_max" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Rewards"
+          }
+        }
+      }
+    },
+    "station_details_rewards_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewards Score"
+          }
+        }
+      }
+    },
+    "station_details_rewards_seven_days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last 7D"
+          }
+        }
+      }
+    },
+    "station_details_rewards_thirty_days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last 30D"
+          }
+        }
+      }
+    },
+    "station_details_rewards_timeline_caption_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timeline for %@ (UTC)"
+          }
+        }
+      }
+    },
+    "station_details_rewards_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Station Rewards"
+          }
+        }
+      }
+    },
+    "station_details_seven_days_abbreviation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7D"
+          }
+        }
+      }
+    },
+    "station_details_thirty_days_abbreviation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30D"
+          }
+        }
+      }
+    },
+    "station_details_view_historical_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Historical Data"
+          }
+        }
+      }
+    },
+    "station_no_data_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We’re unable to show updated station data. Please make sure your station is operational and connected to the internet"
+          }
+        }
+      }
+    },
+    "station_no_data_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Data"
+          }
+        }
+      }
+    },
+    "station_not_in_range_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We couldn’t reach your station. Please make sure the station is powered up, and you are close enough for the Bluetooth connection to work."
+          }
+        }
+      }
+    },
+    "station_not_in_range_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station not in Range"
+          }
+        }
+      }
+    },
+    "station_warning_update_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Station Now"
+          }
+        }
+      }
+    },
+    "station_warning_update_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In order for your station to keep operating normally, and receive $WXM rewards, you must update the station."
+          }
+        }
+      }
+    },
+    "station_warning_update_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Must be Updated"
+          }
+        }
+      }
+    },
+    "success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Success"
+          }
+        }
+      }
+    },
+    "success_register_desc1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanks for joining WeatherXM! We have sent you an account activation link to "
+          }
+        }
+      }
+    },
+    "success_register_desc2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ".\nPlease, set a password and then try to sign in."
+          }
+        }
+      }
+    },
+    "success_reset_password_desc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If your e-mail is registered with us you will receive instructions for resetting your password."
+          }
+        }
+      }
+    },
+    "success_reset_password_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email has been sent!"
+          }
+        }
+      }
+    },
+    "system" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
+          }
+        }
+      }
+    },
+    "temperature" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperature"
+          }
+        }
+      }
+    },
+    "theme" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theme"
+          }
+        }
+      }
+    },
+    "timezone_disclaimer_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All displayed times are in %@ timezone"
+          }
+        }
+      }
+    },
+    "total" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total"
+          }
+        }
+      }
+    },
+    "total_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d Total"
+          }
+        }
+      }
+    },
+    "type_your_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type your Password"
+          }
+        }
+      }
+    },
+    "unfollow_alert_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to remove %@ from your favorites list?"
+          }
+        }
+      }
+    },
+    "unfollow_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from favorites?"
+          }
+        }
+      }
+    },
+    "uv" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UV"
+          }
+        }
+      }
+    },
+    "uv_index" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UV Index"
+          }
+        }
+      }
+    },
+    "view_more" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View More"
+          }
+        }
+      }
+    },
+    "wallet_accept_terms_of_service" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I have read and accept the "
+          }
+        }
+      }
+    },
+    "wallet_acknowledgement_of_ownership" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I acknowledge that I have ownership and full access to this wallet."
+          }
+        }
+      }
+    },
+    "wallet_address_missing_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You haven’t added a wallet yet. Thus, we will not be able to send you any $WXM rewards."
+          }
+        }
+      }
+    },
+    "wallet_address_missing_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wallet Address is Missing!"
+          }
+        }
+      }
+    },
+    "wallet_address_text_field_caption" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It is highly recomended to use Metamask as the most compatible wallet."
+          }
+        }
+      }
+    },
+    "wallet_compatibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wallet Compatibility"
+          }
+        }
+      }
+    },
+    "wallet_compatibility_check_link" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Check compatibility here](https://docs.weatherxm.com/wallet/add-edit-wallet-address#how-to-create-wallet-on-metamask)"
+          }
+        }
+      }
+    },
+    "wallet_compatibility_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not sure if you own a WXM compatible wallet?\n**If your wallet is not compatible you may not be able to redeem or use $WXM rewards!**"
+          }
+        }
+      }
+    },
+    "wallet_confirm_ownership_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please make sure you have the complete ownership of the Wallet ending in %@.\nIf you don't, you will lose all $WXM rewards from now on!"
+          }
+        }
+      }
+    },
+    "wallet_confirm_ownership_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm Wallet Ownership"
+          }
+        }
+      }
+    },
+    "wallet_connect_error_invalid_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid wallet address"
+          }
+        }
+      }
+    },
+    "wallet_connect_important_information" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connecting a wallet is mandatory for getting rewards. If you do not connect your wallet, the rewards of your WXM Devices will be lost."
+          }
+        }
+      }
+    },
+    "wallet_create_meta_mask_link" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Create a Metamask wallet here](https://docs.weatherxm.com/wallet/add-edit-wallet-address#how-to-create-wallet-on-metamask)"
+          }
+        }
+      }
+    },
+    "wallet_current_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current Address"
+          }
+        }
+      }
+    },
+    "wallet_edit_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Wallet Address"
+          }
+        }
+      }
+    },
+    "wallet_enter_address_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter or scan WXM wallet address"
+          }
+        }
+      }
+    },
+    "wallet_enter_wallet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your wallet address"
+          }
+        }
+      }
+    },
+    "wallet_my_account_confirmation_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In order to edit the Wallet Address you need to confirm you are the owner of this account. **Please type in your password to edit Wallet Address.**"
+          }
+        }
+      }
+    },
+    "wallet_my_wallet_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Wallet"
+          }
+        }
+      }
+    },
+    "wallet_new_wxm_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New WXM Address"
+          }
+        }
+      }
+    },
+    "wallet_not_existing_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don’t have a WXM wallet?\nRead here how you can create one."
+          }
+        }
+      }
+    },
+    "wallet_rewards_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**IMPORTANT:** $WXM token is deployed on testnet. Rewards will be recalculated and rewarded again after WXM mainnet token launch."
+          }
+        }
+      }
+    },
+    "wallet_save_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Wallet Address"
+          }
+        }
+      }
+    },
+    "wallet_scan_qr_code_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan QR Code"
+          }
+        }
+      }
+    },
+    "wallet_terms_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms Of Service"
+          }
+        }
+      }
+    },
+    "wallet_view_transaction_history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Transaction History"
+          }
+        }
+      }
+    },
+    "weather_stations_home_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Stations"
+          }
+        }
+      }
+    },
+    "widget_empty_view_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim your WXM device by clicking the **+ button** or browse the map and add stations to your favorites."
+          }
+        }
+      }
+    },
+    "widget_empty_view_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No stations yet?"
+          }
+        }
+      }
+    },
+    "widget_logged_out_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please sign in with your WeatherXM account to view your station data."
+          }
+        }
+      }
+    },
+    "widget_logged_out_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign In"
+          }
+        }
+      }
+    },
+    "widget_preview_station_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New York, USA"
+          }
+        }
+      }
+    },
+    "widget_preview_station_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daring Garnet Gust"
+          }
+        }
+      }
+    },
+    "widget_select_station_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Long press here to edit and choose a station"
+          }
+        }
+      }
+    },
+    "widget_widget_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See the current weather of one of your own or favorite weather stations."
+          }
+        }
+      }
+    },
+    "widget_widget_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current Weather"
+          }
+        }
+      }
+    },
+    "wind" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind"
+          }
+        }
+      }
+    },
+    "wind_direction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind Direction"
+          }
+        }
+      }
+    },
+    "wind_gust" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind Gust"
+          }
+        }
+      }
+    },
+    "wind_speed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind Speed"
+          }
+        }
+      }
+    },
+    "yes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
