@@ -161,7 +161,7 @@ public class ApiClient {
             .validate()
             .publishDecodable(type: T.self, decoder: decoder, emptyResponseCodes: [200, 201, 204, 205])
             .map { [weak self] response in
-                self?.debugPrintResponse(urlString: urlConvertible.urlRequest?.url?.absoluteString, data: response.data)
+                self?.debugResponse(urlString: urlConvertible.urlRequest?.url?.absoluteString, data: response.data)
 
                 return response.mapError { error in
                     let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0) }
@@ -206,22 +206,27 @@ public class ApiClient {
                 return
             }
             let data = try? Data(contentsOf: fileUrl)
-            debugPrintResponse(urlString: urlString, data: data)
+            debugResponse(urlString: urlString, data: data)
         #endif
     }
 
-    func debugPrintResponse(urlString: String?, data: Data?) {
-        #if DEBUG || MOCK
-            print(urlString)
-            guard let data = data,
-                  let json = try? JSONSerialization.jsonObject(with: data, options: []),
-                  let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-            else {
-                print("Can not serialize JSON")
-                print("data: \(String(data: data ?? Data(), encoding: .utf8))")
-                return
-            }
-            print(NSString(string: String(data: jsonData, encoding: .utf8)!))
-        #endif
+	private func debugResponse(urlString: String?, data: Data?) {
+		print(urlString)
+		guard let data = data,
+			  let json = try? JSONSerialization.jsonObject(with: data, options: []),
+			  let prettyPrintedJsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted),
+			  let noSlashesJsonData = try? JSONSerialization.data(withJSONObject: json, options: .withoutEscapingSlashes)
+		else {
+			print("Can not serialize JSON")
+			print("data: \(String(data: data ?? Data(), encoding: .utf8))")
+			return
+		}
+		print(NSString(string: String(data: prettyPrintedJsonData, encoding: .utf8)!))
+
+		if let noSlashesString = String(data: noSlashesJsonData, encoding: .utf8),
+		   noSlashesString.contains("{}") {
+			let error = NSError(domain: "empty_json_object", code: -1, userInfo: ["url": urlString ?? ""])
+			Logger.shared.logError(error)
+		}
     }
 }
