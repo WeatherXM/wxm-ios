@@ -19,7 +19,10 @@ struct SuccessfulDeleteView: View {
                 Image("DeleteSuccessIcon")
                 successInfo
             }
+			.iPadMaxWidth()
+
             navigationButtons
+				.iPadMaxWidth()
         }
         .padding(.horizontal)
         .navigationBarBackButtonHidden(true)

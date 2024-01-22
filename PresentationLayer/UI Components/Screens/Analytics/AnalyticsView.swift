@@ -53,6 +53,7 @@ struct AnalyticsView: View {
                     }
                     .padding(.horizontal, CGFloat(.XLSidePadding))
                 }
+				.iPadMaxWidth()
             }
             .padding(.bottom, bottomButtonsSize.height)
 
@@ -60,6 +61,7 @@ struct AnalyticsView: View {
                 Spacer()
 
                 bottomButtons
+					.iPadMaxWidth()
                     .padding(CGFloat(.defaultSidePadding))
                     .sizeObserver(size: $bottomButtonsSize)
             }

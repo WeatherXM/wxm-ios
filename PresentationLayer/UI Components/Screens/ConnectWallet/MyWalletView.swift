@@ -52,6 +52,7 @@ struct MyWalletView: View {
                                 .transition(AnyTransition.opacity.animation(.easeIn(duration: 0.2)))
                         }
                     }
+					.iPadMaxWidth()
                     .padding(.top)
                 }
                 .padding(.bottom, bottomDrawerSize.height)

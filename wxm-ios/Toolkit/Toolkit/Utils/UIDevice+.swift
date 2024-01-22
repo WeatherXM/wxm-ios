@@ -69,6 +69,10 @@ public extension UIDevice {
 
         return mapToDevice(identifier: identifier)
     }()
+
+	var isIPad: Bool {
+		UIDevice.current.userInterfaceIdiom == .pad
+	}
 }
 
 public var isPreview: Bool {

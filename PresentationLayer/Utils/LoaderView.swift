@@ -24,13 +24,6 @@ class LoaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private lazy var alertWindow = {
-        let window = UIWindow()
-        window.windowLevel = .alert
-        window.backgroundColor = .clear
-        return window
-    }()
-
     private lazy var hostingVC: UIHostingController<some View> = {
         let lottieView = LottieView(animationCase: AnimationsEnums.loader.animationString, loopMode: .loop)
             .frame(width: iconDimensions, height: iconDimensions)
@@ -41,15 +34,14 @@ class LoaderView: UIView {
 
     /// Presents the loader on top of the view hierarchy
     func show() {
-        guard superview == nil else { return }
-        alertWindow.addSubview(self)
+		guard superview == nil, let keyWindow = UIApplication.shared.currentKeyWindow else { return }
+		keyWindow.addSubview(self)
+		
         translatesAutoresizingMaskIntoConstraints = false
-        topAnchor.constraint(equalTo: alertWindow.topAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: alertWindow.bottomAnchor).isActive = true
-        leadingAnchor.constraint(equalTo: alertWindow.leadingAnchor).isActive = true
-        trailingAnchor.constraint(equalTo: alertWindow.trailingAnchor).isActive = true
-
-        alertWindow.show()
+        topAnchor.constraint(equalTo: keyWindow.topAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: keyWindow.bottomAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: keyWindow.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: keyWindow.trailingAnchor).isActive = true
 
         alpha = 0.0
         UIView.animate(withDuration: 0.1) {
@@ -64,7 +56,6 @@ class LoaderView: UIView {
             self.alpha = 0.0
 		} completion: { _ in
             self.removeFromSuperview()
-            self.alertWindow.dismiss()
             completion?()
         }
     }

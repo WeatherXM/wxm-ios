@@ -20,6 +20,7 @@ private struct FailSuccessModifier: ViewModifier {
             .overlay {
                 if show {
                     stateView
+						.iPadMaxWidth()
                         .padding()
                 }
             }

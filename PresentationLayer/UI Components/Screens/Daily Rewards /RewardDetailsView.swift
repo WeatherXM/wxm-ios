@@ -90,6 +90,7 @@ private struct ContentView: View {
 						.buttonStyle(WXMButtonStyle.solid)
 					}
 				}
+				.iPadMaxWidth()
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
 			}
 			.onAppear {

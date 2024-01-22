@@ -30,6 +30,7 @@ struct TransactionDetailsView: View {
     @ViewBuilder
     var transactionDetails: some View {
         transactions
+			.iPadMaxWidth()
             .wxmEmptyView(show: Binding(get: { viewModel.transactions.isEmpty }, set: { _ in }),
                           configuration: .init(animationEnum: .emptyDevices,
                                                title: LocalizableString.noTransactionTitle.localized,

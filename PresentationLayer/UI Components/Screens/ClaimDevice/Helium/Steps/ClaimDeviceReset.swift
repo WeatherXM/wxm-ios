@@ -40,6 +40,7 @@ struct ClaimDeviceReset: View {
                     Image(asset: .stationResetSchematic)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+						.frame(maxWidth: 600.0)
                 }
 
                 Spacer()

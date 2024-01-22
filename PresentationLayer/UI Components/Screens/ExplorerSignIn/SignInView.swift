@@ -15,6 +15,7 @@ struct SignInView: View {
     var body: some View {
         VStack {
             loginContainer
+				.iPadMaxWidth()
         }
         .padding(.top, CGFloat(.largeSidePadding))
         .padding(.bottom, CGFloat(.defaultSidePadding))

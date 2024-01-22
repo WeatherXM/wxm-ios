@@ -23,6 +23,7 @@ struct UnitsOptionsModalView: View {
                     .zIndex(0)
 
                 modalContainer
+					.iPadMaxWidth()
                     .transition(AnyTransition.scale.animation(.easeIn(duration: 0.2)))
                     .zIndex(1)
 

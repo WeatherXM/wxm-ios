@@ -69,6 +69,7 @@ struct ExplorerView: View {
             signUpTextButton
         }
         .WXMCardStyle()
+		.iPadMaxWidth()
         .padding(.bottom, CGFloat(.mediumSidePadding))
         .transition(.move(edge: .bottom))
         .animation(.easeIn)

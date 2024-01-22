@@ -35,6 +35,7 @@ private struct ContentView: View {
 				viewModel.refresh(completion: completion)
 			} content: {
 				fieldsView
+					.iPadMaxWidth()
 					.padding(.bottom, tabBarItemsSize.height)
 					.fail(show: $viewModel.isFailed, obj: viewModel.failObj)
 			}

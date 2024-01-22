@@ -34,10 +34,16 @@ class StationDetailsViewModel: ObservableObject {
     private(set) var loginAlertConfiguration: WXMAlertConfiguration?
 
     private var initialHeaderOffset: CGFloat = 0.0
-    @Published private(set) var device: DeviceDetails?
+	@Published private(set) var device: DeviceDetails? {
+		didSet {
+			shareDialogText = device?.explorerUrl
+		}
+	}
     @Published private(set) var followState: UserDeviceFollowState?
     @Published var shouldHideHeaderToggle: Bool = false
     @Published var showLoginAlert: Bool = false
+	@Published var showShareDialog: Bool = false
+	private(set) var shareDialogText: String?
     private(set) var isHeaderHidden: Bool = false
     private var cancellables: Set<AnyCancellable> = []
 
@@ -85,11 +91,7 @@ class StationDetailsViewModel: ObservableObject {
     func handleShareButtonTap() {
         Logger.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsShare])
 
-        guard let explorerUrl = device?.explorerUrl else {
-            return
-        }
-
-        ShareHelper().showShareDialog(text: explorerUrl)
+		showShareDialog = true
     }
 
     func followButtonTapped() {
