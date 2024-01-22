@@ -5397,6 +5397,28 @@
         }
       }
     },
+    "settings_option_change_password_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Request a password reset email to change your password."
+          }
+        }
+      }
+    },
+    "settings_option_change_password_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Password"
+          }
+        }
+      }
+    },
     "settings_weather_units" : {
       "extractionState" : "manual",
       "localizations" : {

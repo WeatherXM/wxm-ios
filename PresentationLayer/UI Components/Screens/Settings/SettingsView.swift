@@ -112,6 +112,7 @@ struct SettingsView: View {
             Group {
                 accountSectionTitle
                 analyticsSwitch
+				changePasswordButton
                 logoutButton
                 deleteAccountButton
             }
@@ -130,6 +131,17 @@ struct SettingsView: View {
             settingsViewModel.isAnalyticsCollectionEnabled?.toggle()
         }
     }
+
+	var changePasswordButton: some View {
+		SettingsButtonView(
+			settingsCase: .changePassword,
+			settingCaption: LocalizableString.settingsOptionChangePasswordDescription.localized,
+			action: {
+				Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .changePassword])
+				Router.shared.navigateTo(.resetPassword(ViewModelsFactory.getResetPasswordViewModel()))
+			}
+		)
+	}
 
     var logoutButton: some View {
         SettingsButtonView(

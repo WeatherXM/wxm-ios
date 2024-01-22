@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 enum SettingsEnum {
-	case units, account, display, theme, temperature, precipitation, windSpeed, windDirection, pressure, analytics, logout,
+	case units, account, display, theme, temperature, precipitation, windSpeed, windDirection, pressure, analytics, logout, changePassword,
 		 help, about, appVersion(installationId: String?), documentation, contactSupport, deleteAccount, deleteAccountCaption, deleteAccountWarning,
 		 deleteAccountGeneralInfo, deleteAccountMoreInfoLink, toDeleteTitle, toDeleteName, toDeleteAddress, toDeletePersonalData,
 		 notDeleteTitle, notDeleteWeatherData, notDeleteRewards, noCollectDataTitle, contactForSupport
@@ -45,6 +45,8 @@ enum SettingsEnum {
 				return LocalizableString.pressure.localized
 			case .analytics:
 				return LocalizableString.settingsOptionAnalyticsTitle.localized
+			case .changePassword:
+				return LocalizableString.settingsOptionChangePasswordTitle.localized
 			case .logout:
 				return LocalizableString.logout.localized
 			case .documentation:
@@ -70,6 +72,8 @@ enum SettingsEnum {
 				return LocalizableString.Settings.contactSupportDescritpion.localized
 			case .deleteAccountCaption:
 				return LocalizableString.Settings.deleteAccountCaption.localized
+			case .changePassword:
+				return LocalizableString.settingsOptionChangePasswordDescription.localized
 			case .deleteAccountWarning:
 				return LocalizableString.Settings.deleteAccountWarning.localized
 			case .appVersion(let installationId):

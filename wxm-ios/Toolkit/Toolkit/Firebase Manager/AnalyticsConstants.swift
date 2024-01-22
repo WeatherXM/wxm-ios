@@ -171,6 +171,8 @@ public enum ParameterValue: RawRepresentable {
                 return "Change Station Frequency"
             case .change:
                 return "Change"
+			case .changePassword:
+				return "Change Password"
             case .login:
                 return "Login"
             case .email:
@@ -454,6 +456,7 @@ public enum ParameterValue: RawRepresentable {
     case changeFrequencyResult
     case changeStationFrequency
     case change
+	case changePassword
     case heliumBLEPopupError
     case heliumBLEPopup
     case searchLocation
