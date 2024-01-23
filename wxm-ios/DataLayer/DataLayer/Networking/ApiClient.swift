@@ -11,6 +11,12 @@ import DomainLayer
 import Foundation
 import Toolkit
 
+private enum Constants: String {
+	case emptyJsonObject = "empty_json_object"
+	case url = "url"
+	case emptyObjectString = "{}"
+}
+
 public class ApiClient {
     let session = {
         let conf = URLSessionConfiguration.default
@@ -224,8 +230,8 @@ public class ApiClient {
 		print(NSString(string: String(data: prettyPrintedJsonData, encoding: .utf8)!))
 
 		if let noSlashesString = String(data: noSlashesJsonData, encoding: .utf8),
-		   noSlashesString.contains("{}") {
-			let error = NSError(domain: "empty_json_object", code: -1, userInfo: ["url": urlString ?? ""])
+		   noSlashesString.contains(Constants.emptyObjectString.rawValue) {
+			let error = NSError(domain: Constants.emptyJsonObject.rawValue, code: -1, userInfo: [Constants.url.rawValue: urlString ?? ""])
 			Logger.shared.logError(error)
 		}
     }
