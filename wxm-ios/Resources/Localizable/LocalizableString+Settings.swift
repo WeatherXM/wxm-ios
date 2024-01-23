@@ -19,6 +19,9 @@ extension LocalizableString {
         case contactSupportDescritpion
         case deleteAccountCaption
         case deleteAccountWarning
+		case notificationAlertTitle
+		case notificationAlertEnableDescription
+		case notificationAlertDisableDescription
     }
 }
 
@@ -49,6 +52,12 @@ extension LocalizableString.Settings: WXMLocalizable {
                 return "settings_delete_account_caption"
             case .deleteAccountWarning:
                 return "settings_delete_account_warning"
+			case .notificationAlertTitle:
+				return "settings_notifications_alert_title"
+			case .notificationAlertEnableDescription:
+				return "settings_notifications_alert_enable_description"
+			case .notificationAlertDisableDescription:
+				return "settings_notifications_alert_disable_description"
         }
     }
 }

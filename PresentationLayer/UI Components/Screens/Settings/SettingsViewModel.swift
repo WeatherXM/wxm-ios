@@ -160,20 +160,17 @@ final class SettingsViewModel: ObservableObject {
     }
 
 	func handleNotificationSwitchTap() {
-		Task { @MainActor [weak self]  in
+		Task { @MainActor in
 			let status = await FirebaseManager.shared.gatAuthorizationStatus()
 			switch status {
 				case .notDetermined:
 					try? await FirebaseManager.shared.requestNotificationAuthorization()
-				case .denied:
-					let title = LocalizableString.ClaimDevice.confirmLocationNoAccessToServicesTitle.localized
-					let message = LocalizableString.ClaimDevice.confirmLocationNoAccessToServicesText.localized
+				case .denied, .authorized, .provisional, .ephemeral:
+					let title = LocalizableString.Settings.notificationAlertTitle.localized
+					let message: LocalizableString.Settings = status == .denied ? .notificationAlertEnableDescription : .notificationAlertDisableDescription
 					let alertObj = AlertHelper.AlertObject.getNavigateToSettingsAlert(title: title,
-																					  message: message)
+																					  message: message.localized)
 					AlertHelper().showAlert(alertObj)
-
-				case .authorized, .provisional, .ephemeral:
-					self?.areNotificationsEnabled = true
 				@unknown default:
 					break
 			}

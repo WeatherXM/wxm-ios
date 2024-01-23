@@ -5381,7 +5381,40 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notifications"
+            "value" : "Allow Notifications"
+          }
+        }
+      }
+    },
+    "settings_notifications_alert_disable_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To disable notifications, please go to your phone settings for WeatherXM, then locate 'Notifications' and tap the toggle."
+          }
+        }
+      }
+    },
+    "settings_notifications_alert_enable_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To enable notifications, please go to your phone settings for WeatherXM, then locate 'Notifications' and tap the toggle."
+          }
+        }
+      }
+    },
+    "settings_notifications_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications for WeatherXM"
           }
         }
       }
@@ -5392,7 +5425,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notifications Description"
+            "value" : "Allow WeatherXM to send you push notifications about the project or your station."
           }
         }
       }
