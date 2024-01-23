@@ -43,6 +43,10 @@ public class FirebaseManager {
 		firebaseManagerImpl.setAnalyticsCollectionEnabled(enabled)
     }
 
+	public func gatAuthorizationStatus() async -> UNAuthorizationStatus {
+		await firebaseManagerImpl.getAuthorizationStatus()
+	}
+
 	public func requestNotificationAuthorization() async throws {
 		try await firebaseManagerImpl.requestNotificationAuthorization()
 	}

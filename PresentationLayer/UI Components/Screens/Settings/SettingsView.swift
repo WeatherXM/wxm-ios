@@ -111,6 +111,7 @@ struct SettingsView: View {
 	var notificationsSwitch: some View {
 		SettingsButtonView(settingsCase: .notifications,
 						   settingCaption: SettingsEnum.notifications.settingsDescription,
+						   isToggleInteractionEnabled: false,
 						   switchValue: $settingsViewModel.areNotificationsEnabled) {
 			settingsViewModel.handleNotificationSwitchTap()
 		}
