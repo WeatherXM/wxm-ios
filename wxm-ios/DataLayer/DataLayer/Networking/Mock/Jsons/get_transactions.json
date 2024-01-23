@@ -36,40 +36,44 @@
 					1.0
 				]
 			},
-			"errors": {
+			"annotations": {
 				"qod": [
 					{
-						"error": "SPIKES",
+						"annotation": "SPIKES",
 						"affects": [
 							{
 								"parameter": "temperature",
-								"ratio": 0.7
+								"ratio": 70
 							},
 							{
 								"parameter": "wind_speed",
-								"ratio": 0.5
+								"ratio": 50
 							}
 						]
 					},
 					{
-						"error": "SHORT_CONST",
+						"annotation": "SHORT_CONST",
 						"affects": [
 							{
 								"parameter": "precipitation_rate",
-								"ratio": 0.7
+								"ratio": 70
 							}
 						]
 					}
 				],
 				"pol": [
 					{
-						"error": "LOCATION_NOT_VERIFIED",
-						"ratio": 0.8
+						"annotation": "LOCATION_NOT_VERIFIED",
+						"ratio": 80
 					}
 				],
 				"rm": [
 					{
-						"error": "NO_WALLET"
+
+
+
+
+						
 					}
 				]
 			}
