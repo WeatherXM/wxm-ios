@@ -67,6 +67,7 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UserAccessTokenService</key>
 	<string>$(UserAccessTokenService)</string>

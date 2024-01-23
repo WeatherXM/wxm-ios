@@ -9,11 +9,16 @@ import Firebase
 import FirebaseCore
 import Foundation
 import FirebaseAnalytics
+import FirebaseMessaging
+import Combine
 
 public class FirebaseManager {
     public static let shared: FirebaseManager = .init()
+	public var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? {
+		firebaseManagerImpl.latestReceivedNotificationPublisher
+	}
 	private let firebaseManagerImpl: FirbaseManagerImplementation
-
+	
     private init() {
 		if disableFirebase {
 			self.firebaseManagerImpl = MockFirebaseManager()
@@ -33,13 +38,22 @@ public class FirebaseManager {
     public func setAnalyticsCollectionEnabled(_ enabled: Bool) {
 		firebaseManagerImpl.setAnalyticsCollectionEnabled(enabled)
     }
+
+	public func requestNotificationAuthorization() async throws {
+		try await firebaseManagerImpl.requestNotificationAuthorization()
+	}
 }
 
 private class RemoteFirebaseManager: FirbaseManagerImplementation {
+	private let notificationsHandler = NotificationsHandler()
 	private var installationId: String? {
 		didSet {
 			Crashlytics.crashlytics().setCustomValue(installationId, forKey: installationIdKey)
 		}
+	}
+
+	var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? {
+		notificationsHandler.latestNotificationPublisher
 	}
 
 	func launch() {
@@ -57,6 +71,10 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
 		Analytics.setAnalyticsCollectionEnabled(enabled)
+	}
+
+	func requestNotificationAuthorization() async throws {
+		try await notificationsHandler.requestNotificationAuthorization()
 	}
 
 	private func assignInstallationId() async {
@@ -79,7 +97,9 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 }
 
 private class MockFirebaseManager: FirbaseManagerImplementation {
+	var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? { nil }
 	func launch() {}
 	func getInstallationId() async -> String { return "" }
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {}
+	func requestNotificationAuthorization() async throws {}
 }
