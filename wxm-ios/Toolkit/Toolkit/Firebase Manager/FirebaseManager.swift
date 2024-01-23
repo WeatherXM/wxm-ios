@@ -17,8 +17,12 @@ public class FirebaseManager {
 	public var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? {
 		firebaseManagerImpl.latestReceivedNotificationPublisher
 	}
+	public var notificationsAuthorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? {
+		firebaseManagerImpl.notificationsAuthorizationStatusPublisher
+	}
+
 	private let firebaseManagerImpl: FirbaseManagerImplementation
-	
+
     private init() {
 		if disableFirebase {
 			self.firebaseManagerImpl = MockFirebaseManager()
@@ -54,6 +58,10 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 
 	var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? {
 		notificationsHandler.latestNotificationPublisher
+	}
+
+	var notificationsAuthorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? {
+		notificationsHandler.authorizationStatusPublisher
 	}
 
 	func launch() {
@@ -102,6 +110,8 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 
 private class MockFirebaseManager: FirbaseManagerImplementation {
 	var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? { nil }
+	var notificationsAuthorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? { nil }
+
 	func launch() {}
 	func getInstallationId() async -> String { return "" }
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {}

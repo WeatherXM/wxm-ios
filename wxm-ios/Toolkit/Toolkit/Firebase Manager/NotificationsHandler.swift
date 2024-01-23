@@ -12,12 +12,18 @@ import Combine
 
 class NotificationsHandler: NSObject {
 	let latestNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>
-
+	let authorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>
+	
 	private let latestNotificationSubject: CurrentValueSubject<UNNotificationResponse?, Never> = .init(nil)
+	private let authorizationStatusSubject: CurrentValueSubject<UNAuthorizationStatus?, Never> = .init(nil)
+	private var cancellableSet: Set<AnyCancellable> = .init()
 
 	override init() {
 		latestNotificationPublisher = latestNotificationSubject.eraseToAnyPublisher()
+		authorizationStatusPublisher = authorizationStatusSubject.eraseToAnyPublisher()
 		super.init()
+
+		observeAuthorizationStatus()
 	}
 
 	func requestNotificationAuthorization() async throws {
@@ -30,6 +36,7 @@ class NotificationsHandler: NSObject {
 		}
 
 		observeFCMToken()
+		observeAuthorizationStatus()
 	}
 
 	func getFCMToken() async throws ->  String {
@@ -37,17 +44,26 @@ class NotificationsHandler: NSObject {
 	}
 
 	func getAuthorizationStatus() async -> UNAuthorizationStatus {
-		await withUnsafeContinuation { continuation in
-			UNUserNotificationCenter.current().getNotificationSettings { settings in
-				continuation.resume(returning: settings.authorizationStatus)
-			}
-		}
+		await UNUserNotificationCenter.current().notificationSettings().authorizationStatus		
 	}
 }
 
 private extension NotificationsHandler {
-	private func observeFCMToken() {
+	func observeFCMToken() {
 		Messaging.messaging().delegate = self
+	}
+
+	func observeAuthorizationStatus() {
+		NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification).sink { [weak self] _ in
+			self?.refreshAuthorizationStatus()
+		}.store(in: &cancellableSet)
+	}
+
+	func refreshAuthorizationStatus() {
+		Task {
+			let status = await getAuthorizationStatus()
+			authorizationStatusSubject.send(status)
+		}
 	}
 }
 

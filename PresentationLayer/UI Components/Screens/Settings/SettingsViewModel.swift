@@ -37,6 +37,7 @@ final class SettingsViewModel: ObservableObject {
         self.settingsUseCase = settingsUseCase
         self.isAnalyticsCollectionEnabled = settingsUseCase.isAnalyticsEnabled
         setInstallationId()
+		observeAuthorizationStatus()
     }
 
     @ViewBuilder
@@ -169,6 +170,25 @@ private extension SettingsViewModel {
             self.installationId = await FirebaseManager.shared.getInstallationId()
         }
     }
+
+	func observeAuthorizationStatus() {
+		FirebaseManager.shared
+			.notificationsAuthorizationStatusPublisher?
+			.receive(on: DispatchQueue.main).sink { [weak self] status in
+				guard let status else {
+					return
+				}
+
+				switch status {
+					case .notDetermined, .denied:
+						self?.areNotificationsEnabled = false
+					case .authorized, .provisional, .ephemeral:
+						self?.areNotificationsEnabled = true
+					@unknown default:
+						self?.areNotificationsEnabled = false
+				}
+			}.store(in: &cancellableSet)
+	}
 }
 
 extension SettingsViewModel: HashableViewModel {
