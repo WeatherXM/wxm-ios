@@ -29,6 +29,7 @@ struct SettingsView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: CGFloat(.defaultSpacing)) {
                 unitsContainer
+				notificationsSwitch
                 WXMDivider()
                 displayContainer
                 accountContainer
@@ -105,6 +106,15 @@ struct SettingsView: View {
             action: {}
         )
     }
+
+	@ViewBuilder
+	var notificationsSwitch: some View {
+		SettingsButtonView(settingsCase: .notifications,
+						   settingCaption: SettingsEnum.notifications.settingsDescription,
+						   switchValue: $settingsViewModel.areNotificationsEnabled) {
+			settingsViewModel.handleNotificationSwitchTap()
+		}
+	}
 
     @ViewBuilder
     var accountContainer: some View {

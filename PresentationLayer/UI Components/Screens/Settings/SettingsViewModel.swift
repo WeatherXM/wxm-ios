@@ -16,6 +16,7 @@ final class SettingsViewModel: ObservableObject {
     @Published var unitCaseModal: SettingsEnum = .temperature
     @Published var installationId: String?
     @Published var isLoading: Bool = false
+	@Published var areNotificationsEnabled: Bool? = false
     @Published var isAnalyticsCollectionEnabled: Bool? = false {
         didSet {
             guard let isAnalyticsCollectionEnabled else {
@@ -156,6 +157,10 @@ final class SettingsViewModel: ObservableObject {
                                           okAction: (LocalizableString.yes.localized, logoutAction))
         AlertHelper().showAlert(obj)
     }
+
+	func handleNotificationSwitchTap() {
+		
+	}
 }
 
 private extension SettingsViewModel {

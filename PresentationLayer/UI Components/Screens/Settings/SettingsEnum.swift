@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 enum SettingsEnum {
-	case units, account, display, theme, temperature, precipitation, windSpeed, windDirection, pressure, analytics, logout, changePassword,
+	case units, account, display, theme, temperature, precipitation, windSpeed, windDirection, pressure, notifications, analytics, logout, changePassword,
 		 help, about, appVersion(installationId: String?), documentation, contactSupport, deleteAccount, deleteAccountCaption, deleteAccountWarning,
 		 deleteAccountGeneralInfo, deleteAccountMoreInfoLink, toDeleteTitle, toDeleteName, toDeleteAddress, toDeletePersonalData,
 		 notDeleteTitle, notDeleteWeatherData, notDeleteRewards, noCollectDataTitle, contactForSupport
@@ -45,6 +45,8 @@ enum SettingsEnum {
 				return LocalizableString.pressure.localized
 			case .analytics:
 				return LocalizableString.settingsOptionAnalyticsTitle.localized
+			case .notifications:
+				return LocalizableString.Settings.notifications.localized
 			case .changePassword:
 				return LocalizableString.settingsOptionChangePasswordTitle.localized
 			case .logout:
@@ -79,6 +81,8 @@ enum SettingsEnum {
 			case .appVersion(let installationId):
 				let suffix = installationId != nil ? " - \(installationId!)" : ""
 				return "\(Bundle.main.releaseVersionNumberPretty) (\(Bundle.main.buildVersionNumberPretty))\(suffix)"
+			case .notifications:
+				return LocalizableString.Settings.notificationsDescription.localized
 			default:
 				return ""
 		}

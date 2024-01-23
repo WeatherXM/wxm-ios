@@ -5375,6 +5375,28 @@
         }
       }
     },
+    "settings_notifications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        }
+      }
+    },
+    "settings_notifications_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications Description"
+          }
+        }
+      }
+    },
     "settings_option_analytics_description" : {
       "extractionState" : "manual",
       "localizations" : {

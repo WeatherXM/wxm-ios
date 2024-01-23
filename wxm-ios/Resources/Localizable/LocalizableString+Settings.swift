@@ -10,6 +10,8 @@ import Foundation
 extension LocalizableString {
     enum Settings {
         case weatherUnits
+		case notifications
+		case notificationsDescription
         case help
         case deleteMyAccount
         case documentation
@@ -29,6 +31,10 @@ extension LocalizableString.Settings: WXMLocalizable {
         switch self {
             case .weatherUnits:
                 return "settings_weather_units"
+			case .notifications:
+				return "settings_notifications"
+			case .notificationsDescription:
+				return "settings_notifications_description"
             case .help:
                 return "settings_help"
             case .deleteMyAccount:
