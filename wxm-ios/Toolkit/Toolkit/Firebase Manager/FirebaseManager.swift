@@ -77,6 +77,10 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 		try await notificationsHandler.requestNotificationAuthorization()
 	}
 
+	func getAuthorizationStatus() async -> UNAuthorizationStatus {
+		await notificationsHandler.getAuthorizationStatus()
+	}
+
 	private func assignInstallationId() async {
 		return await withCheckedContinuation { continuation in
 			Installations.installations().installationID { [weak self] installationId, error in
@@ -102,4 +106,5 @@ private class MockFirebaseManager: FirbaseManagerImplementation {
 	func getInstallationId() async -> String { return "" }
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {}
 	func requestNotificationAuthorization() async throws {}
+	func getAuthorizationStatus() async -> UNAuthorizationStatus { .authorized }
 }

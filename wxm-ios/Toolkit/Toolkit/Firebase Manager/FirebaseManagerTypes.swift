@@ -16,6 +16,7 @@ protocol FirbaseManagerImplementation {
 	func getInstallationId() async -> String
 	func setAnalyticsCollectionEnabled(_ enabled: Bool)
 	func requestNotificationAuthorization() async throws
+	func getAuthorizationStatus() async -> UNAuthorizationStatus
 }
 
 protocol RemoteConfigManagerImplementation: AnyObject {
