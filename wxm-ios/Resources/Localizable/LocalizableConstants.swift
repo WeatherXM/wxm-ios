@@ -187,6 +187,8 @@ enum LocalizableString: WXMLocalizable {
     case successRegisterDesc2
     case settingsOptionAnalyticsTitle
     case settingsOptionAnalyticsDescription
+	case settingsOptionChangePasswordTitle
+	case settingsOptionChangePasswordDescription
     case logoutAlertTitle
     case logoutAlertText
     case historyTitle
@@ -593,6 +595,10 @@ extension LocalizableString {
                 return "settings_option_analytics_title"
             case .settingsOptionAnalyticsDescription:
                 return "settings_option_analytics_description"
+			case .settingsOptionChangePasswordTitle:
+				return "settings_option_change_password_title"
+			case .settingsOptionChangePasswordDescription:
+				return "settings_option_change_password_description"
             case .logoutAlertTitle:
                 return "logout_alert_title"
             case .logoutAlertText:
