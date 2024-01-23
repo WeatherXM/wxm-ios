@@ -117,6 +117,14 @@ struct SettingsView: View {
 		}
 	}
 
+	@ViewBuilder
+	var announcementsButton: some View {
+		SettingsButtonView(settingsCase: .announcements,
+						   settingCaption: "") {
+			settingsViewModel.handleAnnouncementsTap()
+		}
+	}
+
     @ViewBuilder
     var accountContainer: some View {
         if mainScreenViewModel.isUserLoggedIn {
@@ -229,6 +237,7 @@ struct SettingsView: View {
     @ViewBuilder
     var helpContainer: some View {
         helpSectionTitle
+		announcementsButton
         documentationButton
         contactUsButton
     }

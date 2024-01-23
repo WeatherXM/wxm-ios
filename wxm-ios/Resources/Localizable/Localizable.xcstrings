@@ -5298,6 +5298,17 @@
         }
       }
     },
+    "settings_announcements" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Announcements"
+          }
+        }
+      }
+    },
     "settings_contact_support_descritpion" : {
       "extractionState" : "manual",
       "localizations" : {

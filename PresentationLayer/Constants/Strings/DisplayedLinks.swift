@@ -30,6 +30,7 @@ enum DisplayedLinks {
 	case cellCapacity
 	case claimToken
 	case appstore
+	case announcements
 
 	var linkURL: String {
 		switch self {
@@ -73,6 +74,8 @@ enum DisplayedLinks {
 				return Bundle.main.getConfiguration(for: .claimTokenUrl) ?? ""
 			case .appstore:
 				return Bundle.main.getConfiguration(for: .appStoreUrl) ?? ""
+			case .announcements:
+				return "https://announcements.weatherxm.com"
 		}
 	}
 }

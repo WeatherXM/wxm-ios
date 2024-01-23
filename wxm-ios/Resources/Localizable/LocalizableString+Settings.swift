@@ -12,6 +12,7 @@ extension LocalizableString {
         case weatherUnits
 		case notifications
 		case notificationsDescription
+		case announcements
         case help
         case deleteMyAccount
         case documentation
@@ -38,6 +39,8 @@ extension LocalizableString.Settings: WXMLocalizable {
 				return "settings_notifications"
 			case .notificationsDescription:
 				return "settings_notifications_description"
+			case .announcements:
+				return "settings_announcements"
             case .help:
                 return "settings_help"
             case .deleteMyAccount:

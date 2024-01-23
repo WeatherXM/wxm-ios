@@ -176,6 +176,14 @@ final class SettingsViewModel: ObservableObject {
 			}
 		}
 	}
+
+	func handleAnnouncementsTap() {
+		guard let url = URL(string: DisplayedLinks.announcements.linkURL) else {
+			return
+		}
+
+		Router.shared.navigateTo(.safariView(url))
+	}
 }
 
 private extension SettingsViewModel {
