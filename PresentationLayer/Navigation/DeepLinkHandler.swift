@@ -10,6 +10,7 @@ import DomainLayer
 import Combine
 import UIKit
 import Toolkit
+import UserNotifications
 
 class DeepLinkHandler {
 	typealias QueryParamsCallBack = GenericCallback<[String: String]?>
@@ -60,6 +61,13 @@ class DeepLinkHandler {
 
 		return handled
     }
+
+	func handleNotificationReceive(_ notification: UNNotificationResponse) -> Bool {
+		print(notification)
+		/// TODO: - Handle notification
+		return true
+	}
+
 
     deinit {
         print("deInit \(Self.self)")

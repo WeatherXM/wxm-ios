@@ -67,6 +67,7 @@
 		2645823B2A41C07000195C21 /* FailSuccessViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */; };
 		2646D8F329C8BF3D0000237F /* StationRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646D8F229C8BF3D0000237F /* StationRewardsView.swift */; };
 		2646D8F529C8BFB40000237F /* StationRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646D8F429C8BFB40000237F /* StationRewardsViewModel.swift */; };
+		264CDE0F2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CDE0E2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift */; };
 		264E2F5329DC3533009580A2 /* ThemeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E2F5229DC3533009580A2 /* ThemeEnum.swift */; };
 		264E2F6129DC5AEE009580A2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 264E2F6029DC5AEE009580A2 /* Settings.bundle */; };
 		2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
@@ -550,6 +551,7 @@
 		2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailSuccessViewModifier.swift; sourceTree = "<group>"; };
 		2646D8F229C8BF3D0000237F /* StationRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsView.swift; sourceTree = "<group>"; };
 		2646D8F429C8BFB40000237F /* StationRewardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsViewModel.swift; sourceTree = "<group>"; };
+		264CDE0E2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveNotificationsModifier.swift; sourceTree = "<group>"; };
 		264E2F5229DC3533009580A2 /* ThemeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEnum.swift; sourceTree = "<group>"; };
 		264E2F6029DC5AEE009580A2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
@@ -1353,6 +1355,7 @@
 				266DC01A2A55786F00EC9E1F /* WXMPopover.swift */,
 				26E88AF429DD69930023BBD5 /* WXMShadow.swift */,
 				2675470429A9181E008BCF40 /* WXMToggleStyle.swift */,
+				264CDE0E2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -2717,6 +2720,7 @@
 				2692D8722A4D8DEA0060CB3C /* Numeric+.swift in Sources */,
 				26A4115929B6078500A2C10B /* ObservationsView.swift in Sources */,
 				2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */,
+				264CDE0F2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift in Sources */,
 				26A4115B29B60F2900A2C10B /* ObservationsViewModel.swift in Sources */,
 				267547CC29A9181E008BCF40 /* OnAnimationCompletedModifier.swift in Sources */,
 				2664831929C31AF400748F9C /* OverlayAnimator.swift in Sources */,
