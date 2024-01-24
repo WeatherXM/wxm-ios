@@ -309,6 +309,7 @@
 		26A4119129BF1B2400A2C10B /* ChangeFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4119029BF1B2400A2C10B /* ChangeFrequencyView.swift */; };
 		26A4119329BF1B5600A2C10B /* ChangeFrequencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4119229BF1B5600A2C10B /* ChangeFrequencyViewModel.swift */; };
 		26A4119529BF203400A2C10B /* SelectFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4119429BF203400A2C10B /* SelectFrequencyView.swift */; };
+		26A6C5D92B601A8000FA2D2F /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6C5D82B601A8000FA2D2F /* SafariView.swift */; };
 		26A9614C2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9614B2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift */; };
 		26A9619C2AA705FE00646A25 /* LocalizableString+StationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */; };
 		26A961B02AA7181300646A25 /* LocalizableString+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */; };
