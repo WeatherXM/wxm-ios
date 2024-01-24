@@ -17,7 +17,7 @@ private struct ReceiveNotificationsModifier: ViewModifier {
 
 	init(onNotificationReceive: @escaping (UNNotificationResponse) -> Void) {
 		self.onNotificationReceive = onNotificationReceive
-		notificationPublisher?.sink { response in
+		notificationPublisher?.receive(on: DispatchQueue.main).sink { response in
 			if let response {
 				onNotificationReceive(response)
 			}
