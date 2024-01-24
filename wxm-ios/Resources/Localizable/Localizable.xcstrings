@@ -5309,6 +5309,17 @@
         }
       }
     },
+    "settings_announcements_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visit our announcements portal to get up to date with WeatherXM."
+          }
+        }
+      }
+    },
     "settings_contact_support_descritpion" : {
       "extractionState" : "manual",
       "localizations" : {

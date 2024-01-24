@@ -13,6 +13,7 @@ extension LocalizableString {
 		case notifications
 		case notificationsDescription
 		case announcements
+		case announcementsDescription
         case help
         case deleteMyAccount
         case documentation
@@ -31,36 +32,38 @@ extension LocalizableString.Settings: WXMLocalizable {
         NSLocalizedString(key, comment: "")
     }
 
-    var key: String {
-        switch self {
-            case .weatherUnits:
-                return "settings_weather_units"
+	var key: String {
+		switch self {
+			case .weatherUnits:
+				return "settings_weather_units"
 			case .notifications:
 				return "settings_notifications"
 			case .notificationsDescription:
 				return "settings_notifications_description"
 			case .announcements:
 				return "settings_announcements"
-            case .help:
-                return "settings_help"
-            case .deleteMyAccount:
-                return "settings_delete_my_account"
-            case .documentation:
-                return "settings_documentation"
-            case .documentationDescription:
-                return "settings_documentation_description"
-            case .contactSupportDescritpion:
-                return "settings_contact_support_descritpion"
-            case .deleteAccountCaption:
-                return "settings_delete_account_caption"
-            case .deleteAccountWarning:
-                return "settings_delete_account_warning"
+			case .announcementsDescription:
+				return "settings_announcements_description"
+			case .help:
+				return "settings_help"
+			case .deleteMyAccount:
+				return "settings_delete_my_account"
+			case .documentation:
+				return "settings_documentation"
+			case .documentationDescription:
+				return "settings_documentation_description"
+			case .contactSupportDescritpion:
+				return "settings_contact_support_descritpion"
+			case .deleteAccountCaption:
+				return "settings_delete_account_caption"
+			case .deleteAccountWarning:
+				return "settings_delete_account_warning"
 			case .notificationAlertTitle:
 				return "settings_notifications_alert_title"
 			case .notificationAlertEnableDescription:
 				return "settings_notifications_alert_enable_description"
 			case .notificationAlertDisableDescription:
 				return "settings_notifications_alert_disable_description"
-        }
-    }
+		}
+	}
 }

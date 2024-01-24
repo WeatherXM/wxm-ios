@@ -29,7 +29,6 @@ struct SettingsView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: CGFloat(.defaultSpacing)) {
                 unitsContainer
-				notificationsSwitch
                 WXMDivider()
                 displayContainer
                 accountContainer
@@ -120,23 +119,27 @@ struct SettingsView: View {
 	@ViewBuilder
 	var announcementsButton: some View {
 		SettingsButtonView(settingsCase: .announcements,
-						   settingCaption: "") {
+						   settingCaption: SettingsEnum.announcements.settingsDescription) {
 			settingsViewModel.handleAnnouncementsTap()
 		}
 	}
 
     @ViewBuilder
     var accountContainer: some View {
-        if mainScreenViewModel.isUserLoggedIn {
+		accountSectionTitle
+		
+		notificationsSwitch
+
+		if mainScreenViewModel.isUserLoggedIn {
             Group {
-                accountSectionTitle
                 analyticsSwitch
 				changePasswordButton
                 logoutButton
                 deleteAccountButton
             }
-            WXMDivider()
         }
+
+		WXMDivider()
     }
 
     var accountSectionTitle: some View {

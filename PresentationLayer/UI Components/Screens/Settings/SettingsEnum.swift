@@ -85,6 +85,8 @@ enum SettingsEnum {
 				return "\(Bundle.main.releaseVersionNumberPretty) (\(Bundle.main.buildVersionNumberPretty))\(suffix)"
 			case .notifications:
 				return LocalizableString.Settings.notificationsDescription.localized
+			case .announcements:
+				return LocalizableString.Settings.announcementsDescription.localized
 			default:
 				return ""
 		}
