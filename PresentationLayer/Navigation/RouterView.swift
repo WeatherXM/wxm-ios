@@ -31,6 +31,9 @@ struct RouterView<Content: View>: View {
 					}
 				}
 			)
+			.fullScreenCover(isPresented: $router.showFullScreen) {
+				router.fullScreenRoute?.view
+			}
         } else {
             // Fallback on earlier versions
             RouterViewController(host: router.navigationHost) {

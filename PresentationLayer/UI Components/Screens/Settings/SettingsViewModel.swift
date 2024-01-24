@@ -182,7 +182,7 @@ final class SettingsViewModel: ObservableObject {
 			return
 		}
 
-		Router.shared.navigateTo(.safariView(url))
+		Router.shared.showFullScreen(.safariView(url))
 	}
 }
 
