@@ -11,8 +11,16 @@ import Toolkit
 import UIKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
 		FirebaseManager.shared.launch()
+		Task {
+			try await FirebaseManager.shared.requestNotificationAuthorization()
+		}
+
         return true
     }
+
+	func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+		print(error)
+	}
 }

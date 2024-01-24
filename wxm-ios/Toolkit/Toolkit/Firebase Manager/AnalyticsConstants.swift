@@ -91,12 +91,13 @@ public enum Parameter: String, CustomStringConvertible {
     case sortBy = "SORT_BY"
     case filter = "FILTER"
     case groupBy = "GROUP_BY"
+	case status = "STATUS"
 
     public var description: String {
         switch self {
             case .action, .actionName, .contentName, .contentId, .promptName, .promptType, 
                     .step, .state, .date, .theme, .temperature, .wind, .windDirection, .precipitation, .pressure,
-                    .sortBy, .filter, .groupBy:
+					.sortBy, .filter, .groupBy, .status:
                 return rawValue
             case .contentType:
                 return AnalyticsParameterContentType
@@ -173,6 +174,8 @@ public enum ParameterValue: RawRepresentable {
                 return "Change"
 			case .changePassword:
 				return "Change Password"
+			case .announcements:
+				return "Announcements"
             case .login:
                 return "Login"
             case .email:
@@ -395,6 +398,12 @@ public enum ParameterValue: RawRepresentable {
                 return "name"
             case .lastActive:
                 return "last_active"
+			case .notifications:
+				return "notifications"
+			case .on:
+				return "on"
+			case .off:
+				return "off"
             case .all:
                 return "all"
             case .owned:
@@ -457,6 +466,7 @@ public enum ParameterValue: RawRepresentable {
     case changeStationFrequency
     case change
 	case changePassword
+	case announcements
     case heliumBLEPopupError
     case heliumBLEPopup
     case searchLocation
@@ -569,6 +579,9 @@ public enum ParameterValue: RawRepresentable {
     case dateAdded
     case name
     case lastActive
+	case notifications
+	case on
+	case off
     case all
     case owned
     case favorites

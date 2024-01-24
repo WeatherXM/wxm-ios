@@ -309,6 +309,7 @@
 		26A4119129BF1B2400A2C10B /* ChangeFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4119029BF1B2400A2C10B /* ChangeFrequencyView.swift */; };
 		26A4119329BF1B5600A2C10B /* ChangeFrequencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4119229BF1B5600A2C10B /* ChangeFrequencyViewModel.swift */; };
 		26A4119529BF203400A2C10B /* SelectFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4119429BF203400A2C10B /* SelectFrequencyView.swift */; };
+		26A6C5D92B601A8000FA2D2F /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6C5D82B601A8000FA2D2F /* SafariView.swift */; };
 		26A9614C2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9614B2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift */; };
 		26A9619C2AA705FE00646A25 /* LocalizableString+StationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */; };
 		26A961B02AA7181300646A25 /* LocalizableString+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */; };
@@ -771,6 +772,7 @@
 		26A4119029BF1B2400A2C10B /* ChangeFrequencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeFrequencyView.swift; sourceTree = "<group>"; };
 		26A4119229BF1B5600A2C10B /* ChangeFrequencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeFrequencyViewModel.swift; sourceTree = "<group>"; };
 		26A4119429BF203400A2C10B /* SelectFrequencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFrequencyView.swift; sourceTree = "<group>"; };
+		26A6C5D82B601A8000FA2D2F /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		26A9614B2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+UpdateFirmware.swift"; sourceTree = "<group>"; };
 		26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+StationDetails.swift"; sourceTree = "<group>"; };
 		26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Wallet.swift"; sourceTree = "<group>"; };
@@ -1003,6 +1005,7 @@
 			isa = PBXGroup;
 			children = (
 				262B02F52B1DE4A600C31FE7 /* WebContainerView.swift */,
+				26A6C5D82B601A8000FA2D2F /* SafariView.swift */,
 			);
 			path = WebView;
 			sourceTree = "<group>";
@@ -2639,6 +2642,7 @@
 				26348E292A459A45000846C6 /* ExplorerStationsListViewModel.swift in Sources */,
 				2675481D29A9181E008BCF40 /* ExplorerView.swift in Sources */,
 				267547AD29A9181E008BCF40 /* ExplorerViewModel.swift in Sources */,
+				26A6C5D92B601A8000FA2D2F /* SafariView.swift in Sources */,
 				267548DE29A91A87008BCF40 /* FailAPICodeEnum.swift in Sources */,
 				267547BF29A9181E008BCF40 /* FailedDeleteView.swift in Sources */,
 				26A4118A29BA21E600A2C10B /* FailSuccessStateObject.swift in Sources */,

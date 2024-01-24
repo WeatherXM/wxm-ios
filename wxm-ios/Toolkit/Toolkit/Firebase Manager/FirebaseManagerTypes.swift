@@ -6,11 +6,18 @@
 //
 
 import Foundation
+import Combine
+import UserNotifications
 
 protocol FirbaseManagerImplementation {
+	var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? { get }
+	var notificationsAuthorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? { get }
+
 	func launch()
 	func getInstallationId() async -> String
 	func setAnalyticsCollectionEnabled(_ enabled: Bool)
+	func requestNotificationAuthorization() async throws
+	func getAuthorizationStatus() async -> UNAuthorizationStatus
 }
 
 protocol RemoteConfigManagerImplementation: AnyObject {

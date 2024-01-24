@@ -10,18 +10,22 @@ import SwiftUI
 struct SettingsButtonView: View {
     let settingsCase: SettingsEnum
     let settingCaption: String
+	let isToggleInteractionEnabled: Bool
     @Binding var unitCaseModal: SettingsEnum
     @Binding var isShowingUnitsOverlay: Bool
     @Binding var switchValue: Bool?
     var action: () -> Void
 
-    init(settingsCase: SettingsEnum, settingCaption: String,
+    init(settingsCase: SettingsEnum, 
+		 settingCaption: String,
+		 isToggleInteractionEnabled: Bool = true,
          unitCaseModal: Binding<SettingsEnum> = .constant(.temperature),
          isShowingUnitsOverlay: Binding<Bool> = .constant(false),
          switchValue: Binding<Bool?> = .constant(nil),
          action: @escaping () -> Void = {}) {
         self.settingsCase = settingsCase
         self.settingCaption = settingCaption
+		self.isToggleInteractionEnabled = isToggleInteractionEnabled
         _unitCaseModal = unitCaseModal
         _isShowingUnitsOverlay = isShowingUnitsOverlay
         self.action = action
@@ -54,6 +58,7 @@ struct SettingsButtonView: View {
                 .toggleStyle(
                     WXMToggleStyle.Default
                 )
+				.disabled(!isToggleInteractionEnabled)
             }
         }
         .contentShape(Rectangle())

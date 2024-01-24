@@ -106,18 +106,40 @@ struct SettingsView: View {
         )
     }
 
+	@ViewBuilder
+	var notificationsSwitch: some View {
+		SettingsButtonView(settingsCase: .notifications,
+						   settingCaption: SettingsEnum.notifications.settingsDescription,
+						   isToggleInteractionEnabled: false,
+						   switchValue: $settingsViewModel.areNotificationsEnabled) {
+			settingsViewModel.handleNotificationSwitchTap()
+		}
+	}
+
+	@ViewBuilder
+	var announcementsButton: some View {
+		SettingsButtonView(settingsCase: .announcements,
+						   settingCaption: SettingsEnum.announcements.settingsDescription) {
+			settingsViewModel.handleAnnouncementsTap()
+		}
+	}
+
     @ViewBuilder
     var accountContainer: some View {
-        if mainScreenViewModel.isUserLoggedIn {
+		accountSectionTitle
+		
+		notificationsSwitch
+
+		if mainScreenViewModel.isUserLoggedIn {
             Group {
-                accountSectionTitle
                 analyticsSwitch
 				changePasswordButton
                 logoutButton
                 deleteAccountButton
             }
-            WXMDivider()
         }
+
+		WXMDivider()
     }
 
     var accountSectionTitle: some View {
@@ -218,6 +240,7 @@ struct SettingsView: View {
     @ViewBuilder
     var helpContainer: some View {
         helpSectionTitle
+		announcementsButton
         documentationButton
         contactUsButton
     }

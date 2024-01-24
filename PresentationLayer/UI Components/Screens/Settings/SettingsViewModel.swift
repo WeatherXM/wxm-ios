@@ -16,6 +16,7 @@ final class SettingsViewModel: ObservableObject {
     @Published var unitCaseModal: SettingsEnum = .temperature
     @Published var installationId: String?
     @Published var isLoading: Bool = false
+	@Published var areNotificationsEnabled: Bool? = false
     @Published var isAnalyticsCollectionEnabled: Bool? = false {
         didSet {
             guard let isAnalyticsCollectionEnabled else {
@@ -36,6 +37,7 @@ final class SettingsViewModel: ObservableObject {
         self.settingsUseCase = settingsUseCase
         self.isAnalyticsCollectionEnabled = settingsUseCase.isAnalyticsEnabled
         setInstallationId()
+		observeAuthorizationStatus()
     }
 
     @ViewBuilder
@@ -156,6 +158,38 @@ final class SettingsViewModel: ObservableObject {
                                           okAction: (LocalizableString.yes.localized, logoutAction))
         AlertHelper().showAlert(obj)
     }
+
+	func handleNotificationSwitchTap() {
+		let status: ParameterValue = areNotificationsEnabled == true ? .on : .off
+		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .notifications,
+														   .status: status])
+
+		Task { @MainActor in
+			let status = await FirebaseManager.shared.gatAuthorizationStatus()
+			switch status {
+				case .notDetermined:
+					try? await FirebaseManager.shared.requestNotificationAuthorization()
+				case .denied, .authorized, .provisional, .ephemeral:
+					let title = LocalizableString.Settings.notificationAlertTitle.localized
+					let message: LocalizableString.Settings = status == .denied ? .notificationAlertEnableDescription : .notificationAlertDisableDescription
+					let alertObj = AlertHelper.AlertObject.getNavigateToSettingsAlert(title: title,
+																					  message: message.localized)
+					AlertHelper().showAlert(alertObj)
+				@unknown default:
+					break
+			}
+		}
+	}
+
+	func handleAnnouncementsTap() {
+		Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .announcements])
+
+		guard let url = URL(string: DisplayedLinks.announcements.linkURL) else {
+			return
+		}
+
+		Router.shared.showFullScreen(.safariView(url))
+	}
 }
 
 private extension SettingsViewModel {
@@ -164,6 +198,25 @@ private extension SettingsViewModel {
             self.installationId = await FirebaseManager.shared.getInstallationId()
         }
     }
+
+	func observeAuthorizationStatus() {
+		FirebaseManager.shared
+			.notificationsAuthorizationStatusPublisher?
+			.receive(on: DispatchQueue.main).sink { [weak self] status in
+				guard let status else {
+					return
+				}
+
+				switch status {
+					case .notDetermined, .denied:
+						self?.areNotificationsEnabled = false
+					case .authorized, .provisional, .ephemeral:
+						self?.areNotificationsEnabled = true
+					@unknown default:
+						self?.areNotificationsEnabled = false
+				}
+			}.store(in: &cancellableSet)
+	}
 }
 
 extension SettingsViewModel: HashableViewModel {
