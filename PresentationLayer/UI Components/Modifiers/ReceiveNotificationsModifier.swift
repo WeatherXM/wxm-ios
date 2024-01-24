@@ -32,7 +32,7 @@ private struct ReceiveNotificationsModifier: ViewModifier {
 
 extension View {
 	@ViewBuilder
-	func onNotificateionReceive(_ onNotificationReceive: @escaping (UNNotificationResponse) -> Void) -> some View {
+	func onNotificationReceive(_ onNotificationReceive: @escaping (UNNotificationResponse) -> Void) -> some View {
 		modifier(ReceiveNotificationsModifier(onNotificationReceive: onNotificationReceive))
 	}
 }
