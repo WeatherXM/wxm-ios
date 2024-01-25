@@ -95,7 +95,9 @@ The `GoogleService-Info.plist` configuration file is required for building the a
 scheme you want to use,
 you should create your own Firebase project and download that file. A guide on how to do it can be
 found [here](https://firebase.google.com/docs/ios/setup#console).
-**For each scheme you should place this file under `wxm-ios/Resources/Debug/` folder for debug builds and under `wxm-ios/Resources/Release/` for any other case**
+For each scheme you should place this file under `wxm-ios/Resources/Debug/` folder for debug builds and under `wxm-ios/Resources/Release/` for any other case. Do the same for the widget (`wxm-ios/station-widget/Resources/Debug` and `wxm-ios/station-widget/Resources/Release`) and for the intent (`wxm-ios/station-intent/Resources/Debug` and `wxm-ios/station-intent/Resources/Release`).
+
+**Each file should be unique for each bundle id**.
 
 You can use, and is recommended during development, the `-WXMFirebaseDisabled YES` argument to disable every logging and monitoring functionality
 
