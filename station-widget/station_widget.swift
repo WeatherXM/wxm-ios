@@ -14,7 +14,6 @@ struct Provider: IntentTimelineProvider {
 	private let useCase: WidgetUseCase
 	private let cancellableWrapper: CancellableWrapper = .init()
 	private let refreshInterval: TimeInterval = 5.0 * 60.0 // 5 mins
-	private let latestDevices: StorageWrapper<[DeviceDetails]> = .init()
 
 	init() {
 		let useCase = WidgetUseCase(meRepository: SwinjectHelper.shared.getContainerForSwinject().resolve(MeRepository.self)!,
@@ -78,8 +77,6 @@ struct Provider: IntentTimelineProvider {
 
 		switch result {
 			case .success(let devices):
-				self.latestDevices.data = devices
-
 				let entry = StationTimelineEntry(date: .now,
 												 displaySize: displaySize,
 												 id: station?.identifier,
@@ -89,19 +86,7 @@ struct Provider: IntentTimelineProvider {
 												 isLoggedIn: isUserLoggedIn)
 				return entry
 			case .failure(let error):
-				var devices: [DeviceDetails] = self.latestDevices.data ?? []
-				
-				#warning("TODO: Remove the following once the issue is fixed")
-				/// Temporary code to monitor an  issue with invalid state
-				/// Will be removed once the issue is resolved
-				let cachedDevicesCount = devices.count
-				var userInfo = error.toErrorUserInfo
-				userInfo? += ["cachedDevicesCount": cachedDevicesCount]
-				let nsError = NSError(domain: "station_widget", code: -1, userInfo: userInfo)
-				Logger.shared.logError(nsError)
-				///
-
-				print(error)
+				let devices: [DeviceDetails] = (try? await useCase.getDevices(useCache: true).get()) ?? []
 
 				let entry = StationTimelineEntry(date: .now,
 												 displaySize: displaySize,
