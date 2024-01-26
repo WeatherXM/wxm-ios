@@ -20,3 +20,29 @@ echo "AppStoreUrl = ${APP_STORE_URL};" >> $CONFIGURATION_PATH
 echo "SupportUrl = ${SUPPORT_URL};" >> $CONFIGURATION_PATH
 
 defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
+
+echo "Setup Google Services"
+
+WXM_GOOGLE_SERVICES_DEBUG_PATH=./wxm-ios/Resources/Debug
+mkdir -p $WXM_GOOGLE_SERVICES_DEBUG_PATH
+echo ${GOOGLE_SERVICE_INFO_WXM_DEBUG} | base64 -d > $WXM_GOOGLE_SERVICES_DEBUG_PATH/GoogleService-Info.plist
+
+WXM_GOOGLE_SERVICES_RELEASE_PATH=./wxm-ios/Resources/Release
+mkdir -p $WXM_GOOGLE_SERVICES_RELEASE_PATH
+echo ${GOOGLE_SERVICE_INFO_WXM_RELEASE} | base64 -d > $WXM_GOOGLE_SERVICES_RELEASE_PATH/GoogleService-Info.plist
+
+WIDGET_GOOGLE_SERVICES_DEBUG_PATH=./station-widget/Resources/Debug
+mkdir -p $WIDGET_GOOGLE_SERVICES_DEBUG_PATH
+echo ${GOOGLE_SERVICE_INFO_WIDGET_DEBUG} | base64 -d > $WIDGET_GOOGLE_SERVICES_DEBUG_PATH/GoogleService-Info.plist
+
+WIDGET_GOOGLE_SERVICES_RELEASE_PATH=./station-widget/Resources/Release
+mkdir -p $WIDGET_GOOGLE_SERVICES_RELEASE_PATH
+echo ${GOOGLE_SERVICE_INFO_INTENT_RELEASE} | base64 -d > $WIDGET_GOOGLE_SERVICES_RELEASE_PATH/GoogleService-Info.plist
+
+INTENT_GOOGLE_SERVICES_DEBUG_PATH=./station-intent/Resources/Debug
+mkdir -p $INTENT_GOOGLE_SERVICES_DEBUG_PATH
+echo ${GOOGLE_SERVICE_INFO_INTENT_DEBUG} | base64 -d > $INTENT_GOOGLE_SERVICES_DEBUG_PATH/GoogleService-Info.plist
+
+INTENT_GOOGLE_SERVICES_RELEASE_PATH=./station-intent/Resources/Release
+mkdir -p $INTENT_GOOGLE_SERVICES_RELEASE_PATH
+echo ${GOOGLE_SERVICE_INFO_INTENT_RELEASE} | base64 -d > $INTENT_GOOGLE_SERVICES_RELEASE_PATH/GoogleService-Info.plist
