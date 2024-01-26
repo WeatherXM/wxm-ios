@@ -18,3 +18,5 @@ echo "ApiUrl = ${API_URL};" >> $CONFIGURATION_PATH
 echo "ClaimTokenUrl = ${CLAIM_TOKEN_URL};" >> $CONFIGURATION_PATH
 echo "AppStoreUrl = ${APP_STORE_URL};" >> $CONFIGURATION_PATH
 echo "SupportUrl = ${SUPPORT_URL};" >> $CONFIGURATION_PATH
+
+defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
