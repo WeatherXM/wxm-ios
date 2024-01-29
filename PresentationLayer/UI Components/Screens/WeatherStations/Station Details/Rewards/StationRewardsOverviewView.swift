@@ -39,7 +39,7 @@ private extension StationRewardsOverviewView {
 				}
 			}
 
-			if showError, !overview.annnotationsList.isEmpty {
+			if showError, lostAmountData.value > 0.0 {
 				errorView(for: lostAmountData)
 			}
 
