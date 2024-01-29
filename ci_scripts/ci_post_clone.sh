@@ -8,7 +8,8 @@ echo "login mapbox" >> ~/.netrc
 echo "password ${MAPBOX_TOKEN}" >> ~/.netrc
 
 echo "Install Firebase CLI"
-unzip firebase-tools-macos.zip
+curl -Lo ./firebase-tools-macos https://firebase.tools/bin/macos/latest
+chmod +x ./firebase-tools-macos
 
 CONFIGURATION_PATH=${CI_PRIMARY_REPOSITORY_PATH}/Configuration/Production/Config.xcconfig
 DEBUG_CONFIGURATION_PATH=${CI_PRIMARY_REPOSITORY_PATH}/Configuration/Debug/ConfigDebug.xcconfig
