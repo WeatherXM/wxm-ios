@@ -264,7 +264,7 @@ private extension WeatherStationsHomeViewModel {
                 case .name:
                     $0.displayName < $1.displayName
                 case .lastActive:
-                    $0.lastActiveAt!.timestampToDate() > $1.lastActiveAt!.timestampToDate()
+					($0.lastActiveAt?.timestampToDate() ?? .distantPast) > ($1.lastActiveAt?.timestampToDate() ?? .distantPast)
             }
         }
     }
