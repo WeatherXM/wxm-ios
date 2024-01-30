@@ -30,6 +30,7 @@ chmod +x ./firebase-tools-macos
 
 DEBUG_CONFIGURATION_PATH=${CI_PRIMARY_REPOSITORY_PATH}/Configuration/Debug/ConfigDebug.xcconfig
 setupConfiguration $DEBUG_CONFIGURATION_PATH
+echo "BranchName = ${CI_BRANCH};" >> $CONFIGURATION_PATH
 fi
 
 if [ "$CI_WORKFLOW" = "Submit to App Store" ];
