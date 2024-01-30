@@ -8,6 +8,8 @@
 	<string>$(ApiUrl)</string>
 	<key>AppStoreUrl</key>
 	<string>$(AppStoreUrl)</string>
+	<key>BranchName</key>
+	<string>$(BranchName)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

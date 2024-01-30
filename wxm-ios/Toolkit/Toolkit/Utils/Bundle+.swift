@@ -14,6 +14,7 @@ public enum ConfigurationKey: String {
 	case claimTokenUrl = "ClaimTokenUrl"
 	case appStoreUrl = "AppStoreUrl"
 	case supportUrl = "SupportUrl"
+	case branchName = "BranchName"
 }
 
 public extension Bundle {
