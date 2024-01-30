@@ -75,7 +75,7 @@ private struct ContentView: View {
 					VStack(spacing: CGFloat(.defaultSpacing)) {
 						StationRewardsOverviewView(overview: viewModel.rewardsCardOverview, showError: false, buttonActions: viewModel.buttonActions)
 
-						if !viewModel.rewardsCardOverview.annnotationsList.isEmpty {
+						if viewModel.rewardsCardOverview.lostAmount > 0.0, !viewModel.rewardsCardOverview.annnotationsList.isEmpty {
 							errorsList
 						}
 					}
