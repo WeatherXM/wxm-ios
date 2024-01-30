@@ -63,9 +63,6 @@ class DeepLinkHandler {
     }
 
 	func handleNotificationReceive(_ notification: UNNotificationResponse) -> Bool {
-		print(notification)
-		/// TODO: - Handle notification
-		///
 		guard let type = notification.toNotificationType else {
 			return false
 		}
