@@ -81,7 +81,7 @@ extension DeviceRewardsOverview {
 
 	var timelineCaption: String? {
 		guard let timestamp = timeline?.referenceDate else {
-			return nil
+			return timelineDateRangeCaption
 		}
 
 		let val = timestamp.getFormattedDate(format: .monthLiteralDayYearShort, timezone: TimeZone.UTCTimezone).localizedCapitalized
@@ -89,6 +89,24 @@ extension DeviceRewardsOverview {
 		let comma = relativeDay.isEmpty ? "" : ", "
 		let valueString = "\(relativeDay)\(comma)\(val)"
 		return LocalizableString.StationDetails.rewardsTimelineCaption(valueString).localized
+	}
+
+	private var timelineDateRangeCaption: String? {
+		guard let fromDate = fromDate, let toDate = toDate else {
+			return nil
+		}
+
+		let from = fromDate.getFormattedDate(format: .monthLiteralDay,
+											 relativeFormat: false,
+											 timezone: .UTCTimezone).capitalizedSentence
+
+		let to = toDate.getFormattedDate(format: .monthLiteralDay,
+										 relativeFormat: false,
+										 timezone: .UTCTimezone).capitalizedSentence
+
+		let rangeString = from + " - " + to
+
+		return LocalizableString.StationDetails.rewardsTimelineCaption(rangeString).localized
 	}
 
 	private var timelineDateRangeString: String? {

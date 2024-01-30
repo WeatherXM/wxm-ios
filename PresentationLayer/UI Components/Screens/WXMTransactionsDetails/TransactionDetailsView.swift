@@ -56,7 +56,7 @@ struct TransactionDetailsView: View {
                                 ForEach(arrayOfTransactions) { record in
 									let lostData = record.lostAmountData
                                     BaseRewardsCard(record: record)
-										.indication(show: .constant(!record.annotationsList.isEmpty),
+										.indication(show: .constant(record.lostAmount > 0.0),
 													borderColor: Color(colorEnum: lostData.problemsViewBorder),
 													bgColor: Color(colorEnum: lostData.problemsViewBackground)) {
 											StationRewardsErrorView(lostAmount: record.lostAmount,
