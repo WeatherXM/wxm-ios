@@ -8,6 +8,6 @@ while getopts "p:k:t:" arg; do
 done
 
 echo "Starting distribution of IPA to Firebase"
-./firebase-tools-macos appdistribution:distribute "${ipa}" --app "${app_id}" --token "${token}"
+./firebase-tools-macos appdistribution:distribute "${ipa}" --app "${app_id}" --token "${token}" --groups "QA Group"
 
 echo "Upload Symbols"
