@@ -14,7 +14,7 @@ class NotificationsHandler: NSObject {
 	let latestNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>
 	let authorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>
 	
-	private let latestNotificationSubject: CurrentValueSubject<UNNotificationResponse?, Never> = .init(nil)
+	private let latestNotificationSubject: PassthroughSubject<UNNotificationResponse?, Never> = .init()
 	private let authorizationStatusSubject: CurrentValueSubject<UNAuthorizationStatus?, Never> = .init(nil)
 	private var cancellableSet: Set<AnyCancellable> = .init()
 
@@ -22,13 +22,11 @@ class NotificationsHandler: NSObject {
 		latestNotificationPublisher = latestNotificationSubject.eraseToAnyPublisher()
 		authorizationStatusPublisher = authorizationStatusSubject.eraseToAnyPublisher()
 		super.init()
-
+		UNUserNotificationCenter.current().delegate = self
 		observeAuthorizationStatus()
 	}
 
 	func requestNotificationAuthorization() async throws {
-		UNUserNotificationCenter.current().delegate = self
-
 		let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
 		let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: authOptions)
 		if granted {
@@ -45,6 +43,10 @@ class NotificationsHandler: NSObject {
 
 	func getAuthorizationStatus() async -> UNAuthorizationStatus {
 		await UNUserNotificationCenter.current().notificationSettings().authorizationStatus		
+	}
+
+	func setApnsToken(_ token: Data) {
+		Messaging.messaging().apnsToken = token
 	}
 }
 
@@ -72,6 +74,7 @@ extension NotificationsHandler: UNUserNotificationCenterDelegate {
 		completionHandler([.banner, .badge, .sound, .list])
 	}
 
+	@MainActor
 	func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
 		latestNotificationSubject.send(response)
 	}

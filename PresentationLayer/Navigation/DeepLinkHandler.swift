@@ -10,6 +10,7 @@ import DomainLayer
 import Combine
 import UIKit
 import Toolkit
+import UserNotifications
 
 class DeepLinkHandler {
 	typealias QueryParamsCallBack = GenericCallback<[String: String]?>
@@ -60,6 +61,23 @@ class DeepLinkHandler {
 
 		return handled
     }
+
+	func handleNotificationReceive(_ notification: UNNotificationResponse) -> Bool {
+		guard let type = notification.toNotificationType else {
+			return false
+		}
+
+		switch type {
+			case .announcement(let urlString):
+				if let url = URL(string: urlString) {
+					Router.shared.showFullScreen(.safariView(url))
+					return true
+				}
+		}
+
+		return false
+	}
+
 
     deinit {
         print("deInit \(Self.self)")
@@ -186,4 +204,31 @@ private extension DeepLinkHandler {
 
         }
     }
+}
+
+private enum NotificationType {
+	case announcement(String)
+}
+
+private extension UNNotificationResponse {
+	static let typeKey = "type"
+	static let announcementVal = "announcement"
+	static let urlKey = "url"
+
+	var toNotificationType: NotificationType? {
+		let userInfo = notification.request.content.userInfo
+		guard let type = userInfo[Self.typeKey] as? String else {
+			return nil
+		}
+
+		switch type {
+			case Self.announcementVal:
+				if let url = userInfo[Self.urlKey] as? String {
+					return .announcement(url)
+				}
+				return nil
+			default:
+				return nil
+		}
+	}
 }

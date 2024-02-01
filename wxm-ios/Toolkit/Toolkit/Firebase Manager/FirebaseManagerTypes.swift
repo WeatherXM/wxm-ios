@@ -18,6 +18,7 @@ protocol FirbaseManagerImplementation {
 	func setAnalyticsCollectionEnabled(_ enabled: Bool)
 	func requestNotificationAuthorization() async throws
 	func getAuthorizationStatus() async -> UNAuthorizationStatus
+	func setApnsToken(_ token: Data)
 }
 
 protocol RemoteConfigManagerImplementation: AnyObject {

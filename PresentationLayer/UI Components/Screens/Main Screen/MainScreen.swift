@@ -37,6 +37,9 @@ public struct MainScreen: View {
         .onOpenURL {
             viewModel.deepLinkHandler.handleUrl($0)
         }
+		.onNotificationReceive { notificationResponse in
+			viewModel.deepLinkHandler.handleNotificationReceive(notificationResponse)
+		}
     }
 
     public var mainScreenSwitch: some View {

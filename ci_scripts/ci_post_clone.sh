@@ -8,7 +8,7 @@ setupConfiguration(){
 	echo "UserAccessTokenService = accessTokenService;" >> $CONFIGURATION_PATH
 	echo "UserRefreshTokenService = refreshTokenService;" >> $CONFIGURATION_PATH
 	echo "Account = weatherXM;" >> $CONFIGURATION_PATH
-	echo "TeamId = ${CI_TEAM_ID};" >> $CONFIGURATION_PATH
+	echo "TeamId = ${TEAM_ID};" >> $CONFIGURATION_PATH
 	echo "ApiUrl = ${API_URL};" >> $CONFIGURATION_PATH
 	echo "ClaimTokenUrl = ${CLAIM_TOKEN_URL};" >> $CONFIGURATION_PATH
 	echo "AppStoreUrl = ${APP_STORE_URL};" >> $CONFIGURATION_PATH
@@ -31,6 +31,7 @@ chmod +x ./firebase-tools-macos
 DEBUG_CONFIGURATION_PATH=${CI_PRIMARY_REPOSITORY_PATH}/Configuration/Debug/ConfigDebug.xcconfig
 setupConfiguration $DEBUG_CONFIGURATION_PATH
 echo "BranchName = ${CI_BRANCH};" >> $CONFIGURATION_PATH
+
 fi
 
 if [ "$CI_WORKFLOW" = "Submit to App Store" ];
