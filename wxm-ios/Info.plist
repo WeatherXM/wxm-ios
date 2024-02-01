@@ -76,5 +76,7 @@
 	<string>$(UserRefreshTokenService)</string>
 	<key>Username</key>
 	<string>$(Username)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<string>NO</string>
 </dict>
 </plist>

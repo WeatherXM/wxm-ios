@@ -23,4 +23,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
 		print(error)
 	}
+
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+		FirebaseManager.shared.setApnsToken(deviceToken)
+	}
 }

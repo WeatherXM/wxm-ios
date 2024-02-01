@@ -50,6 +50,10 @@ public class FirebaseManager {
 	public func requestNotificationAuthorization() async throws {
 		try await firebaseManagerImpl.requestNotificationAuthorization()
 	}
+
+	public func setApnsToken(_ token: Data) {
+		firebaseManagerImpl.setApnsToken(token)
+	}
 }
 
 private class RemoteFirebaseManager: FirbaseManagerImplementation {
@@ -93,6 +97,10 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 		await notificationsHandler.getAuthorizationStatus()
 	}
 
+	func setApnsToken(_ token: Data) {
+		notificationsHandler.setApnsToken(token)
+	}
+
 	private func assignInstallationId() async {
 		return await withCheckedContinuation { continuation in
 			Installations.installations().installationID { [weak self] installationId, error in
@@ -121,4 +129,5 @@ private class MockFirebaseManager: FirbaseManagerImplementation {
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {}
 	func requestNotificationAuthorization() async throws {}
 	func getAuthorizationStatus() async -> UNAuthorizationStatus { .authorized }
+	func setApnsToken(_ token: Data) {}
 }

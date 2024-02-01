@@ -44,6 +44,10 @@ class NotificationsHandler: NSObject {
 	func getAuthorizationStatus() async -> UNAuthorizationStatus {
 		await UNUserNotificationCenter.current().notificationSettings().authorizationStatus		
 	}
+
+	func setApnsToken(_ token: Data) {
+		Messaging.messaging().apnsToken = token
+	}
 }
 
 private extension NotificationsHandler {
