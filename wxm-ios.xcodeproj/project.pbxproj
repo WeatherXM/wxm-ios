@@ -741,6 +741,7 @@
 		267EC4252A98C14700F2C37E /* UIKitUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitUtils.swift; sourceTree = "<group>"; };
 		267EC4272A98C3D300F2C37E /* WXMAlertModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMAlertModifier.swift; sourceTree = "<group>"; };
 		267EC4282A98C3D300F2C37E /* WXMAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMAlertView.swift; sourceTree = "<group>"; };
+		267EDF5F2B67B5AC00C221B1 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
 		268028A92AF298290031379C /* Indication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indication.swift; sourceTree = "<group>"; };
 		268028B92AF3AEDC0031379C /* StationRewardsErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationRewardsErrorView.swift; sourceTree = "<group>"; };
 		268645972A6FA7C100EB85B1 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -1712,6 +1713,7 @@
 			isa = PBXGroup;
 			children = (
 				267E22BD2AC1B1A300B9E196 /* ci_post_clone.sh */,
+				267EDF5F2B67B5AC00C221B1 /* ci_post_xcodebuild.sh */,
 			);
 			path = ci_scripts;
 			sourceTree = "<group>";
@@ -2250,7 +2252,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				267A9FC62ABC203F00BB1E51 /* PBXTargetDependency */,
 				26B8322B2AC31E4600757A69 /* PBXTargetDependency */,
 				266D18112ACB0D56007CDB06 /* PBXTargetDependency */,
 			);
@@ -2310,7 +2311,6 @@
 				261E9EB629A92BE000E8EBA3 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				261E9EB929A92C4200E8EBA3 /* XCRemoteSwiftPackageReference "turf-swift" */,
 				262A0DFB29DC1823005B14A2 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				26A93EAA2ABC6BE30049A60A /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				263B8B4B2B29EA64001C5060 /* XCRemoteSwiftPackageReference "MapboxStatic" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
@@ -2855,10 +2855,6 @@
 			isa = PBXTargetDependency;
 			target = 266D18082ACB0D56007CDB06 /* station-intent */;
 			targetProxy = 266D18102ACB0D56007CDB06 /* PBXContainerItemProxy */;
-		};
-		267A9FC62ABC203F00BB1E51 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 267A9FC52ABC203F00BB1E51 /* SwiftLintPlugin */;
 		};
 		26B8322B2AC31E4600757A69 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3532,22 +3528,6 @@
 				minimumVersion = 0.4.0;
 			};
 		};
-		267A9FC02ABB44AC00BB1E51 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.52.4;
-			};
-		};
-		26A93EAA2ABC6BE30049A60A /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.52.4;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3615,11 +3595,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9EB629A92BE000E8EBA3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		267A9FC52ABC203F00BB1E51 /* SwiftLintPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 267A9FC02ABB44AC00BB1E51 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintPlugin";
 		};
 		26B8328F2AC57FE600757A69 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

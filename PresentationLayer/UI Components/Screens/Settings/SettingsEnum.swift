@@ -82,7 +82,11 @@ enum SettingsEnum {
 				return LocalizableString.Settings.deleteAccountWarning.localized
 			case .appVersion(let installationId):
 				let suffix = installationId != nil ? " - \(installationId!)" : ""
-				return "\(Bundle.main.releaseVersionNumberPretty) (\(Bundle.main.buildVersionNumberPretty))\(suffix)"
+				var versionString = "\(Bundle.main.releaseVersionNumberPretty) (\(Bundle.main.buildVersionNumberPretty))\(suffix)"
+				if let branchName: String = Bundle.main.getConfiguration(for: .branchName) {
+					versionString.append(" - \(branchName)")
+				}
+				return versionString
 			case .notifications:
 				return LocalizableString.Settings.notificationsDescription.localized
 			case .announcements:

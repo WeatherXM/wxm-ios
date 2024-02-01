@@ -28,5 +28,6 @@ DerivedData/
 BuildTools/.build/*
 BuildTools/.build
 BuildTools/.swiftpm
+!wxm-ios.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved 
 *.xcconfig
 *GoogleService-Info.plist
