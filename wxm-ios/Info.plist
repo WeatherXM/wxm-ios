@@ -49,6 +49,8 @@
 	</array>
 	<key>MBXAccessToken</key>
 	<string>$(MBXAccessToken)</string>
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>WeatherXM will send you notifications about the project or your station.</string>
 	<key>Password</key>
 	<string>$(Password)</string>
 	<key>SupportUrl</key>
