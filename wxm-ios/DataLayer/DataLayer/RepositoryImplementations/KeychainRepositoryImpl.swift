@@ -9,11 +9,6 @@ import DomainLayer
 import Foundation
 
 public struct KeychainRepositoryImpl: KeychainRepository {
-	public func performMigrations() {
-		let keychainHelperService = KeychainHelperService()
-		keychainHelperService.migrateIfNeeded()
-	}
-
     public func deleteEmailAndPasswordFromKeychain() {
         let keychainHelperService = KeychainHelperService()
         keychainHelperService.deleteEmailAndPassword()

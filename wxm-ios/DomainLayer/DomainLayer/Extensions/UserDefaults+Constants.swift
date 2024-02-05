@@ -36,8 +36,6 @@ public extension UserDefaults {
         case sortByDevicesOption = "com.weatherxm.app.UserDefaults.Key.SortByDevicesOption"
         case filterDevicesOption = "com.weatherxm.app.UserDefaults.Key.FilterDevicesOption"
         case groupByDevicesOption = "com.weatherxm.app.UserDefaults.Key.GroupByDevicesOption"
-		case migratedToAppGroup = "com.weatherxm.app.UserDefaults.Key.MigratedToAppGroup"
-		case keychainMigratedToAppGroup = "com.weatherxm.app.UserDefaults.Key.KeychainMigratedToAppGroup"
 		case userDevicesFollowStates = "com.weatherxm.app.UserDefaults.Key.UserDevicesFollowStates"
 		case userDevices = "com.weatherxm.app.UserDefaults.Key.UserDevices"
 		case lastAppVersionPrompt = "com.weatherxm.app.UserDefaults.Key.LastAppVersionPrompt"

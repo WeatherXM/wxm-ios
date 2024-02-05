@@ -17,11 +17,6 @@ public struct MainUseCase {
 		self.keychainRepository = keychainRepository
     }
 
-	public func performMigrationsIfNeeded() {
-		userDefaultsRepository.performMigrations()
-		keychainRepository.performMigrations()
-	}
-
     public func saveOrUpdateWeatherMetric(unitProtocol: UnitsProtocol) {
         userDefaultsRepository.saveWeatherUnit(unitProtocol: unitProtocol)
 		WidgetCenter.shared.reloadAllTimelines()

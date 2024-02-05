@@ -16,10 +16,6 @@ public struct UserDefaultsRepositoryImp: UserDefaultsRepository {
         self.userDefaultsService = UserDefaultsService()
     }
 
-	public func performMigrations() {
-		userDefaultsService.migrateIfNeeded()
-	}
-
     public func readWeatherUnit(key: String) -> UnitsProtocol? {
         userDefaultsService.getUnitsProtocol(key: key)
     }

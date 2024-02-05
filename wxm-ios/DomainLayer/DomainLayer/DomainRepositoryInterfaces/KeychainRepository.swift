@@ -8,7 +8,6 @@
 import Foundation
 
 public protocol KeychainRepository {
-	func performMigrations()
     func saveNetworkTokenResponseToKeychain(item: NetworkTokenResponse)
     func isUserLoggedIn() -> Bool
     func deleteNetworkTokenResponseFromKeychain()

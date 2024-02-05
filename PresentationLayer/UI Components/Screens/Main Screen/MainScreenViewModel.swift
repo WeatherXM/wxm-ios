@@ -62,11 +62,6 @@ class MainScreenViewModel: ObservableObject {
         mainUseCase = swinjectHelper.getContainerForSwinject().resolve(MainUseCase.self)!
 		meUseCase = swinjectHelper.getContainerForSwinject().resolve(MeUseCase.self)!
 
-		/// The following line migrates standard user defaults to group user defaults
-		/// and keychain to group keychain.
-		/// Should run once for every user, eventually will be removed
-		mainUseCase.performMigrationsIfNeeded()
-
         networkMonitor = NWPathMonitor()
         settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCase.self)!
 
