@@ -96,6 +96,8 @@ class MainScreenViewModel: ObservableObject {
 			
 			self?.showAppUpdatePrompt = self?.mainUseCase.shouldShowUpdatePrompt(for: latestVersion, minimumVersion: minVersion) ?? false
 		}.store(in: &cancellableSet)
+
+		requestNotificationAuthorizationIfNeeded()
     }
 
     @Published var showFirmwareUpdate = false
@@ -112,6 +114,12 @@ class MainScreenViewModel: ObservableObject {
         checkIfShouldShowAnalyticsPrompt(settingsUseCase: settingsUseCase)
         cleanupAnalyticsUserIdIfNeeded()
     }
+
+	private func requestNotificationAuthorizationIfNeeded() {
+		Task { @MainActor in
+			try await FirebaseManager.shared.requestNotificationAuthorization()
+		}
+	}
 
     private func checkIfUserIsLoggedIn() {
         let container = swinjectHelper.getContainerForSwinject()
