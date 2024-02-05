@@ -6,6 +6,6 @@
 version: 2
 updates:
   - package-ecosystem: "swift"
-    directory: "/"
+    directory: "wxm-ios.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
     schedule:
       interval: "weekly"
