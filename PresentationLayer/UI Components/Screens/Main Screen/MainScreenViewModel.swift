@@ -62,11 +62,6 @@ class MainScreenViewModel: ObservableObject {
         mainUseCase = swinjectHelper.getContainerForSwinject().resolve(MainUseCase.self)!
 		meUseCase = swinjectHelper.getContainerForSwinject().resolve(MeUseCase.self)!
 
-		/// The following line migrates standard user defaults to group user defaults
-		/// and keychain to group keychain.
-		/// Should run once for every user, eventually will be removed
-		mainUseCase.performMigrationsIfNeeded()
-
         networkMonitor = NWPathMonitor()
         settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCase.self)!
 
@@ -101,6 +96,8 @@ class MainScreenViewModel: ObservableObject {
 			
 			self?.showAppUpdatePrompt = self?.mainUseCase.shouldShowUpdatePrompt(for: latestVersion, minimumVersion: minVersion) ?? false
 		}.store(in: &cancellableSet)
+
+		requestNotificationAuthorizationIfNeeded()
     }
 
     @Published var showFirmwareUpdate = false
@@ -117,6 +114,12 @@ class MainScreenViewModel: ObservableObject {
         checkIfShouldShowAnalyticsPrompt(settingsUseCase: settingsUseCase)
         cleanupAnalyticsUserIdIfNeeded()
     }
+
+	private func requestNotificationAuthorizationIfNeeded() {
+		Task { @MainActor in
+			try await FirebaseManager.shared.requestNotificationAuthorization()
+		}
+	}
 
     private func checkIfUserIsLoggedIn() {
         let container = swinjectHelper.getContainerForSwinject()

@@ -67,27 +67,4 @@ extension KeychainHelperService {
 			 type: EmailPasswordCodable.self,
 			 enabledAppGroup: enabledAppGroup)
 	}
-
-// MARK: - Migration
-
-	func migrateIfNeeded() {
-		let udService = UserDefaultsService()
-		let udKey = UserDefaults.GenericKey.keychainMigratedToAppGroup.rawValue
-		let isMigrated: Bool = udService.get(key: udKey) ?? false
-		guard !isMigrated else {
-			return
-		}
-
-		// Email and password
-		if let info = getUsersAccountInfo(enabledAppGroup: false) {
-			saveEmailAndPasswordToKeychain(email: info.email, password: info.password)
-		}
-
-		// Token
-		if let token = getNetworkTokenResponse(enabledAppGroup: false) {
-			saveNetworkTokenResponseToKeychain(item: token)
-		}
-
-		udService.save(value: true, key: udKey)
-	}
 }

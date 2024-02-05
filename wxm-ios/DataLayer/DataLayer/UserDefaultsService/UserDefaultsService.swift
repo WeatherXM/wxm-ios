@@ -25,21 +25,6 @@ public struct UserDefaultsService: PersistCacheManager {
 		userDefaults?.removeObject(forKey: key)
 	}
 
-	func migrateIfNeeded() {
-		let isMigrated: Bool = get(key: UserDefaults.GenericKey.migratedToAppGroup.rawValue) ?? false
-		guard !isMigrated else {
-			return
-		}
-
-		let oldUD = UserDefaults.standard
-		for key in oldUD.dictionaryRepresentation().keys {
-			userDefaults?.set(oldUD.dictionaryRepresentation()[key], forKey: key)
-		}
-
-		save(value: true, key: UserDefaults.GenericKey.migratedToAppGroup.rawValue)
-	}
-
-
     func clearUserSensitiveData() {
         UserDefaults.userGeneratedKeys.forEach { remove(key: $0 ) }
     }

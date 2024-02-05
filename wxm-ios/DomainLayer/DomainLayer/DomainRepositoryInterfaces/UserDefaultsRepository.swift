@@ -6,7 +6,6 @@
 //
 
 public protocol UserDefaultsRepository {
-	func performMigrations()
     func readWeatherUnit(key: String) -> UnitsProtocol?
     func saveDefaultUnitForKey(key: String) -> UnitsProtocol?
     func saveWeatherUnit(unitProtocol: UnitsProtocol)
