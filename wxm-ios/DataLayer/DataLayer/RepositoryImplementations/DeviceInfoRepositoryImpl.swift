@@ -26,14 +26,13 @@ extension DeviceInfoRepositoryImpl {
         let urlRequest = try builder.asURLRequest()
         return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
     }
-    public func setFriendlyName(deviceId: String, name: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-        let urlRequest = try MeApiRequestBuilder.setFriendlyName(deviceId: deviceId, name: name).asURLRequest()
-        return ApiClient.shared.requestCodableAuthorized(urlRequest)
+
+	public func setFriendlyName(deviceId: String, name: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+		try userDevicesService.setFriendlyName(deviceId: deviceId, name: name)
     }
 
     public func deleteFriendlyName(deviceId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-        let urlRequest = try MeApiRequestBuilder.deleteFriendlyName(deviceId: deviceId).asURLRequest()
-        return ApiClient.shared.requestCodableAuthorized(urlRequest)
+		try userDevicesService.deleteFriendlyName(deviceId: deviceId)
     }
 
     public func disclaimDevice(serialNumber: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {

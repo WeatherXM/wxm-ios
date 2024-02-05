@@ -210,6 +210,36 @@ public class UserDevicesService {
 			}
 			.eraseToAnyPublisher()
 	}
+
+	func setFriendlyName(deviceId: String, name: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+		let urlRequest = try MeApiRequestBuilder.setFriendlyName(deviceId: deviceId, name: name).asURLRequest()
+		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest)
+		return publisher
+			.flatMap { [weak self] response in
+				if response.error == nil {
+					self?.invalidateCaches()
+					WidgetCenter.shared.reloadAllTimelines()
+					NotificationCenter.default.post(name: .userDevicesListUpdated, object: deviceId)
+				}
+				return Just(response)
+			}
+			.eraseToAnyPublisher()
+	}
+
+	func deleteFriendlyName(deviceId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+		let urlRequest = try MeApiRequestBuilder.deleteFriendlyName(deviceId: deviceId).asURLRequest()
+		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest)
+		return publisher
+			.flatMap { [weak self] response in
+				if response.error == nil {
+					self?.invalidateCaches()
+					WidgetCenter.shared.reloadAllTimelines()
+					NotificationCenter.default.post(name: .userDevicesListUpdated, object: deviceId)
+				}
+				return Just(response)
+			}
+			.eraseToAnyPublisher()
+	}
 }
 
 private extension UserDevicesService {
