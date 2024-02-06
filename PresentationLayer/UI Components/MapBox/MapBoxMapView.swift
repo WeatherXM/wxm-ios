@@ -107,7 +107,6 @@ class MapViewController: UIViewController {
             return
         }
 
-//        let myResourceOptions = ResourceOptions(accessToken: accessToken)
         let myMapInitOptions = MapInitOptions(styleURI: StyleURI(rawValue: MapBoxConstants.mapBoxStyle))
 
         mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
@@ -129,7 +128,6 @@ class MapViewController: UIViewController {
     }
 
     internal func configureHeatMapLayer(source: GeoJSONSource) {
-        layer.source = "wtxm-source"
         layer.maxZoom = 10
         layer.heatmapColor = .expression(
             Exp(.interpolate) {
@@ -190,8 +188,8 @@ class MapViewController: UIViewController {
             }
         )
         do {
-            try mapView.mapboxMap.style.addSource(source)
-            try mapView.mapboxMap.style.addLayer(layer)
+            try mapView.mapboxMap.addSource(source)
+            try mapView.mapboxMap.addLayer(layer)
         } catch {
             print(error)
         }
