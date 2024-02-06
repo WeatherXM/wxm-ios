@@ -115,13 +115,19 @@ class MapViewController: UIViewController {
 
         let myMapInitOptions = MapInitOptions(styleURI: StyleURI(rawValue: MapBoxConstants.mapBoxStyle))
 
-        mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
+		mapView = MapView(frame: .zero, mapInitOptions: myMapInitOptions)
         mapView.ornaments.options.scaleBar.visibility = .hidden
         mapView.gestures.options.rotateEnabled = false
         mapView.gestures.options.pitchEnabled = false
         mapView.gestures.singleTapGestureRecognizer.addTarget(self, action: #selector(didTapMap(_:)))
+		mapView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(mapView)
+		mapView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+		mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+		mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+		mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+
 		mapView.mapboxMap.onMapLoaded.observeNext { [weak self] _ in
             guard let self = self else { return }
             self.cameraSetup()
