@@ -16,22 +16,27 @@ import Toolkit
 
 struct MapBoxMapView: UIViewControllerRepresentable {
     @EnvironmentObject var explorerViewModel: ExplorerViewModel
+	private var canellables: CancellableWrapper = .init()
 
     func makeUIViewController(context: Context) -> MapViewController {
         let mapViewController = explorerViewModel.mapController ?? MapViewController()
         mapViewController.delegate = context.coordinator
         explorerViewModel.mapController = mapViewController
+		observeSnapLocation()
+
         return mapViewController
     }
 
-    func updateUIViewController(_ mapViewController: MapViewController, context _: Context) {
-        if let location = explorerViewModel.locationToSnap {
-            mapViewController.snapToLocationCoordinates(location) {
-                // Reset `locationToSnap` to avoid snaps on every re-render
-                explorerViewModel.locationToSnap = nil
-            }
-        }
+	func observeSnapLocation() {
+		explorerViewModel.snapLocationPublisher.receive(on: DispatchQueue.main).sink { location in
+			guard let location else {
+				return
+			}
+			explorerViewModel.mapController?.snapToLocationCoordinates(location) {}
+		}.store(in: &canellables.cancellableSet)
+	}
 
+    func updateUIViewController(_ mapViewController: MapViewController, context _: Context) {
         if explorerViewModel.showUserLocation {
             mapViewController.showUserLocation()
         }
@@ -54,9 +59,12 @@ extension MapBoxMapView {
 
     class Coordinator: NSObject, MapViewControllerDelegate {
         func didTapAnnotation(_: MapViewController, _ annotations: [PolygonAnnotation]) {
-            guard let firstValidAnnotation = annotations.first else { return }
-            guard let hexIndex = firstValidAnnotation.userInfo?.keys.first else { return }
-            viewModel.routeToDeviceListFor(hexIndex, firstValidAnnotation.polygon.center)
+            guard let firstValidAnnotation = annotations.first,
+				  let hexIndex = firstValidAnnotation.userInfo?.keys.first else {
+				return
+			}
+            
+			viewModel.routeToDeviceListFor(hexIndex, firstValidAnnotation.polygon.center)
         }
 
         func didTapMapArea(_: MapViewController) {
@@ -77,11 +85,9 @@ extension MapBoxMapView {
             }
         }
 
-        let parent: MapBoxMapView
         let viewModel: ExplorerViewModel
 
         init(_ mapBoxMapView: MapBoxMapView, viewModel: ExplorerViewModel) {
-            parent = mapBoxMapView
             self.viewModel = viewModel
         }
     }
@@ -91,8 +97,9 @@ class MapViewController: UIViewController {
     private static let SNAP_ANIMATION_DURATION: CGFloat = 1.4
     private static let wxm_lat = 37.98075475244475
     private static let wxm_lon = 23.710478235562956
+	private var cancelablesSet = Set<AnyCancelable>()
 
-    internal var mapView: MapView!
+	internal var mapView: MapView!
 	internal var layer = HeatmapLayer(id: "wtxm-heatmap-layer", source: "heatmap")
     internal weak var polygonManager: PolygonAnnotationManager?
 
@@ -116,10 +123,10 @@ class MapViewController: UIViewController {
         mapView.gestures.singleTapGestureRecognizer.addTarget(self, action: #selector(didTapMap(_:)))
 
         view.addSubview(mapView)
-		mapView.mapboxMap.onNext(event: .mapLoaded) { [weak self] _ in
+		mapView.mapboxMap.onMapLoaded.observeNext { [weak self] _ in
             guard let self = self else { return }
             self.cameraSetup()
-        }
+		}.store(in: &cancelablesSet)
     }
 
     override func viewWillAppear(_ animated: Bool) {

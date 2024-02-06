@@ -25,7 +25,8 @@ public final class ExplorerViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var isSearchActive: Bool = false
 
-	@Published var locationToSnap: MapBoxMapView.SnapLocation?
+	lazy var snapLocationPublisher: AnyPublisher<MapBoxMapView.SnapLocation?, Never> = snapLocationSubject.eraseToAnyPublisher()
+	private let snapLocationSubject = PassthroughSubject<MapBoxMapView.SnapLocation?, Never>()
     @Published var showUserLocation: Bool = false
 	private var isInitialSnapped: Bool = false
 
@@ -85,7 +86,8 @@ public final class ExplorerViewModel: ObservableObject {
 				}
 			default:
 				if let suggestedLocation = explorerUseCase.getSuggestedDeviceLocation() {
-					locationToSnap = MapBoxMapView.SnapLocation(coordinates: suggestedLocation, zoomLevel: nil)
+					let locationToSnap = MapBoxMapView.SnapLocation(coordinates: suggestedLocation, zoomLevel: nil)
+					snapLocationSubject.send(locationToSnap)
 				}
 		}
 	}
@@ -111,7 +113,8 @@ private extension ExplorerViewModel {
 			switch result {
 				case .success(let coordinates):
 					let zoomLevel: CGFloat? = zoomEnabled ? MapBoxMapView.SnapLocation.DEFAULT_SNAP_ZOOM_LEVEL : nil
-					self.locationToSnap = MapBoxMapView.SnapLocation(coordinates: coordinates, zoomLevel: zoomLevel)
+					let locationToSnap = MapBoxMapView.SnapLocation(coordinates: coordinates, zoomLevel: zoomLevel)
+					self.snapLocationSubject.send(locationToSnap)
 					self.showUserLocation = true
 				case .failure(let error):
 					print(error)
@@ -136,7 +139,8 @@ extension ExplorerViewModel: ExplorerSearchViewModelDelegate {
     }
 
     func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?) {
-		locationToSnap = MapBoxMapView.SnapLocation(coordinates: coordinates)
+		let locationToSnap = MapBoxMapView.SnapLocation(coordinates: coordinates)
+		snapLocationSubject.send(locationToSnap)
 
         if let deviceId, let cellIndex {
             navigateToDeviceDetails(deviceId: deviceId, cellIndex: cellIndex, cellCenter: coordinates)
