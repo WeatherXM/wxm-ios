@@ -145,10 +145,9 @@ class MapViewLocationController: UIViewController {
             return
         }
 
-        let myResourceOptions = ResourceOptions(accessToken: accessToken)
+
         let cameraOptions = cameraSetup()
         let myMapInitOptions = MapInitOptions(
-            resourceOptions: myResourceOptions,
             cameraOptions: cameraOptions
         )
 
@@ -162,8 +161,9 @@ class MapViewLocationController: UIViewController {
 
 		switch locationServicesAvailable {
 			case true:
-				mapView.location.delegate = self
-				mapView.location.locationProvider.startUpdatingLocation()
+				break
+//				mapView.location.delegate = self
+//				mapView.location.locationProvider.startUpdatingLocation()
 			case false: break
 		}
 		
@@ -175,7 +175,7 @@ class MapViewLocationController: UIViewController {
 			var pointAnnotation = PointAnnotation(coordinate: self.mapView.cameraState.center)
 			switch self.locationServicesAvailable {
 				case true:
-					self.locationUpdate(newLocation: self.mapView.location.latestLocation!)
+//					self.locationUpdate(newLocation: self.mapView.location.latestLocation!)
 					pointAnnotation.point.coordinates = self.mapView.cameraState.center
 				case false:
                 break
@@ -207,7 +207,7 @@ class MapViewLocationController: UIViewController {
     }
 }
 
-extension MapViewLocationController: LocationPermissionsDelegate, LocationConsumer {
+extension MapViewLocationController {
     func locationUpdate(newLocation: Location) {
         mapView.mapboxMap.setCamera(to: CameraOptions(center: newLocation.coordinate, zoom: 13))
         location = newLocation.coordinate

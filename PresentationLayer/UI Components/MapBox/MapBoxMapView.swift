@@ -93,7 +93,7 @@ class MapViewController: UIViewController {
     private static let wxm_lon = 23.710478235562956
 
     internal var mapView: MapView!
-    internal var layer = HeatmapLayer(id: "wtxm-heatmap-layer")
+	internal var layer = HeatmapLayer(id: "wtxm-heatmap-layer", source: "heatmap")
     internal weak var polygonManager: PolygonAnnotationManager?
 
     weak var delegate: MapViewControllerDelegate?
@@ -107,8 +107,8 @@ class MapViewController: UIViewController {
             return
         }
 
-        let myResourceOptions = ResourceOptions(accessToken: accessToken)
-        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, styleURI: StyleURI(rawValue: MapBoxConstants.mapBoxStyle))
+//        let myResourceOptions = ResourceOptions(accessToken: accessToken)
+        let myMapInitOptions = MapInitOptions(styleURI: StyleURI(rawValue: MapBoxConstants.mapBoxStyle))
 
         mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
         mapView.ornaments.options.scaleBar.visibility = .hidden
@@ -117,7 +117,7 @@ class MapViewController: UIViewController {
         mapView.gestures.singleTapGestureRecognizer.addTarget(self, action: #selector(didTapMap(_:)))
 
         view.addSubview(mapView)
-        mapView.mapboxMap.onNext(.mapLoaded) { [weak self] _ in
+		mapView.mapboxMap.onNext(event: .mapLoaded) { [weak self] _ in
             guard let self = self else { return }
             self.cameraSetup()
         }
@@ -190,7 +190,7 @@ class MapViewController: UIViewController {
             }
         )
         do {
-            try mapView.mapboxMap.style.addSource(source, id: "wtxm-source")
+            try mapView.mapboxMap.style.addSource(source)
             try mapView.mapboxMap.style.addLayer(layer)
         } catch {
             print(error)
@@ -225,13 +225,13 @@ class MapViewController: UIViewController {
         let annotations = polygonManager.annotations
         let options = RenderedQueryOptions(layerIds: layerIds, filter: nil)
         let point = tap.location(in: tap.view)
-		mapView.mapboxMap.queryRenderedFeatures(in: CGRect(origin: point, size: CGSize.zero).insetBy(dx: -20.0, dy: -20.0), options: options) { result in
+		mapView.mapboxMap.queryRenderedFeatures(with: CGRect(origin: point, size: CGSize.zero).insetBy(dx: -20.0, dy: -20.0), options: options) { result in
 			switch result {
 				case let .success(queriedFeatures):
 					
 					// Get the identifiers of all the queried features
 					let queriedFeatureIds: [String] = queriedFeatures.compactMap {
-						guard case let .string(featureId) = $0.feature.identifier else {
+						guard case let .string(featureId) = $0.queriedFeature.feature.identifier else {
 							return nil
 						}
 						return featureId
