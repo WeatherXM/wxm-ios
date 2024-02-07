@@ -85,8 +85,8 @@ struct Provider: IntentTimelineProvider {
 												 errorInfo: nil,
 												 isLoggedIn: isUserLoggedIn)
 				return entry
-			case .failure(let error):
-				let devices: [DeviceDetails] = (try? await useCase.getDevices(useCache: true).get()) ?? []
+			case .failure(_):
+				let devices: [DeviceDetails] = useCase.getCachedDevices() ?? []
 
 				let entry = StationTimelineEntry(date: .now,
 												 displaySize: displaySize,

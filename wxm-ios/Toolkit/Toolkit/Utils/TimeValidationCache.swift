@@ -60,13 +60,18 @@ public class TimeValidationCache<T: Codable> {
 		dispatchQueue.sync {
 			guard let obj = cache[key],
 				  Date.now.timeIntervalSince(obj.timestamp) < obj.expireInterval else {
-				cache.removeValue(forKey: key)
 				return nil
 			}
 
 			return obj.value
 		}
     }
+
+	public func getCachedValue(for key: String) -> T? {
+		dispatchQueue.sync {
+			return cache[key]?.value
+		}
+	}
 
     public func invalidate() {
 		persistCacheManager.remove(key: persistKey)

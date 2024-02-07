@@ -50,6 +50,10 @@ public struct MeRepositoryImpl: MeRepository {
         return ApiClient.shared.requestCodableAuthorized(urlRequest)
     }
 
+	public func getCachedDevices() -> [NetworkDevicesResponse]? {
+		userDevicesService.getCachedDevices()
+	}
+	
 	public func getDevices(useCache: Bool) throws -> AnyPublisher<DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>, Never> {
         try userDevicesService.getDevices(useCache: useCache)
     }

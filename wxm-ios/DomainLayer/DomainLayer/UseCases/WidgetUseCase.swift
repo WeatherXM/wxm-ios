@@ -23,6 +23,10 @@ public struct WidgetUseCase {
 		keychainRepository.isUserLoggedIn()
 	}
 
+	public func getCachedDevices() -> [DeviceDetails]? {
+		meRepository.getCachedDevices()?.map { $0.toDeviceDetails }
+	}
+
 	public func getDevices(useCache: Bool = true) async throws -> Result<[DeviceDetails], NetworkErrorResponse> {
 		let userDevices = try meRepository.getDevices(useCache: useCache)
 		let publisher = userDevices.convertedToDeviceDetailsResultPublisher
