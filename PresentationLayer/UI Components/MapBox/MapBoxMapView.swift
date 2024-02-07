@@ -95,12 +95,11 @@ extension MapBoxMapView {
 
 class MapViewController: UIViewController {
     private static let SNAP_ANIMATION_DURATION: CGFloat = 1.4
-    private static let wxm_lat = 37.98075475244475
-    private static let wxm_lon = 23.710478235562956
 	private var cancelablesSet = Set<AnyCancelable>()
 
 	internal var mapView: MapView!
-	internal var layer = HeatmapLayer(id: "wtxm-heatmap-layer", source: "heatmap")
+	internal var layer = HeatmapLayer(id: MapBoxConstants.heatmapLayerId,
+									  source: MapBoxConstants.heatmapSource)
     internal weak var polygonManager: PolygonAnnotationManager?
 
     weak var delegate: MapViewControllerDelegate?
@@ -203,13 +202,14 @@ class MapViewController: UIViewController {
     }
 
     internal func configurePolygonLayer(polygonAnnotations: [PolygonAnnotation]) {
-        let polygonAnnotationManager = self.polygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: "wtxm-polygon-annotation-manager")
+		let polygonAnnotationManager = self.polygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.polygonManagerId)
         polygonAnnotationManager.annotations = polygonAnnotations
         polygonManager = polygonAnnotationManager
     }
 
     internal func cameraSetup() {
-        let centerCoordinate = CLLocationCoordinate2D(latitude: Self.wxm_lat, longitude: Self.wxm_lon)
+		let centerCoordinate = CLLocationCoordinate2D(latitude: MapBoxConstants.initialLat,
+													  longitude: MapBoxConstants.initialLon)
         let camera = CameraOptions(center: centerCoordinate, zoom: 1)
         mapView.mapboxMap.setCamera(to: camera)
     }

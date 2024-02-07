@@ -14,4 +14,9 @@ enum MapBoxConstants {
 	static let snapshotSize: CGSize = CGSize(width: 340.0, height: 200.0)
 	static let snapshotZoom: CGFloat = 11.0
 	static let snapshotMarkerName = "marker"
+	static let polygonManagerId = "wtxm-polygon-annotation-manager"
+	static let initialLat = 37.98075475244475
+	static let initialLon = 23.710478235562956
+	static let heatmapLayerId = "wtxm-heatmap-layer"
+	static let heatmapSource = "heatmap"
 }
