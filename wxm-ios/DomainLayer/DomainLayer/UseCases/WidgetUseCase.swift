@@ -22,7 +22,9 @@ public struct WidgetUseCase {
 	public var isUserLoggedIn: Bool {
 		keychainRepository.isUserLoggedIn()
 	}
-
+	
+	/// Get the local persisted user devices
+	/// - Returns: An array of the local persisted user devices
 	public func getCachedDevices() -> [DeviceDetails]? {
 		meRepository.getCachedDevices()?.map { $0.toDeviceDetails }
 	}

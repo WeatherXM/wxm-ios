@@ -55,7 +55,10 @@ public class TimeValidationCache<T: Codable> {
 									 expireInterval: expire)
 		}
     }
-
+	
+	/// Returns the "validated" value respecting the `expireInterval`
+	/// - Parameter key: The key used to pesist the data
+	/// - Returns: The local persisted an valid value
     public func getValue(for key: String) -> T? {
 		dispatchQueue.sync {
 			guard let obj = cache[key],
@@ -66,7 +69,10 @@ public class TimeValidationCache<T: Codable> {
 			return obj.value
 		}
     }
-
+	
+	/// Returns the persisted data ignoring the `expireInterval`
+	/// - Parameter key: The key used to pesist the data
+	/// - Returns: The local persisted data
 	public func getCachedValue(for key: String) -> T? {
 		dispatchQueue.sync {
 			return cache[key]?.value
