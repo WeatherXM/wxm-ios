@@ -67,6 +67,22 @@
 
 	  ]
 	},
+	"reward_annotations" : [
+		{
+			"severity" : "WARNING",
+			"group" : "NO_WALLET",
+			"title" : "This is a title",
+			"message" : "This is a message",
+			"doc_url" : "https://docs.weatherxm.com/faqs"
+		},
+		{
+			"severity" : "ERROR",
+			"group" : "NO_DATA",
+			"title" : "This is a data title",
+			"message" : "This is a message",
+			"doc_url" : "https://docs.weatherxm.com/faqs"
+		}
+	],
 	"tx_hash" : "0x12d5a27185e2843358e962a2313416090a11501f625513c12b95c01ec5d4222b",
 	"actual_reward" : 3.0640653366684143,
 	"reward_score" : 76,

@@ -76,7 +76,23 @@
 						
 					}
 				]
-			}
+			},
+			"reward_annotations" : [
+				{
+					"severity" : "WARNING",
+					"group" : "NO_WALLET",
+					"title" : "This is a title",
+					"message" : "This is a message",
+					"doc_url" : "https://docs.weatherxm.com/faqs"
+				},
+				{
+					"severity" : "ERROR",
+					"group" : "NO_DATA",
+					"title" : "This is a data title",
+					"message" : "This is a message",
+					"doc_url" : "https://docs.weatherxm.com/faqs"
+				}
+			]
 		},
 		{
 			"timestamp" : "2023-03-20T07:00:06+02:00",

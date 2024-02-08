@@ -9,6 +9,12 @@ import Foundation
 import DomainLayer
 import Toolkit
 
+extension RewardAnnotation: Identifiable {
+	public var id: Int {
+		hashValue
+	}
+}
+
 extension DeviceAnnotations {
 	func getAnnotationsList(for rewardScore: Int) -> [DeviceAnnotation] {
 		var showQod = true
@@ -32,7 +38,7 @@ extension DeviceRewardsOverview {
 								   lostAmount: lostAmount,
 								   rewardScore: rewardScore,
 								   maxRewards: periodMaxReward,
-								   annnotationsList: annotationsList,
+								   annnotationsList: rewardAnnotations ?? [],
 								   timelineEntries: timeline?.rewardScores,
 								   timelineAxis: timelineAxis,
 								   timelineCaption: timelineCaption,

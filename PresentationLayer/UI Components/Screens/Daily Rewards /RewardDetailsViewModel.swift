@@ -36,41 +36,25 @@ class RewardDetailsViewModel: ObservableObject {
 		self.rewardsCardOverview = rewardsCardOverview
 	}
 
-	func annotationActionButtonTile(for type: DeviceAnnotation.AnnotationType?) -> String? {
+	func annotationActionButtonTile(for type: RewardAnnotation.Group?) -> String? {
 		guard let type, followState?.relation == .owned else {
 			return nil
 		}
 
 		switch type {
-			case .obc:
-				if device.needsUpdate(mainVM: MainScreenViewModel.shared, followState: followState) {
-					return LocalizableString.RewardDetails.upgradeFirmwareButtonTitle.localized
-				}
-
-				return LocalizableString.contactSupport.localized
-			case .spikes, .unidentifiedSpike, .noMedian, .noData, .shortConst,
-					.longConst, .anomIncrease, .unidentifiedAnomalousChange, .noLocationData, .cellCapacityReached,
-					.polThresholdNotReached, .qodThresholdNotReached:
-				return LocalizableString.RewardDetails.readMore.localized
-			case .frozenSensor, .relocated:
-				return nil
-			case .locationNotVerified:
-				return LocalizableString.RewardDetails.editLocation.localized
-			case .unknown:
-				return LocalizableString.contactSupport.localized
 			case .noWallet:
-				return LocalizableString.RewardDetails.noWalletProblemButtonTitle.localized
+				return "no wallet"
+			case .locationNotVerified:
+				return "not verified"
+			case .unknown:
+				return LocalizableString.RewardDetails.readMore.localized
 		}
 	}
 
-	func handleButtonTap(for error: DeviceAnnotation) {
-		guard let type = error.annotation else {
-			return
-		}
-
+	func handleButtonTap(for error: RewardAnnotation) {
 		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .rewardDetailsError,
-														   .itemId: .custom(error.annotation?.rawValue ?? "")])
-		handleAnnotationType(annotation: error)
+														   .itemId: .custom(error.group?.rawValue ?? "")])
+		handleRewardAnnotation(annotation: error)
 	}
 
 	func handleReadMoreTap() {
@@ -111,6 +95,10 @@ private extension RewardDetailsViewModel {
 			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
 																  .itemId: .timeline])
 		}, errorButtonAction: {})
+	}
+
+	func handleRewardAnnotation(annotation: RewardAnnotation) {
+
 	}
 
 	func handleAnnotationType(annotation: DeviceAnnotation) {
@@ -181,7 +169,7 @@ private extension RewardDetailsViewModel {
 		let rewardsEarned = "Rewards Earned: \(rewardsCardOverview.actualReward)"
 		let rewardsLost = "Rewards Lost: \(rewardsCardOverview.lostAmount)"
 		let periodMaxReward = "Period Max Reward: \(rewardsCardOverview.maxRewards ?? 0.0)"
-		let annotations = "Annotations: \(rewardsCardOverview.annnotationsList.compactMap { $0.annotation?.rawValue })"
+		let annotations = "Annotations: \(rewardsCardOverview.annnotationsList.compactMap { $0.group?.rawValue })"
 
 		return [stationInfoTitle,
 				stationName,

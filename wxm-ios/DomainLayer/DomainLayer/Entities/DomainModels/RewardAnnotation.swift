@@ -21,6 +21,23 @@ public struct RewardAnnotation: Codable, Equatable, Hashable {
 		case message
 		case docUrl = "doc_url"
 	}
+
+	public init(severity: Severity?, group: Group?, title: String?, message: String?, docUrl: String?) {
+		self.severity = severity
+		self.group = group
+		self.title = title
+		self.message = message
+		self.docUrl = docUrl
+	}
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.severity = try container.decodeIfPresent(RewardAnnotation.Severity.self, forKey: .severity)
+		self.group = (try? container.decodeIfPresent(RewardAnnotation.Group.self, forKey: .group)) ?? .unknown
+		self.title = try container.decodeIfPresent(String.self, forKey: .title)
+		self.message = try container.decodeIfPresent(String.self, forKey: .message)
+		self.docUrl = try container.decodeIfPresent(String.self, forKey: .docUrl)
+	}
 }
 
 public extension RewardAnnotation {
@@ -32,12 +49,7 @@ public extension RewardAnnotation {
 
 	enum Group: String, Codable {
 		case noWallet = "NO_WALLET"
-		case noStationData = "NO_STATION_DATA"
-		case sensorProblems = "SENSOR_PROBLEMS"
-		case weatherDataGaps = "WEATHER_DATA_GAPS"
-		case badStationDeployment = "BAD_STATION_DEPLOYMENT"
-		case noLocationData = "NO_LOCATION_DATA"
 		case locationNotVerified = "LOCATION_NOT_VERIFIED"
-		case userRelocationPenalty = "USER_RELOCATION_PENALTY"
+		case unknown
 	}
 }
