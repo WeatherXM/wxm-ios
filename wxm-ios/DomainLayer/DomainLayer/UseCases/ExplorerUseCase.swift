@@ -8,7 +8,6 @@
 import Combine
 import CoreLocation
 import Foundation
-import MapboxCommon
 import MapboxMaps
 import Toolkit
 
@@ -63,7 +62,7 @@ public class ExplorerUseCase {
                     return
                 }
 
-                var geoJsonSource = GeoJSONSource()
+                var geoJsonSource = GeoJSONSource(id: "heatmap")
                 let featuresCollection = hexValues.map { publicHex -> MapboxMaps.Feature in
                     let coordinates = LocationCoordinate2D(latitude: publicHex.center.lat, longitude: publicHex.center.lon)
                     let point = Point(coordinates)

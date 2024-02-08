@@ -57,7 +57,6 @@
 		4D1C95D028FC7EB1001F66C9 /* LocationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C95CF28FC7EB1001F66C9 /* LocationRepositoryImpl.swift */; };
 		4D49D90A294DE3B300987DE6 /* MapboxSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D909294DE3B300987DE6 /* MapboxSearch */; };
 		4D49D910294DE53700987DE6 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D90F294DE53700987DE6 /* MapboxMaps */; };
-		4D49D913294DE5E700987DE6 /* MapboxCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D912294DE5E700987DE6 /* MapboxCommon */; };
 		4D5AE33028EA49C7006F2EBA /* BluetoothDevicesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AE32F28EA49C7006F2EBA /* BluetoothDevicesRepositoryImpl.swift */; };
 		4D848F812929AA6C009C5762 /* HeliumDeviceBluetoothHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D848F802929AA6C009C5762 /* HeliumDeviceBluetoothHelper.swift */; };
 		7480AF562835098A002758C3 /* DevicesApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480AF552835098A002758C3 /* DevicesApiRequestBuilder.swift */; };
@@ -165,7 +164,6 @@
 			files = (
 				B51244012825516A00B66A31 /* Alamofire in Frameworks */,
 				B51243F5282550B100B66A31 /* DomainLayer.framework in Frameworks */,
-				4D49D913294DE5E700987DE6 /* MapboxCommon in Frameworks */,
 				4D49D910294DE53700987DE6 /* MapboxMaps in Frameworks */,
 				4D49D90A294DE3B300987DE6 /* MapboxSearch in Frameworks */,
 				264BDA0A298ABF6B005C1F82 /* NordicDFU in Frameworks */,
@@ -422,7 +420,6 @@
 				B51244002825516A00B66A31 /* Alamofire */,
 				4D49D909294DE3B300987DE6 /* MapboxSearch */,
 				4D49D90F294DE53700987DE6 /* MapboxMaps */,
-				4D49D912294DE5E700987DE6 /* MapboxCommon */,
 				264BDA09298ABF6B005C1F82 /* NordicDFU */,
 			);
 			productName = DataLayer;
@@ -457,7 +454,6 @@
 				B51243FF2825516A00B66A31 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4D49D908294DE3B300987DE6 /* XCRemoteSwiftPackageReference "search-ios" */,
 				4D49D90E294DE53700987DE6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
-				4D49D911294DE5E700987DE6 /* XCRemoteSwiftPackageReference "mapbox-common-ios" */,
 				264BDA08298ABF6B005C1F82 /* XCRemoteSwiftPackageReference "IOS-DFU-Library" */,
 			);
 			productRefGroup = B5799E7428254CC100FEBB85 /* Products */;
@@ -876,7 +872,7 @@
 			repositoryURL = "https://github.com/mapbox/search-ios.git";
 			requirement = {
 				kind = exactVersion;
-				version = "1.0.0-beta.40";
+				version = "2.0.0-rc.1";
 			};
 		};
 		4D49D90E294DE53700987DE6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
@@ -884,15 +880,7 @@
 			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios/";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
-			};
-		};
-		4D49D911294DE5E700987DE6 /* XCRemoteSwiftPackageReference "mapbox-common-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mapbox/mapbox-common-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 23.2.0;
+				minimumVersion = 11.0.0;
 			};
 		};
 		B51243FF2825516A00B66A31 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -920,11 +908,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4D49D90E294DE53700987DE6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
 			productName = MapboxMaps;
-		};
-		4D49D912294DE5E700987DE6 /* MapboxCommon */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D49D911294DE5E700987DE6 /* XCRemoteSwiftPackageReference "mapbox-common-ios" */;
-			productName = MapboxCommon;
 		};
 		B51244002825516A00B66A31 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

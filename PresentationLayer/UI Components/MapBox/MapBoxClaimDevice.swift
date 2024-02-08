@@ -15,7 +15,6 @@ import UIKit
 struct MapBoxClaimDeviceView: View {
 	@Binding var location: CLLocationCoordinate2D
 	@Binding var annotationTitle: String?
-	let areLocationServicesAvailable: Bool
 	let geometryProxyForFrameOfMapView: CGRect
 
 	private let markerSize: CGSize = CGSize(width: 44.0, height: 44.0)
@@ -24,10 +23,9 @@ struct MapBoxClaimDeviceView: View {
 
 	init(location: Binding<CLLocationCoordinate2D>,
 		 annotationTitle: Binding<String?>,
-		 areLocationServicesAvailable: Bool, geometryProxyForFrameOfMapView: CGRect) {
+		 geometryProxyForFrameOfMapView: CGRect) {
 		_location = location
 		_annotationTitle = annotationTitle
-		self.areLocationServicesAvailable = areLocationServicesAvailable
 		self.geometryProxyForFrameOfMapView = geometryProxyForFrameOfMapView
 	}
 
@@ -35,7 +33,6 @@ struct MapBoxClaimDeviceView: View {
 		ZStack {
 			MapBoxClaimDevice(location: $location,
 							  locationPoint: $locationPoint,
-							  areLocationServicesAvailable: areLocationServicesAvailable,
 							  geometryProxyForFrameOfMapView: geometryProxyForFrameOfMapView)
 
 			markerAnnotation
@@ -84,23 +81,13 @@ struct MapBoxClaimDevice: UIViewControllerRepresentable {
     @Binding var location: CLLocationCoordinate2D
 	@Binding var locationPoint: CGPoint
 
-    let areLocationServicesAvailable: Bool
     let geometryProxyForFrameOfMapView: CGRect
-
-	init(location: Binding<CLLocationCoordinate2D>, locationPoint: Binding<CGPoint> = .constant(.zero), areLocationServicesAvailable: Bool, geometryProxyForFrameOfMapView: CGRect) {
-		_location = location
-		_locationPoint = locationPoint
-		self.areLocationServicesAvailable = areLocationServicesAvailable
-		self.geometryProxyForFrameOfMapView = geometryProxyForFrameOfMapView
-	}
 
     func makeUIViewController(context _: Context) -> MapViewLocationController {
         return MapViewLocationController(
             frame: geometryProxyForFrameOfMapView,
             location: $location,
-			locationPoint: $locationPoint,
-            locationServicesAvailable: areLocationServicesAvailable
-        )
+			locationPoint: $locationPoint)
     }
 
     func updateUIViewController(_ controller: MapViewLocationController, context _: Context) {
@@ -114,23 +101,14 @@ class MapViewLocationController: UIViewController {
     let frame: CGRect
     @Binding var location: CLLocationCoordinate2D
 	@Binding var locationPoint: CGPoint
-    let locationServicesAvailable: Bool
     internal var mapView: MapView!
+	private var cancelablesSet = Set<AnyCancelable>()
 
-    init(frame: CGRect, location: Binding<CLLocationCoordinate2D>, locationPoint: Binding<CGPoint>, locationServicesAvailable: Bool) {
+    init(frame: CGRect, location: Binding<CLLocationCoordinate2D>, locationPoint: Binding<CGPoint>) {
         self.frame = frame
         _location = location
 		_locationPoint = locationPoint
-        self.locationServicesAvailable = locationServicesAvailable
         super.init(nibName: nil, bundle: nil)
-    }
-
-    init?(frame: CGRect, location: Binding<CLLocationCoordinate2D>, locationPoint: Binding<CGPoint>, locationServicesAvailable: Bool, coder aDecoder: NSCoder) {
-        self.frame = frame
-        _location = location
-		_locationPoint = locationPoint
-        self.locationServicesAvailable = locationServicesAvailable
-        super.init(coder: aDecoder)
     }
 
     @available(*, unavailable)
@@ -145,10 +123,9 @@ class MapViewLocationController: UIViewController {
             return
         }
 
-        let myResourceOptions = ResourceOptions(accessToken: accessToken)
+
         let cameraOptions = cameraSetup()
         let myMapInitOptions = MapInitOptions(
-            resourceOptions: myResourceOptions,
             cameraOptions: cameraOptions
         )
 
@@ -158,40 +135,29 @@ class MapViewLocationController: UIViewController {
         mapView.ornaments.options.scaleBar.visibility = .hidden
         mapView.gestures.options.rotateEnabled = false
         mapView.gestures.options.pitchEnabled = false
+		mapView.mapboxMap.setCamera(to: CameraOptions(zoom: 2))
         view.addSubview(mapView)
 
-		switch locationServicesAvailable {
-			case true:
-				mapView.location.delegate = self
-				mapView.location.locationProvider.startUpdatingLocation()
-			case false: break
-		}
-		
-		mapView.mapboxMap.onNext(event: .mapLoaded) { [weak self] _ in
+		mapView.mapboxMap.onMapLoaded.observeNext { [weak self] _ in
 			guard let self else {
 				return
 			}
 
-			var pointAnnotation = PointAnnotation(coordinate: self.mapView.cameraState.center)
-			switch self.locationServicesAvailable {
-				case true:
-					self.locationUpdate(newLocation: self.mapView.location.latestLocation!)
-					pointAnnotation.point.coordinates = self.mapView.cameraState.center
-				case false:
-                break
-            }
+			let pointAnnotation = PointAnnotation(coordinate: self.mapView.mapboxMap.cameraState.center)
 			self.locationPoint = self.mapView.mapboxMap.point(for: self.location)
-            self.mapView.mapboxMap.onEvery(event: .cameraChanged, handler: { [weak self] _ in
-                guard let self = self else { return }
-                pointAnnotation.point.coordinates = self.mapView.cameraState.center
-                DispatchQueue.main.async { [weak self] in
-                    if let self = self {
-						self.location = pointAnnotation.point.coordinates
-						self.locationPoint = mapView.mapboxMap.point(for: self.location)
-                    }
-                }
-            })
-        }
+		}.store(in: &cancelablesSet)
+
+		self.mapView.mapboxMap.onMapIdle.observe { [weak self] _ in
+			guard let self = self else { return }
+			let pointAnnotation = PointAnnotation(coordinate: self.mapView.mapboxMap.cameraState.center)
+			DispatchQueue.main.async { [weak self] in
+				if let self = self {
+					self.location = pointAnnotation.point.coordinates
+					self.locationPoint = mapView.mapboxMap.point(for: self.location)
+				}
+			}
+		}.store(in: &cancelablesSet)
+
     }
 
     func setCenter(_ center: CLLocationCoordinate2D) {
@@ -207,7 +173,7 @@ class MapViewLocationController: UIViewController {
     }
 }
 
-extension MapViewLocationController: LocationPermissionsDelegate, LocationConsumer {
+extension MapViewLocationController {
     func locationUpdate(newLocation: Location) {
         mapView.mapboxMap.setCamera(to: CameraOptions(center: newLocation.coordinate, zoom: 13))
         location = newLocation.coordinate

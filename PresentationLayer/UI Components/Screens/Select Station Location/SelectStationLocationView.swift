@@ -24,7 +24,6 @@ struct SelectStationLocationView: View {
 					ZStack {
 						MapBoxClaimDeviceView(location: $viewModel.selectedCoordinate,
 											  annotationTitle: Binding(get: { viewModel.selectedDeviceLocation?.name }, set: { _ in }),
-											  areLocationServicesAvailable: false,
 											  geometryProxyForFrameOfMapView: proxy.frame(in: .local))
 						.cornerRadius(CGFloat(.cardCornerRadius), corners: [.topLeft, .topRight])
 

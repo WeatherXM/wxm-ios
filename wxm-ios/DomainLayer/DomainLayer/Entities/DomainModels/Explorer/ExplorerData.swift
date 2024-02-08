@@ -15,7 +15,7 @@ public struct ExplorerData {
 
     public init() {
         self.totalDevices = 0
-        self.geoJsonSource = GeoJSONSource()
+        self.geoJsonSource = GeoJSONSource(id: "heatmap")
         self.polygonPoints = []
     }
 

@@ -43,7 +43,6 @@
 		4D1C95D728FD3CB9001F66C9 /* DeviceLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C95D628FD3CB9001F66C9 /* DeviceLocationUseCase.swift */; };
 		4D35F7EE28F6005A009AA3CE /* HeliumDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D35F7ED28F6005A009AA3CE /* HeliumDevice.swift */; };
 		4D49D8F9294DD65600987DE6 /* Turf in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D8F8294DD65600987DE6 /* Turf */; };
-		4D49D8FC294DD79F00987DE6 /* MapboxCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D8FB294DD79F00987DE6 /* MapboxCommon */; };
 		4D49D907294DE32400987DE6 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D906294DE32400987DE6 /* MapboxMaps */; };
 		4D5AE32E28EA4882006F2EBA /* BluetoothDevicesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AE32D28EA4882006F2EBA /* BluetoothDevicesRepository.swift */; };
 		4DE3A56E293EA58300BCDD8A /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3A56D293EA58300BCDD8A /* Frequency.swift */; };
@@ -164,7 +163,6 @@
 			files = (
 				B5E6B8812833AB4A0060D050 /* Alamofire in Frameworks */,
 				9929BB0528BF667900ED3CDE /* Charts in Frameworks */,
-				4D49D8FC294DD79F00987DE6 /* MapboxCommon in Frameworks */,
 				4D49D907294DE32400987DE6 /* MapboxMaps in Frameworks */,
 				26DD42C829AF5547008E277E /* Toolkit.framework in Frameworks */,
 				4D49D8F9294DD65600987DE6 /* Turf in Frameworks */,
@@ -443,7 +441,6 @@
 				B5E6B8802833AB4A0060D050 /* Alamofire */,
 				9929BB0428BF667900ED3CDE /* Charts */,
 				4D49D8F8294DD65600987DE6 /* Turf */,
-				4D49D8FB294DD79F00987DE6 /* MapboxCommon */,
 				4D49D906294DE32400987DE6 /* MapboxMaps */,
 			);
 			productName = DomainLayer;
@@ -479,7 +476,6 @@
 				9929BB0328BF667900ED3CDE /* XCRemoteSwiftPackageReference "Charts" */,
 				4D49D8F6294DD61300987DE6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 				4D49D8F7294DD65600987DE6 /* XCRemoteSwiftPackageReference "turf-swift" */,
-				4D49D8FA294DD79F00987DE6 /* XCRemoteSwiftPackageReference "mapbox-common-ios" */,
 			);
 			productRefGroup = B5799E8E28254DCD00FEBB85 /* Products */;
 			projectDirPath = "";
@@ -892,7 +888,7 @@
 			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios/";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
+				minimumVersion = 11.0.0;
 			};
 		};
 		4D49D8F7294DD65600987DE6 /* XCRemoteSwiftPackageReference "turf-swift" */ = {
@@ -901,14 +897,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.6.0;
-			};
-		};
-		4D49D8FA294DD79F00987DE6 /* XCRemoteSwiftPackageReference "mapbox-common-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mapbox/mapbox-common-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 23.2.0;
 			};
 		};
 		9929BB0328BF667900ED3CDE /* XCRemoteSwiftPackageReference "Charts" */ = {
@@ -934,11 +922,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4D49D8F7294DD65600987DE6 /* XCRemoteSwiftPackageReference "turf-swift" */;
 			productName = Turf;
-		};
-		4D49D8FB294DD79F00987DE6 /* MapboxCommon */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4D49D8FA294DD79F00987DE6 /* XCRemoteSwiftPackageReference "mapbox-common-ios" */;
-			productName = MapboxCommon;
 		};
 		4D49D906294DE32400987DE6 /* MapboxMaps */ = {
 			isa = XCSwiftPackageProductDependency;

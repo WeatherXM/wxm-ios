@@ -16,22 +16,27 @@ import Toolkit
 
 struct MapBoxMapView: UIViewControllerRepresentable {
     @EnvironmentObject var explorerViewModel: ExplorerViewModel
+	private var canellables: CancellableWrapper = .init()
 
     func makeUIViewController(context: Context) -> MapViewController {
         let mapViewController = explorerViewModel.mapController ?? MapViewController()
         mapViewController.delegate = context.coordinator
         explorerViewModel.mapController = mapViewController
+		observeSnapLocation()
+
         return mapViewController
     }
 
-    func updateUIViewController(_ mapViewController: MapViewController, context _: Context) {
-        if let location = explorerViewModel.locationToSnap {
-            mapViewController.snapToLocationCoordinates(location) {
-                // Reset `locationToSnap` to avoid snaps on every re-render
-                explorerViewModel.locationToSnap = nil
-            }
-        }
+	func observeSnapLocation() {
+		explorerViewModel.snapLocationPublisher.receive(on: DispatchQueue.main).sink { location in
+			guard let location else {
+				return
+			}
+			explorerViewModel.mapController?.snapToLocationCoordinates(location) {}
+		}.store(in: &canellables.cancellableSet)
+	}
 
+    func updateUIViewController(_ mapViewController: MapViewController, context _: Context) {
         if explorerViewModel.showUserLocation {
             mapViewController.showUserLocation()
         }
@@ -54,9 +59,12 @@ extension MapBoxMapView {
 
     class Coordinator: NSObject, MapViewControllerDelegate {
         func didTapAnnotation(_: MapViewController, _ annotations: [PolygonAnnotation]) {
-            guard let firstValidAnnotation = annotations.first else { return }
-            guard let hexIndex = firstValidAnnotation.userInfo?.keys.first else { return }
-            viewModel.routeToDeviceListFor(hexIndex, firstValidAnnotation.polygon.center)
+            guard let firstValidAnnotation = annotations.first,
+				  let hexIndex = firstValidAnnotation.userInfo?.keys.first else {
+				return
+			}
+            
+			viewModel.routeToDeviceListFor(hexIndex, firstValidAnnotation.polygon.center)
         }
 
         func didTapMapArea(_: MapViewController) {
@@ -77,11 +85,9 @@ extension MapBoxMapView {
             }
         }
 
-        let parent: MapBoxMapView
         let viewModel: ExplorerViewModel
 
         init(_ mapBoxMapView: MapBoxMapView, viewModel: ExplorerViewModel) {
-            parent = mapBoxMapView
             self.viewModel = viewModel
         }
     }
@@ -89,11 +95,11 @@ extension MapBoxMapView {
 
 class MapViewController: UIViewController {
     private static let SNAP_ANIMATION_DURATION: CGFloat = 1.4
-    private static let wxm_lat = 37.98075475244475
-    private static let wxm_lon = 23.710478235562956
+	private var cancelablesSet = Set<AnyCancelable>()
 
-    internal var mapView: MapView!
-    internal var layer = HeatmapLayer(id: "wtxm-heatmap-layer")
+	internal var mapView: MapView!
+	internal var layer = HeatmapLayer(id: MapBoxConstants.heatmapLayerId,
+									  source: MapBoxConstants.heatmapSource)
     internal weak var polygonManager: PolygonAnnotationManager?
 
     weak var delegate: MapViewControllerDelegate?
@@ -107,8 +113,7 @@ class MapViewController: UIViewController {
             return
         }
 
-        let myResourceOptions = ResourceOptions(accessToken: accessToken)
-        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, styleURI: StyleURI(rawValue: MapBoxConstants.mapBoxStyle))
+        let myMapInitOptions = MapInitOptions(styleURI: StyleURI(rawValue: MapBoxConstants.mapBoxStyle))
 
         mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
         mapView.ornaments.options.scaleBar.visibility = .hidden
@@ -117,10 +122,10 @@ class MapViewController: UIViewController {
         mapView.gestures.singleTapGestureRecognizer.addTarget(self, action: #selector(didTapMap(_:)))
 
         view.addSubview(mapView)
-        mapView.mapboxMap.onNext(.mapLoaded) { [weak self] _ in
+		mapView.mapboxMap.onMapLoaded.observeNext { [weak self] _ in
             guard let self = self else { return }
             self.cameraSetup()
-        }
+		}.store(in: &cancelablesSet)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -129,7 +134,6 @@ class MapViewController: UIViewController {
     }
 
     internal func configureHeatMapLayer(source: GeoJSONSource) {
-        layer.source = "wtxm-source"
         layer.maxZoom = 10
         layer.heatmapColor = .expression(
             Exp(.interpolate) {
@@ -190,21 +194,22 @@ class MapViewController: UIViewController {
             }
         )
         do {
-            try mapView.mapboxMap.style.addSource(source, id: "wtxm-source")
-            try mapView.mapboxMap.style.addLayer(layer)
+            try mapView.mapboxMap.addSource(source)
+            try mapView.mapboxMap.addLayer(layer)
         } catch {
             print(error)
         }
     }
 
     internal func configurePolygonLayer(polygonAnnotations: [PolygonAnnotation]) {
-        let polygonAnnotationManager = self.polygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: "wtxm-polygon-annotation-manager")
+		let polygonAnnotationManager = self.polygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.polygonManagerId)
         polygonAnnotationManager.annotations = polygonAnnotations
         polygonManager = polygonAnnotationManager
     }
 
     internal func cameraSetup() {
-        let centerCoordinate = CLLocationCoordinate2D(latitude: Self.wxm_lat, longitude: Self.wxm_lon)
+		let centerCoordinate = CLLocationCoordinate2D(latitude: MapBoxConstants.initialLat,
+													  longitude: MapBoxConstants.initialLon)
         let camera = CameraOptions(center: centerCoordinate, zoom: 1)
         mapView.mapboxMap.setCamera(to: camera)
     }
@@ -225,13 +230,13 @@ class MapViewController: UIViewController {
         let annotations = polygonManager.annotations
         let options = RenderedQueryOptions(layerIds: layerIds, filter: nil)
         let point = tap.location(in: tap.view)
-		mapView.mapboxMap.queryRenderedFeatures(in: CGRect(origin: point, size: CGSize.zero).insetBy(dx: -20.0, dy: -20.0), options: options) { result in
+		mapView.mapboxMap.queryRenderedFeatures(with: CGRect(origin: point, size: CGSize.zero).insetBy(dx: -20.0, dy: -20.0), options: options) { result in
 			switch result {
 				case let .success(queriedFeatures):
 					
 					// Get the identifiers of all the queried features
 					let queriedFeatureIds: [String] = queriedFeatures.compactMap {
-						guard case let .string(featureId) = $0.feature.identifier else {
+						guard case let .string(featureId) = $0.queriedFeature.feature.identifier else {
 							return nil
 						}
 						return featureId

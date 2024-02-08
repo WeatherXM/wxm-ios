@@ -26,7 +26,6 @@ struct ClaimDeviceLocationMapView: View {
                 MapBoxClaimDeviceView(
                     location: $viewModel.selectedCoordinates,
 					annotationTitle: Binding(get: { viewModel.selectedLocation?.name }, set: { _ in }),
-                    areLocationServicesAvailable: false,
                     geometryProxyForFrameOfMapView: geometry.frame(in: .global)
                 )
                 .onTapGesture {
