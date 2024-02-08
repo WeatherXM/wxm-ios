@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RewardAnnotation: Codable {
+public struct RewardAnnotation: Codable, Equatable, Hashable {
 	public let severity: Severity?
 	public let group: Group?
 	public let title: String?

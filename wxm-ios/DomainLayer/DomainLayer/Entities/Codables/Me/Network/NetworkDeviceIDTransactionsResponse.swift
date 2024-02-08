@@ -35,6 +35,7 @@ public struct Datum: Codable, Hashable {
     public var totalRewards: Double? = 0.0
 	public var timeline: DeviceRewardsTimeline?
 	public var annotations: DeviceAnnotations?
+	public var rewardAnnotations: [RewardAnnotation]?
     public init() {}
 
     enum CodingKeys: String, CodingKey {
@@ -46,6 +47,7 @@ public struct Datum: Codable, Hashable {
         case totalRewards = "total_rewards"
 		case annotations
 		case timeline
+		case rewardAnnotations = "reward_annotations"
     }
 
     public init(from decoder: Decoder) throws {
@@ -58,5 +60,6 @@ public struct Datum: Codable, Hashable {
         totalRewards = try? values.decode(Double.self, forKey: .totalRewards)
 		timeline = try? values.decode(DeviceRewardsTimeline.self, forKey: .timeline)
 		annotations = try? values.decodeIfPresent(DeviceAnnotations.self, forKey: .annotations)
+		rewardAnnotations = try? values.decodeIfPresent([RewardAnnotation].self, forKey: .rewardAnnotations)
     }
 }
