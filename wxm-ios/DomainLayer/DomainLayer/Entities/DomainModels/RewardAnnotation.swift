@@ -41,10 +41,10 @@ public struct RewardAnnotation: Codable, Equatable, Hashable {
 }
 
 public extension RewardAnnotation {
-	enum Severity: Codable {
-		case info
-		case warning
-		case error
+	enum Severity: String, Codable {
+		case info = "INFO"
+		case warning = "WARNING"
+		case error = "ERROR"
 	}
 
 	enum Group: String, Codable {

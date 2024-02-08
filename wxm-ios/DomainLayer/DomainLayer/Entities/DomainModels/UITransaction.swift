@@ -44,7 +44,6 @@ public class UITransactionBuilder {
     public private(set) var rewardScore: Int?
     public private(set) var dailyReward: Double?
     public private(set) var actualReward: Double?   
-	public private(set) var annotations: DeviceAnnotations?
 	public private(set) var datum: Datum?
 
     public func withFormattedDate(_ formattedDate: Date) -> Self {

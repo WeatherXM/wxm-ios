@@ -45,10 +45,6 @@ extension DeviceRewardsOverview {
 								   errorButtonTitle: errorButtonTitle)
 	}
 
-	var annotationsList: [DeviceAnnotation] {
-		annotations?.getAnnotationsList(for: rewardScore ?? 0) ?? []
-	}
-
 	var lostPercentage: Int {
 		100 - (rewardScore ?? 0)
 	}

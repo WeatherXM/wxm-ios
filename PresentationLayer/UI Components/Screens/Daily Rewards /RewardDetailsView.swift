@@ -138,7 +138,7 @@ private struct ContentView: View {
 private extension ContentView {
 	@ViewBuilder
 	func errorActionView(for error: RewardAnnotation) -> some View {
-		if let title = viewModel.annotationActionButtonTile(for: error.group) {
+		if let title = viewModel.annotationActionButtonTile(for: error) {
 			Button {
 				viewModel.handleButtonTap(for: error)
 			} label: {

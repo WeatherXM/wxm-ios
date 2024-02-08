@@ -36,18 +36,26 @@ class RewardDetailsViewModel: ObservableObject {
 		self.rewardsCardOverview = rewardsCardOverview
 	}
 
-	func annotationActionButtonTile(for type: RewardAnnotation.Group?) -> String? {
-		guard let type, followState?.relation == .owned else {
+	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {
+		guard let group = annotation?.group, followState?.relation == .owned else {
 			return nil
 		}
 
-		switch type {
+		switch group {
 			case .noWallet:
-				return "no wallet"
+				if MainScreenViewModel.shared.isWalletMissing {
+					return LocalizableString.RewardDetails.noWalletProblemButtonTitle.localized
+				} else if annotation?.docUrl != nil {
+					return LocalizableString.RewardDetails.readMore.localized
+				}
+				return nil
 			case .locationNotVerified:
-				return "not verified"
+				return LocalizableString.RewardDetails.editLocation.localized
 			case .unknown:
-				return LocalizableString.RewardDetails.readMore.localized
+				if annotation?.docUrl != nil {
+					return LocalizableString.RewardDetails.readMore.localized
+				}
+				return nil
 		}
 	}
 
@@ -98,9 +106,28 @@ private extension RewardDetailsViewModel {
 	}
 
 	func handleRewardAnnotation(annotation: RewardAnnotation) {
+		guard let group = annotation.group else {
+			return
+		}
 
+		switch group {
+			case .noWallet:
+				Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
+			case .locationNotVerified:
+				let viewModel = ViewModelsFactory.getSelectLocationViewModel(device: device,
+																			 followState: followState,
+																			 delegate: self)
+				Router.shared.navigateTo(.selectStationLocation(viewModel))
+			case .unknown:
+				if let docUrl = annotation.docUrl,
+				   let url = URL(string: docUrl) {
+					UIApplication.shared.open(url)
+				}
+		}
 	}
 
+	/// Temporary commented functionality
+	/*
 	func handleAnnotationType(annotation: DeviceAnnotation) {
 		guard let type = annotation.annotation else {
 			return
@@ -148,6 +175,7 @@ private extension RewardDetailsViewModel {
 				Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
 		}
 	}
+	*/
 
 	func openContactSupport(annotation: DeviceAnnotation? = nil) {
 		HelperFunctions().openContactSupport(successFailureEnum: .stationRewardsIssue,
