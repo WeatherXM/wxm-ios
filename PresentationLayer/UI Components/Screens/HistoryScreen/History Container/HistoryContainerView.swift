@@ -12,6 +12,7 @@ import DomainLayer
 struct HistoryContainerView: View {
     @StateObject var viewModel: HistoryContainerViewModel
     @State private var showCalendarPopOver: Bool = false
+	@State private var containerSize: CGSize = .zero
 
     var body: some View {
         NavigationContainerView {
@@ -19,6 +20,10 @@ struct HistoryContainerView: View {
         } content: {
             HistoryPagerView(viewModel: viewModel)
         }
+		.sizeObserver(size: $containerSize)
+		.onChange(of: containerSize) { _ in
+			showCalendarPopOver = false
+		}
     }
 
     @ViewBuilder
@@ -31,27 +36,40 @@ struct HistoryContainerView: View {
                 .foregroundColor(Color(colorEnum: .primary))
                 .frame(width: 30.0, height: 30.0)
         }
-        .bottomSheet(show: $showCalendarPopOver) { [weak viewModel] in
-            DatePicker("",
-                       selection: Binding(get: { [weak viewModel] in
-                viewModel?.currentDate ?? .now
-            },
-                                          set: { [weak viewModel] value in
-                guard let fixedDate = viewModel?.historyDates.getFixedDate(from: value) else {
-                    return
-                }
+		.modify { [weak viewModel] btn in
+			let picker = DatePicker("",
+								  selection: Binding(get: { [weak viewModel] in
+				viewModel?.currentDate ?? .now
+			},
+													 set: { [weak viewModel] value in
+				guard let fixedDate = viewModel?.historyDates.getFixedDate(from: value) else {
+					return
+				}
 
-                showCalendarPopOver = false
+				showCalendarPopOver = false
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    viewModel?.currentDate = fixedDate
-                }
-            }),
-                       in: viewModel!.historyDates.range,
-                       displayedComponents: [.date])
-            .datePickerStyle(.graphical)
-            .labelsHidden()
-        }
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+					viewModel?.currentDate = fixedDate
+				}
+			}),
+								  in: viewModel!.historyDates.range,
+								  displayedComponents: [.date])
+				.datePickerStyle(.graphical)
+				.labelsHidden()
+
+			if containerSize.width >= iPadElementMaxWidth {
+				btn.wxmPopOver(show: $showCalendarPopOver) {
+					HStack {
+						picker
+					}
+					.frame(width: 450.0)
+				}
+			} else {
+				btn.bottomSheet(show: $showCalendarPopOver) {
+					picker
+				}
+			}
+		}
     }
 }
 
@@ -114,19 +132,26 @@ private struct HistoryPagerView: View {
 private extension HistoryPagerView {
     @ViewBuilder
     var dateCarousel: some View {
-        ScrollingPickerView(selectedIndex: Binding(get: {
-            guard let index = viewModel.historyDates.getIndexOfDate(viewModel.currentDate) else {
-                return 0
-            }
-            return viewModel.historyDates.distance(from: viewModel.historyDates.startIndex, to: index)
-        }, set: { value in
-            let date = viewModel.historyDates[.inRange(value)]
-            viewModel.currentDate = date
-        }), textCallback: { index in
-            viewModel.historyDates[.inRange(index)].getDateStringRepresentation()
-        }, countCallback: {
-            viewModel.historyDates.count
-        })
+		HStack {
+			Spacer(minLength: 0.0)
+
+			ScrollingPickerView(selectedIndex: Binding(get: {
+				guard let index = viewModel.historyDates.getIndexOfDate(viewModel.currentDate) else {
+					return 0
+				}
+				return viewModel.historyDates.distance(from: viewModel.historyDates.startIndex, to: index)
+			}, set: { value in
+				let date = viewModel.historyDates[.inRange(value)]
+				viewModel.currentDate = date
+			}), textCallback: { index in
+				viewModel.historyDates[.inRange(index)].getDateStringRepresentation()
+			}, countCallback: {
+				viewModel.historyDates.count
+			})
+			.iPadMaxWidth()
+
+			Spacer(minLength: 0.0)
+		}
         .background {
             Color(colorEnum: .top)
         }

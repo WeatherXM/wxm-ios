@@ -49,14 +49,16 @@ struct StepsNavView: View {
 
     var body: some View {
         GeometryReader { _ in
-			VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
+			VStack(spacing: CGFloat(.minimumSpacing)) {
                 customNavbar
 
                 StepsHeaderView(steps: steps,
                                 currentStep: currentStep)
+				.iPadMaxWidth()
                     .animation(.easeInOut(duration: 0.2), value: currentStep)
 
                 currentView
+					.iPadMaxWidth()
                     .transition(AnyTransition.asymmetric(
                         insertion: .move(edge: isMovingForward ? .trailing : .leading),
                         removal: .move(edge: isMovingForward ? .leading : .trailing)

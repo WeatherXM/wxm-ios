@@ -37,8 +37,9 @@ public struct ExplorerRepositoryImpl: ExplorerRepository {
     }
 
     public func getPublicDevicesOfHex(index: String) throws -> AnyPublisher<DataResponse<[PublicDevice], NetworkErrorResponse>, Never> {
-        let urlRequest = try CellRequestBuilder.getCellsDevices(index: index).asURLRequest()
-        return ApiClient.shared.requestCodable(urlRequest)
+		let builder = CellRequestBuilder.getCellsDevices(index: index)
+        let urlRequest = try builder.asURLRequest()
+		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
     }
 
     public func getPublicDevice(index: String, deviceId: String) throws -> AnyPublisher<DataResponse<PublicDevice, NetworkErrorResponse>, Never> {

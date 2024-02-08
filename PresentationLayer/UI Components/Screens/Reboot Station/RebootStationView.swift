@@ -40,6 +40,7 @@ struct RebootStationView: View {
 
                     Spacer()
                 }
+				.iPadMaxWidth()
                 .animation(.easeIn, value: viewModel.state)
 
                 Spacer()

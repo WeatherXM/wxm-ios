@@ -13,7 +13,7 @@ import UIKit
 
 class DeviceInfoViewModel: ObservableObject {
 
-    let offestObject = TrackableScrollOffsetObject()
+	let offestObject = TrackableScrollOffsetObject()
 	let mainVM: MainScreenViewModel = .shared
     var sections: [[DeviceInfoRowView.Row]] {
         var fields: [[Field]] = []
@@ -86,11 +86,20 @@ class DeviceInfoViewModel: ObservableObject {
         return infoRows
     }
 
+	@Published var showShareDialog: Bool = false
+	private(set) var shareDialogText: String = ""
     @Published var isLoading: Bool = true
     @Published var isFailed: Bool = false
     var failObj: FailSuccessStateObject?
     @Published private(set) var device: DeviceDetails
-    @Published private(set) var deviceInfo: NetworkDevicesInfoResponse?
+	@Published private(set) var deviceInfo: NetworkDevicesInfoResponse? {
+		didSet {
+			shareDialogText = InfoField.getShareText(for: device,
+													 deviceInfo: deviceInfo,
+													 mainVM: mainVM,
+													 followState: followState)
+		}
+	}
     let followState: UserDeviceFollowState?
     @Published var showRebootStation = false
     var rebootStationViewModel: RebootStationViewModel {
@@ -130,8 +139,8 @@ class DeviceInfoViewModel: ObservableObject {
     }
 
     func handleShareButtonTap() {
-        let text = InfoField.getShareText(for: device, deviceInfo: deviceInfo, mainVM: mainVM, followState: followState)
-        ShareHelper().showShareDialog(text: text)
+        shareDialogText = InfoField.getShareText(for: device, deviceInfo: deviceInfo, mainVM: mainVM, followState: followState)
+		showShareDialog = true
 
         Logger.shared.trackEvent(.userAction, parameters: [.actionName: .shareStationInfo,
                                                            .contentType: .stationInfo,

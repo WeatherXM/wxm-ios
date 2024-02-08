@@ -42,7 +42,13 @@ public class OverlayAnimator: NSObject, UIViewControllerAnimatedTransitioning, U
                 toVC.view.alpha = 0.0
 
                 toVC.view.frame = containerView.bounds
+				toVC.view.translatesAutoresizingMaskIntoConstraints = false
                 containerView.addSubview(toVC.view)
+				toVC.view.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+				toVC.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+				toVC.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+				toVC.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
+
 
                 UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseIn) {
                     toVC.view.alpha = 1.0

@@ -11,6 +11,8 @@ import Toolkit
 struct StationInfoView: View {
     let rows: [Row]
     var contactSupportTitle: String = LocalizableString.contactSupport.localized
+	@Binding var showShare: Bool
+	let shareText: String
     let shareAction: () -> Void
     let contactSupportAction: () -> Void
 
@@ -34,6 +36,7 @@ struct StationInfoView: View {
                     }
                 }
                 .buttonStyle(.plain)
+				.wxmShareDialog(show: $showShare, text: shareText)
 
             }
 
@@ -127,6 +130,8 @@ struct StationInfoView_Previews: PreviewProvider {
                                                    buttonIcon: nil,
                                                    buttonTitle: nil,
 												   buttonStyle: .filled()) {}],
+						showShare: .constant(false),
+						shareText: "",
                         shareAction: {},
                         contactSupportAction: {})
         .padding()

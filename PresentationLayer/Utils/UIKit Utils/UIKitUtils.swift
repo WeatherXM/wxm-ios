@@ -8,14 +8,6 @@
 import UIKit
 import Toolkit
 
-struct ShareHelper {
-    func showShareDialog(text: String) {
-        let items = [text]
-        let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        UIApplication.shared.rootViewController?.present(activityController, animated: true)
-    }
-}
-
 extension UIApplication {
 
     var currentKeyWindow: UIWindow? {

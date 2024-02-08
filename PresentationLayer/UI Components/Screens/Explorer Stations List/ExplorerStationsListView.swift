@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Toolkit
+import MapKit
 
 struct ExplorerStationsListView: View {
     @StateObject var viewModel: ExplorerStationsListViewModel
@@ -19,16 +20,16 @@ struct ExplorerStationsListView: View {
 
             VStack {
                 TrackableScrollView {
-                    VStack {
-                        ForEach(viewModel.devices) { device in
-                            WeatherStationCard(device: device,
-                                               followState: viewModel.getFollowState(for: device),
-                                               followAction: { viewModel.followButtonTapped(device: device) })
-                                .onTapGesture {
-                                    viewModel.navigateToDeviceDetails(device)
-                                }
-                        }
-                    }
+					AdaptiveGridContainerView {
+						ForEach(viewModel.devices) { device in
+							WeatherStationCard(device: device,
+											   followState: viewModel.getFollowState(for: device),
+											   followAction: { viewModel.followButtonTapped(device: device) })
+							.onTapGesture {
+								viewModel.navigateToDeviceDetails(device)
+							}
+						}
+					}
                     .padding(CGFloat(.defaultSpacing))
                 }
                 .spinningLoader(show: $viewModel.isLoadingDeviceList, hideContent: true)
@@ -65,4 +66,11 @@ struct ExplorerStationsListView: View {
             navigationObject.subtitle = newValue ?? ""
         }
     }
+}
+
+#Preview {
+	let vm = ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: "", cellCenter: CLLocationCoordinate2D())
+	return NavigationContainerView {
+		ExplorerStationsListView(viewModel: vm)
+	}
 }

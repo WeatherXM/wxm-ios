@@ -18,6 +18,7 @@ struct RegisterView: View {
                 registerFlow
             }
             .WXMCardStyle()
+			.iPadMaxWidth()
             .padding(.top, CGFloat(.largeSidePadding))
             .padding(.bottom, CGFloat(.defaultSidePadding))
             .padding(.horizontal, CGFloat(.defaultSidePadding))

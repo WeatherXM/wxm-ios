@@ -32,6 +32,7 @@ struct StationDetailsContainerView: View {
                     .foregroundColor(Color(colorEnum: .primary))
                     .frame(width: 30.0, height: 30.0)
             }
+			.wxmShareDialog(show: $viewModel.showShareDialog, text: viewModel.shareDialogText ?? "")
 
             if viewModel.followState != nil {
                 Button {
@@ -190,6 +191,7 @@ private struct StationDetailsView: View {
                 CustomSegmentView(options: StationDetailsViewModel.Tab.allCases.map { $0.description },
                                   selectedIndex: $selectedIndex,
                                   style: .plain)
+				.iPadMaxWidth()
             }
         } else {
             EmptyView()

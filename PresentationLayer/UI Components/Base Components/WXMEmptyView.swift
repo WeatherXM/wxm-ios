@@ -118,6 +118,13 @@ private struct WXMEmptyViewModifier: ViewModifier {
             .overlay {
                 if show {
                     WXMEmptyView(configuration: conf)
+						.modify { view in
+							#if MAIN_APP
+							view.iPadMaxWidth()
+							#else
+							view
+							#endif
+						}
                         .padding()
                 }
             }

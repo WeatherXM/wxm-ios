@@ -38,6 +38,7 @@ struct StationForecastView: View {
                             .wxmShadow()
                         }
                     }
+					.iPadMaxWidth()
                     .padding()
                 }
             }

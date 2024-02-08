@@ -21,6 +21,7 @@ struct HistoryView: View {
                 if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
                     ChartsContainer(historyData: historyData, delegate: viewModel.chartDelegate)
                         .id(historyData.markDate)
+						.iPadMaxWidth()
                         .padding(.top)
                 }
             }

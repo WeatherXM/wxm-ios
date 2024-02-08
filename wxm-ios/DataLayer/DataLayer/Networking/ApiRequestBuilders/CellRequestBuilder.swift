@@ -73,3 +73,14 @@ enum CellRequestBuilder: URLRequestConvertible {
         }
     }
 }
+
+extension CellRequestBuilder: MockResponseBuilder {
+	var mockFileName: String? {
+		switch self {
+			case .getCellsDevices:
+				return "get_cell_devices"
+			default:
+				return nil
+		}
+	}
+}

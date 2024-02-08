@@ -129,14 +129,21 @@ class MapViewLocationController: UIViewController {
             cameraOptions: cameraOptions
         )
 
-        mapView = MapView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height), mapInitOptions: myMapInitOptions)
+		mapView = MapView(frame: .zero, mapInitOptions: myMapInitOptions)
         mapView.ornaments.options.logo.margins.y = 30
         mapView.ornaments.options.attributionButton.margins.y = 30
         mapView.ornaments.options.scaleBar.visibility = .hidden
         mapView.gestures.options.rotateEnabled = false
         mapView.gestures.options.pitchEnabled = false
 		mapView.mapboxMap.setCamera(to: CameraOptions(zoom: 2))
-        view.addSubview(mapView)
+		
+		mapView.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(mapView)
+
+		mapView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+		mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+		mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+		mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
 
 		mapView.mapboxMap.onMapLoaded.observeNext { [weak self] _ in
 			guard let self else {

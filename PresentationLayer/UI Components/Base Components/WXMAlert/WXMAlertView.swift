@@ -44,6 +44,7 @@ struct WXMAlertView<V: View>: View {
                     Spacer()
 
                     alertView
+						.iPadMaxWidth()
                         .frame(width: 0.8 * proxy.size.width)
 
                     Spacer()

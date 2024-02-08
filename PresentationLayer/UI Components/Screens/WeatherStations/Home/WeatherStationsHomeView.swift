@@ -145,7 +145,7 @@ private struct ContentView: View {
 
     @ViewBuilder
     func weatherStationsList(devices: [DeviceDetails]) -> some View {
-        VStack(spacing: CGFloat(.defaultSpacing)) {
+		AdaptiveGridContainerView {
             ForEach(devices) { device in
                 WeatherStationCard(device: device, followState: viewModel.getFollowState(for: device)) {
                     mainVM.showFirmwareUpdate(device: device)

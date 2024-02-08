@@ -57,6 +57,7 @@ struct SelectStationLocationView: View {
 				hideKeyboard()
 			}
 			.ignoresSafeArea(.keyboard, edges: .bottom)
+			.iPadMaxWidth()
 		}
 		.onAppear {
 			navigationObject.title = LocalizableString.SelectStationLocation.title.localized

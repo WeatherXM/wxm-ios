@@ -40,6 +40,7 @@ struct StationRewardsView: View {
 						}
 						.animation(.easeIn, value: viewModel.selectedIndex)
 					}
+					.iPadMaxWidth()
 					.padding()
 					.padding(.bottom, proxy.size.height / 2.0) // Quick fix for better experience while expanding/collapsing the containers's header
 					#warning("TODO: Find a better solution")

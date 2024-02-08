@@ -49,6 +49,7 @@ struct HeliumClaimingStatusView: View {
 			}
 		}
 		.WXMCardStyle()
+		.iPadMaxWidth()
 		.padding(CGFloat(.defaultSidePadding))
 		.onChange(of: viewModel.claimState) { newValue in
 			updateSteps(for: newValue)

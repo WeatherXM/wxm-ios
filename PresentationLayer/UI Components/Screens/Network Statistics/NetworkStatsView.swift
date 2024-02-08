@@ -20,6 +20,7 @@ struct NetworkStatsView: View {
                 .ignoresSafeArea()
 
             contentView
+				.iPadMaxWidth()
                 .spinningLoader(show: Binding(get: { viewModel.state == .loading }, set: { _ in }), hideContent: true)
                 .wxmEmptyView(show: Binding(get: { viewModel.state == .empty }, set: { _ in }),
                               configuration: .init(title: LocalizableString.NetStats.emptyTitle.localized.uppercased(),

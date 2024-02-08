@@ -40,7 +40,9 @@ struct DeviceInfoView: View {
                         }
 
                         StationInfoView(rows: viewModel.infoRows,
-                                        contactSupportTitle: viewModel.contactSupportButtonTitle) {
+                                        contactSupportTitle: viewModel.contactSupportButtonTitle,
+										showShare: $viewModel.showShareDialog,
+										shareText: viewModel.shareDialogText) {
                             viewModel.handleShareButtonTap()
                         } contactSupportAction: {
                             viewModel.handleContactSupportButtonTap()
@@ -62,6 +64,7 @@ struct DeviceInfoView: View {
 							.wxmShadow()
 						}
                     }
+					.iPadMaxWidth()
                     .padding(CGFloat(.defaultSidePadding))
                 }
             }
