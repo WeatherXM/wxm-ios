@@ -33,7 +33,8 @@ public struct RewardAnnotation: Codable, Equatable, Hashable {
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.severity = try container.decodeIfPresent(RewardAnnotation.Severity.self, forKey: .severity)
-		self.group = (try? container.decodeIfPresent(RewardAnnotation.Group.self, forKey: .group)) ?? .unknown
+
+		self.group = try container.decodeIfPresent(RewardAnnotation.Group.self, forKey: .group)
 		self.title = try container.decodeIfPresent(String.self, forKey: .title)
 		self.message = try container.decodeIfPresent(String.self, forKey: .message)
 		self.docUrl = try container.decodeIfPresent(String.self, forKey: .docUrl)
@@ -47,9 +48,31 @@ public extension RewardAnnotation {
 		case error = "ERROR"
 	}
 
-	enum Group: String, Codable {
-		case noWallet = "NO_WALLET"
-		case locationNotVerified = "LOCATION_NOT_VERIFIED"
-		case unknown
+	enum Group: Codable, Equatable, Hashable, RawRepresentable {
+		public init?(rawValue: String) {
+			switch rawValue {
+				case "NO_WALLET":
+					self = .noWallet
+				case "LOCATION_NOT_VERIFIED":
+					self = .locationNotVerified
+				default:
+					self = .unknown(rawValue)
+			}
+		}
+		
+		case noWallet
+		case locationNotVerified
+		case unknown(String)
+
+		public var rawValue: String {
+			switch self {
+				case .noWallet:
+					"NO_WALLET"
+				case .locationNotVerified:
+					"LOCATION_NOT_VERIFIED"
+				case .unknown(let value):
+					value
+			}
+		}
 	}
 }

@@ -112,7 +112,12 @@ private extension RewardDetailsViewModel {
 
 		switch group {
 			case .noWallet:
-				Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
+				if MainScreenViewModel.shared.isWalletMissing {
+					Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))					
+				} else if let docUrl = annotation.docUrl,
+				   let url = URL(string: docUrl) {
+					UIApplication.shared.open(url)
+				}
 			case .locationNotVerified:
 				let viewModel = ViewModelsFactory.getSelectLocationViewModel(device: device,
 																			 followState: followState,
