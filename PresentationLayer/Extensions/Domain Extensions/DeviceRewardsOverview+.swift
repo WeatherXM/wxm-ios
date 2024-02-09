@@ -15,6 +15,34 @@ extension RewardAnnotation: Identifiable {
 	}
 }
 
+extension RewardAnnotation.Severity: Comparable {
+	public static func < (lhs: RewardAnnotation.Severity, rhs: RewardAnnotation.Severity) -> Bool {
+		lhs.sortOrder < rhs.sortOrder
+	}
+
+	private var sortOrder: Int {
+		switch self {
+			case .info:
+				2
+			case .warning:
+				1
+			case .error:
+				0
+		}
+	}
+
+	var toCardWarningType: CardWarningType {
+		switch self {
+			case .info:
+				CardWarningType.info
+			case .warning:
+				CardWarningType.warning
+			case .error:
+				CardWarningType.error
+		}
+	}
+}
+
 extension DeviceAnnotations {
 	func getAnnotationsList(for rewardScore: Int) -> [DeviceAnnotation] {
 		var showQod = true
@@ -38,7 +66,7 @@ extension DeviceRewardsOverview {
 								   lostAmount: lostAmount,
 								   rewardScore: rewardScore,
 								   maxRewards: periodMaxReward,
-								   annnotationsList: rewardAnnotations ?? [],
+								   annnotationsList: annotationSummary?.sorted { ($0.severity ?? .info) < ($1.severity ?? .info) } ?? [],
 								   timelineEntries: timeline?.rewardScores,
 								   timelineAxis: timelineAxis,
 								   timelineCaption: timelineCaption,

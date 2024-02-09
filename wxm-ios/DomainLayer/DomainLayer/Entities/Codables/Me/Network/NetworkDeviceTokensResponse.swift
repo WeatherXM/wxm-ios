@@ -31,7 +31,7 @@ public struct DeviceRewardsOverview: Codable {
 	public let periodMaxReward: Double?
 	public let actualReward: Double?
 	public let timeline: DeviceRewardsTimeline?
-	public let rewardAnnotations: [RewardAnnotation]?
+	public let annotationSummary: [RewardAnnotation]?
 
 	enum CodingKeys: String, CodingKey {
 		case lostRewards = "lost_rewards"
@@ -43,7 +43,7 @@ public struct DeviceRewardsOverview: Codable {
 		case periodMaxReward = "period_max_reward"
 		case actualReward = "actual_reward"
 		case timeline
-		case rewardAnnotations = "reward_annotations"
+		case annotationSummary = "annotation_summary"
 	}
 
 	init(lostRewards: Double?,
@@ -66,7 +66,7 @@ public struct DeviceRewardsOverview: Codable {
 		self.periodMaxReward = periodMaxReward
 		self.actualReward = actualReward
 		self.timeline = timeline
-		self.rewardAnnotations = rewardAnnotations
+		self.annotationSummary = rewardAnnotations
 	}
 
 	public init(datum: Datum) {
@@ -80,7 +80,7 @@ public struct DeviceRewardsOverview: Codable {
 				  actualReward: datum.actualReward,
 				  timeline: datum.timeline,
 				  errors: datum.annotations,
-				  rewardAnnotations: datum.rewardAnnotations)
+				  rewardAnnotations: datum.annotationSummary)
 	}
 }
 

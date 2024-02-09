@@ -67,18 +67,25 @@
 
 	  ]
 	},
-	"reward_annotations" : [
+	"annotation_summary" : [
 		{
-			"severity" : "WARNING",
-			"group" : "NO_WALLET",
-			"title" : "This is a title",
+			"severity_level" : "INFO",
+			"group" : "SENSOR_PROBLEMS",
+			"title" : "This is a sensor problems title",
 			"message" : "This is a message",
 			"doc_url" : "https://docs.weatherxm.com/faqs"
 		},
 		{
-			"severity" : "ERROR",
+			"severity_level" : "WARNING",
+			"group" : "NO_WALLET",
+			"title" : "This is a wallet title",
+			"message" : "This is a message",
+			"doc_url" : "https://docs.weatherxm.com/faqs"
+		},
+		{
+			"severity_level" : "ERROR",
 			"group" : "NO_DATA",
-			"title" : "This is a data title",
+			"title" : "This is a no data title",
 			"message" : "This is a message",
 			"doc_url" : "https://docs.weatherxm.com/faqs"
 		}

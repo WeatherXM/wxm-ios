@@ -15,7 +15,7 @@ public struct RewardAnnotation: Codable, Equatable, Hashable {
 	public let docUrl: String?
 
 	enum CodingKeys: String, CodingKey {
-		case severity
+		case severity = "severity_level"
 		case group
 		case title
 		case message

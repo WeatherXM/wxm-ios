@@ -122,7 +122,7 @@ private struct ContentView: View {
 			}
 
 			ForEach(viewModel.rewardsCardOverview.annnotationsList) { error in
-				CardWarningView(type: viewModel.rewardsCardOverview.lostAmountData.cardWarningType,
+				CardWarningView(type: error.severity?.toCardWarningType ?? .info,
 								title: error.title,
 								message: error.message ?? "",
 								showContentFullWidth: true,
