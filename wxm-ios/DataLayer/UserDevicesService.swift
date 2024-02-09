@@ -40,6 +40,10 @@ public class UserDevicesService {
         NotificationCenter.default.removeObserver(self)
     }
 
+	func getCachedDevices() -> [NetworkDevicesResponse]? {
+		userDevicesCache.getCachedValue(for: userDevicesCacheKey)
+	}
+
 	func getDevices(useCache: Bool) throws -> AnyPublisher<DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>, Never> {
 		if useCache, let cachedDevices = userDevicesCache.getValue(for: userDevicesCacheKey) {
 			return Just(DataResponse(request: nil,
