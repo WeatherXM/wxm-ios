@@ -32,12 +32,12 @@ struct SelectStationLocationView: View {
 				}
 
 				VStack(spacing: CGFloat(.defaultSpacing)) {
-					acknowledgementView
-
 					CardWarningView(message: LocalizableString.SelectStationLocation.warningText(DisplayedLinks.polAlgorithm.linkURL).localized,
 									closeAction: nil,
 									content: { EmptyView() })
 
+					acknowledgementView
+					
 					Button {
 						viewModel.handleConfirmTap()
 					} label: {
