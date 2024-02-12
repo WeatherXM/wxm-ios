@@ -14,6 +14,9 @@ extension LocalizableString {
 		case termsText
 		case warningText(String)
 		case buttonTitle
+		case successTitle
+		case successDescription
+		case successButtonTitle
 	}
 }
 
@@ -41,6 +44,12 @@ extension LocalizableString.SelectStationLocation: WXMLocalizable {
 				return "select_station_location_warning_text_format"
 			case .buttonTitle:
 				return "select_station_location_button_title"
+			case .successTitle:
+				return "select_station_success_title"
+			case .successDescription:
+				return "select_station_success_description"
+			case .successButtonTitle:
+				return "select_station_success_button_title"
 		}
 	}
 }

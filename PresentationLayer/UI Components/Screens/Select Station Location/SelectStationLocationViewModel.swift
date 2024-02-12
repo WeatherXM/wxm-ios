@@ -24,6 +24,8 @@ class SelectStationLocationViewModel: ObservableObject {
 	@Published var searchTerm: String = ""
 	@Published private(set) var selectedDeviceLocation: DeviceLocation?
 	@Published private(set) var searchResults: [DeviceLocationSearchResult] = []
+	@Published var isSuccessful: Bool = false
+	private(set) var successObj: FailSuccessStateObject = .emptyObj
 
 	private var latestTask: Cancellable?
 	private var cancellableSet: Set<AnyCancellable> = .init()
@@ -120,7 +122,7 @@ private extension SelectStationLocationViewModel {
 					switch reslut {
 						case .success(let device):
 							self?.delegate?.locationUpdated(with: device)
-							Router.shared.pop()
+							self?.showSuccess()
 						case .failure(let error):
 							let info = error.uiInfo
 							if let message = info.description?.attributedMarkdown {
@@ -132,6 +134,22 @@ private extension SelectStationLocationViewModel {
 		} catch {
 			print(error)
 		}
+	}
+
+	func showSuccess() {
+		let obj = FailSuccessStateObject(type: .editLocation, 
+										 title: LocalizableString.SelectStationLocation.successTitle.localized,
+										 subtitle: LocalizableString.SelectStationLocation.successDescription.localized.attributedMarkdown,
+										 cancelTitle: nil,
+										 retryTitle: LocalizableString.SelectStationLocation.successButtonTitle.localized,
+										 actionButtonsAtTheBottom: true,
+										 contactSupportAction: nil,
+										 cancelAction: nil) {
+			Router.shared.pop()
+		}
+
+		successObj = obj
+		isSuccessful = true
 	}
 }
 

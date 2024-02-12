@@ -42,4 +42,15 @@ extension FailSuccessStateObject {
 									  cancelAction: nil,
 									  retryAction: {})
     }
+
+	static var emptyObj: FailSuccessStateObject {
+		FailSuccessStateObject(type: .noView,
+							   title: "",
+							   subtitle: nil,
+							   cancelTitle: nil,
+							   retryTitle: nil,
+							   contactSupportAction: nil,
+							   cancelAction: nil,
+							   retryAction: nil)
+	}
 }

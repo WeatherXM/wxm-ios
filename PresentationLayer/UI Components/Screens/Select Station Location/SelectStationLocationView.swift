@@ -20,39 +20,44 @@ struct SelectStationLocationView: View {
 				.ignoresSafeArea()
 
 			VStack(spacing: 0.0) {
-				GeometryReader { proxy in
-					ZStack {
-						MapBoxClaimDeviceView(location: $viewModel.selectedCoordinate,
-											  annotationTitle: Binding(get: { viewModel.selectedDeviceLocation?.name }, set: { _ in }),
-											  geometryProxyForFrameOfMapView: proxy.frame(in: .local))
-						.cornerRadius(CGFloat(.cardCornerRadius), corners: [.topLeft, .topRight])
+				VStack(spacing: 0.0) {
+					GeometryReader { proxy in
+						ZStack {
+							MapBoxClaimDeviceView(location: $viewModel.selectedCoordinate,
+												  annotationTitle: Binding(get: { viewModel.selectedDeviceLocation?.name }, set: { _ in }),
+												  geometryProxyForFrameOfMapView: proxy.frame(in: .local))
+							.cornerRadius(CGFloat(.cardCornerRadius), corners: [.topLeft, .topRight])
 
-						searchArea
+							searchArea
+						}
 					}
-				}
 
-				VStack(spacing: CGFloat(.defaultSpacing)) {
-					CardWarningView(message: LocalizableString.SelectStationLocation.warningText(DisplayedLinks.polAlgorithm.linkURL).localized,
-									closeAction: nil,
-									content: { EmptyView() })
+					VStack(spacing: CGFloat(.defaultSpacing)) {
+						CardWarningView(message: LocalizableString.SelectStationLocation.warningText(DisplayedLinks.polAlgorithm.linkURL).localized,
+										closeAction: nil,
+										content: { EmptyView() })
 
-					acknowledgementView
-					
-					Button {
-						viewModel.handleConfirmTap()
-					} label: {
-						Text(LocalizableString.SelectStationLocation.buttonTitle.localized)
+						acknowledgementView
+
+						Button {
+							viewModel.handleConfirmTap()
+						} label: {
+							Text(LocalizableString.SelectStationLocation.buttonTitle.localized)
+						}
+						.buttonStyle(WXMButtonStyle.filled())
+						.disabled(!viewModel.termsAccepted)
 					}
-					.buttonStyle(WXMButtonStyle.filled())
-					.disabled(!viewModel.termsAccepted)
+					.WXMCardStyle(cornerRadius: 0.0)
+					.cornerRadius(CGFloat(.cardCornerRadius), corners: [.bottomLeft, .bottomRight])
 				}
-				.WXMCardStyle(cornerRadius: 0.0)
-				.cornerRadius(CGFloat(.cardCornerRadius), corners: [.bottomLeft, .bottomRight])
+				.success(show: $viewModel.isSuccessful, obj: viewModel.successObj)
 			}
 			.padding(.horizontal, CGFloat(.defaultSidePadding))
 			.padding(.bottom, CGFloat(.defaultSidePadding))
 			.cornerRadius(CGFloat(.cardCornerRadius), corners: [.topLeft, .topRight])
-			.wxmShadow()
+			.if(!viewModel.isSuccessful) { view in
+				view.wxmShadow()
+			}
 			.onTapGesture {
 				hideKeyboard()
 			}
