@@ -25,6 +25,7 @@
 		261E9EB529A92B9400E8EBA3 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EB429A92B9400E8EBA3 /* MapboxMaps */; };
 		261E9EB829A92BE000E8EBA3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EB729A92BE000E8EBA3 /* Alamofire */; };
 		261E9EBB29A92C4200E8EBA3 /* Turf in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EBA29A92C4200E8EBA3 /* Turf */; };
+		26216A4B2B7E1A510076ACCA /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26216A4A2B7E1A510076ACCA /* LazyLoadingPager */; };
 		2623E2232A6FC29100E3E306 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623E2222A6FC29100E3E306 /* RouterView.swift */; };
 		2623FF8E2AF13CC700BCDAC6 /* StationRewardsOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623FF8D2AF13CC700BCDAC6 /* StationRewardsOverviewView.swift */; };
 		2623FF912AF147A800BCDAC6 /* RewardDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */; };
@@ -74,7 +75,6 @@
 		2655F1822AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
 		265D2CD829D194070044D032 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D2CD729D194070044D032 /* Common.swift */; };
 		265D2CE429D2DEB80044D032 /* NetworkDevicesInfoResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D2CE329D2DEB70044D032 /* NetworkDevicesInfoResponse+.swift */; };
-		265D7CE52AB1A87100782606 /* LazyLoadingPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D7CE42AB1A87100782606 /* LazyLoadingPagerView.swift */; };
 		265D7CE72AB1CA5D00782606 /* DateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D7CE62AB1CA5D00782606 /* DateRange.swift */; };
 		2661059E2AE006A9000E4712 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2661059D2AE006A9000E4712 /* Launch Screen.storyboard */; };
 		266105A72AE023CC000E4712 /* DeviceDetails+Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266105A62AE023CC000E4712 /* DeviceDetails+Widget.swift */; };
@@ -561,7 +561,6 @@
 		2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
 		265D2CD729D194070044D032 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		265D2CE329D2DEB70044D032 /* NetworkDevicesInfoResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDevicesInfoResponse+.swift"; sourceTree = "<group>"; };
-		265D7CE42AB1A87100782606 /* LazyLoadingPagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyLoadingPagerView.swift; sourceTree = "<group>"; };
 		265D7CE62AB1CA5D00782606 /* DateRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRange.swift; sourceTree = "<group>"; };
 		2660FF762AB9CD2500AB4F59 /* sort_all_projects.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sort_all_projects.sh; sourceTree = "<group>"; };
 		2661059D2AE006A9000E4712 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -913,6 +912,7 @@
 				B5799E9F28254E3300FEBB85 /* DataLayer.framework in Frameworks */,
 				B5799E9D28254E3000FEBB85 /* DomainLayer.framework in Frameworks */,
 				263B8B552B29FE34001C5060 /* MapboxStatic in Frameworks */,
+				26216A4B2B7E1A510076ACCA /* LazyLoadingPager in Frameworks */,
 				261E9EB029A9296900E8EBA3 /* IQKeyboardManagerSwift in Frameworks */,
 				262A0DFD29DC1823005B14A2 /* Lottie in Frameworks */,
 				261E9EB529A92B9400E8EBA3 /* MapboxMaps in Frameworks */,
@@ -1140,14 +1140,6 @@
 				B5F9ED642860BA76000B6392 /* GoogleService-Info.plist */,
 			);
 			path = Release;
-			sourceTree = "<group>";
-		};
-		265D7CE32AB1A84F00782606 /* Lazy Loading Pager */ = {
-			isa = PBXGroup;
-			children = (
-				265D7CE42AB1A87100782606 /* LazyLoadingPagerView.swift */,
-			);
-			path = "Lazy Loading Pager";
 			sourceTree = "<group>";
 		};
 		266105A52AE023B2000E4712 /* Extenstions */ = {
@@ -1481,7 +1473,6 @@
 				262A4CEE2A935C9A00A4BC17 /* Base Text Field */,
 				2664831629C31AF400748F9C /* Custom Sheet */,
 				26A4118829BA218D00A2C10B /* Fail Success  */,
-				265D7CE32AB1A84F00782606 /* Lazy Loading Pager */,
 				2675476929A9181E008BCF40 /* Lottie */,
 				2672C7812AAA0A1F00E1FDCC /* Scrolling Picker */,
 				26C464F92A40A1CE005E5245 /* Shimmer Effect Loader */,
@@ -2290,6 +2281,7 @@
 				261E9EBA29A92C4200E8EBA3 /* Turf */,
 				262A0DFC29DC1823005B14A2 /* Lottie */,
 				263B8B542B29FE34001C5060 /* MapboxStatic */,
+				26216A4A2B7E1A510076ACCA /* LazyLoadingPager */,
 			);
 			productName = "wxm-ios";
 			productReference = B52BCC712824FB8F00EA3DA5 /* WeatherXM.app */;
@@ -2335,6 +2327,7 @@
 				261E9EB929A92C4200E8EBA3 /* XCRemoteSwiftPackageReference "turf-swift" */,
 				262A0DFB29DC1823005B14A2 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				263B8B4B2B29EA64001C5060 /* XCRemoteSwiftPackageReference "MapboxStatic" */,
+				26216A492B7E1A500076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -2697,7 +2690,6 @@
 				267548EF29A91A87008BCF40 /* Image+.swift in Sources */,
 				262A4CED2A93567A00A4BC17 /* InfoView.swift in Sources */,
 				267548E129A91A87008BCF40 /* Int+.swift in Sources */,
-				265D7CE52AB1A87100782606 /* LazyLoadingPagerView.swift in Sources */,
 				266482FC29C0B2B000748F9C /* LoaderView.swift in Sources */,
 				26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */,
 				266BAF552AA88631004F5DE0 /* LocalizableString+Analytics.swift in Sources */,
@@ -3543,6 +3535,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		26216A492B7E1A500076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:WeatherXM/LazyLoadingPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		262A0DFB29DC1823005B14A2 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -3601,6 +3601,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9EB929A92C4200E8EBA3 /* XCRemoteSwiftPackageReference "turf-swift" */;
 			productName = Turf;
+		};
+		26216A4A2B7E1A510076ACCA /* LazyLoadingPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26216A492B7E1A500076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */;
+			productName = LazyLoadingPager;
 		};
 		262A0DFC29DC1823005B14A2 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
