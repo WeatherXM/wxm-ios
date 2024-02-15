@@ -8,6 +8,7 @@
 import SwiftUI
 import Toolkit
 import DomainLayer
+import LazyLoadingPager
 
 struct HistoryContainerView: View {
     @StateObject var viewModel: HistoryContainerViewModel
