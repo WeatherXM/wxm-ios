@@ -25,7 +25,7 @@
 		261E9EB529A92B9400E8EBA3 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EB429A92B9400E8EBA3 /* MapboxMaps */; };
 		261E9EB829A92BE000E8EBA3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EB729A92BE000E8EBA3 /* Alamofire */; };
 		261E9EBB29A92C4200E8EBA3 /* Turf in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EBA29A92C4200E8EBA3 /* Turf */; };
-		26216A4B2B7E1A510076ACCA /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26216A4A2B7E1A510076ACCA /* LazyLoadingPager */; };
+		26216A5A2B7E567C0076ACCA /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26216A592B7E567C0076ACCA /* LazyLoadingPager */; };
 		2623E2232A6FC29100E3E306 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623E2222A6FC29100E3E306 /* RouterView.swift */; };
 		2623FF8E2AF13CC700BCDAC6 /* StationRewardsOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623FF8D2AF13CC700BCDAC6 /* StationRewardsOverviewView.swift */; };
 		2623FF912AF147A800BCDAC6 /* RewardDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */; };
@@ -912,7 +912,7 @@
 				B5799E9F28254E3300FEBB85 /* DataLayer.framework in Frameworks */,
 				B5799E9D28254E3000FEBB85 /* DomainLayer.framework in Frameworks */,
 				263B8B552B29FE34001C5060 /* MapboxStatic in Frameworks */,
-				26216A4B2B7E1A510076ACCA /* LazyLoadingPager in Frameworks */,
+				26216A5A2B7E567C0076ACCA /* LazyLoadingPager in Frameworks */,
 				261E9EB029A9296900E8EBA3 /* IQKeyboardManagerSwift in Frameworks */,
 				262A0DFD29DC1823005B14A2 /* Lottie in Frameworks */,
 				261E9EB529A92B9400E8EBA3 /* MapboxMaps in Frameworks */,
@@ -2281,7 +2281,7 @@
 				261E9EBA29A92C4200E8EBA3 /* Turf */,
 				262A0DFC29DC1823005B14A2 /* Lottie */,
 				263B8B542B29FE34001C5060 /* MapboxStatic */,
-				26216A4A2B7E1A510076ACCA /* LazyLoadingPager */,
+				26216A592B7E567C0076ACCA /* LazyLoadingPager */,
 			);
 			productName = "wxm-ios";
 			productReference = B52BCC712824FB8F00EA3DA5 /* WeatherXM.app */;
@@ -2327,7 +2327,7 @@
 				261E9EB929A92C4200E8EBA3 /* XCRemoteSwiftPackageReference "turf-swift" */,
 				262A0DFB29DC1823005B14A2 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				263B8B4B2B29EA64001C5060 /* XCRemoteSwiftPackageReference "MapboxStatic" */,
-				26216A492B7E1A500076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */,
+				26216A582B7E567C0076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -3535,9 +3535,9 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		26216A492B7E1A500076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */ = {
+		26216A582B7E567C0076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:WeatherXM/LazyLoadingPager.git";
+			repositoryURL = "https://github.com/WeatherXM/LazyLoadingPager";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
@@ -3602,9 +3602,9 @@
 			package = 261E9EB929A92C4200E8EBA3 /* XCRemoteSwiftPackageReference "turf-swift" */;
 			productName = Turf;
 		};
-		26216A4A2B7E1A510076ACCA /* LazyLoadingPager */ = {
+		26216A592B7E567C0076ACCA /* LazyLoadingPager */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 26216A492B7E1A500076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */;
+			package = 26216A582B7E567C0076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */;
 			productName = LazyLoadingPager;
 		};
 		262A0DFC29DC1823005B14A2 /* Lottie */ = {
