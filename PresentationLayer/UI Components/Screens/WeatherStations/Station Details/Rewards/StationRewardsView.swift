@@ -17,6 +17,15 @@ struct StationRewardsView: View {
 					viewModel.refresh(completion: completion)
 				} content: {
 					VStack(spacing: CGFloat(.mediumSpacing)) {
+						TotalRewardsView(rewards: viewModel.totalRewards)
+							.wxmShadow()
+
+						if let data = viewModel.data?.first {
+							DailyRewardCardView(card: data.toDailyRewardCard) {
+
+							}
+							.wxmShadow()
+						}
 						VStack(spacing: CGFloat(.largeSpacing)) {
 							if let data = viewModel.data {
 								StationRewardsCardView(selectedIndex: $viewModel.selectedIndex,

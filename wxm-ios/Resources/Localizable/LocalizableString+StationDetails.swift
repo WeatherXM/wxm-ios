@@ -24,6 +24,11 @@ extension LocalizableString {
 		case noWeatherDataDescription
 		case noWeatherDataDescriptionForDate
 
+		case dailyRewardTitle
+		case dailyRewardEarnings(String)
+		case baseReward
+		case boosts
+		case viewRewardDetailsButtonTitle
 		case rewardsTitle
 		case rewardsLatestTab
 		case rewardsSevenDaysTab
@@ -46,7 +51,7 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 		switch self {
 			case .gotRewards(let value), .lostRewards(let value):
 				localized = String(format: localized, value)
-			case .rewardsTimelineCaption(let text), .rewardsErrorDescription(let text):
+			case .rewardsTimelineCaption(let text), .rewardsErrorDescription(let text), .dailyRewardEarnings(let text):
 				localized = String(format: localized, text)
 			default:
 				break
@@ -83,6 +88,16 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_no_weather_data_description"
 			case .noWeatherDataDescriptionForDate:
 				return "station_details_no_weather_data_description_for_date"
+			case .dailyRewardTitle:
+				return "station_details_daily_reward_title"
+			case .dailyRewardEarnings:
+				return "station_details_daily_reward_earnings_format"
+			case .baseReward:
+				return "station_details_base_reward"
+			case .boosts:
+				return "station_details_boosts"
+			case .viewRewardDetailsButtonTitle:
+				return "station_details_view_reward_details_button_title"
 			case .rewardsTitle:
 				return "station_details_rewards_title"
 			case .gotRewards:

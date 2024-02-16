@@ -368,6 +368,7 @@
 		26B832BC2AC5B07D00757A69 /* SizeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470B29A9181E008BCF40 /* SizeObserver.swift */; };
 		26B832C02AC5B55500757A69 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74E29FA0282A9FC800925E4C /* Colors.xcassets */; };
 		26BA07672B7F5E1E00F7F5A0 /* TotalRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07662B7F5E1E00F7F5A0 /* TotalRewardsView.swift */; };
+		26BA07752B7F715200F7F5A0 /* DailyRewardCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */; };
 		26C464F82A40A0D0005E5245 /* ShimmerEffectLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C464F72A40A0D0005E5245 /* ShimmerEffectLoaderView.swift */; };
 		26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C464FA2A40A2F9005E5245 /* ShimmerEffectLoader.swift */; };
 		26C624572AB09C78007A3162 /* LocalizableString+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C624562AB09C78007A3162 /* LocalizableString+Settings.swift */; };
@@ -811,6 +812,7 @@
 		26B832292AC31E4600757A69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26B832862AC57C8300757A69 /* WeatherUnitsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUnitsManager.swift; sourceTree = "<group>"; };
 		26BA07662B7F5E1E00F7F5A0 /* TotalRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalRewardsView.swift; sourceTree = "<group>"; };
+		26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRewardCardView.swift; sourceTree = "<group>"; };
 		26C464F72A40A0D0005E5245 /* ShimmerEffectLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffectLoaderView.swift; sourceTree = "<group>"; };
 		26C464FA2A40A2F9005E5245 /* ShimmerEffectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffectLoader.swift; sourceTree = "<group>"; };
 		26C624562AB09C78007A3162 /* LocalizableString+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Settings.swift"; sourceTree = "<group>"; };
@@ -1961,6 +1963,7 @@
 			isa = PBXGroup;
 			children = (
 				26BA07662B7F5E1E00F7F5A0 /* TotalRewardsView.swift */,
+				26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2727,6 +2730,7 @@
 				263B8B502B29F17E001C5060 /* MapBoxConstants.swift in Sources */,
 				268D07932B2B1B70002BD77E /* SelectStationLocationView.swift in Sources */,
 				2675481F29A9181E008BCF40 /* MapBoxClaimDevice.swift in Sources */,
+				26BA07752B7F715200F7F5A0 /* DailyRewardCardView.swift in Sources */,
 				2675482029A9181E008BCF40 /* MapBoxMapView.swift in Sources */,
 				2618A7142A20FFCA00983B7B /* MultipleAlertsView.swift in Sources */,
 				26E88AF129DD663D0023BBD5 /* MyWalletView.swift in Sources */,

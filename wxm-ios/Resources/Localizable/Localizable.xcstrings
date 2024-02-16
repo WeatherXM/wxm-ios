@@ -50,6 +50,16 @@
         }
       }
     },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
     "%@%@" : {
       "localizations" : {
         "en" : {
@@ -5628,6 +5638,50 @@
         }
       }
     },
+    "station_details_base_reward" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Base Reward"
+          }
+        }
+      }
+    },
+    "station_details_boosts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boosts"
+          }
+        }
+      }
+    },
+    "station_details_daily_reward_earnings_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earnings for %@"
+          }
+        }
+      }
+    },
+    "station_details_daily_reward_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily Reward"
+          }
+        }
+      }
+    },
     "station_details_detailed_rewards_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5910,6 +5964,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View Historical Data"
+          }
+        }
+      }
+    },
+    "station_details_view_reward_details_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Reward Details"
           }
         }
       }
