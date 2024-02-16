@@ -29,6 +29,9 @@ extension LocalizableString {
 		case baseReward
 		case boosts
 		case viewRewardDetailsButtonTitle
+		case rewardInfoMessage
+		case rewardWarningMessage
+		case rewardErrorMessage
 		case rewardsTitle
 		case rewardsLatestTab
 		case rewardsSevenDaysTab
@@ -98,6 +101,12 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_boosts"
 			case .viewRewardDetailsButtonTitle:
 				return "station_details_view_reward_details_button_title"
+			case .rewardInfoMessage:
+				return "station_details_reward_info_message"
+			case .rewardErrorMessage:
+				return "station_details_reward_error_message"
+			case .rewardWarningMessage:
+				return "station_details_reward_warning_message"
 			case .rewardsTitle:
 				return "station_details_rewards_title"
 			case .gotRewards:

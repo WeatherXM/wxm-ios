@@ -18,15 +18,34 @@ struct DailyRewardCardView: View {
 
 			rewardsView
 
-			Button {
-				buttonAction()
-			} label: {
-				Text(LocalizableString.StationDetails.viewRewardDetailsButtonTitle.localized)
+			if card.indication != nil {
+				Button {
+					buttonAction()
+				} label: {
+					Text(LocalizableString.StationDetails.viewRewardDetailsButtonTitle.localized)
+				}
+				.buttonStyle(WXMButtonStyle(fillColor: .layer1, strokeColor: .clear))
 			}
-			.buttonStyle(WXMButtonStyle(fillColor: .layer1, strokeColor: .clear))
 
 		}
 		.WXMCardStyle()
+		.indication(show: Binding(get: { card.indication != nil }, set: { _ in }),
+					borderColor: Color(colorEnum: card.indication?.type.iconColor ?? .clear),
+					bgColor: Color(colorEnum: card.indication?.type.tintColor ?? .clear)) {
+			CardWarningView(type: card.indication?.type ?? .info,
+							showIcon: false,
+							title: nil,
+							message: card.indication?.text ?? "",
+							showContentFullWidth: true,
+							closeAction: nil) {
+				Button {
+					buttonAction()
+				} label: {
+					Text(LocalizableString.StationDetails.viewRewardDetailsButtonTitle.localized)
+				}
+				.buttonStyle(WXMButtonStyle.transparent)
+			}
+		}
     }
 }
 
@@ -114,6 +133,19 @@ extension DailyRewardCardView {
 		let baseReward: Double
 		let baseRewardScore: Double
 		let boostsReward: Double?
+
+		var indication: (type: CardWarningType, text: String)? {
+			switch baseRewardScore {
+				case 0 ..< 0.7:
+					return (.error, LocalizableString.StationDetails.rewardErrorMessage.localized)
+				case 0.7 ..< 0.95:
+					return (.warning, LocalizableString.StationDetails.rewardWarningMessage.localized)
+				case 0.95 ..< 0.99:
+					return (.info, LocalizableString.StationDetails.rewardInfoMessage.localized)
+				default:
+					return nil
+			}
+		}
 	}
 }
 
@@ -126,6 +158,24 @@ extension StationRewardsCardOverview {
 								 baseRewardScore: Double(rewardScore ?? 0) / 100.0,
 								 boostsReward: 0.0)
 	}
+}
+
+#Preview {
+	DailyRewardCardView(card: .init(refDate: .now,
+									totalRewards: 3.125312,
+									baseReward: 2.4523532,
+									baseRewardScore: 0.8,
+									boostsReward: 1.4325423)) {}
+		.wxmShadow()
+}
+
+#Preview {
+	DailyRewardCardView(card: .init(refDate: .now,
+									totalRewards: 3.125312,
+									baseReward: 2.4523532,
+									baseRewardScore: 0.97,
+									boostsReward: 1.4325423)) {}
+		.wxmShadow()
 }
 
 #Preview {
