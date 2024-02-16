@@ -22,7 +22,7 @@ struct StationRewardsView: View {
 
 						if let data = viewModel.data?.first {
 							DailyRewardCardView(card: data.toDailyRewardCard) {
-
+								viewModel.handleViewDetailsTap()
 							}
 							.wxmShadow()
 						}

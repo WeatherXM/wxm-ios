@@ -52,6 +52,17 @@ class StationRewardsViewModel: ObservableObject {
         }
     }
 
+	func handleViewDetailsTap() {
+		guard let device, let cardOverview = data?.first else {
+			return
+		}
+
+		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
+																	followState: followState,
+																	overview: cardOverview)
+		Router.shared.navigateTo(.rewardDetails(viewModel))
+	}
+
     func handleDetailedRewardsButtonTap() {
 		navigateToTransactions()
     }
