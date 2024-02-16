@@ -75,7 +75,7 @@ private struct ContentView: View {
 					VStack(spacing: CGFloat(.defaultSpacing)) {
 						StationRewardsOverviewView(overview: viewModel.rewardsCardOverview, showError: false, buttonActions: viewModel.buttonActions)
 
-						if viewModel.rewardsCardOverview.lostAmount > 0.0, !viewModel.rewardsCardOverview.annnotationsList.isEmpty {
+						if !viewModel.rewardsCardOverview.annnotationsList.isEmpty {
 							errorsList
 						}
 					}
@@ -121,11 +121,10 @@ private struct ContentView: View {
 				Spacer(minLength: 0.0)
 			}
 
-			ForEach(viewModel.rewardsCardOverview.annnotationsList, id: \.annotation) { error in
-				CardWarningView(type: viewModel.rewardsCardOverview.lostAmountData.cardWarningType,
+			ForEach(viewModel.rewardsCardOverview.annnotationsList) { error in
+				CardWarningView(type: error.severity?.toCardWarningType ?? .info,
 								title: error.title,
-								message: error.dercription(for: viewModel.device.profile,
-														   followState: viewModel.followState),
+								message: error.message ?? "",
 								showContentFullWidth: true,
 								showBorder: true,
 								closeAction: nil) {
@@ -138,8 +137,8 @@ private struct ContentView: View {
 
 private extension ContentView {
 	@ViewBuilder
-	func errorActionView(for error: DeviceAnnotation) -> some View {
-		if let title = viewModel.annotationActionButtonTile(for: error.annotation) {
+	func errorActionView(for error: RewardAnnotation) -> some View {
+		if let title = viewModel.annotationActionButtonTile(for: error) {
 			Button {
 				viewModel.handleButtonTap(for: error)
 			} label: {

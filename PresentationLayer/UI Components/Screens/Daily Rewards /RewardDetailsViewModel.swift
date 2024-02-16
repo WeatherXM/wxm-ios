@@ -36,41 +36,33 @@ class RewardDetailsViewModel: ObservableObject {
 		self.rewardsCardOverview = rewardsCardOverview
 	}
 
-	func annotationActionButtonTile(for type: DeviceAnnotation.AnnotationType?) -> String? {
-		guard let type, followState?.relation == .owned else {
+	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {
+		guard let group = annotation?.group, followState?.relation == .owned else {
 			return nil
 		}
 
-		switch type {
-			case .obc:
-				if device.needsUpdate(mainVM: MainScreenViewModel.shared, followState: followState) {
-					return LocalizableString.RewardDetails.upgradeFirmwareButtonTitle.localized
+		switch group {
+			case .noWallet:
+				if MainScreenViewModel.shared.isWalletMissing {
+					return LocalizableString.RewardDetails.noWalletProblemButtonTitle.localized
+				} else if annotation?.docUrl != nil {
+					return LocalizableString.RewardDetails.readMore.localized
 				}
-
-				return LocalizableString.contactSupport.localized
-			case .spikes, .unidentifiedSpike, .noMedian, .noData, .shortConst,
-					.longConst, .anomIncrease, .unidentifiedAnomalousChange, .noLocationData, .cellCapacityReached,
-					.polThresholdNotReached, .qodThresholdNotReached:
-				return LocalizableString.RewardDetails.readMore.localized
-			case .frozenSensor, .relocated:
 				return nil
 			case .locationNotVerified:
 				return LocalizableString.RewardDetails.editLocation.localized
 			case .unknown:
-				return LocalizableString.contactSupport.localized
-			case .noWallet:
-				return LocalizableString.RewardDetails.noWalletProblemButtonTitle.localized
+				if annotation?.docUrl != nil {
+					return LocalizableString.RewardDetails.readMore.localized
+				}
+				return nil
 		}
 	}
 
-	func handleButtonTap(for error: DeviceAnnotation) {
-		guard let type = error.annotation else {
-			return
-		}
-
+	func handleButtonTap(for error: RewardAnnotation) {
 		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .rewardDetailsError,
-														   .itemId: .custom(error.annotation?.rawValue ?? "")])
-		handleAnnotationType(annotation: error)
+														   .itemId: .custom(error.group?.rawValue ?? "")])
+		handleRewardAnnotation(annotation: error)
 	}
 
 	func handleReadMoreTap() {
@@ -113,6 +105,34 @@ private extension RewardDetailsViewModel {
 		}, errorButtonAction: {})
 	}
 
+	func handleRewardAnnotation(annotation: RewardAnnotation) {
+		guard let group = annotation.group else {
+			return
+		}
+
+		switch group {
+			case .noWallet:
+				if MainScreenViewModel.shared.isWalletMissing {
+					Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))					
+				} else if let docUrl = annotation.docUrl,
+				   let url = URL(string: docUrl) {
+					UIApplication.shared.open(url)
+				}
+			case .locationNotVerified:
+				let viewModel = ViewModelsFactory.getSelectLocationViewModel(device: device,
+																			 followState: followState,
+																			 delegate: self)
+				Router.shared.navigateTo(.selectStationLocation(viewModel))
+			case .unknown:
+				if let docUrl = annotation.docUrl,
+				   let url = URL(string: docUrl) {
+					UIApplication.shared.open(url)
+				}
+		}
+	}
+
+	/// Temporary commented functionality
+	/*
 	func handleAnnotationType(annotation: DeviceAnnotation) {
 		guard let type = annotation.annotation else {
 			return
@@ -160,6 +180,7 @@ private extension RewardDetailsViewModel {
 				Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
 		}
 	}
+	*/
 
 	func openContactSupport(annotation: DeviceAnnotation? = nil) {
 		HelperFunctions().openContactSupport(successFailureEnum: .stationRewardsIssue,
@@ -181,7 +202,7 @@ private extension RewardDetailsViewModel {
 		let rewardsEarned = "Rewards Earned: \(rewardsCardOverview.actualReward)"
 		let rewardsLost = "Rewards Lost: \(rewardsCardOverview.lostAmount)"
 		let periodMaxReward = "Period Max Reward: \(rewardsCardOverview.maxRewards ?? 0.0)"
-		let annotations = "Annotations: \(rewardsCardOverview.annnotationsList.compactMap { $0.annotation?.rawValue })"
+		let annotations = "Annotations: \(rewardsCardOverview.annnotationsList.compactMap { $0.group?.rawValue })"
 
 		return [stationInfoTitle,
 				stationName,

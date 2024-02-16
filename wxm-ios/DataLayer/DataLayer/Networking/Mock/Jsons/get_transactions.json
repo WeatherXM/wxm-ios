@@ -76,7 +76,30 @@
 						
 					}
 				]
-			}
+			},
+			"annotation_summary" : [
+				{
+					"severity_level" : "INFO",
+					"group" : "SENSOR_PROBLEMS",
+					"title" : "This is a sensor problems title",
+					"message" : "This is a message",
+					"doc_url" : "https://docs.weatherxm.com/faqs"
+				},
+				{
+					"severity_level" : "WARNING",
+					"group" : "NO_WALLET",
+					"title" : "This is a wallet title",
+					"message" : "This is a message",
+					"doc_url" : "https://docs.weatherxm.com/faqs"
+				},
+				{
+					"severity_level" : "ERROR",
+					"group" : "NO_DATA",
+					"title" : "This is a no data title",
+					"message" : "This is a message",
+					"doc_url" : "https://docs.weatherxm.com/faqs"
+				}
+			]
 		},
 		{
 			"timestamp" : "2023-03-20T07:00:06+02:00",

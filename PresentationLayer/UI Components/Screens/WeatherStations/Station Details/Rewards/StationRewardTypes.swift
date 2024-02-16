@@ -21,7 +21,7 @@ struct StationRewardsCardOverview: Hashable {
 	let lostAmount: Double
 	let rewardScore: Int?
 	let maxRewards: Double?
-	let annnotationsList: [DeviceAnnotation]
+	let annnotationsList: [RewardAnnotation]
 	let timelineEntries: [Int]?
 	let timelineAxis: [String]?
 	let timelineCaption: String?
@@ -42,7 +42,7 @@ struct StationRewardsCardOverview: Hashable {
 								   lostAmount: 0.0,
 								   rewardScore: nil,
 								   maxRewards: nil,
-								   annnotationsList: DeviceAnnotation.AnnotationType.allCases.map { .init(error: $0, ratio: 1, affects: [.init(ratio: 1.0, parameter: .temperature)]) },
+								   annnotationsList: [.init(severity: .error, group: .noWallet, title: "This is a title", message: "This is a message", docUrl: "https://docs.weatherxm.com/faqs")],
 								   timelineEntries: [],
 								   timelineAxis: [],
 								   timelineCaption: "Timeline for yesterday",

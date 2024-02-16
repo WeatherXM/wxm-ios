@@ -16,7 +16,6 @@ public struct UITransaction: Identifiable, Hashable, Equatable {
     public let rewardScore: Int?
     public let dailyReward: Double?
     public let actualReward: Double?
-	public let annotations: DeviceAnnotations?
 	public let datum: Datum?
 
     public static func == (left: UITransaction, right: UITransaction) -> Bool {
@@ -32,7 +31,6 @@ public struct UITransaction: Identifiable, Hashable, Equatable {
 			.withRewardScore(datum.rewardScore)
 			.withDailyReward(datum.dailyReward)
 			.withActualReward(datum.actualReward)
-			.withAnnotations(datum.annotations)
 			.withDatum(datum)
 			.build()
 	}
@@ -46,7 +44,6 @@ public class UITransactionBuilder {
     public private(set) var rewardScore: Int?
     public private(set) var dailyReward: Double?
     public private(set) var actualReward: Double?   
-	public private(set) var annotations: DeviceAnnotations?
 	public private(set) var datum: Datum?
 
     public func withFormattedDate(_ formattedDate: Date) -> Self {
@@ -82,11 +79,6 @@ public class UITransactionBuilder {
 		return self
 	}
 
-	public func withAnnotations(_ annotations: DeviceAnnotations?) -> Self {
-		self.annotations = annotations
-		return self
-	}
-
 	public func withDatum(_ datum: Datum) -> Self {
 		self.datum = datum
 		return self
@@ -100,7 +92,6 @@ public class UITransactionBuilder {
 					  rewardScore: rewardScore,
 					  dailyReward: dailyReward,
 					  actualReward: actualReward,
-					  annotations: annotations,
 					  datum: datum)
     }
 }

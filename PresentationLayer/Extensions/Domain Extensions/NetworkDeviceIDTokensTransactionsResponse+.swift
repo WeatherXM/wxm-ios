@@ -74,7 +74,7 @@ extension UITransaction {
 	}
 
 	var annotationsList: [DeviceAnnotation] {
-		annotations?.getAnnotationsList(for: rewardScore ?? 0) ?? []
+		datum?.annotations?.getAnnotationsList(for: rewardScore ?? 0) ?? []
 	}
 }
 
