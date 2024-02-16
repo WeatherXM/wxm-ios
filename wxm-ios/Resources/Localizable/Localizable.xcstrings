@@ -6012,6 +6012,28 @@
         }
       }
     },
+    "station_details_view_timeline" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Timeline"
+          }
+        }
+      }
+    },
+    "station_details_weekly_streak" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weekly Streak"
+          }
+        }
+      }
+    },
     "station_no_data_text" : {
       "extractionState" : "manual",
       "localizations" : {

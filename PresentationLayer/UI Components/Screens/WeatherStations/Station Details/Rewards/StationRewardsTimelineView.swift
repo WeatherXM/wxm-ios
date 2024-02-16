@@ -9,25 +9,32 @@ import SwiftUI
 
 struct StationRewardsTimelineView: View {
 	let values: [Int]
-	private let maxWidthFactor: CGFloat = 1.0 / 15.0
 
-    var body: some View {
+	var body: some View {
 		let indices = values.indices
-		GeometryReader { proxy in
-			HStack(spacing: 0.0) {
-				ForEach(indices, id: \.self) { index in
-					let val = values[index]
-					Capsule()
-						.foregroundColor(Color(colorEnum: getHexagonColor(validationScore: Double(val) / 100.0)))
-						.frame(maxWidth: proxy.size.width * maxWidthFactor)
+		HStack(spacing: 0.0) {
+			ForEach(indices, id: \.self) { index in
+				let val = values[index]
+				GeometryReader { proxy in
+					VStack {
+						ZStack {
+							Capsule()
+								.foregroundColor(Color(colorEnum: .blueTint))
 
-					if indices.last != index {
-						Spacer(minLength: CGFloat(.minimumSpacing))
+							VStack {
+								Spacer(minLength: 0.0)
+								Capsule()
+									.foregroundColor(Color(colorEnum: getHexagonColor(validationScore: Double(val) / 100.0)))
+									.frame(height: (Double(val) / 100.0) * proxy.size.height)
+							}
+						}
+						.frame(width: proxy.size.width / 2.0)
 					}
+					.frame(width: proxy.size.width)
 				}
 			}
 		}
-    }
+	}
 }
 
 #Preview {
