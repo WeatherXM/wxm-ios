@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct StationRewardsTimelineView: View {
-	let values: [Int]
+	typealias Value = (text: String?, value: Int)
+	let values: [Value]
 
 	var body: some View {
 		let indices = values.indices
@@ -16,19 +17,28 @@ struct StationRewardsTimelineView: View {
 			ForEach(indices, id: \.self) { index in
 				let val = values[index]
 				GeometryReader { proxy in
-					VStack {
-						ZStack {
-							Capsule()
-								.foregroundColor(Color(colorEnum: .blueTint))
-
-							VStack {
-								Spacer(minLength: 0.0)
+					VStack(spacing: CGFloat(.smallSpacing)) {
+						GeometryReader { proxy in
+							ZStack {
 								Capsule()
-									.foregroundColor(Color(colorEnum: getHexagonColor(validationScore: Double(val) / 100.0)))
-									.frame(height: (Double(val) / 100.0) * proxy.size.height)
+									.foregroundColor(Color(colorEnum: .blueTint))
+
+								VStack {
+									Spacer(minLength: 0.0)
+									Capsule()
+										.foregroundColor(Color(colorEnum: getHexagonColor(validationScore: Double(val.value) / 100.0)))
+										.frame(height: (Double(val.value) / 100.0) * proxy.size.height)
+								}
 							}
 						}
 						.frame(width: proxy.size.width / 2.0)
+
+						if let text = val.text {
+							Text(text)
+								.font(.system(size: CGFloat(.caption)))
+								.foregroundColor(Color(colorEnum: .text))
+
+						}
 					}
 					.frame(width: proxy.size.width)
 				}
@@ -39,6 +49,6 @@ struct StationRewardsTimelineView: View {
 
 #Preview {
 	let range = 0..<7
-	let values = range.map { _ in Int.random(in: 0...100) }
+	let values: [StationRewardsTimelineView.Value] = range.map { _ in ("Day", Int.random(in: 0...100)) }
     return StationRewardsTimelineView(values: values)
 }

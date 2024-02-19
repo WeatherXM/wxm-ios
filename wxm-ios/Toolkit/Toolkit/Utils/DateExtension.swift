@@ -72,6 +72,10 @@ public extension Date {
         getFormattedDate(format: .twelveHoursTime)
     }
 
+	func getWeekDay(_ style: FormatStyle.Symbol.Weekday = .abbreviated) -> String {
+		formatted(Date.FormatStyle().weekday(style))
+	}
+	
 	func relativeDayStringIfExists(timezone: TimeZone = .current) -> String? {
 		guard self.isToday || self.isYesterday else {
 			return nil

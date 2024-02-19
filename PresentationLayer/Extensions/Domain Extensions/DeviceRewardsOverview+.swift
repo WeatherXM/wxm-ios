@@ -67,7 +67,7 @@ extension DeviceRewardsOverview {
 								   rewardScore: rewardScore,
 								   maxRewards: periodMaxReward,
 								   annnotationsList: annotationSummary?.sorted { ($0.severity ?? .info) < ($1.severity ?? .info) } ?? [],
-								   timelineEntries: timeline?.rewardScores,
+								   timelineEntries: timeline?.rewardScores?.map { WeeklyStreakView.Entry(timestamp: .now, value: $0) },
 								   timelineAxis: timelineAxis,
 								   timelineCaption: timelineCaption,
 								   errorButtonTitle: errorButtonTitle)

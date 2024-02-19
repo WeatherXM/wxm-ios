@@ -25,29 +25,11 @@ struct StationRewardsView: View {
 								viewModel.handleViewDetailsTap()
 							}
 							.wxmShadow()
-						}
-						VStack(spacing: CGFloat(.largeSpacing)) {
-							if let data = viewModel.data {
-								StationRewardsCardView(selectedIndex: $viewModel.selectedIndex,
-													   totalRewards: viewModel.totalRewards,
-													   showErrorButtonAction: true,
-													   overviews: data,
-													   buttonActions: viewModel.cardButtonActions)
-								.wxmShadow()
-							}
 
-							VStack(spacing: CGFloat(.defaultSpacing)) {
-								Button {
-									viewModel.handleDetailedRewardsButtonTap()
-								} label: {
-									Text(LocalizableString.StationDetails.detailedRewardsButtonTitle.localized)
-								}
-								.buttonStyle(WXMButtonStyle.solid)
-
-								InfoView(text: LocalizableString.StationDetails.rewardsInfoText.localized.attributedMarkdown ?? "")
+							WeeklyStreakView(entries: data.timelineEntries ?? []) {
+								viewModel.handleDetailedRewardsButtonTap()
 							}
 						}
-						.animation(.easeIn, value: viewModel.selectedIndex)
 					}
 					.iPadMaxWidth()
 					.padding()

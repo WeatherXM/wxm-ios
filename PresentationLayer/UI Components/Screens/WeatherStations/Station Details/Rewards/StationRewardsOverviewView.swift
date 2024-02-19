@@ -61,9 +61,9 @@ private extension StationRewardsOverviewView {
 				}
 			}
 
-			if let timelineEntries = overview.timelineEntries, !timelineEntries.isEmpty {
-				timelineView(for: timelineEntries, caption: overview.timelineCaption)
-			}
+//			if let timelineEntries = overview.timelineEntries, !timelineEntries.isEmpty {
+//				timelineView(for: timelineEntries, caption: overview.timelineCaption)
+//			}
 		}
 	}
 
@@ -110,7 +110,7 @@ private extension StationRewardsOverviewView {
 	}
 
 	@ViewBuilder
-	func timelineView(for entries: [Int], caption: String?) -> some View {
+	func timelineView(for entries: [StationRewardsTimelineView.Value], caption: String?) -> some View {
 		VStack(spacing: CGFloat(.smallToMediumSpacing)) {
 			VStack(spacing: CGFloat(.minimumSpacing)) {
 				StationRewardsTimelineView(values: entries)

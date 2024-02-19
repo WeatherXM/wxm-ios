@@ -22,7 +22,7 @@ struct StationRewardsCardOverview: Hashable {
 	let rewardScore: Int?
 	let maxRewards: Double?
 	let annnotationsList: [RewardAnnotation]
-	let timelineEntries: [Int]?
+	let timelineEntries: [WeeklyStreakView.Entry]?
 	let timelineAxis: [String]?
 	let timelineCaption: String?
 	let errorButtonTitle: String

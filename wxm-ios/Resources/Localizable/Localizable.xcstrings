@@ -6012,7 +6012,7 @@
         }
       }
     },
-    "station_details_view_timeline" : {
+    "station_details_view_timeline_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

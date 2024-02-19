@@ -29,11 +29,11 @@ extension LocalizableString {
 		case baseReward
 		case boosts
 		case viewRewardDetailsButtonTitle
+		case viewTimelineButtonTitle
 		case rewardInfoMessage
 		case rewardWarningMessage
 		case rewardErrorMessage
 		case weeklyStreak
-		case viewTimeline
 		case rewardsTitle
 		case rewardsLatestTab
 		case rewardsSevenDaysTab
@@ -103,14 +103,14 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_boosts"
 			case .viewRewardDetailsButtonTitle:
 				return "station_details_view_reward_details_button_title"
+			case .viewTimelineButtonTitle:
+				return "station_details_view_timeline_button_title"
 			case .rewardInfoMessage:
 				return "station_details_reward_info_message"
 			case .rewardErrorMessage:
 				return "station_details_reward_error_message"
 			case .weeklyStreak:
 				return "station_details_weekly_streak"
-			case .viewTimeline:
-				return "station_details_view_timeline"
 			case .rewardWarningMessage:
 				return "station_details_reward_warning_message"
 			case .rewardsTitle:
