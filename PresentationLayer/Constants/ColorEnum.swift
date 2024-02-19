@@ -48,4 +48,5 @@ public enum ColorEnum: String {
     case stationChipOnlineStateText
     case favoriteHeart
 	case mapPin
+	case white
 }
