@@ -5726,6 +5726,28 @@
         }
       }
     },
+    "station_details_no_rewards_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station hasn’t received any rewards yet. Sit back and relax, while our systems are validating the station’s location and data. You should start seeing rewards in the next couple of days."
+          }
+        }
+      }
+    },
+    "station_details_no_rewards_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewards Coming Soon!"
+          }
+        }
+      }
+    },
     "station_details_no_weather_data" : {
       "extractionState" : "manual",
       "localizations" : {

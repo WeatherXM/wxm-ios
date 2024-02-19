@@ -92,6 +92,8 @@
 		2664833429C3777600748F9C /* CurrentWeather+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664833329C3777600748F9C /* CurrentWeather+.swift */; };
 		2664833F29C8953E00748F9C /* SpinningLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664833E29C8953E00748F9C /* SpinningLoaderView.swift */; };
 		2664834329C89F8A00748F9C /* StationDetailsTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664834229C89F8A00748F9C /* StationDetailsTypes.swift */; };
+		266B018F2B836EC6007AC689 /* NoRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B018E2B836EC6007AC689 /* NoRewardsView.swift */; };
+		266B01912B836FE6007AC689 /* anim_rocket.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01902B836FE6007AC689 /* anim_rocket.json */; };
 		266BAF4D2AA8769C004F5DE0 /* LocalizableString+Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BAF4C2AA8769C004F5DE0 /* LocalizableString+Bluetooth.swift */; };
 		266BAF552AA88631004F5DE0 /* LocalizableString+Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BAF542AA88631004F5DE0 /* LocalizableString+Analytics.swift */; };
 		266BAF632AA88996004F5DE0 /* LocalizableString+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BAF622AA88996004F5DE0 /* LocalizableString+Search.swift */; };
@@ -583,6 +585,8 @@
 		2664833329C3777600748F9C /* CurrentWeather+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentWeather+.swift"; sourceTree = "<group>"; };
 		2664833E29C8953E00748F9C /* SpinningLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningLoaderView.swift; sourceTree = "<group>"; };
 		2664834229C89F8A00748F9C /* StationDetailsTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsTypes.swift; sourceTree = "<group>"; };
+		266B018E2B836EC6007AC689 /* NoRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRewardsView.swift; sourceTree = "<group>"; };
+		266B01902B836FE6007AC689 /* anim_rocket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_rocket.json; sourceTree = "<group>"; };
 		266BAF4C2AA8769C004F5DE0 /* LocalizableString+Bluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Bluetooth.swift"; sourceTree = "<group>"; };
 		266BAF542AA88631004F5DE0 /* LocalizableString+Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Analytics.swift"; sourceTree = "<group>"; };
 		266BAF622AA88996004F5DE0 /* LocalizableString+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Search.swift"; sourceTree = "<group>"; };
@@ -1967,6 +1971,7 @@
 				26BA07662B7F5E1E00F7F5A0 /* TotalRewardsView.swift */,
 				26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */,
 				26BA07762B7FC2AC00F7F5A0 /* WeeklyStreakView.swift */,
+				266B018E2B836EC6007AC689 /* NoRewardsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2103,6 +2108,7 @@
 		7423EBFD283F81E2004E9B26 /* LottieJSON */ = {
 			isa = PBXGroup;
 			children = (
+				266B01902B836FE6007AC689 /* anim_rocket.json */,
 				7423EC02283F81E2004E9B26 /* anim_empty_devices.json */,
 				7423EC0E283F81E2004E9B26 /* anim_empty_generic.json */,
 				7423EC04283F81E2004E9B26 /* anim_error.json */,
@@ -2464,6 +2470,7 @@
 				26348E232A444AF1000846C6 /* Font Awesome 6 Pro-Solid-900.otf in Resources */,
 				26348E1F2A444AF1000846C6 /* Font Awesome 6 Pro-Thin-100.otf in Resources */,
 				26348E1C2A444AF1000846C6 /* Font Awesome 6 Sharp-Regular-400.otf in Resources */,
+				266B01912B836FE6007AC689 /* anim_rocket.json in Resources */,
 				26348E1E2A444AF1000846C6 /* Font Awesome 6 Sharp-Solid-900.otf in Resources */,
 				B5F9ED652860BA76000B6392 /* GoogleService-Info.plist in Resources */,
 				267548FC29A91A87008BCF40 /* helium_countries_frequencies.json in Resources */,
@@ -2780,6 +2787,7 @@
 				26348DFC2A42FCB9000846C6 /* SearchView+Content.swift in Sources */,
 				266D6FAF2A41F32100A19E8B /* SearchView.swift in Sources */,
 				267547EA29A9181E008BCF40 /* SelectDeviceTypeView.swift in Sources */,
+				266B018F2B836EC6007AC689 /* NoRewardsView.swift in Sources */,
 				26A4119529BF203400A2C10B /* SelectFrequencyView.swift in Sources */,
 				267547BE29A9181E008BCF40 /* SettingsButtonView.swift in Sources */,
 				266D17E02AC6D0A1007CDB06 /* Firmware+.swift in Sources */,
