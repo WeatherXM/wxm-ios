@@ -3195,7 +3195,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.13.0;
+				MARKETING_VERSION = 1.14.0;
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app.mock;
 				PRODUCT_NAME = WeatherXM;
@@ -3363,7 +3363,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.13.0;
+				MARKETING_VERSION = 1.14.0;
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app.debug;
 				PRODUCT_NAME = WeatherXM;
@@ -3412,7 +3412,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.13.0;
+				MARKETING_VERSION = 1.14.0;
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app;
 				PRODUCT_NAME = WeatherXM;
