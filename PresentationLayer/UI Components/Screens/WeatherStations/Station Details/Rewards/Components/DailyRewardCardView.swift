@@ -18,7 +18,7 @@ struct DailyRewardCardView: View {
 
 			rewardsView
 
-			if card.indication != nil {
+			if card.indication == nil {
 				Button {
 					buttonAction()
 				} label: {
