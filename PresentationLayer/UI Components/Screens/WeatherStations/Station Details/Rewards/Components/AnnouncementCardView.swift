@@ -13,9 +13,20 @@ struct AnnouncementCardView: View {
     var body: some View {
 		VStack(spacing: CGFloat(.minimumSpacing)) {
 
-			Text(title)
-				.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
-				.foregroundColor(Color(colorEnum: .white))
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				Spacer()
+
+				Text(FontIcon.badgeCheck.rawValue)
+					.font(.fontAwesome(font: .FAPro, size: CGFloat(.XLTitleFontSize)))
+
+
+				Text(title)
+					.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
+					.foregroundColor(Color(colorEnum: .white))
+
+				Spacer()
+			}
+			.foregroundColor(Color(colorEnum: .text))
 
 			Text(description)
 				.font(.system(size: CGFloat(.mediumFontSize)))
@@ -33,6 +44,6 @@ struct AnnouncementCardView: View {
 }
 
 #Preview {
-    AnnouncementCardView(title:  "Welcome to Mainnet!",
+    AnnouncementCardView(title: "Welcome to Mainnet!",
 						 description: "Starting the Χth of Υ all station rewards are distributed on Abritrum Mainnet!\n\nThank you for the support!")
 }
