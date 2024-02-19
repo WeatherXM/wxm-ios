@@ -34,6 +34,7 @@ public enum RemoteConfigKey: String, CaseIterable {
 	case iosAppLatestVersion = "ios_app_latest_version"
 	case iosAppMinimumVersion = "ios_app_minimum_version"
 	case featMainnet = "feat_mainnet"
+	case featMainnetMessage = "feat_mainnet_message"
 
 	private var defaultValue: NSObject {
 		switch self {
@@ -49,6 +50,8 @@ public enum RemoteConfigKey: String, CaseIterable {
 				return "-" as NSObject
 			case .featMainnet:
 				return NSNumber(booleanLiteral: false)
+			case .featMainnetMessage:
+				return "-" as NSObject
 		}
 	}
 

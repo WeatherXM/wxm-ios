@@ -20,6 +20,7 @@ public class RemoteConfigManager: ObservableObject {
 	@Published public var iosAppLatestVersion: String?
 	@Published public var iosAppMinimumVersion: String?
 	@Published public var isFeatMainnetEnabled: Bool?
+	@Published public var featMainnetMessage: String?
 
 	private init() {
 		if disableFirebase {
@@ -51,6 +52,7 @@ private extension RemoteConfigManager {
 			self.iosAppLatestVersion = self.getConfigValue(key: .iosAppLatestVersion)
 			self.iosAppMinimumVersion = self.getConfigValue(key: .iosAppMinimumVersion)
 			self.isFeatMainnetEnabled = self.getConfigValue(key: .featMainnet)
+			self.featMainnetMessage = self.getConfigValue(key: <#T##RemoteConfigKey#>)
 		}
 	}
 }
