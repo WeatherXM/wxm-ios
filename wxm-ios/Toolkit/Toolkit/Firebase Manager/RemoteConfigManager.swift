@@ -52,7 +52,7 @@ private extension RemoteConfigManager {
 			self.iosAppLatestVersion = self.getConfigValue(key: .iosAppLatestVersion)
 			self.iosAppMinimumVersion = self.getConfigValue(key: .iosAppMinimumVersion)
 			self.isFeatMainnetEnabled = self.getConfigValue(key: .featMainnet)
-			self.featMainnetMessage = self.getConfigValue(key: <#T##RemoteConfigKey#>)
+			self.featMainnetMessage = self.getConfigValue(key: .featMainnetMessage)
 		}
 	}
 }
