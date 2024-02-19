@@ -37,20 +37,26 @@ class RewardDetailsViewModel: ObservableObject {
 	}
 
 	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {
-		guard let group = annotation?.group, followState?.relation == .owned else {
+		guard let group = annotation?.group else {
 			return nil
 		}
 
+		let isOwned = followState?.relation == .owned
 		switch group {
 			case .noWallet:
-				if MainScreenViewModel.shared.isWalletMissing {
+				if MainScreenViewModel.shared.isWalletMissing, isOwned {
 					return LocalizableString.RewardDetails.noWalletProblemButtonTitle.localized
 				} else if annotation?.docUrl != nil {
 					return LocalizableString.RewardDetails.readMore.localized
 				}
 				return nil
 			case .locationNotVerified:
-				return LocalizableString.RewardDetails.editLocation.localized
+				if isOwned {
+					return LocalizableString.RewardDetails.editLocation.localized
+				} else if annotation?.docUrl != nil {
+					return LocalizableString.RewardDetails.readMore.localized
+				}
+				return nil
 			case .unknown:
 				if annotation?.docUrl != nil {
 					return LocalizableString.RewardDetails.readMore.localized
@@ -110,19 +116,26 @@ private extension RewardDetailsViewModel {
 			return
 		}
 
+		let isOwned = followState?.relation == .owned
+
 		switch group {
 			case .noWallet:
-				if MainScreenViewModel.shared.isWalletMissing {
-					Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))					
+				if MainScreenViewModel.shared.isWalletMissing, isOwned {
+					Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
 				} else if let docUrl = annotation.docUrl,
 				   let url = URL(string: docUrl) {
 					UIApplication.shared.open(url)
 				}
 			case .locationNotVerified:
-				let viewModel = ViewModelsFactory.getSelectLocationViewModel(device: device,
-																			 followState: followState,
-																			 delegate: self)
-				Router.shared.navigateTo(.selectStationLocation(viewModel))
+				if isOwned {
+					let viewModel = ViewModelsFactory.getSelectLocationViewModel(device: device,
+																				 followState: followState,
+																				 delegate: self)
+					Router.shared.navigateTo(.selectStationLocation(viewModel))
+				} else if let docUrl = annotation.docUrl,
+						  let url = URL(string: docUrl) {
+					 UIApplication.shared.open(url)
+				 }
 			case .unknown:
 				if let docUrl = annotation.docUrl,
 				   let url = URL(string: docUrl) {
