@@ -31,6 +31,7 @@ enum SuccessFailEnum: CustomStringConvertible {
     case history
 	case profile
 	case deleteAccount
+	case editLocation
 
     var description: String {
         switch self {
@@ -79,6 +80,8 @@ enum SuccessFailEnum: CustomStringConvertible {
 			case .profile:
 				return Constants.profile
 			case .deleteAccount:
+				return ""
+			case .editLocation:
 				return ""
         }
     }

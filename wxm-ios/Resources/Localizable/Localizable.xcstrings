@@ -5271,7 +5271,40 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Station relocation is subject to a relocation fee. [Read more here](%@)"
+            "value" : "Editing the station’s location is subject to a **relocation penalty** and the station will be excluded from rewards for the next **2 days**. [Read more here](%@)"
+          }
+        }
+      }
+    },
+    "select_station_success_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dismiss"
+          }
+        }
+      }
+    },
+    "select_station_success_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station’s location has been updated. The station should start earning rewards again when your location is verified by our systems in **~2-3** days."
+          }
+        }
+      }
+    },
+    "select_station_success_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location Updated!"
           }
         }
       }
