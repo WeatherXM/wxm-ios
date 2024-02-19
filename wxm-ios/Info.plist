@@ -25,6 +25,8 @@
 	</array>
 	<key>ClaimTokenUrl</key>
 	<string>$(ClaimTokenUrl)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<string>NO</string>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -78,7 +80,5 @@
 	<string>$(UserRefreshTokenService)</string>
 	<key>Username</key>
 	<string>$(Username)</string>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<string>NO</string>
 </dict>
 </plist>
