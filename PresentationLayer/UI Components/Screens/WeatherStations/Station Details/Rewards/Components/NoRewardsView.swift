@@ -11,7 +11,7 @@ struct NoRewardsView: View {
 	private let iconDimensions: CGFloat = 150
 
     var body: some View {
-		VStack(spacing: 0.0) {
+		VStack(spacing: CGFloat(.smallSpacing)) {
 			LottieView(animationCase: AnimationsEnums.rocket.animationString, loopMode: .loop)
 				.frame(width: iconDimensions, height: iconDimensions)
 
@@ -30,6 +30,10 @@ struct NoRewardsView: View {
 }
 
 #Preview {
-    NoRewardsView()
-		.wxmShadow()
+	ZStack {
+		Color.gray
+		NoRewardsView()
+			.wxmShadow()
+			.padding()
+	}
 }
