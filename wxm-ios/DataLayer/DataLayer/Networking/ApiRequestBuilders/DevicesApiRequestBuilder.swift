@@ -40,13 +40,14 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
     case deviceById(deviceId: String)
 	case deviceRewardsById(deviceId: String)
     case deviceTokenTransactions(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?)
+	case deviceRewardsTimeline(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?)
 
     // MARK: - HttpMethod
 
     // This returns the HttpMethod type. It's used to determine the type if several endpoints are peresent
 	private var method: HTTPMethod {
 		switch self {
-			case .devices, .deviceById, .deviceRewardsById,.deviceTokenTransactions:
+			case .devices, .deviceById, .deviceRewardsById, .deviceTokenTransactions, .deviceRewardsTimeline:
 				return .get
 		}
 	}
@@ -64,6 +65,8 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
 				return "devices/\(deviceId)/tokens"
 			case let .deviceTokenTransactions(deviceId, _, _, _, _, _):
 				return "devices/\(deviceId)/tokens/transactions"
+			case let .deviceRewardsTimeline(deviceId, _, _, _, _, _):
+				return "devices/\(deviceId)/tokens/timeline"
 		}
     }
 
@@ -72,7 +75,8 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
     // This is the queries part, it's optional because an endpoint can be without parameters
     private var parameters: Parameters? {
         switch self {
-            case let .deviceTokenTransactions(_, page, pageSize, timezone, fromDate, toDate):
+            case let .deviceTokenTransactions(_, page, pageSize, timezone, fromDate, toDate),
+				let .deviceRewardsTimeline(_, page, pageSize, timezone, fromDate, toDate):
                 var params: Parameters = [
                     ParameterConstants.Me.page: page,
                     ParameterConstants.Me.fromDate: fromDate,
@@ -100,6 +104,8 @@ extension DevicesApiRequestBuilder: MockResponseBuilder {
 				return "get_transactions"
 			case .deviceRewardsById:
 				return "get_user_device_rewards"
+			case .deviceRewardsTimeline:
+				return "get_device_rewards_timeline"
 			default:
 				return nil
 		}

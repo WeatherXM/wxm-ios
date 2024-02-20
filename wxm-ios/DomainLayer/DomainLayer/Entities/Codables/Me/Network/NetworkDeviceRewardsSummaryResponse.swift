@@ -9,7 +9,7 @@ import Foundation
 
 public  struct NetworkDeviceRewardsSummaryResponse: Codable {
 	public let totalRewards: Double?
-	public let timeline: [NetworkDeviceRewardsTimelineEntry]?
+	public let timeline: [NetworkDeviceRewardsSummaryTimelineEntry]?
 }
 
 public struct NetworkDeviceRewardsSummary: Codable {
@@ -30,7 +30,7 @@ public struct NetworkDeviceRewardsSummary: Codable {
 	}
 }
 
-public struct NetworkDeviceRewardsTimelineEntry: Codable {
+public struct NetworkDeviceRewardsSummaryTimelineEntry: Codable {
 	public let timestamp: Date?
 	public let baseRewardScore: Int?
 
