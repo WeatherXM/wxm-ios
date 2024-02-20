@@ -3177,7 +3177,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WeatherXM-DB";
+				INFOPLIST_KEY_CFBundleDisplayName = "WeatherXM-MOCK";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera for scanning the QR";
@@ -3185,7 +3185,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WeatherXM uses your location to provide relevant weather data, and verify station installation.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -3195,7 +3195,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.13.0;
+				MARKETING_VERSION = 1.14.0;
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app.mock;
 				PRODUCT_NAME = WeatherXM;
@@ -3353,7 +3353,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WeatherXM uses your location to provide relevant weather data, and verify station installation.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -3363,7 +3363,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.13.0;
+				MARKETING_VERSION = 1.14.0;
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app.debug;
 				PRODUCT_NAME = WeatherXM;
@@ -3394,7 +3394,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WeatherXM-DB";
+				INFOPLIST_KEY_CFBundleDisplayName = WeatherXM;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera for scanning the QR";
@@ -3402,7 +3402,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WeatherXM uses your location to provide relevant weather data, and verify station installation.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -3412,7 +3412,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.13.0;
+				MARKETING_VERSION = 1.14.0;
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app;
 				PRODUCT_NAME = WeatherXM;
