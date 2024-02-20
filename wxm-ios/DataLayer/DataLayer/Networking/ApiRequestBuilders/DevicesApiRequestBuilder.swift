@@ -103,7 +103,7 @@ extension DevicesApiRequestBuilder: MockResponseBuilder {
 			case .deviceTokenTransactions:
 				return "get_transactions"
 			case .deviceRewardsById:
-				return "get_user_device_rewards"
+				return "get_device_rewards_summary"
 			case .deviceRewardsTimeline:
 				return "get_device_rewards_timeline"
 			default:

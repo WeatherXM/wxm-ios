@@ -9,7 +9,14 @@ import Foundation
 
 public  struct NetworkDeviceRewardsSummaryResponse: Codable {
 	public let totalRewards: Double?
+	public let latest: NetworkDeviceRewardsSummary?
 	public let timeline: [NetworkDeviceRewardsSummaryTimelineEntry]?
+
+	enum CodingKeys: String, CodingKey {
+		case totalRewards = "total_rewards"
+		case latest
+		case timeline
+	}
 }
 
 public struct NetworkDeviceRewardsSummary: Codable {

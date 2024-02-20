@@ -1,0 +1,34 @@
+//
+//  NetworkDeviceRewardsSummaryResponse+.swift
+//  wxm-ios
+//
+//  Created by Pantelis Giazitsis on 20/2/24.
+//
+
+import DomainLayer
+
+extension NetworkDeviceRewardsSummary {
+	var toDailyRewardCard: DailyRewardCardView.Card {
+		DailyRewardCardView.Card(refDate: timestamp,
+								 totalRewards: totalReward ?? 0.0,
+								 baseReward: baseReward ?? 0.0,
+								 baseRewardScore: Double(baseRewardScore ?? 0) / 100.0,
+								 boostsReward: totalBoostReward)
+	}
+}
+
+extension NetworkDeviceRewardsSummaryTimelineEntry {
+	var toWeeklyEntry: WeeklyStreakView.Entry? {
+		guard let timestamp else {
+			return nil
+		}
+		return .init(timestamp: timestamp, value: baseRewardScore ?? 0)
+	}
+}
+
+
+extension Array where Element == NetworkDeviceRewardsSummaryTimelineEntry {
+	var toWeeklyEntries: [WeeklyStreakView.Entry] {
+		compactMap { $0.toWeeklyEntry }
+	}
+}

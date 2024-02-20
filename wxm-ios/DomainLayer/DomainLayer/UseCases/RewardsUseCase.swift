@@ -36,7 +36,7 @@ public struct RewardsUseCase {
 		}
 	}
 
-	public func getDeviceRewardsSummary(deviceId: String) async throws -> Result<NetworkDeviceRewardsSummary, NetworkErrorResponse> {
+	public func getDeviceRewardsSummary(deviceId: String) async throws -> Result<NetworkDeviceRewardsSummaryResponse, NetworkErrorResponse> {
 		let rewardsPublisher = try devicesRepository.deviceRewardsSummary(deviceId: deviceId)
 		return await withUnsafeContinuation { continuation in
 			rewardsPublisher.sink { response in

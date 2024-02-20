@@ -14,16 +14,11 @@ class StationRewardsViewModel: ObservableObject {
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
 	@Published private(set) var viewState: ViewState = .loading
 
-	@Published private(set) var totalRewards: Double = 0.0
 	@Published var selectedIndex: Int = 0 {
 		didSet {
 			trackSelectContentChange()
 		}
 	}
-	@Published var data: [StationRewardsCardOverview]?
-	lazy var cardButtonActions: RewardsOverviewButtonActions = {
-		getCardButtonActions()
-	}()
 
 	@Published var showInfo: Bool = false
 	private(set) var info: RewardsOverviewButtonActions.Info?
@@ -34,7 +29,7 @@ class StationRewardsViewModel: ObservableObject {
 	private(set) var followState: UserDeviceFollowState?
     private(set) var failObj: FailSuccessStateObject?
 
-	private var response: NetworkDeviceTokensResponse?
+	@Published var response: NetworkDeviceRewardsSummaryResponse?
     private var useCase: RewardsUseCase?
     private weak var containerDelegate: StationDetailsViewModelDelegate?
     private let deviceId: String
@@ -59,14 +54,14 @@ class StationRewardsViewModel: ObservableObject {
     }
 
 	func handleViewDetailsTap() {
-		guard let device, let cardOverview = data?.first else {
-			return
-		}
-
-		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
-																	followState: followState,
-																	overview: cardOverview)
-		Router.shared.navigateTo(.rewardDetails(viewModel))
+//		guard let device, let cardOverview = data?.first else {
+//			return
+//		}
+//
+//		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
+//																	followState: followState,
+//																	overview: cardOverview)
+//		Router.shared.navigateTo(.rewardDetails(viewModel))
 	}
 
     func handleDetailedRewardsButtonTap() {
@@ -79,10 +74,10 @@ class StationRewardsViewModel: ObservableObject {
     }
 
     func trackSelectContentChange() {
-		let state = data?[safe: selectedIndex]?.title ?? ""
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .rewardsCard,
-                                                              .itemId: .custom(deviceId),
-                                                              .state: .custom(state)])
+//		let state = data?[safe: selectedIndex]?.title ?? ""
+//        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .rewardsCard,
+//                                                              .itemId: .custom(deviceId),
+//                                                              .state: .custom(state)])
     }
 }
 
@@ -112,7 +107,6 @@ extension StationRewardsViewModel: StationDetailsViewModelChild {
 
         DispatchQueue.main.async {
 			self.response = tuple.response
-			self.updateOverviews(with: tuple.response!)
             self.viewState = .content
         }
     }
@@ -167,39 +161,24 @@ private extension StationRewardsViewModel {
 		} errorButtonAction: { [weak self] in
 			self?.trackErrorButtonTap()
 			// If the latest is selected, navigate to reward details
-			if self?.selectedIndex == 0,
-				let cardOverView = self?.data?[safe: 0],
-				let device = self?.device {
-				let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
-																			followState: self?.followState,
-																			overview: cardOverView)
-				Router.shared.navigateTo(.rewardDetails(viewModel))
-				return
-			}
+//			if self?.selectedIndex == 0,
+//				let cardOverView = self?.data?[safe: 0],
+//				let device = self?.device {
+//				let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
+//																			followState: self?.followState,
+//																			overview: cardOverView)
+//				Router.shared.navigateTo(.rewardDetails(viewModel))
+//				return
+//			}
 			self?.navigateToTransactions()
 		}
 
 		return actions
 	}
 
-	func updateOverviews(with rewards: NetworkDeviceTokensResponse) {
-		let errorButtonTitle: String = followState?.relation == .owned ? LocalizableString.StationDetails.ownedRewardsErrorButtonTitle.localized : LocalizableString.StationDetails.rewardsErrorButtonTitle.localized
-		let latestRewards = rewards.latest
-		let latest = latestRewards?.toRewardsCardOverview(title: LocalizableString.StationDetails.rewardsLatestTab.localized, errorButtonTitle: errorButtonTitle)
-
-		let weekly = rewards.weekly
-		let week = weekly?.toRewardsCardOverview(title: LocalizableString.StationDetails.rewardsSevenDaysTab.localized, errorButtonTitle: errorButtonTitle)
-
-		let monthly = rewards.monthly
-		let month = monthly?.toRewardsCardOverview(title: LocalizableString.StationDetails.rewardsThirtyDaysTab.localized, errorButtonTitle: errorButtonTitle)
-
-		self.data = [latest, week, month].compactMap { $0 }
-		self.totalRewards = rewards.totalRewards ?? 0.0
-	}
-
-	func getRewards() async -> (response: NetworkDeviceTokensResponse?, error: NetworkErrorResponse?) {
+	func getRewards() async -> (response: NetworkDeviceRewardsSummaryResponse?, error: NetworkErrorResponse?) {
 		do {
-			guard let result = try await useCase?.getDeviceRewards(deviceId: deviceId) else {
+			guard let result = try await useCase?.getDeviceRewardsSummary(deviceId: deviceId) else {
 				return (nil, nil)
 			}
 
@@ -216,9 +195,9 @@ private extension StationRewardsViewModel {
 	}
 
 	func trackErrorButtonTap() {
-		let itemId = data?[safe: selectedIndex]?.title ?? ""
-		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .identifyProblems,
-														   .contentType: .deviceRewards,
-														   .itemId: .custom(itemId)])
+//		let itemId = data?[safe: selectedIndex]?.title ?? ""
+//		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .identifyProblems,
+//														   .contentType: .deviceRewards,
+//														   .itemId: .custom(itemId)])
 	}
 }

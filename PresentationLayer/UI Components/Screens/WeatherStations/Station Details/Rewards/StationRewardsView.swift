@@ -22,18 +22,18 @@ struct StationRewardsView: View {
 												 description: message)
 						}
 
-						TotalRewardsView(rewards: viewModel.totalRewards)
+						TotalRewardsView(rewards: viewModel.response?.totalRewards ?? 0.0)
 							.wxmShadow()
 
-						if let data = viewModel.data?.first {
+						if let data = viewModel.response?.latest {
 							DailyRewardCardView(card: data.toDailyRewardCard) {
 								viewModel.handleViewDetailsTap()
 							}
 							.wxmShadow()
+						}
 
-							WeeklyStreakView(entries: data.timelineEntries ?? []) {
-								viewModel.handleDetailedRewardsButtonTap()
-							}
+						WeeklyStreakView(entries: viewModel.response?.timeline?.toWeeklyEntries ?? []) {
+							viewModel.handleDetailedRewardsButtonTap()
 						}
 					}
 					.iPadMaxWidth()
