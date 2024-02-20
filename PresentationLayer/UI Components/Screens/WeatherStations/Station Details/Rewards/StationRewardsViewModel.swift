@@ -27,6 +27,8 @@ class StationRewardsViewModel: ObservableObject {
 
 	@Published var showInfo: Bool = false
 	private(set) var info: RewardsOverviewButtonActions.Info?
+	@Published var showMainnet: Bool? = false
+	@Published var mainnetMessage: String?
 
     private(set) var device: DeviceDetails?
 	private(set) var followState: UserDeviceFollowState?
@@ -42,7 +44,11 @@ class StationRewardsViewModel: ObservableObject {
         self.deviceId = deviceId
         self.containerDelegate = containerDelegate
         self.useCase = useCase
-        observeOffset()
+		
+		RemoteConfigManager.shared.$isFeatMainnetEnabled.assign(to: &$showMainnet)
+		RemoteConfigManager.shared.$featMainnetMessage.assign(to: &$mainnetMessage)
+
+		observeOffset()
     }
 
     func refresh(completion: @escaping VoidCallback) {

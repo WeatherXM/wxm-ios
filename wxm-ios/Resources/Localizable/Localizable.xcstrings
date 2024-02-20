@@ -5726,6 +5726,17 @@
         }
       }
     },
+    "station_details_mainnet_banner_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Mainnet!"
+          }
+        }
+      }
+    },
     "station_details_no_rewards_description" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -17,6 +17,11 @@ struct StationRewardsView: View {
 					viewModel.refresh(completion: completion)
 				} content: {
 					VStack(spacing: CGFloat(.mediumSpacing)) {
+						if viewModel.showMainnet == true, let message = viewModel.mainnetMessage {
+							AnnouncementCardView(title: LocalizableString.StationDetails.mainnetTitle.localized,
+												 description: message)
+						}
+
 						TotalRewardsView(rewards: viewModel.totalRewards)
 							.wxmShadow()
 

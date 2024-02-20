@@ -36,6 +36,7 @@ extension LocalizableString {
 		case weeklyStreak
 		case noRewardsTitle
 		case noRewardsDescription
+		case mainnetTitle
 		case rewardsTitle
 		case rewardsLatestTab
 		case rewardsSevenDaysTab
@@ -117,6 +118,8 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_no_rewards_title"
 			case .noRewardsDescription:
 				return "station_details_no_rewards_description"
+			case .mainnetTitle:
+				return "station_details_mainnet_banner_title"
 			case .rewardWarningMessage:
 				return "station_details_reward_warning_message"
 			case .rewardsTitle:
