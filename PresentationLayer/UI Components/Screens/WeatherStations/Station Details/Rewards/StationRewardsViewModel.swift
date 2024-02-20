@@ -13,15 +13,6 @@ import Toolkit
 class StationRewardsViewModel: ObservableObject {
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
 	@Published private(set) var viewState: ViewState = .loading
-
-	@Published var selectedIndex: Int = 0 {
-		didSet {
-			trackSelectContentChange()
-		}
-	}
-
-	@Published var showInfo: Bool = false
-	private(set) var info: RewardsOverviewButtonActions.Info?
 	@Published var showMainnet: Bool? = false
 	@Published var mainnetMessage: String?
 
@@ -73,12 +64,6 @@ class StationRewardsViewModel: ObservableObject {
         refresh { }
     }
 
-    func trackSelectContentChange() {
-//		let state = data?[safe: selectedIndex]?.title ?? ""
-//        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .rewardsCard,
-//                                                              .itemId: .custom(deviceId),
-//                                                              .state: .custom(state)])
-    }
 }
 
 private extension StationRewardsViewModel {
@@ -136,46 +121,6 @@ private extension StationRewardsViewModel {
         }
     }
 
-	func getCardButtonActions() -> RewardsOverviewButtonActions {
-		let actions = RewardsOverviewButtonActions { [weak self] in
-			self?.info = RewardsOverviewButtonActions.rewardsScoreInfo
-			self?.showInfo = true
-			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
-																  .itemId: .rewardsScore])
-		} dailyMaxInfoAction: { [weak self] in
-			self?.info = RewardsOverviewButtonActions.dailyMaxInfo
-			self?.showInfo = true
-			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
-																  .itemId: .maxRewards])
-		} timelineInfoAction: { [weak self] in
-			var offsetString: String?
-			if let identifier = self?.device?.timezone,
-			   let timezone = TimeZone(identifier: identifier),
-			   !timezone.isUTC {
-				offsetString = timezone.hoursOffsetString
-			}
-			self?.info = RewardsOverviewButtonActions.timelineInfo(timezoneOffset: offsetString)
-			self?.showInfo = true
-			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
-																  .itemId: .timeline])
-		} errorButtonAction: { [weak self] in
-			self?.trackErrorButtonTap()
-			// If the latest is selected, navigate to reward details
-//			if self?.selectedIndex == 0,
-//				let cardOverView = self?.data?[safe: 0],
-//				let device = self?.device {
-//				let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
-//																			followState: self?.followState,
-//																			overview: cardOverView)
-//				Router.shared.navigateTo(.rewardDetails(viewModel))
-//				return
-//			}
-			self?.navigateToTransactions()
-		}
-
-		return actions
-	}
-
 	func getRewards() async -> (response: NetworkDeviceRewardsSummaryResponse?, error: NetworkErrorResponse?) {
 		do {
 			guard let result = try await useCase?.getDeviceRewardsSummary(deviceId: deviceId) else {
@@ -192,12 +137,5 @@ private extension StationRewardsViewModel {
 			print(error)
 			return (nil, nil)
 		}
-	}
-
-	func trackErrorButtonTap() {
-//		let itemId = data?[safe: selectedIndex]?.title ?? ""
-//		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .identifyProblems,
-//														   .contentType: .deviceRewards,
-//														   .itemId: .custom(itemId)])
 	}
 }

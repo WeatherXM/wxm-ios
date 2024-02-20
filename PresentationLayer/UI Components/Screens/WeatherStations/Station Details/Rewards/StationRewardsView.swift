@@ -45,9 +45,6 @@ struct StationRewardsView: View {
 				.fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)
 			}
 		}
-		.bottomSheet(show: $viewModel.showInfo, fitContent: true) {
-			bottomInfoView(info: viewModel.info)
-		}
         .onAppear {
             Logger.shared.trackScreen(.rewards)
         }
