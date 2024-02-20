@@ -14,4 +14,5 @@ public protocol DevicesRepository {
     func deviceTokenTransactions(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?) throws -> AnyPublisher<DataResponse<NetworkDeviceIDTokensTransactionsResponse, NetworkErrorResponse>, Never>
     func deviceTokens(deviceId: String) async throws -> Result<NetworkDeviceIDTokensTransactionsResponse, NetworkErrorResponse>
 	func deviceRewards(deviceId: String) throws -> AnyPublisher<DataResponse<NetworkDeviceTokensResponse, NetworkErrorResponse>, Never>
+	func deviceRewardsSummary(deviceId: String) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsSummary, NetworkErrorResponse>, Never>
 }

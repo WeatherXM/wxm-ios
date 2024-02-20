@@ -79,7 +79,14 @@ public struct DevicesRepositoryImpl: DevicesRepository {
         }
     }
 
+	#warning("TODO: - Remove once the reward summary is implemented")
 	public func deviceRewards(deviceId: String) throws -> AnyPublisher<DataResponse<NetworkDeviceTokensResponse, NetworkErrorResponse>, Never> {
+		let builder =  DevicesApiRequestBuilder.deviceRewardsById(deviceId: deviceId)
+		let urlRequest = try builder.asURLRequest()
+		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
+	}
+
+	public func deviceRewardsSummary(deviceId: String) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsSummary, NetworkErrorResponse>, Never> {
 		let builder =  DevicesApiRequestBuilder.deviceRewardsById(deviceId: deviceId)
 		let urlRequest = try builder.asURLRequest()
 		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)

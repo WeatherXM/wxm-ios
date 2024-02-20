@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct NetworkDeviceRewardsSummaryResponse: Codable {
+public  struct NetworkDeviceRewardsSummaryResponse: Codable {
 	public let totalRewards: Double?
 	public let timeline: [NetworkDeviceRewardsTimelineEntry]?
 }
 
-struct NetworkDeviceRewardsSummary: Codable {
+public struct NetworkDeviceRewardsSummary: Codable {
 	public let timestamp: Date?
 	public let baseReward: Double?
 	public let totalBoostReward: Double?
@@ -30,7 +30,7 @@ struct NetworkDeviceRewardsSummary: Codable {
 	}
 }
 
-struct NetworkDeviceRewardsTimelineEntry: Codable {
+public struct NetworkDeviceRewardsTimelineEntry: Codable {
 	public let timestamp: Date?
 	public let baseRewardScore: Int?
 
