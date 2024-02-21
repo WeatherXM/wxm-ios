@@ -157,7 +157,7 @@ private extension ContentView {
 		Color(colorEnum: .bg)
 		RewardDetailsView(viewModel: .init(device: device,
 										   followState: .init(deviceId: device.id!, relation: .owned),
-										   tokenUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(TokenUseCase.self)!,
+										   tokenUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!,
 										   rewardsCardOverview: .mock(title: "title")))
 	}
 }

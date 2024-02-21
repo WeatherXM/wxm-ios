@@ -1,5 +1,5 @@
 //
-//  TokenUseCase.swift
+//  RewardsTimelineUseCase.swift
 //  DomainLayer
 //
 //  Created by Lampros Zouloumis on 13/9/22.
@@ -7,20 +7,20 @@
 
 import Combine
 
-public class TokenUseCase {
-    private let repository: DevicesRepository
+public class RewardsTimelineUseCase {
+	private let repository: DevicesRepository
 	private let meRepository: MeRepository
-    private var cancellableSet: Set<AnyCancellable> = []
-
+	private var cancellableSet: Set<AnyCancellable> = []
+	
 	public init(repository: DevicesRepository, meRepository: MeRepository) {
-        self.repository = repository
+		self.repository = repository
 		self.meRepository = meRepository
-    }
-
-	public func getTransactions(deviceId: String, 
-								page: Int,
-								fromDate: String,
-								toDate: String) async throws -> Result<NetworkDeviceRewardsTimelineResponse?, NetworkErrorResponse> {
+	}
+	
+	public func getTimeline(deviceId: String, 
+							page: Int,
+							fromDate: String,
+							toDate: String) async throws -> Result<NetworkDeviceRewardsTimelineResponse?, NetworkErrorResponse> {
 		let publisher = try repository.deviceRewardsTimeline(deviceId: deviceId,
 															 page: page,
 															 pageSize: nil,
@@ -37,8 +37,8 @@ public class TokenUseCase {
 			}.store(in: &cancellableSet)
 		}
 	}
-
+	
 	public func getFollowState(deviceId: String) async throws -> Result<UserDeviceFollowState?, NetworkErrorResponse> {
-	 	try await meRepository.getDeviceFollowState(deviceId: deviceId)
+		try await meRepository.getDeviceFollowState(deviceId: deviceId)
 	}
 }

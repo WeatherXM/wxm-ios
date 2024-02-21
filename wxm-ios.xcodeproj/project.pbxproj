@@ -149,7 +149,7 @@
 		267547A329A9181E008BCF40 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546D629A9181E008BCF40 /* HistoryViewModel.swift */; };
 		267547A429A9181E008BCF40 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546D729A9181E008BCF40 /* SettingsViewModel.swift */; };
 		267547A729A9181E008BCF40 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546DA29A9181E008BCF40 /* ResetPasswordViewModel.swift */; };
-		267547A829A9181E008BCF40 /* TransactionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546DB29A9181E008BCF40 /* TransactionDetailsViewModel.swift */; };
+		267547A829A9181E008BCF40 /* RewardsTimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546DB29A9181E008BCF40 /* RewardsTimelineViewModel.swift */; };
 		267547A929A9181E008BCF40 /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546DC29A9181E008BCF40 /* MainScreenViewModel.swift */; };
 		267547AB29A9181E008BCF40 /* WeatherStationsHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546DE29A9181E008BCF40 /* WeatherStationsHomeViewModel.swift */; };
 		267547AC29A9181E008BCF40 /* DeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546DF29A9181E008BCF40 /* DeleteAccountViewModel.swift */; };
@@ -233,7 +233,7 @@
 		2675482B29A9181E008BCF40 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675478129A9181E008BCF40 /* ProgressBar.swift */; };
 		2675482C29A9181E008BCF40 /* RewardsScoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675478229A9181E008BCF40 /* RewardsScoreItem.swift */; };
 		2675482D29A9181E008BCF40 /* RewardDatePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675478329A9181E008BCF40 /* RewardDatePoint.swift */; };
-		2675482E29A9181E008BCF40 /* TransactionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675478429A9181E008BCF40 /* TransactionDetailsView.swift */; };
+		2675482E29A9181E008BCF40 /* RewardsTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675478429A9181E008BCF40 /* RewardsTimelineView.swift */; };
 		2675483629A9181E008BCF40 /* CustomRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675479029A9181E008BCF40 /* CustomRangeSlider.swift */; };
 		2675483D29A9181E008BCF40 /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675479C29A9181E008BCF40 /* TabItemView.swift */; };
 		2675483E29A9181E008BCF40 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675479D29A9181E008BCF40 /* TabBarView.swift */; };
@@ -277,7 +277,7 @@
 		26769AB02ACEBB2000162974 /* LocalizableString+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */; };
 		26769AB22ACEC58600162974 /* StationTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26769AB12ACEC58600162974 /* StationTimelineEntry.swift */; };
 		26769AB62AD0139900162974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26769AB52AD0139900162974 /* GoogleService-Info.plist */; };
-		2678ED8F2AFD1B1400940D59 /* TransactionsPagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678ED8E2AFD1B1400940D59 /* TransactionsPagination.swift */; };
+		2678ED8F2AFD1B1400940D59 /* RewardsTimelinePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */; };
 		267A37832AEBB4C900469126 /* StationRewardsTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */; };
 		267A378A2AEBFF2F00469126 /* DeviceRewardsOverview+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */; };
 		267EC4262A98C14700F2C37E /* UIKitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4252A98C14700F2C37E /* UIKitUtils.swift */; };
@@ -627,7 +627,7 @@
 		267546D629A9181E008BCF40 /* HistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		267546D729A9181E008BCF40 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		267546DA29A9181E008BCF40 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
-		267546DB29A9181E008BCF40 /* TransactionDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewModel.swift; sourceTree = "<group>"; };
+		267546DB29A9181E008BCF40 /* RewardsTimelineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsTimelineViewModel.swift; sourceTree = "<group>"; };
 		267546DC29A9181E008BCF40 /* MainScreenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreenViewModel.swift; sourceTree = "<group>"; };
 		267546DE29A9181E008BCF40 /* WeatherStationsHomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStationsHomeViewModel.swift; sourceTree = "<group>"; };
 		267546DF29A9181E008BCF40 /* DeleteAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewModel.swift; sourceTree = "<group>"; };
@@ -711,7 +711,7 @@
 		2675478129A9181E008BCF40 /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		2675478229A9181E008BCF40 /* RewardsScoreItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsScoreItem.swift; sourceTree = "<group>"; };
 		2675478329A9181E008BCF40 /* RewardDatePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardDatePoint.swift; sourceTree = "<group>"; };
-		2675478429A9181E008BCF40 /* TransactionDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailsView.swift; sourceTree = "<group>"; };
+		2675478429A9181E008BCF40 /* RewardsTimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsTimelineView.swift; sourceTree = "<group>"; };
 		2675479029A9181E008BCF40 /* CustomRangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRangeSlider.swift; sourceTree = "<group>"; };
 		2675479C29A9181E008BCF40 /* TabItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
 		2675479D29A9181E008BCF40 /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -750,7 +750,7 @@
 		26769AB12ACEC58600162974 /* StationTimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTimelineEntry.swift; sourceTree = "<group>"; };
 		26769AB32AD00D4400162974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		26769AB52AD0139900162974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		2678ED8E2AFD1B1400940D59 /* TransactionsPagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsPagination.swift; sourceTree = "<group>"; };
+		2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelinePagination.swift; sourceTree = "<group>"; };
 		267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsTimelineView.swift; sourceTree = "<group>"; };
 		267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceRewardsOverview+.swift"; sourceTree = "<group>"; };
 		267E22BD2AC1B1A300B9E196 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
@@ -1607,9 +1607,9 @@
 			children = (
 				2675477629A9181E008BCF40 /* RewardsCard */,
 				2675478329A9181E008BCF40 /* RewardDatePoint.swift */,
-				2675478429A9181E008BCF40 /* TransactionDetailsView.swift */,
-				267546DB29A9181E008BCF40 /* TransactionDetailsViewModel.swift */,
-				2678ED8E2AFD1B1400940D59 /* TransactionsPagination.swift */,
+				2675478429A9181E008BCF40 /* RewardsTimelineView.swift */,
+				267546DB29A9181E008BCF40 /* RewardsTimelineViewModel.swift */,
+				2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */,
 			);
 			path = WXMTransactionsDetails;
 			sourceTree = "<group>";
@@ -2704,7 +2704,7 @@
 				2612AC1C2AB45B2800285896 /* FilterViewModel.swift in Sources */,
 				267547A129A9181E008BCF40 /* FirmwareUpdateUtils.swift in Sources */,
 				26348E252A444BEE000846C6 /* FontsEnum.swift in Sources */,
-				2678ED8F2AFD1B1400940D59 /* TransactionsPagination.swift in Sources */,
+				2678ED8F2AFD1B1400940D59 /* RewardsTimelinePagination.swift in Sources */,
 				267548D729A91A87008BCF40 /* FontSizeEnum.swift in Sources */,
 				26CA845D2AD93C0C006D47D7 /* DeviceDetails+Common.swift in Sources */,
 				267548E629A91A87008BCF40 /* Functions+Units.swift in Sources */,
@@ -2853,8 +2853,8 @@
 				2664830129C0C73E00748F9C /* Toast.swift in Sources */,
 				266482FF29C0BDCF00748F9C /* ToastView.swift in Sources */,
 				267547F629A9181E008BCF40 /* TrackableScrollView.swift in Sources */,
-				2675482E29A9181E008BCF40 /* TransactionDetailsView.swift in Sources */,
-				267547A829A9181E008BCF40 /* TransactionDetailsViewModel.swift in Sources */,
+				2675482E29A9181E008BCF40 /* RewardsTimelineView.swift in Sources */,
+				267547A829A9181E008BCF40 /* RewardsTimelineViewModel.swift in Sources */,
 				2675480129A9181E008BCF40 /* UberTextField.swift in Sources */,
 				267548F829A91A87008BCF40 /* UIColor+.swift in Sources */,
 				26E9A5522AE9675C003E0830 /* StationRewardTypes.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  TransactionDetailsView.swift
+//  RewardsTimelineView.swift
 //  PresentationLayer
 //
 //  Created by Danae Kikue Dimou on 12/9/22.
@@ -8,8 +8,8 @@ import DomainLayer
 import SwiftUI
 import Toolkit
 
-struct TransactionDetailsView: View {
-    @StateObject var viewModel: TransactionDetailsViewModel
+struct RewardsTimelineView: View {
+    @StateObject var viewModel: RewardsTimelineViewModel
     @EnvironmentObject var navigationObject: NavigationObject
 
     var body: some View {
@@ -17,7 +17,7 @@ struct TransactionDetailsView: View {
             Color(colorEnum: .bg)
                 .ignoresSafeArea()
             
-            transactionDetails
+            timelineView
         }
         .onAppear {
             navigationObject.title = viewModel.device.displayName
@@ -28,8 +28,8 @@ struct TransactionDetailsView: View {
     }
 
     @ViewBuilder
-    var transactionDetails: some View {
-        transactions
+    var timelineView: some View {
+        timelineList
 			.iPadMaxWidth()
             .wxmEmptyView(show: Binding(get: { viewModel.transactions.isEmpty }, set: { _ in }),
                           configuration: .init(animationEnum: .emptyDevices,
@@ -42,7 +42,7 @@ struct TransactionDetailsView: View {
     }
 
     @ViewBuilder
-    var transactions: some View {
+    var timelineList: some View {
         ZStack(alignment: .bottom) {
             TrackableScrollView(showIndicators: false,
                                 offsetObject: viewModel.scrollOffsetObject) { completion in

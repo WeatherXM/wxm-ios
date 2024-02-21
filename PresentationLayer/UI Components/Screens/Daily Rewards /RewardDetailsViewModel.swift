@@ -14,7 +14,7 @@ class RewardDetailsViewModel: ObservableObject {
 
 	@Published var showInfo: Bool = false
 	private(set) var info: RewardsOverviewButtonActions.Info?
-	let useCase: TokenUseCase
+	let useCase: RewardsTimelineUseCase
 	var device: DeviceDetails
 	let followState: UserDeviceFollowState?
 	let rewardsCardOverview: StationRewardsCardOverview
@@ -29,7 +29,7 @@ class RewardDetailsViewModel: ObservableObject {
 		return LocalizableString.RewardDetails.zeroLostProblemsDescription.localized
 	}
 
-	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: TokenUseCase, rewardsCardOverview: StationRewardsCardOverview) {
+	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: RewardsTimelineUseCase, rewardsCardOverview: StationRewardsCardOverview) {
 		self.device = device
 		self.followState = followState
 		self.useCase = tokenUseCase

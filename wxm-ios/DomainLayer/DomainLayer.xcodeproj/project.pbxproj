@@ -62,7 +62,7 @@
 		9968B1B328AD0C2D00320413 /* ExplorerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B1B228AD0C2D00320413 /* ExplorerUseCase.swift */; };
 		9968B1B528AD0C5600320413 /* ExplorerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B1B428AD0C5600320413 /* ExplorerData.swift */; };
 		9968B1B828AD0E7400320413 /* PublicHexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B1B728AD0E7400320413 /* PublicHexError.swift */; };
-		99A31FA928D0C1F7003BE981 /* TokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A31FA828D0C1F7003BE981 /* TokenUseCase.swift */; };
+		99A31FA928D0C1F7003BE981 /* RewardsTimelineUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A31FA828D0C1F7003BE981 /* RewardsTimelineUseCase.swift */; };
 		99A31FAC28D0C25C003BE981 /* UITransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A31FAB28D0C25C003BE981 /* UITransaction.swift */; };
 		99BA878828BCF4D9004611AC /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BA878728BCF4D9004611AC /* Collection+.swift */; };
 		B5611E7F2834D5FC0092F204 /* NetworkFirmwareResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5611E7E2834D5FC0092F204 /* NetworkFirmwareResponse.swift */; };
@@ -139,7 +139,7 @@
 		9968B1B428AD0C5600320413 /* ExplorerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerData.swift; sourceTree = "<group>"; };
 		9968B1B728AD0E7400320413 /* PublicHexError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHexError.swift; sourceTree = "<group>"; };
 		9968B1BD28AD19E900320413 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		99A31FA828D0C1F7003BE981 /* TokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUseCase.swift; sourceTree = "<group>"; };
+		99A31FA828D0C1F7003BE981 /* RewardsTimelineUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelineUseCase.swift; sourceTree = "<group>"; };
 		99A31FAB28D0C25C003BE981 /* UITransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITransaction.swift; sourceTree = "<group>"; };
 		99BA878728BCF4D9004611AC /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
 		B5611E7E2834D5FC0092F204 /* NetworkFirmwareResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFirmwareResponse.swift; sourceTree = "<group>"; };
@@ -316,7 +316,7 @@
 				267401712A37687000E54E35 /* NetworkUseCase.swift */,
 				26A9619F2A78FFDD00A0E7B9 /* RewardsUseCase.swift */,
 				26D47E992A1779310078723A /* SettingsUseCase.swift */,
-				99A31FA828D0C1F7003BE981 /* TokenUseCase.swift */,
+				99A31FA828D0C1F7003BE981 /* RewardsTimelineUseCase.swift */,
 				261FFAB5299B9E8F00FCDC65 /* UpdateFirmwareUseCase.swift */,
 				266D17F82AC71280007CDB06 /* WidgetUseCase.swift */,
 			);
@@ -572,7 +572,7 @@
 				26A961A02A78FFDD00A0E7B9 /* RewardsUseCase.swift in Sources */,
 				26D47E9C2A177A0F0078723A /* SettingsRepository.swift in Sources */,
 				26D47E9A2A1779310078723A /* SettingsUseCase.swift in Sources */,
-				99A31FA928D0C1F7003BE981 /* TokenUseCase.swift in Sources */,
+				99A31FA928D0C1F7003BE981 /* RewardsTimelineUseCase.swift in Sources */,
 				99A31FAC28D0C25C003BE981 /* UITransaction.swift in Sources */,
 				264C10612AF3DBA100F6FF3E /* DeviceAnnotation.swift in Sources */,
 				26AF27782A0B8B090067A1B8 /* UnitsEnum.swift in Sources */,

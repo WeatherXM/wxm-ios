@@ -1,5 +1,5 @@
 //
-//  TransactionDetailsViewModel.swift
+//  RewardsTimelineViewModel.swift
 //  PresentationLayer
 //
 //  Created by Danae Kikue Dimou on 12/9/22.
@@ -11,8 +11,8 @@ import struct SwiftUI.CGFloat
 import UIKit
 import Toolkit
 
-final class TransactionDetailsViewModel: ObservableObject {
-    private let tokenUseCase: TokenUseCase
+final class RewardsTimelineViewModel: ObservableObject {
+    private let useCase: RewardsTimelineUseCase
 
     private static let FETCH_INTERVAL_MONTHS = 3
 
@@ -38,13 +38,13 @@ final class TransactionDetailsViewModel: ObservableObject {
 	var errorIndicationButtonTitle: String {
 		followState?.relation == .owned ? LocalizableString.StationDetails.ownedRewardsErrorButtonTitle.localized : LocalizableString.StationDetails.rewardsErrorButtonTitle.localized
 	}
-	private var pagination: TransactionsPagination
+	private var pagination: RewardsTimelinePagination
 
-	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: TokenUseCase) {
+	init(device: DeviceDetails, followState: UserDeviceFollowState?, useCase: RewardsTimelineUseCase) {
         self.device = device
 		self.followState = followState
-        self.tokenUseCase = tokenUseCase
-		self.pagination = .init(device: device, transactionsObject: nil, currentPage: 0)
+        self.useCase = useCase
+		self.pagination = .init(device: device, rewardsTimelineObject: nil, currentPage: 0)
 		
 		refresh(showFullScreenLoader: true, reset: true)
     }
@@ -62,7 +62,7 @@ final class TransactionDetailsViewModel: ObservableObject {
 		self.showFullScreenLoader = showFullScreenLoader
 
 		if reset {
-			self.pagination = .init(device: device, transactionsObject: nil, currentPage: 0)
+			self.pagination = .init(device: device, rewardsTimelineObject: nil, currentPage: 0)
 		}
 
 		pendingTask = Task { @MainActor [weak self] in
@@ -105,25 +105,17 @@ final class TransactionDetailsViewModel: ObservableObject {
 		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .identifyProblems,
 														   .contentType: .deviceRewardTransactions,
 														   .itemId: .custom(itemId)])
-
-//		guard let datum = transaction.datum else {
-//			return
-//		}
-//
-//		let errorButtonTitle: String = errorIndicationButtonTitle
-//		let rewardsCardOverview = DeviceRewardsOverview(datum: datum).toRewardsCardOverview(title: "", errorButtonTitle: errorButtonTitle)
-//		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device, followState: followState, overview: rewardsCardOverview)
-//		Router.shared.navigateTo(.rewardDetails(viewModel))
+		//TODO: Navigate to reward details
 	}
 }
 
-extension TransactionDetailsViewModel: HashableViewModel {
+extension RewardsTimelineViewModel: HashableViewModel {
     func hash(into hasher: inout Hasher) {
         hasher.combine(device.id)
     }
 }
 
-private extension TransactionDetailsViewModel {
+private extension RewardsTimelineViewModel {
 
 	@discardableResult
 	/// Fetches the next page
@@ -139,7 +131,7 @@ private extension TransactionDetailsViewModel {
 		let toDate = nextPagination.toDate
 
 		do {
-			let result = try await self.tokenUseCase.getTransactions(deviceId: device.id ?? "",
+			let result = try await self.useCase.getTimeline(deviceId: device.id ?? "",
 																	 page: page,
 																	 fromDate: fromDate,
 																	 toDate: toDate)
@@ -147,7 +139,7 @@ private extension TransactionDetailsViewModel {
 				case .success(let transactionsObj):
 					// Once the request is successful, we update the pagination with the latest state
 					pagination = .init(device: device,
-									   transactionsObject: transactionsObj,
+									   rewardsTimelineObject: transactionsObj,
 									   currentPage: page,
 									   fromDate: fromDate,
 									   toDate: toDate)
