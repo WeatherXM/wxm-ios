@@ -13,14 +13,10 @@ import Toolkit
 class RewardDetailsViewModel: ObservableObject {
 
 	@Published var showInfo: Bool = false
-	private(set) var info: RewardsOverviewButtonActions.Info?
 	let useCase: RewardsTimelineUseCase
 	var device: DeviceDetails
 	let followState: UserDeviceFollowState?
 	let rewardSummary: NetworkDeviceRewardsSummary
-	lazy var buttonActions: RewardsOverviewButtonActions = {
-		getButtonActions()
-	}()
 	var problemsDescription: String {
 		return "Remove"
 	}
@@ -81,32 +77,6 @@ class RewardDetailsViewModel: ObservableObject {
 }
 
 private extension RewardDetailsViewModel {
-	func getButtonActions() -> RewardsOverviewButtonActions {
-		.init(rewardsScoreInfoAction: {[weak self] in
-			self?.info = RewardsOverviewButtonActions.rewardsScoreInfo
-			self?.showInfo = true
-			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
-																  .itemId: .rewardsScore])
-
-		}, dailyMaxInfoAction: { [weak self] in
-			self?.info = RewardsOverviewButtonActions.dailyMaxInfo
-			self?.showInfo = true
-			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
-																  .itemId: .maxRewards])
-		}, timelineInfoAction: { [weak self] in
-			var offsetString: String?
-			if let identifier = self?.device.timezone,
-			   let timezone = TimeZone(identifier: identifier),
-			   !timezone.isUTC {
-				offsetString = timezone.hoursOffsetString
-			}
-			self?.info = RewardsOverviewButtonActions.timelineInfo(timezoneOffset: offsetString)
-			self?.showInfo = true
-			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
-																  .itemId: .timeline])
-		}, errorButtonAction: {})
-	}
-
 	func handleRewardAnnotation(annotation: RewardAnnotation) {
 		guard let group = annotation.group else {
 			return

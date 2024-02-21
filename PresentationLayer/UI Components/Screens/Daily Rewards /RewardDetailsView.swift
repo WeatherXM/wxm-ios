@@ -59,9 +59,6 @@ private struct ContentView: View {
 
 	var body: some View {
 		content
-			.bottomSheet(show: $viewModel.showInfo, fitContent: true) {
-				bottomInfoView(info: viewModel.info)
-			}
 	}
 
 	@ViewBuilder
