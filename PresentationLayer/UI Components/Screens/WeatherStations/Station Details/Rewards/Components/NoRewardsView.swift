@@ -20,7 +20,7 @@ struct NoRewardsView: View {
 					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 					.foregroundColor(Color(colorEnum: .text))
 				Text(LocalizableString.StationDetails.noRewardsDescription.localized)
-					.font(.system(size: CGFloat(.mediumFontSize)))
+					.font(.system(size: CGFloat(.normalFontSize)))
 					.foregroundColor(Color(colorEnum: .text))
 					.multilineTextAlignment(.center)
 			}

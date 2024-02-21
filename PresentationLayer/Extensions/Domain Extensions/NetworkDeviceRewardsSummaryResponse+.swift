@@ -7,6 +7,13 @@
 
 import DomainLayer
 
+extension NetworkDeviceRewardsSummaryResponse {
+	var isEmpty: Bool {
+		latest == nil &&
+		timeline == nil
+	}
+}
+
 extension NetworkDeviceRewardsSummary: Identifiable {
 	public var id: Int {
 		hashValue

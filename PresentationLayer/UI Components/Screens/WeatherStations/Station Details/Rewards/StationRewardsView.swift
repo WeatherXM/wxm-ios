@@ -22,18 +22,22 @@ struct StationRewardsView: View {
 												 description: message)
 						}
 
-						TotalRewardsView(rewards: viewModel.response?.totalRewards ?? 0.0)
-							.wxmShadow()
+						if viewModel.viewState == .empty {
+							NoRewardsView()
+						} else {
+							TotalRewardsView(rewards: viewModel.response?.totalRewards ?? 0.0)
+								.wxmShadow()
 
-						if let data = viewModel.response?.latest {
-							DailyRewardCardView(card: data.toDailyRewardCard) {
-								viewModel.handleViewDetailsTap()
+							if let data = viewModel.response?.latest {
+								DailyRewardCardView(card: data.toDailyRewardCard) {
+									viewModel.handleViewDetailsTap()
+								}
+								.wxmShadow()
 							}
-							.wxmShadow()
-						}
 
-						WeeklyStreakView(entries: viewModel.response?.timeline?.toWeeklyEntries ?? []) {
-							viewModel.handleDetailedRewardsButtonTap()
+							WeeklyStreakView(entries: viewModel.response?.timeline?.toWeeklyEntries ?? []) {
+								viewModel.handleDetailedRewardsButtonTap()
+							}
 						}
 					}
 					.iPadMaxWidth()

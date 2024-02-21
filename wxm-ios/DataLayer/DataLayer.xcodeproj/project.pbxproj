@@ -30,6 +30,7 @@
 		264BDA11298BA108005C1F82 /* FirmwareUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264BDA10298BA108005C1F82 /* FirmwareUpdater.swift */; };
 		266B01C12B84DED4007AC689 /* get_device_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */; };
 		266B01C52B84E7F6007AC689 /* get_device_rewards_timeline.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01C42B84E7F6007AC689 /* get_device_rewards_timeline.json */; };
+		266B01CF2B861B10007AC689 /* get_device_rewards_summary_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01CE2B861B10007AC689 /* get_device_rewards_summary_empty.json */; };
 		267401762A376A1400E54E35 /* NetworkRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267401752A376A1400E54E35 /* NetworkRepositoryImpl.swift */; };
 		267401782A376B4200E54E35 /* NetworkApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267401772A376B4200E54E35 /* NetworkApiRequestBuilder.swift */; };
 		2674017A2A386DA700E54E35 /* get_network_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 267401792A386DA700E54E35 /* get_network_stats.json */; };
@@ -109,6 +110,7 @@
 		264BDA10298BA108005C1F82 /* FirmwareUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareUpdater.swift; sourceTree = "<group>"; };
 		266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_summary.json; sourceTree = "<group>"; };
 		266B01C42B84E7F6007AC689 /* get_device_rewards_timeline.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_timeline.json; sourceTree = "<group>"; };
+		266B01CE2B861B10007AC689 /* get_device_rewards_summary_empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_summary_empty.json; sourceTree = "<group>"; };
 		267401752A376A1400E54E35 /* NetworkRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryImpl.swift; sourceTree = "<group>"; };
 		267401772A376B4200E54E35 /* NetworkApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiRequestBuilder.swift; sourceTree = "<group>"; };
 		267401792A386DA700E54E35 /* get_network_stats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_network_stats.json; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				266B01C42B84E7F6007AC689 /* get_device_rewards_timeline.json */,
+				266B01CE2B861B10007AC689 /* get_device_rewards_summary_empty.json */,
 				266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */,
 				26A3B3DF2B18E7A50002F35F /* get_user_rewards.json */,
 				26943D782B06240900EE6C7E /* get_cell_devices.json */,
@@ -479,6 +482,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				266B01CF2B861B10007AC689 /* get_device_rewards_summary_empty.json in Resources */,
 				2631872C29A4E2D400FA1691 /* get_device_history.json in Resources */,
 				2683A4C42ADECF3100D5C205 /* countries_information.json in Resources */,
 				2618A6F12A1F61FD00983B7B /* get_device_history_24_samples.json in Resources */,

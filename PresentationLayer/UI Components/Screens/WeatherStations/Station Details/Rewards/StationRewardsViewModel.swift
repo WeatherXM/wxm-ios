@@ -92,7 +92,7 @@ extension StationRewardsViewModel: StationDetailsViewModelChild {
 
         DispatchQueue.main.async {
 			self.response = tuple.response
-            self.viewState = .content
+			self.viewState = tuple.response?.isEmpty == false ? .content : .empty
         }
     }
 
