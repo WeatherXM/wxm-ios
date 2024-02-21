@@ -25,13 +25,6 @@ public struct DevicesRepositoryImpl: DevicesRepository {
         return ApiClient.shared.requestCodable(urlRequest)
     }
 
-	#warning("TODO: - Remove once the reward summary is implemented")
-    public func deviceTokenTransactions(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?) throws -> AnyPublisher<DataResponse<NetworkDeviceIDTokensTransactionsResponse, NetworkErrorResponse>, Never> {
-		let builder = DevicesApiRequestBuilder.deviceTokenTransactions(deviceId: deviceId, page: page, pageSize: pageSize, timezone: timezone, fromDate: fromDate, toDate: toDate)
-        let urlRequest = try builder.asURLRequest()
-		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
-    }
-
 	public func deviceRewardsTimeline(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsTimelineResponse, NetworkErrorResponse>, Never> {
 		let builder = DevicesApiRequestBuilder.deviceRewardsTimeline(deviceId: deviceId, page: page, pageSize: pageSize, timezone: timezone, fromDate: fromDate, toDate: toDate)
 		let urlRequest = try builder.asURLRequest()

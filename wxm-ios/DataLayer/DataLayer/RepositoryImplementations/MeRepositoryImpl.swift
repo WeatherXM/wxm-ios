@@ -96,12 +96,6 @@ public struct MeRepositoryImpl: MeRepository {
         return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
     }
 
-    public func getUserDeviceTokensTransactionsById(deviceId: String, page: Int, pageSize: Int? = nil, timezone: String, fromDate: String, toDate: String?) throws -> AnyPublisher<DataResponse<NetworkDeviceIDTokensTransactionsResponse, NetworkErrorResponse>, Never> {
-        let builder = MeApiRequestBuilder.getUserDeviceTokensTransactionsById(deviceId: deviceId, page: page, pageSize: pageSize, timezone: timezone, fromDate: fromDate, toDate: toDate)
-        let urlRequest = try builder.asURLRequest()
-        return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
-    }
-
     public func followStation(deviceId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
         try userDevicesService.followStation(deviceId: deviceId)
     }

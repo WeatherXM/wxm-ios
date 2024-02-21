@@ -149,17 +149,6 @@ extension DailyRewardCardView {
 	}
 }
 
-#warning("This is temporary")
-extension StationRewardsCardOverview {
-	var toDailyRewardCard: DailyRewardCardView.Card {
-		DailyRewardCardView.Card(refDate: date,
-								 totalRewards: actualReward,
-								 baseReward: actualReward,
-								 baseRewardScore: Double(rewardScore ?? 0) / 100.0,
-								 boostsReward: 0.0)
-	}
-}
-
 #Preview {
 	DailyRewardCardView(card: .init(refDate: .now,
 									totalRewards: 3.125312,

@@ -76,19 +76,6 @@ struct BaseRewardsCard: View {
     }
 }
 
-extension BaseRewardsCard {
-	init(record: UITransaction) {
-		transactionDate = record.formattedTimestamp
-		stationRewards = record.actualReward ?? 0
-		colorOfProgressBar = Color(colorEnum: record.hexagonColor)
-		rewardScore = record.rewardScore ?? 0
-		networkMaxValue = record.dailyReward ?? 0
-		rewardScoreHexagonColor = Color(colorEnum: record.hexagonColor)
-		networkMaxHexagonColor = Color(colorEnum: .reward_score_unknown)
-		lostRewardsData = StationRewardsLostAmountData(value: record.lostAmount, percentage: record.lostPercentage)
-	}
-}
-
 #Preview {
 	BaseRewardsCard(transactionDate: Date.now.getFormattedDate(format: .monthLiteralDayTime, relativeFormat: true).localizedCapitalized,
 					stationRewards: 1.035869637693,

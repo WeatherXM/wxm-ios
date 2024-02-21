@@ -70,11 +70,6 @@ public struct MeUseCase {
         return getUserDeviceForecastById
     }
 
-    public func getUserDeviceTokensTransactionsById(deviceId: String, page: Int, pageSize: Int, timezone: String, fromDate: String, toDate: String) throws -> AnyPublisher<DataResponse<NetworkDeviceIDTokensTransactionsResponse, NetworkErrorResponse>, Never> {
-        let getUserDeviceTokensTransactionsById = try meRepository.getUserDeviceTokensTransactionsById(deviceId: deviceId, page: page, pageSize: pageSize, timezone: timezone, fromDate: fromDate, toDate: toDate)
-        return getUserDeviceTokensTransactionsById
-    }
-
     public func deleteAccount() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
         let deleteAccount = try meRepository.deleteAccount()
         return deleteAccount
