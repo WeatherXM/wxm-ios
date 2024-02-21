@@ -22,11 +22,11 @@ final class TransactionDetailsViewModel: ObservableObject {
 			isRequestInProgress = pendingTask != nil
 		}
 	}
-	private var data: [Datum] = []
+	private var data: [NetworkDeviceRewardsSummary] = []
 
     weak var mainVM: MainScreenViewModel?
 	@Published var isRequestInProgress: Bool = false
-    @Published var transactions = [[UITransaction]]()
+    @Published var transactions = [[NetworkDeviceRewardsSummary]]()
     @Published var showFullScreenLoader = false
     let scrollOffsetObject: TrackableScrollOffsetObject = .init()
 
@@ -78,8 +78,8 @@ final class TransactionDetailsViewModel: ObservableObject {
 				data.append(contentsOf: nextData?.data ?? [])
 			}
 
-			let uiTransactions = Array(Set(data.map { UITransaction.generate(from: $0) }))
-			let grouped = Dictionary(grouping: uiTransactions, by: { $0.formattedDate }).values.sorted(by: { $0.first!.sortDate > $1.first!.sortDate })
+			let uiTransactions = Array(Set(data))
+			let grouped = Dictionary(grouping: uiTransactions, by: { $0.timestamp }).values.sorted(by: { $0.first!.timestamp! > $1.first!.timestamp! })
 			transactions = grouped
 
 			self.showFullScreenLoader = false
@@ -90,7 +90,7 @@ final class TransactionDetailsViewModel: ObservableObject {
 
 	/// Called `onAppear` of each transacition in list and if is last (bottom of list) asks for the next page
 	/// - Parameter transaction: The appeared transaction
-	func fetchNextPageIfNeeded(for transaction: UITransaction) {
+	func fetchNextPageIfNeeded(for transaction: NetworkDeviceRewardsSummary) {
 		guard transaction == transactions.last?.last else {
 			return
 		}
@@ -100,20 +100,20 @@ final class TransactionDetailsViewModel: ObservableObject {
 	
 	/// Called once the user tap the cell or the error button of a transaaction
 	/// - Parameter transaction: The tapped transaction
-	func handleTransactionTap(from transaction: UITransaction) {
+	func handleTransactionTap(from transaction: NetworkDeviceRewardsSummary) {
 		let itemId = device.id ?? ""
 		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .identifyProblems,
 														   .contentType: .deviceRewardTransactions,
 														   .itemId: .custom(itemId)])
 
-		guard let datum = transaction.datum else {
-			return
-		}
-
-		let errorButtonTitle: String = errorIndicationButtonTitle
-		let rewardsCardOverview = DeviceRewardsOverview(datum: datum).toRewardsCardOverview(title: "", errorButtonTitle: errorButtonTitle)
-		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device, followState: followState, overview: rewardsCardOverview)
-		Router.shared.navigateTo(.rewardDetails(viewModel))
+//		guard let datum = transaction.datum else {
+//			return
+//		}
+//
+//		let errorButtonTitle: String = errorIndicationButtonTitle
+//		let rewardsCardOverview = DeviceRewardsOverview(datum: datum).toRewardsCardOverview(title: "", errorButtonTitle: errorButtonTitle)
+//		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device, followState: followState, overview: rewardsCardOverview)
+//		Router.shared.navigateTo(.rewardDetails(viewModel))
 	}
 }
 
@@ -128,7 +128,7 @@ private extension TransactionDetailsViewModel {
 	@discardableResult
 	/// Fetches the next page
 	/// - Returns: Tuple with received data and error, if exists
-	private func fetchNext() async -> (data: [Datum]?, error: NetworkErrorResponse?)? {
+	private func fetchNext() async -> (data: [NetworkDeviceRewardsSummary]?, error: NetworkErrorResponse?)? {
 		// if there is a pending request of there is no next page, we stop
 		guard let nextPagination = pagination.getNextPagination() else {
 			return nil

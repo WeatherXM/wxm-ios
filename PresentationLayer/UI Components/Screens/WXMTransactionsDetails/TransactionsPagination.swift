@@ -13,7 +13,7 @@ struct TransactionsPagination {
 	private static let FETCH_INTERVAL_MONTHS = 3
 
 	let	device: DeviceDetails
-	let transactionsObject: NetworkDeviceIDTokensTransactionsResponse?
+	let transactionsObject: NetworkDeviceRewardsTimelineResponse?
 	let currentPage: Int
 	var fromDate: String = Date.now.getFormattedDateOffsetByMonths(-Self.FETCH_INTERVAL_MONTHS)
 	var toDate: String = Date.now.getFormattedDateOffsetByMonths(0)

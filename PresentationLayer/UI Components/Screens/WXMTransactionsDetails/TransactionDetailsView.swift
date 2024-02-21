@@ -51,34 +51,22 @@ struct TransactionDetailsView: View {
                 ZStack(alignment: .topLeading) {
                     timeLineOfTransactions
                     VStack(alignment: .leading) {
-                        ForEach(viewModel.transactions, id: \.self) { (arrayOfTransactions: [UITransaction]) in
-                            RewardDatePoint(dateOfTransaction: arrayOfTransactions.first!.formattedDate)
-                            LazyVStack(spacing: CGFloat(.mediumSpacing)) {
-                                ForEach(arrayOfTransactions) { record in
-									let lostData = record.lostAmountData
-                                    BaseRewardsCard(record: record)
-										.indication(show: .constant(record.lostAmount > 0.0),
-													borderColor: Color(colorEnum: lostData.problemsViewBorder),
-													bgColor: Color(colorEnum: lostData.problemsViewBackground)) {
-											StationRewardsErrorView(lostAmount: record.lostAmount,
-															 buttonTitle: viewModel.errorIndicationButtonTitle,
-															 showButton: true) {
-												viewModel.handleTransactionTap(from: record)
-											}
-											.padding(CGFloat(.defaultSidePadding))
-										}
-                                        .onTapGesture {
-                                            Logger.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
-                                                                                               .contentType: .deviceTransactions,
-                                                                                               .itemListId: .custom(record.formattedTimestamp),
-                                                                                               .itemId: .custom(viewModel.device.id ?? "")])
+                        ForEach(viewModel.transactions, id: \.self) { arrayOfTransactions in
+							RewardDatePoint(dateOfTransaction: arrayOfTransactions.first!.timelineTransactionDateString)
+							LazyVStack(spacing: CGFloat(.mediumSpacing)) {
+								ForEach(arrayOfTransactions) { record in
+									DailyRewardCardView(card: record.toDailyRewardCard) {
+										Logger.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
+																						   .contentType: .deviceTransactions,
+																						   .itemListId: .custom(record.timelineTransactionDateString),
+																						   .itemId: .custom(viewModel.device.id ?? "")])
 
-											viewModel.handleTransactionTap(from: record)
-                                        }
-										.onAppear {
-											viewModel.fetchNextPageIfNeeded(for: record)
-										}
-                                }
+										viewModel.handleTransactionTap(from: record)
+									}
+									.onAppear {
+										viewModel.fetchNextPageIfNeeded(for: record)
+									}
+								}
                             }
 							.padding(.horizontal, CGFloat(.mediumSidePadding))
                             .padding(.top, CGFloat(.mediumSidePadding))

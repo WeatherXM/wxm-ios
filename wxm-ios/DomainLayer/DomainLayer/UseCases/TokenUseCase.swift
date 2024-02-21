@@ -20,13 +20,13 @@ public class TokenUseCase {
 	public func getTransactions(deviceId: String, 
 								page: Int,
 								fromDate: String,
-								toDate: String) async throws -> Result<NetworkDeviceIDTokensTransactionsResponse?, NetworkErrorResponse> {
-		let publisher = try repository.deviceTokenTransactions(deviceId: deviceId,
-															   page: page,
-															   pageSize: nil,
-															   timezone: TimeZone.current.identifier,
-															   fromDate: fromDate,
-															   toDate: toDate)
+								toDate: String) async throws -> Result<NetworkDeviceRewardsTimelineResponse?, NetworkErrorResponse> {
+		let publisher = try repository.deviceRewardsTimeline(deviceId: deviceId,
+															 page: page,
+															 pageSize: nil,
+															 timezone: TimeZone.current.identifier,
+															 fromDate: fromDate,
+															 toDate: toDate)
 		return await withUnsafeContinuation { continuation in
 			publisher.sink { response in
 				if let error = response.error {

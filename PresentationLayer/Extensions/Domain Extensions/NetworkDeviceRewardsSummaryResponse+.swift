@@ -7,13 +7,21 @@
 
 import DomainLayer
 
-extension NetworkDeviceRewardsSummary {
+extension NetworkDeviceRewardsSummary: Identifiable {
+	public var id: Int {
+		hashValue
+	}
+
 	var toDailyRewardCard: DailyRewardCardView.Card {
 		DailyRewardCardView.Card(refDate: timestamp,
 								 totalRewards: totalReward ?? 0.0,
 								 baseReward: baseReward ?? 0.0,
 								 baseRewardScore: Double(baseRewardScore ?? 0) / 100.0,
 								 boostsReward: totalBoostReward)
+	}
+
+	var timelineTransactionDateString: String {
+		timestamp?.transactionsDateFormat(timeZone: .UTCTimezone ?? .current) ?? ""
 	}
 }
 
