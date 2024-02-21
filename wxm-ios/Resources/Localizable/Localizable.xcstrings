@@ -5737,6 +5737,17 @@
         }
       }
     },
+    "station_details_no_active_boosts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Active"
+          }
+        }
+      }
+    },
     "station_details_no_rewards_description" : {
       "extractionState" : "manual",
       "localizations" : {

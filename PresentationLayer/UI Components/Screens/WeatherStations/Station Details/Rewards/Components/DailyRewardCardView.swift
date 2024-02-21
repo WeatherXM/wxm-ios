@@ -93,11 +93,9 @@ private extension DailyRewardCardView {
 							value: card.baseReward,
 							hexColor: getHexagonColor(validationScore: card.baseRewardScore))
 
-				if let boostsReward = card.boostsReward {
 					rewardsView(title: LocalizableString.StationDetails.boosts.localized,
-								value: boostsReward,
+								value: card.boostsReward,
 								hexColor: .primary)
-				}
 
 				Spacer()
 			}
@@ -105,7 +103,7 @@ private extension DailyRewardCardView {
 	}
 
 	@ViewBuilder
-	func rewardsView(title: String, value: Double, hexColor: ColorEnum) -> some View {
+	func rewardsView(title: String, value: Double?, hexColor: ColorEnum) -> some View {
 		HStack(alignment: .top, spacing: CGFloat(.minimumSpacing)) {
 			Image(asset: .hexagonBigger)
 				.renderingMode(.template)
@@ -113,9 +111,15 @@ private extension DailyRewardCardView {
 				.frame(width: 24.0, height: 24.0)
 
 			VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
-				Text("\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
-					.font(.system(size: CGFloat(.caption), weight: .bold))
-					.foregroundColor(Color(colorEnum: .darkGrey))
+				Group {
+					if let value {
+						Text("\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)").bold()
+					} else {
+						Text(LocalizableString.StationDetails.noActiveBoosts.localized)
+					}
+				}
+				.font(.system(size: CGFloat(.caption)))
+				.foregroundColor(Color(colorEnum: .darkGrey))
 
 				Text(title)
 					.font(.system(size: CGFloat(.caption)))
@@ -163,7 +167,7 @@ extension DailyRewardCardView {
 									totalRewards: 3.125312,
 									baseReward: 2.4523532,
 									baseRewardScore: 0.97,
-									boostsReward: 1.4325423)) {}
+									boostsReward: nil)) {}
 		.wxmShadow()
 }
 
