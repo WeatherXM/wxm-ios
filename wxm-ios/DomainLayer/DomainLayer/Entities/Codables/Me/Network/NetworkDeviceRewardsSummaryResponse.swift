@@ -35,6 +35,15 @@ public struct NetworkDeviceRewardsSummary: Codable, Hashable {
 		case baseRewardScore = "base_reward_score"
 		case annotationSummary = "annotation_summary"
 	}
+
+	public init(timestamp: Date?, baseReward: Double?, totalBoostReward: Double?, totalReward: Double?, baseRewardScore: Int?, annotationSummary: [RewardAnnotation]?) {
+		self.timestamp = timestamp
+		self.baseReward = baseReward
+		self.totalBoostReward = totalBoostReward
+		self.totalReward = totalReward
+		self.baseRewardScore = baseRewardScore
+		self.annotationSummary = annotationSummary
+	}
 }
 
 public struct NetworkDeviceRewardsSummaryTimelineEntry: Codable, Hashable {

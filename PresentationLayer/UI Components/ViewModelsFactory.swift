@@ -144,9 +144,9 @@ enum ViewModelsFactory {
 
 	static func getRewardDetailsViewModel(device: DeviceDetails,
 										  followState: UserDeviceFollowState?,
-										  overview: StationRewardsCardOverview) -> RewardDetailsViewModel {
+										  summary: NetworkDeviceRewardsSummary) -> RewardDetailsViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!
-		return RewardDetailsViewModel(device: device, followState: followState, tokenUseCase: useCase, rewardsCardOverview: overview)
+		return RewardDetailsViewModel(device: device, followState: followState, tokenUseCase: useCase, summary: summary)
 	}
 
 	static func getSelectLocationViewModel(device: DeviceDetails,

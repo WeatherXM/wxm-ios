@@ -99,13 +99,17 @@ final class RewardsTimelineViewModel: ObservableObject {
 	}
 	
 	/// Called once the user tap the cell or the error button of a transaaction
-	/// - Parameter transaction: The tapped transaction
-	func handleTransactionTap(from transaction: NetworkDeviceRewardsSummary) {
+	/// - Parameter reward: The tapped transaction
+	func handleTransactionTap(from reward: NetworkDeviceRewardsSummary) {
 		let itemId = device.id ?? ""
 		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .identifyProblems,
 														   .contentType: .deviceRewardTransactions,
 														   .itemId: .custom(itemId)])
-		//TODO: Navigate to reward details
+
+		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
+																	followState: followState,
+																	summary: reward)
+		Router.shared.navigateTo(.rewardDetails(viewModel))
 	}
 }
 

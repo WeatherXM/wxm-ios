@@ -73,9 +73,9 @@ private struct ContentView: View {
 			TrackableScrollView {
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					VStack(spacing: CGFloat(.defaultSpacing)) {
-						StationRewardsOverviewView(overview: viewModel.rewardsCardOverview, showError: false, buttonActions: viewModel.buttonActions)
+						DailyRewardCardView(card: viewModel.rewardSummary.toDailyRewardCard, buttonAction: {})
 
-						if !viewModel.rewardsCardOverview.annnotationsList.isEmpty {
+						if viewModel.rewardSummary.annotationSummary?.isEmpty != true {
 							errorsList
 						}
 					}
@@ -121,7 +121,7 @@ private struct ContentView: View {
 				Spacer(minLength: 0.0)
 			}
 
-			ForEach(viewModel.rewardsCardOverview.annnotationsList) { error in
+			ForEach(viewModel.rewardSummary.annotationSummary ?? []) { error in
 				CardWarningView(type: error.severity?.toCardWarningType ?? .info,
 								title: error.title,
 								message: error.message ?? "",
@@ -158,6 +158,6 @@ private extension ContentView {
 		RewardDetailsView(viewModel: .init(device: device,
 										   followState: .init(deviceId: device.id!, relation: .owned),
 										   tokenUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!,
-										   rewardsCardOverview: .mock(title: "title")))
+										   summary: .mock))
 	}
 }

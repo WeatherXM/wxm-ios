@@ -23,6 +23,15 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 	var timelineTransactionDateString: String {
 		timestamp?.transactionsDateFormat(timeZone: .UTCTimezone ?? .current) ?? ""
 	}
+
+	static var mock: Self {
+		.init(timestamp: .now,
+			  baseReward: 3.454353,
+			  totalBoostReward: 1.345235,
+			  totalReward: 5.3432423,
+			  baseRewardScore: 87,
+			  annotationSummary: nil)
+	}
 }
 
 extension NetworkDeviceRewardsSummaryTimelineEntry {

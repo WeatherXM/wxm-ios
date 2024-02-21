@@ -17,23 +17,19 @@ class RewardDetailsViewModel: ObservableObject {
 	let useCase: RewardsTimelineUseCase
 	var device: DeviceDetails
 	let followState: UserDeviceFollowState?
-	let rewardsCardOverview: StationRewardsCardOverview
+	let rewardSummary: NetworkDeviceRewardsSummary
 	lazy var buttonActions: RewardsOverviewButtonActions = {
 		getButtonActions()
 	}()
 	var problemsDescription: String {
-		if rewardsCardOverview.lostAmount > 0.0 {
-			return LocalizableString.RewardDetails.problemsDescription(rewardsCardOverview.lostAmount.toWXMTokenPrecisionString).localized
-		}
-
-		return LocalizableString.RewardDetails.zeroLostProblemsDescription.localized
+		return "Remove"
 	}
 
-	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: RewardsTimelineUseCase, rewardsCardOverview: StationRewardsCardOverview) {
+	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: RewardsTimelineUseCase, summary: NetworkDeviceRewardsSummary) {
 		self.device = device
 		self.followState = followState
 		self.useCase = tokenUseCase
-		self.rewardsCardOverview = rewardsCardOverview
+		self.rewardSummary = summary
 	}
 
 	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {
@@ -210,12 +206,10 @@ private extension RewardDetailsViewModel {
 		let explorerUrl = "Explorer URL: \(device.explorerUrl)"
 
 		let rewardInfoTitle = "Reward Information"
-		let timestamp = "Reward timestamp: \(rewardsCardOverview.date?.toTimestamp() ?? "-")"
-		let rewardScore = "Reward Score: \(rewardsCardOverview.rewardScore ?? 0)"
-		let rewardsEarned = "Rewards Earned: \(rewardsCardOverview.actualReward)"
-		let rewardsLost = "Rewards Lost: \(rewardsCardOverview.lostAmount)"
-		let periodMaxReward = "Period Max Reward: \(rewardsCardOverview.maxRewards ?? 0.0)"
-		let annotations = "Annotations: \(rewardsCardOverview.annnotationsList.compactMap { $0.group?.rawValue })"
+		let timestamp = "Reward timestamp: \(rewardSummary.timestamp?.toTimestamp() ?? "-")"
+		let rewardScore = "Reward Score: \(rewardSummary.baseRewardScore ?? 0)"
+		let rewardsEarned = "Rewards Earned: \(rewardSummary.totalReward ?? 0)"
+		let annotations = "Annotations: \(rewardSummary.annotationSummary?.compactMap { $0.group?.rawValue } ?? [])"
 
 		return [stationInfoTitle,
 				stationName,
@@ -226,8 +220,6 @@ private extension RewardDetailsViewModel {
 				timestamp,
 				rewardScore,
 				rewardsEarned,
-				rewardsLost,
-				periodMaxReward,
 				annotations].joined(separator: "\n")
 	}
 }
@@ -240,6 +232,6 @@ extension RewardDetailsViewModel: SelectStationLocationViewModelDelegate {
 
 extension RewardDetailsViewModel: HashableViewModel {
 	func hash(into hasher: inout Hasher) {
-		hasher.combine("\(device.id)-\(rewardsCardOverview.hashValue)")
+		hasher.combine("\(device.id)-\(rewardSummary.hashValue)")
 	}
 }
