@@ -101,7 +101,7 @@ private extension DailyRewardCardView {
 
 					rewardsView(title: LocalizableString.StationDetails.boosts.localized,
 								value: card.boostsReward,
-								hexColor: .primary)
+								hexColor: .chartPrimary)
 
 				Spacer()
 			}
