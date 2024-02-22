@@ -48,17 +48,6 @@ extension WeatherStationCard {
             .padding(CGFloat(.smallSidePadding))
         }
     }
-
-    @ViewBuilder
-    var statusContainerBackground: some View {
-        if !device.isActive {
-            Color(colorEnum: .errorTint)
-        } else if device.needsUpdate(mainVM: mainScreenViewModel, followState: followState) {
-            Color(colorEnum: .warningTint)
-        } else {
-            EmptyView()
-        }
-    }
 }
 
 /// Viewbuilders and stuff used internally from the main Viewbuilders
