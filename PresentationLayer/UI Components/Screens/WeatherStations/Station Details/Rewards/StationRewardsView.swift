@@ -38,6 +38,7 @@ struct StationRewardsView: View {
 							WeeklyStreakView(entries: viewModel.response?.timeline?.toWeeklyEntries ?? []) {
 								viewModel.handleDetailedRewardsButtonTap()
 							}
+							.wxmShadow()
 						}
 					}
 					.iPadMaxWidth()
