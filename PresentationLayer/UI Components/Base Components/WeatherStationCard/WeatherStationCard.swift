@@ -32,7 +32,7 @@ struct WeatherStationCard: View {
 		}
 		.indication(show: .init(get: { device.isActive && device.needsUpdate(mainVM: mainScreenViewModel, followState: followState) }, set: { _ in }),
 					borderColor: Color(colorEnum: .warning),
-					bgColor: Color(colorEnum: .warning)) {
+					bgColor: Color(colorEnum: .warningTint)) {
 			statusView
 		}
 		.WXMCardStyle(backgroundColor: Color(colorEnum: .top),
