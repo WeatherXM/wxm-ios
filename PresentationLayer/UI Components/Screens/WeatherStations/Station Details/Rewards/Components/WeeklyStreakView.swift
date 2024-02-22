@@ -23,7 +23,7 @@ struct WeeklyStreakView: View {
 
 			VStack(spacing: CGFloat(.smallSpacing)) {
 				StationRewardsTimelineView(values: entries.map { $0.toTimelineValue })
-					.frame(height: 80.0)
+					.frame(height: 110.0)
 
 				HStack {
 					if let day = entries.first?.timestamp.getFormattedDate(format: .monthLiteralDay) {

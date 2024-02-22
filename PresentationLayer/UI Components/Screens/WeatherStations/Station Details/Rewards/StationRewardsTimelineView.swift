@@ -27,7 +27,7 @@ struct StationRewardsTimelineView: View {
 									Spacer(minLength: 0.0)
 									Capsule()
 										.foregroundColor(Color(colorEnum: getHexagonColor(validationScore: Double(val.value) / 100.0)))
-										.frame(height: (Double(val.value) / 100.0) * proxy.size.height)
+										.frame(height: heightFor(value: val.value, containerSize: proxy.size))
 								}
 							}
 						}
@@ -44,6 +44,15 @@ struct StationRewardsTimelineView: View {
 				}
 			}
 		}
+	}
+}
+
+private extension StationRewardsTimelineView {
+	func heightFor(value: Int, containerSize: CGSize) -> Double {
+		var height = (Double(value) / 100.0) * containerSize.height
+		height = max(height, containerSize.height / 4.0)
+
+		return height
 	}
 }
 
