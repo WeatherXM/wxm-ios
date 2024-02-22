@@ -50,7 +50,9 @@ struct RewardsTimelineView: View {
 			} content: {
                 ZStack(alignment: .topLeading) {
                     timeLineOfTransactions
-                    VStack(alignment: .leading) {
+						.padding(.top, CGFloat(.minimumPadding))
+					
+					VStack(alignment: .leading, spacing: CGFloat(.mediumSpacing)) {
                         ForEach(viewModel.transactions, id: \.self) { arrayOfTransactions in
 							RewardDatePoint(dateOfTransaction: arrayOfTransactions.first!.timelineTransactionDateString)
 							LazyVStack(spacing: CGFloat(.mediumSpacing)) {
@@ -70,7 +72,6 @@ struct RewardsTimelineView: View {
 								}
 							}
 							.padding(.horizontal, CGFloat(.mediumSidePadding))
-							.padding(.top, CGFloat(.mediumSidePadding))
 						}
 						
 						if viewModel.isRequestInProgress {
@@ -82,6 +83,7 @@ struct RewardsTimelineView: View {
 						}
                     }
                 }
+				.padding(.top, CGFloat(.mediumSidePadding))
             }
         }
     }
@@ -91,6 +93,5 @@ struct RewardsTimelineView: View {
             .fill(Color(colorEnum: .midGrey))
             .frame(width: 4)
             .padding(.leading, 40)
-            .padding(.top, 25)
     }
 }
