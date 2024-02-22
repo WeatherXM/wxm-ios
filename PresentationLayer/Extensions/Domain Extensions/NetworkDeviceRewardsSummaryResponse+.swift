@@ -24,11 +24,28 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 								 totalRewards: totalReward ?? 0.0,
 								 baseReward: baseReward ?? 0.0,
 								 baseRewardScore: Double(baseRewardScore ?? 0) / 100.0,
-								 boostsReward: totalBoostReward)
+								 boostsReward: totalBoostReward,
+								 warningType: warningType)
 	}
 
 	var timelineTransactionDateString: String {
 		timestamp?.transactionsDateFormat(timeZone: .UTCTimezone ?? .current) ?? ""
+	}
+
+	private var warningType: CardWarningType? {
+		guard let annotationSummary else {
+			return nil
+		}
+
+		if annotationSummary.contains(where: { $0.severity == .error }) {
+			return .error
+		} else if annotationSummary.contains(where: { $0.severity == .warning }) {
+			return .warning
+		} else if annotationSummary.contains(where: { $0.severity == .info }) {
+			return .info
+		}
+
+		return nil
 	}
 
 	static var mock: Self {

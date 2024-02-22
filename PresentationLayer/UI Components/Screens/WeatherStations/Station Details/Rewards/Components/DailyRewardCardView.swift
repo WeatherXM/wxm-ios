@@ -143,17 +143,20 @@ extension DailyRewardCardView {
 		let baseReward: Double
 		let baseRewardScore: Double
 		let boostsReward: Double?
+		let warningType: CardWarningType?
 
 		var indication: (type: CardWarningType, text: String)? {
-			switch baseRewardScore {
-				case 0 ..< 0.7:
-					return (.error, LocalizableString.StationDetails.rewardErrorMessage.localized)
-				case 0.7 ..< 0.95:
-					return (.warning, LocalizableString.StationDetails.rewardWarningMessage.localized)
-				case 0.95 ..< 0.99:
-					return (.info, LocalizableString.StationDetails.rewardInfoMessage.localized)
-				default:
-					return nil
+			guard let warningType else {
+				return nil
+			}
+
+			switch warningType {
+				case .error:
+					return (warningType, LocalizableString.StationDetails.rewardErrorMessage.localized)
+				case .warning:
+					return (warningType, LocalizableString.StationDetails.rewardWarningMessage.localized)
+				case .info:
+					return (warningType, LocalizableString.StationDetails.rewardInfoMessage.localized)
 			}
 		}
 	}
@@ -164,7 +167,8 @@ extension DailyRewardCardView {
 									totalRewards: 3.125312,
 									baseReward: 2.4523532,
 									baseRewardScore: 0.8,
-									boostsReward: 1.4325423)) {}
+									boostsReward: 1.4325423,
+									warningType: .info)) {}
 		.wxmShadow()
 }
 
@@ -173,7 +177,8 @@ extension DailyRewardCardView {
 									totalRewards: 3.125312,
 									baseReward: 2.4523532,
 									baseRewardScore: 0.97,
-									boostsReward: nil)) {}
+									boostsReward: nil,
+									warningType: nil)) {}
 		.wxmShadow()
 }
 
@@ -182,6 +187,7 @@ extension DailyRewardCardView {
 									totalRewards: 3.125312,
 									baseReward: 2.4523532,
 									baseRewardScore: 0.2,
-									boostsReward: 1.4325423)) {}
+									boostsReward: 1.4325423,
+									warningType: .error)) {}
 		.wxmShadow()
 }
