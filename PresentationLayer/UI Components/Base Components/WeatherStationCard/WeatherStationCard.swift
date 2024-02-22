@@ -25,20 +25,11 @@ struct WeatherStationCard: View {
 						.cornerRadius(CGFloat(.cardCornerRadius))
 				}
 		}
-		.indication(show: .init(get: { !device.isActive }, set: { _ in }),
-					borderColor: Color(colorEnum: .error),
-					bgColor: Color(colorEnum: .errorTint)) {
-			statusView
-		}
-		.indication(show: .init(get: { device.isActive && device.needsUpdate(mainVM: mainScreenViewModel, followState: followState) }, set: { _ in }),
-					borderColor: Color(colorEnum: .warning),
-					bgColor: Color(colorEnum: .warningTint)) {
-			statusView
-		}
 		.WXMCardStyle(backgroundColor: Color(colorEnum: .top),
-						insideHorizontalPadding: .zero,
-						insideVerticalPadding: .zero,
-						cornerRadius: CGFloat(.cardCornerRadius))
+					  insideHorizontalPadding: .zero,
+					  insideVerticalPadding: .zero,
+					  cornerRadius: CGFloat(.cardCornerRadius))
+		.stationIndication(device: device, followState: followState)
 		.wxmShadow()
 	}
 }
