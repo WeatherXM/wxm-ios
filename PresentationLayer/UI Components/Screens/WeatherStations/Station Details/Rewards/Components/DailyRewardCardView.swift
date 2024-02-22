@@ -10,7 +10,7 @@ import Toolkit
 
 struct DailyRewardCardView: View {
 	let card: Card
-	let buttonAction: VoidCallback
+	let buttonAction: VoidCallback?
 
     var body: some View {
 		VStack(spacing: CGFloat(.defaultSpacing)) {
@@ -18,7 +18,7 @@ struct DailyRewardCardView: View {
 
 			rewardsView
 
-			if card.indication == nil {
+			if card.indication == nil, let buttonAction {
 				Button {
 					buttonAction()
 				} label: {
@@ -38,12 +38,18 @@ struct DailyRewardCardView: View {
 							message: card.indication?.text ?? "",
 							showContentFullWidth: true,
 							closeAction: nil) {
-				Button {
-					buttonAction()
-				} label: {
-					Text(LocalizableString.StationDetails.viewRewardDetailsButtonTitle.localized)
+				Group {
+					if let buttonAction {
+						Button {
+							buttonAction()
+						} label: {
+							Text(LocalizableString.StationDetails.viewRewardDetailsButtonTitle.localized)
+						}
+						.buttonStyle(WXMButtonStyle.transparent)
+					} else {
+						EmptyView()
+					}
 				}
-				.buttonStyle(WXMButtonStyle.transparent)
 			}
 		}
     }

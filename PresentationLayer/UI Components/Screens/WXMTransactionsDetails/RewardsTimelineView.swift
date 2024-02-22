@@ -55,23 +55,24 @@ struct RewardsTimelineView: View {
 							RewardDatePoint(dateOfTransaction: arrayOfTransactions.first!.timelineTransactionDateString)
 							LazyVStack(spacing: CGFloat(.mediumSpacing)) {
 								ForEach(arrayOfTransactions) { record in
-									DailyRewardCardView(card: record.toDailyRewardCard) {
-										Logger.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
-																						   .contentType: .deviceTransactions,
-																						   .itemListId: .custom(record.timelineTransactionDateString),
-																						   .itemId: .custom(viewModel.device.id ?? "")])
-
-										viewModel.handleTransactionTap(from: record)
-									}
-									.onAppear {
-										viewModel.fetchNextPageIfNeeded(for: record)
-									}
+									DailyRewardCardView(card: record.toDailyRewardCard, buttonAction: nil)
+										.onTapGesture {
+											Logger.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
+																							   .contentType: .deviceTransactions,
+																							   .itemListId: .custom(record.timelineTransactionDateString),
+																							   .itemId: .custom(viewModel.device.id ?? "")])
+											
+											viewModel.handleTransactionTap(from: record)
+										}
+										.onAppear {
+											viewModel.fetchNextPageIfNeeded(for: record)
+										}
 								}
-                            }
+							}
 							.padding(.horizontal, CGFloat(.mediumSidePadding))
-                            .padding(.top, CGFloat(.mediumSidePadding))
-                        }
-
+							.padding(.top, CGFloat(.mediumSidePadding))
+						}
+						
 						if viewModel.isRequestInProgress {
 							HStack {
 								Spacer()
