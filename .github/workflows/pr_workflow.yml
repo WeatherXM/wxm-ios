@@ -24,7 +24,7 @@ jobs:
       - name: Get Changed Files
         id: get_changed_files
         run: |
-          pwd |
+          echo "$(pwd)"" |
           echo "$(git diff --name-only main..HEAD | grep '\.swift$' || true)"
 
       # Runs a single command using the runners shell
