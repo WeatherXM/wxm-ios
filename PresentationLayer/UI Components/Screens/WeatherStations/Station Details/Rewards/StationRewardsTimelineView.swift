@@ -49,10 +49,11 @@ struct StationRewardsTimelineView: View {
 
 private extension StationRewardsTimelineView {
 	func heightFor(value: Int, containerSize: CGSize) -> Double {
-		var height = (Double(value) / 100.0) * containerSize.height
-		height = max(height, containerSize.height / 4.0)
+		let offset = containerSize.height / 4.0
+		let actualContainerHeight = containerSize.height - offset
+		let height = (Double(value) / 100.0) * actualContainerHeight
 
-		return height
+		return height + offset
 	}
 }
 

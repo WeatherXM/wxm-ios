@@ -71,10 +71,6 @@ private struct ContentView: View {
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					VStack(spacing: CGFloat(.defaultSpacing)) {
 						DailyRewardCardView(card: viewModel.rewardSummary.toDailyRewardCard, buttonAction: {})
-
-						if viewModel.rewardSummary.annotationSummary?.isEmpty != true {
-							errorsList
-						}
 					}
 					.WXMCardStyle()
 
@@ -97,36 +93,6 @@ private struct ContentView: View {
 				navigationObject.navigationBarColor = Color(colorEnum: .bg)
 
 				Logger.shared.trackScreen(.deviceRewardsDetails)
-			}
-		}
-	}
-
-	@ViewBuilder
-	var errorsList: some View {
-		VStack(spacing: CGFloat(.mediumSpacing)) {
-			HStack {
-				Text(LocalizableString.RewardDetails.problemsTitle.localized)
-					.foregroundColor(Color(colorEnum: .darkestBlue))
-					.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
-				Spacer()
-			}
-
-			HStack {
-				Text(viewModel.problemsDescription.attributedMarkdown ?? "")
-					.foregroundColor(Color(colorEnum: .text))
-					.font(.system(size: CGFloat(.normalFontSize)))
-				Spacer(minLength: 0.0)
-			}
-
-			ForEach(viewModel.rewardSummary.annotationSummary ?? []) { error in
-				CardWarningView(type: error.severity?.toCardWarningType ?? .info,
-								title: error.title,
-								message: error.message ?? "",
-								showContentFullWidth: true,
-								showBorder: true,
-								closeAction: nil) {
-					errorActionView(for: error)
-				}
 			}
 		}
 	}

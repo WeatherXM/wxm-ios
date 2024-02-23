@@ -17,9 +17,6 @@ class RewardDetailsViewModel: ObservableObject {
 	var device: DeviceDetails
 	let followState: UserDeviceFollowState?
 	let rewardSummary: NetworkDeviceRewardsSummary
-	var problemsDescription: String {
-		return "Remove"
-	}
 
 	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: RewardsTimelineUseCase, summary: NetworkDeviceRewardsSummary) {
 		self.device = device
