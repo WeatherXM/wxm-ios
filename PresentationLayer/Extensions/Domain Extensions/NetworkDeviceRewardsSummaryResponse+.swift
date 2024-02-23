@@ -9,8 +9,7 @@ import DomainLayer
 
 extension NetworkDeviceRewardsSummaryResponse {
 	var isEmpty: Bool {
-		latest == nil &&
-		timeline == nil
+		totalRewards == 0.0
 	}
 }
 
