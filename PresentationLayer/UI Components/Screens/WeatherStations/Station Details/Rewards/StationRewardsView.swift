@@ -24,6 +24,7 @@ struct StationRewardsView: View {
 
 						if viewModel.viewState == .empty {
 							NoRewardsView()
+								.wxmShadow()
 						} else {
 							TotalRewardsView(rewards: viewModel.response?.totalRewards ?? 0.0)
 								.wxmShadow()
