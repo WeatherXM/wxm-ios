@@ -24,13 +24,11 @@ jobs:
       - name: Get Changed Files
         id: get_changed_files
         run: |
+          pwd |
           echo "$(git diff --name-only main..HEAD | grep '\.swift$' || true)"
 
       # Runs a single command using the runners shell
-      - name: Run SwiftLint on Changed Files
+      - name: SwiftLint
         run: |
-          if [ -n "${{ steps.get_changed_files.outputs.files }}" ]; then
-            swiftlint --path "${{ steps.get_changed_files.outputs.files }}"
-          else
-            echo "No Swift files changed."
-          fi
+          set -o pipefail |
+          swiftlint lint --strict --quiet --path "${{ steps.get_changed_files.outputs.files }}" | sed -E 's/^(.*):([0-9]+):([0-9]+): (warning|error|[^:]+): (.*)/::\4 title=Lint error,file=\1,line=\2,col=\3::\5\n\1:\2:\3/'
