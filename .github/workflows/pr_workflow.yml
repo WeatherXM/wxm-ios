@@ -3,20 +3,34 @@ name: pr-workflow
 on:
   pull_request:
     branches: [ "main" ]
+    paths:
+      - '.github/workflows/swiftlint.yml'
+      - '.swiftlint.yml'
+      - '**/*.swift'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   swiftLint:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/realm/swiftlint:5.5-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Get Changed Files
+        id: get_changed_files
+        run: |
+          echo "$(git diff --name-only main..HEAD | grep '\.swift$' || true)"
+
       # Runs a single command using the runners shell
-      - name: SwiftLint
-        uses: norio-nomura/action-swiftlint@3.2.1
-        env: 
-          DIFF_BASE: ${{ github.base_ref }}
+      - name: Run SwiftLint on Changed Files
+        run: |
+          if [ -n "${{ steps.get_changed_files.outputs.files }}" ]; then
+            swiftlint --path "${{ steps.get_changed_files.outputs.files }}"
+          else
+            echo "No Swift files changed."
+          fi
