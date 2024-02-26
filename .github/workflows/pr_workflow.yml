@@ -25,6 +25,7 @@ jobs:
         run: |
           apt-get update
           apt-get install -y git
+          cd ${WORKING_DIRECTORY}
 
       # Runs a single command using the runners shell
       - name: SwiftLint
