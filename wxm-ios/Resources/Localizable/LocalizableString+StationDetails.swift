@@ -31,9 +31,9 @@ extension LocalizableString {
 		case noActiveBoosts
 		case viewRewardDetailsButtonTitle
 		case viewTimelineButtonTitle
-		case rewardInfoMessage
-		case rewardWarningMessage
-		case rewardErrorMessage
+		case ownedStationRewardInfoMessage
+		case ownedStationRewardWarningMessage
+		case ownedStationRewardErrorMessage
 		case weeklyStreak
 		case noRewardsTitle
 		case noRewardsDescription
@@ -111,10 +111,10 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_view_reward_details_button_title"
 			case .viewTimelineButtonTitle:
 				return "station_details_view_timeline_button_title"
-			case .rewardInfoMessage:
-				return "station_details_reward_info_message"
-			case .rewardErrorMessage:
-				return "station_details_reward_error_message"
+			case .ownedStationRewardInfoMessage:
+				return "station_details_owned_reward_info_message"
+			case .ownedStationRewardErrorMessage:
+				return "station_details_owned_reward_error_message"
 			case .weeklyStreak:
 				return "station_details_weekly_streak"
 			case .noRewardsTitle:
@@ -123,8 +123,8 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_no_rewards_description"
 			case .mainnetTitle:
 				return "station_details_mainnet_banner_title"
-			case .rewardWarningMessage:
-				return "station_details_reward_warning_message"
+			case .ownedStationRewardWarningMessage:
+				return "station_details_owned_reward_warning_message"
 			case .rewardsTitle:
 				return "station_details_rewards_title"
 			case .gotRewards:

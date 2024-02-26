@@ -152,11 +152,11 @@ extension DailyRewardCardView {
 
 			switch warningType {
 				case .error:
-					return (warningType, LocalizableString.StationDetails.rewardErrorMessage.localized)
+					return (warningType, LocalizableString.StationDetails.ownedStationRewardErrorMessage.localized)
 				case .warning:
-					return (warningType, LocalizableString.StationDetails.rewardWarningMessage.localized)
+					return (warningType, LocalizableString.StationDetails.ownedStationRewardWarningMessage.localized)
 				case .info:
-					return (warningType, LocalizableString.StationDetails.rewardInfoMessage.localized)
+					return (warningType, LocalizableString.StationDetails.ownedStationRewardInfoMessage.localized)
 			}
 		}
 	}

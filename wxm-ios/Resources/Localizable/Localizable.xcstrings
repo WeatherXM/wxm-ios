@@ -5836,6 +5836,39 @@
         }
       }
     },
+    "station_details_owned_reward_error_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serious problems were detected, that prevent the station from getting the full rewards. View reward details to identify and fix problems."
+          }
+        }
+      }
+    },
+    "station_details_owned_reward_info_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minor issues slightly affected your rewards. This may happen occasionally, but we thought you should know. View reward details to identify and fix problems."
+          }
+        }
+      }
+    },
+    "station_details_owned_reward_warning_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some issues prevent your station from getting the full rewards. View reward details to identify and fix problems."
+          }
+        }
+      }
+    },
     "station_details_owned_rewards_error_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5843,39 +5876,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Identify & Fix Problems"
-          }
-        }
-      }
-    },
-    "station_details_reward_error_message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Serious problems were detected, that prevent the station from getting the full rewards**. View reward details to identify and fix problems."
-          }
-        }
-      }
-    },
-    "station_details_reward_info_message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Minor issues slightly affected your rewards**. This may happen occasionally, but we thought you should know. View reward details to identify and fix problems."
-          }
-        }
-      }
-    },
-    "station_details_reward_warning_message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Some issues prevent your station from getting the full rewards**. View reward details to identify and fix problems."
           }
         }
       }
