@@ -5880,6 +5880,72 @@
         }
       }
     },
+    "station_details_reward_error_message_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d issue** affecting station rewards."
+          }
+        }
+      }
+    },
+    "station_details_reward_error_message_plural_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d issues** affecting station rewards."
+          }
+        }
+      }
+    },
+    "station_details_reward_info_message_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d minor issue** affecting station rewards."
+          }
+        }
+      }
+    },
+    "station_details_reward_info_message_plural_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d minor issues** affecting station rewards."
+          }
+        }
+      }
+    },
+    "station_details_reward_warning_message_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d issue** affecting station rewards."
+          }
+        }
+      }
+    },
+    "station_details_reward_warning_message_plural_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d issues** affecting station rewards."
+          }
+        }
+      }
+    },
     "station_details_rewards" : {
       "extractionState" : "manual",
       "localizations" : {

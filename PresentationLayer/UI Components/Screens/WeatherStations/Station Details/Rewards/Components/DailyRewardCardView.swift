@@ -144,6 +144,8 @@ extension DailyRewardCardView {
 		let baseRewardScore: Double
 		let boostsReward: Double?
 		let warningType: CardWarningType?
+		let issues: Int
+		let isOwned: Bool
 
 		var indication: (type: CardWarningType, text: String)? {
 			guard let warningType else {
@@ -152,11 +154,14 @@ extension DailyRewardCardView {
 
 			switch warningType {
 				case .error:
-					return (warningType, LocalizableString.StationDetails.ownedStationRewardErrorMessage.localized)
+					let text = isOwned ? LocalizableString.StationDetails.ownedStationRewardErrorMessage.localized : LocalizableString.StationDetails.stationRewardErrorMessage(issues).localized
+					return (warningType, text)
 				case .warning:
-					return (warningType, LocalizableString.StationDetails.ownedStationRewardWarningMessage.localized)
+					let text = isOwned ? LocalizableString.StationDetails.ownedStationRewardWarningMessage.localized : LocalizableString.StationDetails.stationRewardWarningMessage(issues).localized
+					return (warningType, text)
 				case .info:
-					return (warningType, LocalizableString.StationDetails.ownedStationRewardInfoMessage.localized)
+					let text = isOwned ? LocalizableString.StationDetails.ownedStationRewardInfoMessage.localized : LocalizableString.StationDetails.stationRewardInfoMessage(issues).localized
+					return (warningType, text)
 			}
 		}
 	}
@@ -168,7 +173,9 @@ extension DailyRewardCardView {
 									baseReward: 2.4523532,
 									baseRewardScore: 0.8,
 									boostsReward: 1.4325423,
-									warningType: .info)) {}
+									warningType: .info,
+									issues: 3,
+									isOwned: false)) {}
 		.wxmShadow()
 }
 
@@ -178,7 +185,9 @@ extension DailyRewardCardView {
 									baseReward: 2.4523532,
 									baseRewardScore: 0.97,
 									boostsReward: nil,
-									warningType: nil)) {}
+									warningType: nil,
+									issues: 0,
+									isOwned: true)) {}
 		.wxmShadow()
 }
 
@@ -188,6 +197,8 @@ extension DailyRewardCardView {
 									baseReward: 2.4523532,
 									baseRewardScore: 0.2,
 									boostsReward: 1.4325423,
-									warningType: .error)) {}
+									warningType: .error,
+									issues: 1,
+									isOwned: false)) {}
 		.wxmShadow()
 }

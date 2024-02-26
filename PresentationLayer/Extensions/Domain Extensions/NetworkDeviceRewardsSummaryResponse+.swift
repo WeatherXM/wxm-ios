@@ -24,7 +24,9 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 								 baseReward: baseReward ?? 0.0,
 								 baseRewardScore: Double(baseRewardScore ?? 0) / 100.0,
 								 boostsReward: totalBoostReward,
-								 warningType: warningType)
+								 warningType: warningType,
+								 issues: annotationSummary?.count ?? 0,
+								 isOwned: true)
 	}
 
 	var timelineTransactionDateString: String {

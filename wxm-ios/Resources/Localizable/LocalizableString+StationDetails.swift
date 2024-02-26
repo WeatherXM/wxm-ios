@@ -32,8 +32,11 @@ extension LocalizableString {
 		case viewRewardDetailsButtonTitle
 		case viewTimelineButtonTitle
 		case ownedStationRewardInfoMessage
+		case stationRewardInfoMessage(Int)
 		case ownedStationRewardWarningMessage
+		case stationRewardWarningMessage(Int)
 		case ownedStationRewardErrorMessage
+		case stationRewardErrorMessage(Int)
 		case weeklyStreak
 		case noRewardsTitle
 		case noRewardsDescription
@@ -58,9 +61,15 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 	var localized: String {
 		var localized = NSLocalizedString(self.key, comment: "")
 		switch self {
-			case .gotRewards(let value), .lostRewards(let value):
+			case .gotRewards(let value), 
+					.lostRewards(let value),
+					.stationRewardInfoMessage(let value),
+					.stationRewardWarningMessage(let value),
+					.stationRewardErrorMessage(let value):
 				localized = String(format: localized, value)
-			case .rewardsTimelineCaption(let text), .rewardsErrorDescription(let text), .dailyRewardEarnings(let text):
+			case .rewardsTimelineCaption(let text), 
+					.rewardsErrorDescription(let text), 
+					.dailyRewardEarnings(let text):
 				localized = String(format: localized, text)
 			default:
 				break
@@ -115,6 +124,21 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_owned_reward_info_message"
 			case .ownedStationRewardErrorMessage:
 				return "station_details_owned_reward_error_message"
+			case .stationRewardInfoMessage(let count):
+				guard count > 1 else {
+					return "station_details_reward_info_message_format"
+				}
+				return "station_details_reward_info_message_plural_format"
+			case .stationRewardWarningMessage(let count):
+				guard count > 1 else {
+					return "station_details_reward_warning_message_format"
+				}
+				return "station_details_reward_warning_message_plural_format"
+			case .stationRewardErrorMessage(let count):
+				guard count > 1 else {
+					return "station_details_reward_error_message_format"
+				}
+				return "station_details_reward_error_message_plural_format"
 			case .weeklyStreak:
 				return "station_details_weekly_streak"
 			case .noRewardsTitle:
