@@ -30,7 +30,7 @@ struct DailyRewardCardView: View {
 		}
 		.WXMCardStyle()
 		.indication(show: Binding(get: { card.indication != nil }, set: { _ in }),
-					borderColor: Color(colorEnum: card.indication?.type.iconColor ?? .clear),
+					borderColor: Color(colorEnum: card.indicationBorderColor ?? .clear),
 					bgColor: Color(colorEnum: card.indication?.type.tintColor ?? .clear)) {
 			CardWarningView(type: card.indication?.type ?? .info,
 							showIcon: false,
@@ -162,6 +162,21 @@ extension DailyRewardCardView {
 				case .info:
 					let text = isOwned ? LocalizableString.StationDetails.ownedStationRewardInfoMessage.localized : LocalizableString.StationDetails.stationRewardInfoMessage(issues).localized
 					return (warningType, text)
+			}
+		}
+
+		var indicationBorderColor: ColorEnum? {
+			guard let warningType else {
+				return nil
+			}
+
+			switch warningType {
+				case .warning:
+					return .warning
+				case .error:
+					return .error
+				case .info:
+					return .lightestBlue
 			}
 		}
 	}
