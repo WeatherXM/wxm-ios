@@ -945,13 +945,13 @@
 			path = "Multiple Alerts";
 			sourceTree = "<group>";
 		};
-		2623FF8F2AF1467E00BCDAC6 /* Daily Rewards  */ = {
+		2623FF8F2AF1467E00BCDAC6 /* Daily Rewards */ = {
 			isa = PBXGroup;
 			children = (
 				2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */,
 				2623FF922AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift */,
 			);
-			path = "Daily Rewards ";
+			path = "Daily Rewards";
 			sourceTree = "<group>";
 		};
 		262A4CEA2A934F5D00A4BC17 /* Main Screen */ = {
@@ -968,7 +968,7 @@
 			children = (
 				268D07912B2B1B54002BD77E /* Select Station Location */,
 				262B03052B20BC5400C31FE7 /* App Update */,
-				2623FF8F2AF1467E00BCDAC6 /* Daily Rewards  */,
+				2623FF8F2AF1467E00BCDAC6 /* Daily Rewards */,
 				26D47E9F2A1783D10078723A /* Analytics */,
 				26A4118F29BF1AFE00A2C10B /* Change Frequency */,
 				2675471529A9181E008BCF40 /* ClaimDevice */,
