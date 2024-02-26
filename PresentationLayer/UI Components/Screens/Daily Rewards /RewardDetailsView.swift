@@ -104,6 +104,10 @@ private struct ContentView: View {
 		}
 	}
 
+
+
+	
+
 	@ViewBuilder
 	var errorsList: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
