@@ -70,7 +70,7 @@ private struct ContentView: View {
 			TrackableScrollView {
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					VStack(spacing: CGFloat(.defaultSpacing)) {
-						DailyRewardCardView(card: viewModel.rewardSummary.toDailyRewardCard, buttonAction: {})
+						DailyRewardCardView(card: viewModel.rewardSummary.toDailyRewardCard(isOwned: viewModel.isDeviceOwned), buttonAction: {})
 					}
 					.WXMCardStyle()
 

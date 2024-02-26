@@ -17,6 +17,9 @@ class RewardDetailsViewModel: ObservableObject {
 	var device: DeviceDetails
 	let followState: UserDeviceFollowState?
 	let rewardSummary: NetworkDeviceRewardsSummary
+	var isDeviceOwned: Bool {
+		followState?.relation == .owned
+	}
 
 	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: RewardsTimelineUseCase, summary: NetworkDeviceRewardsSummary) {
 		self.device = device

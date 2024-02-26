@@ -19,6 +19,9 @@ class StationRewardsViewModel: ObservableObject {
     private(set) var device: DeviceDetails?
 	private(set) var followState: UserDeviceFollowState?
     private(set) var failObj: FailSuccessStateObject?
+	var isDeviceOwned: Bool {
+		followState?.relation == .owned
+	}
 
 	@Published var response: NetworkDeviceRewardsSummaryResponse?
     private var useCase: RewardsUseCase?

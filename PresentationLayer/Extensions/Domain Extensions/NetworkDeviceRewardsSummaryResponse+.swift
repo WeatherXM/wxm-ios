@@ -18,7 +18,7 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 		hashValue
 	}
 
-	var toDailyRewardCard: DailyRewardCardView.Card {
+	func toDailyRewardCard(isOwned: Bool) -> DailyRewardCardView.Card {
 		DailyRewardCardView.Card(refDate: timestamp,
 								 totalRewards: totalReward ?? 0.0,
 								 baseReward: baseReward ?? 0.0,
@@ -26,7 +26,7 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 								 boostsReward: totalBoostReward,
 								 warningType: warningType,
 								 issues: annotationSummary?.count ?? 0,
-								 isOwned: true)
+								 isOwned: isOwned)
 	}
 
 	var timelineTransactionDateString: String {

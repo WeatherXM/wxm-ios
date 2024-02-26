@@ -30,7 +30,7 @@ struct StationRewardsView: View {
 								.wxmShadow()
 
 							if let data = viewModel.response?.latest {
-								DailyRewardCardView(card: data.toDailyRewardCard) {
+								DailyRewardCardView(card: data.toDailyRewardCard(isOwned: viewModel.isDeviceOwned)) {
 									viewModel.handleViewDetailsTap()
 								}
 								.wxmShadow()
