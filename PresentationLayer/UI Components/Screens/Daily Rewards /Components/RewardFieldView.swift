@@ -49,6 +49,9 @@ struct RewardFieldView: View {
 			}
 		}
 		.WXMCardStyle()
+		.indication(show: .constant(score.showIndication),
+					borderColor: Color(colorEnum: score.color),
+					bgColor: .clear, content: { EmptyView() })
     }
 }
 
@@ -57,13 +60,17 @@ extension RewardFieldView {
 		let score: Float
 		let color: ColorEnum
 		let message: String
+		let showIndication: Bool
 	}
 
 }
 
 #Preview {
 	RewardFieldView(title: "Data Quality",
-					score: .init(score: 75.0, color: .warning, message: "Almost perfect! Got 98%.")) {}
+					score: .init(score: 75.0,
+								 color: .warning,
+								 message: "Almost perfect! Got 98%.",
+								 showIndication: true)) {}
 		.wxmShadow()
 		.padding()
 }
