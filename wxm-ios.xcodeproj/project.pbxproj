@@ -410,6 +410,7 @@
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
 		26FFADD42B8F684C00BF0A6B /* RewardAnnotaionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */; };
 		26FFADD82B8F688900BF0A6B /* RewardAnnotationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */; };
+		26FFAD792B8E12DC00BF0A6B /* RewardFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */; };
 		7423EC15283F81E2004E9B26 /* anim_weather_cloudy.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFE283F81E2004E9B26 /* anim_weather_cloudy.json */; };
 		7423EC16283F81E2004E9B26 /* anim_weather_clear_day.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFF283F81E2004E9B26 /* anim_weather_clear_day.json */; };
 		7423EC17283F81E2004E9B26 /* anim_not_available.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EC00283F81E2004E9B26 /* anim_not_available.json */; };
@@ -849,6 +850,7 @@
 		26E9A5132AE26AFE003E0830 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotaionsView.swift; sourceTree = "<group>"; };
 		26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotationsViewModel.swift; sourceTree = "<group>"; };
+		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
 		7423EBFE283F81E2004E9B26 /* anim_weather_cloudy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_cloudy.json; sourceTree = "<group>"; };
 		7423EBFF283F81E2004E9B26 /* anim_weather_clear_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_clear_day.json; sourceTree = "<group>"; };
 		7423EC00283F81E2004E9B26 /* anim_not_available.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_not_available.json; sourceTree = "<group>"; };
@@ -956,6 +958,7 @@
 		2623FF8F2AF1467E00BCDAC6 /* Daily Rewards  */ = {
 			isa = PBXGroup;
 			children = (
+				26FFAD772B8E125900BF0A6B /* Components */,
 				2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */,
 				2623FF922AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift */,
 			);
@@ -2109,6 +2112,14 @@
 			path = RewardAnnotations;
 			sourceTree = "<group>";
 		};
+		26FFAD772B8E125900BF0A6B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		7423EBFD283F81E2004E9B26 /* LottieJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -2638,6 +2649,7 @@
 				26AF27902A0CCD010067A1B8 /* ChartCardTypes.swift in Sources */,
 				266D17DD2AC6CF80007CDB06 /* WeatherStationCardView.swift in Sources */,
 				26AF278E2A0CCCE60067A1B8 /* ChartCardView.swift in Sources */,
+				26FFAD792B8E12DC00BF0A6B /* RewardFieldView.swift in Sources */,
 				267547D029A9181E008BCF40 /* ChartModifier.swift in Sources */,
 				267547C029A9181E008BCF40 /* ChartsContainer.swift in Sources */,
 				26AF276E2A0B815B0067A1B8 /* ChartsFactory.swift in Sources */,
