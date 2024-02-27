@@ -69,10 +69,6 @@ private struct ContentView: View {
 
 			TrackableScrollView {
 				VStack(spacing: CGFloat(.defaultSpacing)) {
-					VStack(spacing: CGFloat(.defaultSpacing)) {
-						DailyRewardCardView(card: viewModel.rewardSummary.toDailyRewardCard(isOwned: viewModel.isDeviceOwned), buttonAction: {})
-					}
-					.WXMCardStyle()
 
 					if viewModel.followState?.relation == .owned {
 						Button {
@@ -120,7 +116,6 @@ private extension ContentView {
 		Color(colorEnum: .bg)
 		RewardDetailsView(viewModel: .init(device: device,
 										   followState: .init(deviceId: device.id!, relation: .owned),
-										   tokenUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!,
-										   summary: .mock))
+										   tokenUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!))
 	}
 }

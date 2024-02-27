@@ -7,14 +7,14 @@
 
 import Foundation
 
-public struct NetworkDeviceRewardDetailsResponse: Codable {
+public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable {
 	public let totalDailyReward: Double?
 	public let base: Base?
 	public let boost: Boost?
 }
 
 public extension NetworkDeviceRewardDetailsResponse {
-	struct Base: Codable {
+	struct Base: Codable, Hashable {
 		let actualReward: Double?
 		let rewardScore: Int?
 		let maxReward: Double?
@@ -26,12 +26,12 @@ public extension NetworkDeviceRewardDetailsResponse {
 		}
 	}
 
-	struct Boost: Codable {
+	struct Boost: Codable, Hashable {
 		let totalReward: Double?
 		let data: [BoostReward]?
 	}
 
-	struct BoostReward: Codable {
+	struct BoostReward: Codable, Hashable {
 		let title: String?
 		let description: String?
 		let actualReward: Double?
