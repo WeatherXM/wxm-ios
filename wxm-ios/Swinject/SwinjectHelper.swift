@@ -133,8 +133,8 @@ class SwinjectHelper: SwinjectInterface {
 					  networkRepository: resolver.resolve(NetworkRepository.self)!)
         }
 
-        container.register(TokenUseCase.self) { resolver in
-			TokenUseCase(repository: resolver.resolve(DevicesRepository.self)!, meRepository: resolver.resolve(MeRepository.self)!)
+        container.register(RewardsTimelineUseCase.self) { resolver in
+			RewardsTimelineUseCase(repository: resolver.resolve(DevicesRepository.self)!, meRepository: resolver.resolve(MeRepository.self)!)
         }
 
         container.register(HistoryUseCase.self) { resolver in

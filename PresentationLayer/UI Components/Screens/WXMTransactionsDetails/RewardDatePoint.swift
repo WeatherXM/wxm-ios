@@ -20,7 +20,6 @@ struct RewardDatePoint: View {
             dateOfTransactionText
         }
         .padding(.leading, 36)
-        .padding(.vertical, 20)
     }
 
     var circlePoint: some View {

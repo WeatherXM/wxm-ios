@@ -40,9 +40,9 @@ enum ViewModelsFactory {
         return StationRewardsViewModel(deviceId: deviceId, containerDelegate: delegate, useCase: useCase)
     }
 
-	static func getTransactionDetailsViewModel(device: DeviceDetails, followState: UserDeviceFollowState?) -> TransactionDetailsViewModel {
-        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(TokenUseCase.self)
-        return TransactionDetailsViewModel(device: device, followState: followState, tokenUseCase: useCase!)
+	static func getTransactionDetailsViewModel(device: DeviceDetails, followState: UserDeviceFollowState?) -> RewardsTimelineViewModel {
+        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)
+        return RewardsTimelineViewModel(device: device, followState: followState, useCase: useCase!)
     }
 
     static func getHistoryContainerViewModel(device: DeviceDetails) -> HistoryContainerViewModel {
@@ -144,9 +144,9 @@ enum ViewModelsFactory {
 
 	static func getRewardDetailsViewModel(device: DeviceDetails,
 										  followState: UserDeviceFollowState?,
-										  overview: StationRewardsCardOverview) -> RewardDetailsViewModel {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(TokenUseCase.self)!
-		return RewardDetailsViewModel(device: device, followState: followState, tokenUseCase: useCase, rewardsCardOverview: overview)
+										  summary: NetworkDeviceRewardsSummary) -> RewardDetailsViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!
+		return RewardDetailsViewModel(device: device, followState: followState, tokenUseCase: useCase, summary: summary)
 	}
 
 	static func getSelectLocationViewModel(device: DeviceDetails,

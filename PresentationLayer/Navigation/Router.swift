@@ -107,7 +107,7 @@ enum Route: Hashable, Equatable {
     case wallet(MyWalletViewModel)
     case history(HistoryContainerViewModel)
     case netStats(NetworkStatsViewModel)
-    case transactions(TransactionDetailsViewModel)
+    case transactions(RewardsTimelineViewModel)
     case settings(SettingsViewModel)
     case claimDevice(Bool)
     case deleteAccount(DeleteAccountViewModel)
@@ -148,7 +148,7 @@ extension Route {
 				}
 			case .transactions(let transactionsViewModel):
 				NavigationContainerView {
-					TransactionDetailsView(viewModel: transactionsViewModel)
+					RewardsTimelineView(viewModel: transactionsViewModel)
 				}
 			case .settings(let settingsViewModel):
 				CustomNavigationLinkView {

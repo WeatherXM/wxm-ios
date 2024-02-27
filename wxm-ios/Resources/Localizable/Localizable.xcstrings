@@ -50,6 +50,16 @@
         }
       }
     },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
     "%@%@" : {
       "localizations" : {
         "en" : {
@@ -5628,6 +5638,50 @@
         }
       }
     },
+    "station_details_base_reward" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Base Reward"
+          }
+        }
+      }
+    },
+    "station_details_boosts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boosts"
+          }
+        }
+      }
+    },
+    "station_details_daily_reward_earnings_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earnings for %@"
+          }
+        }
+      }
+    },
+    "station_details_daily_reward_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily Reward"
+          }
+        }
+      }
+    },
     "station_details_detailed_rewards_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5668,6 +5722,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lost %d%%"
+          }
+        }
+      }
+    },
+    "station_details_mainnet_banner_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Mainnet!"
+          }
+        }
+      }
+    },
+    "station_details_no_active_boosts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Active"
+          }
+        }
+      }
+    },
+    "station_details_no_rewards_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station hasn’t received any rewards yet. Sit back and relax, while our systems are validating the station’s location and data. You should start seeing rewards in the next couple of days."
+          }
+        }
+      }
+    },
+    "station_details_no_rewards_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewards Coming Soon!"
           }
         }
       }
@@ -5738,6 +5836,39 @@
         }
       }
     },
+    "station_details_owned_reward_error_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serious problems were detected, that prevent the station from getting the full rewards. View reward details to identify and fix problems."
+          }
+        }
+      }
+    },
+    "station_details_owned_reward_info_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minor issues slightly affected your rewards. This may happen occasionally, but we thought you should know. View reward details to identify and fix problems."
+          }
+        }
+      }
+    },
+    "station_details_owned_reward_warning_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some issues prevent your station from getting the full rewards. View reward details to identify and fix problems."
+          }
+        }
+      }
+    },
     "station_details_owned_rewards_error_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5745,6 +5876,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Identify & Fix Problems"
+          }
+        }
+      }
+    },
+    "station_details_reward_error_message_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d issue** affecting station rewards."
+          }
+        }
+      }
+    },
+    "station_details_reward_error_message_plural_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d issues** affecting station rewards."
+          }
+        }
+      }
+    },
+    "station_details_reward_info_message_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d minor issue** affecting station rewards."
+          }
+        }
+      }
+    },
+    "station_details_reward_info_message_plural_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d minor issues** affecting station rewards."
+          }
+        }
+      }
+    },
+    "station_details_reward_warning_message_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d issue** affecting station rewards."
+          }
+        }
+      }
+    },
+    "station_details_reward_warning_message_plural_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**%d issues** affecting station rewards."
           }
         }
       }
@@ -5910,6 +6107,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View Historical Data"
+          }
+        }
+      }
+    },
+    "station_details_view_reward_details_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Reward Details"
+          }
+        }
+      }
+    },
+    "station_details_view_timeline_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Timeline"
+          }
+        }
+      }
+    },
+    "station_details_weekly_streak" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weekly Streak"
           }
         }
       }

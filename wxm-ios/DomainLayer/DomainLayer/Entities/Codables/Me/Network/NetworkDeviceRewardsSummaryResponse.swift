@@ -7,12 +7,19 @@
 
 import Foundation
 
-public  struct NetworkDeviceRewardsSummaryResponse: Codable {
+public struct NetworkDeviceRewardsSummaryResponse: Codable, Hashable {
 	public let totalRewards: Double?
+	public let latest: NetworkDeviceRewardsSummary?
 	public let timeline: [NetworkDeviceRewardsSummaryTimelineEntry]?
+
+	enum CodingKeys: String, CodingKey {
+		case totalRewards = "total_rewards"
+		case latest
+		case timeline
+	}
 }
 
-public struct NetworkDeviceRewardsSummary: Codable {
+public struct NetworkDeviceRewardsSummary: Codable, Hashable {
 	public let timestamp: Date?
 	public let baseReward: Double?
 	public let totalBoostReward: Double?
@@ -28,9 +35,18 @@ public struct NetworkDeviceRewardsSummary: Codable {
 		case baseRewardScore = "base_reward_score"
 		case annotationSummary = "annotation_summary"
 	}
+
+	public init(timestamp: Date?, baseReward: Double?, totalBoostReward: Double?, totalReward: Double?, baseRewardScore: Int?, annotationSummary: [RewardAnnotation]?) {
+		self.timestamp = timestamp
+		self.baseReward = baseReward
+		self.totalBoostReward = totalBoostReward
+		self.totalReward = totalReward
+		self.baseRewardScore = baseRewardScore
+		self.annotationSummary = annotationSummary
+	}
 }
 
-public struct NetworkDeviceRewardsSummaryTimelineEntry: Codable {
+public struct NetworkDeviceRewardsSummaryTimelineEntry: Codable, Hashable {
 	public let timestamp: Date?
 	public let baseRewardScore: Int?
 

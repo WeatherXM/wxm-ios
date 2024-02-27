@@ -1,5 +1,5 @@
 //
-//  TransactionDetailsView.swift
+//  RewardsTimelineView.swift
 //  PresentationLayer
 //
 //  Created by Danae Kikue Dimou on 12/9/22.
@@ -8,8 +8,8 @@ import DomainLayer
 import SwiftUI
 import Toolkit
 
-struct TransactionDetailsView: View {
-    @StateObject var viewModel: TransactionDetailsViewModel
+struct RewardsTimelineView: View {
+    @StateObject var viewModel: RewardsTimelineViewModel
     @EnvironmentObject var navigationObject: NavigationObject
 
     var body: some View {
@@ -17,7 +17,7 @@ struct TransactionDetailsView: View {
             Color(colorEnum: .bg)
                 .ignoresSafeArea()
             
-            transactionDetails
+            timelineView
         }
         .onAppear {
             navigationObject.title = viewModel.device.displayName
@@ -28,8 +28,8 @@ struct TransactionDetailsView: View {
     }
 
     @ViewBuilder
-    var transactionDetails: some View {
-        transactions
+    var timelineView: some View {
+        timelineList
 			.iPadMaxWidth()
             .wxmEmptyView(show: Binding(get: { viewModel.transactions.isEmpty }, set: { _ in }),
                           configuration: .init(animationEnum: .emptyDevices,
@@ -42,7 +42,7 @@ struct TransactionDetailsView: View {
     }
 
     @ViewBuilder
-    var transactions: some View {
+    var timelineList: some View {
         ZStack(alignment: .bottom) {
             TrackableScrollView(showIndicators: false,
                                 offsetObject: viewModel.scrollOffsetObject) { completion in
@@ -50,40 +50,30 @@ struct TransactionDetailsView: View {
 			} content: {
                 ZStack(alignment: .topLeading) {
                     timeLineOfTransactions
-                    VStack(alignment: .leading) {
-                        ForEach(viewModel.transactions, id: \.self) { (arrayOfTransactions: [UITransaction]) in
-                            RewardDatePoint(dateOfTransaction: arrayOfTransactions.first!.formattedDate)
-                            LazyVStack(spacing: CGFloat(.mediumSpacing)) {
-                                ForEach(arrayOfTransactions) { record in
-									let lostData = record.lostAmountData
-                                    BaseRewardsCard(record: record)
-										.indication(show: .constant(record.lostAmount > 0.0),
-													borderColor: Color(colorEnum: lostData.problemsViewBorder),
-													bgColor: Color(colorEnum: lostData.problemsViewBackground)) {
-											StationRewardsErrorView(lostAmount: record.lostAmount,
-															 buttonTitle: viewModel.errorIndicationButtonTitle,
-															 showButton: true) {
-												viewModel.handleTransactionTap(from: record)
-											}
-											.padding(CGFloat(.defaultSidePadding))
-										}
-                                        .onTapGesture {
-                                            Logger.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
-                                                                                               .contentType: .deviceTransactions,
-                                                                                               .itemListId: .custom(record.formattedTimestamp),
-                                                                                               .itemId: .custom(viewModel.device.id ?? "")])
-
+						.padding(.top, CGFloat(.minimumPadding))
+					
+					VStack(alignment: .leading, spacing: CGFloat(.mediumSpacing)) {
+                        ForEach(viewModel.transactions, id: \.self) { arrayOfTransactions in
+							RewardDatePoint(dateOfTransaction: arrayOfTransactions.first!.timelineTransactionDateString)
+							LazyVStack(spacing: CGFloat(.mediumSpacing)) {
+								ForEach(arrayOfTransactions) { record in
+									DailyRewardCardView(card: record.toDailyRewardCard(isOwned: false), buttonAction: nil)
+										.onTapGesture {
+											Logger.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
+																							   .contentType: .deviceTransactions,
+																							   .itemListId: .custom(record.timelineTransactionDateString),
+																							   .itemId: .custom(viewModel.device.id ?? "")])
+											
 											viewModel.handleTransactionTap(from: record)
-                                        }
+										}
 										.onAppear {
 											viewModel.fetchNextPageIfNeeded(for: record)
 										}
-                                }
-                            }
+								}
+							}
 							.padding(.horizontal, CGFloat(.mediumSidePadding))
-                            .padding(.top, CGFloat(.mediumSidePadding))
-                        }
-
+						}
+						
 						if viewModel.isRequestInProgress {
 							HStack {
 								Spacer()
@@ -93,6 +83,7 @@ struct TransactionDetailsView: View {
 						}
                     }
                 }
+				.padding(.top, CGFloat(.mediumSidePadding))
             }
         }
     }
@@ -102,6 +93,5 @@ struct TransactionDetailsView: View {
             .fill(Color(colorEnum: .midGrey))
             .frame(width: 4)
             .padding(.leading, 40)
-            .padding(.top, 25)
     }
 }

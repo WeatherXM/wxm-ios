@@ -17,28 +17,30 @@ struct StationRewardsView: View {
 					viewModel.refresh(completion: completion)
 				} content: {
 					VStack(spacing: CGFloat(.mediumSpacing)) {
-						VStack(spacing: CGFloat(.largeSpacing)) {
-							if let data = viewModel.data {
-								StationRewardsCardView(selectedIndex: $viewModel.selectedIndex,
-													   totalRewards: viewModel.totalRewards,
-													   showErrorButtonAction: true,
-													   overviews: data,
-													   buttonActions: viewModel.cardButtonActions)
+						if viewModel.showMainnet == true, let message = viewModel.mainnetMessage {
+							AnnouncementCardView(title: LocalizableString.StationDetails.mainnetTitle.localized,
+												 description: message)
+						}
+
+						if viewModel.viewState == .empty {
+							NoRewardsView()
+								.wxmShadow()
+						} else {
+							TotalRewardsView(rewards: viewModel.response?.totalRewards ?? 0.0)
+								.wxmShadow()
+
+							if let data = viewModel.response?.latest {
+								DailyRewardCardView(card: data.toDailyRewardCard(isOwned: viewModel.isDeviceOwned)) {
+									viewModel.handleViewDetailsTap()
+								}
 								.wxmShadow()
 							}
 
-							VStack(spacing: CGFloat(.defaultSpacing)) {
-								Button {
-									viewModel.handleDetailedRewardsButtonTap()
-								} label: {
-									Text(LocalizableString.StationDetails.detailedRewardsButtonTitle.localized)
-								}
-								.buttonStyle(WXMButtonStyle.solid)
-
-								InfoView(text: LocalizableString.StationDetails.rewardsInfoText.localized.attributedMarkdown ?? "")
+							WeeklyStreakView(entries: viewModel.response?.timeline?.toWeeklyEntries ?? []) {
+								viewModel.handleDetailedRewardsButtonTap()
 							}
+							.wxmShadow()
 						}
-						.animation(.easeIn, value: viewModel.selectedIndex)
 					}
 					.iPadMaxWidth()
 					.padding()
@@ -48,9 +50,6 @@ struct StationRewardsView: View {
 				.spinningLoader(show: Binding(get: { viewModel.viewState == .loading }, set: { _ in }), hideContent: true)
 				.fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)
 			}
-		}
-		.bottomSheet(show: $viewModel.showInfo, fitContent: true) {
-			bottomInfoView(info: viewModel.info)
 		}
         .onAppear {
             Logger.shared.trackScreen(.rewards)

@@ -15,6 +15,7 @@ enum ViewState {
     case fail
     case content
     case hidden
+	case empty
 }
 
 struct StationAddressTitleView: View {

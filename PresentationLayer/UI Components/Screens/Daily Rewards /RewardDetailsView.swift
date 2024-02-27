@@ -59,9 +59,6 @@ private struct ContentView: View {
 
 	var body: some View {
 		content
-			.bottomSheet(show: $viewModel.showInfo, fitContent: true) {
-				bottomInfoView(info: viewModel.info)
-			}
 	}
 
 	@ViewBuilder
@@ -73,11 +70,7 @@ private struct ContentView: View {
 			TrackableScrollView {
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					VStack(spacing: CGFloat(.defaultSpacing)) {
-						StationRewardsOverviewView(overview: viewModel.rewardsCardOverview, showError: false, buttonActions: viewModel.buttonActions)
-
-						if !viewModel.rewardsCardOverview.annnotationsList.isEmpty {
-							errorsList
-						}
+						DailyRewardCardView(card: viewModel.rewardSummary.toDailyRewardCard(isOwned: viewModel.isDeviceOwned), buttonAction: {})
 					}
 					.WXMCardStyle()
 
@@ -100,36 +93,6 @@ private struct ContentView: View {
 				navigationObject.navigationBarColor = Color(colorEnum: .bg)
 
 				Logger.shared.trackScreen(.deviceRewardsDetails)
-			}
-		}
-	}
-
-	@ViewBuilder
-	var errorsList: some View {
-		VStack(spacing: CGFloat(.mediumSpacing)) {
-			HStack {
-				Text(LocalizableString.RewardDetails.problemsTitle.localized)
-					.foregroundColor(Color(colorEnum: .darkestBlue))
-					.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
-				Spacer()
-			}
-
-			HStack {
-				Text(viewModel.problemsDescription.attributedMarkdown ?? "")
-					.foregroundColor(Color(colorEnum: .text))
-					.font(.system(size: CGFloat(.normalFontSize)))
-				Spacer(minLength: 0.0)
-			}
-
-			ForEach(viewModel.rewardsCardOverview.annnotationsList) { error in
-				CardWarningView(type: error.severity?.toCardWarningType ?? .info,
-								title: error.title,
-								message: error.message ?? "",
-								showContentFullWidth: true,
-								showBorder: true,
-								closeAction: nil) {
-					errorActionView(for: error)
-				}
 			}
 		}
 	}
@@ -157,7 +120,7 @@ private extension ContentView {
 		Color(colorEnum: .bg)
 		RewardDetailsView(viewModel: .init(device: device,
 										   followState: .init(deviceId: device.id!, relation: .owned),
-										   tokenUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(TokenUseCase.self)!,
-										   rewardsCardOverview: .mock(title: "title")))
+										   tokenUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!,
+										   summary: .mock))
 	}
 }

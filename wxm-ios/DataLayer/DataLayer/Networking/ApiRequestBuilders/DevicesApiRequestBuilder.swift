@@ -39,7 +39,6 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
     case devices
     case deviceById(deviceId: String)
 	case deviceRewardsById(deviceId: String)
-    case deviceTokenTransactions(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?)
 	case deviceRewardsTimeline(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?)
 
     // MARK: - HttpMethod
@@ -47,7 +46,7 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
     // This returns the HttpMethod type. It's used to determine the type if several endpoints are peresent
 	private var method: HTTPMethod {
 		switch self {
-			case .devices, .deviceById, .deviceRewardsById, .deviceTokenTransactions, .deviceRewardsTimeline:
+			case .devices, .deviceById, .deviceRewardsById, .deviceRewardsTimeline:
 				return .get
 		}
 	}
@@ -63,8 +62,6 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
 				return "devices/\(deviceId)"
 			case let .deviceRewardsById(deviceId):
 				return "devices/\(deviceId)/tokens"
-			case let .deviceTokenTransactions(deviceId, _, _, _, _, _):
-				return "devices/\(deviceId)/tokens/transactions"
 			case let .deviceRewardsTimeline(deviceId, _, _, _, _, _):
 				return "devices/\(deviceId)/tokens/timeline"
 		}
@@ -75,8 +72,7 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
     // This is the queries part, it's optional because an endpoint can be without parameters
     private var parameters: Parameters? {
         switch self {
-            case let .deviceTokenTransactions(_, page, pageSize, timezone, fromDate, toDate),
-				let .deviceRewardsTimeline(_, page, pageSize, timezone, fromDate, toDate):
+            case let .deviceRewardsTimeline(_, page, pageSize, timezone, fromDate, toDate):
                 var params: Parameters = [
                     ParameterConstants.Me.page: page,
                     ParameterConstants.Me.fromDate: fromDate,
@@ -100,10 +96,8 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
 extension DevicesApiRequestBuilder: MockResponseBuilder {
 	var mockFileName: String? {
 		switch self {
-			case .deviceTokenTransactions:
-				return "get_transactions"
 			case .deviceRewardsById:
-				return "get_user_device_rewards"
+				return "get_device_rewards_summary"
 			case .deviceRewardsTimeline:
 				return "get_device_rewards_timeline"
 			default:

@@ -41,6 +41,8 @@ setupConfiguration $CONFIGURATION_PATH
 fi
 
 defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
+defaults delete com.apple.dt.Xcode IDEPackageOnlyUseVersionsFromResolvedFile
+defaults delete com.apple.dt.Xcode IDEDisableAutomaticPackageResolution
 
 echo "Setup Google Services"
 
