@@ -25,7 +25,6 @@
 		261E9EB529A92B9400E8EBA3 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EB429A92B9400E8EBA3 /* MapboxMaps */; };
 		261E9EB829A92BE000E8EBA3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EB729A92BE000E8EBA3 /* Alamofire */; };
 		261E9EBB29A92C4200E8EBA3 /* Turf in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EBA29A92C4200E8EBA3 /* Turf */; };
-		26216A5A2B7E567C0076ACCA /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26216A592B7E567C0076ACCA /* LazyLoadingPager */; };
 		2623E2232A6FC29100E3E306 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623E2222A6FC29100E3E306 /* RouterView.swift */; };
 		2623FF912AF147A800BCDAC6 /* RewardDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */; };
 		2623FF932AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623FF922AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift */; };
@@ -406,6 +405,7 @@
 		26E88AFF29E02F590023BBD5 /* anim_loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 26E88AFE29E02F590023BBD5 /* anim_loader.json */; };
 		26E9A5142AE26AFE003E0830 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A5132AE26AFE003E0830 /* View+.swift */; };
 		26F246362A278DAB0089D3E7 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664831829C31AF400748F9C /* CustomSheet.swift */; };
+		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
 		7423EC15283F81E2004E9B26 /* anim_weather_cloudy.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFE283F81E2004E9B26 /* anim_weather_cloudy.json */; };
 		7423EC16283F81E2004E9B26 /* anim_weather_clear_day.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFF283F81E2004E9B26 /* anim_weather_clear_day.json */; };
 		7423EC17283F81E2004E9B26 /* anim_not_available.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EC00283F81E2004E9B26 /* anim_not_available.json */; };
@@ -912,7 +912,7 @@
 				B5799E9F28254E3300FEBB85 /* DataLayer.framework in Frameworks */,
 				B5799E9D28254E3000FEBB85 /* DomainLayer.framework in Frameworks */,
 				263B8B552B29FE34001C5060 /* MapboxStatic in Frameworks */,
-				26216A5A2B7E567C0076ACCA /* LazyLoadingPager in Frameworks */,
+				26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */,
 				261E9EB029A9296900E8EBA3 /* IQKeyboardManagerSwift in Frameworks */,
 				262A0DFD29DC1823005B14A2 /* Lottie in Frameworks */,
 				261E9EB529A92B9400E8EBA3 /* MapboxMaps in Frameworks */,
@@ -2289,7 +2289,7 @@
 				261E9EBA29A92C4200E8EBA3 /* Turf */,
 				262A0DFC29DC1823005B14A2 /* Lottie */,
 				263B8B542B29FE34001C5060 /* MapboxStatic */,
-				26216A592B7E567C0076ACCA /* LazyLoadingPager */,
+				26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */,
 			);
 			productName = "wxm-ios";
 			productReference = B52BCC712824FB8F00EA3DA5 /* WeatherXM.app */;
@@ -2335,7 +2335,7 @@
 				261E9EB929A92C4200E8EBA3 /* XCRemoteSwiftPackageReference "turf-swift" */,
 				262A0DFB29DC1823005B14A2 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				263B8B4B2B29EA64001C5060 /* XCRemoteSwiftPackageReference "MapboxStatic" */,
-				26216A582B7E567C0076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */,
+				26FFAD662B8DF9C200BF0A6B /* XCRemoteSwiftPackageReference "LazyLoadingPager" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -3543,14 +3543,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		26216A582B7E567C0076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/WeatherXM/LazyLoadingPager";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		262A0DFB29DC1823005B14A2 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -3565,6 +3557,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.4.0;
+			};
+		};
+		26FFAD662B8DF9C200BF0A6B /* XCRemoteSwiftPackageReference "LazyLoadingPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WeatherXM/LazyLoadingPager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -3610,11 +3610,6 @@
 			package = 261E9EB929A92C4200E8EBA3 /* XCRemoteSwiftPackageReference "turf-swift" */;
 			productName = Turf;
 		};
-		26216A592B7E567C0076ACCA /* LazyLoadingPager */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 26216A582B7E567C0076ACCA /* XCRemoteSwiftPackageReference "LazyLoadingPager" */;
-			productName = LazyLoadingPager;
-		};
 		262A0DFC29DC1823005B14A2 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 262A0DFB29DC1823005B14A2 /* XCRemoteSwiftPackageReference "lottie-ios" */;
@@ -3644,6 +3639,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9EA529A9275C00E8EBA3 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26FFAD662B8DF9C200BF0A6B /* XCRemoteSwiftPackageReference "LazyLoadingPager" */;
+			productName = LazyLoadingPager;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
