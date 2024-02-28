@@ -32,7 +32,7 @@ struct MultipleAlertsView: View {
                             .padding(.top, CGFloat(.smallSidePadding))
                         }
                         .onAppear(perform: alert.appearAction)
-                    }
+					}.iPadMaxWidth()
                 }
                 .padding(CGFloat(.defaultSidePadding))
             }

@@ -57,6 +57,7 @@ private extension ObservationsView {
                                 isButtonEnabled: viewModel.followState != nil) {
                 viewModel.handleHistoricalDataButtonTap()
             }
+			.stationIndication(device: device, followState: viewModel.followState)
         } else {
             EmptyView()
         }

@@ -93,6 +93,7 @@
 		266B01912B836FE6007AC689 /* anim_rocket.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01902B836FE6007AC689 /* anim_rocket.json */; };
 		266B01932B8380FA007AC689 /* AnnouncementCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B01922B8380FA007AC689 /* AnnouncementCardView.swift */; };
 		266B01CD2B84FB59007AC689 /* NetworkDeviceRewardsSummaryResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B01CC2B84FB59007AC689 /* NetworkDeviceRewardsSummaryResponse+.swift */; };
+		266B01E52B8767E4007AC689 /* StationIndication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B01E42B8767E4007AC689 /* StationIndication.swift */; };
 		266BAF4D2AA8769C004F5DE0 /* LocalizableString+Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BAF4C2AA8769C004F5DE0 /* LocalizableString+Bluetooth.swift */; };
 		266BAF552AA88631004F5DE0 /* LocalizableString+Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BAF542AA88631004F5DE0 /* LocalizableString+Analytics.swift */; };
 		266BAF632AA88996004F5DE0 /* LocalizableString+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266BAF622AA88996004F5DE0 /* LocalizableString+Search.swift */; };
@@ -582,6 +583,7 @@
 		266B01902B836FE6007AC689 /* anim_rocket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_rocket.json; sourceTree = "<group>"; };
 		266B01922B8380FA007AC689 /* AnnouncementCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCardView.swift; sourceTree = "<group>"; };
 		266B01CC2B84FB59007AC689 /* NetworkDeviceRewardsSummaryResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceRewardsSummaryResponse+.swift"; sourceTree = "<group>"; };
+		266B01E42B8767E4007AC689 /* StationIndication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationIndication.swift; sourceTree = "<group>"; };
 		266BAF4C2AA8769C004F5DE0 /* LocalizableString+Bluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Bluetooth.swift"; sourceTree = "<group>"; };
 		266BAF542AA88631004F5DE0 /* LocalizableString+Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Analytics.swift"; sourceTree = "<group>"; };
 		266BAF622AA88996004F5DE0 /* LocalizableString+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Search.swift"; sourceTree = "<group>"; };
@@ -1353,6 +1355,7 @@
 				2675470429A9181E008BCF40 /* WXMToggleStyle.swift */,
 				264CDE0E2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift */,
 				269E85702B0242C100BE774C /* WXMShareModifier.swift */,
+				266B01E42B8767E4007AC689 /* StationIndication.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -2744,6 +2747,7 @@
 				26BA07772B7FC2AC00F7F5A0 /* WeeklyStreakView.swift in Sources */,
 				2692D8722A4D8DEA0060CB3C /* Numeric+.swift in Sources */,
 				26A4115929B6078500A2C10B /* ObservationsView.swift in Sources */,
+				266B01E52B8767E4007AC689 /* StationIndication.swift in Sources */,
 				2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */,
 				264CDE0F2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift in Sources */,
 				26A4115B29B60F2900A2C10B /* ObservationsViewModel.swift in Sources */,
