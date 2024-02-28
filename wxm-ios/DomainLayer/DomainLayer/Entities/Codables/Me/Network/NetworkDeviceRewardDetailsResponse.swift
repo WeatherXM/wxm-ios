@@ -9,15 +9,23 @@ import Foundation
 
 public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable {
 	public let totalDailyReward: Double?
+	public let annotation: Annotation?
 	public let base: Base?
 	public let boost: Boost?
+
+	enum CodingKeys: String ,CodingKey {
+		case totalDailyReward = "total_daily_reward"
+		case annotation
+		case base
+		case boost
+	}
 }
 
 public extension NetworkDeviceRewardDetailsResponse {
 	struct Base: Codable, Hashable {
-		let actualReward: Double?
-		let rewardScore: Int?
-		let maxReward: Double?
+		public let actualReward: Double?
+		public let rewardScore: Int?
+		public let maxReward: Double?
 
 		enum CodingKeys: String, CodingKey {
 			case actualReward = "actual_reward"
@@ -27,16 +35,21 @@ public extension NetworkDeviceRewardDetailsResponse {
 	}
 
 	struct Boost: Codable, Hashable {
-		let totalReward: Double?
-		let data: [BoostReward]?
+		public let totalReward: Double?
+		public let data: [BoostReward]?
+
+		enum CodingKeys: String, CodingKey {
+			case totalReward = "total_daily_reward"
+			case data
+		}
 	}
 
 	struct BoostReward: Codable, Hashable {
-		let title: String?
-		let description: String?
-		let actualReward: Double?
-		let rewardScore: Int?
-		let maxReward: Double?
+		public let title: String?
+		public let description: String?
+		public let actualReward: Double?
+		public let rewardScore: Int?
+		public let maxReward: Double?
 
 		enum CodingKeys: String, CodingKey {
 			case title
@@ -47,8 +60,8 @@ public extension NetworkDeviceRewardDetailsResponse {
 		}
 	}
 
-	struct Annotation: Codable {
-		let score: Int?
-		let summary: [NetworkDeviceRewardsSummary]?
+	struct Annotation: Codable, Hashable {
+		public let score: Int?
+		public let summary: [NetworkDeviceRewardsSummary]?
 	}
 }
