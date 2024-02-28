@@ -13,6 +13,7 @@ extension LocalizableString {
 		case dailyReward
 		case issues
 		case earningsFor(String)
+		case viewAllIssues
 		case problemsTitle
 		case problemsDescription(String)
 		case zeroLostProblemsDescription
@@ -64,6 +65,8 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 				return "reward_details_earnings_for_format"
 			case .problemsTitle:
 				return "reward_problems_title"
+			case .viewAllIssues:
+				return "reward_details_view_all_issues"
 			case .problemsDescription:
 				return "reward_problems_description_format"
 			case .zeroLostProblemsDescription:

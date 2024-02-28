@@ -150,6 +150,22 @@ private struct ContentView: View {
 				Spacer()
 			}
 
+			if let mainAnnotation = viewModel.rewardDetailsResponse?.annotation?.mainAnnotation {
+				CardWarningView(type: mainAnnotation.warningType ?? .warning,
+								showIcon: false,
+								title: mainAnnotation.title ?? "",
+								message: mainAnnotation.message ?? "",
+								showBorder: true,
+								closeAction: nil) {
+					Button {
+
+					} label: {
+						Text(viewModel.issuesButtonTitle() ?? "")
+					}
+					.buttonStyle(WXMButtonStyle.transparent)
+					.padding(.top, CGFloat(.smallSidePadding))
+				}.wxmShadow()
+			}
 		}
 	}
 }

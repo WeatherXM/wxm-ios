@@ -54,6 +54,15 @@ class RewardDetailsViewModel: ObservableObject {
 		}
 	}
 
+	func issuesButtonTitle() -> String? {
+		guard let summary = rewardDetailsResponse?.annotation?.summary,
+			  summary.count > 1 else {
+			return annotationActionButtonTile(for: rewardDetailsResponse?.annotation?.mainAnnotation)
+		}
+
+		return LocalizableString.RewardDetails.viewAllIssues.localized
+	}
+
 	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {
 		guard let group = annotation?.group else {
 			return nil

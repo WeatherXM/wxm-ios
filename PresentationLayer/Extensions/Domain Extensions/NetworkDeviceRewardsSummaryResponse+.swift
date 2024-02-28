@@ -78,7 +78,6 @@ extension RewardAnnotation {
 	}
 }
 
-
 extension NetworkDeviceRewardsSummaryTimelineEntry {
 	var toWeeklyEntry: WeeklyStreakView.Entry? {
 		guard let timestamp else {

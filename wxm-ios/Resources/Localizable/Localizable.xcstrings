@@ -4956,6 +4956,17 @@
         }
       }
     },
+    "reward_details_view_all_issues" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View all issues"
+          }
+        }
+      }
+    },
     "reward_details_view_transaction" : {
       "extractionState" : "manual",
       "localizations" : {
