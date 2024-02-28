@@ -408,10 +408,10 @@
 		26E9A5142AE26AFE003E0830 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A5132AE26AFE003E0830 /* View+.swift */; };
 		26F246362A278DAB0089D3E7 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664831829C31AF400748F9C /* CustomSheet.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
-		26FFADD42B8F684C00BF0A6B /* RewardAnnotaionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */; };
-		26FFADD82B8F688900BF0A6B /* RewardAnnotationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */; };
 		26FFAD792B8E12DC00BF0A6B /* RewardFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */; };
 		26FFADA72B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */; };
+		26FFADD42B8F684C00BF0A6B /* RewardAnnotaionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */; };
+		26FFADD82B8F688900BF0A6B /* RewardAnnotationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */; };
 		7423EC15283F81E2004E9B26 /* anim_weather_cloudy.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFE283F81E2004E9B26 /* anim_weather_cloudy.json */; };
 		7423EC16283F81E2004E9B26 /* anim_weather_clear_day.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFF283F81E2004E9B26 /* anim_weather_clear_day.json */; };
 		7423EC17283F81E2004E9B26 /* anim_not_available.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EC00283F81E2004E9B26 /* anim_not_available.json */; };
@@ -849,10 +849,10 @@
 		26E88AF429DD69930023BBD5 /* WXMShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMShadow.swift; sourceTree = "<group>"; };
 		26E88AFE29E02F590023BBD5 /* anim_loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_loader.json; sourceTree = "<group>"; };
 		26E9A5132AE26AFE003E0830 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
-		26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotaionsView.swift; sourceTree = "<group>"; };
-		26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotationsViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
 		26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceRewardDetailsResponse+.swift"; sourceTree = "<group>"; };
+		26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotaionsView.swift; sourceTree = "<group>"; };
+		26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotationsViewModel.swift; sourceTree = "<group>"; };
 		7423EBFE283F81E2004E9B26 /* anim_weather_cloudy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_cloudy.json; sourceTree = "<group>"; };
 		7423EBFF283F81E2004E9B26 /* anim_weather_clear_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_clear_day.json; sourceTree = "<group>"; };
 		7423EC00283F81E2004E9B26 /* anim_not_available.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_not_available.json; sourceTree = "<group>"; };
@@ -2106,6 +2106,14 @@
 			path = "Station Details";
 			sourceTree = "<group>";
 		};
+		26FFAD772B8E125900BF0A6B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		26FFADD22B8F682D00BF0A6B /* RewardAnnotations */ = {
 			isa = PBXGroup;
 			children = (
@@ -2113,14 +2121,6 @@
 				26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */,
 			);
 			path = RewardAnnotations;
-			sourceTree = "<group>";
-		};
-		26FFAD772B8E125900BF0A6B /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		7423EBFD283F81E2004E9B26 /* LottieJSON */ = {

@@ -54,6 +54,22 @@ class RewardDetailsViewModel: ObservableObject {
 		}
 	}
 
+	func issuesSubtitle() -> String? {
+		guard let warningType = rewardDetailsResponse?.annotation?.mainAnnotation?.warningType,
+			  let count = rewardDetailsResponse?.annotation?.summary?.count else {
+			return nil
+		}
+
+		switch warningType {
+			case .error:
+				return LocalizableString.StationDetails.stationRewardErrorMessage(count).localized
+			case .warning:
+				return LocalizableString.StationDetails.stationRewardWarningMessage(count).localized
+			case .info:
+				return LocalizableString.StationDetails.stationRewardInfoMessage(count).localized
+		}
+	}
+
 	func issuesButtonTitle() -> String? {
 		guard let summary = rewardDetailsResponse?.annotation?.summary,
 			  summary.count > 1 else {
@@ -92,10 +108,13 @@ class RewardDetailsViewModel: ObservableObject {
 		}
 	}
 
-	func handleButtonTap(for error: RewardAnnotation) {
-		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .rewardDetailsError,
-														   .itemId: .custom(error.group?.rawValue ?? "")])
-		handleRewardAnnotation(annotation: error)
+	func handleIssueButtonTap() {
+		guard let count = rewardDetailsResponse?.annotation?.summary?.count, count > 1 else {
+			handleRewardAnnotation(annotation: rewardDetailsResponse?.annotation?.mainAnnotation)
+			return
+		}
+
+		
 	}
 
 	func handleReadMoreTap() {
@@ -112,8 +131,9 @@ class RewardDetailsViewModel: ObservableObject {
 }
 
 private extension RewardDetailsViewModel {
-	func handleRewardAnnotation(annotation: RewardAnnotation) {
-		guard let group = annotation.group else {
+	func handleRewardAnnotation(annotation: RewardAnnotation?) {
+		guard let annotation,
+			  let group = annotation.group else {
 			return
 		}
 

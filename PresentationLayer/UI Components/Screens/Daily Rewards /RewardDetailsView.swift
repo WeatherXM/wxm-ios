@@ -143,11 +143,22 @@ private struct ContentView: View {
 	@ViewBuilder
 	var issuesView: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
-			HStack {
-				Text(LocalizableString.RewardDetails.issues.localized)
-					.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
-					.foregroundColor(Color(.text))
-				Spacer()
+			VStack(spacing: CGFloat(.minimumSpacing)) {
+				HStack {
+					Text(LocalizableString.RewardDetails.issues.localized)
+						.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+						.foregroundColor(Color(.text))
+					Spacer()
+				}
+
+				if let subtitle = viewModel.issuesSubtitle()?.attributedMarkdown {
+					HStack {
+						Text(subtitle)
+							.font(.system(size: CGFloat(.normalFontSize)))
+							.foregroundColor(Color(.darkGrey))
+						Spacer()
+					}
+				}
 			}
 
 			if let mainAnnotation = viewModel.rewardDetailsResponse?.annotation?.mainAnnotation {
