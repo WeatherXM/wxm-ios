@@ -53,7 +53,7 @@ private extension ContentView {
 			}
 
 			HStack {
-				Text(LocalizableString.RewardDetails.reportFor("").localized)
+				Text(LocalizableString.RewardDetails.reportFor(viewModel.refDate.getFormattedDate(format: .monthLiteralDayYear, showTimeZoneIndication: true).capitalized).localized)
 					.foregroundColor(Color(.darkGrey))
 					.font(.system(size: CGFloat(.normalFontSize)))
 				Spacer()
@@ -106,5 +106,6 @@ private extension ContentView {
 																										title: "Wallet annotation",
 																										message: "Wallet annotation message",
 																										docUrl: "url")],
-																					followState: .init(deviceId: "", relation: .owned)))
+																					followState: .init(deviceId: "", relation: .owned),
+																					refDate: .now))
 }

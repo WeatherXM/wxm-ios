@@ -15,11 +15,13 @@ class RewardAnnotationsViewModel: ObservableObject {
 	let device: DeviceDetails
 	let annotations: [RewardAnnotation]
 	let followState: UserDeviceFollowState?
+	let refDate: Date
 
-	init(device: DeviceDetails, annotations: [RewardAnnotation], followState: UserDeviceFollowState?) {
+	init(device: DeviceDetails, annotations: [RewardAnnotation], followState: UserDeviceFollowState?, refDate: Date) {
 		self.device = device
 		self.annotations = annotations.sorted { ($0.severity ?? .info) < ($1.severity ?? .info) }
 		self.followState = followState
+		self.refDate = refDate
 	}
 
 	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {
