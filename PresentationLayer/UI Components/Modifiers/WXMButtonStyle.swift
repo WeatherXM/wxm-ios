@@ -96,7 +96,7 @@ extension WXMButtonStyle {
 	static var transparent: Self {
 		Self.init(textColor: Color(colorEnum: .primary),
 				  textColorDisabled: Color(colorEnum: .midGrey),
-				  fillColor: Color(colorEnum: .top).opacity(0.15),
+				  fillColor: Color(colorEnum: .top).opacity(0.5),
 				  fillColorDisabled: Color(colorEnum: .midGrey).opacity(0.15),
 				  strokeColor: Color.clear,
 				  strokeColorDisabled: Color.clear)

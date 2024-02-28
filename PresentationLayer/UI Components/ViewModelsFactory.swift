@@ -160,4 +160,10 @@ enum ViewModelsFactory {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MainUseCase.self)!
 		return AppUpdateViewModel(useCase: useCase)
 	}
+
+	static func getRewardAnnotationsViewModel(device: DeviceDetails,
+											  annotations: [RewardAnnotation],
+											  followState: UserDeviceFollowState?) -> RewardAnnotationsViewModel {
+		return RewardAnnotationsViewModel(device: device, annotations: annotations, followState: followState)
+	}
 }

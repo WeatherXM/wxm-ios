@@ -4835,6 +4835,28 @@
         }
       }
     },
+    "reward_details_report_for_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report for %@"
+          }
+        }
+      }
+    },
+    "reward_details_reward_issues" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reward Issues"
+          }
+        }
+      }
+    },
     "reward_details_reward_score_info_description_format" : {
       "extractionState" : "manual",
       "localizations" : {

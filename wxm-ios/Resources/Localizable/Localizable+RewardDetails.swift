@@ -18,6 +18,8 @@ extension LocalizableString {
 		case noWalletProblemButtonTitle
 		case viewTransaction
 		case readMore
+		case rewardIssues
+		case reportFor(String)
 		case editLocation
 		case rewardScoreInfoTitle
 		case rewardScoreInfoDescription(String)
@@ -35,7 +37,8 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 		switch self {
 			case .problemsDescription(let text),
 					.rewardScoreInfoDescription(let text),
-					.maxRewardsInfoDescription(let text):
+					.maxRewardsInfoDescription(let text),
+					.reportFor(let text):
 				localized = String(format: localized, text)
 			case .timelineInfoDescription(let timezoneOffset, let url):
 				localized = String(format: localized, arguments: [timezoneOffset, url].compactMap { $0 })
@@ -65,6 +68,10 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 				return "reward_details_view_transaction"
 			case .readMore:
 				return "reward_details_read_more"
+			case .rewardIssues:
+				return "reward_details_reward_issues"
+			case .reportFor:
+				return "reward_details_report_for_format"
 			case .editLocation:
 				return "reward_details_edit_location"
 			case .rewardScoreInfoTitle:
