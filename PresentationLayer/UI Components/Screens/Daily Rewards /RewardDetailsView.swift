@@ -73,6 +73,8 @@ private struct ContentView: View {
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					titleView
 
+					issuesView
+
 					if viewModel.followState?.relation == .owned {
 						Button {
 							viewModel.handleContactSupportTap()
@@ -133,6 +135,19 @@ private struct ContentView: View {
 
 					Spacer()
 				}
+			}
+
+		}
+	}
+
+	@ViewBuilder
+	var issuesView: some View {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			HStack {
+				Text(LocalizableString.RewardDetails.issues.localized)
+					.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+					.foregroundColor(Color(.text))
+				Spacer()
 			}
 
 		}

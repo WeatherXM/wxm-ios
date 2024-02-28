@@ -11,6 +11,7 @@ extension LocalizableString {
 	enum RewardDetails {
 		case title
 		case dailyReward
+		case issues
 		case earningsFor(String)
 		case problemsTitle
 		case problemsDescription(String)
@@ -57,6 +58,8 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 				return "reward_details_title"
 			case .dailyReward:
 				return "reward_details_daily_reward"
+			case .issues:
+				return "reward_details_issues"
 			case .earningsFor:
 				return "reward_details_earnings_for_format"
 			case .problemsTitle:

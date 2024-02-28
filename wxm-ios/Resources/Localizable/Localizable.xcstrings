@@ -4824,6 +4824,17 @@
         }
       }
     },
+    "reward_details_issues" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Issues"
+          }
+        }
+      }
+    },
     "reward_details_max_rewards_info_description_format" : {
       "extractionState" : "manual",
       "localizations" : {
