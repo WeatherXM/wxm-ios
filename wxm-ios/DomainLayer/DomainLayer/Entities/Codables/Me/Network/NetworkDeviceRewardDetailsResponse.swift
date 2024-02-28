@@ -62,6 +62,6 @@ public extension NetworkDeviceRewardDetailsResponse {
 
 	struct Annotation: Codable, Hashable {
 		public let score: Int?
-		public let summary: [NetworkDeviceRewardsSummary]?
+		public let summary: [RewardAnnotation]?
 	}
 }
