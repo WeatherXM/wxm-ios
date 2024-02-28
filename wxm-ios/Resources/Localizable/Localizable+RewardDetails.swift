@@ -10,6 +10,8 @@ import Foundation
 extension LocalizableString {
 	enum RewardDetails {
 		case title
+		case dailyReward
+		case earningsFor(String)
 		case problemsTitle
 		case problemsDescription(String)
 		case zeroLostProblemsDescription
@@ -38,7 +40,8 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 			case .problemsDescription(let text),
 					.rewardScoreInfoDescription(let text),
 					.maxRewardsInfoDescription(let text),
-					.reportFor(let text):
+					.reportFor(let text),
+					.earningsFor(let text):
 				localized = String(format: localized, text)
 			case .timelineInfoDescription(let timezoneOffset, let url):
 				localized = String(format: localized, arguments: [timezoneOffset, url].compactMap { $0 })
@@ -52,6 +55,10 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 		switch self {
 			case .title:
 				return "reward_details_title"
+			case .dailyReward:
+				return "reward_details_daily_reward"
+			case .earningsFor:
+				return "reward_details_earnings_for_format"
 			case .problemsTitle:
 				return "reward_problems_title"
 			case .problemsDescription:

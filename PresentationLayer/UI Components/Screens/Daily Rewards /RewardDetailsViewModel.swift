@@ -13,6 +13,9 @@ import Toolkit
 class RewardDetailsViewModel: ObservableObject {
 
 	@Published var showInfo: Bool = false
+	@Published var state: ViewState = .loading
+	private(set) var failObj: FailSuccessStateObject?
+
 	let useCase: RewardsTimelineUseCase
 	var device: DeviceDetails
 	let followState: UserDeviceFollowState?
@@ -25,6 +28,30 @@ class RewardDetailsViewModel: ObservableObject {
 		self.device = device
 		self.followState = followState
 		self.useCase = tokenUseCase
+		refresh {
+			
+		}
+	}
+
+	func refresh(completion: @escaping VoidCallback) {
+		Task { @MainActor [weak self] in
+			let result = await self?.fetchRewardDetails()
+			switch result {
+				case .success(let response):
+					self?.rewardDetailsResponse = response
+					self?.state = .content
+					completion()
+				case .failure(let error):
+					self?.state = .fail
+					self?.failObj = error.uiInfo.defaultFailObject(type: .rewardDetails) {
+						self?.state = .loading
+						self?.refresh {}
+					}
+					completion()
+				case nil:
+					completion()
+			}
+		}
 	}
 
 	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {
@@ -192,6 +219,13 @@ private extension RewardDetailsViewModel {
 //				rewardScore,
 //				rewardsEarned,
 //				annotations].joined(separator: "\n")
+	}
+
+	func fetchRewardDetails() async -> Result<NetworkDeviceRewardDetailsResponse?, NetworkErrorResponse>? {
+		guard let deviceId = device.id else {
+			return nil
+		}
+		return try? await useCase.getRewardDetails(deviceId: deviceId)
 	}
 }
 

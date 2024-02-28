@@ -67,8 +67,11 @@ private struct ContentView: View {
 			Color(colorEnum: .bg)
 				.ignoresSafeArea()
 
-			TrackableScrollView {
+			TrackableScrollView { completion in
+				viewModel.refresh(completion: completion)
+			} content: {
 				VStack(spacing: CGFloat(.defaultSpacing)) {
+					titleView
 
 					if viewModel.followState?.relation == .owned {
 						Button {
@@ -82,6 +85,7 @@ private struct ContentView: View {
 				.iPadMaxWidth()
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
 			}
+			.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }), obj: viewModel.failObj)
 			.onAppear {
 				navigationObject.title = LocalizableString.RewardDetails.title.localized
 				navigationObject.subtitle = viewModel.device.displayName
@@ -90,6 +94,47 @@ private struct ContentView: View {
 
 				Logger.shared.trackScreen(.deviceRewardsDetails)
 			}
+		}
+	}
+
+	@ViewBuilder
+	var titleView: some View {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			VStack(spacing: 0.0) {
+				HStack {
+					Text(LocalizableString.RewardDetails.dailyReward.localized)
+						.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+						.foregroundColor(Color(.text))
+
+					Button{
+					} label: {
+						Text(FontIcon.infoCircle.rawValue)
+							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+							.foregroundColor(Color(.text))
+					}
+
+					Spacer()
+				}
+				
+				HStack {
+					Text(LocalizableString.RewardDetails.earningsFor("").localized)
+						.font(.system(size: CGFloat(.normalFontSize)))
+						.foregroundColor(Color(.darkGrey))
+					Spacer()
+				}
+			}
+
+			if let rewards = viewModel.rewardDetailsResponse?.totalDailyReward {
+				HStack {
+					Text("+ \(rewards.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
+						.lineLimit(1)
+						.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
+						.foregroundColor(Color(colorEnum: .darkestBlue))
+
+					Spacer()
+				}
+			}
+
 		}
 	}
 }

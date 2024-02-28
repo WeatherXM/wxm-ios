@@ -4791,6 +4791,28 @@
         }
       }
     },
+    "reward_details_daily_reward" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily Reward"
+          }
+        }
+      }
+    },
+    "reward_details_earnings_for_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earnings for %@"
+          }
+        }
+      }
+    },
     "reward_details_edit_location" : {
       "extractionState" : "manual",
       "localizations" : {
