@@ -33,6 +33,8 @@ enum FontIcon: String {
     case home = "home"
     case hexagon
 	case hexagonCheck = "hexagon-check"
+	case hexagonExclamation = "hexagon-exclamation"
+	case hexagonXmark = "hexagon-xmark"
     case share = "share-nodes"
     case heart
     case lock

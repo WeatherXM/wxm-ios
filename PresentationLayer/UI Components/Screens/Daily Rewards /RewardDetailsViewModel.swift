@@ -23,6 +23,9 @@ class RewardDetailsViewModel: ObservableObject {
 	var isDeviceOwned: Bool {
 		followState?.relation == .owned
 	}
+	var dataQualityScoreObject: RewardFieldView.Score? {
+		rewardDetailsResponse?.base?.scoreObject(followState: followState)
+	}
 
 	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: RewardsTimelineUseCase) {
 		self.device = device
@@ -77,6 +80,15 @@ class RewardDetailsViewModel: ObservableObject {
 		}
 
 		return LocalizableString.RewardDetails.viewAllIssues.localized
+	}
+
+	func baseRewardSubtitle() -> String? {
+		guard let actualReward = rewardDetailsResponse?.base?.actualReward,
+			  let maxReward = rewardDetailsResponse?.base?.maxReward else {
+			return nil
+		}
+		return LocalizableString.RewardDetails.earnedRewardDescription(actualReward.toWXMTokenPrecisionString,
+																	   maxReward.toWXMTokenPrecisionString).localized
 	}
 
 	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {

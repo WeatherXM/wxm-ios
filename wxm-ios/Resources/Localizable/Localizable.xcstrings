@@ -3834,6 +3834,9 @@
         }
       }
     },
+    "Key" : {
+      "extractionState" : "manual"
+    },
     "last_name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4780,6 +4783,17 @@
         }
       }
     },
+    "reward_details_cell_position" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell Position"
+          }
+        }
+      }
+    },
     "reward_details_contact_support_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4798,6 +4812,182 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Daily Reward"
+          }
+        }
+      }
+    },
+    "reward_details_data_quality" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data Quality"
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_average_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality is average! Got %d%%. Fix any pending issues to earn more rewards."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_great_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality is great! Got %d%%. Fix any pending issues to earn more rewards."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_lost_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station lost all rewards because of data quality issues."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_low_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality is low! Got only %d%%. Fix any pending issues to earn more rewards."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_no_info_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No information about data quality is available at the moment."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_ok_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality is ok! Got %d%%. Fix any pending issues to earn more rewards."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_perfect_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Almost perfect! Got %d%%!"
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_public_average_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality is average! Got %d%%."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_public_great_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality is great! Got %d%%."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_public_low_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality is low! Got only %d%%."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_public_ok_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality is ok! Got %d%%."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_public_very_low_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality is very low!  Got only %d%%."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_solid_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good job! A solid %d%%."
+          }
+        }
+      }
+    },
+    "reward_details_data_quality_very_low_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality is very low!  Got only %d%%. Fix any pending issues to earn more rewards."
+          }
+        }
+      }
+    },
+    "reward_details_earned_reward_description_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earned **+%@ $WXM** of the %@ $WXM Daily Max."
           }
         }
       }
@@ -4831,6 +5021,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Issues"
+          }
+        }
+      }
+    },
+    "reward_details_location_quality" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location Quality"
           }
         }
       }

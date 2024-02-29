@@ -42,3 +42,91 @@ extension NetworkDeviceRewardDetailsResponse.Annotation {
 		return nil
 	}
 }
+
+extension NetworkDeviceRewardDetailsResponse.Base {
+	func scoreObject(followState: UserDeviceFollowState?) -> RewardFieldView.Score {
+		.init(fontIcon: fontIcon,
+			  score: Float(rewardScore ?? 0),
+			  color: color,
+			  message: message(followState: followState),
+			  showIndication: color != .success )
+	}
+
+	private func message(followState: UserDeviceFollowState?) -> String {
+		guard let rewardScore else {
+			return LocalizableString.RewardDetails.dataQualityNoInfoMessage.localized
+		}
+
+		switch rewardScore {
+			case 0:
+				return LocalizableString.RewardDetails.dataQualityNoInfoMessage.localized
+			case 0..<20:
+				if followState?.relation == .owned {
+					return LocalizableString.RewardDetails.dataQualityVeryLowMessage(rewardScore).localized
+				}
+				return LocalizableString.RewardDetails.dataQualityPublicVeryLowMessage(rewardScore).localized
+			case 20..<40:
+				if followState?.relation == .owned {
+					return LocalizableString.RewardDetails.dataQualityLowMessage(rewardScore).localized
+				}
+				return LocalizableString.RewardDetails.dataQualityPublicLowMessage(rewardScore).localized
+			case 40..<60:
+				if followState?.relation == .owned {
+					return LocalizableString.RewardDetails.dataQualityAverageMessage(rewardScore).localized
+				}
+				return LocalizableString.RewardDetails.dataQualityPublicAverageMessage(rewardScore).localized
+			case 60..<80:
+				if followState?.relation == .owned {
+					return LocalizableString.RewardDetails.dataQualityOkMessage(rewardScore).localized
+				}
+				return LocalizableString.RewardDetails.dataQualityPublicOkMessage(rewardScore).localized
+			case 80..<95:
+				if followState?.relation == .owned {
+					return LocalizableString.RewardDetails.dataQualityGreatMessage(rewardScore).localized
+				}
+				return LocalizableString.RewardDetails.dataQualityPublicGreatMessage(rewardScore).localized
+			case 95..<100:
+				return LocalizableString.RewardDetails.dataQualityAlmostPerfectMessage(rewardScore).localized
+			case 100:
+				return LocalizableString.RewardDetails.dataQualitySolidMessage(rewardScore).localized
+			default:
+				return LocalizableString.RewardDetails.dataQualityNoInfoMessage.localized
+		}
+	}
+
+
+	private var color: ColorEnum {
+		guard let rewardScore else {
+			return .clear
+		}
+
+		switch rewardScore {
+			case 0..<65:
+				return .error
+			case 65..<98:
+				return .warning
+			case 98...100:
+				return .success
+			default:
+				return .clear
+		}
+	}
+
+	private var fontIcon: FontIcon {
+		guard let rewardScore else {
+			return .hexagonExclamation
+		}
+
+		switch rewardScore {
+			case 0..<65:
+				return .hexagonXmark
+			case 65..<98:
+				return .hexagonExclamation
+			case 98...100:
+				return .hexagonCheck
+			default:
+				return .hexagonExclamation
+		}
+	}
+
+}

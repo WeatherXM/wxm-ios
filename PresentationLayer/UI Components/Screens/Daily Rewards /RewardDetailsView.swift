@@ -75,14 +75,7 @@ private struct ContentView: View {
 
 					issuesView
 
-					if viewModel.followState?.relation == .owned {
-						Button {
-							viewModel.handleContactSupportTap()
-						} label: {
-							Text(LocalizableString.RewardDetails.contactSupportButtonTitle.localized)
-						}
-						.buttonStyle(WXMButtonStyle.solid)
-					}
+					baseRewardView
 				}
 				.iPadMaxWidth()
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
@@ -179,6 +172,42 @@ private struct ContentView: View {
 				}.wxmShadow()
 			}
 		} else {
+			EmptyView()
+		}
+	}
+
+	@ViewBuilder
+	var baseRewardView: some View {
+		if let base = viewModel.rewardDetailsResponse?.base {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				VStack(spacing: CGFloat(.minimumSpacing)) {
+					HStack {
+						Text(LocalizableString.StationDetails.baseReward.localized)
+							.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+							.foregroundColor(Color(.text))
+						Spacer()
+					}
+
+					if let subtitle = viewModel.baseRewardSubtitle()?.attributedMarkdown {
+						HStack {
+							Text(subtitle)
+								.font(.system(size: CGFloat(.normalFontSize)))
+								.foregroundColor(Color(.darkGrey))
+							Spacer()
+						}
+					}
+				}
+
+				VStack {
+					if let scoreObject = viewModel.dataQualityScoreObject {
+						RewardFieldView(title: LocalizableString.RewardDetails.dataQuality.localized,
+										score: scoreObject) {
+
+						}
+					}
+				}
+			}
+		} else{
 			EmptyView()
 		}
 	}

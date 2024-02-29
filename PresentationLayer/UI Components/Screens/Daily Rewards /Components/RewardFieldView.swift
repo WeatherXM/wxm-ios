@@ -32,12 +32,13 @@ struct RewardFieldView: View {
 
 			VStack(spacing: CGFloat(.mediumSpacing)) {
 				HStack(spacing: CGFloat(.smallSpacing)) {
-					Text(FontIcon.hexagonCheck.rawValue)
+					Text(score.fontIcon.rawValue)
 						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
 						.foregroundColor(Color(colorEnum: score.color))
 
 					Text(score.message)
 						.font(.system(size: CGFloat(.caption)))
+						.fixedSize(horizontal: false, vertical: true)
 
 					Spacer()
 				}
@@ -57,6 +58,7 @@ struct RewardFieldView: View {
 
 extension RewardFieldView {
 	struct Score {
+		let fontIcon: FontIcon
 		let score: Float
 		let color: ColorEnum
 		let message: String
@@ -67,7 +69,8 @@ extension RewardFieldView {
 
 #Preview {
 	RewardFieldView(title: "Data Quality",
-					score: .init(score: 75.0,
+					score: .init(fontIcon: .hexagonExclamation,
+								 score: 75.0,
 								 color: .warning,
 								 message: "Almost perfect! Got 98%.",
 								 showIndication: true)) {}
