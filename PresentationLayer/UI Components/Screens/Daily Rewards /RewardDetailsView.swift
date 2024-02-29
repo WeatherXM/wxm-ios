@@ -142,26 +142,27 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var issuesView: some View {
-		VStack(spacing: CGFloat(.mediumSpacing)) {
-			VStack(spacing: CGFloat(.minimumSpacing)) {
-				HStack {
-					Text(LocalizableString.RewardDetails.issues.localized)
-						.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
-						.foregroundColor(Color(.text))
-					Spacer()
-				}
-
-				if let subtitle = viewModel.issuesSubtitle()?.attributedMarkdown {
+		if let mainAnnotation = viewModel.rewardDetailsResponse?.annotation?.mainAnnotation {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				VStack(spacing: CGFloat(.minimumSpacing)) {
 					HStack {
-						Text(subtitle)
-							.font(.system(size: CGFloat(.normalFontSize)))
-							.foregroundColor(Color(.darkGrey))
+						Text(LocalizableString.RewardDetails.issues.localized)
+							.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+							.foregroundColor(Color(.text))
 						Spacer()
 					}
-				}
-			}
 
-			if let mainAnnotation = viewModel.rewardDetailsResponse?.annotation?.mainAnnotation {
+					if let subtitle = viewModel.issuesSubtitle()?.attributedMarkdown {
+						HStack {
+							Text(subtitle)
+								.font(.system(size: CGFloat(.normalFontSize)))
+								.foregroundColor(Color(.darkGrey))
+							Spacer()
+						}
+					}
+				}
+
+
 				CardWarningView(type: mainAnnotation.warningType ?? .warning,
 								showIcon: false,
 								title: mainAnnotation.title ?? "",
@@ -169,7 +170,7 @@ private struct ContentView: View {
 								showBorder: true,
 								closeAction: nil) {
 					Button {
-
+						viewModel.handleIssueButtonTap()
 					} label: {
 						Text(viewModel.issuesButtonTitle() ?? "")
 					}
@@ -177,20 +178,6 @@ private struct ContentView: View {
 					.padding(.top, CGFloat(.smallSidePadding))
 				}.wxmShadow()
 			}
-		}
-	}
-}
-
-private extension ContentView {
-	@ViewBuilder
-	func errorActionView(for error: RewardAnnotation) -> some View {
-		if let title = viewModel.annotationActionButtonTile(for: error) {
-			Button {
-				viewModel.handleButtonTap(for: error)
-			} label: {
-				Text(title)
-			}
-			.buttonStyle(WXMButtonStyle.transparent)
 		} else {
 			EmptyView()
 		}

@@ -114,7 +114,11 @@ class RewardDetailsViewModel: ObservableObject {
 			return
 		}
 
-		
+		let rewardAnnotationsViewModel = ViewModelsFactory.getRewardAnnotationsViewModel(device: device,
+																						 annotations: rewardDetailsResponse?.annotation?.summary ?? [],
+																						 followState: followState,
+																						 refDate: .now)
+		Router.shared.navigateTo(.rewardAnnotations(rewardAnnotationsViewModel))
 	}
 
 	func handleReadMoreTap() {
