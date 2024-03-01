@@ -114,7 +114,7 @@ private struct ContentView: View {
 				}
 				
 				HStack {
-					Text(LocalizableString.RewardDetails.earningsFor("").localized)
+					Text(viewModel.dateString)
 						.font(.system(size: CGFloat(.normalFontSize)))
 						.foregroundColor(Color(.darkGrey))
 					Spacer()

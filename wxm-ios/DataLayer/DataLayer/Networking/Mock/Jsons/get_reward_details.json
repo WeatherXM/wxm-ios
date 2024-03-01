@@ -1,45 +1,46 @@
 {
-  "total_daily_reward": 55.55,
-  "base": {
-    "actual_reward": 54.32,
-    "reward_score": 50,
-    "max_reward": 108.64,
-	"qod_score": 42,
-	"cell_capacity": 10,
-	"cell_position": 1
-  },
-  "boost": {
-    "total_daily_reward": 1.23,
-    "data": [
-      {
-		  "code": "beta_rewards",
-		  "title": "Beta Reward",
-		  "description": "Rewarded for participating in our beta reward program.",
-		  "img_url": "https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/12/Home-header-image-1200-x-1200-px-2.png",
-		  "doc_url": "https://docs.weatherxm.com",
-		  "actual_reward": 1.23,
-		  "reward_score": 50,
-		  "max_reward": 2.46
-      }
-    ]
-  },
-  "annotation": {
-    "score": 0,
-    "summary": [
-      {
-        "severity_level": "INFO",
-        "group": "NO_WALLET",
-        "title": "Minor Sensor Issues",
-        "message": "Station is doing great! Minor issues detected during our data quality checks, that may be related to occasional sensor inaccuracies. That can happen once in a while.",
-        "doc_url": "https://docs.weatherxm.com/project/rewards-troubleshooting#sensor-problems"
-      },
-	  {
-		"severity_level": "ERROR",
-		"group": "NO_WALLET",
-		"title": "Minor Sensor Issues",
-		"message": "Station is doing great! Minor issues detected during our data quality checks, that may be related to occasional sensor inaccuracies. That can happen once in a while.",
-		"doc_url": "https://docs.weatherxm.com/project/rewards-troubleshooting#sensor-problems"
-	  }
-    ]
-  }
+	"timestamp": "2024-03-01T10:09:04.249Z",
+	"total_daily_reward": 55.55,
+	"base": {
+		"actual_reward": 54.32,
+		"reward_score": 50,
+		"max_reward": 108.64,
+		"qod_score": 42,
+		"cell_capacity": 10,
+		"cell_position": 1
+	},
+	"boost": {
+		"total_daily_reward": 1.23,
+		"data": [
+			{
+				"code": "beta_rewards",
+				"title": "Beta Reward",
+				"description": "Rewarded for participating in our beta reward program.",
+				"img_url": "https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/12/Home-header-image-1200-x-1200-px-2.png",
+				"doc_url": "https://docs.weatherxm.com",
+				"actual_reward": 1.23,
+				"reward_score": 50,
+				"max_reward": 2.46
+			}
+		]
+	},
+	"annotation": {
+		"score": 0,
+		"summary": [
+			{
+				"severity_level": "INFO",
+				"group": "NO_WALLET",
+				"title": "Minor Sensor Issues",
+				"message": "Station is doing great! Minor issues detected during our data quality checks, that may be related to occasional sensor inaccuracies. That can happen once in a while.",
+				"doc_url": "https://docs.weatherxm.com/project/rewards-troubleshooting#sensor-problems"
+			},
+			{
+				"severity_level": "ERROR",
+				"group": "NO_WALLET",
+				"title": "Minor Sensor Issues",
+				"message": "Station is doing great! Minor issues detected during our data quality checks, that may be related to occasional sensor inaccuracies. That can happen once in a while.",
+				"doc_url": "https://docs.weatherxm.com/project/rewards-troubleshooting#sensor-problems"
+			}
+		]
+	}
 }
