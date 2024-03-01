@@ -3,17 +3,23 @@
   "base": {
     "actual_reward": 54.32,
     "reward_score": 50,
-    "max_reward": 108.64
+    "max_reward": 108.64,
+	"qod_score": 42,
+	"cell_capacity": 10,
+	"cell_position": 1
   },
   "boost": {
     "total_daily_reward": 1.23,
     "data": [
       {
-        "title": "Beta Reward",
-        "description": "Rewarded for participating in our beta reward program.",
-        "actual_reward": 1.23,
-        "reward_score": 50,
-        "max_reward": 2.46
+		  "code": "beta_rewards",
+		  "title": "Beta Reward",
+		  "description": "Rewarded for participating in our beta reward program.",
+		  "img_url": "https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/12/Home-header-image-1200-x-1200-px-2.png",
+		  "doc_url": "https://docs.weatherxm.com",
+		  "actual_reward": 1.23,
+		  "reward_score": 50,
+		  "max_reward": 2.46
       }
     ]
   },
