@@ -24,7 +24,10 @@ class RewardDetailsViewModel: ObservableObject {
 		followState?.relation == .owned
 	}
 	var dataQualityScoreObject: RewardFieldView.Score? {
-		rewardDetailsResponse?.base?.scoreObject(followState: followState)
+		rewardDetailsResponse?.dataQualityScoreObject(followState: followState)
+	}
+	var locationQualityScoreObject: RewardFieldView.Score? {
+		rewardDetailsResponse?.locationQualityScoreObject
 	}
 
 	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: RewardsTimelineUseCase) {
@@ -112,7 +115,7 @@ class RewardDetailsViewModel: ObservableObject {
 					return LocalizableString.RewardDetails.readMore.localized
 				}
 				return nil
-			case .unknown:
+			default:
 				if annotation?.docUrl != nil {
 					return LocalizableString.RewardDetails.readMore.localized
 				}
@@ -173,7 +176,7 @@ private extension RewardDetailsViewModel {
 						  let url = URL(string: docUrl) {
 					 UIApplication.shared.open(url)
 				 }
-			case .unknown:
+			default:
 				if let docUrl = annotation.docUrl,
 				   let url = URL(string: docUrl) {
 					UIApplication.shared.open(url)

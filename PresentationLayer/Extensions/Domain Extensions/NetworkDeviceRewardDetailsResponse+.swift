@@ -43,17 +43,17 @@ extension NetworkDeviceRewardDetailsResponse.Annotation {
 	}
 }
 
-extension NetworkDeviceRewardDetailsResponse.Base {
-	func scoreObject(followState: UserDeviceFollowState?) -> RewardFieldView.Score {
-		.init(fontIcon: fontIcon,
-			  score: Float(rewardScore ?? 0),
-			  color: color,
-			  message: message(followState: followState),
-			  showIndication: color != .success )
+extension NetworkDeviceRewardDetailsResponse {
+	func dataQualityScoreObject(followState: UserDeviceFollowState?) -> RewardFieldView.Score {
+		.init(fontIcon: dataQualityfontIcon,
+			  score: Float(base?.rewardScore ?? 0),
+			  color: dataQualityColor,
+			  message: dataQualityMessage(followState: followState),
+			  showIndication: dataQualityColor != .success )
 	}
 
-	private func message(followState: UserDeviceFollowState?) -> String {
-		guard let rewardScore else {
+	private func dataQualityMessage(followState: UserDeviceFollowState?) -> String {
+		guard let rewardScore = base?.rewardScore else {
 			return LocalizableString.RewardDetails.dataQualityNoInfoMessage.localized
 		}
 
@@ -95,8 +95,8 @@ extension NetworkDeviceRewardDetailsResponse.Base {
 	}
 
 
-	private var color: ColorEnum {
-		guard let rewardScore else {
+	private var dataQualityColor: ColorEnum {
+		guard let rewardScore = base?.rewardScore else {
 			return .clear
 		}
 
@@ -112,8 +112,8 @@ extension NetworkDeviceRewardDetailsResponse.Base {
 		}
 	}
 
-	private var fontIcon: FontIcon {
-		guard let rewardScore else {
+	private var dataQualityfontIcon: FontIcon {
+		guard let rewardScore = base?.rewardScore else {
 			return .hexagonExclamation
 		}
 
@@ -127,6 +127,65 @@ extension NetworkDeviceRewardDetailsResponse.Base {
 			default:
 				return .hexagonExclamation
 		}
+	}
+
+}
+
+extension NetworkDeviceRewardDetailsResponse {
+	var locationQualityScoreObject: RewardFieldView.Score {
+		.init(fontIcon: locationQualityFontIcon,
+			  score: nil,
+			  color: locationQualityColor,
+			  message: locationQualityMessage,
+			  showIndication: locationQualityColor != .success)
+	}
+
+	private var locationQualityFontIcon: FontIcon {
+		guard let summary = annotation?.summary?.first(where: { $0.group == .locationNotVerified || $0.group == .noLocationData || $0.group == .userRelocationPenalty }),
+			  let severity = summary.severity else {
+			return .hexagonCheck
+		}
+
+		switch severity {
+			case .info:
+				return .hexagonCheck
+			case .warning:
+				return .hexagonExclamation
+			case .error:
+				return .hexagonXmark
+		}
+	}
+
+	private var locationQualityColor: ColorEnum {
+		guard let summary = annotation?.summary?.first(where: { $0.group == .locationNotVerified || $0.group == .noLocationData || $0.group == .userRelocationPenalty }),
+			  let severity = summary.severity else {
+			return .success
+		}
+
+		switch severity {
+			case .info:
+				return .success
+			case .warning:
+				return .warning
+			case .error:
+				return .error
+		}
+	}
+
+	private var locationQualityMessage: String {
+		if annotation?.summary?.first(where: { $0.group == .locationNotVerified }) != nil {
+			return LocalizableString.RewardDetails.locationNotVerified.localized
+		}
+
+		if annotation?.summary?.first(where: { $0.group == .noLocationData }) != nil {
+			return LocalizableString.RewardDetails.noLocationData.localized
+		}
+
+		if annotation?.summary?.first(where: { $0.group == .userRelocationPenalty }) != nil {
+			return LocalizableString.RewardDetails.recentlyRelocated.localized
+		}
+
+		return LocalizableString.RewardDetails.locationVerified.localized
 	}
 
 }

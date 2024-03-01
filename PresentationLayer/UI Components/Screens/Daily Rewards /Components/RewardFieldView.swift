@@ -43,9 +43,11 @@ struct RewardFieldView: View {
 					Spacer()
 				}
 
-				ProgressView(value: score.score, total: 100)
-					.progressViewStyle(ProgressBarStyle(text: nil, bgColor: Color(colorEnum: .blueTint), progressColor: Color(colorEnum: score.color)))
-					.frame(height: 22.0)
+				if let scoreVal = score.score {
+					ProgressView(value: scoreVal, total: 100)
+						.progressViewStyle(ProgressBarStyle(text: nil, bgColor: Color(colorEnum: .blueTint), progressColor: Color(colorEnum: score.color)))
+						.frame(height: 22.0)
+				}
 
 			}
 		}
@@ -59,7 +61,7 @@ struct RewardFieldView: View {
 extension RewardFieldView {
 	struct Score {
 		let fontIcon: FontIcon
-		let score: Float
+		let score: Float?
 		let color: ColorEnum
 		let message: String
 		let showIndication: Bool
@@ -70,7 +72,7 @@ extension RewardFieldView {
 #Preview {
 	RewardFieldView(title: "Data Quality",
 					score: .init(fontIcon: .hexagonExclamation,
-								 score: 75.0,
+								 score: nil,
 								 color: .warning,
 								 message: "Almost perfect! Got 98%.",
 								 showIndication: true)) {}

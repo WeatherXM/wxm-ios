@@ -198,16 +198,39 @@ private struct ContentView: View {
 					}
 				}
 
-				VStack {
+				VStack(spacing: CGFloat(.mediumSpacing)) {
 					if let scoreObject = viewModel.dataQualityScoreObject {
 						RewardFieldView(title: LocalizableString.RewardDetails.dataQuality.localized,
 										score: scoreObject) {
 
 						}
+										.wxmShadow()
 					}
+
+					locationQualityGrid
 				}
 			}
 		} else{
+			EmptyView()
+		}
+	}
+
+	@ViewBuilder
+	var locationQualityGrid: some View {
+		if let scoreObject = viewModel.locationQualityScoreObject {
+			LazyVGrid(columns: [.init(), .init()], spacing: CGFloat(.mediumSpacing)) {
+				RewardFieldView(title: LocalizableString.RewardDetails.locationQuality.localized,
+								score: scoreObject) {
+
+				}
+								.wxmShadow()
+
+				RewardFieldView(title: LocalizableString.RewardDetails.dataQuality.localized,
+								score: scoreObject) {
+				}
+								.wxmShadow()
+			}
+		} else {
 			EmptyView()
 		}
 	}

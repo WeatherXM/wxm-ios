@@ -45,7 +45,7 @@ class RewardAnnotationsViewModel: ObservableObject {
 					return LocalizableString.RewardDetails.readMore.localized
 				}
 				return nil
-			case .unknown:
+			default:
 				if annotation?.docUrl != nil {
 					return LocalizableString.RewardDetails.readMore.localized
 				}
@@ -84,7 +84,7 @@ class RewardAnnotationsViewModel: ObservableObject {
 						  let url = URL(string: docUrl) {
 					 UIApplication.shared.open(url)
 				 }
-			case .unknown:
+			default:
 				if let docUrl = annotation.docUrl,
 				   let url = URL(string: docUrl) {
 					UIApplication.shared.open(url)

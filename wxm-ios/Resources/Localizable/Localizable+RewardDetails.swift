@@ -32,6 +32,10 @@ extension LocalizableString {
 		case dataQualityPublicVeryLowMessage(Int)
 		case dataQualityLostMessage
 		case dataQualityNoInfoMessage
+		case noLocationData
+		case locationNotVerified
+		case recentlyRelocated
+		case locationVerified
 		case problemsTitle
 		case problemsDescription(String)
 		case zeroLostProblemsDescription
@@ -136,7 +140,14 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 				return "reward_details_data_quality_lost_message"
 			case .dataQualityNoInfoMessage:
 				return "reward_details_data_quality_no_info_message"
-
+			case .noLocationData:
+				return "reward_details_no_location_data"
+			case .locationNotVerified:
+				return "reward_details_location_not_verified"
+			case .recentlyRelocated:
+				return "reward_details_recently_relocated"
+			case .locationVerified:
+				return "reward_details_location_verified"
 			case .problemsDescription:
 				return "reward_problems_description_format"
 			case .zeroLostProblemsDescription:

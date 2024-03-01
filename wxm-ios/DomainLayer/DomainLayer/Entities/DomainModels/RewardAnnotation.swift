@@ -55,6 +55,10 @@ public extension RewardAnnotation {
 					self = .noWallet
 				case "LOCATION_NOT_VERIFIED":
 					self = .locationNotVerified
+				case "NO_LOCATION_DATA":
+					self = .noLocationData
+				case "USER_RELOCATION_PENALTY":
+					self = .userRelocationPenalty
 				default:
 					self = .unknown(rawValue)
 			}
@@ -62,6 +66,8 @@ public extension RewardAnnotation {
 		
 		case noWallet
 		case locationNotVerified
+		case noLocationData
+		case userRelocationPenalty
 		case unknown(String)
 
 		public var rawValue: String {
@@ -70,6 +76,10 @@ public extension RewardAnnotation {
 					"NO_WALLET"
 				case .locationNotVerified:
 					"LOCATION_NOT_VERIFIED"
+				case .noLocationData:
+					"NO_LOCATION_DATA"
+				case .userRelocationPenalty:
+					"USER_RELOCATION_PENALTY"
 				case .unknown(let value):
 					value
 			}

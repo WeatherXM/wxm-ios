@@ -5025,6 +5025,17 @@
         }
       }
     },
+    "reward_details_location_not_verified" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location could not be verified."
+          }
+        }
+      }
+    },
     "reward_details_location_quality" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5032,6 +5043,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location Quality"
+          }
+        }
+      }
+    },
+    "reward_details_location_verified" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station location is verified!"
           }
         }
       }
@@ -5058,6 +5080,17 @@
         }
       }
     },
+    "reward_details_no_location_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No location data."
+          }
+        }
+      }
+    },
     "reward_details_read_more" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5065,6 +5098,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Read more"
+          }
+        }
+      }
+    },
+    "reward_details_recently_relocated" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station was recently relocated."
           }
         }
       }
