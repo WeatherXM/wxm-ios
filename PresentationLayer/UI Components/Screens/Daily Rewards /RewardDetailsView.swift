@@ -217,21 +217,14 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var locationQualityGrid: some View {
-		if let scoreObject = viewModel.locationQualityScoreObject {
-			LazyVGrid(columns: [.init(), .init()], spacing: CGFloat(.mediumSpacing)) {
+		LazyVGrid(columns: [.init(), .init()], spacing: CGFloat(.mediumSpacing)) {
+			if let scoreObject = viewModel.locationQualityScoreObject {
 				RewardFieldView(title: LocalizableString.RewardDetails.locationQuality.localized,
 								score: scoreObject) {
 
 				}
 								.wxmShadow()
-
-				RewardFieldView(title: LocalizableString.RewardDetails.dataQuality.localized,
-								score: scoreObject) {
-				}
-								.wxmShadow()
 			}
-		} else {
-			EmptyView()
 		}
 	}
 }
