@@ -8,12 +8,14 @@
 import Foundation
 
 public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable {
+	public let timestamp: Date?
 	public let totalDailyReward: Double?
 	public let annotation: Annotation?
 	public let base: Base?
 	public let boost: Boost?
 
 	enum CodingKeys: String ,CodingKey {
+		case timestamp
 		case totalDailyReward = "total_daily_reward"
 		case annotation
 		case base
