@@ -37,13 +37,12 @@ struct BoostsView: View {
 		.background {
 			AsyncImage(url: URL(string: imageUrl)!) { image in
 				image
-					.clipped()
 			} placeholder: {
 				ProgressView()
 			}
-
 		}
 		.WXMCardStyle()
+		.contentShape(Rectangle())
     }
 }
 
