@@ -225,6 +225,14 @@ private struct ContentView: View {
 				}
 								.wxmShadow()
 			}
+
+			if let scoreObject = viewModel.cellPositionScoreObject {
+				RewardFieldView(title: LocalizableString.RewardDetails.cellPosition.localized,
+								score: scoreObject) {
+
+				}
+								.wxmShadow()
+			}
 		}
 	}
 }

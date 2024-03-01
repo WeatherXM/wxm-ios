@@ -187,5 +187,52 @@ extension NetworkDeviceRewardDetailsResponse {
 
 		return LocalizableString.RewardDetails.locationVerified.localized
 	}
+}
 
+extension NetworkDeviceRewardDetailsResponse {
+	var cellPositionScoreObject: RewardFieldView.Score {
+		.init(fontIcon: cellPositionFontIcon,
+			  score: nil,
+			  color: cellPositionColor,
+			  message: cellPositionMessage,
+			  showIndication: cellPositionColor != .success)
+	}
+
+	private var cellPositionFontIcon: FontIcon {
+		guard let severity = annotation?.summary?.first(where: { $0.group == .cellCapacityReached })?.severity else {
+			return .hexagonCheck
+		}
+
+		switch severity {
+			case .info:
+				return .hexagonCheck
+			case .warning:
+				return .hexagonExclamation
+			case .error:
+				return .hexagonXmark
+		}
+	}
+
+	private var cellPositionColor: ColorEnum {
+		guard let severity = annotation?.summary?.first(where: { $0.group == .cellCapacityReached })?.severity else {
+			return .success
+		}
+
+		switch severity {
+			case .info:
+				return .success
+			case .warning:
+				return .warning
+			case .error:
+				return .error
+		}
+	}
+
+	private var cellPositionMessage: String {
+		guard let annotation = annotation?.summary?.first(where: { $0.group == .cellCapacityReached }) else {
+			return LocalizableString.RewardDetails.cellPositionSuccessMessage.localized
+		}
+
+		return annotation.message ?? ""
+	}
 }

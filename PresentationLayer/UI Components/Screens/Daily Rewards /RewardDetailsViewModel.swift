@@ -29,6 +29,9 @@ class RewardDetailsViewModel: ObservableObject {
 	var locationQualityScoreObject: RewardFieldView.Score? {
 		rewardDetailsResponse?.locationQualityScoreObject
 	}
+	var cellPositionScoreObject: RewardFieldView.Score? {
+		rewardDetailsResponse?.cellPositionScoreObject
+	}
 
 	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: RewardsTimelineUseCase) {
 		self.device = device

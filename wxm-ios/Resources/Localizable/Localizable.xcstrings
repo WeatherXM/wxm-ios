@@ -4794,6 +4794,17 @@
         }
       }
     },
+    "reward_details_cell_position_success_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell position is great!"
+          }
+        }
+      }
+    },
     "reward_details_contact_support_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
