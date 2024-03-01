@@ -37,6 +37,8 @@ extension LocalizableString {
 		case locationNotVerified
 		case recentlyRelocated
 		case locationVerified
+		case activeBoosts
+		case earnedBoosts(String)
 		case problemsTitle
 		case problemsDescription(String)
 		case zeroLostProblemsDescription
@@ -79,7 +81,8 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 					.rewardScoreInfoDescription(let text),
 					.maxRewardsInfoDescription(let text),
 					.reportFor(let text),
-					.earningsFor(let text):
+					.earningsFor(let text),
+					.earnedBoosts(let text):
 				localized = String(format: localized, text)
 			case .earnedRewardDescription(let earned, let dailyMax):
 				localized = String(format: localized, arguments: [earned, dailyMax].compactMap { $0 })
@@ -151,6 +154,10 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 				return "reward_details_recently_relocated"
 			case .locationVerified:
 				return "reward_details_location_verified"
+			case .activeBoosts:
+				return "reward_details_active_boosts"
+			case .earnedBoosts:
+				return "reward_details_earned_boosts_format"
 			case .problemsDescription:
 				return "reward_problems_description_format"
 			case .zeroLostProblemsDescription:

@@ -4783,6 +4783,17 @@
         }
       }
     },
+    "reward_details_active_boosts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active Boosts"
+          }
+        }
+      }
+    },
     "reward_details_cell_position" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4988,6 +4999,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data quality is very low!  Got only %d%%. Fix any pending issues to earn more rewards."
+          }
+        }
+      }
+    },
+    "reward_details_earned_boosts_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earned **+%@ $WXM** additional rewards from boosts."
           }
         }
       }

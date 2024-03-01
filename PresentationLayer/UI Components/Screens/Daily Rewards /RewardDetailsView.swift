@@ -76,6 +76,8 @@ private struct ContentView: View {
 					issuesView
 
 					baseRewardView
+
+					boostsView
 				}
 				.iPadMaxWidth()
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
@@ -232,6 +234,29 @@ private struct ContentView: View {
 
 				}
 								.wxmShadow()
+			}
+		}
+	}
+
+	@ViewBuilder
+	var boostsView: some View {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			VStack(spacing: CGFloat(.minimumSpacing)) {
+				HStack {
+					Text(LocalizableString.RewardDetails.activeBoosts.localized)
+						.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+						.foregroundColor(Color(.text))
+					Spacer()
+				}
+
+				if let subtitle = viewModel.boostsSubtitle()?.attributedMarkdown {
+					HStack {
+						Text(subtitle)
+							.font(.system(size: CGFloat(.normalFontSize)))
+							.foregroundColor(Color(.darkGrey))
+						Spacer()
+					}
+				}
 			}
 		}
 	}

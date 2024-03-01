@@ -97,6 +97,13 @@ class RewardDetailsViewModel: ObservableObject {
 																	   maxReward.toWXMTokenPrecisionString).localized
 	}
 
+	func boostsSubtitle() -> String? {
+		guard let reward = rewardDetailsResponse?.boost?.totalReward else {
+			return nil
+		}
+		return LocalizableString.RewardDetails.earnedBoosts(reward.toWXMTokenPrecisionString).localized
+	}
+
 	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {
 		guard let group = annotation?.group else {
 			return nil
