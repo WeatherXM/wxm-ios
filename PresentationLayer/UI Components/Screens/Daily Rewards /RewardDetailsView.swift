@@ -258,6 +258,19 @@ private struct ContentView: View {
 					}
 				}
 			}
+
+			if let data = viewModel.rewardDetailsResponse?.boost?.data,
+			   !data.isEmpty {
+				ForEach(data, id: \.code) { boost in
+					BoostsView(title: boost.title ?? "",
+							   description: boost.description ?? "",
+							   rewards: boost.actualReward ?? 0.0,
+							   imageUrl: boost.imageUrl ?? "")
+					.wxmShadow()
+				}
+			} else {
+				NoBoostsView()
+			}
 		}
 	}
 }

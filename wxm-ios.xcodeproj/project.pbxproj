@@ -412,6 +412,8 @@
 		26FFADA72B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */; };
 		26FFADD42B8F684C00BF0A6B /* RewardAnnotaionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */; };
 		26FFADD82B8F688900BF0A6B /* RewardAnnotationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */; };
+		26FFAE1C2B920A7300BF0A6B /* BoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAE1B2B920A7300BF0A6B /* BoostsView.swift */; };
+		26FFAE1E2B92102000BF0A6B /* NoBoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAE1D2B92102000BF0A6B /* NoBoostsView.swift */; };
 		7423EC15283F81E2004E9B26 /* anim_weather_cloudy.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFE283F81E2004E9B26 /* anim_weather_cloudy.json */; };
 		7423EC16283F81E2004E9B26 /* anim_weather_clear_day.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFF283F81E2004E9B26 /* anim_weather_clear_day.json */; };
 		7423EC17283F81E2004E9B26 /* anim_not_available.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EC00283F81E2004E9B26 /* anim_not_available.json */; };
@@ -853,6 +855,8 @@
 		26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceRewardDetailsResponse+.swift"; sourceTree = "<group>"; };
 		26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotaionsView.swift; sourceTree = "<group>"; };
 		26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotationsViewModel.swift; sourceTree = "<group>"; };
+		26FFAE1B2B920A7300BF0A6B /* BoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostsView.swift; sourceTree = "<group>"; };
+		26FFAE1D2B92102000BF0A6B /* NoBoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoBoostsView.swift; sourceTree = "<group>"; };
 		7423EBFE283F81E2004E9B26 /* anim_weather_cloudy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_cloudy.json; sourceTree = "<group>"; };
 		7423EBFF283F81E2004E9B26 /* anim_weather_clear_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_clear_day.json; sourceTree = "<group>"; };
 		7423EC00283F81E2004E9B26 /* anim_not_available.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_not_available.json; sourceTree = "<group>"; };
@@ -2110,6 +2114,8 @@
 			isa = PBXGroup;
 			children = (
 				26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */,
+				26FFAE1B2B920A7300BF0A6B /* BoostsView.swift */,
+				26FFAE1D2B92102000BF0A6B /* NoBoostsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2634,6 +2640,7 @@
 				26FFADD82B8F688900BF0A6B /* RewardAnnotationsViewModel.swift in Sources */,
 				26D47EA32A179CEB0078723A /* AnalyticsViewModel.swift in Sources */,
 				267548D529A91A87008BCF40 /* AnimationsEnums.swift in Sources */,
+				26FFAE1E2B92102000BF0A6B /* NoBoostsView.swift in Sources */,
 				B557E2152825212700E0BDCB /* AppDelegate.swift in Sources */,
 				267548D929A91A87008BCF40 /* AssetEnum.swift in Sources */,
 				2675480829A9181E008BCF40 /* AttributedLabel.swift in Sources */,
@@ -2891,6 +2898,7 @@
 				26AF27922A0CD6F60067A1B8 /* WeatherLineChart.swift in Sources */,
 				26A4116029B618CA00A2C10B /* WeatherOverviewView+Content.swift in Sources */,
 				26A4115D29B6160600A2C10B /* WeatherOverviewView.swift in Sources */,
+				26FFAE1C2B920A7300BF0A6B /* BoostsView.swift in Sources */,
 				267547FB29A9181E008BCF40 /* WeatherStationCard+Content.swift in Sources */,
 				267547FC29A9181E008BCF40 /* WeatherStationCard.swift in Sources */,
 				2675482129A9181E008BCF40 /* WeatherStationsHomeView.swift in Sources */,

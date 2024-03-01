@@ -5113,6 +5113,28 @@
         }
       }
     },
+    "reward_details_no_active_boosts_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More reward boosts coming soon."
+          }
+        }
+      }
+    },
+    "reward_details_no_active_boosts_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No active boosts for this station at the moment"
+          }
+        }
+      }
+    },
     "reward_details_no_location_data" : {
       "extractionState" : "manual",
       "localizations" : {
