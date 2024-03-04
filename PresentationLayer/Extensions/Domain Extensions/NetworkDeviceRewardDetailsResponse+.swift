@@ -80,11 +80,11 @@ extension NetworkDeviceRewardDetailsResponse {
 		}
 
 		switch rewardScore {
-			case 0..<65:
+			case 0..<10:
 				return .error
-			case 65..<98:
+			case 10..<95:
 				return .warning
-			case 98...100:
+			case 95...100:
 				return .success
 			default:
 				return .clear
@@ -97,11 +97,11 @@ extension NetworkDeviceRewardDetailsResponse {
 		}
 
 		switch rewardScore {
-			case 0..<65:
+			case 0..<10:
 				return .hexagonXmark
-			case 65..<98:
+			case 10..<95:
 				return .hexagonExclamation
-			case 98...100:
+			case 95...100:
 				return .hexagonCheck
 			default:
 				return .hexagonExclamation
