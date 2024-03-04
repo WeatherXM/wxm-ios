@@ -19,7 +19,7 @@ struct RewardFieldView: View {
 				Text(title)
 					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
 
-				Spacer()
+				Spacer(minLength: 0.0)
 
 				Button{
 					infoAction()
@@ -40,7 +40,7 @@ struct RewardFieldView: View {
 						.font(.system(size: CGFloat(.caption)))
 						.fixedSize(horizontal: false, vertical: true)
 
-					Spacer()
+					Spacer(minLength: 0.0)
 				}
 
 				if let scoreVal = score.score {

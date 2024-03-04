@@ -24,23 +24,20 @@
 			}
 		]
 	},
-	"annotation": {
-		"score": 0,
-		"summary": [
-			{
-				"severity_level": "INFO",
-				"group": "NO_WALLET",
-				"title": "Minor Sensor Issues",
-				"message": "Station is doing great! Minor issues detected during our data quality checks, that may be related to occasional sensor inaccuracies. That can happen once in a while.",
-				"doc_url": "https://docs.weatherxm.com/project/rewards-troubleshooting#sensor-problems"
-			},
-			{
-				"severity_level": "ERROR",
-				"group": "NO_WALLET",
-				"title": "Minor Sensor Issues",
-				"message": "Station is doing great! Minor issues detected during our data quality checks, that may be related to occasional sensor inaccuracies. That can happen once in a while.",
-				"doc_url": "https://docs.weatherxm.com/project/rewards-troubleshooting#sensor-problems"
-			}
-		]
-	}
+	"annotation_summary": [
+		{
+			"severity_level": "INFO",
+			"group": "NO_WALLET",
+			"title": "Minor Sensor Issues",
+			"message": "Station is doing great! Minor issues detected during our data quality checks, that may be related to occasional sensor inaccuracies. That can happen once in a while.",
+			"doc_url": "https://docs.weatherxm.com/project/rewards-troubleshooting#sensor-problems"
+		},
+		{
+			"severity_level": "ERROR",
+			"group": "NO_WALLET",
+			"title": "Minor Sensor Issues",
+			"message": "Station is doing great! Minor issues detected during our data quality checks, that may be related to occasional sensor inaccuracies. That can happen once in a while.",
+			"doc_url": "https://docs.weatherxm.com/project/rewards-troubleshooting#sensor-problems"
+		}
+	]
 }
