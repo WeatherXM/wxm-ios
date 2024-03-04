@@ -41,4 +41,19 @@ public class RewardsTimelineUseCase {
 	public func getFollowState(deviceId: String) async throws -> Result<UserDeviceFollowState?, NetworkErrorResponse> {
 		try await meRepository.getDeviceFollowState(deviceId: deviceId)
 	}
+
+	public func getRewardDetails(deviceId: String) async throws -> Result<NetworkDeviceRewardDetailsResponse?, NetworkErrorResponse> {
+		let publisher = try repository.deviceRewardsDetails(deviceId: deviceId)
+
+		return await withUnsafeContinuation { continuation in
+			publisher.sink { response in
+
+				if let error = response.error {
+					continuation.resume(returning: .failure(error))
+				} else {
+					continuation.resume(returning: .success(response.value))
+				}
+			}.store(in: &cancellableSet)
+		}
+	}
 }

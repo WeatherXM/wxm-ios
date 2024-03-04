@@ -107,8 +107,7 @@ final class RewardsTimelineViewModel: ObservableObject {
 														   .itemId: .custom(itemId)])
 
 		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
-																	followState: followState,
-																	summary: reward)
+																	followState: followState)
 		Router.shared.navigateTo(.rewardDetails(viewModel))
 	}
 }

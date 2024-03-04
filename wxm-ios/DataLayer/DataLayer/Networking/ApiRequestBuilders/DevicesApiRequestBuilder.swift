@@ -40,13 +40,14 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
     case deviceById(deviceId: String)
 	case deviceRewardsById(deviceId: String)
 	case deviceRewardsTimeline(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?)
+	case deviceRewardsDetailsById(deviceId: String)
 
     // MARK: - HttpMethod
 
     // This returns the HttpMethod type. It's used to determine the type if several endpoints are peresent
 	private var method: HTTPMethod {
 		switch self {
-			case .devices, .deviceById, .deviceRewardsById, .deviceRewardsTimeline:
+			case .devices, .deviceById, .deviceRewardsById, .deviceRewardsTimeline, .deviceRewardsDetailsById:
 				return .get
 		}
 	}
@@ -64,6 +65,8 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
 				return "devices/\(deviceId)/tokens"
 			case let .deviceRewardsTimeline(deviceId, _, _, _, _, _):
 				return "devices/\(deviceId)/tokens/timeline"
+			case let .deviceRewardsDetailsById(deviceId):
+				return "devices/\(deviceId)/tokens/details"
 		}
     }
 
@@ -100,6 +103,8 @@ extension DevicesApiRequestBuilder: MockResponseBuilder {
 				return "get_device_rewards_summary"
 			case .deviceRewardsTimeline:
 				return "get_device_rewards_timeline"
+			case .deviceRewardsDetailsById:
+				return "get_reward_details"
 			default:
 				return nil
 		}

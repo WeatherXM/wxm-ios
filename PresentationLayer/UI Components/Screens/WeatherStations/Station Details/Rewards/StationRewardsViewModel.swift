@@ -53,8 +53,7 @@ class StationRewardsViewModel: ObservableObject {
 		}
 
 		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
-																	followState: followState,
-																	summary: summary)
+																	followState: followState)
 		Router.shared.navigateTo(.rewardDetails(viewModel))
 	}
 

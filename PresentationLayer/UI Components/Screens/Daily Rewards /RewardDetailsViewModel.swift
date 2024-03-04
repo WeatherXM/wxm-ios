@@ -16,16 +16,15 @@ class RewardDetailsViewModel: ObservableObject {
 	let useCase: RewardsTimelineUseCase
 	var device: DeviceDetails
 	let followState: UserDeviceFollowState?
-	let rewardSummary: NetworkDeviceRewardsSummary
+	var rewardDetailsResponse: NetworkDeviceRewardDetailsResponse?
 	var isDeviceOwned: Bool {
 		followState?.relation == .owned
 	}
 
-	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: RewardsTimelineUseCase, summary: NetworkDeviceRewardsSummary) {
+	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: RewardsTimelineUseCase) {
 		self.device = device
 		self.followState = followState
 		self.useCase = tokenUseCase
-		self.rewardSummary = summary
 	}
 
 	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {
@@ -170,27 +169,29 @@ private extension RewardDetailsViewModel {
 	}
 
 	func getEmailAdditionalInfo() -> String {
-		let stationInfoTitle = "Station Information"
-		let stationName = "Station Name: \(device.name)"
-		let stationId = "Station id: \(device.id ?? "-")"
-		let explorerUrl = "Explorer URL: \(device.explorerUrl)"
-
-		let rewardInfoTitle = "Reward Information"
-		let timestamp = "Reward timestamp: \(rewardSummary.timestamp?.toTimestamp() ?? "-")"
-		let rewardScore = "Reward Score: \(rewardSummary.baseRewardScore ?? 0)"
-		let rewardsEarned = "Rewards Earned: \(rewardSummary.totalReward ?? 0)"
-		let annotations = "Annotations: \(rewardSummary.annotationSummary?.compactMap { $0.group?.rawValue } ?? [])"
-
-		return [stationInfoTitle,
-				stationName,
-				stationId,
-				explorerUrl,
-				"",
-				rewardInfoTitle,
-				timestamp,
-				rewardScore,
-				rewardsEarned,
-				annotations].joined(separator: "\n")
+		return ""
+		#warning("TODO: Temporary commented")
+//		let stationInfoTitle = "Station Information"
+//		let stationName = "Station Name: \(device.name)"
+//		let stationId = "Station id: \(device.id ?? "-")"
+//		let explorerUrl = "Explorer URL: \(device.explorerUrl)"
+//
+//		let rewardInfoTitle = "Reward Information"
+//		let timestamp = "Reward timestamp: \(rewardSummary.timestamp?.toTimestamp() ?? "-")"
+//		let rewardScore = "Reward Score: \(rewardSummary.baseRewardScore ?? 0)"
+//		let rewardsEarned = "Rewards Earned: \(rewardSummary.totalReward ?? 0)"
+//		let annotations = "Annotations: \(rewardSummary.annotationSummary?.compactMap { $0.group?.rawValue } ?? [])"
+//
+//		return [stationInfoTitle,
+//				stationName,
+//				stationId,
+//				explorerUrl,
+//				"",
+//				rewardInfoTitle,
+//				timestamp,
+//				rewardScore,
+//				rewardsEarned,
+//				annotations].joined(separator: "\n")
 	}
 }
 
@@ -202,6 +203,6 @@ extension RewardDetailsViewModel: SelectStationLocationViewModelDelegate {
 
 extension RewardDetailsViewModel: HashableViewModel {
 	func hash(into hasher: inout Hasher) {
-		hasher.combine("\(device.id)-\(rewardSummary.hashValue)")
+		hasher.combine("\(device.id)-\(rewardDetailsResponse?.hashValue)")
 	}
 }
