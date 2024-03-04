@@ -93,7 +93,7 @@ private struct ContentView: View {
 				Logger.shared.trackScreen(.deviceRewardsDetails)
 			}
 		}
-		.bottomSheet(show: $viewModel.showInfo, fitContent: true) {
+		.bottomSheet(show: $viewModel.showInfo) {
 			bottomInfoView(info: viewModel.info)
 		}
 	}
