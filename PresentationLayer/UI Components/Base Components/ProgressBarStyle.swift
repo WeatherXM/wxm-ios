@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProgressBarStyle: ProgressViewStyle {
+	var withOffset: Bool = false
     var text: String?
     var bgColor: Color = Color(colorEnum: .midGrey)
     var progressColor: Color = Color(colorEnum: .primary)
@@ -21,7 +22,8 @@ struct ProgressBarStyle: ProgressViewStyle {
                 bgColor
                 HStack(spacing: 0.0) {
                     progressColor
-                        .frame(width: CGFloat(configuration.fractionCompleted ?? 0) * geometry.size.width)
+						.frame(width: progressWidth(with: configuration.fractionCompleted ?? 0,
+													containerSize: geometry.size))
                         .clipShape(Capsule())
                         .animation(.linear, value: configuration.fractionCompleted)
                         .sizeObserver(size: $progressSize)
@@ -51,11 +53,20 @@ struct ProgressBarStyle: ProgressViewStyle {
     }
 }
 
+private extension ProgressBarStyle {
+	func progressWidth(with value: Double, containerSize: CGSize) -> CGFloat {
+		let offset = withOffset ? containerSize.width / 5.0 : 0.0
+		let actualContainerWidth = containerSize.width - offset
+		let width = value * actualContainerWidth
+		return width + offset
+	}
+}
+
 struct ProgressBarStyle_Previews: PreviewProvider {
     static var previews: some View {
         ProgressView(value: 5,
                      total: 10)
-            .progressViewStyle(ProgressBarStyle(text: "\(4)"))
+            .progressViewStyle(ProgressBarStyle(withOffset: true, text: "\(4)"))
             .previewLayout(.fixed(width: 256, height: 22))
     }
 }

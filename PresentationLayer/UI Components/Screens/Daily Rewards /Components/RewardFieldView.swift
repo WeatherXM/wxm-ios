@@ -45,7 +45,10 @@ struct RewardFieldView: View {
 
 				if let scoreVal = score.score {
 					ProgressView(value: scoreVal, total: 100)
-						.progressViewStyle(ProgressBarStyle(text: nil, bgColor: Color(colorEnum: .blueTint), progressColor: Color(colorEnum: score.color)))
+						.progressViewStyle(ProgressBarStyle(withOffset: true,
+															text: nil,
+															bgColor: Color(colorEnum: .blueTint),
+															progressColor: Color(colorEnum: score.color)))
 						.frame(height: 22.0)
 				}
 
