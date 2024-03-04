@@ -53,7 +53,9 @@ private extension ContentView {
 			}
 
 			HStack {
-				Text(LocalizableString.RewardDetails.reportFor(viewModel.refDate.getFormattedDate(format: .monthLiteralDayYear, showTimeZoneIndication: true).capitalized).localized)
+				Text(LocalizableString.RewardDetails.reportFor(viewModel.refDate.getFormattedDate(format: .monthLiteralDayYear,
+																								  timezone: .UTCTimezone,
+																								  showTimeZoneIndication: true).capitalizedSentence).localized)
 					.foregroundColor(Color(.darkGrey))
 					.font(.system(size: CGFloat(.normalFontSize)))
 				Spacer()
