@@ -64,7 +64,7 @@ private struct ContentView: View {
 	@ViewBuilder
 	var content: some View {
 		ZStack {
-			Color(colorEnum: .bg)
+			Color(colorEnum: .top)
 				.ignoresSafeArea()
 
 			TrackableScrollView { completion in
@@ -82,10 +82,13 @@ private struct ContentView: View {
 				.iPadMaxWidth()
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
 			}
-			.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }), obj: viewModel.failObj)
+			.spinningLoader(show: .init(get: { viewModel.state == .loading }, set: { _ in }),
+							hideContent: true)
+			.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }), 
+				  obj: viewModel.failObj)
 			.onAppear {
 				navigationObject.titleColor = Color(colorEnum: .text)
-				navigationObject.navigationBarColor = Color(colorEnum: .bg)
+				navigationObject.navigationBarColor = Color(colorEnum: .top)
 
 				Logger.shared.trackScreen(.deviceRewardsDetails)
 			}
