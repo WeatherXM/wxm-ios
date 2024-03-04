@@ -167,7 +167,11 @@ class RewardDetailsViewModel: ObservableObject {
 		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.dailyReward.localized,
 								   description: LocalizableString.RewardDetails.dailyRewardInfoDescription.localized,
 								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
+			guard let url = URL(string: DisplayedLinks.rewardMechanism.linkURL) else {
+				return
+			}
 
+			UIApplication.shared.open(url)
 		}
 		self.info = info
 		showInfo = true
@@ -177,7 +181,11 @@ class RewardDetailsViewModel: ObservableObject {
 		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.dataQuality.localized,
 								   description: LocalizableString.RewardDetails.dataQualityInfoDescription.localized,
 								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
+			guard let url = URL(string: DisplayedLinks.qodAlgorithm.linkURL) else {
+				return
+			}
 
+			UIApplication.shared.open(url)
 		}
 		self.info = info
 		showInfo = true
@@ -187,6 +195,11 @@ class RewardDetailsViewModel: ObservableObject {
 		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.locationQuality.localized,
 								   description: LocalizableString.RewardDetails.locationQualityInfoDescription.localized,
 								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
+			guard let url = URL(string: DisplayedLinks.polAlgorithm.linkURL) else {
+				return
+			}
+
+			UIApplication.shared.open(url)
 
 		}
 		self.info = info
@@ -197,7 +210,11 @@ class RewardDetailsViewModel: ObservableObject {
 		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.cellPosition.localized,
 								   description: LocalizableString.RewardDetails.cellPositionInfoDescription.localized,
 								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
+			guard let url = URL(string: DisplayedLinks.cellCapacity.linkURL) else {
+				return
+			}
 
+			UIApplication.shared.open(url)
 		}
 		self.info = info
 		showInfo = true
