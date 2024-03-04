@@ -38,8 +38,8 @@ public struct DevicesRepositoryImpl: DevicesRepository {
 		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
 	}
 
-	public func deviceRewardsDetails(deviceId: String) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardDetailsResponse, NetworkErrorResponse>, Never> {
-		let builder =  DevicesApiRequestBuilder.deviceRewardsDetailsById(deviceId: deviceId)
+	public func deviceRewardsDetails(deviceId: String, date: String) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardDetailsResponse, NetworkErrorResponse>, Never> {
+		let builder =  DevicesApiRequestBuilder.deviceRewardsDetailsById(deviceId: deviceId, date: date)
 		let urlRequest = try builder.asURLRequest()
 		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
 	}

@@ -21,6 +21,7 @@ class RewardDetailsViewModel: ObservableObject {
 	let useCase: RewardsTimelineUseCase
 	var device: DeviceDetails
 	let followState: UserDeviceFollowState?
+	let date: Date
 	var rewardDetailsResponse: NetworkDeviceRewardDetailsResponse?
 	var isDeviceOwned: Bool {
 		followState?.relation == .owned
@@ -38,9 +39,10 @@ class RewardDetailsViewModel: ObservableObject {
 		rewardDetailsResponse?.cellPositionScoreObject
 	}
 
-	init(device: DeviceDetails, followState: UserDeviceFollowState?, tokenUseCase: RewardsTimelineUseCase) {
+	init(device: DeviceDetails, followState: UserDeviceFollowState?, date: Date, tokenUseCase: RewardsTimelineUseCase) {
 		self.device = device
 		self.followState = followState
+		self.date = date
 		self.useCase = tokenUseCase
 		refresh {
 			
@@ -49,17 +51,21 @@ class RewardDetailsViewModel: ObservableObject {
 
 	func refresh(completion: @escaping VoidCallback) {
 		Task { @MainActor [weak self] in
-			let result = await self?.fetchRewardDetails()
+			guard let self else {
+				return
+			}
+
+			let result = await self.fetchRewardDetails(date: self.date.getFormattedDate(format: .onlyDate, timezone: .UTCTimezone))
 			switch result {
 				case .success(let response):
-					self?.rewardDetailsResponse = response
-					self?.state = .content
+					self.rewardDetailsResponse = response
+					self.state = .content
 					completion()
 				case .failure(let error):
-					self?.state = .fail
-					self?.failObj = error.uiInfo.defaultFailObject(type: .rewardDetails) {
-						self?.state = .loading
-						self?.refresh {}
+					self.state = .fail
+					self.failObj = error.uiInfo.defaultFailObject(type: .rewardDetails) {
+						self.state = .loading
+						self.refresh {}
 					}
 					completion()
 				case nil:
@@ -159,10 +165,6 @@ class RewardDetailsViewModel: ObservableObject {
 		UIApplication.shared.open(url)
 	}
 
-	func handleContactSupportTap() {
-		openContactSupport()
-	}
-
 	func handleDailyRewardInfoTap() {
 		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.dailyReward.localized,
 								   description: LocalizableString.RewardDetails.dailyRewardInfoDescription.localized,
@@ -256,96 +258,11 @@ private extension RewardDetailsViewModel {
 		}
 	}
 
-	/// Temporary commented functionality
-	/*
-	func handleAnnotationType(annotation: DeviceAnnotation) {
-		guard let type = annotation.annotation else {
-			return
-		}
-
-		switch type {
-			case .obc:
-				if device.needsUpdate(mainVM: MainScreenViewModel.shared, followState: followState) {
-					// show OTA
-					MainScreenViewModel.shared.showFirmwareUpdate(device: device)
-					
-					return
-				}
-				openContactSupport(annotation: annotation)
-			case .spikes, .unidentifiedSpike, .anomIncrease, .unidentifiedAnomalousChange:
-				if let url = URL(string: DisplayedLinks.documentationLink.linkURL) {
-					UIApplication.shared.open(url)
-				}
-			case .noMedian, .noData, .shortConst, .longConst, .noLocationData:
-				if let url = URL(string: DisplayedLinks.troubleshooting.linkURL) {
-					UIApplication.shared.open(url)
-				}
-			case .cellCapacityReached:
-				if let url = URL(string: DisplayedLinks.cellCapacity.linkURL) {
-					UIApplication.shared.open(url)
-				}
-			case .polThresholdNotReached:
-				if let url = URL(string: DisplayedLinks.polAlgorithm.linkURL) {
-					UIApplication.shared.open(url)
-				}
-			case .qodThresholdNotReached:
-				if let url = URL(string: DisplayedLinks.qodAlgorithm.linkURL) {
-					UIApplication.shared.open(url)
-				}
-			case .frozenSensor, .relocated:
-				break
-			case .locationNotVerified:
-				let viewModel = ViewModelsFactory.getSelectLocationViewModel(device: device,
-																			 followState: followState, 
-																			 delegate: self)
-				Router.shared.navigateTo(.selectStationLocation(viewModel))
-			case  .unknown:
-				openContactSupport(annotation: annotation)
-			case .noWallet:
-				Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
-		}
-	}
-	*/
-
-	func openContactSupport(annotation: DeviceAnnotation? = nil) {
-		HelperFunctions().openContactSupport(successFailureEnum: .stationRewardsIssue,
-											 email: nil,
-											 serialNumber: device.label,
-											 errorString: annotation?.title,
-		addtionalInfo: getEmailAdditionalInfo())
-	}
-
-	func getEmailAdditionalInfo() -> String {
-		return ""
-		#warning("TODO: Temporary commented")
-//		let stationInfoTitle = "Station Information"
-//		let stationName = "Station Name: \(device.name)"
-//		let stationId = "Station id: \(device.id ?? "-")"
-//		let explorerUrl = "Explorer URL: \(device.explorerUrl)"
-//
-//		let rewardInfoTitle = "Reward Information"
-//		let timestamp = "Reward timestamp: \(rewardSummary.timestamp?.toTimestamp() ?? "-")"
-//		let rewardScore = "Reward Score: \(rewardSummary.baseRewardScore ?? 0)"
-//		let rewardsEarned = "Rewards Earned: \(rewardSummary.totalReward ?? 0)"
-//		let annotations = "Annotations: \(rewardSummary.annotationSummary?.compactMap { $0.group?.rawValue } ?? [])"
-//
-//		return [stationInfoTitle,
-//				stationName,
-//				stationId,
-//				explorerUrl,
-//				"",
-//				rewardInfoTitle,
-//				timestamp,
-//				rewardScore,
-//				rewardsEarned,
-//				annotations].joined(separator: "\n")
-	}
-
-	func fetchRewardDetails() async -> Result<NetworkDeviceRewardDetailsResponse?, NetworkErrorResponse>? {
+	func fetchRewardDetails(date: String) async -> Result<NetworkDeviceRewardDetailsResponse?, NetworkErrorResponse>? {
 		guard let deviceId = device.id else {
 			return nil
 		}
-		return try? await useCase.getRewardDetails(deviceId: deviceId)
+		return try? await useCase.getRewardDetails(deviceId: deviceId, date: date)
 	}
 }
 

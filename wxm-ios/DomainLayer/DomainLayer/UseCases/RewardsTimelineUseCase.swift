@@ -42,8 +42,8 @@ public class RewardsTimelineUseCase {
 		try await meRepository.getDeviceFollowState(deviceId: deviceId)
 	}
 
-	public func getRewardDetails(deviceId: String) async throws -> Result<NetworkDeviceRewardDetailsResponse?, NetworkErrorResponse> {
-		let publisher = try repository.deviceRewardsDetails(deviceId: deviceId)
+	public func getRewardDetails(deviceId: String, date: String) async throws -> Result<NetworkDeviceRewardDetailsResponse?, NetworkErrorResponse> {
+		let publisher = try repository.deviceRewardsDetails(deviceId: deviceId, date: date)
 
 		return await withUnsafeContinuation { continuation in
 			publisher.sink { response in

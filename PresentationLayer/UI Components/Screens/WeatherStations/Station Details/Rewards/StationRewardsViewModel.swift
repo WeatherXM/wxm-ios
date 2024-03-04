@@ -48,12 +48,13 @@ class StationRewardsViewModel: ObservableObject {
     }
 
 	func handleViewDetailsTap() {
-		guard let device, let summary = response?.latest else {
+		guard let device, let timestamp = response?.latest?.timestamp else {
 			return
 		}
 
 		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
-																	followState: followState)
+																	followState: followState,
+																	date: timestamp)
 		Router.shared.navigateTo(.rewardDetails(viewModel))
 	}
 

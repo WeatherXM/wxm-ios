@@ -40,7 +40,7 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
     case deviceById(deviceId: String)
 	case deviceRewardsById(deviceId: String)
 	case deviceRewardsTimeline(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?)
-	case deviceRewardsDetailsById(deviceId: String)
+	case deviceRewardsDetailsById(deviceId: String, date: String)
 
     // MARK: - HttpMethod
 
@@ -62,11 +62,11 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
 			case let .deviceById(deviceId):
 				return "devices/\(deviceId)"
 			case let .deviceRewardsById(deviceId):
-				return "devices/\(deviceId)/tokens"
+				return "devices/\(deviceId)/rewards"
 			case let .deviceRewardsTimeline(deviceId, _, _, _, _, _):
-				return "devices/\(deviceId)/tokens/timeline"
-			case let .deviceRewardsDetailsById(deviceId):
-				return "devices/\(deviceId)/tokens/details"
+				return "devices/\(deviceId)/rewards/timeline"
+			case let .deviceRewardsDetailsById(deviceId, _):
+				return "devices/\(deviceId)/rewards/details"
 		}
     }
 
@@ -91,6 +91,8 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
                 }
 
                 return params
+			case let .deviceRewardsDetailsById(_, date):
+				return [ParameterConstants.Devices.date: date]
             default: return nil
         }
     }
