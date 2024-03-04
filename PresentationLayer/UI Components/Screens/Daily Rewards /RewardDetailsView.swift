@@ -154,6 +154,7 @@ private struct ContentView: View {
 							Text(subtitle)
 								.font(.system(size: CGFloat(.normalFontSize)))
 								.foregroundColor(Color(.darkGrey))
+								.fixedSize(horizontal: false, vertical: true)
 							Spacer()
 						}
 					}
@@ -197,6 +198,7 @@ private struct ContentView: View {
 							Text(subtitle)
 								.font(.system(size: CGFloat(.normalFontSize)))
 								.foregroundColor(Color(.darkGrey))
+								.fixedSize(horizontal: false, vertical: true)
 							Spacer()
 						}
 					}
@@ -256,6 +258,7 @@ private struct ContentView: View {
 						Text(subtitle)
 							.font(.system(size: CGFloat(.normalFontSize)))
 							.foregroundColor(Color(.darkGrey))
+							.fixedSize(horizontal: false, vertical: true)
 						Spacer()
 					}
 				}
