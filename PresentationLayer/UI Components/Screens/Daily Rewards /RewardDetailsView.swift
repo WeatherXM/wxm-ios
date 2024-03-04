@@ -92,6 +92,9 @@ private struct ContentView: View {
 				Logger.shared.trackScreen(.deviceRewardsDetails)
 			}
 		}
+		.bottomSheet(show: $viewModel.showInfo, fitContent: true) {
+			bottomInfoView(info: viewModel.info)
+		}
 	}
 
 	@ViewBuilder
@@ -103,7 +106,8 @@ private struct ContentView: View {
 						.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
 						.foregroundColor(Color(.text))
 
-					Button{
+					Button {
+						viewModel.handleDailyRewardInfoTap()
 					} label: {
 						Text(FontIcon.infoCircle.rawValue)
 							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
@@ -204,7 +208,7 @@ private struct ContentView: View {
 					if let scoreObject = viewModel.dataQualityScoreObject {
 						RewardFieldView(title: LocalizableString.RewardDetails.dataQuality.localized,
 										score: scoreObject) {
-
+							viewModel.handleDataQualityInfoTap()
 						}
 										.wxmShadow()
 					}
@@ -223,7 +227,7 @@ private struct ContentView: View {
 			if let scoreObject = viewModel.locationQualityScoreObject {
 				RewardFieldView(title: LocalizableString.RewardDetails.locationQuality.localized,
 								score: scoreObject) {
-
+					viewModel.handleLocationQualityInfoTap()
 				}
 								.wxmShadow()
 			}
@@ -231,7 +235,7 @@ private struct ContentView: View {
 			if let scoreObject = viewModel.cellPositionScoreObject {
 				RewardFieldView(title: LocalizableString.RewardDetails.cellPosition.localized,
 								score: scoreObject) {
-
+					viewModel.handleCellPositionInfoTap()
 				}
 								.wxmShadow()
 			}

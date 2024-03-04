@@ -25,7 +25,7 @@ class NetworkStatsViewModel: ObservableObject {
     @Published var state: NetworkStatsView.State = .loading
     private(set) var failObj: FailSuccessStateObject?
 
-    private(set) var info: (title: String?, description: String)?
+    private(set) var info: BottomSheetInfo?
 
     private var isEmpty: Bool {
         dataDays == nil &&
@@ -66,7 +66,7 @@ class NetworkStatsViewModel: ObservableObject {
     }
 
     func showInfo(title: String?, description: String, analyticsItemId: ParameterValue?) {
-        info = (title, description)
+		info = .init(title: title, description: description)
         showInfo = true
 
         if let analyticsItemId {

@@ -22,7 +22,7 @@ class ProfileViewModel: ObservableObject {
 		}
 	}
 	@Published var showInfo: Bool = false
-	private(set) var info: (title: String?, description: String)?
+	private(set) var info: BottomSheetInfo?
 	@Published var userInfoResponse = NetworkUserInfoResponse() {
 		didSet {
 			updateUserInfoValues()
@@ -86,12 +86,14 @@ class ProfileViewModel: ObservableObject {
 	}
 
 	func handleTotalEarnedInfoTap() {
-		info = (LocalizableString.Profile.totalEarnedInfoTitle.localized, LocalizableString.Profile.totalEarnedInfoDescription.localized)
+		info = BottomSheetInfo(title: LocalizableString.Profile.totalEarnedInfoTitle.localized,
+							   description: LocalizableString.Profile.totalEarnedInfoDescription.localized)
 		showInfo = true
 	}
 
 	func handleTotalClaimedInfoTap() {
-		info = (LocalizableString.Profile.totalClaimedInfoTitle.localized, LocalizableString.Profile.totalClaimedInfoDescription.localized)
+		info = BottomSheetInfo(title: LocalizableString.Profile.totalClaimedInfoTitle.localized,
+							   description: LocalizableString.Profile.totalClaimedInfoDescription.localized)
 		showInfo = true
 	}
 

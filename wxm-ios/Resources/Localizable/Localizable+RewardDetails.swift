@@ -41,6 +41,10 @@ extension LocalizableString {
 		case earnedBoosts(String)
 		case noActiveBoostsTitle
 		case noActiveBoostsDescription
+		case dailyRewardInfoDescription
+		case dataQualityInfoDescription
+		case locationQualityInfoDescription
+		case cellPositionInfoDescription
 		case problemsTitle
 		case problemsDescription(String)
 		case zeroLostProblemsDescription
@@ -164,6 +168,14 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 				return "reward_details_no_active_boosts_title"
 			case .noActiveBoostsDescription:
 				return "reward_details_no_active_boosts_description"
+			case .dailyRewardInfoDescription:
+				return "reward_details_daily_reward_info_description"
+			case .dataQualityInfoDescription:
+				return "reward_details_data_quality_info_description"
+			case .locationQualityInfoDescription:
+				return "reward_details_location_quality_info_description"
+			case .cellPositionInfoDescription:
+				return "reward_details_cell_quality_info_description"
 			case .problemsDescription:
 				return "reward_problems_description_format"
 			case .zeroLostProblemsDescription:

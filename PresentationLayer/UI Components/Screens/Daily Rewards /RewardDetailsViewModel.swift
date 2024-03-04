@@ -13,8 +13,10 @@ import Toolkit
 class RewardDetailsViewModel: ObservableObject {
 
 	@Published var showInfo: Bool = false
+	private(set) var info: BottomSheetInfo?
 	@Published var state: ViewState = .loading
 	private(set) var failObj: FailSuccessStateObject?
+
 
 	let useCase: RewardsTimelineUseCase
 	var device: DeviceDetails
@@ -159,6 +161,46 @@ class RewardDetailsViewModel: ObservableObject {
 
 	func handleContactSupportTap() {
 		openContactSupport()
+	}
+
+	func handleDailyRewardInfoTap() {
+		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.dailyReward.localized,
+								   description: LocalizableString.RewardDetails.dailyRewardInfoDescription.localized,
+								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
+
+		}
+		self.info = info
+		showInfo = true
+	}
+
+	func handleDataQualityInfoTap() {
+		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.dataQuality.localized,
+								   description: LocalizableString.RewardDetails.dataQualityInfoDescription.localized,
+								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
+
+		}
+		self.info = info
+		showInfo = true
+	}
+
+	func handleLocationQualityInfoTap() {
+		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.locationQuality.localized,
+								   description: LocalizableString.RewardDetails.locationQualityInfoDescription.localized,
+								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
+
+		}
+		self.info = info
+		showInfo = true
+	}
+
+	func handleCellPositionInfoTap() {
+		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.cellPosition.localized,
+								   description: LocalizableString.RewardDetails.cellPositionInfoDescription.localized,
+								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
+
+		}
+		self.info = info
+		showInfo = true
 	}
 }
 
