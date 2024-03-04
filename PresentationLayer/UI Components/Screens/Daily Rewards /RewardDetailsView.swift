@@ -84,8 +84,6 @@ private struct ContentView: View {
 			}
 			.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }), obj: viewModel.failObj)
 			.onAppear {
-				navigationObject.title = LocalizableString.RewardDetails.title.localized
-				navigationObject.subtitle = viewModel.device.displayName
 				navigationObject.titleColor = Color(colorEnum: .text)
 				navigationObject.navigationBarColor = Color(colorEnum: .bg)
 
