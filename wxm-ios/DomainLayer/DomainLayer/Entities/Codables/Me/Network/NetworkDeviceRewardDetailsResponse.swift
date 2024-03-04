@@ -10,14 +10,14 @@ import Foundation
 public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable {
 	public let timestamp: Date?
 	public let totalDailyReward: Double?
-	public let annotation: Annotation?
+	public let annotations: [DeviceAnnotation]?
 	public let base: Base?
 	public let boost: Boost?
 
 	enum CodingKeys: String ,CodingKey {
 		case timestamp
 		case totalDailyReward = "total_daily_reward"
-		case annotation
+		case annotations = "annotation_summary"
 		case base
 		case boost
 	}
@@ -72,10 +72,5 @@ public extension NetworkDeviceRewardDetailsResponse {
 			case rewardScore = "reward_score"
 			case maxReward = "max_reward"
 		}
-	}
-
-	struct Annotation: Codable, Hashable {
-		public let score: Int?
-		public let summary: [RewardAnnotation]?
 	}
 }
