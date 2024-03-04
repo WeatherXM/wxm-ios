@@ -113,6 +113,15 @@ extension View {
 
 						Spacer()
 					}
+					.modify { view in
+						if info.scrollable == true {
+							ScrollView(showsIndicators: false) {
+								view
+							}
+						} else {
+							view
+						}
+					}
 
 					if let buttonTitle = info.buttonTitle, let buttonAction = info.buttonAction {
 						Button(action: buttonAction) {
@@ -130,6 +139,7 @@ extension View {
 struct BottomSheetInfo {
 	let title: String?
 	let description: String?
+	var scrollable: Bool = false
 	var buttonTitle: String? = nil
 	var buttonAction: VoidCallback? = nil
 }
