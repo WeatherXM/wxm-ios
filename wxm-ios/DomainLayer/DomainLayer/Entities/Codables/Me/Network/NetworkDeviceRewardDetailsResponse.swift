@@ -10,7 +10,7 @@ import Foundation
 public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable {
 	public let timestamp: Date?
 	public let totalDailyReward: Double?
-	public let annotations: [DeviceAnnotation]?
+	public let annotations: [RewardAnnotation]?
 	public let base: Base?
 	public let boost: Boost?
 
