@@ -93,7 +93,7 @@ class RewardDetailsViewModel: ObservableObject {
 	func issuesButtonTitle() -> String? {
 		guard let summary = rewardDetailsResponse?.annotations,
 			  summary.count > 1 else {
-			return annotationActionButtonTile(for: rewardDetailsResponse?.mainAnnotation)
+			return rewardDetailsResponse?.mainAnnotation?.annotationActionButtonTile(with: followState)
 		}
 
 		return LocalizableString.RewardDetails.viewAllIssues.localized
@@ -115,38 +115,9 @@ class RewardDetailsViewModel: ObservableObject {
 		return LocalizableString.RewardDetails.earnedBoosts(reward.toWXMTokenPrecisionString).localized
 	}
 
-	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {
-		guard let group = annotation?.group else {
-			return nil
-		}
-
-		let isOwned = followState?.relation == .owned
-		switch group {
-			case .noWallet:
-				if MainScreenViewModel.shared.isWalletMissing, isOwned {
-					return LocalizableString.RewardDetails.noWalletProblemButtonTitle.localized
-				} else if annotation?.docUrl != nil {
-					return LocalizableString.RewardDetails.readMore.localized
-				}
-				return nil
-			case .locationNotVerified:
-				if isOwned {
-					return LocalizableString.RewardDetails.editLocation.localized
-				} else if annotation?.docUrl != nil {
-					return LocalizableString.RewardDetails.readMore.localized
-				}
-				return nil
-			default:
-				if annotation?.docUrl != nil {
-					return LocalizableString.RewardDetails.readMore.localized
-				}
-				return nil
-		}
-	}
-
 	func handleIssueButtonTap() {
 		guard let count = rewardDetailsResponse?.annotations?.count, count > 1 else {
-			handleRewardAnnotation(annotation: rewardDetailsResponse?.mainAnnotation)
+			rewardDetailsResponse?.mainAnnotation?.handleRewardAnnotationTap(with: device, followState: followState)
 			return
 		}
 
@@ -228,40 +199,6 @@ class RewardDetailsViewModel: ObservableObject {
 }
 
 private extension RewardDetailsViewModel {
-	func handleRewardAnnotation(annotation: RewardAnnotation?) {
-		guard let annotation,
-			  let group = annotation.group else {
-			return
-		}
-
-		let isOwned = followState?.relation == .owned
-
-		switch group {
-			case .noWallet:
-				if MainScreenViewModel.shared.isWalletMissing, isOwned {
-					Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
-				} else if let docUrl = annotation.docUrl,
-				   let url = URL(string: docUrl) {
-					UIApplication.shared.open(url)
-				}
-			case .locationNotVerified:
-				if isOwned {
-					let viewModel = ViewModelsFactory.getSelectLocationViewModel(device: device,
-																				 followState: followState,
-																				 delegate: self)
-					Router.shared.navigateTo(.selectStationLocation(viewModel))
-				} else if let docUrl = annotation.docUrl,
-						  let url = URL(string: docUrl) {
-					 UIApplication.shared.open(url)
-				 }
-			default:
-				if let docUrl = annotation.docUrl,
-				   let url = URL(string: docUrl) {
-					UIApplication.shared.open(url)
-				}
-		}
-	}
-
 	func fetchRewardDetails(date: String) async -> Result<NetworkDeviceRewardDetailsResponse?, NetworkErrorResponse>? {
 		guard let deviceId = device.id else {
 			return nil
