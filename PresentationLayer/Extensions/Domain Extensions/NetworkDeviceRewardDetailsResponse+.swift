@@ -9,33 +9,12 @@ import Foundation
 import DomainLayer
 
 extension NetworkDeviceRewardDetailsResponse {
-
-}
-
-extension NetworkDeviceRewardDetailsResponse.Annotation {
-	var color: ColorEnum? {
-		guard let score else {
-			return nil
-		}
-
-		switch score {
-			case 0..<10:
-				return .error
-			case 10..<95:
-				return .warning
-			case 95..<100:
-				return .darkestBlue
-			default:
-				return nil
-		}
-	}
-
 	var mainAnnotation: RewardAnnotation? {
-		if let annotation = summary?.first(where: { $0.severity == .error }) {
+		if let annotation = annotations?.first(where: { $0.severity == .error }) {
 			return annotation
-		} else if let annotation = summary?.first(where: { $0.severity == .warning }) {
+		} else if let annotation = annotations?.first(where: { $0.severity == .warning }) {
 			return annotation
-		} else if let annotation = summary?.first(where: { $0.severity == .info }) {
+		} else if let annotation = annotations?.first(where: { $0.severity == .info }) {
 			return annotation
 		}
 
@@ -141,7 +120,7 @@ extension NetworkDeviceRewardDetailsResponse {
 	}
 
 	private var locationQualityFontIcon: FontIcon {
-		guard let summary = annotation?.summary?.first(where: { $0.group == .locationNotVerified || $0.group == .noLocationData || $0.group == .userRelocationPenalty }),
+		guard let summary = annotations?.first(where: { $0.group == .locationNotVerified || $0.group == .noLocationData || $0.group == .userRelocationPenalty }),
 			  let severity = summary.severity else {
 			return .hexagonCheck
 		}
@@ -157,7 +136,7 @@ extension NetworkDeviceRewardDetailsResponse {
 	}
 
 	private var locationQualityColor: ColorEnum {
-		guard let summary = annotation?.summary?.first(where: { $0.group == .locationNotVerified || $0.group == .noLocationData || $0.group == .userRelocationPenalty }),
+		guard let summary = annotations?.first(where: { $0.group == .locationNotVerified || $0.group == .noLocationData || $0.group == .userRelocationPenalty }),
 			  let severity = summary.severity else {
 			return .success
 		}
@@ -173,15 +152,15 @@ extension NetworkDeviceRewardDetailsResponse {
 	}
 
 	private var locationQualityMessage: String {
-		if annotation?.summary?.first(where: { $0.group == .locationNotVerified }) != nil {
+		if annotations?.first(where: { $0.group == .locationNotVerified }) != nil {
 			return LocalizableString.RewardDetails.locationNotVerified.localized
 		}
 
-		if annotation?.summary?.first(where: { $0.group == .noLocationData }) != nil {
+		if annotations?.first(where: { $0.group == .noLocationData }) != nil {
 			return LocalizableString.RewardDetails.noLocationData.localized
 		}
 
-		if annotation?.summary?.first(where: { $0.group == .userRelocationPenalty }) != nil {
+		if annotations?.first(where: { $0.group == .userRelocationPenalty }) != nil {
 			return LocalizableString.RewardDetails.recentlyRelocated.localized
 		}
 
@@ -199,7 +178,7 @@ extension NetworkDeviceRewardDetailsResponse {
 	}
 
 	private var cellPositionFontIcon: FontIcon {
-		guard let severity = annotation?.summary?.first(where: { $0.group == .cellCapacityReached })?.severity else {
+		guard let severity = annotations?.first(where: { $0.group == .cellCapacityReached })?.severity else {
 			return .hexagonCheck
 		}
 
@@ -214,7 +193,7 @@ extension NetworkDeviceRewardDetailsResponse {
 	}
 
 	private var cellPositionColor: ColorEnum {
-		guard let severity = annotation?.summary?.first(where: { $0.group == .cellCapacityReached })?.severity else {
+		guard let severity = annotations?.first(where: { $0.group == .cellCapacityReached })?.severity else {
 			return .success
 		}
 
@@ -229,7 +208,7 @@ extension NetworkDeviceRewardDetailsResponse {
 	}
 
 	private var cellPositionMessage: String {
-		guard let annotation = annotation?.summary?.first(where: { $0.group == .cellCapacityReached }) else {
+		guard let annotation = annotations?.first(where: { $0.group == .cellCapacityReached }) else {
 			return LocalizableString.RewardDetails.cellPositionSuccessMessage.localized
 		}
 

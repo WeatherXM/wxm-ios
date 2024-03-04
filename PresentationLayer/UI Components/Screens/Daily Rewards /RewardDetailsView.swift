@@ -139,7 +139,7 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var issuesView: some View {
-		if let mainAnnotation = viewModel.rewardDetailsResponse?.annotation?.mainAnnotation {
+		if let mainAnnotation = viewModel.rewardDetailsResponse?.mainAnnotation {
 			VStack(spacing: CGFloat(.mediumSpacing)) {
 				VStack(spacing: CGFloat(.minimumSpacing)) {
 					HStack {

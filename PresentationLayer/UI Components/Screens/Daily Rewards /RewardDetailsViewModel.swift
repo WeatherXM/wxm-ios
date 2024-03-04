@@ -75,8 +75,8 @@ class RewardDetailsViewModel: ObservableObject {
 	}
 
 	func issuesSubtitle() -> String? {
-		guard let warningType = rewardDetailsResponse?.annotation?.mainAnnotation?.warningType,
-			  let count = rewardDetailsResponse?.annotation?.summary?.count else {
+		guard let warningType = rewardDetailsResponse?.mainAnnotation?.warningType,
+			  let count = rewardDetailsResponse?.annotations?.count else {
 			return nil
 		}
 
@@ -91,9 +91,9 @@ class RewardDetailsViewModel: ObservableObject {
 	}
 
 	func issuesButtonTitle() -> String? {
-		guard let summary = rewardDetailsResponse?.annotation?.summary,
+		guard let summary = rewardDetailsResponse?.annotations,
 			  summary.count > 1 else {
-			return annotationActionButtonTile(for: rewardDetailsResponse?.annotation?.mainAnnotation)
+			return annotationActionButtonTile(for: rewardDetailsResponse?.mainAnnotation)
 		}
 
 		return LocalizableString.RewardDetails.viewAllIssues.localized
@@ -145,13 +145,13 @@ class RewardDetailsViewModel: ObservableObject {
 	}
 
 	func handleIssueButtonTap() {
-		guard let count = rewardDetailsResponse?.annotation?.summary?.count, count > 1 else {
-			handleRewardAnnotation(annotation: rewardDetailsResponse?.annotation?.mainAnnotation)
+		guard let count = rewardDetailsResponse?.annotations?.count, count > 1 else {
+			handleRewardAnnotation(annotation: rewardDetailsResponse?.mainAnnotation)
 			return
 		}
 
 		let rewardAnnotationsViewModel = ViewModelsFactory.getRewardAnnotationsViewModel(device: device,
-																						 annotations: rewardDetailsResponse?.annotation?.summary ?? [],
+																						 annotations: rewardDetailsResponse?.annotations ?? [],
 																						 followState: followState,
 																						 refDate: .now)
 		Router.shared.navigateTo(.rewardAnnotations(rewardAnnotationsViewModel))
