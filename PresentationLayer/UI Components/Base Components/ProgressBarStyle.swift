@@ -55,7 +55,7 @@ struct ProgressBarStyle: ProgressViewStyle {
 
 private extension ProgressBarStyle {
 	func progressWidth(with value: Double, containerSize: CGSize) -> CGFloat {
-		let offset = withOffset ? containerSize.width / 5.0 : 0.0
+		let offset = withOffset ? containerSize.width / 10.0 : 0.0
 		let actualContainerWidth = containerSize.width - offset
 		let width = value * actualContainerWidth
 		return width + offset
