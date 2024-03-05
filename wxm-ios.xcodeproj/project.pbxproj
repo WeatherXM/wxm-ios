@@ -65,6 +65,7 @@
 		2645823B2A41C07000195C21 /* FailSuccessViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */; };
 		2646D8F329C8BF3D0000237F /* StationRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646D8F229C8BF3D0000237F /* StationRewardsView.swift */; };
 		2646D8F529C8BFB40000237F /* StationRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646D8F429C8BFB40000237F /* StationRewardsViewModel.swift */; };
+		264CC7472B975D450060DEA4 /* anim_rocket_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC7462B975D450060DEA4 /* anim_rocket_dark.json */; };
 		264CDE0F2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CDE0E2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift */; };
 		264E2F5329DC3533009580A2 /* ThemeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E2F5229DC3533009580A2 /* ThemeEnum.swift */; };
 		264E2F6129DC5AEE009580A2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 264E2F6029DC5AEE009580A2 /* Settings.bundle */; };
@@ -556,6 +557,7 @@
 		2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailSuccessViewModifier.swift; sourceTree = "<group>"; };
 		2646D8F229C8BF3D0000237F /* StationRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsView.swift; sourceTree = "<group>"; };
 		2646D8F429C8BFB40000237F /* StationRewardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsViewModel.swift; sourceTree = "<group>"; };
+		264CC7462B975D450060DEA4 /* anim_rocket_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_rocket_dark.json; sourceTree = "<group>"; };
 		264CDE0E2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveNotificationsModifier.swift; sourceTree = "<group>"; };
 		264E2F5229DC3533009580A2 /* ThemeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEnum.swift; sourceTree = "<group>"; };
 		264E2F6029DC5AEE009580A2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -2111,6 +2113,7 @@
 			isa = PBXGroup;
 			children = (
 				266B01902B836FE6007AC689 /* anim_rocket.json */,
+				264CC7462B975D450060DEA4 /* anim_rocket_dark.json */,
 				7423EC02283F81E2004E9B26 /* anim_empty_devices.json */,
 				7423EC0E283F81E2004E9B26 /* anim_empty_generic.json */,
 				7423EC04283F81E2004E9B26 /* anim_error.json */,
@@ -2449,6 +2452,7 @@
 				7423EC20283F81E2004E9B26 /* anim_success.json in Resources */,
 				7423EC16283F81E2004E9B26 /* anim_weather_clear_day.json in Resources */,
 				7423EC18283F81E2004E9B26 /* anim_weather_clear_night.json in Resources */,
+				264CC7472B975D450060DEA4 /* anim_rocket_dark.json in Resources */,
 				7423EC15283F81E2004E9B26 /* anim_weather_cloudy.json in Resources */,
 				7423EC28283F81E2004E9B26 /* anim_weather_drizzle.json in Resources */,
 				7423EC23283F81E2004E9B26 /* anim_weather_fog.json in Resources */,

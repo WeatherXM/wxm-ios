@@ -30,6 +30,7 @@ enum AnimationsEnums: String {
     case emptyDevices
     case emptyGeneric
 	case rocket
+	case rocketDark
 
     var animationString: String {
         switch self {
@@ -77,6 +78,8 @@ enum AnimationsEnums: String {
                 return "anim_empty_generic"
 			case .rocket:
 				return "anim_rocket"
+			case .rocketDark:
+				return "anim_rocket_dark"
         }
     }
 }
