@@ -61,6 +61,24 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 	}
 }
 
+extension RewardAnnotation {
+	var warningType: CardWarningType? {
+		guard let severity else {
+			return nil
+		}
+
+		switch severity {
+			case .info:
+				return .info
+			case .warning:
+				return .warning
+			case .error:
+				return .error
+		}
+	}
+}
+
+
 extension NetworkDeviceRewardsSummaryTimelineEntry {
 	var toWeeklyEntry: WeeklyStreakView.Entry? {
 		guard let timestamp else {

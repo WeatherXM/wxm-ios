@@ -407,6 +407,8 @@
 		26E9A5142AE26AFE003E0830 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A5132AE26AFE003E0830 /* View+.swift */; };
 		26F246362A278DAB0089D3E7 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664831829C31AF400748F9C /* CustomSheet.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
+		26FFADD42B8F684C00BF0A6B /* RewardAnnotaionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */; };
+		26FFADD82B8F688900BF0A6B /* RewardAnnotationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */; };
 		7423EC15283F81E2004E9B26 /* anim_weather_cloudy.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFE283F81E2004E9B26 /* anim_weather_cloudy.json */; };
 		7423EC16283F81E2004E9B26 /* anim_weather_clear_day.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFF283F81E2004E9B26 /* anim_weather_clear_day.json */; };
 		7423EC17283F81E2004E9B26 /* anim_not_available.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EC00283F81E2004E9B26 /* anim_not_available.json */; };
@@ -843,6 +845,8 @@
 		26E88AF429DD69930023BBD5 /* WXMShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMShadow.swift; sourceTree = "<group>"; };
 		26E88AFE29E02F590023BBD5 /* anim_loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_loader.json; sourceTree = "<group>"; };
 		26E9A5132AE26AFE003E0830 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotaionsView.swift; sourceTree = "<group>"; };
+		26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotationsViewModel.swift; sourceTree = "<group>"; };
 		7423EBFE283F81E2004E9B26 /* anim_weather_cloudy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_cloudy.json; sourceTree = "<group>"; };
 		7423EBFF283F81E2004E9B26 /* anim_weather_clear_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_clear_day.json; sourceTree = "<group>"; };
 		7423EC00283F81E2004E9B26 /* anim_not_available.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_not_available.json; sourceTree = "<group>"; };
@@ -968,6 +972,7 @@
 		262A4CEB2A93517300A4BC17 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				26FFADD22B8F682D00BF0A6B /* RewardAnnotations */,
 				268D07912B2B1B54002BD77E /* Select Station Location */,
 				262B03052B20BC5400C31FE7 /* App Update */,
 				2623FF8F2AF1467E00BCDAC6 /* Daily Rewards  */,
@@ -2093,6 +2098,15 @@
 			path = "Station Details";
 			sourceTree = "<group>";
 		};
+		26FFADD22B8F682D00BF0A6B /* RewardAnnotations */ = {
+			isa = PBXGroup;
+			children = (
+				26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */,
+				26FFADD72B8F688900BF0A6B /* RewardAnnotationsViewModel.swift */,
+			);
+			path = RewardAnnotations;
+			sourceTree = "<group>";
+		};
 		7423EBFD283F81E2004E9B26 /* LottieJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -2599,6 +2613,7 @@
 				26D47EA12A1783E60078723A /* AnalyticsView.swift in Sources */,
 				269E85712B0242C100BE774C /* WXMShareModifier.swift in Sources */,
 				26CA845A2AD93BB6006D47D7 /* String+Common.swift in Sources */,
+				26FFADD82B8F688900BF0A6B /* RewardAnnotationsViewModel.swift in Sources */,
 				26D47EA32A179CEB0078723A /* AnalyticsViewModel.swift in Sources */,
 				267548D529A91A87008BCF40 /* AnimationsEnums.swift in Sources */,
 				B557E2152825212700E0BDCB /* AppDelegate.swift in Sources */,
@@ -2823,6 +2838,7 @@
 				267548CD29A91A87008BCF40 /* TabSelectionEnum.swift in Sources */,
 				262A4D862A94D89300A4BC17 /* TabViewWrapper.swift in Sources */,
 				268D07952B2B1B85002BD77E /* SelectStationLocationViewModel.swift in Sources */,
+				26FFADD42B8F684C00BF0A6B /* RewardAnnotaionsView.swift in Sources */,
 				267548F429A91A87008BCF40 /* Text+.swift in Sources */,
 				26348DF82A42F430000846C6 /* TextfieldClearButton.swift in Sources */,
 				267548CE29A91A87008BCF40 /* TextFieldError.swift in Sources */,
