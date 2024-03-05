@@ -53,7 +53,7 @@ public extension NetworkDeviceRewardDetailsResponse {
 	}
 
 	struct BoostReward: Codable, Hashable {
-		public let code: String?
+		public let code: BoostCode?
 		public let title: String?
 		public let description: String?
 		public let imageUrl: String?
@@ -71,6 +71,29 @@ public extension NetworkDeviceRewardDetailsResponse {
 			case actualReward = "actual_reward"
 			case rewardScore = "reward_score"
 			case maxReward = "max_reward"
+		}
+
+		public enum BoostCode: Codable, RawRepresentable, Hashable {
+			case betaReward
+			case unknown(String)
+
+			public init?(rawValue: String) {
+				switch rawValue {
+					case "beta_rewards":
+						self = .betaReward
+					default:
+						self = .unknown(rawValue)
+				}
+			}
+
+			public var rawValue: String {
+				switch self {
+					case .betaReward:
+						return "beta_reward"
+					case .unknown(let raw):
+						return raw
+				}
+			}
 		}
 	}
 }
