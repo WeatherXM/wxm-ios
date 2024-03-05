@@ -24,7 +24,7 @@ private struct ContentView: View {
 
 	var body: some View {
 		ZStack {
-			Color(colorEnum: .bg)
+			Color(colorEnum: .top)
 				.ignoresSafeArea()
 			TrackableScrollView {
 				VStack(spacing: CGFloat(.largeSpacing)) {
@@ -36,7 +36,7 @@ private struct ContentView: View {
 			}
 		}
 		.onAppear {
-			navigationObject.navigationBarColor = Color(.bg)
+			navigationObject.navigationBarColor = Color(.top)
 		}
 	}
 }
@@ -44,7 +44,7 @@ private struct ContentView: View {
 private extension ContentView {
 	@ViewBuilder
 	var titleView: some View {
-		VStack(spacing: 0.0) {
+		VStack(spacing: CGFloat(.minimumSpacing)) {
 			HStack {
 				Text(LocalizableString.RewardDetails.rewardIssues.localized)
 					.foregroundColor(Color(.text))
