@@ -111,7 +111,7 @@
     {
       "identity" : "lazyloadingpager",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:WeatherXM/LazyLoadingPager.git",
+      "location" : "https://github.com/WeatherXM/LazyLoadingPager",
       "state" : {
         "revision" : "6c3573a3eabb7692b841061b5f3f14c14e50bb27",
         "version" : "1.0.0"
@@ -131,8 +131,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/airbnb/lottie-ios.git",
       "state" : {
-        "revision" : "d6feea26a370019b4d3a85f5984cb95a2734776f",
-        "version" : "4.2.0"
+        "revision" : "7fe8b6f697ae7db4bf0df270119592cb5d502848",
+        "version" : "4.4.1"
       }
     },
     {
