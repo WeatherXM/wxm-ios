@@ -22,27 +22,62 @@ struct NoRewardsView: View {
 	}
 
     var body: some View {
-		VStack(spacing: CGFloat(.smallSpacing)) {
-			LottieView(animationCase: animation.animationString,
-					   loopMode: .loop)
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			VStack(spacing: CGFloat(.smallSpacing)) {
+				LottieView(animationCase: animation.animationString,
+						   loopMode: .loop)
 				.frame(width: iconDimensions, height: iconDimensions)
 				.id(animation.animationString)
 
-			VStack(spacing: CGFloat(.smallSpacing)) {
-				Text(LocalizableString.StationDetails.noRewardsTitle.localized)
-					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
-					.foregroundColor(Color(colorEnum: .text))
-				Text(LocalizableString.StationDetails.noRewardsDescription.localized)
-					.font(.system(size: CGFloat(.normalFontSize)))
-					.foregroundColor(Color(colorEnum: .text))
-					.multilineTextAlignment(.center)
+				VStack(spacing: CGFloat(.smallSpacing)) {
+					Text(LocalizableString.StationDetails.noRewardsTitle.localized)
+						.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+						.foregroundColor(Color(colorEnum: .text))
+					Text(LocalizableString.StationDetails.noRewardsDescription.localized)
+						.font(.system(size: CGFloat(.normalFontSize)))
+						.foregroundColor(Color(colorEnum: .text))
+						.multilineTextAlignment(.center)
+				}
 			}
+
+			tipView
 		}
 		.WXMCardStyle()
 		.onChange(of: colorScheme) { value in
 			print(value)
 		}
     }
+}
+
+private extension NoRewardsView {
+	@ViewBuilder
+	var tipView: some View {
+		VStack(spacing: CGFloat(.minimumSpacing)) {
+			HStack {
+				Text(LocalizableString.StationDetails.proTipTitle.localized)
+					.foregroundColor(Color(colorEnum: .text))
+					.font(.system(size: CGFloat(.caption), weight: .semibold))
+
+				Spacer()
+			}
+
+			HStack {
+				Text(LocalizableString.StationDetails.proTipDescription.localized)
+					.foregroundColor(Color(colorEnum: .text))
+					.font(.system(size: CGFloat(.caption)))
+
+				Spacer()
+			}
+		}
+		.padding(CGFloat(.smallSidePadding))
+		.background {
+			HStack(spacing: 0.0) {
+				Color(colorEnum: .primary)
+					.frame(width: 1.0)
+				Color(colorEnum: .blueTint)
+			}
+		}
+	}
 }
 
 #Preview {
