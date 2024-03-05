@@ -279,6 +279,7 @@ private struct ContentView: View {
 				}
 			} else {
 				NoBoostsView()
+					.wxmShadow()
 			}
 		}
 	}
