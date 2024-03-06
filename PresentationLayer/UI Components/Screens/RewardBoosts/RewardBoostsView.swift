@@ -103,12 +103,15 @@ private extension RewardBoostsView {
 			Text(title)
 				.font(.system(size: CGFloat(.normalFontSize)))
 				.foregroundColor(Color(colorEnum: .text))
+				.fixedSize(horizontal: false, vertical: true)
 
 			Spacer()
 
 			Text(value)
+				.lineLimit(1)
 				.font(.system(size: CGFloat(.caption), weight: .medium))
 				.foregroundColor(Color(colorEnum: .text))
+				.fixedSize()
 		}
 	}
 
