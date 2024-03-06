@@ -21,6 +21,9 @@ struct RewardBoostsView: View {
 				VStack(spacing: CGFloat(.mediumSpacing)) {
 					detailsView
 						.wxmShadow()
+
+					aboutView
+						.wxmShadow()
 				}
 			}
 			.padding(CGFloat(.mediumSidePadding))
@@ -99,6 +102,33 @@ private extension RewardBoostsView {
 				.font(.system(size: CGFloat(.caption), weight: .medium))
 				.foregroundColor(Color(colorEnum: .text))
 		}
+	}
+
+	@ViewBuilder
+	var aboutView: some View {
+		VStack(spacing: CGFloat(.smallSpacing)) {
+			HStack {
+				Text(LocalizableString.about.localized)
+					.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+					.foregroundColor(Color(colorEnum: .text))
+				Spacer()
+			}
+
+			HStack {
+				Text(viewModel.response?.metadata?.about ?? "")
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundColor(Color(colorEnum: .text))
+				Spacer()
+			}
+
+			Button {
+				viewModel.handleReadMoreTap()
+			} label: {
+				Text(LocalizableString.RewardDetails.readMore.localized)
+			}
+			.buttonStyle(WXMButtonStyle(fillColor: .layer1, strokeColor: .clear))
+		}
+		.WXMCardStyle()
 	}
 }
 

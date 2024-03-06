@@ -8,6 +8,7 @@
 import Foundation
 import DomainLayer
 import Toolkit
+import UIKit
 
 class RewardBoostsViewModel: ObservableObject {
 	let boost: BoostCardView.Boost
@@ -52,6 +53,15 @@ class RewardBoostsViewModel: ObservableObject {
 					completion()
 			}
 		}
+	}
+
+	func handleReadMoreTap() {
+		guard let docUrl = response?.metadata?.docUrl,
+			  let url = URL(string: docUrl) else {
+			return
+		}
+
+		UIApplication.shared.open(url)
 	}
 }
 
