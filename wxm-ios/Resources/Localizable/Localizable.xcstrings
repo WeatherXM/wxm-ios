@@ -5399,6 +5399,17 @@
         }
       }
     },
+    "reward_details_unhandled_boost_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost is not supported, please check for app updates."
+          }
+        }
+      }
+    },
     "reward_details_view_all_issues" : {
       "extractionState" : "manual",
       "localizations" : {
