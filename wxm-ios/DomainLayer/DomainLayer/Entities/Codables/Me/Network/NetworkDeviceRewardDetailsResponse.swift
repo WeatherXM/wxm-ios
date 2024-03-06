@@ -72,28 +72,29 @@ public extension NetworkDeviceRewardDetailsResponse {
 			case rewardScore = "reward_score"
 			case maxReward = "max_reward"
 		}
+	}
+}
 
-		public enum BoostCode: Codable, RawRepresentable, Hashable {
-			case betaReward
-			case unknown(String)
+public enum BoostCode: Codable, RawRepresentable, Hashable {
+	case betaReward
+	case unknown(String)
 
-			public init?(rawValue: String) {
-				switch rawValue {
-					case "beta_rewards":
-						self = .betaReward
-					default:
-						self = .unknown(rawValue)
-				}
-			}
+	public init?(rawValue: String) {
+		switch rawValue {
+			case "beta_rewards":
+				self = .betaReward
+			default:
+				self = .unknown(rawValue)
+		}
+	}
 
-			public var rawValue: String {
-				switch self {
-					case .betaReward:
-						return "beta_reward"
-					case .unknown(let raw):
-						return raw
-				}
-			}
+	public var rawValue: String {
+		switch self {
+			case .betaReward:
+				return "beta_reward"
+			case .unknown(let raw):
+				return raw
 		}
 	}
 }
+
