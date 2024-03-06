@@ -245,6 +245,9 @@ private struct ContentView: View {
 							   rewards: boost.actualReward ?? 0.0,
 							   imageUrl: boost.imageUrl ?? "")
 					.wxmShadow()
+					.onTapGesture {
+						viewModel.handleBoostTap(boost: boost)
+					}
 				}
 			} else {
 				NoBoostsView()

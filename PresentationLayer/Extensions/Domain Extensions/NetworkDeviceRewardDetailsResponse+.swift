@@ -215,3 +215,25 @@ extension NetworkDeviceRewardDetailsResponse {
 		return annotation.message ?? ""
 	}
 }
+
+extension NetworkDeviceRewardDetailsResponse.BoostReward {
+	static var mock: NetworkDeviceRewardDetailsResponse.BoostReward {
+		.init(code: .betaReward,
+			  title: "Beta Reward",
+			  description: "Beta Reward Description",
+			  imageUrl: "https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/12/Home-header-image-1200-x-1200-px-2.png",
+			  docUrl: nil,
+			  actualReward: 0.2442141,
+			  rewardScore: 71,
+			  maxReward: 1.0)
+	}
+
+	func toBoostViewObject(with date: Date?) -> BoostCardView.Boost {
+		.init(title: title ?? "",
+			  reward: actualReward ?? 0.0,
+			  date: date,
+			  score: rewardScore ?? 0,
+			  lostReward: (maxReward ?? 0.0) - (actualReward ?? 0.0),
+			  imageUrl: imageUrl)
+	}
+}

@@ -168,4 +168,8 @@ enum ViewModelsFactory {
 											  refDate: Date) -> RewardAnnotationsViewModel {
 		return RewardAnnotationsViewModel(device: device, annotations: annotations, followState: followState, refDate: refDate)
 	}
+
+	static func getRewardsBoostViewModel(boost: NetworkDeviceRewardDetailsResponse.BoostReward, date: Date?) -> RewardBoostsViewModel {
+		RewardBoostsViewModel(boost: boost, date: date)
+	}
 }

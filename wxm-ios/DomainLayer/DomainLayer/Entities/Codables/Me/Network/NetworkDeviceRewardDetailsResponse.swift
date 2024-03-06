@@ -72,6 +72,17 @@ public extension NetworkDeviceRewardDetailsResponse {
 			case rewardScore = "reward_score"
 			case maxReward = "max_reward"
 		}
+
+		public init(code: BoostCode?, title: String?, description: String?, imageUrl: String?, docUrl: String?, actualReward: Double?, rewardScore: Int?, maxReward: Double?) {
+			self.code = code
+			self.title = title
+			self.description = description
+			self.imageUrl = imageUrl
+			self.docUrl = docUrl
+			self.actualReward = actualReward
+			self.rewardScore = rewardScore
+			self.maxReward = maxReward
+		}
 	}
 }
 

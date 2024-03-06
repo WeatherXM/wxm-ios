@@ -188,6 +188,11 @@ class RewardDetailsViewModel: ObservableObject {
 		self.info = info
 		showInfo = true
 	}
+
+	func handleBoostTap(boost: NetworkDeviceRewardDetailsResponse.BoostReward) {
+		let viewModel = ViewModelsFactory.getRewardsBoostViewModel(boost: boost, date: rewardDetailsResponse?.timestamp)
+		Router.shared.navigateTo(.rewardBoosts(viewModel))
+	}
 }
 
 private extension RewardDetailsViewModel {

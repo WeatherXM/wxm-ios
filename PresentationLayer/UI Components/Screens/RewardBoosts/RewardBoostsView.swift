@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct RewardBoostsView: View {
+	@StateObject var viewModel: RewardBoostsViewModel
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		TrackableScrollView {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				BoostCardView(boost: viewModel.boost)
+			}
+			.padding(CGFloat(.mediumSidePadding))
+		}
     }
 }
 
 #Preview {
-    RewardBoostsView()
+	RewardBoostsView(viewModel: ViewModelsFactory.getRewardsBoostViewModel(boost: .mock,
+																		   date: .now))
 }

@@ -85,7 +85,6 @@ private extension BoostCardView {
 					.foregroundColor(Color(colorEnum: .white))
 				Spacer()
 			}
-
 		}
 	}
 }
