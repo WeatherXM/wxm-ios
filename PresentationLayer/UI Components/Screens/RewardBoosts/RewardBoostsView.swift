@@ -9,27 +9,34 @@ import SwiftUI
 
 struct RewardBoostsView: View {
 	@StateObject var viewModel: RewardBoostsViewModel
+	@EnvironmentObject var navigationObject: NavigationObject
 
     var body: some View {
-		TrackableScrollView { completion in
-			viewModel.refresh(completion: completion)
-		} content: {
-			VStack(spacing: CGFloat(.mediumSpacing)) {
-				BoostCardView(boost: viewModel.boost)
-					.wxmShadow()
-
+		ZStack {
+			Color(colorEnum: .top)
+			TrackableScrollView { completion in
+				viewModel.refresh(completion: completion)
+			} content: {
 				VStack(spacing: CGFloat(.mediumSpacing)) {
-					detailsView
+					BoostCardView(boost: viewModel.boost)
 						.wxmShadow()
 
-					aboutView
-						.wxmShadow()
+					VStack(spacing: CGFloat(.mediumSpacing)) {
+						detailsView
+							.wxmShadow()
+
+						aboutView
+							.wxmShadow()
+					}
 				}
+				.padding(CGFloat(.mediumSidePadding))
 			}
-			.padding(CGFloat(.mediumSidePadding))
+			.spinningLoader(show: .init(get: { viewModel.state == .loading }, set: { _ in }), hideContent: true)
+			.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }), obj: viewModel.failObj)
+			.onAppear {
+				navigationObject.navigationBarColor = Color(colorEnum: .top)
+			}
 		}
-		.spinningLoader(show: .init(get: { viewModel.state == .loading }, set: { _ in }), hideContent: true)
-		.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }), obj: viewModel.failObj)
     }
 }
 
@@ -50,6 +57,7 @@ private extension RewardBoostsView {
 						Text(LocalizableString.Boosts.boostDetailsDescription(details.participationStartDateString, details.participationStopDateString).localized)
 							.font(.system(size: CGFloat(.normalFontSize)))
 							.foregroundColor(Color(.text))
+							.fixedSize(horizontal: false, vertical: true)
 						Spacer()
 					}
 				}
@@ -133,7 +141,9 @@ private extension RewardBoostsView {
 }
 
 #Preview {
-	RewardBoostsView(viewModel: ViewModelsFactory.getRewardsBoostViewModel(boost: .mock,
-																		   device: .mockDevice,
-																		   date: .now))
+	NavigationContainerView {
+		RewardBoostsView(viewModel: ViewModelsFactory.getRewardsBoostViewModel(boost: .mock,
+																			   device: .mockDevice,
+																			   date: .now))
+	}
 }

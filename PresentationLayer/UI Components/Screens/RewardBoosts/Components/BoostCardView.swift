@@ -39,14 +39,16 @@ struct BoostCardView: View {
 
 			bottomView
 		}
+		.padding(CGFloat(.defaultSidePadding))
 		.background {
 			AsyncImage(url: URL(string: boost.imageUrl!)!) { image in
 				image
+					.resizable()
 			} placeholder: {
 				ProgressView()
 			}
 		}
-		.WXMCardStyle()
+		.WXMCardStyle(insideHorizontalPadding: 0.0, insideVerticalPadding: 0.0)
 		.contentShape(Rectangle())
     }
 }
@@ -95,5 +97,6 @@ private extension BoostCardView {
 							   date: .now,
 							   score: 72,
 							   lostReward: 1.4353452,
-							   imageUrl: "https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/12/Home-header-image-1200-x-1200-px-2.png"))
+							   imageUrl: "https://s3-alpha-sig.figma.com/img/eb97/5518/24aa70629514355d092dfc646d9b51bd?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OVc-UV-lBgXfX~Nl1VFoL-JijJx72Wld-L40tKQBLBo2afCyJijAJWkRicakQ~celi0ACIuP8W~N2Ixev1roqtO9JAl2IW0u55fOQdITuhDYq0pcqW-Nen7vzvATzti9A-c-pm6IDE37Md7gc0dYgnM55HhR1GAM4FlEIx4~RWOYmOI5rOgXQl6wN7YCB1gv3WI3JvmA1YgZKxLoei0Adny6PVGOlmQYXacN3WMcy6EfPFUO4rVvk~lrgQIOBJi8bSOnVX8RFHZ0RMW9lPljynCPKgbpuwUl0X6djRmdku-ntEnlCCsFp0LF0d~Y-qEK-edLpT96KdG4MM7TS64Qsg__"))
+	.padding()
 }
