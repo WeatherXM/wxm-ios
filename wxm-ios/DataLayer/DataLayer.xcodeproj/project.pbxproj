@@ -28,6 +28,7 @@
 		264BDA0A298ABF6B005C1F82 /* NordicDFU in Frameworks */ = {isa = PBXBuildFile; productRef = 264BDA09298ABF6B005C1F82 /* NordicDFU */; };
 		264BDA0C298AC792005C1F82 /* FirmwareUpdateImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264BDA0B298AC792005C1F82 /* FirmwareUpdateImpl.swift */; };
 		264BDA11298BA108005C1F82 /* FirmwareUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264BDA10298BA108005C1F82 /* FirmwareUpdater.swift */; };
+		264CC75D2B986F310060DEA4 /* get_reward_boosts.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC75C2B986F310060DEA4 /* get_reward_boosts.json */; };
 		266B01C12B84DED4007AC689 /* get_device_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */; };
 		266B01C52B84E7F6007AC689 /* get_device_rewards_timeline.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01C42B84E7F6007AC689 /* get_device_rewards_timeline.json */; };
 		266B01CF2B861B10007AC689 /* get_device_rewards_summary_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01CE2B861B10007AC689 /* get_device_rewards_summary_empty.json */; };
@@ -109,6 +110,7 @@
 		264710A52A4EF4F700A6C1B9 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		264BDA0B298AC792005C1F82 /* FirmwareUpdateImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateImpl.swift; sourceTree = "<group>"; };
 		264BDA10298BA108005C1F82 /* FirmwareUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareUpdater.swift; sourceTree = "<group>"; };
+		264CC75C2B986F310060DEA4 /* get_reward_boosts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_reward_boosts.json; sourceTree = "<group>"; };
 		266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_summary.json; sourceTree = "<group>"; };
 		266B01C42B84E7F6007AC689 /* get_device_rewards_timeline.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_timeline.json; sourceTree = "<group>"; };
 		266B01CE2B861B10007AC689 /* get_device_rewards_summary_empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_summary_empty.json; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 		2646FCB32995018800EBB61B /* Jsons */ = {
 			isa = PBXGroup;
 			children = (
+				264CC75C2B986F310060DEA4 /* get_reward_boosts.json */,
 				266B01C42B84E7F6007AC689 /* get_device_rewards_timeline.json */,
 				26FFAD922B8E2A5500BF0A6B /* get_reward_details.json */,
 				266B01CE2B861B10007AC689 /* get_device_rewards_summary_empty.json */,
@@ -495,6 +498,7 @@
 				26348E272A4456DD000846C6 /* get_network_search.json in Resources */,
 				2674017A2A386DA700E54E35 /* get_network_stats.json in Resources */,
 				2674EDCE2A3C4C3800616285 /* get_network_stats_alt.json in Resources */,
+				264CC75D2B986F310060DEA4 /* get_reward_boosts.json in Resources */,
 				267A37872AEBEBBA00469126 /* get_user_device_rewards.json in Resources */,
 				26A3B3E02B18E7A50002F35F /* get_user_rewards.json in Resources */,
 				2646FCBB2995018800EBB61B /* get_transactions.json in Resources */,
