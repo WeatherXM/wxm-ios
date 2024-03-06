@@ -102,7 +102,7 @@ public enum BoostCode: Codable, RawRepresentable, Hashable {
 	public var rawValue: String {
 		switch self {
 			case .betaReward:
-				return "beta_reward"
+				return "beta_rewards"
 			case .unknown(let raw):
 				return raw
 		}
