@@ -432,6 +432,39 @@
         }
       }
     },
+    "boosts_daily_boost_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily Boost Score"
+          }
+        }
+      }
+    },
+    "boosts_lost_tokens_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lost %@ $WXM because of data quality score."
+          }
+        }
+      }
+    },
+    "boosts_tokens_earned_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost tokens earned for %@"
+          }
+        }
+      }
+    },
     "cancel" : {
       "extractionState" : "manual",
       "localizations" : {
