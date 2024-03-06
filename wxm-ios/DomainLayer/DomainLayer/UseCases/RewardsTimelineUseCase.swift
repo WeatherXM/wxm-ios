@@ -56,4 +56,19 @@ public class RewardsTimelineUseCase {
 			}.store(in: &cancellableSet)
 		}
 	}
+
+	public func getRewardBoosts(deviceId: String, code: String) async throws -> Result<NetworkDeviceRewardBoostsResponse?, NetworkErrorResponse> {
+		let publisher = try repository.deviceRewardsBoosts(deviceId: deviceId, code: code)
+
+		return await withUnsafeContinuation { continuation in
+			publisher.sink { response in
+
+				if let error = response.error {
+					continuation.resume(returning: .failure(error))
+				} else {
+					continuation.resume(returning: .success(response.value))
+				}
+			}.store(in: &cancellableSet)
+		}
+	}
 }

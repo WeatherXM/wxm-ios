@@ -39,7 +39,6 @@ public extension NetworkDeviceRewardBoostsResponse {
 		public let participationStartDate: Date?
 		public let participationStopDate: Date?
 
-
 		enum CodingKeys: String, CodingKey {
 			case stationHours = "station_hours"
 			case maxDailyReward = "max_daily_reward"

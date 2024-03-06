@@ -12,6 +12,12 @@ extension LocalizableString {
 		case boostTokensEarned(String)
 		case dailyBoostScore
 		case lostTokens(String)
+		case boostDetails
+		case boostDetailsDescription(String, String)
+		case rewardableStationHours
+		case dailyTokensToBeRewarded
+		case totalTokensToBeRewarded
+		case boostPeriod
 	}
 }
 
@@ -19,8 +25,11 @@ extension LocalizableString.Boosts: WXMLocalizable {
 	var localized: String {
 		var localized = NSLocalizedString(key, comment: "")
 		switch self {
-			case .boostTokensEarned(let text), .lostTokens(let text):
+			case .boostTokensEarned(let text), 
+				 .lostTokens(let text):
 				localized = String(format: localized, text)
+			case .boostDetailsDescription(let from, let to):
+				localized = String(format: localized, arguments: [from, to].compactMap { $0 })
 			default: break
 		}
 
@@ -36,6 +45,18 @@ extension LocalizableString.Boosts: WXMLocalizable {
 				"boosts_daily_boost_score"
 			case .lostTokens:
 				"boosts_lost_tokens_format"
+			case .boostDetails:
+				"boosts_boost_details"
+			case .boostDetailsDescription:
+				"boosts_boost_details_decription_format"
+			case .rewardableStationHours:
+				"boosts_rewardable_station_hours"
+			case .dailyTokensToBeRewarded:
+				"boosts_daily_tokens_to_be_rewarded"
+			case .totalTokensToBeRewarded:
+				"boosts_total_tokens_to_be_rewarded"
+			case .boostPeriod:
+				"boosts_boost_period"
 		}
 	}
 }
