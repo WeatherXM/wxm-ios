@@ -54,6 +54,8 @@ extension LocalizableString {
 		case rewardsScore
 		case rewardsMax
 		case rewardsTimelineCaption(String)
+		case proTipTitle
+		case proTipDescription
 	}
 }
 
@@ -175,6 +177,10 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_rewards_max"
 			case .rewardsTimelineCaption:
 				return "station_details_rewards_timeline_caption_format"
+			case .proTipTitle:
+				return "station_details_rewards_pro_tip_title"
+			case .proTipDescription:
+				return "station_details_rewards_pro_tip_description"
 		}
 	}
 }
