@@ -15,9 +15,9 @@ struct RewardFieldView: View {
 
     var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
-			HStack {
+			HStack(spacing: 0.0) {
 				Text(title)
-					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
 
 				Spacer(minLength: 0.0)
 

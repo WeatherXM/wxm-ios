@@ -16,40 +16,9 @@ struct RewardDetailsView: View {
 
     var body: some View {
 		NavigationContainerView {
-			navigationBarRightView
-		} content: {
 			ContentView(viewModel: viewModel)
 		}
     }
-
-	@ViewBuilder
-	var navigationBarRightView: some View {
-		Button {
-			Logger.shared.trackEvent(.userAction, parameters: [.actionName: .rewardDetailsPopUp])
-
-			showPopOverMenu = true
-		} label: {
-			Text(FontIcon.threeDots.rawValue)
-				.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-				.foregroundColor(Color(colorEnum: .primary))
-				.frame(width: 30.0, height: 30.0)
-		}
-		.wxmPopOver(show: $showPopOverMenu) {
-			VStack {
-				Button { [weak viewModel] in
-					showPopOverMenu = false
-					viewModel?.handleReadMoreTap()
-					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .rewardDetailsReadMore])
-				} label: {
-					Text(LocalizableString.RewardDetails.readMore.localized)
-						.font(.system(size: CGFloat(.mediumFontSize)))
-						.foregroundColor(Color(colorEnum: .text))
-				}
-			}
-			.padding()
-			.background(Color(colorEnum: .top).scaleEffect(2.0).ignoresSafeArea())
-		}
-	}
 }
 
 private struct ContentView: View {
@@ -227,7 +196,8 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var locationQualityGrid: some View {
-		LazyVGrid(columns: [.init(), .init()], spacing: CGFloat(.mediumSpacing)) {
+		LazyVGrid(columns: [.init(alignment: .top), .init(alignment: .top)],
+				  spacing: CGFloat(.mediumSpacing)) {
 			if let scoreObject = viewModel.locationQualityScoreObject {
 				RewardFieldView(title: LocalizableString.RewardDetails.locationQuality.localized,
 								score: scoreObject) {
