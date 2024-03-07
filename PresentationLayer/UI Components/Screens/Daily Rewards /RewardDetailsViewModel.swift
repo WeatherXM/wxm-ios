@@ -128,14 +128,6 @@ class RewardDetailsViewModel: ObservableObject {
 		Router.shared.navigateTo(.rewardAnnotations(rewardAnnotationsViewModel))
 	}
 
-	func handleReadMoreTap() {
-		guard let url = URL(string: DisplayedLinks.rewardMechanism.linkURL) else {
-			return
-		}
-
-		UIApplication.shared.open(url)
-	}
-
 	func handleDailyRewardInfoTap() {
 		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.dailyReward.localized,
 								   description: LocalizableString.RewardDetails.dailyRewardInfoDescription.localized,

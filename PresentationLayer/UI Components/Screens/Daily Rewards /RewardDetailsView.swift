@@ -12,7 +12,6 @@ import Toolkit
 struct RewardDetailsView: View {
 
 	@StateObject var viewModel: RewardDetailsViewModel
-	@State private var showPopOverMenu: Bool = false
 
     var body: some View {
 		NavigationContainerView {
