@@ -38,5 +38,16 @@ public extension NetworkDeviceRewardBoostsResponse {
 		public let boostStopDate: Date?
 		public let participationStartDate: Date?
 		public let participationStopDate: Date?
+
+
+		enum CodingKeys: String, CodingKey {
+			case stationHours = "station_hours"
+			case maxDailyReward = "max_daily_reward"
+			case maxTotalReward = "max_total_reward"
+			case boostStartDate = "boost_start_date"
+			case boostStopDate = "boost_stop_date"
+			case participationStartDate = "participation_start_date"
+			case participationStopDate = "participation_stop_date"
+		}
 	}
 }
