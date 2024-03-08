@@ -56,12 +56,6 @@ struct BoostCardView: View {
 					}
 				}
 			}
-//			AsyncImage(url: URL(string: boost.imageUrl!)!) { image in
-//				image
-//					.resizable()
-//			} placeholder: {
-//				ProgressView()
-//			}
 		}
 		.WXMCardStyle(insideHorizontalPadding: 0.0, insideVerticalPadding: 0.0)
 		.contentShape(Rectangle())
@@ -74,7 +68,7 @@ extension BoostCardView {
 		let reward: Double
 		let date: Date?
 		let score: Int?
-		let lostRewardString: String
+		let lostRewardString: String?
 		let imageUrl: String?
 	}
 }
@@ -82,23 +76,25 @@ extension BoostCardView {
 private extension BoostCardView {
 	@ViewBuilder
 	var bottomView: some View {
-		if let score = boost.score {
+		if let score = boost.score,
+		   let lostRewardString = boost.lostRewardString {
 			VStack(spacing: CGFloat(.smallSpacing)) {
 				HStack {
 					Text(LocalizableString.Boosts.dailyBoostScore.localized)
 						.font(.system(size: CGFloat(.normalFontSize)))
 						.foregroundColor(Color(colorEnum: .white))
+					
 					Spacer()
 					
 					Text(LocalizableString.percentage(Float(score)).localized)
 						.font(.system(size: CGFloat(.normalFontSize)))
 						.foregroundColor(Color(colorEnum: .white))
 				}
-				
+
 				Divider().overlay(Color(colorEnum: .top))
-				
+
 				HStack {
-					Text(boost.lostRewardString)
+					Text(lostRewardString)
 						.font(.system(size: CGFloat(.normalFontSize)))
 						.foregroundColor(Color(colorEnum: .white))
 					Spacer()
