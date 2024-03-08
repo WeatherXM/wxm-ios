@@ -443,8 +443,8 @@ public enum ParameterValue: RawRepresentable {
 				return "max_rewards"
 			case .timeline:
 				return "timeline"
-			case .rewardDetailsError:
-				return "Reward Details Error"
+			case .rewardIssuesError:
+				return "Reward Issues Error"
 			case .identifyProblems:
 				return "Indentify Problems"
 			case .deviceRewards:
@@ -621,7 +621,7 @@ public enum ParameterValue: RawRepresentable {
 	case rewardsScore
 	case maxRewards
 	case timeline
-	case rewardDetailsError
+	case rewardIssuesError
 	case infoDailyRewards
 	case infoQod
 	case infoPol
