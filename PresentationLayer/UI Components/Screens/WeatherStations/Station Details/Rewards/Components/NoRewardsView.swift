@@ -27,7 +27,6 @@ struct NoRewardsView: View {
 				LottieView(animationCase: animation.animationString,
 						   loopMode: .loop)
 				.frame(width: iconDimensions, height: iconDimensions)
-				.id(animation.animationString)
 
 				VStack(spacing: CGFloat(.smallSpacing)) {
 					Text(LocalizableString.StationDetails.noRewardsTitle.localized)
