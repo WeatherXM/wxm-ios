@@ -50,6 +50,7 @@ public enum Screen: String {
 	case dataQualityInfo = "Data Quality info"
 	case locationQualityInfo = "Location Quality info"
 	case cellRankingInfo = "Cell ranking info"
+	case rewardIssues = "Reward Issues"
 }
 
 public enum Event: String, CustomStringConvertible {
