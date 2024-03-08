@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NukeUI
 
 struct BoostsView: View {
 	let title: String
@@ -36,11 +37,12 @@ struct BoostsView: View {
 		}
 		.padding(CGFloat(.defaultSidePadding))
 		.background {
-			AsyncImage(url: URL(string: imageUrl)!) { image in
-				image
-					.resizable()
-			} placeholder: {
-				ProgressView()
+			LazyImage(url: URL(string: imageUrl)) { state in
+				if let image = state.image {
+					image.resizable()
+				} else {
+					ProgressView()
+				}
 			}
 		}
 		.WXMCardStyle(insideHorizontalPadding: 0.0, insideVerticalPadding: 0.0)

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NukeUI
 
 struct BoostCardView: View {
 	let boost: Boost
@@ -41,12 +42,19 @@ struct BoostCardView: View {
 		}
 		.padding(CGFloat(.defaultSidePadding))
 		.background {
-			AsyncImage(url: URL(string: boost.imageUrl!)!) { image in
-				image
-					.resizable()
-			} placeholder: {
-				ProgressView()
+			LazyImage(url: URL(string: boost.imageUrl!)) { state in
+				if let image = state.image {
+					image.resizable()
+				} else {
+					ProgressView()
+				}
 			}
+//			AsyncImage(url: URL(string: boost.imageUrl!)!) { image in
+//				image
+//					.resizable()
+//			} placeholder: {
+//				ProgressView()
+//			}
 		}
 		.WXMCardStyle(insideHorizontalPadding: 0.0, insideVerticalPadding: 0.0)
 		.contentShape(Rectangle())
