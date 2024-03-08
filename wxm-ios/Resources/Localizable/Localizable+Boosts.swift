@@ -13,6 +13,7 @@ extension LocalizableString {
 		case dailyBoostScore
 		case lostTokens(String)
 		case lostTokensBecauseOfQod(String)
+		case gotAllBetaRewards
 		case boostDetails
 		case boostDetailsDescription(String, String)
 		case rewardableStationHours
@@ -49,6 +50,8 @@ extension LocalizableString.Boosts: WXMLocalizable {
 				"boosts_lost_tokens_format"
 			case .lostTokensBecauseOfQod:
 				"boosts_lost_tokens_because_of_qod_format"
+			case .gotAllBetaRewards:
+				"boosts_got_all_beta_rewards"
 			case .boostDetails:
 				"boosts_boost_details"
 			case .boostDetailsDescription:

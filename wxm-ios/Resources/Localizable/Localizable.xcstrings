@@ -487,6 +487,17 @@
         }
       }
     },
+    "boosts_got_all_beta_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Great! Got all beta rewards for this day!"
+          }
+        }
+      }
+    },
     "boosts_lost_tokens_because_of_qod_format" : {
       "extractionState" : "manual",
       "localizations" : {
