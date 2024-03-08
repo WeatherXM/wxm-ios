@@ -43,18 +43,6 @@ extension RewardAnnotation.Severity: Comparable {
 	}
 }
 
-extension DeviceAnnotations {
-	func getAnnotationsList(for rewardScore: Int) -> [DeviceAnnotation] {
-		var showQod = true
-		if let threshold = RemoteConfigManager.shared.rewardsHideAnnotationThreshold {
-			showQod = rewardScore < threshold
-		}
-
-		let qod = showQod ? self.qod : []
-		return [qod, pol, rm].compactMap { $0 }.flatMap { $0 }.compactMap { $0.annotation != nil ? $0 : nil }
-	}
-}
-
 extension DeviceAnnotation {
 
 	var affectedFieldsListString: String {

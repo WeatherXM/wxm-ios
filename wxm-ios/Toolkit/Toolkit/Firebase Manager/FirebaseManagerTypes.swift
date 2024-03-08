@@ -29,7 +29,6 @@ protocol RemoteConfigManagerImplementation: AnyObject {
 
 public enum RemoteConfigKey: String, CaseIterable {
 	case iosTestIntegration = "ios_test_integration"
-	case rewardsHideAnnotationThreshold = "rewards_hide_annotation_threshold"
 	case iosAppChangelog = "ios_app_changelog"
 	case iosAppLatestVersion = "ios_app_latest_version"
 	case iosAppMinimumVersion = "ios_app_minimum_version"
@@ -40,8 +39,6 @@ public enum RemoteConfigKey: String, CaseIterable {
 		switch self {
 			case .iosTestIntegration:
 				return "-" as NSObject
-			case .rewardsHideAnnotationThreshold:
-				return NSNumber(integerLiteral: 100)
 			case .iosAppChangelog:
 				return "-" as NSObject
 			case .iosAppLatestVersion:
