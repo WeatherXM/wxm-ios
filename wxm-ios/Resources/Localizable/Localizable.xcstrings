@@ -487,13 +487,24 @@
         }
       }
     },
-    "boosts_lost_tokens_format" : {
+    "boosts_lost_tokens_because_of_qod_format" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lost %@ $WXM because of data quality score."
+          }
+        }
+      }
+    },
+    "boosts_lost_tokens_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lost %@ $WXM"
           }
         }
       }
