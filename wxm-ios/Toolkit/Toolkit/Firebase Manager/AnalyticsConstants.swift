@@ -40,12 +40,16 @@ public enum Screen: String {
     case claimDeviceTypeSelection = "Claim device type selection"
     case changeStationName = "Change Station Name"
     case changeFrequency = "Change Frequency"
-    case rebootStation = "Reboot Station"
+    case rebootStation = "RDaily Reward infoeboot Station"
     case explorerCellScreen = "Explorer Cell Screen"
     case networkStats = "Network Stats"
     case explorerSearch = "Explorer Search"
     case sortFilter = "Sort Filter"
 	case deviceRewardsDetails = "Device Rewards Details"
+	case dailyRewardInfo = "Daily Reward info"
+	case dataQualityInfo = "Data Quality info"
+	case locationQualityInfo = "Location Quality info"
+	case cellRankingInfo = "Cell ranking info"
 }
 
 public enum Event: String, CustomStringConvertible {

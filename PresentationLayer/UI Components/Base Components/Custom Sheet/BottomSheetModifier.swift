@@ -133,6 +133,11 @@ extension View {
 			}
 			.padding(CGFloat(.largeSidePadding))
 		}
+		.onAppear {
+			if let screen = info?.analyticsScreen {
+				Logger.shared.trackScreen(screen)
+			}
+		}
 	}
 }
 
@@ -140,6 +145,7 @@ struct BottomSheetInfo {
 	let title: String?
 	let description: String?
 	var scrollable: Bool = false
+	var analyticsScreen: Screen? = nil
 	var buttonTitle: String? = nil
 	var buttonAction: VoidCallback? = nil
 }
