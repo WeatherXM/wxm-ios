@@ -446,6 +446,16 @@ public enum ParameterValue: RawRepresentable {
 				return "Device Rewards"
 			case .deviceRewardTransactions:
 				return "Device Rewards Transactions"
+			case .infoDailyRewards:
+				return "info_daily_rewards"
+			case .infoQod:
+				return "info_qod"
+			case .infoPol:
+				return "info_pol"
+			case .infoCellposition:
+				return "info_cell_position"
+			case .webDocumentation:
+				return "Web Documentation"
 		}
     }
 
@@ -607,5 +617,10 @@ public enum ParameterValue: RawRepresentable {
 	case maxRewards
 	case timeline
 	case rewardDetailsError
+	case infoDailyRewards
+	case infoQod
+	case infoPol
+	case infoCellposition
+	case webDocumentation
     case custom(String)
 }

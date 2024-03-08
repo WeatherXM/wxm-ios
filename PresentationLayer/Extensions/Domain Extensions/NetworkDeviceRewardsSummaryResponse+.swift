@@ -7,6 +7,7 @@
 
 import DomainLayer
 import UIKit
+import Toolkit
 
 extension NetworkDeviceRewardsSummaryResponse {
 	var isEmpty: Bool {
@@ -111,7 +112,7 @@ extension RewardAnnotation {
 		guard let group else {
 			return
 		}
-
+		
 		let isOwned = followState?.relation == .owned
 
 		switch group {
@@ -121,6 +122,9 @@ extension RewardAnnotation {
 				} else if let docUrl,
 				   let url = URL(string: docUrl) {
 					UIApplication.shared.open(url)
+
+					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
+																		  .itemId: .custom(docUrl)])
 				}
 			case .locationNotVerified:
 				if isOwned {
@@ -131,11 +135,17 @@ extension RewardAnnotation {
 				} else if let docUrl,
 						  let url = URL(string: docUrl) {
 					 UIApplication.shared.open(url)
+
+					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
+																		  .itemId: .custom(docUrl)])
 				 }
 			default:
 				if let docUrl,
 				   let url = URL(string: docUrl) {
 					UIApplication.shared.open(url)
+
+					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
+																		  .itemId: .custom(docUrl)])
 				}
 		}
 	}
