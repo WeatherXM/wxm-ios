@@ -185,6 +185,7 @@ class ExplorerStationsListViewModel: ObservableObject {
 		let info = BottomSheetInfo(title: LocalizableString.ExplorerList.cellCapacity.localized,
 								   description: LocalizableString.ExplorerList.cellCapacityDescription.localized,
 								   scrollable: true,
+								   analyticsScreen: .cellCapacityInfo,
 								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
 			guard let url = URL(string: DisplayedLinks.cellCapacity.linkURL) else {
 				return
@@ -194,6 +195,8 @@ class ExplorerStationsListViewModel: ObservableObject {
 		}
 		self.info = info
 		showInfo = true
+
+		Logger.shared.trackEvent(.selectContent, parameters: [.itemId: .infoDailyRewards])
 	}
 }
 

@@ -52,6 +52,7 @@ public enum Screen: String {
 	case cellRankingInfo = "Cell ranking info"
 	case rewardIssues = "Reward Issues"
 	case boostDetails = "Boost Detail"
+	case cellCapacityInfo = "Cell Capacity info"
 }
 
 public enum Event: String, CustomStringConvertible {
@@ -460,6 +461,8 @@ public enum ParameterValue: RawRepresentable {
 				return "info_pol"
 			case .infoCellposition:
 				return "info_cell_position"
+			case .infoCellCapacity:
+				return "info_cell_capacity"
 			case .webDocumentation:
 				return "Web Documentation"
 		}
@@ -627,6 +630,7 @@ public enum ParameterValue: RawRepresentable {
 	case infoQod
 	case infoPol
 	case infoCellposition
+	case infoCellCapacity
 	case webDocumentation
     case custom(String)
 }
