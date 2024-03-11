@@ -131,7 +131,7 @@ private extension ContentView {
 						.lineLimit(1)
 
 					Button {
-						viewModel.handleInfoTap()
+						viewModel.handleCellCapacityInfoTap()
 					} label: {
 						Text(FontIcon.infoCircle.rawValue)
 							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))

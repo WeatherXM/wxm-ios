@@ -181,10 +181,10 @@ class ExplorerStationsListViewModel: ObservableObject {
         showLoginAlert = true
     }
 
-	func handleInfoTap() {
+	func handleCellCapacityInfoTap() {
 		let info = BottomSheetInfo(title: LocalizableString.ExplorerList.cellCapacity.localized,
 								   description: LocalizableString.ExplorerList.cellCapacityDescription.localized,
-								   scrollable: true,								   
+								   scrollable: true,
 								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
 			guard let url = URL(string: DisplayedLinks.cellCapacity.linkURL) else {
 				return
