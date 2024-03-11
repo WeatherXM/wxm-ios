@@ -34,4 +34,8 @@ struct ParameterConstants {
 		static let lat = "lat"
 		static let lon = "lon"
     }
+
+	enum Devices {
+		static let date = "date"
+	}
 }

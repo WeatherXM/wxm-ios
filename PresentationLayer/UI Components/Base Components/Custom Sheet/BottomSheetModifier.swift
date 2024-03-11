@@ -89,7 +89,7 @@ extension View {
     }
 
 	@ViewBuilder
-	func bottomInfoView(info: (title: String?, description: String)?) -> some View {
+	func bottomInfoView(info: BottomSheetInfo?) -> some View {
 		ZStack {
 			Color(colorEnum: .layer1)
 				.ignoresSafeArea()
@@ -107,15 +107,39 @@ extension View {
 					}
 
 					HStack {
-						Text(info.description.attributedMarkdown ?? "")
+						Text(info.description?.attributedMarkdown ?? "")
 							.font(.system(size: CGFloat(.mediumFontSize)))
 							.foregroundColor(Color(colorEnum: .text))
 
 						Spacer()
+					}
+					.modify { view in
+						if info.scrollable == true {
+							ScrollView(showsIndicators: false) {
+								view
+							}
+						} else {
+							view
+						}
+					}
+
+					if let buttonTitle = info.buttonTitle, let buttonAction = info.buttonAction {
+						Button(action: buttonAction) {
+							Text(buttonTitle)
+						}
+						.buttonStyle(WXMButtonStyle.transparent)
 					}
 				}
 			}
 			.padding(CGFloat(.largeSidePadding))
 		}
 	}
+}
+
+struct BottomSheetInfo {
+	let title: String?
+	let description: String?
+	var scrollable: Bool = false
+	var buttonTitle: String? = nil
+	var buttonAction: VoidCallback? = nil
 }

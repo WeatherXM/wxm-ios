@@ -106,8 +106,13 @@ final class RewardsTimelineViewModel: ObservableObject {
 														   .contentType: .deviceRewardTransactions,
 														   .itemId: .custom(itemId)])
 
+		guard let timestamp = reward.timestamp else {
+			return
+		}
+
 		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
-																	followState: followState)
+																	followState: followState,
+																	date: timestamp)
 		Router.shared.navigateTo(.rewardDetails(viewModel))
 	}
 }

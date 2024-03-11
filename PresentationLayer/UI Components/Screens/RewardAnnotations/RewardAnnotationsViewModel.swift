@@ -25,72 +25,16 @@ class RewardAnnotationsViewModel: ObservableObject {
 	}
 
 	func annotationActionButtonTile(for annotation: RewardAnnotation?) -> String? {
-		guard let group = annotation?.group else {
-			return nil
-		}
-
-		let isOwned = followState?.relation == .owned
-		switch group {
-			case .noWallet:
-				if MainScreenViewModel.shared.isWalletMissing, isOwned {
-					return LocalizableString.RewardDetails.noWalletProblemButtonTitle.localized
-				} else if annotation?.docUrl != nil {
-					return LocalizableString.RewardDetails.readMore.localized
-				}
-				return nil
-			case .locationNotVerified:
-				if isOwned {
-					return LocalizableString.RewardDetails.editLocation.localized
-				} else if annotation?.docUrl != nil {
-					return LocalizableString.RewardDetails.readMore.localized
-				}
-				return nil
-			case .unknown:
-				if annotation?.docUrl != nil {
-					return LocalizableString.RewardDetails.readMore.localized
-				}
-				return nil
-		}
+		annotation?.annotationActionButtonTile(with: followState)
 	}
 
 	func handleButtonTap(for error: RewardAnnotation) {
 		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .rewardDetailsError,
 														   .itemId: .custom(error.group?.rawValue ?? "")])
-		handleRewardAnnotation(annotation: error)
+		
+		error.handleRewardAnnotationTap(with: device, followState: followState)
 	}
 
-	func handleRewardAnnotation(annotation: RewardAnnotation) {
-		guard let group = annotation.group else {
-			return
-		}
-
-		let isOwned = followState?.relation == .owned
-
-		switch group {
-			case .noWallet:
-				if MainScreenViewModel.shared.isWalletMissing, isOwned {
-					Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
-				} else if let docUrl = annotation.docUrl,
-				   let url = URL(string: docUrl) {
-					UIApplication.shared.open(url)
-				}
-			case .locationNotVerified:
-				if isOwned {
-					let viewModel = ViewModelsFactory.getSelectLocationViewModel(device: device,
-																				 followState: followState,
-																				 delegate: nil)
-					Router.shared.navigateTo(.selectStationLocation(viewModel))
-				} else if let docUrl = annotation.docUrl,
-						  let url = URL(string: docUrl) {
-					 UIApplication.shared.open(url)
-				 }
-			case .unknown:
-				if let docUrl = annotation.docUrl,
-				   let url = URL(string: docUrl) {
-					UIApplication.shared.open(url)
-				}
-		}
-	}
 }
 
 extension RewardAnnotationsViewModel: HashableViewModel {

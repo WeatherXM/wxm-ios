@@ -6,6 +6,7 @@
 //
 
 import DomainLayer
+import UIKit
 
 extension NetworkDeviceRewardsSummaryResponse {
 	var isEmpty: Bool {
@@ -76,8 +77,69 @@ extension RewardAnnotation {
 				return .error
 		}
 	}
-}
 
+	func annotationActionButtonTile(with followState: UserDeviceFollowState?) -> String? {
+		guard let group else {
+			return nil
+		}
+
+		let isOwned = followState?.relation == .owned
+		switch group {
+			case .noWallet:
+				if MainScreenViewModel.shared.isWalletMissing, isOwned {
+					return LocalizableString.RewardDetails.noWalletProblemButtonTitle.localized
+				} else if docUrl != nil {
+					return LocalizableString.RewardDetails.readMore.localized
+				}
+				return nil
+			case .locationNotVerified:
+				if isOwned {
+					return LocalizableString.RewardDetails.editLocation.localized
+				} else if docUrl != nil {
+					return LocalizableString.RewardDetails.readMore.localized
+				}
+				return nil
+			default:
+				if docUrl != nil {
+					return LocalizableString.RewardDetails.readMore.localized
+				}
+				return nil
+		}
+	}
+
+	func handleRewardAnnotationTap(with device: DeviceDetails, followState: UserDeviceFollowState?) {
+		guard let group else {
+			return
+		}
+
+		let isOwned = followState?.relation == .owned
+
+		switch group {
+			case .noWallet:
+				if MainScreenViewModel.shared.isWalletMissing, isOwned {
+					Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
+				} else if let docUrl,
+				   let url = URL(string: docUrl) {
+					UIApplication.shared.open(url)
+				}
+			case .locationNotVerified:
+				if isOwned {
+					let viewModel = ViewModelsFactory.getSelectLocationViewModel(device: device,
+																				 followState: followState,
+																				 delegate: nil)
+					Router.shared.navigateTo(.selectStationLocation(viewModel))
+				} else if let docUrl,
+						  let url = URL(string: docUrl) {
+					 UIApplication.shared.open(url)
+				 }
+			default:
+				if let docUrl,
+				   let url = URL(string: docUrl) {
+					UIApplication.shared.open(url)
+				}
+		}
+	}
+}
 
 extension NetworkDeviceRewardsSummaryTimelineEntry {
 	var toWeeklyEntry: WeeklyStreakView.Entry? {

@@ -12,44 +12,12 @@ import Toolkit
 struct RewardDetailsView: View {
 
 	@StateObject var viewModel: RewardDetailsViewModel
-	@State private var showPopOverMenu: Bool = false
 
     var body: some View {
 		NavigationContainerView {
-			navigationBarRightView
-		} content: {
 			ContentView(viewModel: viewModel)
 		}
     }
-
-	@ViewBuilder
-	var navigationBarRightView: some View {
-		Button {
-			Logger.shared.trackEvent(.userAction, parameters: [.actionName: .rewardDetailsPopUp])
-
-			showPopOverMenu = true
-		} label: {
-			Text(FontIcon.threeDots.rawValue)
-				.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-				.foregroundColor(Color(colorEnum: .primary))
-				.frame(width: 30.0, height: 30.0)
-		}
-		.wxmPopOver(show: $showPopOverMenu) {
-			VStack {
-				Button { [weak viewModel] in
-					showPopOverMenu = false
-					viewModel?.handleReadMoreTap()
-					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .rewardDetailsReadMore])
-				} label: {
-					Text(LocalizableString.RewardDetails.readMore.localized)
-						.font(.system(size: CGFloat(.mediumFontSize)))
-						.foregroundColor(Color(colorEnum: .text))
-				}
-			}
-			.padding()
-			.background(Color(colorEnum: .top).scaleEffect(2.0).ignoresSafeArea())
-		}
-	}
 }
 
 private struct ContentView: View {
@@ -64,48 +32,224 @@ private struct ContentView: View {
 	@ViewBuilder
 	var content: some View {
 		ZStack {
-			Color(colorEnum: .bg)
+			Color(colorEnum: .top)
 				.ignoresSafeArea()
 
-			TrackableScrollView {
+			TrackableScrollView { completion in
+				viewModel.refresh(completion: completion)
+			} content: {
 				VStack(spacing: CGFloat(.defaultSpacing)) {
+					titleView
 
-					if viewModel.followState?.relation == .owned {
-						Button {
-							viewModel.handleContactSupportTap()
-						} label: {
-							Text(LocalizableString.RewardDetails.contactSupportButtonTitle.localized)
-						}
-						.buttonStyle(WXMButtonStyle.solid)
-					}
+					issuesView
+
+					baseRewardView
+
+					boostsView
 				}
 				.iPadMaxWidth()
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
+				.padding(.bottom, CGFloat(.smallSidePadding))
 			}
+			.spinningLoader(show: .init(get: { viewModel.state == .loading }, set: { _ in }),
+							hideContent: true)
+			.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }), 
+				  obj: viewModel.failObj)
 			.onAppear {
-				navigationObject.title = LocalizableString.RewardDetails.title.localized
-				navigationObject.subtitle = viewModel.device.displayName
 				navigationObject.titleColor = Color(colorEnum: .text)
-				navigationObject.navigationBarColor = Color(colorEnum: .bg)
+				navigationObject.navigationBarColor = Color(colorEnum: .top)
 
 				Logger.shared.trackScreen(.deviceRewardsDetails)
 			}
 		}
+		.bottomSheet(show: $viewModel.showInfo) {
+			bottomInfoView(info: viewModel.info)
+		}
 	}
-}
 
-private extension ContentView {
 	@ViewBuilder
-	func errorActionView(for error: RewardAnnotation) -> some View {
-		if let title = viewModel.annotationActionButtonTile(for: error) {
-			Button {
-				viewModel.handleButtonTap(for: error)
-			} label: {
-				Text(title)
+	var titleView: some View {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			VStack(spacing: 0.0) {
+				HStack {
+					Text(LocalizableString.RewardDetails.dailyReward.localized)
+						.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+						.foregroundColor(Color(.text))
+
+					Button {
+						viewModel.handleDailyRewardInfoTap()
+					} label: {
+						Text(FontIcon.infoCircle.rawValue)
+							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+							.foregroundColor(Color(.text))
+					}
+
+					Spacer()
+				}
+				
+				HStack {
+					Text(viewModel.dateString)
+						.font(.system(size: CGFloat(.normalFontSize)))
+						.foregroundColor(Color(.darkGrey))
+					Spacer()
+				}
 			}
-			.buttonStyle(WXMButtonStyle.transparent)
+
+			if let rewards = viewModel.rewardDetailsResponse?.totalDailyReward {
+				HStack {
+					Text("+ \(rewards.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
+						.lineLimit(1)
+						.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
+						.foregroundColor(Color(colorEnum: .darkestBlue))
+
+					Spacer()
+				}
+			}
+
+		}
+	}
+
+	@ViewBuilder
+	var issuesView: some View {
+		if let mainAnnotation = viewModel.rewardDetailsResponse?.mainAnnotation {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				VStack(spacing: CGFloat(.minimumSpacing)) {
+					HStack {
+						Text(LocalizableString.RewardDetails.issues.localized)
+							.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+							.foregroundColor(Color(.text))
+						Spacer()
+					}
+
+					if let subtitle = viewModel.issuesSubtitle()?.attributedMarkdown {
+						HStack {
+							Text(subtitle)
+								.font(.system(size: CGFloat(.normalFontSize)))
+								.foregroundColor(Color(.darkGrey))
+								.fixedSize(horizontal: false, vertical: true)
+							Spacer()
+						}
+					}
+				}
+
+
+				CardWarningView(type: mainAnnotation.warningType ?? .warning,
+								showIcon: false,
+								title: mainAnnotation.title ?? "",
+								message: mainAnnotation.message ?? "",
+								showBorder: true,
+								closeAction: nil) {
+					Button {
+						viewModel.handleIssueButtonTap()
+					} label: {
+						Text(viewModel.issuesButtonTitle() ?? "")
+					}
+					.buttonStyle(WXMButtonStyle.transparent)
+					.padding(.top, CGFloat(.smallSidePadding))
+				}.wxmShadow()
+			}
 		} else {
 			EmptyView()
+		}
+	}
+
+	@ViewBuilder
+	var baseRewardView: some View {
+		if let base = viewModel.rewardDetailsResponse?.base {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				VStack(spacing: CGFloat(.minimumSpacing)) {
+					HStack {
+						Text(LocalizableString.StationDetails.baseReward.localized)
+							.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+							.foregroundColor(Color(.text))
+						Spacer()
+					}
+
+					if let subtitle = viewModel.baseRewardSubtitle()?.attributedMarkdown {
+						HStack {
+							Text(subtitle)
+								.font(.system(size: CGFloat(.normalFontSize)))
+								.foregroundColor(Color(.darkGrey))
+								.fixedSize(horizontal: false, vertical: true)
+							Spacer()
+						}
+					}
+				}
+
+				VStack(spacing: CGFloat(.mediumSpacing)) {
+					if let scoreObject = viewModel.dataQualityScoreObject {
+						RewardFieldView(title: LocalizableString.RewardDetails.dataQuality.localized,
+										score: scoreObject) {
+							viewModel.handleDataQualityInfoTap()
+						}
+										.wxmShadow()
+					}
+
+					locationQualityGrid
+				}
+			}
+		} else{
+			EmptyView()
+		}
+	}
+
+	@ViewBuilder
+	var locationQualityGrid: some View {
+		LazyVGrid(columns: [.init(alignment: .top), .init(alignment: .top)],
+				  spacing: CGFloat(.mediumSpacing)) {
+			if let scoreObject = viewModel.locationQualityScoreObject {
+				RewardFieldView(title: LocalizableString.RewardDetails.locationQuality.localized,
+								score: scoreObject) {
+					viewModel.handleLocationQualityInfoTap()
+				}
+								.wxmShadow()
+			}
+
+			if let scoreObject = viewModel.cellPositionScoreObject {
+				RewardFieldView(title: LocalizableString.RewardDetails.cellPosition.localized,
+								score: scoreObject) {
+					viewModel.handleCellPositionInfoTap()
+				}
+								.wxmShadow()
+			}
+		}
+	}
+
+	@ViewBuilder
+	var boostsView: some View {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			VStack(spacing: CGFloat(.minimumSpacing)) {
+				HStack {
+					Text(LocalizableString.RewardDetails.activeBoosts.localized)
+						.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+						.foregroundColor(Color(.text))
+					Spacer()
+				}
+
+				if let subtitle = viewModel.boostsSubtitle()?.attributedMarkdown {
+					HStack {
+						Text(subtitle)
+							.font(.system(size: CGFloat(.normalFontSize)))
+							.foregroundColor(Color(.darkGrey))
+							.fixedSize(horizontal: false, vertical: true)
+						Spacer()
+					}
+				}
+			}
+
+			if let data = viewModel.rewardDetailsResponse?.boost?.data,
+			   !data.isEmpty {
+				ForEach(data, id: \.code) { boost in
+					BoostsView(title: boost.title ?? "",
+							   description: boost.description ?? "",
+							   rewards: boost.actualReward ?? 0.0,
+							   imageUrl: boost.imageUrl ?? "")
+					.wxmShadow()
+				}
+			} else {
+				NoBoostsView()
+					.wxmShadow()
+			}
 		}
 	}
 }
@@ -116,6 +260,7 @@ private extension ContentView {
 		Color(colorEnum: .bg)
 		RewardDetailsView(viewModel: .init(device: device,
 										   followState: .init(deviceId: device.id!, relation: .owned),
+										   date: .now,
 										   tokenUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!))
 	}
 }
