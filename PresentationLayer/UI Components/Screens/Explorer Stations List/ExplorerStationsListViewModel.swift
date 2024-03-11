@@ -33,6 +33,9 @@ class ExplorerStationsListViewModel: ObservableObject {
 
 		return LocalizableString.presentStations(count).localized
 	}
+	var cellShareUrl: String {
+		DisplayedLinks.shareCells.linkURL + cellIndex
+	}
 
     let cellIndex: String
     private let useCase: ExplorerUseCase?

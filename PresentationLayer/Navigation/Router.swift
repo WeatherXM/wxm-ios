@@ -190,9 +190,7 @@ extension Route {
 					ResetPasswordView(viewModel: resetPassViewModel)
 				}
 			case .explorerList(let explorerListViewModel):
-				NavigationContainerView {
-					ExplorerStationsListView(viewModel: explorerListViewModel)
-				}
+				ExplorerStationsListView(viewModel: explorerListViewModel)
 			case .rewardDetails(let rewardDetailsViewModel):
 				RewardDetailsView(viewModel: rewardDetailsViewModel)
 			case .webView(let title, let url, let params, let callback):
