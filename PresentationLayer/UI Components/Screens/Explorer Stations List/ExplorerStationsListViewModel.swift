@@ -20,6 +20,19 @@ class ExplorerStationsListViewModel: ObservableObject {
     @Published private(set) var userDeviceFolowStates: [UserDeviceFollowState] = []
     var deviceListFailObject: FailSuccessStateObject?
     var alertConfiguration: WXMAlertConfiguration?
+	var activeStationsString: String? {
+		let count = devices.filter { $0.isActive }.count
+		guard count > 0 else {
+			return nil
+		}
+
+		return count == 1 ? LocalizableString.activeStation(count).localized : LocalizableString.activeStations(count).localized
+	}
+	var stationsCountString: String {
+		let count = devices.count
+
+		return LocalizableString.presentStations(count).localized
+	}
 
     let cellIndex: String
     private let useCase: ExplorerUseCase?
@@ -176,7 +189,7 @@ private extension ExplorerStationsListViewModel {
                 switch result {
                     case let .success(devices):
                         self.devices = devices.sortedByCriteria(criterias: [ { $0.lastActiveAt.stringToDate() > $1.lastActiveAt.stringToDate() }, { $0.name > $1.name }])
-                        self.address = devices.first?.address ?? ""
+                        self.address = devices.first?.address
                         self.refreshFollowStates()
                     case let .failure(error):
                         print(error)

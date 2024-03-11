@@ -19,6 +19,8 @@ struct ExplorerStationsListView: View {
                 .ignoresSafeArea()
 
             VStack {
+				titleView
+
                 TrackableScrollView {
 					AdaptiveGridContainerView {
 						ForEach(viewModel.devices) { device in
@@ -56,16 +58,70 @@ struct ExplorerStationsListView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
-            navigationObject.title = LocalizableString.NetStats.weatherStations.localized
-            navigationObject.navigationBarColor = Color(colorEnum: .layer2)
+            navigationObject.navigationBarColor = Color(colorEnum: .top)
 
             Logger.shared.trackScreen(.explorerCellScreen,
                                       parameters: [.itemId: .custom(viewModel.cellIndex)])
         }
-        .onChange(of: viewModel.address) { newValue in
-            navigationObject.subtitle = newValue ?? ""
-        }
     }
+}
+
+private extension ExplorerStationsListView {
+	@ViewBuilder var titleView: some View {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			if let address = viewModel.address {
+				HStack {
+					Text(address)
+						.foregroundColor(Color(.text))
+						.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+
+					Spacer()
+				}
+			}
+
+			HStack(spacing: CGFloat(.minimumSpacing)) {
+				if let activeStationsString = viewModel.activeStationsString {
+					HStack(spacing: CGFloat(.smallSpacing)) {
+						Text(activeStationsString)
+							.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+							.foregroundColor(Color(colorEnum: .text))
+							.lineLimit(1)
+					}
+					.WXMCardStyle(backgroundColor: Color(colorEnum: .successTint),
+								  insideHorizontalPadding: CGFloat(.smallToMediumSidePadding),
+								  insideVerticalPadding: CGFloat(.smallSidePadding),
+								  cornerRadius: CGFloat(.buttonCornerRadius))
+				}
+
+				HStack(spacing: CGFloat(.smallSpacing)) {
+					Text(viewModel.stationsCountString)
+						.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+						.foregroundColor(Color(colorEnum: .text))
+						.lineLimit(1)
+
+					Button {
+
+					} label: {
+						Text(FontIcon.infoCircle.rawValue)
+							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+							.foregroundColor(Color(colorEnum: .text))
+					}
+
+				}
+				.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+							  insideHorizontalPadding: CGFloat(.smallToMediumSidePadding),
+							  insideVerticalPadding: CGFloat(.smallSidePadding),
+							  cornerRadius: CGFloat(.buttonCornerRadius))
+
+				Spacer()
+			}
+		}
+		.padding(.horizontal, CGFloat(.defaultSidePadding))
+		.padding(.bottom, CGFloat(.mediumSidePadding))
+		.background(Color(colorEnum: .top))
+		.cornerRadius(CGFloat(.cardCornerRadius),
+					  corners: [.bottomLeft, .bottomRight])
+	}
 }
 
 #Preview {

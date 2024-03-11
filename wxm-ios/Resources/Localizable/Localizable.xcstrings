@@ -102,6 +102,28 @@
         }
       }
     },
+    "active_station_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d active station"
+          }
+        }
+      }
+    },
+    "active_stations_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d active stations"
+          }
+        }
+      }
+    },
     "add_wallet_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4570,6 +4592,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Precipitation Rate"
+          }
+        }
+      }
+    },
+    "present_stations_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d/10 stations present"
           }
         }
       }
