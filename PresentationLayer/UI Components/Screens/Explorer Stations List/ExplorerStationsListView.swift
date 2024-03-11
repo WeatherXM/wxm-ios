@@ -91,6 +91,9 @@ private struct ContentView: View {
             Logger.shared.trackScreen(.explorerCellScreen,
                                       parameters: [.itemId: .custom(viewModel.cellIndex)])
         }
+		.bottomSheet(show: $viewModel.showInfo) {
+			bottomInfoView(info: viewModel.info)
+		}
     }
 }
 
@@ -128,7 +131,7 @@ private extension ContentView {
 						.lineLimit(1)
 
 					Button {
-
+						viewModel.handleInfoTap()
 					} label: {
 						Text(FontIcon.infoCircle.rawValue)
 							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))

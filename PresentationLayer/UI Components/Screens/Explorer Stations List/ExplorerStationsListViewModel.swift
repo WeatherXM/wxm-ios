@@ -9,6 +9,7 @@ import Combine
 import DomainLayer
 import CoreLocation
 import Toolkit
+import UIKit
 
 class ExplorerStationsListViewModel: ObservableObject {
 
@@ -18,6 +19,8 @@ class ExplorerStationsListViewModel: ObservableObject {
     @Published var devices = [DeviceDetails]()
     @Published var address: String?
     @Published private(set) var userDeviceFolowStates: [UserDeviceFollowState] = []
+	@Published var showInfo: Bool = false
+	private(set) var info: BottomSheetInfo?
     var deviceListFailObject: FailSuccessStateObject?
     var alertConfiguration: WXMAlertConfiguration?
 	var activeStationsString: String? {
@@ -177,6 +180,21 @@ class ExplorerStationsListViewModel: ObservableObject {
         alertConfiguration = generateLoginAlertConfiguration(device: device)
         showLoginAlert = true
     }
+
+	func handleInfoTap() {
+		let info = BottomSheetInfo(title: LocalizableString.ExplorerList.cellCapacity.localized,
+								   description: LocalizableString.ExplorerList.cellCapacityDescription.localized,
+								   scrollable: true,								   
+								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
+			guard let url = URL(string: DisplayedLinks.cellCapacity.linkURL) else {
+				return
+			}
+
+			UIApplication.shared.open(url)
+		}
+		self.info = info
+		showInfo = true
+	}
 }
 
 private extension ExplorerStationsListViewModel {
