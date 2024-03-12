@@ -3268,7 +3268,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_ASSET_PATHS = "\"wxm-ios/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"wxm-ios/PreviewContent\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = (
@@ -3436,7 +3436,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_ASSET_PATHS = "\"wxm-ios/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"wxm-ios/PreviewContent\"";
 				DEVELOPMENT_TEAM = G6DMWDA6X5;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = (
@@ -3485,7 +3485,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"wxm-ios/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"wxm-ios/PreviewContent\"";
 				DEVELOPMENT_TEAM = G6DMWDA6X5;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = (
