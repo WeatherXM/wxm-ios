@@ -224,12 +224,12 @@
 			path = Jsons;
 			sourceTree = "<group>";
 		};
-		264BDA0F298B9FF5005C1F82 /* Firmware Update */ = {
+		264BDA0F298B9FF5005C1F82 /* FirmwareUpdate */ = {
 			isa = PBXGroup;
 			children = (
 				264BDA10298BA108005C1F82 /* FirmwareUpdater.swift */,
 			);
-			path = "Firmware Update";
+			path = FirmwareUpdate;
 			sourceTree = "<group>";
 		};
 		26AB9F502A8010E300855912 /* Services */ = {
@@ -295,7 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				4D848F7F2929AA5B009C5762 /* Bluetooth */,
-				264BDA0F298B9FF5005C1F82 /* Firmware Update */,
+				264BDA0F298B9FF5005C1F82 /* FirmwareUpdate */,
 				B5E6B86A283391880060D050 /* AuthRepositoryImpl.swift */,
 				4D5AE32F28EA49C7006F2EBA /* BluetoothDevicesRepositoryImpl.swift */,
 				26A4117729B8973E00A2C10B /* DeviceInfoRepositoryImpl.swift */,
