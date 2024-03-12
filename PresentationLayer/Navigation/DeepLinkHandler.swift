@@ -160,8 +160,8 @@ private extension DeepLinkHandler {
 				moveToStation(name: value)
 				return true
 			case Self.cellsPath:
-				// To be handled in the future
-				return false
+				moveToCell(index: value)
+				return true
 			case Self.tokenClaim:
 				Router.shared.pop()
 				return true
@@ -204,6 +204,11 @@ private extension DeepLinkHandler {
 
         }
     }
+
+	func moveToCell(index: String) {
+		let route = Route.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: index, cellCenter: nil))
+		Router.shared.navigateTo(route)
+	}
 }
 
 private enum NotificationType {
