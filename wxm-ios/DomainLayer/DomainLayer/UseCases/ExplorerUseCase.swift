@@ -105,7 +105,7 @@ public class ExplorerUseCase {
         }
     }
 
-    public func getPublicDevicesOfHexIndex(hexIndex: String, hexCoordinates: CLLocationCoordinate2D, completion: @escaping ((Result<[DeviceDetails], PublicHexError>) -> Void)) {
+    public func getPublicDevicesOfHexIndex(hexIndex: String, hexCoordinates: CLLocationCoordinate2D?, completion: @escaping ((Result<[DeviceDetails], PublicHexError>) -> Void)) {
         do {
             try explorerRepository.getPublicDevicesOfHex(index: hexIndex)
                 .sink(receiveValue: { [weak self] response in
@@ -121,7 +121,9 @@ public class ExplorerUseCase {
                             let state = try? await self?.meRepository.getDeviceFollowState(deviceId: publicDevice.id).get()
                             var device = publicDevice.toDeviceDetails
                             device.address = address
-                            device.cellCenter = LocationCoordinates(lat: hexCoordinates.latitude, long: hexCoordinates.longitude)
+							if let hexCoordinates {
+								device.cellCenter = LocationCoordinates(lat: hexCoordinates.latitude, long: hexCoordinates.longitude)
+							}
                             explorerDevices.append(device)
                         }
                         explorerDevices = explorerDevices.sorted(by: { dev1, dev2 -> Bool in
@@ -179,7 +181,11 @@ public class ExplorerUseCase {
         try await meRepository.getDeviceFollowState(deviceId: deviceId)
     }
 
-    private func resolveAddressLocation(_ location: CLLocationCoordinate2D) async -> String? {
+    private func resolveAddressLocation(_ location: CLLocationCoordinate2D?) async -> String? {
+		guard let location else {
+			return nil
+		}
+		
         let geocoder = Geocoder()
         return try? await geocoder.resolveAddressLocation(location)
     }
