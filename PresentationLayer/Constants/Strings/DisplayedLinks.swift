@@ -18,6 +18,7 @@ enum DisplayedLinks {
 	case arbitrumAddressWebsiteFormat
 	case documentationLink
 	case feedbackForm
+	case appSurveyForm
 	case m5Troubleshooting
 	case heliumTroubleshooting
 	case heliumRegionFrequencies
@@ -51,6 +52,8 @@ enum DisplayedLinks {
 				return "https://docs.weatherxm.com/"
 			case .feedbackForm:
 				return "https://docs.google.com/forms/d/e/1FAIpQLSc35pJdxM0tosVh-az0goKEjE1xzBs_OVo5V23coC8z1ayD6g/viewform"
+			case .appSurveyForm:
+				return "https://docs.google.com/forms/d/e/1FAIpQLSc1T-odUwpXa01nODavwEtLgO00AfPxqfrdhbn_G5Lss0dD2w/viewform?usp=pp_url"
 			case .m5Troubleshooting:
 				return "https://docs.weatherxm.com/wifi-m5-bundle/m5-troubleshooting"
 			case .heliumTroubleshooting:

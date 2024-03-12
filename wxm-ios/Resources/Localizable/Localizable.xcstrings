@@ -5905,6 +5905,28 @@
         }
       }
     },
+    "settings_app_survey_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share your feedback by taking the WeatherXM app quick survey. It only has 2 mandatory questions!"
+          }
+        }
+      }
+    },
+    "settings_app_survey_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Short App Survey"
+          }
+        }
+      }
+    },
     "settings_contact_support_descritpion" : {
       "extractionState" : "manual",
       "localizations" : {
