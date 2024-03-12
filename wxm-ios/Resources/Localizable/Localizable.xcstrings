@@ -3306,6 +3306,17 @@
         }
       }
     },
+    "feedback" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback"
+          }
+        }
+      }
+    },
     "feels_like" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5967,6 +5978,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Help"
+          }
+        }
+      }
+    },
+    "settings_join_user_panel_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You may join the WeatherXM user research panel, share your insights and help shape the future of WeatherXM apps and services."
+          }
+        }
+      }
+    },
+    "settings_join_user_panel_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join the WeatherXM User Panel"
           }
         }
       }

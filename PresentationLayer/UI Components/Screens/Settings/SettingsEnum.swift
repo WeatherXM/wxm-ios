@@ -12,8 +12,8 @@ enum SettingsEnum {
 	case units, account, display, theme, temperature, precipitation, windSpeed, windDirection, pressure, notifications, announcements, analytics, logout, changePassword,
 		 help, about, appVersion(installationId: String?), documentation, contactSupport, deleteAccount, deleteAccountCaption, deleteAccountWarning,
 		 deleteAccountGeneralInfo, deleteAccountMoreInfoLink, toDeleteTitle, toDeleteName, toDeleteAddress, toDeletePersonalData,
-		 notDeleteTitle, notDeleteWeatherData, notDeleteRewards, noCollectDataTitle, contactForSupport
-	
+		 notDeleteTitle, notDeleteWeatherData, notDeleteRewards, noCollectDataTitle, contactForSupport, feedback, joinUserPanel
+
 	var sectionTitle: String {
 		switch self {
 			case .units:
@@ -26,6 +26,8 @@ enum SettingsEnum {
 				return LocalizableString.display.localized
 			case .about:
 				return LocalizableString.about.localized
+			case .feedback:
+				return LocalizableString.feedback.localized
 			default:
 				return ""
 		}
@@ -63,6 +65,8 @@ enum SettingsEnum {
 				return LocalizableString.theme.localized
 			case .appVersion:
 				return LocalizableString.appVersion.localized
+			case .joinUserPanel:
+				return LocalizableString.Settings.joinUserPanelTitle.localized
 			default:
 				return ""
 		}
@@ -91,6 +95,8 @@ enum SettingsEnum {
 				return LocalizableString.Settings.notificationsDescription.localized
 			case .announcements:
 				return LocalizableString.Settings.announcementsDescription.localized
+			case .joinUserPanel:
+				return LocalizableString.Settings.joinUserPanelDescription.localized
 			default:
 				return ""
 		}

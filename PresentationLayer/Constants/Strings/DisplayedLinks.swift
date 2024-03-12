@@ -17,6 +17,7 @@ enum DisplayedLinks {
 	case readMoreAboutWalletsLink
 	case arbitrumAddressWebsiteFormat
 	case documentationLink
+	case feedbackForm
 	case m5Troubleshooting
 	case heliumTroubleshooting
 	case heliumRegionFrequencies
@@ -48,6 +49,8 @@ enum DisplayedLinks {
 				return "https://sepolia.arbiscan.io/address/%@#tokentxns"
 			case .documentationLink:
 				return "https://docs.weatherxm.com/"
+			case .feedbackForm:
+				return "https://docs.google.com/forms/d/e/1FAIpQLSc35pJdxM0tosVh-az0goKEjE1xzBs_OVo5V23coC8z1ayD6g/viewform"
 			case .m5Troubleshooting:
 				return "https://docs.weatherxm.com/wifi-m5-bundle/m5-troubleshooting"
 			case .heliumTroubleshooting:
