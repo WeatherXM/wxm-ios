@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NukeUI
 
 struct DeviceInfoRowView: View {
     let row: Row
@@ -34,19 +35,21 @@ struct DeviceInfoRowView: View {
 
 			VStack(spacing: CGFloat(.smallSpacing)) {
 				if let url = row.imageUrl {
-					AsyncImage(url: url) { image in
-						image
-							.resizable()
-							.aspectRatio(MapBoxConstants.snapshotSize.width / MapBoxConstants.snapshotSize.height,
-										 contentMode: .fill)
-							.frame(maxHeight: MapBoxConstants.snapshotSize.height)
-							.clipped()
-							.cornerRadius(CGFloat(.buttonCornerRadius))
-					} placeholder: {
-						ProgressView()
+					LazyImage(url: url) { state in
+						if let image = state.image {
+							image
+								.resizable()
+								.aspectRatio(MapBoxConstants.snapshotSize.width / MapBoxConstants.snapshotSize.height,
+											 contentMode: .fill)
+								.frame(maxHeight: MapBoxConstants.snapshotSize.height)
+								.clipped()
+								.cornerRadius(CGFloat(.buttonCornerRadius))
+						} else {
+							ProgressView()
+						}
 					}
 				}
-				
+
 				if let buttonInfo = row.buttonInfo {
 					Button(action: row.buttonAction) {
 						HStack(spacing: CGFloat(.smallSpacing)) {

@@ -168,4 +168,9 @@ enum ViewModelsFactory {
 											  refDate: Date) -> RewardAnnotationsViewModel {
 		return RewardAnnotationsViewModel(device: device, annotations: annotations, followState: followState, refDate: refDate)
 	}
+
+	static func getRewardsBoostViewModel(boost: NetworkDeviceRewardDetailsResponse.BoostReward, device: DeviceDetails, date: Date?) -> RewardBoostsViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!
+		return RewardBoostsViewModel(boost: boost, device: device, date: date, useCase: useCase)
+	}
 }

@@ -55,6 +55,8 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .rewardAnnotations(let vm):
 				hasher.combine(vm)
+			case .rewardBoosts(let vm):
+				hasher.combine(vm)
 			case .safariView(let url):
 				hasher.combine(url)
         }
@@ -100,6 +102,8 @@ enum Route: Hashable, Equatable {
 				"selectStationLocation"
 			case .rewardAnnotations:
 				"rewardAnnotations"
+			case .rewardBoosts:
+				"rewardBoosts"
 			case .safariView:
 				"safariView"
 		}
@@ -124,6 +128,7 @@ enum Route: Hashable, Equatable {
 	case webView(String, String, [DisplayLinkParams: String]?, DeepLinkHandler.QueryParamsCallBack?)
 	case selectStationLocation(SelectStationLocationViewModel)
 	case rewardAnnotations(RewardAnnotationsViewModel)
+	case rewardBoosts(RewardBoostsViewModel)
 	case safariView(URL)
 }
 
@@ -198,6 +203,10 @@ extension Route {
 				}
 			case .rewardAnnotations(let rewardAnnotationsViewModel):
 				RewardAnnotaionsView(viewModel: rewardAnnotationsViewModel)
+			case .rewardBoosts(let rewardBoostsViewModel):
+				NavigationContainerView {
+					RewardBoostsView(viewModel: rewardBoostsViewModel)
+				}
 			case .safariView(let url):
 				SafariView(url: url)
 					.ignoresSafeArea()

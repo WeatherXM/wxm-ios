@@ -15,7 +15,6 @@ public class RemoteConfigManager: ObservableObject {
 
 	// MARK: - Remote config entries
 	@Published public var iosTestIntegration: String?
-	@Published public var rewardsHideAnnotationThreshold: Int?
 	@Published public var iosAppChangelog: String?
 	@Published public var iosAppLatestVersion: String?
 	@Published public var iosAppMinimumVersion: String?
@@ -47,7 +46,6 @@ private extension RemoteConfigManager {
 			}
 
 			self.iosTestIntegration = self.getConfigValue(key: .iosTestIntegration)
-			self.rewardsHideAnnotationThreshold = self.getConfigValue(key: .rewardsHideAnnotationThreshold)
 			self.iosAppChangelog = self.getConfigValue(key: .iosAppChangelog)
 			self.iosAppLatestVersion = self.getConfigValue(key: .iosAppLatestVersion)
 			self.iosAppMinimumVersion = self.getConfigValue(key: .iosAppMinimumVersion)

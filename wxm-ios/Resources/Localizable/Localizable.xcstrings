@@ -432,6 +432,116 @@
         }
       }
     },
+    "boosts_boost_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost Details"
+          }
+        }
+      }
+    },
+    "boosts_boost_details_decription_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This boost is rewarded for participating in our beta reward program from %@ to %@."
+          }
+        }
+      }
+    },
+    "boosts_boost_period" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost period"
+          }
+        }
+      }
+    },
+    "boosts_daily_boost_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily Boost Score"
+          }
+        }
+      }
+    },
+    "boosts_daily_tokens_to_be_rewarded" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily tokens to be rewarded (max)"
+          }
+        }
+      }
+    },
+    "boosts_lost_tokens_because_of_qod_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lost %@ $WXM because of data quality score."
+          }
+        }
+      }
+    },
+    "boosts_lost_tokens_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lost %@ $WXM"
+          }
+        }
+      }
+    },
+    "boosts_rewardable_station_hours" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewardable station-hours"
+          }
+        }
+      }
+    },
+    "boosts_tokens_earned_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost tokens earned for %@"
+          }
+        }
+      }
+    },
+    "boosts_total_tokens_to_be_rewarded" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total tokens to be rewarded (max)"
+          }
+        }
+      }
+    },
     "cancel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5296,6 +5406,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reward Details"
+          }
+        }
+      }
+    },
+    "reward_details_unhandled_boost_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost is not supported, please check for app updates."
           }
         }
       }

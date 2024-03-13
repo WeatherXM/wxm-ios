@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import NukeUI
 
 struct BoostsView: View {
 	let title: String
 	let description: String
 	let rewards: Double
-	let imageUrl: String
+	let imageUrl: String?
 
 	var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
@@ -36,11 +37,19 @@ struct BoostsView: View {
 		}
 		.padding(CGFloat(.defaultSidePadding))
 		.background {
-			AsyncImage(url: URL(string: imageUrl)!) { image in
-				image
-					.resizable()
-			} placeholder: {
-				ProgressView()
+			ZStack {
+				Color(colorEnum: .darkBg)
+
+				if let imageUrl {
+					LazyImage(url: URL(string: imageUrl)) { state in
+						if let image = state.image {
+							image.resizable()
+						} else if state.isLoading {
+							ProgressView()
+								.tint(Color(colorEnum: .white))
+						}
+					}
+				}
 			}
 		}
 		.WXMCardStyle(insideHorizontalPadding: 0.0, insideVerticalPadding: 0.0)

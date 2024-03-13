@@ -188,6 +188,16 @@ class RewardDetailsViewModel: ObservableObject {
 		self.info = info
 		showInfo = true
 	}
+
+	func handleBoostTap(boost: NetworkDeviceRewardDetailsResponse.BoostReward) {
+		switch boost.code {
+			case .betaReward:
+				let viewModel = ViewModelsFactory.getRewardsBoostViewModel(boost: boost, device: device, date: rewardDetailsResponse?.timestamp)
+				Router.shared.navigateTo(.rewardBoosts(viewModel))
+			default:
+				Toast.shared.show(text: LocalizableString.RewardDetails.unhandledBoostMessage.localized.attributedMarkdown ?? "")
+		}
+	}
 }
 
 private extension RewardDetailsViewModel {
