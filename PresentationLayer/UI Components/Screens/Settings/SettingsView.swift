@@ -229,7 +229,7 @@ struct SettingsView: View {
 				settingsCase: .joinUserPanel,
 				settingCaption: SettingsEnum.joinUserPanel.settingsDescription,
 				action: {
-//					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .documentation])
+					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .userResearchPanel])
 					if let url = URL(string: DisplayedLinks.feedbackForm.linkURL) {
 						UIApplication.shared.open(url)
 					}
@@ -241,7 +241,7 @@ struct SettingsView: View {
 					settingsCase: .appSurvey,
 					settingCaption: SettingsEnum.appSurvey.settingsDescription,
 					action: {
-						//					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .documentation])
+						Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .appSurvey])
 						if let url = URL(string: DisplayedLinks.appSurveyForm.linkURL) {
 							UIApplication.shared.open(url)
 						}
