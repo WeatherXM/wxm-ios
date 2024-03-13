@@ -53,6 +53,21 @@ public class ExplorerUseCase {
 		return info?.mapCenter
 	}
 
+	public func getCell(cellIndex: String) async throws -> Result<PublicHex?, NetworkErrorResponse> {
+		let publisher = try explorerRepository.getPublicHexes()
+		return await withUnsafeContinuation { continuation in
+			publisher.sink { response in
+				switch response.result {
+					case .success(let cells):
+						let cell = cells.first(where: { $0.index == cellIndex })
+						continuation.resume(returning: .success(cell))
+					case .failure(let error):
+						continuation.resume(returning: .failure(error))
+				}
+			}.store(in: &cancellableSet)
+		}
+	}
+
     public func getPublicHexes(completion: @escaping (Result<ExplorerData, PublicHexError>) -> Void) {
         do {
             try explorerRepository.getPublicHexes().sink(receiveValue: { response in

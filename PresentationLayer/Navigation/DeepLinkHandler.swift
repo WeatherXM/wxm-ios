@@ -11,6 +11,7 @@ import Combine
 import UIKit
 import Toolkit
 import UserNotifications
+import CoreLocation
 
 class DeepLinkHandler {
 	typealias QueryParamsCallBack = GenericCallback<[String: String]?>
@@ -22,10 +23,13 @@ class DeepLinkHandler {
 	static let tokenClaim = "token-claim"
 
     let useCase: NetworkUseCase
+	let explorerUseCase: ExplorerUseCase
+
     private var searchCancellable: AnyCancellable?
 
-    init(useCase: NetworkUseCase) {
+	init(useCase: NetworkUseCase, explorerUseCase: ExplorerUseCase) {
         self.useCase = useCase
+		self.explorerUseCase = explorerUseCase
     }
 
 	@discardableResult
@@ -206,8 +210,15 @@ private extension DeepLinkHandler {
     }
 
 	func moveToCell(index: String) {
-		let route = Route.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: index, cellCenter: nil))
-		Router.shared.navigateTo(route)
+		Task { @MainActor in
+			let cell = try? await explorerUseCase.getCell(cellIndex:index).get()
+			var cellCenter: CLLocationCoordinate2D?
+			if let lon = cell?.center.lon, let lat = cell?.center.lat {
+				cellCenter = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+			}
+			let route = Route.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: index, cellCenter: cellCenter))
+			Router.shared.navigateTo(route)
+		}
 	}
 }
 
