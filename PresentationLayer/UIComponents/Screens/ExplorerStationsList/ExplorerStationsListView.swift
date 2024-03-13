@@ -46,8 +46,10 @@ private struct ContentView: View {
             Color(colorEnum: .layer2)
                 .ignoresSafeArea()
 
-            VStack {
+			VStack(spacing: 0.0) {
 				titleView
+					.wxmShadow()
+					.zIndex(1)
 
                 TrackableScrollView {
 					AdaptiveGridContainerView {
@@ -62,6 +64,7 @@ private struct ContentView: View {
 					}
                     .padding(CGFloat(.defaultSpacing))
                 }
+				.zIndex(0)
                 .spinningLoader(show: $viewModel.isLoadingDeviceList, hideContent: true)
                 .fail(show: $viewModel.isDeviceListFailVisible, obj: viewModel.deviceListFailObject)
                 .wxmAlert(show: $viewModel.showLoginAlert) {
@@ -157,7 +160,5 @@ private extension ContentView {
 
 #Preview {
 	let vm = ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: "", cellCenter: CLLocationCoordinate2D())
-	return NavigationContainerView {
-		ExplorerStationsListView(viewModel: vm)
-	}
+	return ExplorerStationsListView(viewModel: vm)
 }
