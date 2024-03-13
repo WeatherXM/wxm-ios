@@ -238,10 +238,14 @@ extension NetworkDeviceRewardDetailsResponse.BoostReward {
 	}
 
 	private var lostRewardString: String? {
+		guard let rewardScore else {
+			return nil
+		}
 		let lostAmount = ((maxReward ?? 0.0) - (actualReward ?? 0.0))
+		
 		switch code {
 			case .betaReward:
-				if lostAmount > 0 {
+				if rewardScore < 100 {
 					return LocalizableString.Boosts.lostTokensBecauseOfQod(lostAmount.toWXMTokenPrecisionString).localized
 				}
 				return LocalizableString.Boosts.gotAllBetaRewards.localized
