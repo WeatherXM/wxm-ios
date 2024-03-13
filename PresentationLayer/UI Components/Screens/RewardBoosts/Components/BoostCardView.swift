@@ -42,11 +42,18 @@ struct BoostCardView: View {
 		}
 		.padding(CGFloat(.defaultSidePadding))
 		.background {
-			LazyImage(url: URL(string: boost.imageUrl!)) { state in
-				if let image = state.image {
-					image.resizable()
-				} else {
-					ProgressView()
+			ZStack {
+				Color(colorEnum: .darkBg)
+
+				if let imageUrl = boost.imageUrl {
+					LazyImage(url: URL(string: imageUrl)) { state in
+						if let image = state.image {
+							image.resizable()
+						} else if state.isLoading {
+							ProgressView()
+								.tint(Color(colorEnum: .white))
+						}
+					}
 				}
 			}
 //			AsyncImage(url: URL(string: boost.imageUrl!)!) { image in
