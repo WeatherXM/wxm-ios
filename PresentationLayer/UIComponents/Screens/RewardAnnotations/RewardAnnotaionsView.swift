@@ -25,7 +25,7 @@ private struct ContentView: View {
 
 	var body: some View {
 		ZStack {
-			Color(colorEnum: .top)
+			Color(colorEnum: .background)
 				.ignoresSafeArea()
 			TrackableScrollView {
 				VStack(spacing: CGFloat(.largeSpacing)) {
@@ -37,7 +37,7 @@ private struct ContentView: View {
 			}
 		}
 		.onAppear {
-			navigationObject.navigationBarColor = Color(.top)
+			navigationObject.navigationBarColor = Color(colorEnum: .background)
 
 			Logger.shared.trackScreen(.rewardIssues)
 		}

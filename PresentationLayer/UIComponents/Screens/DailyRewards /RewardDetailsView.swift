@@ -32,7 +32,7 @@ private struct ContentView: View {
 	@ViewBuilder
 	var content: some View {
 		ZStack {
-			Color(colorEnum: .top)
+			Color(colorEnum: .background)
 				.ignoresSafeArea()
 
 			TrackableScrollView { completion in
@@ -57,7 +57,7 @@ private struct ContentView: View {
 				  obj: viewModel.failObj)
 			.onAppear {
 				navigationObject.titleColor = Color(colorEnum: .text)
-				navigationObject.navigationBarColor = Color(colorEnum: .top)
+				navigationObject.navigationBarColor = Color(colorEnum: .background)
 
 				Logger.shared.trackScreen(.deviceRewardsDetails)
 			}

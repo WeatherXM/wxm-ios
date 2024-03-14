@@ -9,6 +9,7 @@ import Foundation
 
 public enum ColorEnum: String {
     case bg
+	case background
     case clear
     case error
     case success
