@@ -10,6 +10,8 @@ import Foundation
 public enum ColorEnum: String {
     case bg
 	case background
+	case bottomSheetBg
+	case bottomSheetButton
     case clear
     case error
     case success

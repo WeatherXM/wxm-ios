@@ -91,7 +91,7 @@ extension View {
 	@ViewBuilder
 	func bottomInfoView(info: BottomSheetInfo?) -> some View {
 		ZStack {
-			Color(colorEnum: .layer1)
+			Color(colorEnum: .bottomSheetBg)
 				.ignoresSafeArea()
 
 			VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -127,7 +127,7 @@ extension View {
 						Button(action: buttonAction) {
 							Text(buttonTitle)
 						}
-						.buttonStyle(WXMButtonStyle.transparent)
+						.buttonStyle(WXMButtonStyle.transparent(fillColor: .bottomSheetButton))
 					}
 				}
 			}
