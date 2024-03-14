@@ -132,6 +132,7 @@ class RewardDetailsViewModel: ObservableObject {
 		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.dailyReward.localized,
 								   description: LocalizableString.RewardDetails.dailyRewardInfoDescription.localized,
 								   scrollable: true,
+								   analyticsScreen: .dailyRewardInfo,
 								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
 			guard let url = URL(string: DisplayedLinks.rewardMechanism.linkURL) else {
 				return
@@ -141,12 +142,15 @@ class RewardDetailsViewModel: ObservableObject {
 		}
 		self.info = info
 		showInfo = true
+
+		Logger.shared.trackEvent(.selectContent, parameters: [.itemId: .infoDailyRewards])
 	}
 
 	func handleDataQualityInfoTap() {
 		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.dataQuality.localized,
 								   description: LocalizableString.RewardDetails.dataQualityInfoDescription.localized,
 								   scrollable: true,
+								   analyticsScreen: .dataQualityInfo,
 								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
 			guard let url = URL(string: DisplayedLinks.qodAlgorithm.linkURL) else {
 				return
@@ -156,12 +160,15 @@ class RewardDetailsViewModel: ObservableObject {
 		}
 		self.info = info
 		showInfo = true
+
+		Logger.shared.trackEvent(.selectContent, parameters: [.itemId: .infoQod])
 	}
 
 	func handleLocationQualityInfoTap() {
 		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.locationQuality.localized,
 								   description: LocalizableString.RewardDetails.locationQualityInfoDescription.localized,
 								   scrollable: true,
+								   analyticsScreen: .locationQualityInfo,
 								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
 			guard let url = URL(string: DisplayedLinks.polAlgorithm.linkURL) else {
 				return
@@ -172,12 +179,15 @@ class RewardDetailsViewModel: ObservableObject {
 		}
 		self.info = info
 		showInfo = true
+
+		Logger.shared.trackEvent(.selectContent, parameters: [.itemId: .infoPol])
 	}
 
 	func handleCellPositionInfoTap() {
 		let info = BottomSheetInfo(title: LocalizableString.RewardDetails.cellPosition.localized,
 								   description: LocalizableString.RewardDetails.cellPositionInfoDescription.localized,
 								   scrollable: true,
+								   analyticsScreen: .cellRankingInfo,
 								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
 			guard let url = URL(string: DisplayedLinks.cellCapacity.linkURL) else {
 				return
@@ -187,6 +197,8 @@ class RewardDetailsViewModel: ObservableObject {
 		}
 		self.info = info
 		showInfo = true
+
+		Logger.shared.trackEvent(.selectContent, parameters: [.itemId: .infoCellposition])
 	}
 
 	func handleBoostTap(boost: NetworkDeviceRewardDetailsResponse.BoostReward) {

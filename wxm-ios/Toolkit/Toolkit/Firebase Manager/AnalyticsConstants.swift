@@ -46,6 +46,12 @@ public enum Screen: String {
     case explorerSearch = "Explorer Search"
     case sortFilter = "Sort Filter"
 	case deviceRewardsDetails = "Device Rewards Details"
+	case dailyRewardInfo = "Daily Reward info"
+	case dataQualityInfo = "Data Quality info"
+	case locationQualityInfo = "Location Quality info"
+	case cellRankingInfo = "Cell ranking info"
+	case rewardIssues = "Reward Issues"
+	case boostDetails = "Boost Detail"
 }
 
 public enum Event: String, CustomStringConvertible {
@@ -438,14 +444,24 @@ public enum ParameterValue: RawRepresentable {
 				return "max_rewards"
 			case .timeline:
 				return "timeline"
-			case .rewardDetailsError:
-				return "Reward Details Error"
+			case .rewardIssuesError:
+				return "Reward Issues Error"
 			case .identifyProblems:
 				return "Indentify Problems"
 			case .deviceRewards:
 				return "Device Rewards"
 			case .deviceRewardTransactions:
 				return "Device Rewards Transactions"
+			case .infoDailyRewards:
+				return "info_daily_rewards"
+			case .infoQod:
+				return "info_qod"
+			case .infoPol:
+				return "info_pol"
+			case .infoCellposition:
+				return "info_cell_position"
+			case .webDocumentation:
+				return "Web Documentation"
 		}
     }
 
@@ -606,6 +622,11 @@ public enum ParameterValue: RawRepresentable {
 	case rewardsScore
 	case maxRewards
 	case timeline
-	case rewardDetailsError
+	case rewardIssuesError
+	case infoDailyRewards
+	case infoQod
+	case infoPol
+	case infoCellposition
+	case webDocumentation
     case custom(String)
 }

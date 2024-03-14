@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DomainLayer
+import Toolkit
 
 struct RewardAnnotaionsView: View {
 	@StateObject var viewModel: RewardAnnotationsViewModel
@@ -37,6 +38,8 @@ private struct ContentView: View {
 		}
 		.onAppear {
 			navigationObject.navigationBarColor = Color(.top)
+
+			Logger.shared.trackScreen(.rewardIssues)
 		}
 	}
 }

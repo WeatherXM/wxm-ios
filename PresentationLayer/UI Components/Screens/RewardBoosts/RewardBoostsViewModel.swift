@@ -62,6 +62,9 @@ class RewardBoostsViewModel: ObservableObject {
 		}
 
 		UIApplication.shared.open(url)
+
+		Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
+															  .itemId: .custom(docUrl)])
 	}
 }
 

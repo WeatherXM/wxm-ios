@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct RewardBoostsView: View {
 	@StateObject var viewModel: RewardBoostsViewModel
@@ -35,6 +36,7 @@ struct RewardBoostsView: View {
 			.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }), obj: viewModel.failObj)
 			.onAppear {
 				navigationObject.navigationBarColor = Color(colorEnum: .top)
+				Logger.shared.trackScreen(.analytics, parameters: [.itemId: .custom(viewModel.response?.code?.rawValue ?? "")])
 			}
 		}
     }
