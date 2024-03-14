@@ -237,13 +237,20 @@ extension NetworkDeviceRewardDetailsResponse.BoostReward {
 			  imageUrl: imageUrl)
 	}
 
-	private var lostRewardString: String {
-		let lostAmount = ((maxReward ?? 0.0) - (actualReward ?? 0.0)).toWXMTokenPrecisionString
+	private var lostRewardString: String? {
+		guard let rewardScore else {
+			return nil
+		}
+		let lostAmount = ((maxReward ?? 0.0) - (actualReward ?? 0.0))
+		
 		switch code {
 			case .betaReward:
-				return LocalizableString.Boosts.lostTokensBecauseOfQod(lostAmount).localized
+				if rewardScore < 100 {
+					return LocalizableString.Boosts.lostTokensBecauseOfQod(lostAmount.toWXMTokenPrecisionString).localized
+				}
+				return LocalizableString.Boosts.gotAllBetaRewards.localized
 			default:
-				return LocalizableString.Boosts.lostTokens(lostAmount).localized
+				return nil
 		}
 	}
 }
