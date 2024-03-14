@@ -6301,6 +6301,17 @@
         }
       }
     },
+    "station_details_base_reward_range_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Base reward scores from %@ to %@"
+          }
+        }
+      }
+    },
     "station_details_boosts" : {
       "extractionState" : "manual",
       "localizations" : {

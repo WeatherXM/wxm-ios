@@ -12,13 +12,31 @@ struct WeeklyStreakView: View {
 	let entries: [Entry]
 	let buttonAction: VoidCallback
 
+	private var startDay: String? {
+		entries.first?.timestamp.getFormattedDate(format: .monthLiteralDay)
+	}
+	private var lastDay: String? {
+		entries.last?.timestamp.getFormattedDate(format: .monthLiteralDay)
+	}
+
     var body: some View {
 		VStack(spacing: CGFloat(.defaultSpacing)) {
-			HStack {
-				Text(LocalizableString.StationDetails.weeklyStreak.localized)
-					.foregroundColor(Color(colorEnum: .text))
-					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-				Spacer()
+			VStack(spacing: 0.0) {
+				HStack {
+					Text(LocalizableString.StationDetails.weeklyStreak.localized)
+						.foregroundColor(Color(colorEnum: .text))
+						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+					Spacer()
+				}
+
+				if let startDay, let lastDay {
+					HStack {
+						Text(LocalizableString.StationDetails.baseRewardRange(startDay.capitalized, lastDay.capitalized).localized)
+							.foregroundColor(Color(colorEnum: .darkGrey))
+							.font(.system(size: CGFloat(.normalFontSize)))
+						Spacer()
+					}
+				}
 			}
 
 			VStack(spacing: CGFloat(.smallSpacing)) {
