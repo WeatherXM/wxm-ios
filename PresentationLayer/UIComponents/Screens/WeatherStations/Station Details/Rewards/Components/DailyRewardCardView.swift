@@ -176,7 +176,7 @@ extension DailyRewardCardView {
 				case .error:
 					return .error
 				case .info:
-					return .lightestBlue
+					return .infoIndication
 			}
 		}
 	}

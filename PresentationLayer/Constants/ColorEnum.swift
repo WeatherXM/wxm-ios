@@ -50,4 +50,5 @@ public enum ColorEnum: String {
 	case mapPin
 	case white
 	case darkBg
+	case infoIndication
 }
