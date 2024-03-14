@@ -38,7 +38,7 @@ extension NetworkDeviceRewardDetailsResponse {
 
 		switch rewardScore {
 			case 0:
-				return LocalizableString.RewardDetails.dataQualityNoInfoMessage.localized
+				return LocalizableString.RewardDetails.dataQualityLostMessage.localized
 			case 0..<20:
 				if followState?.relation == .owned {
 					return LocalizableString.RewardDetails.dataQualityVeryLowMessage(rewardScore).localized
