@@ -40,7 +40,7 @@ public enum Screen: String {
     case claimDeviceTypeSelection = "Claim device type selection"
     case changeStationName = "Change Station Name"
     case changeFrequency = "Change Frequency"
-    case rebootStation = "RDaily Reward infoeboot Station"
+    case rebootStation = "Reboot Station"
     case explorerCellScreen = "Explorer Cell Screen"
     case networkStats = "Network Stats"
     case explorerSearch = "Explorer Search"
