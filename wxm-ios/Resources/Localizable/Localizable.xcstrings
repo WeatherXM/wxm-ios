@@ -3306,6 +3306,17 @@
         }
       }
     },
+    "feedback" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback"
+          }
+        }
+      }
+    },
     "feels_like" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5894,6 +5905,28 @@
         }
       }
     },
+    "settings_app_survey_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share your feedback by taking the WeatherXM app quick survey. It only has 2 mandatory questions!"
+          }
+        }
+      }
+    },
+    "settings_app_survey_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Short App Survey"
+          }
+        }
+      }
+    },
     "settings_contact_support_descritpion" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5967,6 +6000,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Help"
+          }
+        }
+      }
+    },
+    "settings_join_user_panel_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You may join the WeatherXM user research panel, share your insights and help shape the future of WeatherXM apps and services."
+          }
+        }
+      }
+    },
+    "settings_join_user_panel_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join the WeatherXM User Panel"
           }
         }
       }

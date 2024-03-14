@@ -32,6 +32,7 @@ struct SettingsView: View {
                 WXMDivider()
                 displayContainer
                 accountContainer
+				feedbackContainer
                 helpContainer
                 WXMDivider()
                 aboutContainer
@@ -219,6 +220,37 @@ struct SettingsView: View {
             .font(.system(size: CGFloat(.normalFontSize)))
             .foregroundColor(Color(colorEnum: .text))
     }
+
+	@ViewBuilder
+	var feedbackContainer: some View {
+		Group {
+			SettingsSectionTitle(title: .feedback)
+			SettingsButtonView(
+				settingsCase: .joinUserPanel,
+				settingCaption: SettingsEnum.joinUserPanel.settingsDescription,
+				action: {
+					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .userResearchPanel])
+					if let url = URL(string: DisplayedLinks.feedbackForm.linkURL) {
+						UIApplication.shared.open(url)
+					}
+				}
+			)
+
+			if mainScreenViewModel.isUserLoggedIn {
+				SettingsButtonView(
+					settingsCase: .appSurvey,
+					settingCaption: SettingsEnum.appSurvey.settingsDescription,
+					action: {
+						Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .appSurvey])
+						if let url = URL(string: DisplayedLinks.appSurveyForm.linkURL) {
+							UIApplication.shared.open(url)
+						}
+					}
+				)
+			}
+		}
+		WXMDivider()
+	}
 
     @ViewBuilder
     var displayContainer: some View {

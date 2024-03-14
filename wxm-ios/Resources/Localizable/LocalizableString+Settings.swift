@@ -24,6 +24,10 @@ extension LocalizableString {
 		case notificationAlertTitle
 		case notificationAlertEnableDescription
 		case notificationAlertDisableDescription
+		case joinUserPanelTitle
+		case joinUserPanelDescription
+		case appSurveyTitle
+		case appSurveyDescription
     }
 }
 
@@ -64,6 +68,14 @@ extension LocalizableString.Settings: WXMLocalizable {
 				return "settings_notifications_alert_enable_description"
 			case .notificationAlertDisableDescription:
 				return "settings_notifications_alert_disable_description"
+			case .joinUserPanelTitle:
+				return "settings_join_user_panel_title"
+			case .joinUserPanelDescription:
+				return "settings_join_user_panel_description"
+			case .appSurveyTitle:
+				return "settings_app_survey_title"
+			case .appSurveyDescription:
+				return "settings_app_survey_description"
 		}
 	}
 }

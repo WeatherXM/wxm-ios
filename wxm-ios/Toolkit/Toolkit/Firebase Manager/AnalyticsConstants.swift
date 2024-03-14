@@ -264,6 +264,10 @@ public enum ParameterValue: RawRepresentable {
                 return "Logout"
             case .documentation:
                 return "Documentation"
+			case .userResearchPanel:
+				return "User Research Panel"
+			case .appSurvey:
+				return "App Survey"
             case .bleScanAgain:
                 return "BLE Scan Again"
             case .frequencyDocumentation:
@@ -512,6 +516,8 @@ public enum ParameterValue: RawRepresentable {
     case scanQRWallet
     case logout
     case documentation
+	case userResearchPanel
+	case appSurvey
     case bleScanAgain
     case frequencyDocumentation
     case failure
