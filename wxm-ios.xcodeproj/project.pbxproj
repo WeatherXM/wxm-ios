@@ -1719,7 +1719,7 @@
 		267548A229A91A87008BCF40 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				267548B829A91A87008BCF40 /* Domain Extensions */,
+				267548B829A91A87008BCF40 /* DomainExtensions */,
 				2692D8702A4D8DB90060CB3C /* Numeric */,
 				267548B129A91A87008BCF40 /* Shape+.swift */,
 				267548AE29A91A87008BCF40 /* String+.swift */,
@@ -1732,7 +1732,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		267548B829A91A87008BCF40 /* Domain Extensions */ = {
+		267548B829A91A87008BCF40 /* DomainExtensions */ = {
 			isa = PBXGroup;
 			children = (
 				26CA84522AD933F1006D47D7 /* Common */,
@@ -1751,7 +1751,7 @@
 				26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */,
 				264CC7682B98AA6E0060DEA4 /* NetworkDeviceRewardBoostsResponse+.swift */,
 			);
-			path = "Domain Extensions";
+			path = DomainExtensions;
 			sourceTree = "<group>";
 		};
 		267548C129A91A87008BCF40 /* Assets */ = {
