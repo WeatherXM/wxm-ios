@@ -25,6 +25,7 @@ enum DisplayedLinks {
 	case shopLink
 	case tokenomics
 	case shareDevice
+	case shareCells
 	case rewardMechanism
 	case polAlgorithm
 	case qodAlgorithm
@@ -66,6 +67,8 @@ enum DisplayedLinks {
 				return "https://docs.weatherxm.com/tokenomics"
 			case .shareDevice:
 				return "https://explorer.weatherxm.com/stations/"
+			case .shareCells:
+				return "https://explorer.weatherxm.com/cells/"
 			case .rewardMechanism:
 				return "https://docs.weatherxm.com/reward-mechanism"
 			case .polAlgorithm:

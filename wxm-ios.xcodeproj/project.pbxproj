@@ -73,6 +73,7 @@
 		264CC7692B98AA6E0060DEA4 /* NetworkDeviceRewardBoostsResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC7682B98AA6E0060DEA4 /* NetworkDeviceRewardBoostsResponse+.swift */; };
 		264CDE0F2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CDE0E2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift */; };
 		264DD4CA2B9B169E002691FF /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 264DD4C92B9B169E002691FF /* NukeUI */; };
+		264DD5082B9F3BCB002691FF /* LocalizableString+ExplorerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DD5072B9F3BCB002691FF /* LocalizableString+ExplorerList.swift */; };
 		264E2F5329DC3533009580A2 /* ThemeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E2F5229DC3533009580A2 /* ThemeEnum.swift */; };
 		264E2F6129DC5AEE009580A2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 264E2F6029DC5AEE009580A2 /* Settings.bundle */; };
 		2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
@@ -574,6 +575,7 @@
 		264CC7662B987AF60060DEA4 /* Localizable+Boosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localizable+Boosts.swift"; sourceTree = "<group>"; };
 		264CC7682B98AA6E0060DEA4 /* NetworkDeviceRewardBoostsResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceRewardBoostsResponse+.swift"; sourceTree = "<group>"; };
 		264CDE0E2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveNotificationsModifier.swift; sourceTree = "<group>"; };
+		264DD5072B9F3BCB002691FF /* LocalizableString+ExplorerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+ExplorerList.swift"; sourceTree = "<group>"; };
 		264E2F5229DC3533009580A2 /* ThemeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEnum.swift; sourceTree = "<group>"; };
 		264E2F6029DC5AEE009580A2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
@@ -1897,6 +1899,7 @@
 				26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */,
 				26D611AA2A9E21080099117C /* LocalizableConstants.swift */,
 				268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */,
+				264DD5072B9F3BCB002691FF /* LocalizableString+ExplorerList.swift */,
 				266BAF542AA88631004F5DE0 /* LocalizableString+Analytics.swift */,
 				262B03082B20BDB700C31FE7 /* LocalizableString+AppUpdate.swift */,
 				2623FF942AF157FE00BCDAC6 /* Localizable+RewardDetails.swift */,
@@ -2918,6 +2921,7 @@
 				267547A829A9181E008BCF40 /* RewardsTimelineViewModel.swift in Sources */,
 				2675480129A9181E008BCF40 /* UberTextField.swift in Sources */,
 				267548F829A91A87008BCF40 /* UIColor+.swift in Sources */,
+				264DD5082B9F3BCB002691FF /* LocalizableString+ExplorerList.swift in Sources */,
 				2623FF912AF147A800BCDAC6 /* RewardDetailsView.swift in Sources */,
 				26AF27802A0B9D870067A1B8 /* UIImage+.swift in Sources */,
 				267EC4262A98C14700F2C37E /* UIKitUtils.swift in Sources */,

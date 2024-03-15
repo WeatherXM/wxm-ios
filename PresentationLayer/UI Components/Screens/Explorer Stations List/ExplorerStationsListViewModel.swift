@@ -9,6 +9,7 @@ import Combine
 import DomainLayer
 import CoreLocation
 import Toolkit
+import UIKit
 
 class ExplorerStationsListViewModel: ObservableObject {
 
@@ -18,8 +19,26 @@ class ExplorerStationsListViewModel: ObservableObject {
     @Published var devices = [DeviceDetails]()
     @Published var address: String?
     @Published private(set) var userDeviceFolowStates: [UserDeviceFollowState] = []
+	@Published var showInfo: Bool = false
+	private(set) var info: BottomSheetInfo?
     var deviceListFailObject: FailSuccessStateObject?
     var alertConfiguration: WXMAlertConfiguration?
+	var activeStationsString: String? {
+		let count = devices.filter { $0.isActive }.count
+		guard count > 0 else {
+			return nil
+		}
+
+		return count == 1 ? LocalizableString.activeStation(count).localized : LocalizableString.activeStations(count).localized
+	}
+	var stationsCountString: String {
+		let count = devices.count
+
+		return LocalizableString.presentStations(count).localized
+	}
+	var cellShareUrl: String {
+		DisplayedLinks.shareCells.linkURL + cellIndex
+	}
 
     let cellIndex: String
     private let useCase: ExplorerUseCase?
@@ -161,6 +180,24 @@ class ExplorerStationsListViewModel: ObservableObject {
         alertConfiguration = generateLoginAlertConfiguration(device: device)
         showLoginAlert = true
     }
+
+	func handleCellCapacityInfoTap() {
+		let info = BottomSheetInfo(title: LocalizableString.ExplorerList.cellCapacity.localized,
+								   description: LocalizableString.ExplorerList.cellCapacityDescription.localized,
+								   scrollable: true,
+								   analyticsScreen: .cellCapacityInfo,
+								   buttonTitle: LocalizableString.RewardDetails.readMore.localized) {
+			guard let url = URL(string: DisplayedLinks.cellCapacity.linkURL) else {
+				return
+			}
+
+			UIApplication.shared.open(url)
+		}
+		self.info = info
+		showInfo = true
+
+		Logger.shared.trackEvent(.selectContent, parameters: [.itemId: .infoDailyRewards])
+	}
 }
 
 private extension ExplorerStationsListViewModel {
@@ -176,7 +213,7 @@ private extension ExplorerStationsListViewModel {
                 switch result {
                     case let .success(devices):
                         self.devices = devices.sortedByCriteria(criterias: [ { $0.lastActiveAt.stringToDate() > $1.lastActiveAt.stringToDate() }, { $0.name > $1.name }])
-                        self.address = devices.first?.address ?? ""
+                        self.address = devices.first?.address
                         self.refreshFollowStates()
                     case let .failure(error):
                         print(error)

@@ -199,6 +199,9 @@ enum LocalizableString: WXMLocalizable {
     case noTransactionTitle
     case noTransactionDesc
 	case mailLeaveMessageNote
+	case activeStations(Int?)
+	case activeStation(Int?)
+	case presentStations(Int?)
 
     var localized: String {
         var localized = NSLocalizedString(self.key, comment: "")
@@ -206,7 +209,10 @@ enum LocalizableString: WXMLocalizable {
             case .total(let count),
                     .owned(let count),
                     .following(let count),
-                    .issues(let count):
+                    .issues(let count),
+					.activeStations(let count),
+					.activeStation(let count),
+					.presentStations(let count):
                 localized = String(format: localized, count ?? 0)
             case .unfollowAlertDescription(let text),
                     .followAlertDescription(let text),
@@ -620,6 +626,12 @@ extension LocalizableString {
                 return "no_transaction_desc"
 			case .mailLeaveMessageNote:
 				return "mail_leave_message_note"
+			case .activeStations:
+				return "active_stations_format"
+			case .activeStation:
+				return "active_station_format"
+			case .presentStations:
+				return "present_stations_format"
         }
     }
 }
