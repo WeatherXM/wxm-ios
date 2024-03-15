@@ -11,6 +11,7 @@ extension LocalizableString {
 	enum ExplorerList {
 		case cellCapacity
 		case cellCapacityDescription
+		case cellNotFoundMessage
 	}
 }
 
@@ -26,6 +27,8 @@ extension LocalizableString.ExplorerList: WXMLocalizable {
 				return "explorer_list_cell_capacity"
 			case .cellCapacityDescription:
 				return "explorer_list_cell_capacity_description"
+			case .cellNotFoundMessage:
+				return "explorer_list_cell_not_found_message"
 		}
 	}
 }
