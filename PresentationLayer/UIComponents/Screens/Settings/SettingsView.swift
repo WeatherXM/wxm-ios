@@ -10,7 +10,7 @@ import Toolkit
 
 struct SettingsView: View {
     @StateObject var settingsViewModel: SettingsViewModel
-	private let mainScreenViewModel: MainScreenViewModel = .shared
+	@ObservedObject private var mainScreenViewModel: MainScreenViewModel = .shared
 
     var body: some View {
         ZStack {
