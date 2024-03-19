@@ -14,9 +14,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
+        with:
+          fetch-depth: 0
+          
+      - name: "create-main-branch"
+        run: "git branch --track main origin/main"
+  
       # Runs a single command using the runners shell
       - name: SwiftLint
-        uses: norio-nomura/action-swiftlint@3.2.1
+        uses: yannpom/action-swiftlint@v1
         env: 
           DIFF_BASE: ${{ github.base_ref }}

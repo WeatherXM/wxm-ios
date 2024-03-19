@@ -147,7 +147,7 @@
 		26DD429D29AF4633008E277E /* Toolkit */ = {
 			isa = PBXGroup;
 			children = (
-				26DD42B929AF4B2C008E277E /* Firebase Manager */,
+				26DD42B929AF4B2C008E277E /* FirebaseManager */,
 				26DD42AB29AF4659008E277E /* Logger */,
 				266482F829C0855400748F9C /* Types */,
 				261CD82529CB599800C0CECE /* Utils */,
@@ -168,7 +168,7 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
-		26DD42B929AF4B2C008E277E /* Firebase Manager */ = {
+		26DD42B929AF4B2C008E277E /* FirebaseManager */ = {
 			isa = PBXGroup;
 			children = (
 				26D47E8F2A1659D20078723A /* AnalyticsConstants.swift */,
@@ -177,7 +177,7 @@
 				26CD5BB02AF529300097093F /* RemoteConfigManager.swift */,
 				268A63052B59797B0079D507 /* NotificationsHandler.swift */,
 			);
-			path = "Firebase Manager";
+			path = FirebaseManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

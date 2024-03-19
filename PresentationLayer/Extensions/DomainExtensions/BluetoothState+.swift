@@ -8,9 +8,11 @@
 import DomainLayer
 
 extension BluetoothState {
+
     var errorDescription: String? {
         switch self {
-            case .unsupported:
+    
+			case .unsupported:
                 return LocalizableString.Bluetooth.unsupportedTitle.localized
             case .unauthorized:
                 return LocalizableString.Bluetooth.noAccessTitle.localized
