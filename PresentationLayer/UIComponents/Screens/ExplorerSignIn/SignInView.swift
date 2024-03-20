@@ -9,26 +9,33 @@ import SwiftUI
 import Toolkit
 
 struct SignInView: View {
+	@EnvironmentObject var navigationObject: NavigationObject
 	private let mainScreenVM: MainScreenViewModel = .shared
     @StateObject var viewModel: SignInViewModel
 
     var body: some View {
-        VStack {
-            loginContainer
-				.iPadMaxWidth()
-        }
-        .padding(.top, CGFloat(.largeSidePadding))
-        .padding(.bottom, CGFloat(.defaultSidePadding))
-        .padding(.horizontal, CGFloat(.defaultSidePadding))
+		ZStack {
+			Color(colorEnum: .bg)
+				.ignoresSafeArea()
+			
+			VStack {
+				loginContainer
+					.iPadMaxWidth()
+			}
+			.padding(.top, CGFloat(.largeSidePadding))
+			.padding(.bottom, CGFloat(.defaultSidePadding))
+			.padding(.horizontal, CGFloat(.defaultSidePadding))
+		}
         .onChange(of: viewModel.password, perform: { _ in
             viewModel.checkSignInButtonAvailability()
         })
         .onChange(of: viewModel.email, perform: { _ in
             viewModel.checkSignInButtonAvailability()
         })
-        .navigationBarTitle(Text(LocalizableString.signIn.localized), displayMode: .large)
         .onAppear {
             Logger.shared.trackScreen(.login)
+			navigationObject.title = LocalizableString.signIn.localized
+			navigationObject.navigationBarColor = Color(colorEnum: .bg)
         }
     }
 

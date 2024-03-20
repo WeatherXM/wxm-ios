@@ -170,7 +170,7 @@ extension Route {
 					claimViaBluetooth: viaBluetooth
 				)
 			case .deleteAccount(let deleteAccountViewModel):
-				CustomNavigationLinkView {
+				NavigationContainerView {
 					DeleteAccountView(viewModel: deleteAccountViewModel)
 				}
 			case .survey(let userId, let appId):
@@ -178,7 +178,7 @@ extension Route {
 					WebView(userID: userId, appID: appId)
 				}
 			case .signIn(let signInViewModel):
-				CustomNavigationLinkView {
+				NavigationContainerView {
 					SignInView(viewModel: signInViewModel)
 				}
 			case .register(let registerViewModel):
