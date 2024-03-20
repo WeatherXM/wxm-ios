@@ -161,7 +161,7 @@ extension Route {
 					RewardsTimelineView(viewModel: transactionsViewModel)
 				}
 			case .settings(let settingsViewModel):
-				CustomNavigationLinkView {
+				NavigationContainerView {
 					SettingsView(settingsViewModel: settingsViewModel)
 				}
 			case .claimDevice(let viaBluetooth):
