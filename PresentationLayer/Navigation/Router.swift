@@ -182,11 +182,11 @@ extension Route {
 					SignInView(viewModel: signInViewModel)
 				}
 			case .register(let registerViewModel):
-				CustomNavigationLinkView {
+				NavigationContainerView {
 					RegisterView(viewModel: registerViewModel)
 				}
 			case .resetPassword(let resetPassViewModel):
-				CustomNavigationLinkView {
+				NavigationContainerView {
 					ResetPasswordView(viewModel: resetPassViewModel)
 				}
 			case .explorerList(let explorerListViewModel):
