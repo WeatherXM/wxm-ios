@@ -9,6 +9,7 @@ import SwiftUI
 import WebKit
 
 struct WebView: View {
+	@EnvironmentObject var navigationObject: NavigationObject
     let userID: String
     let appID: String
 
@@ -18,10 +19,23 @@ struct WebView: View {
     }
 
     var body: some View {
-        VStack {
-            WebViewRepresentable(userID: userID, appID: appID)
-        }
+		ZStack {
+			Color(colorEnum: .bg).ignoresSafeArea()
+
+			VStack {
+				WebViewRepresentable(userID: userID, appID: appID)
+			}
+		}
+		.onAppear {
+			navigationObject.navigationBarColor = Color(colorEnum: .bg)
+		}
     }
+}
+
+#Preview {
+	NavigationContainerView {
+		WebView(userID: "", appID: "")
+	}
 }
 
 private struct WebViewRepresentable: UIViewRepresentable {

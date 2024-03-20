@@ -174,7 +174,7 @@ extension Route {
 					DeleteAccountView(viewModel: deleteAccountViewModel)
 				}
 			case .survey(let userId, let appId):
-				CustomNavigationLinkView {
+				NavigationContainerView {
 					WebView(userID: userId, appID: appId)
 				}
 			case .signIn(let signInViewModel):
