@@ -15,16 +15,19 @@ struct SuccessfulDeleteView: View {
 
     var body: some View {
         ZStack {
+			Color(colorEnum: .bg)
+				.ignoresSafeArea()
             VStack {
                 Image("DeleteSuccessIcon")
                 successInfo
             }
+			.padding(.horizontal)
 			.iPadMaxWidth()
 
             navigationButtons
+				.padding(.horizontal)
 				.iPadMaxWidth()
         }
-        .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
     }
 
