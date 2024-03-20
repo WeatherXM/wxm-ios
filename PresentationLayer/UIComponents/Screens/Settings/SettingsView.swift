@@ -15,7 +15,7 @@ struct SettingsView: View {
 
     var body: some View {
         ZStack {
-			Color(colorEnum: .top)
+			Color(colorEnum: .bg)
 				.ignoresSafeArea()
 
             settingsContainer
@@ -27,6 +27,7 @@ struct SettingsView: View {
         .onAppear {
             Logger.shared.trackScreen(.settings)
 			navigationObject.title = LocalizableString.settings.localized
+			navigationObject.navigationBarColor = Color(colorEnum: .bg)
         }
     }
 
