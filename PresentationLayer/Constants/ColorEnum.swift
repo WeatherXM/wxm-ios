@@ -55,4 +55,5 @@ public enum ColorEnum: String {
 	case white
 	case darkBg
 	case infoIndication
+	case trasnparentButtonBg
 }

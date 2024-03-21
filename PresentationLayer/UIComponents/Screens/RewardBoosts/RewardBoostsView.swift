@@ -35,6 +35,7 @@ struct RewardBoostsView: View {
 			}
 			.spinningLoader(show: .init(get: { viewModel.state == .loading }, set: { _ in }), hideContent: true)
 			.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }), obj: viewModel.failObj)
+			.iPadMaxWidth()
 			.onAppear {
 				navigationObject.navigationBarColor = Color(colorEnum: .background)
 				Logger.shared.trackScreen(.analytics, parameters: [.itemId: .custom(viewModel.response?.code?.rawValue ?? "")])
