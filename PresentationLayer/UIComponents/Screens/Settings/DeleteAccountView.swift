@@ -16,7 +16,6 @@ struct DeleteAccountView: View {
         Group {
             switch viewModel.currentScreen {
                 case .info: mainInfoBody
-                case .success: SuccessfulDeleteView(userID: viewModel.userID).environmentObject(viewModel)
                 case .failure: FailedDeleteView().environmentObject(viewModel)
             }
         }

@@ -15,7 +15,7 @@ final class DeleteAccountViewModel: ObservableObject {
     @Published var password = ""
     @Published var passwordHasError = false
     @Published var isToggleOn = false
-    @Published var currentScreen = DeleteScreen.info
+	@Published var currentScreen: DeleteScreen = .info
     @Published var isValidatingPassword: Bool = false
     @Published var deleteFailureErrorMessage: String = ""
     let userID: String
@@ -57,7 +57,10 @@ final class DeleteAccountViewModel: ObservableObject {
         LoaderView.shared.show()
         do {
             try meUseCase.deleteAccount()
-                .sink { response in
+                .sink { [weak self] response in
+					guard let self else {
+						return
+					}
                     LoaderView.shared.dismiss()
                     if response.response?.statusCode != 204 {
                         if response.error != nil {
@@ -67,7 +70,7 @@ final class DeleteAccountViewModel: ObservableObject {
                                                                                 .itemId: .custom(response.error?.backendError?.code ?? "")])
                         }
                     } else {
-                        self.currentScreen = DeleteScreen.success
+						Router.shared.navigateTo(.deleteAccountSuccess(self))
 						_ = try? self.settingsUseCase.logout(localOnly: true)
                     }
                 }.store(in: &cancellableSet)
@@ -116,7 +119,6 @@ final class DeleteAccountViewModel: ObservableObject {
 extension DeleteAccountViewModel {
     enum DeleteScreen {
         case info
-        case success
         case failure
     }
 }

@@ -57,6 +57,8 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .rewardBoosts(let vm):
 				hasher.combine(vm)
+			case .deleteAccountSuccess(let vm):
+				hasher.combine(vm)
 			case .safariView(let url):
 				hasher.combine(url)
         }
@@ -104,6 +106,8 @@ enum Route: Hashable, Equatable {
 				"rewardAnnotations"
 			case .rewardBoosts:
 				"rewardBoosts"
+			case .deleteAccountSuccess:
+				"deleteAccountSuccess"
 			case .safariView:
 				"safariView"
 		}
@@ -129,6 +133,7 @@ enum Route: Hashable, Equatable {
 	case selectStationLocation(SelectStationLocationViewModel)
 	case rewardAnnotations(RewardAnnotationsViewModel)
 	case rewardBoosts(RewardBoostsViewModel)
+	case deleteAccountSuccess(DeleteAccountViewModel)
 	case safariView(URL)
 }
 
@@ -205,6 +210,8 @@ extension Route {
 				NavigationContainerView {
 					RewardBoostsView(viewModel: rewardBoostsViewModel)
 				}
+			case .deleteAccountSuccess(let deleteAccountViewModel):
+				SuccessfulDeleteView(viewModel: deleteAccountViewModel)
 			case .safariView(let url):
 				SafariView(url: url)
 					.ignoresSafeArea()
