@@ -73,7 +73,7 @@ private extension RewardBoostsView {
 						.overlay(Color(colorEnum: .layer2))
 
 					detailsFieldView(title: LocalizableString.Boosts.rewardableStationHours.localized,
-									 value: "\(details.stationHours ?? 0)")
+									 value: (details.stationHours ?? 0).localizedFormatted)
 
 					Divider()
 						.overlay(Color(colorEnum: .layer2))
