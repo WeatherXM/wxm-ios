@@ -80,7 +80,7 @@ enum ViewModelsFactory {
         return ExplorerSearchViewModel(useCase: useCase)
     }
 
-    static func getExplorerStationsListViewModel(cellIndex: String, cellCenter: CLLocationCoordinate2D) -> ExplorerStationsListViewModel {
+    static func getExplorerStationsListViewModel(cellIndex: String, cellCenter: CLLocationCoordinate2D?) -> ExplorerStationsListViewModel {
         let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCase.self)
         let vm = ExplorerStationsListViewModel(useCase: useCase, cellIndex: cellIndex, cellCenter: cellCenter)
         return vm

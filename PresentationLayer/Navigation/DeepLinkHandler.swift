@@ -11,6 +11,7 @@ import Combine
 import UIKit
 import Toolkit
 import UserNotifications
+import CoreLocation
 
 class DeepLinkHandler {
 	typealias QueryParamsCallBack = GenericCallback<[String: String]?>
@@ -22,10 +23,13 @@ class DeepLinkHandler {
 	static let tokenClaim = "token-claim"
 
     let useCase: NetworkUseCase
+	let explorerUseCase: ExplorerUseCase
+
     private var searchCancellable: AnyCancellable?
 
-    init(useCase: NetworkUseCase) {
+	init(useCase: NetworkUseCase, explorerUseCase: ExplorerUseCase) {
         self.useCase = useCase
+		self.explorerUseCase = explorerUseCase
     }
 
 	@discardableResult
@@ -77,7 +81,6 @@ class DeepLinkHandler {
 
 		return false
 	}
-
 
     deinit {
         print("deInit \(Self.self)")
@@ -160,8 +163,8 @@ private extension DeepLinkHandler {
 				moveToStation(name: value)
 				return true
 			case Self.cellsPath:
-				// To be handled in the future
-				return false
+				moveToCell(index: value)
+				return true
 			case Self.tokenClaim:
 				Router.shared.pop()
 				return true
@@ -204,6 +207,22 @@ private extension DeepLinkHandler {
 
         }
     }
+
+	func moveToCell(index: String) {
+		Task { @MainActor in
+			guard let cell = try? await explorerUseCase.getCell(cellIndex: index).get() else {
+				Toast.shared.show(text: LocalizableString.ExplorerList.cellNotFoundMessage.localized.attributedMarkdown ?? "")
+				return
+			}
+
+			let lon = cell.center.lon
+			let lat = cell.center.lat
+			let cellCenter = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+
+			let route = Route.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: index, cellCenter: cellCenter))
+			Router.shared.navigateTo(route)
+		}
+	}
 }
 
 private enum NotificationType {

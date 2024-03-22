@@ -48,9 +48,24 @@ public class ExplorerUseCase {
 			return nil
 		}
 		let code = Locale.current.regionCode
-		let info = countryInfos.first(where: { $0.code == code } )
+		let info = countryInfos.first(where: { $0.code == code })
 
 		return info?.mapCenter
+	}
+
+	public func getCell(cellIndex: String) async throws -> Result<PublicHex?, NetworkErrorResponse> {
+		let publisher = try explorerRepository.getPublicHexes()
+		return await withUnsafeContinuation { continuation in
+			publisher.sink { response in
+				switch response.result {
+					case .success(let cells):
+						let cell = cells.first(where: { $0.index == cellIndex })
+						continuation.resume(returning: .success(cell))
+					case .failure(let error):
+						continuation.resume(returning: .failure(error))
+				}
+			}.store(in: &cancellableSet)
+		}
 	}
 
     public func getPublicHexes(completion: @escaping (Result<ExplorerData, PublicHexError>) -> Void) {
@@ -81,11 +96,14 @@ public class ExplorerUseCase {
                     var ringCords = publicHex.polygon.map { point in
                         LocationCoordinate2D(latitude: point.lat, longitude: point.lon)
                     }
-                    /// Added an extra coordinate same as its first to fix the flickering issue while zooming
-                    /// https://github.com/mapbox/mapbox-maps-ios/issues/1503#issuecomment-1320348728
-                    if let firstPolygonPoint = publicHex.polygon.first {
-                        let coordinate = LocationCoordinate2D(latitude: firstPolygonPoint.lat, longitude: firstPolygonPoint.lon)
-                        ringCords.append(coordinate)
+					
+					/*
+					Added an extra coordinate same as its first to fix the flickering issue while zooming
+					https://github.com/mapbox/mapbox-maps-ios/issues/1503#issuecomment-1320348728
+					 */
+					if let firstPolygonPoint = publicHex.polygon.first {
+						let coordinate = LocationCoordinate2D(latitude: firstPolygonPoint.lat, longitude: firstPolygonPoint.lon)
+						ringCords.append(coordinate)
                     }
                     let ring = Ring(coordinates: ringCords)
                     let polygon = Polygon(outerRing: ring)
@@ -105,11 +123,11 @@ public class ExplorerUseCase {
         }
     }
 
-    public func getPublicDevicesOfHexIndex(hexIndex: String, hexCoordinates: CLLocationCoordinate2D, completion: @escaping ((Result<[DeviceDetails], PublicHexError>) -> Void)) {
+    public func getPublicDevicesOfHexIndex(hexIndex: String, hexCoordinates: CLLocationCoordinate2D?, completion: @escaping ((Result<[DeviceDetails], PublicHexError>) -> Void)) {
         do {
             try explorerRepository.getPublicDevicesOfHex(index: hexIndex)
                 .sink(receiveValue: { [weak self] response in
-                    guard let devices = response.value, response.error == nil else {                        
+                    guard let devices = response.value, response.error == nil else {
                         completion(.failure(PublicHexError.networkRelated(response.error)))
                         return
                     }
@@ -121,7 +139,9 @@ public class ExplorerUseCase {
                             let state = try? await self?.meRepository.getDeviceFollowState(deviceId: publicDevice.id).get()
                             var device = publicDevice.toDeviceDetails
                             device.address = address
-                            device.cellCenter = LocationCoordinates(lat: hexCoordinates.latitude, long: hexCoordinates.longitude)
+							if let hexCoordinates {
+								device.cellCenter = LocationCoordinates(lat: hexCoordinates.latitude, long: hexCoordinates.longitude)
+							}
                             explorerDevices.append(device)
                         }
                         explorerDevices = explorerDevices.sorted(by: { dev1, dev2 -> Bool in
@@ -157,7 +177,7 @@ public class ExplorerUseCase {
         }
     }
 
-    public func followStation(deviceId: String) async throws ->  Result<EmptyEntity, NetworkErrorResponse> {
+    public func followStation(deviceId: String) async throws -> Result<EmptyEntity, NetworkErrorResponse> {
         let followStation = try meRepository.followStation(deviceId: deviceId)
         return await withCheckedContinuation { continuation in
             followStation.sink { response in
@@ -166,7 +186,7 @@ public class ExplorerUseCase {
         }
     }
 
-    public func unfollowStation(deviceId: String) async throws ->  Result<EmptyEntity, NetworkErrorResponse> {
+    public func unfollowStation(deviceId: String) async throws -> Result<EmptyEntity, NetworkErrorResponse> {
         let unfollowStation = try meRepository.unfollowStation(deviceId: deviceId)
         return await withCheckedContinuation { continuation in
             unfollowStation.sink { response in
@@ -179,7 +199,11 @@ public class ExplorerUseCase {
         try await meRepository.getDeviceFollowState(deviceId: deviceId)
     }
 
-    private func resolveAddressLocation(_ location: CLLocationCoordinate2D) async -> String? {
+    private func resolveAddressLocation(_ location: CLLocationCoordinate2D?) async -> String? {
+		guard let location else {
+			return nil
+		}
+		
         let geocoder = Geocoder()
         return try? await geocoder.resolveAddressLocation(location)
     }

@@ -42,10 +42,10 @@ class ExplorerStationsListViewModel: ObservableObject {
 
     let cellIndex: String
     private let useCase: ExplorerUseCase?
-    private let cellCenter: CLLocationCoordinate2D
+    private let cellCenter: CLLocationCoordinate2D?
     private var cancellableSet: Set<AnyCancellable> = .init()
 
-    init(useCase: ExplorerUseCase?, cellIndex: String, cellCenter: CLLocationCoordinate2D) {
+    init(useCase: ExplorerUseCase?, cellIndex: String, cellCenter: CLLocationCoordinate2D?) {
         self.useCase = useCase
         self.cellIndex = cellIndex
         self.cellCenter = cellCenter
@@ -227,12 +227,13 @@ private extension ExplorerStationsListViewModel {
         }
     }
 
-    func generateLoginAlertConfiguration(device: DeviceDetails) -> WXMAlertConfiguration {
-        let conf = WXMAlertConfiguration(title: LocalizableString.favoritesloginAlertTitle.localized,
-                                         text: LocalizableString.favoritesloginAlertText(device.name).localized.attributedMarkdown ?? "",
-                                         primaryButtons: [.init(title: LocalizableString.signIn.localized, action: { Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel())) })])
-        return conf
-    }
+	func generateLoginAlertConfiguration(device: DeviceDetails) -> WXMAlertConfiguration {
+		let conf = WXMAlertConfiguration(title: LocalizableString.favoritesloginAlertTitle.localized,
+										 text: LocalizableString.favoritesloginAlertText(device.name).localized.attributedMarkdown ?? "",
+										 primaryButtons: [.init(title: LocalizableString.signIn.localized,
+																action: { Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel())) })])
+		return conf
+	}
 }
 
 private extension ExplorerStationsListViewModel {
