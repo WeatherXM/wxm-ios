@@ -96,7 +96,16 @@ extension WXMButtonStyle {
 	static var transparent: Self {
 		Self.init(textColor: Color(colorEnum: .primary),
 				  textColorDisabled: Color(colorEnum: .midGrey),
-				  fillColor: Color(colorEnum: .top).opacity(0.5),
+				  fillColor: Color(colorEnum: .trasnparentButtonBg),
+				  fillColorDisabled: Color(colorEnum: .midGrey).opacity(0.15),
+				  strokeColor: Color.clear,
+				  strokeColorDisabled: Color.clear)
+	}
+
+	static func transparent(fillColor: ColorEnum) -> Self {
+		Self.init(textColor: Color(colorEnum: .primary),
+				  textColorDisabled: Color(colorEnum: .midGrey),
+				  fillColor: Color(colorEnum: fillColor).opacity(0.5),
 				  fillColorDisabled: Color(colorEnum: .midGrey).opacity(0.15),
 				  strokeColor: Color.clear,
 				  strokeColorDisabled: Color.clear)

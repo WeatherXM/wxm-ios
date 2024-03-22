@@ -38,6 +38,7 @@ extension LocalizableString {
 		case ownedStationRewardErrorMessage
 		case stationRewardErrorMessage(Int)
 		case weeklyStreak
+		case baseRewardRange(String, String)
 		case noRewardsTitle
 		case noRewardsDescription
 		case mainnetTitle
@@ -73,6 +74,8 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 					.rewardsErrorDescription(let text), 
 					.dailyRewardEarnings(let text):
 				localized = String(format: localized, text)
+			case .baseRewardRange(let text, let text1):
+				localized = String(format: localized, text, text1)
 			default:
 				break
 		}
@@ -143,6 +146,8 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_reward_error_message_plural_format"
 			case .weeklyStreak:
 				return "station_details_weekly_streak"
+			case .baseRewardRange:
+				return "station_details_base_reward_range_format"
 			case .noRewardsTitle:
 				return "station_details_no_rewards_title"
 			case .noRewardsDescription:

@@ -25,49 +25,49 @@ extension NetworkDeviceRewardDetailsResponse {
 extension NetworkDeviceRewardDetailsResponse {
 	func dataQualityScoreObject(followState: UserDeviceFollowState?) -> RewardFieldView.Score {
 		.init(fontIcon: dataQualityfontIcon,
-			  score: Float(base?.rewardScore ?? 0),
+			  score: Float(base?.qodScore ?? 0),
 			  color: dataQualityColor,
 			  message: dataQualityMessage(followState: followState),
 			  showIndication: dataQualityColor != .success )
 	}
 
 	private func dataQualityMessage(followState: UserDeviceFollowState?) -> String {
-		guard let rewardScore = base?.rewardScore else {
+		guard let qodScore = base?.qodScore else {
 			return LocalizableString.RewardDetails.dataQualityNoInfoMessage.localized
 		}
 
-		switch rewardScore {
+		switch qodScore {
 			case 0:
-				return LocalizableString.RewardDetails.dataQualityNoInfoMessage.localized
+				return LocalizableString.RewardDetails.dataQualityLostMessage.localized
 			case 0..<20:
 				if followState?.relation == .owned {
-					return LocalizableString.RewardDetails.dataQualityVeryLowMessage(rewardScore).localized
+					return LocalizableString.RewardDetails.dataQualityVeryLowMessage(qodScore).localized
 				}
-				return LocalizableString.RewardDetails.dataQualityPublicVeryLowMessage(rewardScore).localized
+				return LocalizableString.RewardDetails.dataQualityPublicVeryLowMessage(qodScore).localized
 			case 20..<40:
 				if followState?.relation == .owned {
-					return LocalizableString.RewardDetails.dataQualityLowMessage(rewardScore).localized
+					return LocalizableString.RewardDetails.dataQualityLowMessage(qodScore).localized
 				}
-				return LocalizableString.RewardDetails.dataQualityPublicLowMessage(rewardScore).localized
+				return LocalizableString.RewardDetails.dataQualityPublicLowMessage(qodScore).localized
 			case 40..<60:
 				if followState?.relation == .owned {
-					return LocalizableString.RewardDetails.dataQualityAverageMessage(rewardScore).localized
+					return LocalizableString.RewardDetails.dataQualityAverageMessage(qodScore).localized
 				}
-				return LocalizableString.RewardDetails.dataQualityPublicAverageMessage(rewardScore).localized
+				return LocalizableString.RewardDetails.dataQualityPublicAverageMessage(qodScore).localized
 			case 60..<80:
 				if followState?.relation == .owned {
-					return LocalizableString.RewardDetails.dataQualityOkMessage(rewardScore).localized
+					return LocalizableString.RewardDetails.dataQualityOkMessage(qodScore).localized
 				}
-				return LocalizableString.RewardDetails.dataQualityPublicOkMessage(rewardScore).localized
+				return LocalizableString.RewardDetails.dataQualityPublicOkMessage(qodScore).localized
 			case 80..<95:
 				if followState?.relation == .owned {
-					return LocalizableString.RewardDetails.dataQualityGreatMessage(rewardScore).localized
+					return LocalizableString.RewardDetails.dataQualityGreatMessage(qodScore).localized
 				}
-				return LocalizableString.RewardDetails.dataQualityPublicGreatMessage(rewardScore).localized
+				return LocalizableString.RewardDetails.dataQualityPublicGreatMessage(qodScore).localized
 			case 95..<100:
-				return LocalizableString.RewardDetails.dataQualityAlmostPerfectMessage(rewardScore).localized
+				return LocalizableString.RewardDetails.dataQualityAlmostPerfectMessage(qodScore).localized
 			case 100:
-				return LocalizableString.RewardDetails.dataQualitySolidMessage(rewardScore).localized
+				return LocalizableString.RewardDetails.dataQualitySolidMessage(qodScore).localized
 			default:
 				return LocalizableString.RewardDetails.dataQualityNoInfoMessage.localized
 		}
@@ -75,11 +75,11 @@ extension NetworkDeviceRewardDetailsResponse {
 
 
 	private var dataQualityColor: ColorEnum {
-		guard let rewardScore = base?.rewardScore else {
+		guard let qodScore = base?.qodScore else {
 			return .clear
 		}
 
-		switch rewardScore {
+		switch qodScore {
 			case 0..<10:
 				return .error
 			case 10..<95:
@@ -92,11 +92,11 @@ extension NetworkDeviceRewardDetailsResponse {
 	}
 
 	private var dataQualityfontIcon: FontIcon {
-		guard let rewardScore = base?.rewardScore else {
+		guard let qodScore = base?.qodScore else {
 			return .hexagonExclamation
 		}
 
-		switch rewardScore {
+		switch qodScore {
 			case 0..<10:
 				return .hexagonXmark
 			case 10..<95:

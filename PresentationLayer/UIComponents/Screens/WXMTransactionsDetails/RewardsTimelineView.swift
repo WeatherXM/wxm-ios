@@ -58,6 +58,7 @@ struct RewardsTimelineView: View {
 							LazyVStack(spacing: CGFloat(.mediumSpacing)) {
 								ForEach(arrayOfTransactions) { record in
 									DailyRewardCardView(card: record.toDailyRewardCard(isOwned: false), buttonAction: nil)
+										.wxmShadow()
 										.onTapGesture {
 											Logger.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
 																							   .contentType: .deviceTransactions,

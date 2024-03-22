@@ -14,7 +14,8 @@ struct RewardBoostsView: View {
 
     var body: some View {
 		ZStack {
-			Color(colorEnum: .top)
+			Color(colorEnum: .background)
+
 			TrackableScrollView { completion in
 				viewModel.refresh(completion: completion)
 			} content: {
@@ -34,8 +35,9 @@ struct RewardBoostsView: View {
 			}
 			.spinningLoader(show: .init(get: { viewModel.state == .loading }, set: { _ in }), hideContent: true)
 			.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }), obj: viewModel.failObj)
+			.iPadMaxWidth()
 			.onAppear {
-				navigationObject.navigationBarColor = Color(colorEnum: .top)
+				navigationObject.navigationBarColor = Color(colorEnum: .background)
 				Logger.shared.trackScreen(.analytics, parameters: [.itemId: .custom(viewModel.response?.code?.rawValue ?? "")])
 			}
 		}
@@ -71,7 +73,7 @@ private extension RewardBoostsView {
 						.overlay(Color(colorEnum: .layer2))
 
 					detailsFieldView(title: LocalizableString.Boosts.rewardableStationHours.localized,
-									 value: "\(details.stationHours ?? 0)")
+									 value: (details.stationHours ?? 0).localizedFormatted)
 
 					Divider()
 						.overlay(Color(colorEnum: .layer2))

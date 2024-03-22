@@ -37,6 +37,7 @@ struct RewardFieldView: View {
 						.foregroundColor(Color(colorEnum: score.color))
 
 					Text(score.message)
+						.foregroundColor(Color(colorEnum: .darkGrey))
 						.font(.system(size: CGFloat(.caption)))
 						.fixedSize(horizontal: false, vertical: true)
 

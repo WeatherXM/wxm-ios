@@ -9,6 +9,9 @@ import Foundation
 
 public enum ColorEnum: String {
     case bg
+	case background
+	case bottomSheetBg
+	case bottomSheetButton
     case clear
     case error
     case success
@@ -32,6 +35,7 @@ public enum ColorEnum: String {
     case lightestBlue
     case layer2
     case layer1
+	case lightLayer2
     case crypto
     case accent
     case chartSecondaryLine
@@ -50,4 +54,6 @@ public enum ColorEnum: String {
 	case mapPin
 	case white
 	case darkBg
+	case infoIndication
+	case trasnparentButtonBg
 }

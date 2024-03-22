@@ -93,6 +93,7 @@ private extension DailyRewardCardView {
 			}
 
 			Divider()
+				.overlay(Color(colorEnum: .layer2))
 
 			HStack(spacing: CGFloat(.mediumSpacing)) {
 				rewardsView(title: LocalizableString.StationDetails.baseReward.localized,
@@ -176,7 +177,7 @@ extension DailyRewardCardView {
 				case .error:
 					return .error
 				case .info:
-					return .lightestBlue
+					return .infoIndication
 			}
 		}
 	}
