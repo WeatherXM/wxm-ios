@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StationRewardsTimelineView: View {
-	typealias Value = (text: String?, value: Int)
+	typealias Value = (text: String?, value: Int, color: ColorEnum)
 	let values: [Value]
 
 	var body: some View {
@@ -26,7 +26,7 @@ struct StationRewardsTimelineView: View {
 								VStack {
 									Spacer(minLength: 0.0)
 									Capsule()
-										.foregroundColor(Color(colorEnum: getHexagonColor(validationScore: Double(val.value) / 100.0)))
+										.foregroundColor(Color(colorEnum: val.color))
 										.frame(height: heightFor(value: val.value, containerSize: proxy.size))
 								}
 							}
@@ -59,6 +59,6 @@ private extension StationRewardsTimelineView {
 
 #Preview {
 	let range = 0..<7
-	let values: [StationRewardsTimelineView.Value] = range.map { _ in ("Day", Int.random(in: 0...100)) }
+	let values: [StationRewardsTimelineView.Value] = range.map { _ in ("Day", Int.random(in: 0...100), .blueTint) }
     return StationRewardsTimelineView(values: values)
 }

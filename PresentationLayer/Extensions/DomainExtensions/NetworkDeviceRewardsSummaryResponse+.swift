@@ -181,7 +181,9 @@ extension NetworkDeviceRewardsSummaryTimelineEntry {
 		guard let timestamp else {
 			return nil
 		}
-		return .init(timestamp: timestamp, value: baseRewardScore ?? 0)
+		return .init(timestamp: timestamp,
+					 value: baseRewardScore ?? 0,
+					 color: (baseRewardScore ?? 0).rewardScoreColor)
 	}
 }
 
