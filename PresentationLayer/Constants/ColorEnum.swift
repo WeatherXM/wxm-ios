@@ -56,4 +56,5 @@ public enum ColorEnum: String {
 	case darkBg
 	case infoIndication
 	case trasnparentButtonBg
+	case remoteImagePlaceholder
 }

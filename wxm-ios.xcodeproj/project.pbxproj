@@ -11,6 +11,7 @@
 		2612AC1C2AB45B2800285896 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC1B2AB45B2800285896 /* FilterViewModel.swift */; };
 		2612AC3A2AB47BA200285896 /* LocalizableString+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */; };
 		2612AC482AB49E4000285896 /* Filters+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC472AB49E4000285896 /* Filters+.swift */; };
+		261672472BB310D9009C3DB1 /* WXMRemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261672462BB310D9009C3DB1 /* WXMRemoteImageView.swift */; };
 		2618A6E72A1E440F00983B7B /* ExplorerLocationError+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A6E62A1E440F00983B7B /* ExplorerLocationError+.swift */; };
 		2618A7142A20FFCA00983B7B /* MultipleAlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */; };
 		2618A7162A21014200983B7B /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7152A21014200983B7B /* AlertsViewModel.swift */; };
@@ -523,6 +524,7 @@
 		2612AC1B2AB45B2800285896 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Filters.swift"; sourceTree = "<group>"; };
 		2612AC472AB49E4000285896 /* Filters+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filters+.swift"; sourceTree = "<group>"; };
+		261672462BB310D9009C3DB1 /* WXMRemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMRemoteImageView.swift; sourceTree = "<group>"; };
 		2618A6E62A1E440F00983B7B /* ExplorerLocationError+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerLocationError+.swift"; sourceTree = "<group>"; };
 		2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleAlertsView.swift; sourceTree = "<group>"; };
 		2618A7152A21014200983B7B /* AlertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModel.swift; sourceTree = "<group>"; };
@@ -1547,6 +1549,7 @@
 				2675474829A9181E008BCF40 /* UberTextField.swift */,
 				26E5B0BF29F8078C00834899 /* WXMDivider.swift */,
 				2674017D2A38C2AE00E54E35 /* WXMEmptyView.swift */,
+				261672462BB310D9009C3DB1 /* WXMRemoteImageView.swift */,
 			);
 			path = BaseComponents;
 			sourceTree = "<group>";
@@ -2900,6 +2903,7 @@
 				267548CD29A91A87008BCF40 /* TabSelectionEnum.swift in Sources */,
 				262A4D862A94D89300A4BC17 /* TabViewWrapper.swift in Sources */,
 				268D07952B2B1B85002BD77E /* SelectStationLocationViewModel.swift in Sources */,
+				261672472BB310D9009C3DB1 /* WXMRemoteImageView.swift in Sources */,
 				26FFADD42B8F684C00BF0A6B /* RewardAnnotaionsView.swift in Sources */,
 				267548F429A91A87008BCF40 /* Text+.swift in Sources */,
 				26348DF82A42F430000846C6 /* TextfieldClearButton.swift in Sources */,
