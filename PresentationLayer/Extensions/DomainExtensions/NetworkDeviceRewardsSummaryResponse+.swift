@@ -27,6 +27,8 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 								 totalRewards: totalReward ?? 0.0,
 								 baseReward: baseReward ?? 0.0,
 								 baseRewardScore: Double(baseRewardScore ?? 0) / 100.0,
+								 baseRewardFontIcon: (baseRewardScore ?? 0).rewardScoreFontIcon,
+								 baseRewardColor: (baseRewardScore ?? 0).rewardScoreColor,
 								 boostsReward: totalBoostReward,
 								 warningType: warningType,
 								 issues: annotationSummary?.count ?? 0,
