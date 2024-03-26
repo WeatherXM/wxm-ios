@@ -27,6 +27,7 @@ extension NetworkDeviceRewardDetailsResponse {
 		.init(fontIcon: dataQualityfontIcon,
 			  score: Float(base?.qodScore ?? 0),
 			  color: dataQualityColor,
+			  progressColor: dataQualityProgressColor,
 			  message: dataQualityMessage(followState: followState),
 			  showIndication: dataQualityColor != .success )
 	}
@@ -93,6 +94,7 @@ extension NetworkDeviceRewardDetailsResponse {
 		.init(fontIcon: locationQualityFontIcon,
 			  score: nil,
 			  color: locationQualityColor,
+			  progressColor: locationQualityColor,
 			  message: locationQualityMessage,
 			  showIndication: locationQualityColor != .success)
 	}
@@ -121,7 +123,7 @@ extension NetworkDeviceRewardDetailsResponse {
 
 		switch severity {
 			case .info:
-				return .success
+				return .reward_score_very_high
 			case .warning:
 				return .warning
 			case .error:
@@ -151,6 +153,7 @@ extension NetworkDeviceRewardDetailsResponse {
 		.init(fontIcon: cellPositionFontIcon,
 			  score: nil,
 			  color: cellPositionColor,
+			  progressColor: cellPositionColor,
 			  message: cellPositionMessage,
 			  showIndication: cellPositionColor != .success)
 	}
@@ -177,7 +180,7 @@ extension NetworkDeviceRewardDetailsResponse {
 
 		switch severity {
 			case .info:
-				return .success
+				return .reward_score_very_high
 			case .warning:
 				return .warning
 			case .error:

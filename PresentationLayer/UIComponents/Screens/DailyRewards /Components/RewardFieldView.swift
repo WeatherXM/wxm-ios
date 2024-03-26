@@ -49,7 +49,7 @@ struct RewardFieldView: View {
 						.progressViewStyle(ProgressBarStyle(withOffset: true,
 															text: nil,
 															bgColor: Color(colorEnum: .blueTint),
-															progressColor: Color(colorEnum: score.color)))
+															progressColor: Color(colorEnum: score.progressColor)))
 						.frame(height: 22.0)
 				}
 
@@ -67,6 +67,7 @@ extension RewardFieldView {
 		let fontIcon: FontIcon
 		let score: Float?
 		let color: ColorEnum
+		let progressColor: ColorEnum
 		let message: String
 		let showIndication: Bool
 	}
@@ -78,6 +79,7 @@ extension RewardFieldView {
 					score: .init(fontIcon: .hexagonExclamation,
 								 score: nil,
 								 color: .warning,
+								 progressColor: .warningTint,
 								 message: "Almost perfect! Got 98%.",
 								 showIndication: true)) {}
 		.wxmShadow()
