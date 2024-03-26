@@ -30,6 +30,8 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 								 baseRewardFontIcon: (baseRewardScore ?? 0).rewardScoreFontIcon,
 								 baseRewardColor: (baseRewardScore ?? 0).rewardScoreColor,
 								 boostsReward: totalBoostReward,
+								 boostsFontIcon: boostFontIcon,
+								 boostsColor: boostFontColor,
 								 warningType: warningType,
 								 issues: annotationSummary?.count ?? 0,
 								 isOwned: isOwned)
@@ -53,6 +55,27 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 		}
 
 		return nil
+	}
+
+	private var boostFontIcon: FontIcon {
+		guard let totalBoostReward else {
+			return .hexagonXmark
+		}
+
+		switch totalBoostReward {
+			case 0:
+				return .hexagonExclamation
+			default:
+				return .hexagonCheck
+		}
+	}
+
+	private var boostFontColor: ColorEnum {
+		guard totalBoostReward != nil else {
+			return .midGrey
+		}
+
+		return .chartPrimary
 	}
 
 	static var mock: Self {

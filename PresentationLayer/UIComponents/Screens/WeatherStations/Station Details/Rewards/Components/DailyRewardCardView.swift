@@ -103,8 +103,8 @@ private extension DailyRewardCardView {
 
 				rewardsView(title: LocalizableString.StationDetails.boosts.localized,
 							value: card.boostsReward,
-							fontIcon: .badgeCheck,
-							color: .chartPrimary)
+							fontIcon: card.boostsFontIcon,
+							color: card.boostsColor)
 
 				Spacer()
 			}
@@ -147,6 +147,8 @@ extension DailyRewardCardView {
 		let baseRewardFontIcon: FontIcon
 		let baseRewardColor: ColorEnum
 		let boostsReward: Double?
+		let boostsFontIcon: FontIcon
+		let boostsColor: ColorEnum
 		let warningType: CardWarningType?
 		let issues: Int
 		let isOwned: Bool
@@ -194,6 +196,8 @@ extension DailyRewardCardView {
 									baseRewardFontIcon: .hexagonExclamation,
 									baseRewardColor: .success,
 									boostsReward: 1.4325423,
+									boostsFontIcon: .hexagonXmark,
+									boostsColor: .midGrey,
 									warningType: .info,
 									issues: 3,
 									isOwned: false)) {}
@@ -208,6 +212,8 @@ extension DailyRewardCardView {
 									baseRewardFontIcon: .hexagonExclamation,
 									baseRewardColor: .success,
 									boostsReward: nil,
+									boostsFontIcon: .hexagonXmark,
+									boostsColor: .midGrey,
 									warningType: nil,
 									issues: 0,
 									isOwned: true)) {}
@@ -222,6 +228,8 @@ extension DailyRewardCardView {
 									baseRewardFontIcon: .hexagonExclamation,
 									baseRewardColor: .success,
 									boostsReward: 1.4325423,
+									boostsFontIcon: .hexagonXmark,
+									boostsColor: .chartPrimary,
 									warningType: .error,
 									issues: 1,
 									isOwned: false)) {}
