@@ -37,20 +37,7 @@ struct BoostsView: View {
 		}
 		.padding(CGFloat(.defaultSidePadding))
 		.background {
-			ZStack {
-				Color(colorEnum: .darkBg)
-
-				if let imageUrl {
-					LazyImage(url: URL(string: imageUrl)) { state in
-						if let image = state.image {
-							image.resizable()
-						} else if state.isLoading {
-							ProgressView()
-								.tint(Color(colorEnum: .white))
-						}
-					}
-				}
-			}
+			WXMRemoteImageView(imageUrl: imageUrl)
 		}
 		.WXMCardStyle(insideHorizontalPadding: 0.0, insideVerticalPadding: 0.0)
 		.contentShape(Rectangle())
