@@ -62,12 +62,7 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 			return .hexagonXmark
 		}
 
-		switch totalBoostReward {
-			case 0:
-				return .hexagonExclamation
-			default:
-				return .hexagonCheck
-		}
+		return .hexagonCheck
 	}
 
 	private var boostFontColor: ColorEnum {
