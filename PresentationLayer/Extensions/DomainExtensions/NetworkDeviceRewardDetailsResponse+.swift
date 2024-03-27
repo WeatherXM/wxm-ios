@@ -27,7 +27,6 @@ extension NetworkDeviceRewardDetailsResponse {
 		.init(fontIcon: dataQualityfontIcon,
 			  score: Float(base?.qodScore ?? 0),
 			  color: dataQualityColor,
-			  progressColor: dataQualityProgressColor,
 			  message: dataQualityMessage(followState: followState),
 			  showIndication: dataQualityColor != .success )
 	}
@@ -94,7 +93,6 @@ extension NetworkDeviceRewardDetailsResponse {
 		.init(fontIcon: locationQualityFontIcon,
 			  score: nil,
 			  color: locationQualityColor,
-			  progressColor: locationQualityColor,
 			  message: locationQualityMessage,
 			  showIndication: locationQualityColor != .success)
 	}
@@ -153,7 +151,6 @@ extension NetworkDeviceRewardDetailsResponse {
 		.init(fontIcon: cellPositionFontIcon,
 			  score: nil,
 			  color: cellPositionColor,
-			  progressColor: cellPositionColor,
 			  message: cellPositionMessage,
 			  showIndication: cellPositionColor != .success)
 	}
