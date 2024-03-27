@@ -98,11 +98,13 @@ private extension DailyRewardCardView {
 			HStack(spacing: CGFloat(.mediumSpacing)) {
 				rewardsView(title: LocalizableString.StationDetails.baseReward.localized,
 							value: card.baseReward,
-							hexColor: getHexagonColor(validationScore: card.baseRewardScore))
+							fontIcon: card.baseRewardFontIcon,
+							color: card.baseRewardColor)
 
-					rewardsView(title: LocalizableString.StationDetails.boosts.localized,
-								value: card.boostsReward,
-								hexColor: .chartPrimary)
+				rewardsView(title: LocalizableString.StationDetails.boosts.localized,
+							value: card.boostsReward,
+							fontIcon: card.boostsFontIcon,
+							color: card.boostsColor)
 
 				Spacer()
 			}
@@ -110,12 +112,11 @@ private extension DailyRewardCardView {
 	}
 
 	@ViewBuilder
-	func rewardsView(title: String, value: Double?, hexColor: ColorEnum) -> some View {
+	func rewardsView(title: String, value: Double?, fontIcon: FontIcon, color: ColorEnum) -> some View {
 		HStack(alignment: .top, spacing: CGFloat(.minimumSpacing)) {
-			Image(asset: .hexagonBigger)
-				.renderingMode(.template)
-				.foregroundColor(Color(colorEnum: hexColor))
-				.frame(width: 24.0, height: 24.0)
+			Text(fontIcon.rawValue)
+				.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+				.foregroundColor(Color(colorEnum: color))
 
 			VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
 				Group {
@@ -143,7 +144,11 @@ extension DailyRewardCardView {
 		let totalRewards: Double
 		let baseReward: Double
 		let baseRewardScore: Double
+		let baseRewardFontIcon: FontIcon
+		let baseRewardColor: ColorEnum
 		let boostsReward: Double?
+		let boostsFontIcon: FontIcon
+		let boostsColor: ColorEnum
 		let warningType: CardWarningType?
 		let issues: Int
 		let isOwned: Bool
@@ -188,7 +193,11 @@ extension DailyRewardCardView {
 									totalRewards: 3.125312,
 									baseReward: 2.4523532,
 									baseRewardScore: 0.8,
+									baseRewardFontIcon: .hexagonExclamation,
+									baseRewardColor: .success,
 									boostsReward: 1.4325423,
+									boostsFontIcon: .hexagonXmark,
+									boostsColor: .midGrey,
 									warningType: .info,
 									issues: 3,
 									isOwned: false)) {}
@@ -200,7 +209,11 @@ extension DailyRewardCardView {
 									totalRewards: 3.125312,
 									baseReward: 2.4523532,
 									baseRewardScore: 0.97,
+									baseRewardFontIcon: .hexagonExclamation,
+									baseRewardColor: .success,
 									boostsReward: nil,
+									boostsFontIcon: .hexagonXmark,
+									boostsColor: .midGrey,
 									warningType: nil,
 									issues: 0,
 									isOwned: true)) {}
@@ -212,7 +225,11 @@ extension DailyRewardCardView {
 									totalRewards: 3.125312,
 									baseReward: 2.4523532,
 									baseRewardScore: 0.2,
+									baseRewardFontIcon: .hexagonExclamation,
+									baseRewardColor: .success,
 									boostsReward: 1.4325423,
+									boostsFontIcon: .hexagonXmark,
+									boostsColor: .chartPrimary,
 									warningType: .error,
 									issues: 1,
 									isOwned: false)) {}

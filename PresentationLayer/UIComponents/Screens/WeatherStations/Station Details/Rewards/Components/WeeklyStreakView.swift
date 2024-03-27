@@ -74,17 +74,20 @@ struct WeeklyStreakView: View {
 extension WeeklyStreakView {
 	struct Entry: Hashable {
 		let timestamp: Date
-		let value: Int
+		let value: Int?
+		let color: ColorEnum
 
 		var toTimelineValue: StationRewardsTimelineView.Value {
-			(timestamp.getWeekDay(.narrow), value)
+			(timestamp.getWeekDay(.narrow), value, color)
 		}
 	}
 }
 
 #Preview {
 	let range = 0..<7
-	let values = range.map { _ in WeeklyStreakView.Entry(timestamp: .now, value: Int.random(in: 0...100)) }
+	let values = range.map { _ in WeeklyStreakView.Entry(timestamp: .now,
+														 value: Int.random(in: 0...100),
+														 color: .blueTint) }
 
 	return WeeklyStreakView(entries: values) {}
 		.wxmShadow()

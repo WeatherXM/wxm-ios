@@ -27,7 +27,11 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 								 totalRewards: totalReward ?? 0.0,
 								 baseReward: baseReward ?? 0.0,
 								 baseRewardScore: Double(baseRewardScore ?? 0) / 100.0,
+								 baseRewardFontIcon: (baseRewardScore ?? 0).rewardScoreFontIcon,
+								 baseRewardColor: (baseRewardScore ?? 0).rewardScoreColor,
 								 boostsReward: totalBoostReward,
+								 boostsFontIcon: boostFontIcon,
+								 boostsColor: boostFontColor,
 								 warningType: warningType,
 								 issues: annotationSummary?.count ?? 0,
 								 isOwned: isOwned)
@@ -51,6 +55,22 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 		}
 
 		return nil
+	}
+
+	private var boostFontIcon: FontIcon {
+		guard let totalBoostReward else {
+			return .hexagonXmark
+		}
+
+		return .hexagonCheck
+	}
+
+	private var boostFontColor: ColorEnum {
+		guard totalBoostReward != nil else {
+			return .midGrey
+		}
+
+		return .chartPrimary
 	}
 
 	static var mock: Self {
@@ -156,7 +176,9 @@ extension NetworkDeviceRewardsSummaryTimelineEntry {
 		guard let timestamp else {
 			return nil
 		}
-		return .init(timestamp: timestamp, value: baseRewardScore ?? 0)
+		return .init(timestamp: timestamp,
+					 value: baseRewardScore,
+					 color: (baseRewardScore ?? 0).rewardScoreColor)
 	}
 }
 

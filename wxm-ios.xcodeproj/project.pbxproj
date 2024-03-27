@@ -15,7 +15,6 @@
 		2618A7142A20FFCA00983B7B /* MultipleAlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */; };
 		2618A7162A21014200983B7B /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7152A21014200983B7B /* AlertsViewModel.swift */; };
 		2618A7262A24F93000983B7B /* BottomSheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7252A24F93000983B7B /* BottomSheetModifier.swift */; };
-		261CD81429C9F46D00C0CECE /* NetworkDeviceIDTokensTransactionsResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CD81329C9F46D00C0CECE /* NetworkDeviceIDTokensTransactionsResponse+.swift */; };
 		261CD81829CB2D5B00C0CECE /* PercentageGridLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */; };
 		261E9E9D29A925D500E8EBA3 /* PullableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9E9C29A925D500E8EBA3 /* PullableScrollView */; };
 		261E9EA029A925EB00E8EBA3 /* Veil in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9E9F29A925EB00E8EBA3 /* Veil */; };
@@ -528,7 +527,6 @@
 		2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleAlertsView.swift; sourceTree = "<group>"; };
 		2618A7152A21014200983B7B /* AlertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModel.swift; sourceTree = "<group>"; };
 		2618A7252A24F93000983B7B /* BottomSheetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetModifier.swift; sourceTree = "<group>"; };
-		261CD81329C9F46D00C0CECE /* NetworkDeviceIDTokensTransactionsResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceIDTokensTransactionsResponse+.swift"; sourceTree = "<group>"; };
 		261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageGridLayoutView.swift; sourceTree = "<group>"; };
 		2623E2222A6FC29100E3E306 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailsView.swift; sourceTree = "<group>"; };
@@ -1739,7 +1737,6 @@
 				2618A6E62A1E440F00983B7B /* ExplorerLocationError+.swift */,
 				2612AC472AB49E4000285896 /* Filters+.swift */,
 				26348E112A44432B000846C6 /* Network+.swift */,
-				261CD81329C9F46D00C0CECE /* NetworkDeviceIDTokensTransactionsResponse+.swift */,
 				265D2CE329D2DEB70044D032 /* NetworkDevicesInfoResponse+.swift */,
 				2692D8912A4DC0BA0060CB3C /* NetworkSearchResponse+.swift */,
 				26AF277D2A0B91200067A1B8 /* UnitsProtocol+.swift */,
@@ -2814,7 +2811,6 @@
 				2675480929A9181E008BCF40 /* NavigationContainerView.swift in Sources */,
 				2674016B2A37246300E54E35 /* NetStatsChartViewModel.swift in Sources */,
 				26348E122A44432B000846C6 /* Network+.swift in Sources */,
-				261CD81429C9F46D00C0CECE /* NetworkDeviceIDTokensTransactionsResponse+.swift in Sources */,
 				265D2CE429D2DEB80044D032 /* NetworkDevicesInfoResponse+.swift in Sources */,
 				268028AA2AF298290031379C /* Indication.swift in Sources */,
 				266DC0132A54260900EC9E1F /* NetworkErrorResponse+.swift in Sources */,

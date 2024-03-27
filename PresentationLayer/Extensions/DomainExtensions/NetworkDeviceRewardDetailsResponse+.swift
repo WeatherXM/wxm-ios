@@ -73,41 +73,19 @@ extension NetworkDeviceRewardDetailsResponse {
 		}
 	}
 
-
 	private var dataQualityColor: ColorEnum {
 		guard let qodScore = base?.qodScore else {
 			return .clear
 		}
-
-		switch qodScore {
-			case 0..<10:
-				return .error
-			case 10..<95:
-				return .warning
-			case 95...100:
-				return .success
-			default:
-				return .clear
-		}
+		return qodScore.rewardScoreColor
 	}
 
 	private var dataQualityfontIcon: FontIcon {
 		guard let qodScore = base?.qodScore else {
 			return .hexagonExclamation
 		}
-
-		switch qodScore {
-			case 0..<10:
-				return .hexagonXmark
-			case 10..<95:
-				return .hexagonExclamation
-			case 95...100:
-				return .hexagonCheck
-			default:
-				return .hexagonExclamation
-		}
+		return qodScore.rewardScoreFontIcon
 	}
-
 }
 
 extension NetworkDeviceRewardDetailsResponse {

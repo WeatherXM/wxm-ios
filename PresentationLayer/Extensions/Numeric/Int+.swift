@@ -40,4 +40,30 @@ extension Int {
 	var localizedFormatted: String {
 		NumberFormatter.localizedString(from: NSNumber(value: self), number: .decimal)
 	}
+
+	var rewardScoreFontIcon: FontIcon {
+		switch self {
+			case 0..<10:
+				return .hexagonXmark
+			case 10..<95:
+				return .hexagonExclamation
+			case 95...100:
+				return .hexagonCheck
+			default:
+				return .hexagonExclamation
+		}
+	}
+
+	var rewardScoreColor: ColorEnum {
+		switch self {
+			case 0..<10:
+				return .error
+			case 10..<95:
+				return .warning
+			case 95...100:
+				return .success
+			default:
+				return .clear
+		}
+	}
 }
