@@ -93,7 +93,7 @@ enum CardWarningType {
 			case .error:
 				return .error
 			case .info:
-				return .darkestBlue
+				return .info
 		}
 	}
 
@@ -104,7 +104,7 @@ enum CardWarningType {
 			case .error:
 				return .errorTint
 			case .info:
-				return .blueTint
+				return .infoTint
 		}
 	}
 }

@@ -121,7 +121,7 @@ extension NetworkDeviceRewardDetailsResponse {
 
 		switch severity {
 			case .info:
-				return .success
+				return .reward_score_very_high
 			case .warning:
 				return .warning
 			case .error:
@@ -177,7 +177,7 @@ extension NetworkDeviceRewardDetailsResponse {
 
 		switch severity {
 			case .info:
-				return .success
+				return .reward_score_very_high
 			case .warning:
 				return .warning
 			case .error:
