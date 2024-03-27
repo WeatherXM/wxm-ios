@@ -9,18 +9,19 @@ import SwiftUI
 import Toolkit
 
 struct DeleteAccountView: View {
+	@EnvironmentObject var navigationObject: NavigationObject
     @StateObject var viewModel: DeleteAccountViewModel
 
     var body: some View {
         Group {
             switch viewModel.currentScreen {
                 case .info: mainInfoBody
-                case .success: SuccessfulDeleteView(userID: viewModel.userID).environmentObject(viewModel)
                 case .failure: FailedDeleteView().environmentObject(viewModel)
             }
         }
         .onAppear {
             Logger.shared.trackScreen(.deleteAccount)
+			navigationObject.navigationBarColor = Color(colorEnum: .bg)
         }
     }
 
@@ -127,6 +128,8 @@ private struct BulletPointText: View {
 
 struct Previews_DeleteAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        DeleteAccountView(viewModel: ViewModelsFactory.getDeleteAccountViewModel(userId: ""))
+		NavigationContainerView {
+			DeleteAccountView(viewModel: ViewModelsFactory.getDeleteAccountViewModel(userId: ""))
+		}
     }
 }

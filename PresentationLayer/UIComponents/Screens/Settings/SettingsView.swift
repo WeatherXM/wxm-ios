@@ -9,11 +9,15 @@ import SwiftUI
 import Toolkit
 
 struct SettingsView: View {
+	@EnvironmentObject var navigationObject: NavigationObject
     @StateObject var settingsViewModel: SettingsViewModel
 	@ObservedObject private var mainScreenViewModel: MainScreenViewModel = .shared
 
     var body: some View {
         ZStack {
+			Color(colorEnum: .bg)
+				.ignoresSafeArea()
+
             settingsContainer
             UnitsOptionsModalView(settingsViewModel: settingsViewModel)
         }
@@ -22,6 +26,8 @@ struct SettingsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             Logger.shared.trackScreen(.settings)
+			navigationObject.title = LocalizableString.settings.localized
+			navigationObject.navigationBarColor = Color(colorEnum: .bg)
         }
     }
 
@@ -324,6 +330,8 @@ struct SettingsView: View {
 
 struct Previews_SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(settingsViewModel: ViewModelsFactory.getSettingsViewModel(userId: ""))
+		NavigationContainerView {
+			SettingsView(settingsViewModel: ViewModelsFactory.getSettingsViewModel(userId: ""))
+		}
     }
 }

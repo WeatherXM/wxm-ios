@@ -9,10 +9,13 @@ import SwiftUI
 import Toolkit
 
 struct ResetPasswordView: View {
+	@EnvironmentObject var navigationObjet: NavigationObject
     @StateObject var viewModel: ResetPasswordViewModel
 
     var body: some View {
         ZStack {
+			Color(colorEnum: .bg).ignoresSafeArea()
+
             VStack {
                 resetPasswordFlow
             }
@@ -22,14 +25,14 @@ struct ResetPasswordView: View {
             .padding(.bottom, CGFloat(.defaultSidePadding))
             .padding(.horizontal, CGFloat(.defaultSidePadding))
         }
-        .navigationBarTitle(Text(LocalizableString.resetPasswordTitle.localized),
-                            displayMode: .large)
         .onChange(of: viewModel.userEmail, perform: { text in
             viewModel.userEmail = text.trimWhiteSpaces()
             viewModel.isResetPasswordButtonAvailable()
         })
         .onAppear {
             Logger.shared.trackScreen(.passwordReset)
+			navigationObjet.title = LocalizableString.resetPasswordTitle.localized
+			navigationObjet.navigationBarColor = Color(colorEnum: .bg)
         }
     }
 
@@ -73,8 +76,7 @@ struct ResetPasswordView: View {
 
 struct Previews_ResetPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        ZStack {
-            Color.gray.ignoresSafeArea()
+        NavigationContainerView {
             ResetPasswordView(viewModel: ViewModelsFactory.getResetPasswordViewModel())
         }
     }

@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct SuccessfulDeleteView: View {
-    @EnvironmentObject var viewModel: DeleteAccountViewModel
+    @ObservedObject var viewModel: DeleteAccountViewModel
 	private let mainScreenViewModel: MainScreenViewModel = .shared
-
-    let userID: String
 
     var body: some View {
         ZStack {
+			Color(colorEnum: .bg)
+				.ignoresSafeArea()
             VStack {
                 Image("DeleteSuccessIcon")
                 successInfo
             }
+			.padding(.horizontal)
 			.iPadMaxWidth()
 
             navigationButtons
+				.padding(.horizontal)
 				.iPadMaxWidth()
         }
-        .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
     }
 
@@ -82,7 +83,7 @@ struct SuccessfulDeleteView: View {
 
     var goToSurveyButton: some View {
         Button {
-            Router.shared.navigateTo(.survey(userID, viewModel.getClientIndentifier()))
+			Router.shared.navigateTo(.survey(viewModel.userID, viewModel.getClientIndentifier()))
         } label: {
             goToSurveyButtonStyle
         }
@@ -96,7 +97,6 @@ struct SuccessfulDeleteView: View {
 
 struct Previews_SuccessfulDeleteView_Previews: PreviewProvider {
     static var previews: some View {
-        SuccessfulDeleteView(userID: "")
-            .environmentObject(ViewModelsFactory.getDeleteAccountViewModel(userId: ""))
+		SuccessfulDeleteView(viewModel: ViewModelsFactory.getDeleteAccountViewModel(userId: ""))
     }
 }

@@ -176,7 +176,6 @@
 		267547BF29A9181E008BCF40 /* FailedDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546F629A9181E008BCF40 /* FailedDeleteView.swift */; };
 		267547C029A9181E008BCF40 /* ChartsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546F829A9181E008BCF40 /* ChartsContainer.swift */; };
 		267547C229A9181E008BCF40 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546FA29A9181E008BCF40 /* HistoryView.swift */; };
-		267547C329A9181E008BCF40 /* CustomNavigationLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546FC29A9181E008BCF40 /* CustomNavigationLinkView.swift */; };
 		267547C629A9181E008BCF40 /* ConditionalModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470029A9181E008BCF40 /* ConditionalModifier.swift */; };
 		267547C729A9181E008BCF40 /* GeneralButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470129A9181E008BCF40 /* GeneralButtonStyle.swift */; };
 		267547C929A9181E008BCF40 /* WXMButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470329A9181E008BCF40 /* WXMButtonStyle.swift */; };
@@ -662,7 +661,6 @@
 		267546F629A9181E008BCF40 /* FailedDeleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailedDeleteView.swift; sourceTree = "<group>"; };
 		267546F829A9181E008BCF40 /* ChartsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsContainer.swift; sourceTree = "<group>"; };
 		267546FA29A9181E008BCF40 /* HistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		267546FC29A9181E008BCF40 /* CustomNavigationLinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationLinkView.swift; sourceTree = "<group>"; };
 		2675470029A9181E008BCF40 /* ConditionalModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalModifier.swift; sourceTree = "<group>"; };
 		2675470129A9181E008BCF40 /* GeneralButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralButtonStyle.swift; sourceTree = "<group>"; };
 		2675470329A9181E008BCF40 /* WXMButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMButtonStyle.swift; sourceTree = "<group>"; };
@@ -1378,7 +1376,6 @@
 		267546FB29A9181E008BCF40 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				267546FC29A9181E008BCF40 /* CustomNavigationLinkView.swift */,
 				2675475029A9181E008BCF40 /* NavigationContainerView.swift */,
 			);
 			path = Navigation;
@@ -2726,7 +2723,6 @@
 				2664833429C3777600748F9C /* CurrentWeather+.swift in Sources */,
 				264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */,
 				267547CE29A9181E008BCF40 /* CustomColorButtonStyle.swift in Sources */,
-				267547C329A9181E008BCF40 /* CustomNavigationLinkView.swift in Sources */,
 				2675480429A9181E008BCF40 /* CustomPicker.swift in Sources */,
 				2675483629A9181E008BCF40 /* CustomRangeSlider.swift in Sources */,
 				26D5013C29B2152F00BC2951 /* CustomSegmentView.swift in Sources */,

@@ -10,10 +10,13 @@ import Toolkit
 
 struct RegisterView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+	@EnvironmentObject var navigationObject: NavigationObject
     @StateObject var viewModel: RegisterViewModel
 
     var body: some View {
         ZStack {
+			Color(colorEnum: .bg).ignoresSafeArea()
+
             VStack {
                 registerFlow
             }
@@ -30,6 +33,8 @@ struct RegisterView: View {
         }
         .onAppear {
             Logger.shared.trackScreen(.signup)
+			navigationObject.title = LocalizableString.createAccount.localized
+			navigationObject.navigationBarColor = Color(colorEnum: .bg)
         }
     }
 
@@ -81,8 +86,7 @@ struct RegisterView: View {
 
 struct Previews_RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        ZStack {
-            Color.gray.ignoresSafeArea()
+        NavigationContainerView {
             RegisterView(viewModel: ViewModelsFactory.getRegisterViewModel())
         }
     }
