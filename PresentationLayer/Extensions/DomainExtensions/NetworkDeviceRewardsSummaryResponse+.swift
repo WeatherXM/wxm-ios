@@ -177,7 +177,7 @@ extension NetworkDeviceRewardsSummaryTimelineEntry {
 			return nil
 		}
 		return .init(timestamp: timestamp,
-					 value: baseRewardScore ?? 0,
+					 value: baseRewardScore,
 					 color: (baseRewardScore ?? 0).rewardScoreColor)
 	}
 }

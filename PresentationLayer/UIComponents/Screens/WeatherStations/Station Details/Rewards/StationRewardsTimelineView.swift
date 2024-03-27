@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StationRewardsTimelineView: View {
-	typealias Value = (text: String?, value: Int, color: ColorEnum)
+	typealias Value = (text: String?, value: Int?, color: ColorEnum)
 	let values: [Value]
 
 	var body: some View {
@@ -48,7 +48,11 @@ struct StationRewardsTimelineView: View {
 }
 
 private extension StationRewardsTimelineView {
-	func heightFor(value: Int, containerSize: CGSize) -> Double {
+	func heightFor(value: Int?, containerSize: CGSize) -> Double {
+		guard let value else {
+			return 0.0
+		}
+		
 		let offset = containerSize.height / 4.0
 		let actualContainerHeight = containerSize.height - offset
 		let height = (Double(value) / 100.0) * actualContainerHeight

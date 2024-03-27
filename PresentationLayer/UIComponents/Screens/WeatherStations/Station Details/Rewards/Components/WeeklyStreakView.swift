@@ -74,7 +74,7 @@ struct WeeklyStreakView: View {
 extension WeeklyStreakView {
 	struct Entry: Hashable {
 		let timestamp: Date
-		let value: Int
+		let value: Int?
 		let color: ColorEnum
 
 		var toTimelineValue: StationRewardsTimelineView.Value {
