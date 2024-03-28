@@ -193,3 +193,9 @@ public extension FileManager {
 		return urls.first
 	}
 }
+
+public extension Int {
+	var toFloat: Float {
+		Float(self)
+	}
+}
