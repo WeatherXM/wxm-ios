@@ -17,7 +17,10 @@ struct RewardsTimelinePagination {
 	let currentPage: Int
 	var fromDate: String = Date.now.getFormattedDateOffsetByMonths(-Self.FETCH_INTERVAL_MONTHS)
 	var toDate: String = Date.now.getFormattedDateOffsetByMonths(0)
-	
+	var isPaginationFinished: Bool {
+		rewardsTimelineObject?.hasNextPage == false
+	}
+
 	/// Returns the params for the next page request
 	/// - Returns: Tuple with the essentials
 	func getNextPagination() -> (page: Int, fromDate: String, toDate: String)? {

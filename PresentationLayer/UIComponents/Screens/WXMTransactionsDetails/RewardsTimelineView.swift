@@ -75,6 +75,12 @@ struct RewardsTimelineView: View {
 							.padding(.horizontal, CGFloat(.mediumSidePadding))
 						}
 						
+						if viewModel.isListFinished {
+							endOfListView
+								.padding(.horizontal, CGFloat(.mediumSidePadding))
+
+						}
+
 						if viewModel.isRequestInProgress {
 							HStack {
 								Spacer()
@@ -95,4 +101,17 @@ struct RewardsTimelineView: View {
             .frame(width: 4)
             .padding(.leading, 40)
     }
+
+	@ViewBuilder
+	var endOfListView: some View {
+		VStack {
+			HStack {
+				Text(verbatim: "End of list")
+
+				Spacer()
+			}
+		}
+		.WXMCardStyle()
+		.wxmShadow()
+	}
 }
