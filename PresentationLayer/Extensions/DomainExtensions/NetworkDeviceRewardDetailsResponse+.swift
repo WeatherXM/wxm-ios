@@ -25,7 +25,7 @@ extension NetworkDeviceRewardDetailsResponse {
 extension NetworkDeviceRewardDetailsResponse {
 	func dataQualityScoreObject(followState: UserDeviceFollowState?) -> RewardFieldView.Score {
 		.init(fontIcon: dataQualityfontIcon,
-			  score: Float(base?.qodScore ?? 0),
+			  score: base?.qodScore?.toFloat,
 			  color: dataQualityColor,
 			  message: dataQualityMessage(followState: followState),
 			  showIndication: dataQualityColor != .success )
@@ -80,9 +80,9 @@ extension NetworkDeviceRewardDetailsResponse {
 		return qodScore.rewardScoreColor
 	}
 
-	private var dataQualityfontIcon: FontIcon {
+	private var dataQualityfontIcon: FontIcon? {
 		guard let qodScore = base?.qodScore else {
-			return .hexagonExclamation
+			return nil
 		}
 		return qodScore.rewardScoreFontIcon
 	}
