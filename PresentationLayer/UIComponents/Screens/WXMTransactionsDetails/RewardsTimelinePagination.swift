@@ -27,11 +27,6 @@ struct RewardsTimelinePagination {
 		
 		let hasNextPage = rewardsTimelineObject.hasNextPage ?? false
 		if !hasNextPage {
-			// If there is no next page, we change the date range of the pagination
-			// If there is no next page and no data, we assume the timeline is finished
-			if !rewardsTimelineObject.data.isNilOrEmpty, let date = fromDate.onlyDateStringToDate() {
-				return (0, date.getFormattedDateOffsetByMonths(-Self.FETCH_INTERVAL_MONTHS), fromDate)
-			}
 			return nil
 		}
 
