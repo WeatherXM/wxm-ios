@@ -6428,7 +6428,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your station hasn’t received any rewards yet. Sit back and relax, while our systems are validating the station’s location and data. You should start seeing rewards in the next couple of days."
+            "value" : "Station hasn’t received any rewards yet. Sit back and relax, while our systems are validating the station’s location and data. The station should start receiving rewards in the next couple of days."
           }
         }
       }
