@@ -22,7 +22,7 @@ echo "machine api.mapbox.com" > ~/.netrc
 echo "login mapbox" >> ~/.netrc
 echo "password ${MAPBOX_TOKEN}" >> ~/.netrc
 
-if ([ "$CI_WORKFLOW" = "QA Production" ]) || ([ "$CI_WORKFLOW" = "QA DEV" ]);
+if ([ "$CI_WORKFLOW" = "QA Production" ]) || ([ "$CI_WORKFLOW" = "QA Dev" ]) || ([ "$CI_WORKFLOW" = "Dev Build" ]);
 then
 echo "Install Firebase CLI"
 curl -Lo ./firebase-tools-macos https://firebase.tools/bin/macos/latest
