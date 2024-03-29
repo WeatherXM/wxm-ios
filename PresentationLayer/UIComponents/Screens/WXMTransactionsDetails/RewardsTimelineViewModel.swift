@@ -14,8 +14,6 @@ import Toolkit
 final class RewardsTimelineViewModel: ObservableObject {
     private let useCase: RewardsTimelineUseCase
 
-    private static let FETCH_INTERVAL_MONTHS = 3
-
     private var cancellableSet: Set<AnyCancellable> = []
 	private var pendingTask: Task<(), Never>? {
 		didSet {

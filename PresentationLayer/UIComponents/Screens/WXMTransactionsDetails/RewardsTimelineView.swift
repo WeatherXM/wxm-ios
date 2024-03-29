@@ -105,13 +105,26 @@ struct RewardsTimelineView: View {
 	@ViewBuilder
 	var endOfListView: some View {
 		VStack {
-			HStack {
-				Text(verbatim: "End of list")
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				Text(FontIcon.hexagonCheck.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+					.foregroundColor(Color(colorEnum: .darkGrey))
+
+				Text(LocalizableString.StationDetails.timelineLimitMessage.localized)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundColor(Color(colorEnum: .darkGrey))
 
 				Spacer()
 			}
 		}
 		.WXMCardStyle()
 		.wxmShadow()
+	}
+}
+
+#Preview {
+	NavigationContainerView {
+		RewardsTimelineView(viewModel: ViewModelsFactory.getTransactionDetailsViewModel(device: .mockDevice,
+																						followState: nil))
 	}
 }

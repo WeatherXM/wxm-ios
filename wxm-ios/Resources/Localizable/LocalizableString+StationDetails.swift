@@ -57,6 +57,7 @@ extension LocalizableString {
 		case rewardsTimelineCaption(String)
 		case proTipTitle
 		case proTipDescription
+		case timelineLimitMessage
 	}
 }
 
@@ -186,6 +187,8 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_rewards_pro_tip_title"
 			case .proTipDescription:
 				return "station_details_rewards_pro_tip_description"
+			case .timelineLimitMessage:
+				return "station_details_timeline_limit_message"
 		}
 	}
 }
