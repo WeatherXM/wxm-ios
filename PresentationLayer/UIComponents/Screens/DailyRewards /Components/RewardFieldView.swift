@@ -32,9 +32,11 @@ struct RewardFieldView: View {
 
 			VStack(spacing: CGFloat(.mediumSpacing)) {
 				HStack(spacing: CGFloat(.smallSpacing)) {
-					Text(score.fontIcon.rawValue)
-						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
-						.foregroundColor(Color(colorEnum: score.color))
+					if let fontIcon = score.fontIcon {
+						Text(fontIcon.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+							.foregroundColor(Color(colorEnum: score.color))
+					}
 
 					Text(score.message)
 						.foregroundColor(Color(colorEnum: .darkGrey))
@@ -64,7 +66,7 @@ struct RewardFieldView: View {
 
 extension RewardFieldView {
 	struct Score {
-		let fontIcon: FontIcon
+		let fontIcon: FontIcon?
 		let score: Float?
 		let color: ColorEnum
 		let message: String
