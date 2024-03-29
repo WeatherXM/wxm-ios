@@ -76,6 +76,8 @@ struct RewardsTimelineView: View {
 						}
 						
 						if viewModel.isListFinished {
+							RewardDatePoint(dateOfTransaction: "")
+
 							endOfListView
 								.padding(.horizontal, CGFloat(.mediumSidePadding))
 
