@@ -28,74 +28,73 @@ struct RewardsTimelineView: View {
     }
 
     @ViewBuilder
-    var timelineView: some View {
-        timelineList
-			.iPadMaxWidth()
-            .wxmEmptyView(show: Binding(get: { viewModel.transactions.isEmpty }, set: { _ in }),
-                          configuration: .init(animationEnum: .emptyDevices,
-                                               title: LocalizableString.noTransactionTitle.localized,
-                                               description: LocalizableString.noTransactionDesc.localized.attributedMarkdown ?? "",
-                                               buttonTitle: LocalizableString.retry.localized,
-                                               action: { viewModel.refresh(showFullScreenLoader: true, reset: true) }))
-            .spinningLoader(show: $viewModel.showFullScreenLoader, hideContent: true)
-            .fail(show: $viewModel.isFailed, obj: viewModel.failObj)
-    }
-
-    @ViewBuilder
-    var timelineList: some View {
-        ZStack(alignment: .bottom) {
-            TrackableScrollView(showIndicators: false,
-                                offsetObject: viewModel.scrollOffsetObject) { completion in
-                                    viewModel.refresh(showFullScreenLoader: false, reset: true, completion: completion)
+	var timelineView: some View {
+		ZStack(alignment: .bottom) {
+			TrackableScrollView(showIndicators: false,
+								offsetObject: viewModel.scrollOffsetObject) { completion in
+				viewModel.refresh(showFullScreenLoader: false, reset: true, completion: completion)
 			} content: {
-                ZStack(alignment: .topLeading) {
-                    timeLineOfTransactions
-						.padding(.top, CGFloat(.minimumPadding))
-					
-					VStack(alignment: .leading, spacing: CGFloat(.mediumSpacing)) {
-                        ForEach(viewModel.transactions, id: \.self) { arrayOfTransactions in
-							RewardDatePoint(dateOfTransaction: arrayOfTransactions.first!.timelineTransactionDateString)
-							LazyVStack(spacing: CGFloat(.mediumSpacing)) {
-								ForEach(arrayOfTransactions) { record in
-									DailyRewardCardView(card: record.toDailyRewardCard(isOwned: false), buttonAction: nil)
-										.wxmShadow()
-										.onTapGesture {
-											Logger.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
-																							   .contentType: .deviceTransactions,
-																							   .itemListId: .custom(record.timelineTransactionDateString),
-																							   .itemId: .custom(viewModel.device.id ?? "")])
-											
-											viewModel.handleTransactionTap(from: record)
-										}
-										.onAppear {
-											viewModel.fetchNextPageIfNeeded(for: record)
-										}
+				if viewModel.transactions.isEmpty {
+					NoRewardsView()
+						.padding(CGFloat(.mediumSidePadding))
+
+				} else {
+					timelineList
+				}
+			}
+			.iPadMaxWidth()
+			.spinningLoader(show: $viewModel.showFullScreenLoader, hideContent: true)
+			.fail(show: $viewModel.isFailed, obj: viewModel.failObj)
+		}
+	}
+
+	@ViewBuilder
+	var timelineList: some View {
+		ZStack(alignment: .topLeading) {
+			timeLineOfTransactions
+				.padding(.top, CGFloat(.minimumPadding))
+
+			VStack(alignment: .leading, spacing: CGFloat(.mediumSpacing)) {
+				ForEach(viewModel.transactions, id: \.self) { arrayOfTransactions in
+					RewardDatePoint(dateOfTransaction: arrayOfTransactions.first!.timelineTransactionDateString)
+					LazyVStack(spacing: CGFloat(.mediumSpacing)) {
+						ForEach(arrayOfTransactions) { record in
+							DailyRewardCardView(card: record.toDailyRewardCard(isOwned: false), buttonAction: nil)
+								.wxmShadow()
+								.onTapGesture {
+									Logger.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
+																					   .contentType: .deviceTransactions,
+																					   .itemListId: .custom(record.timelineTransactionDateString),
+																					   .itemId: .custom(viewModel.device.id ?? "")])
+
+									viewModel.handleTransactionTap(from: record)
 								}
-							}
-							.padding(.horizontal, CGFloat(.mediumSidePadding))
+								.onAppear {
+									viewModel.fetchNextPageIfNeeded(for: record)
+								}
 						}
-						
-						if viewModel.isListFinished {
-							RewardDatePoint(dateOfTransaction: "")
+					}
+					.padding(.horizontal, CGFloat(.mediumSidePadding))
+				}
 
-							endOfListView
-								.padding(.horizontal, CGFloat(.mediumSidePadding))
+				if viewModel.isListFinished {
+					RewardDatePoint(dateOfTransaction: "")
 
-						}
+					endOfListView
+						.padding(.horizontal, CGFloat(.mediumSidePadding))
+				}
 
-						if viewModel.isRequestInProgress {
-							HStack {
-								Spacer()
-								ProgressView()
-								Spacer()
-							}
-						}
-                    }
-                }
-				.padding(.top, CGFloat(.mediumSidePadding))
-            }
-        }
-    }
+				if viewModel.isRequestInProgress {
+					HStack {
+						Spacer()
+						ProgressView()
+						Spacer()
+					}
+				}
+			}
+		}
+		.padding(.top, CGFloat(.mediumSidePadding))
+	}
 
     var timeLineOfTransactions: some View {
         Rectangle()
