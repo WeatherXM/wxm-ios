@@ -48,7 +48,7 @@ private struct ContentView: View {
 					boostsView
 				}
 				.iPadMaxWidth()
-				.padding(.horizontal, CGFloat(.defaultSidePadding))
+				.padding(.horizontal, CGFloat(.mediumSidePadding))
 				.padding(.bottom, CGFloat(.smallSidePadding))
 			}
 			.spinningLoader(show: .init(get: { viewModel.state == .loading }, set: { _ in }),
