@@ -16,17 +16,12 @@ private struct StationIndicationModifier: ViewModifier {
 
 	func body(content: Content) -> some View {
 		content
-			.indication(show: .init(get: { !device.isActive }, set: { _ in }),
-						borderColor: Color(colorEnum: .error),
-						bgColor: Color(colorEnum: .errorTint)) {
+			.indication(show: .init(get: { device.hasAlerts(mainVM: mainScreenViewModel, followState: followState) }, 
+									set: { _ in }),
+						borderColor: Color(colorEnum: device.warningType(mainVM: mainScreenViewModel, followState: followState).iconColor),
+						bgColor: Color(colorEnum: device.warningType(mainVM: mainScreenViewModel, followState: followState).tintColor)) {
 				statusView
 			}
-			.indication(show: .init(get: { device.isActive && device.needsUpdate(mainVM: mainScreenViewModel, followState: followState) }, set: { _ in }),
-						borderColor: Color(colorEnum: .warning),
-						bgColor: Color(colorEnum: .warningTint)) {
-				statusView
-			}
-
 	}
 }
 
@@ -36,9 +31,7 @@ private extension StationIndicationModifier {
 		let alertsCount = device.alertsCount(mainVM: mainScreenViewModel, followState: followState)
 		if alertsCount > 1 {
 			multipleAlertsView(alertsCount: alertsCount)
-		} else if device.isActive {
-			warningView
-		} else {
+		} else if !device.isActive {
 			HStack(spacing: CGFloat(.smallSpacing)) {
 				Image(asset: .offlineIcon)
 					.renderingMode(.template)
@@ -51,6 +44,8 @@ private extension StationIndicationModifier {
 				Spacer()
 			}
 			.padding(CGFloat(.smallSidePadding))
+		} else {
+			warningView
 		}
 	}
 
@@ -108,6 +103,29 @@ private extension StationIndicationModifier {
 															   .promptType: .warnPromptType,
 															   .action: .viewAction])
 			}
+		} else if device.isBatteryLow {
+			CardWarningView(title: LocalizableString.stationWarningLowBatteryTitle.localized,
+							message: LocalizableString.stationWarningLowBatteryDescription.localized,
+							showContentFullWidth: true,
+							closeAction: nil) {
+				Button {
+
+//					Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
+//																   .promptType: .warnPromptType,
+//																   .action: .action])
+				} label: {
+					Text(LocalizableString.stationWarningLowBatteryButtonTitle.localized)
+				}
+				.buttonStyle(WXMButtonStyle())
+				.buttonStyle(.plain)
+			}
+			.padding(.vertical, CGFloat(.smallSidePadding))
+			.onAppear {
+//				Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
+//															   .promptType: .warnPromptType,
+//															   .action: .viewAction])
+			}
+
 		} else {
 			EmptyView()
 		}
