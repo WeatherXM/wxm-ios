@@ -25,7 +25,8 @@ public struct NetworkDevicesResponse: Codable, Identifiable {
     public init() {}
 
     enum CodingKeys: String, CodingKey {
-        case id, name, timezone, address, attributes, location, batteryState, rewards, label, profile, relation
+        case id, name, timezone, address, attributes, location, rewards, label, profile, relation
+		case batteryState = "bat_state"
         case currentWeather = "current_weather"
     }
 
