@@ -29,13 +29,14 @@ private extension StationIndicationModifier {
 	@ViewBuilder
 	var statusView: some View {
 		let alertsCount = device.alertsCount(mainVM: mainScreenViewModel, followState: followState)
+		let warningType = device.warningType(mainVM: mainScreenViewModel, followState: followState)
 		if alertsCount > 1 {
 			multipleAlertsView(alertsCount: alertsCount)
 		} else if !device.isActive {
 			HStack(spacing: CGFloat(.smallSpacing)) {
-				Image(asset: .offlineIcon)
+				Image(asset: warningType.icon)
 					.renderingMode(.template)
-					.foregroundColor(Color(colorEnum: .error))
+					.foregroundColor(Color(colorEnum: warningType.iconColor))
 
 				Text(LocalizableString.offlineStation.localized)
 					.foregroundColor(Color(colorEnum: .text))
@@ -51,10 +52,11 @@ private extension StationIndicationModifier {
 
 	@ViewBuilder
 	func multipleAlertsView(alertsCount: Int) -> some View {
+		let warningType = device.warningType(mainVM: mainScreenViewModel, followState: followState)
 		HStack(spacing: CGFloat(.smallSpacing)) {
-			Image(asset: .offlineIcon)
+			Image(asset: warningType.icon)
 				.renderingMode(.template)
-				.foregroundColor(Color(colorEnum: .error))
+				.foregroundColor(Color(colorEnum: warningType.iconColor))
 
 			Text(LocalizableString.issues(alertsCount).localized)
 				.foregroundColor(Color(colorEnum: .text))
@@ -66,16 +68,16 @@ private extension StationIndicationModifier {
 				Router.shared.navigateTo(.viewMoreAlerts(ViewModelsFactory.getAlertsViewModel(device: device,
 																							  mainVM: mainScreenViewModel,
 																							  followState: followState)))
-
 			} label: {
 				Text(LocalizableString.viewMore.localized)
-					.foregroundColor(Color(colorEnum: .primary))
-					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
-					.padding(.horizontal, CGFloat(.smallSidePadding))
+					.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
+					.padding(.vertical, CGFloat(.smallToMediumSidePadding))
 			}
+			.buttonStyle(WXMButtonStyle.transparentFixedSize)
+			.clipShape(Capsule())
 
 		}
-		.padding(CGFloat(.smallSidePadding))
+		.padding(CGFloat(.defaultSidePadding))
 	}
 
 	@ViewBuilder
@@ -94,10 +96,10 @@ private extension StationIndicationModifier {
 				} label: {
 					Text(LocalizableString.stationWarningUpdateButtonTitle.localized)
 				}
-				.buttonStyle(WXMButtonStyle())
+				.buttonStyle(WXMButtonStyle.transparent)
 				.buttonStyle(.plain)
+				.padding(.top, CGFloat(.minimumPadding))
 			}
-			.padding(.vertical, CGFloat(.smallSidePadding))
 			.onAppear {
 				Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
 															   .promptType: .warnPromptType,
@@ -109,23 +111,40 @@ private extension StationIndicationModifier {
 							showContentFullWidth: true,
 							closeAction: nil) {
 				Button {
-
-//					Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
-//																   .promptType: .warnPromptType,
-//																   .action: .action])
+					guard let profile = device.profile else {
+						return
+					}
+					switch profile {
+						case .m5:
+							if let url = URL(string: DisplayedLinks.m5Batteries.linkURL) {
+								UIApplication.shared.open(url)
+							}
+						case .helium:
+							if let url = URL(string: DisplayedLinks.heliumBatteries.linkURL) {
+								UIApplication.shared.open(url)
+							}
+					}
+					/* TODO: Track analytics*/
+					/*
+					Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
+																   .promptType: .warnPromptType,
+																   .action: .action])
+					*/
 				} label: {
 					Text(LocalizableString.stationWarningLowBatteryButtonTitle.localized)
 				}
-				.buttonStyle(WXMButtonStyle())
+				.buttonStyle(WXMButtonStyle.transparent)
 				.buttonStyle(.plain)
+				.padding(.top, CGFloat(.minimumPadding))
 			}
-			.padding(.vertical, CGFloat(.smallSidePadding))
 			.onAppear {
-//				Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
-//															   .promptType: .warnPromptType,
-//															   .action: .viewAction])
+				/* TODO: Track analytics*/
+				/*
+				Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
+															   .promptType: .warnPromptType,
+															   .action: .viewAction])
+				 */
 			}
-
 		} else {
 			EmptyView()
 		}
