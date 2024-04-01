@@ -13,6 +13,7 @@ public struct NetworkDevicesResponse: Codable, Identifiable {
     public var name: String = ""
     public var label: String? = ""
     public var location: LocationCoordinates?
+	public var batteryState: BatteryState?
     public var timezone: String? = ""
     public var address: String? = ""
     public var attributes: Attributes = .init()
@@ -24,7 +25,7 @@ public struct NetworkDevicesResponse: Codable, Identifiable {
     public init() {}
 
     enum CodingKeys: String, CodingKey {
-        case id, name, timezone, address, attributes, location, rewards, label, profile, relation
+        case id, name, timezone, address, attributes, location, batteryState, rewards, label, profile, relation
         case currentWeather = "current_weather"
     }
 
@@ -34,6 +35,7 @@ public struct NetworkDevicesResponse: Codable, Identifiable {
         name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
         label = try? values.decodeIfPresent(String.self, forKey: .label)
         location = try? values.decodeIfPresent(LocationCoordinates.self, forKey: .location)
+		batteryState = try? values.decodeIfPresent(BatteryState.self, forKey: .batteryState)
         timezone = try? values.decodeIfPresent(String.self, forKey: .timezone)
         address = try? values.decodeIfPresent(String.self, forKey: .address)
         attributes = try values.decodeIfPresent(Attributes.self, forKey: .attributes) ?? Attributes()

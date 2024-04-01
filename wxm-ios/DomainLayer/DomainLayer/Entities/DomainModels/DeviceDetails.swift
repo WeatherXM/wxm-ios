@@ -14,6 +14,7 @@ public struct DeviceDetails {
     public var label: String?
     public var address: String?
 	public var location: LocationCoordinates?
+	public var batteryState: BatteryState?
     public var cellIndex: String?
     public var cellCenter: LocationCoordinates?
 	public var cellPolygon: [LocationCoordinates]?
@@ -52,6 +53,7 @@ extension NetworkDevicesResponse {
                       label: label,
                       address: address,
 					  location: location,
+					  batteryState: batteryState,
                       cellIndex: attributes.hex7?.index,
                       cellCenter: attributes.hex7?.center,
 					  cellPolygon: attributes.hex7?.polygon,
