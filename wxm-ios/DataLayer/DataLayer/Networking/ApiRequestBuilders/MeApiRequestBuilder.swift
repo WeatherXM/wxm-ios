@@ -167,7 +167,6 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				}
 				parameters[ParameterConstants.Me.page] = page
 				parameters[ParameterConstants.Me.fromDate] = fromDate
-				parameters[ParameterConstants.Me.timezone] = timezone
 				return parameters
 			case let .setFriendlyName(_, name):
 				return [ParameterConstants.Me.friendlyName: name]
