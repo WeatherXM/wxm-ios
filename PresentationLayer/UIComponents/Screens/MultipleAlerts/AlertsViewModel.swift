@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import DomainLayer
 import Toolkit
+import UIKit
 
 class AlertsViewModel: ObservableObject {
 
@@ -55,6 +56,16 @@ private extension AlertsViewModel {
             alerts.append(alert)
         }
 
+		if device.isBatteryLow(followState: followState) {
+			let alert = MultipleAlertsView.Alert(type: .warning,
+												 title: LocalizableString.stationWarningLowBatteryTitle.localized,
+												 message: LocalizableString.stationWarningLowBatteryDescription.localized,
+												 buttonTitle: LocalizableString.stationWarningLowBatteryButtonTitle.localized,
+												 buttonAction: handleLowBatteryTap,
+												 appearAction: nil)
+			alerts.append(alert)
+		}
+
         self.alerts = alerts
     }
 
@@ -72,6 +83,23 @@ private extension AlertsViewModel {
         trackPromptEvent(action: .action)
         mainVM.showFirmwareUpdate(device: device)
     }
+
+	func handleLowBatteryTap() {
+		guard let profile = device.profile else {
+			return
+		}
+		switch profile {
+			case .m5:
+				if let url = URL(string: DisplayedLinks.m5Batteries.linkURL) {
+					UIApplication.shared.open(url)
+				}
+			case .helium:
+				if let url = URL(string: DisplayedLinks.heliumBatteries.linkURL) {
+					UIApplication.shared.open(url)
+				}
+		}
+
+	}
 
     func trackPromptEvent(action: ParameterValue) {
         Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
