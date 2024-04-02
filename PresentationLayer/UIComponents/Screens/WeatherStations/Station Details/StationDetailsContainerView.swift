@@ -192,6 +192,7 @@ private struct StationDetailsView: View {
     }
 }
 
+/// Container for different layout according to iOS version
 private struct ConditionalOSContainer<Content: View>: View {
 	let content: () -> Content
 
@@ -208,6 +209,7 @@ private struct ConditionalOSContainer<Content: View>: View {
 	}
 }
 
+/// Modify safe area inset according to iOS version
 private struct SafeAreaInsetModifier: ViewModifier {
 	let inset: CGFloat
 
