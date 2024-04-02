@@ -97,6 +97,7 @@
 		2664833429C3777600748F9C /* CurrentWeather+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664833329C3777600748F9C /* CurrentWeather+.swift */; };
 		2664833F29C8953E00748F9C /* SpinningLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664833E29C8953E00748F9C /* SpinningLoaderView.swift */; };
 		2664834329C89F8A00748F9C /* StationDetailsTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664834229C89F8A00748F9C /* StationDetailsTypes.swift */; };
+		2666D50A2BBC4E80003B30C0 /* StationChipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2666D5092BBC4E80003B30C0 /* StationChipsView.swift */; };
 		266B018F2B836EC6007AC689 /* NoRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B018E2B836EC6007AC689 /* NoRewardsView.swift */; };
 		266B01912B836FE6007AC689 /* anim_rocket.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01902B836FE6007AC689 /* anim_rocket.json */; };
 		266B01932B8380FA007AC689 /* AnnouncementCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B01922B8380FA007AC689 /* AnnouncementCardView.swift */; };
@@ -598,6 +599,7 @@
 		2664833329C3777600748F9C /* CurrentWeather+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentWeather+.swift"; sourceTree = "<group>"; };
 		2664833E29C8953E00748F9C /* SpinningLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningLoaderView.swift; sourceTree = "<group>"; };
 		2664834229C89F8A00748F9C /* StationDetailsTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsTypes.swift; sourceTree = "<group>"; };
+		2666D5092BBC4E80003B30C0 /* StationChipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationChipsView.swift; sourceTree = "<group>"; };
 		266B018E2B836EC6007AC689 /* NoRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRewardsView.swift; sourceTree = "<group>"; };
 		266B01902B836FE6007AC689 /* anim_rocket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_rocket.json; sourceTree = "<group>"; };
 		266B01922B8380FA007AC689 /* AnnouncementCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCardView.swift; sourceTree = "<group>"; };
@@ -2136,6 +2138,7 @@
 				26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */,
 				2664834229C89F8A00748F9C /* StationDetailsTypes.swift */,
 				26DD42E329B0FA9B008E277E /* StationDetailsViewModel.swift */,
+				2666D5092BBC4E80003B30C0 /* StationChipsView.swift */,
 			);
 			path = StationDetails;
 			sourceTree = "<group>";
@@ -2760,6 +2763,7 @@
 				26348E252A444BEE000846C6 /* FontsEnum.swift in Sources */,
 				2678ED8F2AFD1B1400940D59 /* RewardsTimelinePagination.swift in Sources */,
 				267548D729A91A87008BCF40 /* FontSizeEnum.swift in Sources */,
+				2666D50A2BBC4E80003B30C0 /* StationChipsView.swift in Sources */,
 				26CA845D2AD93C0C006D47D7 /* DeviceDetails+Common.swift in Sources */,
 				267548E629A91A87008BCF40 /* Functions+Units.swift in Sources */,
 				267547C729A9181E008BCF40 /* GeneralButtonStyle.swift in Sources */,
