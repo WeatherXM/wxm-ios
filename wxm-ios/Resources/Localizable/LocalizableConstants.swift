@@ -40,6 +40,7 @@ enum LocalizableString: WXMLocalizable {
     case deviceSerialNumber
     case issues(Int?)
     case viewMore
+	case viewAll
     case celsiusSymbol
     case fahrenheitSymbol
     case temperature
@@ -311,6 +312,8 @@ extension LocalizableString {
                 return "issues_format"
             case .viewMore:
                 return "view_more"
+			case .viewAll:
+				return "view_all"
             case .celsiusSymbol:
                 return "celsius_symbol"
             case .fahrenheitSymbol:

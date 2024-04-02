@@ -18,20 +18,22 @@ struct MultipleAlertsView: View {
             Color(colorEnum: .top)
             
             ScrollView {
-                VStack(spacing: CGFloat(.smallSpacing)) {
+                VStack(spacing: CGFloat(.mediumSpacing)) {
                     ForEach(viewModel.alerts, id: \.message) { alert in
                         CardWarningView(type: alert.type,
                                         title: alert.title,
                                         message: alert.message,
                                         showContentFullWidth: true,
+										showBorder: true,
                                         closeAction: nil) {
                             Button(action: alert.buttonAction) {
                                 Text(alert.buttonTitle)
                             }
-                            .buttonStyle(WXMButtonStyle())
+							.buttonStyle(WXMButtonStyle.transparent)
                             .padding(.top, CGFloat(.smallSidePadding))
                         }
                         .onAppear(perform: alert.appearAction)
+						.wxmShadow()
 					}.iPadMaxWidth()
                 }
                 .padding(CGFloat(.defaultSidePadding))

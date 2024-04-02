@@ -69,7 +69,7 @@ private extension StationIndicationModifier {
 																							  mainVM: mainScreenViewModel,
 																							  followState: followState)))
 			} label: {
-				Text(LocalizableString.viewMore.localized)
+				Text(LocalizableString.viewAll.localized)
 					.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 					.padding(.vertical, CGFloat(.smallToMediumSidePadding))
 			}
