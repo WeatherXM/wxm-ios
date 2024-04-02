@@ -14,6 +14,7 @@ struct StationChipsView: View {
     var body: some View {
 		ScrollView(.horizontal) {
 			HStack(spacing: CGFloat(.smallSpacing)) {
+				warningsChip
 				statusChip
 				addressChip
 			}
@@ -53,6 +54,30 @@ private extension StationChipsView {
 	@ViewBuilder
 	var statusChip: some View {
 		StationLastActiveView(device: device)
+	}
+
+	@ViewBuilder
+	var warningsChip: some View {
+		Button {
+//				tapAddressAction?()
+		} label: {
+
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				Text(FontIcon.hexagonExclamation.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+					.foregroundColor(Color(colorEnum: .warning))
+
+				Text(verbatim: "warnings")
+					.font(.system(size: CGFloat(.caption)))
+					.foregroundColor(Color(colorEnum: .text))
+					.lineLimit(1)
+			}
+			.WXMCardStyle(backgroundColor: Color(colorEnum: .warningTint),
+						  insideHorizontalPadding: CGFloat(.smallSidePadding),
+						  insideVerticalPadding: CGFloat(.smallSidePadding),
+						  cornerRadius: CGFloat(.buttonCornerRadius))
+		}
+
 	}
 }
 
