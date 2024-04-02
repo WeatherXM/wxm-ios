@@ -105,7 +105,7 @@ private extension StationIndicationModifier {
 															   .promptType: .warnPromptType,
 															   .action: .viewAction])
 			}
-		} else if device.isBatteryLow {
+		} else if device.isBatteryLow(followState: followState) {
 			CardWarningView(title: LocalizableString.stationWarningLowBatteryTitle.localized,
 							message: LocalizableString.stationWarningLowBatteryDescription.localized,
 							showContentFullWidth: true,

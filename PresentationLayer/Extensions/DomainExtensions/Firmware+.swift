@@ -11,8 +11,11 @@ import DomainLayer
 extension DeviceDetails {
 	private static let firmwareUpdateInterval: TimeInterval = .hour
 
-	var isBatteryLow: Bool {
-		batteryState == .low
+	func isBatteryLow(followState: UserDeviceFollowState?) -> Bool {
+		guard followState?.relation == .owned else {
+			return false
+		}
+		return batteryState == .low
 	}
 
 	func warningType(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> CardWarningType {
@@ -58,7 +61,7 @@ extension DeviceDetails {
 	}
 
 	func alertsCount(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> Int {
-		[!isActive, isBatteryLow, needsUpdate(mainVM: mainVM, followState: followState)].reduce(0) { $0 + ($1 ? 1 : 0) }
+		[!isActive, isBatteryLow(followState: followState), needsUpdate(mainVM: mainVM, followState: followState)].reduce(0) { $0 + ($1 ? 1 : 0) }
 	}
 
 	func hasAlerts(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> Bool {
