@@ -6802,7 +6802,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You can’t view more than 90 days."
+            "value" : "You’ve reached the end of the Timeline."
           }
         }
       }
