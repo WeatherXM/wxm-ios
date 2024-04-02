@@ -1606,7 +1606,7 @@
 			isa = PBXGroup;
 			children = (
 				2675476F29A9181E008BCF40 /* Home */,
-				26DD42DF29B0F66A008E277E /* Station Details */,
+				26DD42DF29B0F66A008E277E /* StationDetails */,
 			);
 			path = WeatherStations;
 			sourceTree = "<group>";
@@ -2127,7 +2127,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		26DD42DF29B0F66A008E277E /* Station Details */ = {
+		26DD42DF29B0F66A008E277E /* StationDetails */ = {
 			isa = PBXGroup;
 			children = (
 				2664832729C35ABA00748F9C /* Forecast */,
@@ -2137,7 +2137,7 @@
 				2664834229C89F8A00748F9C /* StationDetailsTypes.swift */,
 				26DD42E329B0FA9B008E277E /* StationDetailsViewModel.swift */,
 			);
-			path = "Station Details";
+			path = StationDetails;
 			sourceTree = "<group>";
 		};
 		26FFAD772B8E125900BF0A6B /* Components */ = {
