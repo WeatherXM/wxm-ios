@@ -83,62 +83,55 @@ private struct StationDetailsView: View {
             Color(colorEnum: .bg)
                 .ignoresSafeArea()
 
-            ZStack(alignment: .top) {
-                titleView
-                    .padding(.horizontal, CGFloat(.mediumSidePadding))
-                    .background {
-                        Color(colorEnum: .top)
-                    }
-                    .cornerRadius(CGFloat(.cardCornerRadius),
-                                  corners: [.bottomLeft, .bottomRight])
-                    .background {
-                        // The following "hack" is to drop shadow only at the bottom of the view
-                        VStack {
-                            Spacer()
-                            Color(colorEnum: .top)
-                                .frame(height: 30.0)
-                                .cornerRadius(CGFloat(.cardCornerRadius),
-                                              corners: [.bottomLeft, .bottomRight])
-                                .wxmShadow()
-                        }
-                    }.zIndex(1)
-                    .offset(x: 0.0, y: isHeaderHidden ? -titleViewAddressSize.height : 0.0)
-                    .animation(.easeIn(duration: 0.15), value: isHeaderHidden)
-                    .sizeObserver(size: $titleViewSize)
+			ConditionalOSContainer {
+				Group {
+					titleView
+						.padding(.horizontal, CGFloat(.mediumSidePadding))
+						.background {
+							Color(colorEnum: .top)
+						}
+						.cornerRadius(CGFloat(.cardCornerRadius),
+									  corners: [.bottomLeft, .bottomRight])
+						.background {
+							// The following "hack" is to drop shadow only at the bottom of the view
+							VStack {
+								Spacer()
+								Color(colorEnum: .top)
+									.frame(height: 30.0)
+									.cornerRadius(CGFloat(.cardCornerRadius),
+												  corners: [.bottomLeft, .bottomRight])
+									.wxmShadow()
+							}
+						}.zIndex(1)
+						.offset(x: 0.0, y: isHeaderHidden ? -titleViewAddressSize.height : 0.0)
+						.animation(.easeIn(duration: 0.15), value: isHeaderHidden)
+						.sizeObserver(size: $titleViewSize)
 
-                TabViewWrapper(selection: $selectedIndex) { [unowned viewModel] in
-                    ForEach(0..<StationDetailsViewModel.Tab.allCases.count, id: \.self) { [unowned viewModel] index in
-                        let tab = StationDetailsViewModel.Tab.allCases[index]
-                        switch tab {
-                            case .observations:
-                                ObservationsView(viewModel: viewModel.observationsVM)
-                                    .tag(index)
-                                    .safeAreaInset(edge: .top) {
-                                        Spacer()
-                                            .frame(height: titleViewSize.height)
-                                    }
-                            case .forecast:
-                                StationForecastView(viewModel: viewModel.forecastVM)
-                                    .tag(index)
-                                    .safeAreaInset(edge: .top) {
-                                        Spacer()
-                                            .frame(height: titleViewSize.height)
-                                    }
-                            case .rewards:
-                                StationRewardsView(viewModel: viewModel.rewardsVM)
-                                    .tag(index)
-                                    .safeAreaInset(edge: .top) {
-                                        Spacer()
-                                            .frame(height: titleViewSize.height)
-                                    }
-                        }
-                    }
-                }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
-                .zIndex(0)
-                .animation(.easeOut(duration: 0.3), value: selectedIndex)
-            }
+					TabViewWrapper(selection: $selectedIndex) { [unowned viewModel] in
+						ForEach(0..<StationDetailsViewModel.Tab.allCases.count, id: \.self) { [unowned viewModel] index in
+							let tab = StationDetailsViewModel.Tab.allCases[index]
+							switch tab {
+								case .observations:
+									ObservationsView(viewModel: viewModel.observationsVM)
+										.tag(index)
+										.conditionalOSsafeAreaTopInset(titleViewSize.height)
+								case .forecast:
+									StationForecastView(viewModel: viewModel.forecastVM)
+										.tag(index)
+										.conditionalOSsafeAreaTopInset(titleViewSize.height)
+								case .rewards:
+									StationRewardsView(viewModel: viewModel.rewardsVM)
+										.tag(index)
+										.conditionalOSsafeAreaTopInset(titleViewSize.height)
+							}
+						}
+					}
+					.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+					.indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+					.zIndex(0)
+					.animation(.easeOut(duration: 0.3), value: selectedIndex)
+				}
+			}
         }
         .wxmAlert(show: $viewModel.showLoginAlert) {
             WXMAlertView(show: $viewModel.showLoginAlert,
@@ -197,6 +190,44 @@ private struct StationDetailsView: View {
             EmptyView()
         }
     }
+}
+
+private struct ConditionalOSContainer<Content: View>: View {
+	let content: () -> Content
+
+	var body: some View {
+		if #available(iOS 16.0, *) {
+			ZStack(alignment: .top) {
+				content()
+			}
+		} else {
+			VStack(spacing: CGFloat(.smallSidePadding)) {
+				content()
+			}
+		}
+	}
+}
+
+private struct SafeAreaInsetModifier: ViewModifier {
+	let inset: CGFloat
+
+	func body(content: Content) -> some View {
+		if #available(iOS 16.0, *) {
+			content
+				.safeAreaInset(edge: .top) {
+					Spacer()
+						.frame(height: inset)
+				}
+		} else {
+			content
+		}
+	}
+}
+
+private extension View {
+	func conditionalOSsafeAreaTopInset(_ inset: CGFloat) -> some View {
+		modifier(SafeAreaInsetModifier(inset: inset))
+	}
 }
 
 struct StationDetailsContainerView_Previews: PreviewProvider {
