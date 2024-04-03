@@ -7,9 +7,13 @@
 
 import SwiftUI
 import DomainLayer
+import Toolkit
 
 struct StationChipsView: View {
 	let device: DeviceDetails
+	let warning: String?
+	var addressAction: VoidCallback?
+	var warningAction: VoidCallback?
 
     var body: some View {
 		ScrollView(.horizontal) {
@@ -27,7 +31,7 @@ private extension StationChipsView {
 	var addressChip: some View {
 		if let address = device.address {
 			Button {
-//				tapAddressAction?()
+				addressAction?()
 			} label: {
 
 				HStack(spacing: CGFloat(.smallSpacing)) {
@@ -45,10 +49,10 @@ private extension StationChipsView {
 							  insideVerticalPadding: CGFloat(.smallSidePadding),
 							  cornerRadius: CGFloat(.buttonCornerRadius))
 			}
+			.allowsHitTesting(addressAction != nil)
 		} else {
 			EmptyView()
 		}
-//		.allowsHitTesting(tapAddressAction != nil)
 	}
 
 	@ViewBuilder
@@ -58,30 +62,34 @@ private extension StationChipsView {
 
 	@ViewBuilder
 	var warningsChip: some View {
-		Button {
-//				tapAddressAction?()
-		} label: {
+		if let warning {
+			Button {
+				warningAction?()
+			} label: {
 
-			HStack(spacing: CGFloat(.smallSpacing)) {
-				Text(FontIcon.hexagonExclamation.rawValue)
-					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-					.foregroundColor(Color(colorEnum: .warning))
+				HStack(spacing: CGFloat(.smallSpacing)) {
+					Text(FontIcon.hexagonExclamation.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundColor(Color(colorEnum: .warning))
 
-				Text(verbatim: "warnings")
-					.font(.system(size: CGFloat(.caption)))
-					.foregroundColor(Color(colorEnum: .text))
-					.lineLimit(1)
+					Text(warning)
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundColor(Color(colorEnum: .text))
+						.lineLimit(1)
+				}
+				.WXMCardStyle(backgroundColor: Color(colorEnum: .warningTint),
+							  insideHorizontalPadding: CGFloat(.smallSidePadding),
+							  insideVerticalPadding: CGFloat(.smallSidePadding),
+							  cornerRadius: CGFloat(.buttonCornerRadius))
 			}
-			.WXMCardStyle(backgroundColor: Color(colorEnum: .warningTint),
-						  insideHorizontalPadding: CGFloat(.smallSidePadding),
-						  insideVerticalPadding: CGFloat(.smallSidePadding),
-						  cornerRadius: CGFloat(.buttonCornerRadius))
+			.allowsHitTesting(warningAction != nil)
+		} else {
+			EmptyView()
 		}
-
 	}
 }
 
 #Preview {
-	StationChipsView(device: .mockDevice)
+	StationChipsView(device: .mockDevice, warning: "Issues text")
 		.padding()
 }
