@@ -37,9 +37,11 @@ class StationDetailsViewModel: ObservableObject {
 	@Published private(set) var device: DeviceDetails? {
 		didSet {
 			shareDialogText = device?.explorerUrl
+			updateWarningText()
 		}
 	}
     @Published private(set) var followState: UserDeviceFollowState?
+	@Published private(set) var warning: String?
     @Published var shouldHideHeaderToggle: Bool = false
     @Published var showLoginAlert: Bool = false
 	@Published var showShareDialog: Bool = false
@@ -87,6 +89,13 @@ class StationDetailsViewModel: ObservableObject {
         
         Router.shared.navigateTo(.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: cellIndex, cellCenter: center)))
     }
+
+	func warningTapped() {
+		guard let device else {
+			return
+		}
+		Router.shared.navigateTo(.viewMoreAlerts(.init(device: device, mainVM: .shared, followState: followState)))
+	}
 
     func handleShareButtonTap() {
         Logger.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsShare])
@@ -255,6 +264,22 @@ private extension StationDetailsViewModel {
         loginAlertConfiguration = conf
         showLoginAlert = true
     }
+
+	func updateWarningText() {
+		guard let issues = device?.issues(mainVM: .shared, followState: followState) else {
+			warning = nil
+			return
+		}
+		
+		let warnings = issues.filter { $0.warningType == .warning }
+		
+		if warnings.count > 1 {
+			warning = LocalizableString.issues(warnings.count).localized
+			return
+		}
+
+		warning = warnings.first?.type.description
+	}
 }
 
 // MARK: - StationDetailsViewModelDelegate

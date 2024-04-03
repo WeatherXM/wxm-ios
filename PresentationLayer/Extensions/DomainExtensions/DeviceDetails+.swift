@@ -63,10 +63,21 @@ extension DeviceDetails {
 extension DeviceDetails {
 	private static let firmwareUpdateInterval: TimeInterval = .hour
 	
-	enum IssueType: Comparable {
+	enum IssueType: Comparable, CustomStringConvertible {
 		case offline
 		case needsUpdate
 		case lowBattery
+
+		var description: String {
+			switch self {
+				case .offline:
+					return LocalizableString.alertsStationOfflineTitle.localized
+				case .needsUpdate:
+					return LocalizableString.updateRequiredTitle.localized
+				case .lowBattery:
+					return LocalizableString.lowBatteryWarningTitle.localized
+			}
+		}
 	}
 
 	struct Issue {

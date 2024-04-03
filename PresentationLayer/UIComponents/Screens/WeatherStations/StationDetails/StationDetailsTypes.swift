@@ -22,11 +22,13 @@ struct StationAddressTitleView: View {
 	let device: DeviceDetails
 	let followState: UserDeviceFollowState?
     let subtitle: String?
+	let warning: String?
     let showStateIcon: Bool
     let stateFAIcon: StateFontAwesome
     let isStateIconEnabled: Bool
     let tapStateIconAction: VoidCallback?
     let tapAddressAction: VoidCallback?
+	let tapWarningAction: VoidCallback?
 
     var body: some View {
         VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -64,7 +66,7 @@ struct StationAddressTitleView: View {
                 }
             }
 
-			StationChipsView(device: device, warning: nil, addressAction: tapAddressAction, warningAction: nil)
+			StationChipsView(device: device, warning: warning, addressAction: tapAddressAction, warningAction: tapWarningAction)
         }
     }
 }
@@ -73,18 +75,22 @@ extension StationAddressTitleView {
 
     init(device: DeviceDetails,
 		 followState: UserDeviceFollowState?,
+		 warning: String?,
 		 showSubtitle: Bool = true,
 		 showStateIcon: Bool = true,
 		 tapStateIconAction: VoidCallback? = nil,
-		 tapAddressAction: VoidCallback? = nil) {
+		 tapAddressAction: VoidCallback? = nil,
+		 tapWarningAction: VoidCallback? = nil) {
 		self.device = device
 		self.followState = followState
         let subtitle = device.friendlyName != nil ? device.name : nil
         self.subtitle = showSubtitle ? subtitle : nil
+		self.warning = warning
         self.showStateIcon = showStateIcon
         self.stateFAIcon = followState?.state.FAIcon ?? UserDeviceFollowState.defaultFAIcon
         self.isStateIconEnabled = followState?.state.isActionable ?? true
         self.tapStateIconAction = tapStateIconAction
         self.tapAddressAction = tapAddressAction
+		self.tapWarningAction = tapWarningAction
     }
 }

@@ -15,6 +15,7 @@ extension WeatherStationCard {
     var titleView: some View {
         StationAddressTitleView(device: device,
                                 followState: followState,
+								warning: nil,
                                 showSubtitle: false,
                                 showStateIcon: true,
                                 tapStateIconAction: followAction,
