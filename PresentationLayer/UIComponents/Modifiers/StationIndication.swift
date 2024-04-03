@@ -16,10 +16,10 @@ private struct StationIndicationModifier: ViewModifier {
 
 	func body(content: Content) -> some View {
 		content
-			.indication(show: .init(get: { device.hasAlerts(mainVM: mainScreenViewModel, followState: followState) }, 
+			.indication(show: .init(get: { device.hasIssues(mainVM: mainScreenViewModel, followState: followState) }, 
 									set: { _ in }),
-						borderColor: Color(colorEnum: device.warningType(mainVM: mainScreenViewModel, followState: followState).iconColor),
-						bgColor: Color(colorEnum: device.warningType(mainVM: mainScreenViewModel, followState: followState).tintColor)) {
+						borderColor: Color(colorEnum: device.overallWarningType(mainVM: mainScreenViewModel, followState: followState).iconColor),
+						bgColor: Color(colorEnum: device.overallWarningType(mainVM: mainScreenViewModel, followState: followState).tintColor)) {
 				statusView
 			}
 	}
@@ -28,8 +28,8 @@ private struct StationIndicationModifier: ViewModifier {
 private extension StationIndicationModifier {
 	@ViewBuilder
 	var statusView: some View {
-		let alertsCount = device.alertsCount(mainVM: mainScreenViewModel, followState: followState)
-		let warningType = device.warningType(mainVM: mainScreenViewModel, followState: followState)
+		let alertsCount = device.issuesCount(mainVM: mainScreenViewModel, followState: followState)
+		let warningType = device.overallWarningType(mainVM: mainScreenViewModel, followState: followState)
 		if alertsCount > 1 {
 			multipleAlertsView(alertsCount: alertsCount)
 		} else if !device.isActive {
@@ -52,7 +52,7 @@ private extension StationIndicationModifier {
 
 	@ViewBuilder
 	func multipleAlertsView(alertsCount: Int) -> some View {
-		let warningType = device.warningType(mainVM: mainScreenViewModel, followState: followState)
+		let warningType = device.overallWarningType(mainVM: mainScreenViewModel, followState: followState)
 		HStack(spacing: CGFloat(.smallSpacing)) {
 			Image(asset: warningType.icon)
 				.renderingMode(.template)
