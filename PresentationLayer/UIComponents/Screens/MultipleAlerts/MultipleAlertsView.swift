@@ -18,32 +18,58 @@ struct MultipleAlertsView: View {
             Color(colorEnum: .top)
             
             ScrollView {
-                VStack(spacing: CGFloat(.mediumSpacing)) {
-                    ForEach(viewModel.alerts, id: \.message) { alert in
-                        CardWarningView(type: alert.type,
-                                        title: alert.title,
-                                        message: alert.message,
-                                        showContentFullWidth: true,
-										showBorder: true,
-                                        closeAction: nil) {
-                            Button(action: alert.buttonAction) {
-                                Text(alert.buttonTitle)
-                            }
-							.buttonStyle(WXMButtonStyle.transparent)
-                            .padding(.top, CGFloat(.smallSidePadding))
-                        }
-                        .onAppear(perform: alert.appearAction)
-						.wxmShadow()
-					}.iPadMaxWidth()
-                }
-                .padding(CGFloat(.defaultSidePadding))
-            }
-            .onAppear {
-                navigationObject.title = LocalizableString.alerts.localized
-                navigationObject.subtitle = viewModel.device.displayName
+				VStack(spacing: CGFloat(.largeSpacing)) {
+					titleView
+
+					VStack(spacing: CGFloat(.mediumSpacing)) {
+
+						ForEach(viewModel.alerts, id: \.message) { alert in
+							CardWarningView(type: alert.type,
+											title: alert.title,
+											message: alert.message,
+											showContentFullWidth: true,
+											showBorder: true,
+											closeAction: nil) {
+								Button(action: alert.buttonAction) {
+									Text(alert.buttonTitle)
+								}
+								.buttonStyle(WXMButtonStyle.transparent)
+								.padding(.top, CGFloat(.smallSidePadding))
+							}
+											.onAppear(perform: alert.appearAction)
+											.wxmShadow()
+						}.iPadMaxWidth()
+					}
+				}
+				.padding(.horizontal ,CGFloat(.defaultSidePadding))
             }
         }
     }
+}
+
+private extension MultipleAlertsView {
+	@ViewBuilder
+	var titleView: some View {
+		VStack(spacing: CGFloat(.smallSpacing)) {
+			HStack {
+				Text(LocalizableString.alerts.localized)
+					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+					.lineLimit(1)
+					.truncationMode(.middle)
+					.foregroundColor(Color(colorEnum: .text))
+
+				Spacer()
+			}
+
+			HStack {
+				Text(viewModel.device.displayName)
+					.font(.system(size: CGFloat(.largeFontSize)))
+					.foregroundColor(Color(colorEnum: .darkGrey))
+
+				Spacer()
+			}
+		}
+	}
 }
 
 extension MultipleAlertsView {
@@ -61,7 +87,7 @@ struct MultipleAlertsView_Previews: PreviewProvider {
     static var previews: some View {
         let mainVM = MainScreenViewModel.shared
         NavigationContainerView {
-            MultipleAlertsView(viewModel: AlertsViewModel(device: .emptyDeviceDetails, mainVM: mainVM, followState: .init(deviceId: "123", relation: .owned)))
+            MultipleAlertsView(viewModel: AlertsViewModel(device: .mockDevice, mainVM: mainVM, followState: .init(deviceId: "123", relation: .owned)))
         }
     }
 }
