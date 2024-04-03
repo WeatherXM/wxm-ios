@@ -152,11 +152,34 @@ private extension StationIndicationModifier {
 
 }
 
+private struct OfflineStationIndicationModifier: ViewModifier {
+	let device: DeviceDetails
+
+	func body(content: Content) -> some View {
+		content
+			.indication(show: .init(get: { !device.isActive },
+									set: { _ in }),
+						borderColor: Color(colorEnum: CardWarningType.error.iconColor),
+						bgColor: Color(colorEnum: CardWarningType.error.tintColor)) {
+				CardWarningView(type: .error, 
+								title: LocalizableString.offlineStation.localized,
+								message: LocalizableString.offlineStationDescription.localized, 
+								closeAction: nil) {
+					EmptyView()
+				}
+			}
+	}
+}
 
 extension View {
 	@ViewBuilder
 	func stationIndication(device: DeviceDetails, followState: UserDeviceFollowState?) -> some View {
 		modifier(StationIndicationModifier(device: device, followState: followState))
+	}
+
+	@ViewBuilder
+	func offlineStationIndication(device: DeviceDetails) -> some View {
+		modifier(OfflineStationIndicationModifier(device: device))
 	}
 }
 

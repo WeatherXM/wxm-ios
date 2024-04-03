@@ -65,6 +65,7 @@ enum LocalizableString: WXMLocalizable {
     case dewPoint
     case uv
     case offlineStation
+	case offlineStationDescription
     case stationNoDataTitle
     case stationNoDataText
     case walletAddressMissingTitle
@@ -364,6 +365,8 @@ extension LocalizableString {
                 return "uv"
             case .offlineStation:
                 return "offline_station"
+			case .offlineStationDescription:
+				return "offline_station_description"
             case .stationNoDataTitle:
                 return "station_no_data_title"
             case .stationNoDataText:

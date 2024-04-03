@@ -4541,6 +4541,17 @@
         }
       }
     },
+    "offline_station_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We're unable to show live station data. Please check back later for further updates."
+          }
+        }
+      }
+    },
     "ok" : {
       "extractionState" : "manual",
       "localizations" : {
