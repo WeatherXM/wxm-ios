@@ -37,16 +37,18 @@ class StationDetailsViewModel: ObservableObject {
 	@Published private(set) var device: DeviceDetails? {
 		didSet {
 			shareDialogText = device?.explorerUrl
-			updateWarningText()
 		}
 	}
     @Published private(set) var followState: UserDeviceFollowState?
-	@Published private(set) var warning: String?
     @Published var shouldHideHeaderToggle: Bool = false
     @Published var showLoginAlert: Bool = false
 	@Published var showShareDialog: Bool = false
 	private(set) var shareDialogText: String?
     private(set) var isHeaderHidden: Bool = false
+	var warning: String? {
+		getWarningText()
+	}
+
     private var cancellables: Set<AnyCancellable> = []
 
     init(deviceId: String, cellIndex: String?, cellCenter: CLLocationCoordinate2D?, swinjectHelper: SwinjectInterface?) {
@@ -265,20 +267,18 @@ private extension StationDetailsViewModel {
         showLoginAlert = true
     }
 
-	func updateWarningText() {
+	func getWarningText() -> String? {
 		guard let issues = device?.issues(mainVM: .shared, followState: followState) else {
-			warning = nil
-			return
+			return nil
 		}
 		
 		let warnings = issues.filter { $0.warningType == .warning }
 		
 		if warnings.count > 1 {
-			warning = LocalizableString.issues(warnings.count).localized
-			return
+			return LocalizableString.issues(warnings.count).localized
 		}
 
-		warning = warnings.first?.type.description
+		return warnings.first?.type.description
 	}
 }
 
