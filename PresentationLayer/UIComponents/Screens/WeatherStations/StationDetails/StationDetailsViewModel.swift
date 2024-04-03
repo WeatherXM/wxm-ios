@@ -93,10 +93,11 @@ class StationDetailsViewModel: ObservableObject {
     }
 
 	func warningTapped() {
-		guard let device else {
-			return
-		}
-		Router.shared.navigateTo(.viewMoreAlerts(.init(device: device, mainVM: .shared, followState: followState)))
+		navigateToAlerts()
+	}
+
+	func statusTapped() {
+		navigateToAlerts()
 	}
 
     func handleShareButtonTap() {
@@ -279,6 +280,13 @@ private extension StationDetailsViewModel {
 		}
 
 		return warnings.first?.type.description
+	}
+
+	func navigateToAlerts() {
+		guard let device else {
+			return
+		}
+		Router.shared.navigateTo(.viewMoreAlerts(.init(device: device, mainVM: .shared, followState: followState)))
 	}
 }
 

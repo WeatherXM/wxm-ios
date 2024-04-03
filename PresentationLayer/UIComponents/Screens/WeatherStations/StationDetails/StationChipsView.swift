@@ -14,6 +14,7 @@ struct StationChipsView: View {
 	let warning: String?
 	var addressAction: VoidCallback?
 	var warningAction: VoidCallback?
+	var statusAction: VoidCallback?
 
     var body: some View {
 		ScrollView(.horizontal) {
@@ -57,7 +58,13 @@ private extension StationChipsView {
 
 	@ViewBuilder
 	var statusChip: some View {
-		StationLastActiveView(device: device)
+		Button {
+			statusAction?()
+		} label: {
+			StationLastActiveView(device: device)
+		}
+		.allowsHitTesting(statusAction != nil)
+
 	}
 
 	@ViewBuilder

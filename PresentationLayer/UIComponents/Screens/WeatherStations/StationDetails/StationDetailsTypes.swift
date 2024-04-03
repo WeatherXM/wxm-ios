@@ -29,6 +29,7 @@ struct StationAddressTitleView: View {
     let tapStateIconAction: VoidCallback?
     let tapAddressAction: VoidCallback?
 	let tapWarningAction: VoidCallback?
+	let tapStatusAction: VoidCallback?
 
     var body: some View {
         VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -66,7 +67,11 @@ struct StationAddressTitleView: View {
                 }
             }
 
-			StationChipsView(device: device, warning: warning, addressAction: tapAddressAction, warningAction: tapWarningAction)
+			StationChipsView(device: device,
+							 warning: warning,
+							 addressAction: tapAddressAction,
+							 warningAction: tapWarningAction,
+							 statusAction: tapStatusAction)
         }
     }
 }
@@ -80,7 +85,8 @@ extension StationAddressTitleView {
 		 showStateIcon: Bool = true,
 		 tapStateIconAction: VoidCallback? = nil,
 		 tapAddressAction: VoidCallback? = nil,
-		 tapWarningAction: VoidCallback? = nil) {
+		 tapWarningAction: VoidCallback? = nil,
+		 tapStatusAction: VoidCallback? = nil) {
 		self.device = device
 		self.followState = followState
         let subtitle = device.friendlyName != nil ? device.name : nil
@@ -92,5 +98,6 @@ extension StationAddressTitleView {
         self.tapStateIconAction = tapStateIconAction
         self.tapAddressAction = tapAddressAction
 		self.tapWarningAction = tapWarningAction
+		self.tapStatusAction = tapStatusAction
     }
 }

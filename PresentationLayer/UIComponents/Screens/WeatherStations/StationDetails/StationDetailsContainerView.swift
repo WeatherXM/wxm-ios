@@ -180,7 +180,8 @@ private struct StationDetailsView: View {
                                         showStateIcon: true,
                                         tapStateIconAction: { viewModel.followButtonTapped()},
                                         tapAddressAction: { viewModel.addressTapped() },
-										tapWarningAction: { viewModel.warningTapped() })
+										tapWarningAction: { viewModel.warningTapped() },
+										tapStatusAction: { viewModel.statusTapped() })
                 .sizeObserver(size: $titleViewAddressSize)
 
                 CustomSegmentView(options: StationDetailsViewModel.Tab.allCases.map { $0.description },
