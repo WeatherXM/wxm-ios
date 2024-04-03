@@ -17,7 +17,7 @@ struct StationChipsView: View {
 	var statusAction: VoidCallback?
 
     var body: some View {
-		ScrollView(.horizontal) {
+		ScrollView(.horizontal, showsIndicators: false) {
 			HStack(spacing: CGFloat(.smallSpacing)) {
 				warningsChip
 				statusChip
