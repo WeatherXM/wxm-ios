@@ -6796,6 +6796,17 @@
         }
       }
     },
+    "station_details_timeline_limit_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’ve reached the end of the Timeline."
+          }
+        }
+      }
+    },
     "station_details_view_historical_data" : {
       "extractionState" : "manual",
       "localizations" : {

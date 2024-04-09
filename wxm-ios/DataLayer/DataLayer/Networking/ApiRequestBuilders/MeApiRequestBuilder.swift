@@ -46,7 +46,6 @@ enum MeApiRequestBuilder: URLRequestConvertible {
     case getUserDeviceInfoById(deviceId: String)
     case getUserDeviceHistoryById(deviceId: String, fromDate: String, toDate: String, exclude: String)
     case getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String)
-    case getUserDeviceTokensTransactionsById(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?)
     case getDeviceFirmwareById(deviceId: String)
     case setFriendlyName(deviceId: String, name: String)
     case deleteFriendlyName(deviceId: String)
@@ -60,7 +59,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
     // This returns the HttpMethod type. It's used to determine the type if several endpoints are peresent
 	private var method: HTTPMethod {
 		switch self {
-			case .getUser, .getUserWallet, .getDevices, .getFirmwares, .getUserDeviceById, .getUserDeviceHistoryById, .getUserDeviceForecastById, .getUserDeviceTokensTransactionsById, .getDeviceFirmwareById, .getUserDeviceInfoById:
+			case .getUser, .getUserWallet, .getDevices, .getFirmwares, .getUserDeviceById, .getUserDeviceHistoryById, .getUserDeviceForecastById, .getDeviceFirmwareById, .getUserDeviceInfoById:
 				return .get
 			case .saveUserWallet, .claimDevice, .setFriendlyName, .disclaimDevice, .follow, .setDeviceLocation:
 				return .post
@@ -107,8 +106,6 @@ enum MeApiRequestBuilder: URLRequestConvertible {
                 return "me/devices/\(deviceId)/history"
             case let .getUserDeviceForecastById(deviceId, _, _, _):
                 return "me/devices/\(deviceId)/forecast"
-            case let .getUserDeviceTokensTransactionsById(deviceId, _, _, _, _, _):
-                return "me/devices/\(deviceId)/tokens/transactions"
             case let .getDeviceFirmwareById(deviceId: deviceId):
                 return "me/devices/\(deviceId)/firmware"
             case let .setFriendlyName(deviceId, _):
@@ -156,19 +153,6 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 						ParameterConstants.Me.exclude: exclude,
 					]
 				}
-
-			case let .getUserDeviceTokensTransactionsById(_, page, pageSize, timezone, fromDate, toDate):
-				var parameters: Parameters = [:]
-				if let pageSize = pageSize {
-					parameters[ParameterConstants.Me.pageSize] = pageSize
-				}
-				if let toDate = toDate {
-					parameters[ParameterConstants.Me.toDate] = toDate
-				}
-				parameters[ParameterConstants.Me.page] = page
-				parameters[ParameterConstants.Me.fromDate] = fromDate
-				parameters[ParameterConstants.Me.timezone] = timezone
-				return parameters
 			case let .setFriendlyName(_, name):
 				return [ParameterConstants.Me.friendlyName: name]
 			case let .setDeviceLocation(_, lat, lon):
@@ -187,8 +171,6 @@ extension MeApiRequestBuilder: MockResponseBuilder {
                 return "get_user_devices"
             case .getUserDeviceById:
                 return "get_user_device"
-            case .getUserDeviceTokensTransactionsById:
-                return "get_transactions_empty"
             case .getUserDeviceHistoryById:
                 return "get_device_history"
             case .getUserDeviceInfoById:

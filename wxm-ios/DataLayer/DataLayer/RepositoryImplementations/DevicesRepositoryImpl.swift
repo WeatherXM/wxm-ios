@@ -25,8 +25,8 @@ public struct DevicesRepositoryImpl: DevicesRepository {
         return ApiClient.shared.requestCodable(urlRequest)
     }
 
-	public func deviceRewardsTimeline(deviceId: String, page: Int, pageSize: Int?, timezone: String, fromDate: String, toDate: String?) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsTimelineResponse, NetworkErrorResponse>, Never> {
-		let builder = DevicesApiRequestBuilder.deviceRewardsTimeline(deviceId: deviceId, page: page, pageSize: pageSize, timezone: timezone, fromDate: fromDate, toDate: toDate)
+	public func deviceRewardsTimeline(deviceId: String, page: Int, pageSize: Int?, fromDate: String, toDate: String?) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsTimelineResponse, NetworkErrorResponse>, Never> {
+		let builder = DevicesApiRequestBuilder.deviceRewardsTimeline(deviceId: deviceId, page: page, pageSize: pageSize, fromDate: fromDate, toDate: toDate)
 		let urlRequest = try builder.asURLRequest()
 		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
 	}

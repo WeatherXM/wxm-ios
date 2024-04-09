@@ -14,8 +14,6 @@ import Toolkit
 final class RewardsTimelineViewModel: ObservableObject {
     private let useCase: RewardsTimelineUseCase
 
-    private static let FETCH_INTERVAL_MONTHS = 3
-
     private var cancellableSet: Set<AnyCancellable> = []
 	private var pendingTask: Task<(), Never>? {
 		didSet {
@@ -38,6 +36,10 @@ final class RewardsTimelineViewModel: ObservableObject {
 	var errorIndicationButtonTitle: String {
 		followState?.relation == .owned ? LocalizableString.StationDetails.ownedRewardsErrorButtonTitle.localized : LocalizableString.StationDetails.rewardsErrorButtonTitle.localized
 	}
+	var isListFinished: Bool {
+		pagination.isPaginationFinished
+	}
+
 	private var pagination: RewardsTimelinePagination
 
 	init(device: DeviceDetails, followState: UserDeviceFollowState?, useCase: RewardsTimelineUseCase) {
@@ -129,7 +131,7 @@ private extension RewardsTimelineViewModel {
 	/// Fetches the next page
 	/// - Returns: Tuple with received data and error, if exists
 	private func fetchNext() async -> (data: [NetworkDeviceRewardsSummary]?, error: NetworkErrorResponse?)? {
-		// if there is a pending request of there is no next page, we stop
+		// if there is a pending request or there is no next page, we stop
 		guard let nextPagination = pagination.getNextPagination() else {
 			return nil
 		}

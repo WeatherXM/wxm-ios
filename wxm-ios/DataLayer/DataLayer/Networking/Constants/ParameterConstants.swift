@@ -29,7 +29,6 @@ struct ParameterConstants {
         static let exclude = "exclude"
         static let page = "page"
         static let pageSize = "pageSize"
-        static let timezone = "timezone"
         static let friendlyName = "friendlyName"
 		static let lat = "lat"
 		static let lon = "lon"

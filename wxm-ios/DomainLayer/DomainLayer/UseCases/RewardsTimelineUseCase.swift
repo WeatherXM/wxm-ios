@@ -24,7 +24,6 @@ public class RewardsTimelineUseCase {
 		let publisher = try repository.deviceRewardsTimeline(deviceId: deviceId,
 															 page: page,
 															 pageSize: nil,
-															 timezone: TimeZone.current.identifier,
 															 fromDate: fromDate,
 															 toDate: toDate)
 		return await withUnsafeContinuation { continuation in
