@@ -63,7 +63,7 @@ private extension MultipleAlertsView {
 
 			HStack {
 				Text(viewModel.device.displayName)
-					.font(.system(size: CGFloat(.normalFontSize)))
+					.font(.system(size: CGFloat(.caption)))
 					.foregroundColor(Color(colorEnum: .darkGrey))
 
 				Spacer()
