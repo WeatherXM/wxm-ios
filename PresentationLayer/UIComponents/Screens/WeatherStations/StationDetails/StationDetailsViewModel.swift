@@ -97,6 +97,9 @@ class StationDetailsViewModel: ObservableObject {
 	}
 
 	func statusTapped() {
+		guard device?.isActive == false else {
+			return
+		}
 		navigateToAlerts()
 	}
 
