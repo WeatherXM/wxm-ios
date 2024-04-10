@@ -16,7 +16,7 @@ private struct StationIndicationModifier: ViewModifier {
 
 	func body(content: Content) -> some View {
 		content
-			.indication(show: .init(get: { device.hasIssues(mainVM: mainScreenViewModel, followState: followState) }, 
+			.indication(show: .init(get: { device.hasIssues(mainVM: mainScreenViewModel, followState: followState) },
 									set: { _ in }),
 						borderColor: Color(colorEnum: device.overallWarningType(mainVM: mainScreenViewModel, followState: followState).iconColor),
 						bgColor: Color(colorEnum: device.overallWarningType(mainVM: mainScreenViewModel, followState: followState).tintColor)) {
@@ -161,9 +161,9 @@ private struct OfflineStationIndicationModifier: ViewModifier {
 									set: { _ in }),
 						borderColor: Color(colorEnum: CardWarningType.error.iconColor),
 						bgColor: Color(colorEnum: CardWarningType.error.tintColor)) {
-				CardWarningView(type: .error, 
+				CardWarningView(type: .error,
 								title: LocalizableString.offlineStation.localized,
-								message: LocalizableString.offlineStationDescription.localized, 
+								message: LocalizableString.offlineStationDescription.localized,
 								closeAction: nil) {
 					EmptyView()
 				}
