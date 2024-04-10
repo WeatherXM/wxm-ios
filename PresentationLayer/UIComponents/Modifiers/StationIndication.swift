@@ -68,6 +68,9 @@ private extension StationIndicationModifier {
 				Router.shared.navigateTo(.viewMoreAlerts(ViewModelsFactory.getAlertsViewModel(device: device,
 																							  mainVM: mainScreenViewModel,
 																							  followState: followState)))
+
+				Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .viewAll,
+																	  .itemId: .multipleIssue])
 			} label: {
 				Text(LocalizableString.viewAll.localized)
 					.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))

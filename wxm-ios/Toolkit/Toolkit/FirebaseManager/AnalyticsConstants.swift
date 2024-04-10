@@ -465,6 +465,10 @@ public enum ParameterValue: RawRepresentable {
 				return "info_cell_capacity"
 			case .webDocumentation:
 				return "Web Documentation"
+			case .viewAll:
+				return "View all"
+			case .multipleIssue:
+				return "multipe_issue"
 		}
     }
 
@@ -632,5 +636,7 @@ public enum ParameterValue: RawRepresentable {
 	case infoCellposition
 	case infoCellCapacity
 	case webDocumentation
+	case viewAll
+	case multipleIssue
     case custom(String)
 }
