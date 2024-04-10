@@ -387,6 +387,18 @@ public enum ParameterValue: RawRepresentable {
                 return "Follow"
             case .unfollow:
                 return "Unfollow"
+			case .stationDetailsChip:
+				return "Station Details Chip"
+			case .warnings:
+				return "Warnings"
+			case .region:
+				return "Region"
+			case .otaUpdate:
+				return "ota_update"
+			case .lowBatteryItem:
+				return "low_battery"
+			case .stationRegion:
+				return "station_region"
             case .deviceDetailsAddress:
                 return "Device Details Address"
             case .devicesListFollow:
@@ -597,6 +609,12 @@ public enum ParameterValue: RawRepresentable {
     case deviceDetailsFollow
     case follow
     case unfollow
+	case stationDetailsChip
+	case warnings
+	case region
+	case otaUpdate
+	case lowBatteryItem
+	case stationRegion
     case deviceDetailsAddress
     case devicesListFollow
     case explorerDevicesListFollow

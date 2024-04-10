@@ -87,12 +87,25 @@ class StationDetailsViewModel: ObservableObject {
             return
         }
 
-        Logger.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsAddress])
-        
+        Logger.shared.trackEvent(.selectContent, parameters: [.contentName: .stationDetailsChip,
+															  .contentType: .region,
+															  .itemId: .stationRegion])
+
         Router.shared.navigateTo(.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: cellIndex, cellCenter: center)))
     }
 
 	func warningTapped() {
+		var parameters: [Parameter: ParameterValue] = [.contentName: .stationDetailsChip,
+													   .contentType: .warnings]
+
+		if let issues = device?.issues(mainVM: .shared, followState: followState),
+		   issues.count == 1,
+		   let itemId = issues.first?.analyticsItemId {
+			parameters += [.itemId: itemId]
+		}
+
+		Logger.shared.trackEvent(.selectContent, parameters: parameters)
+
 		navigateToAlerts()
 	}
 
