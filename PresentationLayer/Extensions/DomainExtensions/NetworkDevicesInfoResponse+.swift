@@ -8,7 +8,7 @@
 import Foundation
 import DomainLayer
 
-extension NetworkDevicesInfoResponse.BatState: CustomStringConvertible {
+extension BatteryState: CustomStringConvertible {
     public var description: String {
         switch self {
             case .low:

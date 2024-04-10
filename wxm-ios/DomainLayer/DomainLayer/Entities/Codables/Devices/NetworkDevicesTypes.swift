@@ -32,3 +32,8 @@ public enum DeviceRelation: String, Codable {
     case owned
     case followed
 }
+
+public enum BatteryState: String, Codable {
+	case low
+	case ok
+}

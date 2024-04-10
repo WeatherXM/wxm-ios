@@ -61,7 +61,7 @@ public extension NetworkDevicesInfoResponse {
     struct WeatherStation: Codable {
         public let model: String?
         public let lastActivity: Date?
-        public let batState: BatState?
+        public let batState: BatteryState?
         public let devEui: String?
         public let firmware: Firmware?
         public let hwVersion: String?
@@ -89,12 +89,7 @@ public extension NetworkDevicesInfoResponse {
             self.lastHs = try container.decodeIfPresent(String.self, forKey: .lastHs)
             self.lastTxRssi = try container.decodeIfPresent(String.self, forKey: .lastTxRssi)
             self.lastActivity = try container.decodeIfPresent(Date.self, forKey: .lastActivity)
-            self.batState = try container.decodeIfPresent(BatState.self, forKey: .batState)
+            self.batState = try container.decodeIfPresent(BatteryState.self, forKey: .batState)
         }
-    }
-
-    enum BatState: String, Codable {
-        case low
-        case ok
     }
 }

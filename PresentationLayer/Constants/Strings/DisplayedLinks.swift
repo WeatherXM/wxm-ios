@@ -34,6 +34,8 @@ enum DisplayedLinks {
 	case claimToken
 	case appstore
 	case announcements
+	case m5Batteries
+	case heliumBatteries
 
 	var linkURL: String {
 		switch self {
@@ -85,6 +87,10 @@ enum DisplayedLinks {
 				return Bundle.main.getConfiguration(for: .appStoreUrl) ?? ""
 			case .announcements:
 				return "https://announcements.weatherxm.com"
+			case .m5Batteries:
+				return "https://docs.weatherxm.com/wxm-devices/wifi-m5-bundle/assemble-m5#installing-batteries"
+			case .heliumBatteries:
+				return "https://docs.weatherxm.com/wxm-devices/helium-bundle/helium-assemble#battery-installation-diagram-external-box"
 		}
 	}
 }
