@@ -59,9 +59,31 @@ extension DeviceDetails {
 	}
 }
 
-// MARK: - Errors
+// MARK: - Issues
 extension DeviceDetails {
 	private static let firmwareUpdateInterval: TimeInterval = .hour
+	
+	enum IssueType: Comparable, CustomStringConvertible {
+		case offline
+		case needsUpdate
+		case lowBattery
+
+		var description: String {
+			switch self {
+				case .offline:
+					return LocalizableString.alertsStationOfflineTitle.localized
+				case .needsUpdate:
+					return LocalizableString.updateRequiredTitle.localized
+				case .lowBattery:
+					return LocalizableString.lowBatteryWarningTitle.localized
+			}
+		}
+	}
+
+	struct Issue {
+		let type: IssueType
+		let warningType: CardWarningType
+	}
 
 	func isBatteryLow(followState: UserDeviceFollowState?) -> Bool {
 		guard followState?.relation == .owned else {
@@ -70,14 +92,9 @@ extension DeviceDetails {
 		return batteryState == .low
 	}
 
-	func warningType(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> CardWarningType {
-		let isOffline = !isActive
-		let count = alertsCount(mainVM: mainVM, followState: followState)
-		guard isOffline else {
-			return count > 0 ? .warning : .info
-		}
-
-		return .error
+	func overallWarningType(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> CardWarningType {
+		let issues = issues(mainVM: mainVM, followState: followState).sorted(by: { $0.type < $1.type })
+		return issues.first?.warningType ?? .info
 	}
 
 	func needsUpdate(persistedVersion: FirmwareVersion?) -> Bool {
@@ -112,12 +129,30 @@ extension DeviceDetails {
 		return needsUpdate(persistedVersion: mainVM.getInstalledFirmwareVersion(for: id ?? ""))
 	}
 
-	func alertsCount(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> Int {
-		[!isActive, isBatteryLow(followState: followState), needsUpdate(mainVM: mainVM, followState: followState)].reduce(0) { $0 + ($1 ? 1 : 0) }
+	func issuesCount(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> Int {
+		issues(mainVM: mainVM, followState: followState).count
 	}
 
-	func hasAlerts(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> Bool {
-		alertsCount(mainVM: mainVM, followState: followState) > 0
+	func hasIssues(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> Bool {
+		issuesCount(mainVM: mainVM, followState: followState) > 0
+	}
+
+	func issues(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> [Issue] {
+		var issues = [Issue]()
+		
+		if !isActive {
+			issues.append(.init(type: .offline, warningType: .error))
+		}
+
+		if isBatteryLow(followState: followState) {
+			issues.append(.init(type: .lowBattery, warningType: .warning))
+		}
+
+		if needsUpdate(mainVM: mainVM, followState: followState) {
+			issues.append(.init(type: .needsUpdate, warningType: .warning))
+		}
+
+		return issues
 	}
 }
 
@@ -140,7 +175,8 @@ extension DeviceDetails {
         device.label = "AE:66:F7:21:1F:21:75:11:EC"
         device.address = "This is an address"
         device.profile = .m5
-        device.isActive = false
+        device.isActive = true
+		device.lastActiveAt = Date.now.toTimestamp()
         device.firmware = Firmware(assigned: "1.0.0", current: "1.0.1")
 		device.cellCenter = .init(lat: 0.0, long: 0.0)
 

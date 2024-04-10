@@ -45,6 +45,10 @@ class StationDetailsViewModel: ObservableObject {
 	@Published var showShareDialog: Bool = false
 	private(set) var shareDialogText: String?
     private(set) var isHeaderHidden: Bool = false
+	var warning: String? {
+		getWarningText()
+	}
+
     private var cancellables: Set<AnyCancellable> = []
 
     init(deviceId: String, cellIndex: String?, cellCenter: CLLocationCoordinate2D?, swinjectHelper: SwinjectInterface?) {
@@ -87,6 +91,17 @@ class StationDetailsViewModel: ObservableObject {
         
         Router.shared.navigateTo(.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: cellIndex, cellCenter: center)))
     }
+
+	func warningTapped() {
+		navigateToAlerts()
+	}
+
+	func statusTapped() {
+		guard device?.isActive == false else {
+			return
+		}
+		navigateToAlerts()
+	}
 
     func handleShareButtonTap() {
         Logger.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsShare])
@@ -255,6 +270,27 @@ private extension StationDetailsViewModel {
         loginAlertConfiguration = conf
         showLoginAlert = true
     }
+
+	func getWarningText() -> String? {
+		guard let issues = device?.issues(mainVM: .shared, followState: followState) else {
+			return nil
+		}
+		
+		let warnings = issues.filter { $0.warningType == .warning }
+		
+		if warnings.count > 1 {
+			return LocalizableString.issues(warnings.count).localized
+		}
+
+		return warnings.first?.type.description
+	}
+
+	func navigateToAlerts() {
+		guard let device else {
+			return
+		}
+		Router.shared.navigateTo(.viewMoreAlerts(.init(device: device, mainVM: .shared, followState: followState)))
+	}
 }
 
 // MARK: - StationDetailsViewModelDelegate

@@ -176,9 +176,12 @@ private struct StationDetailsView: View {
             VStack {
                 StationAddressTitleView(device: device,
                                         followState: viewModel.followState,
+										warning: viewModel.warning,
                                         showStateIcon: true,
                                         tapStateIconAction: { viewModel.followButtonTapped()},
-                                        tapAddressAction: { viewModel.addressTapped() })
+                                        tapAddressAction: { viewModel.addressTapped() },
+										tapWarningAction: { viewModel.warningTapped() },
+										tapStatusAction: { viewModel.statusTapped() })
                 .sizeObserver(size: $titleViewAddressSize)
 
                 CustomSegmentView(options: StationDetailsViewModel.Tab.allCases.map { $0.description },

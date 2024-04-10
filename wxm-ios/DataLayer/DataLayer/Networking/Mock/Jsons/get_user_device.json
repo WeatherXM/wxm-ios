@@ -10,6 +10,7 @@
   "relation": "owned",
   "address": "-",
   "profile": "Helium",
+  "bat_state": "low",
   "attributes": {
     "friendlyName": "Home",
     "hex3": {

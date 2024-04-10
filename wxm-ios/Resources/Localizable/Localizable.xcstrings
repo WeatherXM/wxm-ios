@@ -4101,6 +4101,17 @@
         }
       }
     },
+    "low_battery_warning_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low Battery"
+          }
+        }
+      }
+    },
     "mail_leave_message_note" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4526,6 +4537,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Station Offline"
+          }
+        }
+      }
+    },
+    "offline_station_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We're unable to show live station data. Please check back later for further updates."
           }
         }
       }
@@ -7111,6 +7133,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remove from favorites?"
+          }
+        }
+      }
+    },
+    "update_required_warning_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Required"
           }
         }
       }

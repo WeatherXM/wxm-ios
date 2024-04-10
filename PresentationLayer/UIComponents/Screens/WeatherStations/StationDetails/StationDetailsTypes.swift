@@ -19,22 +19,24 @@ enum ViewState {
 }
 
 struct StationAddressTitleView: View {
-    let title: String
+	let device: DeviceDetails
+	let followState: UserDeviceFollowState?
     let subtitle: String?
-    let address: String?
+	let warning: String?
     let showStateIcon: Bool
     let stateFAIcon: StateFontAwesome
-    let activeViewConf: StationLastActiveView.Configuration
     let isStateIconEnabled: Bool
     let tapStateIconAction: VoidCallback?
     let tapAddressAction: VoidCallback?
+	let tapWarningAction: VoidCallback?
+	let tapStatusAction: VoidCallback?
 
     var body: some View {
         VStack(spacing: CGFloat(.mediumSpacing)) {
             HStack {
                 VStack(spacing: CGFloat(.minimumSpacing)) {
                     HStack {
-                        Text(title)
+						Text(device.displayName)
                             .font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
                             .foregroundColor(Color(colorEnum: .text))
                         Spacer()
@@ -65,34 +67,11 @@ struct StationAddressTitleView: View {
                 }
             }
 
-			HStack(spacing: CGFloat(.smallSpacing)) {
-                if let address {
-                    Button {
-                        tapAddressAction?()
-                    } label: {
-
-                        HStack(spacing: CGFloat(.smallSpacing)) {
-                            Text(FontIcon.hexagon.rawValue)
-                                .font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
-                                .foregroundColor(Color(colorEnum: .text))
-
-                            Text(address)
-                                .font(.system(size: CGFloat(.caption)))
-                                .foregroundColor(Color(colorEnum: .text))
-                                .lineLimit(1)
-                        }
-                        .WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
-                                      insideHorizontalPadding: CGFloat(.smallSidePadding),
-                                      insideVerticalPadding: CGFloat(.smallSidePadding),
-                                      cornerRadius: CGFloat(.buttonCornerRadius))
-                    }
-                    .allowsHitTesting(tapAddressAction != nil)
-                }
-
-                StationLastActiveView(configuration: activeViewConf)
-
-                Spacer()
-            }
+			StationChipsView(device: device,
+							 warning: warning,
+							 addressAction: tapAddressAction,
+							 warningAction: tapWarningAction,
+							 statusAction: tapStatusAction)
         }
     }
 }
@@ -101,20 +80,24 @@ extension StationAddressTitleView {
 
     init(device: DeviceDetails,
 		 followState: UserDeviceFollowState?,
+		 warning: String?,
 		 showSubtitle: Bool = true,
 		 showStateIcon: Bool = true,
 		 tapStateIconAction: VoidCallback? = nil,
-		 tapAddressAction: VoidCallback? = nil) {
-        self.title = device.displayName
+		 tapAddressAction: VoidCallback? = nil,
+		 tapWarningAction: VoidCallback? = nil,
+		 tapStatusAction: VoidCallback? = nil) {
+		self.device = device
+		self.followState = followState
         let subtitle = device.friendlyName != nil ? device.name : nil
         self.subtitle = showSubtitle ? subtitle : nil
-        self.address = device.address
-        let conf = device.stationLastActiveConf
-        self.activeViewConf = conf
+		self.warning = warning
         self.showStateIcon = showStateIcon
         self.stateFAIcon = followState?.state.FAIcon ?? UserDeviceFollowState.defaultFAIcon
         self.isStateIconEnabled = followState?.state.isActionable ?? true
         self.tapStateIconAction = tapStateIconAction
         self.tapAddressAction = tapAddressAction
+		self.tapWarningAction = tapWarningAction
+		self.tapStatusAction = tapStatusAction
     }
 }
