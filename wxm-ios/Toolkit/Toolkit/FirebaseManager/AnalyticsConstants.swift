@@ -245,6 +245,8 @@ public enum ParameterValue: RawRepresentable {
                 return "Remove Device"
             case .deviceAlertsSource:
                 return "device_alerts"
+			case .stationOffline:
+				return "station_offline"
             case .deviceInfoSource:
                 return "device_info"
             case .settingsSource:
@@ -538,6 +540,7 @@ public enum ParameterValue: RawRepresentable {
     case rewardsCard
     case removeDevice
     case deviceAlertsSource
+	case stationOffline
     case deviceInfoSource
     case settingsSource
     case errorSource

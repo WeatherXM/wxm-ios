@@ -71,7 +71,7 @@ private extension AlertsViewModel {
 
     func handleContactSupportTap() {
         Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
-                                                              .source: .deviceAlertsSource])
+                                                              .source: .stationOffline])
 
 		HelperFunctions().openContactSupport(successFailureEnum: .stationOffline,
 											 email: mainVM.userInfo?.email,
