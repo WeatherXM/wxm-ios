@@ -1076,7 +1076,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I've Connect My M5"
+            "value" : "I've connected my M5"
           }
         }
       }
@@ -1087,7 +1087,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I've Reset My Device"
+            "value" : "I've reset my device"
           }
         }
       }
