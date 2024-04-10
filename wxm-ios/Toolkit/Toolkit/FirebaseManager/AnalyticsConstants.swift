@@ -401,8 +401,6 @@ public enum ParameterValue: RawRepresentable {
 				return "low_battery"
 			case .stationRegion:
 				return "station_region"
-            case .deviceDetailsAddress:
-                return "Device Details Address"
             case .devicesListFollow:
                 return "Devices List Follow"
             case .explorerDevicesListFollow:
@@ -618,7 +616,6 @@ public enum ParameterValue: RawRepresentable {
 	case otaUpdate
 	case lowBatteryItem
 	case stationRegion
-    case deviceDetailsAddress
     case devicesListFollow
     case explorerDevicesListFollow
     case deviceDetailsSettings
