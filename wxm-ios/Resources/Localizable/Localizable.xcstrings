@@ -163,7 +163,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "\"The station is offline. Check that it has batteries and internet connection. If the problem persists, contact our support team at [support.weatherxm.com](https://support.weatherxm.com)\""
+            "value" : "The station is offline. Check that it has batteries and internet connection. If the problem persists, contact our support team."
           }
         }
       }
@@ -7133,6 +7133,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "UV Index"
+          }
+        }
+      }
+    },
+    "view_all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View All"
           }
         }
       }
