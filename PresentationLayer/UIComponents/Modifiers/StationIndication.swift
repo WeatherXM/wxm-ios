@@ -139,14 +139,6 @@ private extension StationIndicationModifier {
 				.buttonStyle(.plain)
 				.padding(.top, CGFloat(.minimumPadding))
 			}
-			.onAppear {
-				/* TODO: Track analytics*/
-				/*
-				Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
-															   .promptType: .warnPromptType,
-															   .action: .viewAction])
-				 */
-			}
 		} else {
 			EmptyView()
 		}
