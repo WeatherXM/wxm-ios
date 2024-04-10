@@ -166,7 +166,7 @@ private extension MyWalletViewModel {
     func saveUserWallet() {
         let okAction: AlertHelper.AlertObject.Action = (LocalizableString.confirm.localized, { [weak self] _ in self?.performSaveUserRequest() })
         let obj = AlertHelper.AlertObject(title: LocalizableString.Wallet.confirmOwnershipTitle.localized,
-                                          message: LocalizableString.Wallet.confirmOwnershipDescription(String(wallet?.address?.suffix(5) ?? "")).localized,
+                                          message: LocalizableString.Wallet.confirmOwnershipDescription(String(input.suffix(5))).localized,
                                           cancelActionTitle: LocalizableString.cancel.localized,
                                           okAction: okAction)
         DispatchQueue.main.async {
