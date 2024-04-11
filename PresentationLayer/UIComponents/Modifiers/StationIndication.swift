@@ -68,6 +68,9 @@ private extension StationIndicationModifier {
 				Router.shared.navigateTo(.viewMoreAlerts(ViewModelsFactory.getAlertsViewModel(device: device,
 																							  mainVM: mainScreenViewModel,
 																							  followState: followState)))
+
+				Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .viewAll,
+																	  .itemId: .multipleIssue])
 			} label: {
 				Text(LocalizableString.viewAll.localized)
 					.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
@@ -114,36 +117,27 @@ private extension StationIndicationModifier {
 					guard let profile = device.profile else {
 						return
 					}
+
+					var urlString: String?
 					switch profile {
 						case .m5:
-							if let url = URL(string: DisplayedLinks.m5Batteries.linkURL) {
-								UIApplication.shared.open(url)
-							}
+							urlString = DisplayedLinks.m5Batteries.linkURL
 						case .helium:
-							if let url = URL(string: DisplayedLinks.heliumBatteries.linkURL) {
-								UIApplication.shared.open(url)
-							}
+							urlString = DisplayedLinks.heliumBatteries.linkURL
 					}
-					/* TODO: Track analytics*/
-					/*
-					Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
-																   .promptType: .warnPromptType,
-																   .action: .action])
-					*/
+
+					if let urlString, let url = URL(string: urlString) {
+						UIApplication.shared.open(url)
+					}
+					
+					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
+																		  .itemId: .custom(urlString ?? "")])
 				} label: {
 					Text(LocalizableString.stationWarningLowBatteryButtonTitle.localized)
 				}
 				.buttonStyle(WXMButtonStyle.transparent)
 				.buttonStyle(.plain)
 				.padding(.top, CGFloat(.minimumPadding))
-			}
-			.onAppear {
-				/* TODO: Track analytics*/
-				/*
-				Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
-															   .promptType: .warnPromptType,
-															   .action: .viewAction])
-				 */
 			}
 		} else {
 			EmptyView()

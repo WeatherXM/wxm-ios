@@ -15,6 +15,7 @@
 		264AE28729FBA9580051C101 /* UIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE28629FBA9580051C101 /* UIDevice+.swift */; };
 		266482FA29C0857400748F9C /* CallbackTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266482F929C0857400748F9C /* CallbackTypes.swift */; };
 		2665E6F42A0A9AE700D23387 /* UnitConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2665E6F32A0A9AE700D23387 /* UnitConverter.swift */; };
+		2666D5432BC6D145003B30C0 /* AnalyticsConstants+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2666D5422BC6D145003B30C0 /* AnalyticsConstants+.swift */; };
 		266F09262ADD46C1005F1A20 /* StorageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266F09252ADD46C1005F1A20 /* StorageWrapper.swift */; };
 		2674017C2A38B7F200E54E35 /* CompactNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2674017B2A38B7F200E54E35 /* CompactNumberFormatter.swift */; };
 		268818B12AEFB93200737F7D /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 268818B02AEFB93200737F7D /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -51,6 +52,7 @@
 		264AE28629FBA9580051C101 /* UIDevice+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+.swift"; sourceTree = "<group>"; };
 		266482F929C0857400748F9C /* CallbackTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackTypes.swift; sourceTree = "<group>"; };
 		2665E6F32A0A9AE700D23387 /* UnitConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitConverter.swift; sourceTree = "<group>"; };
+		2666D5422BC6D145003B30C0 /* AnalyticsConstants+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyticsConstants+.swift"; sourceTree = "<group>"; };
 		266F09252ADD46C1005F1A20 /* StorageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageWrapper.swift; sourceTree = "<group>"; };
 		2674017B2A38B7F200E54E35 /* CompactNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactNumberFormatter.swift; sourceTree = "<group>"; };
 		268A63052B59797B0079D507 /* NotificationsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsHandler.swift; sourceTree = "<group>"; };
@@ -120,6 +122,15 @@
 			path = Types;
 			sourceTree = "<group>";
 		};
+		2666D5412BC6D101003B30C0 /* AnalyticsConstants */ = {
+			isa = PBXGroup;
+			children = (
+				26D47E8F2A1659D20078723A /* AnalyticsConstants.swift */,
+				2666D5422BC6D145003B30C0 /* AnalyticsConstants+.swift */,
+			);
+			path = AnalyticsConstants;
+			sourceTree = "<group>";
+		};
 		268818AF2AEFB93200737F7D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +182,7 @@
 		26DD42B929AF4B2C008E277E /* FirebaseManager */ = {
 			isa = PBXGroup;
 			children = (
-				26D47E8F2A1659D20078723A /* AnalyticsConstants.swift */,
+				2666D5412BC6D101003B30C0 /* AnalyticsConstants */,
 				26DD42BA29AF4B5B008E277E /* FirebaseManager.swift */,
 				2692EA162B319B24007B83F1 /* FirebaseManagerTypes.swift */,
 				26CD5BB02AF529300097093F /* RemoteConfigManager.swift */,
@@ -281,6 +292,7 @@
 				266F09262ADD46C1005F1A20 /* StorageWrapper.swift in Sources */,
 				2674017C2A38B7F200E54E35 /* CompactNumberFormatter.swift in Sources */,
 				26E88B3929E599D70023BBD5 /* DateExtension.swift in Sources */,
+				2666D5432BC6D145003B30C0 /* AnalyticsConstants+.swift in Sources */,
 				26DD42BB29AF4B5B008E277E /* FirebaseManager.swift in Sources */,
 				26CD5BB12AF529300097093F /* RemoteConfigManager.swift in Sources */,
 				268A63062B59797B0079D507 /* NotificationsHandler.swift in Sources */,

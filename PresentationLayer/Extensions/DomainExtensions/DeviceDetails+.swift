@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 struct FirmwareVersion: Codable {
     let installDate: Date
@@ -83,6 +84,16 @@ extension DeviceDetails {
 	struct Issue {
 		let type: IssueType
 		let warningType: CardWarningType
+		var analyticsItemId: ParameterValue? {
+			switch type {
+				case .offline:
+					return nil
+				case .needsUpdate:
+					return .otaUpdate
+				case .lowBattery:
+					return .lowBatteryItem
+			}
+		}
 	}
 
 	func isBatteryLow(followState: UserDeviceFollowState?) -> Bool {
