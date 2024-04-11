@@ -15,26 +15,18 @@ struct StationForecastView: View {
 
     var body: some View {
         ZStack {
+			Color(colorEnum: .bg)
+				.ignoresSafeArea()
+			
             ScrollViewReader { proxy in
                 TrackableScrollView(showIndicators: false, offsetObject: viewModel.offsetObject) { completion in
                     viewModel.refresh(completion: completion)
                 } content: {
-                    VStack(spacing: CGFloat(.smallSpacing)) {
+                    VStack(spacing: CGFloat(.mediumSpacing)) {
                         ForEach(viewModel.forecasts, id: \.date) { forecast in
                             StationForecastCardView(forecast: forecast,
                                                     minWeekTemperature: viewModel.overallMinTemperature ?? 0.0,
-                                                    maxWeekTemperature: viewModel.overallMaxTemperature ?? 0.0,
-                                                    isExpanded: Binding(get: { expandedForecasts?.contains(forecast.date) == true },
-                                                                        set: { _ in
-                                withAnimation(.easeIn(duration: 0.3)) {
-                                    let isExpanded = expandCollapseCard(for: forecast.date)
-                                    if  isExpanded {
-                                        proxy.scrollTo(forecast.date, anchor: .top)
-                                    }
-                                    viewModel.trackSelectContentEvent(forecast: forecast, isOpen: isExpanded)
-                                }
-                            }),
-                                                    isExpandable: forecast.hourly?.isEmpty == false)
+                                                    maxWeekTemperature: viewModel.overallMaxTemperature ?? 0.0)
                             .wxmShadow()
                         }
                     }

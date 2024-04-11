@@ -37,7 +37,7 @@ private extension CustomRangeSlider {
     }
 
     var offset: CGFloat {
-        minDailyTemp - minWeeklyTemp
+		maxWeeklyTemp - maxDailyTemp
     }
 
     @ViewBuilder
@@ -57,6 +57,6 @@ private extension CustomRangeSlider {
 
 struct Previews_CustomRangeSlider_Previews: PreviewProvider {
     static var previews: some View {
-        CustomRangeSlider(minWeeklyTemp: 8.0, maxWeeklyTemp: 19.0, minDailyTemp: 13, maxDailyTemp: 19)
+		CustomRangeSlider(minWeeklyTemp: 7.0, maxWeeklyTemp: 19.0, minDailyTemp: 9.0, maxDailyTemp: 18)
     }
 }

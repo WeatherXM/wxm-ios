@@ -131,13 +131,22 @@ extension String {
     func getWeekDayAndDate() -> String {
         let date = timestampToDate()
         let dayFormatter = DateFormatter()
-        dayFormatter.doesRelativeDateFormatting = true
-        dayFormatter.dateStyle = .medium
-        if !date.isToday && !date.isTomorrow {
-            dayFormatter.setLocalizedDateFormatFromTemplate("EEEE dd/MM")
-        }
-        let dayStr = dayFormatter.string(from: date)
-        return dayStr
+		dayFormatter.locale = .current
+		dayFormatter.setLocalizedDateFormatFromTemplate("EEEE dd/MM")
+        var str = dayFormatter.string(from: date)
+		/// Because of localization, in some cases the system adds commas (,)
+		/// So we have to remove them
+		str = str.replacingOccurrences(of: ",", with: "")
+
+		if date.isToday || date.isTomorrow {
+			let formatter = DateFormatter()
+			formatter.doesRelativeDateFormatting = true
+			formatter.dateStyle = .medium
+			let relativeStr = formatter.string(from: date)
+			str = "\(relativeStr), \(str)"
+		}
+
+        return str
     }
 
     func getTimeForLatestDateWeatherDetail() -> String {
