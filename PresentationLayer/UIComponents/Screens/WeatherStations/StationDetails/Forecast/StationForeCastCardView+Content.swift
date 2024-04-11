@@ -68,11 +68,12 @@ private extension StationForecastCardView {
     func fieldView(for field: WeatherField) -> some View {
         if let weather = forecast.daily {
             HStack(spacing: 0.0) {
-                Image(asset: field.icon)
+                Image(asset: field.hourlyIcon())
 					.resizable()
                     .renderingMode(.template)
                     .foregroundColor(Color(colorEnum: .darkestBlue))
-					.frame(width: 15.0, height: 15.0)
+					.frame(width: 20.0, height: 20.0)
+					.rotationEffect(Angle(degrees: field.iconRotation(from: weather)))
 
                 Text(getFieldText(weatherField: field,
                                   weather: weather,
