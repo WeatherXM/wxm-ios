@@ -71,7 +71,7 @@ private extension StationForecastCardView {
                 Image(asset: field.hourlyIcon())
 					.resizable()
                     .renderingMode(.template)
-                    .foregroundColor(Color(colorEnum: .darkestBlue))
+                    .foregroundColor(Color(colorEnum: .darkGrey))
 					.frame(width: 20.0, height: 20.0)
 					.rotationEffect(Angle(degrees: field.iconRotation(from: weather)))
 

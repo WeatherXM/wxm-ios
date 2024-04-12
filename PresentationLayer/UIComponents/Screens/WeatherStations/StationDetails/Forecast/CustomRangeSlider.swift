@@ -44,7 +44,7 @@ private extension CustomRangeSlider {
     func shapeFor(size: CGSize) -> some View {
         HStack {
             Rectangle()
-                .fill(Color(colorEnum: .primary))
+                .fill(Color(colorEnum: .crypto))
                 .frame(width: (diff * size.width) / totalRange,
                        height: sliderHeight)
                 .cornerRadius(CGFloat(.cardCornerRadius))
