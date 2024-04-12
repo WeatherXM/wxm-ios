@@ -613,6 +613,8 @@
 		2666D5092BBC4E80003B30C0 /* StationChipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationChipsView.swift; sourceTree = "<group>"; };
 		2666D57C2BC96077003B30C0 /* LocalizableString+Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Forecast.swift"; sourceTree = "<group>"; };
 		2666D57E2BC977D0003B30C0 /* StationForecastMiniCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationForecastMiniCardView.swift; sourceTree = "<group>"; };
+		2666D5692BC911D6003B30C0 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
+		2666D5722BC9171B003B30C0 /* git_version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = git_version.sh; sourceTree = "<group>"; };
 		266B018E2B836EC6007AC689 /* NoRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRewardsView.swift; sourceTree = "<group>"; };
 		266B01902B836FE6007AC689 /* anim_rocket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_rocket.json; sourceTree = "<group>"; };
 		266B01922B8380FA007AC689 /* AnnouncementCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCardView.swift; sourceTree = "<group>"; };
@@ -1062,6 +1064,7 @@
 			children = (
 				262A4CF82A93726700A4BC17 /* sort-Xcode-project-file */,
 				2660FF762AB9CD2500AB4F59 /* sort_all_projects.sh */,
+				2666D5722BC9171B003B30C0 /* git_version.sh */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -1995,6 +1998,7 @@
 				26B795CF2B4C531100ADBCA8 /* Mock */,
 				26B795CE2B4C530100ADBCA8 /* Debug */,
 				26B795CD2B4C52CD00ADBCA8 /* Production */,
+				2666D5692BC911D6003B30C0 /* Version.xcconfig */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -2386,6 +2390,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B52BCC7F2824FB9000EA3DA5 /* Build configuration list for PBXNativeTarget "wxm-ios" */;
 			buildPhases = (
+				2666D5732BC92CC3003B30C0 /* ShellScript */,
 				B52BCC6D2824FB8F00EA3DA5 /* Sources */,
 				B52BCC6E2824FB8F00EA3DA5 /* Frameworks */,
 				B52BCC6F2824FB8F00EA3DA5 /* Resources */,
@@ -2615,6 +2620,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+		2666D5732BC92CC3003B30C0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh\n";
 		};
 		B5F9ED632860B972000B6392 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3064,7 +3086,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.debug.station-intent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3098,7 +3120,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.mock.station-intent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3132,7 +3154,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.station-intent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3168,7 +3190,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DSTATION_EXTENSION";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.debug.station-widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3205,7 +3227,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DSTATION_EXTENSION";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.mock.station-widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3241,7 +3263,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DSTATION_EXTENSION";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.station-widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3351,7 +3373,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.15.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app.mock;
 				PRODUCT_NAME = WeatherXM;
@@ -3519,7 +3541,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.15.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app.debug;
 				PRODUCT_NAME = WeatherXM;
@@ -3568,7 +3590,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.15.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app;
 				PRODUCT_NAME = WeatherXM;
