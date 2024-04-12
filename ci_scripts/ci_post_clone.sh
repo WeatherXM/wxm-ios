@@ -16,6 +16,9 @@ setupConfiguration(){
 	echo "SupportUrl = ${SUPPORT_URL};" >> $CONFIGURATION_PATH
 }
 
+echo "Fetch all tags"
+git fetch --tags
+
 touch ~/.netrc
 
 echo "Create mapbox files"
