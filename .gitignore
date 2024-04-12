@@ -30,4 +30,5 @@ BuildTools/.build
 BuildTools/.swiftpm
 !wxm-ios.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved 
 *.xcconfig
+!Configuration/Version.xcconfig
 *GoogleService-Info.plist
