@@ -2347,6 +2347,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 266D18132ACB0D56007CDB06 /* Build configuration list for PBXNativeTarget "station-intent" */;
 			buildPhases = (
+				2666D5752BC955CD003B30C0 /* ShellScript */,
 				266D18052ACB0D56007CDB06 /* Sources */,
 				266D18062ACB0D56007CDB06 /* Frameworks */,
 				266D18072ACB0D56007CDB06 /* Resources */,
@@ -2368,6 +2369,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26B8322D2AC31E4600757A69 /* Build configuration list for PBXNativeTarget "station-widgetExtension" */;
 			buildPhases = (
+				2666D5742BC955BF003B30C0 /* ShellScript */,
 				26B832192AC31E4500757A69 /* Sources */,
 				26B8321A2AC31E4500757A69 /* Frameworks */,
 				26B8321B2AC31E4500757A69 /* Resources */,
@@ -2622,6 +2624,40 @@
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
 		2666D5732BC92CC3003B30C0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh\n";
+		};
+		2666D5742BC955BF003B30C0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh\n";
+		};
+		2666D5752BC955CD003B30C0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

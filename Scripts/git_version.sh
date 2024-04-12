@@ -14,6 +14,8 @@ then
 	LATEST_VERSION="${TAG#*_}"
 fi
 
+echo $LATEST_VERSION
+
 VERSION_CONFIG_PATH=./Configuration/Version.xcconfig
 APP_VERSION="AppVersion = $LATEST_VERSION;"
 
