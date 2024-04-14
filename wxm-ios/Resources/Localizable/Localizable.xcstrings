@@ -3771,6 +3771,28 @@
         }
       }
     },
+    "forecast_next_seven_days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next 7 days"
+          }
+        }
+      }
+    },
+    "forecast_next_twenty_four_hours" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next 24 hours"
+          }
+        }
+      }
+    },
     "forgot_password" : {
       "extractionState" : "manual",
       "localizations" : {

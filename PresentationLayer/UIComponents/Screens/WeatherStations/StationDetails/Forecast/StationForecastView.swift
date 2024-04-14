@@ -23,6 +23,22 @@ struct StationForecastView: View {
                     viewModel.refresh(completion: completion)
                 } content: {
                     VStack(spacing: CGFloat(.mediumSpacing)) {
+						HStack {
+							Text(LocalizableString.Forecast.nextTwentyFourHours.localized)
+								.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+								.foregroundColor(Color(colorEnum: .darkestBlue))
+
+							Spacer()
+						}
+
+						HStack {
+							Text(LocalizableString.Forecast.nextSevenDays.localized)
+								.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+								.foregroundColor(Color(colorEnum: .darkestBlue))
+
+							Spacer()
+						}
+
                         ForEach(viewModel.forecasts, id: \.date) { forecast in
                             StationForecastCardView(forecast: forecast,
                                                     minWeekTemperature: viewModel.overallMinTemperature ?? 0.0,
