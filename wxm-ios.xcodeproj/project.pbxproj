@@ -2638,7 +2638,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh ./Configuration/Version.xcconfig\n";
 		};
 		2666D5742BC955BF003B30C0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2655,7 +2655,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh ./Configuration/Version.xcconfig\n";
 		};
 		2666D5752BC955CD003B30C0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2672,7 +2672,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh ./Configuration/Version.xcconfig\n";
 		};
 		B5F9ED632860B972000B6392 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;

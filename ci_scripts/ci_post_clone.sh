@@ -20,7 +20,7 @@ echo "Fetch all tags"
 git fetch --tags
 
 echo "Set Version"
-sh $CI_PRIMARY_REPOSITORY_PATH/Scripts/git_version.sh
+sh $CI_PRIMARY_REPOSITORY_PATH/Scripts/git_version.sh $CI_PRIMARY_REPOSITORY_PATH/Configuration/Version.xcconfig
 
 touch ~/.netrc
 
