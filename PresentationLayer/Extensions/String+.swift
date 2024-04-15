@@ -26,6 +26,10 @@ extension Optional where Wrapped == String {
 
 extension String {
 
+	var toTimezone: TimeZone? {
+		TimeZone(identifier: self)
+	}
+
     var convertedDeviceIdentifier: String {
         replacingOccurrences(of: ":", with: "")
     }
