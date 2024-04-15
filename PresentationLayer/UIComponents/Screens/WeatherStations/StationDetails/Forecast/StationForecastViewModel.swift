@@ -53,6 +53,10 @@ class StationForecastViewModel: ObservableObject {
         refresh {}
     }
 
+	func handleForecastTap(forecast: NetworkDeviceForecastResponse) {
+		print("Will handle tap for \(forecast)")
+	}
+
     func trackSelectContentEvent(forecast: NetworkDeviceForecastResponse, isOpen: Bool) {
         var params: [Parameter: ParameterValue] = [.contentType: .forecastDay,
                                                    .itemId: .custom(device?.id ?? ""),
@@ -141,7 +145,15 @@ private extension StationForecastViewModel {
 		let hourly = forecasts.map { $0.hourly }.compactMap { $0 }.flatMap { $0 }
 		let filtered = hourly.filter { ($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) >= Date.now &&  ($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) < Date.now.advancedByHours(hours: 24) }
 
-		hourlyItems = filtered.map { $0.toMiniCardItem(with: timezone) }
+		hourlyItems = filtered.map { weather in
+			return weather.toMiniCardItem(with: timezone, action: { [weak  self] in
+				self?.handleTap(for: weather)
+			})
+		}
+	}
+
+	func handleTap(for weather: CurrentWeather) {
+		print("Will handle tap for \(weather)")
 	}
 }
 

@@ -7,23 +7,29 @@
 
 import SwiftUI
 import DomainLayer
+import Toolkit
 
 struct StationForecastMiniCardView: View {
 	let item: Item
 
 	var body: some View {
-		VStack(spacing: CGFloat(.smallSpacing)) {
-			Text(item.time)
-				.foregroundColor(Color(colorEnum: .darkestBlue))
-				.font(.system(size: CGFloat(.caption)))
+		Button {
+			item.action?()
+		} label: {
+			VStack(spacing: CGFloat(.smallSpacing)) {
+				Text(item.time)
+					.foregroundColor(Color(colorEnum: .darkestBlue))
+					.font(.system(size: CGFloat(.caption)))
 
-			weatherImage
+				weatherImage
 
-			Text(item.temperature)
-				.foregroundColor(Color(colorEnum: .darkestBlue))
-				.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+				Text(item.temperature)
+					.foregroundColor(Color(colorEnum: .darkestBlue))
+					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+			}
+			.WXMCardStyle()
 		}
-		.WXMCardStyle()
+		.allowsHitTesting(item.action != nil)
     }
 }
 
@@ -32,6 +38,7 @@ extension StationForecastMiniCardView {
 		let time: String
 		let animationString: String?
 		let temperature: String
+		var action: VoidCallback?
 	}
 }
 

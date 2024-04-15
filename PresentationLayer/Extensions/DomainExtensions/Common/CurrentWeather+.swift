@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 extension CurrentWeather: Identifiable {
     public var id: String {
@@ -21,10 +22,11 @@ extension CurrentWeather: Identifiable {
         return LocalizableString.lastUpdated(date.localizedDateString()).localized
     }
 	#if MAIN_APP
-	func toMiniCardItem(with timeZone: TimeZone) -> StationForecastMiniCardView.Item {
+	func toMiniCardItem(with timeZone: TimeZone, action: VoidCallback? = nil) -> StationForecastMiniCardView.Item {
 		.init(time: timestamp?.timestampToDate(timeZone: timeZone).transactionsTimeFormat() ?? "",
 			  animationString: icon?.getAnimationString(),
-			  temperature: temperature?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit) ?? "")
+			  temperature: temperature?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit) ?? "",
+			  action: action)
 	}
 	#endif
 }
