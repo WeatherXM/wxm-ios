@@ -32,6 +32,7 @@ struct StationForecastView: View {
 
 							Spacer()
 						}
+						.padding(.horizontal)
 
                         ForEach(viewModel.forecasts, id: \.date) { forecast in
 							Button {
@@ -43,9 +44,11 @@ struct StationForecastView: View {
 								.wxmShadow()
 							}
                         }
+						.padding(.horizontal)
                     }
+					.clipped()
 					.iPadMaxWidth()
-                    .padding()
+					.padding(.vertical)
                 }
             }
         }
@@ -55,7 +58,6 @@ struct StationForecastView: View {
         .onAppear {
             Logger.shared.trackScreen(.forecast)
         }
-		.clipped()
     }
 }
 
@@ -71,7 +73,7 @@ private extension StationForecastView {
 						.foregroundColor(Color(colorEnum: .darkestBlue))
 
 					Spacer()
-				}
+				}.padding(.horizontal)
 
 				ScrollView(.horizontal, showsIndicators: false) {
 					LazyHStack(spacing: CGFloat(.smallSpacing)) {
@@ -81,7 +83,7 @@ private extension StationForecastView {
 								.wxmShadow()
 								.frame(width: 80.0)
 						}
-					}
+					}.padding(.horizontal)
 				}
 
 			}
