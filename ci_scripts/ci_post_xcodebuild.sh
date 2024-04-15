@@ -1,5 +1,10 @@
 #!/bin/sh
-if ([ "$CI_WORKFLOW" = "Firebase Beta" ]) || ([ "$CI_WORKFLOW" = "Firebase Beta Dev" ]) || ([ "$CI_WORKFLOW" = "Firebase Beta Claim Dev" ]);
+if ([ "$CI_WORKFLOW" = "QA Production" ]) || ([ "$CI_WORKFLOW" = "QA Dev" ]);
 then
-sh ./firebase_submission.sh -p ${CI_AD_HOC_SIGNED_APP_PATH}/WeatherXM.ipa -k ${FIREBASE_DEBUG_APP_ID} -t ${FIREBASE_REFRESH_TOKEN}
+sh ./firebase_submission.sh -p ${CI_AD_HOC_SIGNED_APP_PATH}/WeatherXM.ipa -k ${FIREBASE_DEBUG_APP_ID} -t ${FIREBASE_REFRESH_TOKEN} -g "qa-group"
+fi
+
+if ([ "$CI_WORKFLOW" = "Dev Build" ])
+then
+sh ./firebase_submission.sh -p ${CI_AD_HOC_SIGNED_APP_PATH}/WeatherXM.ipa -k ${FIREBASE_DEBUG_APP_ID} -t ${FIREBASE_REFRESH_TOKEN} -g "tech-team"
 fi

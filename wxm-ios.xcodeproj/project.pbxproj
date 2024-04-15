@@ -3441,7 +3441,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WeatherXM-DB";
+				INFOPLIST_KEY_CFBundleDisplayName = "WXM Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera for scanning the QR";
