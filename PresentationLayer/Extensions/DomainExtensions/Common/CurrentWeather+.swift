@@ -20,6 +20,13 @@ extension CurrentWeather: Identifiable {
 
         return LocalizableString.lastUpdated(date.localizedDateString()).localized
     }
+	#if MAIN_APP
+	func toMiniCardItem(with timeZone: TimeZone) -> StationForecastMiniCardView.Item {
+		.init(time: timestamp?.timestampToDate(timeZone: timeZone).transactionsTimeFormat() ?? "",
+			  animationString: icon?.getAnimationString(),
+			  temperature: temperature?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit) ?? "")
+	}
+	#endif
 }
 
 // MARK: - Mock
