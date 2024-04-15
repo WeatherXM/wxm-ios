@@ -135,8 +135,9 @@ public extension Date {
         return dateFormatter.string(from: self)
     }
 
-    func transactionsTimeFormat() -> String {
+    func transactionsTimeFormat(timeZone: TimeZone = .current) -> String {
         let dateFormatter = DateFormatter()
+		dateFormatter.timeZone = timeZone
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
         return dateFormatter.string(from: self)
