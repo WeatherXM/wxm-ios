@@ -1,5 +1,5 @@
 #!/bin/sh
-while getopts "p:k:t:" arg; do
+while getopts "p:k:t:g:" arg; do
   case $arg in
     p) ipa=$OPTARG;;
     k) app_id=$OPTARG;;
