@@ -20,14 +20,19 @@ struct StationForecastMiniCardView: View {
 				Text(item.time)
 					.foregroundColor(Color(colorEnum: .darkestBlue))
 					.font(.system(size: CGFloat(.caption)))
+					.minimumScaleFactor(0.8)
+					.lineLimit(1)
 
 				weatherImage
 
 				Text(item.temperature)
 					.foregroundColor(Color(colorEnum: .darkestBlue))
 					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+					.minimumScaleFactor(0.8)
+					.lineLimit(1)
 			}
-			.WXMCardStyle()
+			.WXMCardStyle(insideHorizontalPadding: CGFloat(.mediumSidePadding),
+						  insideVerticalPadding: CGFloat(.mediumSidePadding))
 		}
 		.allowsHitTesting(item.action != nil)
     }
@@ -45,14 +50,20 @@ extension StationForecastMiniCardView {
 private extension StationForecastMiniCardView {
 	@ViewBuilder
 	var weatherImage: some View {
-		Group {
-			if let animationStr = item.animationString {
-				LottieView(animationCase: animationStr, loopMode: .loop)
-			} else {
-				LottieView(animationCase: "anim_not_available", loopMode: .loop)
+		HStack {
+			Spacer(minLength: 0.0)
+			
+			Group {
+				if let animationStr = item.animationString {
+					LottieView(animationCase: animationStr, loopMode: .loop)
+				} else {
+					LottieView(animationCase: "anim_not_available", loopMode: .loop)
+				}
 			}
+			.frame(width: 40.0, height: 40.0)
+
+			Spacer(minLength: 0.0)
 		}
-		.frame(width: 40.0, height: 40.0)
 	}
 }
 
