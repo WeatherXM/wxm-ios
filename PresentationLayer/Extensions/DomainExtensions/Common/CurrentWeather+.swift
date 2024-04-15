@@ -25,7 +25,7 @@ extension CurrentWeather: Identifiable {
 	func toMiniCardItem(with timeZone: TimeZone, action: VoidCallback? = nil) -> StationForecastMiniCardView.Item {
 		.init(time: timestamp?.timestampToDate(timeZone: timeZone).transactionsTimeFormat() ?? "",
 			  animationString: icon?.getAnimationString(),
-			  temperature: temperature?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit) ?? "",
+			  temperature: temperature?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "",
 			  action: action)
 	}
 	#endif

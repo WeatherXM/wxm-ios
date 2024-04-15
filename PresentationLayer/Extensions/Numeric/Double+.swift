@@ -51,13 +51,19 @@ extension Double {
         }
     }
 
-    func toTemeratureString(for unit: TemperatureUnitsEnum) -> String {
-        let value = Int(toTemeratureUnit(unit).rounded(toPlaces: 0))
+	func toTemeratureString(for unit: TemperatureUnitsEnum, decimals: Int = 0) -> String {
+        let value = toTemeratureUnit(unit).rounded(toPlaces: decimals)
+
+		let formatter = NumberFormatter()
+		formatter.minimumFractionDigits = 0
+		formatter.maximumFractionDigits = decimals
+		formatter.numberStyle = .decimal
+		let valueStr = formatter.string(for: value) ?? ""
         switch unit {
             case .celsius:
-                return "\(value)\(LocalizableString.celsiusSymbol.localized)"
+                return "\(valueStr)\(LocalizableString.celsiusSymbol.localized)"
             case .fahrenheit:
-                return "\(value)\(LocalizableString.fahrenheitSymbol.localized)"
+                return "\(valueStr)\(LocalizableString.fahrenheitSymbol.localized)"
         }
     }
 }
