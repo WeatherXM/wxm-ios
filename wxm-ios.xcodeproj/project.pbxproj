@@ -291,6 +291,8 @@
 		268028AA2AF298290031379C /* Indication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268028A92AF298290031379C /* Indication.swift */; };
 		268645982A6FA7C100EB85B1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268645972A6FA7C100EB85B1 /* Router.swift */; };
 		268B5C372BCE7CF900E63655 /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C362BCE7CF900E63655 /* NavigationTitleView.swift */; };
+		268B5C3A2BCE808200E63655 /* ForecastDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C392BCE808200E63655 /* ForecastDetailsView.swift */; };
+		268B5C3C2BCE809E00E63655 /* ForecastDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C3B2BCE809E00E63655 /* ForecastDetailsViewModel.swift */; };
 		268D07932B2B1B70002BD77E /* SelectStationLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */; };
 		268D07952B2B1B85002BD77E /* SelectStationLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */; };
 		268D07972B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */; };
@@ -776,6 +778,8 @@
 		268028A92AF298290031379C /* Indication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indication.swift; sourceTree = "<group>"; };
 		268645972A6FA7C100EB85B1 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		268B5C362BCE7CF900E63655 /* NavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitleView.swift; sourceTree = "<group>"; };
+		268B5C392BCE808200E63655 /* ForecastDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsView.swift; sourceTree = "<group>"; };
+		268B5C3B2BCE809E00E63655 /* ForecastDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsViewModel.swift; sourceTree = "<group>"; };
 		268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationView.swift; sourceTree = "<group>"; };
 		268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationViewModel.swift; sourceTree = "<group>"; };
 		268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+SelectStationLocation.swift"; sourceTree = "<group>"; };
@@ -1014,6 +1018,7 @@
 				266D6FAD2A41F2F200A19E8B /* Explorer */,
 				2675471129A9181E008BCF40 /* ExplorerStationsList */,
 				2675476429A9181E008BCF40 /* ExplorerSignIn */,
+				268B5C382BCE804600E63655 /* ForecastDetails */,
 				267546F729A9181E008BCF40 /* HistoryScreen */,
 				2675479A29A9181E008BCF40 /* LoggedInViews */,
 				262A4CEA2A934F5D00A4BC17 /* MainScreen */,
@@ -1781,6 +1786,15 @@
 				268028A92AF298290031379C /* Indication.swift */,
 			);
 			path = Indication;
+			sourceTree = "<group>";
+		};
+		268B5C382BCE804600E63655 /* ForecastDetails */ = {
+			isa = PBXGroup;
+			children = (
+				268B5C392BCE808200E63655 /* ForecastDetailsView.swift */,
+				268B5C3B2BCE809E00E63655 /* ForecastDetailsViewModel.swift */,
+			);
+			path = ForecastDetails;
 			sourceTree = "<group>";
 		};
 		268D07912B2B1B54002BD77E /* SelectStationLocation */ = {
@@ -2820,6 +2834,7 @@
 				2675481F29A9181E008BCF40 /* MapBoxClaimDevice.swift in Sources */,
 				26BA07752B7F715200F7F5A0 /* DailyRewardCardView.swift in Sources */,
 				2675482029A9181E008BCF40 /* MapBoxMapView.swift in Sources */,
+				268B5C3A2BCE808200E63655 /* ForecastDetailsView.swift in Sources */,
 				2618A7142A20FFCA00983B7B /* MultipleAlertsView.swift in Sources */,
 				26E88AF129DD663D0023BBD5 /* MyWalletView.swift in Sources */,
 				26E88AF329DD68360023BBD5 /* MyWalletViewModel.swift in Sources */,
@@ -2938,6 +2953,7 @@
 				267547BA29A9181E008BCF40 /* UnitsOptionView.swift in Sources */,
 				26AF277E2A0B91200067A1B8 /* UnitsProtocol+.swift in Sources */,
 				267547D429A9181E008BCF40 /* UpdateFirmwareView+Content.swift in Sources */,
+				268B5C3C2BCE809E00E63655 /* ForecastDetailsViewModel.swift in Sources */,
 				267547D529A9181E008BCF40 /* UpdateFirmwareView.swift in Sources */,
 				267547A229A9181E008BCF40 /* UpdateFirmwareViewModel.swift in Sources */,
 				26AB9F582A822DB500855912 /* UserDeviceFollowState+.swift in Sources */,
