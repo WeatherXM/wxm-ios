@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct ForecastTemperatureCardView: View {
-	let weatherIcon: AnimationsEnums?
-	let dateString: String
-	let temperature: String
-	let feelsLike: String
+	let item: Item
 
     var body: some View {
 		PercentageGridLayoutView(alignments: [.center, .leading], firstColumnPercentage: 0.3) {
@@ -20,7 +17,7 @@ struct ForecastTemperatureCardView: View {
 
 				VStack(spacing: CGFloat(.smallToMediumSpacing)) {
 					HStack {
-						Text(dateString)
+						Text(item.dateString)
 							.foregroundColor(Color(colorEnum: .darkestBlue))
 							.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
 
@@ -28,12 +25,12 @@ struct ForecastTemperatureCardView: View {
 					}
 
 					HStack(spacing: CGFloat(.smallSpacing)) {
-						Text(temperature)
+						Text(item.temperature)
 							.foregroundColor(Color(colorEnum: .text))
 							.font(.system(size: CGFloat(.XXLTitleFontSize), weight: .bold))
 						Color(colorEnum: .text)
 							.frame(width: 1.0, height: 26.0)
-						Text(feelsLike)
+						Text(item.feelsLike)
 							.foregroundColor(Color(colorEnum: .text))
 							.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 
@@ -46,11 +43,20 @@ struct ForecastTemperatureCardView: View {
     }
 }
 
+extension ForecastTemperatureCardView {
+	struct Item {
+		let weatherIcon: AnimationsEnums?
+		let dateString: String
+		let temperature: String
+		let feelsLike: String
+	}
+}
+
 private extension ForecastTemperatureCardView {
 	@ViewBuilder
 	var weatherImage: some View {
 		Group {
-			if let weatherIcon {
+			if let weatherIcon = item.weatherIcon {
 				LottieView(animationCase: weatherIcon.animationString, loopMode: .loop)
 			} else {
 				LottieView(animationCase: "anim_not_available", loopMode: .loop)
@@ -60,10 +66,10 @@ private extension ForecastTemperatureCardView {
 }
 
 #Preview {
-	ForecastTemperatureCardView(weatherIcon: .clearNight,
-								dateString: "Today, Tuesday, Apr 2",
-								temperature: "16",
-								feelsLike: "12")
+	ForecastTemperatureCardView(item: .init(weatherIcon: .clearNight,
+											dateString: "Today, Tuesday, Apr 2",
+											temperature: "16",
+											feelsLike: "12"))
 	.wxmShadow()
 	.padding()
 }

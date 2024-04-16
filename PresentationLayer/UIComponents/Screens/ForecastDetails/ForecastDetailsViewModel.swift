@@ -9,11 +9,29 @@ import Foundation
 import DomainLayer
 
 class ForecastDetailsViewModel: ObservableObject {
+	let forecasts: [NetworkDeviceForecastResponse]
 	let device: DeviceDetails
 	let followState: UserDeviceFollowState?
+	@Published var currentForecast: NetworkDeviceForecastResponse? {
+		didSet {
+			updateFieldItems()
+		}
+	}
+	@Published var fieldItems: [ForecastFieldCardView.Item] = []
 
-	init(device: DeviceDetails, followState: UserDeviceFollowState?) {
+	init(forecasts: [NetworkDeviceForecastResponse], device: DeviceDetails, followState: UserDeviceFollowState?) {
+		self.forecasts = forecasts
 		self.device = device
 		self.followState = followState
+		self.currentForecast = forecasts.first
+	}
+}
+
+private extension ForecastDetailsViewModel {
+	func updateFieldItems() {
+		guard let currentForecast else {
+			fieldItems = []
+			return
+		}
 	}
 }

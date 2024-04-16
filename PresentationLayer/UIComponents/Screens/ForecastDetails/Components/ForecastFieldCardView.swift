@@ -1,0 +1,58 @@
+//
+//  ForecastFieldCardView.swift
+//  wxm-ios
+//
+//  Created by Pantelis Giazitsis on 16/4/24.
+//
+
+import SwiftUI
+
+struct ForecastFieldCardView: View {
+	let item: Item
+
+    var body: some View {
+		HStack(spacing: 0.0) {
+			Image(asset: .windDirIconSmall)
+				.resizable()
+				.renderingMode(.template)
+				.foregroundColor(Color(colorEnum: .darkGrey))
+				.frame(width: 25.0, height: 25.0)
+				.rotationEffect(Angle(degrees: item.iconRotation))
+
+			VStack(spacing: CGFloat(.minimumSpacing)) {
+				HStack {
+					Text(item.title)
+						.foregroundColor(Color(colorEnum: .darkGrey))
+						.font(.system(size: CGFloat(.caption), weight: .bold))
+					Spacer()
+				}
+
+				HStack {
+					Text(item.value)
+					Spacer()
+				}
+
+			}
+
+			Spacer()
+		}
+		.WXMCardStyle()
+    }
+}
+
+extension ForecastFieldCardView {
+	struct Item {
+		let icon: AssetEnum
+		let iconRotation: Double
+		let title: String
+		let value: AttributedString
+	}
+}
+
+#Preview {
+	ForecastFieldCardView(item: .init(icon: .windDirIconSmall,
+									  iconRotation: 45,
+									  title: "Wind",
+									  value: "6 high"))
+	.wxmShadow()
+}

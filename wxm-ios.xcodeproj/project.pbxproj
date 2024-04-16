@@ -294,6 +294,8 @@
 		268B5C3A2BCE808200E63655 /* ForecastDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C392BCE808200E63655 /* ForecastDetailsView.swift */; };
 		268B5C3C2BCE809E00E63655 /* ForecastDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C3B2BCE809E00E63655 /* ForecastDetailsViewModel.swift */; };
 		268B5C3F2BCE95DB00E63655 /* ForecastTemperatureCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C3E2BCE95DB00E63655 /* ForecastTemperatureCardView.swift */; };
+		268B5C412BCEB2CD00E63655 /* NetworkDeviceForecastResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C402BCEB2CD00E63655 /* NetworkDeviceForecastResponse+.swift */; };
+		268B5C432BCEB61A00E63655 /* ForecastFieldCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C422BCEB61A00E63655 /* ForecastFieldCardView.swift */; };
 		268D07932B2B1B70002BD77E /* SelectStationLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */; };
 		268D07952B2B1B85002BD77E /* SelectStationLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */; };
 		268D07972B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */; };
@@ -782,6 +784,8 @@
 		268B5C392BCE808200E63655 /* ForecastDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsView.swift; sourceTree = "<group>"; };
 		268B5C3B2BCE809E00E63655 /* ForecastDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsViewModel.swift; sourceTree = "<group>"; };
 		268B5C3E2BCE95DB00E63655 /* ForecastTemperatureCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTemperatureCardView.swift; sourceTree = "<group>"; };
+		268B5C402BCEB2CD00E63655 /* NetworkDeviceForecastResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceForecastResponse+.swift"; sourceTree = "<group>"; };
+		268B5C422BCEB61A00E63655 /* ForecastFieldCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastFieldCardView.swift; sourceTree = "<group>"; };
 		268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationView.swift; sourceTree = "<group>"; };
 		268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationViewModel.swift; sourceTree = "<group>"; };
 		268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+SelectStationLocation.swift"; sourceTree = "<group>"; };
@@ -1750,6 +1754,7 @@
 			children = (
 				26CA84522AD933F1006D47D7 /* Common */,
 				26A4118D29BB8BC000A2C10B /* BluetoothState+.swift */,
+				268B5C402BCEB2CD00E63655 /* NetworkDeviceForecastResponse+.swift */,
 				267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */,
 				26C904C82A77EF980047A388 /* DeviceDetails+.swift */,
 				2618A6E62A1E440F00983B7B /* ExplorerLocationError+.swift */,
@@ -1804,6 +1809,7 @@
 			isa = PBXGroup;
 			children = (
 				268B5C3E2BCE95DB00E63655 /* ForecastTemperatureCardView.swift */,
+				268B5C422BCEB61A00E63655 /* ForecastFieldCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2772,6 +2778,7 @@
 				2666D57F2BC977D0003B30C0 /* StationForecastMiniCardView.swift in Sources */,
 				26A4116F29B74B7000A2C10B /* DeviceInfoRowView.swift in Sources */,
 				26A4116B29B744E100A2C10B /* DeviceInfoView.swift in Sources */,
+				268B5C412BCEB2CD00E63655 /* NetworkDeviceForecastResponse+.swift in Sources */,
 				262B03072B20BC7B00C31FE7 /* AppUpdateView.swift in Sources */,
 				26A4117E29B8A17D00A2C10B /* DeviceInfoViewModel+Content.swift in Sources */,
 				26A4116D29B744FD00A2C10B /* DeviceInfoViewModel.swift in Sources */,
@@ -2892,6 +2899,7 @@
 				267547EA29A9181E008BCF40 /* SelectDeviceTypeView.swift in Sources */,
 				266B018F2B836EC6007AC689 /* NoRewardsView.swift in Sources */,
 				26A4119529BF203400A2C10B /* SelectFrequencyView.swift in Sources */,
+				268B5C432BCEB61A00E63655 /* ForecastFieldCardView.swift in Sources */,
 				267547BE29A9181E008BCF40 /* SettingsButtonView.swift in Sources */,
 				267548DF29A91A87008BCF40 /* SettingsEnum.swift in Sources */,
 				267547B929A9181E008BCF40 /* SettingsSectionTitle.swift in Sources */,

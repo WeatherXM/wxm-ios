@@ -30,6 +30,8 @@ struct ForecastDetailsView: View {
 							}
 						}
 					}
+
+					dailyConditions
 				}.padding(.horizontal, CGFloat(.mediumSidePadding))
 			}
 		}.onAppear {
@@ -38,9 +40,43 @@ struct ForecastDetailsView: View {
 	}
 }
 
+private extension ForecastDetailsView {
+	@ViewBuilder
+	var dailyConditions: some View {
+		if let currentForecast = viewModel.currentForecast {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				HStack {
+					Text(LocalizableString.Forecast.dailyConditions.localized)
+						.foregroundColor(Color(colorEnum: .darkestBlue))
+						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+
+					Spacer()
+				}
+
+				if let item = currentForecast.dailyForecastTemperatureItem {
+					ForecastTemperatureCardView(item: item)
+						.wxmShadow()
+				}
+			}
+		} else {
+			EmptyView()
+		}
+	}
+
+	@ViewBuilder
+	var dailyConditionsFields: some View {
+		PercentageGridLayoutView(alignments: [.center, .center], firstColumnPercentage: 0.5) {
+			Group {
+
+			}
+		}
+	}
+}
+
 #Preview {
 	NavigationContainerView {
-		ForecastDetailsView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(device: .mockDevice,
+		ForecastDetailsView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(forecasts: [.init(tz: "Europe/Athens", date: "", hourly: [], daily: .mockInstance)],
+																					 device: .mockDevice,
 																					 followState: .init(deviceId: "", relation: .owned)))
 	}
 }

@@ -11,6 +11,7 @@ extension LocalizableString {
 	enum Forecast {
 		case nextSevenDays
 		case nextTwentyFourHours
+		case dailyConditions
 	}
 }
 
@@ -26,6 +27,8 @@ extension LocalizableString.Forecast: WXMLocalizable {
 				return "forecast_next_seven_days"
 			case .nextTwentyFourHours:
 				return "forecast_next_twenty_four_hours"
+			case .dailyConditions:
+				return "forecast_daily_conditions"
 		}
 	}
 }
