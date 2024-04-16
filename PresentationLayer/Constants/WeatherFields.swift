@@ -24,6 +24,10 @@ extension WeatherField: CustomStringConvertible {
         [.precipitationProbability, .dailyPrecipitation, .wind, .humidity, .pressure, .uv]
     }
 
+	static var forecastFields: [WeatherField] {
+		[.precipitationProbability, .wind, .dailyPrecipitation, .uv, .humidity, .pressure]
+	}
+
     public var description: String {
         switch self {
             case .temperature:

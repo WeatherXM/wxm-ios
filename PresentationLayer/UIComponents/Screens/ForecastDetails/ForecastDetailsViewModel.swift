@@ -33,5 +33,19 @@ private extension ForecastDetailsViewModel {
 			fieldItems = []
 			return
 		}
+
+		self.fieldItems = WeatherField.forecastFields.compactMap { field in
+			guard let daily = currentForecast.daily,
+					let literals = field.weatherLiterals(from: daily, unitsManager: .default, includeDirection: true) else {
+				return nil
+			}
+
+			let value = literals.value
+			
+			return ForecastFieldCardView.Item(icon: field.hourlyIcon(),
+											  iconRotation: field.iconRotation(from: daily),
+											  title: field.description, 
+											  value: value.attributedMarkdown ?? "")
+		}
 	}
 }

@@ -12,11 +12,11 @@ struct ForecastFieldCardView: View {
 
     var body: some View {
 		HStack(spacing: 0.0) {
-			Image(asset: .windDirIconSmall)
+			Image(asset: item.icon)
 				.resizable()
 				.renderingMode(.template)
 				.foregroundColor(Color(colorEnum: .darkGrey))
-				.frame(width: 25.0, height: 25.0)
+				.frame(width: 35.0, height: 35.0)
 				.rotationEffect(Angle(degrees: item.iconRotation))
 
 			VStack(spacing: CGFloat(.minimumSpacing)) {

@@ -57,6 +57,8 @@ private extension ForecastDetailsView {
 					ForecastTemperatureCardView(item: item)
 						.wxmShadow()
 				}
+
+				dailyConditionsFields
 			}
 		} else {
 			EmptyView()
@@ -67,7 +69,10 @@ private extension ForecastDetailsView {
 	var dailyConditionsFields: some View {
 		PercentageGridLayoutView(alignments: [.center, .center], firstColumnPercentage: 0.5) {
 			Group {
-
+				ForEach(viewModel.fieldItems, id: \.title) { item in
+					ForecastFieldCardView(item: item)
+				}
+				.wxmShadow()
 			}
 		}
 	}
