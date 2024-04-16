@@ -290,6 +290,7 @@
 		267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4282A98C3D300F2C37E /* WXMAlertView.swift */; };
 		268028AA2AF298290031379C /* Indication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268028A92AF298290031379C /* Indication.swift */; };
 		268645982A6FA7C100EB85B1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268645972A6FA7C100EB85B1 /* Router.swift */; };
+		268B5C372BCE7CF900E63655 /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C362BCE7CF900E63655 /* NavigationTitleView.swift */; };
 		268D07932B2B1B70002BD77E /* SelectStationLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */; };
 		268D07952B2B1B85002BD77E /* SelectStationLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */; };
 		268D07972B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */; };
@@ -774,6 +775,7 @@
 		267EDF5F2B67B5AC00C221B1 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
 		268028A92AF298290031379C /* Indication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indication.swift; sourceTree = "<group>"; };
 		268645972A6FA7C100EB85B1 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		268B5C362BCE7CF900E63655 /* NavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitleView.swift; sourceTree = "<group>"; };
 		268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationView.swift; sourceTree = "<group>"; };
 		268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationViewModel.swift; sourceTree = "<group>"; };
 		268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+SelectStationLocation.swift"; sourceTree = "<group>"; };
@@ -1382,6 +1384,7 @@
 			isa = PBXGroup;
 			children = (
 				2675475029A9181E008BCF40 /* NavigationContainerView.swift */,
+				268B5C362BCE7CF900E63655 /* NavigationTitleView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -2683,6 +2686,7 @@
 				267548D529A91A87008BCF40 /* AnimationsEnums.swift in Sources */,
 				26FFAE1E2B92102000BF0A6B /* NoBoostsView.swift in Sources */,
 				B557E2152825212700E0BDCB /* AppDelegate.swift in Sources */,
+				268B5C372BCE7CF900E63655 /* NavigationTitleView.swift in Sources */,
 				267548D929A91A87008BCF40 /* AssetEnum.swift in Sources */,
 				264CC7672B987AF60060DEA4 /* Localizable+Boosts.swift in Sources */,
 				2675480829A9181E008BCF40 /* AttributedLabel.swift in Sources */,
