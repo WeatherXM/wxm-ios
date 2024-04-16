@@ -17,15 +17,17 @@ struct ForecastDetailsView: View {
 				.ignoresSafeArea()
 
 			ScrollView(showsIndicators: false) {
-				NavigationTitleView(title: .constant(viewModel.device.displayName),
-									subtitle: .constant(viewModel.device.address)) {
-					Group {
-						if let faIcon = viewModel.followState?.state.FAIcon {
-							Text(faIcon.icon.rawValue)
-								.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
-								.foregroundColor(Color(colorEnum: faIcon.color))
-						} else {
-							EmptyView()
+				VStack(spacing: CGFloat(.mediumSpacing)) {
+					NavigationTitleView(title: .constant(viewModel.device.displayName),
+										subtitle: .constant(viewModel.device.address)) {
+						Group {
+							if let faIcon = viewModel.followState?.state.FAIcon {
+								Text(faIcon.icon.rawValue)
+									.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
+									.foregroundColor(Color(colorEnum: faIcon.color))
+							} else {
+								EmptyView()
+							}
 						}
 					}
 				}.padding(.horizontal, CGFloat(.mediumSidePadding))

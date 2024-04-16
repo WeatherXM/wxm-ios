@@ -266,7 +266,7 @@ private extension WeatherOverviewView {
 			case .large:
 				CGFloat(.largeTitleFontSize)
 			case .default:
-				CGFloat(.XXLTitleFontSize)
+				CGFloat(.XXXLTitleFontSize)
 		}
 	}
 
