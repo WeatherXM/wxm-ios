@@ -67,7 +67,8 @@ private extension ForecastDetailsView {
 
 	@ViewBuilder
 	var dailyConditionsFields: some View {
-		PercentageGridLayoutView(alignments: [.center, .center], firstColumnPercentage: 0.5) {
+		LazyVGrid(columns: [.init(spacing: CGFloat(.smallToMediumSpacing)), .init()],
+				  spacing: CGFloat(.smallToMediumSpacing)) {
 			Group {
 				ForEach(viewModel.fieldItems, id: \.title) { item in
 					ForecastFieldCardView(item: item)

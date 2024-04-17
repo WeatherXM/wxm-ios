@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import SwiftUI
 
 class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
@@ -40,12 +41,28 @@ private extension ForecastDetailsViewModel {
 				return nil
 			}
 
-			let value = literals.value
-			
 			return ForecastFieldCardView.Item(icon: field.hourlyIcon(),
 											  iconRotation: field.iconRotation(from: daily),
 											  title: field.description, 
-											  value: value.attributedMarkdown ?? "")
+											  value: attributedString(literals: literals))
 		}
+	}
+
+	func attributedString(literals: WeatherValueLiterals) -> AttributedString {
+		let value = literals.value
+		let unit = literals.unit
+
+		var attributedString = AttributedString("\(value) \(unit)")
+		if let valueRange = attributedString.range(of: value) {
+			attributedString[valueRange].foregroundColor = Color(colorEnum: .text)
+			attributedString[valueRange].font = .system(size: CGFloat(.mediumFontSize), weight: .bold)
+		}
+
+		if let unitRange = attributedString.range(of: unit) {
+			attributedString[unitRange].foregroundColor = Color(colorEnum: .darkGrey)
+			attributedString[unitRange].font = .system(size: CGFloat(.normalFontSize))
+		}
+
+		return attributedString
 	}
 }
