@@ -76,7 +76,7 @@ extension WeatherField: CustomStringConvertible {
             case .precipitationRate:
                 return LocalizableString.precipRate.localized
             case .precipitationProbability:
-                return LocalizableString.precipitationProbability.localized
+                return LocalizableString.precipProbability.localized
             case .dailyPrecipitation:
                 return LocalizableString.dailyPrecip.localized
             case .windGust:

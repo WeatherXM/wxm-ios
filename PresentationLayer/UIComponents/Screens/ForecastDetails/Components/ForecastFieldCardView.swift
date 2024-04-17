@@ -19,7 +19,7 @@ struct ForecastFieldCardView: View {
 				.frame(width: 35.0, height: 35.0)
 				.rotationEffect(Angle(degrees: item.iconRotation))
 
-			VStack(spacing: CGFloat(.minimumSpacing)) {
+			VStack(spacing: 0.0) {
 				HStack {
 					Text(item.title)
 						.foregroundColor(Color(colorEnum: .darkGrey))

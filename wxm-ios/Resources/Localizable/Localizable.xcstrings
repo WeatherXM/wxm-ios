@@ -4640,6 +4640,17 @@
         }
       }
     },
+    "precip_probability" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precip. Probability"
+          }
+        }
+      }
+    },
     "precip_rate" : {
       "extractionState" : "manual",
       "localizations" : {

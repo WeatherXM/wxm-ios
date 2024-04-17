@@ -43,7 +43,7 @@ private extension ForecastDetailsViewModel {
 
 			return ForecastFieldCardView.Item(icon: field.hourlyIcon(),
 											  iconRotation: field.iconRotation(from: daily),
-											  title: field.description, 
+											  title: field.displayTitle,
 											  value: attributedString(literals: literals))
 		}
 	}
