@@ -25,11 +25,19 @@ struct StationForecastMiniCardView: View {
 
 				weatherImage
 
-				Text(item.temperature)
-					.foregroundColor(Color(colorEnum: .darkestBlue))
-					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
-					.minimumScaleFactor(0.8)
-					.lineLimit(1)
+				VStack(spacing: 0.0) {
+					Text(item.temperature)
+						.foregroundColor(Color(colorEnum: .darkestBlue))
+						.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+						.lineLimit(1)
+
+					if let feelsLike = item.feelsLike {
+						Text(feelsLike)
+							.foregroundColor(Color(colorEnum: .darkestBlue))
+							.font(.system(size: CGFloat(.caption)))
+							.lineLimit(1)
+					}
+				}
 			}
 			.WXMCardStyle(insideHorizontalPadding: CGFloat(.mediumSidePadding),
 						  insideVerticalPadding: CGFloat(.mediumSidePadding))
@@ -43,6 +51,7 @@ extension StationForecastMiniCardView {
 		let time: String
 		let animationString: String?
 		let temperature: String
+		var feelsLike: String?
 		var action: VoidCallback?
 	}
 }

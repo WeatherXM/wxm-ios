@@ -31,6 +31,8 @@ struct ForecastDetailsView: View {
 						}
 					}
 
+					dailyForecast
+
 					dailyConditions
 
 					hourlyForecast
@@ -95,8 +97,8 @@ private extension ForecastDetailsView {
 
 				ScrollView(.horizontal, showsIndicators: false) {
 					LazyHStack(spacing: CGFloat(.smallSpacing)) {
-						ForEach(0..<viewModel.hourlyItems.count, id: \.self) { index in
-							let item = viewModel.hourlyItems[index]
+						ForEach(0..<hourlyItems.count, id: \.self) { index in
+							let item = hourlyItems[index]
 							StationForecastMiniCardView(item: item)
 								.wxmShadow()
 								.frame(width: 80.0)
@@ -107,8 +109,29 @@ private extension ForecastDetailsView {
 		} else {
 			EmptyView()
 		}
-
 	}
+
+	@ViewBuilder
+	var dailyForecast: some View {
+		let dailyItems = viewModel.dailyItems
+		if !dailyItems.isEmpty {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				ScrollView(.horizontal, showsIndicators: false) {
+					LazyHStack(spacing: CGFloat(.smallSpacing)) {
+						ForEach(0..<dailyItems.count, id: \.self) { index in
+							let item = dailyItems[index]
+							StationForecastMiniCardView(item: item)
+								.wxmShadow()
+								.frame(width: 80.0)
+						}
+					}
+				}
+			}
+		} else {
+			EmptyView()
+		}
+	}
+
 }
 
 #Preview {

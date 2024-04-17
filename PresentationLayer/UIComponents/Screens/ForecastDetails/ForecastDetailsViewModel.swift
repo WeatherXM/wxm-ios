@@ -17,8 +17,10 @@ class ForecastDetailsViewModel: ObservableObject {
 		didSet {
 			updateFieldItems()
 			updateHourlyItems()
+			updateDailyItems()
 		}
 	}
+	@Published private(set) var dailyItems: [StationForecastMiniCardView.Item] = []
 	@Published var fieldItems: [ForecastFieldCardView.Item] = []
 	@Published private(set) var hourlyItems: [StationForecastMiniCardView.Item] = []
 
@@ -76,5 +78,16 @@ private extension ForecastDetailsViewModel {
 		}
 
 		hourlyItems = hourly.map { $0.toMiniCardItem(with: timezone)}
+	}
+
+	func updateDailyItems() {
+		let dailyForecasts = forecasts.compactMap { $0.daily }
+		guard let currentForecast,
+			  let timezone = TimeZone(identifier: currentForecast.tz) else {
+			dailyItems = []
+			return
+		}
+
+		dailyItems = dailyForecasts.map { $0.toDailyMiniCardItem(with: timezone)}
 	}
 }
