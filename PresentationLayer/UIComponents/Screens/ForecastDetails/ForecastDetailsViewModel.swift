@@ -13,6 +13,7 @@ class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
 	let device: DeviceDetails
 	let followState: UserDeviceFollowState?
+	@Published private(set) var chartDelegate: ChartDelegate = ChartDelegate()
 	@Published var selectedForecastIndex: Int? {
 		didSet {
 			guard let selectedForecastIndex else {
@@ -26,11 +27,13 @@ class ForecastDetailsViewModel: ObservableObject {
 			updateFieldItems()
 			updateHourlyItems()
 			updateDailyItems()
+			updateCharts()
 		}
 	}
 	@Published private(set) var dailyItems: [StationForecastMiniCardView.Item] = []
 	@Published var fieldItems: [ForecastFieldCardView.Item] = []
 	@Published private(set) var hourlyItems: [StationForecastMiniCardView.Item] = []
+	@Published private(set) var chartModels: HistoryChartModels?
 
 	init(forecasts: [NetworkDeviceForecastResponse], device: DeviceDetails, followState: UserDeviceFollowState?) {
 		self.forecasts = forecasts
@@ -101,6 +104,18 @@ private extension ForecastDetailsViewModel {
 				self?.selectedForecastIndex = index
 			}
 		}
+	}
+
+	func updateCharts() {
+		guard let currentForecast,
+			  let timezone = TimeZone(identifier: currentForecast.tz),
+			  let date = currentForecast.hourly?.first?.timestamp?.timestampToDate(),
+			  let data = currentForecast.hourly else {
+
+			return
+		}
+
+		chartModels = ChartsFactory().createHourlyCharts(timeZone: timezone, date: date, hourlyWeatherData: data)
 	}
 }
 

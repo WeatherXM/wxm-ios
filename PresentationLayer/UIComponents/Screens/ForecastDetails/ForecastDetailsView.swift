@@ -18,7 +18,7 @@ struct ForecastDetailsView: View {
 				.ignoresSafeArea()
 
 			ScrollView(showsIndicators: false) {
-				VStack(spacing: CGFloat(.mediumSpacing)) {
+				VStack(spacing: CGFloat(.largeSpacing)) {
 					NavigationTitleView(title: .constant(viewModel.device.displayName),
 										subtitle: .constant(viewModel.device.address)) {
 						Group {
@@ -37,7 +37,10 @@ struct ForecastDetailsView: View {
 					dailyConditions
 
 					hourlyForecast
-				}.padding(.horizontal, CGFloat(.mediumSidePadding))
+
+					charts
+				}
+				.padding(.horizontal, CGFloat(.mediumSidePadding))
 			}
 		}.onAppear {
 			navigationObject.navigationBarColor = Color(.newBG)
@@ -133,6 +136,15 @@ private extension ForecastDetailsView {
 		}
 	}
 
+	@ViewBuilder
+	var charts: some View {
+		if let chartModels = viewModel.chartModels {
+			ChartsContainer(historyData: chartModels, delegate: viewModel.chartDelegate)
+				.id(chartModels.markDate)
+		} else {
+			EmptyView()
+		}
+	}
 }
 
 #Preview {

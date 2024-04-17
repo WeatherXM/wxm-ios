@@ -89,10 +89,10 @@ private extension ChartCardView {
         }
 
         let comps: [String] = chartDataModels.map { model in
-            let entry = model.entries[index]
-            let value = entry.y
+			let entry = model.entries[safe: index]
+            let value = entry?.y
             let literals = model.weatherField.createWeatherLiterals(from: value,
-                                                                    addditonalInfo: entry.data,
+                                                                    addditonalInfo: entry?.data,
                                                                     unitsManager: unitsManager,
                                                                     shouldConvertUnits: false)
             let formattedValue = "\(literals?.value ?? "")\(model.weatherField.shouldHaveSpaceWithUnit ? " " : "")\(literals?.unit ?? "")".trimWhiteSpaces()

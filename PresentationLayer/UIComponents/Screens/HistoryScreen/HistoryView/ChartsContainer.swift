@@ -20,7 +20,6 @@ struct ChartsContainer: View {
                               chartDataModels: chart.weatherFields.compactMap { historyData.dataModels[$0] })
                 .environmentObject(delegate)
             }
-            .padding(.horizontal, CGFloat(.defaultSidePadding))
 
             if let timezone = historyData.tz {
                 HStack {
@@ -29,7 +28,6 @@ struct ChartsContainer: View {
                         .font(.system(size: CGFloat(.caption)))
                     Spacer()
                 }
-                .padding(.horizontal, CGFloat(.defaultSidePadding))
                 .padding(.bottom, CGFloat(.defaultSidePadding))
             }
         }
