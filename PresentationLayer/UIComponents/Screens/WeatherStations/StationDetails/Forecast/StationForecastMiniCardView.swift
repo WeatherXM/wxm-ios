@@ -32,8 +32,8 @@ struct StationForecastMiniCardView: View {
 						.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
 						.lineLimit(1)
 
-					if let feelsLike = item.feelsLike {
-						Text(feelsLike)
+					if let secondaryTemperature = item.secondaryTemperature {
+						Text(secondaryTemperature)
 							.foregroundColor(Color(colorEnum: .darkestBlue))
 							.font(.system(size: CGFloat(.caption)))
 							.lineLimit(1)
@@ -56,7 +56,7 @@ extension StationForecastMiniCardView {
 		let time: String
 		let animationString: String?
 		let temperature: String
-		var feelsLike: String?
+		var secondaryTemperature: String?
 		var action: VoidCallback?
 	}
 }

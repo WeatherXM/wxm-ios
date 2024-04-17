@@ -29,15 +29,15 @@ extension CurrentWeather {
 	func toDailyMiniCardItem(with timeZone: TimeZone, action: VoidCallback? = nil) -> StationForecastMiniCardView.Item {
 		.init(time: timestamp?.timestampToDate(timeZone: timeZone).getWeekDay(.abbreviated) ?? "",
 			  animationString: icon?.getAnimationString(),
-			  temperature: temperature?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
-			  feelsLike: feelsLike?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
+			  temperature: temperatureMax?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
+			  secondaryTemperature: temperatureMin?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
 			  action: action)
 	}
 
 	func toForecastTemperatureItem(with timeZone: TimeZone) -> ForecastTemperatureCardView.Item {
 		.init(weatherIcon: icon?.lottieAnimation,
-			  dateString: timestamp?.timestampToDate(timeZone: timeZone).transactionsTimeFormat(timeZone: timeZone) ?? "",
-			  temperature: temperature?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "",
-			  feelsLike: feelsLike?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "")
+			  dateString: timestamp?.timestampToDate(timeZone: timeZone).getFormattedDate(format: .dayShortLiteralMonthDay, timezone: timeZone).capitalized ?? "",
+			  temperature: temperatureMax?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "",
+			  secondaryTemperature: temperatureMin?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "")
 	}
 }

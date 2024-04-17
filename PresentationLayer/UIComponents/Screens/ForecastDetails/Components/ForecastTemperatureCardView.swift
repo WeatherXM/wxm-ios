@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DomainLayer
 
 struct ForecastTemperatureCardView: View {
 	let item: Item
@@ -30,7 +31,7 @@ struct ForecastTemperatureCardView: View {
 							.font(.system(size: CGFloat(.XXLTitleFontSize), weight: .bold))
 						Color(colorEnum: .text)
 							.frame(width: 1.0, height: 26.0)
-						Text(item.feelsLike)
+						Text(item.secondaryTemperature)
 							.foregroundColor(Color(colorEnum: .text))
 							.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 
@@ -48,7 +49,7 @@ extension ForecastTemperatureCardView {
 		let weatherIcon: AnimationsEnums?
 		let dateString: String
 		let temperature: String
-		let feelsLike: String
+		let secondaryTemperature: String
 	}
 }
 
@@ -66,10 +67,7 @@ private extension ForecastTemperatureCardView {
 }
 
 #Preview {
-	ForecastTemperatureCardView(item: .init(weatherIcon: .clearNight,
-											dateString: "Today, Tuesday, Apr 2",
-											temperature: "16",
-											feelsLike: "12"))
+	ForecastTemperatureCardView(item: CurrentWeather.mockInstance.toForecastTemperatureItem(with: .current))
 	.wxmShadow()
 	.padding()
 }
