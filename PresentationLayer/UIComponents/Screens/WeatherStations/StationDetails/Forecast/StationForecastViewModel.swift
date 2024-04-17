@@ -54,7 +54,12 @@ class StationForecastViewModel: ObservableObject {
     }
 
 	func handleForecastTap(forecast: NetworkDeviceForecastResponse) {
-		print("Will handle tap for \(forecast)")
+		guard let device else {
+			return
+		}
+
+		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(forecasts: forecasts, device: device, followState: nil)
+		Router.shared.navigateTo(.forecastDetails(viewModel))
 	}
 
     func trackSelectContentEvent(forecast: NetworkDeviceForecastResponse, isOpen: Bool) {
@@ -153,7 +158,12 @@ private extension StationForecastViewModel {
 	}
 
 	func handleTap(for weather: CurrentWeather) {
-		print("Will handle tap for \(weather)")
+		guard let device else {
+			return
+		}
+
+		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(forecasts: forecasts, device: device, followState: nil)
+		Router.shared.navigateTo(.forecastDetails(viewModel))
 	}
 }
 

@@ -103,3 +103,10 @@ private extension ForecastDetailsViewModel {
 		}
 	}
 }
+
+extension ForecastDetailsViewModel: HashableViewModel {
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(device.id)
+	}
+}
+
