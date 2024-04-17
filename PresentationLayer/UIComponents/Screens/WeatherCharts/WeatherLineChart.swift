@@ -24,7 +24,7 @@ enum WeatherChartsConstants {
 }
 
 struct WeatherLineChart: UIViewRepresentable {
-    let type: ChartCardType
+    let type: any ChartCardProtocol
     let chartData: [WeatherChartDataModel]
     let delegate: ChartDelegate
 
@@ -51,7 +51,7 @@ struct WeatherLineChart: UIViewRepresentable {
 }
 
 class WeatherLineChartView: LineChartView {
-    func initializeWXMChart(type: ChartCardType, chartData: [WeatherChartDataModel]) {
+    func initializeWXMChart(type: any ChartCardProtocol, chartData: [WeatherChartDataModel]) {
         configureDefault(chartData: chartData)
         configure(for: type, chartData: chartData)
         notifyDataSetChanged()
@@ -93,7 +93,7 @@ private extension WeatherLineChartView {
         xAxis.gridColor = WeatherChartsConstants.GRID_COLOR
     }
 
-    func configure(for type: ChartCardType, chartData: [WeatherChartDataModel]) {
+    func configure(for type: any ChartCardProtocol, chartData: [WeatherChartDataModel]) {
         var dataSets: [LineChartDataSet] = []
         for (index, element) in chartData.enumerated() {
             let datasetsTuple = generateDataSets(from: element.entries,
@@ -127,30 +127,7 @@ private extension WeatherLineChartView {
         
         rightAxis.enabled = type.isRightAxisEnabled
 
-        switch type {
-            case .temperature:
-                break
-            case .precipitation:
-                rightAxis.axisMinimum = 0.0
-                leftAxis.axisMinimum = 0.0
-            case .wind:
-                break
-            case .humidity:
-                break
-            case .pressure:
-                let isInHg = WeatherUnitsManager.default.pressureUnit == .inchOfMercury
-                let yMin = lineData.yMin
-                let yMax = lineData.yMax
-                if isInHg && (yMax - yMin < 2.0) {
-                    leftAxis.axisMinimum = yMin - 0.1
-                    leftAxis.axisMaximum = yMax + 0.1
-                    rightAxis.axisMinimum = yMin - 0.1
-                    rightAxis.axisMaximum = yMax + 0.1
-                }
-            case .solar:
-                rightAxis.axisMinimum = 0.0
-                leftAxis.axisMinimum = 0.0
-        }
+		type.configureAxis(leftAxis: leftAxis, rightAxis: rightAxis, for: lineData)
     }
 
     func configureDataSet(dataSet: LineChartDataSet, for weatherField: WeatherField) {

@@ -10,7 +10,7 @@ import Charts
 
 struct ChartCardView: View {
     @EnvironmentObject var delegate: ChartDelegate
-    let type: ChartCardType
+    let type: any ChartCardProtocol
     let chartDataModels: [WeatherChartDataModel]
 
 	private let unitsManager: WeatherUnitsManager = .default
@@ -122,7 +122,7 @@ struct ChartCardView_Previews: PreviewProvider {
                        ChartDataEntry(x: 13.0, y: 24.9),
                        ChartDataEntry(x: 14.0, y: 25.5)]
 
-        ChartCardView(type: .temperature,
+        ChartCardView(type: ChartCardType.temperature,
                       chartDataModels: [WeatherChartDataModel.mock(type: .temperature,
                                                             timestamps: entries.map { "\($0.x.rounded())" },
                                                             dataEntries: entries),
