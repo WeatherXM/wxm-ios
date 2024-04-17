@@ -3276,6 +3276,17 @@
         }
       }
     },
+    "extreme" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extreme"
+          }
+        }
+      }
+    },
     "fahrenheit_symbol" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3870,6 +3881,17 @@
         }
       }
     },
+    "high" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High"
+          }
+        }
+      }
+    },
     "history_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4024,9 +4046,6 @@
         }
       }
     },
-    "Key" : {
-      "extractionState" : "manual"
-    },
     "last_name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4133,6 +4152,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Email *"
+          }
+        }
+      }
+    },
+    "moderate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Moderate"
           }
         }
       }
@@ -7169,6 +7199,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "UV Index"
+          }
+        }
+      }
+    },
+    "very_high" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Very High"
           }
         }
       }

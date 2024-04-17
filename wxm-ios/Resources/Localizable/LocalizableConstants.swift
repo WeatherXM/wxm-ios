@@ -150,6 +150,10 @@ enum LocalizableString: WXMLocalizable {
     case no
     case good
     case low
+	case moderate
+	case high
+	case veryHigh
+	case extreme
     case display
     case about
 	case feedback
@@ -535,6 +539,14 @@ extension LocalizableString {
                 return "good"
             case .low:
                 return "low"
+			case .high:
+				return "high"
+			case .moderate:
+				return "moderate"
+			case .veryHigh:
+				return "very_high"
+			case .extreme:
+				return "extreme"
             case .display:
                 return "display"
             case .about:
