@@ -3793,6 +3793,17 @@
         }
       }
     },
+    "forecast_hourly_forecast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hourly Forecast"
+          }
+        }
+      }
+    },
     "forecast_next_seven_days" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -29,7 +29,7 @@ extension CurrentWeather {
     static var mockInstance: CurrentWeather {
         var currentWeather = CurrentWeather()
         currentWeather.timestamp = Date().ISO8601Format()
-        currentWeather.temperature = 15.0
+        currentWeather.temperature = 15.3
         currentWeather.temperatureMin = 10.0
         currentWeather.temperatureMax = 16.0
         currentWeather.humidity = 30

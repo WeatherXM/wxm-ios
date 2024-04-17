@@ -16,9 +16,11 @@ class ForecastDetailsViewModel: ObservableObject {
 	@Published var currentForecast: NetworkDeviceForecastResponse? {
 		didSet {
 			updateFieldItems()
+			updateHourlyItems()
 		}
 	}
 	@Published var fieldItems: [ForecastFieldCardView.Item] = []
+	@Published private(set) var hourlyItems: [StationForecastMiniCardView.Item] = []
 
 	init(forecasts: [NetworkDeviceForecastResponse], device: DeviceDetails, followState: UserDeviceFollowState?) {
 		self.forecasts = forecasts
@@ -64,5 +66,15 @@ private extension ForecastDetailsViewModel {
 		}
 
 		return attributedString
+	}
+
+	func updateHourlyItems() {
+		guard let currentForecast,
+			  let hourly = currentForecast.hourly, let timezone = TimeZone(identifier: currentForecast.tz) else {
+			hourlyItems = []
+			return
+		}
+
+		hourlyItems = hourly.map { $0.toMiniCardItem(with: timezone)}
 	}
 }

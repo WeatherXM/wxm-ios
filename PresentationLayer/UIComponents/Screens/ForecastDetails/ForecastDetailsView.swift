@@ -32,6 +32,8 @@ struct ForecastDetailsView: View {
 					}
 
 					dailyConditions
+
+					hourlyForecast
 				}.padding(.horizontal, CGFloat(.mediumSidePadding))
 			}
 		}.onAppear {
@@ -77,11 +79,41 @@ private extension ForecastDetailsView {
 			}
 		}
 	}
+
+	@ViewBuilder
+	var hourlyForecast: some View {
+		let hourlyItems = viewModel.hourlyItems
+		if !hourlyItems.isEmpty {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				HStack {
+					Text(LocalizableString.Forecast.hourlyForecast.localized)
+						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+						.foregroundColor(Color(colorEnum: .darkestBlue))
+
+					Spacer()
+				}
+
+				ScrollView(.horizontal, showsIndicators: false) {
+					LazyHStack(spacing: CGFloat(.smallSpacing)) {
+						ForEach(0..<viewModel.hourlyItems.count, id: \.self) { index in
+							let item = viewModel.hourlyItems[index]
+							StationForecastMiniCardView(item: item)
+								.wxmShadow()
+								.frame(width: 80.0)
+						}
+					}
+				}
+			}
+		} else {
+			EmptyView()
+		}
+
+	}
 }
 
 #Preview {
 	NavigationContainerView {
-		ForecastDetailsView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(forecasts: [.init(tz: "Europe/Athens", date: "", hourly: [], daily: .mockInstance)],
+		ForecastDetailsView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(forecasts: [.init(tz: "Europe/Athens", date: "", hourly: [.mockInstance], daily: .mockInstance)],
 																					 device: .mockDevice,
 																					 followState: .init(deviceId: "", relation: .owned)))
 	}
