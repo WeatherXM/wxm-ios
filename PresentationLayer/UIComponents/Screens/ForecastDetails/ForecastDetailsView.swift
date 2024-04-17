@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DomainLayer
 
 struct ForecastDetailsView: View {
 	@StateObject var viewModel: ForecastDetailsViewModel
@@ -99,7 +100,7 @@ private extension ForecastDetailsView {
 					LazyHStack(spacing: CGFloat(.smallSpacing)) {
 						ForEach(0..<hourlyItems.count, id: \.self) { index in
 							let item = hourlyItems[index]
-							StationForecastMiniCardView(item: item)
+							StationForecastMiniCardView(item: item, isSelected: false)
 								.wxmShadow()
 								.frame(width: 80.0)
 						}
@@ -120,7 +121,7 @@ private extension ForecastDetailsView {
 					LazyHStack(spacing: CGFloat(.smallSpacing)) {
 						ForEach(0..<dailyItems.count, id: \.self) { index in
 							let item = dailyItems[index]
-							StationForecastMiniCardView(item: item)
+							StationForecastMiniCardView(item: item, isSelected: viewModel.selectedForecastIndex == index)
 								.wxmShadow()
 								.frame(width: 80.0)
 						}
@@ -136,7 +137,8 @@ private extension ForecastDetailsView {
 
 #Preview {
 	NavigationContainerView {
-		ForecastDetailsView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(forecasts: [.init(tz: "Europe/Athens", date: "", hourly: [.mockInstance], daily: .mockInstance)],
+		let forecasts: [NetworkDeviceForecastResponse] = (0..<6).map { _ in .init(tz: "Europe/Athens", date: "", hourly: [.mockInstance], daily: .mockInstance) }
+		ForecastDetailsView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(forecasts: forecasts,
 																					 device: .mockDevice,
 																					 followState: .init(deviceId: "", relation: .owned)))
 	}

@@ -11,6 +11,7 @@ import Toolkit
 
 struct StationForecastMiniCardView: View {
 	let item: Item
+	let isSelected: Bool
 
 	var body: some View {
 		Button {
@@ -39,10 +40,14 @@ struct StationForecastMiniCardView: View {
 					}
 				}
 			}
-			.WXMCardStyle(insideHorizontalPadding: CGFloat(.mediumSidePadding),
+			.WXMCardStyle(backgroundColor: isSelected ? Color(colorEnum: .layer1) : Color(colorEnum: .top),
+						  insideHorizontalPadding: CGFloat(.mediumSidePadding),
 						  insideVerticalPadding: CGFloat(.mediumSidePadding))
 		}
 		.allowsHitTesting(item.action != nil)
+		.indication(show: .constant(isSelected), borderColor: Color(colorEnum: .primary), bgColor: Color(colorEnum: .primary)) {
+			EmptyView()
+		}		
     }
 }
 
@@ -77,6 +82,7 @@ private extension StationForecastMiniCardView {
 }
 
 #Preview {
-	StationForecastMiniCardView(item: CurrentWeather.mockInstance.toMiniCardItem(with: .current))
+	StationForecastMiniCardView(item: CurrentWeather.mockInstance.toMiniCardItem(with: .current), isSelected: true)
 		.wxmShadow()
+		.padding()
 }

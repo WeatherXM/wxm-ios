@@ -13,6 +13,14 @@ class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
 	let device: DeviceDetails
 	let followState: UserDeviceFollowState?
+	@Published var selectedForecastIndex: Int? {
+		didSet {
+			guard let selectedForecastIndex else {
+				return
+			}
+			currentForecast = forecasts[selectedForecastIndex]
+		}
+	}
 	@Published var currentForecast: NetworkDeviceForecastResponse? {
 		didSet {
 			updateFieldItems()
@@ -88,6 +96,10 @@ private extension ForecastDetailsViewModel {
 			return
 		}
 
-		dailyItems = dailyForecasts.map { $0.toDailyMiniCardItem(with: timezone)}
+		dailyItems = dailyForecasts.enumerated().map { index, element in
+			return element.toDailyMiniCardItem(with: timezone) { [weak self] in
+				self?.selectedForecastIndex = index
+			}
+		}
 	}
 }
