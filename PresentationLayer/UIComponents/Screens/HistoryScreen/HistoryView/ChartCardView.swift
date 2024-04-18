@@ -22,7 +22,7 @@ struct ChartCardView: View {
                     .renderingMode(.template)
                     .foregroundColor(Color(colorEnum: .text))
 
-                Text(type.description.capitalized)
+                Text(type.description)
                     .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
                     .foregroundColor(Color(colorEnum: .text))
                     .lineLimit(1)
