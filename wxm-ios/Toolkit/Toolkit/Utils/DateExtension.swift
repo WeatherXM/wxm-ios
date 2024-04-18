@@ -107,6 +107,13 @@ public extension Date {
 		return dateFormatter.string(from: self)
 	}
 
+	func getHour(with timeZone: TimeZone = .current) -> Int? {
+		let identifier = Calendar.current.identifier
+		var calendar = Calendar(identifier: identifier)
+		calendar.timeZone = timeZone
+		return calendar.component(.hour, from: self)
+	}
+
 	func setHour(_ hour: Int) -> Date? {
 		Calendar.current.date(bySettingHour: hour, minute: 0, second: 0, of: self)
 	}

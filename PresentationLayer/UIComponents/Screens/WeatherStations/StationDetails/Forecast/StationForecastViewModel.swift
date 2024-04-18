@@ -61,6 +61,7 @@ class StationForecastViewModel: ObservableObject {
 
 		let conf = ForecastDetailsViewModel.Configuration(forecasts: forecasts,
 														  selectedforecastIndex: index,
+														  selectedHour: nil,
 														  device: device,
 														  followState: followState)
 		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(configuration: conf)
@@ -163,12 +164,14 @@ private extension StationForecastViewModel {
 	}
 
 	func handleTap(for weather: CurrentWeather) {
-		guard let device else {
+		guard let device, let timezone = forecasts.first?.tz.toTimezone else {
 			return
 		}
 
+		let selectedHour = weather.timestamp?.timestampToDate().getHour(with: timezone)
 		let conf = ForecastDetailsViewModel.Configuration(forecasts: forecasts,
 														  selectedforecastIndex: 0,
+														  selectedHour: selectedHour,
 														  device: device,
 														  followState: followState)
 		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(configuration: conf)

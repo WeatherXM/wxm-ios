@@ -33,6 +33,7 @@ class ForecastDetailsViewModel: ObservableObject {
 	@Published private(set) var dailyItems: [StationForecastMiniCardView.Item] = []
 	@Published var fieldItems: [ForecastFieldCardView.Item] = []
 	@Published private(set) var hourlyItems: [StationForecastMiniCardView.Item] = []
+	@Published private(set) var selectedHourlyIndex: Int?
 	@Published private(set) var chartModels: HistoryChartModels?
 
 	init(configuration: Configuration) {
@@ -91,6 +92,9 @@ private extension ForecastDetailsViewModel {
 		}
 
 		hourlyItems = hourly.map { $0.toMiniCardItem(with: timezone)}
+		let selectedIndex = hourly.firstIndex(where: { $0.timestamp?.timestampToDate(timeZone: timezone).getHour(with: timezone) == 7})
+		self.selectedHourlyIndex = nil
+		self.selectedHourlyIndex = selectedIndex
 	}
 
 	func updateDailyItems() {
@@ -132,6 +136,7 @@ extension ForecastDetailsViewModel {
 	struct Configuration {
 		let forecasts: [NetworkDeviceForecastResponse]
 		let selectedforecastIndex: Int
+		let selectedHour: Int?
 		let device: DeviceDetails
 		let followState: UserDeviceFollowState?
 	}
