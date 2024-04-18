@@ -45,6 +45,14 @@ public extension Date {
     }
 
 
+	var startOfHour: Date? {
+		guard let date = Calendar.current.date(bySetting: .minute, value: 0, of: self) else {
+			return nil
+		}
+	
+		return Calendar.current.date(bySetting: .second, value: 0, of: date)
+	}
+
     var noon: Date {
         return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
     }
@@ -60,6 +68,14 @@ public extension Date {
 
         return calendar.startOfDay(for: self)
     }
+
+	func endOfDay(timeZone: TimeZone = .current) -> Date? {
+		let identifier = Calendar.current.identifier
+		var calendar = Calendar(identifier: identifier)
+		calendar.timeZone = timeZone
+
+		return calendar.date(bySettingHour: 23, minute: 59, second: 59, of: self)
+	}
 
 	var middleOfDay: Date? {
 		Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)
@@ -110,6 +126,10 @@ public extension Date {
     func isSameDay(with date: Date, calendar: Calendar = .current) -> Bool {
         calendar.isDate(self, inSameDayAs: date)
     }
+
+	func hours(from date: Date) -> Int {
+		return Calendar.current.dateComponents([.hour], from: date, to: self).hour ?? 0
+	}
 
     func seconds(from date: Date) -> Int {
         return Calendar.current.dateComponents([.second], from: date, to: self).second ?? 0
@@ -193,10 +213,17 @@ public extension Date {
         let dateString = dateformatter.string(from: self)
         return dateString
     }
-
+	
+	/// Generates hourly samples starting from this date until the end of the current day
+	/// - Parameter timeZone: The needed timezone
+	/// - Returns: An array of dates with one hour diff
     func dailyHourlySamples(timeZone: TimeZone) -> [Date] {
-        let start = self.startOfDay(timeZone: timeZone)
-        let dates = (0..<24).map { start.advanced(by: TimeInterval($0) * TimeInterval.hour) }
+		guard let start = self.startOfHour, let end = self.endOfDay(timeZone: timeZone) else {
+			return []
+		}
+
+		let remainingHours = end.hours(from: start)
+		let dates = (0...remainingHours).map { start.advanced(by: TimeInterval($0) * TimeInterval.hour) }
         return dates
     }
 

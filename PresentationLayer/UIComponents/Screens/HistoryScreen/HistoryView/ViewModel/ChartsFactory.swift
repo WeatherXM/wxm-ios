@@ -20,11 +20,11 @@ class ChartsFactory {
         weatherUnitFormatter = WeatherUnitsConverter(userDefaultsRepository: userDefaultsRepository, unitConverter: unitConverter)
     }
 
-    func createHourlyCharts(timeZone: TimeZone, date: Date, hourlyWeatherData: [CurrentWeather]) -> HistoryChartModels {
+	func createHourlyCharts(timeZone: TimeZone, startingDate: Date, hourlyWeatherData: [CurrentWeather]) -> HistoryChartModels {
         var entries: [WeatherField: [ChartDataEntry]] = [:]
 
         var timestamps = [String]()
-        let dates = date.dailyHourlySamples(timeZone: timeZone)
+        let dates = startingDate.dailyHourlySamples(timeZone: timeZone)
         for (index, date) in dates.enumerated() {
             let timestamp = date.toTimestamp(with: timeZone)
             timestamps.append(timestamp.timestampToDate(timeZone: timeZone).twelveHourPeriodTime)
@@ -54,7 +54,7 @@ class ChartsFactory {
                                                    entries: entries[$0] ?? [])
         }
 
-        return HistoryChartModels(markDate: date,
+        return HistoryChartModels(markDate: startingDate,
                                   tz: timeZone.identifier,
                                   dataModels: dataModels)
     }
