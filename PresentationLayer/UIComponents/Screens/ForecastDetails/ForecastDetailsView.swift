@@ -139,7 +139,9 @@ private extension ForecastDetailsView {
 	@ViewBuilder
 	var charts: some View {
 		if let chartModels = viewModel.chartModels {
-			ChartsContainer(historyData: chartModels, delegate: viewModel.chartDelegate)
+			ChartsContainer(historyData: chartModels, 
+							chartTypes: ForecastChartType.allCases,
+							delegate: viewModel.chartDelegate)
 				.id(chartModels.markDate)
 		} else {
 			EmptyView()
@@ -149,7 +151,7 @@ private extension ForecastDetailsView {
 
 #Preview {
 	NavigationContainerView {
-		let forecasts: [NetworkDeviceForecastResponse] = (0..<6).map { _ in .init(tz: "Europe/Athens", date: "", hourly: [.mockInstance], daily: .mockInstance) }
+		let forecasts: [NetworkDeviceForecastResponse] = (0..<6).map { _ in .init(tz: "Europe/Athens", date: "", hourly: (0..<24).map {_ in .mockInstance }, daily: .mockInstance) }
 		ForecastDetailsView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(forecasts: forecasts,
 																					 device: .mockDevice,
 																					 followState: .init(deviceId: "", relation: .owned)))

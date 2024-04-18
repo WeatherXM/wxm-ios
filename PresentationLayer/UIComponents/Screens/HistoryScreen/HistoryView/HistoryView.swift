@@ -19,7 +19,9 @@ struct HistoryView: View {
                 viewModel.refresh(completion: completion)
             } content: {
                 if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
-                    ChartsContainer(historyData: historyData, delegate: viewModel.chartDelegate)
+					ChartsContainer(historyData: historyData,
+									chartTypes: ChartCardType.allCases,
+									delegate: viewModel.chartDelegate)
 						.padding(.horizontal, CGFloat(.defaultSidePadding))
                         .id(historyData.markDate)
 						.iPadMaxWidth()

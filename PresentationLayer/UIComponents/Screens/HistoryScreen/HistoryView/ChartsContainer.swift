@@ -11,11 +11,13 @@ import SwiftUI
 
 struct ChartsContainer: View {
     let historyData: HistoryChartModels
+	let chartTypes: [any ChartCardProtocol]
     @StateObject var delegate: ChartDelegate
 
     var body: some View {
         VStack(spacing: CGFloat(.mediumSpacing)) {
-            ForEach(ChartCardType.allCases, id: \.self) { chart in
+			ForEach(0..<chartTypes.count, id: \.self) { index in
+				let chart = chartTypes[index]
                 ChartCardView(type: chart,
                               chartDataModels: chart.weatherFields.compactMap { historyData.dataModels[$0] })
                 .environmentObject(delegate)

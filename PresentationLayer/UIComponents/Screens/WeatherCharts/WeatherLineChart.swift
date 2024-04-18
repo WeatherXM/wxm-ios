@@ -145,8 +145,6 @@ private extension WeatherLineChartView {
             case .precipitationRate:
                 dataSet.drawCirclesEnabled = dataSet.entries.count == 1
                 dataSet.mode = .stepped
-            case .precipitationProbability:
-                break
             case .dailyPrecipitation:
                 dataSet.drawCirclesEnabled = dataSet.entries.count == 1
                 dataSet.lineWidth = 0.0
@@ -156,7 +154,7 @@ private extension WeatherLineChartView {
                 break
             case .pressure:
                 break
-            case .solarRadiation:
+            case .solarRadiation, .precipitationProbability:
                 dataSet.drawCirclesEnabled = dataSet.entries.count == 1
                 dataSet.drawFilledEnabled = true
                 dataSet.lineWidth = 0.0

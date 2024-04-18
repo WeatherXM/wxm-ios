@@ -17,7 +17,6 @@ protocol ChartCardProtocol: CaseIterable, CustomStringConvertible {
 	func configureAxis(leftAxis: YAxis, rightAxis: YAxis, for lineData: LineChartData) 
 }
 
-
 enum ChartCardType: ChartCardProtocol {
     case temperature
     case precipitation
