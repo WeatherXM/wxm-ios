@@ -39,7 +39,9 @@ class ForecastDetailsViewModel: ObservableObject {
 		self.forecasts = forecasts
 		self.device = device
 		self.followState = followState
-		self.currentForecast = forecasts.first
+		if !forecasts.isEmpty {
+			self.selectedForecastIndex = 0
+		}
 	}
 }
 

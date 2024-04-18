@@ -34,11 +34,14 @@ struct ForecastDetailsView: View {
 
 					dailyForecast
 
-					dailyConditions
+					Group {
+						dailyConditions
 
-					hourlyForecast
+						hourlyForecast
 
-					charts
+						charts
+					}
+					.animation(.easeIn, value: viewModel.selectedForecastIndex)
 				}
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 			}
