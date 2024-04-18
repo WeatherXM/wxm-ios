@@ -57,6 +57,7 @@ extension Double {
 		let formatter = NumberFormatter()
 		formatter.minimumFractionDigits = 0
 		formatter.maximumFractionDigits = decimals
+		formatter.roundingMode = .halfUp
 		formatter.numberStyle = .decimal
 		let valueStr = formatter.string(for: value) ?? ""
         switch unit {
