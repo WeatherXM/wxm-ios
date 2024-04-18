@@ -34,17 +34,20 @@ struct StationForecastView: View {
 						}
 						.padding(.horizontal)
 
-                        ForEach(viewModel.forecasts, id: \.date) { forecast in
-							Button {
-								viewModel.handleForecastTap(forecast: forecast)
-							} label: {
-								StationForecastCardView(forecast: forecast,
-														minWeekTemperature: viewModel.overallMinTemperature ?? 0.0,
-														maxWeekTemperature: viewModel.overallMaxTemperature ?? 0.0)
-								.wxmShadow()
+						VStack(spacing: CGFloat(.mediumSpacing)) {
+							ForEach(viewModel.forecasts, id: \.date) { forecast in
+								Button {
+									viewModel.handleForecastTap(forecast: forecast)
+								} label: {
+									StationForecastCardView(forecast: forecast,
+															minWeekTemperature: viewModel.overallMinTemperature ?? 0.0,
+															maxWeekTemperature: viewModel.overallMaxTemperature ?? 0.0)
+									.wxmShadow()
+								}
 							}
-                        }
-						.padding(.horizontal)
+							.padding(.horizontal)
+						}
+						.padding(.bottom)
                     }
 					.clipped()
 					.iPadMaxWidth()
