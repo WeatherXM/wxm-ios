@@ -115,6 +115,7 @@ private extension ForecastDetailsViewModel {
 			return
 		}
 
+		chartDelegate.selectedIndex = 0
 		chartModels = ChartsFactory().createHourlyCharts(timeZone: timezone, startingDate: date, hourlyWeatherData: data)
 	}
 }
