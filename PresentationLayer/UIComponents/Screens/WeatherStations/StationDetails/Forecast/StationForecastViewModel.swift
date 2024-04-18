@@ -31,6 +31,7 @@ class StationForecastViewModel: ObservableObject {
     private(set) var hiddenViewConfiguration: WXMEmptyView.Configuration?
 
     private var device: DeviceDetails?
+	private var followState: UserDeviceFollowState?
     private var cancellables: Set<AnyCancellable> = []
     private let useCase: MeUseCase?
 
@@ -54,11 +55,15 @@ class StationForecastViewModel: ObservableObject {
     }
 
 	func handleForecastTap(forecast: NetworkDeviceForecastResponse) {
-		guard let device else {
+		guard let device, let index = forecasts.firstIndex(where: { $0.date == forecast.date }) else {
 			return
 		}
 
-		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(forecasts: forecasts, device: device, followState: nil)
+		let conf = ForecastDetailsViewModel.Configuration(forecasts: forecasts,
+														  selectedforecastIndex: index,
+														  device: device,
+														  followState: followState)
+		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(configuration: conf)
 		Router.shared.navigateTo(.forecastDetails(viewModel))
 	}
 
@@ -162,7 +167,11 @@ private extension StationForecastViewModel {
 			return
 		}
 
-		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(forecasts: forecasts, device: device, followState: nil)
+		let conf = ForecastDetailsViewModel.Configuration(forecasts: forecasts,
+														  selectedforecastIndex: 0,
+														  device: device,
+														  followState: followState)
+		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(configuration: conf)
 		Router.shared.navigateTo(.forecastDetails(viewModel))
 	}
 }
@@ -172,6 +181,7 @@ private extension StationForecastViewModel {
 extension StationForecastViewModel: StationDetailsViewModelChild {
     func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async {
         self.device = device
+		self.followState = followState
 
         if followState == nil {
             DispatchQueue.main.async {

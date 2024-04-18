@@ -35,12 +35,12 @@ class ForecastDetailsViewModel: ObservableObject {
 	@Published private(set) var hourlyItems: [StationForecastMiniCardView.Item] = []
 	@Published private(set) var chartModels: HistoryChartModels?
 
-	init(forecasts: [NetworkDeviceForecastResponse], device: DeviceDetails, followState: UserDeviceFollowState?) {
-		self.forecasts = forecasts
-		self.device = device
-		self.followState = followState
+	init(configuration: Configuration) {
+		self.forecasts = configuration.forecasts
+		self.device = configuration.device
+		self.followState = configuration.followState
 		if !forecasts.isEmpty {
-			self.selectedForecastIndex = 0
+			self.selectedForecastIndex = configuration.selectedforecastIndex
 		}
 	}
 }
@@ -128,3 +128,11 @@ extension ForecastDetailsViewModel: HashableViewModel {
 	}
 }
 
+extension ForecastDetailsViewModel {
+	struct Configuration {
+		let forecasts: [NetworkDeviceForecastResponse]
+		let selectedforecastIndex: Int
+		let device: DeviceDetails
+		let followState: UserDeviceFollowState?
+	}
+}

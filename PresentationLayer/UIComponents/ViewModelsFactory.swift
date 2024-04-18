@@ -174,7 +174,7 @@ enum ViewModelsFactory {
 		return RewardBoostsViewModel(boost: boost, device: device, date: date, useCase: useCase)
 	}
 
-	static func getForecastDetailsViewModel(forecasts: [NetworkDeviceForecastResponse], device: DeviceDetails, followState: UserDeviceFollowState?) -> ForecastDetailsViewModel {
-		ForecastDetailsViewModel(forecasts: forecasts, device: device, followState: followState)
+	static func getForecastDetailsViewModel(configuration: ForecastDetailsViewModel.Configuration) -> ForecastDetailsViewModel {
+		ForecastDetailsViewModel(configuration: configuration)
 	}
 }

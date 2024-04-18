@@ -122,7 +122,7 @@ private extension ForecastDetailsView {
 	var dailyForecast: some View {
 		let dailyItems = viewModel.dailyItems
 		if !dailyItems.isEmpty {
-			VStack(spacing: CGFloat(.mediumSpacing)) {
+			ScrollViewReader { proxy in
 				ScrollView(.horizontal, showsIndicators: false) {
 					LazyHStack(spacing: CGFloat(.smallSpacing)) {
 						ForEach(0..<dailyItems.count, id: \.self) { index in
@@ -130,7 +130,13 @@ private extension ForecastDetailsView {
 							StationForecastMiniCardView(item: item, isSelected: viewModel.selectedForecastIndex == index)
 								.wxmShadow()
 								.frame(width: 80.0)
+								.id(index)
 						}
+					}
+				}
+				.onChange(of: viewModel.selectedForecastIndex) { index in
+					withAnimation {
+						proxy.scrollTo(index, anchor: .center)
 					}
 				}
 			}
@@ -155,8 +161,9 @@ private extension ForecastDetailsView {
 #Preview {
 	NavigationContainerView {
 		let forecasts: [NetworkDeviceForecastResponse] = (0..<6).map { _ in .init(tz: "Europe/Athens", date: "", hourly: (0..<24).map {_ in .mockInstance }, daily: .mockInstance) }
-		ForecastDetailsView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(forecasts: forecasts,
-																					 device: .mockDevice,
-																					 followState: .init(deviceId: "", relation: .owned)))
+		ForecastDetailsView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(configuration: .init(forecasts: forecasts,
+																										  selectedforecastIndex: 0,
+																										  device: .mockDevice,
+																										  followState: .init(deviceId: "", relation: .owned))))
 	}
 }
