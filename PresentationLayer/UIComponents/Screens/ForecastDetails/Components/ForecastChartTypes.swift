@@ -12,6 +12,10 @@ import Charts
 enum ForecastChartType: ChartCardProtocol {
 	case temperature
 	case precipitation
+	case wind
+	case humidity
+	case pressure
+	case uv
 
 	var description: String {
 		switch self {
@@ -19,6 +23,14 @@ enum ForecastChartType: ChartCardProtocol {
 				return LocalizableString.temperature.localized
 			case .precipitation:
 				return LocalizableString.precipitation.localized
+			case .wind:
+				return LocalizableString.wind.localized
+			case .humidity:
+				return LocalizableString.humidity.localized
+			case .pressure:
+				return LocalizableString.pressure.localized
+			case .uv:
+				return LocalizableString.uvIndex.localized
 		}
 	}
 
@@ -28,6 +40,14 @@ enum ForecastChartType: ChartCardProtocol {
 				return .temperatureIcon
 			case .precipitation:
 				return .precipitationIcon
+			case .wind:
+				return .windIcon
+			case .humidity:
+				return .humidityIcon
+			case .pressure:
+				return .pressureIcon
+			case .uv:
+				return .solarIcon
 		}
 	}
 
@@ -37,6 +57,14 @@ enum ForecastChartType: ChartCardProtocol {
 				return [.temperature, .feelsLike]
 			case .precipitation:
 				return [.precipitationRate, .precipitationProbability]
+			case .wind:
+				return [.wind]
+			case .humidity:
+				return [.humidity]
+			case .pressure:
+				return [.pressure]
+			case .uv:
+				return [.uv]
 		}
 	}
 
@@ -47,7 +75,7 @@ enum ForecastChartType: ChartCardProtocol {
 
 	func getAxisDependecy(for weatherField: WeatherField) -> YAxis.AxisDependency {
 		switch self {
-			case .temperature:
+			case .temperature, .wind, .humidity, .pressure, .uv:
 				return .left
 			case .precipitation:
 				switch weatherField {
@@ -63,11 +91,21 @@ enum ForecastChartType: ChartCardProtocol {
 	
 	func configureAxis(leftAxis: YAxis, rightAxis: YAxis, for lineData: LineChartData) {
 		switch self {
-			case .temperature:
+			case .temperature, .wind, .humidity, .uv:
 				break
 			case .precipitation:
 				rightAxis.axisMinimum = 0.0
 				leftAxis.axisMinimum = 0.0
+			case .pressure:
+				let isInHg = WeatherUnitsManager.default.pressureUnit == .inchOfMercury
+				let yMin = lineData.yMin
+				let yMax = lineData.yMax
+				if isInHg && (yMax - yMin < 2.0) {
+					leftAxis.axisMinimum = yMin - 0.1
+					leftAxis.axisMaximum = yMax + 0.1
+					rightAxis.axisMinimum = yMin - 0.1
+					rightAxis.axisMaximum = yMax + 0.1
+				}
 		}
 	}
 }
