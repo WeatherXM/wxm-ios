@@ -153,8 +153,6 @@ extension ParameterValue: RawRepresentable {
 				return "Wallet Compatibility"
 			case .info:
 				return "info"
-			case .forecastDay:
-				return "Forecast Day"
 			case .openState:
 				return "open"
 			case .closeState:

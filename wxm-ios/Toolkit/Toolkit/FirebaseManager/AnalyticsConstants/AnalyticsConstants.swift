@@ -142,7 +142,6 @@ public enum ParameterValue {
 	case lowBattery
 	case walletCompatibility
 	case info
-	case forecastDay
 	case openState
 	case closeState
 	case rewardsCard

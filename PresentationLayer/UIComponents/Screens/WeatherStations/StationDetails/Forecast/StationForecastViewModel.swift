@@ -71,18 +71,6 @@ class StationForecastViewModel: ObservableObject {
 															  .itemId: .dailyForecast])
 	}
 
-    func trackSelectContentEvent(forecast: NetworkDeviceForecastResponse, isOpen: Bool) {
-        var params: [Parameter: ParameterValue] = [.contentType: .dailyCard,
-												   .itemId: .dailyForecast,
-                                                   .state: isOpen ? .openState : .closeState]
-
-        if let index = forecasts.firstIndex(where: { $0.date == forecast.date }) {
-            params += [.index: .custom("\(index)")]
-        }
-
-        Logger.shared.trackEvent(.selectContent, parameters: params)
-    }
-
     private func getDeviceForecastDaily(deviceId: String?) async -> Result<[NetworkDeviceForecastResponse], NetworkErrorResponse>? {
         guard let deviceId = deviceId else {
             return nil
