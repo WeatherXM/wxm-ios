@@ -10,7 +10,7 @@ import DomainLayer
 import SwiftUI
 
 struct ChartsContainer: View {
-    let historyData: HistoryChartModels
+    let historyData: WeatherChartModels
 	let chartTypes: [any ChartCardProtocol]
     @StateObject var delegate: ChartDelegate
 

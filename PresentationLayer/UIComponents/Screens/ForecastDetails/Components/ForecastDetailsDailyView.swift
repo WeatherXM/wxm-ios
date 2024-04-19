@@ -28,7 +28,7 @@ extension ForecastDetailsDailyView {
 		let fieldItems: [ForecastFieldCardView.Item]
 		let hourlyItems: [StationForecastMiniCardView.Item]?
 		var initialHourlyItemIndex: Int?
-		let chartModels: HistoryChartModels?
+		let chartModels: WeatherChartModels?
 		weak var chartDelegate: ChartDelegate?
 	}
 }

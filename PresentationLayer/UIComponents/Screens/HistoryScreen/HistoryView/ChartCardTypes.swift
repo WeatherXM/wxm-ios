@@ -9,14 +9,6 @@ import SwiftUI
 import Charts
 import DomainLayer
 
-protocol ChartCardProtocol: CaseIterable, CustomStringConvertible {
-	var icon: AssetEnum { get }
-	var weatherFields: [WeatherField] { get }
-	var isRightAxisEnabled: Bool { get }
-	func getAxisDependecy(for weatherField: WeatherField) -> YAxis.AxisDependency
-	func configureAxis(leftAxis: YAxis, rightAxis: YAxis, for lineData: LineChartData) 
-}
-
 enum ChartCardType: ChartCardProtocol {
     case temperature
     case precipitation
@@ -132,12 +124,4 @@ enum ChartCardType: ChartCardProtocol {
 				leftAxis.axisMinimum = 0.0
 		}
 	}
-}
-
-class ChartDelegate: ObservableObject, ChartViewDelegate {
-    @Published var selectedIndex: Int?
-
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        selectedIndex = Int(entry.x)
-    }
 }

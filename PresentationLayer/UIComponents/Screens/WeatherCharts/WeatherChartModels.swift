@@ -1,5 +1,5 @@
 //
-//  HistoryChartModels.swift
+//  WeatherChartModels.swift
 //  DomainLayer
 //
 //  Created by Pantelis Giazitsis on 9/5/23.
@@ -8,7 +8,7 @@
 import Foundation
 import DomainLayer
 
-public struct HistoryChartModels {
+public struct WeatherChartModels {
     /// Used to indicate ONLY the day of the chart
     var markDate: Date?
     var tz: String?

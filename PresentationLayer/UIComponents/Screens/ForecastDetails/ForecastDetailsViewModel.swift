@@ -114,7 +114,7 @@ private extension ForecastDetailsViewModel {
 		}
 	}
 
-	func getChartModels() -> HistoryChartModels? {
+	func getChartModels() -> WeatherChartModels? {
 		guard let currentForecast,
 			  let timezone = TimeZone(identifier: currentForecast.tz),
 			  let date = currentForecast.hourly?.first?.timestamp?.timestampToDate(),

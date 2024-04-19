@@ -13,7 +13,7 @@ class HistoryViewModel: ObservableObject {
     private let historyUseCase: HistoryUseCase
 
     @Published var loadingData: Bool = true
-    @Published var currentHistoryData: HistoryChartModels?
+    @Published var currentHistoryData: WeatherChartModels?
     @Published var noAvailableData: Bool = false
     @Published var isFailed: Bool = false
     private(set) var failObj: FailSuccessStateObject?
