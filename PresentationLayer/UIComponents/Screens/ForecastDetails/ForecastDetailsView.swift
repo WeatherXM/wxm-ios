@@ -11,6 +11,7 @@ import DomainLayer
 struct ForecastDetailsView: View {
 	@StateObject var viewModel: ForecastDetailsViewModel
 	@EnvironmentObject var navigationObject: NavigationObject
+	@State private var isTransitioning: Bool = false
 
 	var body: some View {
 		ZStack {
@@ -33,13 +34,27 @@ struct ForecastDetailsView: View {
 					}
 
 					dailyForecast
+						.padding(.horizontal, CGFloat(.mediumSidePadding))
 
-					if let item = viewModel.detailsDailyItem {
-						ForecastDetailsDailyView(item: item)
-							.animation(.easeIn, value: viewModel.selectedForecastIndex)
+
+					ZStack {
+						if let item = viewModel.detailsDailyItem {
+							ForecastDetailsDailyView(item: item)
+								.id(item.forecast?.daily?.timestamp)
+								.padding(.horizontal, CGFloat(.mediumSidePadding))
+						}
+					}
+					.overlay {
+						if isTransitioning {
+							Color(colorEnum: .newBG)
+						}
+					}
+					.onChange(of: viewModel.isTransitioning) { newValue in
+						withAnimation {
+							isTransitioning = newValue
+						}
 					}
 				}
-				.padding(.horizontal, CGFloat(.mediumSidePadding))
 			}
 		}.onAppear {
 			navigationObject.navigationBarColor = Color(.newBG)

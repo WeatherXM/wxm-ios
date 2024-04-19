@@ -13,6 +13,7 @@ class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
 	let device: DeviceDetails
 	let followState: UserDeviceFollowState?
+	@Published private(set) var isTransitioning: Bool = false
 	@Published private(set) var chartDelegate: ChartDelegate = ChartDelegate()
 	@Published var selectedForecastIndex: Int? {
 		didSet {
@@ -89,7 +90,6 @@ private extension ForecastDetailsViewModel {
 		}
 
 		let hourlyItems: [StationForecastMiniCardView.Item] = hourly.map { $0.toMiniCardItem(with: timezone)}
-		let selectedIndex = hourly.firstIndex(where: { $0.timestamp?.timestampToDate(timeZone: timezone).getHour(with: timezone) == 7})
 
 		return hourlyItems
 	}
@@ -104,7 +104,12 @@ private extension ForecastDetailsViewModel {
 
 		return dailyForecasts.enumerated().map { index, element in
 			return element.toDailyMiniCardItem(with: timezone) { [weak self] in
-				self?.selectedForecastIndex = index
+				self?.isTransitioning = true
+				
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+					self?.selectedForecastIndex = index
+					self?.isTransitioning = false
+				}
 			}
 		}
 	}
@@ -124,9 +129,17 @@ private extension ForecastDetailsViewModel {
 
 	func updateDailyItem() {
 		chartDelegate.selectedIndex = 0
+
+		var initialHourIndex: Int?
+		if let timezone = currentForecast?.tz.toTimezone {
+			initialHourIndex = currentForecast?.hourly?.firstIndex(where: { $0.timestamp?.timestampToDate(timeZone: timezone).getHour(with: timezone) == 7})
+		}
+
+
 		self.detailsDailyItem = .init(forecast: currentForecast,
 									  fieldItems: getFieldItems(),
 									  hourlyItems: getHourlyItems(),
+									  initialHourlyItemIndex: initialHourIndex,
 									  chartModels: getChartModels(),
 									  chartDelegate: chartDelegate)
 	}

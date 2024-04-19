@@ -27,6 +27,7 @@ extension ForecastDetailsDailyView {
 		let forecast: NetworkDeviceForecastResponse?
 		let fieldItems: [ForecastFieldCardView.Item]
 		let hourlyItems: [StationForecastMiniCardView.Item]?
+		var initialHourlyItemIndex: Int?
 		let chartModels: HistoryChartModels?
 		weak var chartDelegate: ChartDelegate?
 	}
@@ -92,6 +93,11 @@ private extension ForecastDetailsDailyView {
 									.frame(width: 80.0)
 									.id(index)
 							}
+						}
+					}
+					.onAppear {
+						if let index = item.initialHourlyItemIndex {
+							proxy.scrollTo(index, anchor: .leading)
 						}
 					}
 				}
