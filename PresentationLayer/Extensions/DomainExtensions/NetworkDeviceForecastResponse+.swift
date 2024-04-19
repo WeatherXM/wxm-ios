@@ -10,11 +10,11 @@ import DomainLayer
 import Toolkit
 
 extension NetworkDeviceForecastResponse {
-	var dailyForecastTemperatureItem: ForecastTemperatureCardView.Item? {
+	func dailyForecastTemperatureItem(scrollGraphType: ForecastChartType? = nil) ->  ForecastTemperatureCardView.Item? {
 		guard let timezone = TimeZone(identifier: tz) else {
 			return nil
 		}
-		return daily?.toForecastTemperatureItem(with: timezone)
+		return daily?.toForecastTemperatureItem(with: timezone, scrollGraphType: scrollGraphType)
 	}
 }
 
@@ -34,10 +34,11 @@ extension CurrentWeather {
 			  action: action)
 	}
 
-	func toForecastTemperatureItem(with timeZone: TimeZone) -> ForecastTemperatureCardView.Item {
+	func toForecastTemperatureItem(with timeZone: TimeZone, scrollGraphType: ForecastChartType? = nil) -> ForecastTemperatureCardView.Item {
 		.init(weatherIcon: icon?.lottieAnimation,
 			  dateString: timestamp?.timestampToDate(timeZone: timeZone).getFormattedDate(format: .dayShortLiteralMonthDay, timezone: timeZone).capitalized ?? "",
 			  temperature: temperatureMax?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "",
-			  secondaryTemperature: temperatureMin?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "")
+			  secondaryTemperature: temperatureMin?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "",
+			  scrollToGraphType: scrollGraphType)
 	}
 }

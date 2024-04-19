@@ -25,7 +25,7 @@ struct ForecastDetailsDailyView: View {
 
 extension ForecastDetailsDailyView {
 	struct Item {
-		let forecast: NetworkDeviceForecastResponse?
+		let temperatureItem: ForecastTemperatureCardView.Item?
 		let fieldItems: [ForecastFieldCardView.Item]
 		let hourlyItems: [StationForecastMiniCardView.Item]?
 		var initialHourlyItemIndex: Int?
@@ -37,25 +37,27 @@ extension ForecastDetailsDailyView {
 private extension ForecastDetailsDailyView {
 	@ViewBuilder
 	var dailyConditions: some View {
-		if let currentForecast = item.forecast {
-			VStack(spacing: CGFloat(.mediumSpacing)) {
-				HStack {
-					Text(LocalizableString.Forecast.dailyConditions.localized)
-						.foregroundColor(Color(colorEnum: .darkestBlue))
-						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			HStack {
+				Text(LocalizableString.Forecast.dailyConditions.localized)
+					.foregroundColor(Color(colorEnum: .darkestBlue))
+					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
 
-					Spacer()
-				}
+				Spacer()
+			}
 
-				if let item = currentForecast.dailyForecastTemperatureItem {
+			if let item = item.temperatureItem {
+				Button {
+					withAnimation {
+						scrollProxy?.scrollTo(item.scrollToGraphType?.scrollId, anchor: .top)
+					}
+				} label: {
 					ForecastTemperatureCardView(item: item)
 						.wxmShadow()
 				}
-
-				dailyConditionsFields
 			}
-		} else {
-			EmptyView()
+
+			dailyConditionsFields
 		}
 	}
 
@@ -134,7 +136,7 @@ private extension ForecastDetailsDailyView {
 														 hourly: (0..<24).map {_ in .mockInstance },
 														 daily: .mockInstance)
 	
-	return ForecastDetailsDailyView(item: .init(forecast: forecast,
+	return ForecastDetailsDailyView(item: .init(temperatureItem: forecast.dailyForecastTemperatureItem(),
 												fieldItems: [],
 												hourlyItems: nil,
 												chartModels: nil,

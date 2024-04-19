@@ -159,7 +159,8 @@ private extension ForecastDetailsViewModel {
 			hourIndex = currentForecast?.hourly?.firstIndex(where: { $0.timestamp?.timestampToDate(timeZone: timezone).getHour(with: timezone) == 7})
 		}
 
-		self.detailsDailyItem = .init(forecast: currentForecast,
+		let temperatureItem = currentForecast?.dailyForecastTemperatureItem(scrollGraphType: getGraphType(for: .temperature))
+		self.detailsDailyItem = .init(temperatureItem: temperatureItem,
 									  fieldItems: getFieldItems(),
 									  hourlyItems: getHourlyItems(),
 									  initialHourlyItemIndex: hourIndex,
