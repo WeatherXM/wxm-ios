@@ -24,6 +24,7 @@ struct ForecastFieldCardView: View {
 					Text(item.title)
 						.foregroundColor(Color(colorEnum: .darkGrey))
 						.font(.system(size: CGFloat(.caption), weight: .bold))
+						.multilineTextAlignment(.leading)
 					Spacer()
 				}
 
