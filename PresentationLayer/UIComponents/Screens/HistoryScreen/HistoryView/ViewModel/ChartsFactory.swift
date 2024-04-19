@@ -87,9 +87,7 @@ private extension ChartsFactory {
             case .wind:
                 if let windSpeed = weatherUnitFormatter.convertWindSpeed(value: element.windSpeed) {
                     var windDirectionAsset: UIImage?
-                    if let windDirection = element.windDirection,
-                       let windGust = weatherUnitFormatter.convertWindSpeed(value: element.windGust),
-                       windGust > 0 {
+					if let windDirection = element.windDirection, windSpeed > 0 {
                         windDirectionAsset = getWindImage(for: windDirection)
                     }
                     chartDataEntry = ChartDataEntry(x: xVal, y: windSpeed, icon: windDirectionAsset, data: element.windDirection)
