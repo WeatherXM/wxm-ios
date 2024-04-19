@@ -142,7 +142,7 @@ private extension WeatherLineChartView {
                 break
 			case .windDirection:
 				break
-            case .precipitationRate:
+            case .precipitation:
                 dataSet.drawCirclesEnabled = dataSet.entries.count == 1
                 dataSet.mode = .stepped
             case .dailyPrecipitation:
@@ -252,7 +252,7 @@ private extension WeatherField {
 			case .temperature, .feelsLike, .humidity, .wind, .windDirection,
 					.precipitationProbability, .windGust, .solarRadiation, .illuminance, .dewPoint, .uv:
 				return 1.0
-			case .precipitationRate, .dailyPrecipitation:
+			case .precipitation, .dailyPrecipitation:
 				let isInchesSelected = WeatherUnitsManager.default.precipitationUnit == .inches
 				return isInchesSelected ? 0.01 : 0.1
 			case .pressure:

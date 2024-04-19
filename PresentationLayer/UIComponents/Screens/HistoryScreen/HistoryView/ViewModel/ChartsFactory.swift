@@ -80,7 +80,7 @@ private extension ChartsFactory {
                 if let feelsLike = element.feelsLike {
                     chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertTemp(value: feelsLike, decimals: 1))
                 }
-            case .precipitationRate:
+            case .precipitation:
                 if let precipitation = element.precipitation {
                     chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertPrecipitation(value: precipitation))
                 }

@@ -56,7 +56,7 @@ enum ForecastChartType: ChartCardProtocol {
 			case .temperature:
 				return [.temperature, .feelsLike]
 			case .precipitation:
-				return [.precipitationRate, .precipitationProbability]
+				return [.precipitation, .precipitationProbability]
 			case .wind:
 				return [.wind]
 			case .humidity:
@@ -79,7 +79,7 @@ enum ForecastChartType: ChartCardProtocol {
 				return .left
 			case .precipitation:
 				switch weatherField {
-					case .precipitationRate:
+					case .precipitation:
 						return .left
 					case .precipitationProbability:
 						return .right
