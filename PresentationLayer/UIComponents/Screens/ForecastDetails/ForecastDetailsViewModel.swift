@@ -130,16 +130,15 @@ private extension ForecastDetailsViewModel {
 	func updateDailyItem() {
 		chartDelegate.selectedIndex = 0
 
-		var initialHourIndex: Int?
+		var hourIndex: Int?
 		if let timezone = currentForecast?.tz.toTimezone {
-			initialHourIndex = currentForecast?.hourly?.firstIndex(where: { $0.timestamp?.timestampToDate(timeZone: timezone).getHour(with: timezone) == 7})
+			hourIndex = currentForecast?.hourly?.firstIndex(where: { $0.timestamp?.timestampToDate(timeZone: timezone).getHour(with: timezone) == 7})
 		}
-
 
 		self.detailsDailyItem = .init(forecast: currentForecast,
 									  fieldItems: getFieldItems(),
 									  hourlyItems: getHourlyItems(),
-									  initialHourlyItemIndex: initialHourIndex,
+									  initialHourlyItemIndex: hourIndex,
 									  chartModels: getChartModels(),
 									  chartDelegate: chartDelegate)
 	}

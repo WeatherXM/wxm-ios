@@ -31,7 +31,7 @@ struct ForecastDetailsView: View {
 								EmptyView()
 							}
 						}
-					}
+					}.padding(.horizontal, CGFloat(.mediumSidePadding))
 
 					dailyForecast
 						.padding(.horizontal, CGFloat(.mediumSidePadding))
