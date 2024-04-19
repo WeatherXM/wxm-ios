@@ -7,16 +7,6 @@
     "-" : {
 
     },
-    "**%@**%@%@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "**%1$@**%2$@%3$@"
-          }
-        }
-      }
-    },
     "%.2f %@" : {
       "localizations" : {
         "en" : {
@@ -40,32 +30,12 @@
         }
       }
     },
-    "%@ **%@°**" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ **%2$@°**"
-          }
-        }
-      }
-    },
     "%@ %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@ %2$@"
-          }
-        }
-      }
-    },
-    "%@%@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@%2$@"
           }
         }
       }
@@ -3797,6 +3767,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d Favorites"
+          }
+        }
+      }
+    },
+    "forecast_next_seven_days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next 7 days"
+          }
+        }
+      }
+    },
+    "forecast_next_twenty_four_hours" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next 24 hours"
           }
         }
       }

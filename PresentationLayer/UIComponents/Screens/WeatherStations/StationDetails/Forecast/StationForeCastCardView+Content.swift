@@ -28,18 +28,6 @@ extension StationForecastCardView {
             }
         }
     }
-
-    @ViewBuilder
-    var hourlyView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: CGFloat(.mediumSpacing)) {
-                ForEach(forecast.hourly ?? []) { weather in
-                    hourlyWeatherView(weather: weather)
-                }
-            }
-        }
-        .padding(.horizontal, CGFloat(.defaultSidePadding))
-    }
 }
 
 private extension StationForecastCardView {
@@ -61,32 +49,36 @@ private extension StationForecastCardView {
 
     @ViewBuilder
     var temperatureBar: some View {
-        HStack(spacing: CGFloat(.minimumSpacing)) {
-            Text("\(forecast.daily?.temperatureMin?.toTemeratureString(for: unitsManager.temperatureUnit) ?? "")")
+        HStack(spacing: CGFloat(.smallSpacing)) {
+            Text("\(forecast.daily?.temperatureMax?.toTemeratureString(for: unitsManager.temperatureUnit) ?? "")")
+				.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+
+
             CustomRangeSlider(minWeeklyTemp: minWeekTemperature.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0),
                               maxWeeklyTemp: maxWeekTemperature.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0),
                               minDailyTemp: forecast.daily?.temperatureMin?.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0) ?? 0.0,
                               maxDailyTemp: forecast.daily?.temperatureMax?.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0) ?? 0.0)
-            Text("\(forecast.daily?.temperatureMax?.toTemeratureString(for: unitsManager.temperatureUnit) ?? "")")
+            
+			Text("\(forecast.daily?.temperatureMin?.toTemeratureString(for: unitsManager.temperatureUnit) ?? "")")
+				.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
         }
-        .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
     }
 
     @ViewBuilder
     func fieldView(for field: WeatherField) -> some View {
         if let weather = forecast.daily {
             HStack(spacing: 0.0) {
-                Image(asset: field.icon)
+                Image(asset: field.hourlyIcon())
 					.resizable()
                     .renderingMode(.template)
-                    .foregroundColor(Color(colorEnum: .darkestBlue))
-					.frame(width: 25.0, height: 25.0)
+                    .foregroundColor(Color(colorEnum: .darkGrey))
+					.frame(width: 20.0, height: 20.0)
+					.rotationEffect(Angle(degrees: field.iconRotation(from: weather)))
 
                 Text(getFieldText(weatherField: field,
                                   weather: weather,
                                   unitsManager: unitsManager))
-                .font(.system(size: CGFloat(.caption),
-                              weight: .bold))
+                .font(.system(size: CGFloat(.caption)))
                 .foregroundColor(Color(colorEnum: .text))
                 .fixedSize(horizontal: false, vertical: true)
             }
@@ -100,55 +92,5 @@ private extension StationForecastCardView {
                       unitsManager: WeatherUnitsManager) -> String {
         let literals = weatherField.weatherLiterals(from: weather, unitsManager: unitsManager)
         return "\(literals?.value ?? "")\(weatherField.shouldHaveSpaceWithUnit ? " " : "")\(literals?.unit ?? "")"
-    }
-
-    @ViewBuilder
-    func hourlyWeatherView(weather: CurrentWeather) -> some View {
-        VStack(alignment: .center, spacing: 0.0) {
-            Text(weather.timestamp?.getTimeForLatestDateWeatherDetail() ?? "")
-                .foregroundColor(Color(colorEnum: .darkestBlue))
-                .font(.system(size: CGFloat(.caption)))
-            LottieView(animationCase: weather.icon?.getAnimationString() ?? "", loopMode: .loop)
-                .frame(width: forecastHoulrlyScrollerImageSize,
-                       height: forecastHoulrlyScrollerImageSize)
-
-            let temperature = WeatherField.temperature.weatherLiterals(from: weather, unitsManager: unitsManager)
-            Text("\(temperature?.value ?? "")\(temperature?.unit ?? "")")
-                .foregroundColor(Color(colorEnum: .darkestBlue))
-                .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-
-            let feelsLikeTemperature = WeatherField.feelsLike.weatherLiterals(from: weather, unitsManager: unitsManager)
-            Text("\(LocalizableString.feelsLike.localized) **\(feelsLikeTemperature?.value ?? "")°**".attributedMarkdown ?? "")
-                .foregroundColor(Color(colorEnum: .darkestBlue))
-                .font(.system(size: CGFloat(.caption)))
-
-            VStack(alignment: .leading, spacing: CGFloat(.smallSpacing)) {
-                ForEach(WeatherField.hourlyFields, id: \.self) { field in
-                    hourlyWeatherFieldView(weather: weather, field: field)
-                }
-            }
-			.padding(.top, CGFloat(.smallSidePadding))
-        }
-    }
-
-    @ViewBuilder
-    func hourlyWeatherFieldView(weather: CurrentWeather, field: WeatherField) -> some View {
-        if let literals = field.weatherLiterals(from: weather,
-                                                unitsManager: unitsManager,
-                                                includeDirection: false,
-                                                isForHourlyForecast: true) {
-            HStack(spacing: 0.0) {
-                Image(asset: field.hourlyIcon())
-                    .renderingMode(.template)
-                    .foregroundColor(Color(colorEnum: .darkestBlue))
-                    .rotationEffect(.degrees(field.iconRotation(from: weather)))
-
-                Text("**\(literals.value)**\(field.shouldHaveSpaceWithUnit ? " " : "")\(literals.unit)")
-                    .foregroundColor(Color(colorEnum: .darkestBlue))
-                    .font(.system(size: CGFloat(.mediumFontSize)))
-            }
-        } else {
-            EmptyView()
-        }
     }
 }

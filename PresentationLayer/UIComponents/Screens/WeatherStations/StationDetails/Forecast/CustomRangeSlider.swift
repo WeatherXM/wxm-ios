@@ -37,14 +37,14 @@ private extension CustomRangeSlider {
     }
 
     var offset: CGFloat {
-        minDailyTemp - minWeeklyTemp
+		maxWeeklyTemp - maxDailyTemp
     }
 
     @ViewBuilder
     func shapeFor(size: CGSize) -> some View {
         HStack {
             Rectangle()
-                .fill(Color(colorEnum: .primary))
+                .fill(Color(colorEnum: .crypto))
                 .frame(width: (diff * size.width) / totalRange,
                        height: sliderHeight)
                 .cornerRadius(CGFloat(.cardCornerRadius))
@@ -57,6 +57,6 @@ private extension CustomRangeSlider {
 
 struct Previews_CustomRangeSlider_Previews: PreviewProvider {
     static var previews: some View {
-        CustomRangeSlider(minWeeklyTemp: 8.0, maxWeeklyTemp: 19.0, minDailyTemp: 13, maxDailyTemp: 19)
+		CustomRangeSlider(minWeeklyTemp: 7.0, maxWeeklyTemp: 19.0, minDailyTemp: 9.0, maxDailyTemp: 18)
     }
 }

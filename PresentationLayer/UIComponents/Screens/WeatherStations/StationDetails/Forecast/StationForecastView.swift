@@ -11,40 +11,47 @@ import Toolkit
 
 struct StationForecastView: View {
     @StateObject var viewModel: StationForecastViewModel
-    @State private var expandedForecasts: Set<String>?
 
     var body: some View {
         ZStack {
+			Color(colorEnum: .bg)
+				.ignoresSafeArea()
+			
             ScrollViewReader { proxy in
                 TrackableScrollView(showIndicators: false, offsetObject: viewModel.offsetObject) { completion in
                     viewModel.refresh(completion: completion)
                 } content: {
-                    VStack(spacing: CGFloat(.smallSpacing)) {
-                        ForEach(viewModel.forecasts, id: \.date) { forecast in
-                            StationForecastCardView(forecast: forecast,
-                                                    minWeekTemperature: viewModel.overallMinTemperature ?? 0.0,
-                                                    maxWeekTemperature: viewModel.overallMaxTemperature ?? 0.0,
-                                                    isExpanded: Binding(get: { expandedForecasts?.contains(forecast.date) == true },
-                                                                        set: { _ in
-                                withAnimation(.easeIn(duration: 0.3)) {
-                                    let isExpanded = expandCollapseCard(for: forecast.date)
-                                    if  isExpanded {
-                                        proxy.scrollTo(forecast.date, anchor: .top)
-                                    }
-                                    viewModel.trackSelectContentEvent(forecast: forecast, isOpen: isExpanded)
-                                }
-                            }),
-                                                    isExpandable: forecast.hourly?.isEmpty == false)
-                            .wxmShadow()
-                        }
+                    VStack(spacing: CGFloat(.mediumSpacing)) {
+
+						hourlyView
+
+						HStack {
+							Text(LocalizableString.Forecast.nextSevenDays.localized)
+								.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+								.foregroundColor(Color(colorEnum: .darkestBlue))
+
+							Spacer()
+						}
+						.padding(.horizontal)
+
+						VStack(spacing: CGFloat(.mediumSpacing)) {
+							ForEach(viewModel.forecasts, id: \.date) { forecast in
+								Button {
+									viewModel.handleForecastTap(forecast: forecast)
+								} label: {
+									StationForecastCardView(forecast: forecast,
+															minWeekTemperature: viewModel.overallMinTemperature ?? 0.0,
+															maxWeekTemperature: viewModel.overallMaxTemperature ?? 0.0)
+									.wxmShadow()
+								}
+							}
+							.padding(.horizontal)
+						}
+						.padding(.bottom)
                     }
+					.clipped()
 					.iPadMaxWidth()
-                    .padding()
-                }
-            }
-            .onAppear {
-                withAnimation {
-                    initializeExpandedForecastsIfNeeded()
+					.padding(.vertical)
                 }
             }
         }
@@ -58,31 +65,43 @@ struct StationForecastView: View {
 }
 
 private extension StationForecastView {
-    /// Expand/collapse the card for the passed date according to its state
-    /// - Parameter date: The date to expand or collapse
-    /// - Returns: `true` if will be expanded, `false` if not
-    func expandCollapseCard(for date: String) -> Bool {
-        if expandedForecasts?.contains(date) == true {
-            expandedForecasts?.remove(date)
-            return false
-        }
+	@ViewBuilder
+	var hourlyView: some View {
+		let hourlyItems = viewModel.hourlyItems
+		if !hourlyItems.isEmpty {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				HStack {
+					Text(LocalizableString.Forecast.nextTwentyFourHours.localized)
+						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+						.foregroundColor(Color(colorEnum: .darkestBlue))
 
-        expandedForecasts?.insert(date)
-        return true
-    }
+					Spacer()
+				}.padding(.horizontal)
 
-    func initializeExpandedForecastsIfNeeded() {
-        guard expandedForecasts == nil else {
-            return
-        }
+				ScrollView(.horizontal, showsIndicators: false) {
+					LazyHStack(spacing: CGFloat(.smallSpacing)) {
+						ForEach(0..<viewModel.hourlyItems.count, id: \.self) { index in
+							let item = viewModel.hourlyItems[index]
+							StationForecastMiniCardView(item: item)
+								.wxmShadow()
+								.frame(width: 80.0)
+						}
+					}.padding(.horizontal)
+				}
 
-        expandedForecasts = []
-        if let firstForecast = viewModel.forecasts.first,
-           firstForecast.hourly?.isEmpty == false {
-            let firstDate = firstForecast.date
-            expandedForecasts?.insert(firstDate)
-        }
-    }
+			}
+		} else {
+			EmptyView()
+		}
+	}
+}
+
+/// Hack to disable clipping in hourly items scroll view
+private extension UIScrollView {
+	open override var clipsToBounds: Bool {
+		get { true }
+		set {}
+	}
 }
 
 struct StationForecastView_Previews: PreviewProvider {

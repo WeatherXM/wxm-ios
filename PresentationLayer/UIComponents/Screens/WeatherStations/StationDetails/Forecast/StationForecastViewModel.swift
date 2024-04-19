@@ -13,8 +13,14 @@ import Combine
 class StationForecastViewModel: ObservableObject {
     weak var containerDelegate: StationDetailsViewModelDelegate?
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
-    @Published private(set) var forecasts: [NetworkDeviceForecastResponse] = []
+	@Published private(set) var forecasts: [NetworkDeviceForecastResponse] = [] {
+		didSet {
+			updateHourlyItems()
+		}
+	}
     @Published private(set) var viewState: ViewState = .loading
+	@Published private(set) var hourlyItems: [StationForecastMiniCardView.Item] = []
+
     var overallMinTemperature: Double? {
         forecasts.min { ($0.daily?.temperatureMin ?? 0.0) < ($1.daily?.temperatureMin ?? 0.0) }?.daily?.temperatureMin
     }
@@ -46,6 +52,10 @@ class StationForecastViewModel: ObservableObject {
         viewState = .loading
         refresh {}
     }
+
+	func handleForecastTap(forecast: NetworkDeviceForecastResponse) {
+		print("Will handle tap for \(forecast)")
+	}
 
     func trackSelectContentEvent(forecast: NetworkDeviceForecastResponse, isOpen: Bool) {
         var params: [Parameter: ParameterValue] = [.contentType: .forecastDay,
@@ -125,6 +135,26 @@ private extension StationForecastViewModel {
     func getCurrentDateInStringForForecast() -> String {
         Date.now.getFormattedDate(format: .onlyDate)
     }
+
+	func updateHourlyItems() {
+		guard let timezone = forecasts.first?.tz.toTimezone else {
+			hourlyItems = []
+			return
+		}
+
+		let hourly = forecasts.map { $0.hourly }.compactMap { $0 }.flatMap { $0 }
+		let filtered = hourly.filter { ($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) >= Date.now &&  ($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) < Date.now.advancedByHours(hours: 24) }
+
+		hourlyItems = filtered.map { weather in
+			return weather.toMiniCardItem(with: timezone, action: { [weak  self] in
+				self?.handleTap(for: weather)
+			})
+		}
+	}
+
+	func handleTap(for weather: CurrentWeather) {
+		print("Will handle tap for \(weather)")
+	}
 }
 
 // MARK: - StationDetailsViewModelChild

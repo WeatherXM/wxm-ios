@@ -135,8 +135,9 @@ public extension Date {
         return dateFormatter.string(from: self)
     }
 
-    func transactionsTimeFormat() -> String {
+    func transactionsTimeFormat(timeZone: TimeZone = .current) -> String {
         let dateFormatter = DateFormatter()
+		dateFormatter.timeZone = timeZone
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
         return dateFormatter.string(from: self)
@@ -207,8 +208,12 @@ public extension Date {
     }
 
     func advancedByDays(days: Int) -> Date {
-        Calendar.current.date(byAdding: .day, value: days, to: .now)!
+        Calendar.current.date(byAdding: .day, value: days, to: self)!
     }
+
+	func advancedByHours(hours: Int) -> Date {
+		Calendar.current.date(byAdding: .hour, value: hours, to: self)!
+	}
 }
 
 public extension TimeInterval {
