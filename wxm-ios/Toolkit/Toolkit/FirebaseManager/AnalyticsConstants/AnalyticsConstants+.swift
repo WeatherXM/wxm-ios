@@ -401,6 +401,16 @@ extension ParameterValue: RawRepresentable {
 				return "View all"
 			case .multipleIssue:
 				return "multipe_issue"
+			case .dailyCard:
+				return "Daily Card"
+			case .dailyForecast:
+				return "daily_forecast"
+			case .dailyDetails:
+				return "daily_details"
+			case .hourlyDetailsCard:
+				return "Hourly Details Card"
+			case .hourlyForecast:
+				return "hourly_forecast"
 		}
 	}
 }

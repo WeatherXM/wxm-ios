@@ -66,11 +66,14 @@ class StationForecastViewModel: ObservableObject {
 														  followState: followState)
 		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(configuration: conf)
 		Router.shared.navigateTo(.forecastDetails(viewModel))
+
+		Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .dailyCard,
+															  .itemId: .dailyForecast])
 	}
 
     func trackSelectContentEvent(forecast: NetworkDeviceForecastResponse, isOpen: Bool) {
-        var params: [Parameter: ParameterValue] = [.contentType: .forecastDay,
-                                                   .itemId: .custom(device?.id ?? ""),
+        var params: [Parameter: ParameterValue] = [.contentType: .dailyCard,
+												   .itemId: .dailyForecast,
                                                    .state: isOpen ? .openState : .closeState]
 
         if let index = forecasts.firstIndex(where: { $0.date == forecast.date }) {
@@ -161,6 +164,9 @@ private extension StationForecastViewModel {
 		hourlyItems = filtered.map { weather in
 			return weather.toMiniCardItem(with: timezone, action: { [weak  self] in
 				self?.handleTap(for: weather)
+
+				Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .hourlyDetailsCard,
+																	  .itemId: .hourlyForecast])
 			})
 		}
 	}
