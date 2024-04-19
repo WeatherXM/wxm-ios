@@ -55,7 +55,7 @@ extension Double {
         let value = toTemeratureUnit(unit).rounded(toPlaces: decimals)
 
 		let formatter = NumberFormatter()
-		formatter.minimumFractionDigits = 0
+		formatter.minimumFractionDigits = decimals
 		formatter.maximumFractionDigits = decimals
 		formatter.roundingMode = .halfUp
 		formatter.numberStyle = .decimal
