@@ -34,14 +34,10 @@ struct ForecastDetailsView: View {
 
 					dailyForecast
 
-					Group {
-						dailyConditions
-
-						hourlyForecast
-
-						charts
+					if let item = viewModel.detailsDailyItem {
+						ForecastDetailsDailyView(item: item)
+							.animation(.easeIn, value: viewModel.selectedForecastIndex)
 					}
-					.animation(.easeIn, value: viewModel.selectedForecastIndex)
 				}
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 			}
@@ -52,74 +48,6 @@ struct ForecastDetailsView: View {
 }
 
 private extension ForecastDetailsView {
-	@ViewBuilder
-	var dailyConditions: some View {
-		if let currentForecast = viewModel.currentForecast {
-			VStack(spacing: CGFloat(.mediumSpacing)) {
-				HStack {
-					Text(LocalizableString.Forecast.dailyConditions.localized)
-						.foregroundColor(Color(colorEnum: .darkestBlue))
-						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-
-					Spacer()
-				}
-
-				if let item = currentForecast.dailyForecastTemperatureItem {
-					ForecastTemperatureCardView(item: item)
-						.wxmShadow()
-				}
-
-				dailyConditionsFields
-			}
-		} else {
-			EmptyView()
-		}
-	}
-
-	@ViewBuilder
-	var dailyConditionsFields: some View {
-		LazyVGrid(columns: [.init(spacing: CGFloat(.smallToMediumSpacing)), .init()],
-				  spacing: CGFloat(.smallToMediumSpacing)) {
-			Group {
-				ForEach(viewModel.fieldItems, id: \.title) { item in
-					ForecastFieldCardView(item: item)
-				}
-				.wxmShadow()
-			}
-		}
-	}
-
-	@ViewBuilder
-	var hourlyForecast: some View {
-		let hourlyItems = viewModel.hourlyItems
-		if !hourlyItems.isEmpty {
-			VStack(spacing: CGFloat(.mediumSpacing)) {
-				HStack {
-					Text(LocalizableString.Forecast.hourlyForecast.localized)
-						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-						.foregroundColor(Color(colorEnum: .darkestBlue))
-
-					Spacer()
-				}
-
-				ScrollViewReader { proxy in
-					ScrollView(.horizontal, showsIndicators: false) {
-						LazyHStack(spacing: CGFloat(.smallSpacing)) {
-							ForEach(0..<hourlyItems.count, id: \.self) { index in
-								let item = hourlyItems[index]
-								StationForecastMiniCardView(item: item, isSelected: false)
-									.wxmShadow()
-									.frame(width: 80.0)
-									.id(index)
-							}
-						}
-					}
-				}
-			}
-		} else {
-			EmptyView()
-		}
-	}
 
 	@ViewBuilder
 	var dailyForecast: some View {
@@ -143,18 +71,6 @@ private extension ForecastDetailsView {
 					}
 				}
 			}
-		} else {
-			EmptyView()
-		}
-	}
-
-	@ViewBuilder
-	var charts: some View {
-		if let chartModels = viewModel.chartModels {
-			ChartsContainer(historyData: chartModels, 
-							chartTypes: ForecastChartType.allCases,
-							delegate: viewModel.chartDelegate)
-				.id(chartModels.markDate)
 		} else {
 			EmptyView()
 		}

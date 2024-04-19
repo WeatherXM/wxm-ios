@@ -24,17 +24,13 @@ class ForecastDetailsViewModel: ObservableObject {
 	}
 	@Published var currentForecast: NetworkDeviceForecastResponse? {
 		didSet {
-			updateFieldItems()
-			updateHourlyItems()
-			updateDailyItems()
-			updateCharts()
+			updateDailyItem()
 		}
 	}
-	@Published private(set) var dailyItems: [StationForecastMiniCardView.Item] = []
-	@Published var fieldItems: [ForecastFieldCardView.Item] = []
-	@Published private(set) var hourlyItems: [StationForecastMiniCardView.Item] = []
-	@Published private(set) var selectedHourlyIndex: Int?
-	@Published private(set) var chartModels: HistoryChartModels?
+	@Published private(set) var detailsDailyItem: ForecastDetailsDailyView.Item?
+	lazy var dailyItems: [StationForecastMiniCardView.Item] = {
+		getDailyItems()
+	}()
 
 	init(configuration: Configuration) {
 		self.forecasts = configuration.forecasts
@@ -47,13 +43,13 @@ class ForecastDetailsViewModel: ObservableObject {
 }
 
 private extension ForecastDetailsViewModel {
-	func updateFieldItems() {
+	func getFieldItems() -> [ForecastFieldCardView.Item] {
 		guard let currentForecast else {
-			fieldItems = []
-			return
+
+			return []
 		}
 
-		self.fieldItems = WeatherField.forecastFields.compactMap { field in
+		let fieldItems: [ForecastFieldCardView.Item] = WeatherField.forecastFields.compactMap { field in
 			guard let daily = currentForecast.daily,
 					let literals = field.weatherLiterals(from: daily, unitsManager: .default, includeDirection: true) else {
 				return nil
@@ -64,6 +60,8 @@ private extension ForecastDetailsViewModel {
 											  title: field.displayTitle,
 											  value: attributedString(literals: literals))
 		}
+
+		return fieldItems
 	}
 
 	func attributedString(literals: WeatherValueLiterals) -> AttributedString {
@@ -84,45 +82,53 @@ private extension ForecastDetailsViewModel {
 		return attributedString
 	}
 
-	func updateHourlyItems() {
+	func getHourlyItems() -> [StationForecastMiniCardView.Item] {
 		guard let currentForecast,
 			  let hourly = currentForecast.hourly, let timezone = TimeZone(identifier: currentForecast.tz) else {
-			hourlyItems = []
-			return
+			return []
 		}
 
-		hourlyItems = hourly.map { $0.toMiniCardItem(with: timezone)}
+		let hourlyItems: [StationForecastMiniCardView.Item] = hourly.map { $0.toMiniCardItem(with: timezone)}
 		let selectedIndex = hourly.firstIndex(where: { $0.timestamp?.timestampToDate(timeZone: timezone).getHour(with: timezone) == 7})
-		self.selectedHourlyIndex = nil
-		self.selectedHourlyIndex = selectedIndex
+
+		return hourlyItems
 	}
 
-	func updateDailyItems() {
+	func getDailyItems() -> [StationForecastMiniCardView.Item] {
 		let dailyForecasts = forecasts.compactMap { $0.daily }
 		guard let currentForecast,
 			  let timezone = TimeZone(identifier: currentForecast.tz) else {
-			dailyItems = []
-			return
+
+			return []
 		}
 
-		dailyItems = dailyForecasts.enumerated().map { index, element in
+		return dailyForecasts.enumerated().map { index, element in
 			return element.toDailyMiniCardItem(with: timezone) { [weak self] in
 				self?.selectedForecastIndex = index
 			}
 		}
 	}
 
-	func updateCharts() {
+	func getChartModels() -> HistoryChartModels? {
 		guard let currentForecast,
 			  let timezone = TimeZone(identifier: currentForecast.tz),
 			  let date = currentForecast.hourly?.first?.timestamp?.timestampToDate(),
 			  let data = currentForecast.hourly else {
 
-			return
+			return nil
 		}
 
 		chartDelegate.selectedIndex = 0
-		chartModels = ChartsFactory().createHourlyCharts(timeZone: timezone, startingDate: date, hourlyWeatherData: data)
+		return ChartsFactory().createHourlyCharts(timeZone: timezone, startingDate: date, hourlyWeatherData: data)
+	}
+
+	func updateDailyItem() {
+		chartDelegate.selectedIndex = 0
+		self.detailsDailyItem = .init(forecast: currentForecast,
+									  fieldItems: getFieldItems(),
+									  hourlyItems: getHourlyItems(),
+									  chartModels: getChartModels(),
+									  chartDelegate: chartDelegate)
 	}
 }
 

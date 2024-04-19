@@ -429,6 +429,7 @@
 		26FFAE1C2B920A7300BF0A6B /* BoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAE1B2B920A7300BF0A6B /* BoostsView.swift */; };
 		26FFAE1E2B92102000BF0A6B /* NoBoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAE1D2B92102000BF0A6B /* NoBoostsView.swift */; };
 		26FFCCCC2BD110CD00880AAD /* ForecastChartTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFCCCB2BD110CD00880AAD /* ForecastChartTypes.swift */; };
+		26FFCCDA2BD2483F00880AAD /* ForecastDetailsDailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFCCD92BD2483F00880AAD /* ForecastDetailsDailyView.swift */; };
 		7423EC15283F81E2004E9B26 /* anim_weather_cloudy.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFE283F81E2004E9B26 /* anim_weather_cloudy.json */; };
 		7423EC16283F81E2004E9B26 /* anim_weather_clear_day.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EBFF283F81E2004E9B26 /* anim_weather_clear_day.json */; };
 		7423EC17283F81E2004E9B26 /* anim_not_available.json in Resources */ = {isa = PBXBuildFile; fileRef = 7423EC00283F81E2004E9B26 /* anim_not_available.json */; };
@@ -886,6 +887,7 @@
 		26FFAE1B2B920A7300BF0A6B /* BoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostsView.swift; sourceTree = "<group>"; };
 		26FFAE1D2B92102000BF0A6B /* NoBoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoBoostsView.swift; sourceTree = "<group>"; };
 		26FFCCCB2BD110CD00880AAD /* ForecastChartTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastChartTypes.swift; sourceTree = "<group>"; };
+		26FFCCD92BD2483F00880AAD /* ForecastDetailsDailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsDailyView.swift; sourceTree = "<group>"; };
 		7423EBFE283F81E2004E9B26 /* anim_weather_cloudy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_cloudy.json; sourceTree = "<group>"; };
 		7423EBFF283F81E2004E9B26 /* anim_weather_clear_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_clear_day.json; sourceTree = "<group>"; };
 		7423EC00283F81E2004E9B26 /* anim_not_available.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_not_available.json; sourceTree = "<group>"; };
@@ -1813,6 +1815,7 @@
 				268B5C3E2BCE95DB00E63655 /* ForecastTemperatureCardView.swift */,
 				268B5C422BCEB61A00E63655 /* ForecastFieldCardView.swift */,
 				26FFCCCB2BD110CD00880AAD /* ForecastChartTypes.swift */,
+				26FFCCD92BD2483F00880AAD /* ForecastDetailsDailyView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2924,6 +2927,7 @@
 				267401922A3A00D500E54E35 /* StationDetailsGridView.swift in Sources */,
 				2664834329C89F8A00748F9C /* StationDetailsTypes.swift in Sources */,
 				264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */,
+				26FFCCDA2BD2483F00880AAD /* ForecastDetailsDailyView.swift in Sources */,
 				26DD42E429B0FA9B008E277E /* StationDetailsViewModel.swift in Sources */,
 				2664833029C36B0900748F9C /* StationForeCastCardView+Content.swift in Sources */,
 				2664832E29C364FE00748F9C /* StationForecastCardView.swift in Sources */,
