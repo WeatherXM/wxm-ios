@@ -59,10 +59,34 @@ private extension ForecastDetailsViewModel {
 			return ForecastFieldCardView.Item(icon: field.hourlyIcon(),
 											  iconRotation: field.iconRotation(from: daily),
 											  title: field.displayTitle,
-											  value: attributedString(literals: literals))
+											  value: attributedString(literals: literals),
+											  scrollToGraphType: getGraphType(for: field))
 		}
 
 		return fieldItems
+	}
+
+	func getGraphType(for weatherField: WeatherField) -> ForecastChartType? {
+		switch weatherField {
+			case .temperature:
+					.temperature
+			case .humidity:
+					.humidity
+			case .wind:
+					.wind
+			case .precipitation:
+					.precipitation
+			case .precipitationProbability:
+					.precipitation
+			case .dailyPrecipitation:
+					.precipitation
+			case .pressure:
+					.pressure
+			case .uv:
+					.uv
+			default:
+				nil
+		}
 	}
 
 	func attributedString(literals: WeatherValueLiterals) -> AttributedString {

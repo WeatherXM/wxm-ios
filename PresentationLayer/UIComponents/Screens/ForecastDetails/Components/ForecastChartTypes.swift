@@ -9,7 +9,7 @@ import Foundation
 import DomainLayer
 import Charts
 
-enum ForecastChartType: ChartCardProtocol {
+enum ForecastChartType: String, ChartCardProtocol {
 	case temperature
 	case precipitation
 	case wind
@@ -17,6 +17,10 @@ enum ForecastChartType: ChartCardProtocol {
 	case pressure
 	case uv
 
+	var scrollId: String {
+		self.rawValue
+	}
+	
 	var description: String {
 		switch self {
 			case .temperature:

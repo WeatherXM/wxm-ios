@@ -18,46 +18,48 @@ struct ForecastDetailsView: View {
 			Color(colorEnum: .newBG)
 				.ignoresSafeArea()
 
-			ScrollView(showsIndicators: false) {
-				VStack(spacing: CGFloat(.largeSpacing)) {
-					NavigationTitleView(title: .constant(viewModel.device.displayName),
-										subtitle: .constant(viewModel.device.address)) {
-						Group {
-							if let faIcon = viewModel.followState?.state.FAIcon {
-								Text(faIcon.icon.rawValue)
-									.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
-									.foregroundColor(Color(colorEnum: faIcon.color))
-							} else {
-								EmptyView()
-							}
-						}
-					}.padding(.horizontal, CGFloat(.mediumSidePadding))
-
+			ScrollViewReader { proxy in
+				ScrollView(showsIndicators: false) {
 					VStack(spacing: CGFloat(.largeSpacing)) {
-						dailyForecast
-							.padding(.horizontal, CGFloat(.mediumSidePadding))
-
-
-						ZStack {
-							if let item = viewModel.detailsDailyItem {
-								ForecastDetailsDailyView(item: item)
-									.id(item.forecast?.daily?.timestamp)
-									.padding(.horizontal, CGFloat(.mediumSidePadding))
+						NavigationTitleView(title: .constant(viewModel.device.displayName),
+											subtitle: .constant(viewModel.device.address)) {
+							Group {
+								if let faIcon = viewModel.followState?.state.FAIcon {
+									Text(faIcon.icon.rawValue)
+										.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
+										.foregroundColor(Color(colorEnum: faIcon.color))
+								} else {
+									EmptyView()
+								}
+							}
+						}.padding(.horizontal, CGFloat(.mediumSidePadding))
+						
+						VStack(spacing: CGFloat(.largeSpacing)) {
+							dailyForecast
+								.padding(.horizontal, CGFloat(.mediumSidePadding))
+							
+							
+							ZStack {
+								if let item = viewModel.detailsDailyItem {
+									ForecastDetailsDailyView(item: item, scrollProxy: proxy)
+										.id(item.forecast?.daily?.timestamp)
+										.padding(.horizontal, CGFloat(.mediumSidePadding))
+								}
+							}
+							.overlay {
+								if isTransitioning {
+									Color(colorEnum: .newBG)
+								}
+							}
+							.onChange(of: viewModel.isTransitioning) { newValue in
+								withAnimation {
+									isTransitioning = newValue
+								}
 							}
 						}
-						.overlay {
-							if isTransitioning {
-								Color(colorEnum: .newBG)
-							}
-						}
-						.onChange(of: viewModel.isTransitioning) { newValue in
-							withAnimation {
-								isTransitioning = newValue
-							}
-						}
+						.clipped()
+						.iPadMaxWidth()
 					}
-					.clipped()
-					.iPadMaxWidth()
 				}
 			}
 		}.onAppear {

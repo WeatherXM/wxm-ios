@@ -50,6 +50,7 @@ extension ForecastTemperatureCardView {
 		let dateString: String
 		let temperature: String
 		let secondaryTemperature: String
+		let scrollToGraphType: ForecastChartType?
 	}
 }
 

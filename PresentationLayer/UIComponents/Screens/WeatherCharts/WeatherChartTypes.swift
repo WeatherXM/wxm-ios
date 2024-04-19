@@ -12,6 +12,7 @@ import Charts
 protocol ChartCardProtocol: CaseIterable, CustomStringConvertible {
 	var icon: AssetEnum { get }
 	var weatherFields: [WeatherField] { get }
+	var scrollId: String { get }
 	var isRightAxisEnabled: Bool { get }
 	func getAxisDependecy(for weatherField: WeatherField) -> YAxis.AxisDependency
 	func configureAxis(leftAxis: YAxis, rightAxis: YAxis, for lineData: LineChartData)

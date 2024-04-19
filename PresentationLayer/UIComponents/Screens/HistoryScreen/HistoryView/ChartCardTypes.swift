@@ -9,7 +9,7 @@ import SwiftUI
 import Charts
 import DomainLayer
 
-enum ChartCardType: ChartCardProtocol {
+enum ChartCardType: String, ChartCardProtocol {
     case temperature
     case precipitation
     case wind
@@ -17,6 +17,10 @@ enum ChartCardType: ChartCardProtocol {
     case pressure
     case solar
 
+	var scrollId: String {
+		self.rawValue
+	}
+	
     var description: String {
         switch self {
             case .temperature:

@@ -46,6 +46,7 @@ extension ForecastFieldCardView {
 		let iconRotation: Double
 		let title: String
 		let value: AttributedString
+		var scrollToGraphType: ForecastChartType?
 	}
 }
 

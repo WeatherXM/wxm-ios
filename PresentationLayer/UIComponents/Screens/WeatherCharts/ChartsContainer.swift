@@ -21,6 +21,7 @@ struct ChartsContainer: View {
                 ChartCardView(type: chart,
                               chartDataModels: chart.weatherFields.compactMap { historyData.dataModels[$0] })
                 .environmentObject(delegate)
+				.id(chart.scrollId)
             }
 
             if let timezone = historyData.tz {

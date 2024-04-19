@@ -10,6 +10,7 @@ import DomainLayer
 
 struct ForecastDetailsDailyView: View {
 	let item: Item
+	let scrollProxy: ScrollViewProxy?
 
     var body: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -64,7 +65,13 @@ private extension ForecastDetailsDailyView {
 				  spacing: CGFloat(.smallToMediumSpacing)) {
 			Group {
 				ForEach(item.fieldItems, id: \.title) { item in
-					ForecastFieldCardView(item: item)
+					Button {
+						withAnimation {
+							scrollProxy?.scrollTo(item.scrollToGraphType?.scrollId, anchor: .top)
+						}
+					} label: {
+						ForecastFieldCardView(item: item)
+					}
 				}
 				.wxmShadow()
 			}
@@ -131,5 +138,6 @@ private extension ForecastDetailsDailyView {
 												fieldItems: [],
 												hourlyItems: nil,
 												chartModels: nil,
-												chartDelegate: nil))
+												chartDelegate: nil),
+									scrollProxy: nil)
 }
