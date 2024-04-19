@@ -33,27 +33,31 @@ struct ForecastDetailsView: View {
 						}
 					}.padding(.horizontal, CGFloat(.mediumSidePadding))
 
-					dailyForecast
-						.padding(.horizontal, CGFloat(.mediumSidePadding))
+					VStack(spacing: CGFloat(.largeSpacing)) {
+						dailyForecast
+							.padding(.horizontal, CGFloat(.mediumSidePadding))
 
 
-					ZStack {
-						if let item = viewModel.detailsDailyItem {
-							ForecastDetailsDailyView(item: item)
-								.id(item.forecast?.daily?.timestamp)
-								.padding(.horizontal, CGFloat(.mediumSidePadding))
+						ZStack {
+							if let item = viewModel.detailsDailyItem {
+								ForecastDetailsDailyView(item: item)
+									.id(item.forecast?.daily?.timestamp)
+									.padding(.horizontal, CGFloat(.mediumSidePadding))
+							}
+						}
+						.overlay {
+							if isTransitioning {
+								Color(colorEnum: .newBG)
+							}
+						}
+						.onChange(of: viewModel.isTransitioning) { newValue in
+							withAnimation {
+								isTransitioning = newValue
+							}
 						}
 					}
-					.overlay {
-						if isTransitioning {
-							Color(colorEnum: .newBG)
-						}
-					}
-					.onChange(of: viewModel.isTransitioning) { newValue in
-						withAnimation {
-							isTransitioning = newValue
-						}
-					}
+					.clipped()
+					.iPadMaxWidth()
 				}
 			}
 		}.onAppear {
