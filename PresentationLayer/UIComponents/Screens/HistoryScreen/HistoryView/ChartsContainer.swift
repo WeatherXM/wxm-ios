@@ -28,6 +28,7 @@ struct ChartsContainer: View {
                     Text(LocalizableString.timeZoneDisclaimer(timezone).localized)
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.caption)))
+						.fixedSize(horizontal: false, vertical: true)
                     Spacer()
                 }
                 .padding(.bottom, CGFloat(.defaultSidePadding))

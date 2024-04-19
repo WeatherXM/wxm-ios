@@ -7132,7 +7132,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All displayed times are in %@ timezone"
+            "value" : "All displayed times are in the Station’s timezone (%@)."
           }
         }
       }
