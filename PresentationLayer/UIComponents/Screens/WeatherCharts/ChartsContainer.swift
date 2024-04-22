@@ -10,26 +10,28 @@ import DomainLayer
 import SwiftUI
 
 struct ChartsContainer: View {
-    let historyData: HistoryChartModels
+    let historyData: WeatherChartModels
+	let chartTypes: [any ChartCardProtocol]
     @StateObject var delegate: ChartDelegate
 
     var body: some View {
         VStack(spacing: CGFloat(.mediumSpacing)) {
-            ForEach(ChartCardType.allCases, id: \.self) { chart in
+			ForEach(0..<chartTypes.count, id: \.self) { index in
+				let chart = chartTypes[index]
                 ChartCardView(type: chart,
                               chartDataModels: chart.weatherFields.compactMap { historyData.dataModels[$0] })
                 .environmentObject(delegate)
+				.id(chart.scrollId)
             }
-            .padding(.horizontal, CGFloat(.defaultSidePadding))
 
             if let timezone = historyData.tz {
                 HStack {
                     Text(LocalizableString.timeZoneDisclaimer(timezone).localized)
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.caption)))
+						.fixedSize(horizontal: false, vertical: true)
                     Spacer()
                 }
-                .padding(.horizontal, CGFloat(.defaultSidePadding))
                 .padding(.bottom, CGFloat(.defaultSidePadding))
             }
         }

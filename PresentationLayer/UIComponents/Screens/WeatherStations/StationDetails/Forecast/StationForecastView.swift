@@ -82,9 +82,9 @@ private extension StationForecastView {
 					LazyHStack(spacing: CGFloat(.smallSpacing)) {
 						ForEach(0..<viewModel.hourlyItems.count, id: \.self) { index in
 							let item = viewModel.hourlyItems[index]
-							StationForecastMiniCardView(item: item)
+							StationForecastMiniCardView(item: item, isSelected: false)
 								.wxmShadow()
-								.frame(width: 80.0)
+								.frame(width: StationForecastMiniCardView.defaultWidth)
 						}
 					}.padding(.horizontal)
 				}

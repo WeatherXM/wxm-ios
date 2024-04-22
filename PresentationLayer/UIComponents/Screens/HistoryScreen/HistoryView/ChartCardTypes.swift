@@ -9,7 +9,7 @@ import SwiftUI
 import Charts
 import DomainLayer
 
-enum ChartCardType: CaseIterable, CustomStringConvertible {
+enum ChartCardType: String, ChartCardProtocol {
     case temperature
     case precipitation
     case wind
@@ -17,6 +17,10 @@ enum ChartCardType: CaseIterable, CustomStringConvertible {
     case pressure
     case solar
 
+	var scrollId: String {
+		self.rawValue
+	}
+	
     var description: String {
         switch self {
             case .temperature:
@@ -56,7 +60,7 @@ enum ChartCardType: CaseIterable, CustomStringConvertible {
             case .temperature:
                 return [.temperature, .feelsLike]
             case .precipitation:
-                return [.precipitationRate, .dailyPrecipitation]
+                return [.precipitation, .dailyPrecipitation]
             case .wind:
                 return [.wind, .windGust]
             case .humidity:
@@ -79,7 +83,7 @@ enum ChartCardType: CaseIterable, CustomStringConvertible {
                 return .left
             case .precipitation:
                 switch weatherField {
-                    case .precipitationRate:
+                    case .precipitation:
                         return .left
                     case .dailyPrecipitation:
                         return .right
@@ -97,12 +101,31 @@ enum ChartCardType: CaseIterable, CustomStringConvertible {
                 }
         }
     }
-}
 
-class ChartDelegate: ObservableObject, ChartViewDelegate {
-    @Published var selectedIndex: Int?
-
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        selectedIndex = Int(entry.x)
-    }
+	func configureAxis(leftAxis: YAxis, rightAxis: YAxis, for lineData: LineChartData) {
+		switch self {
+			case .temperature:
+				break
+			case .precipitation:
+				rightAxis.axisMinimum = 0.0
+				leftAxis.axisMinimum = 0.0
+			case .wind:
+				break
+			case .humidity:
+				break
+			case .pressure:
+				let isInHg = WeatherUnitsManager.default.pressureUnit == .inchOfMercury
+				let yMin = lineData.yMin
+				let yMax = lineData.yMax
+				if isInHg && (yMax - yMin < 2.0) {
+					leftAxis.axisMinimum = yMin - 0.1
+					leftAxis.axisMaximum = yMax + 0.1
+					rightAxis.axisMinimum = yMin - 0.1
+					rightAxis.axisMaximum = yMax + 0.1
+				}
+			case .solar:
+				rightAxis.axisMinimum = 0.0
+				leftAxis.axisMinimum = 0.0
+		}
+	}
 }

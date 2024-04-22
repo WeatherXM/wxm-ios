@@ -13,7 +13,7 @@ public enum WeatherField: String, CaseIterable, Codable {
 	case humidity
 	case wind = "wind_speed"
 	case windDirection = "wind_direction"
-	case precipitationRate = "precipitation_rate"
+	case precipitation = "precipitation"
 	case precipitationProbability = "precipitation_probability"
 	case dailyPrecipitation = "precipitation_accumulated"
 	case windGust = "wind_gust"

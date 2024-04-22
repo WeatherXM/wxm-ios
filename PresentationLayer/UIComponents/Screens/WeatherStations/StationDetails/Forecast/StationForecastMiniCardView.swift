@@ -10,7 +10,9 @@ import DomainLayer
 import Toolkit
 
 struct StationForecastMiniCardView: View {
+	static let defaultWidth: CGFloat = 84.0
 	let item: Item
+	let isSelected: Bool
 
 	var body: some View {
 		Button {
@@ -25,16 +27,29 @@ struct StationForecastMiniCardView: View {
 
 				weatherImage
 
-				Text(item.temperature)
-					.foregroundColor(Color(colorEnum: .darkestBlue))
-					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
-					.minimumScaleFactor(0.8)
-					.lineLimit(1)
+				VStack(spacing: 0.0) {
+					Text(item.temperature)
+						.foregroundColor(Color(colorEnum: .darkestBlue))
+						.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+						.lineLimit(1)
+						.fixedSize()
+
+					if let secondaryTemperature = item.secondaryTemperature {
+						Text(secondaryTemperature)
+							.foregroundColor(Color(colorEnum: .darkestBlue))
+							.font(.system(size: CGFloat(.caption)))
+							.lineLimit(1)
+					}
+				}
 			}
-			.WXMCardStyle(insideHorizontalPadding: CGFloat(.mediumSidePadding),
+			.WXMCardStyle(backgroundColor: isSelected ? Color(colorEnum: .layer1) : Color(colorEnum: .top),
+						  insideHorizontalPadding: CGFloat(.mediumSidePadding),
 						  insideVerticalPadding: CGFloat(.mediumSidePadding))
 		}
 		.allowsHitTesting(item.action != nil)
+		.indication(show: .constant(isSelected), borderColor: Color(colorEnum: .primary), bgColor: Color(colorEnum: .primary)) {
+			EmptyView()
+		}		
     }
 }
 
@@ -43,6 +58,7 @@ extension StationForecastMiniCardView {
 		let time: String
 		let animationString: String?
 		let temperature: String
+		var secondaryTemperature: String?
 		var action: VoidCallback?
 	}
 }
@@ -68,6 +84,7 @@ private extension StationForecastMiniCardView {
 }
 
 #Preview {
-	StationForecastMiniCardView(item: CurrentWeather.mockInstance.toMiniCardItem(with: .current))
+	StationForecastMiniCardView(item: CurrentWeather.mockInstance.toMiniCardItem(with: .current), isSelected: true)
 		.wxmShadow()
+		.padding()
 }

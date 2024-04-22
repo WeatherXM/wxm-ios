@@ -173,4 +173,8 @@ enum ViewModelsFactory {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!
 		return RewardBoostsViewModel(boost: boost, device: device, date: date, useCase: useCase)
 	}
+
+	static func getForecastDetailsViewModel(configuration: ForecastDetailsViewModel.Configuration) -> ForecastDetailsViewModel {
+		ForecastDetailsViewModel(configuration: configuration)
+	}
 }

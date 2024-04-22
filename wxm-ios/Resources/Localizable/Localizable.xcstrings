@@ -3276,6 +3276,17 @@
         }
       }
     },
+    "extreme" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extreme"
+          }
+        }
+      }
+    },
     "fahrenheit_symbol" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3771,6 +3782,28 @@
         }
       }
     },
+    "forecast_daily_conditions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily Conditions"
+          }
+        }
+      }
+    },
+    "forecast_hourly_forecast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hourly Forecast"
+          }
+        }
+      }
+    },
     "forecast_next_seven_days" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3855,6 +3888,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hidden content"
+          }
+        }
+      }
+    },
+    "high" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High"
           }
         }
       }
@@ -4013,9 +4057,6 @@
         }
       }
     },
-    "Key" : {
-      "extractionState" : "manual"
-    },
     "last_name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4122,6 +4163,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Email *"
+          }
+        }
+      }
+    },
+    "moderate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Moderate"
           }
         }
       }
@@ -4595,6 +4647,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%.0f%%"
+          }
+        }
+      }
+    },
+    "precip_probability" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precip. Probability"
           }
         }
       }
@@ -7069,7 +7132,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All displayed times are in %@ timezone"
+            "value" : "All displayed times are in the Station’s timezone (%@)."
           }
         }
       }
@@ -7158,6 +7221,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "UV Index"
+          }
+        }
+      }
+    },
+    "very_high" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Very High"
           }
         }
       }

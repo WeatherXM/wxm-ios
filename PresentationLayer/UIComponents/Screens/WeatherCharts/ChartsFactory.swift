@@ -20,11 +20,11 @@ class ChartsFactory {
         weatherUnitFormatter = WeatherUnitsConverter(userDefaultsRepository: userDefaultsRepository, unitConverter: unitConverter)
     }
 
-    func createHourlyCharts(timeZone: TimeZone, date: Date, hourlyWeatherData: [CurrentWeather]) -> HistoryChartModels {
+	func createHourlyCharts(timeZone: TimeZone, startingDate: Date, hourlyWeatherData: [CurrentWeather]) -> WeatherChartModels {
         var entries: [WeatherField: [ChartDataEntry]] = [:]
 
         var timestamps = [String]()
-        let dates = date.dailyHourlySamples(timeZone: timeZone)
+        let dates = startingDate.dailyHourlySamples(timeZone: timeZone)
         for (index, date) in dates.enumerated() {
             let timestamp = date.toTimestamp(with: timeZone)
             timestamps.append(timestamp.timestampToDate(timeZone: timeZone).twelveHourPeriodTime)
@@ -54,7 +54,7 @@ class ChartsFactory {
                                                    entries: entries[$0] ?? [])
         }
 
-        return HistoryChartModels(markDate: date,
+        return WeatherChartModels(markDate: startingDate,
                                   tz: timeZone.identifier,
                                   dataModels: dataModels)
     }
@@ -80,16 +80,14 @@ private extension ChartsFactory {
                 if let feelsLike = element.feelsLike {
                     chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertTemp(value: feelsLike, decimals: 1))
                 }
-            case .precipitationRate:
+            case .precipitation:
                 if let precipitation = element.precipitation {
                     chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertPrecipitation(value: precipitation))
                 }
             case .wind:
                 if let windSpeed = weatherUnitFormatter.convertWindSpeed(value: element.windSpeed) {
                     var windDirectionAsset: UIImage?
-                    if let windDirection = element.windDirection,
-                       let windGust = weatherUnitFormatter.convertWindSpeed(value: element.windGust),
-                       windGust > 0 {
+					if let windDirection = element.windDirection, windSpeed > 0 {
                         windDirectionAsset = getWindImage(for: windDirection)
                     }
                     chartDataEntry = ChartDataEntry(x: xVal, y: windSpeed, icon: windDirectionAsset, data: element.windDirection)

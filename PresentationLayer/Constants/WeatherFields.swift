@@ -13,7 +13,7 @@ import Toolkit
 extension WeatherField: CustomStringConvertible {
 
     static var mainFields: [WeatherField] {
-        [.humidity, .wind, .precipitationRate]
+        [.humidity, .wind, .precipitation]
     }
 
     static var secondaryFields: [WeatherField] {
@@ -23,6 +23,10 @@ extension WeatherField: CustomStringConvertible {
     static var hourlyFields: [WeatherField] {
         [.precipitationProbability, .dailyPrecipitation, .wind, .humidity, .pressure, .uv]
     }
+
+	static var forecastFields: [WeatherField] {
+		[.precipitationProbability, .wind, .dailyPrecipitation, .uv, .humidity, .pressure]
+	}
 
     public var description: String {
         switch self {
@@ -36,7 +40,7 @@ extension WeatherField: CustomStringConvertible {
                 return LocalizableString.wind.localized
 			case .windDirection:
 				return LocalizableString.windDirection.localized
-            case .precipitationRate:
+            case .precipitation:
                 return LocalizableString.precipitationRate.localized
             case .precipitationProbability:
                 return LocalizableString.precipitationProbability.localized
@@ -69,10 +73,10 @@ extension WeatherField: CustomStringConvertible {
                 return LocalizableString.windSpeed.localized
 			case .windDirection:
 				return LocalizableString.windDirection.localized
-            case .precipitationRate:
-                return LocalizableString.precipRate.localized
+            case .precipitation:
+                return LocalizableString.precipitation.localized
             case .precipitationProbability:
-                return LocalizableString.precipitationProbability.localized
+                return LocalizableString.precipProbability.localized
             case .dailyPrecipitation:
                 return LocalizableString.dailyPrecip.localized
             case .windGust:
@@ -102,10 +106,10 @@ extension WeatherField: CustomStringConvertible {
                 return LocalizableString.speed.localized
 			case .windDirection:
 				return LocalizableString.windDirection.localized
-            case .precipitationRate:
-                return LocalizableString.rate.localized
+            case .precipitation:
+                return LocalizableString.precipitation.localized
             case .precipitationProbability:
-                return LocalizableString.precipitationProbability.localized
+                return LocalizableString.precipProbability.localized
             case .dailyPrecipitation:
                 return LocalizableString.daily.localized
             case .windGust:
@@ -132,13 +136,13 @@ extension WeatherField: CustomStringConvertible {
             case .humidity:
                 return .humidityIcon
             case .wind:
-                return .windIcon
+                return .windDirIconSmall
 			case .windDirection:
-				return .windIcon
-            case .precipitationRate:
+				return .windDirIconSmall
+            case .precipitation:
                 return .precipitationIcon
             case .windGust:
-                return .windIcon
+                return .windDirIconSmall
             case .pressure:
                 return .pressureIcon
             case .solarRadiation:
@@ -177,7 +181,7 @@ extension WeatherField: CustomStringConvertible {
                 return .windDirIconSmall
 			case .windDirection:
 				return .windDirIconSmall
-            case .precipitationRate:
+            case .precipitation:
                 return .rainIconSmall
             case .precipitationProbability:
                 return .umbrellaIconSmall
@@ -198,10 +202,10 @@ extension WeatherField: CustomStringConvertible {
         }
     }
 
-    func iconRotation(from weather: CurrentWeather) -> Double {
+    func iconRotation(from weather: CurrentWeather?) -> Double {
         switch self {
             case .wind, .windGust:
-                guard let direction = weather.windDirection else {
+                guard let direction = weather?.windDirection else {
                     return 0.0
                 }
 
@@ -245,7 +249,7 @@ extension WeatherField {
                                              isForHourlyForecast: isForHourlyForecast)
 			case .windDirection:
 				return nil
-            case .precipitationRate:
+            case .precipitation:
                 return createWeatherLiterals(from: weather.precipitation, unitsManager: unitsManager)
             case .dailyPrecipitation:
                 /// In case of hourly weather forecast the `precipitationAccumulated` is received in `precipitation` property
@@ -298,7 +302,7 @@ extension WeatherField {
                                                       includeDirection: includeDirection)
 			case .windDirection:
 				return nil
-            case .precipitationRate:
+            case .precipitation:
                 return formatter.getPrecipitationLiterals(value: value, unit: unitsManager.precipitationUnit)
             case .precipitationProbability:
                 return formatter.getPrecipitationProbabilityLiterals(value: value)

@@ -28,8 +28,8 @@ extension View {
     func WXMCardStyle(
         backgroundColor: Color = Color(colorEnum: .top),
         foregroundColor: Color = Color(colorEnum: .text),
-        insideHorizontalPadding: CGFloat = CGFloat(.defaultSidePadding),
-        insideVerticalPadding: CGFloat = CGFloat(.defaultSidePadding),
+        insideHorizontalPadding: CGFloat = CGFloat(.mediumSidePadding),
+        insideVerticalPadding: CGFloat = CGFloat(.mediumSidePadding),
         cornerRadius: CGFloat = CGFloat(.cardCornerRadius)
 
     ) -> some View { modifier(

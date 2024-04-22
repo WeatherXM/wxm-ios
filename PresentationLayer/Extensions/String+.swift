@@ -34,6 +34,10 @@ extension String {
         replacingOccurrences(of: ":", with: "")
     }
 
+	var lottieAnimation: AnimationsEnums {
+		AnimationsEnums(rawValue: self) ?? .notAvailable
+	}
+
     init(_ displayedLinksEnum: DisplayedLinks) {
         self.init(displayedLinksEnum.linkURL)
     }

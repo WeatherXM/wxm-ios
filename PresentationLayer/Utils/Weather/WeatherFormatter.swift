@@ -105,9 +105,27 @@ struct WeatherFormatter {
     /// - Parameter value: The value to generate the formatted value
     /// - Returns: A tuple with the text components eg. ("2", "")
     func getUVLiterals(value: Int?) -> WeatherValueLiterals {
-        let value = "\(value ?? 0)"
-        let unit = ""
-        return (value, unit)
+        let valueStr = "\(value ?? 0)"
+		let unit = {
+			guard let value else {
+				return ""
+			}
+			switch value {
+				case 0...2:
+					return LocalizableString.low.localized
+				case 3...5:
+					return LocalizableString.moderate.localized
+				case 6...7:
+					return LocalizableString.high.localized
+				case 8...10:
+					return LocalizableString.veryHigh.localized
+				case _ where value >= 11:
+					return LocalizableString.extreme.localized
+				default:
+					return ""
+			}
+		}()
+        return (valueStr, unit)
     }
 
     /// The text components of the solar radiation. (value, unit)

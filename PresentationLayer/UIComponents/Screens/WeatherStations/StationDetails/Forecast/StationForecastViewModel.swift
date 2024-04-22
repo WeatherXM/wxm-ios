@@ -31,6 +31,7 @@ class StationForecastViewModel: ObservableObject {
     private(set) var hiddenViewConfiguration: WXMEmptyView.Configuration?
 
     private var device: DeviceDetails?
+	private var followState: UserDeviceFollowState?
     private var cancellables: Set<AnyCancellable> = []
     private let useCase: MeUseCase?
 
@@ -54,7 +55,17 @@ class StationForecastViewModel: ObservableObject {
     }
 
 	func handleForecastTap(forecast: NetworkDeviceForecastResponse) {
-		print("Will handle tap for \(forecast)")
+		guard let device, let index = forecasts.firstIndex(where: { $0.date == forecast.date }) else {
+			return
+		}
+
+		let conf = ForecastDetailsViewModel.Configuration(forecasts: forecasts,
+														  selectedforecastIndex: index,
+														  selectedHour: nil,
+														  device: device,
+														  followState: followState)
+		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(configuration: conf)
+		Router.shared.navigateTo(.forecastDetails(viewModel))
 	}
 
     func trackSelectContentEvent(forecast: NetworkDeviceForecastResponse, isOpen: Bool) {
@@ -143,7 +154,9 @@ private extension StationForecastViewModel {
 		}
 
 		let hourly = forecasts.map { $0.hourly }.compactMap { $0 }.flatMap { $0 }
-		let filtered = hourly.filter { ($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) >= Date.now &&  ($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) < Date.now.advancedByHours(hours: 24) }
+		let startDate = Date.now.advancedByHours(hours: -1)
+		let endDate = Date.now.advancedByHours(hours: 24)
+		let filtered = hourly.filter { ($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) >= startDate  &&  ($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) < endDate }
 
 		hourlyItems = filtered.map { weather in
 			return weather.toMiniCardItem(with: timezone, action: { [weak  self] in
@@ -153,7 +166,18 @@ private extension StationForecastViewModel {
 	}
 
 	func handleTap(for weather: CurrentWeather) {
-		print("Will handle tap for \(weather)")
+		guard let device, let timezone = forecasts.first?.tz.toTimezone else {
+			return
+		}
+
+		let selectedHour = weather.timestamp?.timestampToDate().getHour(with: timezone)
+		let conf = ForecastDetailsViewModel.Configuration(forecasts: forecasts,
+														  selectedforecastIndex: 0,
+														  selectedHour: selectedHour,
+														  device: device,
+														  followState: followState)
+		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(configuration: conf)
+		Router.shared.navigateTo(.forecastDetails(viewModel))
 	}
 }
 
@@ -162,6 +186,7 @@ private extension StationForecastViewModel {
 extension StationForecastViewModel: StationDetailsViewModelChild {
     func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async {
         self.device = device
+		self.followState = followState
 
         if followState == nil {
             DispatchQueue.main.async {
