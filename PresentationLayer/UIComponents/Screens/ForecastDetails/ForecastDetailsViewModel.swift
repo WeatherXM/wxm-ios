@@ -8,6 +8,7 @@
 import Foundation
 import DomainLayer
 import SwiftUI
+import Toolkit
 
 class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
@@ -134,6 +135,9 @@ private extension ForecastDetailsViewModel {
 					self?.selectedForecastIndex = index
 					self?.isTransitioning = false
 				}
+
+				Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .dailyCard,
+																	  .itemId: .dailyDetails])
 			}
 		}
 	}

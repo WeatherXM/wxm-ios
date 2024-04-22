@@ -31,6 +31,7 @@ public enum Screen: String {
 	case profile = "Account"
 	case currentWeather = "Device Current Weather"
 	case forecast = "Device Forecast"
+	case forecastDetails = "Device Forecast Details"
 	case rewards = "Device Rewards"
 	case stationSettings = "Device Settings"
 	case rewardTransactions = "Device Reward Transactions"
@@ -141,7 +142,6 @@ public enum ParameterValue {
 	case lowBattery
 	case walletCompatibility
 	case info
-	case forecastDay
 	case openState
 	case closeState
 	case rewardsCard
@@ -265,5 +265,10 @@ public enum ParameterValue {
 	case webDocumentation
 	case viewAll
 	case multipleIssue
+	case dailyCard
+	case dailyForecast
+	case dailyDetails
+	case hourlyDetailsCard
+	case hourlyForecast
 	case custom(String)
 }

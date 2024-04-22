@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DomainLayer
+import Toolkit
 
 struct ForecastDetailsView: View {
 	@StateObject var viewModel: ForecastDetailsViewModel
@@ -63,6 +64,8 @@ struct ForecastDetailsView: View {
 			}
 		}.onAppear {
 			navigationObject.navigationBarColor = Color(.newBG)
+
+			Logger.shared.trackScreen(.forecastDetails)
 		}
 	}
 }
