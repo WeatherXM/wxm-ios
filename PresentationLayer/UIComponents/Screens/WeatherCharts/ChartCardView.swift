@@ -100,7 +100,7 @@ private extension ChartCardView {
         }
         let text = comps.joined(separator: "﹒")
 
-        return "**\(timestamp)** \(text)".attributedMarkdown ?? ""
+        return "**\(timestamp)**\n\(text)".attributedMarkdown ?? ""
     }
 }
 

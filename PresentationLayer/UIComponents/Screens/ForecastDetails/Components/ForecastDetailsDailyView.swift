@@ -13,7 +13,7 @@ struct ForecastDetailsDailyView: View {
 	let scrollProxy: ScrollViewProxy?
 
     var body: some View {
-		VStack(spacing: CGFloat(.mediumSpacing)) {
+		VStack(spacing: CGFloat(.largeSpacing)) {
 			dailyConditions
 
 			hourlyForecast
@@ -94,7 +94,7 @@ private extension ForecastDetailsDailyView {
 
 				ScrollViewReader { proxy in
 					ScrollView(.horizontal, showsIndicators: false) {
-						LazyHStack(spacing: CGFloat(.smallSpacing)) {
+						HStack(spacing: CGFloat(.smallSpacing)) {
 							ForEach(0..<hourlyItems.count, id: \.self) { index in
 								let item = hourlyItems[index]
 								StationForecastMiniCardView(item: item, isSelected: false)

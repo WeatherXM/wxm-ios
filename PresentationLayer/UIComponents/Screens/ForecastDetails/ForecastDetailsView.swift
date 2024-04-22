@@ -75,7 +75,7 @@ private extension ForecastDetailsView {
 		if !dailyItems.isEmpty {
 			ScrollViewReader { proxy in
 				ScrollView(.horizontal, showsIndicators: false) {
-					LazyHStack(spacing: CGFloat(.smallSpacing)) {
+					HStack(spacing: CGFloat(.smallSpacing)) {
 						ForEach(0..<dailyItems.count, id: \.self) { index in
 							let item = dailyItems[index]
 							StationForecastMiniCardView(item: item, isSelected: viewModel.selectedForecastIndex == index)
