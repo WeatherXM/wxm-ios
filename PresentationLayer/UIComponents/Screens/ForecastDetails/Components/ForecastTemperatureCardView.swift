@@ -25,7 +25,7 @@ struct ForecastTemperatureCardView: View {
 						Spacer()
 					}
 
-					HStack(spacing: CGFloat(.smallSpacing)) {
+					HStack(alignment: .bottom, spacing: CGFloat(.smallSpacing)) {
 						Text(item.temperature)
 							.foregroundColor(Color(colorEnum: .text))
 							.font(.system(size: CGFloat(.XXLTitleFontSize)))

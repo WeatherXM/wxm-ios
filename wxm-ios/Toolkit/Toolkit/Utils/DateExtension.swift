@@ -94,7 +94,7 @@ public extension Date {
 	}
 	
 	func relativeDayStringIfExists(timezone: TimeZone = .current) -> String? {
-		guard self.isToday || self.isYesterday else {
+		guard self.isToday || self.isYesterday || self.isTomorrow else {
 			return nil
 		}
 
