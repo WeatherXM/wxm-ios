@@ -10,6 +10,7 @@ import DomainLayer
 import Toolkit
 
 struct StationForecastMiniCardView: View {
+	static let defaultWidth: CGFloat = 84.0
 	let item: Item
 	let isSelected: Bool
 
@@ -31,6 +32,7 @@ struct StationForecastMiniCardView: View {
 						.foregroundColor(Color(colorEnum: .darkestBlue))
 						.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
 						.lineLimit(1)
+						.fixedSize()
 
 					if let secondaryTemperature = item.secondaryTemperature {
 						Text(secondaryTemperature)

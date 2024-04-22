@@ -99,7 +99,7 @@ private extension ForecastDetailsDailyView {
 								let item = hourlyItems[index]
 								StationForecastMiniCardView(item: item, isSelected: false)
 									.wxmShadow()
-									.frame(width: 80.0)
+									.frame(width: StationForecastMiniCardView.defaultWidth)
 									.id(index)
 							}
 						}

@@ -84,7 +84,7 @@ private extension StationForecastView {
 							let item = viewModel.hourlyItems[index]
 							StationForecastMiniCardView(item: item, isSelected: false)
 								.wxmShadow()
-								.frame(width: 80.0)
+								.frame(width: StationForecastMiniCardView.defaultWidth)
 						}
 					}.padding(.horizontal)
 				}

@@ -80,7 +80,7 @@ private extension ForecastDetailsView {
 							let item = dailyItems[index]
 							StationForecastMiniCardView(item: item, isSelected: viewModel.selectedForecastIndex == index)
 								.wxmShadow()
-								.frame(width: 80.0)
+								.frame(width: StationForecastMiniCardView.defaultWidth)
 								.id(index)
 						}
 					}
