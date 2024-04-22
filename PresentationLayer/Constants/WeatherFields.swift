@@ -136,13 +136,13 @@ extension WeatherField: CustomStringConvertible {
             case .humidity:
                 return .humidityIcon
             case .wind:
-                return .windIcon
+                return .windDirIconSmall
 			case .windDirection:
-				return .windIcon
+				return .windDirIconSmall
             case .precipitation:
                 return .precipitationIcon
             case .windGust:
-                return .windIcon
+                return .windDirIconSmall
             case .pressure:
                 return .pressureIcon
             case .solarRadiation:
@@ -202,10 +202,10 @@ extension WeatherField: CustomStringConvertible {
         }
     }
 
-    func iconRotation(from weather: CurrentWeather) -> Double {
+    func iconRotation(from weather: CurrentWeather?) -> Double {
         switch self {
             case .wind, .windGust:
-                guard let direction = weather.windDirection else {
+                guard let direction = weather?.windDirection else {
                     return 0.0
                 }
 

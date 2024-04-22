@@ -144,6 +144,7 @@ extension WeatherOverviewView {
                 .renderingMode(.template)
                 .foregroundColor(Color(colorEnum: .darkestBlue))
 				.aspectRatio(contentMode: .fill)
+				.rotationEffect(Angle(degrees: field.iconRotation(from: weather)))
 
             VStack(alignment: .leading, spacing: 0.0) {
                 Text(field.description)
