@@ -2347,7 +2347,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 266D18132ACB0D56007CDB06 /* Build configuration list for PBXNativeTarget "station-intent" */;
 			buildPhases = (
-				2666D5752BC955CD003B30C0 /* ShellScript */,
 				266D18052ACB0D56007CDB06 /* Sources */,
 				266D18062ACB0D56007CDB06 /* Frameworks */,
 				266D18072ACB0D56007CDB06 /* Resources */,
@@ -2369,7 +2368,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26B8322D2AC31E4600757A69 /* Build configuration list for PBXNativeTarget "station-widgetExtension" */;
 			buildPhases = (
-				2666D5742BC955BF003B30C0 /* ShellScript */,
 				26B832192AC31E4500757A69 /* Sources */,
 				26B8321A2AC31E4500757A69 /* Frameworks */,
 				26B8321B2AC31E4500757A69 /* Resources */,
@@ -2392,7 +2390,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B52BCC7F2824FB9000EA3DA5 /* Build configuration list for PBXNativeTarget "wxm-ios" */;
 			buildPhases = (
-				2666D5732BC92CC3003B30C0 /* ShellScript */,
 				B52BCC6D2824FB8F00EA3DA5 /* Sources */,
 				B52BCC6E2824FB8F00EA3DA5 /* Frameworks */,
 				B52BCC6F2824FB8F00EA3DA5 /* Resources */,
@@ -2622,57 +2619,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
-		2666D5732BC92CC3003B30C0 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh ./Configuration/Version.xcconfig\n";
-		};
-		2666D5742BC955BF003B30C0 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh ./Configuration/Version.xcconfig\n";
-		};
-		2666D5752BC955CD003B30C0 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsh ./Scripts/git_version.sh ./Configuration/Version.xcconfig\n";
 		};
 		B5F9ED632860B972000B6392 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3391,7 +3337,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WeatherXM-MOCK";
+				INFOPLIST_KEY_CFBundleDisplayName = "WXM Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera for scanning the QR";
@@ -3608,7 +3554,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = WeatherXM;
+				INFOPLIST_KEY_CFBundleDisplayName = "WXM Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera for scanning the QR";
