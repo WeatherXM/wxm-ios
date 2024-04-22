@@ -36,9 +36,17 @@ extension CurrentWeather {
 
 	func toForecastTemperatureItem(with timeZone: TimeZone, scrollGraphType: ForecastChartType? = nil) -> ForecastTemperatureCardView.Item {
 		.init(weatherIcon: icon?.lottieAnimation,
-			  dateString: timestamp?.timestampToDate(timeZone: timeZone).getFormattedDate(format: .dayShortLiteralMonthDay, timezone: timeZone).capitalized ?? "",
+			  dateString: getTemeperatureItemDateString(with: timeZone, timestamp: timestamp),
 			  temperature: temperatureMax?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "",
 			  secondaryTemperature: temperatureMin?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "",
 			  scrollToGraphType: scrollGraphType)
+	}
+
+	private func getTemeperatureItemDateString(with timeZone: TimeZone, timestamp: String?) -> String {
+		let date = timestamp?.timestampToDate(timeZone: timeZone)
+		let relativeDateString = date?.relativeDayStringIfExists(timezone: timeZone)
+		let dayString = date?.getFormattedDate(format: .dayShortLiteralMonthDay, timezone: timeZone).capitalized ?? ""
+
+		return [relativeDateString, dayString].compactMap { $0 }.joined(separator: ", ")
 	}
 }
