@@ -611,6 +611,8 @@
 		2664833E29C8953E00748F9C /* SpinningLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningLoaderView.swift; sourceTree = "<group>"; };
 		2664834229C89F8A00748F9C /* StationDetailsTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsTypes.swift; sourceTree = "<group>"; };
 		2666D5092BBC4E80003B30C0 /* StationChipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationChipsView.swift; sourceTree = "<group>"; };
+		2666D5692BC911D6003B30C0 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
+		2666D5722BC9171B003B30C0 /* git_version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = git_version.sh; sourceTree = "<group>"; };
 		2666D57C2BC96077003B30C0 /* LocalizableString+Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Forecast.swift"; sourceTree = "<group>"; };
 		2666D57E2BC977D0003B30C0 /* StationForecastMiniCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationForecastMiniCardView.swift; sourceTree = "<group>"; };
 		266B018E2B836EC6007AC689 /* NoRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRewardsView.swift; sourceTree = "<group>"; };
@@ -1062,6 +1064,7 @@
 			children = (
 				262A4CF82A93726700A4BC17 /* sort-Xcode-project-file */,
 				2660FF762AB9CD2500AB4F59 /* sort_all_projects.sh */,
+				2666D5722BC9171B003B30C0 /* git_version.sh */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -1995,6 +1998,7 @@
 				26B795CF2B4C531100ADBCA8 /* Mock */,
 				26B795CE2B4C530100ADBCA8 /* Debug */,
 				26B795CD2B4C52CD00ADBCA8 /* Production */,
+				2666D5692BC911D6003B30C0 /* Version.xcconfig */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -3050,7 +3054,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = G6DMWDA6X5;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Release/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3064,7 +3068,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.debug.station-intent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3084,7 +3088,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Release/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3098,7 +3102,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.mock.station-intent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3118,7 +3122,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G6DMWDA6X5;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Debug/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3132,7 +3136,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.station-intent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -3154,7 +3158,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = G6DMWDA6X5;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Release/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3168,7 +3172,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DSTATION_EXTENSION";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.debug.station-widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3191,7 +3195,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Release/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3205,7 +3209,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DSTATION_EXTENSION";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.mock.station-widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3227,7 +3231,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G6DMWDA6X5;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Debug/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -3241,7 +3245,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.12.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DSTATION_EXTENSION";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.weatherxm.app.station-widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3333,7 +3337,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WeatherXM-MOCK";
+				INFOPLIST_KEY_CFBundleDisplayName = "WXM Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera for scanning the QR";
@@ -3351,7 +3355,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.15.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app.mock;
 				PRODUCT_NAME = WeatherXM;
@@ -3519,7 +3523,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.15.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app.debug;
 				PRODUCT_NAME = WeatherXM;
@@ -3550,7 +3554,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = WeatherXM;
+				INFOPLIST_KEY_CFBundleDisplayName = "WXM Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera for scanning the QR";
@@ -3568,7 +3572,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.15.0;
+				MARKETING_VERSION = "$(AppVersion)";
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app;
 				PRODUCT_NAME = WeatherXM;

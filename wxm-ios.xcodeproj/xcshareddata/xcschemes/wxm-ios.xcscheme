@@ -5,6 +5,24 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# Type a script or drag a script file from your workspace to insert its path.&#10;cd ${PROJECT_DIR}&#10;sh ${PROJECT_DIR}/Scripts/git_version.sh ${PROJECT_DIR}/Configuration/Version.xcconfig&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "B52BCC702824FB8F00EA3DA5"
+                     BuildableName = "WeatherXM.app"
+                     BlueprintName = "wxm-ios"
+                     ReferencedContainer = "container:wxm-ios.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -88,5 +106,23 @@
    <ArchiveAction
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "# Type a script or drag a script file from your workspace to insert its path.&#10;cd ${PROJECT_DIR}&#10;sh ${PROJECT_DIR}/Scripts/git_version.sh ${PROJECT_DIR}/Configuration/Version.xcconfig&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "B52BCC702824FB8F00EA3DA5"
+                     BuildableName = "WeatherXM.app"
+                     BlueprintName = "wxm-ios"
+                     ReferencedContainer = "container:wxm-ios.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
    </ArchiveAction>
 </Scheme>

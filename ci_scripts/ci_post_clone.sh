@@ -4,7 +4,8 @@ setupConfiguration(){
 	CONFIGURATION_PATH=$1
 	touch $CONFIGURATION_PATH
 
-	echo "MBXAccessToken = ${MAPBOX_ACCESS_TOKEN};" > $CONFIGURATION_PATH
+	echo "#include \"../Version.xcconfig\"" > $CONFIGURATION_PATH
+	echo "MBXAccessToken = ${MAPBOX_ACCESS_TOKEN};" >> $CONFIGURATION_PATH
 	echo "UserAccessTokenService = accessTokenService;" >> $CONFIGURATION_PATH
 	echo "UserRefreshTokenService = refreshTokenService;" >> $CONFIGURATION_PATH
 	echo "Account = weatherXM;" >> $CONFIGURATION_PATH
@@ -13,7 +14,12 @@ setupConfiguration(){
 	echo "ClaimTokenUrl = ${CLAIM_TOKEN_URL};" >> $CONFIGURATION_PATH
 	echo "AppStoreUrl = ${APP_STORE_URL};" >> $CONFIGURATION_PATH
 	echo "SupportUrl = ${SUPPORT_URL};" >> $CONFIGURATION_PATH
+
+	echo "$(<$CONFIGURATION_PATH)"
 }
+
+echo "Fetch all tags"
+git fetch --tags
 
 touch ~/.netrc
 
