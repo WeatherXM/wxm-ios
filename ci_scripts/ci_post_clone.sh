@@ -18,8 +18,6 @@ setupConfiguration(){
 	echo "$(<$CONFIGURATION_PATH)"
 }
 
-ls $CI_DERIVED_DATA_PATH
-
 echo "Fetch all tags"
 git fetch --tags
 

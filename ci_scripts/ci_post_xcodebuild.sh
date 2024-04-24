@@ -12,6 +12,7 @@ uploadDSyms(){
 	ZIP_DSYMS=./dsyms.zip
 	zip -r $ZIP_DSYMS $CI_ARCHIVE_PATH/dSYMs
 
+	echo "Upload Symbols"
 	eval $UPLOAD_SYMBOLS -gsp $APP_GOOGLE_SERVICES_PATH -p ios ./dsyms.zip
 	eval $UPLOAD_SYMBOLS -gsp $WIDGET_GOOGLE_SERVICES_PATH -p ios ./dsyms.zip
 	eval $UPLOAD_SYMBOLS -gsp $INTENT_GOOGLE_SERVICES_PATH -p ios ./dsyms.zip
