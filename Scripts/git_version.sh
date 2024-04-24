@@ -9,7 +9,7 @@
 VERSION_CONFIG_PATH=$1;
 echo $VERSION_CONFIG_PATH
 
-TAG=$(git describe --tags --abbrev=0)
+TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
 echo $TAG
 LATEST_VERSION=$TAG
 if [[ $TAG == RC* ]]
