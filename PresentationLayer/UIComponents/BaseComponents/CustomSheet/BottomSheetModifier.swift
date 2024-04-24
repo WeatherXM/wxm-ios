@@ -118,6 +118,7 @@ extension View {
 							ScrollView(showsIndicators: false) {
 								view
 							}
+							.clipped()
 						} else {
 							view
 						}
