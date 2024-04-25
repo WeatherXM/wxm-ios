@@ -93,6 +93,11 @@ private extension ForecastDetailsView {
 						proxy.scrollTo(index, anchor: .center)
 					}
 				}
+				.onAppear {
+					if let selectedIndex = viewModel.selectedForecastIndex {
+						proxy.scrollTo(selectedIndex, anchor: .center)
+					}
+				}
 			}
 		} else {
 			EmptyView()
