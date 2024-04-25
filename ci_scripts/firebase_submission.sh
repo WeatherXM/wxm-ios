@@ -10,5 +10,3 @@ done
 
 echo "Starting distribution of IPA to Firebase"
 ./firebase-tools-macos appdistribution:distribute "${ipa}" --app "${app_id}" --token "${token}" --groups "${group}"
-
-echo "Upload Symbols"
