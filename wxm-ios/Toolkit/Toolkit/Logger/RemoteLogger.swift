@@ -49,6 +49,10 @@ struct RemoteLogger: LoggerImplementation {
 	func setDefaultParameter(key: Parameter, value: ParameterValue) {
 		Analytics.setDefaultEventParameters([key.description: value.rawValue])
 	}
+
+	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
+		FirebaseManager.shared.setAnalyticsCollectionEnabled(enabled)
+	}
 }
 
 private extension Dictionary where Key == Parameter, Value == ParameterValue {

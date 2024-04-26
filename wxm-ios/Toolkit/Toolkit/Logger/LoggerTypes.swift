@@ -20,4 +20,5 @@ protocol LoggerImplementation {
 	func setUserId(_ userId: String?)
 	func setUserProperty(key: Parameter, value: ParameterValue)
 	func setDefaultParameter(key: Parameter, value: ParameterValue)
+	func setAnalyticsCollectionEnabled(_ enabled: Bool)
 }

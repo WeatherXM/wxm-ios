@@ -38,6 +38,10 @@ public extension Logger {
 // MARK: - Analytics
 public extension Logger {
 
+	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
+		loggerImpl.setAnalyticsCollectionEnabled(enabled)
+	}
+
     func trackScreen(_ screen: Screen, parameters: [Parameter: ParameterValue]? = nil) {
 		loggerImpl.trackScreen(screen, parameters: parameters)
     }

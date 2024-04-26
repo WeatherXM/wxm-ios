@@ -43,7 +43,7 @@ public struct SettingsRepositoryImpl: SettingsRepository {
 private extension SettingsRepositoryImpl {
     func setAnalyticsEnabled(_ enabled: Bool) {
         userDefaultsService.save(value: enabled, key: analyticsKey)
-        FirebaseManager.shared.setAnalyticsCollectionEnabled(enabled)
+        Logger.shared.setAnalyticsCollectionEnabled(enabled)
     }
 
     func setAnlyticsOptTimestamp() {

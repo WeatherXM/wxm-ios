@@ -31,6 +31,10 @@ public class FirebaseManager {
 		}
 	}
 
+	internal func setAnalyticsCollectionEnabled(_ enabled: Bool) {
+		firebaseManagerImpl.setAnalyticsCollectionEnabled(enabled)
+	}
+
     public func launch() {
 		firebaseManagerImpl.launch()
     }
@@ -39,9 +43,6 @@ public class FirebaseManager {
 		await firebaseManagerImpl.getInstallationId()
     }
 
-    public func setAnalyticsCollectionEnabled(_ enabled: Bool) {
-		firebaseManagerImpl.setAnalyticsCollectionEnabled(enabled)
-    }
 
 	public func gatAuthorizationStatus() async -> UNAuthorizationStatus {
 		await firebaseManagerImpl.getAuthorizationStatus()
