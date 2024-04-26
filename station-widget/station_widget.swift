@@ -20,6 +20,9 @@ struct Provider: IntentTimelineProvider {
 									keychainRepository: SwinjectHelper.shared.getContainerForSwinject().resolve(KeychainRepository.self)!)
 		self.useCase = useCase
 		FirebaseManager.shared.launch()
+		if let mixpanelToken: String = Bundle.main.getConfiguration(for: .mixpanelToken) {
+			Logger.shared.launch(with: mixpanelToken)
+		}
 	}
 
     func placeholder(in context: Context) -> StationTimelineEntry {
