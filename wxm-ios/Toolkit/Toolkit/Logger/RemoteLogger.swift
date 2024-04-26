@@ -8,10 +8,15 @@
 import Foundation
 import Firebase
 import FirebaseAnalytics
+import Mixpanel
 
 struct RemoteLogger: LoggerImplementation {
 	private let networkDomain = "network_domain"
 
+	func launch(with mixpanelId: String) {
+		Mixpanel.initialize(token: mixpanelId, trackAutomaticEvents: false)
+	}
+	
 	func logNetworkError(_ networkError: NetworkError) {
 		let nsError = NSError(domain: networkDomain,
 							  code: networkError.code,
@@ -33,31 +38,50 @@ struct RemoteLogger: LoggerImplementation {
 	}
 
 	func trackEvent(_ event: Event, parameters: [Parameter : ParameterValue]?) {
-		let convertedParams: [String: Any]? = parameters?.toEventParamsDictionary
-		Analytics.logEvent(event.description, parameters: convertedParams)
+		Analytics.logEvent(event.description, parameters: parameters?.toEventParamsDictionary)
+		Mixpanel.mainInstance().track(event: event.description, properties: parameters?.toMixpanelParamsDictionary)
 	}
 
 	func setUserId(_ userId: String?) {
 		Analytics.setUserID(userId)
 		Crashlytics.crashlytics().setUserID(userId)
+		
+		if let userId {
+			Mixpanel.mainInstance().identify(distinctId: userId)
+		} else {
+			Mixpanel.mainInstance().reset()
+		}
 	}
 
 	func setUserProperty(key: Parameter, value: ParameterValue) {
 		Analytics.setUserProperty(value.rawValue, forName: key.description)
+		Mixpanel.mainInstance().people.set(property: key.description, to: value.rawValue)
 	}
 
 	func setDefaultParameter(key: Parameter, value: ParameterValue) {
 		Analytics.setDefaultEventParameters([key.description: value.rawValue])
+		Mixpanel.mainInstance().registerSuperProperties([key: value].toMixpanelParamsDictionary ?? [:])
 	}
 
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
 		FirebaseManager.shared.setAnalyticsCollectionEnabled(enabled)
+
+		if enabled {
+			Mixpanel.mainInstance().optInTracking()
+		} else {
+			Mixpanel.mainInstance().optOutTracking()
+		}
 	}
 }
 
 private extension Dictionary where Key == Parameter, Value == ParameterValue {
 	var toEventParamsDictionary: [String: Any]? {
 		let convertedParams: [String: Any] = self.reduce(into: [:]) { $0[$1.key.description] = $1.value.rawValue }
+		return convertedParams
+	}
+
+	var toMixpanelParamsDictionary: [String: MixpanelType]? {
+		let convertedParams: [String: MixpanelType] = self.reduce(into: [:]) { $0[$1.key.description] = $1.value.rawValue }
 		return convertedParams
 	}
 }

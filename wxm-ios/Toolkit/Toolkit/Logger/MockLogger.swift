@@ -8,6 +8,7 @@
 import Foundation
 
 struct MockLogger: LoggerImplementation {
+	func launch(with mixpanelId: String) {}
 	func logNetworkError(_ networkError: NetworkError) {}
 	func logError(_ nsError: NSError) {}
 	func trackScreen(_ screen: Screen, parameters: [Parameter : ParameterValue]?) {}

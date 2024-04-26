@@ -22,6 +22,10 @@ public class Logger {
 			loggerImpl = RemoteLogger()
 		}
 	}
+
+	public func launch(with mixpanelId: String) {
+		loggerImpl.launch(with: mixpanelId)
+	}
 }
 
 // MARK: - Errors
