@@ -305,6 +305,7 @@
 		2692D8922A4DC0BA0060CB3C /* NetworkSearchResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8912A4DC0BA0060CB3C /* NetworkSearchResponse+.swift */; };
 		2699F5652A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2699F5642A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift */; };
 		269C809C2AB9E76F005F9BD6 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C809B2AB9E76F005F9BD6 /* Badge.swift */; };
+		269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 269C96892BDBD5660035B8F1 /* Mixpanel */; };
 		269E85712B0242C100BE774C /* WXMShareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E85702B0242C100BE774C /* WXMShareModifier.swift */; };
 		26A3B3C52B178F630002F35F /* LocalizableString+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3C42B178F630002F35F /* LocalizableString+Profile.swift */; };
 		26A3B3C72B1792890002F35F /* ProfileTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3C62B1792890002F35F /* ProfileTypes.swift */; };
@@ -964,6 +965,7 @@
 				B5799E9F28254E3300FEBB85 /* DataLayer.framework in Frameworks */,
 				B5799E9D28254E3000FEBB85 /* DomainLayer.framework in Frameworks */,
 				263B8B552B29FE34001C5060 /* MapboxStatic in Frameworks */,
+				269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */,
 				26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */,
 				261E9EB029A9296900E8EBA3 /* IQKeyboardManagerSwift in Frameworks */,
 				262A0DFD29DC1823005B14A2 /* Lottie in Frameworks */,
@@ -2415,6 +2417,7 @@
 				263B8B542B29FE34001C5060 /* MapboxStatic */,
 				26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */,
 				264DD4C92B9B169E002691FF /* NukeUI */,
+				269C96892BDBD5660035B8F1 /* Mixpanel */,
 			);
 			productName = "wxm-ios";
 			productReference = B52BCC712824FB8F00EA3DA5 /* WeatherXM.app */;
@@ -2462,6 +2465,7 @@
 				263B8B4B2B29EA64001C5060 /* XCRemoteSwiftPackageReference "MapboxStatic" */,
 				26FFAD662B8DF9C200BF0A6B /* XCRemoteSwiftPackageReference "LazyLoadingPager" */,
 				264DD4C82B9B169D002691FF /* XCRemoteSwiftPackageReference "Nuke" */,
+				269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -3672,6 +3676,14 @@
 				minimumVersion = 12.4.0;
 			};
 		};
+		269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		26FFAD662B8DF9C200BF0A6B /* XCRemoteSwiftPackageReference "LazyLoadingPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WeatherXM/LazyLoadingPager";
@@ -3752,6 +3764,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9EB629A92BE000E8EBA3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		269C96892BDBD5660035B8F1 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
 		};
 		26B8328F2AC57FE600757A69 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -24,6 +24,7 @@
 		268D07902B2AF13E002BD77E /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D078F2B2AF13E002BD77E /* UIImage+.swift */; };
 		2692EA172B319B24007B83F1 /* FirebaseManagerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692EA162B319B24007B83F1 /* FirebaseManagerTypes.swift */; };
 		26968CD42B1A1AB8003856D9 /* WEIConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26968CD32B1A1AB8003856D9 /* WEIConverter.swift */; };
+		269C968D2BDBD7250035B8F1 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 269C968C2BDBD7250035B8F1 /* Mixpanel */; };
 		26AB9F4F2A7CFE6200855912 /* AsyncOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F4E2A7CFE6200855912 /* AsyncOperations.swift */; };
 		26AB9F542A801C5300855912 /* TimeValidationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F532A801C5300855912 /* TimeValidationCache.swift */; };
 		26B795DC2B4D700A00ADBCA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B795DB2B4D700A00ADBCA8 /* Constants.swift */; };
@@ -82,6 +83,7 @@
 			files = (
 				268A62E62B595CCD0079D507 /* FirebaseMessaging in Frameworks */,
 				26DD42BE29AF4FAD008E277E /* FirebaseCrashlytics in Frameworks */,
+				269C968D2BDBD7250035B8F1 /* Mixpanel in Frameworks */,
 				26CD5BB32AF5293C0097093F /* FirebaseRemoteConfigSwift in Frameworks */,
 				26DD42C029AF4FAD008E277E /* FirebasePerformance in Frameworks */,
 				268818B12AEFB93200737F7D /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -226,6 +228,7 @@
 				26CD5BB22AF5293C0097093F /* FirebaseRemoteConfigSwift */,
 				26CD5BC22AF54C920097093F /* FirebaseRemoteConfig */,
 				268A62E52B595CCC0079D507 /* FirebaseMessaging */,
+				269C968C2BDBD7250035B8F1 /* Mixpanel */,
 			);
 			productName = Toolkit;
 			productReference = 26DD429B29AF4633008E277E /* Toolkit.framework */;
@@ -256,6 +259,7 @@
 			mainGroup = 26DD429129AF4633008E277E;
 			packageReferences = (
 				26DD42BC29AF4FAD008E277E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				269C968B2BDBD7250035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 			);
 			productRefGroup = 26DD429C29AF4633008E277E /* Products */;
 			projectDirPath = "";
@@ -616,6 +620,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		269C968B2BDBD7250035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		26DD42BC29AF4FAD008E277E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -636,6 +648,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 26DD42BC29AF4FAD008E277E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		269C968C2BDBD7250035B8F1 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 269C968B2BDBD7250035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
 		};
 		26CD5BB22AF5293C0097093F /* FirebaseRemoteConfigSwift */ = {
 			isa = XCSwiftPackageProductDependency;
