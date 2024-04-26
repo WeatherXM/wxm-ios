@@ -15,6 +15,8 @@ struct RemoteLogger: LoggerImplementation {
 
 	func launch(with mixpanelId: String) {
 		Mixpanel.initialize(token: mixpanelId, trackAutomaticEvents: false)
+		addMixpanelSuperProperties(properties: ["app_id": Bundle.main.bundleIdentifier])
+		Mixpanel.mainInstance().loggingEnabled = true
 	}
 	
 	func logNetworkError(_ networkError: NetworkError) {
@@ -60,7 +62,7 @@ struct RemoteLogger: LoggerImplementation {
 
 	func setDefaultParameter(key: Parameter, value: ParameterValue) {
 		Analytics.setDefaultEventParameters([key.description: value.rawValue])
-		Mixpanel.mainInstance().registerSuperProperties([key: value].toMixpanelParamsDictionary ?? [:])
+		addMixpanelSuperProperties(properties: [key: value].toMixpanelParamsDictionary ?? [:])
 	}
 
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
@@ -71,6 +73,14 @@ struct RemoteLogger: LoggerImplementation {
 		} else {
 			Mixpanel.mainInstance().optOutTracking()
 		}
+	}
+}
+
+private extension RemoteLogger {
+	func addMixpanelSuperProperties(properties: Properties) {
+		var currentProperties: Properties = Mixpanel.mainInstance().currentSuperProperties() as? Properties ?? [:]
+		currentProperties += properties
+		Mixpanel.mainInstance().registerSuperProperties(currentProperties)
 	}
 }
 
