@@ -348,7 +348,7 @@
 		26B7C98B2A6EBFBE00C30CE1 /* DeepLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7C98A2A6EBFBE00C30CE1 /* DeepLinkHandler.swift */; };
 		26B8321F2AC31E4500757A69 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B8321E2AC31E4500757A69 /* WidgetKit.framework */; };
 		26B832212AC31E4500757A69 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B832202AC31E4500757A69 /* SwiftUI.framework */; };
-		26B832242AC31E4500757A69 /* station_widgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B832232AC31E4500757A69 /* station_widgetBundle.swift */; };
+		26B832242AC31E4500757A69 /* Station_widgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B832232AC31E4500757A69 /* Station_widgetBundle.swift */; };
 		26B832262AC31E4500757A69 /* Station_widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B832252AC31E4500757A69 /* Station_widget.swift */; };
 		26B832282AC31E4600757A69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26B832272AC31E4600757A69 /* Assets.xcassets */; };
 		26B8322C2AC31E4600757A69 /* station-widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 26B8321D2AC31E4500757A69 /* station-widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -846,7 +846,7 @@
 		26B8321D2AC31E4500757A69 /* station-widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "station-widgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B8321E2AC31E4500757A69 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		26B832202AC31E4500757A69 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		26B832232AC31E4500757A69 /* station_widgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = station_widgetBundle.swift; sourceTree = "<group>"; };
+		26B832232AC31E4500757A69 /* Station_widgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station_widgetBundle.swift; sourceTree = "<group>"; };
 		26B832252AC31E4500757A69 /* Station_widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station_widget.swift; sourceTree = "<group>"; };
 		26B832272AC31E4600757A69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26B832292AC31E4600757A69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2050,7 +2050,7 @@
 				26B832252AC31E4500757A69 /* Station_widget.swift */,
 				26769AB12ACEC58600162974 /* StationTimelineEntry.swift */,
 				266D18032ACB06EE007CDB06 /* StationWidgetConfiguration.intentdefinition */,
-				26B832232AC31E4500757A69 /* station_widgetBundle.swift */,
+				26B832232AC31E4500757A69 /* Station_widgetBundle.swift */,
 				2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */,
 			);
 			path = "station-widget";
@@ -2621,7 +2621,7 @@
 				26B832B82AC5B03200757A69 /* StrokeBorderModifier.swift in Sources */,
 				26B832AA2AC5A7F100757A69 /* UnitConstants.swift in Sources */,
 				26CA845B2AD93BB6006D47D7 /* String+Common.swift in Sources */,
-				26B832242AC31E4500757A69 /* station_widgetBundle.swift in Sources */,
+				26B832242AC31E4500757A69 /* Station_widgetBundle.swift in Sources */,
 				26769AB22ACEC58600162974 /* StationTimelineEntry.swift in Sources */,
 				26B832B52AC5AFEC00757A69 /* FontSizeEnum.swift in Sources */,
 				266D18022ACADD46007CDB06 /* LocalizableString+Widget.swift in Sources */,

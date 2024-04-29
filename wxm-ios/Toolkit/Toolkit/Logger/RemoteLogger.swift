@@ -33,7 +33,7 @@ struct RemoteLogger: LoggerImplementation {
 		Crashlytics.crashlytics().record(error: nsError)
 	}
 
-	func trackScreen(_ screen: Screen, parameters: [Parameter : ParameterValue]?) {
+	func trackScreen(_ screen: Screen, parameters: [Parameter: ParameterValue]?) {
 		var params: [String: Any] = [AnalyticsParameterScreenName: screen.rawValue]
 		if let additionalParams = parameters?.toEventParamsDictionary {
 			params += additionalParams
@@ -43,7 +43,7 @@ struct RemoteLogger: LoggerImplementation {
 		Mixpanel.mainInstance().track(event: AnalyticsParameterScreenName, properties: params as? Properties)
 	}
 
-	func trackEvent(_ event: Event, parameters: [Parameter : ParameterValue]?) {
+	func trackEvent(_ event: Event, parameters: [Parameter: ParameterValue]?) {
 		Analytics.logEvent(event.description, parameters: parameters?.toEventParamsDictionary)
 		Mixpanel.mainInstance().track(event: event.description, properties: parameters?.toMixpanelParamsDictionary)
 	}
@@ -104,4 +104,3 @@ private extension Dictionary where Key == Parameter, Value == ParameterValue {
 		return convertedParams
 	}
 }
-
