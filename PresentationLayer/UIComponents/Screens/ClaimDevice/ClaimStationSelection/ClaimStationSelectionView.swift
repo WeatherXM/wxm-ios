@@ -12,19 +12,24 @@ struct ClaimStationSelectionView: View {
 	@EnvironmentObject var navigationObject: NavigationObject
 
     var body: some View {
-		ScrollView(showsIndicators: false) {
-			VStack(spacing: CGFloat(.mediumSpacing)) {
-				HStack {
-					Text(LocalizableString.ClaimDevice.selectType.localized)
-						.foregroundStyle(Color(colorEnum: .darkestBlue))
-						.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
-					Spacer()
-				}
+		ZStack {
+			Color(colorEnum: .newBG)
+				.ignoresSafeArea()
 
-				selectionGrid
+			ScrollView(showsIndicators: false) {
+				VStack(spacing: CGFloat(.mediumSpacing)) {
+					HStack {
+						Text(LocalizableString.ClaimDevice.selectType.localized)
+							.foregroundStyle(Color(colorEnum: .darkestBlue))
+							.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
+						Spacer()
+					}
+
+					selectionGrid
+				}
+				.padding(.horizontal, CGFloat(.mediumSidePadding))
+				.padding(.vertical, CGFloat(.mediumToLargeSidePadding))
 			}
-			.padding(.horizontal, CGFloat(.mediumSidePadding))
-			.padding(.vertical, CGFloat(.mediumToLargeSidePadding))
 		}
 		.onAppear {
 			navigationObject.title = LocalizableString.ClaimDevice.selectionNavigationTitle.localized
