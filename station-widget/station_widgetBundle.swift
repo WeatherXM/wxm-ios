@@ -11,6 +11,6 @@ import SwiftUI
 @main
 struct station_widgetBundle: WidgetBundle {
     var body: some Widget {
-        station_widget()
+        Station_widget()
     }
 }

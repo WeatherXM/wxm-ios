@@ -201,7 +201,7 @@ private extension SettingsViewModel {
 
 	func observeAuthorizationStatus() {
 		FirebaseManager.shared
-			.notificationsAuthorizationStatusPublisher?
+			.notificationsAuthStatusPublisher?
 			.receive(on: DispatchQueue.main).sink { [weak self] status in
 				guard let status else {
 					return
