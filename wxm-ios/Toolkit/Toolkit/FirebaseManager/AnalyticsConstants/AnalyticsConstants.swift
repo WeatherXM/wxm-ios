@@ -91,6 +91,7 @@ public enum Parameter: String {
 	case filter = "FILTER"
 	case groupBy = "GROUP_BY"
 	case status = "STATUS"
+	case appId = "APP_ID"
 }
 
 public enum ParameterValue {
