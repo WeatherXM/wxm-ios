@@ -1266,7 +1266,18 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select your device type"
+            "value" : "Select your station type"
+          }
+        }
+      }
+    },
+    "claim_device_selection_navigation_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim a Weather Station"
           }
         }
       }

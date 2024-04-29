@@ -9,6 +9,7 @@ import Foundation
 
 extension LocalizableString {
     enum ClaimDevice {
+		case selectionNavigationTitle
         case selectType
         case typeWS1000Title
         case typeWS1000Subtitle
@@ -119,6 +120,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 
     var key: String {
         switch self {
+			case .selectionNavigationTitle:
+				return "claim_device_selection_navigation_title"
             case .selectType:
                 return "claim_device_select_type"
             case .typeWS1000Title:
