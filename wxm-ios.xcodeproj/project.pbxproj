@@ -422,6 +422,8 @@
 		26E88AFF29E02F590023BBD5 /* anim_loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 26E88AFE29E02F590023BBD5 /* anim_loader.json */; };
 		26E9A5142AE26AFE003E0830 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A5132AE26AFE003E0830 /* View+.swift */; };
 		26F149E22BDFC5040029F981 /* ClaimStationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */; };
+		26F149E52BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E42BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift */; };
+		26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */; };
 		26F246362A278DAB0089D3E7 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664831829C31AF400748F9C /* CustomSheet.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
 		26FFAD792B8E12DC00BF0A6B /* RewardFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */; };
@@ -886,6 +888,8 @@
 		26E88AFE29E02F590023BBD5 /* anim_loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_loader.json; sourceTree = "<group>"; };
 		26E9A5132AE26AFE003E0830 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionView.swift; sourceTree = "<group>"; };
+		26F149E42BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionViewModel.swift; sourceTree = "<group>"; };
+		26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionTypes.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
 		26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceRewardDetailsResponse+.swift"; sourceTree = "<group>"; };
 		26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotaionsView.swift; sourceTree = "<group>"; };
@@ -1461,7 +1465,7 @@
 				2675471829A9181E008BCF40 /* Helium */,
 				267546E529A9181E008BCF40 /* ClaimDeviceViewModel.swift */,
 				2675472C29A9181E008BCF40 /* SelectDeviceTypeView.swift */,
-				26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */,
+				26F149E32BDFC83D0029F981 /* ClaimStationSelection */,
 			);
 			path = ClaimDevice;
 			sourceTree = "<group>";
@@ -2201,6 +2205,16 @@
 			path = StationDetails;
 			sourceTree = "<group>";
 		};
+		26F149E32BDFC83D0029F981 /* ClaimStationSelection */ = {
+			isa = PBXGroup;
+			children = (
+				26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */,
+				26F149E42BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift */,
+				26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */,
+			);
+			path = ClaimStationSelection;
+			sourceTree = "<group>";
+		};
 		26FFAD772B8E125900BF0A6B /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -2794,6 +2808,7 @@
 				2672C77E2AA9BCFE00E1FDCC /* HistoryContainerViewModel.swift in Sources */,
 				267547C229A9181E008BCF40 /* HistoryView.swift in Sources */,
 				26A3B3C52B178F630002F35F /* LocalizableString+Profile.swift in Sources */,
+				26F149E52BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift in Sources */,
 				267547A329A9181E008BCF40 /* HistoryViewModel.swift in Sources */,
 				267548EF29A91A87008BCF40 /* Image+.swift in Sources */,
 				262A4CED2A93567A00A4BC17 /* InfoView.swift in Sources */,
@@ -2880,6 +2895,7 @@
 				267548DF29A91A87008BCF40 /* SettingsEnum.swift in Sources */,
 				267547B929A9181E008BCF40 /* SettingsSectionTitle.swift in Sources */,
 				267547B529A9181E008BCF40 /* SettingsView.swift in Sources */,
+				26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */,
 				267547A429A9181E008BCF40 /* SettingsViewModel.swift in Sources */,
 				267548CF29A91A87008BCF40 /* ShadowEnum.swift in Sources */,
 				267548EE29A91A87008BCF40 /* Shape+.swift in Sources */,

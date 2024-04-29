@@ -11,6 +11,10 @@ extension LocalizableString {
     enum ClaimDevice {
 		case selectionNavigationTitle
         case selectType
+		case m5Title
+		case d1Title
+		case heliumTitle
+		case pulseTitle
         case typeWS1000Title
         case typeWS1000Subtitle
         case typeWS2000Title
@@ -124,6 +128,14 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_selection_navigation_title"
             case .selectType:
                 return "claim_device_select_type"
+			case .m5Title:
+				return "claim_device_m5_title"
+			case .d1Title:
+				return "claim_device_d1_title"
+			case .heliumTitle:
+				return "claim_device_helium_title"
+			case .pulseTitle:
+				return "claim_device_pulse_title"
             case .typeWS1000Title:
                 return "claim_device_type_ws1000_title"
             case .typeWS1000Subtitle:
@@ -287,6 +299,6 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
                 return "claim_device_step_setting_frequency"
             case .stepClaiming:
                 return "claim_device_step_claiming"
-        }
+		}
     }
 }
