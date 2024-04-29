@@ -44,6 +44,7 @@ struct StationForecastView: View {
 															maxWeekTemperature: viewModel.overallMaxTemperature ?? 0.0)
 									.wxmShadow()
 								}
+								.buttonStyle(.plain)
 							}
 							.padding(.horizontal)
 						}

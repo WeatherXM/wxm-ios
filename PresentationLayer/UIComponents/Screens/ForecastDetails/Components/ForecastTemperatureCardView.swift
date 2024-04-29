@@ -64,6 +64,7 @@ private extension ForecastTemperatureCardView {
 				LottieView(animationCase: "anim_not_available", loopMode: .loop)
 			}
 		}
+		.frame(width: 100.0, height: 100.0)
 	}
 }
 
