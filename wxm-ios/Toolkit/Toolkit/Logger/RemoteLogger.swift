@@ -40,6 +40,7 @@ struct RemoteLogger: LoggerImplementation {
 		}
 
 		Analytics.logEvent(AnalyticsEventScreenView, parameters: params)
+		Mixpanel.mainInstance().track(event: AnalyticsParameterScreenName, properties: params as? Properties)
 	}
 
 	func trackEvent(_ event: Event, parameters: [Parameter : ParameterValue]?) {
