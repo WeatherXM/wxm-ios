@@ -13,7 +13,8 @@ struct AddButton: View {
     var body: some View {
         ZStack {
             Button {
-                isShowingAddDeviceSheet.toggle()
+				let viewModel = ViewModelsFactory.getClaimStationSelectionViewModel()
+				Router.shared.navigateTo(.claimStationSelection(viewModel))
             } label: {
                 Image(asset: .plus)
                     .renderingMode(.template)
