@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AddButton: View {
-    @State private var isShowingAddDeviceSheet = false
 
     var body: some View {
         ZStack {
@@ -24,22 +23,6 @@ struct AddButton: View {
             .background(Color(colorEnum: .primary))
             .cornerRadius(CGFloat(.cardCornerRadius))
             .shadow(radius: ShadowEnum.addButton.radius, x: ShadowEnum.addButton.xVal, y: ShadowEnum.addButton.yVal)
-            .customSheet(
-                isPresented: $isShowingAddDeviceSheet
-            ) { controller in
-                SelectDeviceTypeView(
-                    dismiss: controller.dismiss,
-                    didSelectClaimFlow: { flow in
-                        controller.dismiss()
-                        switch flow {
-                            case .manual:
-                                Router.shared.navigateTo(.claimDevice(false))
-                            case .bluetooth:
-                                Router.shared.navigateTo(.claimDevice(true))
-                        }
-                    }
-                )
-            }
         }
     }
 }
