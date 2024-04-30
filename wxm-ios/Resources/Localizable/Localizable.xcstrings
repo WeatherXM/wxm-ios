@@ -4739,6 +4739,17 @@
         }
       }
     },
+    "probablility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Probability"
+          }
+        }
+      }
+    },
     "profile_allocated_rewards" : {
       "extractionState" : "manual",
       "localizations" : {

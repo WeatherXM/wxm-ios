@@ -55,6 +55,7 @@ enum LocalizableString: WXMLocalizable {
     case precipRate
     case precipitationProbability
 	case precipProbability
+	case probablility
     case dailyPrecipitation
     case dailyPrecip
     case windGust
@@ -350,6 +351,8 @@ extension LocalizableString {
                 return "precipitation_probability"
 			case .precipProbability:
 				return "precip_probability"
+			case .probablility:
+				return "probablility"
             case .dailyPrecipitation:
                 return "daily_precipitation"
             case .dailyPrecip:
