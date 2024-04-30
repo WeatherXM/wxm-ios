@@ -622,6 +622,17 @@
         }
       }
     },
+    "claim_device_claim_new_device" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim new device"
+          }
+        }
+      }
+    },
     "claim_device_claiming_error" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -424,6 +424,8 @@
 		26F149E22BDFC5040029F981 /* ClaimStationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */; };
 		26F149E52BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E42BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift */; };
 		26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */; };
+		26F149E92BDFEAFA0029F981 /* ClaimDeviceContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */; };
+		26F149EB2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */; };
 		26F246362A278DAB0089D3E7 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664831829C31AF400748F9C /* CustomSheet.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
 		26FFAD792B8E12DC00BF0A6B /* RewardFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */; };
@@ -890,6 +892,8 @@
 		26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionView.swift; sourceTree = "<group>"; };
 		26F149E42BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionViewModel.swift; sourceTree = "<group>"; };
 		26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionTypes.swift; sourceTree = "<group>"; };
+		26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceContainerView.swift; sourceTree = "<group>"; };
+		26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceContainerViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
 		26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceRewardDetailsResponse+.swift"; sourceTree = "<group>"; };
 		26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotaionsView.swift; sourceTree = "<group>"; };
@@ -1466,6 +1470,8 @@
 				267546E529A9181E008BCF40 /* ClaimDeviceViewModel.swift */,
 				2675472C29A9181E008BCF40 /* SelectDeviceTypeView.swift */,
 				26F149E32BDFC83D0029F981 /* ClaimStationSelection */,
+				26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */,
+				26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */,
 			);
 			path = ClaimDevice;
 			sourceTree = "<group>";
@@ -2872,6 +2878,7 @@
 				267547B029A9181E008BCF40 /* ProfileViewModel.swift in Sources */,
 				2675482B29A9181E008BCF40 /* ProgressBar.swift in Sources */,
 				2675480529A9181E008BCF40 /* ProgressBarStyle.swift in Sources */,
+				26F149E92BDFEAFA0029F981 /* ClaimDeviceContainerView.swift in Sources */,
 				267547F829A9181E008BCF40 /* QrScannerView.swift in Sources */,
 				26A4118529BA1E1E00A2C10B /* RebootStationView.swift in Sources */,
 				26A4118729BA1E7000A2C10B /* RebootStationViewModel.swift in Sources */,
@@ -2898,6 +2905,7 @@
 				26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */,
 				267547A429A9181E008BCF40 /* SettingsViewModel.swift in Sources */,
 				267548CF29A91A87008BCF40 /* ShadowEnum.swift in Sources */,
+				26F149EB2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift in Sources */,
 				267548EE29A91A87008BCF40 /* Shape+.swift in Sources */,
 				268B5C3F2BCE95DB00E63655 /* ForecastTemperatureCardView.swift in Sources */,
 				26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */,
