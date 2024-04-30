@@ -190,4 +190,8 @@ enum ViewModelsFactory {
 	static func getClaimStationBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeginViewModel {
 		ClaimDeviceBeginViewModel(completion: completion)
 	}
+
+	static func getClaimStationM5BeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceM5BeginViewModel {
+		ClaimDeviceM5BeginViewModel(completion: completion)
+	}
 }

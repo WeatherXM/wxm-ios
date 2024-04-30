@@ -19,7 +19,7 @@ struct ClaimDeviceBeginView: View {
 					VStack(spacing: CGFloat(.largeSpacing)) {
 						HStack {
 							Text(LocalizableString.ClaimDevice.connectGatewayTitle.localized)
-								.font(.system(size: CGFloat(.smallTitleFontSize)))
+								.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
 								.foregroundStyle(Color(colorEnum: .darkestBlue))
 
 							Spacer()
@@ -90,5 +90,5 @@ private extension ClaimDeviceBeginView {
 }
 
 #Preview {
-	ClaimDeviceBeginView(viewModel: .init(completion: {}))
+	ClaimDeviceBeginView(viewModel: ClaimDeviceM5BeginViewModel(completion: {}))
 }

@@ -31,7 +31,10 @@ private extension ClaimDeviceContainerViewModel {
 	}
 
 	func getM5Steps() -> [ClaimDeviceStep] {
-		[]
+		let beginViewModel = ViewModelsFactory.getClaimStationM5BeginViewModel { [weak self] in
+			self?.selectedIndex += 1
+		}
+		return [.begin(beginViewModel), .serialNumber, .location]
 	}
 
 	func getD1Steps() -> [ClaimDeviceStep] {

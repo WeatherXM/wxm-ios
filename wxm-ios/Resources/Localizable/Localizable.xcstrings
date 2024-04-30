@@ -809,6 +809,50 @@
         }
       }
     },
+    "claim_device_connect_m5_bullet_four" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your WiFi network from the list and enter the WiFi password to connect your gateway."
+          }
+        }
+      }
+    },
+    "claim_device_connect_m5_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn on the M5 gateway and swipe right to the settings screen. Select **“Configure WiFi”** and then press **“Continue”** on the screen."
+          }
+        }
+      }
+    },
+    "claim_device_connect_m5_bullet_three" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open your phone’s browser, and navigate to **10.10.0.1.**"
+          }
+        }
+      }
+    },
+    "claim_device_connect_m5_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect your phone to the **“WXM M5 XXX”** WiFi network."
+          }
+        }
+      }
+    },
     "claim_device_connection_bullet_1_bold" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4188,6 +4232,9 @@
           }
         }
       }
+    },
+    "Key" : {
+      "extractionState" : "manual"
     },
     "last_name" : {
       "extractionState" : "manual",
