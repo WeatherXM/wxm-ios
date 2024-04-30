@@ -15,7 +15,7 @@ struct ChartsContainer: View {
     @StateObject var delegate: ChartDelegate
 
     var body: some View {
-        VStack(spacing: CGFloat(.mediumSpacing)) {
+        VStack(spacing: CGFloat(.largeSpacing)) {
 			ForEach(0..<chartTypes.count, id: \.self) { index in
 				let chart = chartTypes[index]
                 ChartCardView(type: chart,
