@@ -37,8 +37,8 @@ extension CurrentWeather {
 	func toForecastTemperatureItem(with timeZone: TimeZone, scrollGraphType: ForecastChartType? = nil) -> ForecastTemperatureCardView.Item {
 		.init(weatherIcon: icon?.lottieAnimation,
 			  dateString: getTemeperatureItemDateString(with: timeZone, timestamp: timestamp),
-			  temperature: temperatureMax?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "",
-			  secondaryTemperature: temperatureMin?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "",
+			  temperature: temperatureMax?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
+			  secondaryTemperature: temperatureMin?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
 			  scrollToGraphType: scrollGraphType)
 	}
 
