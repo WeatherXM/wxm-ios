@@ -40,6 +40,8 @@
 		262C7C1C2A94F6AF0042ACE6 /* YAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C7C1B2A94F6AF0042ACE6 /* YAxisValueFormatter.swift */; };
 		262C7C5A2A9745350042ACE6 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C7C592A9745350042ACE6 /* AlertHelper.swift */; };
 		262C7C5D2A9746420042ACE6 /* AlertHelper+Follow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C7C5C2A9746420042ACE6 /* AlertHelper+Follow.swift */; };
+		26325B012BE1139000182C59 /* ClaimDeviceBeginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B002BE1139000182C59 /* ClaimDeviceBeginView.swift */; };
+		26325B032BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B022BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift */; };
 		2632E62F2A335ECD00A5ADB3 /* NetworkStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E62E2A335ECD00A5ADB3 /* NetworkStatsView.swift */; };
 		2632E6322A335EF400A5ADB3 /* NetworkStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E6312A335EF400A5ADB3 /* NetworkStatsViewModel.swift */; };
 		2632E6342A3378BF00A5ADB3 /* StatisticsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E6332A3378BF00A5ADB3 /* StatisticsChart.swift */; };
@@ -561,6 +563,8 @@
 		262C7C1B2A94F6AF0042ACE6 /* YAxisValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YAxisValueFormatter.swift; sourceTree = "<group>"; };
 		262C7C592A9745350042ACE6 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		262C7C5C2A9746420042ACE6 /* AlertHelper+Follow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertHelper+Follow.swift"; sourceTree = "<group>"; };
+		26325B002BE1139000182C59 /* ClaimDeviceBeginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeginView.swift; sourceTree = "<group>"; };
+		26325B022BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeginViewModel.swift; sourceTree = "<group>"; };
 		2632E62E2A335ECD00A5ADB3 /* NetworkStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsView.swift; sourceTree = "<group>"; };
 		2632E6312A335EF400A5ADB3 /* NetworkStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsViewModel.swift; sourceTree = "<group>"; };
 		2632E6332A3378BF00A5ADB3 /* StatisticsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsChart.swift; sourceTree = "<group>"; };
@@ -1126,6 +1130,15 @@
 			path = AlertHelper;
 			sourceTree = "<group>";
 		};
+		26325AFF2BE1127F00182C59 /* ClaimDeviceBegin */ = {
+			isa = PBXGroup;
+			children = (
+				26325B002BE1139000182C59 /* ClaimDeviceBeginView.swift */,
+				26325B022BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift */,
+			);
+			path = ClaimDeviceBegin;
+			sourceTree = "<group>";
+		};
 		2632E62D2A335EAC00A5ADB3 /* NetworkStatistics */ = {
 			isa = PBXGroup;
 			children = (
@@ -1466,6 +1479,7 @@
 		2675471529A9181E008BCF40 /* ClaimDevice */ = {
 			isa = PBXGroup;
 			children = (
+				26325AFF2BE1127F00182C59 /* ClaimDeviceBegin */,
 				2675471829A9181E008BCF40 /* Helium */,
 				267546E529A9181E008BCF40 /* ClaimDeviceViewModel.swift */,
 				2675472C29A9181E008BCF40 /* SelectDeviceTypeView.swift */,
@@ -2750,6 +2764,7 @@
 				267548ED29A91A87008BCF40 /* Color+.swift in Sources */,
 				267548D429A91A87008BCF40 /* ColorEnum.swift in Sources */,
 				265D2CD829D194070044D032 /* Common.swift in Sources */,
+				26325B012BE1139000182C59 /* ClaimDeviceBeginView.swift in Sources */,
 				267547C629A9181E008BCF40 /* ConditionalModifier.swift in Sources */,
 				264CC7652B98735A0060DEA4 /* BoostCardView.swift in Sources */,
 				267548D229A91A87008BCF40 /* CoordinatesEnum.swift in Sources */,
@@ -2795,6 +2810,7 @@
 				267547F729A9181E008BCF40 /* FailView.swift in Sources */,
 				2612AC482AB49E4000285896 /* Filters+.swift in Sources */,
 				2612AC1A2AB45B1700285896 /* FilterView.swift in Sources */,
+				26325B032BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift in Sources */,
 				2612AC1C2AB45B2800285896 /* FilterViewModel.swift in Sources */,
 				267547A129A9181E008BCF40 /* FirmwareUpdateUtils.swift in Sources */,
 				26348E252A444BEE000846C6 /* FontsEnum.swift in Sources */,

@@ -743,6 +743,61 @@
         }
       }
     },
+    "claim_device_connect_d1_bullet_four" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your WiFi network from the list and enter the WiFi password to connect your gateway."
+          }
+        }
+      }
+    },
+    "claim_device_connect_d1_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn on the gateway (WG1200) and swipe right to the settings screen. Select **“Configure WiFi”** and then press **“Continue”** on the screen."
+          }
+        }
+      }
+    },
+    "claim_device_connect_d1_bullet_three" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open your phone’s browser, and navigate to **10.10.0.1.**"
+          }
+        }
+      }
+    },
+    "claim_device_connect_d1_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect your phone to the **“WXM_WG1200”** WiFi network."
+          }
+        }
+      }
+    },
+    "claim_device_connect_gateway_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect the gateway to your WiFi"
+          }
+        }
+      }
+    },
     "claim_device_connection_bullet_1_bold" : {
       "extractionState" : "manual",
       "localizations" : {

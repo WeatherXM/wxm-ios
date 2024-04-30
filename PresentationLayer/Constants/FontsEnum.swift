@@ -47,4 +47,8 @@ enum FontIcon: String {
 	case coins
 	case wallet
 	case cart = "cart-shopping"
+	case circleOne = "circle-1"
+	case circleTwo = "circle-2"
+	case circleThree = "circle-3"
+	case circleFour = "circle-4"
 }
