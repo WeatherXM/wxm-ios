@@ -29,11 +29,16 @@ struct ForecastTemperatureCardView: View {
 						Text(item.temperature)
 							.foregroundColor(Color(colorEnum: .text))
 							.font(.system(size: CGFloat(.XXLTitleFontSize)))
+							.frame(height: UIFont.systemFont(ofSize: CGFloat(.XXLTitleFontSize)).capHeight)
+
 						Color(colorEnum: .text)
 							.frame(width: 1.0, height: 26.0)
+
 						Text(item.secondaryTemperature)
 							.foregroundColor(Color(colorEnum: .text))
 							.font(.system(size: CGFloat(.largeTitleFontSize)))
+							.frame(height: UIFont.systemFont(ofSize: CGFloat(.largeTitleFontSize)).capHeight)
+						// Set height in order ot fit baseline 👆
 
 						Spacer()
 					}
