@@ -13,13 +13,15 @@ struct ClaimDeviceContainerView: View {
 
     var body: some View {
 		VStack {
-			ProgressView(value: CGFloat(viewModel.selectedIndex + 1), total: 4.0)
+			ProgressView(value: CGFloat(viewModel.selectedIndex + 1), total: CGFloat(viewModel.steps.count))
 				.tint(Color(colorEnum: .primary))
+				.padding(.horizontal, CGFloat(.mediumSidePadding))
 				.animation(.easeOut(duration: 0.3), value: viewModel.selectedIndex)
 
 			TabViewWrapper(selection: $viewModel.selectedIndex) {
-				ForEach(0..<4, id: \.self) { index in
-					Text("\(index)")
+				ForEach(0..<viewModel.steps.count, id: \.self) { index in
+					let step = viewModel.steps[index]
+					step.contentView
 						.tag(index)
 				}
 			}
@@ -28,8 +30,7 @@ struct ClaimDeviceContainerView: View {
 			.zIndex(0)
 			.animation(.easeOut(duration: 0.3), value: viewModel.selectedIndex)
 		}
-		.padding(.horizontal, CGFloat(.mediumSidePadding))
-		.padding(.vertical, CGFloat(.mediumToLargeSidePadding))
+		.padding(.top, CGFloat(.mediumToLargeSidePadding))
 		.onAppear {
 			navigationObject.title = LocalizableString.ClaimDevice.claimNewDevice.localized
 		}
@@ -38,6 +39,6 @@ struct ClaimDeviceContainerView: View {
 
 #Preview {
 	NavigationContainerView {
-		ClaimDeviceContainerView(viewModel: .init())
+		ClaimDeviceContainerView(viewModel: .init(type: .d1))
 	}
 }

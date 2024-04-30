@@ -42,6 +42,7 @@
 		262C7C5D2A9746420042ACE6 /* AlertHelper+Follow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C7C5C2A9746420042ACE6 /* AlertHelper+Follow.swift */; };
 		26325B012BE1139000182C59 /* ClaimDeviceBeginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B002BE1139000182C59 /* ClaimDeviceBeginView.swift */; };
 		26325B032BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B022BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift */; };
+		26325B052BE12E4300182C59 /* ClaimDeviceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B042BE12E4300182C59 /* ClaimDeviceFactory.swift */; };
 		2632E62F2A335ECD00A5ADB3 /* NetworkStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E62E2A335ECD00A5ADB3 /* NetworkStatsView.swift */; };
 		2632E6322A335EF400A5ADB3 /* NetworkStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E6312A335EF400A5ADB3 /* NetworkStatsViewModel.swift */; };
 		2632E6342A3378BF00A5ADB3 /* StatisticsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E6332A3378BF00A5ADB3 /* StatisticsChart.swift */; };
@@ -565,6 +566,7 @@
 		262C7C5C2A9746420042ACE6 /* AlertHelper+Follow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertHelper+Follow.swift"; sourceTree = "<group>"; };
 		26325B002BE1139000182C59 /* ClaimDeviceBeginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeginView.swift; sourceTree = "<group>"; };
 		26325B022BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeginViewModel.swift; sourceTree = "<group>"; };
+		26325B042BE12E4300182C59 /* ClaimDeviceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceFactory.swift; sourceTree = "<group>"; };
 		2632E62E2A335ECD00A5ADB3 /* NetworkStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsView.swift; sourceTree = "<group>"; };
 		2632E6312A335EF400A5ADB3 /* NetworkStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsViewModel.swift; sourceTree = "<group>"; };
 		2632E6332A3378BF00A5ADB3 /* StatisticsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsChart.swift; sourceTree = "<group>"; };
@@ -1486,6 +1488,7 @@
 				26F149E32BDFC83D0029F981 /* ClaimStationSelection */,
 				26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */,
 				26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */,
+				26325B042BE12E4300182C59 /* ClaimDeviceFactory.swift */,
 			);
 			path = ClaimDevice;
 			sourceTree = "<group>";
@@ -2836,6 +2839,7 @@
 				262A4CED2A93567A00A4BC17 /* InfoView.swift in Sources */,
 				267548E129A91A87008BCF40 /* Int+.swift in Sources */,
 				266482FC29C0B2B000748F9C /* LoaderView.swift in Sources */,
+				26325B052BE12E4300182C59 /* ClaimDeviceFactory.swift in Sources */,
 				26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */,
 				266BAF552AA88631004F5DE0 /* LocalizableString+Analytics.swift in Sources */,
 				266BAF4D2AA8769C004F5DE0 /* LocalizableString+Bluetooth.swift in Sources */,

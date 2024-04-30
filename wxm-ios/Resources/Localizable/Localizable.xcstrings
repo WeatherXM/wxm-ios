@@ -743,6 +743,17 @@
         }
       }
     },
+    "claim_device_connect_begin_station_claiming" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begin Station Claiming"
+          }
+        }
+      }
+    },
     "claim_device_connect_d1_bullet_four" : {
       "extractionState" : "manual",
       "localizations" : {

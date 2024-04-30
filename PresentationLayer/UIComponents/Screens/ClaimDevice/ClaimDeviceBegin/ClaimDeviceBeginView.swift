@@ -14,39 +14,48 @@ struct ClaimDeviceBeginView: View {
 		ZStack {
 			Color(colorEnum: .newBG)
 				.ignoresSafeArea()
+			VStack {
+				ScrollView(showsIndicators: false) {
+					VStack(spacing: CGFloat(.largeSpacing)) {
+						HStack {
+							Text(LocalizableString.ClaimDevice.connectGatewayTitle.localized)
+								.font(.system(size: CGFloat(.smallTitleFontSize)))
+								.foregroundStyle(Color(colorEnum: .darkestBlue))
 
-			ScrollView(showsIndicators: false) {
-				VStack(spacing: CGFloat(.largeSpacing)) {
-					HStack {
-						Text(LocalizableString.ClaimDevice.connectGatewayTitle.localized)
-							.font(.system(size: CGFloat(.smallTitleFontSize)))
-							.foregroundStyle(Color(colorEnum: .darkestBlue))
+							Spacer()
+						}
 
-						Spacer()
+						bullets
+
+						HStack {
+							Text(LocalizableString.ClaimDevice.connectionText.localized)
+								.foregroundStyle(Color(colorEnum: .text))
+								.font(.system(size: CGFloat(.normalFontSize)))
+
+							Spacer()
+						}
+
+						Button {
+						} label: {
+							Image(asset: .m5Video)
+								.resizable()
+								.aspectRatio(contentMode: .fit)
+						}
+
 					}
-
-					bullets
-
-					HStack {
-						Text(LocalizableString.ClaimDevice.connectionText.localized)
-							.foregroundStyle(Color(colorEnum: .text))
-							.font(.system(size: CGFloat(.normalFontSize)))
-
-						Spacer()
-					}
-
-					Button {
-					} label: {
-						Image(asset: .m5Video)
-							.resizable()
-							.aspectRatio(contentMode: .fit)
-					}
-
+					.padding(.horizontal, CGFloat(.mediumSidePadding))
+					.padding(.top, CGFloat(.largeSidePadding))
 				}
+				.clipped()
+
+				Button {
+					viewModel.handleButtonTap()
+				} label: {
+					Text(LocalizableString.ClaimDevice.beginStationClaiming.localized)
+				}
+				.buttonStyle(WXMButtonStyle.filled())
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
-				.padding(.vertical, CGFloat(.largeSidePadding))
 			}
-			.clipped()
 		}
     }
 }
@@ -81,5 +90,5 @@ private extension ClaimDeviceBeginView {
 }
 
 #Preview {
-	ClaimDeviceBeginView(viewModel: .init())
+	ClaimDeviceBeginView(viewModel: .init(completion: {}))
 }

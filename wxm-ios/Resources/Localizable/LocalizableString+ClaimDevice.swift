@@ -21,6 +21,7 @@ extension LocalizableString {
 		case connectD1BulletTwo
 		case connectD1BulletThree
 		case connectD1BulletFour
+		case beginStationClaiming
         case typeWS1000Title
         case typeWS1000Subtitle
         case typeWS2000Title
@@ -154,6 +155,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_connect_d1_bullet_three"
 			case .connectD1BulletFour:
 				return "claim_device_connect_d1_bullet_four"
+			case .beginStationClaiming:
+				return "claim_device_connect_begin_station_claiming"
             case .typeWS1000Title:
                 return "claim_device_type_ws1000_title"
             case .typeWS1000Subtitle:
