@@ -4739,7 +4739,7 @@
         }
       }
     },
-    "probablility" : {
+    "probability" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

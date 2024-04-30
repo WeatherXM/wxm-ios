@@ -97,7 +97,7 @@ extension WeatherField: CustomStringConvertible {
 	var legendTitle: String {
 		switch self {
 			case .precipitationProbability:
-				return LocalizableString.probablility.localized
+				return LocalizableString.probability.localized
 			default:
 				return displayTitle
 		}
