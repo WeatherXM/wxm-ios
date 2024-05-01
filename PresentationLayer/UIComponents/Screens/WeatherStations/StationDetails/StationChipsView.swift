@@ -10,8 +10,10 @@ import DomainLayer
 import Toolkit
 
 struct StationChipsView: View {
+	typealias IssuesChip = (type: CardWarningType, title: String)
+
 	let device: DeviceDetails
-	let warning: String?
+	let issues: IssuesChip?
 	var addressAction: VoidCallback?
 	var warningAction: VoidCallback?
 	var statusAction: VoidCallback?
@@ -69,22 +71,22 @@ private extension StationChipsView {
 
 	@ViewBuilder
 	var warningsChip: some View {
-		if let warning {
+		if let issues {
 			Button {
 				warningAction?()
 			} label: {
 
 				HStack(spacing: CGFloat(.smallSpacing)) {
-					Text(FontIcon.hexagonExclamation.rawValue)
+					Text(issues.type.fontIcon.rawValue)
 						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-						.foregroundColor(Color(colorEnum: .warning))
+						.foregroundColor(Color(colorEnum: issues.type.iconColor))
 
-					Text(warning)
+					Text(issues.title)
 						.font(.system(size: CGFloat(.caption)))
 						.foregroundColor(Color(colorEnum: .text))
 						.lineLimit(1)
 				}
-				.WXMCardStyle(backgroundColor: Color(colorEnum: .warningTint),
+				.WXMCardStyle(backgroundColor: Color(colorEnum: issues.type.tintColor),
 							  insideHorizontalPadding: CGFloat(.smallSidePadding),
 							  insideVerticalPadding: CGFloat(.smallSidePadding),
 							  cornerRadius: CGFloat(.buttonCornerRadius))
@@ -97,6 +99,6 @@ private extension StationChipsView {
 }
 
 #Preview {
-	StationChipsView(device: .mockDevice, warning: "Issues text")
+	StationChipsView(device: .mockDevice, issues: (.error, "2 issues"))
 		.padding()
 }

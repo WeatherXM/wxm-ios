@@ -176,7 +176,7 @@ private struct StationDetailsView: View {
             VStack {
                 StationAddressTitleView(device: device,
                                         followState: viewModel.followState,
-										warning: viewModel.warning,
+										issues: viewModel.issues,
                                         showStateIcon: true,
                                         tapStateIconAction: { viewModel.followButtonTapped()},
                                         tapAddressAction: { viewModel.addressTapped() },

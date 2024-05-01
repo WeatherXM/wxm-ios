@@ -19,10 +19,11 @@ enum ViewState {
 }
 
 struct StationAddressTitleView: View {
+	
 	let device: DeviceDetails
 	let followState: UserDeviceFollowState?
     let subtitle: String?
-	let warning: String?
+	let issues: StationChipsView.IssuesChip?
     let showStateIcon: Bool
     let stateFAIcon: StateFontAwesome
     let isStateIconEnabled: Bool
@@ -68,7 +69,7 @@ struct StationAddressTitleView: View {
             }
 
 			StationChipsView(device: device,
-							 warning: warning,
+							 issues: issues,
 							 addressAction: tapAddressAction,
 							 warningAction: tapWarningAction,
 							 statusAction: tapStatusAction)
@@ -80,7 +81,7 @@ extension StationAddressTitleView {
 
     init(device: DeviceDetails,
 		 followState: UserDeviceFollowState?,
-		 warning: String?,
+		 issues: StationChipsView.IssuesChip?,
 		 showSubtitle: Bool = true,
 		 showStateIcon: Bool = true,
 		 tapStateIconAction: VoidCallback? = nil,
@@ -91,7 +92,7 @@ extension StationAddressTitleView {
 		self.followState = followState
         let subtitle = device.friendlyName != nil ? device.name : nil
         self.subtitle = showSubtitle ? subtitle : nil
-		self.warning = warning
+		self.issues = issues
         self.showStateIcon = showStateIcon
         self.stateFAIcon = followState?.state.FAIcon ?? UserDeviceFollowState.defaultFAIcon
         self.isStateIconEnabled = followState?.state.isActionable ?? true

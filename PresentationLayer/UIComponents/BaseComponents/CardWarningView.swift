@@ -70,10 +70,10 @@ struct CardWarningView<Content: View>: View {
     }
 }
 
-enum CardWarningType {
-    case warning
-    case error
+enum CardWarningType: Comparable {
 	case info
+    case warning
+	case error
 
 	var icon: AssetEnum {
 		switch self {
@@ -83,6 +83,17 @@ enum CardWarningType {
 				return .errorIcon
 			case .info:
 				return .infoIcon
+		}
+	}
+
+	var fontIcon: FontIcon {
+		switch self {
+			case .info:
+				return .infoCircle
+			case .warning:
+				return .hexagonExclamation
+			case .error:
+				return .hexagonXmark
 		}
 	}
 

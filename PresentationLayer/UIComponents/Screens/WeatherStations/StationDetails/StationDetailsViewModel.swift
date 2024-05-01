@@ -45,8 +45,8 @@ class StationDetailsViewModel: ObservableObject {
 	@Published var showShareDialog: Bool = false
 	private(set) var shareDialogText: String?
     private(set) var isHeaderHidden: Bool = false
-	var warning: String? {
-		getWarningText()
+	var issues: StationChipsView.IssuesChip? {
+		getIssuesChip()
 	}
 
     private var cancellables: Set<AnyCancellable> = []
@@ -284,18 +284,21 @@ private extension StationDetailsViewModel {
         showLoginAlert = true
     }
 
-	func getWarningText() -> String? {
-		guard let issues = device?.issues(mainVM: .shared, followState: followState) else {
+	func getIssuesChip() -> StationChipsView.IssuesChip? {
+		guard let issues = device?.issues(mainVM: .shared, followState: followState).sorted(by: { $0.warningType > $1.warningType }),
+			  let warningType = issues.first?.warningType else {
 			return nil
 		}
-		
-		let warnings = issues.filter { $0.warningType == .warning }
-		
-		if warnings.count > 1 {
-			return LocalizableString.issues(warnings.count).localized
+
+		if issues.count > 1 {
+			return (warningType, LocalizableString.issues(issues.count).localized)
 		}
 
-		return warnings.first?.type.description
+		if let issue = issues.first, issue.type != .offline {
+			return (warningType, issue.type.description)
+		}
+
+		return nil
 	}
 
 	func navigateToAlerts() {
