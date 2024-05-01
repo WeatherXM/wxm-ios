@@ -9,10 +9,26 @@ import Foundation
 
 class ClaimDeviceContainerViewModel: ObservableObject {
 	@Published var selectedIndex: Int = 0
+	@Published var isMovingNext = true
+
 	var steps: [ClaimDeviceStep] = []
 
 	init(type: ClaimStationType) {
 		steps = getSteps(for: type)
+	}
+
+	func moveNext() {
+		isMovingNext = true
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			self.selectedIndex += 1
+		}
+	}
+
+	func movePrevious() {
+		isMovingNext = false
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			self.selectedIndex -= 1
+		}
 	}
 }
 
@@ -39,7 +55,7 @@ private extension ClaimDeviceContainerViewModel {
 
 	func getD1Steps() -> [ClaimDeviceStep] {
 		let beginViewModel = ViewModelsFactory.getClaimStationBeginViewModel { [weak self] in
-			self?.selectedIndex += 1
+			self?.moveNext()
 		}
 		return [.begin(beginViewModel), .serialNumber, .location]
 	}

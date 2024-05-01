@@ -8,10 +8,22 @@
 import Foundation
 import SwiftUI
 
-enum ClaimDeviceStep {
+enum ClaimDeviceStep: Identifiable {
+
 	case begin(ClaimDeviceBeginViewModel)
 	case serialNumber
 	case location
+
+	var id: String {
+		switch self {
+			case .begin:
+				"begin"
+			case .serialNumber:
+				"serialNumber"
+			case .location:
+				"location"
+		}
+	}
 }
 
 // MARK: - Views
@@ -23,9 +35,17 @@ extension ClaimDeviceStep {
 			case .begin(let viewModel):
 				ClaimDeviceBeginView(viewModel: viewModel)
 			case .serialNumber:
-				Text(verbatim: "Serial number")
+				VStack {
+					Spacer()
+					Text(verbatim: "Serial number")
+					Spacer()
+				}
 			case .location:
-				Text(verbatim: "location")
+				VStack {
+					Spacer()
+					Text(verbatim: "location")
+					Spacer()
+				}
 		}
 	}
 }

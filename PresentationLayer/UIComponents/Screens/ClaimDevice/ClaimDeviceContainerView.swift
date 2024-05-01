@@ -11,24 +11,20 @@ struct ClaimDeviceContainerView: View {
 	@StateObject var viewModel: ClaimDeviceContainerViewModel
 	@EnvironmentObject var navigationObject: NavigationObject
 
-    var body: some View {
+	var body: some View {
 		VStack {
 			ProgressView(value: CGFloat(viewModel.selectedIndex + 1), total: CGFloat(viewModel.steps.count))
 				.tint(Color(colorEnum: .primary))
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 				.animation(.easeOut(duration: 0.3), value: viewModel.selectedIndex)
 
-			TabViewWrapper(selection: $viewModel.selectedIndex) {
-				ForEach(0..<viewModel.steps.count, id: \.self) { index in
-					let step = viewModel.steps[index]
-					step.contentView
-						.tag(index)
-				}
+			ZStack {
+				viewModel.steps[viewModel.selectedIndex].contentView
+					.id(viewModel.steps[viewModel.selectedIndex].id)
+					.transition(AnyTransition.asymmetric(insertion: .move(edge: viewModel.isMovingNext ? .trailing : .leading),
+														 removal: .move(edge: viewModel.isMovingNext ? .leading : .trailing)))
+					.animation(.easeOut(duration: 0.3), value: viewModel.selectedIndex)
 			}
-			.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-			.indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
-			.zIndex(0)
-			.animation(.easeOut(duration: 0.3), value: viewModel.selectedIndex)
 		}
 		.padding(.top, CGFloat(.mediumToLargeSidePadding))
 		.onAppear {
@@ -38,7 +34,7 @@ struct ClaimDeviceContainerView: View {
 					return true
 				}
 
-				viewModel.selectedIndex -= 1
+				viewModel.movePrevious()
 				return false
 			}
 		}
