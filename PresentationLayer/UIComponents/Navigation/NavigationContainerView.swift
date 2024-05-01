@@ -13,7 +13,7 @@ class NavigationObject: ObservableObject {
     @Published var subtitle: String?
     @Published var titleColor = Color(colorEnum: .text)
     @Published var navigationBarColor: Color? = Color(colorEnum: .top)
-    var willDismissAction: (() -> Void)?
+    var shouldDismissAction: (() -> Bool)?
 }
 
 struct NavigationContainerView<Content: View, RightView: View>: View {
@@ -50,9 +50,10 @@ private extension NavigationContainerView {
         ZStack {
             HStack(spacing: CGFloat(.mediumSpacing)) {
                 if showBackButton {
-                    Button {
-                        navigationObject.willDismissAction?()
-                        dismiss()
+					Button {
+						if navigationObject.shouldDismissAction?() ?? true {
+							dismiss()
+						}
                     } label: {
                         Image(asset: .backArrow)
                             .renderingMode(.template)

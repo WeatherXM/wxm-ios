@@ -48,8 +48,9 @@ struct RebootStationView: View {
             .padding(.horizontal, CGFloat(.defaultSidePadding))
         }
         .onAppear {
-            navigationObject.willDismissAction = { [weak viewModel] in
+            navigationObject.shouldDismissAction = { [weak viewModel] in
                 viewModel?.navigationBackButtonTapped()
+				return true
             }
             viewModel.mainVM = mainVM
             navigationObject.title = LocalizableString.deviceInfoStationReboot.localized

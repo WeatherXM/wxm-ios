@@ -33,6 +33,14 @@ struct ClaimDeviceContainerView: View {
 		.padding(.top, CGFloat(.mediumToLargeSidePadding))
 		.onAppear {
 			navigationObject.title = LocalizableString.ClaimDevice.claimNewDevice.localized
+			navigationObject.shouldDismissAction = { [weak viewModel] in
+				guard let viewModel, viewModel.selectedIndex > 0 else {
+					return true
+				}
+
+				viewModel.selectedIndex -= 1
+				return false
+			}
 		}
     }
 }
