@@ -60,7 +60,7 @@ struct ClaimDeviceConnection: View {
 
                     Button {
                         if
-                            let url = URL(string: Constants.m5VideoLink),
+							let url = URL(string: DisplayedLinks.m5VideoLink.linkURL),
                             UIApplication.shared.canOpenURL(url)
                         {
                             UIApplication.shared.open(url, options: [:])
@@ -144,11 +144,5 @@ private extension ClaimDeviceConnection {
         }
 
         return attributedText
-    }
-}
-
-private extension ClaimDeviceConnection {
-    enum Constants {
-        static let m5VideoLink = "https://www.youtube.com/watch?v=sUJEwuFq1CE"
     }
 }

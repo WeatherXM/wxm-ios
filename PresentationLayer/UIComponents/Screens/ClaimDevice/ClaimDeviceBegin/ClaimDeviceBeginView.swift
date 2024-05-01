@@ -36,6 +36,11 @@ struct ClaimDeviceBeginView: View {
 						}
 
 						Button {
+							guard let url = URL(string: viewModel.videoLink), UIApplication.shared.canOpenURL(url) else {
+								return
+							}
+
+							UIApplication.shared.open(url)
 						} label: {
 							Image(asset: .m5Video)
 								.resizable()

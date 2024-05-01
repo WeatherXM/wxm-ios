@@ -10,6 +10,9 @@ import Toolkit
 
 class ClaimDeviceBeginViewModel: ObservableObject {
 	let completion: VoidCallback
+	var videoLink: String {
+		DisplayedLinks.m5VideoLink.linkURL
+	}
 	var bullets: [ClaimDeviceBeginView.Bullet] {
 		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.connectD1BulletOne.localized.attributedMarkdown ?? ""),
 		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.connectD1BulletTwo.localized.attributedMarkdown ?? ""),
@@ -32,5 +35,9 @@ class ClaimDeviceM5BeginViewModel: ClaimDeviceBeginViewModel {
 		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.connectM5BulletTwo.localized.attributedMarkdown ?? ""),
 		 .init(fontIcon: .circleThree, text: LocalizableString.ClaimDevice.connectM5BulletThree.localized.attributedMarkdown ?? ""),
 		 .init(fontIcon: .circleFour, text: LocalizableString.ClaimDevice.connectM5BulletFour.localized.attributedMarkdown ?? "")]
+	}
+
+	override var videoLink: String {
+		DisplayedLinks.d1VideoLink.linkURL
 	}
 }
