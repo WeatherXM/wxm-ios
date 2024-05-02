@@ -50,16 +50,26 @@ private extension ClaimDeviceContainerViewModel {
 
 	func getM5Steps() -> [ClaimDeviceStep] {
 		let beginViewModel = ViewModelsFactory.getClaimStationM5BeginViewModel { [weak self] in
-			self?.selectedIndex += 1
+			self?.moveNext()
 		}
-		return [.begin(beginViewModel), .serialNumber, .location]
+
+		let snViewModel = ViewModelsFactory.getClaimStationM5SNViewModel {
+//			self?.selectedIndex += 1
+		}
+
+		return [.begin(beginViewModel), .serialNumber(snViewModel), .location]
 	}
 
 	func getD1Steps() -> [ClaimDeviceStep] {
 		let beginViewModel = ViewModelsFactory.getClaimStationBeginViewModel { [weak self] in
 			self?.moveNext()
 		}
-		return [.begin(beginViewModel), .serialNumber, .location]
+
+		let snViewModel = ViewModelsFactory.getClaimStationSNViewModel {
+//			self?.selectedIndex += 1
+		}
+
+		return [.begin(beginViewModel), .serialNumber(snViewModel), .location]
 	}
 	
 	func getHeliumSteps() -> [ClaimDeviceStep] {

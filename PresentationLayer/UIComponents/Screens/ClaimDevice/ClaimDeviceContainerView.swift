@@ -43,6 +43,6 @@ struct ClaimDeviceContainerView: View {
 
 #Preview {
 	NavigationContainerView {
-		ClaimDeviceContainerView(viewModel: .init(type: .d1))
+		ClaimDeviceContainerView(viewModel: .init(type: .m5))
 	}
 }
