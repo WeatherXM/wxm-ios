@@ -27,8 +27,6 @@ struct ParameterConstants {
         static let fromDate = "fromDate"
         static let toDate = "toDate"
         static let exclude = "exclude"
-        static let page = "page"
-        static let pageSize = "pageSize"
         static let friendlyName = "friendlyName"
 		static let lat = "lat"
 		static let lon = "lon"
@@ -36,5 +34,10 @@ struct ParameterConstants {
 
 	enum Devices {
 		static let date = "date"
+		static let timezone = "timezone"
+		static let page = "page"
+		static let pageSize = "pageSize"
+		static let fromDate = "fromDate"
+		static let toDate = "toDate"
 	}
 }

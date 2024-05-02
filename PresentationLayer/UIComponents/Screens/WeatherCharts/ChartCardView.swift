@@ -70,7 +70,7 @@ private extension ChartCardView {
             ForEach(0 ..< chartDataModels.count, id: \.self) { index in
                 let model = chartDataModels[index]
                 VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
-                    Text(model.weatherField.displayTitle)
+                    Text(model.weatherField.legendTitle)
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.caption)))
                         .lineLimit(1)

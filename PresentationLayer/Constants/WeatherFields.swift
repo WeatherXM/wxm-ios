@@ -94,6 +94,15 @@ extension WeatherField: CustomStringConvertible {
         }
     }
 
+	var legendTitle: String {
+		switch self {
+			case .precipitationProbability:
+				return LocalizableString.probability.localized
+			default:
+				return displayTitle
+		}
+	}
+
     var graphHighlightTitle: String {
         switch self {
             case .temperature:
