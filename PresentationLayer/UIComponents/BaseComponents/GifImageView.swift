@@ -13,6 +13,7 @@ struct GifImageView: UIViewRepresentable {
 
 	func makeUIView(context: Context) -> WKWebView {
 		let webview = WKWebView()
+		webview.scrollView.isScrollEnabled = false
 		webview.isOpaque = false
 		webview.backgroundColor = .clear
 		if let url = Bundle.main.url(forResource: fileName, withExtension: "gif"),
