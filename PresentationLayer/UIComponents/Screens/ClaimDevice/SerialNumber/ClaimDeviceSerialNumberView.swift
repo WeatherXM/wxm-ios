@@ -42,13 +42,8 @@ struct ClaimDeviceSerialNumberView: View {
 				}
 				.clipped()
 
-				Button {
-
-				} label: {
-					Text(LocalizableString.ClaimDevice.beginStationClaiming.localized)
-				}
-				.buttonStyle(WXMButtonStyle.filled())
-				.padding(.horizontal, CGFloat(.mediumSidePadding))
+				bottomButtons
+					.padding(.horizontal, CGFloat(.mediumSidePadding))
 			}
 		}
     }
@@ -62,6 +57,30 @@ private extension ClaimDeviceSerialNumberView {
 				let bullet = viewModel.bullets[index]
 				ClaimDeviceBulletView(bullet: bullet)
 			}
+		}
+	}
+
+	@ViewBuilder
+	var bottomButtons: some View {
+		HStack(spacing: CGFloat(.mediumSpacing)) {
+			Button {
+				viewModel.handleSNButtonTap()
+			} label: {
+				Text(LocalizableString.ClaimDevice.enterSerialNumberManually.localized)
+			}
+			.buttonStyle(WXMButtonStyle.solid)
+
+			Button {
+				viewModel.handleQRCodeButtonTap()
+			} label: {
+				HStack {
+					Image(asset: .qrCodeBlue)
+						.renderingMode(.template)
+
+					Text(LocalizableString.ClaimDevice.scanQRCode.localized)
+				}
+			}
+			.buttonStyle(WXMButtonStyle.filled())
 		}
 	}
 }

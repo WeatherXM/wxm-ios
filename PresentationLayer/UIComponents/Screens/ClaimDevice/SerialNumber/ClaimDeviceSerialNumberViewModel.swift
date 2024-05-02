@@ -16,6 +16,14 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 	var caption: AttributedString? {
 		nil
 	}
+
+	func handleSNButtonTap() {
+
+	}
+
+	func handleQRCodeButtonTap() {
+		
+	}
 }
 
 class ClaimDeviceSerialNumberM5ViewModel: ClaimDeviceSerialNumberViewModel {

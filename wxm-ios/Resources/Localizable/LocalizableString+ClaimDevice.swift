@@ -34,6 +34,8 @@ extension LocalizableString {
 		case prepareGatewayM5Caption
 		case prepareGatewayD1BulletOne
 		case prepareGatewayD1BulletTwo
+		case scanQRCode
+		case enterSerialNumberManually
         case typeWS1000Title
         case typeWS1000Subtitle
         case typeWS2000Title
@@ -193,6 +195,10 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_prepare_gateway_m5_bullet_two"
 			case .prepareGatewayM5Caption:
 				return "claim_device_prepare_gateway_m5_caption"
+			case .scanQRCode:
+				return "claim_device_scan_qr_code"
+			case .enterSerialNumberManually:
+				return "claim_device_enter_serial_number_manually"
             case .typeWS1000Title:
                 return "claim_device_type_ws1000_title"
             case .typeWS1000Subtitle:

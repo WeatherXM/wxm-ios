@@ -1040,6 +1040,17 @@
         }
       }
     },
+    "claim_device_enter_serial_number_manually" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter S/N Manually"
+          }
+        }
+      }
+    },
     "claim_device_enter_serial_number_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1476,6 +1487,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scan Again"
+          }
+        }
+      }
+    },
+    "claim_device_scan_qr_code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan QR Code"
           }
         }
       }
