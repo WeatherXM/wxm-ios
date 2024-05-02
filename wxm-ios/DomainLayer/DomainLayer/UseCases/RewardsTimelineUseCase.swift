@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Toolkit
 
 public class RewardsTimelineUseCase {
 	private let repository: DevicesRepository
@@ -20,12 +21,14 @@ public class RewardsTimelineUseCase {
 	public func getTimeline(deviceId: String, 
 							page: Int,
 							fromDate: String,
-							toDate: String) async throws -> Result<NetworkDeviceRewardsTimelineResponse?, NetworkErrorResponse> {
+							toDate: String,
+							timezone: TimeZone? = .UTCTimezone) async throws -> Result<NetworkDeviceRewardsTimelineResponse?, NetworkErrorResponse> {
 		let publisher = try repository.deviceRewardsTimeline(deviceId: deviceId,
 															 page: page,
 															 pageSize: nil,
 															 fromDate: fromDate,
-															 toDate: toDate)
+															 toDate: toDate,
+															 timezone: timezone)
 		return await withUnsafeContinuation { continuation in
 			publisher.sink { response in
 				if let error = response.error {

@@ -39,7 +39,7 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
     case devices
     case deviceById(deviceId: String)
 	case deviceRewardsById(deviceId: String)
-	case deviceRewardsTimeline(deviceId: String, page: Int, pageSize: Int?, fromDate: String, toDate: String?)
+	case deviceRewardsTimeline(deviceId: String, page: Int, pageSize: Int?, fromDate: String, toDate: String?, timezone: String?)
 	case deviceRewardsDetailsById(deviceId: String, date: String)
 	case deviceRewardsBoosts(deviceId: String, code: String)
 
@@ -64,7 +64,7 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
 				return "devices/\(deviceId)"
 			case let .deviceRewardsById(deviceId):
 				return "devices/\(deviceId)/rewards"
-			case let .deviceRewardsTimeline(deviceId, _, _, _, _):
+			case let .deviceRewardsTimeline(deviceId, _, _, _, _, _):
 				return "devices/\(deviceId)/rewards/timeline"
 			case let .deviceRewardsDetailsById(deviceId, _):
 				return "devices/\(deviceId)/rewards/details"
@@ -78,19 +78,23 @@ enum DevicesApiRequestBuilder: URLRequestConvertible {
     // This is the queries part, it's optional because an endpoint can be without parameters
     private var parameters: Parameters? {
         switch self {
-            case let .deviceRewardsTimeline(_, page, pageSize, fromDate, toDate):
+            case let .deviceRewardsTimeline(_, page, pageSize, fromDate, toDate, timezone):
                 var params: Parameters = [
-                    ParameterConstants.Me.page: page,
-                    ParameterConstants.Me.fromDate: fromDate,
+                    ParameterConstants.Devices.page: page,
+                    ParameterConstants.Devices.fromDate: fromDate
                 ]
 
                 if let pageSize {
-                    params[ParameterConstants.Me.pageSize] = pageSize
+                    params[ParameterConstants.Devices.pageSize] = pageSize
                 }
 
                 if let toDate {
-                    params[ParameterConstants.Me.toDate] = toDate
+                    params[ParameterConstants.Devices.toDate] = toDate
                 }
+
+				if let timezone {
+					params[ParameterConstants.Devices.timezone] = timezone
+				}
 
                 return params
 			case let .deviceRewardsDetailsById(_, date):
