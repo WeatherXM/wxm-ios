@@ -43,6 +43,7 @@
 		26325B012BE1139000182C59 /* ClaimDeviceBeginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B002BE1139000182C59 /* ClaimDeviceBeginView.swift */; };
 		26325B032BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B022BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift */; };
 		26325B052BE12E4300182C59 /* ClaimDeviceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B042BE12E4300182C59 /* ClaimDeviceFactory.swift */; };
+		26325B552BE3AB4300182C59 /* GifImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B542BE3AB4300182C59 /* GifImageView.swift */; };
 		2632E62F2A335ECD00A5ADB3 /* NetworkStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E62E2A335ECD00A5ADB3 /* NetworkStatsView.swift */; };
 		2632E6322A335EF400A5ADB3 /* NetworkStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E6312A335EF400A5ADB3 /* NetworkStatsViewModel.swift */; };
 		2632E6342A3378BF00A5ADB3 /* StatisticsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E6332A3378BF00A5ADB3 /* StatisticsChart.swift */; };
@@ -338,6 +339,7 @@
 		26A961C42AA733E200646A25 /* LocalizableString+ClaimDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961C32AA733E200646A25 /* LocalizableString+ClaimDevice.swift */; };
 		26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F462A7BEA0700855912 /* CTAView.swift */; };
 		26AB9F582A822DB500855912 /* UserDeviceFollowState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */; };
+		26ADDF7E2BE3B08D00992BEF /* image_station_qr.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */; };
 		26AF276E2A0B815B0067A1B8 /* ChartsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF276C2A0B815B0067A1B8 /* ChartsFactory.swift */; };
 		26AF276F2A0B815B0067A1B8 /* WeatherChartModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF276D2A0B815B0067A1B8 /* WeatherChartModels.swift */; };
 		26AF27712A0B815B0067A1B8 /* WeatherChartDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF276A2A0B815B0067A1B8 /* WeatherChartDataModel.swift */; };
@@ -567,6 +569,7 @@
 		26325B002BE1139000182C59 /* ClaimDeviceBeginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeginView.swift; sourceTree = "<group>"; };
 		26325B022BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeginViewModel.swift; sourceTree = "<group>"; };
 		26325B042BE12E4300182C59 /* ClaimDeviceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceFactory.swift; sourceTree = "<group>"; };
+		26325B542BE3AB4300182C59 /* GifImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageView.swift; sourceTree = "<group>"; };
 		2632E62E2A335ECD00A5ADB3 /* NetworkStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsView.swift; sourceTree = "<group>"; };
 		2632E6312A335EF400A5ADB3 /* NetworkStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsViewModel.swift; sourceTree = "<group>"; };
 		2632E6332A3378BF00A5ADB3 /* StatisticsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsChart.swift; sourceTree = "<group>"; };
@@ -841,6 +844,7 @@
 		26A961C32AA733E200646A25 /* LocalizableString+ClaimDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+ClaimDevice.swift"; sourceTree = "<group>"; };
 		26AB9F462A7BEA0700855912 /* CTAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAView.swift; sourceTree = "<group>"; };
 		26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDeviceFollowState+.swift"; sourceTree = "<group>"; };
+		26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_station_qr.gif; sourceTree = "<group>"; };
 		26AF276A2A0B815B0067A1B8 /* WeatherChartDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChartDataModel.swift; sourceTree = "<group>"; };
 		26AF276C2A0B815B0067A1B8 /* ChartsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsFactory.swift; sourceTree = "<group>"; };
 		26AF276D2A0B815B0067A1B8 /* WeatherChartModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChartModels.swift; sourceTree = "<group>"; };
@@ -1592,6 +1596,7 @@
 				2675475629A9181E008BCF40 /* AddButton.swift */,
 				2675474F29A9181E008BCF40 /* AttributedLabel.swift */,
 				2675475129A9181E008BCF40 /* AttributedTextView.swift */,
+				26325B542BE3AB4300182C59 /* GifImageView.swift */,
 				269C809B2AB9E76F005F9BD6 /* Badge.swift */,
 				2675474429A9181E008BCF40 /* CardWarningView.swift */,
 				2675475929A9181E008BCF40 /* CircleRadius.swift */,
@@ -2122,6 +2127,7 @@
 		26CA84532AD935F2006D47D7 /* App Assets */ = {
 			isa = PBXGroup;
 			children = (
+				26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */,
 				B52BCC782824FB9000EA3DA5 /* Assets.xcassets */,
 				26CA84542AD93646006D47D7 /* CommonAssets.xcassets */,
 			);
@@ -2601,6 +2607,7 @@
 				7423EC17283F81E2004E9B26 /* anim_not_available.json in Resources */,
 				7423EC20283F81E2004E9B26 /* anim_success.json in Resources */,
 				7423EC16283F81E2004E9B26 /* anim_weather_clear_day.json in Resources */,
+				26ADDF7E2BE3B08D00992BEF /* image_station_qr.gif in Resources */,
 				7423EC18283F81E2004E9B26 /* anim_weather_clear_night.json in Resources */,
 				264CC7472B975D450060DEA4 /* anim_rocket_dark.json in Resources */,
 				7423EC15283F81E2004E9B26 /* anim_weather_cloudy.json in Resources */,
@@ -2881,6 +2888,7 @@
 				2674016D2A372FC100E54E35 /* NetworkStats+Content.swift in Sources */,
 				2632E62F2A335ECD00A5ADB3 /* NetworkStatsView.swift in Sources */,
 				26FFCCCC2BD110CD00880AAD /* ForecastChartTypes.swift in Sources */,
+				26325B552BE3AB4300182C59 /* GifImageView.swift in Sources */,
 				26D6A6232B10F9A900425110 /* IPadConstants.swift in Sources */,
 				2699F5652A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift in Sources */,
 				2632E6322A335EF400A5ADB3 /* NetworkStatsViewModel.swift in Sources */,
