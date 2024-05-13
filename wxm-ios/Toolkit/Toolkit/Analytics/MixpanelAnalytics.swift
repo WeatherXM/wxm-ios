@@ -8,7 +8,7 @@
 import Foundation
 import Mixpanel
 
-struct MixpanelAnalytics: LoggerImplementation {
+struct MixpanelAnalytics: AnalyticsProviderImplementation {
 	private var mixpanelInstance: MixpanelInstance?
 	private let mixpanelSuperParams: Properties = [Parameter.appId.rawValue: Bundle.main.bundleIdentifier]
 

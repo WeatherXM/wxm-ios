@@ -12,7 +12,7 @@ import Mixpanel
 
 private let mixpanelSuperParams: Properties = [Parameter.appId.rawValue: Bundle.main.bundleIdentifier]
 
-struct RemoteLogger: LoggerImplementation {
+struct RemoteLogger: AnalyticsProviderImplementation {
 
 	func launch(with mixpanelId: String) {
 		Mixpanel.initialize(token: mixpanelId, trackAutomaticEvents: false)

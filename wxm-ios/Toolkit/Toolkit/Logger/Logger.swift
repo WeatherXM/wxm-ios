@@ -11,13 +11,13 @@ import FirebaseAnalytics
 
 public class Logger {
     public static let shared = Logger()
-	private var providers: [LoggerImplementation] = []
+	private var providers: [AnalyticsProviderImplementation] = []
 
     private init() {}
 
 	public func launch(with analyticsProviders: [AnalyticsProvider]) {
 		if disableFirebase {
-			providers = [MockLogger()]
+			providers = [MockAnalytics()]
 		} else {
 			providers = analyticsProviders.map { $0.provider }
 		}

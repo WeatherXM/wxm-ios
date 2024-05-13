@@ -10,7 +10,7 @@ import Firebase
 import FirebaseAnalytics
 
 
-struct FirebaseAnalytics: LoggerImplementation {
+struct FirebaseAnalytics: AnalyticsProviderImplementation {
 
 	func logNetworkError(_ networkError: any NetworkError) {
 		let nsError = NSError(domain: networkDomain,

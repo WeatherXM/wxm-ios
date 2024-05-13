@@ -1,5 +1,5 @@
 //
-//  MockLogger.swift
+//  MockAnalytics.swift
 //  Toolkit
 //
 //  Created by Pantelis Giazitsis on 18/12/23.
@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct MockLogger: LoggerImplementation {
-	func launch(with mixpanelId: String) {}
+struct MockAnalytics: AnalyticsProviderImplementation {
 	func logNetworkError(_ networkError: NetworkError) {}
 	func logError(_ nsError: NSError) {}
 	func trackScreen(_ screen: Screen, parameters: [Parameter: ParameterValue]?) {}
