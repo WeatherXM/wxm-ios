@@ -18,3 +18,9 @@ ApiUrl = {The api url};
 ClaimTokenUrl = {The DApp url for the claim flow};
 
 AppStoreUrl = {The app store url};
+
+SupportUrl = {The support site url};
+
+BranchName = branch;
+
+MixpanelToken = {The application token from mixpanel};
