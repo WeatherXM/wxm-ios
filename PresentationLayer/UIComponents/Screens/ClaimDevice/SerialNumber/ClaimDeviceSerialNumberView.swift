@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CodeScanner
 
 struct ClaimDeviceSerialNumberView: View {
 	@StateObject var viewModel: ClaimDeviceSerialNumberViewModel
@@ -45,6 +46,10 @@ struct ClaimDeviceSerialNumberView: View {
 				bottomButtons
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 			}
+		}
+		.sheet(isPresented: $viewModel.showQrScanner) {
+			CodeScannerView(codeTypes: [.qr], completion: viewModel.handleQRScanResult)
+				.overlay(QrScannerView())
 		}
     }
 }

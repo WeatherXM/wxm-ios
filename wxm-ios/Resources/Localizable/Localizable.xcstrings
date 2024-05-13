@@ -611,6 +611,28 @@
         }
       }
     },
+    "claim_device_camera_permission_denied_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please enable it in your device settings."
+          }
+        }
+      }
+    },
+    "claim_device_camera_permission_denied_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Camera permission is required."
+          }
+        }
+      }
+    },
     "claim_device_cancel_claim_button" : {
       "extractionState" : "manual",
       "localizations" : {

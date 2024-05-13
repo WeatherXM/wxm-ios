@@ -36,6 +36,8 @@ extension LocalizableString {
 		case prepareGatewayD1BulletTwo
 		case scanQRCode
 		case enterSerialNumberManually
+		case cammeraPermissionDeniedTitle
+		case cammeraPermissionDeniedText
         case typeWS1000Title
         case typeWS1000Subtitle
         case typeWS2000Title
@@ -199,6 +201,10 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_scan_qr_code"
 			case .enterSerialNumberManually:
 				return "claim_device_enter_serial_number_manually"
+			case .cammeraPermissionDeniedTitle:
+				return "claim_device_camera_permission_denied_title"
+			case .cammeraPermissionDeniedText:
+				return "claim_device_camera_permission_denied_text"
             case .typeWS1000Title:
                 return "claim_device_type_ws1000_title"
             case .typeWS1000Subtitle:

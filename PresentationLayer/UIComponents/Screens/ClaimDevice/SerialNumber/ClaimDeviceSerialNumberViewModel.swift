@@ -6,8 +6,13 @@
 //
 
 import Foundation
+import CodeScanner
+import AVFoundation
+import Toolkit
 
 class ClaimDeviceSerialNumberViewModel: ObservableObject {
+	@Published var showQrScanner: Bool = false
+
 	var bullets: [ClaimDeviceBulletView.Bullet] {
 		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.prepareGatewayD1BulletOne.localized.attributedMarkdown ?? ""),
 		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.prepareGatewayD1BulletTwo.localized.attributedMarkdown ?? "")]
@@ -22,7 +27,49 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 	}
 
 	func handleQRCodeButtonTap() {
-		
+		requestCameraPermission()
+	}
+
+	func handleQRScanResult(result: Result<ScanResult, ScanError>) {
+		switch result {
+			case .success(let result):
+				let input = result.string.components(separatedBy: ",")
+				guard let serialNumber = input[safe: 0]?.trimWhiteSpaces(),
+					  let pin = input[safe: 1]?.trimWhiteSpaces() else {
+					return
+				}
+				print(serialNumber)
+				print(pin)
+			case .failure(let error):
+				print("Scan failed: \(error.localizedDescription)")
+		}
+	}
+}
+
+private extension ClaimDeviceSerialNumberViewModel {
+	func requestCameraPermission() {
+		switch AVCaptureDevice.authorizationStatus(for: .video) {
+			case .notDetermined:
+				AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
+					if granted {
+						self?.showQrScanner = true
+					} else {
+						
+					}
+				}
+			case .restricted:
+				break
+			case .denied:
+				let title = LocalizableString.ClaimDevice.cammeraPermissionDeniedTitle.localized
+				let message = LocalizableString.ClaimDevice.cammeraPermissionDeniedText.localized
+				let alertObj = AlertHelper.AlertObject.getNavigateToSettingsAlert(title: title,
+																				  message: message)
+				AlertHelper().showAlert(alertObj)
+			case .authorized:
+				showQrScanner = true
+			@unknown default:
+				break
+		}
 	}
 }
 
