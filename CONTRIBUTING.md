@@ -99,7 +99,7 @@ For each scheme you should place this file under `wxm-ios/Resources/Debug/` fold
 
 **Each file should be unique for each bundle id**.
 
-You can use, and is recommended during development, the `-WXMFirebaseDisabled YES` argument to disable every logging and monitoring functionality
+You can use, and is recommended during development, the `-WXMAnalyticsDisabled YES` argument to disable every logging and monitoring functionality
 
 ## How to ask a question, report a bug or suggest a potential new feature/improvement?
 

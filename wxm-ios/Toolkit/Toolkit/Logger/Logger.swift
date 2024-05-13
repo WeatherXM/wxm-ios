@@ -24,6 +24,10 @@ public extension Logger {
 	}
 
 	func logError(_ nsError: NSError) {
+		guard !disableAnalytics else {
+			return
+		}
+
 		Crashlytics.crashlytics().record(error: nsError)
 	}
 }

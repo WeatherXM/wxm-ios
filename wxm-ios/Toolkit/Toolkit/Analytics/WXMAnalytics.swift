@@ -14,7 +14,7 @@ public class WXMAnalytics {
     private init() {}
 
 	public func launch(with analyticsProviders: [AnalyticsProvider]) {
-		if disableFirebase {
+		if disableAnalytics {
 			providers = [MockAnalytics()]
 		} else {
 			providers = analyticsProviders.map { $0.provider }

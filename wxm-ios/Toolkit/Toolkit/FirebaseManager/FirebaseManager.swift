@@ -24,7 +24,7 @@ public class FirebaseManager {
 	private let firebaseManagerImpl: FirbaseManagerImplementation
 
     private init() {
-		if disableFirebase {
+		if disableAnalytics {
 			self.firebaseManagerImpl = MockFirebaseManager()
 		} else {
 			self.firebaseManagerImpl = RemoteFirebaseManager()
