@@ -155,7 +155,7 @@ struct BluetoothScanView: View {
 
     var scanButton: some View {
         Button {
-            Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .bleScanAgain])
+            WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .bleScanAgain])
             viewModel.startScanning()
         } label: {
             Label(

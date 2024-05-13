@@ -1,16 +1,14 @@
 //
-//  Logger.swift
+//  WXMAnalytics.swift
 //  Toolkit
 //
 //  Created by Pantelis Giazitsis on 28/2/23.
 //
 
-import Firebase
 import Foundation
-import FirebaseAnalytics
 
-public class Logger {
-    public static let shared = Logger()
+public class WXMAnalytics {
+    public static let shared = WXMAnalytics()
 	private var providers: [AnalyticsProviderImplementation] = []
 
     private init() {}
@@ -25,7 +23,7 @@ public class Logger {
 }
 
 // MARK: - Errors
-public extension Logger {
+public extension WXMAnalytics {
 	func logNetworkError(_ networkError: NetworkError) {
 		providers.forEach { $0.logNetworkError(networkError) }
 	}
@@ -36,7 +34,7 @@ public extension Logger {
 }
 
 // MARK: - Analytics
-public extension Logger {
+public extension WXMAnalytics {
 
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
 		providers.forEach { $0.setAnalyticsCollectionEnabled(enabled) }

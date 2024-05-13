@@ -20,7 +20,7 @@ struct DeleteAccountView: View {
             }
         }
         .onAppear {
-            Logger.shared.trackScreen(.deleteAccount)
+            WXMAnalytics.shared.trackScreen(.deleteAccount)
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
         }
     }

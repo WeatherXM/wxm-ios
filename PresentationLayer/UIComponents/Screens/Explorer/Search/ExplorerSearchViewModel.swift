@@ -69,13 +69,13 @@ class ExplorerSearchViewModel: ObservableObject {
         searchTerm.removeAll()
 
         let isStation = result.networkModel?.deviceId != nil
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .networkSearch,
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkSearch,
                                                               .itemId: isShowingRecent ? .recent : .search,
                                                               .itemListId: isStation ? .station : .location])
     }
 
     func handleSettingsButtonTap() {
-        Logger.shared.trackEvent(.selectContent, parameters: [.actionName: .explorerSettings])
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.actionName: .explorerSettings])
         delegate?.settingsButtonTapped()
     }
 

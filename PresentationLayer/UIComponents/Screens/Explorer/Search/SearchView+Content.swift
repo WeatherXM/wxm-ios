@@ -46,7 +46,7 @@ extension SearchView {
 
                 if shouldShowSettingsButton {
                     Button {
-                        Logger.shared.trackEvent(.userAction, parameters: [.actionName: .explorerPopUp])
+                        WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerPopUp])
                         showSettingsPopOver = true
                     } label: {
                         Text(FontIcon.threeDots.rawValue)
@@ -93,7 +93,7 @@ extension SearchView {
             VStack(spacing: 0.0) {
                 HStack(spacing: CGFloat(.defaultSpacing)) {
                     Button {
-                        Logger.shared.trackEvent(.userAction, parameters: [.actionName: .explorerSearch])
+                        WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerSearch])
                         isFocused = false
                         viewModel.isSearchActive = false
                     } label: {

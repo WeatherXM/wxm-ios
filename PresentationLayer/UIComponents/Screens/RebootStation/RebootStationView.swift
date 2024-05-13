@@ -54,7 +54,7 @@ struct RebootStationView: View {
             viewModel.mainVM = mainVM
             navigationObject.title = LocalizableString.deviceInfoStationReboot.localized
 
-            Logger.shared.trackScreen(.rebootStation,
+            WXMAnalytics.shared.trackScreen(.rebootStation,
                                       parameters: [.itemId: .custom(viewModel.device.id ?? "")])
         }
         .onChange(of: viewModel.dismissToggle) { _ in

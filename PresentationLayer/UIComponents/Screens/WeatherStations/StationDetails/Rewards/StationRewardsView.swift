@@ -52,7 +52,7 @@ struct StationRewardsView: View {
 			}
 		}
         .onAppear {
-            Logger.shared.trackScreen(.rewards)
+            WXMAnalytics.shared.trackScreen(.rewards)
         }
     }
 }

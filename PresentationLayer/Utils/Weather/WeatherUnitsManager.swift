@@ -31,7 +31,7 @@ class WeatherUnitsManager: ObservableObject {
 
 		set {
 			mainUseCase.saveOrUpdateWeatherMetric(unitProtocol: newValue)
-			Logger.shared.setUserProperty(key: .temperature, value: temperatureUnit.analyticsValue)
+			WXMAnalytics.shared.setUserProperty(key: .temperature, value: temperatureUnit.analyticsValue)
 		}
 	}
 
@@ -42,7 +42,7 @@ class WeatherUnitsManager: ObservableObject {
 
 		set {
 			mainUseCase.saveOrUpdateWeatherMetric(unitProtocol: newValue)
-			Logger.shared.setUserProperty(key: .precipitation, value: precipitationUnit.analyticsValue)
+			WXMAnalytics.shared.setUserProperty(key: .precipitation, value: precipitationUnit.analyticsValue)
 		}
 	}
 
@@ -53,7 +53,7 @@ class WeatherUnitsManager: ObservableObject {
 
 		set {
 			mainUseCase.saveOrUpdateWeatherMetric(unitProtocol: newValue)
-			Logger.shared.setUserProperty(key: .wind, value: windSpeedUnit.analyticsValue)
+			WXMAnalytics.shared.setUserProperty(key: .wind, value: windSpeedUnit.analyticsValue)
 		}
 	}
 
@@ -64,7 +64,7 @@ class WeatherUnitsManager: ObservableObject {
 
 		set {
 			mainUseCase.saveOrUpdateWeatherMetric(unitProtocol: newValue)
-			Logger.shared.setUserProperty(key: .windDirection, value: windDirectionUnit.analyticsValue)
+			WXMAnalytics.shared.setUserProperty(key: .windDirection, value: windDirectionUnit.analyticsValue)
 		}
 	}
 
@@ -75,7 +75,7 @@ class WeatherUnitsManager: ObservableObject {
 
 		set {
 			mainUseCase.saveOrUpdateWeatherMetric(unitProtocol: newValue)
-			Logger.shared.setUserProperty(key: .pressure, value: pressureUnit.analyticsValue)
+			WXMAnalytics.shared.setUserProperty(key: .pressure, value: pressureUnit.analyticsValue)
 		}
 	}
 

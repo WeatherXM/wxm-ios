@@ -122,7 +122,7 @@ private struct HistoryPagerView: View {
             }
             navigationObject.title = LocalizableString.historyTitle.localized
             navigationObject.subtitle = viewModel.device.address
-            Logger.shared.trackScreen(.history)
+            WXMAnalytics.shared.trackScreen(.history)
         }
         .onChange(of: viewModel.currentDate) { value in
             print("Current date \(value)")

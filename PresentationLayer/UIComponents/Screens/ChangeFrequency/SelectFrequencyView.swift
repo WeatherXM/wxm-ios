@@ -26,7 +26,7 @@ struct SelectFrequencyView: View {
                         text
                         textLink
                             .simultaneousGesture(TapGesture().onEnded {
-                                Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .frequencyDocumentation])
+                                WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .frequencyDocumentation])
                             })
 
                         frequencyTitle

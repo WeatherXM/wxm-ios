@@ -91,7 +91,7 @@ extension NetworkStatsViewModel {
                              title: LocalizableString.NetStats.wxmTokenTitle.localized,
                              description: tokenDescription,
                              showExternalLinkIcon: true,
-                             externalLinkTapAction: { Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenomics]) },
+                             externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenomics]) },
                              info: nil,
                              additionalStats: [totalSupply, dailyMinted],
                              analyticsItemId: nil)
@@ -151,7 +151,7 @@ extension NetworkStatsViewModel {
             if let url = URL(string: DisplayedLinks.contactLink.linkURL) {
                 UIApplication.shared.open(url)
             }
-            Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .openManufacturerContact])
+            WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .openManufacturerContact])
         })
         
         return manufacturerCTA

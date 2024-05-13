@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		260070AA2B30A55500ED26FC /* RemoteLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260070A92B30A55500ED26FC /* RemoteLogger.swift */; };
 		260070AC2B30A62900ED26FC /* MockAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260070AB2B30A62900ED26FC /* MockAnalytics.swift */; };
 		260669582B4C0C3A000B4B42 /* Combine+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260669572B4C0C3A000B4B42 /* Combine+.swift */; };
 		261CD82729CB59B000C0CECE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CD82629CB59B000C0CECE /* FoundationExtensions.swift */; };
@@ -39,7 +38,7 @@
 		26D47E902A1659D20078723A /* AnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E8F2A1659D20078723A /* AnalyticsConstants.swift */; };
 		26D47EB12A1CB3720078723A /* WXMLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47EB02A1CB3720078723A /* WXMLocationManager.swift */; };
 		26DD429F29AF4633008E277E /* Toolkit.h in Headers */ = {isa = PBXBuildFile; fileRef = 26DD429E29AF4633008E277E /* Toolkit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		26DD42AD29AF4659008E277E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42AC29AF4659008E277E /* Logger.swift */; };
+		26DD42AD29AF4659008E277E /* WXMAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42AC29AF4659008E277E /* WXMAnalytics.swift */; };
 		26DD42B829AF49E3008E277E /* LoggerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42B729AF49E3008E277E /* LoggerTypes.swift */; };
 		26DD42BB29AF4B5B008E277E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42BA29AF4B5B008E277E /* FirebaseManager.swift */; };
 		26DD42BE29AF4FAD008E277E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 26DD42BD29AF4FAD008E277E /* FirebaseCrashlytics */; };
@@ -48,7 +47,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		260070A92B30A55500ED26FC /* RemoteLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLogger.swift; sourceTree = "<group>"; };
 		260070AB2B30A62900ED26FC /* MockAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAnalytics.swift; sourceTree = "<group>"; };
 		260669572B4C0C3A000B4B42 /* Combine+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+.swift"; sourceTree = "<group>"; };
 		261CD82629CB59B000C0CECE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
@@ -76,7 +74,7 @@
 		26D47EB02A1CB3720078723A /* WXMLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMLocationManager.swift; sourceTree = "<group>"; };
 		26DD429B29AF4633008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DD429E29AF4633008E277E /* Toolkit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toolkit.h; sourceTree = "<group>"; };
-		26DD42AC29AF4659008E277E /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		26DD42AC29AF4659008E277E /* WXMAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMAnalytics.swift; sourceTree = "<group>"; };
 		26DD42B729AF49E3008E277E /* LoggerTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTypes.swift; sourceTree = "<group>"; };
 		26DD42BA29AF4B5B008E277E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		26E88B3829E599D70023BBD5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -151,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				2666D5412BC6D101003B30C0 /* AnalyticsConstants */,
+				26DD42AC29AF4659008E277E /* WXMAnalytics.swift */,
 				26AA219D2BF20C0300B91A7C /* FirebaseAnalytics.swift */,
 				26AA219F2BF20C8800B91A7C /* MixpanelAnalytics.swift */,
 				260070AB2B30A62900ED26FC /* MockAnalytics.swift */,
@@ -192,9 +191,7 @@
 		26DD42AB29AF4659008E277E /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				26DD42AC29AF4659008E277E /* Logger.swift */,
 				26DD42B729AF49E3008E277E /* LoggerTypes.swift */,
-				260070A92B30A55500ED26FC /* RemoteLogger.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -307,7 +304,6 @@
 				260669582B4C0C3A000B4B42 /* Combine+.swift in Sources */,
 				26AA21A02BF20C8800B91A7C /* MixpanelAnalytics.swift in Sources */,
 				26D47E902A1659D20078723A /* AnalyticsConstants.swift in Sources */,
-				260070AA2B30A55500ED26FC /* RemoteLogger.swift in Sources */,
 				26AB9F4F2A7CFE6200855912 /* AsyncOperations.swift in Sources */,
 				264AE28529FBA5840051C101 /* Bundle+.swift in Sources */,
 				266482FA29C0857400748F9C /* CallbackTypes.swift in Sources */,
@@ -322,7 +318,7 @@
 				268A63062B59797B0079D507 /* NotificationsHandler.swift in Sources */,
 				261CD82729CB59B000C0CECE /* FoundationExtensions.swift in Sources */,
 				26968CD42B1A1AB8003856D9 /* WEIConverter.swift in Sources */,
-				26DD42AD29AF4659008E277E /* Logger.swift in Sources */,
+				26DD42AD29AF4659008E277E /* WXMAnalytics.swift in Sources */,
 				26DD42B829AF49E3008E277E /* LoggerTypes.swift in Sources */,
 				26AB9F542A801C5300855912 /* TimeValidationCache.swift in Sources */,
 				260070AC2B30A62900ED26FC /* MockAnalytics.swift in Sources */,

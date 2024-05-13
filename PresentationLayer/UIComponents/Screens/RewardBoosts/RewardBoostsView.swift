@@ -38,7 +38,7 @@ struct RewardBoostsView: View {
 			.iPadMaxWidth()
 			.onAppear {
 				navigationObject.navigationBarColor = Color(colorEnum: .background)
-				Logger.shared.trackScreen(.analytics, parameters: [.itemId: .custom(viewModel.response?.code?.rawValue ?? "")])
+				WXMAnalytics.shared.trackScreen(.analytics, parameters: [.itemId: .custom(viewModel.response?.code?.rawValue ?? "")])
 			}
 		}
     }

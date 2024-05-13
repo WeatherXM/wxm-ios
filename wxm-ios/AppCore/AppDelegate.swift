@@ -15,7 +15,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 		FirebaseManager.shared.launch()
 
 		if let mixpanelToken: String = Bundle.main.getConfiguration(for: .mixpanelToken) {
-			Logger.shared.launch(with: [.firebase, .mixpanel(mixpanelToken)])
+			WXMAnalytics.shared.launch(with: [.firebase, .mixpanel(mixpanelToken)])
 		}
         
 		return true

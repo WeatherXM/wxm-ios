@@ -203,7 +203,7 @@ public class ApiClient {
     }
 
     private func logError(_ error: NetworkErrorResponse) {
-        Logger.shared.logNetworkError(error)
+        WXMAnalytics.shared.logNetworkError(error)
     }
 
     private func debugPrintDownloadResponse(urlString: String?, fileUrl: URL?) {
@@ -232,7 +232,7 @@ public class ApiClient {
 		if let noSlashesString = String(data: noSlashesJsonData, encoding: .utf8),
 		   noSlashesString.contains(Constants.emptyObjectString.rawValue) {
 			let error = NSError(domain: Constants.emptyJsonObject.rawValue, code: -1, userInfo: [Constants.url.rawValue: urlString ?? ""])
-			Logger.shared.logError(error)
+			WXMAnalytics.shared.logError(error)
 		}
     }
 }

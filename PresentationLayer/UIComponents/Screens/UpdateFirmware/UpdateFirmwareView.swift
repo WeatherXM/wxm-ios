@@ -34,7 +34,7 @@ struct UpdateFirmwareView: View {
 
             viewModel.mainVM = mainVM
 
-            Logger.shared.trackScreen(.heliumOTA)
+            WXMAnalytics.shared.trackScreen(.heliumOTA)
         }
     }
 }

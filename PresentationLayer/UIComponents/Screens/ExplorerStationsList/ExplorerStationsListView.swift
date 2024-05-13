@@ -91,7 +91,7 @@ private struct ContentView: View {
         .onAppear {
             navigationObject.navigationBarColor = Color(colorEnum: .top)
 
-            Logger.shared.trackScreen(.explorerCellScreen,
+            WXMAnalytics.shared.trackScreen(.explorerCellScreen,
                                       parameters: [.itemId: .custom(viewModel.cellIndex)])
         }
 		.bottomSheet(show: $viewModel.showInfo) {

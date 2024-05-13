@@ -161,7 +161,7 @@ final class SettingsViewModel: ObservableObject {
 
 	func handleNotificationSwitchTap() {
 		let status: ParameterValue = areNotificationsEnabled == true ? .on : .off
-		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .notifications,
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .notifications,
 														   .status: status])
 
 		Task { @MainActor in
@@ -182,7 +182,7 @@ final class SettingsViewModel: ObservableObject {
 	}
 
 	func handleAnnouncementsTap() {
-		Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .announcements])
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .announcements])
 
 		guard let url = URL(string: DisplayedLinks.announcements.linkURL) else {
 			return

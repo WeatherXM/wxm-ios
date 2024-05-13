@@ -111,7 +111,7 @@ struct ClaimDeviceLocationMapView: View {
                 Button {
                     viewModel.moveToLocationFromSearchResult(searchResult)
                     showSearchResults = false
-                    Logger.shared.trackEvent(.userAction, parameters: [.actionName: .searchLocation,
+                    WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .searchLocation,
                                                                        .contentType: .claimingAddressSearch,
                                                                        .location: .custom(searchResult.description)])
                 } label: {

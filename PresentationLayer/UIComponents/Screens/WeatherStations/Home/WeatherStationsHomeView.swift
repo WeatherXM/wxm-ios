@@ -74,7 +74,7 @@ private struct ContentView: View {
         VStack(spacing: 0.0) {
             weatherStationsFlow(for: viewModel.devices)
                 .onAppear {
-                    Logger.shared.trackScreen(.deviceList)
+                    WXMAnalytics.shared.trackScreen(.deviceList)
                 }
                 .zIndex(0)
                 .onChange(of: viewModel.isTabBarShowing) { newValue in
@@ -108,7 +108,7 @@ private struct ContentView: View {
                     CardWarningView(title: LocalizableString.walletAddressMissingTitle.localized,
                                     message: LocalizableString.walletAddressMissingText.localized) {
 
-                        Logger.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+                        WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
                                                                        .promptType: .warnPromptType,
                                                                        .action: .dismissAction])
 
@@ -118,7 +118,7 @@ private struct ContentView: View {
                     } content: {
                         Button {
                             Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
-                            Logger.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+                            WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
                                                                            .promptType: .warnPromptType,
                                                                            .action: .action])
 
@@ -129,7 +129,7 @@ private struct ContentView: View {
                         }
                     }
                     .onAppear {
-                        Logger.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+                        WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
                                                                        .promptType: .warnPromptType,
                                                                        .action: .viewAction])
                     }
@@ -160,7 +160,7 @@ private struct ContentView: View {
                     Router.shared.navigateTo(.stationDetails(ViewModelsFactory.getStationDetailsViewModel(deviceId: device.id ?? "",
                                                                                                           cellIndex: device.cellIndex,
                                                                                                           cellCenter: device.cellCenter?.toCLLocationCoordinate2D())))
-                    Logger.shared.trackEvent(.userAction, parameters: [.actionName: .selectDevice,
+                    WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .selectDevice,
                                                                        .contentType: .userDeviceList,
                                                                        .itemListId: .custom(device.id ?? "")])
                 }

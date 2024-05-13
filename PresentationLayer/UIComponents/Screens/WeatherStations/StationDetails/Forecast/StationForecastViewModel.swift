@@ -67,7 +67,7 @@ class StationForecastViewModel: ObservableObject {
 		let viewModel = ViewModelsFactory.getForecastDetailsViewModel(configuration: conf)
 		Router.shared.navigateTo(.forecastDetails(viewModel))
 
-		Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .dailyCard,
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .dailyCard,
 															  .itemId: .dailyForecast])
 	}
 
@@ -153,7 +153,7 @@ private extension StationForecastViewModel {
 			return weather.toMiniCardItem(with: timezone, action: { [weak  self] in
 				self?.handleTap(for: weather)
 
-				Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .hourlyDetailsCard,
+				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .hourlyDetailsCard,
 																	  .itemId: .hourlyForecast])
 			})
 		}

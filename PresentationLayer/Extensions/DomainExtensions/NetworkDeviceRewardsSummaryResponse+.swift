@@ -143,7 +143,7 @@ extension RewardAnnotation {
 				   let url = URL(string: docUrl) {
 					UIApplication.shared.open(url)
 
-					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
+					WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
 																		  .itemId: .custom(docUrl)])
 				}
 			case .locationNotVerified:
@@ -156,7 +156,7 @@ extension RewardAnnotation {
 						  let url = URL(string: docUrl) {
 					 UIApplication.shared.open(url)
 
-					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
+					WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
 																		  .itemId: .custom(docUrl)])
 				 }
 			default:
@@ -164,7 +164,7 @@ extension RewardAnnotation {
 				   let url = URL(string: docUrl) {
 					UIApplication.shared.open(url)
 
-					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
+					WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
 																		  .itemId: .custom(docUrl)])
 				}
 		}

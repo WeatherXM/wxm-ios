@@ -30,7 +30,7 @@ struct ResetPasswordView: View {
             viewModel.isResetPasswordButtonAvailable()
         })
         .onAppear {
-            Logger.shared.trackScreen(.passwordReset)
+            WXMAnalytics.shared.trackScreen(.passwordReset)
 			navigationObjet.title = LocalizableString.resetPasswordTitle.localized
 			navigationObjet.navigationBarColor = Color(colorEnum: .bg)
         }

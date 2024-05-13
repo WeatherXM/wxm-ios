@@ -142,13 +142,13 @@ class DeviceInfoViewModel: ObservableObject {
         shareDialogText = InfoField.getShareText(for: device, deviceInfo: deviceInfo, mainVM: mainVM, followState: followState)
 		showShareDialog = true
 
-        Logger.shared.trackEvent(.userAction, parameters: [.actionName: .shareStationInfo,
+        WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .shareStationInfo,
                                                            .contentType: .stationInfo,
                                                            .itemId: .custom(device.id ?? "")])
     }
 
     func handleContactSupportButtonTap() {
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
                                                               .source: .deviceInfoSource])
 
 		HelperFunctions().openContactSupport(successFailureEnum: .weatherStations,
@@ -209,7 +209,7 @@ private extension DeviceInfoViewModel {
 			case .maintenance:
 				break
 			case .remove:
-				Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .removeDevice,
+				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .removeDevice,
 																	  .itemId: .custom(device.id ?? "")])
 				showAccountConfirmation = true
 			case .reconfigureWifi:
@@ -260,7 +260,7 @@ private extension DeviceInfoViewModel {
 
             self.setFriendlyName(deviceId: deviceId, name: text.trimWhiteSpaces())
 
-            Logger.shared.trackEvent(.userAction, parameters: [.actionName: .changeStationNameResult,
+            WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .changeStationNameResult,
                                                                .contentType: .changeStationName,
                                                                .action: .edit])
         })
@@ -273,7 +273,7 @@ private extension DeviceInfoViewModel {
 
             self.deleteFriendlyName(deviceId: deviceId)
 
-            Logger.shared.trackEvent(.userAction, parameters: [.actionName: .changeStationNameResult,
+            WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .changeStationNameResult,
                                                                .contentType: .changeStationName,
                                                                .action: .clear])
         })
@@ -284,7 +284,7 @@ private extension DeviceInfoViewModel {
                                                   textFieldValue: device.displayName,
                                                   textFieldDelegate: AlertTexFieldDelegate(),
                                                   cancelAction: {
-            Logger.shared.trackEvent(.userAction, parameters: [.actionName: .changeStationNameResult,
+            WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .changeStationNameResult,
                                                                .contentType: .changeStationName,
                                                                .action: .cancel])
         },
@@ -293,7 +293,7 @@ private extension DeviceInfoViewModel {
         AlertHelper().showAlert(alertObject)
         // Since we present a system dialog,
         // we track the screen here.
-        Logger.shared.trackScreen(.changeStationName, parameters: [.itemId: .custom(device.id ?? "")])
+        WXMAnalytics.shared.trackScreen(.changeStationName, parameters: [.itemId: .custom(device.id ?? "")])
     }
 
     func setFriendlyName(deviceId: String, name: String) {
@@ -362,13 +362,13 @@ private extension DeviceInfoViewModel {
             return
         }
 
-        Logger.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
+        WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
                                                             .itemId: .custom(error.backendError?.code ?? "")])
         Toast.shared.show(text: message, retryAction: retry)
     }
 
     func trackChangeNameViewContent(isSuccessful: Bool) {
-        Logger.shared.trackEvent(.viewContent, parameters: [.contentName: .changeStationNameResult,
+        WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .changeStationNameResult,
                                                             .contentId: .changeStationNameResultContentId,
                                                             .success: .custom(isSuccessful ? "1" : "0")])
     }
