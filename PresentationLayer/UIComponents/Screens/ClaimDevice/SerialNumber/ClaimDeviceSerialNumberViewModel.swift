@@ -11,6 +11,7 @@ import AVFoundation
 import Toolkit
 
 class ClaimDeviceSerialNumberViewModel: ObservableObject {
+	let completion: GenericCallback<SerialNumber?>
 	@Published var showQrScanner: Bool = false
 
 	var bullets: [ClaimDeviceBulletView.Bullet] {
@@ -22,8 +23,12 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 		nil
 	}
 
-	func handleSNButtonTap() {
+	init(completion: @escaping GenericCallback<SerialNumber?>) {
+		self.completion = completion
+	}
 
+	func handleSNButtonTap() {
+		completion(nil)
 	}
 
 	func handleQRCodeButtonTap() {
@@ -35,14 +40,22 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 			case .success(let result):
 				let input = result.string.components(separatedBy: ",")
 				guard let serialNumber = input[safe: 0]?.trimWhiteSpaces(),
-					  let pin = input[safe: 1]?.trimWhiteSpaces() else {
+					  let key = input[safe: 1]?.trimWhiteSpaces() else {
 					return
 				}
-				print(serialNumber)
-				print(pin)
+
+				completion(SerialNumber(serialNumber: serialNumber, key: key))
 			case .failure(let error):
 				print("Scan failed: \(error.localizedDescription)")
+				Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
 		}
+	}
+}
+
+extension ClaimDeviceSerialNumberViewModel {
+	struct SerialNumber {
+		let serialNumber: String
+		let key: String
 	}
 }
 

@@ -91,5 +91,5 @@ private extension ClaimDeviceSerialNumberView {
 }
 
 #Preview {
-	ClaimDeviceSerialNumberView(viewModel: ClaimDeviceSerialNumberM5ViewModel())
+	ClaimDeviceSerialNumberView(viewModel: ClaimDeviceSerialNumberM5ViewModel { _ in })
 }

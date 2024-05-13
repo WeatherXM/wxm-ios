@@ -53,8 +53,11 @@ private extension ClaimDeviceContainerViewModel {
 			self?.moveNext()
 		}
 
-		let snViewModel = ViewModelsFactory.getClaimStationM5SNViewModel {
-//			self?.selectedIndex += 1
+		let snViewModel = ViewModelsFactory.getClaimStationM5SNViewModel { [weak self] serialNumber in
+			guard let serialNumber else {
+				self?.moveNext()
+				return
+			}
 		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .location]
@@ -65,8 +68,11 @@ private extension ClaimDeviceContainerViewModel {
 			self?.moveNext()
 		}
 
-		let snViewModel = ViewModelsFactory.getClaimStationSNViewModel {
-//			self?.selectedIndex += 1
+		let snViewModel = ViewModelsFactory.getClaimStationSNViewModel { [weak self] serialNumber in
+			guard let serialNumber else {
+				self?.moveNext()
+				return
+			}
 		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .location]
