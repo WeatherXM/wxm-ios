@@ -24,8 +24,6 @@ extension AnalyticsProvider {
 }
 
 protocol AnalyticsProviderImplementation {
-	func logNetworkError(_ networkError: NetworkError)
-	func logError(_ nsError: NSError)
 	func trackScreen(_ screen: Screen, parameters: [Parameter: ParameterValue]?)
 	func trackEvent(_ event: Event, parameters: [Parameter: ParameterValue]?)
 	func setUserId(_ userId: String?)

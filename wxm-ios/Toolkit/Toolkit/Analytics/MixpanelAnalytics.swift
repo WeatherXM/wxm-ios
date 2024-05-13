@@ -18,14 +18,6 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 		Mixpanel.mainInstance().loggingEnabled = true
 	}
 
-	func logNetworkError(_ networkError: any NetworkError) {
-
-	}
-
-	func logError(_ nsError: NSError) {
-
-	}
-
 	func trackScreen(_ screen: Screen, parameters: [Parameter : ParameterValue]?) {
 		var params: [String: MixpanelType] = [analyticsScreenNameKey: screen.rawValue]
 		if let additionalParams = parameters?.toMixpanelParamsDictionary {

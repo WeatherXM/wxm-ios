@@ -78,7 +78,7 @@ public final class KeychainHelperService {
 		if status != errSecSuccess {
 			let message = SecCopyErrorMessageString(status, nil) as? String
 			let error = NSError(domain: "keychain", code: -1, userInfo: ["message": message, "osStatus": status])
-			WXMAnalytics.shared.logError(error)
+			Logger.shared.logError(error)
 		}
         
 		return (result as? Data)

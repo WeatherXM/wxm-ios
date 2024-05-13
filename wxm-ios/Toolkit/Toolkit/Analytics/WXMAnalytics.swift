@@ -22,17 +22,6 @@ public class WXMAnalytics {
 	}
 }
 
-// MARK: - Errors
-public extension WXMAnalytics {
-	func logNetworkError(_ networkError: NetworkError) {
-		providers.forEach { $0.logNetworkError(networkError) }
-	}
-
-	func logError(_ nsError: NSError) {
-		providers.forEach { $0.logError(nsError) }
-	}
-}
-
 // MARK: - Analytics
 public extension WXMAnalytics {
 
