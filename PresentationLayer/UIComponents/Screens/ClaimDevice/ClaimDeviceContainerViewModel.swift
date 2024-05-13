@@ -58,6 +58,8 @@ private extension ClaimDeviceContainerViewModel {
 				self?.moveNext()
 				return
 			}
+
+			self?.moveNext()
 		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .location]
@@ -73,6 +75,8 @@ private extension ClaimDeviceContainerViewModel {
 				self?.moveNext()
 				return
 			}
+
+			self?.moveNext()
 		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .location]
