@@ -10,7 +10,6 @@ import CodeScanner
 
 struct ClaimDeviceSerialNumberView: View {
 	@StateObject var viewModel: ClaimDeviceSerialNumberViewModel
-	let gifFileName = "image_station_qr"
 
     var body: some View {
 		ZStack {
@@ -29,7 +28,7 @@ struct ClaimDeviceSerialNumberView: View {
 
 						bullets
 
-						GifImageView(fileName: gifFileName)
+						GifImageView(fileName: viewModel.gifFileName)
 							.aspectRatio(1.0, contentMode: .fit)
 
 						if let caption = viewModel.caption {

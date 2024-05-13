@@ -23,6 +23,10 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 		nil
 	}
 
+	var gifFileName: String {
+		"image_station_qr"
+	}
+
 	init(completion: @escaping GenericCallback<SerialNumber?>) {
 		self.completion = completion
 	}
@@ -39,11 +43,10 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 		switch result {
 			case .success(let result):
 				let input = result.string.components(separatedBy: ",")
-				guard let serialNumber = input[safe: 0]?.trimWhiteSpaces(),
-					  let key = input[safe: 1]?.trimWhiteSpaces() else {
+				guard let serialNumber = input[safe: 0]?.trimWhiteSpaces() else {
 					return
 				}
-
+				let key = input[safe: 1]?.trimWhiteSpaces()
 				completion(SerialNumber(serialNumber: serialNumber, key: key))
 			case .failure(let error):
 				print("Scan failed: \(error.localizedDescription)")
@@ -55,7 +58,7 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 extension ClaimDeviceSerialNumberViewModel {
 	struct SerialNumber {
 		let serialNumber: String
-		let key: String
+		let key: String?
 	}
 }
 
@@ -94,5 +97,9 @@ class ClaimDeviceSerialNumberM5ViewModel: ClaimDeviceSerialNumberViewModel {
 
 	override var caption: AttributedString? {
 		LocalizableString.ClaimDevice.prepareGatewayM5Caption.localized.attributedMarkdown
+	}
+
+	override var gifFileName: String {
+		"image_m5_station_qr"
 	}
 }

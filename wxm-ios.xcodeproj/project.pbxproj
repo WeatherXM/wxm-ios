@@ -337,6 +337,7 @@
 		26A9619C2AA705FE00646A25 /* LocalizableString+StationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */; };
 		26A961B02AA7181300646A25 /* LocalizableString+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */; };
 		26A961C42AA733E200646A25 /* LocalizableString+ClaimDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961C32AA733E200646A25 /* LocalizableString+ClaimDevice.swift */; };
+		26AA21B82BF2597700B91A7C /* image_m5_station_qr.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26AA21B72BF2597700B91A7C /* image_m5_station_qr.gif */; };
 		26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F462A7BEA0700855912 /* CTAView.swift */; };
 		26AB9F582A822DB500855912 /* UserDeviceFollowState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */; };
 		26ADDF7E2BE3B08D00992BEF /* image_station_qr.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */; };
@@ -845,6 +846,7 @@
 		26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+StationDetails.swift"; sourceTree = "<group>"; };
 		26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Wallet.swift"; sourceTree = "<group>"; };
 		26A961C32AA733E200646A25 /* LocalizableString+ClaimDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+ClaimDevice.swift"; sourceTree = "<group>"; };
+		26AA21B72BF2597700B91A7C /* image_m5_station_qr.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_m5_station_qr.gif; sourceTree = "<group>"; };
 		26AB9F462A7BEA0700855912 /* CTAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAView.swift; sourceTree = "<group>"; };
 		26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDeviceFollowState+.swift"; sourceTree = "<group>"; };
 		26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_station_qr.gif; sourceTree = "<group>"; };
@@ -2145,6 +2147,7 @@
 			isa = PBXGroup;
 			children = (
 				26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */,
+				26AA21B72BF2597700B91A7C /* image_m5_station_qr.gif */,
 				B52BCC782824FB9000EA3DA5 /* Assets.xcassets */,
 				26CA84542AD93646006D47D7 /* CommonAssets.xcassets */,
 			);
@@ -2630,6 +2633,7 @@
 				7423EC15283F81E2004E9B26 /* anim_weather_cloudy.json in Resources */,
 				7423EC28283F81E2004E9B26 /* anim_weather_drizzle.json in Resources */,
 				7423EC23283F81E2004E9B26 /* anim_weather_fog.json in Resources */,
+				26AA21B82BF2597700B91A7C /* image_m5_station_qr.gif in Resources */,
 				7423EC1A283F81E2004E9B26 /* anim_weather_overcast_day.json in Resources */,
 				7423EC24283F81E2004E9B26 /* anim_weather_overcast_night.json in Resources */,
 				7423EC22283F81E2004E9B26 /* anim_weather_partly_cloudy_day.json in Resources */,
