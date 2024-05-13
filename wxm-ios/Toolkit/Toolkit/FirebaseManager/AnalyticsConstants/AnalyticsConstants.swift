@@ -14,6 +14,22 @@ let networkDomain = "network_domain"
 let analyticsScreenView: String = AnalyticsEventScreenView
 let analyticsScreenNameKey: String = AnalyticsParameterScreenName
 
+public enum AnalyticsProvider {
+	case firebase
+	case mixpanel(String)
+}
+
+extension AnalyticsProvider {
+	var provider: LoggerImplementation {
+		switch self {
+			case .firebase:
+				FirebaseAnalytics()
+			case .mixpanel(let mixpanelId):
+				MixpanelAnalytics(mixpanelId: mixpanelId)
+		}
+	}
+}
+
 public enum Screen: String {
 	case splash = "Splash Screen"
 	case analytics = "Analytics Opt-In Prompt"

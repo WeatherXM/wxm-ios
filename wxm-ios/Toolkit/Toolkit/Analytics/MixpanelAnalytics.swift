@@ -12,7 +12,7 @@ struct MixpanelAnalytics: LoggerImplementation {
 	private var mixpanelInstance: MixpanelInstance?
 	private let mixpanelSuperParams: Properties = [Parameter.appId.rawValue: Bundle.main.bundleIdentifier]
 
-	func launch(with mixpanelId: String) {
+	init(mixpanelId: String) {
 		Mixpanel.initialize(token: mixpanelId, trackAutomaticEvents: false)
 		resetMixpanel()
 		Mixpanel.mainInstance().loggingEnabled = true

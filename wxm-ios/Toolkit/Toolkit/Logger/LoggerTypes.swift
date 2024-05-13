@@ -13,7 +13,6 @@ public protocol NetworkError: Error {
 }
 
 protocol LoggerImplementation {
-	func launch(with mixpanelId: String)
 	func logNetworkError(_ networkError: NetworkError)
 	func logError(_ nsError: NSError)
 	func trackScreen(_ screen: Screen, parameters: [Parameter: ParameterValue]?)

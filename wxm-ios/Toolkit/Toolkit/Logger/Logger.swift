@@ -10,32 +10,28 @@ import Foundation
 import FirebaseAnalytics
 
 public class Logger {
-    private let networkDomain = "network_domain"
-
     public static let shared = Logger()
-	private let loggerImpl: LoggerImplementation
+	private var providers: [LoggerImplementation] = []
 
-    private init() {
+    private init() {}
+
+	public func launch(with analyticsProviders: [AnalyticsProvider]) {
 		if disableFirebase {
-			loggerImpl = MockLogger()
+			providers = [MockLogger()]
 		} else {
-			loggerImpl = RemoteLogger()
+			providers = analyticsProviders.map { $0.provider }
 		}
-	}
-
-	public func launch(with mixpanelId: String) {
-		loggerImpl.launch(with: mixpanelId)
 	}
 }
 
 // MARK: - Errors
 public extension Logger {
 	func logNetworkError(_ networkError: NetworkError) {
-		loggerImpl.logNetworkError(networkError)
+		providers.forEach { $0.logNetworkError(networkError) }
 	}
 
 	func logError(_ nsError: NSError) {
-		loggerImpl.logError(nsError)
+		providers.forEach { $0.logError(nsError) }
 	}
 }
 
@@ -43,26 +39,26 @@ public extension Logger {
 public extension Logger {
 
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
-		loggerImpl.setAnalyticsCollectionEnabled(enabled)
+		providers.forEach { $0.setAnalyticsCollectionEnabled(enabled) }
 	}
 
     func trackScreen(_ screen: Screen, parameters: [Parameter: ParameterValue]? = nil) {
-		loggerImpl.trackScreen(screen, parameters: parameters)
+		providers.forEach { $0.trackScreen(screen, parameters: parameters) }
     }
 
     func trackEvent(_ event: Event, parameters: [Parameter: ParameterValue]?) {
-		loggerImpl.trackEvent(event, parameters: parameters)
+		providers.forEach { $0.trackEvent(event, parameters: parameters) }
     }
 
     func setUserId(_ userId: String?) {
-		loggerImpl.setUserId(userId)
+		providers.forEach { $0.setUserId(userId) }
     }
 
     func setUserProperty(key: Parameter, value: ParameterValue) {
-		loggerImpl.setUserProperty(key: key, value: value)
+		providers.forEach { $0.setUserProperty(key: key, value: value) }
     }
 
     func setDefaultParameter(key: Parameter, value: ParameterValue) {
-		loggerImpl.setDefaultParameter(key: key, value: value)
+		providers.forEach { $0.setDefaultParameter(key: key, value: value) }
     }
 }

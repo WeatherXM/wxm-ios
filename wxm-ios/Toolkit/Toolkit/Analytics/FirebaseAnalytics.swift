@@ -11,9 +11,6 @@ import FirebaseAnalytics
 
 
 struct FirebaseAnalytics: LoggerImplementation {
-	func launch(with mixpanelId: String) {
-
-	}
 
 	func logNetworkError(_ networkError: any NetworkError) {
 		let nsError = NSError(domain: networkDomain,

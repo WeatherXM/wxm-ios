@@ -19,7 +19,7 @@ class IntentHandler: INExtension, StationWidgetConfigurationIntentHandling {
 		super.init()
 		FirebaseManager.shared.launch()
 		if let mixpanelToken: String = Bundle.main.getConfiguration(for: .mixpanelToken) {
-			Logger.shared.launch(with: mixpanelToken)
+			Logger.shared.launch(with: [.firebase, .mixpanel(mixpanelToken)])
 		}
 	}
 
