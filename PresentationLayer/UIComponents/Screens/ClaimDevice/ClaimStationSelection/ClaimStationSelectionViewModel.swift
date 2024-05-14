@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class ClaimStationSelectionViewModel: ObservableObject {
 
 	func handleTypeTap(_ type: ClaimStationType) {
