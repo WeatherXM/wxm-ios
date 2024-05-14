@@ -177,4 +177,8 @@ enum ViewModelsFactory {
 	static func getForecastDetailsViewModel(configuration: ForecastDetailsViewModel.Configuration) -> ForecastDetailsViewModel {
 		ForecastDetailsViewModel(configuration: configuration)
 	}
+
+	static func getClaimStationSelectionViewModel() -> ClaimStationSelectionViewModel {
+		ClaimStationSelectionViewModel()
+	}
 }

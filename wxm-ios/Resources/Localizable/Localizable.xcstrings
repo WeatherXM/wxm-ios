@@ -853,6 +853,17 @@
         }
       }
     },
+    "claim_device_d1_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D1 | WiFi"
+          }
+        }
+      }
+    },
     "claim_device_dev_EUI_field_hint" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1040,6 +1051,17 @@
         }
       }
     },
+    "claim_device_helium_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helium"
+          }
+        }
+      }
+    },
     "claim_device_i_ve_connect_my_m5_button" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1117,6 +1139,17 @@
         }
       }
     },
+    "claim_device_m5_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M5 | WiFi"
+          }
+        }
+      }
+    },
     "claim_device_manually_button" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1135,6 +1168,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Could not find such a device."
+          }
+        }
+      }
+    },
+    "claim_device_pulse_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulse | 4G"
           }
         }
       }
@@ -1266,7 +1310,18 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select your device type"
+            "value" : "Select your station type"
+          }
+        }
+      }
+    },
+    "claim_device_selection_navigation_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim a Weather Station"
           }
         }
       }
