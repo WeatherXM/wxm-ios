@@ -114,4 +114,5 @@ public enum AssetEnum: String {
 	case imagePulse = "image_pulse"
 	case imageHelium = "image_helium"
 	case imageStationQR = "image_station_qr"
+	case imageD1Claim = "image_d1_claim"
 }

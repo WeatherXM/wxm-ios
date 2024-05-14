@@ -39,6 +39,11 @@ extension LocalizableString {
 		case cammeraPermissionDeniedTitle
 		case cammeraPermissionDeniedText
 		case invalidQRMessage
+		case enterGatewayDetailsTitle
+		case enterGatewayDetailsDescription
+		case enterGatewayClaimingKey
+		case enterGatewaySerialNumber
+		case enterGatewayProceedButtonTitle
         case typeWS1000Title
         case typeWS1000Subtitle
         case typeWS2000Title
@@ -208,6 +213,16 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_camera_permission_denied_text"
 			case .invalidQRMessage:
 				return "claim_device_invalid_qr_message"
+			case .enterGatewayDetailsTitle:
+				return "claim_device_enter_gateway_details_title"
+			case .enterGatewayDetailsDescription:
+				return "claim_device_enter_gateway_details_description"
+			case .enterGatewayClaimingKey:
+				return "claim_device_enter_gateway_claiming_key"
+			case .enterGatewaySerialNumber:
+				return "claim_device_enter_gateway_serial_number"
+			case .enterGatewayProceedButtonTitle:
+				return "claim_device_enter_gateway_proceed_button_title"
             case .typeWS1000Title:
                 return "claim_device_type_ws1000_title"
             case .typeWS1000Subtitle:

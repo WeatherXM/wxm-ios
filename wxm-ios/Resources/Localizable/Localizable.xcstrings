@@ -1062,6 +1062,61 @@
         }
       }
     },
+    "claim_device_enter_gateway_claiming_key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your gateway’s Claiming Key"
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_details_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the gateway’s **Claiming Key** and **Serial Number.** They are located under the QR code."
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_details_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter gateway details"
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_proceed_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proceed to Next Step"
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_serial_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your gateway’s Serial Number"
+          }
+        }
+      }
+    },
     "claim_device_enter_serial_number_manually" : {
       "extractionState" : "manual",
       "localizations" : {
