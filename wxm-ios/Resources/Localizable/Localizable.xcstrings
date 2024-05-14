@@ -1282,6 +1282,17 @@
         }
       }
     },
+    "claim_device_invalid_qr_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The QR Code you scanned is invalid. Please try again with a valid QR Code or enter manually."
+          }
+        }
+      }
+    },
     "claim_device_key_field_hint" : {
       "extractionState" : "manual",
       "localizations" : {

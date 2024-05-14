@@ -46,12 +46,31 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 				guard let serialNumber = input[safe: 0]?.trimWhiteSpaces() else {
 					return
 				}
+
+				showQrScanner = false
+
 				let key = input[safe: 1]?.trimWhiteSpaces()
-				completion(SerialNumber(serialNumber: serialNumber, key: key))
+				let serialNumberObject = SerialNumber(serialNumber: serialNumber, key: key)
+				if validate(serialNumber: serialNumberObject) {
+					completion(serialNumberObject)
+				} else {
+					Toast.shared.show(text: LocalizableString.ClaimDevice.invalidQRMessage.localized.attributedMarkdown ?? "")
+				}
 			case .failure(let error):
 				print("Scan failed: \(error.localizedDescription)")
 				Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
 		}
+	}
+
+	fileprivate func validate(serialNumber: SerialNumber) -> Bool {
+		guard let key = serialNumber.key else {
+			return false
+		}
+		
+		let validator = SNValidator()
+		let serial = serialNumber.serialNumber
+
+		return validator.validateQR(qrString: serial) && validator.validateStationKey(key: key)
 	}
 }
 
@@ -101,5 +120,15 @@ class ClaimDeviceSerialNumberM5ViewModel: ClaimDeviceSerialNumberViewModel {
 
 	override var gifFileName: String {
 		"image_m5_station_qr"
+	}
+
+	override func validate(serialNumber: SerialNumber) -> Bool {
+		guard serialNumber.key == nil else {
+			return false
+		}
+		let validator = SNValidator()
+		let serial = serialNumber.serialNumber
+
+		return validator.validateQR(qrString: serial)
 	}
 }

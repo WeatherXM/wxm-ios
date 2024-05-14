@@ -338,6 +338,7 @@
 		26A961B02AA7181300646A25 /* LocalizableString+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */; };
 		26A961C42AA733E200646A25 /* LocalizableString+ClaimDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961C32AA733E200646A25 /* LocalizableString+ClaimDevice.swift */; };
 		26AA21C02BF3694B00B91A7C /* image_m5_station_qr.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26AA21BF2BF3694B00B91A7C /* image_m5_station_qr.gif */; };
+		26AA21C22BF36B0100B91A7C /* SNValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21C12BF36B0100B91A7C /* SNValidator.swift */; };
 		26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F462A7BEA0700855912 /* CTAView.swift */; };
 		26AB9F582A822DB500855912 /* UserDeviceFollowState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */; };
 		26ADDF7E2BE3B08D00992BEF /* image_station_qr.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */; };
@@ -847,6 +848,7 @@
 		26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Wallet.swift"; sourceTree = "<group>"; };
 		26A961C32AA733E200646A25 /* LocalizableString+ClaimDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+ClaimDevice.swift"; sourceTree = "<group>"; };
 		26AA21BF2BF3694B00B91A7C /* image_m5_station_qr.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_m5_station_qr.gif; sourceTree = "<group>"; };
+		26AA21C12BF36B0100B91A7C /* SNValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNValidator.swift; sourceTree = "<group>"; };
 		26AB9F462A7BEA0700855912 /* CTAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAView.swift; sourceTree = "<group>"; };
 		26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDeviceFollowState+.swift"; sourceTree = "<group>"; };
 		26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_station_qr.gif; sourceTree = "<group>"; };
@@ -1503,6 +1505,7 @@
 				26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */,
 				26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */,
 				26325B042BE12E4300182C59 /* ClaimDeviceFactory.swift */,
+				26AA21C12BF36B0100B91A7C /* SNValidator.swift */,
 			);
 			path = ClaimDevice;
 			sourceTree = "<group>";
@@ -3051,6 +3054,7 @@
 				2623FF932AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift in Sources */,
 				267EC4292A98C3D300F2C37E /* WXMAlertModifier.swift in Sources */,
 				267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */,
+				26AA21C22BF36B0100B91A7C /* SNValidator.swift in Sources */,
 				267547C929A9181E008BCF40 /* WXMButtonStyle.swift in Sources */,
 				267547CF29A9181E008BCF40 /* WXMCardStyle.swift in Sources */,
 				26A3B3C72B1792890002F35F /* ProfileTypes.swift in Sources */,
