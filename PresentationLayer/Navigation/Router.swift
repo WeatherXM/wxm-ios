@@ -12,10 +12,10 @@ enum Route: Hashable, Equatable {
 	static func == (lhs: Route, rhs: Route) -> Bool {
 		lhs.hashValue == rhs.hashValue
 	}
-
+	
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(stringRepresentation)
-
+		
 		switch self {
 			case .stationDetails(let vm):
 				hasher.combine(vm)
@@ -65,9 +65,9 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .safariView(let url):
 				hasher.combine(url)
-        }
-    }
-
+		}
+	}
+	
 	var stringRepresentation: String {
 		switch self {
 			case .stationDetails:
@@ -120,22 +120,22 @@ enum Route: Hashable, Equatable {
 				"safariView"
 		}
 	}
-
-    case stationDetails(StationDetailsViewModel)
-    case deviceInfo(DeviceInfoViewModel)
-    case viewMoreAlerts(AlertsViewModel)
-    case wallet(MyWalletViewModel)
-    case history(HistoryContainerViewModel)
-    case netStats(NetworkStatsViewModel)
-    case transactions(RewardsTimelineViewModel)
-    case settings(SettingsViewModel)
-    case claimDevice(Bool)
-    case deleteAccount(DeleteAccountViewModel)
-    case survey(String, String)
-    case signIn(SignInViewModel)
-    case register(RegisterViewModel)
-    case resetPassword(ResetPasswordViewModel)
-    case explorerList(ExplorerStationsListViewModel)
+	
+	case stationDetails(StationDetailsViewModel)
+	case deviceInfo(DeviceInfoViewModel)
+	case viewMoreAlerts(AlertsViewModel)
+	case wallet(MyWalletViewModel)
+	case history(HistoryContainerViewModel)
+	case netStats(NetworkStatsViewModel)
+	case transactions(RewardsTimelineViewModel)
+	case settings(SettingsViewModel)
+	case claimDevice(Bool)
+	case deleteAccount(DeleteAccountViewModel)
+	case survey(String, String)
+	case signIn(SignInViewModel)
+	case register(RegisterViewModel)
+	case resetPassword(ResetPasswordViewModel)
+	case explorerList(ExplorerStationsListViewModel)
 	case rewardDetails(RewardDetailsViewModel)
 	case webView(String, String, [DisplayLinkParams: String]?, DeepLinkHandler.QueryParamsCallBack?)
 	case selectStationLocation(SelectStationLocationViewModel)
@@ -238,9 +238,9 @@ extension Route {
 }
 
 class Router: ObservableObject {
-
-    static let shared = Router()
-
+	
+	static let shared = Router()
+	
 	@Published var path: [Route] = []
 	/// We use this to add an, almost, invisible ovelray above `NavigationStack` to fix an issue with dragging gestures of sheet/popover and navigation stack
 	/// More info https://stackoverflow.com/questions/71714592/sheet-dismiss-gesture-with-swipe-back-gesture-causes-app-to-freeze
@@ -248,9 +248,9 @@ class Router: ObservableObject {
 	@Published var showFullScreen = false
 	var fullScreenRoute: Route?
 	let navigationHost = HostingWrapper()
-
-    private init() {}
-
+	
+	private init() {}
+	
 	func showFullScreen(_ route: Route) {
 		if #available(iOS 16.0, *) {
 			fullScreenRoute = route
@@ -260,33 +260,33 @@ class Router: ObservableObject {
 			navigationHost.hostingController?.present(hostingVC, animated: true)
 		}
 	}
-
-    func navigateTo(_ route: Route) {
+	
+	func navigateTo(_ route: Route) {
 		guard path.last != route else {
 			return
 		}
 		
-        if #available(iOS 16.0, *) {
-            self.path.append(route)
-        } else {
-            let hostingVC = UIHostingController(rootView: route.view)
-            (navigationHost.hostingController as? UINavigationController)?.pushViewController(hostingVC, animated: true)
-        }
-    }
-
-    func popToRoot() {
-        if #available(iOS 16.0, *) {
-            self.path = .init()
-        } else {
-            (navigationHost.hostingController as? UINavigationController)?.popToRootViewController(animated: true)
-        }
-    }
-
-    func pop() {
-        if #available(iOS 16.0, *) {
-            self.path.removeLast()
-        } else {
-            (navigationHost.hostingController as? UINavigationController)?.popViewController(animated: true)
-        }
-    }
+		if #available(iOS 16.0, *) {
+			self.path.append(route)
+		} else {
+			let hostingVC = UIHostingController(rootView: route.view)
+			(navigationHost.hostingController as? UINavigationController)?.pushViewController(hostingVC, animated: true)
+		}
+	}
+	
+	func popToRoot() {
+		if #available(iOS 16.0, *) {
+			self.path = .init()
+		} else {
+			(navigationHost.hostingController as? UINavigationController)?.popToRootViewController(animated: true)
+		}
+	}
+	
+	func pop() {
+		if #available(iOS 16.0, *) {
+			self.path.removeLast()
+		} else {
+			(navigationHost.hostingController as? UINavigationController)?.popViewController(animated: true)
+		}
+	}
 }
