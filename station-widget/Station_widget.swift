@@ -1,5 +1,5 @@
 //
-//  station_widget.swift
+//  Station_widget.swift
 //  station-widget
 //
 //  Created by Pantelis Giazitsis on 26/9/23.
@@ -20,13 +20,16 @@ struct Provider: IntentTimelineProvider {
 									keychainRepository: SwinjectHelper.shared.getContainerForSwinject().resolve(KeychainRepository.self)!)
 		self.useCase = useCase
 		FirebaseManager.shared.launch()
+		if let mixpanelToken: String = Bundle.main.getConfiguration(for: .mixpanelToken) {
+			WXMAnalytics.shared.launch(with: [.firebase, .mixpanel(mixpanelToken)])
+		}
 	}
 
     func placeholder(in context: Context) -> StationTimelineEntry {
 		let previewDevice: DeviceDetails = .widgetPreviewDevice
-		let entry = StationTimelineEntry(date: .now, 
+		let entry = StationTimelineEntry(date: .now,
 										 displaySize: context.displaySize,
-										 id: previewDevice.id, 
+										 id: previewDevice.id,
 										 devices: [previewDevice],
 										 followState: .init(deviceId: previewDevice.id!, relation: .owned),
 										 errorInfo: nil,
@@ -48,7 +51,7 @@ struct Provider: IntentTimelineProvider {
 
     func getTimeline(for configuration: StationWidgetConfigurationIntent,
 					 in context: Context,
-					 completion: @escaping (Timeline<StationTimelineEntry>) -> ()) {
+					 completion: @escaping (Timeline<StationTimelineEntry>) -> Void) {
 
 		let nextUpdate = Date.now.advanced(by: refreshInterval)
 		let displaySize = context.displaySize
@@ -85,7 +88,7 @@ struct Provider: IntentTimelineProvider {
 												 errorInfo: nil,
 												 isLoggedIn: isUserLoggedIn)
 				return entry
-			case .failure(_):
+			case .failure:
 				let devices: [DeviceDetails] = useCase.getCachedDevices() ?? []
 
 				let entry = StationTimelineEntry(date: .now,
@@ -101,14 +104,14 @@ struct Provider: IntentTimelineProvider {
 	}
 }
 
-struct station_widgetEntryView : View {
+struct Station_widgetEntryView: View {
     var entry: Provider.Entry
     var body: some View {
 		StationWidgetView(entry: entry)
     }
 }
 
-struct station_widget: Widget {
+struct Station_widget: Widget {
 	let kind: String = "station_widget"
 
 	var body: some WidgetConfiguration {
@@ -116,9 +119,9 @@ struct station_widget: Widget {
 							intent: StationWidgetConfigurationIntent.self,
 							provider: Provider()) { entry in
 			if #available(iOS 17.0, *) {
-				station_widgetEntryView(entry: entry)
+				Station_widgetEntryView(entry: entry)
 			} else {
-				station_widgetEntryView(entry: entry)
+				Station_widgetEntryView(entry: entry)
 			}
 		}
 							.configurationDisplayName(LocalizableString.Widget.widgetTitle.localized)

@@ -210,7 +210,7 @@ private extension UpdateFirmwareViewModel {
                 if let deviceId = device?.id, let version = device?.firmware?.current {
                     mainVM?.firmwareUpdated(for: deviceId, version: version)
                 }
-                Logger.shared.trackEvent(.viewContent, parameters: [.contentName: .OTAResult,
+                WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .OTAResult,
                                                                     .contentId: .otaResultContentId,
                                                                     .itemId: .custom(device?.id ?? ""),
                                                                     .success: .custom("1")])
@@ -221,9 +221,9 @@ private extension UpdateFirmwareViewModel {
                 if let currentStepIndex, let step = Step(rawValue: currentStepIndex) {
                     params += [.step: step.analyticsValue]
                 }
-                Logger.shared.trackEvent(.viewContent, parameters: params)
+                WXMAnalytics.shared.trackEvent(.viewContent, parameters: params)
 
-                Logger.shared.trackEvent(.viewContent, parameters: [.contentName: .OTAResult,
+                WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .OTAResult,
                                                                     .contentId: .otaResultContentId,
                                                                     .itemId: .custom(device?.id ?? ""),
                                                                     .success: .custom("0")])

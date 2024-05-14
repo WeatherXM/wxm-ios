@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		260070AA2B30A55500ED26FC /* RemoteLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260070A92B30A55500ED26FC /* RemoteLogger.swift */; };
-		260070AC2B30A62900ED26FC /* MockLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260070AB2B30A62900ED26FC /* MockLogger.swift */; };
+		260070AC2B30A62900ED26FC /* MockAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260070AB2B30A62900ED26FC /* MockAnalytics.swift */; };
 		260669582B4C0C3A000B4B42 /* Combine+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260669572B4C0C3A000B4B42 /* Combine+.swift */; };
 		261CD82729CB59B000C0CECE /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CD82629CB59B000C0CECE /* FoundationExtensions.swift */; };
 		264AE28529FBA5840051C101 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE28429FBA5840051C101 /* Bundle+.swift */; };
@@ -24,6 +23,11 @@
 		268D07902B2AF13E002BD77E /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D078F2B2AF13E002BD77E /* UIImage+.swift */; };
 		2692EA172B319B24007B83F1 /* FirebaseManagerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692EA162B319B24007B83F1 /* FirebaseManagerTypes.swift */; };
 		26968CD42B1A1AB8003856D9 /* WEIConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26968CD32B1A1AB8003856D9 /* WEIConverter.swift */; };
+		269C968D2BDBD7250035B8F1 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 269C968C2BDBD7250035B8F1 /* Mixpanel */; };
+		26AA219E2BF20C0300B91A7C /* FirebaseAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA219D2BF20C0300B91A7C /* FirebaseAnalytics.swift */; };
+		26AA21A02BF20C8800B91A7C /* MixpanelAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA219F2BF20C8800B91A7C /* MixpanelAnalytics.swift */; };
+		26AA21A22BF21DEE00B91A7C /* AnalyticsTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21A12BF21DEE00B91A7C /* AnalyticsTypes.swift */; };
+		26AA21A42BF2222500B91A7C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21A32BF2222500B91A7C /* Logger.swift */; };
 		26AB9F4F2A7CFE6200855912 /* AsyncOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F4E2A7CFE6200855912 /* AsyncOperations.swift */; };
 		26AB9F542A801C5300855912 /* TimeValidationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F532A801C5300855912 /* TimeValidationCache.swift */; };
 		26B795DC2B4D700A00ADBCA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B795DB2B4D700A00ADBCA8 /* Constants.swift */; };
@@ -35,7 +39,7 @@
 		26D47E902A1659D20078723A /* AnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E8F2A1659D20078723A /* AnalyticsConstants.swift */; };
 		26D47EB12A1CB3720078723A /* WXMLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47EB02A1CB3720078723A /* WXMLocationManager.swift */; };
 		26DD429F29AF4633008E277E /* Toolkit.h in Headers */ = {isa = PBXBuildFile; fileRef = 26DD429E29AF4633008E277E /* Toolkit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		26DD42AD29AF4659008E277E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42AC29AF4659008E277E /* Logger.swift */; };
+		26DD42AD29AF4659008E277E /* WXMAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42AC29AF4659008E277E /* WXMAnalytics.swift */; };
 		26DD42B829AF49E3008E277E /* LoggerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42B729AF49E3008E277E /* LoggerTypes.swift */; };
 		26DD42BB29AF4B5B008E277E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42BA29AF4B5B008E277E /* FirebaseManager.swift */; };
 		26DD42BE29AF4FAD008E277E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 26DD42BD29AF4FAD008E277E /* FirebaseCrashlytics */; };
@@ -44,8 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		260070A92B30A55500ED26FC /* RemoteLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLogger.swift; sourceTree = "<group>"; };
-		260070AB2B30A62900ED26FC /* MockLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLogger.swift; sourceTree = "<group>"; };
+		260070AB2B30A62900ED26FC /* MockAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAnalytics.swift; sourceTree = "<group>"; };
 		260669572B4C0C3A000B4B42 /* Combine+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+.swift"; sourceTree = "<group>"; };
 		261CD82629CB59B000C0CECE /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		264AE28429FBA5840051C101 /* Bundle+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
@@ -59,6 +62,10 @@
 		268D078F2B2AF13E002BD77E /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		2692EA162B319B24007B83F1 /* FirebaseManagerTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManagerTypes.swift; sourceTree = "<group>"; };
 		26968CD32B1A1AB8003856D9 /* WEIConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEIConverter.swift; sourceTree = "<group>"; };
+		26AA219D2BF20C0300B91A7C /* FirebaseAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalytics.swift; sourceTree = "<group>"; };
+		26AA219F2BF20C8800B91A7C /* MixpanelAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixpanelAnalytics.swift; sourceTree = "<group>"; };
+		26AA21A12BF21DEE00B91A7C /* AnalyticsTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTypes.swift; sourceTree = "<group>"; };
+		26AA21A32BF2222500B91A7C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		26AB9F4E2A7CFE6200855912 /* AsyncOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperations.swift; sourceTree = "<group>"; };
 		26AB9F532A801C5300855912 /* TimeValidationCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeValidationCache.swift; sourceTree = "<group>"; };
 		26B795DB2B4D700A00ADBCA8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -69,7 +76,7 @@
 		26D47EB02A1CB3720078723A /* WXMLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMLocationManager.swift; sourceTree = "<group>"; };
 		26DD429B29AF4633008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DD429E29AF4633008E277E /* Toolkit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toolkit.h; sourceTree = "<group>"; };
-		26DD42AC29AF4659008E277E /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		26DD42AC29AF4659008E277E /* WXMAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMAnalytics.swift; sourceTree = "<group>"; };
 		26DD42B729AF49E3008E277E /* LoggerTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTypes.swift; sourceTree = "<group>"; };
 		26DD42BA29AF4B5B008E277E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		26E88B3829E599D70023BBD5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -82,6 +89,7 @@
 			files = (
 				268A62E62B595CCD0079D507 /* FirebaseMessaging in Frameworks */,
 				26DD42BE29AF4FAD008E277E /* FirebaseCrashlytics in Frameworks */,
+				269C968D2BDBD7250035B8F1 /* Mixpanel in Frameworks */,
 				26CD5BB32AF5293C0097093F /* FirebaseRemoteConfigSwift in Frameworks */,
 				26DD42C029AF4FAD008E277E /* FirebasePerformance in Frameworks */,
 				268818B12AEFB93200737F7D /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -127,6 +135,7 @@
 			children = (
 				26D47E8F2A1659D20078723A /* AnalyticsConstants.swift */,
 				2666D5422BC6D145003B30C0 /* AnalyticsConstants+.swift */,
+				26AA21A12BF21DEE00B91A7C /* AnalyticsTypes.swift */,
 			);
 			path = AnalyticsConstants;
 			sourceTree = "<group>";
@@ -136,6 +145,18 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		26AA219C2BF20BBB00B91A7C /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				2666D5412BC6D101003B30C0 /* AnalyticsConstants */,
+				26DD42AC29AF4659008E277E /* WXMAnalytics.swift */,
+				26AA219D2BF20C0300B91A7C /* FirebaseAnalytics.swift */,
+				26AA219F2BF20C8800B91A7C /* MixpanelAnalytics.swift */,
+				260070AB2B30A62900ED26FC /* MockAnalytics.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		26DD429129AF4633008E277E = {
@@ -158,6 +179,7 @@
 		26DD429D29AF4633008E277E /* Toolkit */ = {
 			isa = PBXGroup;
 			children = (
+				26AA219C2BF20BBB00B91A7C /* Analytics */,
 				26DD42B929AF4B2C008E277E /* FirebaseManager */,
 				26DD42AB29AF4659008E277E /* Logger */,
 				266482F829C0855400748F9C /* Types */,
@@ -171,10 +193,8 @@
 		26DD42AB29AF4659008E277E /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				26DD42AC29AF4659008E277E /* Logger.swift */,
 				26DD42B729AF49E3008E277E /* LoggerTypes.swift */,
-				260070A92B30A55500ED26FC /* RemoteLogger.swift */,
-				260070AB2B30A62900ED26FC /* MockLogger.swift */,
+				26AA21A32BF2222500B91A7C /* Logger.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -182,7 +202,6 @@
 		26DD42B929AF4B2C008E277E /* FirebaseManager */ = {
 			isa = PBXGroup;
 			children = (
-				2666D5412BC6D101003B30C0 /* AnalyticsConstants */,
 				26DD42BA29AF4B5B008E277E /* FirebaseManager.swift */,
 				2692EA162B319B24007B83F1 /* FirebaseManagerTypes.swift */,
 				26CD5BB02AF529300097093F /* RemoteConfigManager.swift */,
@@ -226,6 +245,7 @@
 				26CD5BB22AF5293C0097093F /* FirebaseRemoteConfigSwift */,
 				26CD5BC22AF54C920097093F /* FirebaseRemoteConfig */,
 				268A62E52B595CCC0079D507 /* FirebaseMessaging */,
+				269C968C2BDBD7250035B8F1 /* Mixpanel */,
 			);
 			productName = Toolkit;
 			productReference = 26DD429B29AF4633008E277E /* Toolkit.framework */;
@@ -256,6 +276,7 @@
 			mainGroup = 26DD429129AF4633008E277E;
 			packageReferences = (
 				26DD42BC29AF4FAD008E277E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				269C968B2BDBD7250035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 			);
 			productRefGroup = 26DD429C29AF4633008E277E /* Products */;
 			projectDirPath = "";
@@ -281,10 +302,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26AA219E2BF20C0300B91A7C /* FirebaseAnalytics.swift in Sources */,
 				26CD5BCB2AF906BC0097093F /* ThreadSafe.swift in Sources */,
 				260669582B4C0C3A000B4B42 /* Combine+.swift in Sources */,
+				26AA21A02BF20C8800B91A7C /* MixpanelAnalytics.swift in Sources */,
 				26D47E902A1659D20078723A /* AnalyticsConstants.swift in Sources */,
-				260070AA2B30A55500ED26FC /* RemoteLogger.swift in Sources */,
 				26AB9F4F2A7CFE6200855912 /* AsyncOperations.swift in Sources */,
 				264AE28529FBA5840051C101 /* Bundle+.swift in Sources */,
 				266482FA29C0857400748F9C /* CallbackTypes.swift in Sources */,
@@ -295,15 +317,17 @@
 				2666D5432BC6D145003B30C0 /* AnalyticsConstants+.swift in Sources */,
 				26DD42BB29AF4B5B008E277E /* FirebaseManager.swift in Sources */,
 				26CD5BB12AF529300097093F /* RemoteConfigManager.swift in Sources */,
+				26AA21A22BF21DEE00B91A7C /* AnalyticsTypes.swift in Sources */,
 				268A63062B59797B0079D507 /* NotificationsHandler.swift in Sources */,
 				261CD82729CB59B000C0CECE /* FoundationExtensions.swift in Sources */,
 				26968CD42B1A1AB8003856D9 /* WEIConverter.swift in Sources */,
-				26DD42AD29AF4659008E277E /* Logger.swift in Sources */,
+				26DD42AD29AF4659008E277E /* WXMAnalytics.swift in Sources */,
 				26DD42B829AF49E3008E277E /* LoggerTypes.swift in Sources */,
 				26AB9F542A801C5300855912 /* TimeValidationCache.swift in Sources */,
-				260070AC2B30A62900ED26FC /* MockLogger.swift in Sources */,
+				260070AC2B30A62900ED26FC /* MockAnalytics.swift in Sources */,
 				264AE28729FBA9580051C101 /* UIDevice+.swift in Sources */,
 				2692EA172B319B24007B83F1 /* FirebaseManagerTypes.swift in Sources */,
+				26AA21A42BF2222500B91A7C /* Logger.swift in Sources */,
 				268D07902B2AF13E002BD77E /* UIImage+.swift in Sources */,
 				2665E6F42A0A9AE700D23387 /* UnitConverter.swift in Sources */,
 				26D47EB12A1CB3720078723A /* WXMLocationManager.swift in Sources */,
@@ -616,6 +640,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		269C968B2BDBD7250035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		26DD42BC29AF4FAD008E277E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -636,6 +668,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 26DD42BC29AF4FAD008E277E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		269C968C2BDBD7250035B8F1 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 269C968B2BDBD7250035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
 		};
 		26CD5BB22AF5293C0097093F /* FirebaseRemoteConfigSwift */ = {
 			isa = XCSwiftPackageProductDependency;

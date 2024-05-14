@@ -22,7 +22,7 @@ public class RemoteConfigManager: ObservableObject {
 	@Published public var featMainnetMessage: String?
 
 	private init() {
-		if disableFirebase {
+		if disableAnalytics {
 			remoteConfigManagerImpl = MockRemoteConfigManager()
 		} else {
 			remoteConfigManagerImpl = DefaultRemoteConfigManager()

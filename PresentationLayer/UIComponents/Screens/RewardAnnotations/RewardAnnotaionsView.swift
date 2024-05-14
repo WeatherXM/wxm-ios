@@ -39,7 +39,7 @@ private struct ContentView: View {
 		.onAppear {
 			navigationObject.navigationBarColor = Color(colorEnum: .background)
 
-			Logger.shared.trackScreen(.rewardIssues)
+			WXMAnalytics.shared.trackScreen(.rewardIssues)
 		}
 	}
 }

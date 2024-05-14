@@ -50,7 +50,7 @@ private extension AccountConfirmationViewModel {
                         self?.textFieldError = .invalidPassword
                     } else if let errorMessage = response.error?.uiInfo.description?.attributedMarkdown {
                         Toast.shared.show(text: errorMessage)
-                        Logger.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
+                        WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
                                                                             .itemId: .custom(response.error?.backendError?.code ?? "")])
                     }
                 } else {

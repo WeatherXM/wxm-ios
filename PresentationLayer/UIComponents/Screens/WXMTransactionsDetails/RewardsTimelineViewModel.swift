@@ -104,7 +104,7 @@ final class RewardsTimelineViewModel: ObservableObject {
 	/// - Parameter reward: The tapped transaction
 	func handleTransactionTap(from reward: NetworkDeviceRewardsSummary) {
 		let itemId = device.id ?? ""
-		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .identifyProblems,
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .identifyProblems,
 														   .contentType: .deviceRewardTransactions,
 														   .itemId: .custom(itemId)])
 

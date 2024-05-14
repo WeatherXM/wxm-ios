@@ -1,27 +1,16 @@
 //
-//  RemoteLogger.swift
+//  FirebaseAnalytics.swift
 //  Toolkit
 //
-//  Created by Pantelis Giazitsis on 18/12/23.
+//  Created by Pantelis Giazitsis on 13/5/24.
 //
 
 import Foundation
 import Firebase
 import FirebaseAnalytics
 
-struct RemoteLogger: LoggerImplementation {
-	private let networkDomain = "network_domain"
 
-	func logNetworkError(_ networkError: NetworkError) {
-		let nsError = NSError(domain: networkDomain,
-							  code: networkError.code,
-							  userInfo: networkError.userInfo)
-		logError(nsError)
-	}
-
-	func logError(_ nsError: NSError) {
-		Crashlytics.crashlytics().record(error: nsError)
-	}
+struct FirebaseAnalytics: AnalyticsProviderImplementation {
 
 	func trackScreen(_ screen: Screen, parameters: [Parameter : ParameterValue]?) {
 		var params: [String: Any] = [AnalyticsParameterScreenName: screen.rawValue]
@@ -33,8 +22,8 @@ struct RemoteLogger: LoggerImplementation {
 	}
 
 	func trackEvent(_ event: Event, parameters: [Parameter : ParameterValue]?) {
-		let convertedParams: [String: Any]? = parameters?.toEventParamsDictionary
-		Analytics.logEvent(event.description, parameters: convertedParams)
+		Analytics.logEvent(event.description, 
+						   parameters: parameters?.toEventParamsDictionary)
 	}
 
 	func setUserId(_ userId: String?) {
@@ -49,6 +38,10 @@ struct RemoteLogger: LoggerImplementation {
 	func setDefaultParameter(key: Parameter, value: ParameterValue) {
 		Analytics.setDefaultEventParameters([key.description: value.rawValue])
 	}
+
+	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
+		FirebaseManager.shared.setAnalyticsCollectionEnabled(enabled)
+	}
 }
 
 private extension Dictionary where Key == Parameter, Value == ParameterValue {
@@ -57,4 +50,3 @@ private extension Dictionary where Key == Parameter, Value == ParameterValue {
 		return convertedParams
 	}
 }
-

@@ -35,7 +35,7 @@ struct SearchView: View {
             }
         }
         .onAppear {
-            Logger.shared.trackScreen(.explorerSearch)
+            WXMAnalytics.shared.trackScreen(.explorerSearch)
         }
     }
 }

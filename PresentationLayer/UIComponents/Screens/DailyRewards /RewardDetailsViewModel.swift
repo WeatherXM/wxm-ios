@@ -143,7 +143,7 @@ class RewardDetailsViewModel: ObservableObject {
 		self.info = info
 		showInfo = true
 
-		Logger.shared.trackEvent(.selectContent, parameters: [.itemId: .infoDailyRewards])
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.itemId: .infoDailyRewards])
 	}
 
 	func handleDataQualityInfoTap() {
@@ -161,7 +161,7 @@ class RewardDetailsViewModel: ObservableObject {
 		self.info = info
 		showInfo = true
 
-		Logger.shared.trackEvent(.selectContent, parameters: [.itemId: .infoQod])
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.itemId: .infoQod])
 	}
 
 	func handleLocationQualityInfoTap() {
@@ -180,7 +180,7 @@ class RewardDetailsViewModel: ObservableObject {
 		self.info = info
 		showInfo = true
 
-		Logger.shared.trackEvent(.selectContent, parameters: [.itemId: .infoPol])
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.itemId: .infoPol])
 	}
 
 	func handleCellPositionInfoTap() {
@@ -198,7 +198,7 @@ class RewardDetailsViewModel: ObservableObject {
 		self.info = info
 		showInfo = true
 
-		Logger.shared.trackEvent(.selectContent, parameters: [.itemId: .infoCellposition])
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.itemId: .infoCellposition])
 	}
 
 	func handleBoostTap(boost: NetworkDeviceRewardDetailsResponse.BoostReward) {

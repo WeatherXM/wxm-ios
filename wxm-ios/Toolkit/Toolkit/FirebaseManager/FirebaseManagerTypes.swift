@@ -11,7 +11,7 @@ import UserNotifications
 
 protocol FirbaseManagerImplementation {
 	var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? { get }
-	var notificationsAuthorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? { get }
+	var notificationsAuthStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? { get }
 
 	func launch()
 	func getInstallationId() async -> String

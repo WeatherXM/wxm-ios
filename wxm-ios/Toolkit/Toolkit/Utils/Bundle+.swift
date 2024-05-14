@@ -15,6 +15,7 @@ public enum ConfigurationKey: String {
 	case appStoreUrl = "AppStoreUrl"
 	case supportUrl = "SupportUrl"
 	case branchName = "BranchName"
+	case mixpanelToken = "MixpanelToken"
 }
 
 public extension Bundle {

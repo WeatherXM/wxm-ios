@@ -33,7 +33,7 @@ struct SignInView: View {
             viewModel.checkSignInButtonAvailability()
         })
         .onAppear {
-            Logger.shared.trackScreen(.login)
+            WXMAnalytics.shared.trackScreen(.login)
 			navigationObject.title = LocalizableString.signIn.localized
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
         }

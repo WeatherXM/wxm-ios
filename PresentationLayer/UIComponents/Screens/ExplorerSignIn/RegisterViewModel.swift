@@ -80,7 +80,7 @@ final class RegisterViewModel: ObservableObject {
                     }
 
                     let isSuccessful = response.error == nil
-                    Logger.shared.trackEvent(.viewContent, parameters: [.contentName: .signup,
+                    WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .signup,
                                                                         .contentId: .signUpContentId,
                                                                         .method: .emailMethod,
                                                                         .success: .custom(isSuccessful ? "1" : "0")])

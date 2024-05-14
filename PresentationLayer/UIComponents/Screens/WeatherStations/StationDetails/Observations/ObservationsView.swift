@@ -41,7 +41,7 @@ struct ObservationsView: View {
         .spinningLoader(show: Binding(get: { viewModel.viewState == .loading }, set: { _ in }), hideContent: true)
         .fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)
         .onAppear {
-            Logger.shared.trackScreen(.currentWeather)
+            WXMAnalytics.shared.trackScreen(.currentWeather)
         }
     }
 }

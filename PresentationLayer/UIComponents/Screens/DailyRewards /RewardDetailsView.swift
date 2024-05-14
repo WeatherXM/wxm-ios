@@ -59,7 +59,7 @@ private struct ContentView: View {
 				navigationObject.titleColor = Color(colorEnum: .text)
 				navigationObject.navigationBarColor = Color(colorEnum: .background)
 
-				Logger.shared.trackScreen(.deviceRewardsDetails)
+				WXMAnalytics.shared.trackScreen(.deviceRewardsDetails)
 			}
 		}
 		.bottomSheet(show: $viewModel.showInfo) {

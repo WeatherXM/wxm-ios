@@ -34,7 +34,7 @@ public class UserInfoService {
 			guard let value = response.value else {
 				return
 			}
-			Logger.shared.setUserId(value.id)
+			WXMAnalytics.shared.setUserId(value.id)
 			self?.userInfoSubject.send(value)
 		}
 		.store(in: &cancellableSet)

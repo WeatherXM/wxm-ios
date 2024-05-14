@@ -17,18 +17,22 @@ public class FirebaseManager {
 	public var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? {
 		firebaseManagerImpl.latestReceivedNotificationPublisher
 	}
-	public var notificationsAuthorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? {
-		firebaseManagerImpl.notificationsAuthorizationStatusPublisher
+	public var notificationsAuthStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? {
+		firebaseManagerImpl.notificationsAuthStatusPublisher
 	}
 
 	private let firebaseManagerImpl: FirbaseManagerImplementation
 
     private init() {
-		if disableFirebase {
+		if disableAnalytics {
 			self.firebaseManagerImpl = MockFirebaseManager()
 		} else {
 			self.firebaseManagerImpl = RemoteFirebaseManager()
 		}
+	}
+
+	internal func setAnalyticsCollectionEnabled(_ enabled: Bool) {
+		firebaseManagerImpl.setAnalyticsCollectionEnabled(enabled)
 	}
 
     public func launch() {
@@ -37,10 +41,6 @@ public class FirebaseManager {
 
     public func getInstallationId() async -> String {
 		await firebaseManagerImpl.getInstallationId()
-    }
-
-    public func setAnalyticsCollectionEnabled(_ enabled: Bool) {
-		firebaseManagerImpl.setAnalyticsCollectionEnabled(enabled)
     }
 
 	public func gatAuthorizationStatus() async -> UNAuthorizationStatus {
@@ -68,7 +68,7 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 		notificationsHandler.latestNotificationPublisher
 	}
 
-	var notificationsAuthorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? {
+	var notificationsAuthStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? {
 		notificationsHandler.authorizationStatusPublisher
 	}
 
@@ -122,7 +122,7 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 
 private class MockFirebaseManager: FirbaseManagerImplementation {
 	var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? { nil }
-	var notificationsAuthorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? { nil }
+	var notificationsAuthStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? { nil }
 
 	func launch() {}
 	func getInstallationId() async -> String { return "" }

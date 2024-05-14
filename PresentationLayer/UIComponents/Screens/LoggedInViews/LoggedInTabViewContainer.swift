@@ -61,12 +61,12 @@ struct LoggedInTabViewContainer: View {
                                             tabBarItemsSize: $tabBarItemsSize,
 											isWalletEmpty: $mainViewModel.isWalletMissing)
                     .onAppear {
-                        Logger.shared.trackScreen(.deviceList)
+                        WXMAnalytics.shared.trackScreen(.deviceList)
                     }
                 case .mapTab:
                     explorer
                         .onAppear {
-                            Logger.shared.trackScreen(.explorer)
+                            WXMAnalytics.shared.trackScreen(.explorer)
                             explorerViewModel.showTopOfMapItems = true
                         }
                 case .profileTab:
@@ -74,7 +74,7 @@ struct LoggedInTabViewContainer: View {
 								isTabBarShowing: $isTabBarShowing,
 								tabBarItemsSize: $tabBarItemsSize)
                         .onAppear {
-                            Logger.shared.trackScreen(.profile)
+                            WXMAnalytics.shared.trackScreen(.profile)
                         }
             }
         }

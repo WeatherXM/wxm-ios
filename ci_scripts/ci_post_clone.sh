@@ -14,6 +14,7 @@ setupConfiguration(){
 	echo "ClaimTokenUrl = ${CLAIM_TOKEN_URL};" >> $CONFIGURATION_PATH
 	echo "AppStoreUrl = ${APP_STORE_URL};" >> $CONFIGURATION_PATH
 	echo "SupportUrl = ${SUPPORT_URL};" >> $CONFIGURATION_PATH
+	echo "MixpanelToken = ${MIXPANEL_TOKEN};" >> $CONFIGURATION_PATH
 
 	echo "$(<$CONFIGURATION_PATH)"
 }

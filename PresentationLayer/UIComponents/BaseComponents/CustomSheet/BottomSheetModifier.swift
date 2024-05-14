@@ -136,7 +136,7 @@ extension View {
 		}
 		.onAppear {
 			if let screen = info?.analyticsScreen {
-				Logger.shared.trackScreen(screen)
+				WXMAnalytics.shared.trackScreen(screen)
 			}
 		}
 	}

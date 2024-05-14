@@ -136,7 +136,7 @@ private extension ForecastDetailsViewModel {
 					self?.isTransitioning = false
 				}
 
-				Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .dailyCard,
+				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .dailyCard,
 																	  .itemId: .dailyDetails])
 			}
 		}

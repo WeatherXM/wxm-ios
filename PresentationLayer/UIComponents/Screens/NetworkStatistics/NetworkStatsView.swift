@@ -33,7 +33,7 @@ struct NetworkStatsView: View {
             navigationObject.navigationBarColor = Color(colorEnum: .bg)
             navigationObject.title = LocalizableString.NetStats.networkStatistics.localized
 
-            Logger.shared.trackScreen(.networkStats)
+            WXMAnalytics.shared.trackScreen(.networkStats)
         }
         .bottomSheet(show: $viewModel.showInfo, fitContent: true) {
 			bottomInfoView(info: viewModel.info)

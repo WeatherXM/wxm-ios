@@ -23,7 +23,7 @@ struct RewardsTimelineView: View {
             navigationObject.title = viewModel.device.displayName
             navigationObject.titleColor = Color(colorEnum: .primary)
 
-            Logger.shared.trackScreen(.rewardTransactions)
+            WXMAnalytics.shared.trackScreen(.rewardTransactions)
         }
     }
 
@@ -62,7 +62,7 @@ struct RewardsTimelineView: View {
 							DailyRewardCardView(card: record.toDailyRewardCard(isOwned: false), buttonAction: nil)
 								.wxmShadow()
 								.onTapGesture {
-									Logger.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
+									WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
 																					   .contentType: .deviceTransactions,
 																					   .itemListId: .custom(record.timelineTransactionDateString),
 																					   .itemId: .custom(viewModel.device.id ?? "")])

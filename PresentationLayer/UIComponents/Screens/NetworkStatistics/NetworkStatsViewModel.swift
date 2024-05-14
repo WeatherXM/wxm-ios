@@ -47,7 +47,7 @@ class NetworkStatsViewModel: ObservableObject {
 
     func handleBuyStationTap() {
         HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .openShop])
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .openShop])
     }
 
     func handleDetailsActionTap(statistics: NetworkStatsView.StationStatistics, details: NetworkStatsView.StationDetails) {
@@ -55,7 +55,7 @@ class NetworkStatsViewModel: ObservableObject {
             HelperFunctions().openUrl(url)
         }
 
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .openStationShop,
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .openStationShop,
                                                               .itemId: statistics.analyticsItemId,
                                                               .itemListId: .custom(details.title)])
     }
@@ -70,7 +70,7 @@ class NetworkStatsViewModel: ObservableObject {
         showInfo = true
 
         if let analyticsItemId {
-            Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
+            WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
                                                                   .itemId: analyticsItemId])
         }
     }

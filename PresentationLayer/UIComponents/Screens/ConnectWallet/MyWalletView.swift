@@ -70,7 +70,7 @@ struct MyWalletView: View {
         .onAppear {
             navigationObj.title = LocalizableString.Wallet.myWallet.localized
             navigationObj.navigationBarColor = Color(colorEnum: .bg)
-            Logger.shared.trackScreen(.wallet)
+            WXMAnalytics.shared.trackScreen(.wallet)
         }
         .sheet(isPresented: $viewModel.showQrScanner) {
             CodeScannerView(codeTypes: [.qr], completion: viewModel.handleScanResult)
@@ -119,7 +119,7 @@ private extension MyWalletView {
                         .tint(Color(colorEnum: .primary))
                         .font(.system(size: CGFloat(.caption), weight: .bold))
                         .simultaneousGesture(TapGesture().onEnded {
-                            Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .createMetamask,
+                            WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .createMetamask,
                                                                                   .itemId: .custom(viewModel.wallet?.address ?? "")])
                         })
                     Spacer()
@@ -136,7 +136,7 @@ private extension MyWalletView {
                         title: LocalizableString.Wallet.compatibility.localized,
                         message: LocalizableString.Wallet.compatibilityDescription.localized) {
             viewModel.isWarningVisible = false
-            Logger.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
+            WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
                                                            .promptType: .info,
                                                            .action: .dismissAction])
 		} content: {
@@ -145,7 +145,7 @@ private extension MyWalletView {
                     .tint(Color(colorEnum: .primary))
                     .font(.system(size: CGFloat(.caption), weight: .bold))
                     .simultaneousGesture(TapGesture().onEnded {
-                        Logger.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
+                        WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
                                                                        .promptType: .info,
                                                                        .action: .action])
                     })
@@ -153,7 +153,7 @@ private extension MyWalletView {
             }
         }
         .onAppear {
-            Logger.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
+            WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
                                                            .promptType: .info,
                                                            .action: .viewAction])
         }
@@ -209,7 +209,7 @@ private extension MyWalletView {
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.normalFontSize)))
                         .simultaneousGesture(TapGesture().onEnded {
-                            Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .walletTermsOfService])
+                            WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .walletTermsOfService])
                         })
 
                     Spacer()

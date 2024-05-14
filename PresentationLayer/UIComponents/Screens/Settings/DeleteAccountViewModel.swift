@@ -66,7 +66,7 @@ final class DeleteAccountViewModel: ObservableObject {
                         if response.error != nil {
                             self.getErrorMessage(responseError: response.error)
                             self.currentScreen = DeleteScreen.failure
-                            Logger.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
+                            WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
                                                                                 .itemId: .custom(response.error?.backendError?.code ?? "")])
                         }
                     } else {

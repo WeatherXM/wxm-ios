@@ -32,7 +32,7 @@ struct RegisterView: View {
             viewModel.checkSignUpButtonAvailability()
         }
         .onAppear {
-            Logger.shared.trackScreen(.signup)
+            WXMAnalytics.shared.trackScreen(.signup)
 			navigationObject.title = LocalizableString.createAccount.localized
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
         }

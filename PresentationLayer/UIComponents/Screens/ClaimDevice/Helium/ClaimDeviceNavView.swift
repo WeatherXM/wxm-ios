@@ -35,7 +35,7 @@ struct ClaimDeviceNavView: View {
         }
         .onAppear {
             viewModel.isM5 = !claimViaBluetooth
-            Logger.shared.trackScreen(claimViaBluetooth ? .claimHelium : .claimM5)
+            WXMAnalytics.shared.trackScreen(claimViaBluetooth ? .claimHelium : .claimM5)
         }
     }
 }

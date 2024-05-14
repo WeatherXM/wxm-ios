@@ -36,7 +36,7 @@ struct StationDetailsContainerView: View {
 
             if viewModel.followState != nil {
                 Button {
-                    Logger.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsPopUp])
+                    WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsPopUp])
                     showSettingsPopOver = true
                 } label: {
                     Text(FontIcon.threeDots.rawValue)

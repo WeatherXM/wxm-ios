@@ -69,7 +69,7 @@ private extension StationIndicationModifier {
 																							  mainVM: mainScreenViewModel,
 																							  followState: followState)))
 
-				Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .viewAll,
+				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .viewAll,
 																	  .itemId: .multipleIssue])
 			} label: {
 				Text(LocalizableString.viewAll.localized)
@@ -93,7 +93,7 @@ private extension StationIndicationModifier {
 				Button {
 					mainScreenViewModel.showFirmwareUpdate(device: device)
 
-					Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
+					WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
 																   .promptType: .warnPromptType,
 																   .action: .action])
 				} label: {
@@ -104,7 +104,7 @@ private extension StationIndicationModifier {
 				.padding(.top, CGFloat(.minimumPadding))
 			}
 			.onAppear {
-				Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
+				WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
 															   .promptType: .warnPromptType,
 															   .action: .viewAction])
 			}
@@ -130,7 +130,7 @@ private extension StationIndicationModifier {
 						UIApplication.shared.open(url)
 					}
 					
-					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
+					WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
 																		  .itemId: .custom(urlString ?? "")])
 				} label: {
 					Text(LocalizableString.stationWarningLowBatteryButtonTitle.localized)

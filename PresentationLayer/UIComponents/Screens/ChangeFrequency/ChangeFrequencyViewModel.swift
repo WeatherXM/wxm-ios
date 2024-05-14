@@ -31,14 +31,14 @@ class ChangeFrequencyViewModel: ObservableObject {
     }
 
     func changeButtonTapped() {
-        Logger.shared.trackEvent(.userAction, parameters: [.actionName: .changeFrequencyResult,
+        WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .changeFrequencyResult,
                                                            .contentType: .changeStationFrequency,
                                                            .action: .change])
         setFrequency()
     }
 
     func cancelButtonTapped() {
-        Logger.shared.trackEvent(.userAction, parameters: [.actionName: .changeFrequencyResult,
+        WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .changeFrequencyResult,
                                                            .contentType: .changeStationFrequency,
                                                            .action: .cancel])
 
@@ -218,7 +218,7 @@ private extension ChangeFrequencyViewModel {
     }
 
     func trackViewContentEvent(success: Bool) {
-        Logger.shared.trackEvent(.viewContent, parameters: [.contentName: .changeFrequencyResult,
+        WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .changeFrequencyResult,
                                                             .contentId: .changeFrequencyResultContentId,
                                                             .success: .custom(success ? "1" : "0")])
     }

@@ -25,7 +25,7 @@ struct SettingsView: View {
         .navigationBarBackButtonHidden(settingsViewModel.isShowingUnitsOverlay)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            Logger.shared.trackScreen(.settings)
+            WXMAnalytics.shared.trackScreen(.settings)
 			navigationObject.title = LocalizableString.settings.localized
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
         }
@@ -166,7 +166,7 @@ struct SettingsView: View {
 			settingsCase: .changePassword,
 			settingCaption: LocalizableString.settingsOptionChangePasswordDescription.localized,
 			action: {
-				Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .changePassword])
+				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .changePassword])
 				Router.shared.navigateTo(.resetPassword(ViewModelsFactory.getResetPasswordViewModel()))
 			}
 		)
@@ -177,7 +177,7 @@ struct SettingsView: View {
             settingsCase: .logout,
             settingCaption: "",
             action: {
-                Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .logout])
+                WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .logout])
                 settingsViewModel.logoutUser { completion in
                     if completion {
                         mainScreenViewModel.selectedTab = .homeTab
@@ -235,7 +235,7 @@ struct SettingsView: View {
 				settingsCase: .joinUserPanel,
 				settingCaption: SettingsEnum.joinUserPanel.settingsDescription,
 				action: {
-					Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .userResearchPanel])
+					WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .userResearchPanel])
 					if let url = URL(string: DisplayedLinks.feedbackForm.linkURL) {
 						UIApplication.shared.open(url)
 					}
@@ -247,7 +247,7 @@ struct SettingsView: View {
 					settingsCase: .appSurvey,
 					settingCaption: SettingsEnum.appSurvey.settingsDescription,
 					action: {
-						Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .appSurvey])
+						WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .appSurvey])
 						if let url = URL(string: DisplayedLinks.appSurveyForm.linkURL) {
 							UIApplication.shared.open(url)
 						}
@@ -292,7 +292,7 @@ struct SettingsView: View {
             settingsCase: .documentation,
             settingCaption: SettingsEnum.documentation.settingsDescription,
             action: {
-                Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .documentation])
+                WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .documentation])
                 if let url = URL(string: DisplayedLinks.documentationLink.linkURL) {
                     UIApplication.shared.open(url)
                 }
@@ -305,7 +305,7 @@ struct SettingsView: View {
             settingsCase: .contactSupport,
             settingCaption: SettingsEnum.contactSupport.settingsDescription,
             action: {
-                Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
+                WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
                                                                       .source: .settingsSource])
 
 				HelperFunctions().openContactSupport(successFailureEnum: .settings,
