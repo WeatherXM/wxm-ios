@@ -107,6 +107,7 @@ private extension ManualSerialNumberView {
 	@ViewBuilder
 	var bottomButton: some View {
 		Button {
+			viewModel.handleProceedButtonTap()
 		} label: {
 			Text(LocalizableString.ClaimDevice.enterGatewayProceedButtonTitle.localized)
 		}
@@ -117,9 +118,9 @@ private extension ManualSerialNumberView {
 }
 
 #Preview {
-	ManualSerialNumberView(viewModel: ManualSerialNumberM5ViewModel())
+	ManualSerialNumberView(viewModel: ManualSerialNumberM5ViewModel { _ in })
 }
 
 #Preview {
-	ManualSerialNumberView(viewModel: ManualSerialNumberViewModel())
+	ManualSerialNumberView(viewModel: ManualSerialNumberViewModel { _ in })
 }

@@ -7,10 +7,12 @@
 
 import Foundation
 import UIKit
+import Toolkit
 
 class ManualSerialNumberViewModel: ObservableObject {
 	@Published var inputFields: [SerialNumberInputField]
 	@Published var canProceed: Bool = false
+	private let completion: GenericCallback<[SerialNumberInputField]>
 
 	var image: AssetEnum? {
 		.imageD1Claim
@@ -21,8 +23,10 @@ class ManualSerialNumberViewModel: ObservableObject {
 	}
 
 	init(inputFields: [SerialNumberInputField] = [.init(type: .claimingKey, value: ""),
-												  .init(type: .serialNumber, value: "")]) {
+												  .init(type: .serialNumber, value: "")],
+		 completion: @escaping GenericCallback<[SerialNumberInputField]>) {
 		self.inputFields = inputFields
+		self.completion = completion
 	}
 
 	func setValue(for type: SerialNumberInputType, value: String) {
@@ -45,7 +49,10 @@ class ManualSerialNumberViewModel: ObservableObject {
 				textfield.updateSerialNumberCharactersIn(nsRange: range, for: text)
 				return false
 		}
+	}
 
+	func handleProceedButtonTap() {
+		completion(inputFields)
 	}
 }
 
@@ -76,7 +83,8 @@ class ManualSerialNumberM5ViewModel: ManualSerialNumberViewModel {
 		"image_m5_station_qr"
 	}
 
-	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber, value: "")]) {
-		super.init(inputFields: inputFields)
+	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber, value: "")],
+				  completion: @escaping GenericCallback<[SerialNumberInputField]>) {
+		super.init(inputFields: inputFields, completion: completion)
 	}
 }

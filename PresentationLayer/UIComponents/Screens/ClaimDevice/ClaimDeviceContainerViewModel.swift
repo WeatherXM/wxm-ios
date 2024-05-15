@@ -62,8 +62,8 @@ private extension ClaimDeviceContainerViewModel {
 			self?.moveNext()
 		}
 
-		let manualSNViewModel = ViewModelsFactory.getManualSNM5ViewModel {
-
+		let manualSNViewModel = ViewModelsFactory.getManualSNM5ViewModel { [weak self] _ in
+			self?.moveNext()
 		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location]
@@ -83,8 +83,8 @@ private extension ClaimDeviceContainerViewModel {
 			self?.moveNext()
 		}
 
-		let manualSNViewModel = ViewModelsFactory.getManualSNViewModel {
-
+		let manualSNViewModel = ViewModelsFactory.getManualSNViewModel { [weak self] _ in
+			self?.moveNext()
 		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location]
