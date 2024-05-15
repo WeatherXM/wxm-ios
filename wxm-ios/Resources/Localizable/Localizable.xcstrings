@@ -771,7 +771,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Turn on the gateway (WG1200) and swipe right to the settings screen. Select **“Configure WiFi”** and then press **“Continue”** on the screen."
+            "value" : "Turn on the WG1200 gateway and swipe right to the settings screen. Select **“Configure WiFi”** and then press **“Continue”** on the screen."
           }
         }
       }

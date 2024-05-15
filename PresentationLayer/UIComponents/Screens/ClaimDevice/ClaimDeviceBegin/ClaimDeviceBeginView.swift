@@ -27,26 +27,27 @@ struct ClaimDeviceBeginView: View {
 
 						bullets
 
-						HStack {
-							Text(LocalizableString.ClaimDevice.connectionText.localized)
-								.foregroundStyle(Color(colorEnum: .text))
-								.font(.system(size: CGFloat(.normalFontSize)))
+						if let videoLink = viewModel.videoLink {
+							HStack {
+								Text(LocalizableString.ClaimDevice.connectionText.localized)
+									.foregroundStyle(Color(colorEnum: .text))
+									.font(.system(size: CGFloat(.normalFontSize)))
 
-							Spacer()
-						}
-
-						Button {
-							guard let url = URL(string: viewModel.videoLink), UIApplication.shared.canOpenURL(url) else {
-								return
+								Spacer()
 							}
 
-							UIApplication.shared.open(url)
-						} label: {
-							Image(asset: .m5Video)
-								.resizable()
-								.aspectRatio(contentMode: .fit)
-						}
+							Button {
+								guard let url = URL(string: videoLink), UIApplication.shared.canOpenURL(url) else {
+									return
+								}
 
+								UIApplication.shared.open(url)
+							} label: {
+								Image(asset: .m5Video)
+									.resizable()
+									.aspectRatio(contentMode: .fit)
+							}
+						}
 					}
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.padding(.top, CGFloat(.largeSidePadding))
@@ -95,5 +96,5 @@ private extension ClaimDeviceBeginView {
 }
 
 #Preview {
-	ClaimDeviceBeginView(viewModel: ClaimDeviceM5BeginViewModel(completion: {}))
+	ClaimDeviceBeginView(viewModel: ClaimDeviceBeginViewModel(completion: {}))
 }
