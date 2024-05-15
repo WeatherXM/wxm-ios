@@ -12,6 +12,7 @@ enum ClaimDeviceStep: Identifiable {
 
 	case begin(ClaimDeviceBeginViewModel)
 	case serialNumber(ClaimDeviceSerialNumberViewModel)
+	case manualSerialNumber(ManualSerialNumberViewModel)
 	case location
 
 	var id: String {
@@ -20,6 +21,8 @@ enum ClaimDeviceStep: Identifiable {
 				"begin"
 			case .serialNumber:
 				"serialNumber"
+			case .manualSerialNumber:
+				"manualSerialNumber"
 			case .location:
 				"location"
 		}
@@ -36,6 +39,8 @@ extension ClaimDeviceStep {
 				ClaimDeviceBeginView(viewModel: viewModel)
 			case .serialNumber(let viewModel):
 				ClaimDeviceSerialNumberView(viewModel: viewModel)
+			case .manualSerialNumber(let viewModel):
+				ManualSerialNumberView(viewModel: viewModel)
 			case .location:
 				VStack {
 					Spacer()
