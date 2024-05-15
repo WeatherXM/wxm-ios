@@ -344,6 +344,8 @@
 		26AA21D52BF4A2CC00B91A7C /* ManualSerialNumberTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21D42BF4A2CC00B91A7C /* ManualSerialNumberTypes.swift */; };
 		26AA21E42BF4F60300B91A7C /* ClaimDeviceLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21E32BF4F60300B91A7C /* ClaimDeviceLocationView.swift */; };
 		26AA21E62BF4F61B00B91A7C /* ClaimDeviceLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21E52BF4F61B00B91A7C /* ClaimDeviceLocationViewModel.swift */; };
+		26AA21E92BF4FA3B00B91A7C /* SelectLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21E82BF4FA3B00B91A7C /* SelectLocationMapView.swift */; };
+		26AA21EB2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21EA2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift */; };
 		26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F462A7BEA0700855912 /* CTAView.swift */; };
 		26AB9F582A822DB500855912 /* UserDeviceFollowState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */; };
 		26ADDF7E2BE3B08D00992BEF /* image_station_qr.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */; };
@@ -859,6 +861,8 @@
 		26AA21D42BF4A2CC00B91A7C /* ManualSerialNumberTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSerialNumberTypes.swift; sourceTree = "<group>"; };
 		26AA21E32BF4F60300B91A7C /* ClaimDeviceLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceLocationView.swift; sourceTree = "<group>"; };
 		26AA21E52BF4F61B00B91A7C /* ClaimDeviceLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceLocationViewModel.swift; sourceTree = "<group>"; };
+		26AA21E82BF4FA3B00B91A7C /* SelectLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationMapView.swift; sourceTree = "<group>"; };
+		26AA21EA2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationMapViewModel.swift; sourceTree = "<group>"; };
 		26AB9F462A7BEA0700855912 /* CTAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAView.swift; sourceTree = "<group>"; };
 		26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDeviceFollowState+.swift"; sourceTree = "<group>"; };
 		26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_station_qr.gif; sourceTree = "<group>"; };
@@ -1506,6 +1510,7 @@
 		2675471529A9181E008BCF40 /* ClaimDevice */ = {
 			isa = PBXGroup;
 			children = (
+				26AA21E22BF4F59200B91A7C /* Location */,
 				26AA21CF2BF3A41F00B91A7C /* ManualSerialNumber */,
 				26ADDF7F2BE3B1FD00992BEF /* SerialNumber */,
 				26325AFF2BE1127F00182C59 /* ClaimDeviceBegin */,
@@ -1602,6 +1607,7 @@
 		2675473B29A9181E008BCF40 /* BaseComponents */ = {
 			isa = PBXGroup;
 			children = (
+				26AA21E72BF4F9A500B91A7C /* SelectLocationMap */,
 				262B02F42B1DE48A00C31FE7 /* WebView */,
 				268E8E0B2B07A2AA0025163F /* iPad */,
 				268028A82AF297FE0031379C /* Indication */,
@@ -2042,6 +2048,24 @@
 				26AA21D42BF4A2CC00B91A7C /* ManualSerialNumberTypes.swift */,
 			);
 			path = ManualSerialNumber;
+			sourceTree = "<group>";
+		};
+		26AA21E22BF4F59200B91A7C /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				26AA21E32BF4F60300B91A7C /* ClaimDeviceLocationView.swift */,
+				26AA21E52BF4F61B00B91A7C /* ClaimDeviceLocationViewModel.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		26AA21E72BF4F9A500B91A7C /* SelectLocationMap */ = {
+			isa = PBXGroup;
+			children = (
+				26AA21E82BF4FA3B00B91A7C /* SelectLocationMapView.swift */,
+				26AA21EA2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift */,
+			);
+			path = SelectLocationMap;
 			sourceTree = "<group>";
 		};
 		26ADDF7F2BE3B1FD00992BEF /* SerialNumber */ = {
@@ -2884,6 +2908,7 @@
 				267547DD29A9181E008BCF40 /* HeliumClaimingStatusView.swift in Sources */,
 				267548F329A91A87008BCF40 /* HelperFunctions.swift in Sources */,
 				26AF276F2A0B815B0067A1B8 /* WeatherChartModels.swift in Sources */,
+				26AA21E92BF4FA3B00B91A7C /* SelectLocationMapView.swift in Sources */,
 				26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */,
 				2672C77A2AA9BBEB00E1FDCC /* HistoryContainerView.swift in Sources */,
 				26FFADA72B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift in Sources */,
@@ -3069,6 +3094,7 @@
 				26A4116029B618CA00A2C10B /* WeatherOverviewView+Content.swift in Sources */,
 				26A4115D29B6160600A2C10B /* WeatherOverviewView.swift in Sources */,
 				26FFAE1C2B920A7300BF0A6B /* BoostsView.swift in Sources */,
+				26AA21EB2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift in Sources */,
 				267547FB29A9181E008BCF40 /* WeatherStationCard+Content.swift in Sources */,
 				267547FC29A9181E008BCF40 /* WeatherStationCard.swift in Sources */,
 				2675482129A9181E008BCF40 /* WeatherStationsHomeView.swift in Sources */,
