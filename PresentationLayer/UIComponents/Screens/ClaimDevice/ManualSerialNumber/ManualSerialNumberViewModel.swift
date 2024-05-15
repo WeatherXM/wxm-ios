@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ManualSerialNumberViewModel: ObservableObject {
 	@Published var inputFields: [SerialNumberInputField]
@@ -32,16 +33,32 @@ class ManualSerialNumberViewModel: ObservableObject {
 		inputFields[index].setValue(value: value)
 		validateInputs()
 	}
+
+	func shouldChangeText(for type: SerialNumberInputType,
+						  textfield: UITextField,
+						  range: NSRange,
+						  text: String) -> Bool {
+		switch type {
+			case .claimingKey:
+				return true
+			case .serialNumber:
+				textfield.updateSerialNumberCharactersIn(nsRange: range, for: text)
+				return false
+		}
+
+	}
 }
 
 fileprivate extension ManualSerialNumberViewModel {
 	func validateInputs() {
+		let validator = SNValidator()
+
 		canProceed = inputFields.reduce(true, { partialResult, field in
 			switch field.type {
 				case .claimingKey:
-					return partialResult && !field.value.isEmpty
+					return partialResult && validator.validateStationKey(key: field.value)
 				case .serialNumber:
-					return partialResult && !field.value.isEmpty
+					return partialResult && validator.validateQR(qrString: field.value)
 			}
 		})
 

@@ -77,14 +77,30 @@ private extension ManualSerialNumberView {
 				Spacer()
 			}
 
-			TextField(inputField.type.placeholder, text: Binding(get: { inputField.value },
-																 set: { [weak viewModel] newValue in
-				viewModel?.setValue(for: inputField.type, value: newValue)
-			}))
-				.font(.system(size: CGFloat(.normalFontSize)))
-				.foregroundStyle(Color(colorEnum: .text))
-				.padding(CGFloat(.mediumSidePadding))
-				.strokeBorder(color: Color(colorEnum: .midGrey), lineWidth: 1.0, radius: 5.0)
+			UberTextField(
+				text: Binding(get: { inputField.value },
+							  set: { [weak viewModel] newValue in
+								  viewModel?.setValue(for: inputField.type, value: newValue)
+							  }),
+				hint: .constant(inputField.type.placeholder),
+				shouldChangeCharactersIn: { [weak viewModel] tf, range, string in
+					viewModel?.shouldChangeText(for: inputField.type,
+												textfield: tf,
+												range: range,
+												text: string) ?? true
+				},
+				configuration: { tf in
+					tf.keyboardType = .asciiCapable
+					tf.horizontalPadding = CGFloat(.mediumSidePadding)
+					tf.verticalPadding = CGFloat(.mediumSidePadding)
+					tf.font = UIFont.systemFont(ofSize: CGFloat(.mediumFontSize), weight: .regular)
+					tf.textColor = UIColor(colorEnum: .text)
+					tf.autocorrectionType = .no
+					tf.autocapitalizationType = .none
+					tf.backgroundColor = .clear
+				}
+			)
+			.strokeBorder(color: Color(colorEnum: .midGrey), lineWidth: 1.0, radius: 5.0)
 		}
 	}
 
