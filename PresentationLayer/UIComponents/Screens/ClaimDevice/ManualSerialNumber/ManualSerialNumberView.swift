@@ -61,12 +61,27 @@ private extension ManualSerialNumberView {
 	@ViewBuilder
 	var textFields: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
-			TextField("123", text: .constant(""))
+			ForEach(viewModel.inputFields) { field in
+				textfield(for: field)
+			}
+		}
+	}
+
+	@ViewBuilder
+	func textfield(for inputField: SerialNumberInputField) -> some View {
+		VStack(spacing: CGFloat(.minimumSpacing)) {
+			HStack {
+				Text(inputField.type.description)
+					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+				Spacer()
+			}
+
+			TextField(inputField.type.placeholder, text: .constant(""))
 				.font(.system(size: CGFloat(.normalFontSize)))
 				.foregroundStyle(Color(colorEnum: .text))
 				.padding(CGFloat(.mediumSidePadding))
 				.strokeBorder(color: Color(colorEnum: .midGrey), lineWidth: 1.0, radius: 5.0)
-
 		}
 	}
 

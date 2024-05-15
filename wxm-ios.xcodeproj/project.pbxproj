@@ -341,6 +341,7 @@
 		26AA21C22BF36B0100B91A7C /* SNValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21C12BF36B0100B91A7C /* SNValidator.swift */; };
 		26AA21D12BF3A44600B91A7C /* ManualSerialNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21D02BF3A44600B91A7C /* ManualSerialNumberView.swift */; };
 		26AA21D32BF3A45E00B91A7C /* ManualSerialNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21D22BF3A45E00B91A7C /* ManualSerialNumberViewModel.swift */; };
+		26AA21D52BF4A2CC00B91A7C /* ManualSerialNumberTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21D42BF4A2CC00B91A7C /* ManualSerialNumberTypes.swift */; };
 		26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F462A7BEA0700855912 /* CTAView.swift */; };
 		26AB9F582A822DB500855912 /* UserDeviceFollowState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */; };
 		26ADDF7E2BE3B08D00992BEF /* image_station_qr.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */; };
@@ -853,6 +854,7 @@
 		26AA21C12BF36B0100B91A7C /* SNValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNValidator.swift; sourceTree = "<group>"; };
 		26AA21D02BF3A44600B91A7C /* ManualSerialNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSerialNumberView.swift; sourceTree = "<group>"; };
 		26AA21D22BF3A45E00B91A7C /* ManualSerialNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSerialNumberViewModel.swift; sourceTree = "<group>"; };
+		26AA21D42BF4A2CC00B91A7C /* ManualSerialNumberTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSerialNumberTypes.swift; sourceTree = "<group>"; };
 		26AB9F462A7BEA0700855912 /* CTAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAView.swift; sourceTree = "<group>"; };
 		26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDeviceFollowState+.swift"; sourceTree = "<group>"; };
 		26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_station_qr.gif; sourceTree = "<group>"; };
@@ -2033,6 +2035,7 @@
 			children = (
 				26AA21D02BF3A44600B91A7C /* ManualSerialNumberView.swift */,
 				26AA21D22BF3A45E00B91A7C /* ManualSerialNumberViewModel.swift */,
+				26AA21D42BF4A2CC00B91A7C /* ManualSerialNumberTypes.swift */,
 			);
 			path = ManualSerialNumber;
 			sourceTree = "<group>";
@@ -2767,6 +2770,7 @@
 				26D47EA12A1783E60078723A /* AnalyticsView.swift in Sources */,
 				269E85712B0242C100BE774C /* WXMShareModifier.swift in Sources */,
 				26CA845A2AD93BB6006D47D7 /* String+Common.swift in Sources */,
+				26AA21D52BF4A2CC00B91A7C /* ManualSerialNumberTypes.swift in Sources */,
 				26FFADD82B8F688900BF0A6B /* RewardAnnotationsViewModel.swift in Sources */,
 				26D47EA32A179CEB0078723A /* AnalyticsViewModel.swift in Sources */,
 				267548D529A91A87008BCF40 /* AnimationsEnums.swift in Sources */,
