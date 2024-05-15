@@ -77,7 +77,10 @@ private extension ManualSerialNumberView {
 				Spacer()
 			}
 
-			TextField(inputField.type.placeholder, text: .constant(""))
+			TextField(inputField.type.placeholder, text: Binding(get: { inputField.value },
+																 set: { [weak viewModel] newValue in
+				viewModel?.setValue(for: inputField.type, value: newValue)
+			}))
 				.font(.system(size: CGFloat(.normalFontSize)))
 				.foregroundStyle(Color(colorEnum: .text))
 				.padding(CGFloat(.mediumSidePadding))
@@ -93,7 +96,7 @@ private extension ManualSerialNumberView {
 		}
 		.buttonStyle(WXMButtonStyle.filled())
 		.padding(.horizontal, CGFloat(.mediumSidePadding))
-		.disabled(true)
+		.disabled(!viewModel.canProceed)
 	}
 }
 
