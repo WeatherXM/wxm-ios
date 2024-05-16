@@ -8,13 +8,19 @@
 import Foundation
 
 struct SNValidator {
-	private let serialNumberRegex = "^([0-9A-Fa-f]{2}:){8}[0-9A-Fa-f]{2}"
+	private let m5SerialNumberRegex = "^([0-9A-Fa-f]{2}:){8}[0-9A-Fa-f]{2}"
+	private let d1SerialNumberRegex = "^([0-9A-Fa-f]{2}:){10}[0-9A-Fa-f]{2}"
+	private let claimingKeyRegex = "^([0-9]{6})"
 
-	func validateQR(qrString: String) -> Bool {
-		qrString.matches(serialNumberRegex)
+	func validateM5(serialNumber: String) -> Bool {
+		serialNumber.matches(m5SerialNumberRegex)
+	}
+
+	func validateD1(serialNumber: String) -> Bool {
+		serialNumber.matches(d1SerialNumberRegex)
 	}
 
 	func validateStationKey(key: String) -> Bool {
-		key.count == 6
+		key.matches(claimingKeyRegex)
 	}
 }
