@@ -42,4 +42,14 @@ public struct DeviceLocationUseCase {
     public func getUserLocation() async -> Result<CLLocationCoordinate2D, ExplorerLocationError> {
         await deviceLocationRepository.getUserLocation()
     }
+
+	public func getSuggestedDeviceLocation() -> CLLocationCoordinate2D? {
+		guard let countryInfos = deviceLocationRepository.getCountryInfos() else {
+			return nil
+		}
+		let code = Locale.current.regionCode
+		let info = countryInfos.first(where: { $0.code == code })
+
+		return info?.mapCenter
+	}
 }

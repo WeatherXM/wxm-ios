@@ -15,7 +15,7 @@ protocol SelectLocationMapViewModelDelegate: AnyObject {
 }
 
 class SelectLocationMapViewModel: ObservableObject {
-	@Published var selectedCoordinate: CLLocationCoordinate2D = .init()
+	@Published var selectedCoordinate: CLLocationCoordinate2D
 	@Published private(set) var selectedDeviceLocation: DeviceLocation? {
 		didSet {
 			delegate?.updatedSelectedLocation(location: selectedDeviceLocation)
@@ -31,6 +31,7 @@ class SelectLocationMapViewModel: ObservableObject {
 	init(useCase: DeviceLocationUseCase, delegate: SelectLocationMapViewModelDelegate? = nil) {
 		self.useCase = useCase
 		self.delegate = delegate
+		self.selectedCoordinate = useCase.getSuggestedDeviceLocation() ?? .init()
 		$selectedCoordinate
 			.debounce(for: 1.0, scheduler: DispatchQueue.main)
 			.sink { [weak self] _ in
