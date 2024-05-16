@@ -13,6 +13,19 @@ enum ClaimStationType: CaseIterable, CustomStringConvertible {
 	case helium
 	case pulse
 
+	var navigationTitle: String {
+		switch self {
+			case .m5:
+				LocalizableString.ClaimDevice.claimM5Title.localized
+			case .d1:
+				LocalizableString.ClaimDevice.claimD1Title.localized
+			case .helium:
+				LocalizableString.ClaimDevice.heliumTitle.localized
+			case .pulse:
+				LocalizableString.ClaimDevice.pulseTitle.localized
+		}
+	}
+
 	var description: String {
 		switch self {
 			case .m5:

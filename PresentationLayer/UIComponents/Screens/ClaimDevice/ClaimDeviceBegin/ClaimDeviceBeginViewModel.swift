@@ -38,6 +38,6 @@ class ClaimDeviceM5BeginViewModel: ClaimDeviceBeginViewModel {
 	}
 
 	override var videoLink: String? {
-		DisplayedLinks.d1VideoLink.linkURL
+		DisplayedLinks.m5VideoLink.linkURL
 	}
 }

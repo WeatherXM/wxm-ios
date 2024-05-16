@@ -85,7 +85,7 @@ private extension ClaimDeviceBeginView {
 						.foregroundColor(Color(colorEnum: .text))
 
 					Text(bullet.text)
-						.foregroundStyle(Color(colorEnum: .text))
+						.foregroundStyle(Color(colorEnum: .darkGrey))
 						.font(.system(size: CGFloat(.normalFontSize)))
 
 					Spacer()

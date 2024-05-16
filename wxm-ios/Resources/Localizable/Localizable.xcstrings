@@ -622,6 +622,28 @@
         }
       }
     },
+    "claim_device_claim_d1_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim D1 | WiFi"
+          }
+        }
+      }
+    },
+    "claim_device_claim_m5_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim M5 | WiFi"
+          }
+        }
+      }
+    },
     "claim_device_claim_new_device" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4234,6 +4256,9 @@
       }
     },
     "Key" : {
+      "extractionState" : "manual"
+    },
+    "Key 1" : {
       "extractionState" : "manual"
     },
     "last_name" : {

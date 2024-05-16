@@ -12,8 +12,10 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	@Published var isMovingNext = true
 
 	var steps: [ClaimDeviceStep] = []
+	let navigationTitle: String
 
 	init(type: ClaimStationType) {
+		navigationTitle = type.navigationTitle
 		steps = getSteps(for: type)
 	}
 
