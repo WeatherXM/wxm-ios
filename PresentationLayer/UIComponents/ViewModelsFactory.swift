@@ -184,7 +184,8 @@ enum ViewModelsFactory {
 	}
 
 	static func getClaimStationContainerViewModel(type: ClaimStationType) -> ClaimDeviceContainerViewModel {
-		ClaimDeviceContainerViewModel(type: type)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		return ClaimDeviceContainerViewModel(type: type, useCase: useCase)
 	}
 
 	static func getClaimStationBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeginViewModel {

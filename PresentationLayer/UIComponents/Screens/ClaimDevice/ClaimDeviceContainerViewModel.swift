@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DomainLayer
 
 class ClaimDeviceContainerViewModel: ObservableObject {
 	@Published var selectedIndex: Int = 0
@@ -13,9 +14,15 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 
 	var steps: [ClaimDeviceStep] = []
 	let navigationTitle: String
+	let useCase: MeUseCase
+	
+	private var claimingKey: String?
+	private var serialNumber: String?
+	private var location: DeviceLocation?
 
-	init(type: ClaimStationType) {
+	init(type: ClaimStationType, useCase: MeUseCase) {
 		navigationTitle = type.navigationTitle
+		self.useCase = useCase
 		steps = getSteps(for: type)
 	}
 
@@ -54,20 +61,15 @@ private extension ClaimDeviceContainerViewModel {
 		}
 
 		let snViewModel = ViewModelsFactory.getClaimStationM5SNViewModel { [weak self] serialNumber in
-			guard let serialNumber else {
-				self?.moveNext()
-				return
-			}
-
-			self?.moveNext()
+			self?.handleSeriaNumber(serialNumber: serialNumber)
 		}
 
-		let manualSNViewModel = ViewModelsFactory.getManualSNM5ViewModel { [weak self] _ in
-			self?.moveNext()
+		let manualSNViewModel = ViewModelsFactory.getManualSNM5ViewModel { [weak self] fields in
+			self?.handleSNInputFields(fields: fields)
 		}
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
-
+			self?.handleLocation(location: location)
 		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
@@ -79,20 +81,15 @@ private extension ClaimDeviceContainerViewModel {
 		}
 
 		let snViewModel = ViewModelsFactory.getClaimStationSNViewModel { [weak self] serialNumber in
-			guard let serialNumber else {
-				self?.moveNext()
-				return
-			}
-
-			self?.moveNext()
+			self?.handleSeriaNumber(serialNumber: serialNumber)
 		}
 
-		let manualSNViewModel = ViewModelsFactory.getManualSNViewModel { [weak self] _ in
-			self?.moveNext()
+		let manualSNViewModel = ViewModelsFactory.getManualSNViewModel { [weak self] fields in
+			self?.handleSNInputFields(fields: fields)
 		}
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
-
+			self?.handleLocation(location: location)
 		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
@@ -104,6 +101,33 @@ private extension ClaimDeviceContainerViewModel {
 
 	func getPulseSteps() -> [ClaimDeviceStep] {
 		[]
+	}
+
+	func handleSeriaNumber(serialNumber: ClaimDeviceSerialNumberViewModel.SerialNumber?) {
+		guard let serialNumber else {
+			moveNext()
+			return
+		}
+		self.claimingKey = serialNumber.key
+		self.serialNumber = serialNumber.serialNumber
+		moveNext()
+	}
+
+	func handleSNInputFields(fields: [SerialNumberInputField]) {
+		fields.forEach { field in
+			switch field.type {
+				case .claimingKey:
+					self.claimingKey = field.value
+				case .serialNumber:
+					self.serialNumber = field.value
+			}
+		}
+
+		moveNext()
+	}
+
+	func handleLocation(location: DeviceLocation) {
+		self.location = location
 	}
 }
 

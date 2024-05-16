@@ -23,6 +23,13 @@ class ClaimDeviceLocationViewModel: ObservableObject {
 		locationViewModel = ViewModelsFactory.getLocationMapViewModel()
 		locationViewModel.delegate = self
 	}
+
+	func handleConfirmButtonTap() {
+		guard let selectedLocation else {
+			return
+		}
+		completion(selectedLocation)
+	}
 }
 
 extension ClaimDeviceLocationViewModel: SelectLocationMapViewModelDelegate {

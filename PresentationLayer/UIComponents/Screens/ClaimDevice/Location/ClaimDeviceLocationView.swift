@@ -43,6 +43,7 @@ struct ClaimDeviceLocationView: View {
 						acknowledgementView
 
 						Button {
+							viewModel.handleConfirmButtonTap()
 						} label: {
 							Text(LocalizableString.ClaimDevice.confirmAndProceed.localized)
 						}

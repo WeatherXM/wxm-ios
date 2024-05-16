@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DomainLayer
 
 struct ClaimDeviceContainerView: View {
 	@StateObject var viewModel: ClaimDeviceContainerViewModel
@@ -48,6 +49,7 @@ struct ClaimDeviceContainerView: View {
 
 #Preview {
 	NavigationContainerView {
-		ClaimDeviceContainerView(viewModel: .init(type: .m5))
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		return ClaimDeviceContainerView(viewModel: .init(type: .m5, useCase: useCase))
 	}
 }
