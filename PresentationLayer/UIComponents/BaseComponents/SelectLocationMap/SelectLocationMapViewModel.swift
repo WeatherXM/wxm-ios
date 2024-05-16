@@ -27,6 +27,17 @@ class SelectLocationMapViewModel: ObservableObject {
 				self?.getLocationFromCoordinate()
 			}
 			.store(in: &cancellableSet)
+
+		$searchTerm
+			.debounce(for: 1.0, scheduler: DispatchQueue.main)
+			.sink { [weak self] newValue in
+				self?.useCase.searchFor(newValue)
+			}
+			.store(in: &cancellableSet)
+
+		useCase.searchResults.sink { [weak self] results in
+			self?.searchResults = results
+		}.store(in: &cancellableSet)
 	}
 
 	func handleSearchResultTap(result: DeviceLocationSearchResult) {
@@ -64,6 +75,7 @@ private extension SelectLocationMapViewModel {
 	func getLocationFromCoordinate() {
 		latestTask?.cancel()
 		latestTask = useCase.locationFromCoordinates(LocationCoordinates.fromCLLocationCoordinate2D(selectedCoordinate)).sink { [weak self] location in
+			print(location)
 			self?.selectedDeviceLocation = location
 		}
 	}
