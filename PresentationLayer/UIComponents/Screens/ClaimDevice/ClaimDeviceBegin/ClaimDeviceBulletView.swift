@@ -14,10 +14,10 @@ struct ClaimDeviceBulletView: View {
 		HStack(alignment: .top, spacing: CGFloat(.smallSpacing)) {
 			Text(bullet.fontIcon.rawValue)
 				.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-				.foregroundColor(Color(colorEnum: .text))
+				.foregroundColor(Color(colorEnum: .newText))
 
 			Text(bullet.text)
-				.foregroundStyle(Color(colorEnum: .text))
+				.foregroundStyle(Color(colorEnum: .newText))
 				.font(.system(size: CGFloat(.normalFontSize)))
 
 			Spacer()
