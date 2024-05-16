@@ -66,7 +66,9 @@ private extension ClaimDeviceContainerViewModel {
 			self?.moveNext()
 		}
 
-		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel()
+		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
+
+		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
 	}
@@ -89,7 +91,9 @@ private extension ClaimDeviceContainerViewModel {
 			self?.moveNext()
 		}
 
-		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel()
+		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
+
+		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
 	}

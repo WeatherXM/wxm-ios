@@ -216,7 +216,7 @@ enum ViewModelsFactory {
 		return SelectLocationMapViewModel(useCase: useCase)
 	}
 
-	static func getClaimDeviceLocationViewModel() -> ClaimDeviceLocationViewModel {
-		ClaimDeviceLocationViewModel()
+	static func getClaimDeviceLocationViewModel(completion: @escaping GenericCallback<DeviceLocation>) -> ClaimDeviceLocationViewModel {
+		ClaimDeviceLocationViewModel(completion: completion)
 	}
 }

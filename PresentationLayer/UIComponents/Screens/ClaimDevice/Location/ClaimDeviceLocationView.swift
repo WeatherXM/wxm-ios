@@ -74,5 +74,5 @@ private extension ClaimDeviceLocationView {
 }
 
 #Preview {
-	ClaimDeviceLocationView(viewModel: .init())
+	ClaimDeviceLocationView(viewModel: .init { _ in })
 }

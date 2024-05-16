@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 class ClaimDeviceLocationViewModel: ObservableObject {
 	@Published var termsAccepted = false
@@ -15,8 +16,10 @@ class ClaimDeviceLocationViewModel: ObservableObject {
 		termsAccepted && selectedLocation != nil
 	}
 	let locationViewModel: SelectLocationMapViewModel
+	let completion: GenericCallback<DeviceLocation>
 
-	init() {
+	init(completion: @escaping GenericCallback<DeviceLocation>) {
+		self.completion = completion
 		locationViewModel = ViewModelsFactory.getLocationMapViewModel()
 		locationViewModel.delegate = self
 	}
@@ -24,7 +27,6 @@ class ClaimDeviceLocationViewModel: ObservableObject {
 
 extension ClaimDeviceLocationViewModel: SelectLocationMapViewModelDelegate {
 	func updatedSelectedLocation(location: DeviceLocation?) {
-		print(location)
 		self.selectedLocation = location
 	}
 }
