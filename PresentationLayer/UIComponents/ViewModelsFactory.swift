@@ -210,4 +210,9 @@ enum ViewModelsFactory {
 	static func getManualSNM5ViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ManualSerialNumberM5ViewModel {
 		ManualSerialNumberM5ViewModel(completion: completion)
 	}
+
+	static func getLocationMapViewModel() -> SelectLocationMapViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
+		return SelectLocationMapViewModel(useCase: useCase)
+	}
 }

@@ -732,6 +732,17 @@
         }
       }
     },
+    "claim_device_confirm_and_proceed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm and Proceed"
+          }
+        }
+      }
+    },
     "claim_device_confirm_location_confirm_and_claim" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1674,6 +1685,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Claim a Weather Station"
+          }
+        }
+      }
+    },
+    "claim_device_station_location_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You need to confirm the station's exact deployment location."
+          }
+        }
+      }
+    },
+    "claim_device_station_location_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm station location"
           }
         }
       }

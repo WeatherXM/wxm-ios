@@ -6,7 +6,24 @@
 //
 
 import Foundation
+import DomainLayer
 
 class ClaimDeviceLocationViewModel: ObservableObject {
-	
+	@Published var termsAccepted = false
+	private var selectedLocation: DeviceLocation?
+	var canProceed: Bool {
+		termsAccepted && selectedLocation != nil
+	}
+	let locationViewModel: SelectLocationMapViewModel
+
+	init() {
+		locationViewModel = ViewModelsFactory.getLocationMapViewModel()
+		locationViewModel.delegate = self
+	}
+}
+
+extension ClaimDeviceLocationViewModel: SelectLocationMapViewModelDelegate {
+	func updatedSelectedLocation(location: DeviceLocation?) {
+		self.selectedLocation = location
+	}
 }
