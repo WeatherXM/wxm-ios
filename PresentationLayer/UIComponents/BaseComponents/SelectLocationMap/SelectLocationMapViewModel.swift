@@ -10,17 +10,27 @@ import CoreLocation
 import Combine
 import DomainLayer
 
+protocol SelectLocationMapViewModelDelegate: AnyObject {
+	func updatedSelectedLocation(location: DeviceLocation?)
+}
+
 class SelectLocationMapViewModel: ObservableObject {
 	@Published var selectedCoordinate: CLLocationCoordinate2D = .init()
-	@Published private(set) var selectedDeviceLocation: DeviceLocation?
+	@Published private(set) var selectedDeviceLocation: DeviceLocation? {
+		didSet {
+			delegate?.updatedSelectedLocation(location: selectedDeviceLocation)
+		}
+	}
 	@Published var searchTerm: String = ""
 	@Published private(set) var searchResults: [DeviceLocationSearchResult] = []
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	private var latestTask: Cancellable?
 	let useCase: DeviceLocationUseCase
+	weak var delegate: SelectLocationMapViewModelDelegate?
 
-	init(useCase: DeviceLocationUseCase) {
+	init(useCase: DeviceLocationUseCase, delegate: SelectLocationMapViewModelDelegate? = nil) {
 		self.useCase = useCase
+		self.delegate = delegate
 		$selectedCoordinate
 			.debounce(for: 1.0, scheduler: DispatchQueue.main)
 			.sink { [weak self] _ in
@@ -75,7 +85,6 @@ private extension SelectLocationMapViewModel {
 	func getLocationFromCoordinate() {
 		latestTask?.cancel()
 		latestTask = useCase.locationFromCoordinates(LocationCoordinates.fromCLLocationCoordinate2D(selectedCoordinate)).sink { [weak self] location in
-			print(location)
 			self?.selectedDeviceLocation = location
 		}
 	}
