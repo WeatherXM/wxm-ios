@@ -10,7 +10,7 @@ import DomainLayer
 
 class ClaimDeviceLocationViewModel: ObservableObject {
 	@Published var termsAccepted = false
-	private var selectedLocation: DeviceLocation?
+	@Published var selectedLocation: DeviceLocation?
 	var canProceed: Bool {
 		termsAccepted && selectedLocation != nil
 	}
@@ -24,6 +24,7 @@ class ClaimDeviceLocationViewModel: ObservableObject {
 
 extension ClaimDeviceLocationViewModel: SelectLocationMapViewModelDelegate {
 	func updatedSelectedLocation(location: DeviceLocation?) {
+		print(location)
 		self.selectedLocation = location
 	}
 }
