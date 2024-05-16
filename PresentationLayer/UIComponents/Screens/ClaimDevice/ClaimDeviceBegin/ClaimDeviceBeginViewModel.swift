@@ -30,7 +30,7 @@ class ClaimDeviceBeginViewModel: ObservableObject {
 }
 
 class ClaimDeviceM5BeginViewModel: ClaimDeviceBeginViewModel {
-	override var bullets: [ClaimDeviceBulletView.Bullet] { 
+	override var bullets: [ClaimDeviceBulletView.Bullet] {
 		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.connectM5BulletOne.localized.attributedMarkdown ?? ""),
 		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.connectM5BulletTwo.localized.attributedMarkdown ?? ""),
 		 .init(fontIcon: .circleThree, text: LocalizableString.ClaimDevice.connectM5BulletThree.localized.attributedMarkdown ?? ""),
