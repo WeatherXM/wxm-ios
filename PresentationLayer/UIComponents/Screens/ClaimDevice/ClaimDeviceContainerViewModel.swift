@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Combine
 
 class ClaimDeviceContainerViewModel: ObservableObject {
 	@Published var selectedIndex: Int = 0
@@ -19,6 +20,7 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	private var claimingKey: String?
 	private var serialNumber: String?
 	private var location: DeviceLocation?
+	private var cancellableSet: Set<AnyCancellable> = .init()
 
 	init(type: ClaimStationType, useCase: MeUseCase) {
 		navigationTitle = type.navigationTitle
@@ -128,6 +130,61 @@ private extension ClaimDeviceContainerViewModel {
 
 	func handleLocation(location: DeviceLocation) {
 		self.location = location
+
+		performClaim()
+	}
+
+	func performClaim() {
+		guard let serialNumber, let location else {
+			return
+		}
+		do {
+			let claimDeviceBody = ClaimDeviceBody(serialNumber: serialNumber, 
+												  location: location.coordinates.toCLLocationCoordinate2D(),
+												  secret: claimingKey)
+			LoaderView.shared.show()
+
+			try useCase.claimDevice(claimDeviceBody: claimDeviceBody)
+				.sink { [weak self] response in
+					LoaderView.shared.dismiss()
+
+					guard let self = self else { return }
+
+
+					switch response {
+						case.failure(let responseError):
+							if responseError.backendError?.code == FailAPICodeEnum.deviceClaiming.rawValue {
+								// Still claiming.
+//								self.claimWorkItem?.cancel()
+//								let claimWorkItem = DispatchWorkItem { [weak self] in
+//									self?.performPersistentClaimDeviceCall(retries: retries + 1)
+//								}
+//								self.claimWorkItem = claimWorkItem
+//
+//								DispatchQueue.main.asyncAfter(
+//									deadline: .now() + Self.CLAIMING_RETRIES_DELAY_SECONDS,
+//									execute: claimWorkItem
+//								)
+
+								return
+							}
+							Toast.shared.show(text: responseError.uiInfo.description?.attributedMarkdown ?? "")
+
+						case .success(let deviceResponse):
+							print(deviceResponse)
+//							Task { @MainActor in
+//								var followState: UserDeviceFollowState?
+//								if let deviceId = deviceResponse.id {
+//									followState = try? await self.meUseCase.getDeviceFollowState(deviceId: deviceId).get()
+//								}
+//								self.claimState = .success(deviceResponse, followState)
+//							}
+					}
+				}
+				.store(in: &cancellableSet)
+		} catch {
+			print(error)
+		}
 	}
 }
 
