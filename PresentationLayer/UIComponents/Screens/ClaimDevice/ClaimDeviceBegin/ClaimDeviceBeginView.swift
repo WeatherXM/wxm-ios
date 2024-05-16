@@ -30,7 +30,7 @@ struct ClaimDeviceBeginView: View {
 						if let videoLink = viewModel.videoLink {
 							HStack {
 								Text(LocalizableString.ClaimDevice.connectionText.localized)
-									.foregroundStyle(Color(colorEnum: .text))
+									.foregroundStyle(Color(colorEnum: .newText))
 									.font(.system(size: CGFloat(.normalFontSize)))
 
 								Spacer()
@@ -82,10 +82,10 @@ private extension ClaimDeviceBeginView {
 				HStack(alignment: .top, spacing: CGFloat(.smallSpacing)) {
 					Text(bullet.fontIcon.rawValue)
 						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-						.foregroundColor(Color(colorEnum: .text))
+						.foregroundColor(Color(colorEnum: .newText))
 
 					Text(bullet.text)
-						.foregroundStyle(Color(colorEnum: .darkGrey))
+						.foregroundStyle(Color(colorEnum: .newText))
 						.font(.system(size: CGFloat(.normalFontSize)))
 
 					Spacer()
