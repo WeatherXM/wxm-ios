@@ -60,4 +60,5 @@ public enum ColorEnum: String {
 	case info
 	case infoTint
 	case newBG
+	case newText
 }

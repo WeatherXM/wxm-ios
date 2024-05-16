@@ -8,6 +8,7 @@
 import Foundation
 import DomainLayer
 import CoreLocation
+import Toolkit
 
 protocol HashableViewModel: AnyObject, Hashable {}
 
@@ -180,5 +181,17 @@ enum ViewModelsFactory {
 
 	static func getClaimStationSelectionViewModel() -> ClaimStationSelectionViewModel {
 		ClaimStationSelectionViewModel()
+	}
+
+	static func getClaimStationContainerViewModel(type: ClaimStationType) -> ClaimDeviceContainerViewModel {
+		ClaimDeviceContainerViewModel(type: type)
+	}
+
+	static func getClaimStationBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeginViewModel {
+		ClaimDeviceBeginViewModel(completion: completion)
+	}
+
+	static func getClaimStationM5BeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceM5BeginViewModel {
+		ClaimDeviceM5BeginViewModel(completion: completion)
 	}
 }

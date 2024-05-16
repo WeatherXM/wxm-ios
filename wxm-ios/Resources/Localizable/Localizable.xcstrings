@@ -622,6 +622,39 @@
         }
       }
     },
+    "claim_device_claim_d1_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim D1 | WiFi"
+          }
+        }
+      }
+    },
+    "claim_device_claim_m5_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim M5 | WiFi"
+          }
+        }
+      }
+    },
+    "claim_device_claim_new_device" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim new device"
+          }
+        }
+      }
+    },
     "claim_device_claiming_error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -728,6 +761,116 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location of Installation"
+          }
+        }
+      }
+    },
+    "claim_device_connect_begin_station_claiming" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begin Station Claiming"
+          }
+        }
+      }
+    },
+    "claim_device_connect_d1_bullet_four" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your WiFi network from the list and enter the WiFi password to connect your gateway."
+          }
+        }
+      }
+    },
+    "claim_device_connect_d1_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn on the WG1200 gateway and swipe right to the settings screen. Select **“Configure WiFi”** and then press **“Continue”** on the screen."
+          }
+        }
+      }
+    },
+    "claim_device_connect_d1_bullet_three" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open your phone’s browser, and navigate to **10.10.0.1.**"
+          }
+        }
+      }
+    },
+    "claim_device_connect_d1_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect your phone to the **“WXM_WG1200”** WiFi network."
+          }
+        }
+      }
+    },
+    "claim_device_connect_gateway_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect the gateway to your WiFi"
+          }
+        }
+      }
+    },
+    "claim_device_connect_m5_bullet_four" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your WiFi network from the list and enter the WiFi password to connect your gateway."
+          }
+        }
+      }
+    },
+    "claim_device_connect_m5_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn on the M5 gateway and swipe right to the settings screen. Select **“Configure WiFi”** and then press **“Continue”** on the screen."
+          }
+        }
+      }
+    },
+    "claim_device_connect_m5_bullet_three" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open your phone’s browser, and navigate to **10.10.0.1.**"
+          }
+        }
+      }
+    },
+    "claim_device_connect_m5_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect your phone to the **“WXM M5 XXX”** WiFi network."
           }
         }
       }
@@ -4111,6 +4254,12 @@
           }
         }
       }
+    },
+    "Key" : {
+      "extractionState" : "manual"
+    },
+    "Key 1" : {
+      "extractionState" : "manual"
     },
     "last_name" : {
       "extractionState" : "manual",

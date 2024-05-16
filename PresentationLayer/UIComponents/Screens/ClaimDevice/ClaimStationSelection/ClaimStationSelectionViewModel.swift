@@ -11,10 +11,9 @@ class ClaimStationSelectionViewModel: ObservableObject {
 
 	func handleTypeTap(_ type: ClaimStationType) {
 		switch type {
-			case .m5:
-				Router.shared.navigateTo(.claimDevice(false))
-			case .d1:
-				break
+			case .m5, .d1:
+				let viewModel = ViewModelsFactory.getClaimStationContainerViewModel(type: type)
+				Router.shared.navigateTo(.claimStationContainer(viewModel))
 			case .helium:
 				Router.shared.navigateTo(.claimDevice(true))
 			case .pulse:
