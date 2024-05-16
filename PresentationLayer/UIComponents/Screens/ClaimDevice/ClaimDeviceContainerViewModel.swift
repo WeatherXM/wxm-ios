@@ -66,7 +66,9 @@ private extension ClaimDeviceContainerViewModel {
 			self?.moveNext()
 		}
 
-		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location]
+		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel()
+
+		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
 	}
 
 	func getD1Steps() -> [ClaimDeviceStep] {
@@ -87,7 +89,9 @@ private extension ClaimDeviceContainerViewModel {
 			self?.moveNext()
 		}
 
-		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location]
+		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel()
+
+		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
 	}
 	
 	func getHeliumSteps() -> [ClaimDeviceStep] {

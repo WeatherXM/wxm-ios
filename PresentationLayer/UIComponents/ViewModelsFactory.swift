@@ -215,4 +215,8 @@ enum ViewModelsFactory {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
 		return SelectLocationMapViewModel(useCase: useCase)
 	}
+
+	static func getClaimDeviceLocationViewModel() -> ClaimDeviceLocationViewModel {
+		ClaimDeviceLocationViewModel()
+	}
 }
