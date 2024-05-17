@@ -12,6 +12,7 @@ import Toolkit
 class ManualSerialNumberViewModel: ObservableObject {
 	@Published var inputFields: [SerialNumberInputField]
 	@Published var canProceed: Bool = false
+	fileprivate(set) var validator: SNValidator?
 	private let completion: GenericCallback<[SerialNumberInputField]>
 
 	var image: AssetEnum? {
@@ -27,6 +28,7 @@ class ManualSerialNumberViewModel: ObservableObject {
 		 completion: @escaping GenericCallback<[SerialNumberInputField]>) {
 		self.inputFields = inputFields
 		self.completion = completion
+		self.validator = SNValidator(type: .d1)
 	}
 
 	func setValue(for type: SerialNumberInputType, value: String) {
@@ -58,14 +60,16 @@ class ManualSerialNumberViewModel: ObservableObject {
 
 fileprivate extension ManualSerialNumberViewModel {
 	func validateInputs() {
-		let validator = SNValidator()
+		guard let validator else {
+			return
+		}
 
 		canProceed = inputFields.reduce(true, { partialResult, field in
 			switch field.type {
 				case .claimingKey:
 					return partialResult && validator.validateStationKey(key: field.value)
 				case .serialNumber:
-					return partialResult && validator.validateQR(qrString: field.value)
+					return partialResult && validator.validate(serialNumber: field.value)
 			}
 		})
 
@@ -86,5 +90,6 @@ class ManualSerialNumberM5ViewModel: ManualSerialNumberViewModel {
 	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber, value: "")],
 				  completion: @escaping GenericCallback<[SerialNumberInputField]>) {
 		super.init(inputFields: inputFields, completion: completion)
+		self.validator = SNValidator(type: .d1)
 	}
 }

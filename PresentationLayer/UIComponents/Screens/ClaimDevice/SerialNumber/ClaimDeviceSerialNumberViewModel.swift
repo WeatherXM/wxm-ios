@@ -67,10 +67,10 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 			return false
 		}
 		
-		let validator = SNValidator()
+		let validator = SNValidator(type: .d1)
 		let serial = serialNumber.serialNumber
 
-		return validator.validateD1(serialNumber: serial) && validator.validateStationKey(key: key)
+		return validator.validate(serialNumber: serial) && validator.validateStationKey(key: key)
 	}
 }
 
@@ -126,9 +126,9 @@ class ClaimDeviceSerialNumberM5ViewModel: ClaimDeviceSerialNumberViewModel {
 		guard serialNumber.key == nil else {
 			return false
 		}
-		let validator = SNValidator()
+		let validator = SNValidator(type: .m5)
 		let serial = serialNumber.serialNumber
 
-		return validator.validateM5(serialNumber: serial)
+		return validator.validate(serialNumber: serial)
 	}
 }
