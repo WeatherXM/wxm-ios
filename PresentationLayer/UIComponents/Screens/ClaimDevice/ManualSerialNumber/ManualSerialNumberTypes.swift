@@ -8,9 +8,17 @@
 import Foundation
 import UIKit
 
-enum SerialNumberInputType: CustomStringConvertible {
+enum SerialNumberInputType: RawRepresentable, CustomStringConvertible {
+	init?(rawValue: String) {
+		nil
+	}
+	
 	case claimingKey
-	case serialNumber
+	case serialNumber(SNValidator.DeviceType)
+
+	var rawValue: String {
+		""
+	}
 
 	var description: String {
 		switch self {
@@ -25,8 +33,8 @@ enum SerialNumberInputType: CustomStringConvertible {
 		switch self {
 			case .claimingKey:
 				"123456"
-			case .serialNumber:
-				UITextField.formatAsSerialNumber("", placeholder: "A")
+			case .serialNumber(let type):
+				UITextField.formatAsSerialNumber("", placeholder: "A", validator: .init(type: type))
 		}
 	}
 }
@@ -35,8 +43,8 @@ struct SerialNumberInputField: Identifiable {
 	let type: SerialNumberInputType
 	var value: String
 
-	var id: SerialNumberInputType {
-		type
+	var id: String {
+		type.description
 	}
 	
 	mutating func setValue(value: String) {

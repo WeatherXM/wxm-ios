@@ -11,8 +11,6 @@ extension UITextField {
     private static let PLACEHOLDER_CHARACTER = " "
     private static let SEPARATOR_CHARACTER = ":"
     private static let DISALLOWED_CHARACTERS_REGEX = "[^0-9|A-F|a-f|:]"
-    private static let SEGMENTS = 9
-    private static let MAX_LENGTH = SEGMENTS * 2
     private static let MONOSPACE_FONT_NAME = "Menlo-Regular"
 
     private static var textFieldAddTrailingCharacters = NSHashTable<UITextField>.weakObjects()
@@ -61,7 +59,7 @@ extension UITextField {
      This method optimizes the Serial Number editing experience, by providing a character mask and customizing
      text input and selection for this particular usecase.
      */
-    func updateSerialNumberCharactersIn(nsRange: NSRange, for enteredString: String) {
+	func updateSerialNumberCharactersIn(nsRange: NSRange, for enteredString: String, validator: SNValidator) {
         if !enteredString.isEmpty, enteredString.matches(Self.DISALLOWED_CHARACTERS_REGEX) {
             return
         }
@@ -93,9 +91,9 @@ extension UITextField {
             let selectedTextRange = adjustedTextRange(from: selectedTextRange, separators: .remove)
 
             if addTrailingCharacters {
-                self.text = Self.formatAsSerialNumber(newText)
+                self.text = Self.formatAsSerialNumber(newText, validator: validator)
             } else {
-                self.text = Self.formatAsSerialNumber(newText, chars: 0)
+                self.text = Self.formatAsSerialNumber(newText, chars: 0, validator: validator)
             }
 
             if
@@ -126,26 +124,27 @@ extension UITextField {
     static func formatAsSerialNumber(
         _ text: String,
         chars: Int? = nil,
-        placeholder: String? = nil
-    ) -> String {
-        let charsToAdd = chars ?? Self.MAX_LENGTH - text.count
-        if charsToAdd <= 0 {
-            return String(
-                text
-                    .prefix(Self.MAX_LENGTH)
-                    .unfoldSubSequences(limitedTo: 2)
-                    .joined(separator: Self.SEPARATOR_CHARACTER)
-            )
-        }
+        placeholder: String? = nil,
+		validator: SNValidator) -> String {
+			let maxLength = validator.serialNumberSegments * 2
+			let charsToAdd = chars ?? maxLength - text.count
+			if charsToAdd <= 0 {
+				return String(
+					text
+						.prefix(maxLength)
+						.unfoldSubSequences(limitedTo: 2)
+						.joined(separator: Self.SEPARATOR_CHARACTER)
+				)
+			}
 
-        let placeholder = placeholder ?? Self.PLACEHOLDER_CHARACTER
-        return String(
-            (text + String(repeating: placeholder, count: charsToAdd))
-                .prefix(Self.MAX_LENGTH)
-        )
-        .unfoldSubSequences(limitedTo: 2)
-        .joined(separator: Self.SEPARATOR_CHARACTER)
-    }
+			let placeholder = placeholder ?? Self.PLACEHOLDER_CHARACTER
+			return String(
+				(text + String(repeating: placeholder, count: charsToAdd))
+					.prefix(maxLength)
+			)
+			.unfoldSubSequences(limitedTo: 2)
+			.joined(separator: Self.SEPARATOR_CHARACTER)
+		}
 }
 
 private extension UITextField {

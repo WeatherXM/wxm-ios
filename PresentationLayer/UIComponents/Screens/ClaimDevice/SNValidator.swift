@@ -16,6 +16,15 @@ struct SNValidator {
 	
 	let type: DeviceType
 
+	var serialNumberSegments: Int {
+		switch type {
+			case .m5:
+				9
+			case .d1:
+				10
+		}
+	}
+
 	func validate(serialNumber: String) -> Bool {
 		switch type {
 			case .m5:

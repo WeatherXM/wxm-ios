@@ -24,7 +24,7 @@ class ManualSerialNumberViewModel: ObservableObject {
 	}
 
 	init(inputFields: [SerialNumberInputField] = [.init(type: .claimingKey, value: ""),
-												  .init(type: .serialNumber, value: "")],
+												  .init(type: .serialNumber(.d1), value: "")],
 		 completion: @escaping GenericCallback<[SerialNumberInputField]>) {
 		self.inputFields = inputFields
 		self.completion = completion
@@ -48,7 +48,9 @@ class ManualSerialNumberViewModel: ObservableObject {
 			case .claimingKey:
 				return true
 			case .serialNumber:
-				textfield.updateSerialNumberCharactersIn(nsRange: range, for: text)
+				if let validator {
+					textfield.updateSerialNumberCharactersIn(nsRange: range, for: text, validator: validator)
+				}
 				return false
 		}
 	}
@@ -87,7 +89,7 @@ class ManualSerialNumberM5ViewModel: ManualSerialNumberViewModel {
 		"image_m5_station_qr"
 	}
 
-	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber, value: "")],
+	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber(.m5), value: "")],
 				  completion: @escaping GenericCallback<[SerialNumberInputField]>) {
 		super.init(inputFields: inputFields, completion: completion)
 		self.validator = SNValidator(type: .d1)
