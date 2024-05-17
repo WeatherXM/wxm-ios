@@ -1117,6 +1117,39 @@
         }
       }
     },
+    "claim_device_enter_gateway_serial_number_caption" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If your gateway is running on an older firmware version, screens may differ."
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_serial_number_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the gateway’s **Serial Number** that appears in the screen, as seen below."
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_serial_number_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter gateway Serial Number"
+          }
+        }
+      }
+    },
     "claim_device_enter_serial_number_manually" : {
       "extractionState" : "manual",
       "localizations" : {

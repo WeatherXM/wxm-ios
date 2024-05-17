@@ -43,6 +43,9 @@ extension LocalizableString {
 		case enterGatewayDetailsDescription
 		case enterGatewayClaimingKey
 		case enterGatewaySerialNumber
+		case enterGatewaySerialNumberTitle
+		case enterGatewaySerialNumberDescription
+		case enterGatewaySerialNumberCaption
 		case enterGatewayProceedButtonTitle
         case typeWS1000Title
         case typeWS1000Subtitle
@@ -221,6 +224,12 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_enter_gateway_claiming_key"
 			case .enterGatewaySerialNumber:
 				return "claim_device_enter_gateway_serial_number"
+			case .enterGatewaySerialNumberTitle:
+				return "claim_device_enter_gateway_serial_number_title"
+			case .enterGatewaySerialNumberDescription:
+				return "claim_device_enter_gateway_serial_number_description"
+			case .enterGatewaySerialNumberCaption:
+				return "claim_device_enter_gateway_serial_number_caption"
 			case .enterGatewayProceedButtonTitle:
 				return "claim_device_enter_gateway_proceed_button_title"
             case .typeWS1000Title:

@@ -15,6 +15,18 @@ class ManualSerialNumberViewModel: ObservableObject {
 	fileprivate(set) var validator: SNValidator?
 	private let completion: GenericCallback<[SerialNumberInputField]>
 
+	var title: String {
+		LocalizableString.ClaimDevice.enterGatewayDetailsTitle.localized
+	}
+
+	var subtitle: AttributedString {
+		LocalizableString.ClaimDevice.enterGatewayDetailsDescription.localized.attributedMarkdown ?? ""
+	}
+
+	var caption: String? {
+		nil
+	}
+
 	var image: AssetEnum? {
 		.imageD1Claim
 	}
@@ -78,6 +90,18 @@ fileprivate extension ManualSerialNumberViewModel {
 }
 
 class ManualSerialNumberM5ViewModel: ManualSerialNumberViewModel {
+	override var title: String {
+		LocalizableString.ClaimDevice.enterGatewaySerialNumberTitle.localized
+	}
+	
+	override var subtitle: AttributedString {
+		LocalizableString.ClaimDevice.enterGatewaySerialNumberDescription.localized.attributedMarkdown ?? ""
+	}
+
+	override var caption: String? {
+		LocalizableString.ClaimDevice.enterGatewaySerialNumberCaption.localized
+	}
+	
 	override var image: AssetEnum? {
 		nil
 	}

@@ -18,7 +18,7 @@ struct ManualSerialNumberView: View {
 				ScrollView(showsIndicators: false) {
 					VStack(spacing: CGFloat(.largeSpacing)) {
 						HStack {
-							Text(LocalizableString.ClaimDevice.enterGatewayDetailsTitle.localized)
+							Text(viewModel.title)
 								.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
 								.foregroundStyle(Color(colorEnum: .darkestBlue))
 
@@ -26,7 +26,7 @@ struct ManualSerialNumberView: View {
 						}
 
 						HStack {
-							Text(LocalizableString.ClaimDevice.enterGatewayDetailsDescription.localized.attributedMarkdown ?? "")
+							Text(viewModel.subtitle)
 								.foregroundStyle(Color(colorEnum: .text))
 								.font(.system(size: CGFloat(.normalFontSize)))
 
@@ -43,6 +43,12 @@ struct ManualSerialNumberView: View {
 							}
 						}
 						.aspectRatio(1.0, contentMode: .fit)
+
+						if let caption = viewModel.caption {
+							Text(caption)
+								.foregroundStyle(Color(colorEnum: .newText))
+								.font(.system(size: CGFloat(.normalFontSize)))
+						}
 
 						textFields
 					}
