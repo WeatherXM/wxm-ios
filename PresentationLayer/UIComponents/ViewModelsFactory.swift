@@ -194,4 +194,12 @@ enum ViewModelsFactory {
 	static func getClaimStationM5BeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceM5BeginViewModel {
 		ClaimDeviceM5BeginViewModel(completion: completion)
 	}
+
+	static func getClaimStationSNViewModel(completion: @escaping GenericCallback<ClaimDeviceSerialNumberViewModel.SerialNumber?>) -> ClaimDeviceSerialNumberViewModel {
+		ClaimDeviceSerialNumberViewModel(completion: completion)
+	}
+
+	static func getClaimStationM5SNViewModel(completion: @escaping GenericCallback<ClaimDeviceSerialNumberViewModel.SerialNumber?>) -> ClaimDeviceSerialNumberM5ViewModel {
+		ClaimDeviceSerialNumberM5ViewModel(completion: completion)
+	}
 }

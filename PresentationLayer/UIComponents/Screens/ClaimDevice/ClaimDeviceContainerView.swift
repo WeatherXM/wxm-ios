@@ -12,21 +12,26 @@ struct ClaimDeviceContainerView: View {
 	@EnvironmentObject var navigationObject: NavigationObject
 
 	var body: some View {
-		VStack {
-			ProgressView(value: CGFloat(viewModel.selectedIndex + 1), total: CGFloat(viewModel.steps.count))
-				.tint(Color(colorEnum: .primary))
-				.padding(.horizontal, CGFloat(.mediumSidePadding))
-				.animation(.easeOut(duration: 0.3), value: viewModel.selectedIndex)
+		ZStack {
+			Color(colorEnum: .newBG)
+				.ignoresSafeArea()
 
-			ZStack {
-				viewModel.steps[viewModel.selectedIndex].contentView
-					.id(viewModel.steps[viewModel.selectedIndex].id)
-					.transition(AnyTransition.asymmetric(insertion: .move(edge: viewModel.isMovingNext ? .trailing : .leading),
-														 removal: .move(edge: viewModel.isMovingNext ? .leading : .trailing)))
+			VStack {
+				ProgressView(value: CGFloat(viewModel.selectedIndex + 1), total: CGFloat(viewModel.steps.count))
+					.tint(Color(colorEnum: .primary))
+					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.animation(.easeOut(duration: 0.3), value: viewModel.selectedIndex)
+
+				ZStack {
+					viewModel.steps[viewModel.selectedIndex].contentView
+						.id(viewModel.steps[viewModel.selectedIndex].id)
+						.transition(AnyTransition.asymmetric(insertion: .move(edge: viewModel.isMovingNext ? .trailing : .leading),
+															 removal: .move(edge: viewModel.isMovingNext ? .leading : .trailing)))
+						.animation(.easeOut(duration: 0.3), value: viewModel.selectedIndex)
+				}
 			}
+			.padding(.top, CGFloat(.mediumToLargeSidePadding))
 		}
-		.padding(.top, CGFloat(.mediumToLargeSidePadding))
 		.onAppear {
 			navigationObject.title = viewModel.navigationTitle
 			navigationObject.shouldDismissAction = { [weak viewModel] in
@@ -43,6 +48,6 @@ struct ClaimDeviceContainerView: View {
 
 #Preview {
 	NavigationContainerView {
-		ClaimDeviceContainerView(viewModel: .init(type: .d1))
+		ClaimDeviceContainerView(viewModel: .init(type: .m5))
 	}
 }

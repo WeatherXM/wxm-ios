@@ -66,30 +66,13 @@ struct ClaimDeviceBeginView: View {
     }
 }
 
-extension ClaimDeviceBeginView {
-	struct Bullet {
-		let fontIcon: FontIcon
-		let text: AttributedString
-	}
-}
-
 private extension ClaimDeviceBeginView {
 	@ViewBuilder
 	var bullets: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
 			ForEach(0..<viewModel.bullets.count, id: \.self) { index in
 				let bullet = viewModel.bullets[index]
-				HStack(alignment: .top, spacing: CGFloat(.smallSpacing)) {
-					Text(bullet.fontIcon.rawValue)
-						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-						.foregroundColor(Color(colorEnum: .newText))
-
-					Text(bullet.text)
-						.foregroundStyle(Color(colorEnum: .newText))
-						.font(.system(size: CGFloat(.normalFontSize)))
-
-					Spacer()
-				}
+				ClaimDeviceBulletView(bullet: bullet)
 			}
 		}
 	}

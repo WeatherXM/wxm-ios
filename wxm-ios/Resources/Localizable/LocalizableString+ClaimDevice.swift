@@ -28,6 +28,17 @@ extension LocalizableString {
 		case connectM5BulletThree
 		case connectM5BulletFour
 		case beginStationClaiming
+		case prepareGatewayTitle
+		case prepareGatewayM5BulletOne
+		case prepareGatewayM5BulletTwo
+		case prepareGatewayM5Caption
+		case prepareGatewayD1BulletOne
+		case prepareGatewayD1BulletTwo
+		case scanQRCode
+		case enterSerialNumberManually
+		case cammeraPermissionDeniedTitle
+		case cammeraPermissionDeniedText
+		case invalidQRMessage
         case typeWS1000Title
         case typeWS1000Subtitle
         case typeWS2000Title
@@ -165,7 +176,6 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_connect_d1_bullet_three"
 			case .connectD1BulletFour:
 				return "claim_device_connect_d1_bullet_four"
-
 			case .connectM5BulletOne:
 				return "claim_device_connect_m5_bullet_one"
 			case .connectM5BulletTwo:
@@ -176,6 +186,28 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_connect_m5_bullet_four"
 			case .beginStationClaiming:
 				return "claim_device_connect_begin_station_claiming"
+			case .prepareGatewayTitle:
+				return "claim_device_prepare_gateway_title"
+			case .prepareGatewayD1BulletOne:
+				return "claim_device_prepare_gateway_d1_bullet_one"
+			case .prepareGatewayD1BulletTwo:
+				return "claim_device_prepare_gateway_d1_bullet_two"
+			case .prepareGatewayM5BulletOne:
+				return "claim_device_prepare_gateway_m5_bullet_one"
+			case .prepareGatewayM5BulletTwo:
+				return "claim_device_prepare_gateway_m5_bullet_two"
+			case .prepareGatewayM5Caption:
+				return "claim_device_prepare_gateway_m5_caption"
+			case .scanQRCode:
+				return "claim_device_scan_qr_code"
+			case .enterSerialNumberManually:
+				return "claim_device_enter_serial_number_manually"
+			case .cammeraPermissionDeniedTitle:
+				return "claim_device_camera_permission_denied_title"
+			case .cammeraPermissionDeniedText:
+				return "claim_device_camera_permission_denied_text"
+			case .invalidQRMessage:
+				return "claim_device_invalid_qr_message"
             case .typeWS1000Title:
                 return "claim_device_type_ws1000_title"
             case .typeWS1000Subtitle:

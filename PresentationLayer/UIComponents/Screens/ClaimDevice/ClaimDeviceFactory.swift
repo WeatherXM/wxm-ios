@@ -11,7 +11,7 @@ import SwiftUI
 enum ClaimDeviceStep: Identifiable {
 
 	case begin(ClaimDeviceBeginViewModel)
-	case serialNumber
+	case serialNumber(ClaimDeviceSerialNumberViewModel)
 	case location
 
 	var id: String {
@@ -34,12 +34,8 @@ extension ClaimDeviceStep {
 		switch self {
 			case .begin(let viewModel):
 				ClaimDeviceBeginView(viewModel: viewModel)
-			case .serialNumber:
-				VStack {
-					Spacer()
-					Text(verbatim: "Serial number")
-					Spacer()
-				}
+			case .serialNumber(let viewModel):
+				ClaimDeviceSerialNumberView(viewModel: viewModel)
 			case .location:
 				VStack {
 					Spacer()

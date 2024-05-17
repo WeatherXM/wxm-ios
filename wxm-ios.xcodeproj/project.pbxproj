@@ -43,6 +43,7 @@
 		26325B012BE1139000182C59 /* ClaimDeviceBeginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B002BE1139000182C59 /* ClaimDeviceBeginView.swift */; };
 		26325B032BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B022BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift */; };
 		26325B052BE12E4300182C59 /* ClaimDeviceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B042BE12E4300182C59 /* ClaimDeviceFactory.swift */; };
+		26325B552BE3AB4300182C59 /* GifImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26325B542BE3AB4300182C59 /* GifImageView.swift */; };
 		2632E62F2A335ECD00A5ADB3 /* NetworkStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E62E2A335ECD00A5ADB3 /* NetworkStatsView.swift */; };
 		2632E6322A335EF400A5ADB3 /* NetworkStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E6312A335EF400A5ADB3 /* NetworkStatsViewModel.swift */; };
 		2632E6342A3378BF00A5ADB3 /* StatisticsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2632E6332A3378BF00A5ADB3 /* StatisticsChart.swift */; };
@@ -336,8 +337,14 @@
 		26A9619C2AA705FE00646A25 /* LocalizableString+StationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */; };
 		26A961B02AA7181300646A25 /* LocalizableString+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */; };
 		26A961C42AA733E200646A25 /* LocalizableString+ClaimDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961C32AA733E200646A25 /* LocalizableString+ClaimDevice.swift */; };
+		26AA21C02BF3694B00B91A7C /* image_m5_station_qr.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26AA21BF2BF3694B00B91A7C /* image_m5_station_qr.gif */; };
+		26AA21C22BF36B0100B91A7C /* SNValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21C12BF36B0100B91A7C /* SNValidator.swift */; };
 		26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F462A7BEA0700855912 /* CTAView.swift */; };
 		26AB9F582A822DB500855912 /* UserDeviceFollowState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */; };
+		26ADDF7E2BE3B08D00992BEF /* image_station_qr.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */; };
+		26ADDF812BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF802BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift */; };
+		26ADDF8F2BE3BF8600992BEF /* ClaimDeviceBulletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF8E2BE3BF8600992BEF /* ClaimDeviceBulletView.swift */; };
+		26ADDF912BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF902BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift */; };
 		26AF276E2A0B815B0067A1B8 /* ChartsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF276C2A0B815B0067A1B8 /* ChartsFactory.swift */; };
 		26AF276F2A0B815B0067A1B8 /* WeatherChartModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF276D2A0B815B0067A1B8 /* WeatherChartModels.swift */; };
 		26AF27712A0B815B0067A1B8 /* WeatherChartDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF276A2A0B815B0067A1B8 /* WeatherChartDataModel.swift */; };
@@ -567,6 +574,7 @@
 		26325B002BE1139000182C59 /* ClaimDeviceBeginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeginView.swift; sourceTree = "<group>"; };
 		26325B022BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeginViewModel.swift; sourceTree = "<group>"; };
 		26325B042BE12E4300182C59 /* ClaimDeviceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceFactory.swift; sourceTree = "<group>"; };
+		26325B542BE3AB4300182C59 /* GifImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageView.swift; sourceTree = "<group>"; };
 		2632E62E2A335ECD00A5ADB3 /* NetworkStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsView.swift; sourceTree = "<group>"; };
 		2632E6312A335EF400A5ADB3 /* NetworkStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsViewModel.swift; sourceTree = "<group>"; };
 		2632E6332A3378BF00A5ADB3 /* StatisticsChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsChart.swift; sourceTree = "<group>"; };
@@ -839,8 +847,14 @@
 		26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+StationDetails.swift"; sourceTree = "<group>"; };
 		26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Wallet.swift"; sourceTree = "<group>"; };
 		26A961C32AA733E200646A25 /* LocalizableString+ClaimDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+ClaimDevice.swift"; sourceTree = "<group>"; };
+		26AA21BF2BF3694B00B91A7C /* image_m5_station_qr.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_m5_station_qr.gif; sourceTree = "<group>"; };
+		26AA21C12BF36B0100B91A7C /* SNValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNValidator.swift; sourceTree = "<group>"; };
 		26AB9F462A7BEA0700855912 /* CTAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAView.swift; sourceTree = "<group>"; };
 		26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDeviceFollowState+.swift"; sourceTree = "<group>"; };
+		26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_station_qr.gif; sourceTree = "<group>"; };
+		26ADDF802BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSerialNumberView.swift; sourceTree = "<group>"; };
+		26ADDF8E2BE3BF8600992BEF /* ClaimDeviceBulletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBulletView.swift; sourceTree = "<group>"; };
+		26ADDF902BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSerialNumberViewModel.swift; sourceTree = "<group>"; };
 		26AF276A2A0B815B0067A1B8 /* WeatherChartDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChartDataModel.swift; sourceTree = "<group>"; };
 		26AF276C2A0B815B0067A1B8 /* ChartsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsFactory.swift; sourceTree = "<group>"; };
 		26AF276D2A0B815B0067A1B8 /* WeatherChartModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChartModels.swift; sourceTree = "<group>"; };
@@ -1137,6 +1151,7 @@
 			children = (
 				26325B002BE1139000182C59 /* ClaimDeviceBeginView.swift */,
 				26325B022BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift */,
+				26ADDF8E2BE3BF8600992BEF /* ClaimDeviceBulletView.swift */,
 			);
 			path = ClaimDeviceBegin;
 			sourceTree = "<group>";
@@ -1481,6 +1496,7 @@
 		2675471529A9181E008BCF40 /* ClaimDevice */ = {
 			isa = PBXGroup;
 			children = (
+				26ADDF7F2BE3B1FD00992BEF /* SerialNumber */,
 				26325AFF2BE1127F00182C59 /* ClaimDeviceBegin */,
 				2675471829A9181E008BCF40 /* Helium */,
 				267546E529A9181E008BCF40 /* ClaimDeviceViewModel.swift */,
@@ -1489,6 +1505,7 @@
 				26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */,
 				26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */,
 				26325B042BE12E4300182C59 /* ClaimDeviceFactory.swift */,
+				26AA21C12BF36B0100B91A7C /* SNValidator.swift */,
 			);
 			path = ClaimDevice;
 			sourceTree = "<group>";
@@ -1592,6 +1609,7 @@
 				2675475629A9181E008BCF40 /* AddButton.swift */,
 				2675474F29A9181E008BCF40 /* AttributedLabel.swift */,
 				2675475129A9181E008BCF40 /* AttributedTextView.swift */,
+				26325B542BE3AB4300182C59 /* GifImageView.swift */,
 				269C809B2AB9E76F005F9BD6 /* Badge.swift */,
 				2675474429A9181E008BCF40 /* CardWarningView.swift */,
 				2675475929A9181E008BCF40 /* CircleRadius.swift */,
@@ -2005,6 +2023,15 @@
 			path = Localizable;
 			sourceTree = "<group>";
 		};
+		26ADDF7F2BE3B1FD00992BEF /* SerialNumber */ = {
+			isa = PBXGroup;
+			children = (
+				26ADDF802BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift */,
+				26ADDF902BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift */,
+			);
+			path = SerialNumber;
+			sourceTree = "<group>";
+		};
 		26AF27692A0B7C3F0067A1B8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2122,6 +2149,8 @@
 		26CA84532AD935F2006D47D7 /* App Assets */ = {
 			isa = PBXGroup;
 			children = (
+				26ADDF7D2BE3B08D00992BEF /* image_station_qr.gif */,
+				26AA21BF2BF3694B00B91A7C /* image_m5_station_qr.gif */,
 				B52BCC782824FB9000EA3DA5 /* Assets.xcassets */,
 				26CA84542AD93646006D47D7 /* CommonAssets.xcassets */,
 			);
@@ -2601,11 +2630,13 @@
 				7423EC17283F81E2004E9B26 /* anim_not_available.json in Resources */,
 				7423EC20283F81E2004E9B26 /* anim_success.json in Resources */,
 				7423EC16283F81E2004E9B26 /* anim_weather_clear_day.json in Resources */,
+				26ADDF7E2BE3B08D00992BEF /* image_station_qr.gif in Resources */,
 				7423EC18283F81E2004E9B26 /* anim_weather_clear_night.json in Resources */,
 				264CC7472B975D450060DEA4 /* anim_rocket_dark.json in Resources */,
 				7423EC15283F81E2004E9B26 /* anim_weather_cloudy.json in Resources */,
 				7423EC28283F81E2004E9B26 /* anim_weather_drizzle.json in Resources */,
 				7423EC23283F81E2004E9B26 /* anim_weather_fog.json in Resources */,
+				26AA21C02BF3694B00B91A7C /* image_m5_station_qr.gif in Resources */,
 				7423EC1A283F81E2004E9B26 /* anim_weather_overcast_day.json in Resources */,
 				7423EC24283F81E2004E9B26 /* anim_weather_overcast_night.json in Resources */,
 				7423EC22283F81E2004E9B26 /* anim_weather_partly_cloudy_day.json in Resources */,
@@ -2766,6 +2797,7 @@
 				268E8E0A2B07A1E30025163F /* AdaptiveGridContainerView.swift in Sources */,
 				267548ED29A91A87008BCF40 /* Color+.swift in Sources */,
 				267548D429A91A87008BCF40 /* ColorEnum.swift in Sources */,
+				26ADDF8F2BE3BF8600992BEF /* ClaimDeviceBulletView.swift in Sources */,
 				265D2CD829D194070044D032 /* Common.swift in Sources */,
 				26325B012BE1139000182C59 /* ClaimDeviceBeginView.swift in Sources */,
 				267547C629A9181E008BCF40 /* ConditionalModifier.swift in Sources */,
@@ -2881,6 +2913,7 @@
 				2674016D2A372FC100E54E35 /* NetworkStats+Content.swift in Sources */,
 				2632E62F2A335ECD00A5ADB3 /* NetworkStatsView.swift in Sources */,
 				26FFCCCC2BD110CD00880AAD /* ForecastChartTypes.swift in Sources */,
+				26325B552BE3AB4300182C59 /* GifImageView.swift in Sources */,
 				26D6A6232B10F9A900425110 /* IPadConstants.swift in Sources */,
 				2699F5652A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift in Sources */,
 				2632E6322A335EF400A5ADB3 /* NetworkStatsViewModel.swift in Sources */,
@@ -2956,6 +2989,7 @@
 				267548EB29A91A87008BCF40 /* String+.swift in Sources */,
 				267548C829A91A87008BCF40 /* StringConstants.swift in Sources */,
 				267547D229A9181E008BCF40 /* StrokeBorderModifier.swift in Sources */,
+				26ADDF912BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift in Sources */,
 				267548D829A91A87008BCF40 /* SuccessFailEnum.swift in Sources */,
 				267547BC29A9181E008BCF40 /* SuccessfulDeleteView.swift in Sources */,
 				2675480229A9181E008BCF40 /* SuccessView.swift in Sources */,
@@ -2977,6 +3011,7 @@
 				267548CE29A91A87008BCF40 /* TextFieldError.swift in Sources */,
 				267547B429A9181E008BCF40 /* TextFieldsWallet.swift in Sources */,
 				264E2F5329DC3533009580A2 /* ThemeEnum.swift in Sources */,
+				26ADDF812BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift in Sources */,
 				2664830129C0C73E00748F9C /* Toast.swift in Sources */,
 				266482FF29C0BDCF00748F9C /* ToastView.swift in Sources */,
 				267547F629A9181E008BCF40 /* TrackableScrollView.swift in Sources */,
@@ -3019,6 +3054,7 @@
 				2623FF932AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift in Sources */,
 				267EC4292A98C3D300F2C37E /* WXMAlertModifier.swift in Sources */,
 				267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */,
+				26AA21C22BF36B0100B91A7C /* SNValidator.swift in Sources */,
 				267547C929A9181E008BCF40 /* WXMButtonStyle.swift in Sources */,
 				267547CF29A9181E008BCF40 /* WXMCardStyle.swift in Sources */,
 				26A3B3C72B1792890002F35F /* ProfileTypes.swift in Sources */,

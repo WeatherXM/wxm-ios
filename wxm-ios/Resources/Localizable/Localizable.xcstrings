@@ -611,6 +611,28 @@
         }
       }
     },
+    "claim_device_camera_permission_denied_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please enable it in your device settings."
+          }
+        }
+      }
+    },
+    "claim_device_camera_permission_denied_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Camera permission is required."
+          }
+        }
+      }
+    },
     "claim_device_cancel_claim_button" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1040,6 +1062,17 @@
         }
       }
     },
+    "claim_device_enter_serial_number_manually" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter S/N Manually"
+          }
+        }
+      }
+    },
     "claim_device_enter_serial_number_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1249,6 +1282,17 @@
         }
       }
     },
+    "claim_device_invalid_qr_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The QR Code you scanned is invalid. Please try again with a valid QR Code or enter manually."
+          }
+        }
+      }
+    },
     "claim_device_key_field_hint" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1311,6 +1355,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Could not find such a device."
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_d1_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The WG1200 gateway reboots automatically. After it has rebooted, navigate to the **“Claim Device”** menu, in the settings."
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_d1_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan the gateway’s **QR Code** that appears in the screen, as seen below."
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_m5_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The M5 gateway should reboot automatically. After it has rebooted, navigate to the bottom of the settings screen to reveal the **QR Code** and **Serial Number**."
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_m5_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan the gateway’s **QR Code** that appears in the screen, as seen below."
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_m5_caption" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If your gateway is running on an older firmware version, you may have to enter the **Serial Number Manually.**"
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prepare gateway for claiming"
           }
         }
       }
@@ -1410,6 +1520,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scan Again"
+          }
+        }
+      }
+    },
+    "claim_device_scan_qr_code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan QR Code"
           }
         }
       }
