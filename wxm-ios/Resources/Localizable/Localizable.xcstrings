@@ -1689,6 +1689,17 @@
         }
       }
     },
+    "claim_device_station_loading_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sit tight, we're pairing your account with your WeatherXM gateway! **This process could take up to 2 minutes!**"
+          }
+        }
+      }
+    },
     "claim_device_station_location_subtitle" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -12,6 +12,8 @@ import Combine
 class ClaimDeviceContainerViewModel: ObservableObject {
 	@Published var selectedIndex: Int = 0
 	@Published var isMovingNext = true
+	@Published var showLoading = false
+	@Published var loadingState: ClaimDeviceProgressView.State = .loading("", "")
 
 	var steps: [ClaimDeviceStep] = []
 	let navigationTitle: String
@@ -96,7 +98,7 @@ private extension ClaimDeviceContainerViewModel {
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
 	}
-	
+
 	func getHeliumSteps() -> [ClaimDeviceStep] {
 		[]
 	}
@@ -139,52 +141,88 @@ private extension ClaimDeviceContainerViewModel {
 			return
 		}
 		do {
-			let claimDeviceBody = ClaimDeviceBody(serialNumber: serialNumber, 
+			let claimDeviceBody = ClaimDeviceBody(serialNumber: serialNumber,
 												  location: location.coordinates.toCLLocationCoordinate2D(),
 												  secret: claimingKey)
-			LoaderView.shared.show()
+			loadingState = getLoadingState()
+			showLoading = true
 
 			try useCase.claimDevice(claimDeviceBody: claimDeviceBody)
 				.sink { [weak self] response in
-					LoaderView.shared.dismiss()
-
 					guard let self = self else { return }
-
 
 					switch response {
 						case.failure(let responseError):
 							if responseError.backendError?.code == FailAPICodeEnum.deviceClaiming.rawValue {
 								// Still claiming.
-//								self.claimWorkItem?.cancel()
-//								let claimWorkItem = DispatchWorkItem { [weak self] in
-//									self?.performPersistentClaimDeviceCall(retries: retries + 1)
-//								}
-//								self.claimWorkItem = claimWorkItem
-//
-//								DispatchQueue.main.asyncAfter(
-//									deadline: .now() + Self.CLAIMING_RETRIES_DELAY_SECONDS,
-//									execute: claimWorkItem
-//								)
+								//								self.claimWorkItem?.cancel()
+								//								let claimWorkItem = DispatchWorkItem { [weak self] in
+								//									self?.performPersistentClaimDeviceCall(retries: retries + 1)
+								//								}
+								//								self.claimWorkItem = claimWorkItem
+								//
+								//								DispatchQueue.main.asyncAfter(
+								//									deadline: .now() + Self.CLAIMING_RETRIES_DELAY_SECONDS,
+								//									execute: claimWorkItem
+								//								)
 
 								return
 							}
-							Toast.shared.show(text: responseError.uiInfo.description?.attributedMarkdown ?? "")
 
+							let object = getFailObject(for: responseError)
+							self.loadingState = .fail(object)
 						case .success(let deviceResponse):
 							print(deviceResponse)
-//							Task { @MainActor in
-//								var followState: UserDeviceFollowState?
-//								if let deviceId = deviceResponse.id {
-//									followState = try? await self.meUseCase.getDeviceFollowState(deviceId: deviceId).get()
-//								}
-//								self.claimState = .success(deviceResponse, followState)
-//							}
+							let object = self.getSuccessObject(for: deviceResponse)
+							self.loadingState = .success(object)
+
+							//							Task { @MainActor in
+							//								var followState: UserDeviceFollowState?
+							//								if let deviceId = deviceResponse.id {
+							//									followState = try? await self.meUseCase.getDeviceFollowState(deviceId: deviceId).get()
+							//								}
+							//								self.claimState = .success(deviceResponse, followState)
+							//							}
 					}
 				}
 				.store(in: &cancellableSet)
 		} catch {
 			print(error)
 		}
+	}
+
+	func getFailObject(for networkError: NetworkErrorResponse) -> FailSuccessStateObject {
+		let uiInfo = networkError.uiInfo
+		let object = FailSuccessStateObject(type: .claimDeviceFlow,
+											title: uiInfo.title,
+											subtitle: uiInfo.description?.attributedMarkdown,
+											cancelTitle: LocalizableString.ClaimDevice.cancelClaimButton.localized,
+											retryTitle: LocalizableString.ClaimDevice.retryClaimButton.localized,
+											contactSupportAction: nil) {
+			Router.shared.popToRoot()
+		} retryAction: { [weak self] in
+			self?.performClaim()
+		}
+
+		return object
+	}
+
+	func getSuccessObject(for device: DeviceDetails) -> FailSuccessStateObject {
+		let object = FailSuccessStateObject(type: .claimDeviceFlow,
+											title: LocalizableString.ClaimDevice.successTitle.localized,
+											subtitle: LocalizableString.ClaimDevice.successText(device.displayName).localized.attributedMarkdown,
+											cancelTitle: nil,
+											retryTitle: LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized,
+											contactSupportAction: nil,
+											cancelAction: nil) {
+		}
+
+		return object
+	}
+
+	func getLoadingState() -> ClaimDeviceProgressView.State {
+		.loading(LocalizableString.ClaimDevice.claimingTitle.localized,
+				 LocalizableString.ClaimDevice.claimStationLoadingDescription.localized.attributedMarkdown ?? "")
 	}
 }
 

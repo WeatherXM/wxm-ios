@@ -50,6 +50,7 @@ extension LocalizableString {
 		case confirmAndProceed
 		case stationLocationTitle
 		case stationLocationSubtitle
+		case claimStationLoadingDescription
         case typeWS1000Title
         case typeWS1000Subtitle
         case typeWS2000Title
@@ -241,6 +242,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_station_location_title"
 			case .stationLocationSubtitle:
 				return "claim_device_station_location_subtitle"
+			case .claimStationLoadingDescription:
+				return "claim_device_station_loading_description"
             case .typeWS1000Title:
                 return "claim_device_type_ws1000_title"
             case .typeWS1000Subtitle:
