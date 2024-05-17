@@ -153,36 +153,12 @@ private extension ClaimDeviceContainerViewModel {
 
 					switch response {
 						case.failure(let responseError):
-							if responseError.backendError?.code == FailAPICodeEnum.deviceClaiming.rawValue {
-								// Still claiming.
-								//								self.claimWorkItem?.cancel()
-								//								let claimWorkItem = DispatchWorkItem { [weak self] in
-								//									self?.performPersistentClaimDeviceCall(retries: retries + 1)
-								//								}
-								//								self.claimWorkItem = claimWorkItem
-								//
-								//								DispatchQueue.main.asyncAfter(
-								//									deadline: .now() + Self.CLAIMING_RETRIES_DELAY_SECONDS,
-								//									execute: claimWorkItem
-								//								)
-
-								return
-							}
-
 							let object = getFailObject(for: responseError)
 							self.loadingState = .fail(object)
 						case .success(let deviceResponse):
 							print(deviceResponse)
 							let object = self.getSuccessObject(for: deviceResponse)
 							self.loadingState = .success(object)
-
-							//							Task { @MainActor in
-							//								var followState: UserDeviceFollowState?
-							//								if let deviceId = deviceResponse.id {
-							//									followState = try? await self.meUseCase.getDeviceFollowState(deviceId: deviceId).get()
-							//								}
-							//								self.claimState = .success(deviceResponse, followState)
-							//							}
 					}
 				}
 				.store(in: &cancellableSet)
@@ -214,7 +190,8 @@ private extension ClaimDeviceContainerViewModel {
 											cancelTitle: nil,
 											retryTitle: LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized,
 											contactSupportAction: nil,
-											cancelAction: nil) {
+											cancelAction: nil) { [weak self] in
+			self?.dismissAndNavigate(device: device)
 		}
 
 		return object
@@ -223,6 +200,16 @@ private extension ClaimDeviceContainerViewModel {
 	func getLoadingState() -> ClaimDeviceProgressView.State {
 		.loading(LocalizableString.ClaimDevice.claimingTitle.localized,
 				 LocalizableString.ClaimDevice.claimStationLoadingDescription.localized.attributedMarkdown ?? "")
+	}
+
+	func dismissAndNavigate(device: DeviceDetails) {
+		Router.shared.popToRoot()
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
+			let route = Route.stationDetails(ViewModelsFactory.getStationDetailsViewModel(deviceId: device.id ?? "",
+																						  cellIndex: device.cellIndex,
+																						  cellCenter: device.cellCenter?.toCLLocationCoordinate2D()))
+			Router.shared.navigateTo(route)
+		}
 	}
 }
 
