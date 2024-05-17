@@ -174,7 +174,9 @@ private extension ClaimDeviceContainerViewModel {
 											subtitle: uiInfo.description?.attributedMarkdown,
 											cancelTitle: LocalizableString.ClaimDevice.cancelClaimButton.localized,
 											retryTitle: LocalizableString.ClaimDevice.retryClaimButton.localized,
-											contactSupportAction: nil) {
+											contactSupportAction: { 					
+			HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
+		}) {
 			Router.shared.popToRoot()
 		} retryAction: { [weak self] in
 			self?.performClaim()
