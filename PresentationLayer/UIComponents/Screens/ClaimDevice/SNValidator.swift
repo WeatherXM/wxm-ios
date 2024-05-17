@@ -13,7 +13,7 @@ struct SNValidator {
 	private let m5SerialNumberRegex = "^([0-9A-Fa-f]{2}:){8}[0-9A-Fa-f]{2}"
 	private let d1SerialNumberRegex = "^([0-9A-Fa-f]{2}:){9}[0-9A-Fa-f]{2}"
 	private let claimingKeyRegex = "^([0-9]{6})"
-	
+
 	let type: DeviceType
 
 	var serialNumberSegments: Int {

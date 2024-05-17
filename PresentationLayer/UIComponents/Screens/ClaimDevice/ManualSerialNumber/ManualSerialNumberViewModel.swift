@@ -74,9 +74,6 @@ fileprivate extension ManualSerialNumberViewModel {
 					return partialResult && validator.validate(serialNumber: field.value)
 			}
 		})
-
-		print(canProceed)
-		print(inputFields)
 	}
 }
 
@@ -92,6 +89,6 @@ class ManualSerialNumberM5ViewModel: ManualSerialNumberViewModel {
 	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber(.m5), value: "")],
 				  completion: @escaping GenericCallback<[SerialNumberInputField]>) {
 		super.init(inputFields: inputFields, completion: completion)
-		self.validator = SNValidator(type: .d1)
+		self.validator = SNValidator(type: .m5)
 	}
 }

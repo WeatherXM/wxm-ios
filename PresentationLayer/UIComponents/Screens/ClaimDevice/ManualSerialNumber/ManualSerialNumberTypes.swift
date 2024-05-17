@@ -10,14 +10,19 @@ import UIKit
 
 enum SerialNumberInputType: RawRepresentable, CustomStringConvertible {
 	init?(rawValue: String) {
-		nil
+		fatalError("Not implemented initializer")
 	}
 	
 	case claimingKey
 	case serialNumber(SNValidator.DeviceType)
 
 	var rawValue: String {
-		""
+		switch self {
+			case .claimingKey:
+				"claimingKey"
+			case .serialNumber(let deviceType):
+				"serialNumber"
+		}
 	}
 
 	var description: String {
