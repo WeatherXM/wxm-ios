@@ -46,6 +46,13 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 }
 
 private extension ClaimDeviceContainerViewModel {
+	func moveTo(index: Int) {
+		isMovingNext = index > selectedIndex
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			self.selectedIndex = index
+		}
+	}
+	
 	func getSteps(for type: ClaimStationType) -> [ClaimDeviceStep] {
 		switch type {
 			case .m5:
@@ -114,7 +121,16 @@ private extension ClaimDeviceContainerViewModel {
 		}
 		self.claimingKey = serialNumber.key
 		self.serialNumber = serialNumber.serialNumber
-		moveNext()
+		// Moving straight to last step
+		guard let index = steps.firstIndex(where: {
+			if case .location = $0 { 
+				return true
+			}
+			return false
+		}), selectedIndex != index else {
+			return
+		}
+		moveTo(index: index)
 	}
 
 	func handleSNInputFields(fields: [SerialNumberInputField]) {
