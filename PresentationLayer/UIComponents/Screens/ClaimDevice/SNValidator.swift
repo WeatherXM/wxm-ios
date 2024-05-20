@@ -13,6 +13,7 @@ struct SNValidator {
 	private let m5SerialNumberRegex = "^([0-9A-Fa-f]{2}:){8}[0-9A-Fa-f]{2}"
 	private let d1SerialNumberRegex = "^([0-9A-Fa-f]{2}:){9}[0-9A-Fa-f]{2}"
 	private let claimingKeyRegex = "^([0-9]{6})"
+	private let inputClaimingKeyRegex = "^[0-9]{0,6}$"
 
 	let type: DeviceType
 
@@ -36,6 +37,13 @@ struct SNValidator {
 
 	func validateStationKey(key: String) -> Bool {
 		key.matches(claimingKeyRegex)
+	}
+	
+	/// Validate if the string contains only digits with max length 6
+	/// - Parameter key: The key to validate
+	/// - Returns: True is the input matches the described criterias
+	func validateStationKeyInput(key: String) -> Bool {
+		key.matches(inputClaimingKeyRegex)
 	}
 }
 

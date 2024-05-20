@@ -96,7 +96,7 @@ private extension ManualSerialNumberView {
 												text: string) ?? true
 				},
 				configuration: { tf in
-					tf.keyboardType = .asciiCapable
+					tf.keyboardType = inputField.type.keyboardType
 					tf.horizontalPadding = CGFloat(.mediumSidePadding)
 					tf.verticalPadding = CGFloat(.mediumSidePadding)
 					tf.font = UIFont.systemFont(ofSize: CGFloat(.mediumFontSize), weight: .regular)

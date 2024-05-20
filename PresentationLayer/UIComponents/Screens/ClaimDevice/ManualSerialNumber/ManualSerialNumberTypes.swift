@@ -20,7 +20,7 @@ enum SerialNumberInputType: RawRepresentable, CustomStringConvertible {
 		switch self {
 			case .claimingKey:
 				"claimingKey"
-			case .serialNumber(let deviceType):
+			case .serialNumber:
 				"serialNumber"
 		}
 	}
@@ -40,6 +40,15 @@ enum SerialNumberInputType: RawRepresentable, CustomStringConvertible {
 				"123456"
 			case .serialNumber(let type):
 				UITextField.formatAsSerialNumber("", placeholder: "A", validator: .init(type: type))
+		}
+	}
+
+	var keyboardType: UIKeyboardType {
+		switch self {
+			case .claimingKey:
+					.numberPad
+			case .serialNumber:
+					.asciiCapable
 		}
 	}
 }
