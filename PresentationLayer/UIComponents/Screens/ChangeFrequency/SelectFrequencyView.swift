@@ -61,7 +61,7 @@ private extension SelectFrequencyView {
     var text: some View {
         Text(LocalizableString.SelectFrequency.text.localized)
             .font(.system(size: CGFloat(.normalFontSize)))
-            .foregroundColor(Color(colorEnum: .text))
+            .foregroundColor(Color(colorEnum: .darkestBlue))
             .padding(.bottom)
     }
 
