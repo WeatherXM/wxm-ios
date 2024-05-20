@@ -48,14 +48,17 @@ struct StepsNavView: View {
     }
 
     var body: some View {
-        GeometryReader { _ in
-			VStack(spacing: CGFloat(.minimumSpacing)) {
-                customNavbar
+        ZStack {
+			Color(colorEnum: .newBG)
+				.ignoresSafeArea()
 
-                StepsHeaderView(steps: steps,
-                                currentStep: currentStep)
-				.iPadMaxWidth()
-                    .animation(.easeInOut(duration: 0.2), value: currentStep)
+			VStack(spacing: CGFloat(.minimumSpacing)) {
+				ProgressView(value: CGFloat(currentStep + 1),
+							 total: CGFloat(steps.count))
+					.tint(Color(colorEnum: .primary))
+					.padding(.horizontal, CGFloat(.mediumSidePadding))
+					.animation(.easeOut(duration: 0.3), value: currentStep)
+
 
                 currentView
 					.iPadMaxWidth()
@@ -66,11 +69,6 @@ struct StepsNavView: View {
                     .animation(.easeInOut(duration: 0.2), value: currentStep)
             }
         }
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
-        .background(
-            Color(colorEnum: .bg).edgesIgnoringSafeArea(.all)
-        )
         .ignoresSafeArea(.keyboard)
     }
 

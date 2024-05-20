@@ -185,10 +185,12 @@ extension Route {
 					SettingsView(settingsViewModel: settingsViewModel)
 				}
 			case .claimDevice(let viaBluetooth):
-				ClaimDeviceNavView(
-					swinjectHelper: SwinjectHelper.shared,
-					claimViaBluetooth: viaBluetooth
-				)
+				NavigationContainerView {
+					ClaimDeviceNavView(
+						swinjectHelper: SwinjectHelper.shared,
+						claimViaBluetooth: viaBluetooth
+					)
+				}
 			case .deleteAccount(let deleteAccountViewModel):
 				NavigationContainerView {
 					DeleteAccountView(viewModel: deleteAccountViewModel)
