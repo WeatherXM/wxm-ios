@@ -11,6 +11,7 @@ struct StepsNavView: View {
     @State var isMovingForward = false
     @State var currentStep = 0
 
+	@EnvironmentObject var navigationObject: NavigationObject
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     @State private var id = UUID()
@@ -68,8 +69,12 @@ struct StepsNavView: View {
                     ))
                     .animation(.easeInOut(duration: 0.2), value: currentStep)
             }
+			.padding(.top, CGFloat(.mediumToLargeSidePadding))
         }
         .ignoresSafeArea(.keyboard)
+		.onAppear {
+			navigationObject.title = title
+		}
     }
 
     var customNavbar: some View {
@@ -244,7 +249,9 @@ struct Previews_StepsNavView_Previews: PreviewProvider {
             AnyView(Text(LocalizableString.ClaimDevice.verifyTitle.localized))
         }
 
-        StepsNavView(title: LocalizableString.ClaimDevice.ws1000DeviceTitle.localized,
-                     steps: [step, step1, step2])
+		NavigationContainerView {
+			StepsNavView(title: LocalizableString.ClaimDevice.ws1000DeviceTitle.localized,
+						 steps: [step, step1, step2])
+		}
     }
 }

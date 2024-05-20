@@ -22,16 +22,20 @@ struct ClaimDeviceBluetooth: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            text
-            results
-            #if targetEnvironment(simulator)
-                debugButton
-            #endif
-        }
-        .WXMCardStyle(backgroundColor: Color(colorEnum: .layer1), insideHorizontalPadding: 0.0, insideVerticalPadding: 0.0)
-        .padding(.bottom)
-        .padding(.horizontal, CGFloat(.defaultSidePadding))
+		ZStack {
+			Color(colorEnum: .newBG)
+				.ignoresSafeArea()
+
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				text
+				results
+#if targetEnvironment(simulator)
+				debugButton
+#endif
+			}
+			.padding(.horizontal, CGFloat(.mediumSidePadding))
+			.padding(.top, CGFloat(.largeSidePadding))
+		}
         .onAppear {
             viewModel.reset()
         }
@@ -39,27 +43,33 @@ struct ClaimDeviceBluetooth: View {
 
     var text: some View {
         HStack {
-            VStack(alignment: .leading, spacing: CGFloat(.smallSpacing)) {
+            VStack(spacing: CGFloat(.minimumSpacing)) {
                 title
                 description
             }
 
             Spacer()
         }
-        .padding(CGFloat(.defaultSidePadding))
-        .background(Color(colorEnum: .top))
     }
 
     var title: some View {
-        Text(LocalizableString.ClaimDevice.selectDeviceTitle.localized)
-            .font(.system(size: CGFloat(.titleFontSize), weight: .bold))
-            .foregroundColor(Color(colorEnum: .text))
+		HStack {
+			Text(LocalizableString.ClaimDevice.selectDeviceTitle.localized)
+				.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+				.foregroundColor(Color(colorEnum: .darkestBlue))
+
+			Spacer()
+		}
     }
 
     var description: some View {
-        Text(LocalizableString.ClaimDevice.selectDeviceDescription.localized)
-            .font(.system(size: CGFloat(.caption)))
-            .foregroundColor(Color(colorEnum: .text))
+		HStack {
+			Text(LocalizableString.ClaimDevice.selectDeviceDescription.localized)
+				.font(.system(size: CGFloat(.normalFontSize)))
+				.foregroundColor(Color(colorEnum: .newText))
+
+			Spacer()
+		}
     }
 
     var results: some View {
@@ -77,6 +87,5 @@ struct ClaimDeviceBluetooth: View {
         }
         .buttonStyle(WXMButtonStyle())
         .padding()
-        .background(Color(colorEnum: .layer1))
     }
 }
