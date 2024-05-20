@@ -200,7 +200,6 @@
 		267547DC29A9181E008BCF40 /* UITextField+StationSerialNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675471B29A9181E008BCF40 /* UITextField+StationSerialNumber.swift */; };
 		267547DD29A9181E008BCF40 /* HeliumClaimingStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675471C29A9181E008BCF40 /* HeliumClaimingStatusView.swift */; };
 		267547DE29A9181E008BCF40 /* ClaimDeviceReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675471E29A9181E008BCF40 /* ClaimDeviceReset.swift */; };
-		267547DF29A9181E008BCF40 /* ClaimDeviceVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675471F29A9181E008BCF40 /* ClaimDeviceVerify.swift */; };
 		267547E029A9181E008BCF40 /* ClaimDeviceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675472029A9181E008BCF40 /* ClaimDeviceLocation.swift */; };
 		267547E129A9181E008BCF40 /* ClaimDeviceLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675472229A9181E008BCF40 /* ClaimDeviceLocationMapView.swift */; };
 		267547E229A9181E008BCF40 /* BluetoothMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675472429A9181E008BCF40 /* BluetoothMessageView.swift */; };
@@ -722,7 +721,6 @@
 		2675471B29A9181E008BCF40 /* UITextField+StationSerialNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+StationSerialNumber.swift"; sourceTree = "<group>"; };
 		2675471C29A9181E008BCF40 /* HeliumClaimingStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeliumClaimingStatusView.swift; sourceTree = "<group>"; };
 		2675471E29A9181E008BCF40 /* ClaimDeviceReset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimDeviceReset.swift; sourceTree = "<group>"; };
-		2675471F29A9181E008BCF40 /* ClaimDeviceVerify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimDeviceVerify.swift; sourceTree = "<group>"; };
 		2675472029A9181E008BCF40 /* ClaimDeviceLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimDeviceLocation.swift; sourceTree = "<group>"; };
 		2675472229A9181E008BCF40 /* ClaimDeviceLocationMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimDeviceLocationMapView.swift; sourceTree = "<group>"; };
 		2675472429A9181E008BCF40 /* BluetoothMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMessageView.swift; sourceTree = "<group>"; };
@@ -1559,7 +1557,6 @@
 				2675472829A9181E008BCF40 /* ClaimDeviceFrequency.swift */,
 				2675472029A9181E008BCF40 /* ClaimDeviceLocation.swift */,
 				2675471E29A9181E008BCF40 /* ClaimDeviceReset.swift */,
-				2675471F29A9181E008BCF40 /* ClaimDeviceVerify.swift */,
 			);
 			path = Steps;
 			sourceTree = "<group>";
@@ -2841,7 +2838,6 @@
 				267547E129A9181E008BCF40 /* ClaimDeviceLocationMapView.swift in Sources */,
 				267547E729A9181E008BCF40 /* ClaimDeviceNavView.swift in Sources */,
 				267547DE29A9181E008BCF40 /* ClaimDeviceReset.swift in Sources */,
-				267547DF29A9181E008BCF40 /* ClaimDeviceVerify.swift in Sources */,
 				267547B229A9181E008BCF40 /* ClaimDeviceViewModel.swift in Sources */,
 				266B01CD2B84FB59007AC689 /* NetworkDeviceRewardsSummaryResponse+.swift in Sources */,
 				268E8E0A2B07A1E30025163F /* AdaptiveGridContainerView.swift in Sources */,

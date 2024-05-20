@@ -25,10 +25,7 @@ public final class ClaimDeviceViewModel: NSObject, ObservableObject {
     private var claimCancellable: AnyCancellable?
     private var locationUpdateCancellable: AnyCancellable?
 
-    var isM5: Bool = false
-
     @Published var device = HeliumDevice(devEUI: "", deviceKey: "")
-    @Published var serialNumber = ""
 
     // Claiming
     enum ClaimState: Equatable {
@@ -552,10 +549,6 @@ private extension ClaimDeviceViewModel {
                 return LocalizableString.ClaimDevice.errorGeneric.localized
             }
         } else if response.backendError?.code == FailAPICodeEnum.invalidClaimId.rawValue {
-            if isM5 {
-                return LocalizableString.ClaimDevice.errorInvalidIdM5.localized
-            }
-
             return LocalizableString.ClaimDevice.errorInvalidId.localized
         } else if response.backendError?.code == FailAPICodeEnum.invalidClaimLocation.rawValue {
             return LocalizableString.ClaimDevice.errorInvalidLocation.localized
@@ -564,10 +557,6 @@ private extension ClaimDeviceViewModel {
         } else if response.backendError?.code == FailAPICodeEnum.deviceNotFound.rawValue {
             return LocalizableString.ClaimDevice.notFound.localized
         } else if response.backendError?.code == FailAPICodeEnum.deviceClaiming.rawValue {
-            if isM5 {
-                return LocalizableString.ClaimDevice.claimingErrorM5.localized
-            }
-
             return LocalizableString.ClaimDevice.claimingError.localized
         }
 

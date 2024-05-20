@@ -31,9 +31,7 @@ struct HeliumClaimingStatusView: View {
 				title
 				information.padding(.bottom, 20)
 
-				if !viewModel.isM5 {
-					stepsView
-				}
+				stepsView
 
 				switch viewModel.claimState {
 					case .connectionError, .failed:
@@ -170,7 +168,7 @@ struct HeliumClaimingStatusView: View {
 
 	@ViewBuilder
 	var claimingInformation: some View {
-		let boldText = viewModel.isM5 ? "" : LocalizableString.ClaimDevice.claimingTextInformation.localized
+		let boldText = LocalizableString.ClaimDevice.claimingTextInformation.localized
 		let text = LocalizableString.ClaimDevice.claimingText(boldText).localized
 		var attributedtext = NSMutableAttributedString(
 			string: text,
