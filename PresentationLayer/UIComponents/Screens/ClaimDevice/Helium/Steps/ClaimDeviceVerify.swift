@@ -66,7 +66,7 @@ struct ClaimDeviceVerify: View {
             }
             let serialNumber = viewModel.device.devEUI.replacingOccurrences(of: ":", with: "")
             ZStack(alignment: .leading) {
-                Text("\(UITextField.formatAsSerialNumber(serialNumber, placeholder: "A"))")
+				Text("\(UITextField.formatAsSerialNumber(serialNumber, placeholder: "A", validator: .init(type: .m5)))")
                     .font(.custom("Menlo-Regular", fixedSize: FontSizeEnum.mediumFontSize.sizeValue))
 					.padding(CGFloat(.defaultSidePadding))
                     .opacity(0.4)
@@ -75,7 +75,7 @@ struct ClaimDeviceVerify: View {
                     text: $viewModel.device.devEUI,
                     isFirstResponder: $focusSerialNumber,
                     shouldChangeCharactersIn: { tf, range, string in
-                        tf.updateSerialNumberCharactersIn(nsRange: range, for: string)
+						tf.updateSerialNumberCharactersIn(nsRange: range, for: string, validator: .init(type: .m5))
                         return false
                     },
                     onSubmit: { _ in
