@@ -212,9 +212,9 @@ enum ViewModelsFactory {
 		ManualSerialNumberM5ViewModel(completion: completion)
 	}
 
-	static func getLocationMapViewModel() -> SelectLocationMapViewModel {
+	static func getLocationMapViewModel(initialCoordinate: CLLocationCoordinate2D? = nil) -> SelectLocationMapViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
-		return SelectLocationMapViewModel(useCase: useCase)
+		return SelectLocationMapViewModel(useCase: useCase, initialCoordinate: initialCoordinate)
 	}
 
 	static func getClaimDeviceLocationViewModel(completion: @escaping GenericCallback<DeviceLocation>) -> ClaimDeviceLocationViewModel {

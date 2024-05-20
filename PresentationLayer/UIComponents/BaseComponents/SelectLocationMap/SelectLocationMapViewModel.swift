@@ -28,10 +28,10 @@ class SelectLocationMapViewModel: ObservableObject {
 	let useCase: DeviceLocationUseCase
 	weak var delegate: SelectLocationMapViewModelDelegate?
 
-	init(useCase: DeviceLocationUseCase, delegate: SelectLocationMapViewModelDelegate? = nil) {
+	init(useCase: DeviceLocationUseCase, initialCoordinate: CLLocationCoordinate2D? = nil, delegate: SelectLocationMapViewModelDelegate? = nil) {
 		self.useCase = useCase
 		self.delegate = delegate
-		self.selectedCoordinate = useCase.getSuggestedDeviceLocation() ?? .init()
+		self.selectedCoordinate = initialCoordinate ?? useCase.getSuggestedDeviceLocation() ?? .init()
 		$selectedCoordinate
 			.debounce(for: 1.0, scheduler: DispatchQueue.main)
 			.sink { [weak self] _ in
