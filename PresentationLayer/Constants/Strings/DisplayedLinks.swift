@@ -50,7 +50,7 @@ enum DisplayedLinks {
 			case .readMoreAboutWalletsLink:
 				return "https://docs.weatherxm.com/wallet/add-edit-wallet-address#how-to-create-wallet-on-metamask"
 			case .arbitrumAddressWebsiteFormat:
-				return "https://sepolia.arbiscan.io/address/%@#tokentxns"
+				return "https://arbiscan.io/address/%@#tokentxns"
 			case .documentationLink:
 				return "https://docs.weatherxm.com/"
 			case .feedbackForm:
