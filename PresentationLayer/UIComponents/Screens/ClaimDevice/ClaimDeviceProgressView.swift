@@ -11,20 +11,24 @@ struct ClaimDeviceProgressView: View {
 	@Binding var state: State
 
     var body: some View {
-		Group {
-			switch state {
-				case .loading(let title, let subtitle):
-					DeviceUpdatesLoadingView(title: title,
-											 subtitle: subtitle,
-											 currentStepIndex: .constant(nil),
-											 progress: .constant(nil))
-				case .success(let object):
-					SuccessView(obj: object)
-				case .fail(let object):
-					FailView(obj: object)
+		ZStack {
+			Color(colorEnum: .newBG)
+				.ignoresSafeArea()
+			Group {
+				switch state {
+					case .loading(let title, let subtitle):
+						DeviceUpdatesLoadingView(title: title,
+												 subtitle: subtitle,
+												 currentStepIndex: .constant(nil),
+												 progress: .constant(nil))
+					case .success(let object):
+						SuccessView(obj: object)
+					case .fail(let object):
+						FailView(obj: object)
+				}
 			}
+			.padding()
 		}
-		.padding()
     }
 }
 
