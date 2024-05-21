@@ -25,37 +25,41 @@ struct FailView: View {
 				}
             }
 
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: CGFloat(.defaultSpacing)) {
-                    Spacer()
-                    lottieViewLoading
-                        .background {
-                            Circle().foregroundColor(Color(colorEnum: .errorTint))
-                        }
+			GeometryReader { proxy in
+				ScrollView(showsIndicators: false) {
+					VStack(spacing: CGFloat(.defaultSpacing)) {
+						Spacer()
+						lottieViewLoading
+							.background {
+								Circle().foregroundColor(Color(colorEnum: .errorTint))
+							}
 
-                    VStack(spacing: CGFloat(.smallSpacing)) {
-                        Text(obj.title)
-                            .font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
-                            .foregroundColor(Color(colorEnum: .text))
-                            .multilineTextAlignment(.center)
+						VStack(spacing: CGFloat(.smallSpacing)) {
+							Text(obj.title)
+								.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+								.foregroundColor(Color(colorEnum: .text))
+								.multilineTextAlignment(.center)
 
-                        if let subtitle = obj.subtitle {
-                            Text(subtitle)
-                                .font(.system(size: CGFloat(.mediumFontSize)))
-                                .foregroundColor(Color(colorEnum: .text))
-                                .multilineTextAlignment(.center)
-                        }
-                    }
+							if let subtitle = obj.subtitle {
+								Text(subtitle)
+									.font(.system(size: CGFloat(.mediumFontSize)))
+									.foregroundColor(Color(colorEnum: .text))
+									.multilineTextAlignment(.center)
+							}
+						}
 
-                    contactSupportButton
+						contactSupportButton
 
-					if !obj.actionButtonsAtTheBottom {
-						actionButtons
+						if !obj.actionButtonsAtTheBottom {
+							actionButtons
+						}
+
+						Spacer()
 					}
-
-                    Spacer()
-                }
-            }
+					// Set min height in order to keep the content centered
+					.frame(minHeight: proxy.size.height)
+				}
+			}
             .padding(.bottom, bottomButtonsSize.height)
             .environment(\.openURL, OpenURLAction { url in
                 if url.absoluteString == LocalizableString.ClaimDevice.failedTextLinkURL.localized {
