@@ -29,6 +29,7 @@ struct ClaimStationSelectionView: View {
 				}
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 				.padding(.vertical, CGFloat(.mediumToLargeSidePadding))
+				.iPadMaxWidth()
 			}
 		}
 		.onAppear {
