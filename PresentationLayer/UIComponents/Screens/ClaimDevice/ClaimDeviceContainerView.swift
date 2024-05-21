@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DomainLayer
 
 struct ClaimDeviceContainerView: View {
 	@StateObject var viewModel: ClaimDeviceContainerViewModel
@@ -34,20 +35,16 @@ struct ClaimDeviceContainerView: View {
 		}
 		.onAppear {
 			navigationObject.title = viewModel.navigationTitle
-			navigationObject.shouldDismissAction = { [weak viewModel] in
-				guard let viewModel, viewModel.selectedIndex > 0 else {
-					return true
-				}
-
-				viewModel.movePrevious()
-				return false
-			}
+		}
+		.fullScreenCover(isPresented: $viewModel.showLoading) {
+			ClaimDeviceProgressView(state: $viewModel.loadingState)
 		}
     }
 }
 
 #Preview {
 	NavigationContainerView {
-		ClaimDeviceContainerView(viewModel: .init(type: .m5))
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		return ClaimDeviceContainerView(viewModel: .init(type: .m5, useCase: useCase))
 	}
 }

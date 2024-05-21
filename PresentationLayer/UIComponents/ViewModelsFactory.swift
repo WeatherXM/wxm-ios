@@ -184,7 +184,8 @@ enum ViewModelsFactory {
 	}
 
 	static func getClaimStationContainerViewModel(type: ClaimStationType) -> ClaimDeviceContainerViewModel {
-		ClaimDeviceContainerViewModel(type: type)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		return ClaimDeviceContainerViewModel(type: type, useCase: useCase)
 	}
 
 	static func getClaimStationBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeginViewModel {
@@ -209,5 +210,14 @@ enum ViewModelsFactory {
 
 	static func getManualSNM5ViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ManualSerialNumberM5ViewModel {
 		ManualSerialNumberM5ViewModel(completion: completion)
+	}
+
+	static func getLocationMapViewModel(initialCoordinate: CLLocationCoordinate2D? = nil) -> SelectLocationMapViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
+		return SelectLocationMapViewModel(useCase: useCase, initialCoordinate: initialCoordinate)
+	}
+
+	static func getClaimDeviceLocationViewModel(completion: @escaping GenericCallback<DeviceLocation>) -> ClaimDeviceLocationViewModel {
+		ClaimDeviceLocationViewModel(completion: completion)
 	}
 }
