@@ -20,10 +20,13 @@ public class RemoteConfigManager: ObservableObject {
 	@Published public var iosAppMinimumVersion: String?
 	@Published public var isFeatMainnetEnabled: Bool?
 	@Published public var featMainnetMessage: String?
+	@Published public var featMainnetUrl: String?
 
 	private init() {
 		if disableFirebase {
 			remoteConfigManagerImpl = MockRemoteConfigManager()
+			updateProperties()
+
 		} else {
 			remoteConfigManagerImpl = DefaultRemoteConfigManager()
 		}
@@ -51,6 +54,7 @@ private extension RemoteConfigManager {
 			self.iosAppMinimumVersion = self.getConfigValue(key: .iosAppMinimumVersion)
 			self.isFeatMainnetEnabled = self.getConfigValue(key: .featMainnet)
 			self.featMainnetMessage = self.getConfigValue(key: .featMainnetMessage)
+			self.featMainnetUrl = self.getConfigValue(key: .featMainnetUrl)
 		}
 	}
 }
@@ -141,6 +145,15 @@ class MockRemoteConfigManager: RemoteConfigManagerImplementation {
 	var shouldUpdateCallback: VoidCallback?
 	
 	func getConfigValue<T>(type: T.Type, key: RemoteConfigKey) -> T? {
-		nil
+		switch type {
+			case is String.Type:
+				return "Dummy Text" as? T
+			case is Bool.Type:
+				return true as? T
+			case is Int.Type:
+				return 10 as? T
+			default:
+				return nil
+		}
 	}
 }
