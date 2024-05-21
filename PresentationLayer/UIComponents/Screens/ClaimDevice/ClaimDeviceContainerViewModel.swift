@@ -153,7 +153,8 @@ private extension ClaimDeviceContainerViewModel {
 	}
 
 	func performClaim() {
-		guard let serialNumber, let location else {
+		guard let serialNumber = serialNumber?.replacingOccurrences(of: ":", with: ""),
+			  let location else {
 			return
 		}
 		do {
