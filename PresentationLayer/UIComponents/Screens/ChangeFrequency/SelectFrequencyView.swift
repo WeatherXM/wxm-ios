@@ -36,6 +36,7 @@ struct SelectFrequencyView: View {
                     }
                 }
             }
+			.clipped()
 
             Spacer()
 

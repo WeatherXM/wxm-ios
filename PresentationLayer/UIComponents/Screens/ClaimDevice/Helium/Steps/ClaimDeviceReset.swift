@@ -44,11 +44,13 @@ struct ClaimDeviceReset: View {
 							.resizable()
 							.aspectRatio(contentMode: .fit)
 							.frame(maxWidth: 600.0)
+							.padding(.horizontal)
 					}
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.padding(.top, CGFloat(.largeSidePadding))
 				}
-			
+				.clipped()
+
 				bottomButtons
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 			}

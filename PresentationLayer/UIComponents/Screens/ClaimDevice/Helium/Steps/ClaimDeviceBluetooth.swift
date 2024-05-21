@@ -76,6 +76,7 @@ struct ClaimDeviceBluetooth: View {
         BluetoothScanView { _ in
             transport.nextStep()
         }
+		.clipped()
         .environmentObject(viewModel)
     }
 
