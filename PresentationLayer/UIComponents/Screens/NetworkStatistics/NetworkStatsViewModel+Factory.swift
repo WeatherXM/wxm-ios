@@ -81,14 +81,14 @@ extension NetworkStatsViewModel {
         let totalSupplyValue = tokens.totalSupply?.toCompactDecimaFormat ?? ""
         let totalSupply = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.totalSupply.localized,
                                                            value: totalSupplyValue,
-                                                           info: nil,
+														   info: (LocalizableString.NetStats.totalSupply.localized, LocalizableString.NetStats.totalSupplyInfoText.localized),
                                                            analyticsItemId: nil)
         
         let dailyMintedValue = tokens.dailyMinted?.toCompactDecimaFormat ?? ""
         let dailyMinted = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.dailyMinted.localized,
                                                            value: "+\(dailyMintedValue)",
                                                            color: .reward_score_very_high,
-                                                           info: nil,
+                                                           info: (LocalizableString.NetStats.dailyMinted.localized, LocalizableString.NetStats.dailyMintedInfoText.localized),
                                                            analyticsItemId: nil)
 
         let tokenDescription = LocalizableString.NetStats.wxmTokenDescriptionMarkdown(DisplayedLinks.tokenContractAddress.linkURL).localized.attributedMarkdown
