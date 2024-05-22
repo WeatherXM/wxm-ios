@@ -137,61 +137,73 @@ private extension NetworkStatsViewModel {
 // MARK: - Mock
 
 extension NetworkStatsViewModel {
-    static var mock: NetworkStatsViewModel {
-        let viewModel = NetworkStatsViewModel()
-        viewModel.dataDays = NetworkStatsView.Statistics(title: LocalizableString.NetStats.weatherStationDays.localized,
-                                                         description: nil,
-                                                         showExternalLinkIcon: false,
-                                                         externalLinkTapAction: nil,
-                                                         mainText: "90,2K",
-                                                         info: (LocalizableString.NetStats.weatherStationDays.localized, "This is info"),
-                                                         dateString: "Yesterday",
-                                                         chartModel: .mock(),
-                                                         xAxisTuple: nil,
-                                                         analyticsItemId: .dataDays)
+	static var mock: NetworkStatsViewModel {
+		let viewModel = NetworkStatsViewModel()
+		viewModel.dataDays = NetworkStatsView.Statistics(title: LocalizableString.NetStats.weatherStationDays.localized,
+														 description: nil,
+														 showExternalLinkIcon: false,
+														 externalLinkTapAction: nil,
+														 mainText: "90,2K",
+														 accessory: .init(fontIcon: .infoCircle) {
+			viewModel.showInfo(title: LocalizableString.NetStats.weatherStationDays.localized,
+							   description: "This is info",
+							   analyticsItemId: .dataDays)
+		},
+														 dateString: "Yesterday",
+														 chartModel: .mock(),
+														 xAxisTuple: nil,
+														 analyticsItemId: .dataDays)
 
 		let addtional: [NetworkStatsView.AdditionalStats] = [.init(title: "Total supply", value: "100,000,000", accessory: .init(fontIcon: .infoCircle, action: { }), analyticsItemId: nil),
-                                                             .init(title: "Daily Minted", value: "20,020", analyticsItemId: nil)]
-        viewModel.rewards = NetworkStatsView.Statistics(title: LocalizableString.NetStats.wxmRewardsTitle.localized,
-                                                        description: nil,
-                                                        showExternalLinkIcon: false,
-                                                        externalLinkTapAction: nil,
-                                                        mainText: "90,2K",
-                                                        info: (LocalizableString.NetStats.wxmRewardsTitle.localized, "This is info"),
-                                                        dateString: "Yesterday",
-                                                        chartModel: .mock(),
-                                                        xAxisTuple: nil,
-                                                        additionalStats: addtional,
-                                                        analyticsItemId: .allocatedRewards)
+															 .init(title: "Daily Minted", value: "20,020", analyticsItemId: nil)]
+		viewModel.rewards = NetworkStatsView.Statistics(title: LocalizableString.NetStats.wxmRewardsTitle.localized,
+														description: nil,
+														showExternalLinkIcon: false,
+														externalLinkTapAction: nil,
+														mainText: "90,2K",
+														accessory: .init(fontIcon: .infoCircle) {
+			viewModel.showInfo(title: LocalizableString.NetStats.wxmRewardsTitle.localized,
+							   description: "This is info",
+							   analyticsItemId: .allocatedRewards)
+		},
+														dateString: "Yesterday",
+														chartModel: .mock(),
+														xAxisTuple: nil,
+														additionalStats: addtional,
+														analyticsItemId: .allocatedRewards)
 
-        let stationStats = NetworkStatsView.StationStatistics(title: "Total",
-                                                              total: "7,823",
-                                                              details: [.init(title: "WS1000",
-                                                                              value: "5,642",
-                                                                              percentage: 0.2,
-                                                                              color: .crypto,
-                                                                              url: nil),
-                                                                        .init(title: "WS2000",
-                                                                              value: "8,642",
-                                                                              percentage: 1.0,
-                                                                              color: .primary,
-                                                                              url: nil)],
-                                                              analyticsItemId: .total)
+		let stationStats = NetworkStatsView.StationStatistics(title: "Total",
+															  total: "7,823",
+															  details: [.init(title: "WS1000",
+																			  value: "5,642",
+																			  percentage: 0.2,
+																			  color: .crypto,
+																			  url: nil),
+																		.init(title: "WS2000",
+																			  value: "8,642",
+																			  percentage: 1.0,
+																			  color: .primary,
+																			  url: nil)],
+															  analyticsItemId: .total)
 
-        let stationStats1 = NetworkStatsView.StationStatistics(title: "Claimed",
-                                                               total: "7,823",
-                                                               info: ("Claimed", "This is info"),
-                                                               details: [.init(title: "WS1000",
-                                                                               value: "5,642",
-                                                                               percentage: 0.2,
-                                                                               color: .crypto,
-                                                                               url: nil),
-                                                                         .init(title: "WS2000",
-                                                                               value: "8,642",
-                                                                               percentage: 0.8,
-                                                                               color: .primary,
-                                                                               url: nil)],
-                                                               analyticsItemId: .claimed)
+		let stationStats1 = NetworkStatsView.StationStatistics(title: "Claimed",
+															   total: "7,823",
+															   accessory: .init(fontIcon: .infoCircle) {
+			viewModel.showInfo(title: "Claimed",
+							   description: "This is info",
+							   analyticsItemId: .claimed)
+		},
+															   details: [.init(title: "WS1000",
+																			   value: "5,642",
+																			   percentage: 0.2,
+																			   color: .crypto,
+																			   url: nil),
+																		 .init(title: "WS2000",
+																			   value: "8,642",
+																			   percentage: 0.8,
+																			   color: .primary,
+																			   url: nil)],
+															   analyticsItemId: .claimed)
 
         viewModel.stationStats = [stationStats, stationStats1]
 

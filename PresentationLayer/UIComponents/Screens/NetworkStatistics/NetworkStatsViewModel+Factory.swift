@@ -31,10 +31,16 @@ extension NetworkStatsViewModel {
                                                           color: .reward_score_very_high,
                                                           accessory: nil,
                                                           analyticsItemId: nil)
-        
+		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.weatherStationDays.localized,
+						   description: LocalizableString.NetStats.dataDaysInfoText.localized,
+						   analyticsItemId: .dataDays)
+		}
+
+
         return getStatistics(from: dataDays,
                              title: LocalizableString.NetStats.weatherStationDays.localized,
-                             info: (LocalizableString.NetStats.weatherStationDays.localized, LocalizableString.NetStats.dataDaysInfoText.localized),
+                             accessory: accessory,
                              additionalStats: [total, preLastDay],
                              analyticsItemId: .dataDays)
     }
@@ -63,13 +69,18 @@ extension NetworkStatsViewModel {
                                                        analyticsItemId: nil)
 
 		let rewardsDescription = LocalizableString.NetStats.wxmRewardsDescriptionMarkdown(DisplayedLinks.rewardsContractAddress.linkURL).localized.attributedMarkdown
+		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.wxmRewardsTitle.localized, 
+						   description: LocalizableString.NetStats.totalAllocatedInfoText.localized,
+						   analyticsItemId: .allocatedRewards)
+		}
 
         return getStatistics(from: allocatedPerDay,
                              title: LocalizableString.NetStats.wxmRewardsTitle.localized,
 							 description: rewardsDescription,
 							 showExternalLinkIcon: true,
 							 externalLinkTapAction: {},
-                             info: (LocalizableString.NetStats.wxmRewardsTitle.localized, LocalizableString.NetStats.totalAllocatedInfoText.localized),
+                             accessory: accessory,
                              additionalStats: [total, lastDay],
                              analyticsItemId: .allocatedRewards)
 
@@ -107,24 +118,41 @@ extension NetworkStatsViewModel {
 							 description: tokenDescription,
                              showExternalLinkIcon: true,
                              externalLinkTapAction: { Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenomics]) },
-                             info: nil,
+                             accessory: nil,
                              additionalStats: [totalSupply, dailyMinted],
                              analyticsItemId: nil)
     }
 
     func getStationStats(response: NetworkStatsResponse?) -> [NetworkStatsView.StationStatistics]? {
-        let sections = [(LocalizableString.total(nil).localized,
-                         response?.weatherStations?.onboarded,
-                         (LocalizableString.NetStats.totalWeatherStationsInfoTitle.localized, LocalizableString.NetStats.totalWeatherStationsInfoText.localized),
-                         ParameterValue.total),
-                        (LocalizableString.NetStats.claimed.localized,
-                         response?.weatherStations?.claimed,
-                         (LocalizableString.NetStats.claimedWeatherStationsInfoTitle.localized, LocalizableString.NetStats.claimedWeatherStationsInfoText.localized),
-                         ParameterValue.claimed),
-                        (LocalizableString.NetStats.active.localized,
-                         response?.weatherStations?.active,
-                         (LocalizableString.NetStats.activeWeatherStationsInfoTitle.localized, LocalizableString.NetStats.activeWeatherStationsInfoText.localized),
-                         ParameterValue.active)]
+		let total = (LocalizableString.total(nil).localized,
+					 response?.weatherStations?.onboarded,
+					 NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.totalWeatherStationsInfoTitle.localized,
+						   description: LocalizableString.NetStats.totalWeatherStationsInfoText.localized,
+						   analyticsItemId: .total)
+		},
+					 ParameterValue.total)
+
+		let claimed = (LocalizableString.NetStats.claimed.localized,
+					   response?.weatherStations?.claimed,
+					   NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.claimedWeatherStationsInfoTitle.localized,
+						   description: LocalizableString.NetStats.claimedWeatherStationsInfoText.localized,
+						   analyticsItemId: .claimed)
+		},
+
+					   ParameterValue.claimed)
+
+		let active = (LocalizableString.NetStats.active.localized,
+					  response?.weatherStations?.active,
+					  NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.activeWeatherStationsInfoTitle.localized,
+						   description: LocalizableString.NetStats.activeWeatherStationsInfoText.localized,
+						   analyticsItemId: .active)
+		},
+					  ParameterValue.active)
+
+        let sections = [total, claimed, active]
 
         return sections.compactMap { title, stats, info, analyticsItemId in
             guard let stats else {
@@ -133,7 +161,7 @@ extension NetworkStatsViewModel {
 
             return NetworkStatsView.StationStatistics(title: title,
                                                       total: stats.total?.localizedFormatted ?? "",
-                                                      info: info,
+                                                      accessory: info,
                                                       details: stats.details?.map {
                 NetworkStatsView.StationDetails(title: $0.model ?? "",
                                                 value: $0.amount?.localizedFormatted ?? "",
@@ -148,7 +176,9 @@ extension NetworkStatsViewModel {
 		let description = LocalizableString.NetStats.buyStationCardDescription(Float(response?.tokens?.averageMonthly ?? 0.0)).localized
         let buyStationCTA = NetworkStatsView.StatisticsCTA(title: LocalizableString.NetStats.buyStationCardTitle.localized,
                                                            description: description,
-                                                           info: (nil, LocalizableString.NetStats.buyStationCardInfoDescription.localized),
+														   accessory: .init(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: nil, description: LocalizableString.NetStats.buyStationCardInfoDescription.localized, analyticsItemId: .buyStation)
+		},
                                                            analyticsItemId: .buyStation,
                                                            buttonTitle: LocalizableString.NetStats.buyStationCardButtonTitle.localized,
                                                            buttonAction: { [weak self] in self?.handleBuyStationTap() })
@@ -159,7 +189,7 @@ extension NetworkStatsViewModel {
     func getManufacturerCTA(response: NetworkStatsResponse?) -> NetworkStatsView.StatisticsCTA? {
         let manufacturerCTA = NetworkStatsView.StatisticsCTA(title: LocalizableString.NetStats.manufacturerCTATitle.localized,
                                                              description: LocalizableString.NetStats.manufacturerCTADescription.localized,
-                                                             info: nil,
+                                                             accessory: nil,
                                                              analyticsItemId: nil,
                                                              buttonTitle: LocalizableString.NetStats.manufacturerCTAButtonTitle.localized,
                                                              buttonAction: {
@@ -179,7 +209,7 @@ private extension NetworkStatsViewModel {
                        description: AttributedString? = nil,
                        showExternalLinkIcon: Bool = false,
                        externalLinkTapAction: VoidCallback? = nil,
-                       info: NetworkStatsView.InfoTuple?,
+                       accessory: NetworkStatsView.Accessory?,
                        additionalStats: [NetworkStatsView.AdditionalStats]?,
                        analyticsItemId: ParameterValue?) -> NetworkStatsView.Statistics {
         var chartModel: NetStatsChartViewModel?
@@ -207,7 +237,7 @@ private extension NetworkStatsViewModel {
                                            showExternalLinkIcon: showExternalLinkIcon,
                                            externalLinkTapAction: externalLinkTapAction,
                                            mainText: mainText,
-                                           info: info,
+                                           accessory: accessory,
                                            dateString: dateString,
                                            chartModel: chartModel,
                                            xAxisTuple: xAxisTuple,
