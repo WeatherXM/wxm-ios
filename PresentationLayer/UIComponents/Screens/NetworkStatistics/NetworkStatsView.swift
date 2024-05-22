@@ -49,8 +49,12 @@ private extension NetworkStatsView {
         } content: {
             VStack(spacing: CGFloat(.mediumSpacing)) {
 				if viewModel.showMainnet == true, let message = viewModel.mainnetMessage {
-					AnnouncementCardView(title: LocalizableString.StationDetails.mainnetTitle.localized,
-										 description: message)
+					Button {
+						viewModel.handleAnnouncementTap()
+					} label: {
+						AnnouncementCardView(title: LocalizableString.StationDetails.mainnetTitle.localized,
+											 description: message)
+					}
 				}
 
                 dataDaysView

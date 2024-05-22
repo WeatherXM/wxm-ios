@@ -50,6 +50,15 @@ class NetworkStatsViewModel: ObservableObject {
         fetchStats(completion: completion)
     }
 
+	func handleAnnouncementTap() {
+		guard let urlString = RemoteConfigManager.shared.featMainnetUrl,
+			  let url = URL(string: urlString) else {
+			return
+		}
+
+		Router.shared.showFullScreen(.safariView(url))
+	}
+
     func handleBuyStationTap() {
         HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
         Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .openShop])

@@ -47,6 +47,15 @@ class StationRewardsViewModel: ObservableObject {
         }
     }
 
+	func handleAnnouncementTap() {
+		guard let urlString = RemoteConfigManager.shared.featMainnetUrl,
+			  let url = URL(string: urlString) else {
+			return
+		}
+
+		Router.shared.showFullScreen(.safariView(url))
+	}
+
 	func handleViewDetailsTap() {
 		guard let device, let timestamp = response?.latest?.timestamp else {
 			return
