@@ -297,16 +297,12 @@ extension NetworkStatsView {
                         if let accessory = stats.accessory {
                             Button {
 								accessory.action()
-//                                viewModel.showInfo(title: info.title,
-//                                                   description: info.text,
-//                                                   analyticsItemId: stats.analyticsItemId)
                             } label: {
 								Text(accessory.fontIcon.rawValue)
-                                    .font(.fontAwesome(font: .FAProLight, size: CGFloat(.caption)))
+                                    .font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
                                     .foregroundColor(Color(colorEnum: .text))
                             }
                             .buttonStyle(.plain)
-                            .frame(width: 30.0, height: 30.0)
                         }
                     }
 

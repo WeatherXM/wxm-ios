@@ -57,7 +57,9 @@ extension NetworkStatsViewModel {
         let lastDay = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.lastRun.localized,
                                                        value: "+\(value)",
                                                        color: .reward_score_very_high,
-                                                       accessory: nil,
+													   accessory: .init(fontIcon: .externalLink) { [weak self] in
+			#warning("TODO: Navigate to last tx")
+		},
                                                        analyticsItemId: nil)
 
 		let rewardsDescription = LocalizableString.NetStats.wxmRewardsDescriptionMarkdown(DisplayedLinks.rewardsContractAddress.linkURL).localized.attributedMarkdown
