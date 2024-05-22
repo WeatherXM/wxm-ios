@@ -4492,7 +4492,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "[View rewards contract on Arbiscan](%@)"
+            "value" : "**[View rewards contract on Arbiscan](%@)**"
           }
         }
       }
@@ -4514,7 +4514,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "[View token contract on Etherscan](%@)"
+            "value" : "**[View token contract on Etherscan](%@)**"
           }
         }
       }
