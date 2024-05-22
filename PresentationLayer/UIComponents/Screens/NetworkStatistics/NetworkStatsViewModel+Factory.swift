@@ -64,6 +64,7 @@ extension NetworkStatsViewModel {
                                                        value: "+\(value)",
                                                        color: .reward_score_very_high,
 													   accessory: .init(fontIcon: .externalLink) { [weak self] in
+			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .lastRunHash])
 			#warning("TODO: Navigate to last tx")
 		},
                                                        analyticsItemId: nil)
@@ -79,7 +80,7 @@ extension NetworkStatsViewModel {
                              title: LocalizableString.NetStats.wxmRewardsTitle.localized,
 							 description: rewardsDescription,
 							 showExternalLinkIcon: true,
-							 externalLinkTapAction: {},
+							 externalLinkTapAction: { Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .rewardContract]) },
                              accessory: accessory,
                              additionalStats: [total, lastDay],
                              analyticsItemId: .allocatedRewards)
@@ -97,7 +98,7 @@ extension NetworkStatsViewModel {
 														   accessory: .init(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.totalSupply.localized,
 						   description: LocalizableString.NetStats.totalSupplyInfoText.localized,
-						   analyticsItemId: nil)
+						   analyticsItemId: .totalSupply)
 		},
 														   analyticsItemId: nil)
 
@@ -108,7 +109,7 @@ extension NetworkStatsViewModel {
 														   accessory: .init(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.dailyMinted.localized,
 						   description: LocalizableString.NetStats.dailyMintedInfoText.localized,
-						   analyticsItemId: nil)
+						   analyticsItemId: .circulatingSupply)
 		},
 														   analyticsItemId: nil)
 
@@ -117,7 +118,7 @@ extension NetworkStatsViewModel {
                              title: LocalizableString.NetStats.wxmTokenTitle.localized,
 							 description: tokenDescription,
                              showExternalLinkIcon: true,
-                             externalLinkTapAction: { Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenomics]) },
+                             externalLinkTapAction: { Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenContract]) },
                              accessory: nil,
                              additionalStats: [totalSupply, dailyMinted],
                              analyticsItemId: nil)
