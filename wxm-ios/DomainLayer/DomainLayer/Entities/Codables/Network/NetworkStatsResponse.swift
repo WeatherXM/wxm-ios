@@ -42,12 +42,18 @@ public struct NetworkStationsStatsDetails: Codable {
 
 public struct NetworkStationsStatsTokens: Codable {
     public let totalSupply: Int?
+	public let circulatingSupply: Int?
+	public let totalAllocated: Double?
     public let allocatedPerDay: [NetworkStatsTimeSeries]?
     public let dailyMinted: Int?
+	public let lastTxHash: String?
     public let averageMonthly: Double?
 
     enum CodingKeys: String, CodingKey {
         case totalSupply = "total_supply"
+		case circulatingSupply = "circulating_supply"
+		case totalAllocated = "total_allocated"
+		case lastTxHash = "last_tx_hash"
         case allocatedPerDay = "allocated_per_day"
         case dailyMinted = "daily_minted"
         case averageMonthly = "avg_monthly"
