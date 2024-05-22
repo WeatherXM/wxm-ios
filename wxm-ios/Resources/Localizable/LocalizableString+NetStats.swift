@@ -14,6 +14,7 @@ extension LocalizableString {
         case lastDays(Int)
         case lastRun
         case wxmRewardsTitle
+		case wxmRewardsDescriptionMarkdown(String)
         case totalSupply
         case dailyMinted
         case weatherStations
@@ -51,7 +52,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
                 localized = String(format: localized, count)
             case .buyStationCardDescription(let count):
                 localized = String(format: localized, count)
-            case .wxmTokenDescriptionMarkdown(let text):
+			case .wxmTokenDescriptionMarkdown(let text),
+				 .wxmRewardsDescriptionMarkdown(let text):
                 localized = String(format: localized, text)
             default:
                 break
@@ -72,6 +74,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
                 return "net_stats_last_run"
             case .wxmRewardsTitle:
                 return "net_stats_wxm_rewards_tile"
+			case .wxmRewardsDescriptionMarkdown:
+				return "net_stats_wxm_rewards_description_markdown"
             case .totalSupply:
                 return "net_stats_total_supply"
             case .dailyMinted:

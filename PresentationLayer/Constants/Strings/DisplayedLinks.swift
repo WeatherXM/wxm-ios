@@ -23,7 +23,8 @@ enum DisplayedLinks {
 	case heliumTroubleshooting
 	case heliumRegionFrequencies
 	case shopLink
-	case tokenomics
+	case tokenContractAddress
+	case rewardsContractAddress
 	case shareDevice
 	case shareCells
 	case rewardMechanism
@@ -65,8 +66,10 @@ enum DisplayedLinks {
 				return "https://docs.helium.com/iot/lorawan-region-plans"
 			case .shopLink:
 				return "https://shop.weatherxm.com"
-			case .tokenomics:
-				return "https://docs.weatherxm.com/tokenomics"
+			case .tokenContractAddress:
+				return "https://etherscan.io/token/0xde654f497a563dd7a121c176a125dd2f11f13a83"
+			case .rewardsContractAddress:
+				return "https://arbiscan.io/address/0x3d5aA83d830398ad93fBAF98ee7079278b9DCD49"
 			case .shareDevice:
 				return "https://explorer.weatherxm.com/stations/"
 			case .shareCells:

@@ -4486,6 +4486,17 @@
         }
       }
     },
+    "net_stats_wxm_rewards_description_markdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[View rewards contract on Arbiscan](%@)"
+          }
+        }
+      }
+    },
     "net_stats_wxm_rewards_tile" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4503,7 +4514,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deployed on Testnet - **[Read more here](%@)**"
+            "value" : "[View token contract on Etherscan](%@)"
           }
         }
       }

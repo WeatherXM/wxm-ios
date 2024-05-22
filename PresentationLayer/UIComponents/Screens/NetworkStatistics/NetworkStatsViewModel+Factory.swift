@@ -60,8 +60,13 @@ extension NetworkStatsViewModel {
                                                        info: nil,
                                                        analyticsItemId: nil)
 
+		let rewardsDescription = LocalizableString.NetStats.wxmRewardsDescriptionMarkdown(DisplayedLinks.rewardsContractAddress.linkURL).localized.attributedMarkdown
+
         return getStatistics(from: allocatedPerDay,
                              title: LocalizableString.NetStats.wxmRewardsTitle.localized,
+							 description: rewardsDescription,
+							 showExternalLinkIcon: true,
+							 externalLinkTapAction: {},
                              info: (LocalizableString.NetStats.wxmRewardsTitle.localized, LocalizableString.NetStats.totalAllocatedInfoText.localized),
                              additionalStats: [total, lastDay],
                              analyticsItemId: .allocatedRewards)
@@ -86,10 +91,10 @@ extension NetworkStatsViewModel {
                                                            info: nil,
                                                            analyticsItemId: nil)
 
-        let tokenDescription = LocalizableString.NetStats.wxmTokenDescriptionMarkdown(DisplayedLinks.tokenomics.linkURL).localized.attributedMarkdown
+        let tokenDescription = LocalizableString.NetStats.wxmTokenDescriptionMarkdown(DisplayedLinks.tokenContractAddress.linkURL).localized.attributedMarkdown
         return getStatistics(from: nil,
                              title: LocalizableString.NetStats.wxmTokenTitle.localized,
-                             description: tokenDescription,
+							 description: tokenDescription,
                              showExternalLinkIcon: true,
                              externalLinkTapAction: { Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenomics]) },
                              info: nil,
