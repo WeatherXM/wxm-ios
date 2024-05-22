@@ -44,6 +44,7 @@ extension NetworkStatsView {
         let value: String
         var color: ColorEnum = .text
         var accessory: Accessory?
+		var progress: CGFloat?
         let analyticsItemId: ParameterValue?
     }
 
@@ -183,9 +184,6 @@ extension NetworkStatsView {
                     if let accessory = stats.accessory {
                         Button {
 							accessory.action()
-//                            viewModel.showInfo(title: info.title,
-//                                               description: info.text,
-//                                               analyticsItemId: stats.analyticsItemId)
                         } label: {
 							Text(accessory.fontIcon.rawValue)
                                 .font(.fontAwesome(font: .FAProLight, size: CGFloat(.caption)))
@@ -314,6 +312,12 @@ extension NetworkStatsView {
 
                         Spacer()
                     }
+
+					if let progress = stats.progress {
+						ProgressView(value: progress, total: 1.0)
+							.background(Capsule().foregroundStyle(Color(colorEnum: .top)))
+							.tint(Color(colorEnum: .chartSecondary))
+					}
                 }
                 .WXMCardStyle(backgroundColor: Color(colorEnum: .layer1),
                               insideHorizontalPadding: CGFloat(.mediumSidePadding),
