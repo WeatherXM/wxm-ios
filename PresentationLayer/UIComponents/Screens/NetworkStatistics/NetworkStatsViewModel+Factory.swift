@@ -19,7 +19,7 @@ extension NetworkStatsViewModel {
         let total = NetworkStatsView.AdditionalStats(title: LocalizableString.total(nil).localized,
                                                      value: dataDays.last?.value?.toCompactDecimaFormat ?? "",
                                                      color: .text,
-                                                     info: nil,
+                                                     accessory: nil,
                                                      analyticsItemId: nil)
         
         let count = dataDays.count
@@ -29,7 +29,7 @@ extension NetworkStatsViewModel {
         let preLastDay = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.lastRun.localized,
                                                           value: "+\(value)",
                                                           color: .reward_score_very_high,
-                                                          info: nil,
+                                                          accessory: nil,
                                                           analyticsItemId: nil)
         
         return getStatistics(from: dataDays,
@@ -47,7 +47,7 @@ extension NetworkStatsViewModel {
         let totalValue = allocatedPerDay.last?.value
         let total = NetworkStatsView.AdditionalStats(title: LocalizableString.total(nil).localized,
                                                      value: totalValue?.toCompactDecimaFormat ??  "",
-                                                     info: nil,
+                                                     accessory: nil,
                                                      analyticsItemId: nil)
 
         let count = allocatedPerDay.count
@@ -57,7 +57,7 @@ extension NetworkStatsViewModel {
         let lastDay = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.lastRun.localized,
                                                        value: "+\(value)",
                                                        color: .reward_score_very_high,
-                                                       info: nil,
+                                                       accessory: nil,
                                                        analyticsItemId: nil)
 
 		let rewardsDescription = LocalizableString.NetStats.wxmRewardsDescriptionMarkdown(DisplayedLinks.rewardsContractAddress.linkURL).localized.attributedMarkdown
@@ -79,17 +79,25 @@ extension NetworkStatsViewModel {
         }
 
         let totalSupplyValue = tokens.totalSupply?.toCompactDecimaFormat ?? ""
-        let totalSupply = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.totalSupply.localized,
-                                                           value: totalSupplyValue,
-														   info: (LocalizableString.NetStats.totalSupply.localized, LocalizableString.NetStats.totalSupplyInfoText.localized),
-                                                           analyticsItemId: nil)
-        
-        let dailyMintedValue = tokens.dailyMinted?.toCompactDecimaFormat ?? ""
-        let dailyMinted = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.dailyMinted.localized,
-                                                           value: "+\(dailyMintedValue)",
-                                                           color: .reward_score_very_high,
-                                                           info: (LocalizableString.NetStats.dailyMinted.localized, LocalizableString.NetStats.dailyMintedInfoText.localized),
-                                                           analyticsItemId: nil)
+		let totalSupply = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.totalSupply.localized,
+														   value: totalSupplyValue,
+														   accessory: .init(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.totalSupply.localized,
+						   description: LocalizableString.NetStats.totalSupplyInfoText.localized,
+						   analyticsItemId: nil)
+		},
+														   analyticsItemId: nil)
+
+		let dailyMintedValue = tokens.dailyMinted?.toCompactDecimaFormat ?? ""
+		let dailyMinted = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.dailyMinted.localized,
+														   value: "+\(dailyMintedValue)",
+														   color: .reward_score_very_high,
+														   accessory: .init(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.dailyMinted.localized,
+						   description: LocalizableString.NetStats.dailyMintedInfoText.localized,
+						   analyticsItemId: nil)
+		},
+														   analyticsItemId: nil)
 
         let tokenDescription = LocalizableString.NetStats.wxmTokenDescriptionMarkdown(DisplayedLinks.tokenContractAddress.linkURL).localized.attributedMarkdown
         return getStatistics(from: nil,

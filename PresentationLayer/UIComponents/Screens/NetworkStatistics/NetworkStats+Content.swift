@@ -20,6 +20,11 @@ extension NetworkStatsView {
     
     typealias InfoTuple = (title: String?, text: String)
     typealias XAxisTuple = (leading: String, trailing: String)
+	
+	struct Accessory {
+		let fontIcon: FontIcon
+		let action: VoidCallback
+	}
 
     struct Statistics {
         let title: String
@@ -39,7 +44,7 @@ extension NetworkStatsView {
         let title: String
         let value: String
         var color: ColorEnum = .text
-        var info: InfoTuple?
+        var accessory: Accessory?
         let analyticsItemId: ParameterValue?
     }
 
@@ -289,13 +294,14 @@ extension NetworkStatsView {
 
                         Spacer()
 
-                        if let info = stats.info {
+                        if let accessory = stats.accessory {
                             Button {
-                                viewModel.showInfo(title: info.title,
-                                                   description: info.text,
-                                                   analyticsItemId: stats.analyticsItemId)
+								accessory.action()
+//                                viewModel.showInfo(title: info.title,
+//                                                   description: info.text,
+//                                                   analyticsItemId: stats.analyticsItemId)
                             } label: {
-                                Text(FontIcon.infoCircle.rawValue)
+								Text(accessory.fontIcon.rawValue)
                                     .font(.fontAwesome(font: .FAProLight, size: CGFloat(.caption)))
                                     .foregroundColor(Color(colorEnum: .text))
                             }
