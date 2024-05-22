@@ -25,8 +25,6 @@ public class RemoteConfigManager: ObservableObject {
 	private init() {
 		if disableFirebase {
 			remoteConfigManagerImpl = MockRemoteConfigManager()
-			updateProperties()
-
 		} else {
 			remoteConfigManagerImpl = DefaultRemoteConfigManager()
 		}
