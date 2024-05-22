@@ -4255,6 +4255,28 @@
         }
       }
     },
+    "net_stats_circulating_supply" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Circulating Supply"
+          }
+        }
+      }
+    },
+    "net_stats_circulating_supply_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Circulating supply refers to the number of $WXM that are publicly available and circulating in the market."
+          }
+        }
+      }
+    },
     "net_stats_claimed" : {
       "extractionState" : "manual",
       "localizations" : {

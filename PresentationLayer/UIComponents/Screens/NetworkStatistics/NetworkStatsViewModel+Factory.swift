@@ -50,7 +50,7 @@ extension NetworkStatsViewModel {
 				let allocatedPerDay = fixedTimeSeries(timeSeries: tokens.allocatedPerDay) else {
             return nil
         }
-        let totalValue = allocatedPerDay.last?.value
+		let totalValue = tokens.totalAllocated
         let total = NetworkStatsView.AdditionalStats(title: LocalizableString.total(nil).localized,
                                                      value: totalValue?.toCompactDecimaFormat ??  "",
                                                      accessory: nil,
@@ -64,6 +64,9 @@ extension NetworkStatsViewModel {
                                                        value: "+\(value)",
                                                        color: .reward_score_very_high,
 													   accessory: .init(fontIcon: .externalLink) { [weak self] in
+			guard let txHash = tokens.lastTxHash else {
+				return
+			}
 			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .lastRunHash])
 			#warning("TODO: Navigate to last tx")
 		},
@@ -100,18 +103,18 @@ extension NetworkStatsViewModel {
 						   description: LocalizableString.NetStats.totalSupplyInfoText.localized,
 						   analyticsItemId: .totalSupply)
 		},
-														   analyticsItemId: nil)
+														   analyticsItemId: .totalSupply)
 
-		let dailyMintedValue = tokens.dailyMinted?.toCompactDecimaFormat ?? ""
-		let dailyMinted = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.dailyMinted.localized,
-														   value: "+\(dailyMintedValue)",
+		let circulatingSupplyValue = tokens.circulatingSupply?.toCompactDecimaFormat ?? ""
+		let circulatingSupply = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.circulatingSupply.localized,
+														   value: "+\(circulatingSupplyValue)",
 														   color: .reward_score_very_high,
 														   accessory: .init(fontIcon: .infoCircle) { [weak self] in
-			self?.showInfo(title: LocalizableString.NetStats.dailyMinted.localized,
-						   description: LocalizableString.NetStats.dailyMintedInfoText.localized,
+			self?.showInfo(title: LocalizableString.NetStats.circulatingSupply.localized,
+						   description: LocalizableString.NetStats.circulatingSupplyInfoText.localized,
 						   analyticsItemId: .circulatingSupply)
 		},
-														   analyticsItemId: nil)
+																 analyticsItemId: .circulatingSupply)
 
         let tokenDescription = LocalizableString.NetStats.wxmTokenDescriptionMarkdown(DisplayedLinks.tokenContractAddress.linkURL).localized.attributedMarkdown
         return getStatistics(from: nil,
