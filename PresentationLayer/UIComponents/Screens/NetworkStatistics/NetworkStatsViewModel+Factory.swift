@@ -63,12 +63,14 @@ extension NetworkStatsViewModel {
         let lastDay = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.lastRun.localized,
                                                        value: "+\(value)",
                                                        color: .reward_score_very_high,
-													   accessory: .init(fontIcon: .externalLink) { [weak self] in
+													   accessory: .init(fontIcon: .externalLink) {
 			guard let txHash = tokens.lastTxHash else {
 				return
 			}
 			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .lastRunHash])
-			#warning("TODO: Navigate to last tx")
+
+			let url = DisplayedLinks.arbitrumTx(txHash).linkURL
+			HelperFunctions().openUrl(url)
 		},
                                                        analyticsItemId: nil)
 
