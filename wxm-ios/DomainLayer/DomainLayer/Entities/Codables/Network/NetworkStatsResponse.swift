@@ -45,7 +45,6 @@ public struct NetworkStationsStatsTokens: Codable {
 	public let circulatingSupply: Int?
 	public let totalAllocated: Double?
     public let allocatedPerDay: [NetworkStatsTimeSeries]?
-    public let dailyMinted: Int?
 	public let lastTxHash: String?
     public let averageMonthly: Double?
 
@@ -55,7 +54,6 @@ public struct NetworkStationsStatsTokens: Codable {
 		case totalAllocated = "total_allocated"
 		case lastTxHash = "last_tx_hash"
         case allocatedPerDay = "allocated_per_day"
-        case dailyMinted = "daily_minted"
         case averageMonthly = "avg_monthly"
     }
 }

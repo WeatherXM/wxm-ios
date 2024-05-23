@@ -4310,28 +4310,6 @@
         }
       }
     },
-    "net_stats_daily_minted" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Daily Minted"
-          }
-        }
-      }
-    },
-    "net_stats_daily_minted_info_text" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This number represents the amount of $WXM tokens that were minted yesterday."
-          }
-        }
-      }
-    },
     "net_stats_data_days_info_text" : {
       "extractionState" : "manual",
       "localizations" : {

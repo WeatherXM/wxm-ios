@@ -16,7 +16,6 @@ extension LocalizableString {
         case wxmRewardsTitle
 		case wxmRewardsDescriptionMarkdown(String)
         case totalSupply
-        case dailyMinted
 		case circulatingSupply
         case weatherStations
         case claimed
@@ -28,7 +27,6 @@ extension LocalizableString {
         case dataDaysInfoText
         case totalAllocatedInfoText
         case totalSupplyInfoText
-        case dailyMintedInfoText
 		case circulatingSupplyInfoText
         case totalWeatherStationsInfoTitle
         case claimedWeatherStationsInfoTitle
@@ -80,8 +78,6 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_wxm_rewards_description_markdown"
             case .totalSupply:
                 return "net_stats_total_supply"
-            case .dailyMinted:
-                return "net_stats_daily_minted"
 			case .circulatingSupply:
 				return "net_stats_circulating_supply"
             case .weatherStations:
@@ -104,8 +100,6 @@ extension LocalizableString.NetStats: WXMLocalizable {
                 return "net_stats_total_allocated_info_text"
             case .totalSupplyInfoText:
                 return "net_stats_total_supply_info_text"
-            case .dailyMintedInfoText:
-                return "net_stats_daily_minted_info_text"
 			case .circulatingSupplyInfoText:
 				return "net_stats_circulating_supply_info_text"
             case .totalWeatherStationsInfoTitle:
