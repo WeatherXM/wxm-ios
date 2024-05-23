@@ -36,6 +36,7 @@ struct ManualSerialNumberView: View {
 						Group {
 							if let image = viewModel.image {
 								Image(asset: image)
+									.resizable()
 							}
 
 							if let gifFile = viewModel.gifFile {
