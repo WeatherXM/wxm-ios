@@ -416,7 +416,7 @@ extension NetworkStatsView {
                 HStack {
                     let mainText = Text(cta.description)
                         .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-                        .foregroundColor(Color(colorEnum: .darkestBlue))
+                        .foregroundColor(Color(colorEnum: .primary))
 
                     if let accessory = cta.accessory {
                         Button {
