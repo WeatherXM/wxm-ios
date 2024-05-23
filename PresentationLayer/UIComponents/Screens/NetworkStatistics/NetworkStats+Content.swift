@@ -282,7 +282,7 @@ extension NetworkStatsView {
 
     @ViewBuilder
     func additionalStatsView(statistics: [AdditionalStats]) -> some View {
-		LazyVGrid(columns: [.init(.adaptive(minimum: 80.0)), .init(.adaptive(minimum: 80.0))], spacing: CGFloat(.smallSpacing)) {
+		LazyVGrid(columns: [.init(), .init()], spacing: CGFloat(.smallSpacing)) {
             ForEach(statistics, id: \.title) { stats in
                 VStack(spacing: CGFloat(.smallSpacing)) {
                     HStack {
