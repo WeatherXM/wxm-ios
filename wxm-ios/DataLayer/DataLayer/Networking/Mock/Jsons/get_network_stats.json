@@ -185,10 +185,12 @@
     }
   ],
   "tokens": {
-    "total_supply": 13453077,
-    "daily_minted": 14246,
-    "avg_monthly": 132.595784334684,
-    "allocated_per_day": [
+	  "total_supply" : 100000000,
+	  "daily_minted": 14246,
+	  "avg_monthly": 132.595784334684,
+	  "circulating_supply" : 18855244,
+	  "last_tx_hash" : "0xf949c4945141d8da952194f1830c549753952320b814e8f64845402191d806d1",
+	  "allocated_per_day": [
       {
         "ts": "2023-06-06T00:00:00+00:00",
         "value": 7488436.642877148
