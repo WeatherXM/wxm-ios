@@ -12,11 +12,11 @@ struct AnnouncementCardView: View {
 	let description: String
 	
     var body: some View {
-		VStack(spacing: CGFloat(.minimumSpacing)) {
+		VStack(spacing: CGFloat(.smallSpacing)) {
 			HStack(spacing: CGFloat(.smallSpacing)) {
 				Spacer()
 
-				Text(FontIcon.badgeCheck.rawValue)
+				Text(FontIcon.hexagonCheck.rawValue)
 					.font(.fontAwesome(font: .FAPro, size: CGFloat(.XLTitleFontSize)))
 					.foregroundColor(Color(colorEnum: .white))
 

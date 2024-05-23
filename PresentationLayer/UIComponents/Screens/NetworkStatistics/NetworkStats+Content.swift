@@ -315,8 +315,9 @@ extension NetworkStatsView {
 
 					if let progress = stats.progress {
 						ProgressView(value: progress, total: 1.0)
-							.background(Capsule().foregroundStyle(Color(colorEnum: .top)))
-							.tint(Color(colorEnum: .chartSecondary))
+							.progressViewStyle(ProgressBarStyle(bgColor: Color(colorEnum: .top),
+																progressColor: Color(colorEnum: .chartSecondary)))
+							.frame(height: 4.0)
 					}
                 }
 				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)

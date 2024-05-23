@@ -109,8 +109,7 @@ extension NetworkStatsViewModel {
 
 		let circulatingSupplyValue = tokens.circulatingSupply?.toCompactDecimaFormat ?? ""
 		let circulatingSupply = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.circulatingSupply.localized,
-														   value: "+\(circulatingSupplyValue)",
-														   color: .reward_score_very_high,
+														   value: circulatingSupplyValue,
 														   accessory: .init(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.circulatingSupply.localized,
 						   description: LocalizableString.NetStats.circulatingSupplyInfoText.localized,
