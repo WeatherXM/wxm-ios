@@ -282,7 +282,7 @@ extension NetworkStatsView {
 
     @ViewBuilder
     func additionalStatsView(statistics: [AdditionalStats]) -> some View {
-        LazyVGrid(columns: [.init(.flexible()), .init(.flexible())], spacing: CGFloat(.smallSpacing)) {
+		LazyVGrid(columns: [.init(.adaptive(minimum: 80.0)), .init(.adaptive(minimum: 80.0))], spacing: CGFloat(.smallSpacing)) {
             ForEach(statistics, id: \.title) { stats in
                 VStack(spacing: CGFloat(.smallSpacing)) {
                     HStack {
@@ -319,6 +319,7 @@ extension NetworkStatsView {
 							.tint(Color(colorEnum: .chartSecondary))
 					}
                 }
+				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .WXMCardStyle(backgroundColor: Color(colorEnum: .layer1),
                               insideHorizontalPadding: CGFloat(.mediumSidePadding),
                               insideVerticalPadding: CGFloat(.smallSidePadding),
