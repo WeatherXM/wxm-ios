@@ -114,6 +114,7 @@ extension NetworkStatsViewModel {
 						   description: LocalizableString.NetStats.circulatingSupplyInfoText.localized,
 						   analyticsItemId: .circulatingSupply)
 		},
+																 progress: tokens.supplyProgress,
 																 analyticsItemId: .circulatingSupply)
 
         let tokenDescription = LocalizableString.NetStats.wxmTokenDescriptionMarkdown(DisplayedLinks.tokenContractAddress.linkURL).localized.attributedMarkdown
@@ -123,7 +124,7 @@ extension NetworkStatsViewModel {
                              showExternalLinkIcon: true,
                              externalLinkTapAction: { Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenContract]) },
                              accessory: nil,
-                             additionalStats: [totalSupply, dailyMinted],
+                             additionalStats: [totalSupply, circulatingSupply],
                              analyticsItemId: nil)
     }
 
