@@ -73,7 +73,11 @@ extension NetworkStatsViewModel {
 		},
                                                        analyticsItemId: nil)
 
-		let rewardsDescription = LocalizableString.NetStats.wxmRewardsDescriptionMarkdown(DisplayedLinks.rewardsContractAddress.linkURL).localized.attributedMarkdown
+		var rewardsDescription: AttributedString?
+		if let rewwardsUrl  = response?.contracts?.rewardsUrl {
+			rewardsDescription = LocalizableString.NetStats.wxmRewardsDescriptionMarkdown(rewwardsUrl).localized.attributedMarkdown
+		}
+
 		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.wxmRewardsTitle.localized, 
 						   description: LocalizableString.NetStats.totalAllocatedInfoText.localized,
@@ -117,7 +121,11 @@ extension NetworkStatsViewModel {
 																 progress: tokens.supplyProgress,
 																 analyticsItemId: .circulatingSupply)
 
-        let tokenDescription = LocalizableString.NetStats.wxmTokenDescriptionMarkdown(DisplayedLinks.tokenContractAddress.linkURL).localized.attributedMarkdown
+		var tokenDescription: AttributedString?
+		if let tokenUrl = response?.contracts?.tokenUrl {
+			tokenDescription  = LocalizableString.NetStats.wxmTokenDescriptionMarkdown(tokenUrl).localized.attributedMarkdown
+		}
+
         return getStatistics(from: nil,
                              title: LocalizableString.NetStats.wxmTokenTitle.localized,
 							 description: tokenDescription,

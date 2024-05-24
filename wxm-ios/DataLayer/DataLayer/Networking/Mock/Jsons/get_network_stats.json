@@ -184,6 +184,10 @@
       "value": 742462
     }
   ],
+  "contracts": {
+	  "token_url": "https://etherscan.io/token/0xde654f497a563dd7a121c176a125dd2f11f13a83",
+	  "rewards_url": "https://arbiscan.io/address/0x3d5aA83d830398ad93fBAF98ee7079278b9DCD49"
+  },
   "tokens": {
 	  "total_supply" : 100000000,
 	  "daily_minted": 14246,

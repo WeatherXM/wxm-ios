@@ -62,11 +62,11 @@ public struct NetworkStationsStatsTokens: Codable {
 
 public struct NetworkStatsContracts: Codable {
 	public let tokenUrl: String?
-	public let rewardUrl: String?
+	public let rewardsUrl: String?
 
 	enum CodingKeys: String, CodingKey {
 		case tokenUrl = "token_url"
-		case rewardUrl = "reward_url"
+		case rewardsUrl = "rewards_url"
 	}
 }
 
