@@ -9,9 +9,9 @@ import Foundation
 import DomainLayer
 
 extension NetworkStationsStatsTokens {
-	var supplyProgress: CGFloat {
+	var supplyProgress: CGFloat? {
 		guard let totalSupply, let circulatingSupply else {
-			return 0.0
+			return nil
 		}
 
 		return CGFloat(circulatingSupply) / CGFloat(totalSupply)

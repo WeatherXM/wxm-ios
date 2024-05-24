@@ -17,7 +17,7 @@ extension NetworkStatsViewModel {
             return nil
         }
         let total = NetworkStatsView.AdditionalStats(title: LocalizableString.total(nil).localized,
-                                                     value: dataDays.last?.value?.toCompactDecimaFormat ?? "",
+                                                     value: dataDays.last?.value?.toCompactDecimaFormat ?? "?",
                                                      color: .text,
                                                      accessory: nil,
                                                      analyticsItemId: nil)
@@ -25,7 +25,7 @@ extension NetworkStatsViewModel {
         let count = dataDays.count
         let lastDataDayValue = dataDays.last?.value ?? 0.0
         let preLastDataDayValue = dataDays[safe: count - 2]?.value ?? 0.0
-        let value = (lastDataDayValue - preLastDataDayValue).toCompactDecimaFormat ?? ""
+        let value = (lastDataDayValue - preLastDataDayValue).toCompactDecimaFormat ?? "?"
         let preLastDay = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.lastRun.localized,
                                                           value: "+\(value)",
                                                           color: .reward_score_very_high,
@@ -52,14 +52,14 @@ extension NetworkStatsViewModel {
         }
 		let totalValue = tokens.totalAllocated
         let total = NetworkStatsView.AdditionalStats(title: LocalizableString.total(nil).localized,
-                                                     value: totalValue?.toCompactDecimaFormat ??  "",
+                                                     value: totalValue?.toCompactDecimaFormat ??  "?",
                                                      accessory: nil,
                                                      analyticsItemId: nil)
 
         let count = allocatedPerDay.count
         let lastTokenValue = allocatedPerDay.last?.value ?? 0.0
         let preLastTokenValue = allocatedPerDay[safe: count - 2]?.value ?? 0.0
-        let value = (lastTokenValue - preLastTokenValue).toCompactDecimaFormat ?? ""
+        let value = (lastTokenValue - preLastTokenValue).toCompactDecimaFormat ?? "?"
         let lastDay = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.lastRun.localized,
                                                        value: "+\(value)",
                                                        color: .reward_score_very_high,
@@ -95,12 +95,12 @@ extension NetworkStatsViewModel {
 
     }
 
-    func getTokenStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
-        guard let tokens = response?.tokens else {
-            return nil
-        }
+	func getTokenStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
+		guard let tokens = response?.tokens else {
+			return nil
+		}
 
-        let totalSupplyValue = tokens.totalSupply?.toCompactDecimaFormat ?? ""
+		let totalSupplyValue = tokens.totalSupply?.toCompactDecimaFormat ?? "?"
 		let totalSupply = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.totalSupply.localized,
 														   value: totalSupplyValue,
 														   accessory: .init(fontIcon: .infoCircle) { [weak self] in
@@ -110,10 +110,10 @@ extension NetworkStatsViewModel {
 		},
 														   analyticsItemId: .totalSupply)
 
-		let circulatingSupplyValue = tokens.circulatingSupply?.toCompactDecimaFormat ?? ""
+		let circulatingSupplyValue = tokens.circulatingSupply?.toCompactDecimaFormat ?? "?"
 		let circulatingSupply = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.circulatingSupply.localized,
-														   value: circulatingSupplyValue,
-														   accessory: .init(fontIcon: .infoCircle) { [weak self] in
+																 value: circulatingSupplyValue,
+																 accessory: .init(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.circulatingSupply.localized,
 						   description: LocalizableString.NetStats.circulatingSupplyInfoText.localized,
 						   analyticsItemId: .circulatingSupply)
@@ -126,15 +126,15 @@ extension NetworkStatsViewModel {
 			tokenDescription  = LocalizableString.NetStats.wxmTokenDescriptionMarkdown(tokenUrl).localized.attributedMarkdown
 		}
 
-        return getStatistics(from: nil,
-                             title: LocalizableString.NetStats.wxmTokenTitle.localized,
+		return getStatistics(from: nil,
+							 title: LocalizableString.NetStats.wxmTokenTitle.localized,
 							 description: tokenDescription,
-                             showExternalLinkIcon: true,
-                             externalLinkTapAction: { Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenContract]) },
-                             accessory: nil,
-                             additionalStats: [totalSupply, circulatingSupply],
-                             analyticsItemId: nil)
-    }
+							 showExternalLinkIcon: true,
+							 externalLinkTapAction: { Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenContract]) },
+							 accessory: nil,
+							 additionalStats: [totalSupply, circulatingSupply],
+							 analyticsItemId: nil)
+	}
 
     func getStationStats(response: NetworkStatsResponse?) -> [NetworkStatsView.StationStatistics]? {
 		let total = (LocalizableString.total(nil).localized,
