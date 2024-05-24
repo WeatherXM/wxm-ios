@@ -260,6 +260,7 @@ private struct ContentView: View {
 				Spacer()
 			}
 		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint))
 	}
 }

@@ -37,6 +37,7 @@ struct ForecastFieldCardView: View {
 
 			Spacer()
 		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		.WXMCardStyle()
     }
 }

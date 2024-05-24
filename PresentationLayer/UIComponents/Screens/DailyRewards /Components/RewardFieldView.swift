@@ -57,6 +57,7 @@ struct RewardFieldView: View {
 
 			}
 		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		.WXMCardStyle()
 		.indication(show: .constant(score.showIndication),
 					borderColor: Color(colorEnum: score.color),
