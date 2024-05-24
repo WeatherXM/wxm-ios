@@ -64,13 +64,12 @@ extension NetworkStatsViewModel {
                                                        value: "+\(value)",
                                                        color: .reward_score_very_high,
 													   accessory: .init(fontIcon: .externalLink) {
-			guard let txHash = tokens.lastTxHash else {
+			guard let txHashUrl = tokens.lastTxHashUrl else {
 				return
 			}
 			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .lastRunHash])
 
-			let url = DisplayedLinks.arbitrumTx(txHash).linkURL
-			HelperFunctions().openUrl(url)
+			HelperFunctions().openUrl(txHashUrl)
 		},
                                                        analyticsItemId: nil)
 

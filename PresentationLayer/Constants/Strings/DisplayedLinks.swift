@@ -16,7 +16,6 @@ enum DisplayedLinks {
 	case weatherXMWebsiteLink
 	case readMoreAboutWalletsLink
 	case arbitrumAddressWebsiteFormat
-	case arbitrumTx(String)
 	case documentationLink
 	case feedbackForm
 	case appSurveyForm
@@ -53,8 +52,6 @@ enum DisplayedLinks {
 				return "https://docs.weatherxm.com/wallet/add-edit-wallet-address#how-to-create-wallet-on-metamask"
 			case .arbitrumAddressWebsiteFormat:
 				return "https://arbiscan.io/address/%@#tokentxns"
-			case .arbitrumTx(let txHash):
-				return "https://arbiscan.io/tx/\(txHash)"
 			case .documentationLink:
 				return "https://docs.weatherxm.com/"
 			case .feedbackForm:
