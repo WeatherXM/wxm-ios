@@ -65,7 +65,7 @@ struct ForecastDetailsView: View {
 		}.onAppear {
 			navigationObject.navigationBarColor = Color(.newBG)
 
-			Logger.shared.trackScreen(.forecastDetails)
+			WXMAnalytics.shared.trackScreen(.forecastDetails)
 		}
 	}
 }

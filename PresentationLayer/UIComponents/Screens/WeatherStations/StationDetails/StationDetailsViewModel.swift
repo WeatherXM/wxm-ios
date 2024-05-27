@@ -76,7 +76,7 @@ class StationDetailsViewModel: ObservableObject {
     }
 
     func settingsButtonTapped() {
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .deviceDetailsSettings])
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .deviceDetailsSettings])
 
         Router.shared.navigateTo(.deviceInfo(DeviceInfoViewModel(device: device!, followState: followState)))
     }
@@ -87,7 +87,7 @@ class StationDetailsViewModel: ObservableObject {
             return
         }
 
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentName: .stationDetailsChip,
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentName: .stationDetailsChip,
 															  .contentType: .region,
 															  .itemId: .stationRegion])
 
@@ -104,7 +104,7 @@ class StationDetailsViewModel: ObservableObject {
 			parameters += [.itemId: itemId]
 		}
 
-		Logger.shared.trackEvent(.selectContent, parameters: parameters)
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: parameters)
 
 		navigateToAlerts()
 	}
@@ -117,7 +117,7 @@ class StationDetailsViewModel: ObservableObject {
 	}
 
     func handleShareButtonTap() {
-        Logger.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsShare])
+        WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsShare])
 
 		showShareDialog = true
     }
@@ -132,11 +132,11 @@ class StationDetailsViewModel: ObservableObject {
             case .owned:
                 return
             case .followed:
-                Logger.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsFollow,
+                WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsFollow,
                                                                    .contentType: .unfollow])
                 performUnFollow()
             case .none:
-                Logger.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsFollow,
+                WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsFollow,
                                                                    .contentType: .follow])
                 performFollow()
         }

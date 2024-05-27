@@ -18,6 +18,9 @@ class IntentHandler: INExtension, StationWidgetConfigurationIntentHandling {
 		useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(WidgetUseCase.self)!
 		super.init()
 		FirebaseManager.shared.launch()
+		if let mixpanelToken: String = Bundle.main.getConfiguration(for: .mixpanelToken) {
+			WXMAnalytics.shared.launch(with: [.firebase, .mixpanel(mixpanelToken)])
+		}
 	}
 
 	func provideSelectedStationOptionsCollection(for intent: StationWidgetConfigurationIntent) async throws -> INObjectCollection<Station> {

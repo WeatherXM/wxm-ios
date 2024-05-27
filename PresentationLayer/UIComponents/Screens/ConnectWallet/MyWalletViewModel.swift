@@ -48,7 +48,7 @@ class MyWalletViewModel: ObservableObject {
     }
 
     func handleEditButtonTap() {
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .editWallet,
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .editWallet,
                                                               .itemId: .custom(wallet?.address ?? "")])
 
         accountConfirmationViewModel = AccountConfirmationViewModel(title: LocalizableString.confirmPasswordTitle.localized,
@@ -77,12 +77,12 @@ class MyWalletViewModel: ObservableObject {
         let url = String(format: DisplayedLinks.networkAddressWebsiteFormat.linkURL, input)
         HelperFunctions().openUrl(url)
 
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .walletTransactions,
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .walletTransactions,
                                                               .itemId: .custom(wallet?.address ?? "")])
     }
 
     func handleQRButtonTap() {
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .scanQRWallet])
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .scanQRWallet])
         
         showQrScanner = true
     }
@@ -148,7 +148,7 @@ private extension MyWalletViewModel {
                     LoaderView.shared.dismiss {
                         if let error = response.error {
                             if let message = error.backendError?.message.attributedMarkdown {
-                                Logger.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
+                                WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
                                                                                     .itemId: .custom(error.backendError?.code ?? "")])
                                 Toast.shared.show(text: message)
                             }

@@ -109,4 +109,10 @@ public enum AssetEnum: String {
     case radioButtonActive = "radio_button_active_icon"
 	case wxmBlackLogo = "wxm_black_logo"
 	case announcementBackground = "announcement_background"
+	case imageM5 = "image_m5"
+	case imageD1 = "image_d1"
+	case imagePulse = "image_pulse"
+	case imageHelium = "image_helium"
+	case imageStationQR = "image_station_qr"
+	case imageD1Claim = "image_d1_claim"
 }

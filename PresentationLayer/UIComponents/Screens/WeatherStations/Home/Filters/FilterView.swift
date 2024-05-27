@@ -42,7 +42,7 @@ struct FilterView: View {
                 .padding(CGFloat(.defaultSidePadding))
         }
         .onAppear {
-            Logger.shared.trackScreen(.sortFilter)
+            WXMAnalytics.shared.trackScreen(.sortFilter)
         }
     }
 }
@@ -63,7 +63,7 @@ private extension FilterView {
             PercentageGridLayoutView(alignments: [.center, .center], firstColumnPercentage: 0.5) {
                 Group {
                     Button {
-                        Logger.shared.trackEvent(.userAction,
+                        WXMAnalytics.shared.trackEvent(.userAction,
                                                  parameters: [.actionName: .filtersCancel])
                         show = false
                     } label: {

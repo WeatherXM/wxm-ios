@@ -48,13 +48,14 @@ struct RebootStationView: View {
             .padding(.horizontal, CGFloat(.defaultSidePadding))
         }
         .onAppear {
-            navigationObject.willDismissAction = { [weak viewModel] in
+            navigationObject.shouldDismissAction = { [weak viewModel] in
                 viewModel?.navigationBackButtonTapped()
+				return true
             }
             viewModel.mainVM = mainVM
             navigationObject.title = LocalizableString.deviceInfoStationReboot.localized
 
-            Logger.shared.trackScreen(.rebootStation,
+            WXMAnalytics.shared.trackScreen(.rebootStation,
                                       parameters: [.itemId: .custom(viewModel.device.id ?? "")])
         }
         .onChange(of: viewModel.dismissToggle) { _ in

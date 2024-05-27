@@ -74,7 +74,7 @@ struct DeviceInfoView: View {
         .onAppear {
             navigationObject.title = LocalizableString.deviceInfoTitle.localized
             navigationObject.navigationBarColor = Color(colorEnum: .bg)
-            Logger.shared.trackScreen(.stationSettings)
+            WXMAnalytics.shared.trackScreen(.stationSettings)
         }
         .fullScreenCover(isPresented: $viewModel.showRebootStation) {
             NavigationContainerView {

@@ -68,7 +68,7 @@ public final class ExplorerViewModel: ObservableObject {
     }
 
     func userLocationButtonTapped() {
-        Logger.shared.trackEvent(.userAction, parameters: [.actionName: .myLocation])
+        WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .myLocation])
         handleUserLocationTap()
     }
 
@@ -96,7 +96,7 @@ public final class ExplorerViewModel: ObservableObject {
 private extension ExplorerViewModel {
 
     func handleUserLocationTap() {
-        Logger.shared.trackEvent(.userAction, parameters: [.actionName: .myLocation])
+        WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .myLocation])
         Task {
 			await snapToUserLocation()
         }

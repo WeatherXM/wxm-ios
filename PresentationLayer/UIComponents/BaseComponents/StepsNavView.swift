@@ -11,6 +11,7 @@ struct StepsNavView: View {
     @State var isMovingForward = false
     @State var currentStep = 0
 
+	@EnvironmentObject var navigationObject: NavigationObject
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     @State private var id = UUID()
@@ -48,14 +49,17 @@ struct StepsNavView: View {
     }
 
     var body: some View {
-        GeometryReader { _ in
-			VStack(spacing: CGFloat(.minimumSpacing)) {
-                customNavbar
+        ZStack {
+			Color(colorEnum: .newBG)
+				.ignoresSafeArea()
 
-                StepsHeaderView(steps: steps,
-                                currentStep: currentStep)
-				.iPadMaxWidth()
-                    .animation(.easeInOut(duration: 0.2), value: currentStep)
+			VStack(spacing: CGFloat(.minimumSpacing)) {
+				ProgressView(value: CGFloat(currentStep + 1),
+							 total: CGFloat(steps.count))
+					.tint(Color(colorEnum: .primary))
+					.padding(.horizontal, CGFloat(.mediumSidePadding))
+					.animation(.easeOut(duration: 0.3), value: currentStep)
+
 
                 currentView
 					.iPadMaxWidth()
@@ -65,13 +69,12 @@ struct StepsNavView: View {
                     ))
                     .animation(.easeInOut(duration: 0.2), value: currentStep)
             }
+			.padding(.top, CGFloat(.mediumToLargeSidePadding))
         }
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
-        .background(
-            Color(colorEnum: .bg).edgesIgnoringSafeArea(.all)
-        )
         .ignoresSafeArea(.keyboard)
+		.onAppear {
+			navigationObject.title = title
+		}
     }
 
     var customNavbar: some View {
@@ -246,7 +249,9 @@ struct Previews_StepsNavView_Previews: PreviewProvider {
             AnyView(Text(LocalizableString.ClaimDevice.verifyTitle.localized))
         }
 
-        StepsNavView(title: LocalizableString.ClaimDevice.ws1000DeviceTitle.localized,
-                     steps: [step, step1, step2])
+		NavigationContainerView {
+			StepsNavView(title: LocalizableString.ClaimDevice.ws1000DeviceTitle.localized,
+						 steps: [step, step1, step2])
+		}
     }
 }

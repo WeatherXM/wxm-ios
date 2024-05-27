@@ -8,6 +8,8 @@
 	<array>
 		<string>StationWidgetConfigurationIntent</string>
 	</array>
+	<key>MixpanelToken</key>
+	<string>$(MixpanelToken)</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>

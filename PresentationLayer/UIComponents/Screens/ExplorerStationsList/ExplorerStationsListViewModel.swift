@@ -82,12 +82,12 @@ class ExplorerStationsListViewModel: ObservableObject {
 
         let followState = userDeviceFolowStates.first(where: { $0.deviceId == deviceId})
         if followState?.relation == .followed {
-            Logger.shared.trackEvent(.userAction, parameters: [.actionName: .explorerDevicesListFollow,
+            WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerDevicesListFollow,
                                                                .contentType: .unfollow])
 
             performUnfollow(device: device)
         } else {
-            Logger.shared.trackEvent(.userAction, parameters: [.actionName: .explorerDevicesListFollow,
+            WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerDevicesListFollow,
                                                                .contentType: .follow])
 
             performFollow(device: device)
@@ -196,7 +196,7 @@ class ExplorerStationsListViewModel: ObservableObject {
 		self.info = info
 		showInfo = true
 
-		Logger.shared.trackEvent(.selectContent, parameters: [.itemId: .infoDailyRewards])
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.itemId: .infoDailyRewards])
 	}
 }
 

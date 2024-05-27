@@ -8,6 +8,7 @@
 import Foundation
 import DomainLayer
 import CoreLocation
+import Toolkit
 
 protocol HashableViewModel: AnyObject, Hashable {}
 
@@ -176,5 +177,47 @@ enum ViewModelsFactory {
 
 	static func getForecastDetailsViewModel(configuration: ForecastDetailsViewModel.Configuration) -> ForecastDetailsViewModel {
 		ForecastDetailsViewModel(configuration: configuration)
+	}
+
+	static func getClaimStationSelectionViewModel() -> ClaimStationSelectionViewModel {
+		ClaimStationSelectionViewModel()
+	}
+
+	static func getClaimStationContainerViewModel(type: ClaimStationType) -> ClaimDeviceContainerViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		return ClaimDeviceContainerViewModel(type: type, useCase: useCase)
+	}
+
+	static func getClaimStationBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeginViewModel {
+		ClaimDeviceBeginViewModel(completion: completion)
+	}
+
+	static func getClaimStationM5BeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceM5BeginViewModel {
+		ClaimDeviceM5BeginViewModel(completion: completion)
+	}
+
+	static func getClaimStationSNViewModel(completion: @escaping GenericCallback<ClaimDeviceSerialNumberViewModel.SerialNumber?>) -> ClaimDeviceSerialNumberViewModel {
+		ClaimDeviceSerialNumberViewModel(completion: completion)
+	}
+
+	static func getClaimStationM5SNViewModel(completion: @escaping GenericCallback<ClaimDeviceSerialNumberViewModel.SerialNumber?>) -> ClaimDeviceSerialNumberM5ViewModel {
+		ClaimDeviceSerialNumberM5ViewModel(completion: completion)
+	}
+
+	static func getManualSNViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ManualSerialNumberViewModel {
+		ManualSerialNumberViewModel(completion: completion)
+	}
+
+	static func getManualSNM5ViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ManualSerialNumberM5ViewModel {
+		ManualSerialNumberM5ViewModel(completion: completion)
+	}
+
+	static func getLocationMapViewModel(initialCoordinate: CLLocationCoordinate2D? = nil) -> SelectLocationMapViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
+		return SelectLocationMapViewModel(useCase: useCase, initialCoordinate: initialCoordinate)
+	}
+
+	static func getClaimDeviceLocationViewModel(completion: @escaping GenericCallback<DeviceLocation>) -> ClaimDeviceLocationViewModel {
+		ClaimDeviceLocationViewModel(completion: completion)
 	}
 }

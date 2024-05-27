@@ -33,7 +33,7 @@ class HistoryContainerViewModel: ObservableObject {
         guard let deviceId = device.id else {
             return
         }
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .historyDay,
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .historyDay,
                                                               .itemId: .custom(deviceId),
                                                               .date: .custom(date.getFormattedDate(format: .onlyDate))])
 

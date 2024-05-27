@@ -57,7 +57,7 @@ struct ChangeFrequencyView: View {
             .padding(.horizontal, CGFloat(.defaultSidePadding))
             .onAppear {
                 navigationObject.title = LocalizableString.deviceInfoButtonChangeFrequency.localized
-                Logger.shared.trackScreen(.changeFrequency,
+                WXMAnalytics.shared.trackScreen(.changeFrequency,
                                           parameters: [.itemId: .custom(viewModel.device.id ?? "")])
             }
             .onChange(of: viewModel.dismissToggle) { _ in

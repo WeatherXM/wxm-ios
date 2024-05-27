@@ -209,7 +209,7 @@ extension NetworkStatsViewModel {
             if let url = URL(string: DisplayedLinks.contactLink.linkURL) {
                 UIApplication.shared.open(url)
             }
-            Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .openManufacturerContact])
+            WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .openManufacturerContact])
         })
         
         return manufacturerCTA

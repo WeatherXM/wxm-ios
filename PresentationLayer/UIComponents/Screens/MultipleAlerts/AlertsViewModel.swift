@@ -70,7 +70,7 @@ private extension AlertsViewModel {
     }
 
     func handleContactSupportTap() {
-        Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
                                                               .source: .stationOffline])
 
 		HelperFunctions().openContactSupport(successFailureEnum: .stationOffline,
@@ -102,7 +102,7 @@ private extension AlertsViewModel {
 	}
 
     func trackPromptEvent(action: ParameterValue) {
-        Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
+        WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
                                                        .promptType: .warnPromptType,
                                                        .action: action])
     }

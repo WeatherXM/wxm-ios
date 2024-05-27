@@ -37,7 +37,7 @@ struct HelperFunctions {
 		}
 
 		if trackSelectContentEvent {
-			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
+			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
 																  .source: .errorSource])
 		}
 
@@ -50,7 +50,7 @@ struct HelperFunctions {
 										 addtionalInfo: String? = nil,
 										 trackSelectContentEvent: Bool = true) {
 		if trackSelectContentEvent {
-			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
+			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
 																  .source: .errorSource])
 		}
 		

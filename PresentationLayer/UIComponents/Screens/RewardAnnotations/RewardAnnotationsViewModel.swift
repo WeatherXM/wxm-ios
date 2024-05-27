@@ -29,7 +29,7 @@ class RewardAnnotationsViewModel: ObservableObject {
 	}
 
 	func handleButtonTap(for error: RewardAnnotation) {
-		Logger.shared.trackEvent(.userAction, parameters: [.actionName: .rewardIssuesError,
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .rewardIssuesError,
 														   .itemId: .custom(error.group?.rawValue ?? "")])
 		
 		error.handleRewardAnnotationTap(with: device, followState: followState)

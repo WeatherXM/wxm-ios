@@ -611,6 +611,28 @@
         }
       }
     },
+    "claim_device_camera_permission_denied_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please enable it in your device settings."
+          }
+        }
+      }
+    },
+    "claim_device_camera_permission_denied_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Camera permission is required."
+          }
+        }
+      }
+    },
     "claim_device_cancel_claim_button" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -618,6 +640,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancel Claiming"
+          }
+        }
+      }
+    },
+    "claim_device_claim_d1_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim D1 | WiFi"
+          }
+        }
+      }
+    },
+    "claim_device_claim_m5_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim M5 | WiFi"
+          }
+        }
+      }
+    },
+    "claim_device_claim_new_device" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim new device"
           }
         }
       }
@@ -677,6 +732,17 @@
         }
       }
     },
+    "claim_device_confirm_and_proceed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm and Proceed"
+          }
+        }
+      }
+    },
     "claim_device_confirm_location_confirm_and_claim" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -728,6 +794,116 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location of Installation"
+          }
+        }
+      }
+    },
+    "claim_device_connect_begin_station_claiming" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begin Station Claiming"
+          }
+        }
+      }
+    },
+    "claim_device_connect_d1_bullet_four" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your WiFi network from the list and enter the WiFi password to connect your gateway."
+          }
+        }
+      }
+    },
+    "claim_device_connect_d1_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn on the WG1200 gateway and swipe right to the settings screen. Select **“Configure WiFi”** and then press **“Continue”** on the screen."
+          }
+        }
+      }
+    },
+    "claim_device_connect_d1_bullet_three" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open your phone’s browser, and navigate to **10.10.0.1.**"
+          }
+        }
+      }
+    },
+    "claim_device_connect_d1_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect your phone to the **“WXM_WG1200”** WiFi network."
+          }
+        }
+      }
+    },
+    "claim_device_connect_gateway_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect the gateway to your WiFi"
+          }
+        }
+      }
+    },
+    "claim_device_connect_m5_bullet_four" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your WiFi network from the list and enter the WiFi password to connect your gateway."
+          }
+        }
+      }
+    },
+    "claim_device_connect_m5_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn on the M5 gateway and swipe right to the settings screen. Select **“Configure WiFi”** and then press **“Continue”** on the screen."
+          }
+        }
+      }
+    },
+    "claim_device_connect_m5_bullet_three" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open your phone’s browser, and navigate to **10.10.0.1.**"
+          }
+        }
+      }
+    },
+    "claim_device_connect_m5_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect your phone to the **“WXM M5 XXX”** WiFi network."
           }
         }
       }
@@ -853,6 +1029,17 @@
         }
       }
     },
+    "claim_device_d1_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D1 | WiFi"
+          }
+        }
+      }
+    },
     "claim_device_dev_EUI_field_hint" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -882,6 +1069,105 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_claiming_key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your gateway’s Claiming Key"
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_details_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the gateway’s **Claiming Key** and **Serial Number.** They are located under the QR code."
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_details_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter gateway details"
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_proceed_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proceed to Next Step"
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_serial_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your gateway’s Serial Number"
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_serial_number_caption" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If your gateway is running on an older firmware version, screens may differ."
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_serial_number_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the gateway’s **Serial Number** that appears in the screen, as seen below."
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_serial_number_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter gateway Serial Number"
+          }
+        }
+      }
+    },
+    "claim_device_enter_serial_number_manually" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter S/N Manually"
           }
         }
       }
@@ -1040,6 +1326,17 @@
         }
       }
     },
+    "claim_device_helium_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helium"
+          }
+        }
+      }
+    },
     "claim_device_i_ve_connect_my_m5_button" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1084,6 +1381,17 @@
         }
       }
     },
+    "claim_device_invalid_qr_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The QR Code you scanned is invalid. Please try again with a valid QR Code or enter manually."
+          }
+        }
+      }
+    },
     "claim_device_key_field_hint" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1117,6 +1425,17 @@
         }
       }
     },
+    "claim_device_m5_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M5 | WiFi"
+          }
+        }
+      }
+    },
     "claim_device_manually_button" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1135,6 +1454,83 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Could not find such a device."
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_d1_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The WG1200 gateway reboots automatically. After it has rebooted, navigate to the **“Claim Device”** menu, in the settings."
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_d1_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan the gateway’s **QR Code** that appears in the screen, as seen below."
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_m5_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The M5 gateway should reboot automatically. After it has rebooted, navigate to the bottom of the settings screen to reveal the **QR Code** and **Serial Number**."
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_m5_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan the gateway’s **QR Code** that appears in the screen, as seen below."
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_m5_caption" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If your gateway is running on an older firmware version, you may have to enter the **Serial Number Manually.**"
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prepare gateway for claiming"
+          }
+        }
+      }
+    },
+    "claim_device_pulse_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulse | 4G"
           }
         }
       }
@@ -1227,6 +1623,17 @@
         }
       }
     },
+    "claim_device_scan_qr_code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan QR Code"
+          }
+        }
+      }
+    },
     "claim_device_scanning_for_wxm_devices" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1266,7 +1673,51 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select your device type"
+            "value" : "Select your station type"
+          }
+        }
+      }
+    },
+    "claim_device_selection_navigation_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim a Weather Station"
+          }
+        }
+      }
+    },
+    "claim_device_station_loading_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sit tight, we're pairing your account with your WeatherXM gateway! **This process could take up to 2 minutes!**"
+          }
+        }
+      }
+    },
+    "claim_device_station_location_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You need to confirm the station's exact deployment location."
+          }
+        }
+      }
+    },
+    "claim_device_station_location_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm station location"
           }
         }
       }
@@ -4056,6 +4507,12 @@
           }
         }
       }
+    },
+    "Key" : {
+      "extractionState" : "manual"
+    },
+    "Key 1" : {
+      "extractionState" : "manual"
     },
     "last_name" : {
       "extractionState" : "manual",

@@ -23,7 +23,7 @@ class MainScreenViewModel: ObservableObject {
         }
 
         didSet {
-            Logger.shared.setUserProperty(key: .theme, value: theme.analyticsValue)
+            WXMAnalytics.shared.setUserProperty(key: .theme, value: theme.analyticsValue)
         }
 	}
 	/// The active theme of the device. The value will be only light or dark.
@@ -268,7 +268,7 @@ class MainScreenViewModel: ObservableObject {
         guard isUserLoggedIn else {
             return
         }
-        Logger.shared.setUserId(nil)
+        WXMAnalytics.shared.setUserId(nil)
     }
 
 	// MARK: - App Update

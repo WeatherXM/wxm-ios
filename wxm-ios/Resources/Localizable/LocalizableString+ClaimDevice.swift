@@ -8,8 +8,49 @@
 import Foundation
 
 extension LocalizableString {
-    enum ClaimDevice {
-        case selectType
+	enum ClaimDevice {
+		case selectionNavigationTitle
+		case selectType
+		case m5Title
+		case d1Title
+		case heliumTitle
+		case pulseTitle
+		case claimNewDevice
+		case claimD1Title
+		case claimM5Title
+		case connectGatewayTitle
+		case connectD1BulletOne
+		case connectD1BulletTwo
+		case connectD1BulletThree
+		case connectD1BulletFour
+		case connectM5BulletOne
+		case connectM5BulletTwo
+		case connectM5BulletThree
+		case connectM5BulletFour
+		case beginStationClaiming
+		case prepareGatewayTitle
+		case prepareGatewayM5BulletOne
+		case prepareGatewayM5BulletTwo
+		case prepareGatewayM5Caption
+		case prepareGatewayD1BulletOne
+		case prepareGatewayD1BulletTwo
+		case scanQRCode
+		case enterSerialNumberManually
+		case cammeraPermissionDeniedTitle
+		case cammeraPermissionDeniedText
+		case invalidQRMessage
+		case enterGatewayDetailsTitle
+		case enterGatewayDetailsDescription
+		case enterGatewayClaimingKey
+		case enterGatewaySerialNumber
+		case enterGatewaySerialNumberTitle
+		case enterGatewaySerialNumberDescription
+		case enterGatewaySerialNumberCaption
+		case enterGatewayProceedButtonTitle
+		case confirmAndProceed
+		case stationLocationTitle
+		case stationLocationSubtitle
+		case claimStationLoadingDescription
         case typeWS1000Title
         case typeWS1000Subtitle
         case typeWS2000Title
@@ -96,31 +137,113 @@ extension LocalizableString {
 }
 
 extension LocalizableString.ClaimDevice: WXMLocalizable {
-    var localized: String {
-        var localized = NSLocalizedString(self.key, comment: "")
-        switch self {
-            case .deviceId(let text),
-                    .information(let text),
-                    .claimingText(let text),
-                    .successText(let text),
-                    .connectionBullet1(let text),
-                    .connectionBullet2(let text):
-                localized = String(format: localized, text)
-            case .failedText(let text, let text1),
-                    .connectionFailedText(let text, let text1),
-                    .connectionFailedMarkDownText(let text, let text1):
-                localized = String(format: localized, text, text1)
-            default:
-                break
-        }
-
-        return localized
-    }
-
-    var key: String {
-        switch self {
-            case .selectType:
-                return "claim_device_select_type"
+	var localized: String {
+		var localized = NSLocalizedString(self.key, comment: "")
+		switch self {
+			case .deviceId(let text),
+					.information(let text),
+					.claimingText(let text),
+					.successText(let text),
+					.connectionBullet1(let text),
+					.connectionBullet2(let text):
+				localized = String(format: localized, text)
+			case .failedText(let text, let text1),
+					.connectionFailedText(let text, let text1),
+					.connectionFailedMarkDownText(let text, let text1):
+				localized = String(format: localized, text, text1)
+			default:
+				break
+		}
+		
+		return localized
+	}
+	
+	var key: String {
+		switch self {
+			case .selectionNavigationTitle:
+				return "claim_device_selection_navigation_title"
+			case .selectType:
+				return "claim_device_select_type"
+			case .m5Title:
+				return "claim_device_m5_title"
+			case .d1Title:
+				return "claim_device_d1_title"
+			case .heliumTitle:
+				return "claim_device_helium_title"
+			case .pulseTitle:
+				return "claim_device_pulse_title"
+			case .claimNewDevice:
+				return "claim_device_claim_new_device"
+			case .claimM5Title:
+				return "claim_device_claim_m5_title"
+			case .claimD1Title:
+				return "claim_device_claim_d1_title"
+			case .connectGatewayTitle:
+				return "claim_device_connect_gateway_title"
+			case .connectD1BulletOne:
+				return "claim_device_connect_d1_bullet_one"
+			case .connectD1BulletTwo:
+				return "claim_device_connect_d1_bullet_two"
+			case .connectD1BulletThree:
+				return "claim_device_connect_d1_bullet_three"
+			case .connectD1BulletFour:
+				return "claim_device_connect_d1_bullet_four"
+			case .connectM5BulletOne:
+				return "claim_device_connect_m5_bullet_one"
+			case .connectM5BulletTwo:
+				return "claim_device_connect_m5_bullet_two"
+			case .connectM5BulletThree:
+				return "claim_device_connect_m5_bullet_three"
+			case .connectM5BulletFour:
+				return "claim_device_connect_m5_bullet_four"
+			case .beginStationClaiming:
+				return "claim_device_connect_begin_station_claiming"
+			case .prepareGatewayTitle:
+				return "claim_device_prepare_gateway_title"
+			case .prepareGatewayD1BulletOne:
+				return "claim_device_prepare_gateway_d1_bullet_one"
+			case .prepareGatewayD1BulletTwo:
+				return "claim_device_prepare_gateway_d1_bullet_two"
+			case .prepareGatewayM5BulletOne:
+				return "claim_device_prepare_gateway_m5_bullet_one"
+			case .prepareGatewayM5BulletTwo:
+				return "claim_device_prepare_gateway_m5_bullet_two"
+			case .prepareGatewayM5Caption:
+				return "claim_device_prepare_gateway_m5_caption"
+			case .scanQRCode:
+				return "claim_device_scan_qr_code"
+			case .enterSerialNumberManually:
+				return "claim_device_enter_serial_number_manually"
+			case .cammeraPermissionDeniedTitle:
+				return "claim_device_camera_permission_denied_title"
+			case .cammeraPermissionDeniedText:
+				return "claim_device_camera_permission_denied_text"
+			case .invalidQRMessage:
+				return "claim_device_invalid_qr_message"
+			case .enterGatewayDetailsTitle:
+				return "claim_device_enter_gateway_details_title"
+			case .enterGatewayDetailsDescription:
+				return "claim_device_enter_gateway_details_description"
+			case .enterGatewayClaimingKey:
+				return "claim_device_enter_gateway_claiming_key"
+			case .enterGatewaySerialNumber:
+				return "claim_device_enter_gateway_serial_number"
+			case .enterGatewaySerialNumberTitle:
+				return "claim_device_enter_gateway_serial_number_title"
+			case .enterGatewaySerialNumberDescription:
+				return "claim_device_enter_gateway_serial_number_description"
+			case .enterGatewaySerialNumberCaption:
+				return "claim_device_enter_gateway_serial_number_caption"
+			case .enterGatewayProceedButtonTitle:
+				return "claim_device_enter_gateway_proceed_button_title"
+			case .confirmAndProceed:
+				return "claim_device_confirm_and_proceed"
+			case .stationLocationTitle:
+				return "claim_device_station_location_title"
+			case .stationLocationSubtitle:
+				return "claim_device_station_location_subtitle"
+			case .claimStationLoadingDescription:
+				return "claim_device_station_loading_description"
             case .typeWS1000Title:
                 return "claim_device_type_ws1000_title"
             case .typeWS1000Subtitle:
@@ -284,6 +407,6 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
                 return "claim_device_step_setting_frequency"
             case .stepClaiming:
                 return "claim_device_step_claiming"
-        }
-    }
+		}
+	}
 }

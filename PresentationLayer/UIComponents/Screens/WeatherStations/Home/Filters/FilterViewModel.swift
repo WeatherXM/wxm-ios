@@ -33,17 +33,17 @@ class FilterViewModel: ObservableObject {
         switch filterPresentable {
             case let sortBy as SortBy:
                 selectedSortBy = sortBy
-                Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .filters,
+                WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .filters,
                                                                       .itemId: .sortBy,
                                                                       .itemListId: selectedSortBy.analyticsParameterValue])
             case let filter as Filter:
                 selectedFilter = filter
-                Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .filters,
+                WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .filters,
                                                                       .itemId: .filter,
                                                                       .itemListId: selectedFilter.analyticsParameterValue])
             case let groupBy as GroupBy:
                 selectedGroupBy = groupBy
-                Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .filters,
+                WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .filters,
                                                                       .itemId: .groupBy,
                                                                       .itemListId: selectedGroupBy.analyticsParameterValue])
             default:
@@ -53,13 +53,13 @@ class FilterViewModel: ObservableObject {
 
     func handleResetTap() {
         resetSelectedFilters(defaults: true)
-        Logger.shared.trackEvent(.userAction, parameters: [.actionName: .filtersReset])
+        WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .filtersReset])
     }
 
     func handleSaveTap() {
         let values: FilterValues = .init(sortBy: selectedSortBy, filter: selectedFilter, groupBy: selectedGroupBy)
         useCase.saveFilters(filterValues: values)
-        Logger.shared.trackEvent(.userAction, parameters: getSaveEventParameters())
+        WXMAnalytics.shared.trackEvent(.userAction, parameters: getSaveEventParameters())
     }
 }
 

@@ -31,9 +31,7 @@ struct HeliumClaimingStatusView: View {
 				title
 				information.padding(.bottom, 20)
 
-				if !viewModel.isM5 {
-					stepsView
-				}
+				stepsView
 
 				switch viewModel.claimState {
 					case .connectionError, .failed:
@@ -170,7 +168,7 @@ struct HeliumClaimingStatusView: View {
 
 	@ViewBuilder
 	var claimingInformation: some View {
-		let boldText = viewModel.isM5 ? "" : LocalizableString.ClaimDevice.claimingTextInformation.localized
+		let boldText = LocalizableString.ClaimDevice.claimingTextInformation.localized
 		let text = LocalizableString.ClaimDevice.claimingText(boldText).localized
 		var attributedtext = NSMutableAttributedString(
 			string: text,
@@ -264,7 +262,7 @@ struct HeliumClaimingStatusView: View {
 			let style = needsUpdate ? WXMButtonStyle(fillColor: .clear) : WXMButtonStyle()
 			Button {
 				if let event = viewModel.claimState.retryButtonEvent {
-					Logger.shared.trackEvent(event.event, parameters: event.parameters)
+					WXMAnalytics.shared.trackEvent(event.event, parameters: event.parameters)
 				}
 
 				if let device,
@@ -281,7 +279,7 @@ struct HeliumClaimingStatusView: View {
 
 			if device?.needsUpdate(mainVM: mainVM, followState: followState) == true {
 				Button {
-					Logger.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
+					WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
 																	   .contentType: .claiming,
 																	   .action: .updateFirmware])
 
@@ -302,7 +300,7 @@ struct HeliumClaimingStatusView: View {
 		HStack(spacing: CGFloat(.smallSpacing)) {
 			Button {
 				if let event = viewModel.claimState.cancelButtonEvent {
-					Logger.shared.trackEvent(event.event, parameters: event.parameters)
+					WXMAnalytics.shared.trackEvent(event.event, parameters: event.parameters)
 				}
 
 				dismiss()
@@ -317,7 +315,7 @@ struct HeliumClaimingStatusView: View {
 
 			Button {
 				if let event = viewModel.claimState.retryButtonEvent {
-					Logger.shared.trackEvent(event.event, parameters: event.parameters)
+					WXMAnalytics.shared.trackEvent(event.event, parameters: event.parameters)
 				}
 
 				restartClaimFlow()
@@ -355,7 +353,7 @@ struct HeliumClaimingStatusView: View {
 					InfoView(text: text)
 						.padding(.bottom, CGFloat(.defaultSidePadding))
 						.onAppear {
-							Logger.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
+							WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
 																		   .promptType: .warnPromptType,
 																		   .action: .viewAction])
 						}
@@ -411,7 +409,7 @@ private extension HeliumClaimingStatusView {
 			return
 		}
 
-		Logger.shared.trackEvent(.viewContent, parameters: [.contentName: .claimingResult,
+		WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .claimingResult,
 															.contentId: .claimingResultContentId,
 															.success: .custom(success)])
 	}

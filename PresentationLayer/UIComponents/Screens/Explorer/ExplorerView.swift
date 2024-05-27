@@ -32,7 +32,7 @@ struct ExplorerView: View {
         .navigationTitle(Text(LocalizableString.explorerViewTitle.localized))
         .navigationBarHidden(true)
         .onAppear {
-            Logger.shared.trackScreen(.explorerLanding)
+            WXMAnalytics.shared.trackScreen(.explorerLanding)
             viewModel.showTopOfMapItems = true
         }
         .shimmerLoader(show: $viewModel.isLoading)

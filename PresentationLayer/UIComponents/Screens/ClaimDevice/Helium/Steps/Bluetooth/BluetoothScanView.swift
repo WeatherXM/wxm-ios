@@ -32,7 +32,6 @@ struct BluetoothScanView: View {
                 }
             }
         }
-        .background(Color(colorEnum: .layer1))
         .onChange(of: viewModel.selectedBluetoothDevice) { device in
             if let device = device {
                 didSelectDevice(device)
@@ -155,7 +154,7 @@ struct BluetoothScanView: View {
 
     var scanButton: some View {
         Button {
-            Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .bleScanAgain])
+            WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .bleScanAgain])
             viewModel.startScanning()
         } label: {
             Label(
@@ -165,8 +164,6 @@ struct BluetoothScanView: View {
             .foregroundColor(Color(colorEnum: .primary))
         }
         .buttonStyle(WXMButtonStyle(fillColor: .layer1))
-        .padding(.horizontal, CGFloat(.defaultSidePadding))
-        .padding(.bottom, CGFloat(.defaultSidePadding))
     }
 
     @State private var scanProgressScale: CGFloat = 0
@@ -191,8 +188,6 @@ struct BluetoothScanView: View {
                     .padding(1)
             }
         )
-        .padding(.horizontal, CGFloat(.defaultSidePadding))
-        .padding(.bottom, CGFloat(.defaultSidePadding))
         .onAppear {
             scanProgressScale = 0
             withAnimation(.linear(duration: 5)) {

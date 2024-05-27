@@ -122,11 +122,11 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
         }
 
         if followState.relation == .followed {
-            Logger.shared.trackEvent(.userAction, parameters: [.actionName: .devicesListFollow,
+            WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .devicesListFollow,
                                                                .contentType: .unfollow])
             performUnfollow(device: device)
         } else {
-            Logger.shared.trackEvent(.userAction, parameters: [.actionName: .devicesListFollow,
+            WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .devicesListFollow,
                                                                .contentType: .follow])
             performFollow(device: device)
         }

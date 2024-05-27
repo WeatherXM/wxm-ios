@@ -20,7 +20,7 @@ struct SelectDeviceTypeView: View {
     var body: some View {
         selectDeviceTypeContainer.shadow(radius: 4)
             .onAppear {
-                Logger.shared.trackScreen(.claimDeviceTypeSelection)
+                WXMAnalytics.shared.trackScreen(.claimDeviceTypeSelection)
             }
     }
 

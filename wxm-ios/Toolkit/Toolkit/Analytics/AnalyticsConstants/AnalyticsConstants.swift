@@ -10,6 +10,9 @@ import FirebaseAnalytics
 import Firebase
 
 let installationIdKey: String = "installation_id"
+let networkDomain = "network_domain"
+let analyticsScreenView: String = AnalyticsEventScreenView
+let analyticsScreenNameKey: String = AnalyticsParameterScreenName
 
 public enum Screen: String {
 	case splash = "Splash Screen"
@@ -91,6 +94,7 @@ public enum Parameter: String {
 	case filter = "FILTER"
 	case groupBy = "GROUP_BY"
 	case status = "STATUS"
+	case appId = "APP_ID"
 }
 
 public enum ParameterValue {

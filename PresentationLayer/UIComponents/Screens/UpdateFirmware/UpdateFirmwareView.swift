@@ -26,15 +26,16 @@ struct UpdateFirmwareView: View {
                 .animation(.easeIn, value: viewModel.state)
         }
         .onAppear {
-            navigationObject.willDismissAction = { [weak viewModel] in
+            navigationObject.shouldDismissAction = { [weak viewModel] in
                 viewModel?.navigationBackButtonTapped()
+				return true
             }
 
             navigationObject.title = viewModel.navigationTitle
 
             viewModel.mainVM = mainVM
 
-            Logger.shared.trackScreen(.heliumOTA)
+            WXMAnalytics.shared.trackScreen(.heliumOTA)
         }
     }
 }

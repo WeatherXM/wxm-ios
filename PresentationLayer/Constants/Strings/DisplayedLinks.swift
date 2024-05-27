@@ -35,6 +35,7 @@ enum DisplayedLinks {
 	case announcements
 	case m5Batteries
 	case heliumBatteries
+	case m5VideoLink
 
 	var linkURL: String {
 		switch self {
@@ -88,6 +89,8 @@ enum DisplayedLinks {
 				return "https://docs.weatherxm.com/wxm-devices/wifi-m5-bundle/assemble-m5#installing-batteries"
 			case .heliumBatteries:
 				return "https://docs.weatherxm.com/wxm-devices/helium-bundle/helium-assemble#battery-installation-diagram-external-box"
+			case .m5VideoLink:
+				return "https://www.youtube.com/watch?v=sUJEwuFq1CE"
 		}
 	}
 }

@@ -310,7 +310,7 @@ extension DeviceInfoViewModel {
                     switch state {
                         case .low:
                             let callback = {
-                                Logger.shared.trackEvent(.prompt, parameters: [.promptName: .lowBattery,
+                                WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .lowBattery,
                                                                                .promptType: .warnPromptType,
                                                                                .action: .viewAction,
                                                                                .itemId: .custom(device.id ?? "")])

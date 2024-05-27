@@ -8,4 +8,4 @@
 import Foundation
 
 // MARK: - Launch Arguments
-let WXMFirebaseDisabled = "WXMFirebaseDisabled"
+let WXMAnalyticsDisabled = "WXMAnalyticsDisabled"

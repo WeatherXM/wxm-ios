@@ -79,7 +79,7 @@ public var isPreview: Bool {
 	return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
 }
 
-public var disableFirebase: Bool {
-	let isDisabled = UserDefaults.standard.bool(forKey: WXMFirebaseDisabled)
+public var disableAnalytics: Bool {
+	let isDisabled = UserDefaults.standard.bool(forKey: WXMAnalyticsDisabled)
 	return isPreview || isDisabled
 }

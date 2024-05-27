@@ -46,7 +46,7 @@ struct AccountConfirmationView: View {
         .WXMCardStyle()
         .spinningLoader(show: $viewModel.isLoading)
         .onAppear {
-            Logger.shared.trackScreen(.passwordConfirm)
+            WXMAnalytics.shared.trackScreen(.passwordConfirm)
         }
     }
 }

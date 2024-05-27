@@ -21,8 +21,6 @@ struct DeviceUpdatesLoadingView: View {
 
     var body: some View {
         ZStack {
-            Color(colorEnum: .top)
-                .ignoresSafeArea()
 
             VStack(spacing: CGFloat(.defaultSpacing)) {
                 VStack(spacing: CGFloat(.smallSpacing)) {

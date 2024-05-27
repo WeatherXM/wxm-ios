@@ -13,20 +13,17 @@ struct ClaimDeviceNavView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    let claimViaBluetooth: Bool
-
     private var swinjectHelper: SwinjectInterface
-    public init(swinjectHelper: SwinjectInterface, claimViaBluetooth: Bool) {
+    public init(swinjectHelper: SwinjectInterface) {
         self.swinjectHelper = swinjectHelper
-        self.claimViaBluetooth = claimViaBluetooth
-        
+
 		_viewModel = StateObject(wrappedValue: ViewModelsFactory.getClaimDeviceViewModel())
     }
 
     var body: some View {
         return StepsNavView(
-            title: claimViaBluetooth ? LocalizableString.ClaimDevice.ws2000DeviceTitle.localized : LocalizableString.ClaimDevice.ws1000DeviceTitle.localized,
-            steps: claimViaBluetooth ? stepsAuto() : stepsManual()
+            title: LocalizableString.ClaimDevice.ws2000DeviceTitle.localized,
+            steps: stepsAuto()
         )
         .onChange(of: viewModel.shouldExitClaimFlow) { didFinish in
             if didFinish {
@@ -34,8 +31,7 @@ struct ClaimDeviceNavView: View {
             }
         }
         .onAppear {
-            viewModel.isM5 = !claimViaBluetooth
-            Logger.shared.trackScreen(claimViaBluetooth ? .claimHelium : .claimM5)
+            WXMAnalytics.shared.trackScreen(.claimHelium)
         }
     }
 }
@@ -73,38 +69,6 @@ private extension ClaimDeviceNavView {
             StepsNavView.Step(title: LocalizableString.ClaimDevice.frequencyStepTitle.localized) { transport in
                 AnyView(
                     ClaimDeviceFrequency(
-                        swinjectHelper: swinjectHelper,
-                        transport: transport
-                    )
-                    .environmentObject(viewModel)
-                )
-            }
-        ]
-    }
-
-    private func stepsManual() -> [StepsNavView.Step] {
-        [
-            StepsNavView.Step(title: LocalizableString.ClaimDevice.connectionStepTitle.localized) { transport in
-                AnyView(
-                    ClaimDeviceConnection(
-                        swinjectHelper: swinjectHelper,
-                        transport: transport
-                    )
-                    .environmentObject(viewModel)
-                )
-            },
-            StepsNavView.Step(title: LocalizableString.ClaimDevice.verifyStepTitle.localized) { transport in
-                AnyView(
-                    ClaimDeviceVerify(
-                        swinjectHelper: swinjectHelper,
-                        transport: transport
-                    )
-                    .environmentObject(viewModel)
-                )
-            },
-            StepsNavView.Step(title: LocalizableString.ClaimDevice.locationStepTitle.localized) { transport in
-                AnyView(
-                    ClaimDeviceLocation(
                         swinjectHelper: swinjectHelper,
                         transport: transport
                     )
