@@ -25,6 +25,7 @@ struct WeatherStationCard: View {
 						.cornerRadius(CGFloat(.cardCornerRadius))
 				}
 		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		.WXMCardStyle(backgroundColor: Color(colorEnum: .top),
 					  insideHorizontalPadding: .zero,
 					  insideVerticalPadding: .zero,
