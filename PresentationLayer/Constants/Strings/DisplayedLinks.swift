@@ -23,7 +23,6 @@ enum DisplayedLinks {
 	case heliumTroubleshooting
 	case heliumRegionFrequencies
 	case shopLink
-	case tokenomics
 	case shareDevice
 	case shareCells
 	case rewardMechanism
@@ -51,7 +50,7 @@ enum DisplayedLinks {
 			case .readMoreAboutWalletsLink:
 				return "https://docs.weatherxm.com/wallet/add-edit-wallet-address#how-to-create-wallet-on-metamask"
 			case .arbitrumAddressWebsiteFormat:
-				return "https://sepolia.arbiscan.io/address/%@#tokentxns"
+				return "https://arbiscan.io/address/%@#tokentxns"
 			case .documentationLink:
 				return "https://docs.weatherxm.com/"
 			case .feedbackForm:
@@ -66,8 +65,6 @@ enum DisplayedLinks {
 				return "https://docs.helium.com/iot/lorawan-region-plans"
 			case .shopLink:
 				return "https://shop.weatherxm.com"
-			case .tokenomics:
-				return "https://docs.weatherxm.com/tokenomics"
 			case .shareDevice:
 				return "https://explorer.weatherxm.com/stations/"
 			case .shareCells:

@@ -22,17 +22,8 @@ struct MyWalletView: View {
             ZStack {
                 TrackableScrollView(offsetObject: viewModel.trackableObject) {
                     VStack(spacing: CGFloat(.defaultSpacing)) {
-						#warning("Bring back this banner")
-						// Remove temporary this banner to pass the App Store review
-						/*
-                        if !viewModel.isInEditMode {
-                            InfoView(text: LocalizableString.Wallet.rewardsInfoText.localized.attributedMarkdown ?? "")
-                                .padding(.horizontal, CGFloat(.defaultSidePadding))
-                                .transition(AnyTransition.opacity.animation(.easeIn(duration: 0.2)))
-                        }
-						 */
 
-                        enterAddressCard
+						enterAddressCard
                             .padding(.horizontal, CGFloat(.defaultSidePadding))
 
                         if !viewModel.isInEditMode {

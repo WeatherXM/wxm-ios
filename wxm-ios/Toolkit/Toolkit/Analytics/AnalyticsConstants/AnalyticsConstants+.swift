@@ -295,8 +295,16 @@ extension ParameterValue: RawRepresentable {
 				return "location"
 			case .station:
 				return "station"
-			case .tokenomics:
-				return "Tokenomics"
+			case .tokenContract:
+				return "token_contract"
+			case .rewardContract:
+				return "reward_contract"
+			case .lastRunHash:
+				return "last_run_hash"
+			case .totalSupply:
+				return "total_supply"
+			case .circulatingSupply:
+				return "circulating_supply"
 			case .deviceDetailsPopUp:
 				return "Device Details Pop Up"
 			case .deviceDetailsShare:

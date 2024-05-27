@@ -18,8 +18,12 @@ extension NetworkStatsView {
         case fail
     }
     
-    typealias InfoTuple = (title: String?, text: String)
     typealias XAxisTuple = (leading: String, trailing: String)
+	
+	struct Accessory {
+		let fontIcon: FontIcon
+		let action: VoidCallback
+	}
 
     struct Statistics {
         let title: String
@@ -27,7 +31,7 @@ extension NetworkStatsView {
         let showExternalLinkIcon: Bool
         let externalLinkTapAction: VoidCallback?
         let mainText: String?
-        let info: InfoTuple?
+        let accessory: Accessory?
         let dateString: String?
         let chartModel: NetStatsChartViewModel?
         let xAxisTuple: XAxisTuple?
@@ -39,18 +43,19 @@ extension NetworkStatsView {
         let title: String
         let value: String
         var color: ColorEnum = .text
-        var info: InfoTuple?
+        var accessory: Accessory?
+		var progress: CGFloat?
         let analyticsItemId: ParameterValue?
     }
 
     struct StationStatistics: Identifiable {
         var id: String {
-            "\(title.hashValue)-\(total.hashValue)-\(info?.title ?? "")-\(info?.text ?? "")-\(details.hashValue)"
+			"\(title.hashValue)-\(total.hashValue)-\(accessory?.fontIcon.rawValue ?? "")-\(details.hashValue)"
         }
 
         let title: String
         let total: String
-        var info: InfoTuple?
+        var accessory: Accessory?
         let details: [StationDetails]
         let analyticsItemId: ParameterValue
     }
@@ -66,7 +71,7 @@ extension NetworkStatsView {
     struct StatisticsCTA {
         let title: String?
         let description: String
-        let info: InfoTuple?
+        let accessory: Accessory?
         let analyticsItemId: ParameterValue?
         let buttonTitle: String
         let buttonAction: VoidCallback
@@ -176,13 +181,11 @@ extension NetworkStatsView {
 
                     Spacer()
 
-                    if let info = stats.info {
+                    if let accessory = stats.accessory {
                         Button {
-                            viewModel.showInfo(title: info.title,
-                                               description: info.text,
-                                               analyticsItemId: stats.analyticsItemId)
+							accessory.action()
                         } label: {
-                            Text(FontIcon.infoCircle.rawValue)
+							Text(accessory.fontIcon.rawValue)
                                 .font(.fontAwesome(font: .FAProLight, size: CGFloat(.caption)))
                                 .foregroundColor(Color(colorEnum: .text))
                                 .frame(width: 30.0, height: 30.0)
@@ -279,7 +282,7 @@ extension NetworkStatsView {
 
     @ViewBuilder
     func additionalStatsView(statistics: [AdditionalStats]) -> some View {
-        LazyVGrid(columns: [.init(.flexible()), .init(.flexible())], spacing: CGFloat(.smallSpacing)) {
+		LazyVGrid(columns: [.init(), .init()], spacing: CGFloat(.smallSpacing)) {
             ForEach(statistics, id: \.title) { stats in
                 VStack(spacing: CGFloat(.smallSpacing)) {
                     HStack {
@@ -289,18 +292,15 @@ extension NetworkStatsView {
 
                         Spacer()
 
-                        if let info = stats.info {
+                        if let accessory = stats.accessory {
                             Button {
-                                viewModel.showInfo(title: info.title,
-                                                   description: info.text,
-                                                   analyticsItemId: stats.analyticsItemId)
+								accessory.action()
                             } label: {
-                                Text(FontIcon.infoCircle.rawValue)
-                                    .font(.fontAwesome(font: .FAProLight, size: CGFloat(.caption)))
+								Text(accessory.fontIcon.rawValue)
+                                    .font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
                                     .foregroundColor(Color(colorEnum: .text))
                             }
                             .buttonStyle(.plain)
-                            .frame(width: 30.0, height: 30.0)
                         }
                     }
 
@@ -312,7 +312,15 @@ extension NetworkStatsView {
 
                         Spacer()
                     }
+
+					if let progress = stats.progress {
+						ProgressView(value: progress, total: 1.0)
+							.progressViewStyle(ProgressBarStyle(bgColor: Color(colorEnum: .top),
+																progressColor: Color(colorEnum: .chartSecondary)))
+							.frame(height: 4.0)
+					}
                 }
+				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .WXMCardStyle(backgroundColor: Color(colorEnum: .layer1),
                               insideHorizontalPadding: CGFloat(.mediumSidePadding),
                               insideVerticalPadding: CGFloat(.smallSidePadding),
@@ -331,13 +339,11 @@ extension NetworkStatsView {
 
                 Spacer()
 
-                if let info = statistics.info {
+                if let accessory = statistics.accessory {
                     Button {
-                        viewModel.showInfo(title: info.title,
-                                           description: info.text,
-                                           analyticsItemId: statistics.analyticsItemId)
+						accessory.action()
                     } label: {
-                        Text(FontIcon.infoCircle.rawValue)
+						Text(accessory.fontIcon.rawValue)
                             .font(.fontAwesome(font: .FAProLight, size: CGFloat(.caption)))
                             .foregroundColor(Color(colorEnum: .text))
                             .frame(width: 30.0, height: 30.0)
@@ -410,17 +416,15 @@ extension NetworkStatsView {
                 HStack {
                     let mainText = Text(cta.description)
                         .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-                        .foregroundColor(Color(colorEnum: .darkestBlue))
+                        .foregroundColor(Color(colorEnum: .primary))
 
-                    if let info = cta.info {
+                    if let accessory = cta.accessory {
                         Button {
-                            viewModel.showInfo(title: info.title,
-                                               description: info.text,
-                                               analyticsItemId: cta.analyticsItemId)
+							accessory.action()
                         } label: {
                             mainText +
                             Text(" ") +
-                            Text(FontIcon.infoCircle.rawValue)
+							Text(accessory.fontIcon.rawValue)
                                 .font(.fontAwesome(font: .FAProLight, size: CGFloat(.littleCaption)))
                                 .fontWeight(.bold)
                                 .foregroundColor(Color(colorEnum: .darkestBlue))

@@ -4712,6 +4712,28 @@
         }
       }
     },
+    "net_stats_circulating_supply" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Circulating Supply"
+          }
+        }
+      }
+    },
+    "net_stats_circulating_supply_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Circulating supply refers to the number of $WXM that are publicly available and circulating in the market."
+          }
+        }
+      }
+    },
     "net_stats_claimed" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4741,28 +4763,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Claimed Weather Stations"
-          }
-        }
-      }
-    },
-    "net_stats_daily_minted" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Daily Minted"
-          }
-        }
-      }
-    },
-    "net_stats_daily_minted_info_text" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This number represents the amount of $WXM tokens that were minted yesterday."
           }
         }
       }
@@ -4894,7 +4894,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This number represents the amount of $WXM tokens in existence (minus tokens verifiably burned)."
+            "value" : "Total supply refers to the number of $WXM that have already been created and are either in circulation or locked."
           }
         }
       }
@@ -4943,6 +4943,17 @@
         }
       }
     },
+    "net_stats_wxm_rewards_description_markdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**[View rewards contract on Arbiscan](%@)**"
+          }
+        }
+      }
+    },
     "net_stats_wxm_rewards_tile" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4960,7 +4971,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deployed on Testnet - **[Read more here](%@)**"
+            "value" : "**[View token contract on Etherscan](%@)**"
           }
         }
       }

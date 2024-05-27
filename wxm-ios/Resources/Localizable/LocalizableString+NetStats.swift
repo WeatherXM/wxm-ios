@@ -14,8 +14,9 @@ extension LocalizableString {
         case lastDays(Int)
         case lastRun
         case wxmRewardsTitle
+		case wxmRewardsDescriptionMarkdown(String)
         case totalSupply
-        case dailyMinted
+		case circulatingSupply
         case weatherStations
         case claimed
         case active
@@ -26,7 +27,7 @@ extension LocalizableString {
         case dataDaysInfoText
         case totalAllocatedInfoText
         case totalSupplyInfoText
-        case dailyMintedInfoText
+		case circulatingSupplyInfoText
         case totalWeatherStationsInfoTitle
         case claimedWeatherStationsInfoTitle
         case activeWeatherStationsInfoTitle
@@ -51,7 +52,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
                 localized = String(format: localized, count)
             case .buyStationCardDescription(let count):
                 localized = String(format: localized, count)
-            case .wxmTokenDescriptionMarkdown(let text):
+			case .wxmTokenDescriptionMarkdown(let text),
+				 .wxmRewardsDescriptionMarkdown(let text):
                 localized = String(format: localized, text)
             default:
                 break
@@ -72,10 +74,12 @@ extension LocalizableString.NetStats: WXMLocalizable {
                 return "net_stats_last_run"
             case .wxmRewardsTitle:
                 return "net_stats_wxm_rewards_tile"
+			case .wxmRewardsDescriptionMarkdown:
+				return "net_stats_wxm_rewards_description_markdown"
             case .totalSupply:
                 return "net_stats_total_supply"
-            case .dailyMinted:
-                return "net_stats_daily_minted"
+			case .circulatingSupply:
+				return "net_stats_circulating_supply"
             case .weatherStations:
                 return "net_stats_weather_stations"
             case .claimed:
@@ -96,8 +100,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
                 return "net_stats_total_allocated_info_text"
             case .totalSupplyInfoText:
                 return "net_stats_total_supply_info_text"
-            case .dailyMintedInfoText:
-                return "net_stats_daily_minted_info_text"
+			case .circulatingSupplyInfoText:
+				return "net_stats_circulating_supply_info_text"
             case .totalWeatherStationsInfoTitle:
                 return "net_stats_total_weather_stations_info_title"
             case .claimedWeatherStationsInfoTitle:

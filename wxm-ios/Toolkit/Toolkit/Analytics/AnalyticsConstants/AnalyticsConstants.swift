@@ -217,7 +217,11 @@ public enum ParameterValue {
 	case search
 	case location
 	case station
-	case tokenomics
+	case tokenContract
+	case rewardContract
+	case lastRunHash
+	case totalSupply
+	case circulatingSupply
 	case deviceDetailsPopUp
 	case deviceDetailsShare
 	case deviceDetailsFollow
