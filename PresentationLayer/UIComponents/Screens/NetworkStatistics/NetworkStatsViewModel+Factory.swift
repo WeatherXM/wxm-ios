@@ -67,7 +67,7 @@ extension NetworkStatsViewModel {
 			guard let txHashUrl = tokens.lastTxHashUrl else {
 				return
 			}
-			Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .lastRunHash])
+			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .lastRunHash])
 
 			HelperFunctions().openUrl(txHashUrl)
 		},
@@ -88,7 +88,7 @@ extension NetworkStatsViewModel {
                              title: LocalizableString.NetStats.wxmRewardsTitle.localized,
 							 description: rewardsDescription,
 							 showExternalLinkIcon: true,
-							 externalLinkTapAction: { Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .rewardContract]) },
+							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .rewardContract]) },
                              accessory: accessory,
                              additionalStats: [total, lastDay],
                              analyticsItemId: .allocatedRewards)
@@ -130,7 +130,7 @@ extension NetworkStatsViewModel {
 							 title: LocalizableString.NetStats.wxmTokenTitle.localized,
 							 description: tokenDescription,
 							 showExternalLinkIcon: true,
-							 externalLinkTapAction: { Logger.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenContract]) },
+							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenContract]) },
 							 accessory: nil,
 							 additionalStats: [totalSupply, circulatingSupply],
 							 analyticsItemId: nil)
