@@ -23,40 +23,48 @@ struct ClaimDeviceReset: View {
 
     var body: some View {
         ZStack {
-            VStack(alignment: .leading, spacing: 0) {
-                title
+			Color(colorEnum: .newBG)
+				.ignoresSafeArea()
 
-                ScrollView {
-                    section(
-                        index: 1,
-                        markdown: LocalizableString.ClaimDevice.resetSection1Markdown.localized
-                    )
+			VStack {
+				ScrollView {
+					VStack(spacing: CGFloat(.largeSpacing)) {
+						title
 
-                    section(
-                        index: 2,
-                        markdown: LocalizableString.ClaimDevice.resetSection2Markdown.localized
-                    )
+						VStack(spacing: CGFloat(.mediumSpacing)) {
 
-                    Image(asset: .stationResetSchematic)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-						.frame(maxWidth: 600.0)
-                }
+							ClaimDeviceBulletView(bullet: .init(fontIcon: .circleOne,
+																text: LocalizableString.ClaimDevice.resetSection1Markdown.localized.attributedMarkdown ?? ""))
 
-                Spacer()
+							ClaimDeviceBulletView(bullet: .init(fontIcon: .circleTwo,
+																text: LocalizableString.ClaimDevice.resetSection2Markdown.localized.attributedMarkdown ?? ""))
+						}
 
-                bottomButtons
-            }
-            .WXMCardStyle()
-            .padding(.horizontal, CGFloat(.defaultSidePadding))
-            .padding(.bottom)
+						Image(asset: .stationResetSchematic)
+							.resizable()
+							.aspectRatio(contentMode: .fit)
+							.frame(maxWidth: 600.0)
+							.padding(.horizontal)
+					}
+					.padding(.horizontal, CGFloat(.mediumSidePadding))
+					.padding(.top, CGFloat(.largeSidePadding))
+				}
+				.clipped()
+
+				bottomButtons
+					.padding(.horizontal, CGFloat(.mediumSidePadding))
+			}
         }
     }
 
     var title: some View {
-        Text(LocalizableString.ClaimDevice.resetStationTitle.localized)
-            .font(.system(size: CGFloat(.titleFontSize), weight: .bold))
-            .padding(.bottom, 30)
+		HStack {
+			Text(LocalizableString.ClaimDevice.resetStationTitle.localized)
+				.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
+				.foregroundStyle(Color(colorEnum: .darkestBlue))
+
+			Spacer()
+		}
     }
 
     var bottomButtons: some View {

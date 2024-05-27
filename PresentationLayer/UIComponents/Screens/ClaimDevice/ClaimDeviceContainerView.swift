@@ -32,6 +32,7 @@ struct ClaimDeviceContainerView: View {
 				}
 			}
 			.padding(.top, CGFloat(.mediumToLargeSidePadding))
+			.iPadMaxWidth()
 		}
 		.onAppear {
 			navigationObject.title = viewModel.navigationTitle

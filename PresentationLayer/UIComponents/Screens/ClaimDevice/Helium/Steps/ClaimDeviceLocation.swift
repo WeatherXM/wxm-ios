@@ -10,7 +10,6 @@ import SwiftUI
 struct ClaimDeviceLocation: View {
     @EnvironmentObject var viewModel: ClaimDeviceViewModel
 
-    @State private var isImportantMessageClosed = false
     @State private var isShowingClaimSheet = false
 
     private let swinjectHelper: SwinjectInterface
@@ -23,13 +22,16 @@ struct ClaimDeviceLocation: View {
 
     var body: some View {
         ZStack {
-            VStack(spacing: 0) {
+			Color(colorEnum: .newBG)
+				.ignoresSafeArea()
+
+			VStack(spacing: CGFloat(.smallToMediumSpacing)) {
                 mainView
                 acknowledgementContainer
             }
+			.padding(.horizontal, CGFloat(.mediumSidePadding))
+			.padding(.top, CGFloat(.largeSidePadding))
         }
-        .padding(.horizontal, CGFloat(.defaultSidePadding))
-        .padding(.bottom)
         .animation(.default)
         .onAppear {
             DispatchQueue.main.async {
@@ -42,8 +44,7 @@ struct ClaimDeviceLocation: View {
         HStack {
             Text(LocalizableString.ClaimDevice.confirmLocationTitle.localized)
                 .font(.system(size: CGFloat(.titleFontSize), weight: .bold))
-                .padding(.bottom, 10)
-                .foregroundColor(Color(colorEnum: .text))
+                .foregroundColor(Color(colorEnum: .darkestBlue))
 
             Spacer()
         }
@@ -51,16 +52,12 @@ struct ClaimDeviceLocation: View {
 
     var mainView: some View {
         return GeometryReader { geometry in
-            VStack(alignment: .leading, spacing: 0) {
-                topText.zIndex(10)
+			VStack(alignment: .leading, spacing: CGFloat(.mediumSpacing)) {
+				title
+
                 map
+					.cornerRadius(CGFloat(.cardCornerRadius))
             }
-            .padding(.bottom, isImportantMessageClosed ? 0 : -20)
-            .WXMCardStyle(
-                insideHorizontalPadding: 1,
-                insideVerticalPadding: 1
-            )
-            .frame(height: geometry.size.height + 20, alignment: .top)
         }
     }
 
@@ -78,13 +75,6 @@ struct ClaimDeviceLocation: View {
         }
     }
 
-    var topText: some View {
-        VStack(alignment: .leading) {
-            title
-        }
-        .WXMCardStyle()
-    }
-
     var acknowledgeToggle: some View {
         return Toggle(
             LocalizableString.ClaimDevice.locationAcknowledgeText.localized,
@@ -99,11 +89,10 @@ struct ClaimDeviceLocation: View {
             .font(.system(size: CGFloat(.normalFontSize)))
             .foregroundColor(Color(colorEnum: .text))
             .lineSpacing(4)
-            .padding(.bottom)
     }
 
     var acknowledgementContainer: some View {
-        VStack {
+		VStack(spacing: CGFloat(.smallToMediumSpacing)) {
             HStack(alignment: .top, spacing: CGFloat(.mediumSpacing)) {
                 acknowledgeToggle
                 acknowledgeText
@@ -111,7 +100,6 @@ struct ClaimDeviceLocation: View {
 
             bottomButtons
         }
-        .WXMCardStyle()
     }
 
     var bottomButtons: some View {

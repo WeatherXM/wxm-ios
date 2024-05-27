@@ -13,7 +13,6 @@ struct ClaimDeviceFrequency: View {
 
     @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
 
-    @State private var isImportantMessageClosed = false
     @State private var isShowingClaimSheet = false
 
     private let swinjectHelper: SwinjectInterface
@@ -25,18 +24,22 @@ struct ClaimDeviceFrequency: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            SelectFrequencyView(selectedFrequency: $viewModel.selectedFrequency,
-                                isFrequencyAcknowledged: $viewModel.isFrequencyAcknowledged,
-                                country: viewModel.selectedLocation?.country,
-                                didSelectFrequencyFromLocation: viewModel.didSelectFrequencyFromLocation,
-                                preSelectedFrequency: viewModel.preSelectedFrequency)
+		ZStack {
+			Color(colorEnum: .newBG)
+				.ignoresSafeArea()
 
-            bottomButtons
-        }
-        .WXMCardStyle()
-        .padding(.horizontal, CGFloat(.defaultSidePadding))
-        .padding(.bottom)
+			VStack(spacing: 0) {
+				SelectFrequencyView(selectedFrequency: $viewModel.selectedFrequency,
+									isFrequencyAcknowledged: $viewModel.isFrequencyAcknowledged,
+									country: viewModel.selectedLocation?.country,
+									didSelectFrequencyFromLocation: viewModel.didSelectFrequencyFromLocation,
+									preSelectedFrequency: viewModel.preSelectedFrequency)
+
+				bottomButtons
+			}
+			.padding(.horizontal, CGFloat(.mediumSidePadding))
+			.padding(.top, CGFloat(.largeSidePadding))
+		}
         .onChange(of: viewModel.selectedLocation) { _ in
             // This ensures that the frequency will be updated even if the map
             // from the (previous) location screen has not yet settled scrolling.
