@@ -655,6 +655,17 @@
         }
       }
     },
+    "claim_device_claim_helium_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim Helium"
+          }
+        }
+      }
+    },
     "claim_device_claim_m5_title" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -16,6 +16,7 @@ extension LocalizableString {
 		case heliumTitle
 		case pulseTitle
 		case claimNewDevice
+		case claimHeliumTitle
 		case claimD1Title
 		case claimM5Title
 		case connectGatewayTitle
@@ -174,6 +175,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_pulse_title"
 			case .claimNewDevice:
 				return "claim_device_claim_new_device"
+			case .claimHeliumTitle:
+				return "claim_device_claim_helium_title"
 			case .claimM5Title:
 				return "claim_device_claim_m5_title"
 			case .claimD1Title:

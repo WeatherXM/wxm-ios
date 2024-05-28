@@ -14,6 +14,8 @@ enum ClaimDeviceStep: Identifiable {
 	case serialNumber(ClaimDeviceSerialNumberViewModel)
 	case manualSerialNumber(ManualSerialNumberViewModel)
 	case location(ClaimDeviceLocationViewModel)
+	case reset(ResetDeviceViewModel)
+	case selectDevice
 
 	var id: String {
 		switch self {
@@ -25,6 +27,10 @@ enum ClaimDeviceStep: Identifiable {
 				"manualSerialNumber"
 			case .location:
 				"location"
+			case .reset:
+				"reset"
+			case .selectDevice:
+				"selectDevice"
 		}
 	}
 }
@@ -43,6 +49,10 @@ extension ClaimDeviceStep {
 				ManualSerialNumberView(viewModel: viewModel)
 			case .location(let viewModel):
 				ClaimDeviceLocationView(viewModel: viewModel)
+			case .reset(let viewModel):
+				ResetDeviceView(viewModel: viewModel)
+			case .selectDevice:
+				Text(verbatim: "Select Device")
 		}
 	}
 }

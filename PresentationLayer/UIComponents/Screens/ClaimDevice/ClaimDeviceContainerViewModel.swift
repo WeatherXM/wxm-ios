@@ -107,7 +107,11 @@ private extension ClaimDeviceContainerViewModel {
 	}
 
 	func getHeliumSteps() -> [ClaimDeviceStep] {
-		[]
+		let resetViewModel = ViewModelsFactory.getResetDeviceViewModel { [weak self] in
+			self?.moveNext()
+		}
+
+		return [.reset(resetViewModel), .selectDevice]
 	}
 
 	func getPulseSteps() -> [ClaimDeviceStep] {

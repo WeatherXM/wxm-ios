@@ -220,4 +220,8 @@ enum ViewModelsFactory {
 	static func getClaimDeviceLocationViewModel(completion: @escaping GenericCallback<DeviceLocation>) -> ClaimDeviceLocationViewModel {
 		ClaimDeviceLocationViewModel(completion: completion)
 	}
+
+	static func getResetDeviceViewModel(completion: @escaping VoidCallback) -> ResetDeviceViewModel {
+		ResetDeviceViewModel(completion: completion)
+	}
 }

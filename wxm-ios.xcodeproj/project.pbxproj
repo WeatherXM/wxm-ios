@@ -332,6 +332,8 @@
 		26A4119529BF203400A2C10B /* SelectFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4119429BF203400A2C10B /* SelectFrequencyView.swift */; };
 		26A5451B2BFF2C1C0098FE52 /* NetworkStatsResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5451A2BFF2C1C0098FE52 /* NetworkStatsResponse+.swift */; };
 		26A545352BFF804C0098FE52 /* image_station_qr.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26A545342BFF804C0098FE52 /* image_station_qr.gif */; };
+		26A5456A2C0609D90098FE52 /* ResetDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A545692C0609D90098FE52 /* ResetDeviceView.swift */; };
+		26A5456C2C0609FE0098FE52 /* ResetDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5456B2C0609FE0098FE52 /* ResetDeviceViewModel.swift */; };
 		26A6C5D92B601A8000FA2D2F /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6C5D82B601A8000FA2D2F /* SafariView.swift */; };
 		26A9614C2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9614B2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift */; };
 		26A9619C2AA705FE00646A25 /* LocalizableString+StationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */; };
@@ -849,6 +851,8 @@
 		26A4119429BF203400A2C10B /* SelectFrequencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFrequencyView.swift; sourceTree = "<group>"; };
 		26A5451A2BFF2C1C0098FE52 /* NetworkStatsResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkStatsResponse+.swift"; sourceTree = "<group>"; };
 		26A545342BFF804C0098FE52 /* image_station_qr.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_station_qr.gif; sourceTree = "<group>"; };
+		26A545692C0609D90098FE52 /* ResetDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetDeviceView.swift; sourceTree = "<group>"; };
+		26A5456B2C0609FE0098FE52 /* ResetDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetDeviceViewModel.swift; sourceTree = "<group>"; };
 		26A6C5D82B601A8000FA2D2F /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		26A9614B2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+UpdateFirmware.swift"; sourceTree = "<group>"; };
 		26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+StationDetails.swift"; sourceTree = "<group>"; };
@@ -1509,6 +1513,7 @@
 		2675471529A9181E008BCF40 /* ClaimDevice */ = {
 			isa = PBXGroup;
 			children = (
+				26A545682C0609900098FE52 /* ResetDevice */,
 				26AA21E22BF4F59200B91A7C /* Location */,
 				26AA21CF2BF3A41F00B91A7C /* ManualSerialNumber */,
 				26ADDF7F2BE3B1FD00992BEF /* SerialNumber */,
@@ -1999,6 +2004,15 @@
 				26A4119429BF203400A2C10B /* SelectFrequencyView.swift */,
 			);
 			path = ChangeFrequency;
+			sourceTree = "<group>";
+		};
+		26A545682C0609900098FE52 /* ResetDevice */ = {
+			isa = PBXGroup;
+			children = (
+				26A545692C0609D90098FE52 /* ResetDeviceView.swift */,
+				26A5456B2C0609FE0098FE52 /* ResetDeviceViewModel.swift */,
+			);
+			path = ResetDevice;
 			sourceTree = "<group>";
 		};
 		26A9614A2AA5E2B200646A25 /* Localizable */ = {
@@ -3090,6 +3104,7 @@
 				267547FB29A9181E008BCF40 /* WeatherStationCard+Content.swift in Sources */,
 				267547FC29A9181E008BCF40 /* WeatherStationCard.swift in Sources */,
 				2675482129A9181E008BCF40 /* WeatherStationsHomeView.swift in Sources */,
+				26A5456C2C0609FE0098FE52 /* ResetDeviceViewModel.swift in Sources */,
 				262B03092B20BDB700C31FE7 /* LocalizableString+AppUpdate.swift in Sources */,
 				267547AB29A9181E008BCF40 /* WeatherStationsHomeViewModel.swift in Sources */,
 				26AF27742A0B86DD0067A1B8 /* WeatherUnitsConverter.swift in Sources */,
@@ -3099,6 +3114,7 @@
 				267EC4292A98C3D300F2C37E /* WXMAlertModifier.swift in Sources */,
 				267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */,
 				26AA21C22BF36B0100B91A7C /* SNValidator.swift in Sources */,
+				26A5456A2C0609D90098FE52 /* ResetDeviceView.swift in Sources */,
 				267547C929A9181E008BCF40 /* WXMButtonStyle.swift in Sources */,
 				267547CF29A9181E008BCF40 /* WXMCardStyle.swift in Sources */,
 				26A3B3C72B1792890002F35F /* ProfileTypes.swift in Sources */,
