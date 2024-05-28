@@ -435,6 +435,8 @@
 		26DD42E429B0FA9B008E277E /* StationDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42E329B0FA9B008E277E /* StationDetailsViewModel.swift */; };
 		26E5B0C029F8078C00834899 /* WXMDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5B0BF29F8078C00834899 /* WXMDivider.swift */; };
 		26E5B0C229F8152800834899 /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5B0C129F8152800834899 /* Dimensions.swift */; };
+		26E685AF2C0619D700B972B1 /* SelectDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E685AE2C0619D700B972B1 /* SelectDeviceView.swift */; };
+		26E685B12C061A6600B972B1 /* SelectDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E685B02C061A6600B972B1 /* SelectDeviceViewModel.swift */; };
 		26E88AF129DD663D0023BBD5 /* MyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88AF029DD663D0023BBD5 /* MyWalletView.swift */; };
 		26E88AF329DD68360023BBD5 /* MyWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88AF229DD68360023BBD5 /* MyWalletViewModel.swift */; };
 		26E88AF529DD69930023BBD5 /* WXMShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88AF429DD69930023BBD5 /* WXMShadow.swift */; };
@@ -922,6 +924,8 @@
 		26E2B336297ACC0300ED9B58 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		26E5B0BF29F8078C00834899 /* WXMDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMDivider.swift; sourceTree = "<group>"; };
 		26E5B0C129F8152800834899 /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
+		26E685AE2C0619D700B972B1 /* SelectDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeviceView.swift; sourceTree = "<group>"; };
+		26E685B02C061A6600B972B1 /* SelectDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeviceViewModel.swift; sourceTree = "<group>"; };
 		26E88AF029DD663D0023BBD5 /* MyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletView.swift; sourceTree = "<group>"; };
 		26E88AF229DD68360023BBD5 /* MyWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletViewModel.swift; sourceTree = "<group>"; };
 		26E88AF429DD69930023BBD5 /* WXMShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMShadow.swift; sourceTree = "<group>"; };
@@ -1513,6 +1517,7 @@
 		2675471529A9181E008BCF40 /* ClaimDevice */ = {
 			isa = PBXGroup;
 			children = (
+				26E685AD2C06198900B972B1 /* SelectDevice */,
 				26A545682C0609900098FE52 /* ResetDevice */,
 				26AA21E22BF4F59200B91A7C /* Location */,
 				26AA21CF2BF3A41F00B91A7C /* ManualSerialNumber */,
@@ -2308,6 +2313,15 @@
 			path = StationDetails;
 			sourceTree = "<group>";
 		};
+		26E685AD2C06198900B972B1 /* SelectDevice */ = {
+			isa = PBXGroup;
+			children = (
+				26E685AE2C0619D700B972B1 /* SelectDeviceView.swift */,
+				26E685B02C061A6600B972B1 /* SelectDeviceViewModel.swift */,
+			);
+			path = SelectDevice;
+			sourceTree = "<group>";
+		};
 		26F149E32BDFC83D0029F981 /* ClaimStationSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -2825,6 +2839,7 @@
 				267547FD29A9181E008BCF40 /* CardWarningView.swift in Sources */,
 				267548E529A91A87008BCF40 /* CGFloat+.swift in Sources */,
 				26A4119129BF1B2400A2C10B /* ChangeFrequencyView.swift in Sources */,
+				26E685B12C061A6600B972B1 /* SelectDeviceViewModel.swift in Sources */,
 				26AA21D12BF3A44600B91A7C /* ManualSerialNumberView.swift in Sources */,
 				26A4119329BF1B5600A2C10B /* ChangeFrequencyViewModel.swift in Sources */,
 				26AF27902A0CCD010067A1B8 /* ChartCardTypes.swift in Sources */,
@@ -2963,6 +2978,7 @@
 				265D2CE429D2DEB80044D032 /* NetworkDevicesInfoResponse+.swift in Sources */,
 				268028AA2AF298290031379C /* Indication.swift in Sources */,
 				266DC0132A54260900EC9E1F /* NetworkErrorResponse+.swift in Sources */,
+				26E685AF2C0619D700B972B1 /* SelectDeviceView.swift in Sources */,
 				2692D8922A4DC0BA0060CB3C /* NetworkSearchResponse+.swift in Sources */,
 				2674016D2A372FC100E54E35 /* NetworkStats+Content.swift in Sources */,
 				2632E62F2A335ECD00A5ADB3 /* NetworkStatsView.swift in Sources */,
