@@ -71,7 +71,7 @@ public enum AssetEnum: String {
     case wonderFace
     case chevronDown
     case detectLocation
-    case m5Video
+    case ytClaimVideo = "yt_claim_video"
     case wifi
     case humidityIcon = "humidity_icon"
     case precipitationIcon = "precipitation_icon"
