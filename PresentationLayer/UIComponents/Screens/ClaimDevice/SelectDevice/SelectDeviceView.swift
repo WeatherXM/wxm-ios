@@ -12,6 +12,8 @@ import DomainLayer
 struct SelectDeviceView: View {
 	@StateObject var viewModel: SelectDeviceViewModel
 
+	@State private var scanProgressScale: CGFloat = 0.0
+
     var body: some View {
 		ZStack {
 			Color(colorEnum: .newBG)
@@ -23,12 +25,7 @@ struct SelectDeviceView: View {
 				mainContent
 
 				if viewModel.isBluetoothReady {
-					
-					if viewModel.isScanning {
-						Text(verbatim: "scanProgress")
-					} else {
-						scanButton
-					}
+					scanButton
 				}
 
 #if targetEnvironment(simulator)
@@ -36,6 +33,9 @@ struct SelectDeviceView: View {
 #endif
 			}
 			.padding(.horizontal, CGFloat(.mediumSidePadding))
+		}
+		.onAppear {
+			viewModel.setup()
 		}
     }
 }
@@ -102,13 +102,33 @@ private extension SelectDeviceView {
 			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .bleScanAgain])
 			viewModel.startScanning()
 		} label: {
-			Label(
-				LocalizableString.ClaimDevice.scanAgain.localized,
-				image: AssetEnum.claimBluetoothButton.rawValue
-			)
-			.foregroundColor(Color(colorEnum: .primary))
+			let title = viewModel.isScanning ? LocalizableString.ClaimDevice.scanningForWXMDevices.localized : LocalizableString.ClaimDevice.scanAgain.localized
+			
+			ZStack {
+				if viewModel.isScanning {
+					Color(colorEnum: .lightestBlue)
+						.scaleEffect(CGSize(width: scanProgressScale, height: 1.0),
+									 anchor: .leading)
+						.onAppear {
+							withAnimation(.easeIn(duration: viewModel.scanDuration)) {
+								scanProgressScale = 1.0
+							}
+						}
+				}
+
+				Label(title,
+					  image: AssetEnum.claimBluetoothButton.rawValue)
+				.foregroundColor(Color(colorEnum: .primary))
+			}
 		}
-		.buttonStyle(WXMButtonStyle(fillColor: .layer1))
+		.buttonStyle(WXMButtonStyle())
+		.onChange(of: viewModel.isScanning) { newValue in
+			guard newValue else {
+				return
+			}
+
+			scanProgressScale = 0.0
+		}
 	}
 
 	@ViewBuilder

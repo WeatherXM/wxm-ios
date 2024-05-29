@@ -11,6 +11,7 @@ import DomainLayer
 import Combine
 
 class SelectDeviceViewModel: ObservableObject {
+	let scanDuration: CGFloat = 5.0
 	@Published var isBluetoothReady: Bool = false
 	@Published var isScanning: Bool = false
 	@Published var bluetoothState: BluetoothState = .unknown
@@ -21,6 +22,9 @@ class SelectDeviceViewModel: ObservableObject {
 
 	init(useCase: DevicesUseCase) {
 		self.useCase = useCase
+	}
+
+	func setup() {
 		useCase.enableBluetooth()
 		observeBTState()
 	}
@@ -28,6 +32,10 @@ class SelectDeviceViewModel: ObservableObject {
 	func startScanning() {
 		isScanning = true
 		useCase.startBluetoothScanning()
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + scanDuration) { [weak self] in
+			self?.stopScanning()
+		}
 	}
 
 	func stopScanning() {
