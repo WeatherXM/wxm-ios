@@ -51,5 +51,10 @@ private extension SelectDeviceViewModel {
 			}
 		}.store(in: &cancellableSet)
 
+		useCase.bluetoothDevices.sink { [weak self] devices in
+			guard let self else { return }
+			self.devices = devices
+		}.store(in: &cancellableSet)
+
 	}
 }

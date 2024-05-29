@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Toolkit
+import DomainLayer
 
 struct SelectDeviceView: View {
 	@StateObject var viewModel: SelectDeviceViewModel
@@ -83,19 +84,15 @@ private extension SelectDeviceView {
 			case .poweredOff:
 				BluetoothMessageView(message: .bluetoothOff)
 			case .resetting, .poweredOn:
-//				if viewModel.devices.isEmpty {
+				if viewModel.devices.isEmpty {
 					if !viewModel.isScanning {
 						noDevicesFound
 					} else {
 						scanningForDevices
 					}
-//				} else {
-//					if #available(iOS 16.0, *) {
-//						deviceList.scrollContentBackground(.hidden)
-//					} else {
-//						deviceList
-//					}
-//				}
+				} else {
+					devicesList
+				}
 		}
 	}
 
@@ -158,6 +155,53 @@ private extension SelectDeviceView {
 		.padding(.horizontal)
 	}
 
+	@ViewBuilder
+	var devicesList: some View {
+		ScrollView(showsIndicators: false) {
+			VStack(spacing: CGFloat(.smallToMediumSpacing)) {
+				ForEach(viewModel.devices) { device in
+					deviceRow(device)
+				}
+			}
+		}
+		.clipped()
+	}
+
+	@ViewBuilder
+	func deviceRow(_ device: BTWXMDevice) -> some View {
+		Button {
+			//			viewModel.selectDevice(device)
+		} label: {
+			VStack(spacing: CGFloat(.smallToMediumSpacing)) {
+
+				HStack(spacing: CGFloat(.smallSpacing)) {
+					//					if isFetching {
+					//						ProgressView()
+					//							.frame(width: 20, height: 20)
+					//					} else {
+					Image(asset: .claimHelium)
+						.renderingMode(.template)
+						.foregroundColor(Color(colorEnum: .text))
+					//					}
+					
+					Text(LocalizableString.ClaimDevice.deviceHelium.localized)
+						.font(.system(size: CGFloat(.normalFontSize)))
+						.foregroundColor(Color(colorEnum: .text))
+					
+					Spacer()
+				}
+				
+				HStack {
+					Text(LocalizableString.ClaimDevice.deviceId(device.name ?? "").localized)
+						.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+						.foregroundColor(Color(colorEnum: .primary))
+					Spacer()
+				}
+
+				WXMDivider()
+			}
+		}
+	}
 }
 
 #Preview {
