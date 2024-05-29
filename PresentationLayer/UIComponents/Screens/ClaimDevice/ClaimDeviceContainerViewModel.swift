@@ -111,7 +111,11 @@ private extension ClaimDeviceContainerViewModel {
 			self?.moveNext()
 		}
 
-		return [.reset(resetViewModel), .selectDevice]
+		let selectDeviceViewModel = ViewModelsFactory.getSelectDeviceViewModel {
+
+		}
+
+		return [.reset(resetViewModel), .selectDevice(selectDeviceViewModel)]
 	}
 
 	func getPulseSteps() -> [ClaimDeviceStep] {

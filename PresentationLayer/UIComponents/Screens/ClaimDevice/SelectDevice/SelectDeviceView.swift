@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct SelectDeviceView: View {
 	@StateObject var viewModel: SelectDeviceViewModel
@@ -19,7 +20,16 @@ struct SelectDeviceView: View {
 				title
 
 				mainContent
-				
+
+				if viewModel.isBluetoothReady {
+					
+					if viewModel.isScanning {
+						Text(verbatim: "scanProgress")
+					} else {
+						scanButton
+					}
+				}
+
 #if targetEnvironment(simulator)
 				debugButton
 #endif
@@ -90,8 +100,23 @@ private extension SelectDeviceView {
 		}
 	}
 
+	@ViewBuilder
+	var scanButton: some View {
+		Button {
+			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .bleScanAgain])
+			viewModel.startScanning()
+		} label: {
+			Label(
+				LocalizableString.ClaimDevice.scanAgain.localized,
+				image: AssetEnum.claimBluetoothButton.rawValue
+			)
+			.foregroundColor(Color(colorEnum: .primary))
+		}
+		.buttonStyle(WXMButtonStyle(fillColor: .layer1))
+	}
+
 }
 
 #Preview {
-	SelectDeviceView(viewModel: .init())
+	SelectDeviceView(viewModel: ViewModelsFactory.getSelectDeviceViewModel {})
 }

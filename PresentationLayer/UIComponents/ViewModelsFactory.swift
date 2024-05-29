@@ -224,4 +224,9 @@ enum ViewModelsFactory {
 	static func getResetDeviceViewModel(completion: @escaping VoidCallback) -> ResetDeviceViewModel {
 		ResetDeviceViewModel(completion: completion)
 	}
+
+	static func getSelectDeviceViewModel(completion: @escaping VoidCallback) -> SelectDeviceViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DevicesUseCase.self)!
+		return SelectDeviceViewModel(useCase: useCase)
+	}
 }
