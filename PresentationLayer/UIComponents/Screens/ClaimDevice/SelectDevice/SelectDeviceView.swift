@@ -83,13 +83,12 @@ private extension SelectDeviceView {
 			case .poweredOff:
 				BluetoothMessageView(message: .bluetoothOff)
 			case .resetting, .poweredOn:
-				Text(verbatim: "Resetting")
 //				if viewModel.devices.isEmpty {
-//					if !viewModel.isScanning {
-//						noDevicesFound
-//					} else {
-//						scanningForDevices
-//					}
+					if !viewModel.isScanning {
+						noDevicesFound
+					} else {
+						scanningForDevices
+					}
 //				} else {
 //					if #available(iOS 16.0, *) {
 //						deviceList.scrollContentBackground(.hidden)
@@ -113,6 +112,50 @@ private extension SelectDeviceView {
 			.foregroundColor(Color(colorEnum: .primary))
 		}
 		.buttonStyle(WXMButtonStyle(fillColor: .layer1))
+	}
+
+	@ViewBuilder
+	var noDevicesFound: some View {
+		VStack(alignment: .center) {
+			Spacer()
+
+			Image(asset: .wonderFace)
+				.renderingMode(.template)
+				.foregroundColor(Color(colorEnum: .darkGrey))
+				.padding(.vertical)
+
+			Text(LocalizableString.Bluetooth.noDevicesFoundTitle.localized)
+				.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+				.foregroundColor(Color(colorEnum: .darkestBlue))
+				.padding(.bottom)
+
+			Text(LocalizableString.Bluetooth.noDevicesFoundText.localized)
+				.font(.system(size: CGFloat(.normalFontSize)))
+				.multilineTextAlignment(.center)
+				.foregroundColor(Color(colorEnum: .text))
+
+			Spacer()
+		}
+		.padding(.horizontal)
+	}
+
+	@ViewBuilder
+	var scanningForDevices: some View {
+		VStack(alignment: .center) {
+			Spacer()
+
+			Image(asset: .bluetoothGray)
+				.renderingMode(.template)
+				.foregroundColor(Color(colorEnum: .darkGrey))
+				.padding(.vertical)
+
+			Text(LocalizableString.ClaimDevice.scanningForWXMDevices.localized)
+				.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+				.foregroundColor(Color(colorEnum: .darkestBlue))
+
+			Spacer()
+		}
+		.padding(.horizontal)
 	}
 
 }
