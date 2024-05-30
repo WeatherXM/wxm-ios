@@ -43,6 +43,9 @@ class SelectDeviceViewModel: ObservableObject {
 		useCase.stopBluetoothScanning()
 	}
 
+	func handleDeviceTap(_ device: BTWXMDevice) {
+		print(device.name)
+	}
 }
 
 private extension SelectDeviceViewModel {

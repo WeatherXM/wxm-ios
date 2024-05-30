@@ -190,7 +190,7 @@ private extension SelectDeviceView {
 	@ViewBuilder
 	func deviceRow(_ device: BTWXMDevice) -> some View {
 		Button {
-			//			viewModel.selectDevice(device)
+			viewModel.handleDeviceTap(device)
 		} label: {
 			VStack(spacing: CGFloat(.smallToMediumSpacing)) {
 
