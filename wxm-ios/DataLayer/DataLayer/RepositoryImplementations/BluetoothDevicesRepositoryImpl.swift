@@ -102,6 +102,14 @@ public class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepositor
         }
     }
 
+	public func connect(device: BTWXMDevice) async -> BluetoothHeliumError? {
+		await withUnsafeContinuation { continuation in
+			manager.connect(to: device) { error in
+				continuation.resume(returning: error?.toDomainBluetoothHeliumError)
+			}
+		}
+	}
+
     public func disconnect(device: BTWXMDevice) {
         manager.disconnect(from: device)
     }

@@ -16,12 +16,15 @@ class SelectDeviceViewModel: ObservableObject {
 	@Published var isScanning: Bool = false
 	@Published var bluetoothState: BluetoothState = .unknown
 	@Published var devices: [BTWXMDevice] = []
-	
+	@Published var deviceToConnect: BTWXMDevice?
+	let completion: GenericCallback<(BTWXMDevice?, BluetoothHeliumError?)>
+
 	private let useCase: DevicesUseCase
 	private var cancellableSet: Set<AnyCancellable> = []
 
-	init(useCase: DevicesUseCase) {
+	init(useCase: DevicesUseCase, completion: @escaping GenericCallback<(BTWXMDevice?, BluetoothHeliumError?)>) {
 		self.useCase = useCase
+		self.completion = completion
 	}
 
 	func setup() {
@@ -44,7 +47,16 @@ class SelectDeviceViewModel: ObservableObject {
 	}
 
 	func handleDeviceTap(_ device: BTWXMDevice) {
-		print(device.name)
+		guard deviceToConnect == nil else {
+			return
+		}
+
+		deviceToConnect = device
+		Task { @MainActor in
+			let error = await useCase.connect(device: device)
+			deviceToConnect = nil
+			completion((device, error))
+		}
 	}
 }
 

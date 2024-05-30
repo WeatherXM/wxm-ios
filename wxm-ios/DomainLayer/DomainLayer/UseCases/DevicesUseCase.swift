@@ -66,6 +66,10 @@ public struct DevicesUseCase {
         bluetoothDevicesRepository.connect(device: device)
     }
 
+	public func connect(device: BTWXMDevice) async -> BluetoothHeliumError? {
+		await bluetoothDevicesRepository.connect(device: device)
+	}
+
     public func disconnect(device: BTWXMDevice) {
         bluetoothDevicesRepository.disconnect(device: device)
     }

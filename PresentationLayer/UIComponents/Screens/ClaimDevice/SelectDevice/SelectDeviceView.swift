@@ -189,20 +189,19 @@ private extension SelectDeviceView {
 
 	@ViewBuilder
 	func deviceRow(_ device: BTWXMDevice) -> some View {
+		let isConnecting = viewModel.deviceToConnect?.identifier == device.identifier
 		Button {
 			viewModel.handleDeviceTap(device)
 		} label: {
 			VStack(spacing: CGFloat(.smallToMediumSpacing)) {
 
 				HStack(spacing: CGFloat(.smallSpacing)) {
-					//					if isFetching {
-					//						ProgressView()
-					//							.frame(width: 20, height: 20)
-					//					} else {
-					Image(asset: .claimHelium)
-						.renderingMode(.template)
-						.foregroundColor(Color(colorEnum: .text))
-					//					}
+						Image(asset: .claimHelium)
+							.renderingMode(.template)
+							.foregroundColor(Color(colorEnum: .text))
+							.spinningLoader(show: .constant(isConnecting),
+											lottieLoader: false,
+											hideContent: true)
 					
 					Text(LocalizableString.ClaimDevice.deviceHelium.localized)
 						.font(.system(size: CGFloat(.normalFontSize)))
@@ -225,5 +224,5 @@ private extension SelectDeviceView {
 }
 
 #Preview {
-	SelectDeviceView(viewModel: ViewModelsFactory.getSelectDeviceViewModel {})
+	SelectDeviceView(viewModel: ViewModelsFactory.getSelectDeviceViewModel { _ in })
 }

@@ -111,8 +111,31 @@ private extension ClaimDeviceContainerViewModel {
 			self?.moveNext()
 		}
 
-		let selectDeviceViewModel = ViewModelsFactory.getSelectDeviceViewModel {
+		let selectDeviceViewModel = ViewModelsFactory.getSelectDeviceViewModel { [weak self] (device, error) in
+			if let error {
+				// Contact
+				let contactLink = LocalizableString.ClaimDevice.failedTextLinkTitle.localized
+				let troubleshootingLink = LocalizableString.ClaimDevice.failedTroubleshootingTextLinkTitle.localized
+				let text = LocalizableString.ClaimDevice.connectionFailedMarkDownText(troubleshootingLink, contactLink).localized
 
+				let object = FailSuccessStateObject(type: .claimDeviceFlow,
+													title: LocalizableString.ClaimDevice.connectionFailedTitle.localized,
+													subtitle: text.attributedMarkdown,
+													cancelTitle: LocalizableString.ClaimDevice.cancelClaimButton.localized,
+													retryTitle: LocalizableString.ClaimDevice.retryClaimButton.localized,
+													contactSupportAction: {
+					HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
+				}) {
+					Router.shared.popToRoot()
+				} retryAction: { [weak self] in
+					self?.showLoading = false
+				}
+
+				self?.loadingState = .fail(object)
+				self?.showLoading = true
+			} else {
+				
+			}
 		}
 
 		return [.reset(resetViewModel), .selectDevice(selectDeviceViewModel)]
