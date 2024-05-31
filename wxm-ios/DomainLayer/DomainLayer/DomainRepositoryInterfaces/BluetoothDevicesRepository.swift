@@ -20,6 +20,7 @@ public protocol BluetoothDevicesRepository {
 
     func fetchDeviceInfo(_ device: BTWXMDevice)
     func setDeviceFrequency(_ device: BTWXMDevice, frequency: Frequency)
+	func setFrequency(_ device: BTWXMDevice, frequency: Frequency) async -> BluetoothHeliumError?
     func rebootDevice(_ device: BTWXMDevice)
     func connect(device: BTWXMDevice)
 	func connect(device: BTWXMDevice) async -> BluetoothHeliumError?

@@ -185,8 +185,10 @@ enum ViewModelsFactory {
 
 	static func getClaimStationContainerViewModel(type: ClaimStationType) -> ClaimDeviceContainerViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		let devicesUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DevicesUseCase.self)!
 		let deviceLocationUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
-		return ClaimDeviceContainerViewModel(type: type, useCase: useCase, deviceLocationUseCase: deviceLocationUseCase)
+		
+		return ClaimDeviceContainerViewModel(type: type, useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
 	}
 
 	static func getClaimStationBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeginViewModel {
@@ -231,8 +233,7 @@ enum ViewModelsFactory {
 		return SelectDeviceViewModel(useCase: useCase, completion: completion)
 	}
 
-	static func getClaimDeviceSetFrequncyViewModel(completion: @escaping VoidCallback) -> ClaimDeviceSetFrequencyViewModel {
-//		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DevicesUseCase.self)!
-		return ClaimDeviceSetFrequencyViewModel()
+	static func getClaimDeviceSetFrequncyViewModel(completion: @escaping GenericCallback<Frequency>) -> ClaimDeviceSetFrequencyViewModel {
+		return ClaimDeviceSetFrequencyViewModel(completion: completion)
 	}
 }

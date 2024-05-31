@@ -86,6 +86,30 @@ class BTActionWrapper {
 
         return .unknown
     }
+
+	func setDeviceFrequency(_ device: BTWXMDevice, frequency: Frequency) async -> ActionError? {
+		guard let deviceWithCBPeripheral = bluetoothManager._devices.first(where: { $0.wxmDevice == device }) else {
+			return .setFrequency(nil)
+		}
+
+		return await withCheckedContinuation { continuation in
+			let command = String(format: BTCommands.AT_SET_FREQUENCY_COMMAND_FORMAT, "\(frequency.heliumBand)")
+			let delegate = BTPerformCommandDelegate(peripheral: deviceWithCBPeripheral.cbPeripheral)
+			delegate?.performCommand(command: command) { [weak self] response, error in
+				defer {
+					self?.bluetoothManager.disconnect(from: device)
+					self?.performCommandDelegate = nil
+				}
+
+				guard error == nil, response?.lowercased() == BTCommands.SUCCESS_RESPONSE else {
+					continuation.resume(returning: .setFrequency(error))
+					return
+				}
+				continuation.resume(returning: nil)
+			}
+			performCommandDelegate = delegate
+		}
+	}
 }
 
 private extension BTActionWrapper {
@@ -186,30 +210,6 @@ private extension BTActionWrapper {
         }
         rebootStationWorkItem = workItem
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: workItem)
-    }
-
-    func setDeviceFrequency(_ device: BTWXMDevice, frequency: Frequency) async -> ActionError? {
-        guard let deviceWithCBPeripheral = bluetoothManager._devices.first(where: { $0.wxmDevice == device }) else {
-            return .setFrequency(nil)
-        }
-
-        return await withCheckedContinuation { continuation in
-            let command = String(format: BTCommands.AT_SET_FREQUENCY_COMMAND_FORMAT, "\(frequency.heliumBand)")
-            let delegate = BTPerformCommandDelegate(peripheral: deviceWithCBPeripheral.cbPeripheral)
-            delegate?.performCommand(command: command) { [weak self] response, error in
-                defer {
-                    self?.bluetoothManager.disconnect(from: device)
-                    self?.performCommandDelegate = nil
-                }
-
-                guard error == nil, response?.lowercased() == BTCommands.SUCCESS_RESPONSE else {
-                    continuation.resume(returning: .setFrequency(error))
-                    return
-                }
-                continuation.resume(returning: nil)
-            }
-            performCommandDelegate = delegate
-        }
     }
 }
 

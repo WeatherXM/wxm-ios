@@ -33,3 +33,37 @@ extension BTWXMDevice {
 					eui: "")
 	}
 }
+
+extension BluetoothHeliumError {
+	struct UIInfo {
+		let title: String
+		let description: String?
+	}
+
+	var uiInfo: UIInfo {
+		var title = LocalizableString.Error.genericMessage.localized
+		var description: String?
+
+		switch self {
+			case .peripheralNotFound:
+				break
+			case .connectionError:
+				title = LocalizableString.ClaimDevice.connectionFailedTitle.localized
+				let contactLink = LocalizableString.ClaimDevice.failedTextLinkTitle.localized
+				let troubleshootingLink = LocalizableString.ClaimDevice.failedTroubleshootingTextLinkTitle.localized
+				description = LocalizableString.ClaimDevice.connectionFailedMarkDownText(troubleshootingLink, contactLink).localized
+
+			case .reboot:
+				break
+			case .bluetoothState(let bluetoothState):
+				break
+			case .setFrequency(let int):
+				break
+			case .unknown:
+				break
+		}
+		
+		return UIInfo(title: title, description: description)
+	}
+
+}

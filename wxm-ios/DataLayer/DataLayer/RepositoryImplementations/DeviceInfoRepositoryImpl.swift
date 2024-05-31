@@ -112,4 +112,21 @@ extension BTActionWrapper.ActionError {
                 return .unknown
         }
     }
+
+	var toBluetoothError: BluetoothHeliumError {
+		switch self {
+			case .bluetoothState(let state):
+					.bluetoothState(state)
+			case .reboot:
+					.reboot
+			case .notInRange:
+					.peripheralNotFound
+			case .connect:
+					.connectionError
+			case .setFrequency(let commandError):
+					.setFrequency(commandError?.errorCode)
+			case .unknown:
+					.unknown
+		}
+	}
 }

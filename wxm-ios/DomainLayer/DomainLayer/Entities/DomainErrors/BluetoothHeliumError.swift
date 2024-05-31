@@ -10,4 +10,8 @@ import Foundation
 public enum BluetoothHeliumError: Error {
 	case peripheralNotFound
 	case connectionError
+	case reboot
+	case bluetoothState(BluetoothState)
+	case setFrequency(Int?)
+	case unknown
 }

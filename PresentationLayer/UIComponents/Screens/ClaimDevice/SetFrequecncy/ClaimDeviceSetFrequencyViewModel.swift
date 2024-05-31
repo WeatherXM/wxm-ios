@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 class ClaimDeviceSetFrequencyViewModel: ObservableObject {
 	@Published var selectedFrequency: Frequency?
@@ -14,4 +15,17 @@ class ClaimDeviceSetFrequencyViewModel: ObservableObject {
 	@Published var didSelectFrequencyFromLocation = false
 	@Published var isFrequencyAcknowledged = false
 	@Published var selectedLocation: DeviceLocation?
+	let completion: GenericCallback<Frequency>
+
+	init(completion: @escaping GenericCallback<Frequency>) {
+		self.completion = completion
+	}
+
+	func handleClaimButtonTap() {
+		guard let selectedFrequency else {
+			return
+		}
+
+		self.completion(selectedFrequency)
+	}
 }

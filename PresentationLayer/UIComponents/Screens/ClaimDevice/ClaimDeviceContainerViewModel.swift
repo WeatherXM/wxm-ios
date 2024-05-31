@@ -8,6 +8,7 @@
 import Foundation
 import DomainLayer
 import Combine
+import Toolkit
 
 class ClaimDeviceContainerViewModel: ObservableObject {
 	@Published var selectedIndex: Int = 0
@@ -18,17 +19,20 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	var steps: [ClaimDeviceStep] = []
 	let navigationTitle: String
 	let useCase: MeUseCase
+	let devicesUseCase: DevicesUseCase
 	let deviceLocationUseCase: DeviceLocationUseCase
 
 	private var btDevice: BTWXMDevice?
 	private var claimingKey: String?
 	private var serialNumber: String?
 	private var location: DeviceLocation?
+	private var heliumFrequency: Frequency?
 	private var cancellableSet: Set<AnyCancellable> = .init()
 
-	init(type: ClaimStationType, useCase: MeUseCase, deviceLocationUseCase: DeviceLocationUseCase) {
+	init(type: ClaimStationType, useCase: MeUseCase, devicesUseCase: DevicesUseCase, deviceLocationUseCase: DeviceLocationUseCase) {
 		navigationTitle = type.navigationTitle
 		self.useCase = useCase
+		self.devicesUseCase = devicesUseCase
 		self.deviceLocationUseCase = deviceLocationUseCase
 		steps = getSteps(for: type)
 	}
@@ -117,35 +121,24 @@ private extension ClaimDeviceContainerViewModel {
 		}
 
 		let selectDeviceViewModel = ViewModelsFactory.getSelectDeviceViewModel { [weak self] (device, error) in
-			if let error {
-				// Contact
-				let contactLink = LocalizableString.ClaimDevice.failedTextLinkTitle.localized
-				let troubleshootingLink = LocalizableString.ClaimDevice.failedTroubleshootingTextLinkTitle.localized
-				let text = LocalizableString.ClaimDevice.connectionFailedMarkDownText(troubleshootingLink, contactLink).localized
+			guard let self else {
+				return
+			}
 
-				let object = FailSuccessStateObject(type: .claimDeviceFlow,
-													title: LocalizableString.ClaimDevice.connectionFailedTitle.localized,
-													subtitle: text.attributedMarkdown,
-													cancelTitle: LocalizableString.ClaimDevice.cancelClaimButton.localized,
-													retryTitle: LocalizableString.ClaimDevice.retryClaimButton.localized,
-													contactSupportAction: {
-					HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
-				}) {
-					Router.shared.popToRoot()
-				} retryAction: { [weak self] in
+			if let error {
+				let object = self.getFailObject(for: error) { [weak self] in
 					self?.showLoading = false
 				}
-
-				self?.loadingState = .fail(object)
-				self?.showLoading = true
+				self.loadingState = .fail(object)
+				self.showLoading = true
 			} else {
-				self?.btDevice = device
-				self?.moveNext()
+				self.btDevice = device
+				self.moveNext()
 			}
 		}
 
-		let setFrequencyViewModel = ViewModelsFactory.getClaimDeviceSetFrequncyViewModel { [weak self] in
-
+		let setFrequencyViewModel = ViewModelsFactory.getClaimDeviceSetFrequncyViewModel { [weak self] frequency in
+			self?.heliumFrequency = frequency
 		}
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self, weak setFrequencyViewModel] location in
@@ -246,6 +239,24 @@ private extension ClaimDeviceContainerViewModel {
 		return object
 	}
 
+	func getFailObject(for btError: BluetoothHeliumError, retryAction: @escaping VoidCallback) -> FailSuccessStateObject {
+		let uiInfo = btError.uiInfo
+		let object = FailSuccessStateObject(type: .claimDeviceFlow,
+											title: uiInfo.title,
+											subtitle: uiInfo.description?.attributedMarkdown,
+											cancelTitle: LocalizableString.ClaimDevice.cancelClaimButton.localized,
+											retryTitle: LocalizableString.ClaimDevice.retryClaimButton.localized,
+											contactSupportAction: {
+			HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
+		}) {
+			Router.shared.popToRoot()
+		} retryAction: {
+			retryAction()
+		}
+
+		return object
+	}
+
 	func getSuccessObject(for device: DeviceDetails) -> FailSuccessStateObject {
 		let object = FailSuccessStateObject(type: .claimDeviceFlow,
 											title: LocalizableString.ClaimDevice.successTitle.localized,
@@ -273,6 +284,15 @@ private extension ClaimDeviceContainerViewModel {
 																						  cellCenter: device.cellCenter?.toCLLocationCoordinate2D()))
 			Router.shared.navigateTo(route)
 		}
+	}
+
+	func setHeliumFrequency() async -> BluetoothHeliumError? {
+		guard let heliumFrequency, let btDevice else {
+			return .unknown
+		}
+
+		let error = await devicesUseCase.setHeliumFrequency(btDevice, frequency: heliumFrequency)
+		return error
 	}
 }
 

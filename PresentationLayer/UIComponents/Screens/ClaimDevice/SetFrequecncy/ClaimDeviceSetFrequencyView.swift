@@ -37,7 +37,7 @@ private extension ClaimDeviceSetFrequencyView {
 	@ViewBuilder
 	var bottomButton: some View {
 		Button {
-
+			viewModel.handleClaimButtonTap()
 		} label: {
 			Text(LocalizableString.ClaimDevice.setAndClaim.localized)
 		}
@@ -48,5 +48,5 @@ private extension ClaimDeviceSetFrequencyView {
 }
 
 #Preview {
-	ClaimDeviceSetFrequencyView(viewModel: ViewModelsFactory.getClaimDeviceSetFrequncyViewModel { })
+	ClaimDeviceSetFrequencyView(viewModel: ViewModelsFactory.getClaimDeviceSetFrequncyViewModel { _ in })
 }

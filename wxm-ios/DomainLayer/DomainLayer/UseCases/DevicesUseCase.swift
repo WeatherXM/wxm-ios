@@ -54,6 +54,10 @@ public struct DevicesUseCase {
         bluetoothDevicesRepository.setDeviceFrequency(device, frequency: frequency)
     }
 
+	public func setHeliumFrequency(_ device: BTWXMDevice, frequency: Frequency) async -> BluetoothHeliumError? {
+		await bluetoothDevicesRepository.setFrequency(device, frequency: frequency)
+	}
+
     public func isHeliumDeviceDevEUIValid(_ devEUI: String) -> Bool {
         return devEUI.count == Self.DEV_EUI_KEY_LENGTH && devEUI.matches(Self.DEV_EUI_REGEX)
     }

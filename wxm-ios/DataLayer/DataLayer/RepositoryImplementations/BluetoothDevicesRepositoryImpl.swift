@@ -26,6 +26,8 @@ public class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepositor
     /// Used to identify the device to be disconnected because of timeout
     private weak var timeOutPeripheral: CBPeripheral?
     private var rebootStationWorkItem: DispatchWorkItem?
+	private lazy var bluetoothWrapper: BTActionWrapper = BTActionWrapper()
+
 
     enum BTError {
         case wxmDeviceNotFound
@@ -117,6 +119,10 @@ public class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepositor
     public func cancelReboot() {
         rebootStationWorkItem?.cancel()
     }
+
+	public func setFrequency(_ device: BTWXMDevice, frequency: Frequency) async -> BluetoothHeliumError? {
+		await bluetoothWrapper.setDeviceFrequency(device, frequency: frequency)?.toBluetoothError
+	}
 }
 
 private extension BluetoothDevicesRepositoryImpl {
