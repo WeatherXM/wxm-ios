@@ -58,6 +58,10 @@ class SelectDeviceViewModel: ObservableObject {
 			completion((device, error))
 		}
 	}
+
+	func handleDebugButtonTap() {
+		completion((BTWXMDevice.mock, nil))
+	}
 }
 
 private extension SelectDeviceViewModel {

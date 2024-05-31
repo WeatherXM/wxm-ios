@@ -19,6 +19,7 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	let navigationTitle: String
 	let useCase: MeUseCase
 	
+	private var btDevice: BTWXMDevice?
 	private var claimingKey: String?
 	private var serialNumber: String?
 	private var location: DeviceLocation?
@@ -80,7 +81,8 @@ private extension ClaimDeviceContainerViewModel {
 		}
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
-			self?.handleLocation(location: location)
+			self?.location = location
+			self?.performClaim()
 		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
@@ -100,7 +102,8 @@ private extension ClaimDeviceContainerViewModel {
 		}
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
-			self?.handleLocation(location: location)
+			self?.location = location
+			self?.performClaim()
 		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
@@ -134,11 +137,16 @@ private extension ClaimDeviceContainerViewModel {
 				self?.loadingState = .fail(object)
 				self?.showLoading = true
 			} else {
-				
+				self?.btDevice = device
+				self?.moveNext()
 			}
 		}
 
-		return [.reset(resetViewModel), .selectDevice(selectDeviceViewModel)]
+		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
+			self?.location = location
+		}
+
+		return [.reset(resetViewModel), .selectDevice(selectDeviceViewModel), .location(locationViewModel)]
 	}
 
 	func getPulseSteps() -> [ClaimDeviceStep] {
@@ -175,12 +183,6 @@ private extension ClaimDeviceContainerViewModel {
 		}
 
 		moveNext()
-	}
-
-	func handleLocation(location: DeviceLocation) {
-		self.location = location
-
-		performClaim()
 	}
 
 	func performClaim() {

@@ -23,3 +23,13 @@ extension BluetoothState {
         }
     }
 }
+
+extension BTWXMDevice {
+	static var mock: Self {
+		BTWXMDevice(identifier: .init(),
+					state: .connected,
+					name: "Mock device",
+					rssi: 0,
+					eui: "")
+	}
+}

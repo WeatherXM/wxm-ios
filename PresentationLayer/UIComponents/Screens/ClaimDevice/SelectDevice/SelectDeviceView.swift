@@ -65,7 +65,7 @@ private extension SelectDeviceView {
 	@ViewBuilder
 	var debugButton: some View {
 		Button {
-
+			viewModel.handleDebugButtonTap()
 		} label: {
 			Text(verbatim: "DEBUG - Go to next")
 		}
