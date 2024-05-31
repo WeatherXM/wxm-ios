@@ -11,7 +11,7 @@ import Toolkit
 class ClaimDeviceBeginViewModel: ObservableObject {
 	let completion: VoidCallback
 	var videoLink: String? {
-		nil
+		DisplayedLinks.d1VideoLink.linkURL
 	}
 	var bullets: [ClaimDeviceBulletView.Bullet] {
 		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.connectD1BulletOne.localized.attributedMarkdown ?? ""),

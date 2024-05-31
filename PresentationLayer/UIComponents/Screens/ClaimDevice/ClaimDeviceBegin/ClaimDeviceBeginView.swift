@@ -43,7 +43,7 @@ struct ClaimDeviceBeginView: View {
 
 								UIApplication.shared.open(url)
 							} label: {
-								Image(asset: .m5Video)
+								Image(asset: .ytClaimVideo)
 									.resizable()
 									.aspectRatio(contentMode: .fit)
 							}
