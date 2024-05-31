@@ -14,7 +14,7 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	@Published var selectedIndex: Int = 0
 	@Published var isMovingNext = true
 	@Published var showLoading = false
-	@Published var loadingState: ClaimDeviceProgressView.State = .loading("", "")
+	@Published var loadingState: ClaimDeviceProgressView.State = .loading(.init(title: "", subtitle: ""))
 
 	var steps: [ClaimDeviceStep] = []
 	let navigationTitle: String
@@ -139,6 +139,7 @@ private extension ClaimDeviceContainerViewModel {
 
 		let setFrequencyViewModel = ViewModelsFactory.getClaimDeviceSetFrequncyViewModel { [weak self] frequency in
 			self?.heliumFrequency = frequency
+			self?.performHeliumClaim()
 		}
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self, weak setFrequencyViewModel] location in
@@ -272,8 +273,8 @@ private extension ClaimDeviceContainerViewModel {
 	}
 
 	func getLoadingState() -> ClaimDeviceProgressView.State {
-		.loading(LocalizableString.ClaimDevice.claimingTitle.localized,
-				 LocalizableString.ClaimDevice.claimStationLoadingDescription.localized.attributedMarkdown ?? "")
+		.loading(.init(title: LocalizableString.ClaimDevice.claimingTitle.localized,
+					   subtitle: LocalizableString.ClaimDevice.claimStationLoadingDescription.localized.attributedMarkdown ?? ""))
 	}
 
 	func dismissAndNavigate(device: DeviceDetails) {
@@ -283,6 +284,28 @@ private extension ClaimDeviceContainerViewModel {
 																						  cellIndex: device.cellIndex,
 																						  cellCenter: device.cellCenter?.toCLLocationCoordinate2D()))
 			Router.shared.navigateTo(route)
+		}
+	}
+
+	func performHeliumClaim() {
+		let steps: [StepsView.Step] = HeliumSteps.allCases.map { .init(text: $0.description, isCompleted: false) }
+		let title = LocalizableString.ClaimDevice.claimingTitle.localized
+		let boldText = LocalizableString.ClaimDevice.claimingTextInformation.localized
+		let subtitle = LocalizableString.ClaimDevice.claimingText(boldText).localized
+
+		loadingState = .loading(.init(title: title,
+									  subtitle: subtitle.attributedMarkdown,
+									  steps: steps,
+									  stepIndex: 0,
+									  progress: nil))
+		showLoading = true
+		Task { @MainActor in
+			if let setFrequencyError = await setHeliumFrequency() {
+				let failObj = self.getFailObject(for: setFrequencyError) { [weak self] in
+					self?.showLoading = false
+				}
+				loadingState = .fail(failObj)
+			}
 		}
 	}
 

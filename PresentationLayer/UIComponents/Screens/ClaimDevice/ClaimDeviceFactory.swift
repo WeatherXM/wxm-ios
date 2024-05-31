@@ -61,3 +61,23 @@ extension ClaimDeviceStep {
 		}
 	}
 }
+
+// MARK: - Helium Steps
+
+enum HeliumSteps: Int, CaseIterable, CustomStringConvertible {
+	case settingFrequency
+	case rebooting
+	case claiming
+
+	var description: String {
+		switch self {
+			case .settingFrequency:
+				return LocalizableString.ClaimDevice.stepSettingFrequency.localized
+			case .rebooting:
+				return LocalizableString.rebootingStation.localized
+			case .claiming:
+				return LocalizableString.ClaimDevice.stepClaiming.localized
+		}
+	}
+}
+
