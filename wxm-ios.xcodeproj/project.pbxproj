@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */; };
+		2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */; };
+		2608A7942C09F67A00452E40 /* DeviceLocation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7932C09F67A00452E40 /* DeviceLocation+.swift */; };
 		2612AC1A2AB45B1700285896 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC192AB45B1700285896 /* FilterView.swift */; };
 		2612AC1C2AB45B2800285896 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC1B2AB45B2800285896 /* FilterViewModel.swift */; };
 		2612AC3A2AB47BA200285896 /* LocalizableString+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */; };
@@ -558,6 +561,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyView.swift; sourceTree = "<group>"; };
+		2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyViewModel.swift; sourceTree = "<group>"; };
+		2608A7932C09F67A00452E40 /* DeviceLocation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceLocation+.swift"; sourceTree = "<group>"; };
 		2612AC192AB45B1700285896 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		2612AC1B2AB45B2800285896 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Filters.swift"; sourceTree = "<group>"; };
@@ -1033,6 +1039,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2608A78E2C09D34B00452E40 /* SetFrequecncy */ = {
+			isa = PBXGroup;
+			children = (
+				2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */,
+				2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */,
+			);
+			path = SetFrequecncy;
+			sourceTree = "<group>";
+		};
 		2612AC182AB45AFA00285896 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
@@ -1517,6 +1532,7 @@
 		2675471529A9181E008BCF40 /* ClaimDevice */ = {
 			isa = PBXGroup;
 			children = (
+				2608A78E2C09D34B00452E40 /* SetFrequecncy */,
 				26E685AD2C06198900B972B1 /* SelectDevice */,
 				26A545682C0609900098FE52 /* ResetDevice */,
 				26AA21E22BF4F59200B91A7C /* Location */,
@@ -1855,6 +1871,7 @@
 				266B01CC2B84FB59007AC689 /* NetworkDeviceRewardsSummaryResponse+.swift */,
 				26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */,
 				264CC7682B98AA6E0060DEA4 /* NetworkDeviceRewardBoostsResponse+.swift */,
+				2608A7932C09F67A00452E40 /* DeviceLocation+.swift */,
 			);
 			path = DomainExtensions;
 			sourceTree = "<group>";
@@ -2930,6 +2947,7 @@
 				26AA21E92BF4FA3B00B91A7C /* SelectLocationMapView.swift in Sources */,
 				26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */,
 				2672C77A2AA9BBEB00E1FDCC /* HistoryContainerView.swift in Sources */,
+				2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */,
 				26FFADA72B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift in Sources */,
 				2672C77E2AA9BCFE00E1FDCC /* HistoryContainerViewModel.swift in Sources */,
 				267547C229A9181E008BCF40 /* HistoryView.swift in Sources */,
@@ -2960,6 +2978,7 @@
 				26A961B02AA7181300646A25 /* LocalizableString+Wallet.swift in Sources */,
 				2675483F29A9181E008BCF40 /* LoggedInTabViewContainer.swift in Sources */,
 				2675481E29A9181E008BCF40 /* LottieView.swift in Sources */,
+				2608A7942C09F67A00452E40 /* DeviceLocation+.swift in Sources */,
 				B52BCC752824FB8F00EA3DA5 /* MainApp.swift in Sources */,
 				2675481929A9181E008BCF40 /* MainScreen.swift in Sources */,
 				267547A929A9181E008BCF40 /* MainScreenViewModel.swift in Sources */,
@@ -2990,6 +3009,7 @@
 				26BA07772B7FC2AC00F7F5A0 /* WeeklyStreakView.swift in Sources */,
 				2692D8722A4D8DEA0060CB3C /* Numeric+.swift in Sources */,
 				26A4115929B6078500A2C10B /* ObservationsView.swift in Sources */,
+				2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */,
 				266B01E52B8767E4007AC689 /* StationIndication.swift in Sources */,
 				2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */,
 				264CDE0F2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift in Sources */,

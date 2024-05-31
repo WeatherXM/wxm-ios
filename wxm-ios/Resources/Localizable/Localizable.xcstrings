@@ -1700,6 +1700,17 @@
         }
       }
     },
+    "claim_device_set_and_claim" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set and Claim"
+          }
+        }
+      }
+    },
     "claim_device_station_loading_description" : {
       "extractionState" : "manual",
       "localizations" : {

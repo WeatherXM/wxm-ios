@@ -45,7 +45,6 @@ struct ClaimDeviceContainerView: View {
 
 #Preview {
 	NavigationContainerView {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
-		return ClaimDeviceContainerView(viewModel: .init(type: .m5, useCase: useCase))
+		return ClaimDeviceContainerView(viewModel: ViewModelsFactory.getClaimStationContainerViewModel(type: .m5))
 	}
 }

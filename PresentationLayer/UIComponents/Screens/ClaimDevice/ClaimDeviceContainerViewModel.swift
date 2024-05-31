@@ -18,16 +18,18 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	var steps: [ClaimDeviceStep] = []
 	let navigationTitle: String
 	let useCase: MeUseCase
-	
+	let deviceLocationUseCase: DeviceLocationUseCase
+
 	private var btDevice: BTWXMDevice?
 	private var claimingKey: String?
 	private var serialNumber: String?
 	private var location: DeviceLocation?
 	private var cancellableSet: Set<AnyCancellable> = .init()
 
-	init(type: ClaimStationType, useCase: MeUseCase) {
+	init(type: ClaimStationType, useCase: MeUseCase, deviceLocationUseCase: DeviceLocationUseCase) {
 		navigationTitle = type.navigationTitle
 		self.useCase = useCase
+		self.deviceLocationUseCase = deviceLocationUseCase
 		steps = getSteps(for: type)
 	}
 
@@ -142,11 +144,20 @@ private extension ClaimDeviceContainerViewModel {
 			}
 		}
 
-		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
-			self?.location = location
+		let setFrequencyViewModel = ViewModelsFactory.getClaimDeviceSetFrequncyViewModel { [weak self] in
+
 		}
 
-		return [.reset(resetViewModel), .selectDevice(selectDeviceViewModel), .location(locationViewModel)]
+		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self, weak setFrequencyViewModel] location in
+			self?.location = location
+			setFrequencyViewModel?.preSelectedFrequency = location.getFrequencyFromCurrentLocationCountry(from: self?.deviceLocationUseCase.getCountryInfos())
+			setFrequencyViewModel?.selectedLocation = location
+			setFrequencyViewModel?.didSelectFrequencyFromLocation = true
+			self?.moveNext()
+		}
+
+
+		return [.reset(resetViewModel), .selectDevice(selectDeviceViewModel), .location(locationViewModel), .setFrequency(setFrequencyViewModel)]
 	}
 
 	func getPulseSteps() -> [ClaimDeviceStep] {

@@ -116,6 +116,7 @@ struct CustomPicker<Item: Equatable & Hashable>: View {
                 }
             }
         }
+		.clipped()
         .background(Color(colorEnum: .top))
         .overlay(
             RoundedRectangle(cornerRadius: 5)

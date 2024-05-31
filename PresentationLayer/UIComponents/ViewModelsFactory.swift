@@ -185,7 +185,8 @@ enum ViewModelsFactory {
 
 	static func getClaimStationContainerViewModel(type: ClaimStationType) -> ClaimDeviceContainerViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
-		return ClaimDeviceContainerViewModel(type: type, useCase: useCase)
+		let deviceLocationUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
+		return ClaimDeviceContainerViewModel(type: type, useCase: useCase, deviceLocationUseCase: deviceLocationUseCase)
 	}
 
 	static func getClaimStationBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeginViewModel {
@@ -228,5 +229,10 @@ enum ViewModelsFactory {
 	static func getSelectDeviceViewModel(completion: @escaping GenericCallback<(BTWXMDevice?, BluetoothHeliumError?)>) -> SelectDeviceViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DevicesUseCase.self)!
 		return SelectDeviceViewModel(useCase: useCase, completion: completion)
+	}
+
+	static func getClaimDeviceSetFrequncyViewModel(completion: @escaping VoidCallback) -> ClaimDeviceSetFrequencyViewModel {
+//		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DevicesUseCase.self)!
+		return ClaimDeviceSetFrequencyViewModel()
 	}
 }

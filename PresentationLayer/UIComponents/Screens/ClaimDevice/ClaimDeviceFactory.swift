@@ -16,6 +16,7 @@ enum ClaimDeviceStep: Identifiable {
 	case location(ClaimDeviceLocationViewModel)
 	case reset(ResetDeviceViewModel)
 	case selectDevice(SelectDeviceViewModel)
+	case setFrequency(ClaimDeviceSetFrequencyViewModel)
 
 	var id: String {
 		switch self {
@@ -31,6 +32,8 @@ enum ClaimDeviceStep: Identifiable {
 				"reset"
 			case .selectDevice:
 				"selectDevice"
+			case .setFrequency:
+				"setFrequency"
 		}
 	}
 }
@@ -53,6 +56,8 @@ extension ClaimDeviceStep {
 				ResetDeviceView(viewModel: viewModel)
 			case .selectDevice(let viewModel):
 				SelectDeviceView(viewModel: viewModel)
+			case .setFrequency(let viewModel):
+				ClaimDeviceSetFrequencyView(viewModel: viewModel)
 		}
 	}
 }
