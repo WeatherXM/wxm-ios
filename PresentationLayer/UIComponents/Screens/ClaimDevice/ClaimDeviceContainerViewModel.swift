@@ -300,12 +300,32 @@ private extension ClaimDeviceContainerViewModel {
 									  progress: nil))
 		showLoading = true
 		Task { @MainActor in
+			// Set frequency
+
 			if let setFrequencyError = await setHeliumFrequency() {
 				let failObj = self.getFailObject(for: setFrequencyError) { [weak self] in
 					self?.showLoading = false
 				}
 				loadingState = .fail(failObj)
 			}
+
+			// Reboot
+
+			loadingState = .loading(.init(title: title,
+										  subtitle: subtitle.attributedMarkdown,
+										  steps: steps,
+										  stepIndex: 1,
+										  progress: nil))
+
+			if let rebootError = await reboot() {
+				let failObj = self.getFailObject(for: rebootError) { [weak self] in
+					self?.showLoading = false
+				}
+
+				loadingState = .fail(failObj)
+			}
+
+			
 		}
 	}
 
@@ -316,6 +336,14 @@ private extension ClaimDeviceContainerViewModel {
 
 		let error = await devicesUseCase.setHeliumFrequency(btDevice, frequency: heliumFrequency)
 		return error
+	}
+
+	func reboot() async -> BluetoothHeliumError? {
+		guard let btDevice else {
+			return .unknown
+		}
+
+		return await devicesUseCase.reboot(device: btDevice)
 	}
 }
 
