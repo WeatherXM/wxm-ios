@@ -10,6 +10,7 @@ import CoreBluetooth
 import DomainLayer
 
 public class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepository {
+
     public let state: AnyPublisher<BluetoothState, Never>
     public let devices: AnyPublisher<[BTWXMDevice], Never>
     public var deviceState: AnyPublisher<DeviceState, Never>
@@ -78,6 +79,26 @@ public class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepositor
             self?.helper?.fetchDeviceInformation()
         }
     }
+
+	public func fetchDeviceInfo(_ device: BTWXMDevice) async -> Result<BTWXMDeviceInfo?, BluetoothHeliumError> {
+		let devEUI = await bluetoothWrapper.getDevEUI(device)
+		if let error = devEUI.error {
+			return .failure(error.toBluetoothError)
+		}
+
+		let devEUIValue = devEUI.value
+
+		let claimingKey = await bluetoothWrapper.getClaimingKey(device)
+		if let error = claimingKey.error {
+			return .failure(error.toBluetoothError)
+		}
+
+		let claimingKeyValue = claimingKey.value
+
+		return .success(BTWXMDeviceInfo(devEUI: devEUIValue ?? "",
+										claimingKey: claimingKeyValue ?? ""))
+	}
+
 
     public func setDeviceFrequency(_ device: BTWXMDevice, frequency: Frequency) {
         prepareDevice(device) { [weak self] in

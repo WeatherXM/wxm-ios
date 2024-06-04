@@ -325,7 +325,7 @@ private extension ClaimDeviceContainerViewModel {
 				loadingState = .fail(failObj)
 			}
 
-			
+
 		}
 	}
 

@@ -57,7 +57,7 @@ extension BluetoothHeliumError {
 				break
 			case .bluetoothState(let bluetoothState):
 				break
-			case .setFrequency(let code):
+			case .setFrequency(let code), .devEUI(let code), .claimingKey(let code):
 				let contactLink = LocalizableString.ClaimDevice.failedTextLinkTitle.localized
 				let error = "**\(code ?? -1)**"
 				description = LocalizableString.ClaimDevice.failedText(error, contactLink).localized

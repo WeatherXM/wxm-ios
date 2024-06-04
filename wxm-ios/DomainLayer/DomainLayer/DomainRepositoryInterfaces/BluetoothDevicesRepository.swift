@@ -19,6 +19,7 @@ public protocol BluetoothDevicesRepository {
     func stopScanning()
 
     func fetchDeviceInfo(_ device: BTWXMDevice)
+	func fetchDeviceInfo(_ device: BTWXMDevice) async -> Result<BTWXMDeviceInfo?, BluetoothHeliumError>
     func setDeviceFrequency(_ device: BTWXMDevice, frequency: Frequency)
 	func setFrequency(_ device: BTWXMDevice, frequency: Frequency) async -> BluetoothHeliumError?
     func rebootDevice(_ device: BTWXMDevice)
@@ -27,6 +28,16 @@ public protocol BluetoothDevicesRepository {
 	func connect(device: BTWXMDevice) async -> BluetoothHeliumError?
     func disconnect(device: BTWXMDevice)
     func cancelReboot()
+}
+
+public struct BTWXMDeviceInfo {
+	public let devEUI: String
+	public let claimingKey: String
+
+	public init(devEUI: String, claimingKey: String) {
+		self.devEUI = devEUI
+		self.claimingKey = claimingKey
+	}
 }
 
 public enum BluetoothState {

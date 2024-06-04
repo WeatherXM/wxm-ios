@@ -13,5 +13,7 @@ public enum BluetoothHeliumError: Error {
 	case reboot
 	case bluetoothState(BluetoothState)
 	case setFrequency(Int?)
+	case devEUI(Int?)
+	case claimingKey(Int?)
 	case unknown
 }

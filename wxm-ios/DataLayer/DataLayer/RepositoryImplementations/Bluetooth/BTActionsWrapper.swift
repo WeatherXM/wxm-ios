@@ -110,6 +110,22 @@ class BTActionWrapper {
 			performCommandDelegate = delegate
 		}
 	}
+
+	func getDevEUI(_ device: BTWXMDevice) async -> (value: String?, error: ActionError?) {
+		return await withUnsafeContinuation { [weak self] continuation in
+			self?.fetchDevEUI(device: device) { value, error in
+				continuation.resume(returning: (value, error))
+			}
+		}
+	}
+
+	func getClaimingKey(_ device: BTWXMDevice) async -> (value: String?, error: ActionError?) {
+		return await withUnsafeContinuation { [weak self] continuation in
+			self?.fetchClaimingKey(device: device) { value, error in
+				continuation.resume(returning: (value, error))
+			}
+		}
+	}
 }
 
 private extension BTActionWrapper {
@@ -180,7 +196,7 @@ private extension BTActionWrapper {
         rebootStationWorkItem?.cancel()
         bluetoothManager.disconnect(from: device)
         return await withCheckedContinuation { [weak self] continuation in
-            connectToDevice(device, retries: 5) { error in
+			self?.connectToDevice(device, retries: 5) { error in
                 if error != nil {
                     continuation.resume(returning: .reboot)
                     return
@@ -211,6 +227,51 @@ private extension BTActionWrapper {
         rebootStationWorkItem = workItem
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: workItem)
     }
+
+	func fetchDevEUI(device: BTWXMDevice, completion: @escaping (String?, ActionError?) -> Void) {
+		guard let deviceWithCBPeripheral = bluetoothManager._devices.first(where: { $0.wxmDevice == device }) else {
+			completion(nil, .fetchDevEUI(nil))
+			return
+		}
+
+		performCommandDelegate = BTPerformCommandDelegate(peripheral: deviceWithCBPeripheral.cbPeripheral)
+		performCommandDelegate?.performCommand(command: BTCommands.AT_DEV_EUI_COMMAND) { response, error in
+			if let error {
+				completion(nil, .fetchDevEUI(error))
+				return
+			}
+
+			completion(response, nil)
+		}
+	}
+
+	func fetchClaimingKey(device: BTWXMDevice, completion: @escaping (String?, ActionError?) -> Void) {
+		guard let deviceWithCBPeripheral = bluetoothManager._devices.first(where: { $0.wxmDevice == device }) else {
+			completion(nil, .fetchClaimingKey(nil))
+			return
+		}
+
+		performCommandDelegate = BTPerformCommandDelegate(peripheral: deviceWithCBPeripheral.cbPeripheral)
+		performCommandDelegate?.performCommand(command: BTCommands.AT_CLAIMING_KEY_COMMAND) { response, error in
+			if let error {
+				completion(nil, .fetchClaimingKey(error))
+				return
+			}
+
+			completion(response, nil)
+		}
+	}
+
+//	func fetchClaimingKey() {
+//		stateSubject.send(.fetchingClaimingKey)
+//		performCommandDelegate?.performCommand(command: BTCommands.AT_CLAIMING_KEY_COMMAND) { [weak self] response, error in
+//			if let error {
+//				self?.handleError(.readFromCharacteristic(error))
+//				return
+//			}
+//			self?.didFetchValue(response ?? "")
+//		}
+//	}
 }
 
 extension BTActionWrapper {
@@ -220,6 +281,8 @@ extension BTActionWrapper {
         case notInRange
         case connect
         case setFrequency(BTPerformCommandDelegate.BTCommandError?)
+		case fetchDevEUI(BTPerformCommandDelegate.BTCommandError?)
+		case fetchClaimingKey(BTPerformCommandDelegate.BTCommandError?)
         case unknown
     }
 }
