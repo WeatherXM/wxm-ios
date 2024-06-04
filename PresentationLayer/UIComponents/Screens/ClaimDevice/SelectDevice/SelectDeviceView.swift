@@ -32,8 +32,7 @@ struct SelectDeviceView: View {
 				debugButton
 #endif
 			}
-			.padding(.horizontal, CGFloat(.mediumSidePadding))
-			.padding(.bottom, CGFloat(.mediumSidePadding))
+			.padding(CGFloat(.mediumSidePadding))
 		}
 		.onAppear {
 			viewModel.setup()
