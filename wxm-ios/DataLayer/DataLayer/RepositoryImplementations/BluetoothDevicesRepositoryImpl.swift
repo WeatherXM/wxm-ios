@@ -116,8 +116,7 @@ public class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepositor
     }
 
 	public func rebootDevice(_ device: BTWXMDevice) async -> BluetoothHeliumError? {
-		manager.disconnect(from: device)
-		return await connectTo(device: device, retries: 5)
+		await bluetoothWrapper.rebootDevice(device)?.toBluetoothError
 	}
 
     public func connect(device: BTWXMDevice) {
@@ -226,30 +225,6 @@ private extension BluetoothDevicesRepositoryImpl {
         rebootStationWorkItem = workItem
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: workItem)
     }
-
-	func connectTo(device: BTWXMDevice, retries: Int) async -> BluetoothHeliumError? {
-		await withUnsafeContinuation { [weak self] continuation in
-			self?.connectToDevice(device, retries: retries) { error in
-				continuation.resume(returning: error?.toDomainBluetoothHeliumError)
-			}
-		}
-	}
-
-	func connectToDevice(_ device: BTWXMDevice, retries: Int, completion: @escaping (BluetoothManager.BTManagerEror?) -> Void) {
-		manager.connect(to: device) { [weak self] error in
-			if error == nil {
-				completion(nil)
-				return
-			}
-
-			if retries > 0 {
-				self?.connectToDevice(device, retries: retries - 1, completion: completion)
-				return
-			}
-
-			completion(nil)
-		}
-	}
 }
 
 extension HeliumDeviceBluetoothHelper.HelperState {

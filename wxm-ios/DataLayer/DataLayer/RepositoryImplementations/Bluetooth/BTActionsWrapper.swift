@@ -64,6 +64,23 @@ class BTActionWrapper {
         return .unknown
     }
 
+	func rebootDevice(_ device: BTWXMDevice) async -> ActionError? {
+		rebootStationWorkItem?.cancel()
+		bluetoothManager.disconnect(from: device)
+		return await withCheckedContinuation { [weak self] continuation in
+			self?.connectToDevice(device, retries: 5) { error in
+				if error != nil {
+					continuation.resume(returning: .reboot)
+					return
+				}
+
+
+				self?.bluetoothManager.disconnect(from: device)
+				continuation.resume(returning: nil)
+			}
+		}
+	}
+
     /// Changes the station's frequency. Scans to find the corresponding ΒΤ device and performs the AT command
     /// - Parameters:
     ///   - device: The device to set frequency
@@ -190,23 +207,6 @@ private extension BTActionWrapper {
         scanningTimeoutWorkItem?.cancel()
         scanningTimeoutWorkItem = nil
         bluetoothManager.stopScanning()
-    }
-
-    func rebootDevice(_ device: BTWXMDevice) async -> ActionError? {
-        rebootStationWorkItem?.cancel()
-        bluetoothManager.disconnect(from: device)
-        return await withCheckedContinuation { [weak self] continuation in
-			self?.connectToDevice(device, retries: 5) { error in
-                if error != nil {
-                    continuation.resume(returning: .reboot)
-                    return
-                }
-
-
-                self?.bluetoothManager.disconnect(from: device)
-                continuation.resume(returning: nil)
-            }
-        }
     }
 
     func connectToDevice(_ device: BTWXMDevice, retries: Int, completion: @escaping (ActionError?) -> Void) {
