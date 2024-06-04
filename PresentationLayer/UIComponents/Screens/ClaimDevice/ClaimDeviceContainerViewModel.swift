@@ -22,6 +22,8 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	let devicesUseCase: DevicesUseCase
 	let deviceLocationUseCase: DeviceLocationUseCase
 
+	private let CLAIMING_RETRIES_MAX = 25 // For 2 minutes timeout
+	private let CLAIMING_RETRIES_DELAY_SECONDS: TimeInterval = 5
 	private var btDevice: BTWXMDevice?
 	private var claimingKey: String?
 	private var serialNumber: String?
@@ -144,7 +146,9 @@ private extension ClaimDeviceContainerViewModel {
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self, weak setFrequencyViewModel] location in
 			self?.location = location
-			setFrequencyViewModel?.preSelectedFrequency = location.getFrequencyFromCurrentLocationCountry(from: self?.deviceLocationUseCase.getCountryInfos())
+			let selectedFrequency = location.getFrequencyFromCurrentLocationCountry(from: self?.deviceLocationUseCase.getCountryInfos())
+			setFrequencyViewModel?.preSelectedFrequency = selectedFrequency
+			setFrequencyViewModel?.selectedFrequency = selectedFrequency
 			setFrequencyViewModel?.selectedLocation = location
 			setFrequencyViewModel?.didSelectFrequencyFromLocation = true
 			self?.moveNext()
@@ -190,7 +194,7 @@ private extension ClaimDeviceContainerViewModel {
 		moveNext()
 	}
 
-	func performClaim() {
+	func performClaim(retries: Int? = nil) {
 		guard let serialNumber = serialNumber?.replacingOccurrences(of: ":", with: ""),
 			  let location else {
 			return
@@ -208,6 +212,19 @@ private extension ClaimDeviceContainerViewModel {
 
 					switch response {
 						case.failure(let responseError):
+							if responseError.backendError?.code == FailAPICodeEnum.deviceClaiming.rawValue,
+							   let retries,
+							   retries < self.CLAIMING_RETRIES_MAX {
+								print("Claiming Failed with \(responseError). Retrying after 5 seconds...")
+
+
+								DispatchQueue.main.asyncAfter(deadline: .now() + self.CLAIMING_RETRIES_DELAY_SECONDS) {
+									self.performClaim(retries: retries + 1)
+								}
+
+								return
+							}
+
 							let object = getFailObject(for: responseError)
 							self.loadingState = .fail(object)
 						case .success(let deviceResponse):
@@ -288,6 +305,10 @@ private extension ClaimDeviceContainerViewModel {
 	}
 
 	func performHeliumClaim() {
+		guard let btDevice else {
+			return
+		}
+
 		let steps: [StepsView.Step] = HeliumSteps.allCases.map { .init(text: $0.description, isCompleted: false) }
 		let title = LocalizableString.ClaimDevice.claimingTitle.localized
 		let boldText = LocalizableString.ClaimDevice.claimingTextInformation.localized
@@ -325,7 +346,28 @@ private extension ClaimDeviceContainerViewModel {
 				loadingState = .fail(failObj)
 			}
 
+			// Fetch device info
 
+			let result = await devicesUseCase.getDeviceInfo(device: btDevice)
+			switch result {
+				case .success(let info):
+					// perform claim request
+					loadingState = .loading(.init(title: title,
+												  subtitle: subtitle.attributedMarkdown,
+												  steps: steps,
+												  stepIndex: 2,
+												  progress: nil))
+
+					self.serialNumber = info?.devEUI
+					self.claimingKey = info?.claimingKey
+					self.performClaim()
+					break
+				case .failure(let error):
+					let failObj = self.getFailObject(for: error) { [weak self] in
+						self?.showLoading = false
+					}
+					loadingState = .fail(failObj)
+			}
 		}
 	}
 

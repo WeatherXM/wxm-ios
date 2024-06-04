@@ -86,6 +86,11 @@ public struct DevicesUseCase {
 		await bluetoothDevicesRepository.rebootDevice(device)
 	}
 
+	public func getDeviceInfo(device: BTWXMDevice) async -> Result<BTWXMDeviceInfo?, BluetoothHeliumError>{
+		let result = await bluetoothDevicesRepository.fetchDeviceInfo(device)
+		return result
+	}
+
     public func cancelReboot() {
         bluetoothDevicesRepository.cancelReboot()
     }
