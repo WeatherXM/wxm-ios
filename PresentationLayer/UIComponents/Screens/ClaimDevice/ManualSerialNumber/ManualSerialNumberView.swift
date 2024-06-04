@@ -60,6 +60,7 @@ struct ManualSerialNumberView: View {
 
 				bottomButton
 			}
+			.padding(.bottom, CGFloat(.mediumSidePadding))
 		}
     }
 }

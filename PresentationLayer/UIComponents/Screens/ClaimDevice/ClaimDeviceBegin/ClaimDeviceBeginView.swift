@@ -61,6 +61,7 @@ struct ClaimDeviceBeginView: View {
 				}
 				.buttonStyle(WXMButtonStyle.filled())
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
+				.padding(.bottom, CGFloat(.mediumSidePadding))
 			}
 		}
     }

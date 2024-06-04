@@ -52,6 +52,7 @@ struct ResetDeviceView: View {
 					.disabled(!viewModel.resetToggle)
 				}
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
+				.padding(.bottom, CGFloat(.mediumSidePadding))
 			}
 		}
     }

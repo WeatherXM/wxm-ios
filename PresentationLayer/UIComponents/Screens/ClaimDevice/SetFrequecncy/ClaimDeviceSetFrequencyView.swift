@@ -27,7 +27,7 @@ struct ClaimDeviceSetFrequencyView: View {
 			}
 			.padding(.horizontal, CGFloat(.mediumSidePadding))
 			.padding(.top, CGFloat(.largeSidePadding))
-
+			.padding(.bottom, CGFloat(.mediumSidePadding))
 
 		}
     }

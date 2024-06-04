@@ -33,6 +33,7 @@ struct SelectDeviceView: View {
 #endif
 			}
 			.padding(.horizontal, CGFloat(.mediumSidePadding))
+			.padding(.bottom, CGFloat(.mediumSidePadding))
 		}
 		.onAppear {
 			viewModel.setup()
