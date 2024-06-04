@@ -40,12 +40,17 @@ struct ResetDeviceView: View {
 					.padding(.top, CGFloat(.largeSidePadding))
 				}.clipped()
 
-				Button {
-					viewModel.handleButtonTap()
-				} label: {
-					Text(LocalizableString.ClaimDevice.iVeResetMyDeviceButton.localized)
+				VStack(spacing: CGFloat(.defaultSpacing)) {
+					resetToggle
+
+					Button {
+						viewModel.handleButtonTap()
+					} label: {
+						Text(LocalizableString.ClaimDevice.pairStationViaBluetooth.localized)
+					}
+					.buttonStyle(WXMButtonStyle.filled())
+					.disabled(!viewModel.resetToggle)
 				}
-				.buttonStyle(WXMButtonStyle.filled())
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 			}
 		}
@@ -60,6 +65,23 @@ private extension ResetDeviceView {
 				let bullet = viewModel.bullets[index]
 				ClaimDeviceBulletView(bullet: bullet)
 			}
+		}
+	}
+
+	@ViewBuilder
+	var resetToggle: some View {
+		HStack(alignment: .center, spacing: CGFloat(.smallSpacing)) {
+			Toggle(LocalizableString.ClaimDevice.iVeResetMyDeviceButton.localized,
+				   isOn: $viewModel.resetToggle)
+			.labelsHidden()
+			.toggleStyle(WXMToggleStyle.Default)
+
+			Text(LocalizableString.ClaimDevice.iVeResetMyDeviceButton.localized)
+				.foregroundColor(Color(colorEnum: .text))
+				.font(.system(size: CGFloat(.normalFontSize)))
+				.fixedSize(horizontal: false, vertical: true)
+
+			Spacer()
 		}
 	}
 }

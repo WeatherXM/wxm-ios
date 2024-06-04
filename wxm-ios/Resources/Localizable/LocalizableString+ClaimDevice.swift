@@ -83,6 +83,7 @@ extension LocalizableString {
         case resetSection1Markdown
         case resetSection2
         case resetSection2Markdown
+		case pairStationViaBluetooth
         case verifyButton
         case heliumInvalidEUIKey
         case iVeResetMyDeviceButton
@@ -310,6 +311,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
                 return "claim_device_reset_section_2"
             case .resetSection2Markdown:
                 return "claim_device_reset_section_2_markdown"
+			case .pairStationViaBluetooth:
+				return "claim_device_pair_station_via_bluetooth"
             case .verifyButton:
                 return "claim_device_verify_button"
             case .heliumInvalidEUIKey:

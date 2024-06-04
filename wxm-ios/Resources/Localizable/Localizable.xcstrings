@@ -1469,6 +1469,17 @@
         }
       }
     },
+    "claim_device_pair_station_via_bluetooth" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pair station via Bluetooth"
+          }
+        }
+      }
+    },
     "claim_device_prepare_gateway_d1_bullet_one" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1563,7 +1574,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Push the **RESET button** at the bottom of your WeatherXM device to enable bluetooth pairing. **This will expire in 5 minutes. After that, you will need to push it again to restart the pairing!**"
+            "value" : "Push the **RESET button** at the bottom of your WeatherXM device to enable bluetooth pairing.   This **will expire in 5 minutes.** After that, you will need to push it again to restart the pairing!"
           }
         }
       }

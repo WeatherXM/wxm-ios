@@ -9,6 +9,8 @@ import Foundation
 import Toolkit
 
 class ResetDeviceViewModel: ObservableObject {
+	@Published var resetToggle: Bool = false
+	
 	let completion: VoidCallback
 	var bullets: [ClaimDeviceBulletView.Bullet] {
 		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.resetSection1Markdown.localized.attributedMarkdown ?? ""),
