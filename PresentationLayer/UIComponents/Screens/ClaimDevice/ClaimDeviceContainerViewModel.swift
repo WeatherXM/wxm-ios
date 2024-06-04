@@ -360,8 +360,7 @@ private extension ClaimDeviceContainerViewModel {
 
 					self.serialNumber = info?.devEUI
 					self.claimingKey = info?.claimingKey
-					self.performClaim()
-					break
+					self.performClaim(retries: 0)
 				case .failure(let error):
 					let failObj = self.getFailObject(for: error) { [weak self] in
 						self?.showLoading = false
