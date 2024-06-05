@@ -325,17 +325,6 @@
         }
       }
     },
-    "bluetooth_no_access_text_format" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In order to connect your device, the WeatherXM app needs access to Bluetooth. If you do not wish to provide such access, please tap on %@ below."
-          }
-        }
-      }
-    },
     "bluetooth_no_access_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -353,7 +342,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We could not find any WeatherXM devices. Please try to scan again! Or, you can try claiming your device manually below."
+            "value" : "We could not find any WeatherXM devices. Please try to scan again!"
           }
         }
       }
@@ -364,7 +353,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We could not find any WeatherXM devices. Please try to **scan again**! Or, you can try claiming your device manually below."
+            "value" : "We could not find any WeatherXM devices. Please try to **scan again**!"
           }
         }
       }
@@ -380,13 +369,13 @@
         }
       }
     },
-    "bluetooth_off_text_format" : {
+    "bluetooth_off_text" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In order to connect your device, the WeatherXM app needs access to Bluetooth. If you do not wish to turn Bluetooth on, please tap on %@ below."
+            "value" : "In order to connect your device, the WeatherXM app needs access to Bluetooth."
           }
         }
       }
@@ -398,17 +387,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bluetooth is off"
-          }
-        }
-      }
-    },
-    "bluetooth_unsupported_text_format" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your device does not support Bluetooth, please tap on %@ below."
           }
         }
       }
