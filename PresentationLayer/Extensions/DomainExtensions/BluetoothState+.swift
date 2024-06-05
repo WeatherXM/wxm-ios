@@ -45,7 +45,7 @@ extension BluetoothHeliumError {
 
 		switch self {
 			case .peripheralNotFound:
-				break
+				description = LocalizableString.FirmwareUpdate.stationNotInRangeDescription.localized
 			case .connectionError, .reboot:
 				title = LocalizableString.ClaimDevice.connectionFailedTitle.localized
 				let contactLink = LocalizableString.ClaimDevice.failedTextLinkTitle.localized
