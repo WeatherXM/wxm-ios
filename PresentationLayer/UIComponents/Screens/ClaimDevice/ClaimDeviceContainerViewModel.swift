@@ -229,8 +229,15 @@ private extension ClaimDeviceContainerViewModel {
 							self.loadingState = .fail(object)
 						case .success(let deviceResponse):
 							print(deviceResponse)
-							let object = self.getSuccessObject(for: deviceResponse)
-							self.loadingState = .success(object)
+							Task { @MainActor in
+								var followState: UserDeviceFollowState?
+								if let deviceId = deviceResponse.id {
+									followState = try? await self.useCase.getDeviceFollowState(deviceId: deviceId).get()
+								}
+
+								let object = self.getSuccessObject(for: deviceResponse, followState: followState)
+								self.loadingState = .success(object)
+							}
 					}
 				}
 				.store(in: &cancellableSet)
@@ -275,16 +282,28 @@ private extension ClaimDeviceContainerViewModel {
 		return object
 	}
 
-	func getSuccessObject(for device: DeviceDetails) -> FailSuccessStateObject {
+	func getSuccessObject(for device: DeviceDetails, followState: UserDeviceFollowState?) -> FailSuccessStateObject {
+		let needsUpdate = device.needsUpdate(mainVM: MainScreenViewModel.shared, followState: followState) == true
+		let cancelTitle: String? = needsUpdate ? LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized : nil
+		let retryTitle: String? = needsUpdate ? LocalizableString.ClaimDevice.updateFirmwareAlertTitle.localized : LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized
+		let goToStationAction: VoidCallback = { [weak self] in
+			self?.dismissAndNavigate(device: device)
+		}
+		let updateFirmwareAction: VoidCallback = { [weak self] in
+			self?.dismissAndNavigate(device: nil)
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
+				MainScreenViewModel.shared.showFirmwareUpdate(device: device)
+			}
+		}
+
 		let object = FailSuccessStateObject(type: .claimDeviceFlow,
 											title: LocalizableString.ClaimDevice.successTitle.localized,
 											subtitle: LocalizableString.ClaimDevice.successText(device.displayName).localized.attributedMarkdown,
-											cancelTitle: nil,
-											retryTitle: LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized,
+											cancelTitle: cancelTitle,
+											retryTitle: retryTitle,
 											contactSupportAction: nil,
-											cancelAction: nil) { [weak self] in
-			self?.dismissAndNavigate(device: device)
-		}
+											cancelAction: needsUpdate ? goToStationAction : nil ,
+											retryAction: needsUpdate ? updateFirmwareAction : goToStationAction)
 
 		return object
 	}
@@ -294,8 +313,13 @@ private extension ClaimDeviceContainerViewModel {
 					   subtitle: LocalizableString.ClaimDevice.claimStationLoadingDescription.localized.attributedMarkdown ?? ""))
 	}
 
-	func dismissAndNavigate(device: DeviceDetails) {
+	func dismissAndNavigate(device: DeviceDetails?) {
 		Router.shared.popToRoot()
+
+		guard let device else {
+			return
+		}
+
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
 			let route = Route.stationDetails(ViewModelsFactory.getStationDetailsViewModel(deviceId: device.id ?? "",
 																						  cellIndex: device.cellIndex,

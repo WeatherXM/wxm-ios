@@ -13,22 +13,34 @@ struct SuccessView: View {
     let subtitle: AttributedString?
     let buttonTitle: String
     let buttonAction: VoidCallback?
+	var secondaryButtonTitle: String?
+	var secondaryButtonAction: VoidCallback?
 
     @State private var bottomButtonsSize: CGSize = .zero
     private let iconDimensions: CGFloat = 150.0
 
     var body: some View {
-        ZStack {
-            if let buttonAction {
-                VStack {
-                    Spacer()
-                    Button(action: buttonAction) {
-                        Text(buttonTitle)
-                    }
-                    .buttonStyle(WXMButtonStyle.filled())
-                    .sizeObserver(size: $bottomButtonsSize)
-                }
-            }
+		ZStack {
+			VStack {
+				Spacer()
+
+				HStack(spacing: CGFloat(.defaultSpacing)) {
+					if let secondaryButtonTitle, let secondaryButtonAction {
+						Button(action: secondaryButtonAction) {
+							Text(secondaryButtonTitle)
+						}
+						.buttonStyle(WXMButtonStyle())
+					}
+
+					if let buttonAction {
+						Button(action: buttonAction) {
+							Text(buttonTitle)
+						}
+						.buttonStyle(WXMButtonStyle.filled())
+					}
+				}
+				.sizeObserver(size: $bottomButtonsSize)
+			}
 
             VStack(spacing: CGFloat(.defaultSpacing)) {
                 lottieViewLoading
@@ -61,6 +73,8 @@ extension SuccessView {
         self.subtitle = obj.subtitle
         self.buttonTitle = obj.retryTitle ?? ""
         self.buttonAction = obj.retryAction
+		self.secondaryButtonTitle = obj.cancelTitle
+		self.secondaryButtonAction = obj.cancelAction
     }
 }
 
@@ -74,9 +88,12 @@ private extension SuccessView {
 
 struct SuccessView_Previews: PreviewProvider {
     static var previews: some View {
-        SuccessView(title: "Station Updated!",
-                    subtitle: "Your station is updated to the latest Firmware!",
-                    buttonTitle: "View Station") {}
-            .padding()
+		SuccessView(title: "Station Updated!",
+					subtitle: "Your station is updated to the latest Firmware!",
+					buttonTitle: "View Station",
+					buttonAction: {},
+					secondaryButtonTitle: "Cancel",
+					secondaryButtonAction: { })
+		.padding()
     }
 }

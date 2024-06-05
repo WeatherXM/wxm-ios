@@ -113,27 +113,6 @@ class BluetoothManager: NSObject {
         }
         manager.cancelPeripheralConnection(cbPeripheral)
     }
-
-//	func getWXMDevices() async throws -> [BTWXMDevice] {
-//		return try await withCheckedThrowingContinuation { [weak self]  continuation in
-//			guard let self = self else {
-//				return
-//			}
-//			self.startScanning { error in
-//				if let error {
-//					continuation.resume(throwing: error)
-//				}
-//			}
-//			self.bluetoothManager.devices.sink { [weak self] btDevices in
-//				guard let self else {
-//					return
-//				}
-//				self.stopScanning()
-//				continuation.resume(returning: btDevices)
-//			}.store(in: &self.cancellables)
-//		}
-//	}
-
 }
 
 extension BluetoothManager: CBCentralManagerDelegate {
