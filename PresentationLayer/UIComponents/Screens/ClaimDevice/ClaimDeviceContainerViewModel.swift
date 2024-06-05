@@ -333,20 +333,21 @@ private extension ClaimDeviceContainerViewModel {
 			return
 		}
 
-		let steps: [StepsView.Step] = HeliumSteps.allCases.map { .init(text: $0.description, isCompleted: false) }
 		let title = LocalizableString.ClaimDevice.claimingTitle.localized
 		let boldText = LocalizableString.ClaimDevice.claimingTextInformation.localized
 		let subtitle = LocalizableString.ClaimDevice.claimingText(boldText).localized
 
-		loadingState = .loading(.init(title: title,
-									  subtitle: subtitle.attributedMarkdown,
-									  steps: steps,
-									  stepIndex: 0,
-									  progress: nil))
-		showLoading = true
 		Task { @MainActor in
-			// Set frequency
+			var steps: [StepsView.Step] = HeliumSteps.allCases.map { .init(text: $0.description, isCompleted: false) }
 
+			loadingState = .loading(.init(title: title,
+										  subtitle: subtitle.attributedMarkdown,
+										  steps: steps,
+										  stepIndex: 0,
+										  progress: nil))
+			showLoading = true
+
+			// Set frequency
 			if let setFrequencyError = await setHeliumFrequency() {
 				let failObj = self.getFailObject(for: setFrequencyError) { [weak self] in
 					self?.showLoading = false
@@ -374,7 +375,10 @@ private extension ClaimDeviceContainerViewModel {
 				return
 			}
 
+			steps[1].isCompleted = true
+
 			// Fetch device info
+			
 			loadingState = .loading(.init(title: title,
 										  subtitle: subtitle.attributedMarkdown,
 										  steps: steps,
