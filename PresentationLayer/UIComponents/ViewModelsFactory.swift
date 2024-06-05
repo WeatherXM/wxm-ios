@@ -228,8 +228,8 @@ enum ViewModelsFactory {
 		ResetDeviceViewModel(completion: completion)
 	}
 
-	static func getSelectDeviceViewModel(completion: @escaping GenericCallback<(BTWXMDevice?, BluetoothHeliumError?)>) -> SelectDeviceViewModel {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DevicesUseCase.self)!
+	static func getSelectDeviceViewModel(useCase: DevicesUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DevicesUseCase.self)!,
+										 completion: @escaping GenericCallback<(BTWXMDevice?, BluetoothHeliumError?)>) -> SelectDeviceViewModel {		
 		return SelectDeviceViewModel(useCase: useCase, completion: completion)
 	}
 

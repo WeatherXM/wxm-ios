@@ -12,11 +12,15 @@ import DomainLayer
 /// Wraps the bluetooth actions such as connect to station, reboot, set frequency etc.
 /// The goal is to encapsulate the apple's API with delegation pattern and expose async functions
 class BTActionWrapper {
-    private lazy var bluetoothManager: BluetoothManager = BluetoothManager()
+    private let bluetoothManager: BluetoothManager
     private var cancellables: Set<AnyCancellable> = []
     private var scanningTimeoutWorkItem: DispatchWorkItem?
     private var rebootStationWorkItem: DispatchWorkItem?
     private var performCommandDelegate: BTPerformCommandDelegate?
+
+	init(bluetoothManager: BluetoothManager = .init()) {
+		self.bluetoothManager = bluetoothManager
+	}
 
     /// Connect to a the passed device. Scans to find the corresponding ΒΤ device and connects to it
     /// - Parameter device: The device to connect
@@ -53,7 +57,7 @@ class BTActionWrapper {
 
         do {
             if let btDevice = try await findBTDevice(device: device) {
-                return await rebootDevice(btDevice)
+                return await rebootDevice(btDevice, keepConnected: false)
             }
         } catch let error as ActionError {
             return error
@@ -64,7 +68,7 @@ class BTActionWrapper {
         return .unknown
     }
 
-	func rebootDevice(_ device: BTWXMDevice) async -> ActionError? {
+	func rebootDevice(_ device: BTWXMDevice, keepConnected: Bool) async -> ActionError? {
 		rebootStationWorkItem?.cancel()
 		bluetoothManager.disconnect(from: device)
 		return await withCheckedContinuation { [weak self] continuation in
@@ -74,8 +78,10 @@ class BTActionWrapper {
 					return
 				}
 
+				if !keepConnected {
+					self?.bluetoothManager.disconnect(from: device)
+				}
 
-				self?.bluetoothManager.disconnect(from: device)
 				continuation.resume(returning: nil)
 			}
 		}
@@ -110,36 +116,64 @@ class BTActionWrapper {
 		}
 
 		return await withCheckedContinuation { continuation in
-			let command = String(format: BTCommands.AT_SET_FREQUENCY_COMMAND_FORMAT, "\(frequency.heliumBand)")
-			let delegate = BTPerformCommandDelegate(peripheral: deviceWithCBPeripheral.cbPeripheral)
-			delegate?.performCommand(command: command) { [weak self] response, error in
-				defer {
-					self?.bluetoothManager.disconnect(from: device)
-					self?.performCommandDelegate = nil
-				}
-
-				guard error == nil, response?.lowercased() == BTCommands.SUCCESS_RESPONSE else {
-					continuation.resume(returning: .setFrequency(error))
+			self.connectToDevice(device, retries: 5) { [weak self] error in
+				guard error == nil else {
+					continuation.resume(returning: error)
 					return
 				}
-				continuation.resume(returning: nil)
+
+				let command = String(format: BTCommands.AT_SET_FREQUENCY_COMMAND_FORMAT, "\(frequency.heliumBand)")
+				let delegate = BTPerformCommandDelegate(peripheral: deviceWithCBPeripheral.cbPeripheral)
+				delegate?.performCommand(command: command) { [weak self] response, error in
+					defer {
+						self?.bluetoothManager.disconnect(from: device)
+						self?.performCommandDelegate = nil
+					}
+
+					guard error == nil, response?.lowercased() == BTCommands.SUCCESS_RESPONSE else {
+						continuation.resume(returning: .setFrequency(error))
+						return
+					}
+					continuation.resume(returning: nil)
+				}
+				self?.performCommandDelegate = delegate
 			}
-			performCommandDelegate = delegate
 		}
 	}
 
 	func getDevEUI(_ device: BTWXMDevice) async -> (value: String?, error: ActionError?) {
 		return await withUnsafeContinuation { [weak self] continuation in
-			self?.fetchDevEUI(device: device) { value, error in
-				continuation.resume(returning: (value, error))
+			self?.connectToDevice(device, retries: 5) { error in
+				guard error == nil else {
+					continuation.resume(returning: (nil, error))
+					return
+				}
+
+				self?.fetchDevEUI(device: device) { value, error in
+					guard value?.lowercased() != BTCommands.SUCCESS_RESPONSE else {
+						return
+					}
+					continuation.resume(returning: (value, error))
+				}
 			}
 		}
 	}
 
 	func getClaimingKey(_ device: BTWXMDevice) async -> (value: String?, error: ActionError?) {
 		return await withUnsafeContinuation { [weak self] continuation in
-			self?.fetchClaimingKey(device: device) { value, error in
-				continuation.resume(returning: (value, error))
+			self?.connectToDevice(device, retries: 5) { error in
+				guard error == nil else {
+					continuation.resume(returning: (nil, error))
+					return
+				}
+				
+				self?.fetchClaimingKey(device: device) { value, error in
+					guard value?.lowercased() != BTCommands.SUCCESS_RESPONSE else {
+						return
+					}
+
+					continuation.resume(returning: (value, error))
+				}
 			}
 		}
 	}

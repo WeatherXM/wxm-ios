@@ -27,7 +27,7 @@ public class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepositor
     /// Used to identify the device to be disconnected because of timeout
     private weak var timeOutPeripheral: CBPeripheral?
     private var rebootStationWorkItem: DispatchWorkItem?
-	private lazy var bluetoothWrapper: BTActionWrapper = BTActionWrapper()
+	private let bluetoothWrapper: BTActionWrapper
 
 
     enum BTError {
@@ -57,6 +57,7 @@ public class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepositor
         state = manager.state
         devices = manager.devices
         deviceState = deviceStateSubject.eraseToAnyPublisher()
+		bluetoothWrapper = .init(bluetoothManager: manager)
     }
 
     /**
@@ -116,7 +117,7 @@ public class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepositor
     }
 
 	public func rebootDevice(_ device: BTWXMDevice) async -> BluetoothHeliumError? {
-		await bluetoothWrapper.rebootDevice(device)?.toBluetoothError
+		await bluetoothWrapper.rebootDevice(device, keepConnected: true)?.toBluetoothError
 	}
 
     public func connect(device: BTWXMDevice) {

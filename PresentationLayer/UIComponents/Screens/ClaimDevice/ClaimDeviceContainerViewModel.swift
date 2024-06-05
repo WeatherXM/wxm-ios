@@ -122,7 +122,7 @@ private extension ClaimDeviceContainerViewModel {
 			self?.moveNext()
 		}
 
-		let selectDeviceViewModel = ViewModelsFactory.getSelectDeviceViewModel { [weak self] (device, error) in
+		let selectDeviceViewModel = ViewModelsFactory.getSelectDeviceViewModel(useCase: devicesUseCase) { [weak self] (device, error) in
 			guard let self else {
 				return
 			}
@@ -328,6 +328,8 @@ private extension ClaimDeviceContainerViewModel {
 					self?.showLoading = false
 				}
 				loadingState = .fail(failObj)
+
+				return
 			}
 
 			// Reboot
@@ -344,20 +346,21 @@ private extension ClaimDeviceContainerViewModel {
 				}
 
 				loadingState = .fail(failObj)
+
+				return
 			}
 
 			// Fetch device info
+			loadingState = .loading(.init(title: title,
+										  subtitle: subtitle.attributedMarkdown,
+										  steps: steps,
+										  stepIndex: 2,
+										  progress: nil))
 
 			let result = await devicesUseCase.getDeviceInfo(device: btDevice)
 			switch result {
 				case .success(let info):
 					// perform claim request
-					loadingState = .loading(.init(title: title,
-												  subtitle: subtitle.attributedMarkdown,
-												  steps: steps,
-												  stepIndex: 2,
-												  progress: nil))
-
 					self.serialNumber = info?.devEUI
 					self.claimingKey = info?.claimingKey
 					self.performClaim(retries: 0)
