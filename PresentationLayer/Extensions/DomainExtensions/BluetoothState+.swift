@@ -11,7 +11,6 @@ extension BluetoothState {
 
     var errorDescription: String? {
         switch self {
-    
 			case .unsupported:
                 return LocalizableString.Bluetooth.unsupportedTitle.localized
             case .unauthorized:
@@ -42,21 +41,18 @@ extension BluetoothHeliumError {
 
 	var uiInfo: UIInfo {
 		var title =	LocalizableString.ClaimDevice.failedTitle.localized
-		var description: String?
+		var description: String? = LocalizableString.ClaimDevice.errorGeneric.localized
 
 		switch self {
 			case .peripheralNotFound:
 				break
-			case .connectionError:
+			case .connectionError, .reboot:
 				title = LocalizableString.ClaimDevice.connectionFailedTitle.localized
 				let contactLink = LocalizableString.ClaimDevice.failedTextLinkTitle.localized
 				let troubleshootingLink = LocalizableString.ClaimDevice.failedTroubleshootingTextLinkTitle.localized
 				description = LocalizableString.ClaimDevice.connectionFailedMarkDownText(troubleshootingLink, contactLink).localized
-
-			case .reboot:
-				break
 			case .bluetoothState(let bluetoothState):
-				break
+				description = bluetoothState.errorDescription
 			case .setFrequency(let code), .devEUI(let code), .claimingKey(let code):
 				let contactLink = LocalizableString.ClaimDevice.failedTextLinkTitle.localized
 				let error = "**\(code ?? -1)**"
