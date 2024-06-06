@@ -275,7 +275,6 @@
 		267548F829A91A87008BCF40 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548BC29A91A87008BCF40 /* UIColor+.swift */; };
 		267548F929A91A87008BCF40 /* XAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548BE29A91A87008BCF40 /* XAxisValueFormatter.swift */; };
 		267548FA29A91A87008BCF40 /* CustomYAxisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548BF29A91A87008BCF40 /* CustomYAxisFormatter.swift */; };
-		267548FC29A91A87008BCF40 /* helium_countries_frequencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 267548C229A91A87008BCF40 /* helium_countries_frequencies.json */; };
 		26769AA32ACDAA5200162974 /* WXMEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2674017D2A38C2AE00E54E35 /* WXMEmptyView.swift */; };
 		26769AAB2ACEB77B00162974 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26769AAA2ACEB77B00162974 /* ErrorView.swift */; };
 		26769AAC2ACEB8D300162974 /* FailAPICodeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548A029A91A87008BCF40 /* FailAPICodeEnum.swift */; };
@@ -797,7 +796,6 @@
 		267548BC29A91A87008BCF40 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		267548BE29A91A87008BCF40 /* XAxisValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XAxisValueFormatter.swift; sourceTree = "<group>"; };
 		267548BF29A91A87008BCF40 /* CustomYAxisFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomYAxisFormatter.swift; sourceTree = "<group>"; };
-		267548C229A91A87008BCF40 /* helium_countries_frequencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = helium_countries_frequencies.json; sourceTree = "<group>"; };
 		26769AAA2ACEB77B00162974 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		26769AB12ACEC58600162974 /* StationTimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTimelineEntry.swift; sourceTree = "<group>"; };
 		26769AB32AD00D4400162974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -1233,7 +1231,6 @@
 			isa = PBXGroup;
 			children = (
 				2661059D2AE006A9000E4712 /* Launch Screen.storyboard */,
-				267548C129A91A87008BCF40 /* Assets */,
 				26348E132A444AF1000846C6 /* Fonts */,
 				26A9614A2AA5E2B200646A25 /* Localizable */,
 				7423EBFD283F81E2004E9B26 /* LottieJSON */,
@@ -1850,14 +1847,6 @@
 				264CC7682B98AA6E0060DEA4 /* NetworkDeviceRewardBoostsResponse+.swift */,
 			);
 			path = DomainExtensions;
-			sourceTree = "<group>";
-		};
-		267548C129A91A87008BCF40 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				267548C229A91A87008BCF40 /* helium_countries_frequencies.json */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 		267E22BC2AC1B17C00B9E196 /* ci_scripts */ = {
@@ -2707,7 +2696,6 @@
 				266B01912B836FE6007AC689 /* anim_rocket.json in Resources */,
 				26348E1E2A444AF1000846C6 /* Font Awesome 6 Sharp-Solid-900.otf in Resources */,
 				B5F9ED652860BA76000B6392 /* GoogleService-Info.plist in Resources */,
-				267548FC29A91A87008BCF40 /* helium_countries_frequencies.json in Resources */,
 				26D6119D2A9E1CDC0099117C /* Localizable.xcstrings in Resources */,
 				B52BCC7C2824FB9000EA3DA5 /* Preview Assets.xcassets in Resources */,
 				264E2F6129DC5AEE009580A2 /* Settings.bundle in Resources */,
