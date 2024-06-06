@@ -357,6 +357,8 @@ private extension ClaimDeviceContainerViewModel {
 				return
 			}
 
+			steps[0].isCompleted = true
+
 			// Reboot
 
 			loadingState = .loading(.init(title: title,

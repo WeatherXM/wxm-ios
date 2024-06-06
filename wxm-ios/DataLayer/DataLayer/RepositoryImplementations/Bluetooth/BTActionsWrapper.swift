@@ -72,7 +72,7 @@ class BTActionWrapper {
 		rebootStationWorkItem?.cancel()
 		bluetoothManager.disconnect(from: device)
 		return await withCheckedContinuation { [weak self] continuation in
-			self?.connectToDevice(device, retries: 5) { error in
+			self?.connectToDevice(device, retries: 10) { error in
 				if error != nil {
 					continuation.resume(returning: .reboot)
 					return
