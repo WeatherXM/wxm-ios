@@ -258,6 +258,10 @@ private extension ClaimDeviceContainerViewModel {
 		}) {
 			Router.shared.popToRoot()
 		} retryAction: { [weak self] in
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
+																	 .contentType: .claiming,
+																	 .action: .retry])
+
 			self?.performClaim()
 		}
 
@@ -276,6 +280,10 @@ private extension ClaimDeviceContainerViewModel {
 		}) {
 			Router.shared.popToRoot()
 		} retryAction: {
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .heliumBLEPopupError,
+																	 .contentType: .heliumBLEPopup,
+																	 .action: .tryAgain])
+
 			retryAction()
 		}
 
@@ -287,6 +295,10 @@ private extension ClaimDeviceContainerViewModel {
 		let cancelTitle: String? = needsUpdate ? LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized : nil
 		let retryTitle: String? = needsUpdate ? LocalizableString.ClaimDevice.updateFirmwareAlertTitle.localized : LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized
 		let goToStationAction: VoidCallback = { [weak self] in
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
+																	 .contentType: .claiming,
+																	 .action: .viewStation])
+
 			self?.dismissAndNavigate(device: device)
 		}
 		let updateFirmwareAction: VoidCallback = { [weak self] in
@@ -296,9 +308,18 @@ private extension ClaimDeviceContainerViewModel {
 			}
 		}
 
+		let info = LocalizableString.ClaimDevice.updateFirmwareInfoMarkdown.localized.attributedMarkdown
+		let infoAppearAction = {
+			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
+														   .promptType: .warnPromptType,
+														   .action: .viewAction])
+		}
+
 		let object = FailSuccessStateObject(type: .claimDeviceFlow,
 											title: LocalizableString.ClaimDevice.successTitle.localized,
 											subtitle: LocalizableString.ClaimDevice.successText(device.displayName).localized.attributedMarkdown,
+											info: needsUpdate ? info : nil,
+											infoOnAppearAction: needsUpdate ? infoAppearAction : nil,
 											cancelTitle: cancelTitle,
 											retryTitle: retryTitle,
 											contactSupportAction: nil,
