@@ -290,6 +290,9 @@
 		2678ED8F2AFD1B1400940D59 /* RewardsTimelinePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */; };
 		267A37832AEBB4C900469126 /* StationRewardsTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */; };
 		267A378A2AEBFF2F00469126 /* DeviceRewardsOverview+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */; };
+		267CA6CB2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */; };
+		267CA6CD2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CC2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift */; };
+		267CA6CF2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CE2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift */; };
 		267EC4262A98C14700F2C37E /* UIKitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4252A98C14700F2C37E /* UIKitUtils.swift */; };
 		267EC4292A98C3D300F2C37E /* WXMAlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4272A98C3D300F2C37E /* WXMAlertModifier.swift */; };
 		267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4282A98C3D300F2C37E /* WXMAlertView.swift */; };
@@ -813,6 +816,9 @@
 		2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelinePagination.swift; sourceTree = "<group>"; };
 		267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsTimelineView.swift; sourceTree = "<group>"; };
 		267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceRewardsOverview+.swift"; sourceTree = "<group>"; };
+		267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimM5ContainerViewModel.swift; sourceTree = "<group>"; };
+		267CA6CC2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimD1ContainerViewModel.swift; sourceTree = "<group>"; };
+		267CA6CE2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimHeliumContainerViewModel.swift; sourceTree = "<group>"; };
 		267E22BD2AC1B1A300B9E196 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		267EC4252A98C14700F2C37E /* UIKitUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitUtils.swift; sourceTree = "<group>"; };
 		267EC4272A98C3D300F2C37E /* WXMAlertModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMAlertModifier.swift; sourceTree = "<group>"; };
@@ -1543,8 +1549,7 @@
 				267546E529A9181E008BCF40 /* ClaimDeviceViewModel.swift */,
 				2675472C29A9181E008BCF40 /* SelectDeviceTypeView.swift */,
 				26F149E32BDFC83D0029F981 /* ClaimStationSelection */,
-				26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */,
-				26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */,
+				267CA6C92C11C0DC00ABE599 /* ClaimDeviceContainer */,
 				26325B042BE12E4300182C59 /* ClaimDeviceFactory.swift */,
 				26AA21C12BF36B0100B91A7C /* SNValidator.swift */,
 				26C5AF3F2BF7632700476B89 /* ClaimDeviceProgressView.swift */,
@@ -1874,6 +1879,26 @@
 				2608A7932C09F67A00452E40 /* DeviceLocation+.swift */,
 			);
 			path = DomainExtensions;
+			sourceTree = "<group>";
+		};
+		267548C129A91A87008BCF40 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				267548C229A91A87008BCF40 /* helium_countries_frequencies.json */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		267CA6C92C11C0DC00ABE599 /* ClaimDeviceContainer */ = {
+			isa = PBXGroup;
+			children = (
+				26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */,
+				26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */,
+				267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */,
+				267CA6CC2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift */,
+				267CA6CE2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift */,
+			);
+			path = ClaimDeviceContainer;
 			sourceTree = "<group>";
 		};
 		267E22BC2AC1B17C00B9E196 /* ci_scripts */ = {
@@ -2831,6 +2856,7 @@
 				262C7C5A2A9745350042ACE6 /* AlertHelper.swift in Sources */,
 				2618A7162A21014200983B7B /* AlertsViewModel.swift in Sources */,
 				266B01932B8380FA007AC689 /* AnnouncementCardView.swift in Sources */,
+				267CA6CF2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift in Sources */,
 				26D47EA12A1783E60078723A /* AnalyticsView.swift in Sources */,
 				269E85712B0242C100BE774C /* WXMShareModifier.swift in Sources */,
 				26CA845A2AD93BB6006D47D7 /* String+Common.swift in Sources */,
@@ -2848,6 +2874,7 @@
 				269C809C2AB9E76F005F9BD6 /* Badge.swift in Sources */,
 				2675480729A9181E008BCF40 /* BaseTextField.swift in Sources */,
 				267548DC29A91A87008BCF40 /* BaseTextFieldEnum.swift in Sources */,
+				267CA6CD2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift in Sources */,
 				267547E229A9181E008BCF40 /* BluetoothMessageView.swift in Sources */,
 				267547E329A9181E008BCF40 /* BluetoothScanView.swift in Sources */,
 				26A4118E29BB8BC000A2C10B /* BluetoothState+.swift in Sources */,
@@ -2968,6 +2995,7 @@
 				266BAFDD2AA8BAC1004F5DE0 /* LocalizableString+Errors.swift in Sources */,
 				2612AC3A2AB47BA200285896 /* LocalizableString+Filters.swift in Sources */,
 				266BAF7F2AA89C79004F5DE0 /* LocalizableString+Home.swift in Sources */,
+				267CA6CB2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift in Sources */,
 				266BAF712AA88D39004F5DE0 /* LocalizableString+NetStats.swift in Sources */,
 				266BAF632AA88996004F5DE0 /* LocalizableString+Search.swift in Sources */,
 				266CC4CF2AB30CD900EC794C /* LocalizableString+SelectFrequency.swift in Sources */,
