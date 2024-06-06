@@ -30,6 +30,7 @@ struct ClaimDeviceProgressView: View {
 			}
 			.padding()
 		}
+		.iPadMaxWidth()
     }
 }
 
