@@ -11,23 +11,16 @@ public protocol BluetoothDevicesRepository {
     var state: AnyPublisher<BluetoothState, Never> { get }
     var devices: AnyPublisher<[BTWXMDevice], Never> { get }
 
-    var deviceState: AnyPublisher<DeviceState, Never> { get }
-
     func enable()
 
     func startScanning()
     func stopScanning()
 
-    func fetchDeviceInfo(_ device: BTWXMDevice)
 	func fetchDeviceInfo(_ device: BTWXMDevice) async -> Result<BTWXMDeviceInfo?, BluetoothHeliumError>
-    func setDeviceFrequency(_ device: BTWXMDevice, frequency: Frequency)
 	func setFrequency(_ device: BTWXMDevice, frequency: Frequency) async -> BluetoothHeliumError?
-    func rebootDevice(_ device: BTWXMDevice)
 	func rebootDevice(_ device: BTWXMDevice) async -> BluetoothHeliumError?
-    func connect(device: BTWXMDevice)
 	func connect(device: BTWXMDevice) async -> BluetoothHeliumError?
     func disconnect(device: BTWXMDevice)
-    func cancelReboot()
 }
 
 public struct BTWXMDeviceInfo {

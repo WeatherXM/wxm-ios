@@ -24,12 +24,10 @@ public struct DevicesUseCase {
         self.bluetoothDevicesRepository = bluetoothDevicesRepository
         bluetoothState = bluetoothDevicesRepository.state
         bluetoothDevices = bluetoothDevicesRepository.devices
-        bluetoothDeviceState = bluetoothDevicesRepository.deviceState
     }
 
     public let bluetoothState: AnyPublisher<BluetoothState, Never>
     public let bluetoothDevices: AnyPublisher<[BTWXMDevice], Never>
-    public let bluetoothDeviceState: AnyPublisher<DeviceState, Never>
 
     /**
      As soon as this is called, Bluetooth permission will be requested from the user.
@@ -46,14 +44,6 @@ public struct DevicesUseCase {
         bluetoothDevicesRepository.stopScanning()
     }
 
-    public func fetchDeviceInfo(_ device: BTWXMDevice) {
-        bluetoothDevicesRepository.fetchDeviceInfo(device)
-    }
-
-    public func setHeliumFrequencyViaBluetooth(_ device: BTWXMDevice, frequency: Frequency) {
-        bluetoothDevicesRepository.setDeviceFrequency(device, frequency: frequency)
-    }
-
 	public func setHeliumFrequency(_ device: BTWXMDevice, frequency: Frequency) async -> BluetoothHeliumError? {
 		await bluetoothDevicesRepository.setFrequency(device, frequency: frequency)
 	}
@@ -66,20 +56,12 @@ public struct DevicesUseCase {
         return key.count == Self.DEV_EUI_KEY_LENGTH && key.matches(Self.DEV_EUI_REGEX)
     }
 
-    public func connect(device: BTWXMDevice) {
-        bluetoothDevicesRepository.connect(device: device)
-    }
-
 	public func connect(device: BTWXMDevice) async -> BluetoothHeliumError? {
 		await bluetoothDevicesRepository.connect(device: device)
 	}
 
     public func disconnect(device: BTWXMDevice) {
         bluetoothDevicesRepository.disconnect(device: device)
-    }
-
-    public func reboot(device: BTWXMDevice) {
-        bluetoothDevicesRepository.rebootDevice(device)
     }
 
 	public func reboot(device: BTWXMDevice) async -> BluetoothHeliumError? {
@@ -90,8 +72,4 @@ public struct DevicesUseCase {
 		let result = await bluetoothDevicesRepository.fetchDeviceInfo(device)
 		return result
 	}
-
-    public func cancelReboot() {
-        bluetoothDevicesRepository.cancelReboot()
-    }
 }
