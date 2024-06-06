@@ -11,6 +11,8 @@ import Toolkit
 struct SuccessView: View {
     let title: String
     let subtitle: AttributedString?
+	var info: AttributedString?
+	var infoOnAppearAction: VoidCallback?
     let buttonTitle: String
     let buttonAction: VoidCallback?
 	var secondaryButtonTitle: String?
@@ -24,19 +26,28 @@ struct SuccessView: View {
 			VStack {
 				Spacer()
 
-				HStack(spacing: CGFloat(.defaultSpacing)) {
-					if let secondaryButtonTitle, let secondaryButtonAction {
-						Button(action: secondaryButtonAction) {
-							Text(secondaryButtonTitle)
-						}
-						.buttonStyle(WXMButtonStyle())
+				VStack(spacing: CGFloat(.mediumSpacing)) {
+					if let info {
+						InfoView(text: info)
+							.onAppear {
+								infoOnAppearAction?()
+							}
 					}
 
-					if let buttonAction {
-						Button(action: buttonAction) {
-							Text(buttonTitle)
+					HStack(spacing: CGFloat(.defaultSpacing)) {
+						if let secondaryButtonTitle, let secondaryButtonAction {
+							Button(action: secondaryButtonAction) {
+								Text(secondaryButtonTitle)
+							}
+							.buttonStyle(WXMButtonStyle())
 						}
-						.buttonStyle(WXMButtonStyle.filled())
+
+						if let buttonAction {
+							Button(action: buttonAction) {
+								Text(buttonTitle)
+							}
+							.buttonStyle(WXMButtonStyle.filled())
+						}
 					}
 				}
 				.sizeObserver(size: $bottomButtonsSize)
@@ -71,6 +82,8 @@ extension SuccessView {
     init(obj: FailSuccessStateObject) {
         self.title = obj.title
         self.subtitle = obj.subtitle
+		self.info = obj.info
+		self.infoOnAppearAction = obj.infoOnAppearAction
         self.buttonTitle = obj.retryTitle ?? ""
         self.buttonAction = obj.retryAction
 		self.secondaryButtonTitle = obj.cancelTitle
@@ -90,6 +103,7 @@ struct SuccessView_Previews: PreviewProvider {
     static var previews: some View {
 		SuccessView(title: "Station Updated!",
 					subtitle: "Your station is updated to the latest Firmware!",
+					info: "Info text",
 					buttonTitle: "View Station",
 					buttonAction: {},
 					secondaryButtonTitle: "Cancel",
