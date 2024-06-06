@@ -32,10 +32,12 @@ struct NoRewardsView: View {
 					Text(LocalizableString.StationDetails.noRewardsTitle.localized)
 						.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 						.foregroundColor(Color(colorEnum: .text))
+					
 					Text(LocalizableString.StationDetails.noRewardsDescription.localized)
 						.font(.system(size: CGFloat(.normalFontSize)))
 						.foregroundColor(Color(colorEnum: .text))
 						.multilineTextAlignment(.center)
+						.fixedSize(horizontal: false, vertical: true)
 				}
 			}
 
@@ -64,6 +66,7 @@ private extension NoRewardsView {
 				Text(LocalizableString.StationDetails.proTipDescription.localized)
 					.foregroundColor(Color(colorEnum: .text))
 					.font(.system(size: CGFloat(.caption)))
+					.fixedSize(horizontal: false, vertical: true)
 
 				Spacer()
 			}
