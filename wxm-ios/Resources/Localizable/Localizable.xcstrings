@@ -2085,9 +2085,6 @@
         }
       }
     },
-    "DEBUG - Go to next" : {
-
-    },
     "delete_account_cancel_deletion" : {
       "extractionState" : "manual",
       "localizations" : {

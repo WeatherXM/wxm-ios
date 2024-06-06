@@ -34,8 +34,6 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .settings(let vm):
 				hasher.combine(vm)
-			case .claimDevice(let viaBT):
-				hasher.combine(viaBT)
 			case .deleteAccount(let vm):
 				hasher.combine(vm)
 			case .survey(let userId, let appId):
@@ -89,8 +87,6 @@ enum Route: Hashable, Equatable {
 				"transactions"
 			case .settings:
 				"settings"
-			case .claimDevice:
-				"claimDevice"
 			case .deleteAccount:
 				"deleteAccount"
 			case .survey:
@@ -134,7 +130,6 @@ enum Route: Hashable, Equatable {
 	case netStats(NetworkStatsViewModel)
 	case transactions(RewardsTimelineViewModel)
 	case settings(SettingsViewModel)
-	case claimDevice(Bool)
 	case deleteAccount(DeleteAccountViewModel)
 	case survey(String, String)
 	case signIn(SignInViewModel)
@@ -184,10 +179,6 @@ extension Route {
 			case .settings(let settingsViewModel):
 				NavigationContainerView {
 					SettingsView(settingsViewModel: settingsViewModel)
-				}
-			case .claimDevice(let viaBluetooth):
-				NavigationContainerView {
-					ClaimDeviceNavView(swinjectHelper: SwinjectHelper.shared)
 				}
 			case .deleteAccount(let deleteAccountViewModel):
 				NavigationContainerView {

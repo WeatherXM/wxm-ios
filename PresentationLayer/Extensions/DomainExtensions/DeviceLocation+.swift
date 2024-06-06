@@ -6,6 +6,7 @@
 //
 
 import DomainLayer
+import UIKit
 
 private typealias CountryCodeFrequency = [String: Frequency?]
 
@@ -29,4 +30,32 @@ extension DeviceLocation {
 		return frequencies
 	}
 
+}
+
+extension DeviceLocationSearchResult {
+	func attributedDescriptionForQuery(_ query: String) -> NSAttributedString {
+		let attributes: [NSAttributedString.Key: Any] = [
+			.font: UIFont.systemFont(ofSize: CGFloat(FontSizeEnum.normalFontSize))
+		]
+
+		guard let range = description.range(of: query, options: .caseInsensitive) else {
+			return NSAttributedString(string: description, attributes: attributes)
+		}
+
+		let attributedDescription = NSMutableAttributedString(
+			string: description,
+			attributes: attributes
+		)
+
+		let boldAttributes: [NSAttributedString.Key: Any] = [
+			.font: UIFont.systemFont(ofSize: CGFloat(FontSizeEnum.normalFontSize), weight: .bold)
+		]
+
+		attributedDescription.addAttributes(
+			boldAttributes,
+			range: NSRange(range, in: description)
+		)
+
+		return attributedDescription
+	}
 }
