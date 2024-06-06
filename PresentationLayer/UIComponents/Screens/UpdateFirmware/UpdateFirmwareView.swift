@@ -21,8 +21,10 @@ struct UpdateFirmwareView: View {
             
             installationView
                 .padding(.horizontal, CGFloat(.defaultSidePadding))
-                .fail(show: Binding(get: { viewModel.state.isFailed }, set: { _ in }), obj: viewModel.state.stateObject )
-                .success(show: Binding(get: { viewModel.state.isSuccess }, set: { _ in }), obj: viewModel.state.stateObject )
+                .fail(show: Binding(get: { viewModel.state.isFailed }, set: { _ in }),
+					  obj: viewModel.state.stateObject)
+                .success(show: Binding(get: { viewModel.state.isSuccess }, set: { _ in }),
+						 obj: viewModel.state.stateObject)
                 .animation(.easeIn, value: viewModel.state)
         }
         .onAppear {
