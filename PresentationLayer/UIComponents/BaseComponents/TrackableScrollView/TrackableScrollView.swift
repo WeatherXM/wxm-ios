@@ -70,6 +70,7 @@ struct TrackableScrollView<Content>: View where Content: View {
             ScrollView(showsIndicators: false) {
                 content()
             }
+			.clipped()
             .modify { view in
                 if refreshAction != nil {
                     view.refreshable {
@@ -88,6 +89,7 @@ struct TrackableScrollView<Content>: View where Content: View {
             } content: {
                 content()
             }
+			.clipped()
             .modify { view in
                 if #available(iOS 16.0, *) {
                     view.scrollContentBackground(.hidden)

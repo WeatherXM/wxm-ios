@@ -30,6 +30,7 @@ private struct ContentView: View {
 	var body: some View {
 		VStack(spacing: 0.0) {
 			titleView
+				.zIndex(1)
 
 			TrackableScrollView(offsetObject: viewModel.scrollOffsetObject) { completion in
 				viewModel.refresh(completion: completion)
@@ -39,6 +40,7 @@ private struct ContentView: View {
 					.padding(.bottom, tabBarItemsSize.height)
 					.fail(show: $viewModel.isFailed, obj: viewModel.failObj)
 			}
+			.zIndex(0)
 		}
 		.spinningLoader(show: $viewModel.isLoading, hideContent: true)
 		.bottomSheet(show: $viewModel.showInfo, fitContent: true) {
