@@ -13,7 +13,6 @@ import Toolkit
 
 public class ExplorerUseCase {
     private static let DEVICE_COUNT_KEY = "device_count"
-	private static let JSON_COUNTRIES_INFO_FILE_KEY = "countries_information"
     private static let fillOpacity = 0.5
     private static let fillColor = StyleColor(red: 51.0, green: 136.0, blue: 255.0, alpha: 1.0)
     private static let fillOutlineColor = StyleColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
