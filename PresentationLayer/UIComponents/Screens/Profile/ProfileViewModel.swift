@@ -28,7 +28,7 @@ class ProfileViewModel: ObservableObject {
 			updateUserInfoValues()
 		}
 	}
-	@Published var showBuyStation: Bool = true
+	@Published var showRewardsIndication: Bool = true
 	@Published var showMissingWalletError: Bool = false
 	@Published var isTabBarVisible: Bool = true
 	@Published var totalEarned: String = 0.0.toWXMTokenPrecisionString
@@ -38,6 +38,12 @@ class ProfileViewModel: ObservableObject {
 	@Published var isLoading: Bool = true
 	@Published var isFailed: Bool = false
 	var failObj: FailSuccessStateObject?
+
+	var claimWebAppUrl: String {
+		let urlString = DisplayedLinks.claimToken.linkURL
+		let url = URL(string: urlString)
+		return url?.host ?? "-"
+	}
 
     public init(meUseCase: MeUseCase) {
         self.meUseCase = meUseCase
@@ -186,7 +192,7 @@ private extension ProfileViewModel {
 			guard let self = self  else {
 				return
 			}
-			self.showBuyStation = await !self.meUseCase.hasOwnedDevices()
+			self.showRewardsIndication = await !self.meUseCase.hasOwnedDevices()
 		}
 	}
 }

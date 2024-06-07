@@ -104,36 +104,51 @@ private struct ContentView: View {
 			}
 		}
 		.WXMCardStyle()
-		.indication(show: $viewModel.showBuyStation,
+		.indication(show: $viewModel.showRewardsIndication,
 					borderColor: Color(colorEnum: .primary),
 					bgColor: Color(colorEnum: .blueTint)) {
-			CardWarningView(type: .info,
-							showIcon: false,
-							title: LocalizableString.Profile.noRewardsWarningTitle.localized,
-							message: LocalizableString.Profile.noRewardsWarningDescription.localized,
-							showContentFullWidth: true,
-							closeAction: nil) {
-				Button {
-					viewModel.handleBuyStationTap()
-				} label: {
-					ZStack {
-						HStack {
-							Text(FontIcon.cart.rawValue)
-								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-
-							Spacer()
-						}
-
-						Text(LocalizableString.Profile.noRewardsWarningButtonTitle.localized)
-					}
-					.padding(.horizontal, CGFloat(.defaultSidePadding))
-				}
-				.buttonStyle(WXMButtonStyle.filled())
-			}
+			claimWebView
 		}
 					.wxmShadow()
 	}
 
+	@ViewBuilder
+	var buyStationView: some View {
+		CardWarningView(type: .info,
+						showIcon: false,
+						title: LocalizableString.Profile.noRewardsWarningTitle.localized,
+						message: LocalizableString.Profile.noRewardsWarningDescription.localized,
+						showContentFullWidth: true,
+						closeAction: nil) {
+			Button {
+				viewModel.handleBuyStationTap()
+			} label: {
+				ZStack {
+					HStack {
+						Text(FontIcon.cart.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+
+						Spacer()
+					}
+
+					Text(LocalizableString.Profile.noRewardsWarningButtonTitle.localized)
+				}
+				.padding(.horizontal, CGFloat(.defaultSidePadding))
+			}
+			.buttonStyle(WXMButtonStyle.filled())
+		}
+	}
+
+	@ViewBuilder
+	var claimWebView: some View {
+		CardWarningView(type: .info,
+						showIcon: false,
+						title: nil,
+						message: LocalizableString.Profile.claimFromWebDescription(viewModel.claimWebAppUrl).localized,
+						closeAction: nil) { EmptyView() }
+	}
+
+	@ViewBuilder
 	var walletAddressView: some View {
 		Button {
 			Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))

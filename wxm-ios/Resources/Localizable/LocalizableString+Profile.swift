@@ -15,6 +15,7 @@ extension LocalizableString {
 		case noRewardsWarningTitle
 		case noRewardsWarningDescription
 		case noRewardsWarningButtonTitle
+		case claimFromWebDescription(String)
 		case myWallet
 		case noWalletAddressDescription
 		case noWalletAddressErrorTitle
@@ -34,7 +35,13 @@ extension LocalizableString {
 
 extension LocalizableString.Profile: WXMLocalizable {
 	var localized: String {
-		let localized = NSLocalizedString(self.key, comment: "")
+		var localized = NSLocalizedString(self.key, comment: "")
+		switch self {
+			case .claimFromWebDescription(let text):
+				localized = String(format: localized, text)
+			default:
+				break
+		}
 
 		return localized
 	}
@@ -53,6 +60,8 @@ extension LocalizableString.Profile: WXMLocalizable {
 				return "profile_no_rewards_warning_description"
 			case .noRewardsWarningButtonTitle:
 				return "profile_no_rewards_warning_button_title"
+			case .claimFromWebDescription:
+				return "profile_claim_from_web_description"
 			case .myWallet:
 				return "profile_my_wallet"
 			case .noWalletAddressDescription:
