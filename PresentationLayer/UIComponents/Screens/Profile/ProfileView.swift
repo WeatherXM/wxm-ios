@@ -105,9 +105,16 @@ private struct ContentView: View {
 		}
 		.WXMCardStyle()
 		.indication(show: $viewModel.showRewardsIndication,
-					borderColor: Color(colorEnum: .primary),
+					borderColor: Color(colorEnum: viewModel.rewardsIndicationType.showBorder ? .primary : .clear),
 					bgColor: Color(colorEnum: .blueTint)) {
-			claimWebView
+			Group {
+				switch viewModel.rewardsIndicationType {
+					case .buyStation:
+						buyStationView
+					case .claimWeb:
+						claimWebView
+				}
+			}
 		}
 					.wxmShadow()
 	}

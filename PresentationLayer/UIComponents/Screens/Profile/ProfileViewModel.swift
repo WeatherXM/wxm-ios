@@ -19,6 +19,7 @@ class ProfileViewModel: ObservableObject {
 	private var userRewardsResponse: NetworkUserRewardsResponse? {
 		didSet {
 			updateRewards()
+			updateUserInfoValues()
 		}
 	}
 	@Published var showInfo: Bool = false
@@ -29,6 +30,7 @@ class ProfileViewModel: ObservableObject {
 		}
 	}
 	@Published var showRewardsIndication: Bool = true
+	var rewardsIndicationType: RewardsIndication = .claimWeb
 	@Published var showMissingWalletError: Bool = false
 	@Published var isTabBarVisible: Bool = true
 	@Published var totalEarned: String = 0.0.toWXMTokenPrecisionString
@@ -192,7 +194,9 @@ private extension ProfileViewModel {
 			guard let self = self  else {
 				return
 			}
-			self.showRewardsIndication = await !self.meUseCase.hasOwnedDevices()
+			let hasDevices = await self.meUseCase.hasOwnedDevices()
+			self.rewardsIndicationType = self.isClaimAvailable ? .claimWeb : .buyStation
+			self.showRewardsIndication = !hasDevices || self.isClaimAvailable
 		}
 	}
 }
