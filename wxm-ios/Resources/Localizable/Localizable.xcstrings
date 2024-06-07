@@ -1574,7 +1574,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tap the **\"I've reset my device\"** button below."
+            "value" : "Tap the \"I've reset my device\" button below."
           }
         }
       }
@@ -1585,7 +1585,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reset Station"
+            "value" : "Reset your device"
           }
         }
       }
@@ -1651,7 +1651,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select your device from the list below"
+            "value" : "Select your device from the list below."
           }
         }
       }
@@ -1662,7 +1662,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select Device"
+            "value" : "Select Device to Pair"
           }
         }
       }

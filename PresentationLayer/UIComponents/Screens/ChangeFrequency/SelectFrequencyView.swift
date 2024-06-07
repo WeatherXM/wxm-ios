@@ -17,22 +17,28 @@ struct SelectFrequencyView: View {
     var preSelectedFrequency: Frequency?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+		VStack(alignment: .leading, spacing: CGFloat(.defaultSpacing)) {
             title
 
             ScrollView {
                 ZStack {
                     VStack(alignment: .leading, spacing: 0) {
-                        text
-                        textLink
-                            .simultaneousGesture(TapGesture().onEnded {
-                                WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .frequencyDocumentation])
-                            })
+						VStack(spacing: CGFloat(.mediumSpacing)) {
+							text
+						
+							textLink
+								.simultaneousGesture(TapGesture().onEnded {
+									WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .frequencyDocumentation])
+								})
+						}
 
                         frequencyTitle
-                        frequencyPicker
 
-                        frequencyAutoSelectionText
+						VStack(spacing: CGFloat(.mediumSpacing)) {
+							frequencyPicker
+
+							frequencyAutoSelectionText
+						}
                     }
                 }
             }
@@ -50,9 +56,8 @@ private extension SelectFrequencyView {
     var title: some View {
         HStack {
             Text(LocalizableString.SelectFrequency.title.localized)
-                .font(.system(size: CGFloat(.titleFontSize), weight: .bold))
-                .foregroundColor(Color(colorEnum: .text))
-                .padding(.bottom)
+                .font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
+                .foregroundColor(Color(colorEnum: .darkestBlue))
 
             Spacer()
         }
@@ -62,8 +67,7 @@ private extension SelectFrequencyView {
     var text: some View {
         Text(LocalizableString.SelectFrequency.text.localized)
             .font(.system(size: CGFloat(.normalFontSize)))
-            .foregroundColor(Color(colorEnum: .darkestBlue))
-            .padding(.bottom)
+            .foregroundColor(Color(colorEnum: .text))
     }
 
     @ViewBuilder
@@ -106,7 +110,6 @@ private extension SelectFrequencyView {
             Text(LocalizableString.SelectFrequency.selectedFromLocationDescription(currentCountry.localizedUppercase).localized)
             .font(.system(size: CGFloat(.normalFontSize), weight: .bold))
             .lineSpacing(4)
-            .padding(.top, 10)
         } else {
             EmptyView()
         }
@@ -160,7 +163,7 @@ struct SelectFrequencyView_Previews: PreviewProvider {
     static var previews: some View {
         SelectFrequencyView(selectedFrequency: .constant(.AU915),
                             isFrequencyAcknowledged: .constant(false),
-                            country: nil,
+                            country: "nil",
                             didSelectFrequencyFromLocation: false,
                             preSelectedFrequency: nil)
     }
