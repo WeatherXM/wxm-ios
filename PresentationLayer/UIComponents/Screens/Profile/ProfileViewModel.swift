@@ -107,7 +107,7 @@ class ProfileViewModel: ObservableObject {
 
 	func handleClaimButtonTap() {
 		let url = DisplayedLinks.claimToken.linkURL
-		var params: [DisplayLinkParams: String] = [:]
+		var params: [DisplayLinkParams: String] = [.embed: String(true)]
 		if let activeTheme = MainScreenViewModel.shared.deviceActiveTheme {
 			params += [.theme: activeTheme.rawValue]
 		}

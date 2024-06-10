@@ -111,4 +111,5 @@ enum DisplayLinkParams: String {
 	case network
 	case redirectUrl = "redirect_url"
 	case claimedAmount = "claimed_amount"
+	case embed
 }
