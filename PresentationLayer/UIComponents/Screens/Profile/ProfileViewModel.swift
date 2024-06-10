@@ -124,6 +124,9 @@ class ProfileViewModel: ObservableObject {
 		}
 
 		let backButtonCallback = { [weak self] in
+			WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .tokenClaimingResult,
+																	  .state: .failure])
+
 			guard let self, let text = LocalizableString.Profile.claimFromWebAlertMessage(claimWebAppUrl).localized.attributedMarkdown else {
 				return
 			}
@@ -132,16 +135,25 @@ class ProfileViewModel: ObservableObject {
 		}
 
 		let callback: DeepLinkHandler.QueryParamsCallBack = { [weak self] params in
+			WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .tokenClaimingResult,
+																	  .state: .success])
+
 			if let amount = params?[DisplayLinkParams.claimedAmount.rawValue] {
 				self?.updateRewards(additionalClaimed: amount)
 			}
 		}
 
-		Router.shared.navigateTo(.webView(LocalizableString.Profile.claimFlowTitle.localized,
-										  url,
-										  params,
-										  backButtonCallback,
-										  callback))
+		let onAppearCallback = {
+			WXMAnalytics.shared.trackScreen(.claimDapp)
+		}
+
+		let conf = WebContainerView.Configuration(title: LocalizableString.Profile.claimFlowTitle.localized,
+												  url: url,
+												  params: params,
+												  onAppearCallback: onAppearCallback,
+												  backButtonCallback: backButtonCallback,
+												  redirectParamsCallback: callback)
+		Router.shared.navigateTo(.webView(conf))
 	}
 
 	@MainActor

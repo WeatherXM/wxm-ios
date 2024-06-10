@@ -201,6 +201,8 @@ extension ParameterValue: RawRepresentable {
 				return "Frequency Documentation"
 			case .failure:
 				return "Failure"
+			case .success:
+				return "Success"
 			case .light:
 				return "light"
 			case .dark:
@@ -295,6 +297,8 @@ extension ParameterValue: RawRepresentable {
 				return "location"
 			case .station:
 				return "station"
+			case .tokenClaimingResult:
+				return "Token Claiming Result"
 			case .tokenContract:
 				return "token_contract"
 			case .rewardContract:

@@ -19,6 +19,7 @@ struct WebContainerView: View {
 	let title: String
 	let url: String
 	var params: [DisplayLinkParams: String]?
+	var appearCallback: VoidCallback?
 	var backButtonCallback: VoidCallback?
 	var redirectParamsCallback: DeepLinkHandler.QueryParamsCallBack?
 	@State private var isLoading: Bool = false
@@ -32,7 +33,30 @@ struct WebContainerView: View {
 					   backButtonCallback: backButtonCallback,
 					   redirectParamsCallback: redirectParamsCallback)
 			.spinningLoader(show: $isLoading, hideContent: false)
+			.onAppear {
+				appearCallback?()
+			}
 		}
+	}
+}
+
+extension WebContainerView {
+	struct Configuration {
+		let title: String
+		let url: String
+		var params: [DisplayLinkParams: String]?
+		var onAppearCallback: VoidCallback?
+		var backButtonCallback: VoidCallback?
+		var redirectParamsCallback: DeepLinkHandler.QueryParamsCallBack?
+	}
+
+	init(configuration: Configuration) {
+		self.title = configuration.title
+		self.url = configuration.url
+		self.params = configuration.params
+		self.appearCallback = configuration.onAppearCallback
+		self.backButtonCallback = configuration.backButtonCallback
+		self.redirectParamsCallback = configuration.redirectParamsCallback
 	}
 }
 
