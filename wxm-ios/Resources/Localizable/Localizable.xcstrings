@@ -5251,6 +5251,17 @@
         }
       }
     },
+    "profile_claim_from_web_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Having trouble claiming? Try visiting **%@** from a desktop browser."
+          }
+        }
+      }
+    },
     "profile_claim_from_web_description" : {
       "extractionState" : "manual",
       "localizations" : {
