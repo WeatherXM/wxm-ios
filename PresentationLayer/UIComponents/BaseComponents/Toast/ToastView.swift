@@ -12,6 +12,7 @@ struct ToastView: View {
     let text: AttributedString
     var type: ToastType = .error
     var dismissInterval = 3.0
+	var retryButtonTitle: String = LocalizableString.retry.localized
     var dismissCompletion: VoidCallback?
     let retryAction: VoidCallback?
 
@@ -35,7 +36,7 @@ struct ToastView: View {
                         retryAction()
                     }
                 } label: {
-                    Text(LocalizableString.retry.localized)
+                    Text(retryButtonTitle)
                         .foregroundColor(Color(colorEnum: type.textColor))
                         .font(.system(size: CGFloat(.normalFontSize), weight: .bold))
                 }

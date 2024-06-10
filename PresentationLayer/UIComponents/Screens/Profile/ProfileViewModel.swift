@@ -128,7 +128,7 @@ class ProfileViewModel: ObservableObject {
 				return
 			}
 
-			Toast.shared.show(text: text, type: .info)
+			Toast.shared.show(text: text, type: .info, visibleDuration: 10.0, retryButtonTitle: LocalizableString.close.localized, retryAction: { })
 		}
 
 		let callback: DeepLinkHandler.QueryParamsCallBack = { [weak self] params in

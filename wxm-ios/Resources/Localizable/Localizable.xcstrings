@@ -1953,6 +1953,17 @@
         }
       }
     },
+    "close" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
     "confirm" : {
       "extractionState" : "manual",
       "localizations" : {

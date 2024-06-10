@@ -143,6 +143,7 @@ enum LocalizableString: WXMLocalizable {
     case uvIndex
     case share
     case retry
+	case close
     case clear
     case cancel
     case change
@@ -527,6 +528,8 @@ extension LocalizableString {
                 return "share"
             case .retry:
                 return "retry"
+			case .close:
+				return "close"
             case .clear:
                 return "clear"
             case .cancel:
