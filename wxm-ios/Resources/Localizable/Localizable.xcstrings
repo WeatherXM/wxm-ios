@@ -2737,17 +2737,6 @@
         }
       }
     },
-    "device_info_station_m5_frequency_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You must set your M5’s frequency to be the same as your station’s in order to receive and transmit data.\n\n**Setting the wrong frequency will result in loss of communication with your station, and will affect your $WXM rewards!**"
-          }
-        }
-      }
-    },
     "device_info_station_maintenance_description_format" : {
       "extractionState" : "manual",
       "localizations" : {

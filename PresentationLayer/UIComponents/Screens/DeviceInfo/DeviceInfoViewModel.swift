@@ -21,7 +21,7 @@ class DeviceInfoViewModel: ObservableObject {
             case .helium:
                 fields = Field.heliumSections(for: followState)
 			case .m5, .d1, .none:
-                fields = Field.m5Sections(for: followState)
+                fields = Field.wifiSections(for: followState)
         }
 
         let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
@@ -58,7 +58,7 @@ class DeviceInfoViewModel: ObservableObject {
             case .helium:
                 fields = InfoField.heliumFields
 			case .m5, .d1, .none:
-                fields = InfoField.m5Fields
+                fields = InfoField.wifiFields
         }
 
         let infoRows: [StationInfoView.Row] = fields.compactMap { field in
