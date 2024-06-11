@@ -179,6 +179,8 @@ extension MeApiRequestBuilder: MockResponseBuilder {
                 return "get_user_wallet"
             case .getUserDeviceForecastById:
                 return "get_user_device_forecast"
+			case .getUser:
+				return "get_user"
             default:
                 return nil
         }

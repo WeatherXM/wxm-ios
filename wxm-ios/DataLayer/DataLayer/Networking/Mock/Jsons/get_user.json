@@ -1,0 +1,11 @@
+{
+	"id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+	"email": "user@example.com",
+	"name": "TestUser",
+	"firstname": "Test",
+	"lastname": "User",
+	"wallet": {
+		"address": "0x389aadA0E2ccdd1f0e146a8ff47886dCbb5C0000",
+		"updatedAt": 1665653413335
+	}
+}

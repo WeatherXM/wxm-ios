@@ -30,6 +30,7 @@ private struct ContentView: View {
 	var body: some View {
 		VStack(spacing: 0.0) {
 			titleView
+				.zIndex(1)
 
 			TrackableScrollView(offsetObject: viewModel.scrollOffsetObject) { completion in
 				viewModel.refresh(completion: completion)
@@ -39,6 +40,7 @@ private struct ContentView: View {
 					.padding(.bottom, tabBarItemsSize.height)
 					.fail(show: $viewModel.isFailed, obj: viewModel.failObj)
 			}
+			.zIndex(0)
 		}
 		.spinningLoader(show: $viewModel.isLoading, hideContent: true)
 		.bottomSheet(show: $viewModel.showInfo, fitContent: true) {
@@ -104,36 +106,58 @@ private struct ContentView: View {
 			}
 		}
 		.WXMCardStyle()
-		.indication(show: $viewModel.showBuyStation,
-					borderColor: Color(colorEnum: .primary),
+		.indication(show: $viewModel.showRewardsIndication,
+					borderColor: Color(colorEnum: viewModel.rewardsIndicationType.showBorder ? .primary : .clear),
 					bgColor: Color(colorEnum: .blueTint)) {
-			CardWarningView(type: .info,
-							showIcon: false,
-							title: LocalizableString.Profile.noRewardsWarningTitle.localized,
-							message: LocalizableString.Profile.noRewardsWarningDescription.localized,
-							showContentFullWidth: true,
-							closeAction: nil) {
-				Button {
-					viewModel.handleBuyStationTap()
-				} label: {
-					ZStack {
-						HStack {
-							Text(FontIcon.cart.rawValue)
-								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-
-							Spacer()
-						}
-
-						Text(LocalizableString.Profile.noRewardsWarningButtonTitle.localized)
-					}
-					.padding(.horizontal, CGFloat(.defaultSidePadding))
+			Group {
+				switch viewModel.rewardsIndicationType {
+					case .buyStation:
+						buyStationView
+					case .claimWeb:
+						claimWebView
 				}
-				.buttonStyle(WXMButtonStyle.filled())
 			}
 		}
 					.wxmShadow()
 	}
 
+	@ViewBuilder
+	var buyStationView: some View {
+		CardWarningView(type: .info,
+						showIcon: false,
+						title: LocalizableString.Profile.noRewardsWarningTitle.localized,
+						message: LocalizableString.Profile.noRewardsWarningDescription.localized,
+						showContentFullWidth: true,
+						closeAction: nil) {
+			Button {
+				viewModel.handleBuyStationTap()
+			} label: {
+				ZStack {
+					HStack {
+						Text(FontIcon.cart.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+
+						Spacer()
+					}
+
+					Text(LocalizableString.Profile.noRewardsWarningButtonTitle.localized)
+				}
+				.padding(.horizontal, CGFloat(.defaultSidePadding))
+			}
+			.buttonStyle(WXMButtonStyle.filled())
+		}
+	}
+
+	@ViewBuilder
+	var claimWebView: some View {
+		CardWarningView(type: .info,
+						showIcon: false,
+						title: nil,
+						message: LocalizableString.Profile.claimFromWebDescription(viewModel.claimWebAppUrl).localized,
+						closeAction: nil) { EmptyView() }
+	}
+
+	@ViewBuilder
 	var walletAddressView: some View {
 		Button {
 			Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))

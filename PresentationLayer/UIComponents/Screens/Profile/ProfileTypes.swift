@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum ProfileField: CaseIterable {
 	case rewards
@@ -31,6 +32,20 @@ enum ProfileField: CaseIterable {
 				return LocalizableString.Profile.myWallet.localized
 			case .settings:
 				return LocalizableString.Profile.prefsSettings.localized
+		}
+	}
+}
+
+enum RewardsIndication {
+	case buyStation
+	case claimWeb
+
+	var showBorder: Bool {
+		switch self {
+			case .buyStation:
+				true
+			case .claimWeb:
+				false
 		}
 	}
 }

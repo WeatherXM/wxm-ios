@@ -5251,6 +5251,17 @@
         }
       }
     },
+    "profile_claim_from_web_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can also claim your allocated rewards by visiting **%@** from a desktop web browser."
+          }
+        }
+      }
+    },
     "profile_my_wallet" : {
       "extractionState" : "manual",
       "localizations" : {

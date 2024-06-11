@@ -28,8 +28,9 @@ public class UserInfoService {
 	}
 
 	public func getUser() throws -> AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> {
-		let urlRequest = try MeApiRequestBuilder.getUser.asURLRequest()
-		let publisher: AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest).share().eraseToAnyPublisher()
+		let builder = MeApiRequestBuilder.getUser
+		let urlRequest = try builder.asURLRequest()
+		let publisher: AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName).share().eraseToAnyPublisher()
 		publisher.sink { [weak self] response in
 			guard let value = response.value else {
 				return
