@@ -26,6 +26,7 @@ public struct Firmware: Codable {
 public enum Profile: String, Codable {
     case m5 = "M5"
     case helium = "Helium"
+	case d1 = "D1"
 }
 
 public enum DeviceRelation: String, Codable {

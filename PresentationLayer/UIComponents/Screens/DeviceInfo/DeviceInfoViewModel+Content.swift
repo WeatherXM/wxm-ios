@@ -96,6 +96,8 @@ extension DeviceInfoViewModel {
 							return LocalizableString.deviceInfoStationHeliumFrequencyDescription(DisplayedLinks.heliumRegionFrequencies.linkURL).localized
 						case .m5, .none:
 							return LocalizableString.deviceInfoStationM5FrequencyDescription.localized
+						case .d1:
+							return ""
 					}
 				case .reboot:
 					return LocalizableString.deviceInfoStationRebootDescription.localized
@@ -199,7 +201,7 @@ extension DeviceInfoViewModel {
             switch device.profile {
                 case .helium:
                     fields = heliumFields
-                case .m5, .none:
+				case .m5, .d1, .none:
                     fields = m5Fields
             }
 

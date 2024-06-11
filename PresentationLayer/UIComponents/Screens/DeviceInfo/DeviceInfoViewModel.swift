@@ -20,7 +20,7 @@ class DeviceInfoViewModel: ObservableObject {
         switch device.profile {
             case .helium:
                 fields = Field.heliumSections(for: followState)
-            case .m5, .none:
+			case .m5, .d1, .none:
                 fields = Field.m5Sections(for: followState)
         }
 
@@ -57,7 +57,7 @@ class DeviceInfoViewModel: ObservableObject {
         switch device.profile {
             case .helium:
                 fields = InfoField.heliumFields
-            case .m5, .none:
+			case .m5, .d1, .none:
                 fields = InfoField.m5Fields
         }
 

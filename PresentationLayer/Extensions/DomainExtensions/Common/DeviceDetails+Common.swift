@@ -31,7 +31,7 @@ extension Profile {
 	/// The icon to show according to profile
 	var icon: AssetEnum {
 		switch self {
-			case .m5:
+			case .m5, .d1:
 				return .wifi
 			case .helium:
 				return .helium

@@ -51,6 +51,8 @@ extension DeviceDetails {
                 return DisplayedLinks.m5Troubleshooting.linkURL
             case .helium:
                 return DisplayedLinks.heliumTroubleshooting.linkURL
+			case .d1:
+				return DisplayedLinks.d1Troubleshooting.linkURL
         }
     }
 
