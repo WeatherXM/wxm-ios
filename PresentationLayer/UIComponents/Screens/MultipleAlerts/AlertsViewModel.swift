@@ -97,6 +97,10 @@ private extension AlertsViewModel {
 				if let url = URL(string: DisplayedLinks.heliumBatteries.linkURL) {
 					UIApplication.shared.open(url)
 				}
+			case .d1:
+				if let url = URL(string: DisplayedLinks.heliumBatteries.linkURL) {
+					UIApplication.shared.open(url)
+				}
 		}
 
 	}

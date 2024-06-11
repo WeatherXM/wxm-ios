@@ -40,7 +40,7 @@ extension DeviceInfoViewModel {
             return [[.name], [.stationLocation]]
         }
 
-        static func m5Sections(for followState: UserDeviceFollowState?) -> [[Field]] {
+        static func wifiSections(for followState: UserDeviceFollowState?) -> [[Field]] {
             if followState?.state == .owned {
                 return [[.name],
 						[.stationLocation]]
@@ -94,8 +94,8 @@ extension DeviceInfoViewModel {
 					switch device.profile {
 						case .helium:
 							return LocalizableString.deviceInfoStationHeliumFrequencyDescription(DisplayedLinks.heliumRegionFrequencies.linkURL).localized
-						case .m5, .none:
-							return LocalizableString.deviceInfoStationM5FrequencyDescription.localized
+						case .m5, .d1, .none:
+							return ""
 					}
 				case .reboot:
 					return LocalizableString.deviceInfoStationRebootDescription.localized
@@ -190,7 +190,7 @@ extension DeviceInfoViewModel {
             [.name, .claimedAt, .batteryState, .devEUI, .hardwareVersion, .firmwareVersion, .lastHotspot, .lastRSSI]
         }
 
-        static var m5Fields: [InfoField] {
+        static var wifiFields: [InfoField] {
             [.name, .claimedAt, .batteryState, .serialNumber, .ATECC, .hardwareVersion, .firmwareVersion, .GPS, .wifiSignal]
         }
 
@@ -199,8 +199,8 @@ extension DeviceInfoViewModel {
             switch device.profile {
                 case .helium:
                     fields = heliumFields
-                case .m5, .none:
-                    fields = m5Fields
+				case .m5, .d1, .none:
+                    fields = wifiFields
             }
 
             let textComps: [String] = fields.compactMap { field in

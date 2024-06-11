@@ -124,6 +124,8 @@ private extension StationIndicationModifier {
 							urlString = DisplayedLinks.m5Batteries.linkURL
 						case .helium:
 							urlString = DisplayedLinks.heliumBatteries.linkURL
+						case .d1:
+							urlString = DisplayedLinks.d1Batteries.linkURL
 					}
 
 					if let urlString, let url = URL(string: urlString) {

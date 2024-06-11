@@ -20,8 +20,8 @@ class DeviceInfoViewModel: ObservableObject {
         switch device.profile {
             case .helium:
                 fields = Field.heliumSections(for: followState)
-            case .m5, .none:
-                fields = Field.m5Sections(for: followState)
+			case .m5, .d1, .none:
+                fields = Field.wifiSections(for: followState)
         }
 
         let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
@@ -57,8 +57,8 @@ class DeviceInfoViewModel: ObservableObject {
         switch device.profile {
             case .helium:
                 fields = InfoField.heliumFields
-            case .m5, .none:
-                fields = InfoField.m5Fields
+			case .m5, .d1, .none:
+                fields = InfoField.wifiFields
         }
 
         let infoRows: [StationInfoView.Row] = fields.compactMap { field in

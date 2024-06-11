@@ -91,7 +91,6 @@ enum LocalizableString: WXMLocalizable {
     case deviceInfoStationRemove
     case deviceInfoStationReconfigureWifi
     case deviceInfoStationHeliumFrequencyDescription(String)
-    case deviceInfoStationM5FrequencyDescription
     case deviceInfoStationRebootDescription
     case deviceInfoStationMaintenanceDescription(String)
     case deviceInfoStationRemoveDescription(String)
@@ -424,8 +423,6 @@ extension LocalizableString {
                 return "device_info_station_reconfigure_wifi"
             case .deviceInfoStationHeliumFrequencyDescription:
                 return "device_info_station_helium_frequency_description_format"
-            case .deviceInfoStationM5FrequencyDescription:
-                return "device_info_station_m5_frequency_description"
             case .deviceInfoStationRebootDescription:
                 return "device_info_station_reboot_description"
             case .deviceInfoStationMaintenanceDescription:

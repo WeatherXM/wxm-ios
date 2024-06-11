@@ -21,6 +21,7 @@ enum DisplayedLinks {
 	case appSurveyForm
 	case m5Troubleshooting
 	case heliumTroubleshooting
+	case d1Troubleshooting
 	case heliumRegionFrequencies
 	case shopLink
 	case shareDevice
@@ -35,6 +36,7 @@ enum DisplayedLinks {
 	case announcements
 	case m5Batteries
 	case heliumBatteries
+	case d1Batteries
 	case m5VideoLink
 	case d1VideoLink
 
@@ -62,6 +64,8 @@ enum DisplayedLinks {
 				return "https://docs.weatherxm.com/wifi-m5-bundle/m5-troubleshooting"
 			case .heliumTroubleshooting:
 				return "https://docs.weatherxm.com/helium-bundle/helium-troubleshooting"
+			case .d1Troubleshooting:
+				return "https://docs.weatherxm.com/wxm-devices/D1-bundle/D1-troubleshooting"
 			case .heliumRegionFrequencies:
 				return "https://docs.helium.com/iot/lorawan-region-plans"
 			case .shopLink:
@@ -90,6 +94,8 @@ enum DisplayedLinks {
 				return "https://docs.weatherxm.com/wxm-devices/wifi-m5-bundle/assemble-m5#installing-batteries"
 			case .heliumBatteries:
 				return "https://docs.weatherxm.com/wxm-devices/helium-bundle/helium-assemble#battery-installation-diagram-external-box"
+			case .d1Batteries:
+				return "https://docs.weatherxm.com/wxm-devices/D1-bundle/D1-assemble#installing-batteries"
 			case .m5VideoLink:
 				return "https://www.youtube.com/watch?v=sUJEwuFq1CE"
 			case .d1VideoLink:
