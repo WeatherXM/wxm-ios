@@ -50,8 +50,8 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .rewardDetails(let vm):
 				hasher.combine(vm)
-			case .webView(let title, let url, let params, _, _):
-				hasher.combine("\(title)-\(url)-\(params)")
+			case .webView(let conf):
+				hasher.combine("\(conf.title)-\(conf.url)-\(conf.params)")
 			case .selectStationLocation(let vm):
 				hasher.combine(vm)
 			case .rewardAnnotations(let vm):
@@ -142,7 +142,7 @@ enum Route: Hashable, Equatable {
 	case resetPassword(ResetPasswordViewModel)
 	case explorerList(ExplorerStationsListViewModel)
 	case rewardDetails(RewardDetailsViewModel)
-	case webView(String, String, [DisplayLinkParams: String]?, VoidCallback?, DeepLinkHandler.QueryParamsCallBack?)
+	case webView(WebContainerView.Configuration)
 	case selectStationLocation(SelectStationLocationViewModel)
 	case rewardAnnotations(RewardAnnotationsViewModel)
 	case rewardBoosts(RewardBoostsViewModel)
@@ -213,12 +213,8 @@ extension Route {
 				ExplorerStationsListView(viewModel: explorerListViewModel)
 			case .rewardDetails(let rewardDetailsViewModel):
 				RewardDetailsView(viewModel: rewardDetailsViewModel)
-			case .webView(let title, let url, let params, let backButtonCallback, let callback):
-				WebContainerView(title: title, 
-								 url: url,
-								 params: params,
-								 backButtonCallback: backButtonCallback,
-								 redirectParamsCallback: callback)
+			case .webView(let conf):
+				WebContainerView(configuration: conf)
 			case .selectStationLocation(let selectStationLocationViewModel):
 				NavigationContainerView {
 					SelectStationLocationView(viewModel: selectStationLocationViewModel)

@@ -21,6 +21,7 @@ public enum Screen: String {
 	case explorer = "Explorer"
 	case claimM5 = "Claim M5"
 	case claimHelium = "Claim Helium"
+	case claimDapp = "Claim Dapp"
 	case wallet = "Wallet"
 	case deleteAccount = "Delete Account"
 	case deviceAlerts = "Device Alerts"
@@ -170,6 +171,7 @@ public enum ParameterValue {
 	case bleScanAgain
 	case frequencyDocumentation
 	case failure
+	case success
 	case light
 	case dark
 	case system
@@ -217,6 +219,7 @@ public enum ParameterValue {
 	case search
 	case location
 	case station
+	case tokenClaimingResult
 	case tokenContract
 	case rewardContract
 	case lastRunHash
