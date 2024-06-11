@@ -1953,6 +1953,17 @@
         }
       }
     },
+    "close" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
     "confirm" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5247,6 +5258,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Claim Allocated Rewards"
+          }
+        }
+      }
+    },
+    "profile_claim_from_web_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Having trouble claiming? Try visiting **%@** from a desktop browser."
           }
         }
       }

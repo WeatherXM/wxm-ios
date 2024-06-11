@@ -26,18 +26,26 @@ class Toast: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    /// Show toast at the bottom of the screen.
-    /// - Parameters:
-    ///   - text: The text to show
-    ///   - type: The toast type for the appropriate style, currentlye `error` or `info`
-    ///   - visibleDuration: The duration that the toast will be on screen
-    ///   - retryAction: Action to be exectuted once the retry button tapped. If not passed the retry button will be hidden
-    func show(text: AttributedString, type: ToastView.ToastType = .error, visibleDuration: CGFloat = 3.0, retryAction: VoidCallback? = nil) {
+	/// Show toast at the bottom of the screen.
+	/// - Parameters:
+	///   - text: The text to show
+	///   - type: The toast type for the appropriate style, currentlye `error` or `info`
+	///   - visibleDuration: The duration that the toast will be on screen
+	///   - retryButtonTitle: The title of the retry buton, by default is LocalizableString.retry.localized
+	///   - retryAction: Action to be exectuted once the retry button tapped. If not passed the retry button will be hidden
+	func show(text: AttributedString,
+			  type: ToastView.ToastType = .error,
+			  visibleDuration: CGFloat = 3.0,
+			  retryButtonTitle: String = LocalizableString.retry.localized,
+			  retryAction: VoidCallback? = nil) {
         guard let keyWindow, superview == nil else {
             return
         }
 
-        let view = ToastView(text: text, type: type, dismissInterval: visibleDuration, dismissCompletion: { [weak self] in
+        let view = ToastView(text: text, type: type,
+							 dismissInterval: visibleDuration,
+							 retryButtonTitle: retryButtonTitle,
+							 dismissCompletion: { [weak self] in
             self?.hostVC?.view.removeFromSuperview()
             self?.removeFromSuperview()
         }, retryAction: retryAction)

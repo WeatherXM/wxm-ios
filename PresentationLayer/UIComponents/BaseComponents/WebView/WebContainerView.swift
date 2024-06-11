@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WebKit
+import Toolkit
 
 private let disableZoomScript = "var meta = document.createElement('meta');" +
 "meta.name = 'viewport';" +
@@ -18,6 +19,7 @@ struct WebContainerView: View {
 	let title: String
 	let url: String
 	var params: [DisplayLinkParams: String]?
+	var backButtonCallback: VoidCallback?
 	var redirectParamsCallback: DeepLinkHandler.QueryParamsCallBack?
 	@State private var isLoading: Bool = false
 
@@ -27,6 +29,7 @@ struct WebContainerView: View {
 					   title: title,
 					   url: url,
 					   params: params,
+					   backButtonCallback: backButtonCallback,
 					   redirectParamsCallback: redirectParamsCallback)
 			.spinningLoader(show: $isLoading, hideContent: false)
 		}
@@ -38,6 +41,7 @@ private struct WXMWebView: UIViewRepresentable {
 	let title: String
 	let url: String
 	var params: [DisplayLinkParams: String]?
+	var backButtonCallback: VoidCallback?
 	var redirectParamsCallback: DeepLinkHandler.QueryParamsCallBack?
 
 	@EnvironmentObject var navigationObject: NavigationObject
@@ -74,6 +78,11 @@ private struct WXMWebView: UIViewRepresentable {
 
 		DispatchQueue.main.async {
 			navigationObject.title = title
+		}
+
+		navigationObject.shouldDismissAction = {
+			backButtonCallback?()
+			return true
 		}
 
 		return webView

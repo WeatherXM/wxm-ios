@@ -123,12 +123,25 @@ class ProfileViewModel: ObservableObject {
 			params += [.redirectUrl: "\(urlScheme)://\(DeepLinkHandler.tokenClaim)"]
 		}
 
+		let backButtonCallback = { [weak self] in
+			guard let self, let text = LocalizableString.Profile.claimFromWebAlertMessage(claimWebAppUrl).localized.attributedMarkdown else {
+				return
+			}
+
+			Toast.shared.show(text: text, type: .info, visibleDuration: 10.0, retryButtonTitle: LocalizableString.close.localized, retryAction: { })
+		}
+
 		let callback: DeepLinkHandler.QueryParamsCallBack = { [weak self] params in
 			if let amount = params?[DisplayLinkParams.claimedAmount.rawValue] {
 				self?.updateRewards(additionalClaimed: amount)
 			}
 		}
-		Router.shared.navigateTo(.webView(LocalizableString.Profile.claimFlowTitle.localized, url, params, callback))
+
+		Router.shared.navigateTo(.webView(LocalizableString.Profile.claimFlowTitle.localized,
+										  url,
+										  params,
+										  backButtonCallback,
+										  callback))
 	}
 
 	@MainActor
