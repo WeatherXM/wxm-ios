@@ -38,3 +38,46 @@ public enum BatteryState: String, Codable {
 	case low
 	case ok
 }
+
+public struct Bundle: Codable {
+	let code: Code?
+	let name: String?
+	let connectivity: Connectivity?
+	let wsModel: WSModel?
+	let gwModel: GWModel?
+	let hwClass: String?
+
+	enum CodingKeys: String, CodingKey {
+		case code
+		case name
+		case connectivity
+		case wsModel = "ws_model"
+		case gwModel = "gw_model"
+		case hwClass = "hw_class"
+	}
+
+	enum Code: String, Codable {
+		case m5 = "M5"
+		case h1 = "H1"
+		case h2 = "H2"
+		case d1 = "D1"
+		case pulse = "PULSE"
+	}
+
+	enum WSModel: String, Codable {
+		case ws1000 = "WS1000"
+		case ws1001 = "WS1001"
+		case ws2000 = "WS2000"
+	}
+
+	enum GWModel: String, Codable {
+		case wg1000 = "WG1000"
+		case wg1200 = "WG1200"
+	}
+}
+
+public enum Connectivity: String, Codable {
+	case wifi
+	case helium
+	case cellular
+}

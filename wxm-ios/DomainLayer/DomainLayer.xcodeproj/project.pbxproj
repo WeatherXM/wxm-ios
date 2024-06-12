@@ -13,7 +13,6 @@
 		261FFAB6299B9E8F00FCDC65 /* UpdateFirmwareUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FFAB5299B9E8F00FCDC65 /* UpdateFirmwareUseCase.swift */; };
 		26348E0C2A434CCB000846C6 /* NetworkSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E0B2A434CCB000846C6 /* NetworkSearchResponse.swift */; };
 		26348E0E2A44360A000846C6 /* LocationCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E0D2A44360A000846C6 /* LocationCoordinates.swift */; };
-		26348E102A44369C000846C6 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E0F2A44369C000846C6 /* Connectivity.swift */; };
 		264BDA0E298AC7DD005C1F82 /* FirmwareUpdateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */; };
 		264C105F2AF3D76800F6FF3E /* WeatherField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C105E2AF3D76800F6FF3E /* WeatherField.swift */; };
 		264C10612AF3DBA100F6FF3E /* DeviceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */; };
@@ -92,7 +91,6 @@
 		261FFAB5299B9E8F00FCDC65 /* UpdateFirmwareUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFirmwareUseCase.swift; sourceTree = "<group>"; };
 		26348E0B2A434CCB000846C6 /* NetworkSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSearchResponse.swift; sourceTree = "<group>"; };
 		26348E0D2A44360A000846C6 /* LocationCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinates.swift; sourceTree = "<group>"; };
-		26348E0F2A44369C000846C6 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateRepository.swift; sourceTree = "<group>"; };
 		264C105E2AF3D76800F6FF3E /* WeatherField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherField.swift; sourceTree = "<group>"; };
 		264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAnnotation.swift; sourceTree = "<group>"; };
@@ -332,7 +330,6 @@
 				B5E6B86828338F460060D050 /* Error */,
 				B5E6B8832833ACAF0060D050 /* Me */,
 				2674016E2A375D0900E54E35 /* Network */,
-				26348E0F2A44369C000846C6 /* Connectivity.swift */,
 				B5E6B8942833C15C0060D050 /* EmptyEntity.swift */,
 				26348E0D2A44360A000846C6 /* LocationCoordinates.swift */,
 			);
@@ -515,7 +512,6 @@
 				4D5AE32E28EA4882006F2EBA /* BluetoothDevicesRepository.swift in Sources */,
 				B5667D722833DF4000C08B57 /* ClaimDeviceBody.swift in Sources */,
 				99BA878828BCF4D9004611AC /* Collection+.swift in Sources */,
-				26348E102A44369C000846C6 /* Connectivity.swift in Sources */,
 				26C904C32A77DBA90047A388 /* DeviceDetails.swift in Sources */,
 				26C904C12A77DA5A0047A388 /* DeviceDetailsUseCase.swift in Sources */,
 				26A4117529B88A3D00A2C10B /* DeviceInfoRepository.swift in Sources */,
