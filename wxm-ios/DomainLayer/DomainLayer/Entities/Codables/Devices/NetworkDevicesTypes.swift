@@ -39,7 +39,7 @@ public enum BatteryState: String, Codable {
 	case ok
 }
 
-public struct Bundle: Codable {
+public struct StationBundle: Codable {
 	let code: Code?
 	let name: String?
 	let connectivity: Connectivity?
