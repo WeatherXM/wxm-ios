@@ -20,7 +20,6 @@ extension DeviceDetails {
 
     var stationLastActiveConf: StationLastActiveView.Configuration {
         StationLastActiveView.Configuration(lastActiveAt: lastActiveAt,
-                                            icon: profile?.icon ?? .wifi,
                                             stateColor: activeStateColor(isActive: isActive),
                                             tintColor: activeStateTintColor(isActive: isActive))
     }
