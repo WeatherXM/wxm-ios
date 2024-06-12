@@ -64,6 +64,7 @@ extension LocalizableString {
 		case timelineInfoDescription(String?, String)
 		case contactSupportButtonTitle
 		case unhandledBoostMessage
+		case rewardsBoostFailedTitle
 	}
 }
 
@@ -216,6 +217,8 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 				return "reward_details_contact_support_button_title"
 			case .unhandledBoostMessage:
 				return "reward_details_unhandled_boost_message"
+			case .rewardsBoostFailedTitle:
+				return "reward_details_rewards_boost_failed_title"
 		}
 	}
 }
