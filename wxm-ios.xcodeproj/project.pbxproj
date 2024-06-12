@@ -1804,14 +1804,6 @@
 			path = DomainExtensions;
 			sourceTree = "<group>";
 		};
-		267548C129A91A87008BCF40 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				267548C229A91A87008BCF40 /* helium_countries_frequencies.json */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
 		267CA6C92C11C0DC00ABE599 /* ClaimDeviceContainer */ = {
 			isa = PBXGroup;
 			children = (
