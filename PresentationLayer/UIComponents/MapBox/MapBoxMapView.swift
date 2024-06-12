@@ -109,11 +109,8 @@ class MapViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-		guard let accessToken: String = Bundle.main.getConfiguration(for: .mapBoxAccessToken) else {
-            return
-        }
 
-        let myMapInitOptions = MapInitOptions(styleURI: StyleURI(rawValue: MapBoxConstants.mapBoxStyle))
+		let myMapInitOptions = MapInitOptions(styleURI: MapBoxConstants.styleURI)
 
 		mapView = MapView(frame: .zero, mapInitOptions: myMapInitOptions)
         mapView.ornaments.options.scaleBar.visibility = .hidden
