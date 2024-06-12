@@ -16,6 +16,7 @@ extension LocalizableString {
 		case heliumTitle
 		case pulseTitle
 		case claimNewDevice
+		case claimHeliumTitle
 		case claimD1Title
 		case claimM5Title
 		case connectGatewayTitle
@@ -51,6 +52,7 @@ extension LocalizableString {
 		case stationLocationTitle
 		case stationLocationSubtitle
 		case claimStationLoadingDescription
+		case setAndClaim
         case typeWS1000Title
         case typeWS1000Subtitle
         case typeWS2000Title
@@ -81,6 +83,7 @@ extension LocalizableString {
         case resetSection1Markdown
         case resetSection2
         case resetSection2Markdown
+		case pairStationViaBluetooth
         case verifyButton
         case heliumInvalidEUIKey
         case iVeResetMyDeviceButton
@@ -174,6 +177,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_pulse_title"
 			case .claimNewDevice:
 				return "claim_device_claim_new_device"
+			case .claimHeliumTitle:
+				return "claim_device_claim_helium_title"
 			case .claimM5Title:
 				return "claim_device_claim_m5_title"
 			case .claimD1Title:
@@ -244,6 +249,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_station_location_subtitle"
 			case .claimStationLoadingDescription:
 				return "claim_device_station_loading_description"
+			case .setAndClaim:
+				return "claim_device_set_and_claim"
             case .typeWS1000Title:
                 return "claim_device_type_ws1000_title"
             case .typeWS1000Subtitle:
@@ -304,6 +311,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
                 return "claim_device_reset_section_2"
             case .resetSection2Markdown:
                 return "claim_device_reset_section_2_markdown"
+			case .pairStationViaBluetooth:
+				return "claim_device_pair_station_via_bluetooth"
             case .verifyButton:
                 return "claim_device_verify_button"
             case .heliumInvalidEUIKey:

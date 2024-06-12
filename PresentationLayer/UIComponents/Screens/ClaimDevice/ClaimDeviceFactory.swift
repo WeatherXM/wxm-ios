@@ -14,6 +14,9 @@ enum ClaimDeviceStep: Identifiable {
 	case serialNumber(ClaimDeviceSerialNumberViewModel)
 	case manualSerialNumber(ManualSerialNumberViewModel)
 	case location(ClaimDeviceLocationViewModel)
+	case reset(ResetDeviceViewModel)
+	case selectDevice(SelectDeviceViewModel)
+	case setFrequency(ClaimDeviceSetFrequencyViewModel)
 
 	var id: String {
 		switch self {
@@ -25,6 +28,12 @@ enum ClaimDeviceStep: Identifiable {
 				"manualSerialNumber"
 			case .location:
 				"location"
+			case .reset:
+				"reset"
+			case .selectDevice:
+				"selectDevice"
+			case .setFrequency:
+				"setFrequency"
 		}
 	}
 }
@@ -43,6 +52,32 @@ extension ClaimDeviceStep {
 				ManualSerialNumberView(viewModel: viewModel)
 			case .location(let viewModel):
 				ClaimDeviceLocationView(viewModel: viewModel)
+			case .reset(let viewModel):
+				ResetDeviceView(viewModel: viewModel)
+			case .selectDevice(let viewModel):
+				SelectDeviceView(viewModel: viewModel)
+			case .setFrequency(let viewModel):
+				ClaimDeviceSetFrequencyView(viewModel: viewModel)
 		}
 	}
 }
+
+// MARK: - Helium Steps
+
+enum HeliumSteps: Int, CaseIterable, CustomStringConvertible {
+	case settingFrequency
+	case rebooting
+	case claiming
+
+	var description: String {
+		switch self {
+			case .settingFrequency:
+				return LocalizableString.ClaimDevice.stepSettingFrequency.localized
+			case .rebooting:
+				return LocalizableString.rebootingStation.localized
+			case .claiming:
+				return LocalizableString.ClaimDevice.stepClaiming.localized
+		}
+	}
+}
+

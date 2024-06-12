@@ -325,17 +325,6 @@
         }
       }
     },
-    "bluetooth_no_access_text_format" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In order to connect your device, the WeatherXM app needs access to Bluetooth. If you do not wish to provide such access, please tap on %@ below."
-          }
-        }
-      }
-    },
     "bluetooth_no_access_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -353,7 +342,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We could not find any WeatherXM devices. Please try to scan again! Or, you can try claiming your device manually below."
+            "value" : "We could not find any WeatherXM devices. Please try to scan again!"
           }
         }
       }
@@ -364,7 +353,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We could not find any WeatherXM devices. Please try to **scan again**! Or, you can try claiming your device manually below."
+            "value" : "We could not find any WeatherXM devices. Please try to **scan again**!"
           }
         }
       }
@@ -380,13 +369,13 @@
         }
       }
     },
-    "bluetooth_off_text_format" : {
+    "bluetooth_off_text" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In order to connect your device, the WeatherXM app needs access to Bluetooth. If you do not wish to turn Bluetooth on, please tap on %@ below."
+            "value" : "In order to connect your device, the WeatherXM app needs access to Bluetooth."
           }
         }
       }
@@ -398,17 +387,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bluetooth is off"
-          }
-        }
-      }
-    },
-    "bluetooth_unsupported_text_format" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your device does not support Bluetooth, please tap on %@ below."
           }
         }
       }
@@ -651,6 +629,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Claim D1 | WiFi"
+          }
+        }
+      }
+    },
+    "claim_device_claim_helium_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim Helium"
           }
         }
       }
@@ -1458,6 +1447,17 @@
         }
       }
     },
+    "claim_device_pair_station_via_bluetooth" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pair station via Bluetooth"
+          }
+        }
+      }
+    },
     "claim_device_prepare_gateway_d1_bullet_one" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1552,7 +1552,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Push the **RESET button** at the bottom of your WeatherXM device to enable bluetooth pairing. **This will expire in 5 minutes. After that, you will need to push it again to restart the pairing!**"
+            "value" : "Push the **RESET button** at the bottom of your WeatherXM device to enable bluetooth pairing.   This **will expire in 5 minutes.** After that, you will need to push it again to restart the pairing!"
           }
         }
       }
@@ -1574,7 +1574,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tap the **\"I've reset my device\"** button below."
+            "value" : "Tap the \"I've reset my device\" button below."
           }
         }
       }
@@ -1585,7 +1585,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reset Station"
+            "value" : "Reset your device"
           }
         }
       }
@@ -1651,7 +1651,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select your device from the list below"
+            "value" : "Select your device from the list below."
           }
         }
       }
@@ -1662,7 +1662,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select Device"
+            "value" : "Select Device to Pair"
           }
         }
       }
@@ -1685,6 +1685,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Claim a Weather Station"
+          }
+        }
+      }
+    },
+    "claim_device_set_and_claim" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set and Claim"
           }
         }
       }
@@ -2073,9 +2084,6 @@
           }
         }
       }
-    },
-    "DEBUG - Go to next" : {
-
     },
     "delete_account_cancel_deletion" : {
       "extractionState" : "manual",

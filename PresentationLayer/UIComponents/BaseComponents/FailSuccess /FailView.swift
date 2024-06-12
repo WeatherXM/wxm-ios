@@ -59,6 +59,7 @@ struct FailView: View {
 					// Set min height in order to keep the content centered
 					.frame(minHeight: proxy.size.height)
 				}
+				.clipped()
 			}
             .padding(.bottom, bottomButtonsSize.height)
             .environment(\.openURL, OpenURLAction { url in
@@ -93,19 +94,29 @@ private extension FailView {
     }
 
 	var actionButtons: some View {
-		HStack(spacing: CGFloat(.mediumSpacing)) {
-			if let cancelAction = obj.cancelAction {
-				Button(action: cancelAction) {
-					Text(obj.cancelTitle ?? "")
-				}
-				.buttonStyle(WXMButtonStyle())
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+
+			if let info = obj.info {
+				InfoView(text: info)
+					.onAppear {
+						obj.infoOnAppearAction?()
+					}
 			}
 
-			if let retryAction = obj.retryAction {
-				Button(action: retryAction) {
-					Text(obj.retryTitle ?? "")
+			HStack(spacing: CGFloat(.mediumSpacing)) {
+				if let cancelAction = obj.cancelAction {
+					Button(action: cancelAction) {
+						Text(obj.cancelTitle ?? "")
+					}
+					.buttonStyle(WXMButtonStyle())
 				}
-				.buttonStyle(WXMButtonStyle.filled())
+
+				if let retryAction = obj.retryAction {
+					Button(action: retryAction) {
+						Text(obj.retryTitle ?? "")
+					}
+					.buttonStyle(WXMButtonStyle.filled())
+				}
 			}
 		}
 		.sizeObserver(size: $bottomButtonsSize)

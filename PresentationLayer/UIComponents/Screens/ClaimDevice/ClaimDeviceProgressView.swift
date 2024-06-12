@@ -16,11 +16,12 @@ struct ClaimDeviceProgressView: View {
 				.ignoresSafeArea()
 			Group {
 				switch state {
-					case .loading(let title, let subtitle):
-						DeviceUpdatesLoadingView(title: title,
-												 subtitle: subtitle,
-												 currentStepIndex: .constant(nil),
-												 progress: .constant(nil))
+					case .loading(let obj):
+						DeviceUpdatesLoadingView(title: obj.title,
+												 subtitle: obj.subtitle,
+												 steps: obj.steps,
+												 currentStepIndex: .constant(obj.stepIndex),
+												 progress: .constant(obj.progress))
 					case .success(let object):
 						SuccessView(obj: object)
 					case .fail(let object):
@@ -29,17 +30,26 @@ struct ClaimDeviceProgressView: View {
 			}
 			.padding()
 		}
+		.iPadMaxWidth()
     }
 }
 
 extension ClaimDeviceProgressView {
 	enum State {
-		case loading(String, AttributedString)
+		case loading(LoadingStateObject)
 		case success(FailSuccessStateObject)
 		case fail(FailSuccessStateObject)
+	}
+
+	struct LoadingStateObject {
+		let title: String
+		let subtitle: AttributedString?
+		var steps: [StepsView.Step] = []
+		var stepIndex: Int? = nil
+		var progress: UInt? = nil
 	}
 }
 
 #Preview {
-	ClaimDeviceProgressView(state: .constant(.loading("Title", "Subtitle")))
+	ClaimDeviceProgressView(state: .constant(.loading(.init(title: "Title", subtitle: "Subtitle"))))
 }

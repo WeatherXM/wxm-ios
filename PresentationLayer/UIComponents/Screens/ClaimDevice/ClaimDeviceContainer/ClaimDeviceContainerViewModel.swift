@@ -8,26 +8,31 @@
 import Foundation
 import DomainLayer
 import Combine
+import Toolkit
 
 class ClaimDeviceContainerViewModel: ObservableObject {
 	@Published var selectedIndex: Int = 0
 	@Published var isMovingNext = true
 	@Published var showLoading = false
-	@Published var loadingState: ClaimDeviceProgressView.State = .loading("", "")
+	@Published var loadingState: ClaimDeviceProgressView.State = .loading(.init(title: "", subtitle: ""))
 
 	var steps: [ClaimDeviceStep] = []
-	let navigationTitle: String
+	var navigationTitle: String = ""
 	let useCase: MeUseCase
-	
-	private var claimingKey: String?
-	private var serialNumber: String?
-	private var location: DeviceLocation?
+	let devicesUseCase: DevicesUseCase
+	let deviceLocationUseCase: DeviceLocationUseCase
+	var claimingKey: String?
+	var serialNumber: String?
+	var location: DeviceLocation?
+
+	private let CLAIMING_RETRIES_MAX = 25 // For 2 minutes timeout
+	private let CLAIMING_RETRIES_DELAY_SECONDS: TimeInterval = 5
 	private var cancellableSet: Set<AnyCancellable> = .init()
 
-	init(type: ClaimStationType, useCase: MeUseCase) {
-		navigationTitle = type.navigationTitle
+	init(useCase: MeUseCase, devicesUseCase: DevicesUseCase, deviceLocationUseCase: DeviceLocationUseCase) {
 		self.useCase = useCase
-		steps = getSteps(for: type)
+		self.devicesUseCase = devicesUseCase
+		self.deviceLocationUseCase = deviceLocationUseCase
 	}
 
 	func moveNext() {
@@ -45,7 +50,7 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	}
 }
 
-private extension ClaimDeviceContainerViewModel {
+extension ClaimDeviceContainerViewModel {
 	func moveTo(index: Int) {
 		isMovingNext = index > selectedIndex
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -53,67 +58,6 @@ private extension ClaimDeviceContainerViewModel {
 		}
 	}
 	
-	func getSteps(for type: ClaimStationType) -> [ClaimDeviceStep] {
-		switch type {
-			case .m5:
-				getM5Steps()
-			case .d1:
-				getD1Steps()
-			case .helium:
-				getHeliumSteps()
-			case .pulse:
-				getPulseSteps()
-		}
-	}
-
-	func getM5Steps() -> [ClaimDeviceStep] {
-		let beginViewModel = ViewModelsFactory.getClaimStationM5BeginViewModel { [weak self] in
-			self?.moveNext()
-		}
-
-		let snViewModel = ViewModelsFactory.getClaimStationM5SNViewModel { [weak self] serialNumber in
-			self?.handleSeriaNumber(serialNumber: serialNumber)
-		}
-
-		let manualSNViewModel = ViewModelsFactory.getManualSNM5ViewModel { [weak self] fields in
-			self?.handleSNInputFields(fields: fields)
-		}
-
-		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
-			self?.handleLocation(location: location)
-		}
-
-		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
-	}
-
-	func getD1Steps() -> [ClaimDeviceStep] {
-		let beginViewModel = ViewModelsFactory.getClaimStationBeginViewModel { [weak self] in
-			self?.moveNext()
-		}
-
-		let snViewModel = ViewModelsFactory.getClaimStationSNViewModel { [weak self] serialNumber in
-			self?.handleSeriaNumber(serialNumber: serialNumber)
-		}
-
-		let manualSNViewModel = ViewModelsFactory.getManualSNViewModel { [weak self] fields in
-			self?.handleSNInputFields(fields: fields)
-		}
-
-		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
-			self?.handleLocation(location: location)
-		}
-
-		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
-	}
-
-	func getHeliumSteps() -> [ClaimDeviceStep] {
-		[]
-	}
-
-	func getPulseSteps() -> [ClaimDeviceStep] {
-		[]
-	}
-
 	func handleSeriaNumber(serialNumber: ClaimDeviceSerialNumberViewModel.SerialNumber?) {
 		guard let serialNumber else {
 			moveNext()
@@ -146,13 +90,7 @@ private extension ClaimDeviceContainerViewModel {
 		moveNext()
 	}
 
-	func handleLocation(location: DeviceLocation) {
-		self.location = location
-
-		performClaim()
-	}
-
-	func performClaim() {
+	func performClaim(retries: Int? = nil) {
 		guard let serialNumber = serialNumber?.replacingOccurrences(of: ":", with: ""),
 			  let location else {
 			return
@@ -170,12 +108,32 @@ private extension ClaimDeviceContainerViewModel {
 
 					switch response {
 						case.failure(let responseError):
+							if responseError.backendError?.code == FailAPICodeEnum.deviceClaiming.rawValue,
+							   let retries,
+							   retries < self.CLAIMING_RETRIES_MAX {
+								print("Claiming Failed with \(responseError). Retrying after 5 seconds...")
+
+
+								DispatchQueue.main.asyncAfter(deadline: .now() + self.CLAIMING_RETRIES_DELAY_SECONDS) {
+									self.performClaim(retries: retries + 1)
+								}
+
+								return
+							}
+
 							let object = getFailObject(for: responseError)
 							self.loadingState = .fail(object)
 						case .success(let deviceResponse):
 							print(deviceResponse)
-							let object = self.getSuccessObject(for: deviceResponse)
-							self.loadingState = .success(object)
+							Task { @MainActor in
+								var followState: UserDeviceFollowState?
+								if let deviceId = deviceResponse.id {
+									followState = try? await self.useCase.getDeviceFollowState(deviceId: deviceId).get()
+								}
+
+								let object = self.getSuccessObject(for: deviceResponse, followState: followState)
+								self.loadingState = .success(object)
+							}
 					}
 				}
 				.store(in: &cancellableSet)
@@ -196,33 +154,67 @@ private extension ClaimDeviceContainerViewModel {
 		}) {
 			Router.shared.popToRoot()
 		} retryAction: { [weak self] in
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
+																	 .contentType: .claiming,
+																	 .action: .retry])
+
 			self?.performClaim()
 		}
 
 		return object
 	}
 
-	func getSuccessObject(for device: DeviceDetails) -> FailSuccessStateObject {
+	func getSuccessObject(for device: DeviceDetails, followState: UserDeviceFollowState?) -> FailSuccessStateObject {
+		let needsUpdate = device.needsUpdate(mainVM: MainScreenViewModel.shared, followState: followState) == true
+		let cancelTitle: String? = needsUpdate ? LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized : nil
+		let retryTitle: String? = needsUpdate ? LocalizableString.ClaimDevice.updateFirmwareAlertTitle.localized : LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized
+		let goToStationAction: VoidCallback = { [weak self] in
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
+																	 .contentType: .claiming,
+																	 .action: .viewStation])
+
+			self?.dismissAndNavigate(device: device)
+		}
+		let updateFirmwareAction: VoidCallback = { [weak self] in
+			self?.dismissAndNavigate(device: nil)
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
+				MainScreenViewModel.shared.showFirmwareUpdate(device: device)
+			}
+		}
+
+		let info = LocalizableString.ClaimDevice.updateFirmwareInfoMarkdown.localized.attributedMarkdown
+		let infoAppearAction = {
+			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
+														   .promptType: .warnPromptType,
+														   .action: .viewAction])
+		}
+
 		let object = FailSuccessStateObject(type: .claimDeviceFlow,
 											title: LocalizableString.ClaimDevice.successTitle.localized,
 											subtitle: LocalizableString.ClaimDevice.successText(device.displayName).localized.attributedMarkdown,
-											cancelTitle: nil,
-											retryTitle: LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized,
+											info: needsUpdate ? info : nil,
+											infoOnAppearAction: needsUpdate ? infoAppearAction : nil,
+											cancelTitle: cancelTitle,
+											retryTitle: retryTitle,
 											contactSupportAction: nil,
-											cancelAction: nil) { [weak self] in
-			self?.dismissAndNavigate(device: device)
-		}
+											cancelAction: needsUpdate ? goToStationAction : nil ,
+											retryAction: needsUpdate ? updateFirmwareAction : goToStationAction)
 
 		return object
 	}
 
 	func getLoadingState() -> ClaimDeviceProgressView.State {
-		.loading(LocalizableString.ClaimDevice.claimingTitle.localized,
-				 LocalizableString.ClaimDevice.claimStationLoadingDescription.localized.attributedMarkdown ?? "")
+		.loading(.init(title: LocalizableString.ClaimDevice.claimingTitle.localized,
+					   subtitle: LocalizableString.ClaimDevice.claimStationLoadingDescription.localized.attributedMarkdown ?? ""))
 	}
 
-	func dismissAndNavigate(device: DeviceDetails) {
+	func dismissAndNavigate(device: DeviceDetails?) {
 		Router.shared.popToRoot()
+
+		guard let device else {
+			return
+		}
+
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
 			let route = Route.stationDetails(ViewModelsFactory.getStationDetailsViewModel(deviceId: device.id ?? "",
 																						  cellIndex: device.cellIndex,

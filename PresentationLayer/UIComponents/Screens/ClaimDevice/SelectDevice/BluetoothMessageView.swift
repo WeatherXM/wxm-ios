@@ -77,19 +77,19 @@ struct BluetoothMessageView: View {
 
     var bluetoothUnsupportedMessage: some View {
         return VStack {
-            attributedMessageWithText(LocalizableString.Bluetooth.offText(LocalizableString.ClaimDevice.manuallyButton.localized).localized)
+            attributedMessageWithText(LocalizableString.Bluetooth.offText.localized)
         }
     }
 
     var bluetoothOffMessage: some View {
         return VStack {
-            attributedMessageWithText(LocalizableString.Bluetooth.offText(LocalizableString.ClaimDevice.manuallyButton.localized).localized)
+            attributedMessageWithText(LocalizableString.Bluetooth.offText.localized)
         }
     }
 
     var noAccessMessage: some View {
         return VStack {
-            attributedMessageWithText(LocalizableString.Bluetooth.offText(LocalizableString.ClaimDevice.manuallyButton.localized).localized)
+            attributedMessageWithText(LocalizableString.Bluetooth.offText.localized)
             settingsButton(LocalizableString.Bluetooth.goToSettingsGrantAccess.localized)
         }
     }

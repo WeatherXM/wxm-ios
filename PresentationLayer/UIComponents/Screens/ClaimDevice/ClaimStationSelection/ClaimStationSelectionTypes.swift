@@ -25,7 +25,7 @@ enum ClaimStationType: CaseIterable, CustomStringConvertible {
 			case .d1:
 				LocalizableString.ClaimDevice.claimD1Title.localized
 			case .helium:
-				LocalizableString.ClaimDevice.heliumTitle.localized
+				LocalizableString.ClaimDevice.claimHeliumTitle.localized
 			case .pulse:
 				LocalizableString.ClaimDevice.pulseTitle.localized
 		}

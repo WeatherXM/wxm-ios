@@ -10,28 +10,20 @@ import Foundation
 extension LocalizableString {
     enum Bluetooth {
         case noAccessTitle
-        case noAccessText(String)
         case noDevicesFoundTitle
         case noDevicesFoundText
         case noDevicesFoundTextMarkdown
         case goToSettingsGrantAccess
         case title
-        case offText(String)
+        case offText
         case unsupportedTitle
-        case unsupportedText(String)
     }
 }
 
 extension LocalizableString.Bluetooth: WXMLocalizable {
     
     var localized: String {
-        var localized = NSLocalizedString(key, comment: "")
-        switch self {
-            case .noAccessText(let text), .offText(let text), .unsupportedText(let text):
-                localized = String(format: localized, text)
-            default: break
-        }
-
+        let localized = NSLocalizedString(key, comment: "")
         return localized
     }
 
@@ -39,8 +31,6 @@ extension LocalizableString.Bluetooth: WXMLocalizable {
         switch self {
             case .noAccessTitle:
                 return "bluetooth_no_access_title"
-            case .noAccessText:
-                return "bluetooth_no_access_text_format"
             case .noDevicesFoundTitle:
                 return "bluetooth_no_devices_found_title"
             case .noDevicesFoundText:
@@ -52,11 +42,9 @@ extension LocalizableString.Bluetooth: WXMLocalizable {
             case .title:
                 return "bluetooth_title"
             case .offText:
-                return "bluetooth_off_text_format"
+                return "bluetooth_off_text"
             case .unsupportedTitle:
                 return "bluetooth_unsupported_title"
-            case .unsupportedText:
-                return "bluetooth_unsupported_text_format"
         }
     }
 }

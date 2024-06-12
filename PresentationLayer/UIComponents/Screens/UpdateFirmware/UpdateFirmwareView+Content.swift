@@ -10,12 +10,26 @@ import SwiftUI
 extension UpdateFirmwareView {
     @ViewBuilder
     var installationView: some View {
-        DeviceUpdatesLoadingView(topTitle: viewModel.topTitle,
-                                 topSubtitle: viewModel.topSubtitle,
-                                 title: viewModel.title,
-                                 subtitle: viewModel.subtile,
-                                 steps: viewModel.steps,
-                                 currentStepIndex: $viewModel.currentStepIndex,
-                                 progress: $viewModel.progress)
+		GeometryReader { _ in
+			VStack {
+				Spacer()
+				
+				HStack {
+					Spacer()
+
+					DeviceUpdatesLoadingView(topTitle: viewModel.topTitle,
+											 topSubtitle: viewModel.topSubtitle,
+											 title: viewModel.title,
+											 subtitle: viewModel.subtile,
+											 steps: viewModel.steps,
+											 currentStepIndex: $viewModel.currentStepIndex,
+											 progress: $viewModel.progress)
+					
+					Spacer()
+				}
+			
+				Spacer()
+			}
+		}
     }
 }

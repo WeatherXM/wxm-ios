@@ -65,7 +65,6 @@
 		4D49D90A294DE3B300987DE6 /* MapboxSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D909294DE3B300987DE6 /* MapboxSearch */; };
 		4D49D910294DE53700987DE6 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D90F294DE53700987DE6 /* MapboxMaps */; };
 		4D5AE33028EA49C7006F2EBA /* BluetoothDevicesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AE32F28EA49C7006F2EBA /* BluetoothDevicesRepositoryImpl.swift */; };
-		4D848F812929AA6C009C5762 /* HeliumDeviceBluetoothHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D848F802929AA6C009C5762 /* HeliumDeviceBluetoothHelper.swift */; };
 		7480AF562835098A002758C3 /* DevicesApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480AF552835098A002758C3 /* DevicesApiRequestBuilder.swift */; };
 		7480AF5828350B54002758C3 /* DevicesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480AF5728350B54002758C3 /* DevicesRepositoryImpl.swift */; };
 		74F922902835164A00CD8FDF /* MeApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F9228F2835164A00CD8FDF /* MeApiRequestBuilder.swift */; };
@@ -146,7 +145,6 @@
 		26FFAD922B8E2A5500BF0A6B /* get_reward_details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_reward_details.json; sourceTree = "<group>"; };
 		4D1C95CF28FC7EB1001F66C9 /* LocationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepositoryImpl.swift; sourceTree = "<group>"; };
 		4D5AE32F28EA49C7006F2EBA /* BluetoothDevicesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevicesRepositoryImpl.swift; sourceTree = "<group>"; };
-		4D848F802929AA6C009C5762 /* HeliumDeviceBluetoothHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeliumDeviceBluetoothHelper.swift; sourceTree = "<group>"; };
 		7480AF552835098A002758C3 /* DevicesApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesApiRequestBuilder.swift; sourceTree = "<group>"; };
 		7480AF5728350B54002758C3 /* DevicesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesRepositoryImpl.swift; sourceTree = "<group>"; };
 		74F9228F2835164A00CD8FDF /* MeApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeApiRequestBuilder.swift; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 				2646FCC529967D9500EBB61B /* BluetoothUtils.swift */,
 				26A4118B29BB2CAB00A2C10B /* BTActionsWrapper.swift */,
 				2646FCC72996949C00EBB61B /* BTPerformCommandDelegate.swift */,
-				4D848F802929AA6C009C5762 /* HeliumDeviceBluetoothHelper.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -556,7 +553,6 @@
 				2612AC622AB88EB400285896 /* FiltersService.swift in Sources */,
 				264BDA0C298AC792005C1F82 /* FirmwareUpdateImpl.swift in Sources */,
 				264BDA11298BA108005C1F82 /* FirmwareUpdater.swift in Sources */,
-				4D848F812929AA6C009C5762 /* HeliumDeviceBluetoothHelper.swift in Sources */,
 				B56A25F028A0F6AF00928141 /* KeychainConstants.swift in Sources */,
 				26AB9F562A80C50200855912 /* KeychainHelperService+User.swift in Sources */,
 				B56A25E528A0EF9100928141 /* KeychainHelperService.swift in Sources */,

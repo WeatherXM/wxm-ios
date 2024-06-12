@@ -82,3 +82,18 @@ extension BTWXMDeviceState {
         }
     }
 }
+
+extension BluetoothManager.BTManagerEror {
+	var toDomainBluetoothHeliumError: BluetoothHeliumError? {
+		switch self {
+			case .peripheralNotFound:
+				return .peripheralNotFound
+			case .connectionError:
+				return .connectionError
+			case .writeCommandError:
+				return nil
+			case .writeCommandDeviceNotConnectedError:
+				return nil
+		}
+	}
+}
