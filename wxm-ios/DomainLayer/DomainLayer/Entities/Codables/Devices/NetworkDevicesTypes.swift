@@ -51,11 +51,11 @@ public struct StationBundle: Codable {
 	}
 
 	public enum Code: String, Codable {
-		case m5 = "M5"
-		case h1 = "H1"
-		case h2 = "H2"
-		case d1 = "D1"
-		case pulse = "PULSE"
+		case m5
+		case h1
+		case h2
+		case d1
+		case pulse
 	}
 
 	public enum WSModel: String, Codable {
