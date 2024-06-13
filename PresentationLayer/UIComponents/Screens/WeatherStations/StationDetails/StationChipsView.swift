@@ -23,6 +23,7 @@ struct StationChipsView: View {
 			HStack(spacing: CGFloat(.smallSpacing)) {
 				warningsChip
 				statusChip
+				bundleChip
 				addressChip
 			}
 		}
@@ -39,7 +40,7 @@ private extension StationChipsView {
 
 				HStack(spacing: CGFloat(.smallSpacing)) {
 					Text(FontIcon.hexagon.rawValue)
-						.font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
+						.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
 						.foregroundColor(Color(colorEnum: .text))
 
 					Text(address)
@@ -95,6 +96,25 @@ private extension StationChipsView {
 		} else {
 			EmptyView()
 		}
+	}
+
+	@ViewBuilder
+	var bundleChip: some View {
+		HStack(spacing: CGFloat(.smallSpacing)) {
+
+			Image(asset: device.icon)
+				.renderingMode(.template)
+				.foregroundColor(Color(colorEnum: .text))
+
+			Text(device.profile?.rawValue ?? "")
+				.font(.system(size: CGFloat(.caption)))
+				.foregroundColor(Color(colorEnum: .text))
+				.lineLimit(1)
+		}
+		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+					  insideHorizontalPadding: CGFloat(.smallSidePadding),
+					  insideVerticalPadding: CGFloat(.smallSidePadding),
+					  cornerRadius: CGFloat(.buttonCornerRadius))
 	}
 }
 
