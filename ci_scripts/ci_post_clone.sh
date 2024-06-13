@@ -6,6 +6,7 @@ setupConfiguration(){
 
 	echo "#include \"../Version.xcconfig\"" > $CONFIGURATION_PATH
 	echo "MBXAccessToken = ${MAPBOX_ACCESS_TOKEN};" >> $CONFIGURATION_PATH
+	echo "MBXStyle = ${MAPBOX_STYLE};" >> $CONFIGURATION_PATH
 	echo "UserAccessTokenService = accessTokenService;" >> $CONFIGURATION_PATH
 	echo "UserRefreshTokenService = refreshTokenService;" >> $CONFIGURATION_PATH
 	echo "Account = weatherXM;" >> $CONFIGURATION_PATH

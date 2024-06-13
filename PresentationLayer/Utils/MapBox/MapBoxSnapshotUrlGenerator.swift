@@ -15,7 +15,7 @@ struct MapBoxSnapshotUrlGenerator {
 	let options: Options
 
 	func getUrl() -> URL? {
-		guard let styleUrl = URL(string: MapBoxConstants.mapBoxStyle),
+		guard let styleUrl = MapBoxConstants.styleURL,
 			  let accessToken: String = Bundle.main.getConfiguration(for: .mapBoxAccessToken) else {
 			return nil
 		}

@@ -51,6 +51,8 @@
 	</array>
 	<key>MBXAccessToken</key>
 	<string>$(MBXAccessToken)</string>
+	<key>MBXStyle</key>
+	<string>$(MBXStyle)</string>
 	<key>MixpanelToken</key>
 	<string>$(MixpanelToken)</string>
 	<key>NSUserNotificationsUsageDescription</key>

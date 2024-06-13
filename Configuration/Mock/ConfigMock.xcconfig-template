@@ -2,6 +2,10 @@
 
 MBXAccessToken = {mapbox access token};
 
+ // A trick to avoid parse issues caused form double slashes of the following urls is to add "$()" after "mapbox::/", 
+ // eg. mapbox:/$()/style/..." 
+MBXStyle = {mapbox style url};
+
 UserAccessTokenService = accessTokenService;
 
 UserRefreshTokenService = refreshTokenService;

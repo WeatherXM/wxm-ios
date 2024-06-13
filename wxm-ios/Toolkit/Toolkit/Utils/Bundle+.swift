@@ -9,6 +9,7 @@ import Foundation
 
 public enum ConfigurationKey: String {
 	case mapBoxAccessToken = "MBXAccessToken"
+	case mapBoxStyle = "MBXStyle"
 	case teamId = "TeamId"
 	case apiUrl = "ApiUrl"
 	case claimTokenUrl = "ClaimTokenUrl"

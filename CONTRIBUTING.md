@@ -76,6 +76,9 @@ We have a variable for Mapbox:
 You can view Mapbox guide on Access
 Token [here](https://docs.mapbox.com/help/getting-started/access-tokens/).
 
+- `MBXStyle`
+  For custom mapbox style. It's optional.
+
 ### Different Schemes
 
 We have 3 different app schemes. For each scheme a

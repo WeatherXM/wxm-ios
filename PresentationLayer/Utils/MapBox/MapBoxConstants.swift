@@ -7,9 +7,9 @@
 
 import Foundation
 import UIKit
+import MapboxMaps
 
 enum MapBoxConstants {
-	static let mapBoxStyle = "mapbox://styles/exmachina/ckrxjh01a5e7317plznjeicao"
 	static let polygonFillColor = UIColor(red: 51.0/255.0, green: 136.0/255.0, blue: 255.0/255.0, alpha: 0.5)
 	static let snapshotSize: CGSize = CGSize(width: 340.0, height: 200.0)
 	static let snapshotZoom: CGFloat = 11.0
@@ -19,4 +19,20 @@ enum MapBoxConstants {
 	static let initialLon = 23.710478235562956
 	static let heatmapLayerId = "wtxm-heatmap-layer"
 	static let heatmapSource = "heatmap"
+
+	static var styleURI: StyleURI {
+		guard let style: String = Bundle.main.getConfiguration(for: .mapBoxStyle) else {
+			return .standard
+		}
+
+		return StyleURI(rawValue: style) ?? .standard
+	}
+
+	static var styleURL: URL? {
+		guard let style: String = Bundle.main.getConfiguration(for: .mapBoxStyle) else {
+			return nil
+		}
+
+		return URL(string: style)
+	}
 }
