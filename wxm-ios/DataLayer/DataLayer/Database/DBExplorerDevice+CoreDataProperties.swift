@@ -17,16 +17,15 @@ extension DBExplorerDevice {
     }
 
     @NSManaged public var id: String?
-    @NSManaged public var connectivity: String?
     @NSManaged public var cellIndex: String?
-
+	@NSManaged public var bundle: DBBundle?
 }
 
 extension DBExplorerDevice: ManagedObjectToCodableConvertible {
     var toCodable: NetworkSearchDevice? {
         NetworkSearchDevice(id: id,
                             name: name,
-							bundle: nil,
+							bundle: bundle?.toCodable,
                             cellIndex: cellIndex,
                             cellCenter: LocationCoordinates(lat: lat, long: lon))
     }
@@ -37,6 +36,7 @@ extension NetworkSearchDevice: CodableToManagedObjectConvertible {
         let dbDevice = DBExplorerDevice(context: DatabaseService.shared.context)
         dbDevice.id = id
         dbDevice.cellIndex = cellIndex
+		dbDevice.bundle = bundle?.toManagedObject
         dbDevice.name = name
         dbDevice.lat = cellCenter?.lat ?? 0.0
         dbDevice.lon = cellCenter?.lon ?? 0.0

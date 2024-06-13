@@ -39,6 +39,8 @@
 		267A37872AEBEBBA00469126 /* get_user_device_rewards.json in Resources */ = {isa = PBXBuildFile; fileRef = 267A37862AEBEBBA00469126 /* get_user_device_rewards.json */; };
 		267CA6EF2C1314E300ABE599 /* get_user.json in Resources */ = {isa = PBXBuildFile; fileRef = 267CA6EE2C1314E200ABE599 /* get_user.json */; };
 		2683A4C42ADECF3100D5C205 /* countries_information.json in Resources */ = {isa = PBXBuildFile; fileRef = 2683A4C32ADECBA800D5C205 /* countries_information.json */; };
+		268ACD052C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268ACD032C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift */; };
+		268ACD062C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268ACD042C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift */; };
 		2692D88B2A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8852A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift */; };
 		2692D88C2A4DB2B50060CB3C /* DBExplorerAddress+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8862A4DB2B50060CB3C /* DBExplorerAddress+CoreDataProperties.swift */; };
 		2692D88D2A4DB2B50060CB3C /* DBExplorerSearchEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8872A4DB2B50060CB3C /* DBExplorerSearchEntity+CoreDataClass.swift */; };
@@ -121,6 +123,8 @@
 		267A37862AEBEBBA00469126 /* get_user_device_rewards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user_device_rewards.json; sourceTree = "<group>"; };
 		267CA6EE2C1314E200ABE599 /* get_user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user.json; sourceTree = "<group>"; };
 		2683A4C32ADECBA800D5C205 /* countries_information.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_information.json; sourceTree = "<group>"; };
+		268ACD032C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBBundle+CoreDataClass.swift"; sourceTree = "<group>"; };
+		268ACD042C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBBundle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2692D8852A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBExplorerAddress+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2692D8862A4DB2B50060CB3C /* DBExplorerAddress+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBExplorerAddress+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2692D8872A4DB2B50060CB3C /* DBExplorerSearchEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBExplorerSearchEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 			isa = PBXGroup;
 			children = (
 				26E88B2E29E5717D0023BBD5 /* DatabaseService.swift */,
+				268ACD032C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift */,
+				268ACD042C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift */,
 				2692D8852A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift */,
 				2692D8862A4DB2B50060CB3C /* DBExplorerAddress+CoreDataProperties.swift */,
 				2692D8892A4DB2B50060CB3C /* DBExplorerDevice+CoreDataClass.swift */,
@@ -526,7 +532,9 @@
 				B5E6B85628337A3E0060D050 /* AuthApiRequestBuilder.swift in Sources */,
 				B5E1FAD528A1360A002DFA24 /* AuthInterceptor.swift in Sources */,
 				B5E6B86B283391880060D050 /* AuthRepositoryImpl.swift in Sources */,
+				268ACD062C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift in Sources */,
 				4D5AE33028EA49C7006F2EBA /* BluetoothDevicesRepositoryImpl.swift in Sources */,
+				268ACD052C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift in Sources */,
 				2646FCC4299658B200EBB61B /* BluetoothManager.swift in Sources */,
 				2646FCC629967D9500EBB61B /* BluetoothUtils.swift in Sources */,
 				26A4118C29BB2CAB00A2C10B /* BTActionsWrapper.swift in Sources */,
