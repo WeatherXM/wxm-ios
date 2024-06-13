@@ -9,7 +9,13 @@
   "timezone": "Etc/GMT+6",
   "relation": "owned",
   "address": "-",
-  "profile": "Helium",
+  "bundle": {
+	  "name": "h1",
+	  "title": "H1",
+	  "connectivity": "helium",
+	  "ws_model": "WS1000",
+	  "gw_model": "WG1000"
+  },
   "bat_state": "low",
   "attributes": {
     "friendlyName": "Home",
