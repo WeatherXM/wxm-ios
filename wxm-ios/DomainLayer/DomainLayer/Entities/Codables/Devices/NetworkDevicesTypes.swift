@@ -23,12 +23,6 @@ public struct Firmware: Codable {
     }
 }
 
-public enum Profile: String, Codable {
-    case m5 = "M5"
-    case helium = "Helium"
-	case d1 = "D1"
-}
-
 public enum DeviceRelation: String, Codable {
     case owned
     case followed
@@ -40,23 +34,23 @@ public enum BatteryState: String, Codable {
 }
 
 public struct StationBundle: Codable {
-	let code: Code?
-	let name: String?
-	let connectivity: Connectivity?
-	let wsModel: WSModel?
-	let gwModel: GWModel?
-	let hwClass: String?
+	public let name: Code?
+	public let title: String?
+	public let connectivity: Connectivity?
+	public let wsModel: WSModel?
+	public let gwModel: GWModel?
+	public let hwClass: String?
 
 	enum CodingKeys: String, CodingKey {
-		case code
 		case name
+		case title
 		case connectivity
 		case wsModel = "ws_model"
 		case gwModel = "gw_model"
 		case hwClass = "hw_class"
 	}
 
-	enum Code: String, Codable {
+	public enum Code: String, Codable {
 		case m5 = "M5"
 		case h1 = "H1"
 		case h2 = "H2"
@@ -64,15 +58,24 @@ public struct StationBundle: Codable {
 		case pulse = "PULSE"
 	}
 
-	enum WSModel: String, Codable {
+	public enum WSModel: String, Codable {
 		case ws1000 = "WS1000"
 		case ws1001 = "WS1001"
 		case ws2000 = "WS2000"
 	}
 
-	enum GWModel: String, Codable {
+	public enum GWModel: String, Codable {
 		case wg1000 = "WG1000"
 		case wg1200 = "WG1200"
+	}
+
+	public init(name: Code?, title: String?, connectivity: Connectivity?, wsModel: WSModel?, gwModel: GWModel?, hwClass: String?) {
+		self.name = name
+		self.title = title
+		self.connectivity = connectivity
+		self.wsModel = wsModel
+		self.gwModel = gwModel
+		self.hwClass = hwClass
 	}
 }
 

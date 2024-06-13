@@ -85,15 +85,15 @@ private extension AlertsViewModel {
     }
 
 	func handleLowBatteryTap() {
-		guard let profile = device.profile else {
+		guard let name = device.bundle?.name else {
 			return
 		}
-		switch profile {
+		switch name {
 			case .m5:
 				if let url = URL(string: DisplayedLinks.m5Batteries.linkURL) {
 					UIApplication.shared.open(url)
 				}
-			case .helium:
+			case .h1, .h2:
 				if let url = URL(string: DisplayedLinks.heliumBatteries.linkURL) {
 					UIApplication.shared.open(url)
 				}
@@ -101,6 +101,8 @@ private extension AlertsViewModel {
 				if let url = URL(string: DisplayedLinks.heliumBatteries.linkURL) {
 					UIApplication.shared.open(url)
 				}
+			case .pulse:
+				#warning("Open pulse link")
 		}
 
 	}

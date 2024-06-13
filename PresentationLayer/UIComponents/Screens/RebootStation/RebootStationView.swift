@@ -67,7 +67,7 @@ struct RebootStationView: View {
 struct RebootStationView_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
-        device.profile = .helium
+		device.bundle = .mock(name: .h1)
 
         return NavigationContainerView {
             RebootStationView(viewModel: RebootStationViewModel(device: device, useCase: nil))

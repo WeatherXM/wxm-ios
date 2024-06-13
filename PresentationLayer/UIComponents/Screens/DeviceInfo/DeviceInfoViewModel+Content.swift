@@ -91,12 +91,11 @@ extension DeviceInfoViewModel {
 				case .name:
 					return device.displayName
 				case .frequency:
-					switch device.profile {
-						case .helium:
-							return LocalizableString.deviceInfoStationHeliumFrequencyDescription(DisplayedLinks.heliumRegionFrequencies.linkURL).localized
-						case .m5, .d1, .none:
-							return ""
+					if device.isHelium {
+						return LocalizableString.deviceInfoStationHeliumFrequencyDescription(DisplayedLinks.heliumRegionFrequencies.linkURL).localized
 					}
+
+					return ""
 				case .reboot:
 					return LocalizableString.deviceInfoStationRebootDescription.localized
 				case .maintenance:
@@ -196,11 +195,10 @@ extension DeviceInfoViewModel {
 
         static func getShareText(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String {
             var fields: [InfoField] = []
-            switch device.profile {
-                case .helium:
-                    fields = heliumFields
-				case .m5, .d1, .none:
-                    fields = wifiFields
+			if device.isHelium {
+				fields = heliumFields
+			} else {
+				fields = wifiFields
             }
 
             let textComps: [String] = fields.compactMap { field in

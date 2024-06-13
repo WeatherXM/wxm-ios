@@ -196,7 +196,7 @@ private extension StationWidgetView {
 				}
 
 				HStack(spacing: 0.0) {
-					Image(asset: device.profile?.icon ?? .wifi)
+					Image(asset: device.bundle?.connectivity?.icon ?? .wifi)
 						.resizable()
 						.renderingMode(.template)
 						.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
@@ -229,7 +229,7 @@ private extension StationWidgetView {
 		VStack(spacing: CGFloat(.minimumSpacing)) {
 			HStack(spacing: CGFloat(.minimumSpacing)) {
 				HStack(spacing: 0.0) {
-					Image(asset: device.profile?.icon ?? .wifi)
+					Image(asset: device.bundle?.connectivity?.icon ?? .wifi)
 						.resizable()
 						.renderingMode(.template)
 						.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))

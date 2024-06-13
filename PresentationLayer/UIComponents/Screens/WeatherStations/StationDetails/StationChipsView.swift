@@ -106,7 +106,7 @@ private extension StationChipsView {
 				.renderingMode(.template)
 				.foregroundColor(Color(colorEnum: .text))
 
-			Text(device.profile?.rawValue ?? "")
+			Text(device.bundle?.title ?? "")
 				.font(.system(size: CGFloat(.caption)))
 				.foregroundColor(Color(colorEnum: .text))
 				.lineLimit(1)

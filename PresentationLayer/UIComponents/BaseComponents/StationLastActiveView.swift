@@ -47,7 +47,7 @@ extension StationLastActiveView {
 struct StationLastActiveView_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
-        device.profile = .helium
+		device.bundle = .mock(name: .h1)
         device.isActive = false
         device.lastActiveAt = Date().ISO8601Format()
         return StationLastActiveView(device: device)

@@ -70,7 +70,7 @@ struct ChangeFrequencyView: View {
 struct ChangeFrequencyView_Set_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
-        device.profile = .helium
+		device.bundle = .mock(name: .h1)
 
         return NavigationContainerView {
             ChangeFrequencyView(viewModel: ChangeFrequencyViewModel(device: device, useCase: nil))
@@ -81,7 +81,7 @@ struct ChangeFrequencyView_Set_Previews: PreviewProvider {
 struct ChangeFrequencyView_Change_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
-        device.profile = .helium
+		device.bundle = .mock(name: .h1)
         let vm = ChangeFrequencyViewModel(device: device, useCase: nil)
         vm.state = .changeFrequency
         return NavigationContainerView {
@@ -93,7 +93,7 @@ struct ChangeFrequencyView_Change_Previews: PreviewProvider {
 struct ChangeFrequencyView_Fail_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
-        device.profile = .helium
+		device.bundle = .mock(name: .h1)
         let vm = ChangeFrequencyViewModel(device: device, useCase: nil)
         vm.state = .failed(.mockErrorObj)
         return NavigationContainerView {
@@ -105,7 +105,7 @@ struct ChangeFrequencyView_Fail_Previews: PreviewProvider {
 struct ChangeFrequencyView_Success_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
-        device.profile = .helium
+		device.bundle = .mock(name: .h1)
         let vm = ChangeFrequencyViewModel(device: device, useCase: nil)
         vm.state = .success(.mockSuccessObj)
         return NavigationContainerView {

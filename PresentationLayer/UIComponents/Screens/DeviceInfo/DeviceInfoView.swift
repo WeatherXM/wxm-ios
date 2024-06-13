@@ -95,7 +95,7 @@ struct DeviceInfoView: View {
 struct DeviceInfoView_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.mockDevice
-        device.profile = .helium
+		device.bundle = .mock(name: .h1)
 
         return NavigationContainerView {
             DeviceInfoView(viewModel: DeviceInfoViewModel(device: device,

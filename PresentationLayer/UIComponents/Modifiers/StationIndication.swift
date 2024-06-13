@@ -114,18 +114,21 @@ private extension StationIndicationModifier {
 							showContentFullWidth: true,
 							closeAction: nil) {
 				Button {
-					guard let profile = device.profile else {
+					guard let name = device.bundle?.name else {
 						return
 					}
 
 					var urlString: String?
-					switch profile {
+					switch name {
 						case .m5:
 							urlString = DisplayedLinks.m5Batteries.linkURL
-						case .helium:
+						case .h1, .h2:
 							urlString = DisplayedLinks.heliumBatteries.linkURL
 						case .d1:
 							urlString = DisplayedLinks.d1Batteries.linkURL
+						case .pulse:
+							#warning("Set pulse link")
+							break
 					}
 
 					if let urlString, let url = URL(string: urlString) {
