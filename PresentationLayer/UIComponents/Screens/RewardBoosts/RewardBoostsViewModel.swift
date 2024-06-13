@@ -44,7 +44,7 @@ class RewardBoostsViewModel: ObservableObject {
 					completion()
 				case .failure(let error):
 					self.state = .fail
-					self.failObj = error.uiInfo.defaultFailObject(type: .rewardDetails) {
+					self.failObj = error.uiInfo(title: LocalizableString.RewardDetails.rewardsBoostFailedTitle.localized).defaultFailObject(type: .rewardDetails) {
 						self.state = .loading
 						self.refresh {}
 					}

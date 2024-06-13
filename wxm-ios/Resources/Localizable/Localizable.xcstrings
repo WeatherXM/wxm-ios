@@ -6040,6 +6040,17 @@
         }
       }
     },
+    "reward_details_rewards_boost_failed_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reward Boost could not be fetched"
+          }
+        }
+      }
+    },
     "reward_details_timeline_info_description_format" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -15,7 +15,7 @@ extension NetworkErrorResponse {
         let description: String?
 
 		#if MAIN_APP
-        func defaultFailObject(type: SuccessFailEnum, retryAction: VoidCallback?) -> FailSuccessStateObject {
+		func defaultFailObject(type: SuccessFailEnum, retryAction: VoidCallback?) -> FailSuccessStateObject {
             let obj = FailSuccessStateObject(type: type,
                                              title: title,
                                              subtitle: description?.attributedMarkdown,
@@ -51,6 +51,11 @@ extension NetworkErrorResponse {
 
         return UIInfo(title: title, description: description)
     }
+
+	func uiInfo(title: String) -> UIInfo {
+		let info = uiInfo
+		return UIInfo(title: title, description: info.description)
+	}
 }
 
 private extension FailAPICodeEnum {
