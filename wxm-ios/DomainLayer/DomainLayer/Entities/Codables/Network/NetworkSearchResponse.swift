@@ -25,22 +25,22 @@ public struct NetworkSearchResponse: Codable {
 public struct NetworkSearchDevice: Codable, NetworkSearchItem {
     public let id: String?
     public let name: String?
-    public let connectivity: Connectivity?
+    public let bundle: StationBundle?
     public let cellIndex: String?
     public let cellCenter: LocationCoordinates?
 
     enum CodingKeys: String, CodingKey {
         case id
         case name
-        case connectivity
+        case bundle
         case cellIndex = "cell_index"
         case cellCenter = "cell_center"
     }
 
-    public init(id: String?, name: String?, connectivity: Connectivity?, cellIndex: String?, cellCenter: LocationCoordinates?) {
+    public init(id: String?, name: String?, bundle: StationBundle?, cellIndex: String?, cellCenter: LocationCoordinates?) {
         self.id = id
         self.name = name
-        self.connectivity = connectivity
+        self.bundle = bundle
         self.cellIndex = cellIndex
         self.cellCenter = cellCenter
     }

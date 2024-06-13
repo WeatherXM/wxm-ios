@@ -26,7 +26,7 @@ extension DBExplorerDevice: ManagedObjectToCodableConvertible {
     var toCodable: NetworkSearchDevice? {
         NetworkSearchDevice(id: id,
                             name: name,
-                            connectivity: DomainLayer.Connectivity(rawValue: connectivity ?? ""),
+							bundle: nil,
                             cellIndex: cellIndex,
                             cellCenter: LocationCoordinates(lat: lat, long: lon))
     }
@@ -37,7 +37,6 @@ extension NetworkSearchDevice: CodableToManagedObjectConvertible {
         let dbDevice = DBExplorerDevice(context: DatabaseService.shared.context)
         dbDevice.id = id
         dbDevice.cellIndex = cellIndex
-        dbDevice.connectivity = connectivity?.rawValue
         dbDevice.name = name
         dbDevice.lat = cellCenter?.lat ?? 0.0
         dbDevice.lon = cellCenter?.lon ?? 0.0
