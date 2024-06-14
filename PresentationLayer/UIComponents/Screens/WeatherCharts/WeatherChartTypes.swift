@@ -16,6 +16,8 @@ protocol ChartCardProtocol: CaseIterable, CustomStringConvertible {
 	var isRightAxisEnabled: Bool { get }
 	func getAxisDependecy(for weatherField: WeatherField) -> YAxis.AxisDependency
 	func configureAxis(leftAxis: YAxis, rightAxis: YAxis, for lineData: LineChartData)
+	func legendTitle(for weatherField: WeatherField) -> String
+	func highlightTitle(for weatherField: WeatherField) -> String
 }
 
 

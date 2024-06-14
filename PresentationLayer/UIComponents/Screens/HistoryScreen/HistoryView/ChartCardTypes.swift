@@ -128,4 +128,22 @@ enum ChartCardType: String, ChartCardProtocol {
 				leftAxis.axisMinimum = 0.0
 		}
 	}
+
+	func legendTitle(for weatherField: WeatherField) -> String {
+		switch weatherField {
+			case .precipitation:
+				LocalizableString.precipRate.localized
+			default:
+				weatherField.legendTitle
+		}
+	}
+
+	func highlightTitle(for weatherField: WeatherField) -> String {
+		switch weatherField {
+			case .precipitation:
+				LocalizableString.maxRate.localized
+			default:
+				weatherField.graphHighlightTitle
+		}
+	}
 }

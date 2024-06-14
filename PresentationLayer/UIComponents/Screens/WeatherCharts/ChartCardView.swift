@@ -70,7 +70,7 @@ private extension ChartCardView {
             ForEach(0 ..< chartDataModels.count, id: \.self) { index in
                 let model = chartDataModels[index]
                 VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
-                    Text(model.weatherField.legendTitle)
+					Text(type.legendTitle(for: model.weatherField))
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.caption)))
                         .lineLimit(1)
@@ -96,7 +96,7 @@ private extension ChartCardView {
                                                                     unitsManager: unitsManager,
                                                                     shouldConvertUnits: false)
             let formattedValue = "\(literals?.value ?? "")\(model.weatherField.shouldHaveSpaceWithUnit ? " " : "")\(literals?.unit ?? "")".trimWhiteSpaces()
-            return "\(model.weatherField.graphHighlightTitle): **\(formattedValue)**"
+			return "\(type.highlightTitle(for: model.weatherField)): **\(formattedValue)**"
         }
         let text = comps.joined(separator: "﹒")
 

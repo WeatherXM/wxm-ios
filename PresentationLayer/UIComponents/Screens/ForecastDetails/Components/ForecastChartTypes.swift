@@ -112,4 +112,12 @@ enum ForecastChartType: String, ChartCardProtocol {
 				}
 		}
 	}
+
+	func legendTitle(for weatherField: WeatherField) -> String {
+		weatherField.legendTitle
+	}
+
+	func highlightTitle(for weatherField: WeatherField) -> String {
+		weatherField.graphHighlightTitle
+	}
 }
