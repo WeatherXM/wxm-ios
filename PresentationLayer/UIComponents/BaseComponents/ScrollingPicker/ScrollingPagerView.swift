@@ -20,6 +20,7 @@ struct ScrollingPickerView: View {
                       containerSize: proxy.size,
                       textCallback: textCallback,
                       countCallback: countCallback)
+				.clipped()
             }
             .frame(height: 40.0)
 
