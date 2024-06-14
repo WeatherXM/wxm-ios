@@ -53,6 +53,7 @@ enum LocalizableString: WXMLocalizable {
     case precipitation
     case precipitationRate
     case precipRate
+	case maxRate
     case precipitationProbability
 	case precipProbability
 	case probability
@@ -347,6 +348,8 @@ extension LocalizableString {
                 return "precipitation_rate"
             case .precipRate:
                 return "precip_rate"
+			case .maxRate:
+				return "max_rate"
             case .precipitationProbability:
                 return "precipitation_probability"
 			case .precipProbability:

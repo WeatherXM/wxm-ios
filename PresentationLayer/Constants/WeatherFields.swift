@@ -98,6 +98,8 @@ extension WeatherField: CustomStringConvertible {
 		switch self {
 			case .precipitationProbability:
 				return LocalizableString.probability.localized
+			case .precipitation:
+				return LocalizableString.precipRate.localized
 			default:
 				return displayTitle
 		}
@@ -116,7 +118,7 @@ extension WeatherField: CustomStringConvertible {
 			case .windDirection:
 				return LocalizableString.windDirection.localized
             case .precipitation:
-                return LocalizableString.precipitation.localized
+                return LocalizableString.maxRate.localized
             case .precipitationProbability:
                 return LocalizableString.precipProbability.localized
             case .dailyPrecipitation:

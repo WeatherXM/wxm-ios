@@ -4632,6 +4632,17 @@
         }
       }
     },
+    "max_rate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Rate"
+          }
+        }
+      }
+    },
     "moderate" : {
       "extractionState" : "manual",
       "localizations" : {
