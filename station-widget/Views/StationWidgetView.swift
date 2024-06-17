@@ -105,15 +105,15 @@ private extension StationWidgetView {
 	@ViewBuilder
 	func smallView(device: DeviceDetails, followState: UserDeviceFollowState?) -> some View {
 		VStack(spacing: 0.0) {
-			Spacer(minLength: 0.0)
 
 			smalltitleView(device: device, followState: followState)
 				.padding(.horizontal, CGFloat(.smallSidePadding))
 
-			WeatherOverviewView(mode: .minimal, weather: device.weather)
+			Spacer()
 
-			Spacer(minLength: 0.0)
+			WeatherOverviewView(mode: .minimal, weather: device.weather)
 		}
+		.padding(.vertical, CGFloat(.smallSidePadding))
 		.widgetBackground {
 			Color(colorEnum: .top)
 		}
@@ -227,21 +227,20 @@ private extension StationWidgetView {
 		VStack(spacing: CGFloat(.minimumSpacing)) {
 			HStack(spacing: CGFloat(.minimumSpacing)) {
 				HStack(spacing: CGFloat(.minimumSpacing)) {
-					Image(asset: device.bundle?.connectivity?.icon ?? .wifi)
-						.renderingMode(.template)
+					Circle()
 						.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
+						.frame(width: 7.0)
 
 					if let lastActiveAtDate = device.lastActiveAt?.timestampToDate() {
 						let style: Text.DateStyle = lastActiveAtDate.isToday ? .time : .date
 						Text(lastActiveAtDate, style: style)
 							.font(.system(size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
+							.foregroundColor(Color(colorEnum: .text))
 							.lineLimit(1)
 							.multilineTextAlignment(.trailing)
 							.minimumScaleFactor(0.8)
 					}
 				}
-				.padding(.trailing, CGFloat(.smallSidePadding))
 				.WXMCardStyle(backgroundColor: Color(colorEnum: activeStateTintColor(isActive: device.isActive)),
 							  insideHorizontalPadding: CGFloat(.smallSidePadding),
 							  insideVerticalPadding: CGFloat(.minimumPadding),
@@ -256,13 +255,13 @@ private extension StationWidgetView {
 						.foregroundColor(Color(colorEnum: faIcon.color))
 				}
 			}
-			.padding(.top, CGFloat(.minimumPadding))
 
 			HStack(spacing: 0.0) {
 				Text(device.displayName)
-					.font(.system(size: CGFloat(.caption), weight: .bold))
+					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
 					.foregroundColor(Color(colorEnum: .text))
-					.lineLimit(1)
+
+				Spacer(minLength: 0.0)
 			}
 		}
 	}
@@ -280,11 +279,11 @@ struct StationWidgetView_Preview: PreviewProvider {
 										   followState: .init(deviceId: device.id!, relation: .followed),
 										   errorInfo: nil,//.init(title: "This is an error title",
 										   //description: LocalizableString.Error.noInternetAccess.localized),
-										   isLoggedIn: false))
+										   isLoggedIn: true))
 			.previewContext(WidgetPreviewContext(family: .systemSmall))
 		}
 		.containerBackground(for: .widget) {
-			Color.cyan
+			Color(colorEnum: .top)
 		}
 	}
 }

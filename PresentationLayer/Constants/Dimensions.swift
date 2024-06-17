@@ -32,6 +32,7 @@ enum Dimension {
 	case fabButtonsDimension
 
 	case weatherIconMinDimension
+	case weatherIconMediumDimension
 	case weatherIconLargeDimension
 	case weatherIconDefaultDimension
 }
@@ -83,6 +84,8 @@ extension Dimension {
 				return 60.0
 
 			case .weatherIconMinDimension:
+				return 35.0
+			case .weatherIconMediumDimension:
 				return 50.0
 			case .weatherIconLargeDimension:
 				return 60.0
