@@ -14,20 +14,24 @@ struct StationChipsView: View {
 
 	let device: DeviceDetails
 	let issues: IssuesChip?
+	var isScrollable: Bool = true
 	var addressAction: VoidCallback?
 	var warningAction: VoidCallback?
 	var statusAction: VoidCallback?
 
-    var body: some View {
-		ScrollView(.horizontal, showsIndicators: false) {
-			HStack(spacing: CGFloat(.smallSpacing)) {
-				warningsChip
-				statusChip
-				bundleChip
-				addressChip
+	var body: some View {
+		HStack(spacing: CGFloat(.smallSpacing)) {
+			warningsChip
+			statusChip
+			bundleChip
+			addressChip
+		}
+		.if(isScrollable) { content in
+			ScrollView(.horizontal, showsIndicators: false) {
+				content
 			}
 		}
-    }
+	}
 }
 
 private extension StationChipsView {

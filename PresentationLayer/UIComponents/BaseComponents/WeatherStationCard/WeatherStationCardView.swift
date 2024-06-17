@@ -31,6 +31,7 @@ private extension WeatherStationCardView {
 		StationAddressTitleView(device: device,
 								followState: followState,
 								issues: nil,
+								areChipsScrollable: false,
 								showSubtitle: false,
 								showStateIcon: true,
 								tapStateIconAction: followAction,
