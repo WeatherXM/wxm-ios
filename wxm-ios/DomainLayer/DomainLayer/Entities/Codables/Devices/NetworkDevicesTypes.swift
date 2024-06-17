@@ -77,6 +77,16 @@ public struct StationBundle: Codable {
 		self.gwModel = gwModel
 		self.hwClass = hwClass
 	}
+
+	public init(from decoder: any Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.name = try? container.decodeIfPresent(StationBundle.Code.self, forKey: .name)
+		self.title = try? container.decodeIfPresent(String.self, forKey: .title)
+		self.connectivity = try? container.decodeIfPresent(Connectivity.self, forKey: .connectivity)
+		self.wsModel = try? container.decodeIfPresent(StationBundle.WSModel.self, forKey: .wsModel)
+		self.gwModel = try? container.decodeIfPresent(StationBundle.GWModel.self, forKey: .gwModel)
+		self.hwClass = try? container.decodeIfPresent(String.self, forKey: .hwClass)
+	}
 }
 
 public enum Connectivity: String, Codable {

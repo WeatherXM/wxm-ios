@@ -14,5 +14,5 @@ func activeStateColor(isActive: Bool) -> ColorEnum {
 
 /// The tint color for for each state
 func activeStateTintColor(isActive: Bool) -> ColorEnum {
-    isActive ? .stationChipOnlineStateBg : .stationChipOfflineStateBg
+    isActive ? .successTint : .errorTint
 }
