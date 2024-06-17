@@ -176,48 +176,7 @@ private extension StationWidgetView {
 			}
 			.padding(.top, CGFloat(.minimumPadding))
 
-			HStack(spacing: CGFloat(.minimumSpacing)) {
-				if let address = device.address {
-					HStack(spacing: CGFloat(.minimumSpacing)) {
-						Text(FontIcon.hexagon.rawValue)
-							.font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: .text))
-
-						Text(address)
-							.font(.system(size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: .text))
-							.lineLimit(1)
-					}
-					.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
-								  insideHorizontalPadding: CGFloat(.smallSidePadding),
-								  insideVerticalPadding: CGFloat(.minimumPadding),
-								  cornerRadius: CGFloat(.buttonCornerRadius))
-					.frame(height: 25.0)
-				}
-
-				HStack(spacing: CGFloat(.minimumSpacing)) {
-					Image(asset: device.bundle?.connectivity?.icon ?? .wifi)
-						.renderingMode(.template)
-						.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
-
-					if let lastActiveAtDate = device.lastActiveAt?.timestampToDate() {
-						let style: Text.DateStyle = lastActiveAtDate.isToday ? .time : .date
-						Text(lastActiveAtDate, style: style)
-							.font(.system(size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
-							.lineLimit(1)
-							.multilineTextAlignment(.trailing)
-							.minimumScaleFactor(0.8)
-					}
-				}
-				.padding(.trailing, CGFloat(.smallSidePadding))
-				.WXMCardStyle(backgroundColor: Color(colorEnum: activeStateTintColor(isActive: device.isActive)),
-							  insideHorizontalPadding: CGFloat(.smallSidePadding),
-							  insideVerticalPadding: CGFloat(.minimumPadding),
-							  cornerRadius: CGFloat(.buttonCornerRadius))
-
-				Spacer(minLength: 0.0)
-			}
+			chipsView(device: device, followState: followState, isSmall: false)
 		}
 	}
 
@@ -226,28 +185,10 @@ private extension StationWidgetView {
 						followState: UserDeviceFollowState?) -> some View {
 		VStack(spacing: CGFloat(.minimumSpacing)) {
 			HStack(spacing: CGFloat(.minimumSpacing)) {
-				HStack(spacing: CGFloat(.minimumSpacing)) {
-					Circle()
-						.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
-						.frame(width: 7.0)
 
-					if let lastActiveAtDate = device.lastActiveAt?.timestampToDate() {
-						let style: Text.DateStyle = lastActiveAtDate.isToday ? .time : .date
-						Text(lastActiveAtDate, style: style)
-							.font(.system(size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: .text))
-							.lineLimit(1)
-							.multilineTextAlignment(.trailing)
-							.minimumScaleFactor(0.8)
-					}
-				}
-				.WXMCardStyle(backgroundColor: Color(colorEnum: activeStateTintColor(isActive: device.isActive)),
-							  insideHorizontalPadding: CGFloat(.smallSidePadding),
-							  insideVerticalPadding: CGFloat(.minimumPadding),
-							  cornerRadius: CGFloat(.buttonCornerRadius))
+				chipsView(device: device, followState: followState, isSmall: true)
 
 				Spacer(minLength: 0.0)
-
 
 				if let faIcon = followState?.state.FAIcon {
 					Text(faIcon.icon.rawValue)
@@ -264,6 +205,71 @@ private extension StationWidgetView {
 				Spacer(minLength: 0.0)
 			}
 		}
+	}
+
+	@ViewBuilder
+	func chipsView(device: DeviceDetails,
+				   followState: UserDeviceFollowState?,
+				   isSmall: Bool) -> some View {
+		HStack(spacing: CGFloat(.minimumSpacing)) {
+			HStack(spacing: CGFloat(.minimumSpacing)) {
+				Circle()
+					.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
+					.frame(width: 7.0)
+
+				if let lastActiveAtDate = device.lastActiveAt?.timestampToDate() {
+					let style: Text.DateStyle = lastActiveAtDate.isToday ? .time : .date
+					Text(lastActiveAtDate, style: style)
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundColor(Color(colorEnum: .text))
+						.lineLimit(1)
+						.multilineTextAlignment(.trailing)
+						.minimumScaleFactor(0.8)
+				}
+			}
+			.WXMCardStyle(backgroundColor: Color(colorEnum: activeStateTintColor(isActive: device.isActive)),
+						  insideHorizontalPadding: CGFloat(.smallSidePadding),
+						  insideVerticalPadding: CGFloat(.minimumPadding),
+						  cornerRadius: CGFloat(.buttonCornerRadius))
+
+
+			if !isSmall {
+				HStack(spacing: CGFloat(.minimumSpacing)) {
+					Image(asset: device.icon)
+						.renderingMode(.template)
+						.foregroundColor(Color(colorEnum: .text))
+
+					Text(device.bundle?.title ?? "")
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundColor(Color(colorEnum: .text))
+						.lineLimit(1)
+				}
+				.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+							  insideHorizontalPadding: CGFloat(.smallSidePadding),
+							  insideVerticalPadding: CGFloat(.minimumPadding),
+							  cornerRadius: CGFloat(.buttonCornerRadius))
+
+				if let address = device.address {
+					HStack(spacing: CGFloat(.minimumSpacing)) {
+						Text(FontIcon.hexagon.rawValue)
+							.font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
+							.foregroundColor(Color(colorEnum: .text))
+
+						Text(address)
+							.font(.system(size: CGFloat(.caption)))
+							.foregroundColor(Color(colorEnum: .text))
+							.lineLimit(1)
+					}
+					.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+								  insideHorizontalPadding: CGFloat(.smallSidePadding),
+								  insideVerticalPadding: CGFloat(.minimumPadding),
+								  cornerRadius: CGFloat(.buttonCornerRadius))
+				}
+			}
+
+			Spacer(minLength: 0.0)
+		}
+		.frame(height: 25.0)
 	}
 }
 
