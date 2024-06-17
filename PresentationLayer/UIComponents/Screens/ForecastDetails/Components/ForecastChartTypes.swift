@@ -120,4 +120,14 @@ enum ForecastChartType: String, ChartCardProtocol {
 	func highlightTitle(for weatherField: WeatherField) -> String {
 		weatherField.graphHighlightTitle
 	}
+
+	func getWeatherLiterals(chartEntry: ChartDataEntry?, weatherField: WeatherField) -> WeatherValueLiterals? {
+		let literals = weatherField.createWeatherLiterals(from: chartEntry?.y,
+														  addditonalInfo: chartEntry?.data,
+														  unitsManager: WeatherUnitsManager.default,
+														  shouldConvertUnits: false,
+														  isAccumulated: true)
+
+		return literals
+	}
 }

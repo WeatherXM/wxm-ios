@@ -18,6 +18,7 @@ protocol ChartCardProtocol: CaseIterable, CustomStringConvertible {
 	func configureAxis(leftAxis: YAxis, rightAxis: YAxis, for lineData: LineChartData)
 	func legendTitle(for weatherField: WeatherField) -> String
 	func highlightTitle(for weatherField: WeatherField) -> String
+	func getWeatherLiterals(chartEntry: ChartDataEntry?, weatherField: WeatherField) -> WeatherValueLiterals?
 }
 
 

@@ -146,4 +146,13 @@ enum ChartCardType: String, ChartCardProtocol {
 				weatherField.graphHighlightTitle
 		}
 	}
+
+	func getWeatherLiterals(chartEntry: ChartDataEntry?, weatherField: WeatherField) -> WeatherValueLiterals? {
+		let literals = weatherField.createWeatherLiterals(from: chartEntry?.y,
+														  addditonalInfo: chartEntry?.data,
+														  unitsManager: WeatherUnitsManager.default,
+														  shouldConvertUnits: false)
+
+		return literals
+	}
 }
