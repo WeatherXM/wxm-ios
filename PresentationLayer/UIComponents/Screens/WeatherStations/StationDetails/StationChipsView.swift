@@ -25,6 +25,8 @@ struct StationChipsView: View {
 			statusChip
 			bundleChip
 			addressChip
+
+			Spacer()
 		}
 		.if(isScrollable) { content in
 			ScrollView(.horizontal, showsIndicators: false) {

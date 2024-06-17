@@ -282,7 +282,6 @@ struct StationWidgetView_Preview: PreviewProvider {
 										   //description: LocalizableString.Error.noInternetAccess.localized),
 										   isLoggedIn: false))
 			.previewContext(WidgetPreviewContext(family: .systemSmall))
-
 		}
 		.containerBackground(for: .widget) {
 			Color.cyan
