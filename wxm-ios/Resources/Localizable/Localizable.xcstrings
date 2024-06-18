@@ -2470,6 +2470,28 @@
         }
       }
     },
+    "device_info_last_gateway_activity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Gateway Activity"
+          }
+        }
+      }
+    },
+    "device_info_last_station_activity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Weather Station Activity"
+          }
+        }
+      }
+    },
     "device_info_low_battery_warning_markdown" : {
       "extractionState" : "manual",
       "localizations" : {

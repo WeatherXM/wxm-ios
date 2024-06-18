@@ -121,6 +121,8 @@ enum LocalizableString: WXMLocalizable {
     case deviceInfoEditNameAlertMessage
     case changingFrequency
     case deviceInfoClaimDate
+	case deviceInfoLastGatewayActivity
+	case deviceInfoLastStationActivity
     case deviceInfoFollowedContactSupportTitle
     case deviceInfoStationRebooted
     case deviceInfoStationRebootedDescription
@@ -486,6 +488,10 @@ extension LocalizableString {
                 return "changing_requency"
             case .deviceInfoClaimDate:
                 return "device_info_claim_date"
+			case .deviceInfoLastGatewayActivity:
+				return "device_info_last_gateway_activity"
+			case .deviceInfoLastStationActivity:
+				return "device_info_last_station_activity"
             case .deviceInfoFollowedContactSupportTitle:
                 return "device_info_followed_contact_support_title"
             case .deviceInfoStationRebooted:

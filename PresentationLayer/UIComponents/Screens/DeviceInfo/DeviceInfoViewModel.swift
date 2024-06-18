@@ -248,6 +248,12 @@ private extension DeviceInfoViewModel {
                 break
             case .claimedAt:
                 break
+			case .lastGatewayActivity:
+				break
+			case .stationModel:
+				break
+			case .lastStationActivity:
+				break
         }
     }
 

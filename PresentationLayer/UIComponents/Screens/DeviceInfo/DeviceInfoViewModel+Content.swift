@@ -185,14 +185,17 @@ extension DeviceInfoViewModel {
         case GPS
         case wifiSignal
         case batteryState
+		case lastGatewayActivity
         case claimedAt
+		case stationModel
+		case lastStationActivity
 
         static var heliumFields: [InfoField] {
             [.name, .claimedAt, .batteryState, .devEUI, .hardwareVersion, .firmwareVersion, .lastHotspot, .lastRSSI]
         }
 
         static var wifiFields: [InfoField] {
-			[.name, .bundleId, .claimedAt, .gatewayModel, .serialNumber, .firmwareVersion, .GPS, .wifiSignal, /*last gateway activity, stationmodel*/.batteryState, .hardwareVersion/*last weather activity*/]
+			[.name, .bundleId, .claimedAt, .gatewayModel, .serialNumber, .firmwareVersion, .GPS, .wifiSignal, .lastGatewayActivity, .stationModel, .batteryState, .hardwareVersion, .lastStationActivity]
         }
 
         static func getShareText(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String {
@@ -219,7 +222,7 @@ extension DeviceInfoViewModel {
                     return LocalizableString.deviceInfoStationInfoName.localized
 				case .bundleId:
 					return LocalizableString.deviceInfoStationInfoBundleIdentifier.localized
-				case .gatewayModel:
+				case .gatewayModel, .stationModel:
 					return LocalizableString.deviceInfoStationInfoModel.localized
                 case .devEUI:
                     return LocalizableString.deviceInfoStationInfoDevEUI.localized
@@ -243,6 +246,10 @@ extension DeviceInfoViewModel {
                     return LocalizableString.deviceInfoStationInfoBattery.localized
                 case .claimedAt:
                     return LocalizableString.deviceInfoClaimDate.localized
+				case .lastGatewayActivity:
+					return LocalizableString.deviceInfoLastGatewayActivity.localized
+				case .lastStationActivity:
+					return LocalizableString.deviceInfoLastGatewayActivity.localized
             }
         }
 
@@ -286,6 +293,12 @@ extension DeviceInfoViewModel {
                     return deviceInfo?.weatherStation?.batState?.description
                 case .claimedAt:
                     return deviceInfo?.claimedAt?.localizedDateString()
+				case .lastGatewayActivity:
+					return deviceInfo?.gateway?.lastActivity?.localizedDateString()
+				case .stationModel:
+					return deviceInfo?.weatherStation?.model
+				case .lastStationActivity:
+					return deviceInfo?.weatherStation?.lastActivity?.localizedDateString()
             }
         }
 
@@ -333,6 +346,12 @@ extension DeviceInfoViewModel {
                     }
                 case .claimedAt:
                     return nil
+				case .lastGatewayActivity:
+					return nil
+				case .stationModel:
+					return nil
+				case .lastStationActivity:
+					return nil
             }
         }
 
@@ -369,6 +388,12 @@ extension DeviceInfoViewModel {
                     return nil
                 case .claimedAt:
                     return nil
+				case .lastGatewayActivity:
+					return nil
+				case .stationModel:
+					return nil
+				case .lastStationActivity:
+					return nil
             }
         }
     }
