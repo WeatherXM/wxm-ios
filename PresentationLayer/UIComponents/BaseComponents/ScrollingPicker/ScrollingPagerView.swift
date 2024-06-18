@@ -58,6 +58,7 @@ private struct Pager: UIViewRepresentable {
         let flowlayout = PagingCollectionViewLayout()
         flowlayout.scrollDirection = .horizontal
         flowlayout.itemSize = CGSize(width: containerSize.width / 2.0, height: 40.0)
+		flowlayout.minimumLineSpacing = 0.0
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         collectionView.register(PagerCell.self, forCellWithReuseIdentifier: cellId)
