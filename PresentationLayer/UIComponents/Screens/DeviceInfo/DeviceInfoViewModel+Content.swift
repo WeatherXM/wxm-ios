@@ -191,7 +191,7 @@ extension DeviceInfoViewModel {
 		case lastStationActivity
 
 		static var heliumFields: [InfoField] {
-			[.name, .claimedAt, .batteryState, .devEUI, .hardwareVersion, .firmwareVersion, .lastHotspot, .lastRSSI]
+			[.name, .stationModel, .devEUI, .hardwareVersion, .batteryState, .lastHotspot, .lastRSSI, .firmwareVersion, .lastStationActivity]
 		}
 
 		static var wifiFields: [InfoField] {
@@ -263,7 +263,7 @@ extension DeviceInfoViewModel {
 				case .lastGatewayActivity:
 					return LocalizableString.deviceInfoLastGatewayActivity.localized
 				case .lastStationActivity:
-					return LocalizableString.deviceInfoLastGatewayActivity.localized
+					return LocalizableString.deviceInfoLastStationActivity.localized
             }
         }
 

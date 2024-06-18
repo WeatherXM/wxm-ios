@@ -52,10 +52,8 @@ class DeviceInfoViewModel: ObservableObject {
 	}
 
     var infoSections: [StationInfoView.Section] {
-        var fields: [InfoField] = []
 		if device.isHelium {
-			fields = InfoField.heliumFields
-			return []
+			return [getInfoSection(title: nil, fields: InfoField.heliumFields)]
 		} else {
 			let sections: [StationInfoView.Section] = [getInfoSection(title: nil, fields: InfoField.wifiInfoFields),
 													   getInfoSection(title: LocalizableString.deviceInfoGatewayDetails.localized, fields: InfoField.wifiGatewayDetailsInfoFields),

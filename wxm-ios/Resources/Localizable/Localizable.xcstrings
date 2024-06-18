@@ -2498,7 +2498,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Last Weather Station Activity"
+            "value" : "Last Active"
           }
         }
       }
