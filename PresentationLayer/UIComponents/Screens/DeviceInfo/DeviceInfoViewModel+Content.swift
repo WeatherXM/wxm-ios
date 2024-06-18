@@ -173,7 +173,9 @@ extension DeviceInfoViewModel {
     enum InfoField {
 
         case name
+		case bundleId
         case devEUI
+		case gatewayModel
         case hardwareVersion
         case firmwareVersion
         case lastHotspot
@@ -190,7 +192,7 @@ extension DeviceInfoViewModel {
         }
 
         static var wifiFields: [InfoField] {
-            [.name, .claimedAt, .batteryState, .serialNumber, .ATECC, .hardwareVersion, .firmwareVersion, .GPS, .wifiSignal]
+			[.name, .bundleId, .claimedAt, .gatewayModel, .serialNumber, .firmwareVersion, .GPS, .wifiSignal, /*last gateway activity, stationmodel*/.batteryState, .hardwareVersion/*last weather activity*/]
         }
 
         static func getShareText(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String {
@@ -215,6 +217,10 @@ extension DeviceInfoViewModel {
             switch self {
                 case .name:
                     return LocalizableString.deviceInfoStationInfoName.localized
+				case .bundleId:
+					return LocalizableString.deviceInfoStationInfoBundleIdentifier.localized
+				case .gatewayModel:
+					return LocalizableString.deviceInfoStationInfoModel.localized
                 case .devEUI:
                     return LocalizableString.deviceInfoStationInfoDevEUI.localized
                 case .hardwareVersion:
@@ -244,6 +250,10 @@ extension DeviceInfoViewModel {
             switch self {
                 case .name:
                     return device.name
+				case .gatewayModel:
+					return deviceInfo?.gateway?.model
+				case .bundleId:
+					return device.bundle?.gwModel?.rawValue
                 case .devEUI:
                     return deviceInfo?.weatherStation?.devEui?.convertedDeviceIdentifier ?? device.convertedLabel
                 case .hardwareVersion:
@@ -283,6 +293,10 @@ extension DeviceInfoViewModel {
             switch self {
                 case .name:
                     return nil
+				case .bundleId:
+					return nil
+				case .gatewayModel:
+					return nil
                 case .devEUI:
                     return nil
                 case .hardwareVersion:
@@ -326,6 +340,10 @@ extension DeviceInfoViewModel {
             switch self {
                 case .name:
                     return nil
+				case .bundleId:
+					return nil
+				case .gatewayModel:
+					return nil
                 case .devEUI:
                     return nil
                 case .hardwareVersion:

@@ -222,6 +222,10 @@ private extension DeviceInfoViewModel {
         switch infoField {
             case .name:
                 break
+			case .bundleId:
+				break
+			case .gatewayModel:
+				break
             case .devEUI:
                 break
             case .hardwareVersion:

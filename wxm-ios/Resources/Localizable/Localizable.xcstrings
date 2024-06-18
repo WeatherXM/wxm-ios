@@ -2602,6 +2602,17 @@
         }
       }
     },
+    "device_info_station_info_bundle_identifier" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bundle Identifier"
+          }
+        }
+      }
+    },
     "device_info_station_info_dev_EUI" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2664,6 +2675,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Last tx RSSI"
+          }
+        }
+      }
+    },
+    "device_info_station_info_model" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Model"
           }
         }
       }

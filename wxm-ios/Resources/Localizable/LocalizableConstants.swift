@@ -105,6 +105,8 @@ enum LocalizableString: WXMLocalizable {
     case deviceInfoButtonReconfigureWifi
     case deviceInfoStationInformation
     case deviceInfoStationInfoName
+	case deviceInfoStationInfoModel
+	case deviceInfoStationInfoBundleIdentifier
     case deviceInfoStationInfoDevEUI
     case deviceInfoStationInfoHardwareVersion
     case deviceInfoStationInfoFirmwareVersion
@@ -452,6 +454,10 @@ extension LocalizableString {
                 return "device_info_station_information"
             case .deviceInfoStationInfoName:
                 return "device_info_station_info_name"
+			case .deviceInfoStationInfoModel:
+				return "device_info_station_info_model"
+			case .deviceInfoStationInfoBundleIdentifier:
+				return "device_info_station_info_bundle_identifier"
             case .deviceInfoStationInfoDevEUI:
                 return "device_info_station_info_dev_EUI"
             case .deviceInfoStationInfoHardwareVersion:
