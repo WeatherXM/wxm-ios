@@ -2470,6 +2470,17 @@
         }
       }
     },
+    "device_info_gateway_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gateway Details"
+          }
+        }
+      }
+    },
     "device_info_last_gateway_activity" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2532,6 +2543,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Back to Settings"
+          }
+        }
+      }
+    },
+    "device_info_station_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Details"
           }
         }
       }

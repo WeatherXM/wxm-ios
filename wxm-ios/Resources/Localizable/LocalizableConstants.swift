@@ -135,6 +135,8 @@ enum LocalizableString: WXMLocalizable {
     case deviceInfoStationFrequencyChangeFailureDescription(String)
     case deviceInfoLowBatteryWarningMarkdown
     case deviceInfoRemoveStationAccountConfirmationMarkdown
+	case deviceInfoGatewayDetails
+	case deviceInfoStationDetails
     case invalidLocationErrorText
     case confirmPasswordTitle
     case explorerViewTitle
@@ -516,6 +518,10 @@ extension LocalizableString {
                 return "device_info_low_battery_warning_markdown"
             case .deviceInfoRemoveStationAccountConfirmationMarkdown:
                 return "device_info_remove_station_account_confirmation_markdown"
+			case .deviceInfoGatewayDetails:
+				return "device_info_gateway_details"
+			case .deviceInfoStationDetails:
+				return "device_info_station_details"
             case .invalidLocationErrorText:
                 return "invalid_location_error_text"
             case .confirmPasswordTitle:

@@ -51,37 +51,17 @@ class DeviceInfoViewModel: ObservableObject {
 		return rows
 	}
 
-    var infoRows: [StationInfoView.Row] {
+    var infoSections: [StationInfoView.Section] {
         var fields: [InfoField] = []
 		if device.isHelium {
 			fields = InfoField.heliumFields
+			return []
 		} else {
-			fields = InfoField.wifiFields
+			let sections: [StationInfoView.Section] = [getInfoSection(title: nil, fields: InfoField.wifiInfoFields),
+													   getInfoSection(title: LocalizableString.deviceInfoGatewayDetails.localized, fields: InfoField.wifiGatewayDetailsInfoFields),
+													   getInfoSection(title: LocalizableString.deviceInfoStationDetails.localized, fields: InfoField.wifiStationDetailsInfoFields)]
+			return sections
         }
-
-        let infoRows: [StationInfoView.Row] = fields.compactMap { field in
-            guard let value = field.value(for: device,
-                                          deviceInfo: deviceInfo,
-                                          mainVM: mainVM,
-                                          followState: followState) else {
-                return nil
-            }
-
-            let buttonInfo: DeviceInfoButtonInfo? = field.button(for: device, mainVM: mainVM, followState: followState)
-            let warning = field.warning(for: device, deviceInfo: deviceInfo)
-
-			let row = StationInfoView.Row(tile: field.title,
-										  subtitle: value,
-										  warning: warning,
-										  buttonIcon: buttonInfo?.icon,
-										  buttonTitle: buttonInfo?.title,
-										  buttonStyle: buttonInfo?.buttonStyle ?? .init()) { [weak self] in
-                self?.handleInfoFieldButtonTap(infoField: field)
-            }
-            return row
-        }
-
-        return infoRows
     }
 
 	@Published var showShareDialog: Bool = false
@@ -196,6 +176,33 @@ extension DeviceInfoViewModel: SelectStationLocationViewModelDelegate {
 }
 
 private extension DeviceInfoViewModel {
+
+	func getInfoSection(title: String?, fields: [InfoField]) -> StationInfoView.Section {
+		let infoRows: [StationInfoView.Row] = fields.compactMap { field in
+			guard let value = field.value(for: device,
+										  deviceInfo: deviceInfo,
+										  mainVM: mainVM,
+										  followState: followState) else {
+				return nil
+			}
+
+			let buttonInfo: DeviceInfoButtonInfo? = field.button(for: device, mainVM: mainVM, followState: followState)
+			let warning = field.warning(for: device, deviceInfo: deviceInfo)
+
+			let row = StationInfoView.Row(tile: field.title,
+										  subtitle: value,
+										  warning: warning,
+										  buttonIcon: buttonInfo?.icon,
+										  buttonTitle: buttonInfo?.title,
+										  buttonStyle: buttonInfo?.buttonStyle ?? .init()) { [weak self] in
+				self?.handleInfoFieldButtonTap(infoField: field)
+			}
+			return row
+		}
+
+		return .init(title: title, rows: infoRows)
+	}
+
 	func handleButtonTap(field: Field) {
 		switch field {
 			case .name:

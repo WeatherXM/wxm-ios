@@ -170,33 +170,47 @@ extension DeviceInfoViewModel {
 		}
 	}
 
-    enum InfoField {
+	enum InfoField {
 
-        case name
+		case name
 		case bundleId
-        case devEUI
+		case devEUI
 		case gatewayModel
-        case hardwareVersion
-        case firmwareVersion
-        case lastHotspot
-        case lastRSSI
-        case serialNumber
-        case ATECC
-        case GPS
-        case wifiSignal
-        case batteryState
+		case hardwareVersion
+		case firmwareVersion
+		case lastHotspot
+		case lastRSSI
+		case serialNumber
+		case ATECC
+		case GPS
+		case wifiSignal
+		case batteryState
 		case lastGatewayActivity
-        case claimedAt
+		case claimedAt
 		case stationModel
 		case lastStationActivity
 
-        static var heliumFields: [InfoField] {
-            [.name, .claimedAt, .batteryState, .devEUI, .hardwareVersion, .firmwareVersion, .lastHotspot, .lastRSSI]
-        }
+		static var heliumFields: [InfoField] {
+			[.name, .claimedAt, .batteryState, .devEUI, .hardwareVersion, .firmwareVersion, .lastHotspot, .lastRSSI]
+		}
 
-        static var wifiFields: [InfoField] {
-			[.name, .bundleId, .claimedAt, .gatewayModel, .serialNumber, .firmwareVersion, .GPS, .wifiSignal, .lastGatewayActivity, .stationModel, .batteryState, .hardwareVersion, .lastStationActivity]
-        }
+		static var wifiFields: [InfoField] {
+			[wifiInfoFields,
+			 wifiGatewayDetailsInfoFields,
+			 wifiStationDetailsInfoFields].flatMap { $0 }
+		}
+
+		static var wifiInfoFields: [InfoField] {
+			[.name, .bundleId, .claimedAt]
+		}
+
+		static var wifiGatewayDetailsInfoFields: [InfoField] {
+			[.gatewayModel, .serialNumber, .firmwareVersion, .GPS, .wifiSignal, .lastGatewayActivity]
+		}
+
+		static var wifiStationDetailsInfoFields: [InfoField] {
+			[.stationModel, .batteryState, .hardwareVersion, .lastStationActivity]
+		}
 
         static func getShareText(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String {
             var fields: [InfoField] = []
