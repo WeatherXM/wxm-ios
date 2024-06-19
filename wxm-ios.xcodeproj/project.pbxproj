@@ -53,7 +53,6 @@
 		26348DF82A42F430000846C6 /* TextfieldClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348DF72A42F430000846C6 /* TextfieldClearButton.swift */; };
 		26348DFA2A42FB1F000846C6 /* ExplorerSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348DF92A42FB1F000846C6 /* ExplorerSearchViewModel.swift */; };
 		26348DFC2A42FCB9000846C6 /* SearchView+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348DFB2A42FCB9000846C6 /* SearchView+Content.swift */; };
-		26348E122A44432B000846C6 /* Network+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E112A44432B000846C6 /* Network+.swift */; };
 		26348E1C2A444AF1000846C6 /* Font Awesome 6 Sharp-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26348E142A444AF1000846C6 /* Font Awesome 6 Sharp-Regular-400.otf */; };
 		26348E1D2A444AF1000846C6 /* Font Awesome 6 Pro-Light-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26348E152A444AF1000846C6 /* Font Awesome 6 Pro-Light-300.otf */; };
 		26348E1E2A444AF1000846C6 /* Font Awesome 6 Sharp-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26348E162A444AF1000846C6 /* Font Awesome 6 Sharp-Solid-900.otf */; };
@@ -589,7 +588,6 @@
 		26348DF72A42F430000846C6 /* TextfieldClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldClearButton.swift; sourceTree = "<group>"; };
 		26348DF92A42FB1F000846C6 /* ExplorerSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerSearchViewModel.swift; sourceTree = "<group>"; };
 		26348DFB2A42FCB9000846C6 /* SearchView+Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchView+Content.swift"; sourceTree = "<group>"; };
-		26348E112A44432B000846C6 /* Network+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+.swift"; sourceTree = "<group>"; };
 		26348E142A444AF1000846C6 /* Font Awesome 6 Sharp-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 6 Sharp-Regular-400.otf"; sourceTree = "<group>"; };
 		26348E152A444AF1000846C6 /* Font Awesome 6 Pro-Light-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 6 Pro-Light-300.otf"; sourceTree = "<group>"; };
 		26348E162A444AF1000846C6 /* Font Awesome 6 Sharp-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 6 Sharp-Solid-900.otf"; sourceTree = "<group>"; };
@@ -1791,7 +1789,6 @@
 				26C904C82A77EF980047A388 /* DeviceDetails+.swift */,
 				2618A6E62A1E440F00983B7B /* ExplorerLocationError+.swift */,
 				2612AC472AB49E4000285896 /* Filters+.swift */,
-				26348E112A44432B000846C6 /* Network+.swift */,
 				265D2CE329D2DEB70044D032 /* NetworkDevicesInfoResponse+.swift */,
 				26A5451A2BFF2C1C0098FE52 /* NetworkStatsResponse+.swift */,
 				2692D8912A4DC0BA0060CB3C /* NetworkSearchResponse+.swift */,
@@ -2926,7 +2923,6 @@
 				26E88AF329DD68360023BBD5 /* MyWalletViewModel.swift in Sources */,
 				2675480929A9181E008BCF40 /* NavigationContainerView.swift in Sources */,
 				2674016B2A37246300E54E35 /* NetStatsChartViewModel.swift in Sources */,
-				26348E122A44432B000846C6 /* Network+.swift in Sources */,
 				265D2CE429D2DEB80044D032 /* NetworkDevicesInfoResponse+.swift in Sources */,
 				268028AA2AF298290031379C /* Indication.swift in Sources */,
 				266DC0132A54260900EC9E1F /* NetworkErrorResponse+.swift in Sources */,

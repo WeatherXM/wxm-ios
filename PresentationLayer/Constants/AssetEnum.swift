@@ -81,6 +81,7 @@ public enum AssetEnum: String {
 	case errorIcon = "error_icon"
     case noDataIcon = "no_data_icon"
     case helium
+	case signal
     case updateFirmwareIcon = "update_firmware_icon"
     case pin
     case shareIcon = "share_icon"

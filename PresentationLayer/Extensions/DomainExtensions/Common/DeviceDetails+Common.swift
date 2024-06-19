@@ -19,22 +19,24 @@ extension DeviceDetails {
 
 	/// The icon to show according to profile
 	var icon: AssetEnum {
-		guard let profile else {
+		guard let connectivity = bundle?.connectivity else {
 			return .wifi
 		}
-		return profile.icon
+		return connectivity.icon
 	}
 
 }
 
-extension Profile {
-	/// The icon to show according to profile
+extension Connectivity {
 	var icon: AssetEnum {
 		switch self {
-			case .m5, .d1:
+			case .wifi:
 				return .wifi
 			case .helium:
 				return .helium
+			case .cellular:
+				return .signal
 		}
 	}
 }
+

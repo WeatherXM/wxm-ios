@@ -17,11 +17,10 @@ class DeviceInfoViewModel: ObservableObject {
 	let mainVM: MainScreenViewModel = .shared
     var sections: [[DeviceInfoRowView.Row]] {
         var fields: [[Field]] = []
-        switch device.profile {
-            case .helium:
-                fields = Field.heliumSections(for: followState)
-			case .m5, .d1, .none:
-                fields = Field.wifiSections(for: followState)
+		if device.isHelium {
+			fields = Field.heliumSections(for: followState)
+		} else {
+			fields = Field.wifiSections(for: followState)
         }
 
         let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
@@ -54,11 +53,10 @@ class DeviceInfoViewModel: ObservableObject {
 
     var infoRows: [StationInfoView.Row] {
         var fields: [InfoField] = []
-        switch device.profile {
-            case .helium:
-                fields = InfoField.heliumFields
-			case .m5, .d1, .none:
-                fields = InfoField.wifiFields
+		if device.isHelium {
+			fields = InfoField.heliumFields
+		} else {
+			fields = InfoField.wifiFields
         }
 
         let infoRows: [StationInfoView.Row] = fields.compactMap { field in

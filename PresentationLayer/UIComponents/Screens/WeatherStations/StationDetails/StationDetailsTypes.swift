@@ -24,6 +24,7 @@ struct StationAddressTitleView: View {
 	let followState: UserDeviceFollowState?
     let subtitle: String?
 	let issues: StationChipsView.IssuesChip?
+	let areChipsScrollable: Bool
     let showStateIcon: Bool
     let stateFAIcon: StateFontAwesome
     let isStateIconEnabled: Bool
@@ -70,6 +71,7 @@ struct StationAddressTitleView: View {
 
 			StationChipsView(device: device,
 							 issues: issues,
+							 isScrollable: areChipsScrollable,
 							 addressAction: tapAddressAction,
 							 warningAction: tapWarningAction,
 							 statusAction: tapStatusAction)
@@ -82,6 +84,7 @@ extension StationAddressTitleView {
     init(device: DeviceDetails,
 		 followState: UserDeviceFollowState?,
 		 issues: StationChipsView.IssuesChip?,
+		 areChipsScrollable: Bool = true,
 		 showSubtitle: Bool = true,
 		 showStateIcon: Bool = true,
 		 tapStateIconAction: VoidCallback? = nil,
@@ -93,6 +96,7 @@ extension StationAddressTitleView {
         let subtitle = device.friendlyName != nil ? device.name : nil
         self.subtitle = showSubtitle ? subtitle : nil
 		self.issues = issues
+		self.areChipsScrollable = areChipsScrollable
         self.showStateIcon = showStateIcon
         self.stateFAIcon = followState?.state.FAIcon ?? UserDeviceFollowState.defaultFAIcon
         self.isStateIconEnabled = followState?.state.isActionable ?? true

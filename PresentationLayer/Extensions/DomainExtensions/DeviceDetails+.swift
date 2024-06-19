@@ -20,7 +20,6 @@ extension DeviceDetails {
 
     var stationLastActiveConf: StationLastActiveView.Configuration {
         StationLastActiveView.Configuration(lastActiveAt: lastActiveAt,
-                                            icon: profile?.icon ?? .wifi,
                                             stateColor: activeStateColor(isActive: isActive),
                                             tintColor: activeStateTintColor(isActive: isActive))
     }
@@ -42,23 +41,33 @@ extension DeviceDetails {
 
     /// The url rouble shooting according to profile type
     var troubleShootingUrl: String? {
-        guard let profile else {
+		guard let name = bundle?.name else {
             return nil
         }
 
-        switch profile {
+        switch name {
             case .m5:
                 return DisplayedLinks.m5Troubleshooting.linkURL
-            case .helium:
+			case .h1, .h2:
                 return DisplayedLinks.heliumTroubleshooting.linkURL
 			case .d1:
 				return DisplayedLinks.d1Troubleshooting.linkURL
-        }
+			case .pulse:
+				return nil
+		}
     }
 
 	var explorerUrl: String {
 		let name = name.replacingOccurrences(of: " ", with: "-")
 		return DisplayedLinks.shareDevice.linkURL + name.lowercased()
+	}
+
+	var isHelium: Bool {
+		guard let name = bundle?.name else {
+			return false
+		}
+
+		return name == .h1 || name == .h2
 	}
 }
 
@@ -125,7 +134,7 @@ extension DeviceDetails {
 	}
 
 	func checkFirmwareIfNeedsUpdate() -> Bool {
-		guard profile == .helium,
+		guard isHelium,
 			  let current = firmware?.current,
 			  let assigned = firmware?.assigned else {
 			return false
@@ -136,7 +145,7 @@ extension DeviceDetails {
 
 	/// True if the stations current version is different from the assigned
 	func needsUpdate(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> Bool {
-		guard profile == .helium, followState?.state == .owned else {
+		guard isHelium, followState?.state == .owned else {
 			return false
 		}
 		return needsUpdate(persistedVersion: mainVM.getInstalledFirmwareVersion(for: id ?? ""))
@@ -187,7 +196,7 @@ extension DeviceDetails {
         device.id = "0"
         device.label = "AE:66:F7:21:1F:21:75:11:EC"
         device.address = "This is an address"
-        device.profile = .m5
+        device.bundle = .mock()
         device.isActive = true
 		device.lastActiveAt = Date.now.toTimestamp()
         device.firmware = Firmware(assigned: "1.0.0", current: "1.0.1")
@@ -198,4 +207,15 @@ extension DeviceDetails {
 
         return device
     }
+}
+
+extension StationBundle {
+	static func mock(name: StationBundle.Code = .m5) -> StationBundle {
+		.init(name: .m5,
+			  title: "M5",
+			  connectivity: .wifi,
+			  wsModel: "WS1000",
+			  gwModel: "WG1000",
+			  hwClass: "A")
+	}
 }

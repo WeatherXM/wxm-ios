@@ -23,9 +23,9 @@ public struct DeviceDetails {
 	public var timezone: String?
     public var lastActiveAt: String?
     public var claimedAt: String?
-    public var profile: Profile?
     public var rewards: Rewards?
     public var firmware: Firmware?
+	public var bundle: StationBundle?
 }
 
 public extension DeviceDetails {
@@ -39,7 +39,6 @@ public extension DeviceDetails {
               weather: nil,
 			  timezone: nil,
               lastActiveAt: nil,
-              profile: nil,
               rewards: nil,
               firmware: nil)
     }
@@ -62,9 +61,9 @@ extension NetworkDevicesResponse {
 					  timezone: timezone,
                       lastActiveAt: attributes.lastActiveAt,
                       claimedAt: attributes.claimedAt,
-                      profile: profile,
                       rewards: rewards,
-                      firmware: attributes.firmware)
+                      firmware: attributes.firmware,
+					  bundle: bundle)
     }
 }
 
@@ -82,8 +81,8 @@ extension PublicDevice {
                       weather: currentWeather,
 					  timezone: timezone,
                       lastActiveAt: lastWeatherStationActivity,
-                      profile: profile,
                       rewards: nil,
-                      firmware: nil)
+                      firmware: nil,
+					  bundle: bundle)
     }
 }

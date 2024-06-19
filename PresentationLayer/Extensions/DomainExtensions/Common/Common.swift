@@ -9,10 +9,10 @@ import Foundation
 
 /// The icon color for each state
 func activeStateColor(isActive: Bool) -> ColorEnum {
-    isActive ? .stationChipOnlineStateText : .stationChipOfflineStateText
+    isActive ? .success : .error
 }
 
 /// The tint color for for each state
 func activeStateTintColor(isActive: Bool) -> ColorEnum {
-    isActive ? .stationChipOnlineStateBg : .stationChipOfflineStateBg
+    isActive ? .successTint : .errorTint
 }

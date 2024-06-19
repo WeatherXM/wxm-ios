@@ -195,12 +195,10 @@ private extension StationWidgetView {
 					.frame(height: 25.0)
 				}
 
-				HStack(spacing: 0.0) {
-					Image(asset: device.profile?.icon ?? .wifi)
-						.resizable()
+				HStack(spacing: CGFloat(.minimumSpacing)) {
+					Image(asset: device.bundle?.connectivity?.icon ?? .wifi)
 						.renderingMode(.template)
 						.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
-						.frame(width: 25.0, height: 25.0)
 
 					if let lastActiveAtDate = device.lastActiveAt?.timestampToDate() {
 						let style: Text.DateStyle = lastActiveAtDate.isToday ? .time : .date
@@ -214,8 +212,8 @@ private extension StationWidgetView {
 				}
 				.padding(.trailing, CGFloat(.smallSidePadding))
 				.WXMCardStyle(backgroundColor: Color(colorEnum: activeStateTintColor(isActive: device.isActive)),
-							  insideHorizontalPadding: 0.0,
-							  insideVerticalPadding: 0.0,
+							  insideHorizontalPadding: CGFloat(.smallSidePadding),
+							  insideVerticalPadding: CGFloat(.minimumPadding),
 							  cornerRadius: CGFloat(.buttonCornerRadius))
 
 				Spacer(minLength: 0.0)
@@ -228,12 +226,10 @@ private extension StationWidgetView {
 						followState: UserDeviceFollowState?) -> some View {
 		VStack(spacing: CGFloat(.minimumSpacing)) {
 			HStack(spacing: CGFloat(.minimumSpacing)) {
-				HStack(spacing: 0.0) {
-					Image(asset: device.profile?.icon ?? .wifi)
-						.resizable()
+				HStack(spacing: CGFloat(.minimumSpacing)) {
+					Image(asset: device.bundle?.connectivity?.icon ?? .wifi)
 						.renderingMode(.template)
 						.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
-						.frame(width: 25.0, height: 25.0)
 
 					if let lastActiveAtDate = device.lastActiveAt?.timestampToDate() {
 						let style: Text.DateStyle = lastActiveAtDate.isToday ? .time : .date
@@ -247,8 +243,8 @@ private extension StationWidgetView {
 				}
 				.padding(.trailing, CGFloat(.smallSidePadding))
 				.WXMCardStyle(backgroundColor: Color(colorEnum: activeStateTintColor(isActive: device.isActive)),
-							  insideHorizontalPadding: 0.0,
-							  insideVerticalPadding: 0.0,
+							  insideHorizontalPadding: CGFloat(.smallSidePadding),
+							  insideVerticalPadding: CGFloat(.minimumPadding),
 							  cornerRadius: CGFloat(.buttonCornerRadius))
 
 				Spacer(minLength: 0.0)
@@ -286,7 +282,6 @@ struct StationWidgetView_Preview: PreviewProvider {
 										   //description: LocalizableString.Error.noInternetAccess.localized),
 										   isLoggedIn: false))
 			.previewContext(WidgetPreviewContext(family: .systemSmall))
-
 		}
 		.containerBackground(for: .widget) {
 			Color.cyan

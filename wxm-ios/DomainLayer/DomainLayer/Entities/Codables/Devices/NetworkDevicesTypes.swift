@@ -23,12 +23,6 @@ public struct Firmware: Codable {
     }
 }
 
-public enum Profile: String, Codable {
-    case m5 = "M5"
-    case helium = "Helium"
-	case d1 = "D1"
-}
-
 public enum DeviceRelation: String, Codable {
     case owned
     case followed
@@ -37,4 +31,55 @@ public enum DeviceRelation: String, Codable {
 public enum BatteryState: String, Codable {
 	case low
 	case ok
+}
+
+public struct StationBundle: Codable {
+	public let name: Code?
+	public let title: String?
+	public let connectivity: Connectivity?
+	public let wsModel: String?
+	public let gwModel: String?
+	public let hwClass: String?
+
+	enum CodingKeys: String, CodingKey {
+		case name
+		case title
+		case connectivity
+		case wsModel = "ws_model"
+		case gwModel = "gw_model"
+		case hwClass = "hw_class"
+	}
+
+	public enum Code: String, Codable {
+		case m5
+		case h1
+		case h2
+		case d1
+		case pulse
+	}
+
+	public init(name: Code?, title: String?, connectivity: Connectivity?, wsModel: String?, gwModel: String?, hwClass: String?) {
+		self.name = name
+		self.title = title
+		self.connectivity = connectivity
+		self.wsModel = wsModel
+		self.gwModel = gwModel
+		self.hwClass = hwClass
+	}
+
+	public init(from decoder: any Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.name = try? container.decodeIfPresent(StationBundle.Code.self, forKey: .name)
+		self.title = try? container.decodeIfPresent(String.self, forKey: .title)
+		self.connectivity = try? container.decodeIfPresent(Connectivity.self, forKey: .connectivity)
+		self.wsModel = try? container.decodeIfPresent(String.self, forKey: .wsModel)
+		self.gwModel = try? container.decodeIfPresent(String.self, forKey: .gwModel)
+		self.hwClass = try? container.decodeIfPresent(String.self, forKey: .hwClass)
+	}
+}
+
+public enum Connectivity: String, Codable {
+	case wifi
+	case helium
+	case cellular
 }

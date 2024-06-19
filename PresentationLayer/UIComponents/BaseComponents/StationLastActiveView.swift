@@ -13,19 +13,18 @@ struct StationLastActiveView: View {
     let configuration: Configuration
 
     var body: some View {
-        HStack(spacing: 0.0) {
-            Image(asset: configuration.icon)
-                .renderingMode(.template)
+		HStack(spacing: CGFloat(.smallSpacing)) {
+			Circle()
                 .foregroundColor(Color(colorEnum: configuration.stateColor))
+				.frame(width: 10.0)
 
             Text(configuration.lastActiveAt?.lastActiveTime() ?? "-")
                 .font(.system(size: CGFloat(.caption)))
-                .foregroundColor(Color(colorEnum: configuration.stateColor))
-                .padding(.trailing, CGFloat(.smallSidePadding))
+				.foregroundColor(Color(colorEnum: .text))
         }
         .WXMCardStyle(backgroundColor: Color(colorEnum: configuration.tintColor),
-                      insideHorizontalPadding: 0.0,
-                      insideVerticalPadding: 0.0,
+                      insideHorizontalPadding: CGFloat(.smallSidePadding),
+                      insideVerticalPadding: CGFloat(.smallSidePadding),
                       cornerRadius: CGFloat(.buttonCornerRadius))
     }
 }
@@ -33,14 +32,12 @@ struct StationLastActiveView: View {
 extension StationLastActiveView {
     struct Configuration {
         let lastActiveAt: String?
-        let icon: AssetEnum
         let stateColor: ColorEnum
         let tintColor: ColorEnum
     }
 
     init(device: DeviceDetails) {
         let conf = Configuration(lastActiveAt: device.lastActiveAt,
-                                 icon: device.icon,
                                  stateColor: device.isActiveStateColor,
                                  tintColor: device.isActiveStateTintColor)
         self.configuration = conf
@@ -50,7 +47,7 @@ extension StationLastActiveView {
 struct StationLastActiveView_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
-        device.profile = .helium
+		device.bundle = .mock(name: .h1)
         device.isActive = false
         device.lastActiveAt = Date().ISO8601Format()
         return StationLastActiveView(device: device)

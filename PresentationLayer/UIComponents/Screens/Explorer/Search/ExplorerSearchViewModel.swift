@@ -163,7 +163,7 @@ private extension ExplorerSearchViewModel {
     func updateSearchResults(data: [any NetworkSearchItem]) {
         self.searchResults = data.compactMap { item in
             if let device = item as? NetworkSearchDevice {
-                guard let icon = device.connectivity?.icon,
+				guard let icon = device.bundle?.connectivity?.icon,
                       let name = device.name?.withHighlightedPart(text: searchTerm, color: Color(colorEnum: .text)) else {
                     return nil
                 }

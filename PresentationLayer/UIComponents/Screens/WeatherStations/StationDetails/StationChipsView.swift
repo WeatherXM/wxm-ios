@@ -14,19 +14,26 @@ struct StationChipsView: View {
 
 	let device: DeviceDetails
 	let issues: IssuesChip?
+	var isScrollable: Bool = true
 	var addressAction: VoidCallback?
 	var warningAction: VoidCallback?
 	var statusAction: VoidCallback?
 
-    var body: some View {
-		ScrollView(.horizontal, showsIndicators: false) {
-			HStack(spacing: CGFloat(.smallSpacing)) {
-				warningsChip
-				statusChip
-				addressChip
+	var body: some View {
+		HStack(spacing: CGFloat(.smallSpacing)) {
+			warningsChip
+			statusChip
+			bundleChip
+			addressChip
+
+			Spacer()
+		}
+		.if(isScrollable) { content in
+			ScrollView(.horizontal, showsIndicators: false) {
+				content
 			}
 		}
-    }
+	}
 }
 
 private extension StationChipsView {
@@ -39,7 +46,7 @@ private extension StationChipsView {
 
 				HStack(spacing: CGFloat(.smallSpacing)) {
 					Text(FontIcon.hexagon.rawValue)
-						.font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
+						.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
 						.foregroundColor(Color(colorEnum: .text))
 
 					Text(address)
@@ -95,6 +102,25 @@ private extension StationChipsView {
 		} else {
 			EmptyView()
 		}
+	}
+
+	@ViewBuilder
+	var bundleChip: some View {
+		HStack(spacing: CGFloat(.smallSpacing)) {
+
+			Image(asset: device.icon)
+				.renderingMode(.template)
+				.foregroundColor(Color(colorEnum: .text))
+
+			Text(device.bundle?.title ?? "")
+				.font(.system(size: CGFloat(.caption)))
+				.foregroundColor(Color(colorEnum: .text))
+				.lineLimit(1)
+		}
+		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+					  insideHorizontalPadding: CGFloat(.smallSidePadding),
+					  insideVerticalPadding: CGFloat(.smallSidePadding),
+					  cornerRadius: CGFloat(.buttonCornerRadius))
 	}
 }
 
