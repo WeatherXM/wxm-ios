@@ -289,9 +289,19 @@ extension DeviceInfoViewModel {
                     }
                     return current
                 case .lastHotspot:
-                    return deviceInfo?.weatherStation?.lastHs
+					let lastHs = deviceInfo?.weatherStation?.lastHs
+					let timestamp = deviceInfo?.weatherStation?.lastHsActivity?.localizedDateString()
+					let elements = [lastHs, timestamp].compactMap { $0 }
+					return elements.isEmpty ? nil : elements.joined(separator: " @ ")
                 case .lastRSSI:
-                    return deviceInfo?.weatherStation?.lastTxRssi
+					guard var lastTxRssi = deviceInfo?.weatherStation?.lastTxRssi else {
+						return nil
+					}
+
+					lastTxRssi = "\(lastTxRssi) \(UnitConstants.DBM)"
+					let timestamp = deviceInfo?.weatherStation?.lastTxRssiActivity?.localizedDateString()
+					let elements = [lastTxRssi, timestamp].compactMap { $0 }
+					return elements.joined(separator: " @ ")
                 case .serialNumber:
                     return deviceInfo?.gateway?.serialNumber?.convertedDeviceIdentifier  ?? device.convertedLabel
                 case .ATECC:
