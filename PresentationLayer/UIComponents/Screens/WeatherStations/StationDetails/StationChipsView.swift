@@ -22,8 +22,11 @@ struct StationChipsView: View {
 	var body: some View {
 		HStack(spacing: CGFloat(.smallSpacing)) {
 			warningsChip
+				.fixedSize()
 			statusChip
+				.fixedSize()
 			bundleChip
+				.fixedSize()
 			addressChip
 
 			Spacer()

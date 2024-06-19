@@ -105,15 +105,15 @@ private extension StationWidgetView {
 	@ViewBuilder
 	func smallView(device: DeviceDetails, followState: UserDeviceFollowState?) -> some View {
 		VStack(spacing: 0.0) {
-			Spacer(minLength: 0.0)
 
 			smalltitleView(device: device, followState: followState)
 				.padding(.horizontal, CGFloat(.smallSidePadding))
 
-			WeatherOverviewView(mode: .minimal, weather: device.weather)
+			Spacer()
 
-			Spacer(minLength: 0.0)
+			WeatherOverviewView(mode: .minimal, weather: device.weather)
 		}
+		.padding(.vertical, CGFloat(.smallSidePadding))
 		.widgetBackground {
 			Color(colorEnum: .top)
 		}
@@ -158,7 +158,7 @@ private extension StationWidgetView {
 	@ViewBuilder
 	func titleView(device: DeviceDetails,
 				   followState: UserDeviceFollowState?) -> some View {
-		let titleFontSize = entry.weatherOverViewMode == .large ? CGFloat(.smallFontSize) : CGFloat(.caption)
+		let titleFontSize = entry.weatherOverViewMode == .minimal ? CGFloat(.caption) : CGFloat(.mediumFontSize)
 		VStack(spacing: CGFloat(.minimumSpacing)) {
 			HStack(spacing: 0.0) {
 				Text(device.displayName)
@@ -170,13 +170,85 @@ private extension StationWidgetView {
 
 				if let faIcon = followState?.state.FAIcon {
 					Text(faIcon.icon.rawValue)
-						.font(.fontAwesome(font: faIcon.font, size: titleFontSize))
+						.font(.fontAwesome(font: faIcon.font, size: CGFloat(.normalFontSize)))
 						.foregroundColor(Color(colorEnum: faIcon.color))
 				}
 			}
 			.padding(.top, CGFloat(.minimumPadding))
 
+			chipsView(device: device, followState: followState, isSmall: false)
+		}
+	}
+
+	@ViewBuilder
+	func smalltitleView(device: DeviceDetails,
+						followState: UserDeviceFollowState?) -> some View {
+		VStack(spacing: CGFloat(.minimumSpacing)) {
 			HStack(spacing: CGFloat(.minimumSpacing)) {
+
+				chipsView(device: device, followState: followState, isSmall: true)
+
+				Spacer(minLength: 0.0)
+
+				if let faIcon = followState?.state.FAIcon {
+					Text(faIcon.icon.rawValue)
+						.font(.fontAwesome(font: faIcon.font, size: CGFloat(.normalFontSize)))
+						.foregroundColor(Color(colorEnum: faIcon.color))
+				}
+			}
+
+			HStack(spacing: 0.0) {
+				Text(device.displayName)
+					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+					.foregroundColor(Color(colorEnum: .text))
+
+				Spacer(minLength: 0.0)
+			}
+		}
+	}
+
+	@ViewBuilder
+	func chipsView(device: DeviceDetails,
+				   followState: UserDeviceFollowState?,
+				   isSmall: Bool) -> some View {
+		HStack(spacing: CGFloat(.minimumSpacing)) {
+			HStack(spacing: CGFloat(.minimumSpacing)) {
+				Circle()
+					.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
+					.frame(width: 7.0)
+
+				if let lastActiveAtDate = device.lastActiveAt?.timestampToDate() {
+					let style: Text.DateStyle = lastActiveAtDate.isToday ? .time : .date
+					Text(lastActiveAtDate, style: style)
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundColor(Color(colorEnum: .text))
+						.lineLimit(1)
+						.multilineTextAlignment(.trailing)
+						.minimumScaleFactor(0.8)
+				}
+			}
+			.WXMCardStyle(backgroundColor: Color(colorEnum: activeStateTintColor(isActive: device.isActive)),
+						  insideHorizontalPadding: CGFloat(.smallSidePadding),
+						  insideVerticalPadding: CGFloat(.minimumPadding),
+						  cornerRadius: CGFloat(.buttonCornerRadius))
+
+
+			if !isSmall {
+				HStack(spacing: CGFloat(.minimumSpacing)) {
+					Image(asset: device.icon)
+						.renderingMode(.template)
+						.foregroundColor(Color(colorEnum: .text))
+
+					Text(device.bundle?.title ?? "")
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundColor(Color(colorEnum: .text))
+						.lineLimit(1)
+				}
+				.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+							  insideHorizontalPadding: CGFloat(.smallSidePadding),
+							  insideVerticalPadding: CGFloat(.minimumPadding),
+							  cornerRadius: CGFloat(.buttonCornerRadius))
+
 				if let address = device.address {
 					HStack(spacing: CGFloat(.minimumSpacing)) {
 						Text(FontIcon.hexagon.rawValue)
@@ -192,79 +264,12 @@ private extension StationWidgetView {
 								  insideHorizontalPadding: CGFloat(.smallSidePadding),
 								  insideVerticalPadding: CGFloat(.minimumPadding),
 								  cornerRadius: CGFloat(.buttonCornerRadius))
-					.frame(height: 25.0)
 				}
-
-				HStack(spacing: CGFloat(.minimumSpacing)) {
-					Image(asset: device.bundle?.connectivity?.icon ?? .wifi)
-						.renderingMode(.template)
-						.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
-
-					if let lastActiveAtDate = device.lastActiveAt?.timestampToDate() {
-						let style: Text.DateStyle = lastActiveAtDate.isToday ? .time : .date
-						Text(lastActiveAtDate, style: style)
-							.font(.system(size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
-							.lineLimit(1)
-							.multilineTextAlignment(.trailing)
-							.minimumScaleFactor(0.8)
-					}
-				}
-				.padding(.trailing, CGFloat(.smallSidePadding))
-				.WXMCardStyle(backgroundColor: Color(colorEnum: activeStateTintColor(isActive: device.isActive)),
-							  insideHorizontalPadding: CGFloat(.smallSidePadding),
-							  insideVerticalPadding: CGFloat(.minimumPadding),
-							  cornerRadius: CGFloat(.buttonCornerRadius))
-
-				Spacer(minLength: 0.0)
 			}
+
+			Spacer(minLength: 0.0)
 		}
-	}
-
-	@ViewBuilder
-	func smalltitleView(device: DeviceDetails,
-						followState: UserDeviceFollowState?) -> some View {
-		VStack(spacing: CGFloat(.minimumSpacing)) {
-			HStack(spacing: CGFloat(.minimumSpacing)) {
-				HStack(spacing: CGFloat(.minimumSpacing)) {
-					Image(asset: device.bundle?.connectivity?.icon ?? .wifi)
-						.renderingMode(.template)
-						.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
-
-					if let lastActiveAtDate = device.lastActiveAt?.timestampToDate() {
-						let style: Text.DateStyle = lastActiveAtDate.isToday ? .time : .date
-						Text(lastActiveAtDate, style: style)
-							.font(.system(size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: activeStateColor(isActive: device.isActive)))
-							.lineLimit(1)
-							.multilineTextAlignment(.trailing)
-							.minimumScaleFactor(0.8)
-					}
-				}
-				.padding(.trailing, CGFloat(.smallSidePadding))
-				.WXMCardStyle(backgroundColor: Color(colorEnum: activeStateTintColor(isActive: device.isActive)),
-							  insideHorizontalPadding: CGFloat(.smallSidePadding),
-							  insideVerticalPadding: CGFloat(.minimumPadding),
-							  cornerRadius: CGFloat(.buttonCornerRadius))
-
-				Spacer(minLength: 0.0)
-
-
-				if let faIcon = followState?.state.FAIcon {
-					Text(faIcon.icon.rawValue)
-						.font(.fontAwesome(font: faIcon.font, size: CGFloat(.normalFontSize)))
-						.foregroundColor(Color(colorEnum: faIcon.color))
-				}
-			}
-			.padding(.top, CGFloat(.minimumPadding))
-
-			HStack(spacing: 0.0) {
-				Text(device.displayName)
-					.font(.system(size: CGFloat(.caption), weight: .bold))
-					.foregroundColor(Color(colorEnum: .text))
-					.lineLimit(1)
-			}
-		}
+		.frame(height: 25.0)
 	}
 }
 
@@ -280,11 +285,11 @@ struct StationWidgetView_Preview: PreviewProvider {
 										   followState: .init(deviceId: device.id!, relation: .followed),
 										   errorInfo: nil,//.init(title: "This is an error title",
 										   //description: LocalizableString.Error.noInternetAccess.localized),
-										   isLoggedIn: false))
-			.previewContext(WidgetPreviewContext(family: .systemSmall))
+										   isLoggedIn: true))
+			.previewContext(WidgetPreviewContext(family: .systemMedium))
 		}
 		.containerBackground(for: .widget) {
-			Color.cyan
+			Color(colorEnum: .top)
 		}
 	}
 }

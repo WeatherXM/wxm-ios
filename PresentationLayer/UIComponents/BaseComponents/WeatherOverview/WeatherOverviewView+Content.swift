@@ -180,7 +180,7 @@ extension WeatherOverviewView {
 	}
 
     var attributedTemperatureString: AttributedString {
-        let font = UIFont.systemFont(ofSize: temperatureFontSize)
+		let font = UIFont.systemFont(ofSize: temperatureFontSize, weight: .bold)
         let temperatureLiterals: WeatherValueLiterals = WeatherField.temperature.weatherLiterals(from: weather, unitsManager: unitsManager) ?? ("", "")
 
         var attributedString = AttributedString("\(temperatureLiterals.value)\(temperatureLiterals.unit)")
@@ -261,7 +261,7 @@ private extension WeatherOverviewView {
 	var temperatureFontSize: CGFloat {
 		switch mode {
 			case .minimal:
-				CGFloat(.largeTitleFontSize)
+				CGFloat(.smallTitleFontSize)
 			case .medium:
 				CGFloat(.largeTitleFontSize)
 			case .large:
@@ -274,7 +274,7 @@ private extension WeatherOverviewView {
 	var temperatureUnitFontSize: CGFloat {
 		switch mode {
 			case .minimal:
-				CGFloat(.largeTitleFontSize)
+				CGFloat(.caption)
 			case .medium:
 				CGFloat(.largeTitleFontSize)
 			case .large:
@@ -287,7 +287,7 @@ private extension WeatherOverviewView {
 	var feelsLikeFontSize: CGFloat {
 		switch mode {
 			case .minimal:
-				CGFloat(.smallFontSize)
+				CGFloat(.mediumFontSize)
 			case .medium:
 				CGFloat(.smallFontSize)
 			case .large:
@@ -300,7 +300,7 @@ private extension WeatherOverviewView {
 	var feelsLikeUnitFontSize: CGFloat {
 		switch mode {
 			case .minimal:
-				CGFloat(.littleCaption)
+				CGFloat(.caption)
 			case .medium:
 				CGFloat(.littleCaption)
 			case .large:
