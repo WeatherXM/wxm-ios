@@ -2536,6 +2536,17 @@
         }
       }
     },
+    "device_info_satellites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Satellites"
+          }
+        }
+      }
+    },
     "device_info_station_back_to_settings" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2762,7 +2773,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "WiFi Signal - RSSI"
+            "value" : "WiFi Signal (RSSI)"
           }
         }
       }

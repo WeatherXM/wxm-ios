@@ -307,12 +307,21 @@ extension DeviceInfoViewModel {
                 case .ATECC:
                     return nil
                 case .GPS:
-                    return deviceInfo?.gateway?.gpsSats
+					guard var gpsSats = deviceInfo?.gateway?.gpsSats else {
+						return nil
+					}
+					gpsSats = LocalizableString.deviceInfoSatellites(gpsSats).localized
+					let timestamp = deviceInfo?.gateway?.gpsSatsLastActivity?.localizedDateString()
+					let elements = [gpsSats, timestamp].compactMap { $0 }
+					return elements.joined(separator: " @ ")
                 case .wifiSignal:
-                    guard let rssi = deviceInfo?.gateway?.wifiRssi else {
+                    guard var rssi = deviceInfo?.gateway?.wifiRssi else {
                         return nil
                     }
-                    return "\(rssi) \(UnitConstants.DBM)"
+					rssi = "\(rssi) \(UnitConstants.DBM)"
+					let timestamp = deviceInfo?.gateway?.wifiRssiLastActivity?.localizedDateString()
+					let elements = [rssi, timestamp].compactMap { $0 }
+					return elements.joined(separator: " @ ")
                 case .batteryState:
                     return deviceInfo?.weatherStation?.batState?.description
                 case .claimedAt:

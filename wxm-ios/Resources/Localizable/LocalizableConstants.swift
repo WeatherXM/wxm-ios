@@ -123,6 +123,7 @@ enum LocalizableString: WXMLocalizable {
     case deviceInfoClaimDate
 	case deviceInfoLastGatewayActivity
 	case deviceInfoLastStationActivity
+	case deviceInfoSatellites(String)
     case deviceInfoFollowedContactSupportTitle
     case deviceInfoStationRebooted
     case deviceInfoStationRebootedDescription
@@ -245,6 +246,7 @@ enum LocalizableString: WXMLocalizable {
                     .deviceInfoStationRebootErrorDescription(let text),
                     .deviceInfoStationFrequencyChangedDescription(let text),
                     .deviceInfoStationFrequencyChangeFailureDescription(let text),
+					.deviceInfoSatellites(let text),
                     .lastUpdated(let text),
                     .favoritesloginAlertText(let text),
                     .hiddenContentDescription(let text),
@@ -494,6 +496,8 @@ extension LocalizableString {
 				return "device_info_last_gateway_activity"
 			case .deviceInfoLastStationActivity:
 				return "device_info_last_station_activity"
+			case .deviceInfoSatellites:
+				return "device_info_satellites"
             case .deviceInfoFollowedContactSupportTitle:
                 return "device_info_followed_contact_support_title"
             case .deviceInfoStationRebooted:
