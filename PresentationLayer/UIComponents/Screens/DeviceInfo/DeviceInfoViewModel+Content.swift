@@ -274,7 +274,7 @@ extension DeviceInfoViewModel {
 				case .gatewayModel:
 					return deviceInfo?.gateway?.model
 				case .bundleId:
-					return device.bundle?.gwModel?.rawValue
+					return device.bundle?.gwModel
                 case .devEUI:
                     return deviceInfo?.weatherStation?.devEui?.convertedDeviceIdentifier ?? device.convertedLabel
                 case .hardwareVersion:
