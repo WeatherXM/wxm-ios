@@ -292,7 +292,8 @@ extension WeatherField {
                                unitsManager: WeatherUnitsManager,
                                includeDirection: Bool = true,
                                isForHourlyForecast: Bool = false,
-                               shouldConvertUnits: Bool = true) -> WeatherValueLiterals? {
+                               shouldConvertUnits: Bool = true,
+							   isAccumulated: Bool = false) -> WeatherValueLiterals? {
         guard let value, !value.isNaN else {
             return nil
         }
@@ -312,6 +313,9 @@ extension WeatherField {
 			case .windDirection:
 				return nil
             case .precipitation:
+				if isAccumulated {
+					return formatter.getPrecipitationAccumulatedLiterals(from: value, unit: unitsManager.precipitationUnit)
+				}
                 return formatter.getPrecipitationLiterals(value: value, unit: unitsManager.precipitationUnit)
             case .precipitationProbability:
                 return formatter.getPrecipitationProbabilityLiterals(value: value)
