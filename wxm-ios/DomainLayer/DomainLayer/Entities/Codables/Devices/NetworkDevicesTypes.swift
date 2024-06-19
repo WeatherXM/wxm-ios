@@ -37,8 +37,8 @@ public struct StationBundle: Codable {
 	public let name: Code?
 	public let title: String?
 	public let connectivity: Connectivity?
-	public let wsModel: WSModel?
-	public let gwModel: GWModel?
+	public let wsModel: String?
+	public let gwModel: String?
 	public let hwClass: String?
 
 	enum CodingKeys: String, CodingKey {
@@ -58,18 +58,7 @@ public struct StationBundle: Codable {
 		case pulse
 	}
 
-	public enum WSModel: String, Codable {
-		case ws1000 = "WS1000"
-		case ws1001 = "WS1001"
-		case ws2000 = "WS2000"
-	}
-
-	public enum GWModel: String, Codable {
-		case wg1000 = "WG1000"
-		case wg1200 = "WG1200"
-	}
-
-	public init(name: Code?, title: String?, connectivity: Connectivity?, wsModel: WSModel?, gwModel: GWModel?, hwClass: String?) {
+	public init(name: Code?, title: String?, connectivity: Connectivity?, wsModel: String?, gwModel: String?, hwClass: String?) {
 		self.name = name
 		self.title = title
 		self.connectivity = connectivity
@@ -83,8 +72,8 @@ public struct StationBundle: Codable {
 		self.name = try? container.decodeIfPresent(StationBundle.Code.self, forKey: .name)
 		self.title = try? container.decodeIfPresent(String.self, forKey: .title)
 		self.connectivity = try? container.decodeIfPresent(Connectivity.self, forKey: .connectivity)
-		self.wsModel = try? container.decodeIfPresent(StationBundle.WSModel.self, forKey: .wsModel)
-		self.gwModel = try? container.decodeIfPresent(StationBundle.GWModel.self, forKey: .gwModel)
+		self.wsModel = try? container.decodeIfPresent(String.self, forKey: .wsModel)
+		self.gwModel = try? container.decodeIfPresent(String.self, forKey: .gwModel)
 		self.hwClass = try? container.decodeIfPresent(String.self, forKey: .hwClass)
 	}
 }

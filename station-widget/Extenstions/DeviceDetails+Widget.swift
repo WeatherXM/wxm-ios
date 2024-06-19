@@ -22,8 +22,8 @@ extension DeviceDetails {
 		device.bundle = .init(name: .m5,
 							  title: "M5",
 							  connectivity: .wifi,
-							  wsModel: .ws1000,
-							  gwModel: .wg1000,
+							  wsModel: "WS1000",
+							  gwModel: "WG1000",
 							  hwClass: "A")
 
 		let currentWeather = CurrentWeather.mockInstance
