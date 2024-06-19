@@ -116,6 +116,28 @@ private extension LoggedInTabViewContainer {
                     .transition(.move(edge: .top).animation(.easeIn(duration: 0.5)))
                     .zIndex(1)
             }
+
+			VStack {
+				Spacer()
+				HStack {
+					VStack {
+						Button {
+							explorerViewModel.handleZoomIn()
+						} label: {
+							Text(verbatim: "+")
+						}
+
+						Button {
+							explorerViewModel.handleZoomOut()
+						} label: {
+							Text(verbatim: "-")
+						}
+
+					}
+					Spacer()
+				}
+			}
+			.padding(CGFloat(.XLSidePadding))
         }
         .animation(.easeIn(duration: 0.4), value: explorerViewModel.showTopOfMapItems)
     }

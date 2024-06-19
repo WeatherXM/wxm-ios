@@ -223,6 +223,16 @@ class MapViewController: UIViewController {
         }
     }
 
+	func zoomIn() {
+		let zoomLevel = mapView.mapboxMap.cameraState.zoom
+		mapView.camera.fly(to: CameraOptions(zoom: zoomLevel + 1))
+	}
+
+	func zoomOut() {
+		let zoomLevel = mapView.mapboxMap.cameraState.zoom
+		mapView.camera.fly(to: CameraOptions(zoom: zoomLevel - 1))
+	}
+
     func showUserLocation() {
         mapView?.location.options.puckType = .puck2D()
     }
