@@ -21,8 +21,10 @@ struct WeatherOverviewView: View {
 	let unitsManager: WeatherUnitsManager = .default
 	var weatherIconDimensions: CGFloat {
 		switch mode {
-			case .minimal, .medium:
+			case .minimal:
 				CGFloat(.weatherIconMinDimension)
+			case .medium:
+				CGFloat(.weatherIconMediumDimension)
 			case .large:
 				CGFloat(.weatherIconLargeDimension)
 			case .default:

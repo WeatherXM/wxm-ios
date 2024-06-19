@@ -43,15 +43,13 @@ extension WeatherOverviewView {
 			switch mode {
 				case .minimal:
 					VStack(spacing: 0.0) {
-						HStack(spacing: 0.0) {
-							weatherImage
+						weatherImage
 
-							Text(attributedTemperatureString)
-								.lineLimit(1)
-								.fixedSize()
-								.minimumScaleFactor(0.8)
+						Text(attributedTemperatureString)
+							.lineLimit(1)
+							.fixedSize()
+							.minimumScaleFactor(0.8)
 
-						}
 						Text(attributedFeelsLikeString)
 							.fixedSize()
 					}
