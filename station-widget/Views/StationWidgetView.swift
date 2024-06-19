@@ -158,7 +158,7 @@ private extension StationWidgetView {
 	@ViewBuilder
 	func titleView(device: DeviceDetails,
 				   followState: UserDeviceFollowState?) -> some View {
-		let titleFontSize = entry.weatherOverViewMode == .large ? CGFloat(.smallFontSize) : CGFloat(.caption)
+		let titleFontSize = entry.weatherOverViewMode == .minimal ? CGFloat(.caption) : CGFloat(.mediumFontSize)
 		VStack(spacing: CGFloat(.minimumSpacing)) {
 			HStack(spacing: 0.0) {
 				Text(device.displayName)
@@ -170,7 +170,7 @@ private extension StationWidgetView {
 
 				if let faIcon = followState?.state.FAIcon {
 					Text(faIcon.icon.rawValue)
-						.font(.fontAwesome(font: faIcon.font, size: titleFontSize))
+						.font(.fontAwesome(font: faIcon.font, size: CGFloat(.normalFontSize)))
 						.foregroundColor(Color(colorEnum: faIcon.color))
 				}
 			}
@@ -286,7 +286,7 @@ struct StationWidgetView_Preview: PreviewProvider {
 										   errorInfo: nil,//.init(title: "This is an error title",
 										   //description: LocalizableString.Error.noInternetAccess.localized),
 										   isLoggedIn: true))
-			.previewContext(WidgetPreviewContext(family: .systemSmall))
+			.previewContext(WidgetPreviewContext(family: .systemMedium))
 		}
 		.containerBackground(for: .widget) {
 			Color(colorEnum: .top)
