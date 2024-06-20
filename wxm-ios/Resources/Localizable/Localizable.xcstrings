@@ -1535,6 +1535,39 @@
         }
       }
     },
+    "claim_device_reset_pulse_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press the **POWER button** on the top of your WeatherXM WG3000 gateway until it turns off."
+          }
+        }
+      }
+    },
+    "claim_device_reset_pulse_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press the **POWER button** once again until it\nturns back on."
+          }
+        }
+      }
+    },
+    "claim_device_reset_pulse_has_rebooted_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The station has been rebooted."
+          }
+        }
+      }
+    },
     "claim_device_reset_section_1" : {
       "extractionState" : "manual",
       "localizations" : {
