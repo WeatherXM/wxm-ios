@@ -401,6 +401,7 @@
 		26BA07672B7F5E1E00F7F5A0 /* TotalRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07662B7F5E1E00F7F5A0 /* TotalRewardsView.swift */; };
 		26BA07752B7F715200F7F5A0 /* DailyRewardCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */; };
 		26BA07772B7FC2AC00F7F5A0 /* WeeklyStreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07762B7FC2AC00F7F5A0 /* WeeklyStreakView.swift */; };
+		26BE25B62C244ED200799CB3 /* ClaimPulseContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BE25B52C244ED200799CB3 /* ClaimPulseContainerViewModel.swift */; };
 		26C464F82A40A0D0005E5245 /* ShimmerEffectLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C464F72A40A0D0005E5245 /* ShimmerEffectLoaderView.swift */; };
 		26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C464FA2A40A2F9005E5245 /* ShimmerEffectLoader.swift */; };
 		26C5AF402BF7632700476B89 /* ClaimDeviceProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C5AF3F2BF7632700476B89 /* ClaimDeviceProgressView.swift */; };
@@ -893,6 +894,7 @@
 		26BA07662B7F5E1E00F7F5A0 /* TotalRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalRewardsView.swift; sourceTree = "<group>"; };
 		26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRewardCardView.swift; sourceTree = "<group>"; };
 		26BA07762B7FC2AC00F7F5A0 /* WeeklyStreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStreakView.swift; sourceTree = "<group>"; };
+		26BE25B52C244ED200799CB3 /* ClaimPulseContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimPulseContainerViewModel.swift; sourceTree = "<group>"; };
 		26C464F72A40A0D0005E5245 /* ShimmerEffectLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffectLoaderView.swift; sourceTree = "<group>"; };
 		26C464FA2A40A2F9005E5245 /* ShimmerEffectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffectLoader.swift; sourceTree = "<group>"; };
 		26C5AF3F2BF7632700476B89 /* ClaimDeviceProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceProgressView.swift; sourceTree = "<group>"; };
@@ -1818,6 +1820,7 @@
 			children = (
 				26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */,
 				26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */,
+				26BE25B52C244ED200799CB3 /* ClaimPulseContainerViewModel.swift */,
 				267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */,
 				267CA6CC2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift */,
 				267CA6CE2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift */,
@@ -2977,6 +2980,7 @@
 				267547B029A9181E008BCF40 /* ProfileViewModel.swift in Sources */,
 				2675482B29A9181E008BCF40 /* ProgressBar.swift in Sources */,
 				2675480529A9181E008BCF40 /* ProgressBarStyle.swift in Sources */,
+				26BE25B62C244ED200799CB3 /* ClaimPulseContainerViewModel.swift in Sources */,
 				26F149E92BDFEAFA0029F981 /* ClaimDeviceContainerView.swift in Sources */,
 				267547F829A9181E008BCF40 /* QrScannerView.swift in Sources */,
 				26A4118529BA1E1E00A2C10B /* RebootStationView.swift in Sources */,
