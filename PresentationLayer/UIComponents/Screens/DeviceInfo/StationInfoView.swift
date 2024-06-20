@@ -109,6 +109,7 @@ private extension StationInfoView {
                         .font(.system(size: CGFloat(.caption)))
                     Text(row.subtitle)
                         .font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+						.fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
             }
