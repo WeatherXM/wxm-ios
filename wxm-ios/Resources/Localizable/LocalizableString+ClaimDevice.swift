@@ -28,6 +28,9 @@ extension LocalizableString {
 		case connectM5BulletTwo
 		case connectM5BulletThree
 		case connectM5BulletFour
+		case resetPulseBulletOne
+		case resetPulseBulletTwo
+		case resetPulseHasRebootedText
 		case beginStationClaiming
 		case prepareGatewayTitle
 		case prepareGatewayM5BulletOne
@@ -201,6 +204,12 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_connect_m5_bullet_three"
 			case .connectM5BulletFour:
 				return "claim_device_connect_m5_bullet_four"
+			case .resetPulseBulletOne:
+				return "claim_device_reset_pulse_bullet_one"
+			case .resetPulseBulletTwo:
+				return "claim_device_reset_pulse_bullet_two"
+			case .resetPulseHasRebootedText:
+				return "claim_device_reset_pulse_has_rebooted_text"
 			case .beginStationClaiming:
 				return "claim_device_connect_begin_station_claiming"
 			case .prepareGatewayTitle:
