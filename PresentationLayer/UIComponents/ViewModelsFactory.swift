@@ -201,6 +201,10 @@ enum ViewModelsFactory {
 		ClaimDeviceM5BeginViewModel(completion: completion)
 	}
 
+	static func getResetPulseViewModel(completion: @escaping VoidCallback) -> ResetDevicePulseViewModel {
+		ResetDevicePulseViewModel(completion: completion)
+	}
+
 	static func getClaimStationSNViewModel(completion: @escaping GenericCallback<ClaimDeviceSerialNumberViewModel.SerialNumber?>) -> ClaimDeviceSerialNumberViewModel {
 		ClaimDeviceSerialNumberViewModel(completion: completion)
 	}
