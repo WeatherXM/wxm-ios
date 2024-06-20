@@ -2657,13 +2657,13 @@
         }
       }
     },
-    "device_info_station_info_bundle_identifier" : {
+    "device_info_station_info_bundle_name" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bundle Identifier"
+            "value" : "Bundle Name"
           }
         }
       }

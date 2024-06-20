@@ -227,7 +227,7 @@ private extension DeviceInfoViewModel {
         switch infoField {
             case .name:
                 break
-			case .bundleId:
+			case .bundleName:
 				break
 			case .gatewayModel:
 				break

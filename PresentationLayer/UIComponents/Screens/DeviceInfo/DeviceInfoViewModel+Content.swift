@@ -173,7 +173,7 @@ extension DeviceInfoViewModel {
 	enum InfoField {
 
 		case name
-		case bundleId
+		case bundleName
 		case devEUI
 		case gatewayModel
 		case hardwareVersion
@@ -191,7 +191,7 @@ extension DeviceInfoViewModel {
 		case lastStationActivity
 
 		static var heliumFields: [InfoField] {
-			[.name, .stationModel, .devEUI, .hardwareVersion, .batteryState, .lastHotspot, .lastRSSI, .firmwareVersion, .lastStationActivity]
+			[.name, .bundleName, .stationModel, .devEUI, .hardwareVersion, .batteryState, .lastHotspot, .lastRSSI, .firmwareVersion, .lastStationActivity]
 		}
 
 		static var wifiFields: [InfoField] {
@@ -201,7 +201,7 @@ extension DeviceInfoViewModel {
 		}
 
 		static var wifiInfoFields: [InfoField] {
-			[.name, .bundleId, .claimedAt]
+			[.name, .bundleName, .claimedAt]
 		}
 
 		static var wifiGatewayDetailsInfoFields: [InfoField] {
@@ -234,8 +234,8 @@ extension DeviceInfoViewModel {
             switch self {
                 case .name:
                     return LocalizableString.deviceInfoStationInfoName.localized
-				case .bundleId:
-					return LocalizableString.deviceInfoStationInfoBundleIdentifier.localized
+				case .bundleName:
+					return LocalizableString.deviceInfoStationInfoBundleName.localized
 				case .gatewayModel, .stationModel:
 					return LocalizableString.deviceInfoStationInfoModel.localized
                 case .devEUI:
@@ -273,8 +273,8 @@ extension DeviceInfoViewModel {
                     return device.name
 				case .gatewayModel:
 					return deviceInfo?.gateway?.model
-				case .bundleId:
-					return device.bundle?.gwModel
+				case .bundleName:
+					return device.bundle?.title
                 case .devEUI:
                     return deviceInfo?.weatherStation?.devEui?.convertedDeviceIdentifier ?? device.convertedLabel
                 case .hardwareVersion:
@@ -339,7 +339,7 @@ extension DeviceInfoViewModel {
             switch self {
                 case .name:
                     return nil
-				case .bundleId:
+				case .bundleName:
 					return nil
 				case .gatewayModel:
 					return nil
@@ -392,7 +392,7 @@ extension DeviceInfoViewModel {
             switch self {
                 case .name:
                     return nil
-				case .bundleId:
+				case .bundleName:
 					return nil
 				case .gatewayModel:
 					return nil
