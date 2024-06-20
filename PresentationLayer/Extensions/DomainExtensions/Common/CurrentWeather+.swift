@@ -19,7 +19,7 @@ extension CurrentWeather: Identifiable {
             return nil
         }
 
-        return LocalizableString.lastUpdated(date.localizedDateString()).localized
+		return LocalizableString.lastUpdated(date.localizedDateString(timezone: timeZone)).localized
     }	
 }
 

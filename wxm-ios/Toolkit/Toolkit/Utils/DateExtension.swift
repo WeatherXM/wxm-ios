@@ -212,11 +212,12 @@ public extension Date {
         return dateFormatter.string(from: self)
     }
 
-    func localizedDateString(dateStyle: DateFormatter.Style = .medium, timeStyle: DateFormatter.Style = .medium) -> String {
+	func localizedDateString(dateStyle: DateFormatter.Style = .medium, timeStyle: DateFormatter.Style = .medium, timezone: TimeZone = .current) -> String {
         let dateformatter = DateFormatter()
         dateformatter.locale = Locale(identifier: "en_US_POSIX")
         dateformatter.dateStyle = dateStyle
         dateformatter.timeStyle = timeStyle
+		dateformatter.timeZone = timezone
         let dateString = dateformatter.string(from: self)
         return dateString
     }

@@ -290,7 +290,7 @@ extension DeviceInfoViewModel {
                     return current
                 case .lastHotspot:
 					let lastHs = deviceInfo?.weatherStation?.lastHs
-					let timestamp = deviceInfo?.weatherStation?.lastHsActivity?.localizedDateString()
+					let timestamp = deviceInfo?.weatherStation?.lastHsActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
 					let elements = [lastHs, timestamp].compactMap { $0 }
 					return elements.isEmpty ? nil : elements.joined(separator: " @ ")
                 case .lastRSSI:
@@ -299,7 +299,7 @@ extension DeviceInfoViewModel {
 					}
 
 					lastTxRssi = "\(lastTxRssi) \(UnitConstants.DBM)"
-					let timestamp = deviceInfo?.weatherStation?.lastTxRssiActivity?.localizedDateString()
+					let timestamp = deviceInfo?.weatherStation?.lastTxRssiActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
 					let elements = [lastTxRssi, timestamp].compactMap { $0 }
 					return elements.joined(separator: " @ ")
                 case .serialNumber:
@@ -311,7 +311,7 @@ extension DeviceInfoViewModel {
 						return nil
 					}
 					gpsSats = LocalizableString.deviceInfoSatellites(gpsSats).localized
-					let timestamp = deviceInfo?.gateway?.gpsSatsLastActivity?.localizedDateString()
+					let timestamp = deviceInfo?.gateway?.gpsSatsLastActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
 					let elements = [gpsSats, timestamp].compactMap { $0 }
 					return elements.joined(separator: " @ ")
                 case .wifiSignal:
@@ -319,19 +319,19 @@ extension DeviceInfoViewModel {
                         return nil
                     }
 					rssi = "\(rssi) \(UnitConstants.DBM)"
-					let timestamp = deviceInfo?.gateway?.wifiRssiLastActivity?.localizedDateString()
+					let timestamp = deviceInfo?.gateway?.wifiRssiLastActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
 					let elements = [rssi, timestamp].compactMap { $0 }
 					return elements.joined(separator: " @ ")
                 case .batteryState:
                     return deviceInfo?.weatherStation?.batState?.description
                 case .claimedAt:
-                    return deviceInfo?.claimedAt?.localizedDateString()
+                    return deviceInfo?.claimedAt?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
 				case .lastGatewayActivity:
-					return deviceInfo?.gateway?.lastActivity?.localizedDateString()
+					return deviceInfo?.gateway?.lastActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
 				case .stationModel:
 					return deviceInfo?.weatherStation?.model
 				case .lastStationActivity:
-					return deviceInfo?.weatherStation?.lastActivity?.localizedDateString()
+					return deviceInfo?.weatherStation?.lastActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
             }
         }
 
