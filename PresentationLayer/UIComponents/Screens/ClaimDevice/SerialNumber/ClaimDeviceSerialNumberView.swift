@@ -27,8 +27,16 @@ struct ClaimDeviceSerialNumberView: View {
 
 						bullets
 
-						GifImageView(fileName: viewModel.gifFileName)
-							.aspectRatio(1.0, contentMode: .fit)
+						if let gifFileName = viewModel.gifFileName {
+							GifImageView(fileName: gifFileName)
+								.aspectRatio(1.0, contentMode: .fit)
+						}
+
+						if let image = viewModel.image {
+							Image(asset: image)
+								.resizable()
+								.aspectRatio(contentMode: .fit)
+						}
 
 						if let caption = viewModel.caption {
 							Text(caption)
@@ -89,5 +97,5 @@ private extension ClaimDeviceSerialNumberView {
 }
 
 #Preview {
-	ClaimDeviceSerialNumberView(viewModel: ClaimDeviceSerialNumberM5ViewModel { _ in })
+	ClaimDeviceSerialNumberView(viewModel: ClaimDeviceSerialNumberPulseViewModel { _ in })
 }

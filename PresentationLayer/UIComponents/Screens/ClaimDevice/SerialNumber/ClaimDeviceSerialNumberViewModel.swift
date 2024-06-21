@@ -22,8 +22,12 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 		nil
 	}
 
-	var gifFileName: String {
+	var gifFileName: String? {
 		"image_station_qr"
+	}
+
+	var image: AssetEnum? {
+		nil
 	}
 
 	init(completion: @escaping GenericCallback<SerialNumber?>) {
@@ -116,6 +120,35 @@ class ClaimDeviceSerialNumberM5ViewModel: ClaimDeviceSerialNumberViewModel {
 		"image_m5_station_qr"
 	}
 
+	override func validate(serialNumber: SerialNumber) -> Bool {
+		guard serialNumber.key == nil else {
+			return false
+		}
+		let validator = SNValidator(type: .m5)
+		let serial = serialNumber.serialNumber
+
+		return validator.validate(serialNumber: serial)
+	}
+}
+
+class ClaimDeviceSerialNumberPulseViewModel: ClaimDeviceSerialNumberViewModel {
+	override var bullets: [ClaimDeviceBulletView.Bullet] {
+		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.prepareGatewayPulseBulletOne.localized.attributedMarkdown ?? ""),
+		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.prepareGatewayPulseBulletTwo.localized.attributedMarkdown ?? "")]
+	}
+
+	override var caption: AttributedString? {
+		nil
+	}
+
+	override var gifFileName: String? {
+		nil
+	}
+
+	override var image: AssetEnum? {
+		.pulseBarcode
+	}
+	
 	override func validate(serialNumber: SerialNumber) -> Bool {
 		guard serialNumber.key == nil else {
 			return false
