@@ -84,10 +84,10 @@ private extension ClaimDeviceSerialNumberView {
 				viewModel.handleQRCodeButtonTap()
 			} label: {
 				HStack {
-					Image(asset: .qrCodeBlue)
-						.renderingMode(.template)
+					Text(viewModel.scanButton.icon.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
 
-					Text(LocalizableString.ClaimDevice.scanQRCode.localized)
+					Text(viewModel.scanButton.text)
 				}
 			}
 			.buttonStyle(WXMButtonStyle.filled())
