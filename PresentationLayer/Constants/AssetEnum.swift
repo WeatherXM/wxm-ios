@@ -64,6 +64,7 @@ public enum AssetEnum: String {
     case closeButton
     case stationResetSchematic
 	case pulsePowerOn
+	case pulseBarcode
     case circleCheckmark
     case openExternalIcon = "open_external_icon"
     case toggleXMark
