@@ -63,11 +63,20 @@ class ManualSerialNumberViewModel: ObservableObject {
 					return validator?.validateStationKeyInput(key: newString) ?? false
 				}
 				return false
-			case .serialNumber:
-				if let validator {
-					textfield.updateSerialNumberCharactersIn(nsRange: range, for: text, validator: validator)
+			case .serialNumber(let type):
+				switch type {
+					case .m5, .d1:
+						if let validator {
+							textfield.updateSerialNumberCharactersIn(nsRange: range, for: text, validator: validator)
+						}
+						return false
+					case .pulse:
+						if let range = Range(range, in: textfield.text ?? ""),
+						   let newString = textfield.text?.replacingCharacters(in: range, with: text) {
+							return validator?.validateSerialNumberInput(input: newString) ?? true
+						}
+						return false
 				}
-				return false
 		}
 	}
 
