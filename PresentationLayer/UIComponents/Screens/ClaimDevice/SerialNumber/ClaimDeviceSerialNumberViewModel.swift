@@ -68,6 +68,18 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 		}
 	}
 
+	fileprivate func getSerialNumber(input: String) -> SerialNumber? {
+		let inputArray = input.components(separatedBy: ",")
+		guard let serialNumber = inputArray[safe: 0]?.trimWhiteSpaces() else {
+			return nil
+		}
+
+		let key = inputArray[safe: 1]?.trimWhiteSpaces()
+		let serialNumberObject = SerialNumber(serialNumber: serialNumber, key: key)
+
+		return serialNumberObject
+	}
+
 	fileprivate func validate(serialNumber: SerialNumber) -> Bool {
 		guard let key = serialNumber.key else {
 			return false
@@ -165,11 +177,21 @@ class ClaimDeviceSerialNumberPulseViewModel: ClaimDeviceSerialNumberViewModel {
 		.code128
 	}
 
+	override func getSerialNumber(input: String) -> SerialNumber? {
+		var serial = input.trimWhiteSpaces()
+		if serial.first == "P" {
+			serial.removeFirst()
+		}
+
+		return SerialNumber(serialNumber: serial, key: nil)
+	}
+
 	override func validate(serialNumber: SerialNumber) -> Bool {
 		guard serialNumber.key == nil else {
 			return false
 		}
-		let validator = SNValidator(type: .m5)
+
+		let validator = SNValidator(type: .pulse)
 		let serial = serialNumber.serialNumber
 
 		return validator.validate(serialNumber: serial)
