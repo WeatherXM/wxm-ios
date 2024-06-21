@@ -23,6 +23,10 @@ private extension ClaimPulseContainerViewModel {
 			self?.moveNext()
 		}
 
-		return [.reset(resetViewModel)]
+		let serialNumberViewModel = ViewModelsFactory.getClaimStationPulseSNViewModel { serialNumber in
+
+		}
+
+		return [.reset(resetViewModel), .serialNumber(serialNumberViewModel)]
 	}
 }
