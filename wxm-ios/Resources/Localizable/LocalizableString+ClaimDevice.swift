@@ -40,6 +40,8 @@ extension LocalizableString {
 		case prepareGatewayM5Caption
 		case prepareGatewayD1BulletOne
 		case prepareGatewayD1BulletTwo
+		case prepareGatewayPulseBulletOne
+		case prepareGatewayPulseBulletTwo
 		case scanQRCode
 		case enterSerialNumberManually
 		case cammeraPermissionDeniedTitle
@@ -224,6 +226,10 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_prepare_gateway_d1_bullet_one"
 			case .prepareGatewayD1BulletTwo:
 				return "claim_device_prepare_gateway_d1_bullet_two"
+			case .prepareGatewayPulseBulletOne:
+				return "claim_device_prepare_gateway_pulse_bullet_one"
+			case .prepareGatewayPulseBulletTwo:
+				return "claim_device_prepare_gateway_pulse_bullet_two"
 			case .prepareGatewayM5BulletOne:
 				return "claim_device_prepare_gateway_m5_bullet_one"
 			case .prepareGatewayM5BulletTwo:
