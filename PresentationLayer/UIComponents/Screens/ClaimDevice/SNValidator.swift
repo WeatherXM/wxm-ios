@@ -12,9 +12,10 @@ struct SNValidator {
 	private let SEPARATOR_CHARACTER = ":"
 	private let m5SerialNumberRegex = "^([0-9A-Fa-f]{2}:){8}[0-9A-Fa-f]{2}"
 	private let d1SerialNumberRegex = "^([0-9A-Fa-f]{2}:){9}[0-9A-Fa-f]{2}"
-	private let pulseSerialNumberRegex = "^[0-9A-Fa-f]{16}$"
+	private let pulseSerialNumberRegex = "^P[0-9A-Fa-f]{16}$"
 	private let claimingKeyRegex = "^([0-9]{6})"
 	private let inputClaimingKeyRegex = "^[0-9]{0,6}$"
+	private let inputPulseSerialNumberRegex = "^P[0-9A-Fa-f]{0,16}$"
 
 	let type: DeviceType
 
@@ -49,6 +50,19 @@ struct SNValidator {
 	/// - Returns: True is the input matches the described criterias
 	func validateStationKeyInput(key: String) -> Bool {
 		key.matches(inputClaimingKeyRegex)
+	}
+
+	func validateSerialNumberInput(input: String) -> Bool {
+		switch type {
+			case .m5:
+				#warning("TODO")
+				return true
+			case .d1:
+				#warning("TODO")
+				return true
+			case .pulse:
+				return input.matches(inputPulseSerialNumberRegex)
+		}
 	}
 }
 
