@@ -48,16 +48,7 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 			self.selectedIndex -= 1
 		}
 	}
-}
 
-extension ClaimDeviceContainerViewModel {
-	func moveTo(index: Int) {
-		isMovingNext = index > selectedIndex
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-			self.selectedIndex = index
-		}
-	}
-	
 	func handleSeriaNumber(serialNumber: ClaimDeviceSerialNumberViewModel.SerialNumber?) {
 		guard let serialNumber else {
 			moveNext()
@@ -67,7 +58,7 @@ extension ClaimDeviceContainerViewModel {
 		self.serialNumber = serialNumber.serialNumber
 		// Moving straight to last step
 		guard let index = steps.firstIndex(where: {
-			if case .location = $0 { 
+			if case .location = $0 {
 				return true
 			}
 			return false
@@ -76,6 +67,16 @@ extension ClaimDeviceContainerViewModel {
 		}
 		moveTo(index: index)
 	}
+}
+
+extension ClaimDeviceContainerViewModel {
+	func moveTo(index: Int) {
+		isMovingNext = index > selectedIndex
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			self.selectedIndex = index
+		}
+	}
+
 
 	func handleSNInputFields(fields: [SerialNumberInputField]) {
 		fields.forEach { field in

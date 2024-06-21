@@ -56,6 +56,7 @@ extension LocalizableString {
 		case enterGatewaySerialNumberDescription
 		case enterGatewaySerialNumberCaption
 		case enterGatewayProceedButtonTitle
+		case enterGatewayPulseSerialNumberDescription
 		case confirmAndProceed
 		case stationLocationTitle
 		case stationLocationSubtitle
@@ -265,6 +266,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_enter_gateway_serial_number_caption"
 			case .enterGatewayProceedButtonTitle:
 				return "claim_device_enter_gateway_proceed_button_title"
+			case .enterGatewayPulseSerialNumberDescription:
+				return "claim_device_enter_gateway_pulse_serial_number_description"
 			case .confirmAndProceed:
 				return "claim_device_confirm_and_proceed"
 			case .stationLocationTitle:

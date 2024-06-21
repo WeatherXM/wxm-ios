@@ -37,6 +37,7 @@ struct ManualSerialNumberView: View {
 							if let image = viewModel.image {
 								Image(asset: image)
 									.resizable()
+									.aspectRatio(contentMode: .fit)
 							}
 
 							if let gifFile = viewModel.gifFile {
@@ -46,9 +47,13 @@ struct ManualSerialNumberView: View {
 						.aspectRatio(1.0, contentMode: .fit)
 
 						if let caption = viewModel.caption {
-							Text(caption)
-								.foregroundStyle(Color(colorEnum: .newText))
-								.font(.system(size: CGFloat(.normalFontSize)))
+							HStack {
+								Text(caption)
+									.foregroundStyle(Color(colorEnum: .newText))
+									.font(.system(size: CGFloat(.normalFontSize)))
+
+								Spacer()
+							}
 						}
 
 						textFields
@@ -125,7 +130,7 @@ private extension ManualSerialNumberView {
 }
 
 #Preview {
-	ManualSerialNumberView(viewModel: ManualSerialNumberM5ViewModel { _ in })
+	ManualSerialNumberView(viewModel: ManualSerialNumberPulseViewModel { _ in })
 }
 
 #Preview {
