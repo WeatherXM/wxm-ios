@@ -178,11 +178,7 @@ class ClaimDeviceSerialNumberPulseViewModel: ClaimDeviceSerialNumberViewModel {
 	}
 
 	override func getSerialNumber(input: String) -> SerialNumber? {
-		var serial = input.trimWhiteSpaces()
-		if serial.first == "P" {
-			serial.removeFirst()
-		}
-
+		let serial = input.trimWhiteSpaces()
 		return SerialNumber(serialNumber: serial, key: nil)
 	}
 
