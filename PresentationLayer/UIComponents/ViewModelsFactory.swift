@@ -225,6 +225,10 @@ enum ViewModelsFactory {
 		ManualSerialNumberM5ViewModel(completion: completion)
 	}
 
+	static func getManualSNPulseViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ManualSerialNumberPulseViewModel {
+		ManualSerialNumberPulseViewModel(completion: completion)
+	}
+
 	static func getLocationMapViewModel(initialCoordinate: CLLocationCoordinate2D? = nil) -> SelectLocationMapViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
 		return SelectLocationMapViewModel(useCase: useCase, initialCoordinate: initialCoordinate)

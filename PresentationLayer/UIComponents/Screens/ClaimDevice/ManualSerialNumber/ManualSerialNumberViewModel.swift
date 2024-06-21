@@ -120,3 +120,31 @@ class ManualSerialNumberM5ViewModel: ManualSerialNumberViewModel {
 		self.validator = SNValidator(type: .m5)
 	}
 }
+
+class ManualSerialNumberPulseViewModel: ManualSerialNumberViewModel {
+	override var title: String {
+		LocalizableString.ClaimDevice.enterGatewaySerialNumberTitle.localized
+	}
+
+	override var subtitle: AttributedString {
+		LocalizableString.ClaimDevice.enterGatewayPulseSerialNumberDescription.localized.attributedMarkdown ?? ""
+	}
+
+	override var caption: String? {
+		nil
+	}
+
+	override var image: AssetEnum? {
+		.pulseBarcode
+	}
+
+	override var gifFile: String? {
+		nil
+	}
+
+	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber(.pulse), value: "")],
+				  completion: @escaping GenericCallback<[SerialNumberInputField]>) {
+		super.init(inputFields: inputFields, completion: completion)
+		self.validator = SNValidator(type: .pulse)
+	}
+}

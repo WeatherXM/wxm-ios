@@ -1117,6 +1117,17 @@
         }
       }
     },
+    "claim_device_enter_gateway_pulse_serial_number_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type the barcode located on the **back** of your WG3000 gateway."
+          }
+        }
+      }
+    },
     "claim_device_enter_gateway_serial_number" : {
       "extractionState" : "manual",
       "localizations" : {
