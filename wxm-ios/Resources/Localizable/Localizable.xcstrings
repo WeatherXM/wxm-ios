@@ -1700,6 +1700,17 @@
         }
       }
     },
+    "claim_device_scan_barcode" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan Barcode"
+          }
+        }
+      }
+    },
     "claim_device_scan_qr_code" : {
       "extractionState" : "manual",
       "localizations" : {
