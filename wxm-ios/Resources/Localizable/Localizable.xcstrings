@@ -1524,6 +1524,28 @@
         }
       }
     },
+    "claim_device_prepare_gateway_pulse_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find the **Barcode** on the back of your gateway. "
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_pulse_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press **\"Scan Barcode\"** to activate your phone's camera and scan the barcode automatically. Alternatively, press **“Enter S/N manually”** to proceed to the next screen and enter your barcode."
+          }
+        }
+      }
+    },
     "claim_device_prepare_gateway_title" : {
       "extractionState" : "manual",
       "localizations" : {

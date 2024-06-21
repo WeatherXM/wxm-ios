@@ -213,6 +213,10 @@ enum ViewModelsFactory {
 		ClaimDeviceSerialNumberM5ViewModel(completion: completion)
 	}
 
+	static func getClaimStationPulseSNViewModel(completion: @escaping GenericCallback<ClaimDeviceSerialNumberViewModel.SerialNumber?>) -> ClaimDeviceSerialNumberPulseViewModel {
+		ClaimDeviceSerialNumberPulseViewModel(completion: completion)
+	}
+
 	static func getManualSNViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ManualSerialNumberViewModel {
 		ManualSerialNumberViewModel(completion: completion)
 	}
