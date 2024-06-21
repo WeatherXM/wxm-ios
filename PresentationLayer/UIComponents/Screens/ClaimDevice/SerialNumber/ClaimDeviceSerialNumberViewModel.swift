@@ -34,6 +34,10 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 		(.qrcode, LocalizableString.ClaimDevice.scanQRCode.localized)
 	}
 
+	var scanType: AVMetadataObject.ObjectType {
+		.qr
+	}
+
 	init(completion: @escaping GenericCallback<SerialNumber?>) {
 		self.completion = completion
 	}
@@ -155,6 +159,10 @@ class ClaimDeviceSerialNumberPulseViewModel: ClaimDeviceSerialNumberViewModel {
 	
 	override var scanButton: (icon: FontIcon, text: String) {
 		(.barcode, LocalizableString.ClaimDevice.scanBarcode.localized)
+	}
+
+	override var scanType: AVMetadataObject.ObjectType {
+		.code128
 	}
 
 	override func validate(serialNumber: SerialNumber) -> Bool {
