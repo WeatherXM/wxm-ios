@@ -180,7 +180,9 @@ extension WeatherOverviewView {
 	}
 
     var attributedTemperatureString: AttributedString {
-		let font = UIFont.systemFont(ofSize: temperatureFontSize, weight: .bold)
+		/// Different configuration according to the `Mode`. `.default` mode is when is presented in the main app, otherwise is widget
+		let weight: UIFont.Weight = mode == .default ? .regular : .bold
+		let font = UIFont.systemFont(ofSize: temperatureFontSize, weight: weight)
         let temperatureLiterals: WeatherValueLiterals = WeatherField.temperature.weatherLiterals(from: weather, unitsManager: unitsManager) ?? ("", "")
 
         var attributedString = AttributedString("\(temperatureLiterals.value)\(temperatureLiterals.unit)")
