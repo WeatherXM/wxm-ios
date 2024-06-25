@@ -63,11 +63,7 @@ extension DeviceDetails {
 	}
 
 	var isHelium: Bool {
-		guard let name = bundle?.name else {
-			return false
-		}
-
-		return name == .h1 || name == .h2
+		bundle?.connectivity == .helium
 	}
 }
 

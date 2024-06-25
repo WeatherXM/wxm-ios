@@ -191,7 +191,7 @@ extension DeviceInfoViewModel {
 		case lastStationActivity
 
 		static var heliumFields: [InfoField] {
-			[.name, .bundleName, .stationModel, .devEUI, .hardwareVersion, .batteryState, .lastHotspot, .lastRSSI, .firmwareVersion, .lastStationActivity]
+			[.name, .bundleName, .stationModel, .claimedAt, .devEUI, .firmwareVersion, .hardwareVersion, .batteryState, .lastHotspot, .lastRSSI, .lastStationActivity]
 		}
 
 		static var wifiFields: [InfoField] {
