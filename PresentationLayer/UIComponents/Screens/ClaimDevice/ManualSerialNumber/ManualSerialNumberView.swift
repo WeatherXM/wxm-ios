@@ -42,9 +42,10 @@ struct ManualSerialNumberView: View {
 
 							if let gifFile = viewModel.gifFile {
 								GifImageView(fileName: gifFile)
+									.aspectRatio(contentMode: .fit)
+
 							}
 						}
-						.aspectRatio(1.0, contentMode: .fit)
 
 						if let caption = viewModel.caption {
 							HStack {
@@ -70,6 +71,17 @@ struct ManualSerialNumberView: View {
 }
 
 private extension ManualSerialNumberView {
+
+//	@ViewBuilder
+//	var bullets: some View {
+//		VStack(spacing: CGFloat(.mediumSpacing)) {
+//			ForEach(0..<viewModel.bullets.count, id: \.self) { index in
+//				let bullet = viewModel.bullets[index]
+//				ClaimDeviceBulletView(bullet: bullet)
+//			}
+//		}
+//	}
+
 	@ViewBuilder
 	var textFields: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -135,4 +147,8 @@ private extension ManualSerialNumberView {
 
 #Preview {
 	ManualSerialNumberView(viewModel: ManualSerialNumberViewModel { _ in })
+}
+
+#Preview {
+	ManualSerialNumberView(viewModel: ClaimingKeyPulseViewModel { _ in })
 }
