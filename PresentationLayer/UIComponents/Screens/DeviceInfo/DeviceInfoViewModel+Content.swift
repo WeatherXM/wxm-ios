@@ -290,7 +290,8 @@ extension DeviceInfoViewModel {
                     return current
                 case .lastHotspot:
 					let lastHs = deviceInfo?.weatherStation?.lastHs
-					let timestamp = deviceInfo?.weatherStation?.lastHsActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
+					let timestamp = deviceInfo?.weatherStation?.lastHsActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																								 timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
 					let elements = [lastHs, timestamp].compactMap { $0 }
 					return elements.isEmpty ? nil : elements.joined(separator: " @ ")
                 case .lastRSSI:
@@ -299,7 +300,8 @@ extension DeviceInfoViewModel {
 					}
 
 					lastTxRssi = "\(lastTxRssi) \(UnitConstants.DBM)"
-					let timestamp = deviceInfo?.weatherStation?.lastTxRssiActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
+					let timestamp = deviceInfo?.weatherStation?.lastTxRssiActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																									 timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
 					let elements = [lastTxRssi, timestamp].compactMap { $0 }
 					return elements.joined(separator: " @ ")
                 case .serialNumber:
@@ -311,7 +313,8 @@ extension DeviceInfoViewModel {
 						return nil
 					}
 					gpsSats = LocalizableString.deviceInfoSatellites(gpsSats).localized
-					let timestamp = deviceInfo?.gateway?.gpsSatsLastActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
+					let timestamp = deviceInfo?.gateway?.gpsSatsLastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																							   timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
 					let elements = [gpsSats, timestamp].compactMap { $0 }
 					return elements.joined(separator: " @ ")
                 case .wifiSignal:
@@ -319,19 +322,23 @@ extension DeviceInfoViewModel {
                         return nil
                     }
 					rssi = "\(rssi) \(UnitConstants.DBM)"
-					let timestamp = deviceInfo?.gateway?.wifiRssiLastActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
+					let timestamp = deviceInfo?.gateway?.wifiRssiLastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																								timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
 					let elements = [rssi, timestamp].compactMap { $0 }
 					return elements.joined(separator: " @ ")
                 case .batteryState:
                     return deviceInfo?.weatherStation?.batState?.description
                 case .claimedAt:
-                    return deviceInfo?.claimedAt?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
+                    return deviceInfo?.claimedAt?.getFormattedDate(format: .monthLiteralYearDayTime,
+																   timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
 				case .lastGatewayActivity:
-					return deviceInfo?.gateway?.lastActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
+					return deviceInfo?.gateway?.lastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																			   timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
 				case .stationModel:
 					return deviceInfo?.weatherStation?.model
 				case .lastStationActivity:
-					return deviceInfo?.weatherStation?.lastActivity?.localizedDateString(timezone: device.timezone?.toTimezone ?? .current)
+					return deviceInfo?.weatherStation?.lastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																					  timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
             }
         }
 
