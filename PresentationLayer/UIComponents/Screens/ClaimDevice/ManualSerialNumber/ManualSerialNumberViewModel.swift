@@ -19,8 +19,12 @@ class ManualSerialNumberViewModel: ObservableObject {
 		LocalizableString.ClaimDevice.enterGatewayDetailsTitle.localized
 	}
 
-	var subtitle: AttributedString {
+	var subtitle: AttributedString? {
 		LocalizableString.ClaimDevice.enterGatewayDetailsDescription.localized.attributedMarkdown ?? ""
+	}
+
+	var bullets: [ClaimDeviceBulletView.Bullet]? {
+		nil
 	}
 
 	var caption: String? {
@@ -107,7 +111,7 @@ class ManualSerialNumberM5ViewModel: ManualSerialNumberViewModel {
 		LocalizableString.ClaimDevice.enterGatewaySerialNumberTitle.localized
 	}
 	
-	override var subtitle: AttributedString {
+	override var subtitle: AttributedString? {
 		LocalizableString.ClaimDevice.enterGatewaySerialNumberDescription.localized.attributedMarkdown ?? ""
 	}
 
@@ -135,7 +139,7 @@ class ManualSerialNumberPulseViewModel: ManualSerialNumberViewModel {
 		LocalizableString.ClaimDevice.enterGatewaySerialNumberTitle.localized
 	}
 
-	override var subtitle: AttributedString {
+	override var subtitle: AttributedString? {
 		LocalizableString.ClaimDevice.enterGatewayPulseSerialNumberDescription.localized.attributedMarkdown ?? ""
 	}
 
@@ -163,8 +167,13 @@ class ClaimingKeyPulseViewModel: ManualSerialNumberViewModel {
 		LocalizableString.ClaimDevice.enterGatewayClaimingKey.localized
 	}
 
-	override var subtitle: AttributedString {
-		LocalizableString.ClaimDevice.enterGatewayPulseSerialNumberDescription.localized.attributedMarkdown ?? ""
+	override var subtitle: AttributedString? {
+		nil
+	}
+
+	override var bullets: [ClaimDeviceBulletView.Bullet]? {
+		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.enterGatewayPulseClaimingKeyBulletOne.localized.attributedMarkdown ?? ""),
+		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.enterGatewayPulseClaimingKeyBulletTwo.localized.attributedMarkdown ?? "")]
 	}
 
 	override var caption: String? {

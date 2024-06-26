@@ -25,13 +25,17 @@ struct ManualSerialNumberView: View {
 							Spacer()
 						}
 
-						HStack {
-							Text(viewModel.subtitle)
-								.foregroundStyle(Color(colorEnum: .text))
-								.font(.system(size: CGFloat(.normalFontSize)))
+						if let subtitle = viewModel.subtitle {
+							HStack {
+								Text(subtitle)
+									.foregroundStyle(Color(colorEnum: .text))
+									.font(.system(size: CGFloat(.normalFontSize)))
 
-							Spacer()
+								Spacer()
+							}
 						}
+
+						bullets
 
 						Group {
 							if let image = viewModel.image {
@@ -72,15 +76,19 @@ struct ManualSerialNumberView: View {
 
 private extension ManualSerialNumberView {
 
-//	@ViewBuilder
-//	var bullets: some View {
-//		VStack(spacing: CGFloat(.mediumSpacing)) {
-//			ForEach(0..<viewModel.bullets.count, id: \.self) { index in
-//				let bullet = viewModel.bullets[index]
-//				ClaimDeviceBulletView(bullet: bullet)
-//			}
-//		}
-//	}
+	@ViewBuilder
+	var bullets: some View {
+		if let bullets = viewModel.bullets {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				ForEach(0..<bullets.count, id: \.self) { index in
+					let bullet = bullets[index]
+					ClaimDeviceBulletView(bullet: bullet)
+				}
+			}
+		} else {
+			EmptyView()
+		}
+	}
 
 	@ViewBuilder
 	var textFields: some View {
