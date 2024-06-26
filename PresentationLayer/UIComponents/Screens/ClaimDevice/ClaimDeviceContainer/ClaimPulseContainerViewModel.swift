@@ -51,6 +51,10 @@ private extension ClaimPulseContainerViewModel {
 			self?.handleSNInputFields(fields: fields)
 		}
 
-		return [.reset(resetViewModel), .serialNumber(serialNumberViewModel), .manualSerialNumber(manualSNViewModel)]
+		let claimingKeyViewModel = ViewModelsFactory.getClaimingKeyPulseViewModel { [weak self] fields in
+			self?.handleSNInputFields(fields: fields)
+		}
+
+		return [.reset(resetViewModel), .serialNumber(serialNumberViewModel), .manualSerialNumber(manualSNViewModel), .manualSerialNumber(claimingKeyViewModel)]
 	}
 }

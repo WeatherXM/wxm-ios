@@ -1117,6 +1117,28 @@
         }
       }
     },
+    "claim_device_enter_gateway_pulse_claiming_key_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upon reboot, the WG3000 gateway will display a 6-digit key on its display after a few minutes. Type it below."
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_pulse_claiming_key_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If the gateway does not display the 6-digit key, navigate to **4-Device Settings -> 4.1-Device Claiming** and wait for the **6-digit key** to be generated."
+          }
+        }
+      }
+    },
     "claim_device_enter_gateway_pulse_serial_number_description" : {
       "extractionState" : "manual",
       "localizations" : {
