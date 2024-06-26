@@ -72,3 +72,9 @@ struct SerialNumberInputField: Identifiable {
 		self.value = value
 	}
 }
+
+/// The result to propagate to the container
+struct InputFieldResult {
+	let type: SerialNumberInputType
+	var value: String
+}

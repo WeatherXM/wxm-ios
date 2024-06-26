@@ -13,7 +13,7 @@ class ManualSerialNumberViewModel: ObservableObject {
 	@Published var inputFields: [SerialNumberInputField]
 	@Published var canProceed: Bool = false
 	fileprivate(set) var validator: SNValidator?
-	private let completion: GenericCallback<[SerialNumberInputField]>
+	private let completion: GenericCallback<[InputFieldResult]>
 
 	var title: String {
 		LocalizableString.ClaimDevice.enterGatewayDetailsTitle.localized
@@ -41,7 +41,7 @@ class ManualSerialNumberViewModel: ObservableObject {
 
 	init(inputFields: [SerialNumberInputField] = [.init(type: .claimingKey, value: ""),
 												  .init(type: .serialNumber(.d1), value: "")],
-		 completion: @escaping GenericCallback<[SerialNumberInputField]>) {
+		 completion: @escaping GenericCallback<[InputFieldResult]>) {
 		self.inputFields = inputFields
 		self.completion = completion
 		self.validator = SNValidator(type: .d1)
@@ -85,7 +85,17 @@ class ManualSerialNumberViewModel: ObservableObject {
 	}
 
 	func handleProceedButtonTap() {
-		completion(inputFields)
+		let results = inputFields.map { field in
+			switch field.type {
+				case .claimingKey:
+					return InputFieldResult(type: field.type, value: field.value)
+				case .serialNumber(let deviceType):
+					let normalized = validator?.normalized(serialNumber: field.value) ?? field.value
+					return InputFieldResult(type: field.type, value: normalized)
+			}
+
+		}
+		completion(results)
 	}
 }
 
@@ -128,7 +138,7 @@ class ManualSerialNumberM5ViewModel: ManualSerialNumberViewModel {
 	}
 
 	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber(.m5), value: "")],
-				  completion: @escaping GenericCallback<[SerialNumberInputField]>) {
+				  completion: @escaping GenericCallback<[InputFieldResult]>) {
 		super.init(inputFields: inputFields, completion: completion)
 		self.validator = SNValidator(type: .m5)
 	}
@@ -156,7 +166,7 @@ class ManualSerialNumberPulseViewModel: ManualSerialNumberViewModel {
 	}
 
 	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber(.pulse), value: "")],
-				  completion: @escaping GenericCallback<[SerialNumberInputField]>) {
+				  completion: @escaping GenericCallback<[InputFieldResult]>) {
 		super.init(inputFields: inputFields, completion: completion)
 		self.validator = SNValidator(type: .pulse)
 	}
@@ -189,7 +199,7 @@ class ClaimingKeyPulseViewModel: ManualSerialNumberViewModel {
 	}
 
 	override init(inputFields: [SerialNumberInputField] = [.init(type: .claimingKey, value: "")],
-				  completion: @escaping GenericCallback<[SerialNumberInputField]>) {
+				  completion: @escaping GenericCallback<[InputFieldResult]>) {
 		super.init(inputFields: inputFields, completion: completion)
 	}
 }

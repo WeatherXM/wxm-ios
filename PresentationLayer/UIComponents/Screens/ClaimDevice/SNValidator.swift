@@ -64,6 +64,19 @@ struct SNValidator {
 				return input.matches(inputPulseSerialNumberRegex)
 		}
 	}
+
+	func normalized(serialNumber: String) -> String {
+		switch type {
+			case .m5, .d1:
+				return serialNumber
+			case .pulse:
+				var serial = serialNumber
+				if serial.first == "P" {
+					serial = String(serial.dropFirst())
+				}
+				return serial
+		}
+	}
 }
 
 extension SNValidator {
