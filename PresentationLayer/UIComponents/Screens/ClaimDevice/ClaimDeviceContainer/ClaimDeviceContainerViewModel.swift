@@ -78,7 +78,7 @@ extension ClaimDeviceContainerViewModel {
 	}
 
 
-	func handleSNInputFields(fields: [SerialNumberInputField]) {
+	func handleSNInputFields(fields: [InputFieldResult]) {
 		fields.forEach { field in
 			switch field.type {
 				case .claimingKey:

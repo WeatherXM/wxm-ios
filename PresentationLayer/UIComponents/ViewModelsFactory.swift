@@ -217,19 +217,19 @@ enum ViewModelsFactory {
 		ClaimDeviceSerialNumberPulseViewModel(completion: completion)
 	}
 
-	static func getManualSNViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ManualSerialNumberViewModel {
+	static func getManualSNViewModel(completion: @escaping GenericCallback<[InputFieldResult]>) -> ManualSerialNumberViewModel {
 		ManualSerialNumberViewModel(completion: completion)
 	}
 
-	static func getManualSNM5ViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ManualSerialNumberM5ViewModel {
+	static func getManualSNM5ViewModel(completion: @escaping GenericCallback<[InputFieldResult]>) -> ManualSerialNumberM5ViewModel {
 		ManualSerialNumberM5ViewModel(completion: completion)
 	}
 
-	static func getManualSNPulseViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ManualSerialNumberPulseViewModel {
+	static func getManualSNPulseViewModel(completion: @escaping GenericCallback<[InputFieldResult]>) -> ManualSerialNumberPulseViewModel {
 		ManualSerialNumberPulseViewModel(completion: completion)
 	}
 
-	static func getClaimingKeyPulseViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ClaimingKeyPulseViewModel {
+	static func getClaimingKeyPulseViewModel(completion: @escaping GenericCallback<[InputFieldResult]>) -> ClaimingKeyPulseViewModel {
 		ClaimingKeyPulseViewModel(completion: completion)
 	}
 
