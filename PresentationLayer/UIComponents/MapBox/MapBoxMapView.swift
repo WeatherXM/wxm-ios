@@ -23,40 +23,9 @@ struct MapBoxMapView: View {
 			MapBoxMap()
 				.ignoresSafeArea()
 
-			VStack {
-				Spacer()
-				HStack {
-					VStack(spacing: 0.0) {
-						Button {
-							explorerViewModel.handleZoomIn()
-						} label: {
-							Text(verbatim: "+")
-								.padding(CGFloat(.mediumSidePadding))
-						}
-						
-						Color(colorEnum: .primary)
-							.frame(height: 2.0)
-
-						Button {
-							explorerViewModel.handleZoomOut()
-						} label: {
-							Text(verbatim: "-")
-								.padding(CGFloat(.mediumSidePadding))
-						}
-					}
-					.foregroundStyle(Color(colorEnum: .primary))
-					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
-					.background(Color(colorEnum: .top).cornerRadius(CGFloat(.cardCornerRadius)))
-					.strokeBorder(color: Color(colorEnum: .primary),
-								  lineWidth: 2.0,
-								  radius: CGFloat(.cardCornerRadius))
-					.fixedSize()
-
-					Spacer()
-				}
-			}
-			.padding(CGFloat(.defaultSidePadding))
-			.padding(.bottom, controlsBottomOffset)
+			if isRunningOnMac {
+				zoomControls
+			}			
 		}
 		.onChange(of: controlsBottomOffset, perform: { value in
 			print(value)
@@ -70,6 +39,44 @@ extension MapBoxMapView {
 
 		let coordinates: CLLocationCoordinate2D
 		var zoomLevel: CGFloat? = DEFAULT_SNAP_ZOOM_LEVEL
+	}
+
+	@ViewBuilder
+	var zoomControls: some View {
+		VStack {
+			Spacer()
+			HStack {
+				VStack(spacing: 0.0) {
+					Button {
+						explorerViewModel.handleZoomIn()
+					} label: {
+						Text(verbatim: "+")
+							.padding(CGFloat(.mediumSidePadding))
+					}
+
+					Color(colorEnum: .primary)
+						.frame(height: 2.0)
+
+					Button {
+						explorerViewModel.handleZoomOut()
+					} label: {
+						Text(verbatim: "-")
+							.padding(CGFloat(.mediumSidePadding))
+					}
+				}
+				.foregroundStyle(Color(colorEnum: .primary))
+				.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+				.background(Color(colorEnum: .top).cornerRadius(CGFloat(.cardCornerRadius)))
+				.strokeBorder(color: Color(colorEnum: .primary),
+							  lineWidth: 2.0,
+							  radius: CGFloat(.cardCornerRadius))
+				.fixedSize()
+
+				Spacer()
+			}
+		}
+		.padding(CGFloat(.defaultSidePadding))
+		.padding(.bottom, controlsBottomOffset)
 	}
 }
 
