@@ -21,6 +21,7 @@ struct MapBoxMapView: View {
 	var body: some View {
 		ZStack {
 			MapBoxMap()
+				.ignoresSafeArea()
 
 			VStack {
 				Spacer()
@@ -30,7 +31,7 @@ struct MapBoxMapView: View {
 							explorerViewModel.handleZoomIn()
 						} label: {
 							Text(verbatim: "+")
-								.padding(CGFloat(.defaultSidePadding))
+								.padding(CGFloat(.mediumSidePadding))
 						}
 						
 						Color(colorEnum: .primary)
@@ -40,7 +41,7 @@ struct MapBoxMapView: View {
 							explorerViewModel.handleZoomOut()
 						} label: {
 							Text(verbatim: "-")
-								.padding(CGFloat(.defaultSidePadding))
+								.padding(CGFloat(.mediumSidePadding))
 						}
 					}
 					.foregroundStyle(Color(colorEnum: .primary))
@@ -50,13 +51,16 @@ struct MapBoxMapView: View {
 								  lineWidth: 2.0,
 								  radius: CGFloat(.cardCornerRadius))
 					.fixedSize()
-					.padding(.bottom, controlsBottomOffset)
 
 					Spacer()
 				}
 			}
-			.padding(CGFloat(.XLSidePadding))
+			.padding(CGFloat(.defaultSidePadding))
+			.padding(.bottom, controlsBottomOffset)
 		}
+		.onChange(of: controlsBottomOffset, perform: { value in
+			print(value)
+		})
 	}
 }
 
