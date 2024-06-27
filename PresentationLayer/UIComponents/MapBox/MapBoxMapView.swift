@@ -14,7 +14,24 @@ import SwiftUI
 import UIKit
 import Toolkit
 
-struct MapBoxMapView: UIViewControllerRepresentable {
+struct MapBoxMapView: View {
+	var body: some View {
+		ZStack {
+			MapBoxMap()
+		}
+	}
+}
+
+extension MapBoxMapView {
+	struct SnapLocation {
+		static let DEFAULT_SNAP_ZOOM_LEVEL: CGFloat = 11
+
+		let coordinates: CLLocationCoordinate2D
+		var zoomLevel: CGFloat? = DEFAULT_SNAP_ZOOM_LEVEL
+	}
+}
+
+private struct MapBoxMap: UIViewControllerRepresentable {
     @EnvironmentObject var explorerViewModel: ExplorerViewModel
 	private var canellables: CancellableWrapper = .init()
 
@@ -43,18 +60,9 @@ struct MapBoxMapView: UIViewControllerRepresentable {
     }
 }
 
-extension MapBoxMapView {
-	struct SnapLocation {
-		static let DEFAULT_SNAP_ZOOM_LEVEL: CGFloat = 11
-
-		let coordinates: CLLocationCoordinate2D
-		var zoomLevel: CGFloat? = DEFAULT_SNAP_ZOOM_LEVEL
-	}
-}
-
-extension MapBoxMapView {
+extension MapBoxMap {
     func makeCoordinator() -> Coordinator {
-        Coordinator(self, viewModel: explorerViewModel)
+        Coordinator(viewModel: explorerViewModel)
     }
 
     class Coordinator: NSObject, MapViewControllerDelegate {
@@ -87,7 +95,7 @@ extension MapBoxMapView {
 
         let viewModel: ExplorerViewModel
 
-        init(_ mapBoxMapView: MapBoxMapView, viewModel: ExplorerViewModel) {
+        init(viewModel: ExplorerViewModel) {
             self.viewModel = viewModel
         }
     }
