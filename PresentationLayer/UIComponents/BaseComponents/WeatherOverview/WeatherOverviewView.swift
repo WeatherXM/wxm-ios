@@ -70,9 +70,11 @@ struct WeatherOverviewView: View {
 
 extension WeatherOverviewView {
 	enum Mode {
+		/// Widgets
 		case minimal
 		case medium
 		case large
+		/// Main app
 		case `default`
 	}
 
