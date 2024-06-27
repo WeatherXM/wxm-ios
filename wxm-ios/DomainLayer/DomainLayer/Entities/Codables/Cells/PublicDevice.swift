@@ -12,6 +12,7 @@ public struct PublicDevice: Codable {
     var isActive: Bool? = nil
     var lastWeatherStationActivity: String? = nil
     var cellIndex: String? = nil
+	var cellCenter: LocationCoordinates?
     var currentWeather: CurrentWeather? = nil
 	var bundle: StationBundle? = nil
 
@@ -22,6 +23,7 @@ public struct PublicDevice: Codable {
         case isActive
         case lastWeatherStationActivity
         case cellIndex
+		case cellCenter
         case currentWeather = "current_weather"
 		case bundle
     }
