@@ -15,9 +15,47 @@ import UIKit
 import Toolkit
 
 struct MapBoxMapView: View {
+	@Binding var controlsBottomOffset: CGFloat
+	@EnvironmentObject var explorerViewModel: ExplorerViewModel
+
 	var body: some View {
 		ZStack {
 			MapBoxMap()
+
+			VStack {
+				Spacer()
+				HStack {
+					VStack(spacing: 0.0) {
+						Button {
+							explorerViewModel.handleZoomIn()
+						} label: {
+							Text(verbatim: "+")
+								.padding(CGFloat(.defaultSidePadding))
+						}
+						
+						Color(colorEnum: .primary)
+							.frame(height: 2.0)
+
+						Button {
+							explorerViewModel.handleZoomOut()
+						} label: {
+							Text(verbatim: "-")
+								.padding(CGFloat(.defaultSidePadding))
+						}
+					}
+					.foregroundStyle(Color(colorEnum: .primary))
+					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+					.background(Color(colorEnum: .top).cornerRadius(CGFloat(.cardCornerRadius)))
+					.strokeBorder(color: Color(colorEnum: .primary),
+								  lineWidth: 2.0,
+								  radius: CGFloat(.cardCornerRadius))
+					.fixedSize()
+					.padding(.bottom, controlsBottomOffset)
+
+					Spacer()
+				}
+			}
+			.padding(CGFloat(.XLSidePadding))
 		}
 	}
 }
@@ -29,6 +67,11 @@ extension MapBoxMapView {
 		let coordinates: CLLocationCoordinate2D
 		var zoomLevel: CGFloat? = DEFAULT_SNAP_ZOOM_LEVEL
 	}
+}
+
+#Preview {
+	MapBoxMapView(controlsBottomOffset: .constant(0.0))
+		.environmentObject(ViewModelsFactory.getExplorerViewModel())
 }
 
 private struct MapBoxMap: UIViewControllerRepresentable {
