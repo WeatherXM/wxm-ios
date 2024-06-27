@@ -70,7 +70,6 @@ struct TrackableScrollView<Content>: View where Content: View {
             ScrollView(showsIndicators: false) {
                 content()
             }
-			.clipped()
             .modify { view in
                 if refreshAction != nil {
                     view.refreshable {
