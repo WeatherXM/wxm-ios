@@ -51,20 +51,28 @@ struct SNValidator {
 	func validateStationKeyInput(key: String) -> Bool {
 		key.matches(inputClaimingKeyRegex)
 	}
-
+	
+	/// Validates the input while typing.
+	/// If the already typed text contains valid characters returns true.
+	/// - eg. For M5, `AA:12` is valid and `AA:M` isn't
+	/// - Parameter input: The string to validate
+	/// - Returns: `true` if the passed input is valid
 	func validateSerialNumberInput(input: String) -> Bool {
 		switch type {
 			case .m5:
-				#warning("TODO")
-				return true
+				return input.matches(m5SerialNumberRegex)
 			case .d1:
-				#warning("TODO")
-				return true
+				return input.matches(d1SerialNumberRegex)
 			case .pulse:
 				return input.matches(inputPulseSerialNumberRegex)
 		}
 	}
-
+	
+	/// Fixes the serial number to propagate it to the container.
+	/// - For M5 and D1 just returns the serial number as is
+	/// - For Pulse removes the initial "P" if exists
+	/// - Parameter serialNumber: The serial number to be fixed
+	/// - Returns: The fixed serial number
 	func normalized(serialNumber: String) -> String {
 		switch type {
 			case .m5, .d1:
