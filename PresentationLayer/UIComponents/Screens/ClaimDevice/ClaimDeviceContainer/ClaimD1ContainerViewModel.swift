@@ -32,7 +32,7 @@ private extension ClaimD1ContainerViewModel {
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
 			self?.location = location
-			self?.performClaim()
+			self?.performClaim(retries: 0)
 		}
 
 		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
