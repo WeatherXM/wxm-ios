@@ -9,7 +9,7 @@ import SwiftUI
 import Toolkit
 
 struct StationInfoView: View {
-    let rows: [Row]
+    let sections: [Section]
     var contactSupportTitle: String = LocalizableString.contactSupport.localized
 	@Binding var showShare: Bool
 	let shareText: String
@@ -40,14 +40,27 @@ struct StationInfoView: View {
 
             }
 
-            ForEach(rows, id: \.tile) { row in
-                VStack(spacing: CGFloat(.mediumSpacing)) {
-                    rowView(for: row)
-                    if row != rows.last {
-                        WXMDivider()
-                    }
-                }
-            }
+			VStack(spacing: CGFloat(.largeSpacing)) {
+				ForEach(sections) { section in
+					VStack(spacing: CGFloat(.mediumSpacing)) {
+						if let title = section.title {
+							HStack {
+								Text(title)
+									.foregroundStyle(Color(colorEnum: .text))
+									.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+								Spacer()
+							}
+						}
+						let rows = section.rows
+						ForEach(rows, id: \.tile) { row in
+							rowView(for: row)
+							if row != rows.last {
+								WXMDivider()
+							}
+						}
+					}
+				}
+			}
 
             Button(action: contactSupportAction) {
                 Text(contactSupportTitle)
@@ -75,6 +88,15 @@ extension StationInfoView {
 		let buttonStyle: WXMButtonStyle
         var buttonAction: (() -> Void)?
     }
+
+	struct Section: Identifiable {
+		var id: String {
+			"\(title ?? "")-\(rows)"
+		}
+
+		let title: String?
+		let rows: [Row]
+	}
 }
 
 private extension StationInfoView {
@@ -87,6 +109,7 @@ private extension StationInfoView {
                         .font(.system(size: CGFloat(.caption)))
                     Text(row.subtitle)
                         .font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+						.fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
             }
@@ -119,17 +142,18 @@ private extension StationInfoView {
 
 struct StationInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        StationInfoView(rows: [StationInfoView.Row(tile: "title",
-                                                   subtitle: "subtile",
-                                                   warning: (LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized, nil),
-                                                   buttonIcon: .updateFirmwareIcon,
-                                                   buttonTitle: "Update firmware",
-												   buttonStyle: .filled()) {},
-                               StationInfoView.Row(tile: "title1",
-                                                   subtitle: "subtile",
-                                                   buttonIcon: nil,
-                                                   buttonTitle: nil,
-												   buttonStyle: .filled()) {}],
+		let rows = [StationInfoView.Row(tile: "title",
+										subtitle: "subtile",
+										warning: (LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized, nil),
+										buttonIcon: .updateFirmwareIcon,
+										buttonTitle: "Update firmware",
+										buttonStyle: .filled()) {},
+					StationInfoView.Row(tile: "title1",
+										subtitle: "subtile",
+										buttonIcon: nil,
+										buttonTitle: nil,
+										buttonStyle: .filled()) {}]
+		StationInfoView(sections: [.init(title: "Section title", rows: rows)],
 						showShare: .constant(false),
 						shareText: "",
                         shareAction: {},

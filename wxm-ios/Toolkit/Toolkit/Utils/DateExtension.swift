@@ -18,6 +18,7 @@ public extension Date {
         case monthLiteralDay = "MMM d"
 		case fullMonthLiteralDay = "MMMM d"
 		case monthLiteralDayTime = "MMM d, HH:mm"
+		case monthLiteralYearDayTime = "MMM d, yyy, HH:mm"
         case dayFullLiteral = "EEEE"
         case dayShortLiteralDayMonth = "E dd, MMM yy"
 		case dayShortLiteralMonthDay = "E, MMM yy"
@@ -212,11 +213,12 @@ public extension Date {
         return dateFormatter.string(from: self)
     }
 
-    func localizedDateString(dateStyle: DateFormatter.Style = .medium, timeStyle: DateFormatter.Style = .medium) -> String {
+	func localizedDateString(dateStyle: DateFormatter.Style = .medium, timeStyle: DateFormatter.Style = .medium, timezone: TimeZone = .current) -> String {
         let dateformatter = DateFormatter()
         dateformatter.locale = Locale(identifier: "en_US_POSIX")
         dateformatter.dateStyle = dateStyle
         dateformatter.timeStyle = timeStyle
+		dateformatter.timeZone = timezone
         let dateString = dateformatter.string(from: self)
         return dateString
     }

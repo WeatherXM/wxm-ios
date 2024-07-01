@@ -6,6 +6,7 @@
   },
   "weather_station" : {
 	"last_tx_rssi" : "-112",
+	"last_tx_rssi_last_activity" : "2024-06-19T17:38:46+03:00",
 	"dev_eui" : "2C:F7:F1:C0:42:40:00:0D",
 	"last_activity" : "2023-12-13T13:08:27+02:00",
 	"bat_state" : "ok",
@@ -15,6 +16,7 @@
 	},
 	"model" : "WS2000",
 	"hw_version" : "1.1.0",
-	"last_hs_name" : "warm-fuchsia-sheep"
+	"last_hs_name" : "warm-fuchsia-sheep",
+	"last_hs_name_last_activity" : "2024-06-19T17:38:46+03:00"
   }
 }

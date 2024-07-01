@@ -2470,6 +2470,39 @@
         }
       }
     },
+    "device_info_gateway_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gateway Details"
+          }
+        }
+      }
+    },
+    "device_info_last_gateway_activity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Gateway Activity"
+          }
+        }
+      }
+    },
+    "device_info_last_station_activity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Weather Station Activity"
+          }
+        }
+      }
+    },
     "device_info_low_battery_warning_markdown" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2503,6 +2536,17 @@
         }
       }
     },
+    "device_info_satellites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Satellites"
+          }
+        }
+      }
+    },
     "device_info_station_back_to_settings" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2510,6 +2554,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Back to Settings"
+          }
+        }
+      }
+    },
+    "device_info_station_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Details"
           }
         }
       }
@@ -2602,13 +2657,24 @@
         }
       }
     },
+    "device_info_station_info_bundle_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bundle Name"
+          }
+        }
+      }
+    },
     "device_info_station_info_dev_EUI" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "DevEUI"
+            "value" : "Dev EUI"
           }
         }
       }
@@ -2668,6 +2734,17 @@
         }
       }
     },
+    "device_info_station_info_model" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Model"
+          }
+        }
+      }
+    },
     "device_info_station_info_name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2685,7 +2762,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Device Serial Number"
+            "value" : "Serial Number"
           }
         }
       }
@@ -2696,7 +2773,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "WiFi Signal - RSSI"
+            "value" : "WiFi Signal (RSSI)"
           }
         }
       }

@@ -63,11 +63,7 @@ extension DeviceDetails {
 	}
 
 	var isHelium: Bool {
-		guard let name = bundle?.name else {
-			return false
-		}
-
-		return name == .h1 || name == .h2
+		bundle?.connectivity == .helium
 	}
 }
 
@@ -211,7 +207,7 @@ extension DeviceDetails {
 
 extension StationBundle {
 	static func mock(name: StationBundle.Code = .m5) -> StationBundle {
-		.init(name: .m5,
+		.init(name: name,
 			  title: "M5",
 			  connectivity: .wifi,
 			  wsModel: "WS1000",

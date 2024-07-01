@@ -105,6 +105,8 @@ enum LocalizableString: WXMLocalizable {
     case deviceInfoButtonReconfigureWifi
     case deviceInfoStationInformation
     case deviceInfoStationInfoName
+	case deviceInfoStationInfoModel
+	case deviceInfoStationInfoBundleName
     case deviceInfoStationInfoDevEUI
     case deviceInfoStationInfoHardwareVersion
     case deviceInfoStationInfoFirmwareVersion
@@ -119,6 +121,9 @@ enum LocalizableString: WXMLocalizable {
     case deviceInfoEditNameAlertMessage
     case changingFrequency
     case deviceInfoClaimDate
+	case deviceInfoLastGatewayActivity
+	case deviceInfoLastStationActivity
+	case deviceInfoSatellites(String)
     case deviceInfoFollowedContactSupportTitle
     case deviceInfoStationRebooted
     case deviceInfoStationRebootedDescription
@@ -131,6 +136,8 @@ enum LocalizableString: WXMLocalizable {
     case deviceInfoStationFrequencyChangeFailureDescription(String)
     case deviceInfoLowBatteryWarningMarkdown
     case deviceInfoRemoveStationAccountConfirmationMarkdown
+	case deviceInfoGatewayDetails
+	case deviceInfoStationDetails
     case invalidLocationErrorText
     case confirmPasswordTitle
     case explorerViewTitle
@@ -239,6 +246,7 @@ enum LocalizableString: WXMLocalizable {
                     .deviceInfoStationRebootErrorDescription(let text),
                     .deviceInfoStationFrequencyChangedDescription(let text),
                     .deviceInfoStationFrequencyChangeFailureDescription(let text),
+					.deviceInfoSatellites(let text),
                     .lastUpdated(let text),
                     .favoritesloginAlertText(let text),
                     .hiddenContentDescription(let text),
@@ -452,6 +460,10 @@ extension LocalizableString {
                 return "device_info_station_information"
             case .deviceInfoStationInfoName:
                 return "device_info_station_info_name"
+			case .deviceInfoStationInfoModel:
+				return "device_info_station_info_model"
+			case .deviceInfoStationInfoBundleName:
+				return "device_info_station_info_bundle_name"
             case .deviceInfoStationInfoDevEUI:
                 return "device_info_station_info_dev_EUI"
             case .deviceInfoStationInfoHardwareVersion:
@@ -480,6 +492,12 @@ extension LocalizableString {
                 return "changing_requency"
             case .deviceInfoClaimDate:
                 return "device_info_claim_date"
+			case .deviceInfoLastGatewayActivity:
+				return "device_info_last_gateway_activity"
+			case .deviceInfoLastStationActivity:
+				return "device_info_last_station_activity"
+			case .deviceInfoSatellites:
+				return "device_info_satellites"
             case .deviceInfoFollowedContactSupportTitle:
                 return "device_info_followed_contact_support_title"
             case .deviceInfoStationRebooted:
@@ -504,6 +522,10 @@ extension LocalizableString {
                 return "device_info_low_battery_warning_markdown"
             case .deviceInfoRemoveStationAccountConfirmationMarkdown:
                 return "device_info_remove_station_account_confirmation_markdown"
+			case .deviceInfoGatewayDetails:
+				return "device_info_gateway_details"
+			case .deviceInfoStationDetails:
+				return "device_info_station_details"
             case .invalidLocationErrorText:
                 return "invalid_location_error_text"
             case .confirmPasswordTitle:
