@@ -48,7 +48,7 @@ struct ClaimDeviceSerialNumberView: View {
 			.padding(.bottom, CGFloat(.mediumSidePadding))
 		}
 		.sheet(isPresented: $viewModel.showQrScanner) {
-			ScannerView()
+			ScannerView(completion: viewModel.handleQRScanResult)
 //			CodeScannerView(codeTypes: [.qr], completion: viewModel.handleQRScanResult)
 //				.overlay(QrScannerView())
 		}

@@ -39,6 +39,24 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 		requestCameraPermission()
 	}
 
+	func handleQRScanResult(result: String?) {
+		guard let result,
+			  case let input = result.components(separatedBy: ","),
+			  let serialNumber = input[safe: 0]?.trimWhiteSpaces() else {
+			return
+		}
+
+		showQrScanner = false
+
+		let key = input[safe: 1]?.trimWhiteSpaces()
+		let serialNumberObject = SerialNumber(serialNumber: serialNumber, key: key)
+		if validate(serialNumber: serialNumberObject) {
+			completion(serialNumberObject)
+		} else {
+			Toast.shared.show(text: LocalizableString.ClaimDevice.invalidQRMessage.localized.attributedMarkdown ?? "")
+		}
+	}
+
 	func handleQRScanResult(result: Result<ScanResult, ScanError>) {
 		switch result {
 			case .success(let result):

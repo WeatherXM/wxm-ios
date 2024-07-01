@@ -7,13 +7,14 @@
 
 import SwiftUI
 import VisionKit
+import Toolkit
 
 struct ScannerView: View {
+	let completion: GenericCallback<String?>
+
     var body: some View {
 		if #available(iOS 16.0, *) {
-			GeometryReader { proxy in
-				Scanner(containerSize: proxy.size)
-			}
+			Scanner(completion: completion)
 		} else {
 			EmptyView()
 		}
@@ -22,8 +23,8 @@ struct ScannerView: View {
 
 @available(iOS 16.0, *)
 private struct Scanner: UIViewControllerRepresentable {
-	
-	@State var containerSize: CGSize
+
+	let completion: GenericCallback<String?>
 
 	func makeUIViewController(context: Context) -> DataScannerWrapperViewController {
 		let controller = DataScannerWrapperViewController()
@@ -33,16 +34,34 @@ private struct Scanner: UIViewControllerRepresentable {
 	}
 
 	func updateUIViewController(_ uiViewController: DataScannerWrapperViewController, context: Context) {
-		print(uiViewController.view.bounds)
 	}
 
 	func makeCoordinator() -> Coordinator {
-		.init()
+		.init(completion: completion)
 	}
 
 	class Coordinator: DataScannerViewControllerDelegate {
+		let completion: GenericCallback<String?>
+		
+		init(completion: @escaping GenericCallback<String?>) {
+			self.completion = completion
+		}
+
 		func dataScanner(_ dataScanner: DataScannerViewController, didAdd addedItems: [RecognizedItem], allItems: [RecognizedItem]) {
-			print(allItems)
+			guard let firstItem = addedItems.first else {
+				return
+			}
+
+			switch firstItem {
+				case .text(let text):
+					completion(text.transcript)
+					Haptics.performSuccessHapticEffect()
+				case .barcode(let barcode):
+					completion(barcode.payloadStringValue)
+					Haptics.performSuccessHapticEffect()
+				@unknown default:
+					break
+			}
 		}
 	}
 }
@@ -55,7 +74,11 @@ private class DataScannerWrapperViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let controller = DataScannerViewController(recognizedDataTypes: [.barcode(symbologies: [.qr])])
+		let controller = DataScannerViewController(recognizedDataTypes: [.barcode(symbologies: [.qr])],
+												   qualityLevel: .balanced,
+												   isHighFrameRateTrackingEnabled: false,
+												   isPinchToZoomEnabled: false,
+												   isGuidanceEnabled: false)
 		scannerController = controller
 		controller.delegate = scannerDelegate
 		addChild(controller)
@@ -86,23 +109,27 @@ private class DataScannerWrapperViewController: UIViewController {
 		])
 
 		overlayVC.didMove(toParent: self)
-
-
-		try? controller.startScanning()
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
-		let viewBounds = view.bounds
+		let viewBounds = scannerController?.view.bounds ?? .zero
 		let region = CGRect(x: viewBounds.width / 4.0,
 							y: viewBounds.height / 4.0,
 							width: viewBounds.width / 2.0,
 							height: viewBounds.width / 2.0)
+		print(scannerController?.regionOfInterest)
 		scannerController?.regionOfInterest = region
+		
+		if scannerController?.isScanning == false {
+			try? scannerController?.startScanning()
+		}
+
+		print(scannerController?.view.frame)
 	}
 }
 
 #Preview {
-    ScannerView()
+	ScannerView() { _ in }
 }
