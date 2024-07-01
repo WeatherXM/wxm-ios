@@ -8,17 +8,54 @@
 import SwiftUI
 import VisionKit
 import Toolkit
+import CodeScanner
+import AVFoundation
 
 struct ScannerView: View {
+	let mode: Mode
 	let completion: GenericCallback<String?>
 
     var body: some View {
 		if #available(iOS 16.0, *) {
 			Scanner(completion: completion)
 		} else {
-			EmptyView()
+			CodeScannerView(codeTypes: [mode.toMetadataObjectType]) { result in
+				switch result {
+					case .success(let input):
+						completion(input.string)
+					case .failure(_):
+						completion(nil)
+				}
+			}
+			.overlay(QrScannerView())
 		}
     }
+}
+
+extension ScannerView {
+	enum Mode {
+		case qr
+		case barcode
+
+		@available(iOS 16.0, *)
+		var toBarcodeSymbology: DataScannerViewController.RecognizedDataType {
+			switch self {
+				case .qr:
+						.barcode(symbologies: [.qr])
+				case .barcode:
+						.barcode(symbologies: [.code128])
+			}
+		}
+
+		var toMetadataObjectType: AVMetadataObject.ObjectType {
+			switch self {
+				case .qr:
+						.qr
+				case .barcode:
+						.code128
+			}
+		}
+	}
 }
 
 @available(iOS 16.0, *)
@@ -131,5 +168,5 @@ private class DataScannerWrapperViewController: UIViewController {
 }
 
 #Preview {
-	ScannerView() { _ in }
+	ScannerView(mode: .qr) { _ in }
 }
