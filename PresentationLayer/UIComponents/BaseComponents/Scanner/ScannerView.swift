@@ -69,6 +69,25 @@ private class DataScannerWrapperViewController: UIViewController {
 			controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
 		])
 
+		controller.didMove(toParent: self)
+
+		let overlayVC = UIHostingController(rootView: QrScannerView())
+		controller.addChild(overlayVC)
+		overlayVC.view.translatesAutoresizingMaskIntoConstraints = false
+		overlayVC.view.backgroundColor = .clear
+		let overlayContainerView = controller.overlayContainerView
+		overlayContainerView.addSubview(overlayVC.view)
+
+		NSLayoutConstraint.activate([
+			overlayVC.view.topAnchor.constraint(equalTo: overlayContainerView.topAnchor),
+			overlayVC.view.bottomAnchor.constraint(equalTo: overlayContainerView.bottomAnchor),
+			overlayVC.view.leadingAnchor.constraint(equalTo: overlayContainerView.leadingAnchor),
+			overlayVC.view.trailingAnchor.constraint(equalTo: overlayContainerView.trailingAnchor)
+		])
+
+		overlayVC.didMove(toParent: self)
+
+
 		try? controller.startScanning()
 	}
 
@@ -79,7 +98,7 @@ private class DataScannerWrapperViewController: UIViewController {
 		let region = CGRect(x: viewBounds.width / 4.0,
 							y: viewBounds.height / 4.0,
 							width: viewBounds.width / 2.0,
-							height: viewBounds.height / 2.0)
+							height: viewBounds.width / 2.0)
 		scannerController?.regionOfInterest = region
 	}
 }

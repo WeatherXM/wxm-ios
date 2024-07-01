@@ -1593,7 +1593,6 @@
 				262A4CEC2A93567A00A4BC17 /* InfoView.swift */,
 				261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */,
 				2675474C29A9181E008BCF40 /* ProgressBarStyle.swift */,
-				2675473E29A9181E008BCF40 /* QrScannerView.swift */,
 				2675474729A9181E008BCF40 /* StaticButtonStyle.swift */,
 				26D5013729B209F500BC2951 /* StationLastActiveView.swift */,
 				2675475229A9181E008BCF40 /* StepsNavView.swift */,
@@ -1891,6 +1890,7 @@
 			isa = PBXGroup;
 			children = (
 				26A308F82C2EE481007A029A /* ScannerView.swift */,
+				2675473E29A9181E008BCF40 /* QrScannerView.swift */,
 			);
 			path = Scanner;
 			sourceTree = "<group>";
