@@ -25,18 +25,15 @@ private struct Scanner: UIViewControllerRepresentable {
 	
 	@State var containerSize: CGSize
 
-	func makeUIViewController(context: Context) -> DataScannerViewController {
-		let controller = DataScannerViewController(recognizedDataTypes: [.barcode(symbologies: [.qr])])
+	func makeUIViewController(context: Context) -> DataScannerWrapperViewController {
+		let controller = DataScannerWrapperViewController()
+		controller.scannerDelegate = context.coordinator
 
-		controller.delegate = context.coordinator
 		return controller
 	}
 
-	func updateUIViewController(_ uiViewController: DataScannerViewController, context: Context) {
-		let region = CGRect(x: containerSize.width / 4.0,
-							y: containerSize.height / 4.0,
-							width: containerSize.width / 2.0,
-							height: containerSize.height / 2.0)
+	func updateUIViewController(_ uiViewController: DataScannerWrapperViewController, context: Context) {
+		print(uiViewController.view.bounds)
 	}
 
 	func makeCoordinator() -> Coordinator {
@@ -44,7 +41,46 @@ private struct Scanner: UIViewControllerRepresentable {
 	}
 
 	class Coordinator: DataScannerViewControllerDelegate {
+		func dataScanner(_ dataScanner: DataScannerViewController, didAdd addedItems: [RecognizedItem], allItems: [RecognizedItem]) {
+			print(allItems)
+		}
+	}
+}
+
+@available(iOS 16.0, *)
+private class DataScannerWrapperViewController: UIViewController {
+	
+	weak var scannerController: DataScannerViewController?
+	weak var scannerDelegate: DataScannerViewControllerDelegate?
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		let controller = DataScannerViewController(recognizedDataTypes: [.barcode(symbologies: [.qr])])
+		scannerController = controller
+		controller.delegate = scannerDelegate
+		addChild(controller)
+		controller.view.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(controller.view)
 		
+		NSLayoutConstraint.activate([
+			controller.view.topAnchor.constraint(equalTo: view.topAnchor),
+			controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+		])
+
+		try? controller.startScanning()
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		let viewBounds = view.bounds
+		let region = CGRect(x: viewBounds.width / 4.0,
+							y: viewBounds.height / 4.0,
+							width: viewBounds.width / 2.0,
+							height: viewBounds.height / 2.0)
+		scannerController?.regionOfInterest = region
 	}
 }
 
