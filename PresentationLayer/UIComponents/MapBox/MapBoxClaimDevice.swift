@@ -11,6 +11,7 @@ import Foundation
 import MapboxMaps
 import SwiftUI
 import UIKit
+import Toolkit
 
 struct MapBoxClaimDeviceView: View {
 	@Binding var location: CLLocationCoordinate2D
@@ -20,6 +21,7 @@ struct MapBoxClaimDeviceView: View {
 	private let markerSize: CGSize = CGSize(width: 44.0, height: 44.0)
 	@State private var locationPoint: CGPoint = .zero
 	@State private var markerViewSize: CGSize = .zero
+	@StateObject private var controls: MapBoxClaimDevice.MapControls = .init()
 
 	init(location: Binding<CLLocationCoordinate2D>,
 		 annotationTitle: Binding<String?>,
@@ -33,7 +35,8 @@ struct MapBoxClaimDeviceView: View {
 		ZStack {
 			MapBoxClaimDevice(location: $location,
 							  locationPoint: $locationPoint,
-							  geometryProxyForFrameOfMapView: geometryProxyForFrameOfMapView)
+							  geometryProxyForFrameOfMapView: geometryProxyForFrameOfMapView,
+							  controls: controls)
 
 			markerAnnotation
 				.offset(x: 0.0, y: markerAnnotationOffset)
@@ -46,6 +49,10 @@ struct MapBoxClaimDeviceView: View {
 				.frame(width: markerSize.width, height: markerSize.height)
 				.offset(x: 0.0, y: -markerSize.height/2.0)
 				.position(locationPoint)
+
+			if isRunningOnMac {
+				ZoomControls(controlsBottomOffset: .constant(0.0), zoomOutAction: { controls.zoomOutAction?() }, zoomInAction: { controls.zoomInAction?() })
+			}
 		}
 	}
 
@@ -77,22 +84,38 @@ struct MapBoxClaimDeviceView: View {
 	}
 }
 
-struct MapBoxClaimDevice: UIViewControllerRepresentable {
+private struct MapBoxClaimDevice: UIViewControllerRepresentable {
     @Binding var location: CLLocationCoordinate2D
 	@Binding var locationPoint: CGPoint
-
     let geometryProxyForFrameOfMapView: CGRect
+	@StateObject var controls: MapControls
 
     func makeUIViewController(context _: Context) -> MapViewLocationController {
-        return MapViewLocationController(
-            frame: geometryProxyForFrameOfMapView,
-            location: $location,
-			locationPoint: $locationPoint)
+		let controller = MapViewLocationController(frame: geometryProxyForFrameOfMapView,
+												   location: $location,
+												   locationPoint: $locationPoint)
+
+		controls.zoomInAction = { [weak controller] in
+			controller?.zoomIn()
+		}
+
+		controls.zoomOutAction = { [weak controller] in
+			controller?.zoomOut()
+		}
+
+		return controller
     }
 
     func updateUIViewController(_ controller: MapViewLocationController, context _: Context) {
         controller.setCenter(location)
     }
+}
+
+extension MapBoxClaimDevice {
+	class MapControls: ObservableObject {
+		var zoomInAction: VoidCallback?
+		var zoomOutAction: VoidCallback?
+	}
 }
 
 class MapViewLocationController: UIViewController {
@@ -174,6 +197,17 @@ class MapViewLocationController: UIViewController {
 
         mapView?.mapboxMap.setCamera(to: CameraOptions(center: center, zoom: Self.ZOOM_LEVEL))
     }
+
+	func zoomIn() {
+		let zoomLevel = mapView.mapboxMap.cameraState.zoom
+		mapView.camera.fly(to: CameraOptions(zoom: zoomLevel + 1))
+	}
+
+	func zoomOut() {
+		let zoomLevel = mapView.mapboxMap.cameraState.zoom
+		mapView.camera.fly(to: CameraOptions(zoom: zoomLevel - 1))
+	}
+
 
     internal func cameraSetup() -> CameraOptions {
         return CameraOptions(center: CLLocationCoordinate2D())

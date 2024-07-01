@@ -83,3 +83,7 @@ public var disableAnalytics: Bool {
 	let isDisabled = UserDefaults.standard.bool(forKey: WXMAnalyticsDisabled)
 	return isPreview || isDisabled
 }
+
+public var isRunningOnMac: Bool {
+	ProcessInfo.processInfo.isMacCatalystApp
+}

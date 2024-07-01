@@ -91,6 +91,14 @@ public final class ExplorerViewModel: ObservableObject {
 				}
 		}
 	}
+
+	func handleZoomIn() {
+		mapController?.zoomIn()
+	}
+
+	func handleZoomOut() {
+		mapController?.zoomOut()
+	}
 }
 
 private extension ExplorerViewModel {

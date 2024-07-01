@@ -86,6 +86,7 @@ struct LoggedInTabViewContainer: View {
             VStack(spacing: CGFloat(.defaultSpacing)) {
                 if mainViewModel.selectedTab == .mapTab {
                     fabButtons
+						.padding(.trailing, CGFloat(.defaultSidePadding))
                 }
 
                 if mainViewModel.selectedTab == .homeTab {
@@ -94,8 +95,8 @@ struct LoggedInTabViewContainer: View {
 
 				TabBarView($mainViewModel.selectedTab, mainViewModel.isWalletMissing)
                     .opacity(isTabBarShowing ? 1 : 0)
+					.sizeObserver(size: $tabBarItemsSize)
             }
-            .sizeObserver(size: $tabBarItemsSize)
         }
     }
 }
@@ -104,9 +105,8 @@ private extension LoggedInTabViewContainer {
     @ViewBuilder
     var explorer: some View {
         ZStack {
-            MapBoxMapView()
+			MapBoxMapView(controlsBottomOffset: $tabBarItemsSize.height)
                 .environmentObject(explorerViewModel)
-                .edgesIgnoringSafeArea(.all)
                 .navigationBarHidden(true)
                 .zIndex(0)
                 .shimmerLoader(show: $explorerViewModel.isLoading)
@@ -141,7 +141,6 @@ private extension LoggedInTabViewContainer {
                 .animation(.easeIn)
             }
         }
-        .padding(CGFloat(.defaultSidePadding))
     }
 
     @ViewBuilder
