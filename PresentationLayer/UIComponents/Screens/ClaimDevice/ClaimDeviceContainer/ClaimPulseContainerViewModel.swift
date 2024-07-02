@@ -1,0 +1,28 @@
+//
+//  ClaimPulseContainerViewModel.swift
+//  wxm-ios
+//
+//  Created by Pantelis Giazitsis on 20/6/24.
+//
+
+import Foundation
+import DomainLayer
+
+class ClaimPulseContainerViewModel: ClaimDeviceContainerViewModel {
+
+	override init(useCase: MeUseCase, devicesUseCase: DevicesUseCase, deviceLocationUseCase: DeviceLocationUseCase) {
+		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+		navigationTitle = ClaimStationType.pulse.navigationTitle
+		steps = getSteps()
+	}
+}
+
+private extension ClaimPulseContainerViewModel {
+	func getSteps() -> [ClaimDeviceStep] {
+		let resetViewModel = ViewModelsFactory.getResetPulseViewModel { [weak self] in
+			self?.moveNext()
+		}
+
+		return [.reset(resetViewModel)]
+	}
+}

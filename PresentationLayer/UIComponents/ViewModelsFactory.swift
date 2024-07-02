@@ -189,7 +189,7 @@ enum ViewModelsFactory {
 			case .helium:
 				return ClaimHeliumContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
 			case .pulse:
-				return ClaimDeviceContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+				return ClaimPulseContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
 		}
 	}
 
@@ -199,6 +199,10 @@ enum ViewModelsFactory {
 
 	static func getClaimStationM5BeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceM5BeginViewModel {
 		ClaimDeviceM5BeginViewModel(completion: completion)
+	}
+
+	static func getResetPulseViewModel(completion: @escaping VoidCallback) -> ResetDevicePulseViewModel {
+		ResetDevicePulseViewModel(completion: completion)
 	}
 
 	static func getClaimStationSNViewModel(completion: @escaping GenericCallback<ClaimDeviceSerialNumberViewModel.SerialNumber?>) -> ClaimDeviceSerialNumberViewModel {
