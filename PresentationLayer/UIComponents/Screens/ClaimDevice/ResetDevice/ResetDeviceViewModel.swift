@@ -29,6 +29,10 @@ class ResetDeviceViewModel: ObservableObject {
 		LocalizableString.ClaimDevice.pairStationViaBluetooth.localized
 	}
 
+	var infoText: String? {
+		nil
+	}
+
 	init(completion: @escaping VoidCallback) {
 		self.completion = completion
 	}
@@ -54,5 +58,9 @@ class ResetDevicePulseViewModel: ResetDeviceViewModel {
 
 	override var ctaButtonTitle: String {
 		LocalizableString.ClaimDevice.enterGatewayProceedButtonTitle.localized
+	}
+
+	override var infoText: String? {
+		LocalizableString.ClaimDevice.resetPulseInfoText.localized
 	}
 }

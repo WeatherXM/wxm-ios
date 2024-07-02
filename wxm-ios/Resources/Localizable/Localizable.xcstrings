@@ -666,6 +666,17 @@
         }
       }
     },
+    "claim_device_claim_pulse_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim Pulse | 4G"
+          }
+        }
+      }
+    },
     "claim_device_claiming_error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1564,6 +1575,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The station has been rebooted."
+          }
+        }
+      }
+    },
+    "claim_device_reset_pulse_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After reboot, the gateway should display a 6-digit key on the screen. Write it down as you will need to type it in a next step."
           }
         }
       }
