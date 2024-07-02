@@ -28,8 +28,16 @@ struct ClaimDeviceSerialNumberView: View {
 
 						bullets
 
-						GifImageView(fileName: viewModel.gifFileName)
-							.aspectRatio(1.0, contentMode: .fit)
+						if let gifFileName = viewModel.gifFileName {
+							GifImageView(fileName: gifFileName)
+								.aspectRatio(1.0, contentMode: .fit)
+						}
+
+						if let image = viewModel.image {
+							Image(asset: image)
+								.resizable()
+								.aspectRatio(contentMode: .fit)
+						}
 
 						if let caption = viewModel.caption {
 							Text(caption)
@@ -48,7 +56,7 @@ struct ClaimDeviceSerialNumberView: View {
 			.padding(.bottom, CGFloat(.mediumSidePadding))
 		}
 		.sheet(isPresented: $viewModel.showQrScanner) {
-			CodeScannerView(codeTypes: [.qr], completion: viewModel.handleQRScanResult)
+			CodeScannerView(codeTypes: [viewModel.scanType], completion: viewModel.handleQRScanResult)
 				.overlay(QrScannerView())
 		}
     }
@@ -79,10 +87,10 @@ private extension ClaimDeviceSerialNumberView {
 				viewModel.handleQRCodeButtonTap()
 			} label: {
 				HStack {
-					Image(asset: .qrCodeBlue)
-						.renderingMode(.template)
+					Text(viewModel.scanButton.icon.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
 
-					Text(LocalizableString.ClaimDevice.scanQRCode.localized)
+					Text(viewModel.scanButton.text)
 				}
 			}
 			.buttonStyle(WXMButtonStyle.filled())
@@ -91,5 +99,5 @@ private extension ClaimDeviceSerialNumberView {
 }
 
 #Preview {
-	ClaimDeviceSerialNumberView(viewModel: ClaimDeviceSerialNumberM5ViewModel { _ in })
+	ClaimDeviceSerialNumberView(viewModel: ClaimDeviceSerialNumberPulseViewModel { _ in })
 }

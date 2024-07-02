@@ -27,7 +27,6 @@ struct QrScannerView: View {
             Spacer()
             qrBox
             Spacer()
-            scanningGuide
         }
     }
 
@@ -40,13 +39,5 @@ struct QrScannerView: View {
                 .fill(Color.red.opacity(lineOpacity))
                 .frame(width: qrSquareDimensions, height: lineHeight)
         }
-    }
-
-    var scanningGuide: some View {
-        Text(LocalizableString.scannerGuide.localized)
-            .foregroundColor(Color(.white))
-            .font(.system(size: CGFloat(.normalFontSize)))
-            .padding(.horizontal, informationPaddingHorizontal)
-            .padding(.bottom, informationPaddingBottom)
     }
 }

@@ -63,11 +63,20 @@ class ManualSerialNumberViewModel: ObservableObject {
 					return validator?.validateStationKeyInput(key: newString) ?? false
 				}
 				return false
-			case .serialNumber:
-				if let validator {
-					textfield.updateSerialNumberCharactersIn(nsRange: range, for: text, validator: validator)
+			case .serialNumber(let type):
+				switch type {
+					case .m5, .d1:
+						if let validator {
+							textfield.updateSerialNumberCharactersIn(nsRange: range, for: text, validator: validator)
+						}
+						return false
+					case .pulse:
+						if let range = Range(range, in: textfield.text ?? ""),
+						   let newString = textfield.text?.replacingCharacters(in: range, with: text) {
+							return validator?.validateSerialNumberInput(input: newString) ?? true
+						}
+						return false
 				}
-				return false
 		}
 	}
 
@@ -118,5 +127,33 @@ class ManualSerialNumberM5ViewModel: ManualSerialNumberViewModel {
 				  completion: @escaping GenericCallback<[SerialNumberInputField]>) {
 		super.init(inputFields: inputFields, completion: completion)
 		self.validator = SNValidator(type: .m5)
+	}
+}
+
+class ManualSerialNumberPulseViewModel: ManualSerialNumberViewModel {
+	override var title: String {
+		LocalizableString.ClaimDevice.enterGatewaySerialNumberTitle.localized
+	}
+
+	override var subtitle: AttributedString {
+		LocalizableString.ClaimDevice.enterGatewayPulseSerialNumberDescription.localized.attributedMarkdown ?? ""
+	}
+
+	override var caption: String? {
+		nil
+	}
+
+	override var image: AssetEnum? {
+		.pulseBarcode
+	}
+
+	override var gifFile: String? {
+		nil
+	}
+
+	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber(.pulse), value: "")],
+				  completion: @escaping GenericCallback<[SerialNumberInputField]>) {
+		super.init(inputFields: inputFields, completion: completion)
+		self.validator = SNValidator(type: .pulse)
 	}
 }

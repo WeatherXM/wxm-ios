@@ -15,6 +15,26 @@ class ClaimPulseContainerViewModel: ClaimDeviceContainerViewModel {
 		navigationTitle = ClaimStationType.pulse.navigationTitle
 		steps = getSteps()
 	}
+
+	override func handleSeriaNumber(serialNumber: ClaimDeviceSerialNumberViewModel.SerialNumber?) {
+		guard let serial = serialNumber?.serialNumber else {
+			moveNext()
+			return
+		}
+
+		self.serialNumber = serial
+		
+		guard let index = steps.firstIndex(where: {
+			if case .location = $0 {
+				return true
+			}
+			return false
+		}), selectedIndex != index else {
+			return
+		}
+		
+		moveTo(index: index)
+	}
 }
 
 private extension ClaimPulseContainerViewModel {
@@ -23,6 +43,14 @@ private extension ClaimPulseContainerViewModel {
 			self?.moveNext()
 		}
 
-		return [.reset(resetViewModel)]
+		let serialNumberViewModel = ViewModelsFactory.getClaimStationPulseSNViewModel { serialNumber in
+			self.handleSeriaNumber(serialNumber: serialNumber)
+		}
+
+		let manualSNViewModel = ViewModelsFactory.getManualSNPulseViewModel { [weak self] fields in
+			self?.handleSNInputFields(fields: fields)
+		}
+
+		return [.reset(resetViewModel), .serialNumber(serialNumberViewModel), .manualSerialNumber(manualSNViewModel)]
 	}
 }

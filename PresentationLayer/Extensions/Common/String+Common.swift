@@ -14,7 +14,7 @@ extension String {
 	}
 
 	func trimWhiteSpaces() -> String {
-		return trimmingCharacters(in: .whitespaces)
+		return trimmingCharacters(in: .whitespacesAndNewlines)
 	}
 
 	func lastActiveTime() -> String {

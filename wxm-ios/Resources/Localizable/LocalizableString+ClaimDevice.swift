@@ -40,7 +40,10 @@ extension LocalizableString {
 		case prepareGatewayM5Caption
 		case prepareGatewayD1BulletOne
 		case prepareGatewayD1BulletTwo
+		case prepareGatewayPulseBulletOne
+		case prepareGatewayPulseBulletTwo
 		case scanQRCode
+		case scanBarcode
 		case enterSerialNumberManually
 		case cammeraPermissionDeniedTitle
 		case cammeraPermissionDeniedText
@@ -53,6 +56,7 @@ extension LocalizableString {
 		case enterGatewaySerialNumberDescription
 		case enterGatewaySerialNumberCaption
 		case enterGatewayProceedButtonTitle
+		case enterGatewayPulseSerialNumberDescription
 		case confirmAndProceed
 		case stationLocationTitle
 		case stationLocationSubtitle
@@ -224,6 +228,10 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_prepare_gateway_d1_bullet_one"
 			case .prepareGatewayD1BulletTwo:
 				return "claim_device_prepare_gateway_d1_bullet_two"
+			case .prepareGatewayPulseBulletOne:
+				return "claim_device_prepare_gateway_pulse_bullet_one"
+			case .prepareGatewayPulseBulletTwo:
+				return "claim_device_prepare_gateway_pulse_bullet_two"
 			case .prepareGatewayM5BulletOne:
 				return "claim_device_prepare_gateway_m5_bullet_one"
 			case .prepareGatewayM5BulletTwo:
@@ -232,6 +240,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_prepare_gateway_m5_caption"
 			case .scanQRCode:
 				return "claim_device_scan_qr_code"
+			case .scanBarcode:
+				return "claim_device_scan_barcode"
 			case .enterSerialNumberManually:
 				return "claim_device_enter_serial_number_manually"
 			case .cammeraPermissionDeniedTitle:
@@ -256,6 +266,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_enter_gateway_serial_number_caption"
 			case .enterGatewayProceedButtonTitle:
 				return "claim_device_enter_gateway_proceed_button_title"
+			case .enterGatewayPulseSerialNumberDescription:
+				return "claim_device_enter_gateway_pulse_serial_number_description"
 			case .confirmAndProceed:
 				return "claim_device_confirm_and_proceed"
 			case .stationLocationTitle:
