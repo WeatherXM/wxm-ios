@@ -19,6 +19,7 @@ extension LocalizableString {
 		case claimHeliumTitle
 		case claimD1Title
 		case claimM5Title
+		case claimPulseTitle
 		case connectGatewayTitle
 		case connectD1BulletOne
 		case connectD1BulletTwo
@@ -31,6 +32,7 @@ extension LocalizableString {
 		case resetPulseBulletOne
 		case resetPulseBulletTwo
 		case resetPulseHasRebootedText
+		case resetPulseInfoText
 		case beginStationClaiming
 		case prepareGatewayTitle
 		case prepareGatewayM5BulletOne
@@ -184,6 +186,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_claim_helium_title"
 			case .claimM5Title:
 				return "claim_device_claim_m5_title"
+			case .claimPulseTitle:
+				return "claim_device_claim_pulse_title"
 			case .claimD1Title:
 				return "claim_device_claim_d1_title"
 			case .connectGatewayTitle:
@@ -210,6 +214,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_reset_pulse_bullet_two"
 			case .resetPulseHasRebootedText:
 				return "claim_device_reset_pulse_has_rebooted_text"
+			case .resetPulseInfoText:
+				return "claim_device_reset_pulse_info_text"
 			case .beginStationClaiming:
 				return "claim_device_connect_begin_station_claiming"
 			case .prepareGatewayTitle:

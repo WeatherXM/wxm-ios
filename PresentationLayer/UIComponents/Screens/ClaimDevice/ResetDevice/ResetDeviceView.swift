@@ -32,9 +32,9 @@ struct ResetDeviceView: View {
 						Image(asset: viewModel.image)
 							.resizable()
 							.aspectRatio(contentMode: .fit)
-							.frame(maxWidth: 600.0)
-							.padding(.horizontal)
+							.padding(.horizontal, CGFloat(.largeSidePadding))
 
+						infoText
 					}
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.padding(.top, CGFloat(.mediumSidePadding))
@@ -82,6 +82,24 @@ private extension ResetDeviceView {
 				.fixedSize(horizontal: false, vertical: true)
 
 			Spacer()
+		}
+	}
+
+	@ViewBuilder
+	var infoText: some View {
+		if let info = viewModel.infoText {
+			HStack(alignment: .top) {
+				Text(FontIcon.infoCircle.rawValue)
+					.font(.fontAwesome(font: .FAProLight, size: CGFloat(.mediumFontSize)))
+					.foregroundStyle(Color(colorEnum: .darkGrey))
+
+				Text(info)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundStyle(Color(colorEnum: .darkGrey))
+				Spacer()
+			}
+		} else {
+			EmptyView()
 		}
 	}
 }
