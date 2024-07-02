@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CodeScanner
 import Toolkit
 
 struct MyWalletView: View {
@@ -64,8 +63,7 @@ struct MyWalletView: View {
             WXMAnalytics.shared.trackScreen(.wallet)
         }
         .sheet(isPresented: $viewModel.showQrScanner) {
-            CodeScannerView(codeTypes: [.qr], completion: viewModel.handleScanResult)
-                .overlay(QrScannerView())
+			ScannerView(mode: .qr, completion: viewModel.handleScanResult)
         }
         .customSheet(isPresented: $viewModel.showAccountConfirmation) { _ in
             AccountConfirmationView(viewModel: viewModel.accountConfirmationViewModel!)

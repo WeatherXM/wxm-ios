@@ -15,6 +15,7 @@
 		2612AC3A2AB47BA200285896 /* LocalizableString+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */; };
 		2612AC482AB49E4000285896 /* Filters+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC472AB49E4000285896 /* Filters+.swift */; };
 		261672472BB310D9009C3DB1 /* WXMRemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261672462BB310D9009C3DB1 /* WXMRemoteImageView.swift */; };
+		261729CD2C32CF7700A1CEFA /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261729CC2C32CF7700A1CEFA /* Haptics.swift */; };
 		2618A6E72A1E440F00983B7B /* ExplorerLocationError+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A6E62A1E440F00983B7B /* ExplorerLocationError+.swift */; };
 		2618A7142A20FFCA00983B7B /* MultipleAlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */; };
 		2618A7162A21014200983B7B /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7152A21014200983B7B /* AlertsViewModel.swift */; };
@@ -303,6 +304,7 @@
 		269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 269C96892BDBD5660035B8F1 /* Mixpanel */; };
 		269E85712B0242C100BE774C /* WXMShareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E85702B0242C100BE774C /* WXMShareModifier.swift */; };
 		26A308EA2C2E97B5007A029A /* ZoomControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A308E92C2E97B5007A029A /* ZoomControls.swift */; };
+		26A308F92C2EE481007A029A /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A308F82C2EE481007A029A /* ScannerView.swift */; };
 		26A3B3C52B178F630002F35F /* LocalizableString+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3C42B178F630002F35F /* LocalizableString+Profile.swift */; };
 		26A3B3C72B1792890002F35F /* ProfileTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3C62B1792890002F35F /* ProfileTypes.swift */; };
 		26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3DB2B18D2480002F35F /* TabBarVisibilityHandler.swift */; };
@@ -560,6 +562,7 @@
 		2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Filters.swift"; sourceTree = "<group>"; };
 		2612AC472AB49E4000285896 /* Filters+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filters+.swift"; sourceTree = "<group>"; };
 		261672462BB310D9009C3DB1 /* WXMRemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMRemoteImageView.swift; sourceTree = "<group>"; };
+		261729CC2C32CF7700A1CEFA /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		2618A6E62A1E440F00983B7B /* ExplorerLocationError+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerLocationError+.swift"; sourceTree = "<group>"; };
 		2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleAlertsView.swift; sourceTree = "<group>"; };
 		2618A7152A21014200983B7B /* AlertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModel.swift; sourceTree = "<group>"; };
@@ -818,6 +821,7 @@
 		269C809B2AB9E76F005F9BD6 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		269E85702B0242C100BE774C /* WXMShareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMShareModifier.swift; sourceTree = "<group>"; };
 		26A308E92C2E97B5007A029A /* ZoomControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomControls.swift; sourceTree = "<group>"; };
+		26A308F82C2EE481007A029A /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		26A3B3C42B178F630002F35F /* LocalizableString+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Profile.swift"; sourceTree = "<group>"; };
 		26A3B3C62B1792890002F35F /* ProfileTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTypes.swift; sourceTree = "<group>"; };
 		26A3B3DB2B18D2480002F35F /* TabBarVisibilityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVisibilityHandler.swift; sourceTree = "<group>"; };
@@ -1560,6 +1564,7 @@
 		2675473B29A9181E008BCF40 /* BaseComponents */ = {
 			isa = PBXGroup;
 			children = (
+				26A308F72C2EE46A007A029A /* Scanner */,
 				26AA21E72BF4F9A500B91A7C /* SelectLocationMap */,
 				262B02F42B1DE48A00C31FE7 /* WebView */,
 				268E8E0B2B07A2AA0025163F /* iPad */,
@@ -1590,7 +1595,6 @@
 				262A4CEC2A93567A00A4BC17 /* InfoView.swift */,
 				261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */,
 				2675474C29A9181E008BCF40 /* ProgressBarStyle.swift */,
-				2675473E29A9181E008BCF40 /* QrScannerView.swift */,
 				2675474729A9181E008BCF40 /* StaticButtonStyle.swift */,
 				26D5013729B209F500BC2951 /* StationLastActiveView.swift */,
 				2675475229A9181E008BCF40 /* StepsNavView.swift */,
@@ -1884,6 +1888,15 @@
 			path = Numeric;
 			sourceTree = "<group>";
 		};
+		26A308F72C2EE46A007A029A /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				26A308F82C2EE481007A029A /* ScannerView.swift */,
+				2675473E29A9181E008BCF40 /* QrScannerView.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
 		26A3B3DA2B18D21B0002F35F /* TrackableScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1934,6 +1947,7 @@
 				266482FB29C0B2B000748F9C /* LoaderView.swift */,
 				267401932A3A038300E54E35 /* SwiftUIUtils.swift */,
 				2664830029C0C73E00748F9C /* Toast.swift */,
+				261729CC2C32CF7700A1CEFA /* Haptics.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2791,6 +2805,7 @@
 				2675480729A9181E008BCF40 /* BaseTextField.swift in Sources */,
 				267548DC29A91A87008BCF40 /* BaseTextFieldEnum.swift in Sources */,
 				267CA6CD2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift in Sources */,
+				261729CD2C32CF7700A1CEFA /* Haptics.swift in Sources */,
 				267547E229A9181E008BCF40 /* BluetoothMessageView.swift in Sources */,
 				26A4118E29BB8BC000A2C10B /* BluetoothState+.swift in Sources */,
 				26F149E22BDFC5040029F981 /* ClaimStationSelectionView.swift in Sources */,
@@ -2879,6 +2894,7 @@
 				26AA21E92BF4FA3B00B91A7C /* SelectLocationMapView.swift in Sources */,
 				26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */,
 				2672C77A2AA9BBEB00E1FDCC /* HistoryContainerView.swift in Sources */,
+				26A308F92C2EE481007A029A /* ScannerView.swift in Sources */,
 				2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */,
 				26FFADA72B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift in Sources */,
 				2672C77E2AA9BCFE00E1FDCC /* HistoryContainerViewModel.swift in Sources */,
