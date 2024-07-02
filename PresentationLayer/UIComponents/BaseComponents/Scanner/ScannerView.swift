@@ -17,7 +17,7 @@ struct ScannerView: View {
 
     var body: some View {
 		if #available(iOS 16.0, *) {
-			Scanner(completion: completion)
+			Scanner(mode: mode, completion: completion)
 		} else {
 			CodeScannerView(codeTypes: [mode.toMetadataObjectType]) { result in
 				switch result {
@@ -61,10 +61,11 @@ extension ScannerView {
 @available(iOS 16.0, *)
 private struct Scanner: UIViewControllerRepresentable {
 
+	let mode: ScannerView.Mode
 	let completion: GenericCallback<String?>
 
 	func makeUIViewController(context: Context) -> DataScannerWrapperViewController {
-		let controller = DataScannerWrapperViewController()
+		let controller = DataScannerWrapperViewController(mode: mode)
 		controller.scannerDelegate = context.coordinator
 
 		return controller
@@ -109,9 +110,20 @@ private class DataScannerWrapperViewController: UIViewController {
 	weak var scannerController: DataScannerViewController?
 	weak var scannerDelegate: DataScannerViewControllerDelegate?
 
+	private let mode: ScannerView.Mode
+
+	init(mode: ScannerView.Mode) {
+		self.mode = mode
+		super.init(nibName: nil, bundle: nil)
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let controller = DataScannerViewController(recognizedDataTypes: [.barcode(symbologies: [.qr])],
+		let controller = DataScannerViewController(recognizedDataTypes: [mode.toBarcodeSymbology],
 												   qualityLevel: .balanced,
 												   isHighFrameRateTrackingEnabled: false,
 												   isPinchToZoomEnabled: false,
@@ -151,19 +163,17 @@ private class DataScannerWrapperViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
+		// Position of the region of interest is a rectangle at the center of the view
 		let viewBounds = scannerController?.view.bounds ?? .zero
 		let region = CGRect(x: viewBounds.width / 4.0,
-							y: viewBounds.height / 4.0,
+							y: 3.0 * viewBounds.height / 8.0,
 							width: viewBounds.width / 2.0,
 							height: viewBounds.width / 2.0)
-		print(scannerController?.regionOfInterest)
 		scannerController?.regionOfInterest = region
 		
 		if scannerController?.isScanning == false {
 			try? scannerController?.startScanning()
 		}
-
-		print(scannerController?.view.frame)
 	}
 }
 
