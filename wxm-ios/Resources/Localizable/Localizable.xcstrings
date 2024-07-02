@@ -2481,6 +2481,17 @@
         }
       }
     },
+    "device_info_invalid_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid Friendly Name"
+          }
+        }
+      }
+    },
     "device_info_last_gateway_activity" : {
       "extractionState" : "manual",
       "localizations" : {
