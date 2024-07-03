@@ -46,8 +46,7 @@ public struct MeRepositoryImpl: MeRepository {
     }
 
     public func saveUserWallet(address: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-        let urlRequest = try MeApiRequestBuilder.saveUserWallet(address: address).asURLRequest()
-        return ApiClient.shared.requestCodableAuthorized(urlRequest)
+		return try userInfoService.saveUserWallet(address: address)
     }
 
 	public func getCachedDevices() -> [NetworkDevicesResponse]? {

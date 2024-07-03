@@ -43,6 +43,18 @@ public class UserInfoService {
 		return publisher
 	}
 
+	public func saveUserWallet(address: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+		let urlRequest = try MeApiRequestBuilder.saveUserWallet(address: address).asURLRequest()
+		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest)
+		return publisher.flatMap { [weak self] response in
+			if response.error == nil {
+				_ = try? self?.getUser()
+			}
+			return Just(response)
+		}
+		.eraseToAnyPublisher()
+	}
+
 	public func getLatestUserInfoPublisher() -> AnyPublisher<NetworkUserInfoResponse?, Never> {
 		userInfoSubject.eraseToAnyPublisher()
 	}

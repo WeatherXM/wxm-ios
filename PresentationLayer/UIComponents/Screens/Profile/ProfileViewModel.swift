@@ -52,7 +52,13 @@ class ProfileViewModel: ObservableObject {
 		scrollOffsetObject = .init()
 		tabBarVisibilityHandler = TabBarVisibilityHandler(scrollOffsetObject: self.scrollOffsetObject)
 		tabBarVisibilityHandler.$isTabBarShowing.assign(to: &$isTabBarVisible)
-		
+		MainScreenViewModel.shared.$userInfo.sink { [weak self] response in
+			guard let response else {
+				return
+			}
+			self?.userInfoResponse = response
+		}.store(in: &cancellableSet)
+
 		updateRewards()
 
 		MainScreenViewModel.shared.$isWalletMissing.assign(to: &$showMissingWalletError)
