@@ -109,10 +109,28 @@ private extension HistoryViewModel {
             return
         }
         let delegate = ChartDelegate()
-        let entries = currentHistoryData.dataModels.values.first?.entries
+		let values = currentHistoryData.dataModels.values
 
-        let isToday = currentDate.isToday
-        let index = isToday ? entries?.lastIndex(where: { !$0.y.isNaN }) : entries?.firstIndex(where: { !$0.y.isNaN })
+		let isToday = currentDate.isToday
+		let count = values.first?.entries.count ?? 0
+		var index: Int?
+		if isToday { // If is today we should preselect the latest valid index
+			index = values.reduce(index) { partialResult, dataModel in
+				guard let index = dataModel.entries.lastIndex(where: { !$0.y.isNaN }) else {
+					return partialResult
+				}
+
+				return max(partialResult ?? index, index)
+			}
+		} else { // Otherwise, we should preselect the first valid index
+			index = values.reduce(index) { partialResult, dataModel in
+				guard let index = dataModel.entries.firstIndex(where: { !$0.y.isNaN }) else {
+					return partialResult
+				}
+
+				return min(partialResult ?? index, index)
+			}
+		}
 
         delegate.selectedIndex = index
         self.chartDelegate = delegate
