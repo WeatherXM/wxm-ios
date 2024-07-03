@@ -26,7 +26,7 @@ struct ClaimDeviceSetFrequencyView: View {
 				bottomButton
 			}
 			.padding(.horizontal, CGFloat(.mediumSidePadding))
-			.padding(.top, CGFloat(.largeSidePadding))
+			.padding(.top, CGFloat(.mediumSidePadding))
 			.padding(.bottom, CGFloat(.mediumSidePadding))
 
 		}

@@ -59,7 +59,7 @@ struct ManualSerialNumberView: View {
 						textFields
 					}
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
-					.padding(.top, CGFloat(.largeSidePadding))
+					.padding(.top, CGFloat(.mediumSidePadding))
 				}
 
 				bottomButton
