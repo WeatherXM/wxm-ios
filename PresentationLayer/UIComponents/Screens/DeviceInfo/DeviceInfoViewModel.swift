@@ -106,7 +106,7 @@ class DeviceInfoViewModel: ObservableObject {
 
     private let deviceInfoUseCase: DeviceInfoUseCase?
     private var cancellable: Set<AnyCancellable> = []
-	private let friendlyNameRegex = "^\\S.{0,22}\\S$"
+	private let friendlyNameRegex = "^\\S.{0,24}$"
 
     init(device: DeviceDetails, followState: UserDeviceFollowState?) {
         self.device = device
