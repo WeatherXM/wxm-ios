@@ -115,20 +115,30 @@ private extension HistoryViewModel {
 		let count = values.first?.entries.count ?? 0
 		var index: Int?
 		if isToday { // If is today we should preselect the latest valid index
-			index = values.reduce(index) { partialResult, dataModel in
-				guard let index = dataModel.entries.lastIndex(where: { !$0.y.isNaN }) else {
-					return partialResult
+			for dataModel in values {
+				guard let lastIndex = dataModel.entries.lastIndex(where: { !$0.y.isNaN }) else {
+					continue
 				}
 
-				return max(partialResult ?? index, index)
+				index = max(index ?? lastIndex, lastIndex)
+				
+				// If is already the min value set, there is no need to proceed the iteration
+				if index == 0 {
+					break
+				}
 			}
 		} else { // Otherwise, we should preselect the first valid index
-			index = values.reduce(index) { partialResult, dataModel in
-				guard let index = dataModel.entries.firstIndex(where: { !$0.y.isNaN }) else {
-					return partialResult
+			for dataModel in values {
+				guard let firstIndex = dataModel.entries.firstIndex(where: { !$0.y.isNaN }) else {
+					continue
 				}
 
-				return min(partialResult ?? index, index)
+				index = max(index ?? firstIndex, firstIndex)
+
+				// If is already the max value set, there is no need to proceed the iteration
+				if index == count - 1 {
+					break
+				}
 			}
 		}
 
