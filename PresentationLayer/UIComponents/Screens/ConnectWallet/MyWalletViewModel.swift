@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 import DomainLayer
-import CodeScanner
 import Toolkit
 
 class MyWalletViewModel: ObservableObject {
@@ -87,22 +86,21 @@ class MyWalletViewModel: ObservableObject {
         showQrScanner = true
     }
 
-    func handleScanResult(result: Result<ScanResult, ScanError>) {
-        showQrScanner = false
-        switch result {
-            case let .success(result):
-                var input = result.string
-                
-                if let addressFirstIndex = input.firstIndex(substring: ethAddressPrefix),
-                   let addressLastIndex = input.index(addressFirstIndex, offsetBy: ethAddressLength, limitedBy: input.endIndex) {
-                    input = String(input[addressFirstIndex ..< addressLastIndex])
-                }
-                
-                self.input = input
-            case let .failure(error):
-                print("Scanner failed: \(error.localizedDescription)")
-        }
-    }
+	func handleScanResult(result: String?) {
+		showQrScanner = false
+		guard let result else {
+			return
+		}
+
+		var input = result
+
+		if let addressFirstIndex = input.firstIndex(substring: ethAddressPrefix),
+		   let addressLastIndex = input.index(addressFirstIndex, offsetBy: ethAddressLength, limitedBy: input.endIndex) {
+			input = String(input[addressFirstIndex ..< addressLastIndex])
+		}
+
+		self.input = input
+	}
 }
 
 extension MyWalletViewModel: HashableViewModel {
