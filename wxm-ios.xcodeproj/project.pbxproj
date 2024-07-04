@@ -16,6 +16,8 @@
 		2612AC482AB49E4000285896 /* Filters+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC472AB49E4000285896 /* Filters+.swift */; };
 		261672472BB310D9009C3DB1 /* WXMRemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261672462BB310D9009C3DB1 /* WXMRemoteImageView.swift */; };
 		261729CD2C32CF7700A1CEFA /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261729CC2C32CF7700A1CEFA /* Haptics.swift */; };
+		261729F42C36A14C00A1CEFA /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 261729F32C36A14C00A1CEFA /* SwiftUIIntrospect */; };
+		261729F62C36A1AB00A1CEFA /* DisableScrollClipModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261729F52C36A1AB00A1CEFA /* DisableScrollClipModifier.swift */; };
 		2618A6E72A1E440F00983B7B /* ExplorerLocationError+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A6E62A1E440F00983B7B /* ExplorerLocationError+.swift */; };
 		2618A7142A20FFCA00983B7B /* MultipleAlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */; };
 		2618A7162A21014200983B7B /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7152A21014200983B7B /* AlertsViewModel.swift */; };
@@ -563,6 +565,7 @@
 		2612AC472AB49E4000285896 /* Filters+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filters+.swift"; sourceTree = "<group>"; };
 		261672462BB310D9009C3DB1 /* WXMRemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMRemoteImageView.swift; sourceTree = "<group>"; };
 		261729CC2C32CF7700A1CEFA /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		261729F52C36A1AB00A1CEFA /* DisableScrollClipModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisableScrollClipModifier.swift; sourceTree = "<group>"; };
 		2618A6E62A1E440F00983B7B /* ExplorerLocationError+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerLocationError+.swift"; sourceTree = "<group>"; };
 		2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleAlertsView.swift; sourceTree = "<group>"; };
 		2618A7152A21014200983B7B /* AlertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModel.swift; sourceTree = "<group>"; };
@@ -1004,6 +1007,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				264DD4CA2B9B169E002691FF /* NukeUI in Frameworks */,
+				261729F42C36A14C00A1CEFA /* SwiftUIIntrospect in Frameworks */,
 				261E9EB829A92BE000E8EBA3 /* Alamofire in Frameworks */,
 				261E9EAA29A927BE00E8EBA3 /* CodeScanner in Frameworks */,
 				B5799E9F28254E3300FEBB85 /* DataLayer.framework in Frameworks */,
@@ -1492,6 +1496,7 @@
 				264CDE0E2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift */,
 				269E85702B0242C100BE774C /* WXMShareModifier.swift */,
 				266B01E42B8767E4007AC689 /* StationIndication.swift */,
+				261729F52C36A1AB00A1CEFA /* DisableScrollClipModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -2524,6 +2529,7 @@
 				26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */,
 				264DD4C92B9B169E002691FF /* NukeUI */,
 				269C96892BDBD5660035B8F1 /* Mixpanel */,
+				261729F32C36A14C00A1CEFA /* SwiftUIIntrospect */,
 			);
 			productName = "wxm-ios";
 			productReference = B52BCC712824FB8F00EA3DA5 /* WeatherXM.app */;
@@ -2572,6 +2578,7 @@
 				26FFAD662B8DF9C200BF0A6B /* XCRemoteSwiftPackageReference "LazyLoadingPager" */,
 				264DD4C82B9B169D002691FF /* XCRemoteSwiftPackageReference "Nuke" */,
 				269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
+				261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -3096,6 +3103,7 @@
 				267547ED29A9181E008BCF40 /* WebView.swift in Sources */,
 				2623FF932AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift in Sources */,
 				267EC4292A98C3D300F2C37E /* WXMAlertModifier.swift in Sources */,
+				261729F62C36A1AB00A1CEFA /* DisableScrollClipModifier.swift in Sources */,
 				267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */,
 				26AA21C22BF36B0100B91A7C /* SNValidator.swift in Sources */,
 				26A5456A2C0609D90098FE52 /* ResetDeviceView.swift in Sources */,
@@ -3716,6 +3724,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 		261E9E9B29A925D500E8EBA3 /* XCRemoteSwiftPackageReference "PullableScrollView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pantelisss/PullableScrollView.git";
@@ -3823,6 +3839,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		261729F32C36A14C00A1CEFA /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = SwiftUIIntrospect;
+		};
 		261E9E9C29A925D500E8EBA3 /* PullableScrollView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9E9B29A925D500E8EBA3 /* XCRemoteSwiftPackageReference "PullableScrollView" */;
