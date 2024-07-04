@@ -57,6 +57,9 @@ class ProfileViewModel: ObservableObject {
 				return
 			}
 			self?.userInfoResponse = response
+			Task { [weak self] in
+				await self?.fetchUserRewards()
+			}
 		}.store(in: &cancellableSet)
 
 		updateRewards()
@@ -192,6 +195,9 @@ private extension ProfileViewModel {
 		do {
 			let userRewardsResponse = try await meUseCase.getUserRewards(wallet: address).toAsync()
 			if let error = userRewardsResponse.error {
+				if error.backendError?.code == FailAPICodeEnum.walletAddressNotFound.rawValue {
+					self.userRewardsResponse = nil
+				}
 				return error
 			}
 
