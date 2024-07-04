@@ -184,7 +184,6 @@ private extension SelectDeviceView {
 				}
 			}
 		}
-		.clipped()
 	}
 
 	@ViewBuilder

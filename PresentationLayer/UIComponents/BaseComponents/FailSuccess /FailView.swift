@@ -59,7 +59,6 @@ struct FailView: View {
 					// Set min height in order to keep the content centered
 					.frame(minHeight: proxy.size.height)
 				}
-				.clipped()
 			}
             .padding(.bottom, bottomButtonsSize.height)
             .environment(\.openURL, OpenURLAction { url in

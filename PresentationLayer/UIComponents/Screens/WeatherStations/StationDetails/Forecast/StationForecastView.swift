@@ -49,8 +49,7 @@ struct StationForecastView: View {
 							.padding(.horizontal)
 						}
 						.padding(.bottom)
-                    }
-					.clipped()
+                    }					
 					.iPadMaxWidth()
 					.padding(.vertical)
                 }
