@@ -88,6 +88,7 @@ private extension ForecastDetailsView {
 						}
 					}
 				}
+				.disableScrollClip()
 				.onChange(of: viewModel.selectedForecastIndex) { index in
 					withAnimation {
 						proxy.scrollTo(index, anchor: .center)
