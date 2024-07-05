@@ -24,15 +24,7 @@ class ClaimPulseContainerViewModel: ClaimDeviceContainerViewModel {
 
 		self.serialNumber = serial
 		
-		guard let index = steps.firstIndex(where: {
-			if case .location = $0 {
-				return true
-			}
-			return false
-		}), selectedIndex != index else {
-			return
-		}
-		
+		let index = min(selectedIndex + 2, steps.count - 1)
 		moveTo(index: index)
 	}
 }
