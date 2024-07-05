@@ -13,6 +13,8 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 	let completion: GenericCallback<SerialNumber?>
 	@Published var showQrScanner: Bool = false
 
+	var validator: SNValidator { SNValidator(type: .d1) }
+
 	var bullets: [ClaimDeviceBulletView.Bullet] {
 		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.prepareGatewayD1BulletOne.localized.attributedMarkdown ?? ""),
 		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.prepareGatewayD1BulletTwo.localized.attributedMarkdown ?? "")]
@@ -34,7 +36,7 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 		(.qrcode, LocalizableString.ClaimDevice.scanQRCode.localized)
 	}
 
-	var scanType: AVMetadataObject.ObjectType {
+	var scanType: ScannerView.Mode {
 		.qr
 	}
 
@@ -51,16 +53,12 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 	}
 
 	func handleQRScanResult(result: String?) {
-		guard let result,
-			  case let input = result.components(separatedBy: ","),
-			  let serialNumber = input[safe: 0]?.trimWhiteSpaces() else {
+		showQrScanner = false
+
+		guard let result, let serialNumberObject = getSerialNumber(input: result) else {
 			return
 		}
 
-		showQrScanner = false
-
-		let key = input[safe: 1]?.trimWhiteSpaces()
-		let serialNumberObject = SerialNumber(serialNumber: serialNumber, key: key)
 		if validate(serialNumber: serialNumberObject) {
 			completion(serialNumberObject)
 		} else {
@@ -70,10 +68,11 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 
 	fileprivate func getSerialNumber(input: String) -> SerialNumber? {
 		let inputArray = input.components(separatedBy: ",")
-		guard let serialNumber = inputArray[safe: 0]?.trimWhiteSpaces() else {
+		guard var serialNumber = inputArray[safe: 0]?.trimWhiteSpaces() else {
 			return nil
 		}
-
+		
+		serialNumber = validator.normalized(serialNumber: serialNumber)
 		let key = inputArray[safe: 1]?.trimWhiteSpaces()
 		let serialNumberObject = SerialNumber(serialNumber: serialNumber, key: key)
 
@@ -85,7 +84,6 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 			return false
 		}
 		
-		let validator = SNValidator(type: .d1)
 		let serial = serialNumber.serialNumber
 
 		return validator.validate(serialNumber: serial) && validator.validateStationKey(key: key)
@@ -127,6 +125,9 @@ private extension ClaimDeviceSerialNumberViewModel {
 }
 
 class ClaimDeviceSerialNumberM5ViewModel: ClaimDeviceSerialNumberViewModel {
+
+	override var validator: SNValidator { .init(type: .m5) }
+
 	override var bullets: [ClaimDeviceBulletView.Bullet] {
 		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.prepareGatewayM5BulletOne.localized.attributedMarkdown ?? ""),
 		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.prepareGatewayM5BulletTwo.localized.attributedMarkdown ?? "")]
@@ -144,7 +145,7 @@ class ClaimDeviceSerialNumberM5ViewModel: ClaimDeviceSerialNumberViewModel {
 		guard serialNumber.key == nil else {
 			return false
 		}
-		let validator = SNValidator(type: .m5)
+
 		let serial = serialNumber.serialNumber
 
 		return validator.validate(serialNumber: serial)
@@ -152,6 +153,9 @@ class ClaimDeviceSerialNumberM5ViewModel: ClaimDeviceSerialNumberViewModel {
 }
 
 class ClaimDeviceSerialNumberPulseViewModel: ClaimDeviceSerialNumberViewModel {
+
+	override var validator: SNValidator { .init(type: .pulse) }
+	
 	override var bullets: [ClaimDeviceBulletView.Bullet] {
 		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.prepareGatewayPulseBulletOne.localized.attributedMarkdown ?? ""),
 		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.prepareGatewayPulseBulletTwo.localized.attributedMarkdown ?? "")]
@@ -168,17 +172,17 @@ class ClaimDeviceSerialNumberPulseViewModel: ClaimDeviceSerialNumberViewModel {
 	override var image: AssetEnum? {
 		.pulseBarcode
 	}
-	
+
 	override var scanButton: (icon: FontIcon, text: String) {
 		(.barcode, LocalizableString.ClaimDevice.scanBarcode.localized)
 	}
 
-	override var scanType: AVMetadataObject.ObjectType {
-		.code128
+	override var scanType: ScannerView.Mode {
+		.barcode
 	}
 
 	override func getSerialNumber(input: String) -> SerialNumber? {
-		let serial = input.trimWhiteSpaces()
+		let serial = validator.normalized(serialNumber: input.trimWhiteSpaces())
 		return SerialNumber(serialNumber: serial, key: nil)
 	}
 
@@ -187,7 +191,6 @@ class ClaimDeviceSerialNumberPulseViewModel: ClaimDeviceSerialNumberViewModel {
 			return false
 		}
 
-		let validator = SNValidator(type: .pulse)
 		let serial = serialNumber.serialNumber
 
 		return validator.validate(serialNumber: serial)
