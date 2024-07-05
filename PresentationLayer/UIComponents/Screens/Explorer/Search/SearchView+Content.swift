@@ -155,7 +155,6 @@ extension SearchView {
                     }
                     .padding(.horizontal, 36.0)
                 }
-				.clipped()
             }
         }
     }

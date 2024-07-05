@@ -104,6 +104,7 @@ private extension ForecastDetailsDailyView {
 							}
 						}
 					}
+					.disableScrollClip()
 					.onAppear {
 						if let index = item.initialHourlyItemIndex {
 							proxy.scrollTo(index, anchor: .leading)

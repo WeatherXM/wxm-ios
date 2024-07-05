@@ -38,7 +38,7 @@ struct ResetDeviceView: View {
 					}
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.padding(.top, CGFloat(.mediumSidePadding))
-				}.clipped()
+				}
 
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					resetToggle

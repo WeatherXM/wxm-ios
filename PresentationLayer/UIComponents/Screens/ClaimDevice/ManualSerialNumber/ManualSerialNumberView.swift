@@ -56,7 +56,6 @@ struct ManualSerialNumberView: View {
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.padding(.top, CGFloat(.largeSidePadding))
 				}
-				.clipped()
 
 				bottomButton
 			}

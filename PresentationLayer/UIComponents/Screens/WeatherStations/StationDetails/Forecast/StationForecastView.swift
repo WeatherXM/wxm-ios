@@ -49,8 +49,7 @@ struct StationForecastView: View {
 							.padding(.horizontal)
 						}
 						.padding(.bottom)
-                    }
-					.clipped()
+                    }					
 					.iPadMaxWidth()
 					.padding(.vertical)
                 }
@@ -89,19 +88,11 @@ private extension StationForecastView {
 						}
 					}.padding(.horizontal)
 				}
-
+				.disableScrollClip()
 			}
 		} else {
 			EmptyView()
 		}
-	}
-}
-
-/// Hack to disable clipping in hourly items scroll view
-private extension UIScrollView {
-	open override var clipsToBounds: Bool {
-		get { true }
-		set {}
 	}
 }
 

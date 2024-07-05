@@ -52,7 +52,6 @@ struct ClaimDeviceBeginView: View {
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.padding(.top, CGFloat(.largeSidePadding))
 				}
-				.clipped()
 
 				Button {
 					viewModel.handleButtonTap()

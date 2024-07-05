@@ -39,7 +39,6 @@ struct ClaimDeviceSerialNumberView: View {
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.padding(.top, CGFloat(.largeSidePadding))
 				}
-				.clipped()
 
 				bottomButtons
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
