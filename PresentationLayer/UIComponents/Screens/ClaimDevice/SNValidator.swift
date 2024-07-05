@@ -12,10 +12,10 @@ struct SNValidator {
 	private let SEPARATOR_CHARACTER = ":"
 	private let m5SerialNumberRegex = "^([0-9A-Fa-f]{2}:){8}[0-9A-Fa-f]{2}"
 	private let d1SerialNumberRegex = "^([0-9A-Fa-f]{2}:){9}[0-9A-Fa-f]{2}"
-	private let pulseSerialNumberRegex = "^P[0-9A-Fa-f]{16}$"
+	private let pulseSerialNumberRegex = "^[0-9A-Fa-f]{16}$"
 	private let claimingKeyRegex = "^([0-9]{6})"
 	private let inputClaimingKeyRegex = "^[0-9]{0,6}$"
-	private let inputPulseSerialNumberRegex = "^P[0-9A-Fa-f]{0,16}$"
+	private let inputPulseSerialNumberRegex = "^[0-9A-Fa-f]{0,16}$"
 
 	let type: DeviceType
 

@@ -123,15 +123,15 @@ private extension ManualSerialNumberView {
 				},
 				configuration: { tf in
 					tf.keyboardType = inputField.type.keyboardType
-					tf.horizontalPadding = CGFloat(.mediumSidePadding)
-					tf.verticalPadding = CGFloat(.mediumSidePadding)
 					tf.font = UIFont.systemFont(ofSize: CGFloat(.mediumFontSize), weight: .regular)
 					tf.textColor = UIColor(colorEnum: .text)
+					tf.prefix = inputField.type.prefix
 					tf.autocorrectionType = .no
 					tf.autocapitalizationType = .none
 					tf.backgroundColor = .clear
 				}
 			)
+			.padding(CGFloat(.mediumSidePadding))
 			.strokeBorder(color: Color(colorEnum: .midGrey), lineWidth: 1.0, radius: 5.0)
 		}
 	}

@@ -45,7 +45,21 @@ enum SerialNumberInputType: RawRepresentable, CustomStringConvertible {
 																placeholder: "A",
 																validator: .init(type: type))
 					case .pulse:
-						return "P1234567890123456"
+						return "1234567890123456"
+				}
+		}
+	}
+
+	var prefix: String? {
+		switch self {
+			case .claimingKey:
+				return nil
+			case .serialNumber(let type):
+				switch type {
+					case .m5, .d1:
+						return nil
+					case .pulse:
+						return "P"
 				}
 		}
 	}
