@@ -106,6 +106,7 @@ class DeviceInfoViewModel: ObservableObject {
 
     private let deviceInfoUseCase: DeviceInfoUseCase?
     private var cancellable: Set<AnyCancellable> = []
+	private let friendlyNameRegex = "^\\S.{0,24}$"
 
     init(device: DeviceDetails, followState: UserDeviceFollowState?) {
         self.device = device
@@ -266,16 +267,20 @@ private extension DeviceInfoViewModel {
         let okAction: AlertHelper.AlertObject.Action = (LocalizableString.save.localized, { [weak self] text in
             guard let self,
                   let deviceId = self.device.id,
-                  let text = text?.trimWhiteSpaces(),
-                  !text.isEmpty else {
+                  let text = text?.trimWhiteSpaces() else {
                 return
             }
 
+			if !text.matches(friendlyNameRegex) {
+				Toast.shared.show(text: LocalizableString.deviceInfoInvalidFriendlyName.localized.attributedMarkdown ?? "")
+				return
+			}
+
             self.setFriendlyName(deviceId: deviceId, name: text.trimWhiteSpaces())
 
-            WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .changeStationNameResult,
-                                                               .contentType: .changeStationName,
-                                                               .action: .edit])
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .changeStationNameResult,
+																	 .contentType: .changeStationName,
+																	 .action: .edit])
         })
 
         let clearAction: AlertHelper.AlertObject.Action = (LocalizableString.clear.localized, { [weak self] _ in
