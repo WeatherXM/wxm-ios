@@ -177,6 +177,6 @@ struct BaseTextField: View {
 
     func shareWalletAddress(walletAddress: String) {
         let activityVC = UIActivityViewController(activityItems: [walletAddress], applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+		UIApplication.shared.rootViewController?.present(activityVC, animated: true, completion: nil)
     }
 }

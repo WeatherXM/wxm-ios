@@ -58,7 +58,7 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 	}
 
 	private var boostFontIcon: FontIcon {
-		guard let totalBoostReward else {
+		guard totalBoostReward != nil else {
 			return .hexagonXmark
 		}
 

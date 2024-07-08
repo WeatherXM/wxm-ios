@@ -142,11 +142,6 @@ class MapViewLocationController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-		guard let accessToken: String = Bundle.main.getConfiguration(for: .mapBoxAccessToken) else {
-            return
-        }
-
-
         let cameraOptions = cameraSetup()
         let myMapInitOptions = MapInitOptions(
             cameraOptions: cameraOptions
@@ -173,7 +168,6 @@ class MapViewLocationController: UIViewController {
 				return
 			}
 
-			let pointAnnotation = PointAnnotation(coordinate: self.mapView.mapboxMap.cameraState.center)
 			self.locationPoint = self.mapView.mapboxMap.point(for: self.location)
 		}.store(in: &cancelablesSet)
 

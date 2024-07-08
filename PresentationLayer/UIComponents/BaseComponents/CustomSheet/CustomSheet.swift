@@ -210,7 +210,7 @@ private struct CustomSheetModifier<SheetContent: View>: ViewModifier {
     func body(content: Content) -> some View {
         return content
             .onChange(of: customSheet.isPresented) { isPresented in
-                var host = manager.customSheetHostController
+                let host = manager.customSheetHostController
 
                 if isPresented {
 

@@ -120,7 +120,7 @@ private extension WXMAlertView {
     }
 
     @ViewBuilder
-    func buttonsContainer<V: View>(content: () -> V) -> some View {
+    func buttonsContainer<Content: View>(content: () -> Content) -> some View {
         switch configuration.buttonsLayout {
             case .horizontal:
                 HStack {
