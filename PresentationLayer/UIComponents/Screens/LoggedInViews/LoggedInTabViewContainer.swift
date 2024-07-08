@@ -17,7 +17,6 @@ struct LoggedInTabViewContainer: View {
     @State var tabBarItemsSize: CGSize = .zero
 
     public init(swinjectHelper: SwinjectInterface) {
-        let container = swinjectHelper.getContainerForSwinject()
 		_explorerViewModel = StateObject(wrappedValue: ViewModelsFactory.getExplorerViewModel())
 		_profileViewModel = StateObject(wrappedValue: ViewModelsFactory.getProfileViewModel())
     }
@@ -138,7 +137,7 @@ private extension LoggedInTabViewContainer {
                     }
                 }
                 .transition(AnyTransition.move(edge: .trailing))
-                .animation(.easeIn)
+				.animation(.easeIn, value: explorerViewModel.showTopOfMapItems)
             }
         }
     }

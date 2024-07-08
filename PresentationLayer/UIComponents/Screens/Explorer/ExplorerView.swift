@@ -55,12 +55,12 @@ struct ExplorerView: View {
                     }
                 }
                 .transition(AnyTransition.move(edge: .trailing))
-                .animation(.easeIn)
 
                 signInContainer
             }
         }
         .padding(CGFloat(.defaultSidePadding))
+		.animation(.easeIn, value: viewModel.showTopOfMapItems)
     }
 
     var signInContainer: some View {
@@ -72,7 +72,6 @@ struct ExplorerView: View {
 		.iPadMaxWidth()
         .padding(.bottom, CGFloat(.mediumSidePadding))
         .transition(.move(edge: .bottom))
-        .animation(.easeIn)
     }
 
     var signInButton: some View {

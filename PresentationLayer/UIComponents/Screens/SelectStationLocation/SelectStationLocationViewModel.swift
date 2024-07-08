@@ -104,6 +104,6 @@ private extension SelectStationLocationViewModel {
 
 extension SelectStationLocationViewModel: HashableViewModel {
 	func hash(into hasher: inout Hasher) {
-		hasher.combine("\(device.id)")
+		hasher.combine("\(String(describing: device.id))")
 	}
 }

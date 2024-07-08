@@ -259,7 +259,6 @@ private extension WeatherField {
 				let isInHg = WeatherUnitsManager.default.pressureUnit == .inchOfMercury
 				let yMin = lineData.yMin
 				let yMax = lineData.yMax
-				let shouldChangeGranularity = isInHg && (yMax - yMin < 2.0)
 				return isInHg ? 0.01 : 1.0
 		}
 	}

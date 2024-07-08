@@ -317,7 +317,7 @@ extension StationDetailsViewModel: StationDetailsViewModelDelegate {
     }
 
     func offsetUpdated(diffOffset: CGFloat) {
-        #warning("TODO: Temporary disable the functionality in iOS 15 builds. Fix it!!!")
+        // Disable the expland/collapse functionality in iOS 15 builds because of internal iOS differencies
         guard #available(iOS 16.0, *) else {
             return
         }

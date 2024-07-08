@@ -231,7 +231,6 @@ private extension NetworkStatsViewModel {
         var dateString: String?
 
         if let days {
-            let count = days.count
             let lastVal = days.last?.value ?? 0
             let firstVal = days.first?.value ?? 0
             let diff = lastVal - firstVal

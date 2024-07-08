@@ -19,7 +19,6 @@ struct WeatherStationsHomeView: View {
     @StateObject private var viewModel: WeatherStationsHomeViewModel
 
     init(swinjectHelper: SwinjectInterface, isTabBarShowing: Binding<Bool>, tabBarItemsSize: Binding<CGSize>, isWalletEmpty: Binding<Bool>) {
-        let container = swinjectHelper.getContainerForSwinject()
 		_viewModel = StateObject(wrappedValue: ViewModelsFactory.getWeatherStationsHomeViewModel())
         _isTabBarShowing = isTabBarShowing
         _tabBarItemsSize = tabBarItemsSize

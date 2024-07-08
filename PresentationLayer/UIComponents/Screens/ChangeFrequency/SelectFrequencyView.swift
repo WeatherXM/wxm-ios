@@ -69,7 +69,6 @@ private extension SelectFrequencyView {
             .foregroundColor(Color(colorEnum: .text))
     }
 
-    @ViewBuilder
     var textLink: some View {
         let linkText = LocalizableString.SelectFrequency.listLinkText.localized
         let url = DisplayedLinks.heliumRegionFrequencies.linkURL

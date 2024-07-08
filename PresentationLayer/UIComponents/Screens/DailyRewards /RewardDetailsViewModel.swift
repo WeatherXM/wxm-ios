@@ -229,6 +229,6 @@ extension RewardDetailsViewModel: SelectStationLocationViewModelDelegate {
 
 extension RewardDetailsViewModel: HashableViewModel {
 	func hash(into hasher: inout Hasher) {
-		hasher.combine("\(device.id)-\(rewardDetailsResponse?.hashValue)")
+		hasher.combine("\(String(describing: device.id))-\(String(describing: rewardDetailsResponse?.hashValue))")
 	}
 }

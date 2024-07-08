@@ -90,7 +90,6 @@ private extension ChartCardView {
 
         let comps: [String] = chartDataModels.map { model in
 			let entry = model.entries[safe: index]
-            let value = entry?.y
 			let literals = type.getWeatherLiterals(chartEntry: entry, weatherField: model.weatherField)
             let formattedValue = "\(literals?.value ?? "")\(model.weatherField.shouldHaveSpaceWithUnit ? " " : "")\(literals?.unit ?? "")".trimWhiteSpaces()
 			return "\(type.highlightTitle(for: model.weatherField)): **\(formattedValue)**"

@@ -89,7 +89,7 @@ class ManualSerialNumberViewModel: ObservableObject {
 			switch field.type {
 				case .claimingKey:
 					return InputFieldResult(type: field.type, value: field.value)
-				case .serialNumber(let deviceType):
+				case .serialNumber(_):
 					let normalized = validator?.normalized(serialNumber: field.value) ?? field.value
 					return InputFieldResult(type: field.type, value: normalized)
 			}
