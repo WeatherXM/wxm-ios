@@ -24,8 +24,8 @@ enum ClaimDeviceStep: Identifiable {
 				"begin"
 			case .serialNumber:
 				"serialNumber"
-			case .manualSerialNumber:
-				"manualSerialNumber"
+			case .manualSerialNumber(let viewModel):
+				"manualSerialNumber-\(viewModel)"
 			case .location:
 				"location"
 			case .reset:

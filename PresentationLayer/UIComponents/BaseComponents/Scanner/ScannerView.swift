@@ -43,7 +43,7 @@ extension ScannerView {
 				case .qr:
 						.barcode(symbologies: [.qr])
 				case .barcode:
-						.barcode(symbologies: [.code128])
+						.barcode(symbologies: [.code128, .ean8, .ean13])
 			}
 		}
 
@@ -90,6 +90,8 @@ private struct Scanner: UIViewControllerRepresentable {
 				return
 			}
 
+			dataScanner.stopScanning()
+
 			switch firstItem {
 				case .text(let text):
 					completion(text.transcript)
@@ -124,7 +126,7 @@ private class DataScannerWrapperViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let controller = DataScannerViewController(recognizedDataTypes: [mode.toBarcodeSymbology],
-												   qualityLevel: .balanced,
+												   qualityLevel: .fast,
 												   isHighFrameRateTrackingEnabled: false,
 												   isPinchToZoomEnabled: false,
 												   isGuidanceEnabled: false)

@@ -37,9 +37,30 @@ enum SerialNumberInputType: RawRepresentable, CustomStringConvertible {
 	var placeholder: String {
 		switch self {
 			case .claimingKey:
-				"123456"
+				return "123456"
 			case .serialNumber(let type):
-				UITextField.formatAsSerialNumber("", placeholder: "A", validator: .init(type: type))
+				switch type {
+					case .m5, .d1:
+						return UITextField.formatAsSerialNumber("", 
+																placeholder: "A",
+																validator: .init(type: type))
+					case .pulse:
+						return "1234567890123456"
+				}
+		}
+	}
+
+	var prefix: String? {
+		switch self {
+			case .claimingKey:
+				return nil
+			case .serialNumber(let type):
+				switch type {
+					case .m5, .d1:
+						return nil
+					case .pulse:
+						return "P"
+				}
 		}
 	}
 
@@ -64,4 +85,10 @@ struct SerialNumberInputField: Identifiable {
 	mutating func setValue(value: String) {
 		self.value = value
 	}
+}
+
+/// The result to propagate to the container
+struct InputFieldResult {
+	let type: SerialNumberInputType
+	var value: String
 }

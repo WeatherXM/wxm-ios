@@ -666,6 +666,17 @@
         }
       }
     },
+    "claim_device_claim_pulse_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim Pulse | 4G"
+          }
+        }
+      }
+    },
     "claim_device_claiming_error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1106,6 +1117,39 @@
         }
       }
     },
+    "claim_device_enter_gateway_pulse_claiming_key_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upon reboot, the WG3000 gateway will display a 6-digit key on its display after a few minutes. Type it below."
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_pulse_claiming_key_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If the gateway does not display the 6-digit key, navigate to **4-Device Settings -> 4.1-Device Claiming** and wait for the **6-digit key** to be generated."
+          }
+        }
+      }
+    },
+    "claim_device_enter_gateway_pulse_serial_number_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type the barcode located on the **back** of your WG3000 gateway."
+          }
+        }
+      }
+    },
     "claim_device_enter_gateway_serial_number" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1513,6 +1557,28 @@
         }
       }
     },
+    "claim_device_prepare_gateway_pulse_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find the **Barcode** on the back of your gateway. "
+          }
+        }
+      }
+    },
+    "claim_device_prepare_gateway_pulse_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press **\"Scan Barcode\"** to activate your phone's camera and scan the barcode automatically. Alternatively, press **“Enter S/N manually”** to proceed to the next screen and enter your barcode."
+          }
+        }
+      }
+    },
     "claim_device_prepare_gateway_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1531,6 +1597,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pulse | 4G"
+          }
+        }
+      }
+    },
+    "claim_device_reset_pulse_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press the **POWER button** on the top of your WeatherXM WG3000 gateway until it turns off."
+          }
+        }
+      }
+    },
+    "claim_device_reset_pulse_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press the **POWER button** once again until it\nturns back on."
+          }
+        }
+      }
+    },
+    "claim_device_reset_pulse_has_rebooted_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The station has been rebooted."
+          }
+        }
+      }
+    },
+    "claim_device_reset_pulse_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After reboot, the gateway should display a 6-digit key on the screen. Write it down as you will need to type it in a next step."
           }
         }
       }
@@ -1619,6 +1729,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scan Again"
+          }
+        }
+      }
+    },
+    "claim_device_scan_barcode" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan Barcode"
           }
         }
       }

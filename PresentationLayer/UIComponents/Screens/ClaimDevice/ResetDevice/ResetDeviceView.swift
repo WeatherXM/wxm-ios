@@ -29,15 +29,14 @@ struct ResetDeviceView: View {
 
 						bullets
 						
-						Image(asset: .stationResetSchematic)
+						Image(asset: viewModel.image)
 							.resizable()
 							.aspectRatio(contentMode: .fit)
-							.frame(maxWidth: 600.0)
-							.padding(.horizontal)
+							.padding(.horizontal, CGFloat(.largeSidePadding))
 
-					}
-					.padding(.horizontal, CGFloat(.mediumSidePadding))
-					.padding(.top, CGFloat(.mediumSidePadding))
+						infoText
+					}					
+					.padding(CGFloat(.mediumSidePadding))
 				}
 
 				VStack(spacing: CGFloat(.defaultSpacing)) {
@@ -46,7 +45,7 @@ struct ResetDeviceView: View {
 					Button {
 						viewModel.handleButtonTap()
 					} label: {
-						Text(LocalizableString.ClaimDevice.pairStationViaBluetooth.localized)
+						Text(viewModel.ctaButtonTitle)
 					}
 					.buttonStyle(WXMButtonStyle.filled())
 					.disabled(!viewModel.resetToggle)
@@ -72,12 +71,11 @@ private extension ResetDeviceView {
 	@ViewBuilder
 	var resetToggle: some View {
 		HStack(alignment: .center, spacing: CGFloat(.smallSpacing)) {
-			Toggle(LocalizableString.ClaimDevice.iVeResetMyDeviceButton.localized,
-				   isOn: $viewModel.resetToggle)
+			Toggle(viewModel.resetToggleText, isOn: $viewModel.resetToggle)
 			.labelsHidden()
 			.toggleStyle(WXMToggleStyle.Default)
 
-			Text(LocalizableString.ClaimDevice.iVeResetMyDeviceButton.localized)
+			Text(viewModel.resetToggleText)
 				.foregroundColor(Color(colorEnum: .text))
 				.font(.system(size: CGFloat(.normalFontSize)))
 				.fixedSize(horizontal: false, vertical: true)
@@ -85,8 +83,30 @@ private extension ResetDeviceView {
 			Spacer()
 		}
 	}
+
+	@ViewBuilder
+	var infoText: some View {
+		if let info = viewModel.infoText {
+			HStack(alignment: .top) {
+				Text(FontIcon.infoCircle.rawValue)
+					.font(.fontAwesome(font: .FAProLight, size: CGFloat(.mediumFontSize)))
+					.foregroundStyle(Color(colorEnum: .darkGrey))
+
+				Text(info)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundStyle(Color(colorEnum: .darkGrey))
+				Spacer()
+			}
+		} else {
+			EmptyView()
+		}
+	}
 }
 
 #Preview {
 	ResetDeviceView(viewModel: .init() {})
+}
+
+#Preview {
+	ResetDeviceView(viewModel: ViewModelsFactory.getResetPulseViewModel {})
 }

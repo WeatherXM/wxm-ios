@@ -7,36 +7,34 @@
 
 import SwiftUI
 import WebKit
+import FLAnimatedImage
 
 struct GifImageView: UIViewRepresentable {
 	let fileName: String
 
-	func makeUIView(context: Context) -> WKWebView {
-		let webview = WKWebView()
-		webview.scrollView.isScrollEnabled = false
-		webview.isOpaque = false
-		webview.backgroundColor = .clear
-		if let url = Bundle.main.url(forResource: fileName, withExtension: "gif"),
-		   let data = try? Data(contentsOf: url) {
-			webview.load(data,
-						 mimeType: "image/gif",
-						 characterEncodingName: "UTF-8",
-						 baseURL: url.deletingLastPathComponent())
+	func makeUIView(context: Context) -> UIImageView {
+		let imageView = FLAnimatedImageView()
+		guard let url = Bundle.main.url(forResource: fileName,
+										withExtension: "gif"),
+			  let data = try? Data(contentsOf: url) else {
+			return imageView
 		}
 
-		return webview
+		let image = FLAnimatedImage(gifData: data)
+		imageView.animatedImage = image
+		imageView.contentMode = .scaleAspectFit
+
+		return imageView
 	}
 
-	func updateUIView(_ uiView: WKWebView, context: Context) {
-		uiView.reload()
-	}
+	func updateUIView(_ uiView: UIImageView, context: Context) {}
 }
 
 #Preview {
 	ZStack {
 		Color.red
 			.ignoresSafeArea()
-		GifImageView(fileName: "image_station_qr")
+		GifImageView(fileName: "image_pulse_claiming_key")
 			.aspectRatio(1.0, contentMode: .fit)
 
 	}

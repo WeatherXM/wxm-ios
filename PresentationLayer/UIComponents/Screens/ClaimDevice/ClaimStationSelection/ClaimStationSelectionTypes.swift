@@ -13,11 +13,6 @@ enum ClaimStationType: CaseIterable, CustomStringConvertible {
 	case helium
 	case pulse
 
-	// Omit pulse for now
-	static var allCases: [ClaimStationType] {
-		[.m5, .d1, .helium]
-	}
-
 	var navigationTitle: String {
 		switch self {
 			case .m5:
@@ -27,7 +22,7 @@ enum ClaimStationType: CaseIterable, CustomStringConvertible {
 			case .helium:
 				LocalizableString.ClaimDevice.claimHeliumTitle.localized
 			case .pulse:
-				LocalizableString.ClaimDevice.pulseTitle.localized
+				LocalizableString.ClaimDevice.claimPulseTitle.localized
 		}
 	}
 
