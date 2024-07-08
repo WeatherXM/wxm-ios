@@ -35,9 +35,8 @@ struct ResetDeviceView: View {
 							.padding(.horizontal, CGFloat(.largeSidePadding))
 
 						infoText
-					}
-					.padding(.horizontal, CGFloat(.mediumSidePadding))
-					.padding(.top, CGFloat(.mediumSidePadding))
+					}					
+					.padding(CGFloat(.mediumSidePadding))
 				}
 
 				VStack(spacing: CGFloat(.defaultSpacing)) {
