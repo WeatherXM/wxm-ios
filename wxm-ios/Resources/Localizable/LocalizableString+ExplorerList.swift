@@ -17,7 +17,7 @@ extension LocalizableString {
 
 extension LocalizableString.ExplorerList: WXMLocalizable {
 	var localized: String {
-		var localized = NSLocalizedString(key, comment: "")
+		let localized = NSLocalizedString(key, comment: "")
 		return localized
 	}
 

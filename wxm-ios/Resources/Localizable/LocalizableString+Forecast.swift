@@ -18,7 +18,7 @@ extension LocalizableString {
 
 extension LocalizableString.Forecast: WXMLocalizable {
 	var localized: String {
-		var localized = NSLocalizedString(key, comment: "")
+		let localized = NSLocalizedString(key, comment: "")
 		return localized
 	}
 

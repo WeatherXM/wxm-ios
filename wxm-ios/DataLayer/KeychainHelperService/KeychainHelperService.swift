@@ -77,7 +77,7 @@ public final class KeychainHelperService {
 		// Debug
 		if status != errSecSuccess {
 			let message = SecCopyErrorMessageString(status, nil) as? String
-			let error = NSError(domain: "keychain", code: -1, userInfo: ["message": message, "osStatus": status])
+			let error = NSError(domain: "keychain", code: -1, userInfo: ["message": message ?? "", "osStatus": status])
 			Logger.shared.logError(error)
 		}
         

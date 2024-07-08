@@ -49,7 +49,6 @@ struct StationRewardsView: View {
 					.iPadMaxWidth()
 					.padding()
 					.padding(.bottom, proxy.size.height / 2.0) // Quick fix for better experience while expanding/collapsing the containers's header
-					#warning("TODO: Find a better solution")
 				}
 				.spinningLoader(show: Binding(get: { viewModel.viewState == .loading }, set: { _ in }), hideContent: true)
 				.fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)

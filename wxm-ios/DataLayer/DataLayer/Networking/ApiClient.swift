@@ -217,14 +217,14 @@ public class ApiClient {
     }
 
 	private func debugResponse(urlString: String?, data: Data?) {
-		print(urlString)
+		print(urlString ?? "-")
 		guard let data = data,
 			  let json = try? JSONSerialization.jsonObject(with: data, options: []),
 			  let prettyPrintedJsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted),
 			  let noSlashesJsonData = try? JSONSerialization.data(withJSONObject: json, options: .withoutEscapingSlashes)
 		else {
 			print("Can not serialize JSON")
-			print("data: \(String(data: data ?? Data(), encoding: .utf8))")
+			print("data: \(String(data: data ?? Data(), encoding: .utf8) ?? "-")")
 			return
 		}
 		print(NSString(string: String(data: prettyPrintedJsonData, encoding: .utf8)!))
