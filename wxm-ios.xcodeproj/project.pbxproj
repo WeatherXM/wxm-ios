@@ -205,7 +205,7 @@
 		267547ED29A9181E008BCF40 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675473029A9181E008BCF40 /* WebView.swift */; };
 		267547F629A9181E008BCF40 /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675473C29A9181E008BCF40 /* TrackableScrollView.swift */; };
 		267547F729A9181E008BCF40 /* FailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675473D29A9181E008BCF40 /* FailView.swift */; };
-		267547F829A9181E008BCF40 /* QrScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675473E29A9181E008BCF40 /* QrScannerView.swift */; };
+		267547F829A9181E008BCF40 /* ScannerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675473E29A9181E008BCF40 /* ScannerOverlayView.swift */; };
 		267547FB29A9181E008BCF40 /* WeatherStationCard+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675474229A9181E008BCF40 /* WeatherStationCard+Content.swift */; };
 		267547FC29A9181E008BCF40 /* WeatherStationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675474329A9181E008BCF40 /* WeatherStationCard.swift */; };
 		267547FD29A9181E008BCF40 /* CardWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675474429A9181E008BCF40 /* CardWarningView.swift */; };
@@ -730,7 +730,7 @@
 		2675473029A9181E008BCF40 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		2675473C29A9181E008BCF40 /* TrackableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
 		2675473D29A9181E008BCF40 /* FailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailView.swift; sourceTree = "<group>"; };
-		2675473E29A9181E008BCF40 /* QrScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QrScannerView.swift; sourceTree = "<group>"; };
+		2675473E29A9181E008BCF40 /* ScannerOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerOverlayView.swift; sourceTree = "<group>"; };
 		2675474229A9181E008BCF40 /* WeatherStationCard+Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeatherStationCard+Content.swift"; sourceTree = "<group>"; };
 		2675474329A9181E008BCF40 /* WeatherStationCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherStationCard.swift; sourceTree = "<group>"; };
 		2675474429A9181E008BCF40 /* CardWarningView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardWarningView.swift; sourceTree = "<group>"; };
@@ -1904,7 +1904,7 @@
 			isa = PBXGroup;
 			children = (
 				26A308F82C2EE481007A029A /* ScannerView.swift */,
-				2675473E29A9181E008BCF40 /* QrScannerView.swift */,
+				2675473E29A9181E008BCF40 /* ScannerOverlayView.swift */,
 			);
 			path = Scanner;
 			sourceTree = "<group>";
@@ -2990,7 +2990,7 @@
 				2675480529A9181E008BCF40 /* ProgressBarStyle.swift in Sources */,
 				26BE25B62C244ED200799CB3 /* ClaimPulseContainerViewModel.swift in Sources */,
 				26F149E92BDFEAFA0029F981 /* ClaimDeviceContainerView.swift in Sources */,
-				267547F829A9181E008BCF40 /* QrScannerView.swift in Sources */,
+				267547F829A9181E008BCF40 /* ScannerOverlayView.swift in Sources */,
 				26A4118529BA1E1E00A2C10B /* RebootStationView.swift in Sources */,
 				26A4118729BA1E7000A2C10B /* RebootStationViewModel.swift in Sources */,
 				2675481C29A9181E008BCF40 /* RegisterView.swift in Sources */,
