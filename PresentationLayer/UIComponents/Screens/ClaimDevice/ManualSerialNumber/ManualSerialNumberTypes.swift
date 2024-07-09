@@ -72,6 +72,20 @@ enum SerialNumberInputType: RawRepresentable, CustomStringConvertible {
 					.asciiCapable
 		}
 	}
+
+	var autocapitalizationType: UITextAutocapitalizationType {
+		switch self {
+			case .claimingKey:
+					.none
+			case .serialNumber(let deviceType):
+				switch deviceType {
+					case .m5, .d1:
+							.none
+					case .pulse:
+							.allCharacters
+				}
+		}
+	}
 }
 
 struct SerialNumberInputField: Identifiable {

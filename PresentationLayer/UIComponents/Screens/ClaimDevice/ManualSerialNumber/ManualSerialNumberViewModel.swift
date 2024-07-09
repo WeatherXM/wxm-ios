@@ -76,9 +76,11 @@ class ManualSerialNumberViewModel: ObservableObject {
 						return false
 					case .pulse:
 						if let range = Range(range, in: textfield.text ?? ""),
-						   let newString = textfield.text?.replacingCharacters(in: range, with: text) {
-							return validator?.validateSerialNumberInput(input: newString) ?? true
+						   let newString = textfield.text?.replacingCharacters(in: range, with: text),
+						   validator?.validateSerialNumberInput(input: newString) ?? true {
+							textfield.text = newString.uppercased()
 						}
+						
 						return false
 				}
 		}
