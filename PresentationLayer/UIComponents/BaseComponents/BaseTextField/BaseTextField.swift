@@ -135,7 +135,7 @@ struct BaseTextField: View {
 
     var floatingLabel: some View {
         HStack {
-            Text(textFieldStyle.label).font(.system(size: CGFloat(.smallFontSize), weight: .bold, design: .default)).foregroundColor(Color(colorEnum: .primary))
+            Text(textFieldStyle.label).font(.system(size: CGFloat(.smallFontSize), weight: .bold, design: .default)).foregroundColor(Color(colorEnum: .wxmPrimary))
             Spacer()
         }
     }
@@ -165,11 +165,11 @@ struct BaseTextField: View {
 
     private var overlayViewColor: some View {
         if isTextFieldFocused && error == nil {
-            return RoundedRectangle(cornerRadius: CGFloat(.lightCornerRadius)).stroke(Color(colorEnum: .primary))
+            return RoundedRectangle(cornerRadius: CGFloat(.lightCornerRadius)).stroke(Color(colorEnum: .wxmPrimary))
         } else if !isTextFieldFocused && error == nil {
             return RoundedRectangle(cornerRadius: CGFloat(.lightCornerRadius)).stroke(Color(colorEnum: .midGrey))
         } else if error != nil && isTextFieldFocused {
-            return RoundedRectangle(cornerRadius: CGFloat(.lightCornerRadius)).stroke(Color(colorEnum: .primary))
+            return RoundedRectangle(cornerRadius: CGFloat(.lightCornerRadius)).stroke(Color(colorEnum: .wxmPrimary))
         } else {
             return RoundedRectangle(cornerRadius: CGFloat(.lightCornerRadius)).stroke(Color(colorEnum: .error))
         }

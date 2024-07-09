@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WXMToggleStyle: ToggleStyle {
     static var Default: WXMToggleStyle = .init(
-        onColor: Color(colorEnum: .primary),
+        onColor: Color(colorEnum: .wxmPrimary),
         onIcon: Image(asset: .toggleCheckmark),
         offIcon: Image(asset: .toggleXMark),
         thumbColorOff: Color(colorEnum: .darkGrey),

@@ -141,7 +141,7 @@ private extension RewardBoostsView {
 			} label: {
 				Text(LocalizableString.RewardDetails.readMore.localized)
 			}
-			.buttonStyle(WXMButtonStyle(fillColor: .layer1, strokeColor: .clear))
+			.buttonStyle(WXMButtonStyle(fillColor: .layer1, strokeColor: .noColor))
 		}
 		.WXMCardStyle()
 	}

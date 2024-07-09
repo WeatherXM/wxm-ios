@@ -208,15 +208,15 @@ extension NetworkStatsView {
                                 Text(" ") +
                                 Text(FontIcon.externalLink.rawValue)
                                     .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
-                                    .foregroundColor(Color(colorEnum: .primary))
+                                    .foregroundColor(Color(colorEnum: .wxmPrimary))
                             }
-                            .tint(Color(colorEnum: .primary))
+                            .tint(Color(colorEnum: .wxmPrimary))
                             .simultaneousGesture(TapGesture().onEnded {
                                 stats.externalLinkTapAction?()
                             })
                         } else {
                             mainText
-                                .tint(Color(colorEnum: .primary))
+                                .tint(Color(colorEnum: .wxmPrimary))
                         }
 
                         Spacer()
@@ -416,7 +416,7 @@ extension NetworkStatsView {
                 HStack {
                     let mainText = Text(cta.description)
                         .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-                        .foregroundColor(Color(colorEnum: .primary))
+                        .foregroundColor(Color(colorEnum: .wxmPrimary))
 
                     if let accessory = cta.accessory {
                         Button {

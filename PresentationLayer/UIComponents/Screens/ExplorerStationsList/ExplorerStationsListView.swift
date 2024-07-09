@@ -29,7 +29,7 @@ struct ExplorerStationsListView: View {
 			} label: {
 				Text(FontIcon.share.rawValue)
 					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-					.foregroundColor(Color(colorEnum: .primary))
+					.foregroundColor(Color(colorEnum: .wxmPrimary))
 					.frame(width: 30.0, height: 30.0)
 			}
 			.wxmShareDialog(show: $showShareDialog, text: viewModel.cellShareUrl)
@@ -80,7 +80,7 @@ private struct ContentView: View {
 
                                 Text(LocalizableString.signUp.localized.uppercased())
                                     .font(.system(size: CGFloat(.normalFontSize)))
-                                    .foregroundColor(Color(colorEnum: .primary))
+                                    .foregroundColor(Color(colorEnum: .wxmPrimary))
                             }
                         }
                     }

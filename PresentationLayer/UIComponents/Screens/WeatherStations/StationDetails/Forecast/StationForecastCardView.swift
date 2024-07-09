@@ -23,7 +23,7 @@ struct StationForecastCardView: View {
             VStack(spacing: CGFloat(.smallToMediumSpacing)) {
 				HStack {
 					Text(forecast.daily?.timestamp?.getWeekDayAndDate() ?? "-")
-						.foregroundColor(Color(colorEnum: .primary))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
 						.font(.system(size: CGFloat(.normalFontSize)))
 
 					Spacer()

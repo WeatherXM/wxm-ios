@@ -79,7 +79,7 @@ struct SignInView: View {
             } label: {
                 Text(LocalizableString.forgotPassword.localized)
                     .font(.system(size: CGFloat(.normalFontSize), weight: .bold))
-                    .foregroundColor(Color(colorEnum: .primary))
+                    .foregroundColor(Color(colorEnum: .wxmPrimary))
                     .padding(.bottom, CGFloat(.defaultSpacing))
             }
         }

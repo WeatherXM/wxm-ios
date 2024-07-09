@@ -26,7 +26,7 @@ struct DeviceInfoRowView: View {
 						.fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(Color(colorEnum: .darkestBlue))
                         .font(.system(size: CGFloat(.normalFontSize)))
-                        .tint(Color(colorEnum: .primary))
+                        .tint(Color(colorEnum: .wxmPrimary))
                     Spacer()
                 }
             }

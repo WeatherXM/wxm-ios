@@ -59,7 +59,7 @@ struct RouterViewController<Content: View>: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UINavigationController {
         let controller = UINavigationController(rootViewController: UIHostingController(rootView: content()))
         controller.navigationBar.prefersLargeTitles = true
-        controller.navigationBar.tintColor = UIColor(colorEnum: .primary)
+        controller.navigationBar.tintColor = UIColor(colorEnum: .wxmPrimary)
         host.hostingController = controller
         return controller
     }

@@ -46,7 +46,7 @@ struct WeatherStationsHomeView: View {
         } label: {
             Text(FontIcon.sliders.rawValue)
                 .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-				.foregroundColor(Color(colorEnum: viewModel.isFiltersActive ? .primary : .text))
+				.foregroundColor(Color(colorEnum: viewModel.isFiltersActive ? .wxmPrimary : .text))
                 .frame(width: 30.0, height: 30.0)
         }
     }
@@ -123,7 +123,7 @@ private struct ContentView: View {
 
                         } label: {
                             Text(LocalizableString.addWalletTitle.localized)
-                                .foregroundColor(Color(colorEnum: .primary))
+                                .foregroundColor(Color(colorEnum: .wxmPrimary))
                                 .font(.system(size: CGFloat(.smallFontSize), weight: .bold))
                         }
                     }

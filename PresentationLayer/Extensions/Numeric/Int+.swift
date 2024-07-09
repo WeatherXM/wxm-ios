@@ -63,7 +63,7 @@ extension Int {
 			case 95...100:
 				return .success
 			default:
-				return .clear
+				return .noColor
 		}
 	}
 }

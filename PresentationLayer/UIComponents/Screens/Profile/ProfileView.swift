@@ -85,7 +85,7 @@ private struct ContentView: View {
 			VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
 				Text(ProfileField.rewards.title)
 					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-					.foregroundColor(Color(colorEnum: .primary))
+					.foregroundColor(Color(colorEnum: .wxmPrimary))
 
 				Text(viewModel.allocatedRewards)
 					.font(.system(size: CGFloat(.normalFontSize)))
@@ -102,12 +102,12 @@ private struct ContentView: View {
 						.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 						.padding(.vertical, CGFloat(.smallToMediumSidePadding))
 				}
-				.buttonStyle(WXMButtonStyle(fillColor: .blueTint, strokeColor: .clear, fixedSize: true))
+				.buttonStyle(WXMButtonStyle(fillColor: .blueTint, strokeColor: .noColor, fixedSize: true))
 			}
 		}
 		.WXMCardStyle()
 		.indication(show: $viewModel.showRewardsIndication,
-					borderColor: Color(colorEnum: viewModel.rewardsIndicationType.showBorder ? .primary : .clear),
+					borderColor: Color(colorEnum: viewModel.rewardsIndicationType.showBorder ? .wxmPrimary : .noColor),
 					bgColor: Color(colorEnum: .blueTint)) {
 			Group {
 				switch viewModel.rewardsIndicationType {
@@ -170,7 +170,7 @@ private struct ContentView: View {
 				VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
 					Text(ProfileField.wallet.title)
 						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-						.foregroundColor(Color(colorEnum: .primary))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
 
 					if let walletAddress = viewModel.userInfoResponse.wallet?.address?.walletAddressMaskString, !walletAddress.isEmpty {
 						Text(walletAddress)
@@ -216,7 +216,7 @@ private struct ContentView: View {
 				VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
 					Text(ProfileField.settings.title)
 						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-						.foregroundColor(Color(colorEnum: .primary))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
 
 					Text(LocalizableString.Profile.prefsSettingsDescription.localized)
 						.font(.system(size: CGFloat(.normalFontSize)))

@@ -19,7 +19,7 @@ enum WeatherChartsConstants {
 
     /* Colors */
     static let GRID_COLOR = UIColor(colorEnum: .bg)
-    static let legendColors: [ColorEnum] = [.primary, .chartSecondaryLine]
+    static let legendColors: [ColorEnum] = [.wxmPrimary, .chartSecondaryLine]
 
 }
 
@@ -97,7 +97,7 @@ private extension WeatherLineChartView {
         var dataSets: [LineChartDataSet] = []
         for (index, element) in chartData.enumerated() {
             let datasetsTuple = generateDataSets(from: element.entries,
-                                                 color: WeatherChartsConstants.legendColors[safe: index] ?? .primary,
+                                                 color: WeatherChartsConstants.legendColors[safe: index] ?? .wxmPrimary,
                                                  weatherField: element.weatherField,
                                                  axisDependency: type.getAxisDependecy(for: element.weatherField))
 
@@ -230,7 +230,7 @@ private extension WeatherLineChartView {
 }
 
 private extension LineChartDataSet {
-    func setDefaultSettings(color: UIColor = UIColor(colorEnum: .primary)) {
+    func setDefaultSettings(color: UIColor = UIColor(colorEnum: .wxmPrimary)) {
         drawCircleHoleEnabled = false
         circleRadius = WeatherChartsConstants.POINT_SIZE
         lineWidth = WeatherChartsConstants.LINE_WIDTH
@@ -241,7 +241,7 @@ private extension LineChartDataSet {
         highlightColor = color
         drawHorizontalHighlightIndicatorEnabled = false
         highlightLineWidth = 2.0
-        highlightColor = UIColor(colorEnum: .primary)
+        highlightColor = UIColor(colorEnum: .wxmPrimary)
         highlightLineDashLengths = [4.0]
     }
 }
@@ -257,8 +257,6 @@ private extension WeatherField {
 				return isInchesSelected ? 0.01 : 0.1
 			case .pressure:
 				let isInHg = WeatherUnitsManager.default.pressureUnit == .inchOfMercury
-				let yMin = lineData.yMin
-				let yMax = lineData.yMax
 				return isInHg ? 0.01 : 1.0
 		}
 	}

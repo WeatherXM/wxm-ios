@@ -97,7 +97,7 @@ extension WXMEmptyView {
 
 struct WXMEmptyView_Previews: PreviewProvider {
     static var previews: some View {
-        let conf = WXMEmptyView.Configuration(image: (.lockedIcon, .primary),
+        let conf = WXMEmptyView.Configuration(image: (.lockedIcon, .wxmPrimary),
                                               title: "SERVICE UNAVAILABLE",
                                               description: "Server busy, site may have moved or you lost your dial-up Internet connection",
                                               buttonFontIcon: .gear,

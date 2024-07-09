@@ -29,7 +29,7 @@ struct StationDetailsContainerView: View {
             } label: {
                 Text(FontIcon.share.rawValue)
                     .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-                    .foregroundColor(Color(colorEnum: .primary))
+                    .foregroundColor(Color(colorEnum: .wxmPrimary))
                     .frame(width: 30.0, height: 30.0)
             }
 			.wxmShareDialog(show: $viewModel.showShareDialog, text: viewModel.shareDialogText ?? "")
@@ -41,7 +41,7 @@ struct StationDetailsContainerView: View {
                 } label: {
                     Text(FontIcon.threeDots.rawValue)
                         .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-                        .foregroundColor(Color(colorEnum: .primary))
+                        .foregroundColor(Color(colorEnum: .wxmPrimary))
                         .frame(width: 30.0, height: 30.0)
                 }
                 .wxmPopOver(show: $showSettingsPopOver) {
@@ -146,13 +146,13 @@ private struct StationDetailsView: View {
 
                         Text(LocalizableString.signUp.localized.uppercased())
                             .font(.system(size: CGFloat(.normalFontSize)))
-                            .foregroundColor(Color(colorEnum: .primary))
+                            .foregroundColor(Color(colorEnum: .wxmPrimary))
                     }
                 }
             }
         }
         .onAppear {
-            navigationObject.titleColor = Color(colorEnum: .primary)
+            navigationObject.titleColor = Color(colorEnum: .wxmPrimary)
             navigationObject.navigationBarColor = Color(colorEnum: .top)
         }
         .onChange(of: selectedIndex) { _ in

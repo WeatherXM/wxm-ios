@@ -74,7 +74,7 @@ private extension NoRewardsView {
 		.padding(CGFloat(.smallSidePadding))
 		.background {
 			HStack(spacing: 0.0) {
-				Color(colorEnum: .primary)
+				Color(colorEnum: .wxmPrimary)
 					.frame(width: 1.0)
 				Color(colorEnum: .blueTint)
 			}

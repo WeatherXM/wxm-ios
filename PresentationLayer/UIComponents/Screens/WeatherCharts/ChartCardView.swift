@@ -74,7 +74,7 @@ private extension ChartCardView {
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.caption)))
                         .lineLimit(1)
-                    Color(colorEnum: WeatherChartsConstants.legendColors[safe: index] ?? .primary)
+                    Color(colorEnum: WeatherChartsConstants.legendColors[safe: index] ?? .wxmPrimary)
                         .frame(width: 44.0, height: 8.0)
                         .cornerRadius(CGFloat(.lightCornerRadius))
                 }

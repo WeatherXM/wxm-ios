@@ -75,7 +75,7 @@ private extension SelectFrequencyView {
         let link = "**[\(linkText)](\(url))**"
 
         var actualText = LocalizableString.SelectFrequency.listLink(link).localized.attributedMarkdown ?? ""
-        let container = AttributeContainer([.foregroundColor: UIColor(colorEnum: .primary)])
+        let container = AttributeContainer([.foregroundColor: UIColor(colorEnum: .wxmPrimary)])
         let range = actualText.range(of: linkText)!
         actualText[range].mergeAttributes(container)
 

@@ -94,7 +94,7 @@ struct ExplorerView: View {
 
                 Text(LocalizableString.signUp.localized.uppercased())
                     .font(.system(size: CGFloat(.normalFontSize)))
-                    .foregroundColor(Color(colorEnum: .primary))
+                    .foregroundColor(Color(colorEnum: .wxmPrimary))
             }
         }
     }

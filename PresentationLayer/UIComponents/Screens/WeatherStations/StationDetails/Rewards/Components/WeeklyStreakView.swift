@@ -65,7 +65,7 @@ struct WeeklyStreakView: View {
 			} label: {
 				Text(LocalizableString.StationDetails.viewTimelineButtonTitle.localized)
 			}
-			.buttonStyle(WXMButtonStyle(fillColor: .layer1, strokeColor: .clear))
+			.buttonStyle(WXMButtonStyle(fillColor: .layer1, strokeColor: .noColor))
 		}
 		.WXMCardStyle()
     }

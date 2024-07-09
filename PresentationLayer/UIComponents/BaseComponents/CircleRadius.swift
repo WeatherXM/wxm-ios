@@ -17,11 +17,11 @@ struct CircleRadius: View {
         ZStack {
             Circle()
                 .inset(by: 1)
-                .stroke(Color(colorEnum: isOptionActive ? .primary : .text), lineWidth: borderWidth)
+                .stroke(Color(colorEnum: isOptionActive ? .wxmPrimary : .text), lineWidth: borderWidth)
                 .frame(width: outerCircleWidth, height: outerCircleWidth)
             if isOptionActive {
                 Circle()
-                    .fill(Color(colorEnum: .primary))
+                    .fill(Color(colorEnum: .wxmPrimary))
                     .frame(width: innerCircleWidth, height: innerCircleWidth)
             }
         }

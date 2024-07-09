@@ -19,11 +19,11 @@ struct WXMButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled: Bool
 
     init(
-        textColor: ColorEnum = .primary,
+        textColor: ColorEnum = .wxmPrimary,
         textColorDisabled: ColorEnum = .darkGrey,
-        fillColor: ColorEnum = .clear,
+        fillColor: ColorEnum = .noColor,
         fillColorDisabled: ColorEnum = .midGrey,
-        strokeColor: ColorEnum = .primary,
+        strokeColor: ColorEnum = .wxmPrimary,
         strokeColorDisabled: ColorEnum = .midGrey,
         fixedSize: Bool = false
     ) {
@@ -75,26 +75,26 @@ struct WXMButtonStyle: ButtonStyle {
 extension WXMButtonStyle {
     static func filled(fixedSize: Bool = false) -> Self {
         Self.init(textColor: .top,
-                  fillColor: .primary,
+                  fillColor: .wxmPrimary,
                   fixedSize: fixedSize)
     }
 
     static func plain(fixedSize: Bool = false) -> Self {
-        Self.init(strokeColor: .clear,
+        Self.init(strokeColor: .noColor,
                   fixedSize: fixedSize)
     }
 
     static var solid: Self {
-        Self.init(textColor: Color(colorEnum: .primary),
+        Self.init(textColor: Color(colorEnum: .wxmPrimary),
                   textColorDisabled: Color(colorEnum: .midGrey),
                   fillColor: Color(colorEnum: .top),
                   fillColorDisabled: Color(colorEnum: .midGrey).opacity(0.15),
-                  strokeColor: Color(colorEnum: .primary),
+                  strokeColor: Color(colorEnum: .wxmPrimary),
                   strokeColorDisabled: Color(colorEnum: .midGrey))
     }
 
 	static var transparent: Self {
-		Self.init(textColor: Color(colorEnum: .primary),
+		Self.init(textColor: Color(colorEnum: .wxmPrimary),
 				  textColorDisabled: Color(colorEnum: .midGrey),
 				  fillColor: Color(colorEnum: .trasnparentButtonBg),
 				  fillColorDisabled: Color(colorEnum: .midGrey).opacity(0.15),
@@ -103,7 +103,7 @@ extension WXMButtonStyle {
 	}
 
 	static var transparentFixedSize: Self {
-		Self.init(textColor: Color(colorEnum: .primary),
+		Self.init(textColor: Color(colorEnum: .wxmPrimary),
 				  textColorDisabled: Color(colorEnum: .midGrey),
 				  fillColor: Color(colorEnum: .trasnparentButtonBg),
 				  fillColorDisabled: Color(colorEnum: .midGrey).opacity(0.15),
@@ -113,7 +113,7 @@ extension WXMButtonStyle {
 	}
 
 	static func transparent(fillColor: ColorEnum) -> Self {
-		Self.init(textColor: Color(colorEnum: .primary),
+		Self.init(textColor: Color(colorEnum: .wxmPrimary),
 				  textColorDisabled: Color(colorEnum: .midGrey),
 				  fillColor: Color(colorEnum: fillColor).opacity(0.5),
 				  fillColorDisabled: Color(colorEnum: .midGrey).opacity(0.15),

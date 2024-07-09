@@ -34,7 +34,7 @@ struct HistoryContainerView: View {
         } label: {
             Text(FontIcon.calendar.rawValue)
                 .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-                .foregroundColor(Color(colorEnum: .primary))
+                .foregroundColor(Color(colorEnum: .wxmPrimary))
                 .frame(width: 30.0, height: 30.0)
         }
 		.modify { [weak viewModel] btn in

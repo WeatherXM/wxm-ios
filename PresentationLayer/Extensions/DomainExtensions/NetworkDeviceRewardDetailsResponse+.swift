@@ -75,7 +75,7 @@ extension NetworkDeviceRewardDetailsResponse {
 
 	private var dataQualityColor: ColorEnum {
 		guard let qodScore = base?.qodScore else {
-			return .clear
+			return .noColor
 		}
 		return qodScore.rewardScoreColor
 	}

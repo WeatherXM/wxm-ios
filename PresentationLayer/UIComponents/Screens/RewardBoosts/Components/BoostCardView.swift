@@ -16,7 +16,7 @@ struct BoostCardView: View {
 			HStack {
 				Text(boost.title)
 					.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
-					.foregroundColor(Color(colorEnum: .white))
+					.foregroundColor(Color(colorEnum: .wxmWhite))
 				Spacer()
 			}
 
@@ -24,7 +24,7 @@ struct BoostCardView: View {
 				HStack {
 					Text("+ \(boost.reward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
 						.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
-						.foregroundColor(Color(colorEnum: .white))
+						.foregroundColor(Color(colorEnum: .wxmWhite))
 					Spacer()
 				}
 
@@ -32,7 +32,7 @@ struct BoostCardView: View {
 					HStack {
 						Text(LocalizableString.Boosts.boostTokensEarned(date.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone, showTimeZoneIndication: true).capitalizedSentence).localized)
 							.font(.system(size: CGFloat(.normalFontSize)))
-							.foregroundColor(Color(colorEnum: .white))
+							.foregroundColor(Color(colorEnum: .wxmWhite))
 						Spacer()
 					}
 				}
@@ -70,13 +70,13 @@ private extension BoostCardView {
 				HStack {
 					Text(LocalizableString.Boosts.dailyBoostScore.localized)
 						.font(.system(size: CGFloat(.normalFontSize)))
-						.foregroundColor(Color(colorEnum: .white))
-					
+						.foregroundColor(Color(colorEnum: .wxmWhite))
+
 					Spacer()
 					
 					Text(LocalizableString.percentage(Float(score)).localized)
 						.font(.system(size: CGFloat(.normalFontSize)))
-						.foregroundColor(Color(colorEnum: .white))
+						.foregroundColor(Color(colorEnum: .wxmWhite))
 				}
 
 				Divider().overlay(Color(colorEnum: .lightLayer2))
@@ -84,7 +84,7 @@ private extension BoostCardView {
 				HStack {
 					Text(lostRewardString)
 						.font(.system(size: CGFloat(.normalFontSize)))
-						.foregroundColor(Color(colorEnum: .white))
+						.foregroundColor(Color(colorEnum: .wxmWhite))
 					Spacer()
 				}
 			}

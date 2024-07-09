@@ -182,7 +182,7 @@ extension NetworkStatsViewModel {
 																		.init(title: "WS2000",
 																			  value: "8,642",
 																			  percentage: 1.0,
-																			  color: .primary,
+																			  color: .wxmPrimary,
 																			  url: nil)],
 															  analyticsItemId: .total)
 
@@ -201,7 +201,7 @@ extension NetworkStatsViewModel {
 																		 .init(title: "WS2000",
 																			   value: "8,642",
 																			   percentage: 0.8,
-																			   color: .primary,
+																			   color: .wxmPrimary,
 																			   url: nil)],
 															   analyticsItemId: .claimed)
 

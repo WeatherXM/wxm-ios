@@ -28,11 +28,11 @@ struct StationInfoView: View {
                     HStack(spacing: 0.0) {
                         Image(asset: .shareIcon)
                             .renderingMode(.template)
-                            .foregroundColor(Color(colorEnum: .primary))
+                            .foregroundColor(Color(colorEnum: .wxmPrimary))
 
                         Text(LocalizableString.share.localized)
                             .font(.system(size: CGFloat(.normalFontSize), weight: .bold))
-                            .foregroundColor(Color(colorEnum: .primary))
+                            .foregroundColor(Color(colorEnum: .wxmPrimary))
                     }
                 }
                 .buttonStyle(.plain)

@@ -118,7 +118,7 @@ private extension SelectDeviceView {
 
 				Label(title,
 					  image: AssetEnum.claimBluetoothButton.rawValue)
-				.foregroundColor(Color(colorEnum: .primary))
+				.foregroundColor(Color(colorEnum: .wxmPrimary))
 			}
 		}
 		.buttonStyle(WXMButtonStyle())
@@ -212,7 +212,7 @@ private extension SelectDeviceView {
 				HStack {
 					Text(LocalizableString.ClaimDevice.deviceId(device.name ?? "").localized)
 						.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
-						.foregroundColor(Color(colorEnum: .primary))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
 					Spacer()
 				}
 

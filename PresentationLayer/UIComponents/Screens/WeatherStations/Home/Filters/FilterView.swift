@@ -105,7 +105,7 @@ private extension FilterView {
                         let isSelected = option.description == selected.description
                         Image(asset: isSelected ? .radioButtonActive : .radioButton)
                             .renderingMode(.template)
-                            .foregroundColor(Color(colorEnum: isSelected ? .primary : .midGrey))
+                            .foregroundColor(Color(colorEnum: isSelected ? .wxmPrimary : .midGrey))
                         Text(option.description)
                             .font(.system(size: CGFloat(.normalFontSize)))
                             .foregroundColor(Color(colorEnum: .text))

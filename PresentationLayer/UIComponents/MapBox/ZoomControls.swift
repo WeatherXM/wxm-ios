@@ -25,7 +25,7 @@ struct ZoomControls: View {
 							.padding(CGFloat(.mediumSidePadding))
 					}
 
-					Color(colorEnum: .primary)
+					Color(colorEnum: .wxmPrimary)
 						.frame(height: 2.0)
 
 					Button {
@@ -35,10 +35,10 @@ struct ZoomControls: View {
 							.padding(CGFloat(.mediumSidePadding))
 					}
 				}
-				.foregroundStyle(Color(colorEnum: .primary))
+				.foregroundStyle(Color(colorEnum: .wxmPrimary))
 				.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 				.background(Color(colorEnum: .top).cornerRadius(CGFloat(.cardCornerRadius)))
-				.strokeBorder(color: Color(colorEnum: .primary),
+				.strokeBorder(color: Color(colorEnum: .wxmPrimary),
 							  lineWidth: 2.0,
 							  radius: CGFloat(.cardCornerRadius))
 				.fixedSize()

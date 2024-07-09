@@ -20,7 +20,7 @@ struct AddButton: View {
                     .foregroundColor(Color(colorEnum: .top))
             }
             .frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
-            .background(Color(colorEnum: .primary))
+            .background(Color(colorEnum: .wxmPrimary))
             .cornerRadius(CGFloat(.cardCornerRadius))
             .shadow(radius: ShadowEnum.addButton.radius, x: ShadowEnum.addButton.xVal, y: ShadowEnum.addButton.yVal)
         }

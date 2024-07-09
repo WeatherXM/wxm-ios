@@ -59,7 +59,7 @@ struct UnitsOptionsModalView: View {
                 settingsViewModel.isShowingUnitsOverlay = false
             } label: {
                 Text(LocalizableString.cancel.localized)
-                    .foregroundColor(Color(colorEnum: .primary))
+                    .foregroundColor(Color(colorEnum: .wxmPrimary))
             }
         }
     }

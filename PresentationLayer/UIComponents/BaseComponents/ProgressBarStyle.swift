@@ -11,7 +11,7 @@ struct ProgressBarStyle: ProgressViewStyle {
 	var withOffset: Bool = false
     var text: String?
     var bgColor: Color = Color(colorEnum: .midGrey)
-    var progressColor: Color = Color(colorEnum: .primary)
+    var progressColor: Color = Color(colorEnum: .wxmPrimary)
 
     @State private var textFrame: CGRect = .zero
     @State private var progressSize: CGSize = .zero

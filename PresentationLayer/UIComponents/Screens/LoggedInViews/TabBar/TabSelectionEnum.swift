@@ -27,7 +27,7 @@ enum TabSelectionEnum: CaseIterable, Hashable {
 	var tabSelected: Color {
 		switch self {
 			case .homeTab, .mapTab, .profileTab:
-				return Color(colorEnum: .primary)
+				return Color(colorEnum: .wxmPrimary)
 		}
 	}
 	

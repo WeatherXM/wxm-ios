@@ -12,7 +12,7 @@ struct SettingsSectionTitle: View {
 
     var body: some View {
         Text(title.sectionTitle)
-            .foregroundColor(Color(colorEnum: .primary))
+            .foregroundColor(Color(colorEnum: .wxmPrimary))
             .font(.system(size: CGFloat(.mediumFontSize)))
     }
 }

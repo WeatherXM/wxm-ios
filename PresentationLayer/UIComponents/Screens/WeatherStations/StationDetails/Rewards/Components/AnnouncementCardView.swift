@@ -18,12 +18,12 @@ struct AnnouncementCardView: View {
 
 				Text(FontIcon.hexagonCheck.rawValue)
 					.font(.fontAwesome(font: .FAPro, size: CGFloat(.XLTitleFontSize)))
-					.foregroundColor(Color(colorEnum: .white))
+					.foregroundColor(Color(colorEnum: .wxmWhite))
 
 
 				Text(title)
 					.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
-					.foregroundColor(Color(colorEnum: .white))
+					.foregroundColor(Color(colorEnum: .wxmWhite))
 					.lineLimit(1)
 
 				Spacer()
@@ -33,7 +33,7 @@ struct AnnouncementCardView: View {
 
 			Text(description)
 				.font(.system(size: CGFloat(.mediumFontSize)))
-				.foregroundColor(Color(colorEnum: .white))
+				.foregroundColor(Color(colorEnum: .wxmWhite))
 				.multilineTextAlignment(.center)
 		}
 		.padding(CGFloat(.defaultSidePadding))
