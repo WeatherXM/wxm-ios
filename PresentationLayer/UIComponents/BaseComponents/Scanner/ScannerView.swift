@@ -19,7 +19,7 @@ struct ScannerView: View {
 		if #available(iOS 16.0, *) {
 			Scanner(mode: mode, completion: completion)
 		} else {
-			CodeScannerView(codeTypes: [mode.toMetadataObjectType]) { result in
+			CodeScannerView(codeTypes: mode.toMetadataObjectTypes) { result in
 				switch result {
 					case .success(let input):
 						completion(input.string)
@@ -47,12 +47,14 @@ extension ScannerView {
 			}
 		}
 
-		var toMetadataObjectType: AVMetadataObject.ObjectType {
+		var toMetadataObjectTypes: [AVMetadataObject.ObjectType] {
 			switch self {
 				case .qr:
-						.qr
+					[.qr]
 				case .barcode:
-						.code128
+					[.code128, .ean8, .ean13]
+			}
+		}
 
 		var overlayLayout: ScannerOverlayView.Layout {
 			switch self {
@@ -133,8 +135,8 @@ private class DataScannerWrapperViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let controller = DataScannerViewController(recognizedDataTypes: [mode.toBarcodeSymbology],
-												   qualityLevel: .fast,
-												   isHighFrameRateTrackingEnabled: false,
+												   qualityLevel: .accurate,
+												   isHighFrameRateTrackingEnabled: true,
 												   isPinchToZoomEnabled: false,
 												   isGuidanceEnabled: false)
 		scannerController = controller
