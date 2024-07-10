@@ -21,7 +21,7 @@ public extension Date {
 		case monthLiteralYearDayTime = "MMM d, yyy, HH:mm"
         case dayFullLiteral = "EEEE"
         case dayShortLiteralDayMonth = "E dd, MMM yy"
-		case dayShortLiteralMonthDay = "E, MMM yy"
+		case dayShortLiteralMonthDay = "E, MMM d"
         case fullDateTime = "MM/dd/yyyy, HH:mm"
     }
 
