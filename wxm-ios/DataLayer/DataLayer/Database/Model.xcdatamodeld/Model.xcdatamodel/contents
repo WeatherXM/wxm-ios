@@ -14,7 +14,7 @@
     <entity name="DBExplorerDevice" representedClassName="DBExplorerDevice" parentEntity="DBExplorerSearchEntity" syncable="YES">
         <attribute name="cellIndex" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
-        <relationship name="bundle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBBundle"/>
+        <relationship name="bundle" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="DBBundle"/>
     </entity>
     <entity name="DBExplorerSearchEntity" representedClassName="DBExplorerSearchEntity" syncable="YES">
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

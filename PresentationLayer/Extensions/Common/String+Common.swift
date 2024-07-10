@@ -14,7 +14,7 @@ extension String {
 	}
 
 	func trimWhiteSpaces() -> String {
-		return trimmingCharacters(in: .whitespaces)
+		return trimmingCharacters(in: .whitespacesAndNewlines)
 	}
 
 	func lastActiveTime() -> String {
@@ -29,7 +29,7 @@ extension String {
 
 		let relativeDateFormatter = RelativeDateTimeFormatter()
 		relativeDateFormatter.locale = Locale(identifier: "en_US_POSIX")
-		relativeDateFormatter.unitsStyle = .full
+		relativeDateFormatter.unitsStyle = .short
 
 		if minutes <= 1 {
 			relativeDate = LocalizableString.justNow.localized

@@ -240,7 +240,7 @@ private extension LineChartDataSet {
         fillColor = color
         highlightColor = color
         drawHorizontalHighlightIndicatorEnabled = false
-        highlightLineWidth = 1.0
+        highlightLineWidth = 2.0
         highlightColor = UIColor(colorEnum: .primary)
         highlightLineDashLengths = [4.0]
     }

@@ -25,38 +25,47 @@ struct ManualSerialNumberView: View {
 							Spacer()
 						}
 
-						HStack {
-							Text(viewModel.subtitle)
-								.foregroundStyle(Color(colorEnum: .text))
-								.font(.system(size: CGFloat(.normalFontSize)))
+						if let subtitle = viewModel.subtitle {
+							HStack {
+								Text(subtitle)
+									.foregroundStyle(Color(colorEnum: .text))
+									.font(.system(size: CGFloat(.normalFontSize)))
 
-							Spacer()
+								Spacer()
+							}
 						}
+
+						bullets
 
 						Group {
 							if let image = viewModel.image {
 								Image(asset: image)
 									.resizable()
+									.aspectRatio(contentMode: .fit)
 							}
 
 							if let gifFile = viewModel.gifFile {
 								GifImageView(fileName: gifFile)
+									.aspectRatio(contentMode: .fit)
+
 							}
 						}
-						.aspectRatio(1.0, contentMode: .fit)
 
 						if let caption = viewModel.caption {
-							Text(caption)
-								.foregroundStyle(Color(colorEnum: .newText))
-								.font(.system(size: CGFloat(.normalFontSize)))
+							HStack {
+								Text(caption)
+									.foregroundStyle(Color(colorEnum: .newText))
+									.font(.system(size: CGFloat(.normalFontSize)))
+
+								Spacer()
+							}
 						}
 
 						textFields
 					}
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
-					.padding(.top, CGFloat(.largeSidePadding))
+					.padding(.top, CGFloat(.mediumSidePadding))
 				}
-				.clipped()
 
 				bottomButton
 			}
@@ -66,6 +75,21 @@ struct ManualSerialNumberView: View {
 }
 
 private extension ManualSerialNumberView {
+
+	@ViewBuilder
+	var bullets: some View {
+		if let bullets = viewModel.bullets {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				ForEach(0..<bullets.count, id: \.self) { index in
+					let bullet = bullets[index]
+					ClaimDeviceBulletView(bullet: bullet)
+				}
+			}
+		} else {
+			EmptyView()
+		}
+	}
+
 	@ViewBuilder
 	var textFields: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -99,15 +123,15 @@ private extension ManualSerialNumberView {
 				},
 				configuration: { tf in
 					tf.keyboardType = inputField.type.keyboardType
-					tf.horizontalPadding = CGFloat(.mediumSidePadding)
-					tf.verticalPadding = CGFloat(.mediumSidePadding)
 					tf.font = UIFont.systemFont(ofSize: CGFloat(.mediumFontSize), weight: .regular)
 					tf.textColor = UIColor(colorEnum: .text)
+					tf.prefix = inputField.type.prefix
 					tf.autocorrectionType = .no
 					tf.autocapitalizationType = .none
 					tf.backgroundColor = .clear
 				}
 			)
+			.padding(CGFloat(.mediumSidePadding))
 			.strokeBorder(color: Color(colorEnum: .midGrey), lineWidth: 1.0, radius: 5.0)
 		}
 	}
@@ -126,9 +150,13 @@ private extension ManualSerialNumberView {
 }
 
 #Preview {
-	ManualSerialNumberView(viewModel: ManualSerialNumberM5ViewModel { _ in })
+	ManualSerialNumberView(viewModel: ManualSerialNumberPulseViewModel { _ in })
 }
 
 #Preview {
 	ManualSerialNumberView(viewModel: ManualSerialNumberViewModel { _ in })
+}
+
+#Preview {
+	ManualSerialNumberView(viewModel: ClaimingKeyPulseViewModel { _ in })
 }

@@ -129,7 +129,7 @@ private extension NetworkStatsViewModel {
         self.manufacturerCTA = getManufacturerCTA(response: response)
 
         if let lastUpdated = response?.lastUpdated {
-            lastUpdatedText = LocalizableString.lastUpdated(lastUpdated.localizedDateString()).localized
+			lastUpdatedText = LocalizableString.lastUpdated(lastUpdated.localizedDateString()).localized
         }
     }
 }

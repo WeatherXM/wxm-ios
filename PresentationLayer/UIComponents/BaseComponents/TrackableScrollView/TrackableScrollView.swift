@@ -88,7 +88,6 @@ struct TrackableScrollView<Content>: View where Content: View {
             } content: {
                 content()
             }
-			.clipped()
             .modify { view in
                 if #available(iOS 16.0, *) {
                     view.scrollContentBackground(.hidden)

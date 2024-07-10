@@ -35,7 +35,9 @@ public extension NetworkDevicesInfoResponse {
         public let serialNumber: String?
         public let firmware: Firmware?
         public let gpsSats: String?
+		public let gpsSatsLastActivity: Date?
         public let wifiRssi: String?
+		public let wifiRssiLastActivity: Date?
         public let lastActivity: Date?
 
         enum CodingKeys: String, CodingKey {
@@ -44,7 +46,9 @@ public extension NetworkDevicesInfoResponse {
             case firmware
             case lastActivity = "last_activity"
             case gpsSats = "gps_sats"
+			case gpsSatsLastActivity = "gps_sats_last_activity"
             case wifiRssi = "wifi_rssi"
+			case wifiRssiLastActivity = "wifi_rssi_last_activity"
         }
 
         public init(from decoder: Decoder) throws {
@@ -53,7 +57,9 @@ public extension NetworkDevicesInfoResponse {
             self.serialNumber = try container.decodeIfPresent(String.self, forKey: .serialNumber)
             self.lastActivity = try container.decodeIfPresent(Date.self, forKey: .lastActivity)
             self.gpsSats = try container.decodeIfPresent(String.self, forKey: .gpsSats)
+			self.gpsSatsLastActivity = try container.decodeIfPresent(Date.self, forKey: .gpsSatsLastActivity)
             self.wifiRssi = try container.decodeIfPresent(String.self, forKey: .wifiRssi)
+			self.wifiRssiLastActivity = try container.decodeIfPresent(Date.self, forKey: .wifiRssiLastActivity)
             self.firmware = try container.decodeIfPresent(Firmware.self, forKey: .firmware)
         }
     }
@@ -66,8 +72,9 @@ public extension NetworkDevicesInfoResponse {
         public let firmware: Firmware?
         public let hwVersion: String?
         public let lastHs: String?
+		public let lastHsActivity: Date?
         public let lastTxRssi: String?
-
+		public let lastTxRssiActivity: Date?
 
         enum CodingKeys: String, CodingKey {
             case model
@@ -75,7 +82,9 @@ public extension NetworkDevicesInfoResponse {
             case devEui = "dev_eui"
             case hwVersion = "hw_version"
             case lastHs = "last_hs_name"
+			case lastHsActivity = "last_hs_name_last_activity"
             case lastTxRssi = "last_tx_rssi"
+			case lastTxRssiActivity = "last_tx_rssi_last_activity"
             case lastActivity = "last_activity"
             case batState = "bat_state"
         }
@@ -87,8 +96,10 @@ public extension NetworkDevicesInfoResponse {
             self.hwVersion = try container.decodeIfPresent(String.self, forKey: .hwVersion)
             self.firmware = try container.decodeIfPresent(Firmware.self, forKey: .firmware)
             self.lastHs = try container.decodeIfPresent(String.self, forKey: .lastHs)
+			self.lastHsActivity = try container.decodeIfPresent(Date.self, forKey: .lastHsActivity)
             self.lastTxRssi = try container.decodeIfPresent(String.self, forKey: .lastTxRssi)
-            self.lastActivity = try container.decodeIfPresent(Date.self, forKey: .lastActivity)
+            self.lastTxRssiActivity = try container.decodeIfPresent(Date.self, forKey: .lastTxRssiActivity)
+			self.lastActivity = try container.decodeIfPresent(Date.self, forKey: .lastActivity)
             self.batState = try container.decodeIfPresent(BatteryState.self, forKey: .batState)
         }
     }

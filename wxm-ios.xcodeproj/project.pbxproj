@@ -15,6 +15,9 @@
 		2612AC3A2AB47BA200285896 /* LocalizableString+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */; };
 		2612AC482AB49E4000285896 /* Filters+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC472AB49E4000285896 /* Filters+.swift */; };
 		261672472BB310D9009C3DB1 /* WXMRemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261672462BB310D9009C3DB1 /* WXMRemoteImageView.swift */; };
+		261729CD2C32CF7700A1CEFA /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261729CC2C32CF7700A1CEFA /* Haptics.swift */; };
+		261729F42C36A14C00A1CEFA /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 261729F32C36A14C00A1CEFA /* SwiftUIIntrospect */; };
+		261729F62C36A1AB00A1CEFA /* DisableScrollClipModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261729F52C36A1AB00A1CEFA /* DisableScrollClipModifier.swift */; };
 		2618A6E72A1E440F00983B7B /* ExplorerLocationError+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A6E62A1E440F00983B7B /* ExplorerLocationError+.swift */; };
 		2618A7142A20FFCA00983B7B /* MultipleAlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */; };
 		2618A7162A21014200983B7B /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7152A21014200983B7B /* AlertsViewModel.swift */; };
@@ -302,6 +305,8 @@
 		269C809C2AB9E76F005F9BD6 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C809B2AB9E76F005F9BD6 /* Badge.swift */; };
 		269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 269C96892BDBD5660035B8F1 /* Mixpanel */; };
 		269E85712B0242C100BE774C /* WXMShareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E85702B0242C100BE774C /* WXMShareModifier.swift */; };
+		26A308EA2C2E97B5007A029A /* ZoomControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A308E92C2E97B5007A029A /* ZoomControls.swift */; };
+		26A308F92C2EE481007A029A /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A308F82C2EE481007A029A /* ScannerView.swift */; };
 		26A3B3C52B178F630002F35F /* LocalizableString+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3C42B178F630002F35F /* LocalizableString+Profile.swift */; };
 		26A3B3C72B1792890002F35F /* ProfileTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3C62B1792890002F35F /* ProfileTypes.swift */; };
 		26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3DB2B18D2480002F35F /* TabBarVisibilityHandler.swift */; };
@@ -396,10 +401,13 @@
 		26BA07672B7F5E1E00F7F5A0 /* TotalRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07662B7F5E1E00F7F5A0 /* TotalRewardsView.swift */; };
 		26BA07752B7F715200F7F5A0 /* DailyRewardCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */; };
 		26BA07772B7FC2AC00F7F5A0 /* WeeklyStreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07762B7FC2AC00F7F5A0 /* WeeklyStreakView.swift */; };
+		26BE25B62C244ED200799CB3 /* ClaimPulseContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BE25B52C244ED200799CB3 /* ClaimPulseContainerViewModel.swift */; };
 		26C464F82A40A0D0005E5245 /* ShimmerEffectLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C464F72A40A0D0005E5245 /* ShimmerEffectLoaderView.swift */; };
 		26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C464FA2A40A2F9005E5245 /* ShimmerEffectLoader.swift */; };
 		26C5AF402BF7632700476B89 /* ClaimDeviceProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C5AF3F2BF7632700476B89 /* ClaimDeviceProgressView.swift */; };
 		26C624572AB09C78007A3162 /* LocalizableString+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C624562AB09C78007A3162 /* LocalizableString+Settings.swift */; };
+		26C801D92C2B0A1200D6AC60 /* image_pulse_claiming_key.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26C801D82C2B0A1200D6AC60 /* image_pulse_claiming_key.gif */; };
+		26C801DC2C2B162A00D6AC60 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = 26C801DB2C2B162A00D6AC60 /* FLAnimatedImage */; };
 		26C904C92A77EF980047A388 /* DeviceDetails+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C904C82A77EF980047A388 /* DeviceDetails+.swift */; };
 		26CA84552AD93646006D47D7 /* CommonAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CA84542AD93646006D47D7 /* CommonAssets.xcassets */; };
 		26CA84562AD93646006D47D7 /* CommonAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CA84542AD93646006D47D7 /* CommonAssets.xcassets */; };
@@ -559,6 +567,8 @@
 		2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Filters.swift"; sourceTree = "<group>"; };
 		2612AC472AB49E4000285896 /* Filters+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filters+.swift"; sourceTree = "<group>"; };
 		261672462BB310D9009C3DB1 /* WXMRemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMRemoteImageView.swift; sourceTree = "<group>"; };
+		261729CC2C32CF7700A1CEFA /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		261729F52C36A1AB00A1CEFA /* DisableScrollClipModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisableScrollClipModifier.swift; sourceTree = "<group>"; };
 		2618A6E62A1E440F00983B7B /* ExplorerLocationError+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerLocationError+.swift"; sourceTree = "<group>"; };
 		2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleAlertsView.swift; sourceTree = "<group>"; };
 		2618A7152A21014200983B7B /* AlertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModel.swift; sourceTree = "<group>"; };
@@ -816,6 +826,8 @@
 		2699F5642A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkStatsViewModel+Factory.swift"; sourceTree = "<group>"; };
 		269C809B2AB9E76F005F9BD6 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		269E85702B0242C100BE774C /* WXMShareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMShareModifier.swift; sourceTree = "<group>"; };
+		26A308E92C2E97B5007A029A /* ZoomControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomControls.swift; sourceTree = "<group>"; };
+		26A308F82C2EE481007A029A /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		26A3B3C42B178F630002F35F /* LocalizableString+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Profile.swift"; sourceTree = "<group>"; };
 		26A3B3C62B1792890002F35F /* ProfileTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTypes.swift; sourceTree = "<group>"; };
 		26A3B3DB2B18D2480002F35F /* TabBarVisibilityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVisibilityHandler.swift; sourceTree = "<group>"; };
@@ -884,10 +896,12 @@
 		26BA07662B7F5E1E00F7F5A0 /* TotalRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalRewardsView.swift; sourceTree = "<group>"; };
 		26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRewardCardView.swift; sourceTree = "<group>"; };
 		26BA07762B7FC2AC00F7F5A0 /* WeeklyStreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStreakView.swift; sourceTree = "<group>"; };
+		26BE25B52C244ED200799CB3 /* ClaimPulseContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimPulseContainerViewModel.swift; sourceTree = "<group>"; };
 		26C464F72A40A0D0005E5245 /* ShimmerEffectLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffectLoaderView.swift; sourceTree = "<group>"; };
 		26C464FA2A40A2F9005E5245 /* ShimmerEffectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffectLoader.swift; sourceTree = "<group>"; };
 		26C5AF3F2BF7632700476B89 /* ClaimDeviceProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceProgressView.swift; sourceTree = "<group>"; };
 		26C624562AB09C78007A3162 /* LocalizableString+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Settings.swift"; sourceTree = "<group>"; };
+		26C801D82C2B0A1200D6AC60 /* image_pulse_claiming_key.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_pulse_claiming_key.gif; sourceTree = "<group>"; };
 		26C904C82A77EF980047A388 /* DeviceDetails+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceDetails+.swift"; sourceTree = "<group>"; };
 		26CA84542AD93646006D47D7 /* CommonAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CommonAssets.xcassets; sourceTree = "<group>"; };
 		26CA84592AD93BB6006D47D7 /* String+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Common.swift"; sourceTree = "<group>"; };
@@ -998,6 +1012,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				264DD4CA2B9B169E002691FF /* NukeUI in Frameworks */,
+				261729F42C36A14C00A1CEFA /* SwiftUIIntrospect in Frameworks */,
 				261E9EB829A92BE000E8EBA3 /* Alamofire in Frameworks */,
 				261E9EAA29A927BE00E8EBA3 /* CodeScanner in Frameworks */,
 				B5799E9F28254E3300FEBB85 /* DataLayer.framework in Frameworks */,
@@ -1005,6 +1020,7 @@
 				263B8B552B29FE34001C5060 /* MapboxStatic in Frameworks */,
 				269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */,
 				26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */,
+				26C801DC2C2B162A00D6AC60 /* FLAnimatedImage in Frameworks */,
 				261E9EB029A9296900E8EBA3 /* IQKeyboardManagerSwift in Frameworks */,
 				262A0DFD29DC1823005B14A2 /* Lottie in Frameworks */,
 				261E9EB529A92B9400E8EBA3 /* MapboxMaps in Frameworks */,
@@ -1486,6 +1502,7 @@
 				264CDE0E2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift */,
 				269E85702B0242C100BE774C /* WXMShareModifier.swift */,
 				266B01E42B8767E4007AC689 /* StationIndication.swift */,
+				261729F52C36A1AB00A1CEFA /* DisableScrollClipModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -1558,6 +1575,7 @@
 		2675473B29A9181E008BCF40 /* BaseComponents */ = {
 			isa = PBXGroup;
 			children = (
+				26A308F72C2EE46A007A029A /* Scanner */,
 				26AA21E72BF4F9A500B91A7C /* SelectLocationMap */,
 				262B02F42B1DE48A00C31FE7 /* WebView */,
 				268E8E0B2B07A2AA0025163F /* iPad */,
@@ -1588,7 +1606,6 @@
 				262A4CEC2A93567A00A4BC17 /* InfoView.swift */,
 				261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */,
 				2675474C29A9181E008BCF40 /* ProgressBarStyle.swift */,
-				2675473E29A9181E008BCF40 /* QrScannerView.swift */,
 				2675474729A9181E008BCF40 /* StaticButtonStyle.swift */,
 				26D5013729B209F500BC2951 /* StationLastActiveView.swift */,
 				2675475229A9181E008BCF40 /* StepsNavView.swift */,
@@ -1649,6 +1666,7 @@
 			children = (
 				2675476C29A9181E008BCF40 /* MapBoxClaimDevice.swift */,
 				2675476D29A9181E008BCF40 /* MapBoxMapView.swift */,
+				26A308E92C2E97B5007A029A /* ZoomControls.swift */,
 			);
 			path = MapBox;
 			sourceTree = "<group>";
@@ -1806,6 +1824,7 @@
 			children = (
 				26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */,
 				26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */,
+				26BE25B52C244ED200799CB3 /* ClaimPulseContainerViewModel.swift */,
 				267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */,
 				267CA6CC2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift */,
 				267CA6CE2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift */,
@@ -1881,6 +1900,15 @@
 			path = Numeric;
 			sourceTree = "<group>";
 		};
+		26A308F72C2EE46A007A029A /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				26A308F82C2EE481007A029A /* ScannerView.swift */,
+				2675473E29A9181E008BCF40 /* QrScannerView.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
 		26A3B3DA2B18D21B0002F35F /* TrackableScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1931,6 +1959,7 @@
 				266482FB29C0B2B000748F9C /* LoaderView.swift */,
 				267401932A3A038300E54E35 /* SwiftUIUtils.swift */,
 				2664830029C0C73E00748F9C /* Toast.swift */,
+				261729CC2C32CF7700A1CEFA /* Haptics.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2161,6 +2190,7 @@
 			children = (
 				26A545342BFF804C0098FE52 /* image_station_qr.gif */,
 				26AA21BF2BF3694B00B91A7C /* image_m5_station_qr.gif */,
+				26C801D82C2B0A1200D6AC60 /* image_pulse_claiming_key.gif */,
 				B52BCC782824FB9000EA3DA5 /* Assets.xcassets */,
 				26CA84542AD93646006D47D7 /* CommonAssets.xcassets */,
 			);
@@ -2507,6 +2537,8 @@
 				26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */,
 				264DD4C92B9B169E002691FF /* NukeUI */,
 				269C96892BDBD5660035B8F1 /* Mixpanel */,
+				261729F32C36A14C00A1CEFA /* SwiftUIIntrospect */,
+				26C801DB2C2B162A00D6AC60 /* FLAnimatedImage */,
 			);
 			productName = "wxm-ios";
 			productReference = B52BCC712824FB8F00EA3DA5 /* WeatherXM.app */;
@@ -2555,6 +2587,8 @@
 				26FFAD662B8DF9C200BF0A6B /* XCRemoteSwiftPackageReference "LazyLoadingPager" */,
 				264DD4C82B9B169D002691FF /* XCRemoteSwiftPackageReference "Nuke" */,
 				269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
+				261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				26C801DA2C2B162A00D6AC60 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -2683,6 +2717,7 @@
 				B52BCC7C2824FB9000EA3DA5 /* Preview Assets.xcassets in Resources */,
 				264E2F6129DC5AEE009580A2 /* Settings.bundle in Resources */,
 				26A545352BFF804C0098FE52 /* image_station_qr.gif in Resources */,
+				26C801D92C2B0A1200D6AC60 /* image_pulse_claiming_key.gif in Resources */,
 				262A4CF92A93726700A4BC17 /* sort-Xcode-project-file in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2788,6 +2823,7 @@
 				2675480729A9181E008BCF40 /* BaseTextField.swift in Sources */,
 				267548DC29A91A87008BCF40 /* BaseTextFieldEnum.swift in Sources */,
 				267CA6CD2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift in Sources */,
+				261729CD2C32CF7700A1CEFA /* Haptics.swift in Sources */,
 				267547E229A9181E008BCF40 /* BluetoothMessageView.swift in Sources */,
 				26A4118E29BB8BC000A2C10B /* BluetoothState+.swift in Sources */,
 				26F149E22BDFC5040029F981 /* ClaimStationSelectionView.swift in Sources */,
@@ -2876,6 +2912,7 @@
 				26AA21E92BF4FA3B00B91A7C /* SelectLocationMapView.swift in Sources */,
 				26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */,
 				2672C77A2AA9BBEB00E1FDCC /* HistoryContainerView.swift in Sources */,
+				26A308F92C2EE481007A029A /* ScannerView.swift in Sources */,
 				2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */,
 				26FFADA72B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift in Sources */,
 				2672C77E2AA9BCFE00E1FDCC /* HistoryContainerViewModel.swift in Sources */,
@@ -2925,6 +2962,7 @@
 				2674016B2A37246300E54E35 /* NetStatsChartViewModel.swift in Sources */,
 				265D2CE429D2DEB80044D032 /* NetworkDevicesInfoResponse+.swift in Sources */,
 				268028AA2AF298290031379C /* Indication.swift in Sources */,
+				26A308EA2C2E97B5007A029A /* ZoomControls.swift in Sources */,
 				266DC0132A54260900EC9E1F /* NetworkErrorResponse+.swift in Sources */,
 				26E685AF2C0619D700B972B1 /* SelectDeviceView.swift in Sources */,
 				2692D8922A4DC0BA0060CB3C /* NetworkSearchResponse+.swift in Sources */,
@@ -2950,6 +2988,7 @@
 				267547B029A9181E008BCF40 /* ProfileViewModel.swift in Sources */,
 				2675482B29A9181E008BCF40 /* ProgressBar.swift in Sources */,
 				2675480529A9181E008BCF40 /* ProgressBarStyle.swift in Sources */,
+				26BE25B62C244ED200799CB3 /* ClaimPulseContainerViewModel.swift in Sources */,
 				26F149E92BDFEAFA0029F981 /* ClaimDeviceContainerView.swift in Sources */,
 				267547F829A9181E008BCF40 /* QrScannerView.swift in Sources */,
 				26A4118529BA1E1E00A2C10B /* RebootStationView.swift in Sources */,
@@ -3076,6 +3115,7 @@
 				267547ED29A9181E008BCF40 /* WebView.swift in Sources */,
 				2623FF932AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift in Sources */,
 				267EC4292A98C3D300F2C37E /* WXMAlertModifier.swift in Sources */,
+				261729F62C36A1AB00A1CEFA /* DisableScrollClipModifier.swift in Sources */,
 				267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */,
 				26AA21C22BF36B0100B91A7C /* SNValidator.swift in Sources */,
 				26A5456A2C0609D90098FE52 /* ResetDeviceView.swift in Sources */,
@@ -3696,6 +3736,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 		261E9E9B29A925D500E8EBA3 /* XCRemoteSwiftPackageReference "PullableScrollView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pantelisss/PullableScrollView.git";
@@ -3792,6 +3840,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		26C801DA2C2B162A00D6AC60 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Flipboard/FLAnimatedImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.17;
+			};
+		};
 		26FFAD662B8DF9C200BF0A6B /* XCRemoteSwiftPackageReference "LazyLoadingPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WeatherXM/LazyLoadingPager";
@@ -3803,6 +3859,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		261729F32C36A14C00A1CEFA /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = SwiftUIIntrospect;
+		};
 		261E9E9C29A925D500E8EBA3 /* PullableScrollView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9E9B29A925D500E8EBA3 /* XCRemoteSwiftPackageReference "PullableScrollView" */;
@@ -3882,6 +3943,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9EA529A9275C00E8EBA3 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		26C801DB2C2B162A00D6AC60 /* FLAnimatedImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26C801DA2C2B162A00D6AC60 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */;
+			productName = FLAnimatedImage;
 		};
 		26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -170,28 +170,47 @@ extension DeviceInfoViewModel {
 		}
 	}
 
-    enum InfoField {
+	enum InfoField {
 
-        case name
-        case devEUI
-        case hardwareVersion
-        case firmwareVersion
-        case lastHotspot
-        case lastRSSI
-        case serialNumber
-        case ATECC
-        case GPS
-        case wifiSignal
-        case batteryState
-        case claimedAt
+		case name
+		case bundleName
+		case devEUI
+		case gatewayModel
+		case hardwareVersion
+		case firmwareVersion
+		case lastHotspot
+		case lastRSSI
+		case serialNumber
+		case ATECC
+		case GPS
+		case wifiSignal
+		case batteryState
+		case lastGatewayActivity
+		case claimedAt
+		case stationModel
+		case lastStationActivity
 
-        static var heliumFields: [InfoField] {
-            [.name, .claimedAt, .batteryState, .devEUI, .hardwareVersion, .firmwareVersion, .lastHotspot, .lastRSSI]
-        }
+		static var heliumFields: [InfoField] {
+			[.name, .bundleName, .stationModel, .claimedAt, .devEUI, .firmwareVersion, .hardwareVersion, .batteryState, .lastHotspot, .lastRSSI, .lastStationActivity]
+		}
 
-        static var wifiFields: [InfoField] {
-            [.name, .claimedAt, .batteryState, .serialNumber, .ATECC, .hardwareVersion, .firmwareVersion, .GPS, .wifiSignal]
-        }
+		static var wifiFields: [InfoField] {
+			[wifiInfoFields,
+			 wifiGatewayDetailsInfoFields,
+			 wifiStationDetailsInfoFields].flatMap { $0 }
+		}
+
+		static var wifiInfoFields: [InfoField] {
+			[.name, .bundleName, .claimedAt]
+		}
+
+		static var wifiGatewayDetailsInfoFields: [InfoField] {
+			[.gatewayModel, .serialNumber, .firmwareVersion, .GPS, .wifiSignal, .lastGatewayActivity]
+		}
+
+		static var wifiStationDetailsInfoFields: [InfoField] {
+			[.stationModel, .batteryState, .hardwareVersion, .lastStationActivity]
+		}
 
         static func getShareText(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String {
             var fields: [InfoField] = []
@@ -215,6 +234,10 @@ extension DeviceInfoViewModel {
             switch self {
                 case .name:
                     return LocalizableString.deviceInfoStationInfoName.localized
+				case .bundleName:
+					return LocalizableString.deviceInfoStationInfoBundleName.localized
+				case .gatewayModel, .stationModel:
+					return LocalizableString.deviceInfoStationInfoModel.localized
                 case .devEUI:
                     return LocalizableString.deviceInfoStationInfoDevEUI.localized
                 case .hardwareVersion:
@@ -237,6 +260,10 @@ extension DeviceInfoViewModel {
                     return LocalizableString.deviceInfoStationInfoBattery.localized
                 case .claimedAt:
                     return LocalizableString.deviceInfoClaimDate.localized
+				case .lastGatewayActivity:
+					return LocalizableString.deviceInfoLastGatewayActivity.localized
+				case .lastStationActivity:
+					return LocalizableString.deviceInfoLastStationActivity.localized
             }
         }
 
@@ -244,6 +271,10 @@ extension DeviceInfoViewModel {
             switch self {
                 case .name:
                     return device.name
+				case .gatewayModel:
+					return deviceInfo?.gateway?.model
+				case .bundleName:
+					return device.bundle?.title
                 case .devEUI:
                     return deviceInfo?.weatherStation?.devEui?.convertedDeviceIdentifier ?? device.convertedLabel
                 case .hardwareVersion:
@@ -258,24 +289,56 @@ extension DeviceInfoViewModel {
                     }
                     return current
                 case .lastHotspot:
-                    return deviceInfo?.weatherStation?.lastHs
+					let lastHs = deviceInfo?.weatherStation?.lastHs
+					let timestamp = deviceInfo?.weatherStation?.lastHsActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																								 timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
+					let elements = [lastHs, timestamp].compactMap { $0 }
+					return elements.isEmpty ? nil : elements.joined(separator: " @ ")
                 case .lastRSSI:
-                    return deviceInfo?.weatherStation?.lastTxRssi
+					guard var lastTxRssi = deviceInfo?.weatherStation?.lastTxRssi else {
+						return nil
+					}
+
+					lastTxRssi = "\(lastTxRssi) \(UnitConstants.DBM)"
+					let timestamp = deviceInfo?.weatherStation?.lastTxRssiActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																									 timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
+					let elements = [lastTxRssi, timestamp].compactMap { $0 }
+					return elements.joined(separator: " @ ")
                 case .serialNumber:
                     return deviceInfo?.gateway?.serialNumber?.convertedDeviceIdentifier  ?? device.convertedLabel
                 case .ATECC:
                     return nil
                 case .GPS:
-                    return deviceInfo?.gateway?.gpsSats
+					guard var gpsSats = deviceInfo?.gateway?.gpsSats else {
+						return nil
+					}
+					gpsSats = LocalizableString.deviceInfoSatellites(gpsSats).localized
+					let timestamp = deviceInfo?.gateway?.gpsSatsLastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																							   timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
+					let elements = [gpsSats, timestamp].compactMap { $0 }
+					return elements.joined(separator: " @ ")
                 case .wifiSignal:
-                    guard let rssi = deviceInfo?.gateway?.wifiRssi else {
+                    guard var rssi = deviceInfo?.gateway?.wifiRssi else {
                         return nil
                     }
-                    return "\(rssi) \(UnitConstants.DBM)"
+					rssi = "\(rssi) \(UnitConstants.DBM)"
+					let timestamp = deviceInfo?.gateway?.wifiRssiLastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																								timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
+					let elements = [rssi, timestamp].compactMap { $0 }
+					return elements.joined(separator: " @ ")
                 case .batteryState:
                     return deviceInfo?.weatherStation?.batState?.description
                 case .claimedAt:
-                    return deviceInfo?.claimedAt?.localizedDateString()
+                    return deviceInfo?.claimedAt?.getFormattedDate(format: .monthLiteralYearDayTime,
+																   timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
+				case .lastGatewayActivity:
+					return deviceInfo?.gateway?.lastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																			   timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
+				case .stationModel:
+					return deviceInfo?.weatherStation?.model
+				case .lastStationActivity:
+					return deviceInfo?.weatherStation?.lastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
+																					  timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
             }
         }
 
@@ -283,6 +346,10 @@ extension DeviceInfoViewModel {
             switch self {
                 case .name:
                     return nil
+				case .bundleName:
+					return nil
+				case .gatewayModel:
+					return nil
                 case .devEUI:
                     return nil
                 case .hardwareVersion:
@@ -319,6 +386,12 @@ extension DeviceInfoViewModel {
                     }
                 case .claimedAt:
                     return nil
+				case .lastGatewayActivity:
+					return nil
+				case .stationModel:
+					return nil
+				case .lastStationActivity:
+					return nil
             }
         }
 
@@ -326,6 +399,10 @@ extension DeviceInfoViewModel {
             switch self {
                 case .name:
                     return nil
+				case .bundleName:
+					return nil
+				case .gatewayModel:
+					return nil
                 case .devEUI:
                     return nil
                 case .hardwareVersion:
@@ -351,6 +428,12 @@ extension DeviceInfoViewModel {
                     return nil
                 case .claimedAt:
                     return nil
+				case .lastGatewayActivity:
+					return nil
+				case .stationModel:
+					return nil
+				case .lastStationActivity:
+					return nil
             }
         }
     }

@@ -13,14 +13,18 @@ class ManualSerialNumberViewModel: ObservableObject {
 	@Published var inputFields: [SerialNumberInputField]
 	@Published var canProceed: Bool = false
 	fileprivate(set) var validator: SNValidator?
-	private let completion: GenericCallback<[SerialNumberInputField]>
+	private let completion: GenericCallback<[InputFieldResult]>
 
 	var title: String {
 		LocalizableString.ClaimDevice.enterGatewayDetailsTitle.localized
 	}
 
-	var subtitle: AttributedString {
+	var subtitle: AttributedString? {
 		LocalizableString.ClaimDevice.enterGatewayDetailsDescription.localized.attributedMarkdown ?? ""
+	}
+
+	var bullets: [ClaimDeviceBulletView.Bullet]? {
+		nil
 	}
 
 	var caption: String? {
@@ -37,7 +41,7 @@ class ManualSerialNumberViewModel: ObservableObject {
 
 	init(inputFields: [SerialNumberInputField] = [.init(type: .claimingKey, value: ""),
 												  .init(type: .serialNumber(.d1), value: "")],
-		 completion: @escaping GenericCallback<[SerialNumberInputField]>) {
+		 completion: @escaping GenericCallback<[InputFieldResult]>) {
 		self.inputFields = inputFields
 		self.completion = completion
 		self.validator = SNValidator(type: .d1)
@@ -63,16 +67,35 @@ class ManualSerialNumberViewModel: ObservableObject {
 					return validator?.validateStationKeyInput(key: newString) ?? false
 				}
 				return false
-			case .serialNumber:
-				if let validator {
-					textfield.updateSerialNumberCharactersIn(nsRange: range, for: text, validator: validator)
+			case .serialNumber(let type):
+				switch type {
+					case .m5, .d1:
+						if let validator {
+							textfield.updateSerialNumberCharactersIn(nsRange: range, for: text, validator: validator)
+						}
+						return false
+					case .pulse:
+						if let range = Range(range, in: textfield.text ?? ""),
+						   let newString = textfield.text?.replacingCharacters(in: range, with: text) {
+							return validator?.validateSerialNumberInput(input: newString) ?? true
+						}
+						return false
 				}
-				return false
 		}
 	}
 
 	func handleProceedButtonTap() {
-		completion(inputFields)
+		let results = inputFields.map { field in
+			switch field.type {
+				case .claimingKey:
+					return InputFieldResult(type: field.type, value: field.value)
+				case .serialNumber(let deviceType):
+					let normalized = validator?.normalized(serialNumber: field.value) ?? field.value
+					return InputFieldResult(type: field.type, value: normalized)
+			}
+
+		}
+		completion(results)
 	}
 }
 
@@ -98,7 +121,7 @@ class ManualSerialNumberM5ViewModel: ManualSerialNumberViewModel {
 		LocalizableString.ClaimDevice.enterGatewaySerialNumberTitle.localized
 	}
 	
-	override var subtitle: AttributedString {
+	override var subtitle: AttributedString? {
 		LocalizableString.ClaimDevice.enterGatewaySerialNumberDescription.localized.attributedMarkdown ?? ""
 	}
 
@@ -115,8 +138,69 @@ class ManualSerialNumberM5ViewModel: ManualSerialNumberViewModel {
 	}
 
 	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber(.m5), value: "")],
-				  completion: @escaping GenericCallback<[SerialNumberInputField]>) {
+				  completion: @escaping GenericCallback<[InputFieldResult]>) {
 		super.init(inputFields: inputFields, completion: completion)
 		self.validator = SNValidator(type: .m5)
 	}
 }
+
+class ManualSerialNumberPulseViewModel: ManualSerialNumberViewModel {
+	override var title: String {
+		LocalizableString.ClaimDevice.enterGatewaySerialNumberTitle.localized
+	}
+
+	override var subtitle: AttributedString? {
+		LocalizableString.ClaimDevice.enterGatewayPulseSerialNumberDescription.localized.attributedMarkdown ?? ""
+	}
+
+	override var caption: String? {
+		nil
+	}
+
+	override var image: AssetEnum? {
+		.pulseBarcode
+	}
+
+	override var gifFile: String? {
+		nil
+	}
+
+	override init(inputFields: [SerialNumberInputField] = [.init(type: .serialNumber(.pulse), value: "")],
+				  completion: @escaping GenericCallback<[InputFieldResult]>) {
+		super.init(inputFields: inputFields, completion: completion)
+		self.validator = SNValidator(type: .pulse)
+	}
+}
+
+class ClaimingKeyPulseViewModel: ManualSerialNumberViewModel {
+	override var title: String {
+		LocalizableString.ClaimDevice.enterGatewayClaimingKey.localized
+	}
+
+	override var subtitle: AttributedString? {
+		nil
+	}
+
+	override var bullets: [ClaimDeviceBulletView.Bullet]? {
+		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.enterGatewayPulseClaimingKeyBulletOne.localized.attributedMarkdown ?? ""),
+		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.enterGatewayPulseClaimingKeyBulletTwo.localized.attributedMarkdown ?? "")]
+	}
+
+	override var caption: String? {
+		nil
+	}
+
+	override var image: AssetEnum? {
+		nil
+	}
+
+	override var gifFile: String? {
+		"image_pulse_claiming_key"
+	}
+
+	override init(inputFields: [SerialNumberInputField] = [.init(type: .claimingKey, value: "")],
+				  completion: @escaping GenericCallback<[InputFieldResult]>) {
+		super.init(inputFields: inputFields, completion: completion)
+	}
+}
+

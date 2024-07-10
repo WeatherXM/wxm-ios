@@ -1,5 +1,5 @@
 {
-  "originHash" : "98529185782e32399387816e71ed163ec77b3bd14513224644903c7037264b01",
+  "originHash" : "7c534e77b1622df0443bcb7659d1beab8735d467d0364bb35ca24ee6ccef6fac",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -53,6 +53,15 @@
       "state" : {
         "revision" : "e57841b296d04370ea23580f908881b0ccab17b9",
         "version" : "10.28.1"
+      }
+    },
+    {
+      "identity" : "flanimatedimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Flipboard/FLAnimatedImage",
+      "state" : {
+        "revision" : "d4f07b6f164d53c1212c3e54d6460738b1981e9f",
+        "version" : "1.0.17"
       }
     },
     {
@@ -278,6 +287,15 @@
       "state" : {
         "revision" : "9f0c76544701845ad98716f3f6a774a892152bcb",
         "version" : "1.26.0"
+      }
+    },
+    {
+      "identity" : "swiftui-introspect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/siteline/SwiftUI-Introspect.git",
+      "state" : {
+        "revision" : "668a65735751432b640260c56dfa621cec568368",
+        "version" : "1.2.0"
       }
     },
     {

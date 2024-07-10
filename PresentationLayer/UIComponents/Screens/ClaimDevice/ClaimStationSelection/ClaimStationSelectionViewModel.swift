@@ -10,13 +10,8 @@ import Foundation
 class ClaimStationSelectionViewModel: ObservableObject {
 
 	func handleTypeTap(_ type: ClaimStationType) {
-		switch type {
-			case .m5, .d1, .helium:
-				let viewModel = ViewModelsFactory.getClaimStationContainerViewModel(type: type)
-				Router.shared.navigateTo(.claimStationContainer(viewModel))
-			case .pulse:
-				break
-		}
+		let viewModel = ViewModelsFactory.getClaimStationContainerViewModel(type: type)
+		Router.shared.navigateTo(.claimStationContainer(viewModel))
 	}
 }
 

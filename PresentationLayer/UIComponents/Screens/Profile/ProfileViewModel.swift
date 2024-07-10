@@ -52,7 +52,16 @@ class ProfileViewModel: ObservableObject {
 		scrollOffsetObject = .init()
 		tabBarVisibilityHandler = TabBarVisibilityHandler(scrollOffsetObject: self.scrollOffsetObject)
 		tabBarVisibilityHandler.$isTabBarShowing.assign(to: &$isTabBarVisible)
-		
+		MainScreenViewModel.shared.$userInfo.sink { [weak self] response in
+			guard let response else {
+				return
+			}
+			self?.userInfoResponse = response
+			Task { [weak self] in
+				await self?.fetchUserRewards()
+			}
+		}.store(in: &cancellableSet)
+
 		updateRewards()
 
 		MainScreenViewModel.shared.$isWalletMissing.assign(to: &$showMissingWalletError)
@@ -186,6 +195,9 @@ private extension ProfileViewModel {
 		do {
 			let userRewardsResponse = try await meUseCase.getUserRewards(wallet: address).toAsync()
 			if let error = userRewardsResponse.error {
+				if error.backendError?.code == FailAPICodeEnum.walletAddressNotFound.rawValue {
+					self.userRewardsResponse = nil
+				}
 				return error
 			}
 

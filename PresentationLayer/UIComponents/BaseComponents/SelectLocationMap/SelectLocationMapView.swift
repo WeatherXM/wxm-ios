@@ -65,10 +65,10 @@ private extension SelectLocationMapView {
 				onEditingChanged: { _, isFocused in showSearchResults = isFocused },
 				configuration: {
 					$0.font = UIFont.systemFont(ofSize: FontSizeEnum.normalFontSize.sizeValue)
-					$0.horizontalPadding = CGFloat(.mediumSidePadding)
 					$0.textColor = UIColor(colorEnum: .text)
 				}
 			)
+			.padding(.horizontal, CGFloat(.mediumSidePadding))
 
 			WXMDivider()
 				.padding(.vertical, 4)

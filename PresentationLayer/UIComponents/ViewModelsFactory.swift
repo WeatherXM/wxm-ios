@@ -189,7 +189,7 @@ enum ViewModelsFactory {
 			case .helium:
 				return ClaimHeliumContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
 			case .pulse:
-				return ClaimDeviceContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+				return ClaimPulseContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
 		}
 	}
 
@@ -201,6 +201,10 @@ enum ViewModelsFactory {
 		ClaimDeviceM5BeginViewModel(completion: completion)
 	}
 
+	static func getResetPulseViewModel(completion: @escaping VoidCallback) -> ResetDevicePulseViewModel {
+		ResetDevicePulseViewModel(completion: completion)
+	}
+
 	static func getClaimStationSNViewModel(completion: @escaping GenericCallback<ClaimDeviceSerialNumberViewModel.SerialNumber?>) -> ClaimDeviceSerialNumberViewModel {
 		ClaimDeviceSerialNumberViewModel(completion: completion)
 	}
@@ -209,12 +213,24 @@ enum ViewModelsFactory {
 		ClaimDeviceSerialNumberM5ViewModel(completion: completion)
 	}
 
-	static func getManualSNViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ManualSerialNumberViewModel {
+	static func getClaimStationPulseSNViewModel(completion: @escaping GenericCallback<ClaimDeviceSerialNumberViewModel.SerialNumber?>) -> ClaimDeviceSerialNumberPulseViewModel {
+		ClaimDeviceSerialNumberPulseViewModel(completion: completion)
+	}
+
+	static func getManualSNViewModel(completion: @escaping GenericCallback<[InputFieldResult]>) -> ManualSerialNumberViewModel {
 		ManualSerialNumberViewModel(completion: completion)
 	}
 
-	static func getManualSNM5ViewModel(completion: @escaping GenericCallback<[SerialNumberInputField]>) -> ManualSerialNumberM5ViewModel {
+	static func getManualSNM5ViewModel(completion: @escaping GenericCallback<[InputFieldResult]>) -> ManualSerialNumberM5ViewModel {
 		ManualSerialNumberM5ViewModel(completion: completion)
+	}
+
+	static func getManualSNPulseViewModel(completion: @escaping GenericCallback<[InputFieldResult]>) -> ManualSerialNumberPulseViewModel {
+		ManualSerialNumberPulseViewModel(completion: completion)
+	}
+
+	static func getClaimingKeyPulseViewModel(completion: @escaping GenericCallback<[InputFieldResult]>) -> ClaimingKeyPulseViewModel {
+		ClaimingKeyPulseViewModel(completion: completion)
 	}
 
 	static func getLocationMapViewModel(initialCoordinate: CLLocationCoordinate2D? = nil) -> SelectLocationMapViewModel {

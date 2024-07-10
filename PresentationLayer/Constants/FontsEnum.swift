@@ -51,4 +51,6 @@ enum FontIcon: String {
 	case circleTwo = "circle-2"
 	case circleThree = "circle-3"
 	case circleFour = "circle-4"
+	case qrcode
+	case barcode
 }

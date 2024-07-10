@@ -22,7 +22,7 @@ struct UberTextField: UIViewRepresentable {
     private let onSubmit: (UITextField) -> Bool
     private let shouldChangeCharactersIn: (UITextField, NSRange, String) -> Bool
 
-    public var configuration = { (_: UITextFieldWithPadding) in }
+    public var configuration = { (_: UITextFieldWithPrefix) in }
 
     public init(
         text: Binding<String>,
@@ -31,7 +31,7 @@ struct UberTextField: UIViewRepresentable {
         onEditingChanged: @escaping (UITextField, Bool) -> Void = { _, _ in },
         shouldChangeCharactersIn: @escaping (UITextField, NSRange, String) -> Bool = { _, _, _ in true },
         onSubmit: @escaping (UITextField) -> Bool = { _ in true },
-        configuration: @escaping (UITextFieldWithPadding) -> Void = { _ in }
+        configuration: @escaping (UITextFieldWithPrefix) -> Void = { _ in }
     ) {
         self.configuration = configuration
         self.onEditingChanged = onEditingChanged
@@ -42,16 +42,15 @@ struct UberTextField: UIViewRepresentable {
         _isFirstResponder = isFirstResponder
     }
 
-    public func makeUIView(context: Context) -> UITextFieldWithPadding {
-        let view = UITextFieldWithPadding()
-        view.horizontalPadding = 20
+    public func makeUIView(context: Context) -> UITextFieldWithPrefix {
+        let view = UITextFieldWithPrefix()
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         view.addTarget(context.coordinator, action: #selector(Coordinator.textFieldDidChange), for: .editingChanged)
         view.delegate = context.coordinator
         return view
     }
 
-    public func updateUIView(_ uiView: UITextFieldWithPadding, context _: Context) {
+    public func updateUIView(_ uiView: UITextFieldWithPrefix, context _: Context) {
         uiView.placeholder = hint
         uiView.text = text
         configuration(uiView)
@@ -124,16 +123,39 @@ struct UberTextField: UIViewRepresentable {
         }
     }
 
-    class UITextFieldWithPadding: UITextField {
-        var horizontalPadding: CGFloat = 0
-        var verticalPadding: CGFloat = 0
+    class UITextFieldWithPrefix: UITextField {
 
-        override func textRect(forBounds bounds: CGRect) -> CGRect {
-            return CGRectInset(bounds, horizontalPadding, verticalPadding)
-        }
+		override var font: UIFont? {
+			didSet {
+				updateLeftViewPrefix()
+			}
+		}
 
-        override func editingRect(forBounds bounds: CGRect) -> CGRect {
-            return CGRectInset(bounds, horizontalPadding, verticalPadding)
-        }
+		override var textColor: UIColor? {
+			didSet {
+				updateLeftViewPrefix()
+			}
+		}
+
+		var prefix: String? {
+			didSet {
+				updateLeftViewPrefix()
+			}
+		}
+
+		private func updateLeftViewPrefix() {
+			guard let prefix else {
+				leftView = nil
+				return
+			}
+
+			let label = UILabel()
+			label.text = prefix
+			label.font = font
+			label.textColor = textColor
+			label.sizeToFit()
+			leftView = label
+			leftViewMode = .always
+		}
     }
 }

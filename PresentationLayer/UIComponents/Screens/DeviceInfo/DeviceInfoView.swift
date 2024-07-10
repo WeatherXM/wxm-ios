@@ -39,7 +39,7 @@ struct DeviceInfoView: View {
                             .wxmShadow()
                         }
 
-                        StationInfoView(rows: viewModel.infoRows,
+                        StationInfoView(sections: viewModel.infoSections,
                                         contactSupportTitle: viewModel.contactSupportButtonTitle,
 										showShare: $viewModel.showShareDialog,
 										shareText: viewModel.shareDialogText) {

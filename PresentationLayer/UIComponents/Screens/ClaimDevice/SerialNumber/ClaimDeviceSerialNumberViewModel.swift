@@ -6,13 +6,14 @@
 //
 
 import Foundation
-import CodeScanner
 import AVFoundation
 import Toolkit
 
 class ClaimDeviceSerialNumberViewModel: ObservableObject {
 	let completion: GenericCallback<SerialNumber?>
 	@Published var showQrScanner: Bool = false
+
+	var validator: SNValidator { SNValidator(type: .d1) }
 
 	var bullets: [ClaimDeviceBulletView.Bullet] {
 		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.prepareGatewayD1BulletOne.localized.attributedMarkdown ?? ""),
@@ -23,8 +24,20 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 		nil
 	}
 
-	var gifFileName: String {
+	var gifFileName: String? {
 		"image_station_qr"
+	}
+
+	var image: AssetEnum? {
+		nil
+	}
+
+	var scanButton: (icon: FontIcon, text: String) {
+		(.qrcode, LocalizableString.ClaimDevice.scanQRCode.localized)
+	}
+
+	var scanType: ScannerView.Mode {
+		.qr
 	}
 
 	init(completion: @escaping GenericCallback<SerialNumber?>) {
@@ -39,27 +52,31 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 		requestCameraPermission()
 	}
 
-	func handleQRScanResult(result: Result<ScanResult, ScanError>) {
-		switch result {
-			case .success(let result):
-				let input = result.string.components(separatedBy: ",")
-				guard let serialNumber = input[safe: 0]?.trimWhiteSpaces() else {
-					return
-				}
+	func handleQRScanResult(result: String?) {
+		showQrScanner = false
 
-				showQrScanner = false
-
-				let key = input[safe: 1]?.trimWhiteSpaces()
-				let serialNumberObject = SerialNumber(serialNumber: serialNumber, key: key)
-				if validate(serialNumber: serialNumberObject) {
-					completion(serialNumberObject)
-				} else {
-					Toast.shared.show(text: LocalizableString.ClaimDevice.invalidQRMessage.localized.attributedMarkdown ?? "")
-				}
-			case .failure(let error):
-				print("Scan failed: \(error.localizedDescription)")
-				Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
+		guard let result, let serialNumberObject = getSerialNumber(input: result) else {
+			return
 		}
+
+		if validate(serialNumber: serialNumberObject) {
+			completion(serialNumberObject)
+		} else {
+			Toast.shared.show(text: LocalizableString.ClaimDevice.invalidQRMessage.localized.attributedMarkdown ?? "")
+		}
+	}
+
+	fileprivate func getSerialNumber(input: String) -> SerialNumber? {
+		let inputArray = input.components(separatedBy: ",")
+		guard var serialNumber = inputArray[safe: 0]?.trimWhiteSpaces() else {
+			return nil
+		}
+		
+		serialNumber = validator.normalized(serialNumber: serialNumber)
+		let key = inputArray[safe: 1]?.trimWhiteSpaces()
+		let serialNumberObject = SerialNumber(serialNumber: serialNumber, key: key)
+
+		return serialNumberObject
 	}
 
 	fileprivate func validate(serialNumber: SerialNumber) -> Bool {
@@ -67,7 +84,6 @@ class ClaimDeviceSerialNumberViewModel: ObservableObject {
 			return false
 		}
 		
-		let validator = SNValidator(type: .d1)
 		let serial = serialNumber.serialNumber
 
 		return validator.validate(serialNumber: serial) && validator.validateStationKey(key: key)
@@ -109,6 +125,9 @@ private extension ClaimDeviceSerialNumberViewModel {
 }
 
 class ClaimDeviceSerialNumberM5ViewModel: ClaimDeviceSerialNumberViewModel {
+
+	override var validator: SNValidator { .init(type: .m5) }
+
 	override var bullets: [ClaimDeviceBulletView.Bullet] {
 		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.prepareGatewayM5BulletOne.localized.attributedMarkdown ?? ""),
 		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.prepareGatewayM5BulletTwo.localized.attributedMarkdown ?? "")]
@@ -126,7 +145,52 @@ class ClaimDeviceSerialNumberM5ViewModel: ClaimDeviceSerialNumberViewModel {
 		guard serialNumber.key == nil else {
 			return false
 		}
-		let validator = SNValidator(type: .m5)
+
+		let serial = serialNumber.serialNumber
+
+		return validator.validate(serialNumber: serial)
+	}
+}
+
+class ClaimDeviceSerialNumberPulseViewModel: ClaimDeviceSerialNumberViewModel {
+
+	override var validator: SNValidator { .init(type: .pulse) }
+	
+	override var bullets: [ClaimDeviceBulletView.Bullet] {
+		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.prepareGatewayPulseBulletOne.localized.attributedMarkdown ?? ""),
+		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.prepareGatewayPulseBulletTwo.localized.attributedMarkdown ?? "")]
+	}
+
+	override var caption: AttributedString? {
+		nil
+	}
+
+	override var gifFileName: String? {
+		nil
+	}
+
+	override var image: AssetEnum? {
+		.pulseBarcode
+	}
+
+	override var scanButton: (icon: FontIcon, text: String) {
+		(.barcode, LocalizableString.ClaimDevice.scanBarcode.localized)
+	}
+
+	override var scanType: ScannerView.Mode {
+		.barcode
+	}
+
+	override func getSerialNumber(input: String) -> SerialNumber? {
+		let serial = validator.normalized(serialNumber: input.trimWhiteSpaces())
+		return SerialNumber(serialNumber: serial, key: nil)
+	}
+
+	override func validate(serialNumber: SerialNumber) -> Bool {
+		guard serialNumber.key == nil else {
+			return false
+		}
+
 		let serial = serialNumber.serialNumber
 
 		return validator.validate(serialNumber: serial)

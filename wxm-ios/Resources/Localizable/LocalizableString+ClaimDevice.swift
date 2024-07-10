@@ -19,6 +19,7 @@ extension LocalizableString {
 		case claimHeliumTitle
 		case claimD1Title
 		case claimM5Title
+		case claimPulseTitle
 		case connectGatewayTitle
 		case connectD1BulletOne
 		case connectD1BulletTwo
@@ -28,6 +29,10 @@ extension LocalizableString {
 		case connectM5BulletTwo
 		case connectM5BulletThree
 		case connectM5BulletFour
+		case resetPulseBulletOne
+		case resetPulseBulletTwo
+		case resetPulseHasRebootedText
+		case resetPulseInfoText
 		case beginStationClaiming
 		case prepareGatewayTitle
 		case prepareGatewayM5BulletOne
@@ -35,7 +40,10 @@ extension LocalizableString {
 		case prepareGatewayM5Caption
 		case prepareGatewayD1BulletOne
 		case prepareGatewayD1BulletTwo
+		case prepareGatewayPulseBulletOne
+		case prepareGatewayPulseBulletTwo
 		case scanQRCode
+		case scanBarcode
 		case enterSerialNumberManually
 		case cammeraPermissionDeniedTitle
 		case cammeraPermissionDeniedText
@@ -48,6 +56,9 @@ extension LocalizableString {
 		case enterGatewaySerialNumberDescription
 		case enterGatewaySerialNumberCaption
 		case enterGatewayProceedButtonTitle
+		case enterGatewayPulseSerialNumberDescription
+		case enterGatewayPulseClaimingKeyBulletOne
+		case enterGatewayPulseClaimingKeyBulletTwo
 		case confirmAndProceed
 		case stationLocationTitle
 		case stationLocationSubtitle
@@ -181,6 +192,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_claim_helium_title"
 			case .claimM5Title:
 				return "claim_device_claim_m5_title"
+			case .claimPulseTitle:
+				return "claim_device_claim_pulse_title"
 			case .claimD1Title:
 				return "claim_device_claim_d1_title"
 			case .connectGatewayTitle:
@@ -201,6 +214,14 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_connect_m5_bullet_three"
 			case .connectM5BulletFour:
 				return "claim_device_connect_m5_bullet_four"
+			case .resetPulseBulletOne:
+				return "claim_device_reset_pulse_bullet_one"
+			case .resetPulseBulletTwo:
+				return "claim_device_reset_pulse_bullet_two"
+			case .resetPulseHasRebootedText:
+				return "claim_device_reset_pulse_has_rebooted_text"
+			case .resetPulseInfoText:
+				return "claim_device_reset_pulse_info_text"
 			case .beginStationClaiming:
 				return "claim_device_connect_begin_station_claiming"
 			case .prepareGatewayTitle:
@@ -209,6 +230,10 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_prepare_gateway_d1_bullet_one"
 			case .prepareGatewayD1BulletTwo:
 				return "claim_device_prepare_gateway_d1_bullet_two"
+			case .prepareGatewayPulseBulletOne:
+				return "claim_device_prepare_gateway_pulse_bullet_one"
+			case .prepareGatewayPulseBulletTwo:
+				return "claim_device_prepare_gateway_pulse_bullet_two"
 			case .prepareGatewayM5BulletOne:
 				return "claim_device_prepare_gateway_m5_bullet_one"
 			case .prepareGatewayM5BulletTwo:
@@ -217,6 +242,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_prepare_gateway_m5_caption"
 			case .scanQRCode:
 				return "claim_device_scan_qr_code"
+			case .scanBarcode:
+				return "claim_device_scan_barcode"
 			case .enterSerialNumberManually:
 				return "claim_device_enter_serial_number_manually"
 			case .cammeraPermissionDeniedTitle:
@@ -241,6 +268,12 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_enter_gateway_serial_number_caption"
 			case .enterGatewayProceedButtonTitle:
 				return "claim_device_enter_gateway_proceed_button_title"
+			case .enterGatewayPulseSerialNumberDescription:
+				return "claim_device_enter_gateway_pulse_serial_number_description"
+			case .enterGatewayPulseClaimingKeyBulletOne:
+				return "claim_device_enter_gateway_pulse_claiming_key_bullet_one"
+			case .enterGatewayPulseClaimingKeyBulletTwo:
+				return "claim_device_enter_gateway_pulse_claiming_key_bullet_two"
 			case .confirmAndProceed:
 				return "claim_device_confirm_and_proceed"
 			case .stationLocationTitle:

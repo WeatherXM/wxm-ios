@@ -76,7 +76,7 @@ extension PublicDevice {
                       label: nil,
                       address: nil,
                       cellIndex: cellIndex,
-                      cellCenter: nil,
+                      cellCenter: cellCenter,
                       isActive: isActive ?? false,
                       weather: currentWeather,
 					  timezone: timezone,
