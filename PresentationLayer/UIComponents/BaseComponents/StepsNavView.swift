@@ -56,7 +56,7 @@ struct StepsNavView: View {
 			VStack(spacing: CGFloat(.minimumSpacing)) {
 				ProgressView(value: CGFloat(currentStep + 1),
 							 total: CGFloat(steps.count))
-					.tint(Color(colorEnum: .primary))
+					.tint(Color(colorEnum: .wxmPrimary))
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.animation(.easeOut(duration: 0.3), value: currentStep)
 
@@ -89,7 +89,7 @@ struct StepsNavView: View {
             } label: {
                 Image(asset: .backArrow)
                     .renderingMode(.template)
-                    .foregroundColor(Color(colorEnum: .primary))
+                    .foregroundColor(Color(colorEnum: .wxmPrimary))
                     .padding(.leading, 14)
                     .padding(.top, 2.5)
                     .padding(.trailing, 10)

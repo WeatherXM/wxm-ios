@@ -74,7 +74,7 @@ private extension ChartCardView {
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.caption)))
                         .lineLimit(1)
-                    Color(colorEnum: WeatherChartsConstants.legendColors[safe: index] ?? .primary)
+                    Color(colorEnum: WeatherChartsConstants.legendColors[safe: index] ?? .wxmPrimary)
                         .frame(width: 44.0, height: 8.0)
                         .cornerRadius(CGFloat(.lightCornerRadius))
                 }
@@ -90,7 +90,6 @@ private extension ChartCardView {
 
         let comps: [String] = chartDataModels.map { model in
 			let entry = model.entries[safe: index]
-            let value = entry?.y
 			let literals = type.getWeatherLiterals(chartEntry: entry, weatherField: model.weatherField)
             let formattedValue = "\(literals?.value ?? "")\(model.weatherField.shouldHaveSpaceWithUnit ? " " : "")\(literals?.unit ?? "")".trimWhiteSpaces()
 			return "\(type.highlightTitle(for: model.weatherField)): **\(formattedValue)**"

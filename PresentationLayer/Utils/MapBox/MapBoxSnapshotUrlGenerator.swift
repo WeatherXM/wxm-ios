@@ -36,7 +36,7 @@ struct MapBoxSnapshotUrlGenerator {
 		if let markerLocation = options.markerLocation {
 			let marker = Marker(coordinate: markerLocation, size: .small, iconName: MapBoxConstants.snapshotMarkerName)
 			marker.label = nil
-			marker.color = UIColor(colorEnum: .primary)
+			marker.color = UIColor(colorEnum: .wxmPrimary)
 			overlays.append(marker)
 		}
 

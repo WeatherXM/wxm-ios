@@ -135,7 +135,7 @@ public class ExplorerUseCase {
                         let address = await self?.resolveAddressLocation(hexCoordinates) ?? ""
                         var explorerDevices = [DeviceDetails]()
                         await devices.asyncForEach { publicDevice in
-                            let state = try? await self?.meRepository.getDeviceFollowState(deviceId: publicDevice.id).get()
+                            let _ = try? await self?.meRepository.getDeviceFollowState(deviceId: publicDevice.id).get()
                             var device = publicDevice.toDeviceDetails
                             device.address = address
 							if let hexCoordinates {

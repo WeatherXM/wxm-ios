@@ -24,14 +24,14 @@ struct DailyRewardCardView: View {
 				} label: {
 					Text(LocalizableString.StationDetails.viewRewardDetailsButtonTitle.localized)
 				}
-				.buttonStyle(WXMButtonStyle(fillColor: .layer1, strokeColor: .clear))
+				.buttonStyle(WXMButtonStyle(fillColor: .layer1, strokeColor: .noColor))
 			}
 
 		}
 		.WXMCardStyle()
 		.indication(show: Binding(get: { card.indication != nil }, set: { _ in }),
-					borderColor: Color(colorEnum: card.indicationBorderColor ?? .clear),
-					bgColor: Color(colorEnum: card.indication?.type.tintColor ?? .clear)) {
+					borderColor: Color(colorEnum: card.indicationBorderColor ?? .noColor),
+					bgColor: Color(colorEnum: card.indication?.type.tintColor ?? .noColor)) {
 			CardWarningView(type: card.indication?.type ?? .info,
 							showIcon: false,
 							title: nil,

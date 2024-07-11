@@ -19,18 +19,18 @@ struct BoostsView: View {
 			HStack {
 				Text(title)
 					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
-					.foregroundColor(Color(colorEnum: .white))
+					.foregroundColor(Color(colorEnum: .wxmWhite))
 				Spacer()
 
 				Text("+ \(rewards.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
 					.font(.system(size: CGFloat(.caption), weight: .medium))
-					.foregroundColor(Color(colorEnum: .white))
+					.foregroundColor(Color(colorEnum: .wxmWhite))
 			}
 
 			HStack {
 				Text(description)
 					.font(.system(size: CGFloat(.caption)))
-					.foregroundColor(Color(colorEnum: .white))
+					.foregroundColor(Color(colorEnum: .wxmWhite))
 
 				Spacer()
 			}

@@ -79,6 +79,6 @@ private extension RewardBoostsViewModel {
 
 extension RewardBoostsViewModel: HashableViewModel {
 	func hash(into hasher: inout Hasher) {
-		hasher.combine("\(boost.title)-\(boost.reward)-\(boost.date)")
+		hasher.combine("\(boost.title)-\(boost.reward)-\(String(describing: boost.date))")
 	}
 }

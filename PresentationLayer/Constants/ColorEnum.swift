@@ -12,7 +12,7 @@ public enum ColorEnum: String {
 	case background
 	case bottomSheetBg
 	case bottomSheetButton
-    case clear
+    case noColor
     case error
     case success
     case reward_score_average
@@ -25,7 +25,7 @@ public enum ColorEnum: String {
     case blueTint
     case successTint
     case errorTint
-    case primary
+    case wxmPrimary
     case midGrey
     case warningTint
     case warning
@@ -52,7 +52,7 @@ public enum ColorEnum: String {
     case stationChipOnlineStateText
     case favoriteHeart
 	case mapPin
-	case white
+	case wxmWhite
 	case darkBg
 	case infoIndication
 	case trasnparentButtonBg

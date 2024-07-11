@@ -49,7 +49,7 @@ enum Route: Hashable, Equatable {
 			case .rewardDetails(let vm):
 				hasher.combine(vm)
 			case .webView(let conf):
-				hasher.combine("\(conf.title)-\(conf.url)-\(conf.params)")
+				hasher.combine("\(conf.title)-\(conf.url)-\(conf.params ?? [:])")
 			case .selectStationLocation(let vm):
 				hasher.combine(vm)
 			case .rewardAnnotations(let vm):

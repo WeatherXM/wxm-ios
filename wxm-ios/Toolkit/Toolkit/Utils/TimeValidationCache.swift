@@ -85,8 +85,8 @@ public class TimeValidationCache<T: Codable> {
 }
 
 private extension TimeValidationCache {
-    struct Object<T: Codable>: Codable {
-        let value: T
+    struct Object<Value: Codable>: Codable {
+        let value: Value
         let timestamp: Date
         let expireInterval: TimeInterval
     }

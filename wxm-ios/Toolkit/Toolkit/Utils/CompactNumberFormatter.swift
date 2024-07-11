@@ -47,7 +47,7 @@ public class CompactNumberFormatter: Formatter {
     }
 
     private func convert(value: Int) -> String? {
-        var unit: Unit? = Unit(value: value)
+        let unit: Unit? = Unit(value: value)
         let divider = unit?.divider ?? 1
         let conventedValue = Double(value) / Double(divider)
         numberFormatter.positiveSuffix = unit?.description

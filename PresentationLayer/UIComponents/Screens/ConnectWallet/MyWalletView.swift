@@ -105,7 +105,7 @@ private extension MyWalletView {
 
                 HStack {
                     Text(LocalizableString.Wallet.createMetaMaskLink.localized.attributedMarkdown!)
-                        .tint(Color(colorEnum: .primary))
+                        .tint(Color(colorEnum: .wxmPrimary))
                         .font(.system(size: CGFloat(.caption), weight: .bold))
                         .simultaneousGesture(TapGesture().onEnded {
                             WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .createMetamask,
@@ -131,7 +131,7 @@ private extension MyWalletView {
 		} content: {
             HStack {
                 Text(LocalizableString.Wallet.compatibilityCheckLink.localized.attributedMarkdown!)
-                    .tint(Color(colorEnum: .primary))
+                    .tint(Color(colorEnum: .wxmPrimary))
                     .font(.system(size: CGFloat(.caption), weight: .bold))
                     .simultaneousGesture(TapGesture().onEnded {
                         WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
@@ -157,7 +157,7 @@ private extension MyWalletView {
             HStack {
                 Image(asset: .qrCodeBlue)
                     .renderingMode(.template)
-                    .foregroundColor(Color(colorEnum: .primary))
+                    .foregroundColor(Color(colorEnum: .wxmPrimary))
                 Text(LocalizableString.Wallet.scanQRCodeButton.localized)
             }
         }
@@ -174,7 +174,7 @@ private extension MyWalletView {
             HStack {
                 Image(asset: .editIcon)
                     .renderingMode(.template)
-                    .foregroundColor(Color(colorEnum: .primary))
+                    .foregroundColor(Color(colorEnum: .wxmPrimary))
                 Text(LocalizableString.Wallet.editAddress.localized)
             }
         }
@@ -194,7 +194,7 @@ private extension MyWalletView {
                     .toggleStyle(WXMToggleStyle.Default)
 
                     Text("\(LocalizableString.Wallet.acceptTermsOfService.localized) **[\(LocalizableString.Wallet.termsTitle.localized)](\(DisplayedLinks.termsLink.linkURL))**".attributedMarkdown!)
-                        .tint(Color(colorEnum: .primary))
+                        .tint(Color(colorEnum: .wxmPrimary))
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.normalFontSize)))
                         .simultaneousGesture(TapGesture().onEnded {
@@ -211,7 +211,7 @@ private extension MyWalletView {
                     .toggleStyle(WXMToggleStyle.Default)
 
                     Text(LocalizableString.Wallet.acknowledgementOfOwnership.localized)
-                        .tint(Color(colorEnum: .primary))
+                        .tint(Color(colorEnum: .wxmPrimary))
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.normalFontSize)))
 
@@ -224,7 +224,7 @@ private extension MyWalletView {
                     Text(LocalizableString.Wallet.saveAddress.localized)
                 }
                 .buttonStyle(WXMButtonStyle(textColor: .top,
-                                                      fillColor: .primary))
+                                                      fillColor: .wxmPrimary))
                 .disabled(!viewModel.isSaveButtonEnabled)
             }
             .WXMCardStyle()

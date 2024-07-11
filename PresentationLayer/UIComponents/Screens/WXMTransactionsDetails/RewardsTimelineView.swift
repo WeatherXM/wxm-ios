@@ -21,7 +21,7 @@ struct RewardsTimelineView: View {
         }
         .onAppear {
             navigationObject.title = viewModel.device.displayName
-            navigationObject.titleColor = Color(colorEnum: .primary)
+            navigationObject.titleColor = Color(colorEnum: .wxmPrimary)
 
             WXMAnalytics.shared.trackScreen(.rewardTransactions)
         }

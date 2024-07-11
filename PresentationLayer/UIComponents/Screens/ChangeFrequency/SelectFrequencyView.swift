@@ -69,14 +69,13 @@ private extension SelectFrequencyView {
             .foregroundColor(Color(colorEnum: .text))
     }
 
-    @ViewBuilder
     var textLink: some View {
         let linkText = LocalizableString.SelectFrequency.listLinkText.localized
         let url = DisplayedLinks.heliumRegionFrequencies.linkURL
         let link = "**[\(linkText)](\(url))**"
 
         var actualText = LocalizableString.SelectFrequency.listLink(link).localized.attributedMarkdown ?? ""
-        let container = AttributeContainer([.foregroundColor: UIColor(colorEnum: .primary)])
+        let container = AttributeContainer([.foregroundColor: UIColor(colorEnum: .wxmPrimary)])
         let range = actualText.range(of: linkText)!
         actualText[range].mergeAttributes(container)
 

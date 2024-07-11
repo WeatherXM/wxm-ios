@@ -33,7 +33,6 @@ struct ObservationsView: View {
 					.iPadMaxWidth()
                     .padding()
                     .padding(.bottom, containerSize.height / 2.0) // Quick fix for better experience while expanding/collapsing the containers's header
-#warning("TODO: Find a better solution")
                 }
             }
             .sizeObserver(size: $containerSize)
@@ -66,7 +65,6 @@ private extension ObservationsView {
 
 struct ObservationsView_Previews: PreviewProvider {
     static var previews: some View {
-        let mainVM = MainScreenViewModel.shared
         ObservationsView(viewModel: ObservationsViewModel.mockInstance)
     }
 }

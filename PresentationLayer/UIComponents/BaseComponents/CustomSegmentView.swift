@@ -55,7 +55,7 @@ private extension CustomSegmentView {
             }
         }
         .background {
-            Color(colorEnum: .primary)
+            Color(colorEnum: .wxmPrimary)
         }
         .mask {
             segmentsView
@@ -84,7 +84,7 @@ private extension CustomSegmentView {
             .padding(.horizontal, selectorPadding)
         }
         .padding(2.0)
-        .strokeBorder(color: Color(colorEnum: .primary), lineWidth: 1.0, radius: cornerRadius)
+        .strokeBorder(color: Color(colorEnum: .wxmPrimary), lineWidth: 1.0, radius: cornerRadius)
         .animation(.easeIn(duration: 0.3), value: selectedIndex)
     }
 
@@ -97,7 +97,7 @@ private extension CustomSegmentView {
             HStack {
                 let size = selectorSizeForIndex(selectedIndex)
                 Capsule()
-                    .foregroundColor(Color(colorEnum: .primary))
+                    .foregroundColor(Color(colorEnum: .wxmPrimary))
                     .frame(width: size.width,
                            height: 2.0)
                     .offset(x: selectorOffsetForIndex(selectedIndex))
@@ -120,7 +120,7 @@ private extension CustomSegmentView {
                     Text(segment)
                         .font(.system(size: CGFloat(.normalFontSize), weight: .medium))
                         .if(selectedIndex == index, transform: { view in
-                            view.foregroundColor(Color(colorEnum: .primary))
+                            view.foregroundColor(Color(colorEnum: .wxmPrimary))
                         })
 						.padding(.vertical, CGFloat(.smallSidePadding))
                         .sizeObserver(size: $sizes[index].size)
@@ -142,7 +142,7 @@ private extension CustomSegmentView {
 
             let size = selectorSizeForIndex(selectedIndex)
             HStack {
-                Color(colorEnum: .primary)
+                Color(colorEnum: .wxmPrimary)
                     .cornerRadius(cornerRadius)
                     .frame(width: size.width, height: size.height)
                     .offset(x: selectorOffsetForIndex(selectedIndex))

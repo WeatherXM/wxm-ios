@@ -95,11 +95,11 @@ private class DefaultRemoteConfigManager: RemoteConfigManagerImplementation {
 					print("Success")
 					self?.refresh()
 				case .failure:
-					print("failed with \(error)")
+					print("failed with \(String(describing: error))")
 				case .throttled:
 					print("Throttled")
 				@unknown default:
-					print("failed with possible error \(error)")
+					print("failed with possible error \(String(describing: error))")
 			}
 		}
 	}
@@ -110,7 +110,7 @@ private class DefaultRemoteConfigManager: RemoteConfigManagerImplementation {
 				print(error)
 				return
 			}
-			print("Updated keys: \(configUpdate?.updatedKeys)")
+			print("Updated keys: \(String(describing: configUpdate?.updatedKeys))")
 			self?.refresh()
 		}
 	}

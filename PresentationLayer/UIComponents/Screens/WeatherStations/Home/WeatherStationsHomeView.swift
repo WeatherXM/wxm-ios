@@ -19,7 +19,6 @@ struct WeatherStationsHomeView: View {
     @StateObject private var viewModel: WeatherStationsHomeViewModel
 
     init(swinjectHelper: SwinjectInterface, isTabBarShowing: Binding<Bool>, tabBarItemsSize: Binding<CGSize>, isWalletEmpty: Binding<Bool>) {
-        let container = swinjectHelper.getContainerForSwinject()
 		_viewModel = StateObject(wrappedValue: ViewModelsFactory.getWeatherStationsHomeViewModel())
         _isTabBarShowing = isTabBarShowing
         _tabBarItemsSize = tabBarItemsSize
@@ -47,7 +46,7 @@ struct WeatherStationsHomeView: View {
         } label: {
             Text(FontIcon.sliders.rawValue)
                 .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-				.foregroundColor(Color(colorEnum: viewModel.isFiltersActive ? .primary : .text))
+				.foregroundColor(Color(colorEnum: viewModel.isFiltersActive ? .wxmPrimary : .text))
                 .frame(width: 30.0, height: 30.0)
         }
     }
@@ -124,7 +123,7 @@ private struct ContentView: View {
 
                         } label: {
                             Text(LocalizableString.addWalletTitle.localized)
-                                .foregroundColor(Color(colorEnum: .primary))
+                                .foregroundColor(Color(colorEnum: .wxmPrimary))
                                 .font(.system(size: CGFloat(.smallFontSize), weight: .bold))
                         }
                     }

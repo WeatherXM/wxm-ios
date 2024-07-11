@@ -118,7 +118,7 @@ private extension SelectLocationMapView {
 				RoundedRectangle(cornerRadius: 10)
 					.style(withStroke: Color(colorEnum: .midGrey), lineWidth: 1, fill: Color(colorEnum: .top))
 			)
-			.animation(nil)
+			.animation(.easeIn, value: showSearchResults)
 		}
 	}
 

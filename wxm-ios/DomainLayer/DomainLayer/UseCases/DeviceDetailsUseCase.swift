@@ -28,7 +28,7 @@ public struct DeviceDetailsUseCase {
         let followStateResult = try await meRepository.getDeviceFollowState(deviceId: deviceId)
         switch followStateResult {
             case .success(let followState):
-                if let followState {
+                if followState != nil {
                     return try await getUserDeviceById(deviceId: deviceId)
                 }
 

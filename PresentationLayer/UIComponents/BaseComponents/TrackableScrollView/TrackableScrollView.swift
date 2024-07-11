@@ -65,7 +65,7 @@ struct TrackableScrollView<Content>: View where Content: View {
     /// Embeds the content in `PullableScrollView` if `refreshAction` is provided or a regular `ScrollView` if not
     /// - Parameter content: The conent to show
     /// - Returns: The updated view
-    @ViewBuilder private func container<Content: View>(content: () -> Content) -> some View {
+    @ViewBuilder private func container<ContentView: View>(content: () -> ContentView) -> some View {
         if #available(iOS 16.0, *) {
             ScrollView(showsIndicators: false) {
                 content()
@@ -80,10 +80,10 @@ struct TrackableScrollView<Content>: View where Content: View {
                 }
             }
             .onAppear {
-                UIRefreshControl.appearance().tintColor = UIColor(Color(colorEnum: .primary))
+                UIRefreshControl.appearance().tintColor = UIColor(Color(colorEnum: .wxmPrimary))
             }
         } else if let refreshAction = refreshAction {
-            PullableScrollView(tintColor: Color(colorEnum: .primary)) { completion in
+            PullableScrollView(tintColor: Color(colorEnum: .wxmPrimary)) { completion in
                 refreshAction(completion)
             } content: {
                 content()

@@ -57,7 +57,7 @@ private extension NavigationContainerView {
                     } label: {
                         Image(asset: .backArrow)
                             .renderingMode(.template)
-                            .foregroundColor(Color(colorEnum: .primary))
+                            .foregroundColor(Color(colorEnum: .wxmPrimary))
                     }
                 }
 
@@ -108,7 +108,7 @@ struct NavigationContainerView_Previews: PreviewProvider {
             } label: {
                 Text(FontIcon.calendar.rawValue)
                     .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-                    .foregroundColor(Color(colorEnum: .primary))
+                    .foregroundColor(Color(colorEnum: .wxmPrimary))
                     .frame(width: 30.0, height: 30.0)
             }
 

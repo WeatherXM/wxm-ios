@@ -155,7 +155,7 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var baseRewardView: some View {
-		if let base = viewModel.rewardDetailsResponse?.base {
+		if viewModel.rewardDetailsResponse?.base != nil {
 			VStack(spacing: CGFloat(.mediumSpacing)) {
 				VStack(spacing: CGFloat(.minimumSpacing)) {
 					HStack {

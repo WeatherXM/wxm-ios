@@ -19,7 +19,7 @@ struct ClaimDeviceContainerView: View {
 
 			VStack {
 				ProgressView(value: CGFloat(viewModel.selectedIndex + 1), total: CGFloat(viewModel.steps.count))
-					.tint(Color(colorEnum: .primary))
+					.tint(Color(colorEnum: .wxmPrimary))
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.animation(.easeOut(duration: 0.3), value: viewModel.selectedIndex)
 
