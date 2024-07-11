@@ -127,7 +127,7 @@ private extension ManualSerialNumberView {
 					tf.textColor = UIColor(colorEnum: .text)
 					tf.prefix = inputField.type.prefix
 					tf.autocorrectionType = .no
-					tf.autocapitalizationType = .none
+					tf.autocapitalizationType = inputField.type.autocapitalizationType
 					tf.backgroundColor = .clear
 				}
 			)

@@ -19,7 +19,7 @@ struct ScannerView: View {
 		if #available(iOS 16.0, *) {
 			Scanner(mode: mode, completion: completion)
 		} else {
-			CodeScannerView(codeTypes: [mode.toMetadataObjectType]) { result in
+			CodeScannerView(codeTypes: mode.toMetadataObjectTypes) { result in
 				switch result {
 					case .success(let input):
 						completion(input.string)
@@ -27,7 +27,7 @@ struct ScannerView: View {
 						completion(nil)
 				}
 			}
-			.overlay(QrScannerView())
+			.overlay(ScannerOverlayView(layout: mode.overlayLayout))
 		}
     }
 }
@@ -47,12 +47,21 @@ extension ScannerView {
 			}
 		}
 
-		var toMetadataObjectType: AVMetadataObject.ObjectType {
+		var toMetadataObjectTypes: [AVMetadataObject.ObjectType] {
 			switch self {
 				case .qr:
-						.qr
+					[.qr]
 				case .barcode:
-						.code128
+					[.code128, .ean8, .ean13]
+			}
+		}
+
+		var overlayLayout: ScannerOverlayView.Layout {
+			switch self {
+				case .qr:
+						.square
+				case .barcode:
+						.rectangle
 			}
 		}
 	}
@@ -126,8 +135,8 @@ private class DataScannerWrapperViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let controller = DataScannerViewController(recognizedDataTypes: [mode.toBarcodeSymbology],
-												   qualityLevel: .fast,
-												   isHighFrameRateTrackingEnabled: false,
+												   qualityLevel: .accurate,
+												   isHighFrameRateTrackingEnabled: true,
 												   isPinchToZoomEnabled: false,
 												   isGuidanceEnabled: false)
 		scannerController = controller
@@ -145,7 +154,7 @@ private class DataScannerWrapperViewController: UIViewController {
 
 		controller.didMove(toParent: self)
 
-		let overlayVC = UIHostingController(rootView: QrScannerView())
+		let overlayVC = UIHostingController(rootView: ScannerOverlayView(layout: mode.overlayLayout))
 		controller.addChild(overlayVC)
 		overlayVC.view.translatesAutoresizingMaskIntoConstraints = false
 		overlayVC.view.backgroundColor = .clear
@@ -167,18 +176,34 @@ private class DataScannerWrapperViewController: UIViewController {
 		
 		// Position of the region of interest is a rectangle at the center of the view
 		let viewBounds = scannerController?.view.bounds ?? .zero
-		let region = CGRect(x: viewBounds.width / 4.0,
-							y: 3.0 * viewBounds.height / 8.0,
-							width: viewBounds.width / 2.0,
-							height: viewBounds.width / 2.0)
+		let region = regionRect(viewBounds: viewBounds)
 		scannerController?.regionOfInterest = region
 		
 		if scannerController?.isScanning == false {
 			try? scannerController?.startScanning()
 		}
 	}
+
+	func regionRect(viewBounds: CGRect) -> CGRect {
+		switch mode {
+			case .qr:
+				let region = CGRect(x: viewBounds.width / 4.0,
+									y: 3.0 * viewBounds.height / 8.0,
+									width: viewBounds.width / 2.0,
+									height: viewBounds.width / 2.0)
+
+				return region
+			case .barcode:
+				let region = CGRect(x: viewBounds.width / 8.0,
+									y: viewBounds.height / 2.0 - viewBounds.width / 8.0,
+									width: 3.0 * viewBounds.width / 4.0,
+									height: viewBounds.width / 4.0)
+
+				return region
+		}
+	}
 }
 
 #Preview {
-	ScannerView(mode: .qr) { _ in }
+	ScannerView(mode: .barcode) { _ in }
 }

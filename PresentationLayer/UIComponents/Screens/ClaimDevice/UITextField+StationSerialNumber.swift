@@ -11,7 +11,6 @@ extension UITextField {
     private static let PLACEHOLDER_CHARACTER = " "
     private static let SEPARATOR_CHARACTER = ":"
     private static let DISALLOWED_CHARACTERS_REGEX = "[^0-9|A-F|a-f|:]"
-    private static let MONOSPACE_FONT_NAME = "Menlo-Regular"
 
     private static var textFieldAddTrailingCharacters = NSHashTable<UITextField>.weakObjects()
     var addTrailingCharacters: Bool {
@@ -112,13 +111,6 @@ extension UITextField {
                 )
             }
         }
-    }
-
-    func configureForSerialNumber() {
-        // Monospaced font used here for an improved editing experience.
-        font = UIFont(name: Self.MONOSPACE_FONT_NAME, size: FontSizeEnum.mediumFontSize.sizeValue)
-        autocorrectionType = .no
-        autocapitalizationType = .none
     }
 
     static func formatAsSerialNumber(
