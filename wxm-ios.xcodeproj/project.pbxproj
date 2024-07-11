@@ -153,7 +153,7 @@
 		266D6FAF2A41F32100A19E8B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266D6FAE2A41F32100A19E8B /* SearchView.swift */; };
 		266DC0132A54260900EC9E1F /* NetworkErrorResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DC0122A54260900EC9E1F /* NetworkErrorResponse+.swift */; };
 		266DC01B2A55786F00EC9E1F /* WXMPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DC01A2A55786F00EC9E1F /* WXMPopover.swift */; };
-		26707E9F2C3ECC0400B9305F /* WeatherXMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26707E9E2C3ECC0400B9305F /* WeatherXMTests.swift */; };
+		26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */; };
 		26707EA82C3ECDE600B9305F /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = 26707EA72C3ECDE600B9305F /* Cuckoo */; };
 		2672C77A2AA9BBEB00E1FDCC /* HistoryContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C7792AA9BBEB00E1FDCC /* HistoryContainerView.swift */; };
 		2672C77E2AA9BCFE00E1FDCC /* HistoryContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C77D2AA9BCFE00E1FDCC /* HistoryContainerViewModel.swift */; };
@@ -688,7 +688,7 @@
 		266DC0122A54260900EC9E1F /* NetworkErrorResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkErrorResponse+.swift"; sourceTree = "<group>"; };
 		266DC01A2A55786F00EC9E1F /* WXMPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMPopover.swift; sourceTree = "<group>"; };
 		26707E9C2C3ECC0400B9305F /* WeatherXMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherXMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		26707E9E2C3ECC0400B9305F /* WeatherXMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherXMTests.swift; sourceTree = "<group>"; };
+		26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEIConverterTests.swift; sourceTree = "<group>"; };
 		2672C7792AA9BBEB00E1FDCC /* HistoryContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HistoryContainerView.swift; sourceTree = "<group>"; };
 		2672C77D2AA9BCFE00E1FDCC /* HistoryContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryContainerViewModel.swift; sourceTree = "<group>"; };
 		2672C77F2AA9DA4600E1FDCC /* ScrollingPagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingPagerView.swift; sourceTree = "<group>"; };
@@ -1399,7 +1399,7 @@
 		26707E9D2C3ECC0400B9305F /* WeatherXMTests */ = {
 			isa = PBXGroup;
 			children = (
-				26707E9E2C3ECC0400B9305F /* WeatherXMTests.swift */,
+				26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */,
 			);
 			path = WeatherXMTests;
 			sourceTree = "<group>";
@@ -2803,7 +2803,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26707E9F2C3ECC0400B9305F /* WeatherXMTests.swift in Sources */,
+				26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3339,7 +3339,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.WeatherXMTests;
@@ -3364,7 +3364,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.WeatherXMTests;
@@ -3388,7 +3388,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.WeatherXMTests;
