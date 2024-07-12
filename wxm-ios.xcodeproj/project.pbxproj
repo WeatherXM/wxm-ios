@@ -154,7 +154,6 @@
 		266DC0132A54260900EC9E1F /* NetworkErrorResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DC0122A54260900EC9E1F /* NetworkErrorResponse+.swift */; };
 		266DC01B2A55786F00EC9E1F /* WXMPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DC01A2A55786F00EC9E1F /* WXMPopover.swift */; };
 		26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */; };
-		26707EA82C3ECDE600B9305F /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = 26707EA72C3ECDE600B9305F /* Cuckoo */; };
 		26707EB02C4005DD00B9305F /* KeychainUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26707EAF2C4005DD00B9305F /* KeychainUseCaseTests.swift */; };
 		2672C77A2AA9BBEB00E1FDCC /* HistoryContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C7792AA9BBEB00E1FDCC /* HistoryContainerView.swift */; };
 		2672C77E2AA9BCFE00E1FDCC /* HistoryContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C77D2AA9BCFE00E1FDCC /* HistoryContainerViewModel.swift */; };
@@ -446,6 +445,8 @@
 		26E88AF529DD69930023BBD5 /* WXMShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88AF429DD69930023BBD5 /* WXMShadow.swift */; };
 		26E88AFF29E02F590023BBD5 /* anim_loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 26E88AFE29E02F590023BBD5 /* anim_loader.json */; };
 		26E9A5142AE26AFE003E0830 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A5132AE26AFE003E0830 /* View+.swift */; };
+		26EB6CEB2C412F2800314264 /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = 26EB6CEA2C412F2800314264 /* Cuckoo */; };
+		26EB6CED2C412F2800314264 /* CuckooGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 26EB6CEC2C412F2800314264 /* CuckooGenerator */; };
 		26F149E22BDFC5040029F981 /* ClaimStationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */; };
 		26F149E52BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E42BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift */; };
 		26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */; };
@@ -1010,7 +1011,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26707EA82C3ECDE600B9305F /* Cuckoo in Frameworks */,
+				26EB6CED2C412F2800314264 /* CuckooGenerator in Frameworks */,
+				26EB6CEB2C412F2800314264 /* Cuckoo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2528,11 +2530,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				26EB6CEF2C412F3A00314264 /* PBXTargetDependency */,
 				26707EA12C3ECC0400B9305F /* PBXTargetDependency */,
 			);
 			name = WeatherXMTests;
 			packageProductDependencies = (
-				26707EA72C3ECDE600B9305F /* Cuckoo */,
+				26EB6CEA2C412F2800314264 /* Cuckoo */,
+				26EB6CEC2C412F2800314264 /* CuckooGenerator */,
 			);
 			productName = WeatherXMTests;
 			productReference = 26707E9C2C3ECC0400B9305F /* WeatherXMTests.xctest */;
@@ -2646,7 +2650,7 @@
 				269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 				261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				26C801DA2C2B162A00D6AC60 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
-				26707EA62C3ECDE600B9305F /* XCRemoteSwiftPackageReference "Cuckoo" */,
+				26EB6CE92C412F2800314264 /* XCRemoteSwiftPackageReference "Cuckoo" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -3225,6 +3229,10 @@
 			isa = PBXTargetDependency;
 			target = 26B8321C2AC31E4500757A69 /* station-widgetExtension */;
 			targetProxy = 26B8322A2AC31E4600757A69 /* PBXContainerItemProxy */;
+		};
+		26EB6CEF2C412F3A00314264 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 26EB6CEE2C412F3A00314264 /* CuckooPluginSingleFile */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3998,14 +4006,6 @@
 				minimumVersion = 12.4.0;
 			};
 		};
-		26707EA62C3ECDE600B9305F /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Brightify/Cuckoo.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.8;
-			};
-		};
 		269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mixpanel/mixpanel-swift";
@@ -4020,6 +4020,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.17;
+			};
+		};
+		26EB6CE92C412F2800314264 /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Brightify/Cuckoo.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.8;
 			};
 		};
 		26FFAD662B8DF9C200BF0A6B /* XCRemoteSwiftPackageReference "LazyLoadingPager" */ = {
@@ -4108,11 +4116,6 @@
 			package = 261E9EB629A92BE000E8EBA3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		26707EA72C3ECDE600B9305F /* Cuckoo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 26707EA62C3ECDE600B9305F /* XCRemoteSwiftPackageReference "Cuckoo" */;
-			productName = Cuckoo;
-		};
 		269C96892BDBD5660035B8F1 /* Mixpanel */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
@@ -4127,6 +4130,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 26C801DA2C2B162A00D6AC60 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */;
 			productName = FLAnimatedImage;
+		};
+		26EB6CEA2C412F2800314264 /* Cuckoo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26EB6CE92C412F2800314264 /* XCRemoteSwiftPackageReference "Cuckoo" */;
+			productName = Cuckoo;
+		};
+		26EB6CEC2C412F2800314264 /* CuckooGenerator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26EB6CE92C412F2800314264 /* XCRemoteSwiftPackageReference "Cuckoo" */;
+			productName = CuckooGenerator;
+		};
+		26EB6CEE2C412F3A00314264 /* CuckooPluginSingleFile */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26EB6CE92C412F2800314264 /* XCRemoteSwiftPackageReference "Cuckoo" */;
+			productName = "plugin:CuckooPluginSingleFile";
 		};
 		26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */ = {
 			isa = XCSwiftPackageProductDependency;
