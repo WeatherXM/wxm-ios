@@ -118,6 +118,18 @@ public struct MeRepositoryImpl: MeRepository {
 	public func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> {
 		try userDevicesService.setDeviceLocationById(deviceId: deviceId, lat: lat, lon: lon)
 	}
+
+	public func setNotificationsFcmToken(installationId: String, token: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+		let builder = MeApiRequestBuilder.setFCMToken(installationId: installationId, token: token)
+		let urlRequest = try builder.asURLRequest()
+		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+	}
+
+	public func deleteNotificationsFcmToken(installationId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+		let builder = MeApiRequestBuilder.deleteFCMToken(installationId: installationId)
+		let urlRequest = try builder.asURLRequest()
+		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+	}
 }
 
 private extension MeRepositoryImpl {
