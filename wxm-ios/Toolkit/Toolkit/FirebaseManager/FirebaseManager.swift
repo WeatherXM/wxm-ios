@@ -20,6 +20,9 @@ public class FirebaseManager {
 	public var notificationsAuthStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? {
 		firebaseManagerImpl.notificationsAuthStatusPublisher
 	}
+	public var fcmTokenPublisher: AnyPublisher<String?, Never>? {
+		firebaseManagerImpl.fcmTokenPublisher
+	}
 
 	private let firebaseManagerImpl: FirbaseManagerImplementation
 
@@ -70,6 +73,10 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 
 	var notificationsAuthStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? {
 		notificationsHandler.authorizationStatusPublisher
+	}
+
+	var fcmTokenPublisher: AnyPublisher<String?, Never>? {
+		notificationsHandler.fcmTokenPublisher
 	}
 
 	func launch() {
@@ -123,6 +130,7 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 private class MockFirebaseManager: FirbaseManagerImplementation {
 	var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? { nil }
 	var notificationsAuthStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? { nil }
+	var fcmTokenPublisher: AnyPublisher<String?, Never>? { nil }
 
 	func launch() {}
 	func getInstallationId() async -> String { return "" }
