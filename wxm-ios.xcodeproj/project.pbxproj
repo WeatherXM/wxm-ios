@@ -445,8 +445,6 @@
 		26E88AF529DD69930023BBD5 /* WXMShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88AF429DD69930023BBD5 /* WXMShadow.swift */; };
 		26E88AFF29E02F590023BBD5 /* anim_loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 26E88AFE29E02F590023BBD5 /* anim_loader.json */; };
 		26E9A5142AE26AFE003E0830 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A5132AE26AFE003E0830 /* View+.swift */; };
-		26EB6CEB2C412F2800314264 /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = 26EB6CEA2C412F2800314264 /* Cuckoo */; };
-		26EB6CED2C412F2800314264 /* CuckooGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 26EB6CEC2C412F2800314264 /* CuckooGenerator */; };
 		26F149E22BDFC5040029F981 /* ClaimStationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */; };
 		26F149E52BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E42BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift */; };
 		26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */; };
@@ -1011,8 +1009,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26EB6CED2C412F2800314264 /* CuckooGenerator in Frameworks */,
-				26EB6CEB2C412F2800314264 /* Cuckoo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2530,13 +2526,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				26EB6CEF2C412F3A00314264 /* PBXTargetDependency */,
+				26CA57F82C45238D0085A487 /* PBXTargetDependency */,
 				26707EA12C3ECC0400B9305F /* PBXTargetDependency */,
 			);
 			name = WeatherXMTests;
 			packageProductDependencies = (
-				26EB6CEA2C412F2800314264 /* Cuckoo */,
-				26EB6CEC2C412F2800314264 /* CuckooGenerator */,
 			);
 			productName = WeatherXMTests;
 			productReference = 26707E9C2C3ECC0400B9305F /* WeatherXMTests.xctest */;
@@ -2650,7 +2644,6 @@
 				269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 				261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				26C801DA2C2B162A00D6AC60 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
-				26EB6CE92C412F2800314264 /* XCRemoteSwiftPackageReference "Cuckoo" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -3230,9 +3223,9 @@
 			target = 26B8321C2AC31E4500757A69 /* station-widgetExtension */;
 			targetProxy = 26B8322A2AC31E4600757A69 /* PBXContainerItemProxy */;
 		};
-		26EB6CEF2C412F3A00314264 /* PBXTargetDependency */ = {
+		26CA57F82C45238D0085A487 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = 26EB6CEE2C412F3A00314264 /* CuckooPluginSingleFile */;
+			productRef = 26CA57F72C45238D0085A487 /* CuckooPluginSingleFile */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3356,6 +3349,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.WeatherXMTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -3381,6 +3377,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.WeatherXMTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3405,6 +3404,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.WeatherXMTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4022,7 +4024,7 @@
 				minimumVersion = 1.0.17;
 			};
 		};
-		26EB6CE92C412F2800314264 /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
+		26CA57F22C45233D0085A487 /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Brightify/Cuckoo.git";
 			requirement = {
@@ -4131,19 +4133,9 @@
 			package = 26C801DA2C2B162A00D6AC60 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */;
 			productName = FLAnimatedImage;
 		};
-		26EB6CEA2C412F2800314264 /* Cuckoo */ = {
+		26CA57F72C45238D0085A487 /* CuckooPluginSingleFile */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 26EB6CE92C412F2800314264 /* XCRemoteSwiftPackageReference "Cuckoo" */;
-			productName = Cuckoo;
-		};
-		26EB6CEC2C412F2800314264 /* CuckooGenerator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 26EB6CE92C412F2800314264 /* XCRemoteSwiftPackageReference "Cuckoo" */;
-			productName = CuckooGenerator;
-		};
-		26EB6CEE2C412F3A00314264 /* CuckooPluginSingleFile */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 26EB6CE92C412F2800314264 /* XCRemoteSwiftPackageReference "Cuckoo" */;
+			package = 26CA57F22C45233D0085A487 /* XCRemoteSwiftPackageReference "Cuckoo" */;
 			productName = "plugin:CuckooPluginSingleFile";
 		};
 		26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */ = {
