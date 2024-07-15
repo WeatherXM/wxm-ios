@@ -102,8 +102,7 @@ enum ViewModelsFactory {
 
     static func getSignInViewModel() -> SignInViewModel {
         let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)
-        let keyChainUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(KeychainUseCase.self)
-        return SignInViewModel(authUseCase: authUseCase!, keychainUseCase: keyChainUseCase!)
+        return SignInViewModel(authUseCase: authUseCase!)
     }
 
     static func getRegisterViewModel() -> RegisterViewModel {

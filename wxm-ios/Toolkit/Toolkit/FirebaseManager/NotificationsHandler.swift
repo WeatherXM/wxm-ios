@@ -41,10 +41,6 @@ class NotificationsHandler: NSObject {
 		observeAuthorizationStatus()
 	}
 
-	func getFCMToken() async throws ->  String {
-		try await Messaging.messaging().token()
-	}
-
 	func getAuthorizationStatus() async -> UNAuthorizationStatus {
 		await UNUserNotificationCenter.current().notificationSettings().authorizationStatus		
 	}

@@ -8,17 +8,29 @@
 import Alamofire
 import Combine
 import Foundation
+import Toolkit
 
 public struct AuthUseCase {
     private let authRepository: AuthRepository
+	private let meRepository: MeRepository
+	private let keychainRepository: KeychainRepository
 
-    public init(authRepository: AuthRepository) {
+	public init(authRepository: AuthRepository, meRepository: MeRepository, keychainRepository: KeychainRepository) {
         self.authRepository = authRepository
+		self.meRepository = meRepository
+		self.keychainRepository = keychainRepository
     }
 
     public func login(username: String, password: String) throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
         let login = try authRepository.login(username: username, password: password)
-        return login
+		return login.flatMap { response in
+			if let value = response.value {
+				keychainRepository.saveEmailAndPasswordToKeychain(email: username, password: password)
+				keychainRepository.saveNetworkTokenResponseToKeychain(item: value)
+				setFCMToken()
+			}
+			return Just(response)
+		}.eraseToAnyPublisher()
     }
 
     public func register(email: String, firstName: String, lastName: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
@@ -44,4 +56,16 @@ public struct AuthUseCase {
     public func passwordValidation(password: String)throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
         return try authRepository.passwordValidation(password: password) 
     }
+}
+
+private extension AuthUseCase {
+	func setFCMToken() {
+		Task {
+			let installationId = await FirebaseManager.shared.getInstallationId()
+			guard let fcmToken = await FirebaseManager.shared.getFCMToken() else {
+				return
+			}
+			let _ = try? meRepository.setNotificationsFcmToken(installationId: installationId, token: fcmToken)
+		}
+	}
 }
