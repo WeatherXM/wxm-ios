@@ -7,14 +7,22 @@
 
 import WidgetKit
 import Toolkit
+import Combine
 
-public struct MainUseCase {
+public class MainUseCase {
     private let userDefaultsRepository: UserDefaultsRepository
 	private let keychainRepository: KeychainRepository
+	private let meRepository: MeRepository
+	private var cancellableSet: Set<AnyCancellable> = .init()
 
-    public init(userDefaultsRepository: UserDefaultsRepository, keychainRepository: KeychainRepository) {
+	public init(userDefaultsRepository: UserDefaultsRepository, keychainRepository: KeychainRepository, meRepository: MeRepository) {
         self.userDefaultsRepository = userDefaultsRepository
 		self.keychainRepository = keychainRepository
+		self.meRepository = meRepository
+
+		FirebaseManager.shared.fcmTokenPublisher?.sink { [weak self] token in
+			self?.setFCMTokenIfNeeded()
+		}.store(in: &cancellableSet)
     }
 
     public func saveOrUpdateWeatherMetric(unitProtocol: UnitsProtocol) {
@@ -73,5 +81,20 @@ private extension MainUseCase {
 
 		let result = currentVersion.semVersionCompare(version)
 		return result == .orderedAscending
+	}
+
+	func setFCMTokenIfNeeded() {
+		Task {
+			guard keychainRepository.isUserLoggedIn(),
+				  let token = await FirebaseManager.shared.getFCMToken() else {
+				return
+			}
+
+			let installationId = await FirebaseManager.shared.getInstallationId()
+			try? meRepository.setNotificationsFcmToken(installationId: installationId, token: token).sink { response in
+				print(response)
+			}.store(in: &cancellableSet)
+
+		}
 	}
 }
