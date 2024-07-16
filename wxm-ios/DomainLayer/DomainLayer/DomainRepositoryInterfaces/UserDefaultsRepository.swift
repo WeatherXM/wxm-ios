@@ -11,4 +11,5 @@ public protocol UserDefaultsRepository {
     func saveWeatherUnit(unitProtocol: UnitsProtocol)
     func saveValue<T>(key: String, value: T)
     func getValue<T>(for key: String) -> T?
+	func clearUserSensitiveData()
 }

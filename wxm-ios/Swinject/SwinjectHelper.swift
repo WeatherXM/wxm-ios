@@ -185,7 +185,9 @@ class SwinjectHelper: SwinjectInterface {
 		container.register(AuthUseCase.self) { resolver in
 			AuthUseCase(authRepository: resolver.resolve(AuthRepository.self)!,
 						meRepository: resolver.resolve(MeRepository.self)!,
-						keychainRepository: resolver.resolve(KeychainRepository.self)!)
+						keychainRepository: resolver.resolve(KeychainRepository.self)!,
+						userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
+						networkRepository: resolver.resolve(NetworkRepository.self)!)
 		}
 
         // MARK: - Return the Container

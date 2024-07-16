@@ -9,16 +9,25 @@ import Alamofire
 import Combine
 import Foundation
 import Toolkit
+import WidgetKit
 
 public struct AuthUseCase {
     private let authRepository: AuthRepository
 	private let meRepository: MeRepository
 	private let keychainRepository: KeychainRepository
+	private let userDefaultsRepository: UserDefaultsRepository
+	private let networkRepository: NetworkRepository
 
-	public init(authRepository: AuthRepository, meRepository: MeRepository, keychainRepository: KeychainRepository) {
+	public init(authRepository: AuthRepository,
+				meRepository: MeRepository,
+				keychainRepository: KeychainRepository,
+				userDefaultsRepository: UserDefaultsRepository,
+				networkRepository: NetworkRepository) {
         self.authRepository = authRepository
 		self.meRepository = meRepository
 		self.keychainRepository = keychainRepository
+		self.userDefaultsRepository = userDefaultsRepository
+		self.networkRepository = networkRepository
     }
 
     public func login(username: String, password: String) throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
@@ -40,7 +49,18 @@ public struct AuthUseCase {
 
     public func logout() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
         let logout = try authRepository.logout()
-        return logout
+		return logout.flatMap { response in
+			if response.error == nil {
+				userDefaultsRepository.clearUserSensitiveData()
+				WidgetCenter.shared.reloadAllTimelines()
+				networkRepository.deleteAllRecent()
+				deleteFCMToken()
+				keychainRepository.deleteEmailAndPasswordFromKeychain()
+				keychainRepository.deleteNetworkTokenResponseFromKeychain()
+			}
+
+			return Just(response)
+		}.eraseToAnyPublisher()
     }
 
     public func refresh(refreshToken: String) throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
@@ -67,5 +87,13 @@ private extension AuthUseCase {
 			}
 			let _ = try? meRepository.setNotificationsFcmToken(installationId: installationId, token: fcmToken)
 		}
+	}
+
+	func deleteFCMToken() {
+		Task {
+			let installationId = await FirebaseManager.shared.getInstallationId()
+			let _ = try? meRepository.deleteNotificationsFcmToken(installationId: installationId)
+		}
+
 	}
 }

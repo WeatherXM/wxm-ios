@@ -29,12 +29,14 @@ final class SettingsViewModel: ObservableObject {
     let userID: String
 	let unitsManager: WeatherUnitsManager = .default
     private let settingsUseCase: SettingsUseCase
+	private let authUseCase: AuthUseCase
     private var cancellableSet: Set<AnyCancellable> = .init()
 	private let mainVM: MainScreenViewModel = .shared
 
-    init(userId: String, settingsUseCase: SettingsUseCase) {
+	init(userId: String, settingsUseCase: SettingsUseCase, authUseCase: AuthUseCase) {
         self.userID = userId
         self.settingsUseCase = settingsUseCase
+		self.authUseCase = authUseCase
         self.isAnalyticsCollectionEnabled = settingsUseCase.isAnalyticsEnabled
         setInstallationId()
 		observeAuthorizationStatus()
@@ -134,7 +136,7 @@ final class SettingsViewModel: ObservableObject {
             self.isLoading = true
 
             do {
-                try settingsUseCase.logout().sink { [weak self] response in
+                try authUseCase.logout().sink { [weak self] response in
                     self?.isLoading = false
 
                     if let error = response.error {

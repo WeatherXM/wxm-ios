@@ -25,14 +25,12 @@ final class DeleteAccountViewModel: ObservableObject {
     private let authUseCase: AuthUseCase
     private let meUseCase: MeUseCase
     private let keychainUseCase: KeychainUseCase
-	private let settingsUseCase: SettingsUseCase
 
-	init(userId: String, authUseCase: AuthUseCase, meUseCase: MeUseCase, keychainUseCase: KeychainUseCase, settingsUseCase: SettingsUseCase) {
+	init(userId: String, authUseCase: AuthUseCase, meUseCase: MeUseCase, keychainUseCase: KeychainUseCase) {
         self.userID = userId
         self.authUseCase = authUseCase
         self.meUseCase = meUseCase
         self.keychainUseCase = keychainUseCase
-		self.settingsUseCase = settingsUseCase
     }
 
     func tryLoginAndDeleteAccount() {
@@ -71,7 +69,7 @@ final class DeleteAccountViewModel: ObservableObject {
                         }
                     } else {
 						Router.shared.navigateTo(.deleteAccountSuccess(self))
-						_ = try? self.settingsUseCase.logout(localOnly: true)
+						_ = try? self.authUseCase.logout()
                     }
                 }.store(in: &cancellableSet)
         } catch {}
