@@ -76,6 +76,14 @@ public struct AuthUseCase {
     public func passwordValidation(password: String)throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
         return try authRepository.passwordValidation(password: password) 
     }
+
+	public func getUsersEmail() -> String {
+		keychainRepository.getUsersEmail()
+	}
+
+	public func isUserLoggedIn() -> Bool {
+		keychainRepository.isUserLoggedIn()
+	}
 }
 
 private extension AuthUseCase {

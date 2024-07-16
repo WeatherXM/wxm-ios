@@ -124,8 +124,8 @@ class MainScreenViewModel: ObservableObject {
 
     private func checkIfUserIsLoggedIn() {
         let container = swinjectHelper.getContainerForSwinject()
-        let keychainUsecase = container.resolve(KeychainUseCase.self)!
-        isUserLoggedIn = keychainUsecase.isUserLoggedIn()
+        let authUseCase = container.resolve(AuthUseCase.self)!
+        isUserLoggedIn = authUseCase.isUserLoggedIn()
     }
 
     private func startMonitoring() {
