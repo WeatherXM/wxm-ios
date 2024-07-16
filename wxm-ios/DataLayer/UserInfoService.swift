@@ -16,9 +16,12 @@ public class UserInfoService {
 	private var userInfoSubject = CurrentValueSubject<NetworkUserInfoResponse?, Never>(nil)
 
 	public init() {
-		NotificationCenter.default.addObserver(forName: .keychainHelperServiceUserIsLoggedOut,
+		NotificationCenter.default.addObserver(forName: .keychainHelperServiceUserIsLoggedInChanged,
 											   object: nil,
-											   queue: nil) { [weak self] _ in
+											   queue: nil) { [weak self] notification in
+			guard notification.object as? Bool == false else {
+				return
+			}
 			self?.userInfoSubject.send(nil)
 			WXMAnalytics.shared.removeUserProperty(key: .hasWallet)
 		}
