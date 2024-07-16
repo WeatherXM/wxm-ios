@@ -10,6 +10,8 @@ import Toolkit
 import Combine
 
 public class MainUseCase {
+	public var userLoggedInStateNotificationPublisher: NotificationCenter.Publisher
+
     private let userDefaultsRepository: UserDefaultsRepository
 	private let keychainRepository: KeychainRepository
 	private let meRepository: MeRepository
@@ -19,6 +21,7 @@ public class MainUseCase {
         self.userDefaultsRepository = userDefaultsRepository
 		self.keychainRepository = keychainRepository
 		self.meRepository = meRepository
+		userLoggedInStateNotificationPublisher = keychainRepository.userLoggedInStateNotificationPublisher
 
 		FirebaseManager.shared.fcmTokenPublisher?.sink { [weak self] token in
 			self?.setFCMTokenIfNeeded()

@@ -77,6 +77,10 @@ class MainScreenViewModel: ObservableObject {
 			self?.userInfo = response
 		}.store(in: &cancellableSet)
 
+		mainUseCase.userLoggedInStateNotificationPublisher.sink { [weak self] _ in
+			self?.checkIfUserIsLoggedIn()
+		}.store(in: &cancellableSet)
+
 		// Set the cache size in order to handle image download requests
 		URLCache.shared.memoryCapacity = 10_000_000 // ~10 MB memory space
 		URLCache.shared.diskCapacity = 500_000_000 // ~500 MB disk cache space

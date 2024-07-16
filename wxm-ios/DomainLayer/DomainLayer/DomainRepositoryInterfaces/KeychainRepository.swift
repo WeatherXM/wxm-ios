@@ -8,6 +8,7 @@
 import Foundation
 
 public protocol KeychainRepository {
+	var userLoggedInStateNotificationPublisher: NotificationCenter.Publisher { get }
     func saveNetworkTokenResponseToKeychain(item: NetworkTokenResponse)
     func isUserLoggedIn() -> Bool
     func deleteNetworkTokenResponseFromKeychain()

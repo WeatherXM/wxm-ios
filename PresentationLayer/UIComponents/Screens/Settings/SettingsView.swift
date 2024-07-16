@@ -178,13 +178,7 @@ struct SettingsView: View {
             settingCaption: "",
             action: {
                 WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .logout])
-                settingsViewModel.logoutUser { completion in
-                    if completion {
-                        mainScreenViewModel.selectedTab = .homeTab
-                        mainScreenViewModel.isUserLoggedIn = false
-                        Router.shared.popToRoot()
-                    }
-                }
+                settingsViewModel.logoutUser { _ in }
             }
         )
     }
