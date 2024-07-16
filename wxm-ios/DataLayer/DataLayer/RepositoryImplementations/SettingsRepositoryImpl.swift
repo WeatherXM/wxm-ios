@@ -34,10 +34,6 @@ public struct SettingsRepositoryImpl: SettingsRepository {
         setAnlyticsOptTimestamp()
         setAnalyticsEnabled(option)
     }
-
-    public func clearUserDefaults() {
-        userDefaultsService.clearUserSensitiveData()
-    }
 }
 
 private extension SettingsRepositoryImpl {

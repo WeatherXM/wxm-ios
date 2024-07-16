@@ -20,7 +20,4 @@ public protocol SettingsRepository {
     /// Call to update the analytics tracking option by the user
     /// - Parameter option: The user's option
     func optInOutAnalytics(_ option: Bool)
-
-    /// Clear all User Defaults entries
-    func clearUserDefaults()
 }
