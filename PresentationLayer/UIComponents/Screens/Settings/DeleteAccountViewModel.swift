@@ -24,18 +24,16 @@ final class DeleteAccountViewModel: ObservableObject {
 
     private let authUseCase: AuthUseCase
     private let meUseCase: MeUseCase
-    private let keychainUseCase: KeychainUseCase
 
-	init(userId: String, authUseCase: AuthUseCase, meUseCase: MeUseCase, keychainUseCase: KeychainUseCase) {
+	init(userId: String, authUseCase: AuthUseCase, meUseCase: MeUseCase) {
         self.userID = userId
         self.authUseCase = authUseCase
         self.meUseCase = meUseCase
-        self.keychainUseCase = keychainUseCase
     }
 
     func tryLoginAndDeleteAccount() {
         isValidatingPassword = true
-        let usersEmail = keychainUseCase.getUsersEmail()
+        let usersEmail = authUseCase.getUsersEmail()
         do {
             try authUseCase.login(username: usersEmail, password: password)
                 .sink { response in

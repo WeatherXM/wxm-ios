@@ -96,8 +96,7 @@ enum ViewModelsFactory {
     static func getDeleteAccountViewModel(userId: String) -> DeleteAccountViewModel {
         let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)
         let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)
-        let keychainUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(KeychainUseCase.self)
-        return DeleteAccountViewModel(userId: userId, authUseCase: authUseCase!, meUseCase: meUseCase!, keychainUseCase: keychainUseCase!)
+        return DeleteAccountViewModel(userId: userId, authUseCase: authUseCase!, meUseCase: meUseCase!)
     }
 
     static func getSignInViewModel() -> SignInViewModel {

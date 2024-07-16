@@ -137,9 +137,6 @@ class SwinjectHelper: SwinjectInterface {
         container.register(KeychainRepository.self) { _ in
             KeychainRepositoryImpl()
         }
-        container.register(KeychainUseCase.self) { resolver in
-            KeychainUseCase(keychainRepository: resolver.resolve(KeychainRepository.self)!)
-        }
 
         // MARK: - Main Use Case
 
