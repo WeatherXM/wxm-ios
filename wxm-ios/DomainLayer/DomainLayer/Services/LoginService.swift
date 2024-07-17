@@ -55,18 +55,19 @@ public class LoginServiceImpl: LoginService {
 	}
 
 	public func logout() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		let logout = try authRepository.logout()
-		return logout.flatMap { [weak self] response in
-			if response.error == nil {
-				self?.userDefaultsRepository.clearUserSensitiveData()
-				WidgetCenter.shared.reloadAllTimelines()
-				self?.networkRepository.deleteAllRecent()
-				self?.deleteFCMToken()
-				self?.keychainRepository.deleteEmailAndPasswordFromKeychain()
-				self?.keychainRepository.deleteNetworkTokenResponseFromKeychain()
-			}
+		deleteFCMToken().flatMap { [weak self] _ in
+			let logout = try! self!.authRepository.logout()
+			return logout.flatMap { [weak self] response in
+				if response.error == nil {
+					self?.userDefaultsRepository.clearUserSensitiveData()
+					WidgetCenter.shared.reloadAllTimelines()
+					self?.networkRepository.deleteAllRecent()
+					self?.keychainRepository.deleteEmailAndPasswordFromKeychain()
+					self?.keychainRepository.deleteNetworkTokenResponseFromKeychain()
+				}
 
-			return Just(response)
+				return Just(response)
+			}
 		}.eraseToAnyPublisher()
 	}
 }
@@ -81,17 +82,18 @@ private extension LoginServiceImpl {
 			try? meRepository.setNotificationsFcmToken(installationId: installationId, token: fcmToken).sink { _ in
 
 			}.store(in: &cancellableSet)
-
 		}
 	}
 
-	func deleteFCMToken() {
+	func deleteFCMToken() -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+		let publisher = PassthroughSubject<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>()
 		Task {
 			let installationId = await FirebaseManager.shared.getInstallationId()
-			try? meRepository.deleteNotificationsFcmToken(installationId: installationId).sink { _ in
-
+			try meRepository.deleteNotificationsFcmToken(installationId: installationId).sink { response in
+				publisher.send(response)
 			}.store(in: &cancellableSet)
 		}
+		return publisher.eraseToAnyPublisher()
 	}
 
 	func observeRefreshTokenExpiration() {
