@@ -46,8 +46,8 @@ public class FirebaseManager {
 		await firebaseManagerImpl.getInstallationId()
     }
 
-	public func getFCMToken() async -> String? {
-		await firebaseManagerImpl.getFCMToken()
+	public func getFCMToken() -> String? {
+		firebaseManagerImpl.getFCMToken()
 	}
 
 	public func gatAuthorizationStatus() async -> UNAuthorizationStatus {
@@ -96,8 +96,8 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 		return installationId
 	}
 
-	func getFCMToken() async -> String? {
-		await notificationsHandler.getFCMToken()
+	func getFCMToken() -> String? {
+		notificationsHandler.getFCMToken()
 	}
 
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
@@ -142,7 +142,7 @@ private class MockFirebaseManager: FirbaseManagerImplementation {
 
 	func launch() {}
 	func getInstallationId() async -> String { return "" }
-	func getFCMToken() async -> String? { nil }
+	func getFCMToken() -> String? { nil }
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {}
 	func requestNotificationAuthorization() async throws {}
 	func getAuthorizationStatus() async -> UNAuthorizationStatus { .authorized }

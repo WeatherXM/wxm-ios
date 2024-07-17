@@ -49,8 +49,8 @@ class NotificationsHandler: NSObject {
 		Messaging.messaging().apnsToken = token
 	}
 
-	func getFCMToken() async -> String? {
-		try? await Messaging.messaging().token()
+	func getFCMToken() -> String? {
+		Messaging.messaging().fcmToken
 	}
 }
 

@@ -16,7 +16,7 @@ protocol FirbaseManagerImplementation {
 
 	func launch()
 	func getInstallationId() async -> String
-	func getFCMToken() async -> String?
+	func getFCMToken() -> String?
 	func setAnalyticsCollectionEnabled(_ enabled: Bool)
 	func requestNotificationAuthorization() async throws
 	func getAuthorizationStatus() async -> UNAuthorizationStatus
