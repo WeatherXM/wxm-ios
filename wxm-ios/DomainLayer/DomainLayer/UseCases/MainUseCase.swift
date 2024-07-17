@@ -97,7 +97,6 @@ private extension MainUseCase {
 			try? meRepository.setNotificationsFcmToken(installationId: installationId, token: token).sink { response in
 				print(response)
 			}.store(in: &cancellableSet)
-
 		}
 	}
 }

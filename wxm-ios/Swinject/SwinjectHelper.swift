@@ -178,15 +178,25 @@ class SwinjectHelper: SwinjectInterface {
 
 		// MARK: - Auth DI
 
+		container.register(LoginService.self) { resolver in
+			LoginServiceImpl(authRepository: resolver.resolve(AuthRepository.self)!,
+							 meRepository: resolver.resolve(MeRepository.self)!,
+							 keychainRepository: resolver.resolve(KeychainRepository.self)!,
+							 userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
+							 networkRepository: resolver.resolve(NetworkRepository.self)!)
+		}.inObjectScope(.container)
+
 		container.register(AuthRepository.self) { _ in
 			AuthRepositoryImpl()
 		}
+
 		container.register(AuthUseCase.self) { resolver in
 			AuthUseCase(authRepository: resolver.resolve(AuthRepository.self)!,
 						meRepository: resolver.resolve(MeRepository.self)!,
 						keychainRepository: resolver.resolve(KeychainRepository.self)!,
 						userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
-						networkRepository: resolver.resolve(NetworkRepository.self)!)
+						networkRepository: resolver.resolve(NetworkRepository.self)!,
+						loginService: resolver.resolve(LoginService.self)!)
 		}
 
         // MARK: - Return the Container

@@ -38,14 +38,15 @@ class AuthInterceptor: RequestInterceptor {
             case 200 ... 299:
                 completion(.doNotRetry)
             case 401:
-                let keychainRepositoryImpl = KeychainRepositoryImpl()
-                refreshTokenResponse(refreshToken: refreshToken) { networkTokenCompletion in
+                refreshTokenResponse(refreshToken: refreshToken) { [weak self] networkTokenCompletion in
+					guard let self else {
+						return
+					}
                     if let networkTokenCompletion = networkTokenCompletion {
-                        keychainRepositoryImpl.saveNetworkTokenResponseToKeychain(item: networkTokenCompletion)
+						self.keychainHelperService.saveNetworkTokenResponseToKeychain(item: networkTokenCompletion)
                         completion(.retryWithDelay(self.retryDelay))
                     } else {
-                        keychainRepositoryImpl.deleteNetworkTokenResponseFromKeychain()
-                        keychainRepositoryImpl.deleteEmailAndPasswordFromKeychain()
+						NotificationCenter.default.post(name: .AuthRefreshTokenExpired, object: nil)
                         completion(.doNotRetry)
                     }
                 }
