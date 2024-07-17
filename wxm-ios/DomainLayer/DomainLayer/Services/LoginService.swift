@@ -75,17 +75,22 @@ private extension LoginServiceImpl {
 	func setFCMToken() {
 		Task {
 			let installationId = await FirebaseManager.shared.getInstallationId()
-			guard let fcmToken = await FirebaseManager.shared.getFCMToken() else {
+			guard let fcmToken = FirebaseManager.shared.getFCMToken() else {
 				return
 			}
-			let _ = try? meRepository.setNotificationsFcmToken(installationId: installationId, token: fcmToken)
+			try? meRepository.setNotificationsFcmToken(installationId: installationId, token: fcmToken).sink { _ in
+
+			}.store(in: &cancellableSet)
+
 		}
 	}
 
 	func deleteFCMToken() {
 		Task {
 			let installationId = await FirebaseManager.shared.getInstallationId()
-			let _ = try? meRepository.deleteNotificationsFcmToken(installationId: installationId)
+			try? meRepository.deleteNotificationsFcmToken(installationId: installationId).sink { _ in
+
+			}.store(in: &cancellableSet)
 		}
 	}
 
