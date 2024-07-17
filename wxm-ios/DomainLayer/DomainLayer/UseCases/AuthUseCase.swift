@@ -17,29 +17,24 @@ public struct AuthUseCase {
 	private let keychainRepository: KeychainRepository
 	private let userDefaultsRepository: UserDefaultsRepository
 	private let networkRepository: NetworkRepository
+	private let loginService: LoginService
 
 	public init(authRepository: AuthRepository,
 				meRepository: MeRepository,
 				keychainRepository: KeychainRepository,
 				userDefaultsRepository: UserDefaultsRepository,
-				networkRepository: NetworkRepository) {
+				networkRepository: NetworkRepository,
+				loginService: LoginService) {
         self.authRepository = authRepository
 		self.meRepository = meRepository
 		self.keychainRepository = keychainRepository
 		self.userDefaultsRepository = userDefaultsRepository
 		self.networkRepository = networkRepository
+		self.loginService = loginService
     }
 
     public func login(username: String, password: String) throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
-        let login = try authRepository.login(username: username, password: password)
-		return login.flatMap { response in
-			if let value = response.value {
-				keychainRepository.saveEmailAndPasswordToKeychain(email: username, password: password)
-				keychainRepository.saveNetworkTokenResponseToKeychain(item: value)
-				setFCMToken()
-			}
-			return Just(response)
-		}.eraseToAnyPublisher()
+		try loginService.login(username: username, password: password)
     }
 
     public func register(email: String, firstName: String, lastName: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
@@ -48,19 +43,7 @@ public struct AuthUseCase {
     }
 
     public func logout() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-        let logout = try authRepository.logout()
-		return logout.flatMap { response in
-			if response.error == nil {
-				userDefaultsRepository.clearUserSensitiveData()
-				WidgetCenter.shared.reloadAllTimelines()
-				networkRepository.deleteAllRecent()
-				deleteFCMToken()
-				keychainRepository.deleteEmailAndPasswordFromKeychain()
-				keychainRepository.deleteNetworkTokenResponseFromKeychain()
-			}
-
-			return Just(response)
-		}.eraseToAnyPublisher()
+		try loginService.logout()
     }
 
     public func refresh(refreshToken: String) throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
@@ -83,25 +66,5 @@ public struct AuthUseCase {
 
 	public func isUserLoggedIn() -> Bool {
 		keychainRepository.isUserLoggedIn()
-	}
-}
-
-private extension AuthUseCase {
-	func setFCMToken() {
-		Task {
-			let installationId = await FirebaseManager.shared.getInstallationId()
-			guard let fcmToken = await FirebaseManager.shared.getFCMToken() else {
-				return
-			}
-			let _ = try? meRepository.setNotificationsFcmToken(installationId: installationId, token: fcmToken)
-		}
-	}
-
-	func deleteFCMToken() {
-		Task {
-			let installationId = await FirebaseManager.shared.getInstallationId()
-			let _ = try? meRepository.deleteNotificationsFcmToken(installationId: installationId)
-		}
-
 	}
 }
