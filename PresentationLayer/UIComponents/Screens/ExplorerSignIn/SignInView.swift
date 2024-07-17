@@ -89,7 +89,6 @@ struct SignInView: View {
         Button {
             viewModel.login { error in
                 if error == nil {
-                    mainScreenVM.isUserLoggedIn = true
                     Router.shared.pop()
                 }
             }
