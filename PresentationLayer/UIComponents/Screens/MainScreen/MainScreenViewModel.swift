@@ -130,6 +130,9 @@ class MainScreenViewModel: ObservableObject {
         let container = swinjectHelper.getContainerForSwinject()
         let authUseCase = container.resolve(AuthUseCase.self)!
         isUserLoggedIn = authUseCase.isUserLoggedIn()
+		if isUserLoggedIn {
+			selectedTab = .homeTab
+		}
     }
 
     private func startMonitoring() {
