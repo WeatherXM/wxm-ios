@@ -67,7 +67,7 @@ final class DeleteAccountViewModel: ObservableObject {
                         }
                     } else {
 						Router.shared.navigateTo(.deleteAccountSuccess(self))
-						_ = try? self.authUseCase.logout()
+						try? self.authUseCase.logout().sink { _ in }.store(in: &self.cancellableSet)
                     }
                 }.store(in: &cancellableSet)
         } catch {}
