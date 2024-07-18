@@ -89,7 +89,7 @@ private extension MainUseCase {
 	func setFCMTokenIfNeeded() {
 		Task {
 			guard keychainRepository.isUserLoggedIn(),
-				  let token = await FirebaseManager.shared.getFCMToken() else {
+				  let token = FirebaseManager.shared.getFCMToken() else {
 				return
 			}
 
