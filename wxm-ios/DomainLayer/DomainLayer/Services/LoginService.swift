@@ -55,19 +55,41 @@ public class LoginServiceImpl: LoginService {
 	}
 
 	public func logout() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		deleteFCMToken().flatMap { [weak self] _ in
-			let logout = try! self!.authRepository.logout()
-			return logout.flatMap { [weak self] response in
-				if response.error == nil {
-					self?.userDefaultsRepository.clearUserSensitiveData()
-					WidgetCenter.shared.reloadAllTimelines()
-					self?.networkRepository.deleteAllRecent()
-					self?.keychainRepository.deleteEmailAndPasswordFromKeychain()
-					self?.keychainRepository.deleteNetworkTokenResponseFromKeychain()
-				}
-
-				return Just(response)
+		deleteFCMToken().flatMap { [weak self] response in
+			guard let self else {
+				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)
+				let dummyResponse: DataResponse<EmptyEntity, NetworkErrorResponse> = DataResponse(request: nil,
+																						response: nil,
+																						data: nil,
+																						metrics: nil,
+																						serializationDuration: 0,
+																						result: .failure(error))
+				return Just(dummyResponse).eraseToAnyPublisher()
 			}
+
+			do {
+				let logout = try self.authRepository.logout()
+				return logout
+			} catch {
+				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)
+				let dummyResponse: DataResponse<EmptyEntity, NetworkErrorResponse> = DataResponse(request: nil,
+																						response: nil,
+																						data: nil,
+																						metrics: nil,
+																						serializationDuration: 0,
+																						result: .failure(error))
+				return Just(dummyResponse).eraseToAnyPublisher()
+			}
+		}.flatMap { [weak self] response in
+			if response.error == nil {
+				self?.userDefaultsRepository.clearUserSensitiveData()
+				WidgetCenter.shared.reloadAllTimelines()
+				self?.networkRepository.deleteAllRecent()
+				self?.keychainRepository.deleteEmailAndPasswordFromKeychain()
+				self?.keychainRepository.deleteNetworkTokenResponseFromKeychain()
+			}
+
+			return Just(response)
 		}.eraseToAnyPublisher()
 	}
 }
@@ -86,13 +108,30 @@ private extension LoginServiceImpl {
 	}
 
 	func deleteFCMToken() -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		let publisher = PassthroughSubject<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>()
-		Task {
+		getInstallationId().flatMap { installationId in
+			do {
+				return try self.meRepository.deleteNotificationsFcmToken(installationId: installationId)
+			} catch {
+				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)
+				let dummyResponse: DataResponse<EmptyEntity, NetworkErrorResponse> = DataResponse(request: nil,
+																						response: nil,
+																						data: nil,
+																						metrics: nil,
+																						serializationDuration: 0,
+																						result: .failure(error))
+				return Just(dummyResponse).eraseToAnyPublisher()
+			}
+		}.eraseToAnyPublisher()
+	}
+
+	func getInstallationId() -> AnyPublisher<String, Never> {
+		let publisher = PassthroughSubject<String, Never>()
+		Task { @MainActor in
 			let installationId = await FirebaseManager.shared.getInstallationId()
-			try meRepository.deleteNotificationsFcmToken(installationId: installationId).sink { response in
-				publisher.send(response)
-			}.store(in: &cancellableSet)
+			publisher.send(installationId)
+			publisher.send(completion: .finished)
 		}
+
 		return publisher.eraseToAnyPublisher()
 	}
 
