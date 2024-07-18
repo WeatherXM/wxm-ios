@@ -31,8 +31,10 @@ public struct MeRepositoryImpl: MeRepository {
 	}
 
     public func deleteAccount() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-        let urlRequest = try MeApiRequestBuilder.deleteAccount.asURLRequest()
-        return ApiClient.shared.requestCodableAuthorized(urlRequest)
+		let builder = MeApiRequestBuilder.deleteAccount
+        let urlRequest = try builder.asURLRequest()
+
+		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
     }
 
     public func getUser() throws -> AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> {
