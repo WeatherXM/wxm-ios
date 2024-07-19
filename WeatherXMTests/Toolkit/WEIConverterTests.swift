@@ -7,8 +7,6 @@
 
 import XCTest
 @testable import Toolkit
-import Cuckoo
-import DomainLayer
 
 final class WEIConverterTests: XCTestCase {
 

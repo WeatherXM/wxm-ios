@@ -1399,7 +1399,7 @@
 		26707E9D2C3ECC0400B9305F /* WeatherXMTests */ = {
 			isa = PBXGroup;
 			children = (
-				26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */,
+				269C6E652C4A71CE00879263 /* Toolkit */,
 				26707EAF2C4005DD00B9305F /* KeychainUseCaseTests.swift */,
 			);
 			path = WeatherXMTests;
@@ -1926,6 +1926,14 @@
 				2692D8712A4D8DEA0060CB3C /* Numeric+.swift */,
 			);
 			path = Numeric;
+			sourceTree = "<group>";
+		};
+		269C6E652C4A71CE00879263 /* Toolkit */ = {
+			isa = PBXGroup;
+			children = (
+				26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */,
+			);
+			path = Toolkit;
 			sourceTree = "<group>";
 		};
 		26A308F72C2EE46A007A029A /* Scanner */ = {
