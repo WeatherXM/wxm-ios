@@ -144,11 +144,12 @@ class ProfileViewModel: ObservableObject {
 		}
 
 		let callback: DeepLinkHandler.QueryParamsCallBack = { [weak self] params in
-			WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .tokenClaimingResult,
-																	  .state: .success])
-
 			if let amount = params?[DisplayLinkParams.claimedAmount.rawValue] {
 				self?.updateRewards(additionalClaimed: amount)
+
+				// We consider there is a successful claim
+				WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .tokenClaimingResult,
+																		  .state: .success])
 			}
 		}
 
