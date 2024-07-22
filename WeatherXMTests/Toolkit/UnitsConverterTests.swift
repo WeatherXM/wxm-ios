@@ -29,7 +29,7 @@ final class UnitsConverterTests: XCTestCase {
 		}
     }
 
-	func testMMtoInched() throws {
+	func testMMtoInches() throws {
 		let expectedResults: [Double: Double] = [-10.0: -0.3937007874,
 												  -1.0: -0.0393700787,
 												  0.0: 0.0,
@@ -45,11 +45,20 @@ final class UnitsConverterTests: XCTestCase {
 		}
 	}
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+	func testhpaToInHg() throws {
+		let expectedResults: [Double: Double] = [-10.0: -0.2953,
+												  -1.0: -0.02953,
+												  0.0: 0.0,
+												  1.0: 0.02953,
+												  5.0: 0.14765,
+												  10.8: 0.318924,
+												  100.0: 2.953,
+												  1000.0: 29.53]
+
+		expectedResults.forEach { hpa, inHg in
+			let result =  unitsConverter.hpaToInHg(hpa: hpa).rounded(toPlaces: 10)
+			XCTAssert(result == inHg, "The result is \(result), it should be \(inHg) for \(hpa)")
+		}
+	}
 
 }
