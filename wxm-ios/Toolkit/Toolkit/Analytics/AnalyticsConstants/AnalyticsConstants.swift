@@ -96,6 +96,8 @@ public enum Parameter: String {
 	case groupBy = "GROUP_BY"
 	case status = "STATUS"
 	case appId = "APP_ID"
+	case stationsOwn = "STATIONS_OWN"
+	case hasWallet = "HAS_WALLET"
 }
 
 public enum ParameterValue {

@@ -36,6 +36,10 @@ public class UserInfoService {
 				return
 			}
 			WXMAnalytics.shared.setUserId(value.id)
+			
+			let hasWallet = value.wallet?.address?.isEmpty == false
+			WXMAnalytics.shared.setUserProperty(key: .hasWallet, value: .custom(String(hasWallet)))
+
 			self?.userInfoSubject.send(value)
 		}
 		.store(in: &cancellableSet)
