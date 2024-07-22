@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Cuckoo
 @testable import DomainLayer
 
 final class KeychainUseCaseTests: XCTestCase {

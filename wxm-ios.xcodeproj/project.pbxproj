@@ -304,6 +304,7 @@
 		2692D8722A4D8DEA0060CB3C /* Numeric+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8712A4D8DEA0060CB3C /* Numeric+.swift */; };
 		2692D8922A4DC0BA0060CB3C /* NetworkSearchResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8912A4DC0BA0060CB3C /* NetworkSearchResponse+.swift */; };
 		2699F5652A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2699F5642A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift */; };
+		269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C6E782C4A97C800879263 /* CompactNumberFormatterTests.swift */; };
 		269C809C2AB9E76F005F9BD6 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C809B2AB9E76F005F9BD6 /* Badge.swift */; };
 		269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 269C96892BDBD5660035B8F1 /* Mixpanel */; };
 		269E85712B0242C100BE774C /* WXMShareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E85702B0242C100BE774C /* WXMShareModifier.swift */; };
@@ -836,6 +837,7 @@
 		2692D8712A4D8DEA0060CB3C /* Numeric+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numeric+.swift"; sourceTree = "<group>"; };
 		2692D8912A4DC0BA0060CB3C /* NetworkSearchResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkSearchResponse+.swift"; sourceTree = "<group>"; };
 		2699F5642A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkStatsViewModel+Factory.swift"; sourceTree = "<group>"; };
+		269C6E782C4A97C800879263 /* CompactNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactNumberFormatterTests.swift; sourceTree = "<group>"; };
 		269C809B2AB9E76F005F9BD6 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		269E85702B0242C100BE774C /* WXMShareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMShareModifier.swift; sourceTree = "<group>"; };
 		26A308E92C2E97B5007A029A /* ZoomControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomControls.swift; sourceTree = "<group>"; };
@@ -1932,6 +1934,7 @@
 			isa = PBXGroup;
 			children = (
 				26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */,
+				269C6E782C4A97C800879263 /* CompactNumberFormatterTests.swift */,
 			);
 			path = Toolkit;
 			sourceTree = "<group>";
@@ -2811,6 +2814,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */,
 				26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */,
 				26707EB02C4005DD00B9305F /* KeychainUseCaseTests.swift in Sources */,
 			);
