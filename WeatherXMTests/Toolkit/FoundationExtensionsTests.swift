@@ -30,6 +30,13 @@ final class FoundationExtensionsTests: XCTestCase {
 		let integer = 4
 		XCTAssert(integer.toFloat == 4.0, "Conversion to float failed")
 	}
+
+	func testDictionary() {
+		var dict: [String: Int] = .init()
+		dict += ["one": 1]
+		let expectedDict = ["one" : 1]
+		XCTAssert(dict == expectedDict, "Dict should be \(expectedDict)")
+	}
 }
 
 // MARK: - Array, Colection tests
