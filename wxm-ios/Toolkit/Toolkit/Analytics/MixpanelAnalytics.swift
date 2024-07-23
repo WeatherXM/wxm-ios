@@ -34,7 +34,7 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 
 	func setUserId(_ userId: String?) {
 		if let userId {
-			Mixpanel.mainInstance().identify(distinctId: "pantelis-\(userId)")
+			Mixpanel.mainInstance().identify(distinctId: userId)
 		} else {
 			resetMixpanel()
 		}
