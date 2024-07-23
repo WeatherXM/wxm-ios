@@ -20,6 +20,7 @@ public class UserInfoService {
 											   object: nil,
 											   queue: nil) { [weak self] _ in
 			self?.userInfoSubject.send(nil)
+			WXMAnalytics.shared.setUserProperty(key: .hasWallet, value: .custom(String(false)))
 		}
 	}
 
