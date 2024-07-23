@@ -33,7 +33,10 @@ public class UserDevicesService {
                                                object: nil,
 											   queue: nil) { [weak self] _ in
 			self?.invalidateCaches()
+			self?.updateOwnedStationsAnalyticsProperty()
 		}
+
+		updateOwnedStationsAnalyticsProperty()
     }
 
     deinit {
@@ -78,6 +81,7 @@ public class UserDevicesService {
 					WidgetCenter.shared.reloadAllTimelines()
 					
                     NotificationCenter.default.post(name: .userDevicesListUpdated, object: nil)
+					self?.updateOwnedStationsAnalyticsProperty()
                 }
                 return Just(response)
             }
@@ -250,5 +254,14 @@ private extension UserDevicesService {
 	func invalidateCaches() {
 		followStatesCache.invalidate()
 		userDevicesCache.invalidate()
+	}
+
+	func updateOwnedStationsAnalyticsProperty() {
+		guard let ownedDevicesCount = getCachedDevices()?.filter({ $0.relation == .owned }).count else {
+			WXMAnalytics.shared.removeUserProperty(key: .stationsOwn)
+			return
+		}
+
+		WXMAnalytics.shared.setUserProperty(key: .stationsOwn, value: .custom("\(ownedDevicesCount)"))
 	}
 }

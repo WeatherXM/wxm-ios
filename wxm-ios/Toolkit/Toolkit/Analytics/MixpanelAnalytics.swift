@@ -34,7 +34,7 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 
 	func setUserId(_ userId: String?) {
 		if let userId {
-			Mixpanel.mainInstance().identify(distinctId: userId)
+			Mixpanel.mainInstance().identify(distinctId: "pantelis-\(userId)")
 		} else {
 			resetMixpanel()
 		}
@@ -42,6 +42,10 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 
 	func setUserProperty(key: Parameter, value: ParameterValue) {
 		Mixpanel.mainInstance().people.set(property: key.description, to: value.rawValue)
+	}
+
+	func removeUserProperty(key: Parameter) {
+		Mixpanel.mainInstance().people.unset(properties: [key.description])
 	}
 
 	func setDefaultParameter(key: Parameter, value: ParameterValue) {

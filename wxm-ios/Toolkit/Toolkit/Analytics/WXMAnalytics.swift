@@ -45,6 +45,10 @@ public extension WXMAnalytics {
 		providers.forEach { $0.setUserProperty(key: key, value: value) }
     }
 
+	func removeUserProperty(key: Parameter) {
+		providers.forEach { $0.removeUserProperty(key: key) }
+	}
+
     func setDefaultParameter(key: Parameter, value: ParameterValue) {
 		providers.forEach { $0.setDefaultParameter(key: key, value: value) }
     }

@@ -28,6 +28,7 @@ protocol AnalyticsProviderImplementation {
 	func trackEvent(_ event: Event, parameters: [Parameter: ParameterValue]?)
 	func setUserId(_ userId: String?)
 	func setUserProperty(key: Parameter, value: ParameterValue)
+	func removeUserProperty(key: Parameter)
 	func setDefaultParameter(key: Parameter, value: ParameterValue)
 	func setAnalyticsCollectionEnabled(_ enabled: Bool)
 }
