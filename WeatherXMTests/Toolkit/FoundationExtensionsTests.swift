@@ -107,3 +107,53 @@ extension FoundationExtensionsTests {
 		XCTAssert(version.semVersionCompare(invalidVersion) == .orderedAscending, "\(invalidVersion) is greater than \(version)")
 	}
 }
+
+// MARK: - URL
+extension FoundationExtensionsTests {
+	func testIsHttp() {
+		let httpsUrl = URL(string: "https://weatherxm.com")
+		let httpUrl = URL(string: "http://weatherxm.com")
+		let nonHttpUrl = URL(string: "weatherxm.com")
+		XCTAssertNotNil(httpUrl)
+		XCTAssertNotNil(httpsUrl)
+		XCTAssertNotNil(nonHttpUrl)
+
+		XCTAssert(httpsUrl!.isHttp , "\(httpsUrl!) is http")
+		XCTAssert(httpUrl!.isHttp , "\(httpUrl!) is http")
+		XCTAssert(!nonHttpUrl!.isHttp , "\(nonHttpUrl!) is not http")
+	}
+
+	func testQueryParam() {
+		let url = URL(string: "https://weatherxm.com?param=value")
+		XCTAssertNotNil(url)
+
+		let expectedResult = "value"
+		XCTAssert(url!["param"] == expectedResult, "The param value should be \"\(expectedResult)\"")
+
+		XCTAssertNil(url!["param1"], "The param1 value should be nil")
+	}
+
+	func testQueryItems() {
+		let url = URL(string: "https://weatherxm.com?param=value")
+		XCTAssertNotNil(url)
+		let items = url?.queryItems
+		XCTAssertNotNil(items)
+
+		let expectedResult = "value"
+		XCTAssert(items?["param"] == expectedResult, "The param value should be \"\(expectedResult)\"")
+		XCTAssertNil(items?["param1"], "The param1 value should be nil")
+	}
+
+	func testAppendQueryItem() {
+		var url = URL(string: "https://weatherxm.com")
+		XCTAssertNotNil(url)
+		url?.appendQueryItem(name: "param", value: "value")
+
+		let items = url?.queryItems
+		XCTAssertNotNil(items)
+
+		let expectedResult = "value"
+		XCTAssert(items?["param"] == expectedResult, "The param value should be \"\(expectedResult)\"")
+		XCTAssertNil(items?["param1"], "The param1 value should be nil")
+	}
+}
