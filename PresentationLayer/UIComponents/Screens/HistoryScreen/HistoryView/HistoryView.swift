@@ -15,7 +15,7 @@ struct HistoryView: View {
 
     var body: some View {
         ZStack {
-            TrackableScrollView(offsetObject: viewModel.scrollObject) { completion in
+            TrackableScrollView { completion in
                 viewModel.refresh(completion: completion)
             } content: {
                 if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
