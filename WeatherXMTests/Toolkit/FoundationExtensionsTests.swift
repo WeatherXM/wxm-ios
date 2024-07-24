@@ -77,3 +77,33 @@ extension FoundationExtensionsTests {
 		XCTAssert(sortedArray == expectedResult, "The sorted array should be \(expectedResult)")
 	}
 }
+
+// MARK: - Strings
+extension FoundationExtensionsTests {
+	func testWalletAddressMaskString() {
+		let address = "0x69516D787ea2b1521832a90fD2Ef5BfcaBE11552"
+		let expectedMaskedAddress = "0x6951****1552"
+		XCTAssert(address.walletAddressMaskString == expectedMaskedAddress,
+				  "The address should be \(expectedMaskedAddress)")
+	}
+
+	func testCapitalizedSentence() {
+		let sentence = "this is a sentence"
+		let expectedResult = "This is a sentence"
+		XCTAssert(sentence.capitalizedSentence == expectedResult, "The capitalized sentence shoudl be \"\(expectedResult)\"")
+	}
+
+	func testSemVersionCompare() {
+		let version = "3.2.0"
+		let	patchRelease = "3.2.1"
+		let minorRelease = "3.3.0"
+		let majorRelease = "4.0.0"
+		let invalidVersion = "4.0.b"
+
+		XCTAssert(version.semVersionCompare(version) == .orderedSame, "Shoul be equal")
+		XCTAssert(version.semVersionCompare(patchRelease) == .orderedAscending, "\(patchRelease) is greater than \(version)")
+		XCTAssert(version.semVersionCompare(minorRelease) == .orderedAscending, "\(minorRelease) is greater than \(version)")
+		XCTAssert(version.semVersionCompare(majorRelease) == .orderedAscending, "\(majorRelease) is greater than \(version)")
+		XCTAssert(version.semVersionCompare(invalidVersion) == .orderedAscending, "\(invalidVersion) is greater than \(version)")
+	}
+}
