@@ -61,4 +61,32 @@ final class DateExtensionsTests: XCTestCase {
 		let samples = date?.dailyHourlySamples(timeZone: .current)
 		XCTAssert(samples?.count == 21, "The samples count should be 21")
 	}
+
+	func testgetFormattedDate() {
+		var date = Date().set(hour: 3)
+		date = date?.set(day: 5)
+		date = date?.set(month: 5)
+		date = date?.set(year: 2024)
+		let expectedResult = "2024-05-05"
+		let formattedResult = date?.getFormattedDate(format: .onlyDate)
+		XCTAssert(expectedResult == formattedResult, "The result should be \(expectedResult)")
+	}
+
+	func testGetFormattedDateToday() {
+		var today = Date()
+		let expectedResult = "Today"
+		let formattedResult = today.getFormattedDate(format: .onlyDate)
+		XCTAssert(expectedResult == formattedResult, "The result should be \(expectedResult)")
+	}
+
+	func testGetFormattedDateWithTimezone() {
+		var date = Date().set(hour: 3)
+		date = date?.set(day: 5)
+		date = date?.set(month: 5)
+		date = date?.set(year: 2024)
+		let expectedResult = "2024-05-05 (UTC)"
+		let formattedResult = date?.getFormattedDate(format: .onlyDate, timezone: .gmt, showTimeZoneIndication: true)
+		XCTAssert(expectedResult == formattedResult, "The result should be \(expectedResult)")
+	}
+
 }
