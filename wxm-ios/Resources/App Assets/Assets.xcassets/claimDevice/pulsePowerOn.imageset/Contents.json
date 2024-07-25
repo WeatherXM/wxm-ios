@@ -1,17 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "pulsePowerOn.pdf",
-      "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "Pulse.pdf",
+      "filename" : "pulsePowerOn.png",
       "idiom" : "universal"
     }
   ],
