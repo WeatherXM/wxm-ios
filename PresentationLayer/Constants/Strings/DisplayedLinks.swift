@@ -99,7 +99,7 @@ enum DisplayedLinks {
 			case .m5VideoLink:
 				return "https://www.youtube.com/watch?v=sUJEwuFq1CE"
 			case .d1VideoLink:
-				return "https://youtu.be/4bKGPbWZ1kE"
+				return "https://www.youtube.com/watch?v=D3rz1Y01Qhg"
 		}
 	}
 }
