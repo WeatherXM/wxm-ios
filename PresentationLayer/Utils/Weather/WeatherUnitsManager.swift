@@ -22,6 +22,7 @@ class WeatherUnitsManager: ObservableObject {
 
 	init(mainUseCase: MainUseCase) {
 		self.mainUseCase = mainUseCase
+		setWeatherUnitsAnalytics()
 	}
 
 	var temperatureUnit: TemperatureUnitsEnum {
@@ -31,7 +32,7 @@ class WeatherUnitsManager: ObservableObject {
 
 		set {
 			mainUseCase.saveOrUpdateWeatherMetric(unitProtocol: newValue)
-			WXMAnalytics.shared.setUserProperty(key: .temperature, value: temperatureUnit.analyticsValue)
+			setWeatherUnitsAnalytics()
 		}
 	}
 
@@ -42,7 +43,7 @@ class WeatherUnitsManager: ObservableObject {
 
 		set {
 			mainUseCase.saveOrUpdateWeatherMetric(unitProtocol: newValue)
-			WXMAnalytics.shared.setUserProperty(key: .precipitation, value: precipitationUnit.analyticsValue)
+			setWeatherUnitsAnalytics()
 		}
 	}
 
@@ -53,7 +54,7 @@ class WeatherUnitsManager: ObservableObject {
 
 		set {
 			mainUseCase.saveOrUpdateWeatherMetric(unitProtocol: newValue)
-			WXMAnalytics.shared.setUserProperty(key: .wind, value: windSpeedUnit.analyticsValue)
+			setWeatherUnitsAnalytics()
 		}
 	}
 
@@ -64,7 +65,7 @@ class WeatherUnitsManager: ObservableObject {
 
 		set {
 			mainUseCase.saveOrUpdateWeatherMetric(unitProtocol: newValue)
-			WXMAnalytics.shared.setUserProperty(key: .windDirection, value: windDirectionUnit.analyticsValue)
+			setWeatherUnitsAnalytics()
 		}
 	}
 
@@ -75,7 +76,7 @@ class WeatherUnitsManager: ObservableObject {
 
 		set {
 			mainUseCase.saveOrUpdateWeatherMetric(unitProtocol: newValue)
-			WXMAnalytics.shared.setUserProperty(key: .pressure, value: pressureUnit.analyticsValue)
+			setWeatherUnitsAnalytics()
 		}
 	}
 
@@ -122,5 +123,15 @@ class WeatherUnitsManager: ObservableObject {
 			return .hectopascal
 		}
 		return pressureUnits
+	}
+}
+
+private extension WeatherUnitsManager {
+	func setWeatherUnitsAnalytics() {
+		WXMAnalytics.shared.setUserProperty(key: .temperature, value: temperatureUnit.analyticsValue)
+		WXMAnalytics.shared.setUserProperty(key: .precipitation, value: precipitationUnit.analyticsValue)
+		WXMAnalytics.shared.setUserProperty(key: .wind, value: windSpeedUnit.analyticsValue)
+		WXMAnalytics.shared.setUserProperty(key: .windDirection, value: windDirectionUnit.analyticsValue)
+		WXMAnalytics.shared.setUserProperty(key: .pressure, value: pressureUnit.analyticsValue)
 	}
 }

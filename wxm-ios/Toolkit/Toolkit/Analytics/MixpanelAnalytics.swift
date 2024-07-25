@@ -44,6 +44,10 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 		Mixpanel.mainInstance().people.set(property: key.description, to: value.rawValue)
 	}
 
+	func removeUserProperty(key: Parameter) {
+		Mixpanel.mainInstance().people.unset(properties: [key.description])
+	}
+
 	func setDefaultParameter(key: Parameter, value: ParameterValue) {
 		addMixpanelSuperProperties(properties: [key: value].toMixpanelParamsDictionary ?? [:])
 	}

@@ -35,6 +35,10 @@ struct FirebaseAnalytics: AnalyticsProviderImplementation {
 		Analytics.setUserProperty(value.rawValue, forName: key.description)
 	}
 
+	func removeUserProperty(key: Parameter) {
+		Analytics.setUserProperty(nil, forName: key.description)
+	}
+
 	func setDefaultParameter(key: Parameter, value: ParameterValue) {
 		Analytics.setDefaultEventParameters([key.description: value.rawValue])
 	}
