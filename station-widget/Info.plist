@@ -4,6 +4,8 @@
 <dict>
 	<key>ApiUrl</key>
 	<string>$(ApiUrl)</string>
+	<key>AppGroup</key>
+	<string>$(AppGroup)</string>
 	<key>MixpanelToken</key>
 	<string>$(MixpanelToken)</string>
 	<key>NSExtension</key>
