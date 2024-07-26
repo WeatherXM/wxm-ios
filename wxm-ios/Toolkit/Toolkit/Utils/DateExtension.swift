@@ -58,6 +58,10 @@ public extension Date {
         return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
     }
 
+	var day: Int {
+		return Calendar.current.component(.day, from: self)
+	}
+
     var month: Int {
         return Calendar.current.component(.month, from: self)
     }
@@ -115,8 +119,29 @@ public extension Date {
 		return calendar.component(.hour, from: self)
 	}
 
-	func setHour(_ hour: Int) -> Date? {
-		Calendar.current.date(bySettingHour: hour, minute: 0, second: 0, of: self)
+	func set(year: Int? = nil, month: Int? = nil, day: Int? = nil, hour: Int? = nil)  -> Date? {
+		var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .timeZone],
+														from: self)
+
+		if let year {
+			component.year = year
+		}
+
+		if let month {
+			component.month = month
+		}
+
+		if let day {
+			component.day = day
+		}
+
+		if let hour {
+			component.hour = hour
+			component.minute = 0
+			component.second = 0
+		}
+
+		return Calendar.current.date(from: component)
 	}
 
     func toTimestamp(with timeZone: TimeZone = .current) -> String {
@@ -292,6 +317,12 @@ public extension TimeZone {
 	var isUTC: Bool {
 		secondsFromGMT() == 0
 	}
+
+	var fomattedGMTOffset: String {
+	  let timeZoneFormatter = DateFormatter()
+	  timeZoneFormatter.dateFormat = "ZZZZZ"
+	  return timeZoneFormatter.string(from: Date())
+  }
 
 	static var UTCTimezone: TimeZone? {
 		if #available(iOS 16, *) {

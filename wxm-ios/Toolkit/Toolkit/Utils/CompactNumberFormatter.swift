@@ -31,8 +31,8 @@ public class CompactNumberFormatter: Formatter {
         }
 
         // Extra case when the passed argument is comming from json decoding
-        if let value = (obj as? NSNumber)?.intValue {
-            return convert(value: value)
+        if let value = (obj as? NSNumber)?.floatValue {
+            return converted(value: value)
         }
 
         return nil
@@ -43,7 +43,8 @@ public class CompactNumberFormatter: Formatter {
     }
 
     private func converted<T: BinaryFloatingPoint>(value: T) -> String? {
-        convert(value: Int(value))
+		let rounded = round(value)
+        return convert(value: Int(rounded))
     }
 
     private func convert(value: Int) -> String? {

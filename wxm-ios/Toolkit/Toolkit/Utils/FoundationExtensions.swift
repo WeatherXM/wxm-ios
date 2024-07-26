@@ -48,7 +48,11 @@ public extension Array where Element: Hashable {
         
         return uniques
     }
-
+	
+	/// Removes elements while the condition is `true`. eg.
+	/// [1, 4, 2, 0, 2, 1, 7] -> [4, 2, 0, 2, 1, 7]
+	/// - Parameter predicate: The condition to evaluate
+	/// - Returns: An array with the removed items
     mutating func remove(while predicate: (Element) -> Bool) -> Self {
         var arr: [Element] = []
 
@@ -80,7 +84,6 @@ public extension Dictionary {
     static func += (lhs: inout [Key: Value], rhs: [Key: Value]) {
         rhs.forEach({ lhs[$0] = $1 })
     }
-
 }
 
 public extension CaseIterable where Self: Equatable {

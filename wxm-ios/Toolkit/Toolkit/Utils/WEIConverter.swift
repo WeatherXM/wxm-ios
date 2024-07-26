@@ -24,13 +24,16 @@ public struct WEIConverter {
 	}
 }
 
-private extension WEIConverter {
+extension WEIConverter {
 	var toEthDecimal: Decimal? {
-		guard let decimal = Decimal(string: weiString) else {
+		guard var decimal = Decimal(string: weiString) else {
 			return nil
 		}
 
-		return decimal / etherInWei
+		var etherInWei = self.etherInWei
+		var result: Decimal = .nan
+		NSDecimalMultiplyByPowerOf10(&result, &decimal, -18, .up)
+		return result
 	}
 }
 

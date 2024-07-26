@@ -72,6 +72,10 @@ public struct UnitsConverter {
     }
 
     public func getIndexOfCardinal(value: Int) -> Int {
+		guard value >= 0 else {
+			return -1
+		}
+
         let normalized = Int(floor((Double(value) / 22.5) + 0.5))
         return normalized % 16
     }
