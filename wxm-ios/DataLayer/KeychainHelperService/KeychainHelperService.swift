@@ -13,11 +13,12 @@ public final class KeychainHelperService {
 	private let accessGroup: String
 
 	public init() {
-		guard let teamId: String = Bundle.main.getConfiguration(for: .teamId) else {
+		guard let teamId: String = Bundle.main.getConfiguration(for: .teamId),
+				let appGroup: String = Bundle.main.getConfiguration(for: .appGroup) else {
 			fatalError("Should provide teamId in configuration file")
 		}
 		
-		accessGroup = "\(teamId).group.com.weatherxm.app"
+		accessGroup = "\(teamId).\(appGroup)"
 	}
 
     func save<T>(_ item: T, service: String, account: String) where T: Codable {
