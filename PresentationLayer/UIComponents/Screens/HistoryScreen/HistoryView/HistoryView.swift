@@ -24,10 +24,10 @@ struct HistoryView: View {
 									delegate: viewModel.chartDelegate)
 						.padding(.horizontal, CGFloat(.defaultSidePadding))
                         .id(historyData.markDate)
-						.iPadMaxWidth()
                         .padding(.top)
                 }
             }
+			.iPadMaxWidth()
         }
         .wxmEmptyView(show: Binding(get: { viewModel.currentHistoryData?.isEmpty() ?? true }, set: { _ in }),
                       configuration: .init(animationEnum: .emptyGeneric,
