@@ -17,7 +17,6 @@ class HistoryViewModel: ObservableObject {
     @Published var noAvailableData: Bool = false
     @Published var isFailed: Bool = false
     private(set) var failObj: FailSuccessStateObject?
-    let scrollObject = TrackableScrollOffsetObject()
     @Published private(set) var chartDelegate: ChartDelegate = ChartDelegate()
     private var cancellableSet: Set<AnyCancellable> = []
     private let chartsFactory = ChartsFactory()
