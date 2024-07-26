@@ -53,6 +53,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
     case follow(deviceId: String)
     case unfollow(deviceId: String)
 	case setDeviceLocation(deviceId: String, lat: Double, lon: Double)
+	case setFCMToken(installationId: String, token: String)
+	case deleteFCMToken(installationId: String)
 
     // MARK: - HttpMethod
 
@@ -61,9 +63,9 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 		switch self {
 			case .getUser, .getUserWallet, .getDevices, .getFirmwares, .getUserDeviceById, .getUserDeviceHistoryById, .getUserDeviceForecastById, .getDeviceFirmwareById, .getUserDeviceInfoById:
 				return .get
-			case .saveUserWallet, .claimDevice, .setFriendlyName, .disclaimDevice, .follow, .setDeviceLocation:
+			case .saveUserWallet, .claimDevice, .setFriendlyName, .disclaimDevice, .follow, .setDeviceLocation, .setFCMToken:
 				return .post
-			case .deleteAccount, .deleteFriendlyName, .unfollow:
+			case .deleteAccount, .deleteFriendlyName, .unfollow, .deleteFCMToken:
 				return .delete
 		}
 	}
@@ -118,6 +120,10 @@ enum MeApiRequestBuilder: URLRequestConvertible {
                 return "me/devices/\(deviceId)/follow"
 			case let .setDeviceLocation(deviceId, _, _):
 				return "me/devices/\(deviceId)/location"
+			case let .setFCMToken(installationId, token):
+				return "me/notifications/fcm/installations/\(installationId)/tokens/\(token)"
+			case let .deleteFCMToken(installationId):
+				return "me/notifications/fcm/installations/\(installationId)/tokens"
         }
     }
 

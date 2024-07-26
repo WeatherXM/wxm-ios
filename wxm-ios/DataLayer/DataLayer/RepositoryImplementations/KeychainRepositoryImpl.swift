@@ -9,6 +9,10 @@ import DomainLayer
 import Foundation
 
 public struct KeychainRepositoryImpl: KeychainRepository {
+	public var userLoggedInStateNotificationPublisher: NotificationCenter.Publisher {
+		NotificationCenter.default.publisher(for: .keychainHelperServiceUserIsLoggedInChanged)
+	}
+
     public func deleteEmailAndPasswordFromKeychain() {
         let keychainHelperService = KeychainHelperService()
         keychainHelperService.deleteEmailAndPassword()

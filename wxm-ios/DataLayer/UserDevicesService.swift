@@ -29,7 +29,7 @@ public class UserDevicesService {
     let devicesListUpdatedPublisher = NotificationCenter.default.publisher(for: .userDevicesListUpdated)
 
     public init() {
-        NotificationCenter.default.addObserver(forName: .keychainHelperServiceUserIsLoggedOut,
+        NotificationCenter.default.addObserver(forName: .keychainHelperServiceUserIsLoggedInChanged,
                                                object: nil,
 											   queue: nil) { [weak self] _ in
 			self?.invalidateCaches()

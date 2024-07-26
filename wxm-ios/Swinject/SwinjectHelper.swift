@@ -31,15 +31,6 @@ class SwinjectHelper: SwinjectInterface {
 		}
 		.inObjectScope(.container)
 
-        // MARK: - Auth DI
-
-        container.register(AuthRepository.self) { _ in
-            AuthRepositoryImpl()
-        }
-        container.register(AuthUseCase.self) { resolver in
-            AuthUseCase(authRepository: resolver.resolve(AuthRepository.self)!)
-        }
-
         // MARK: - Settings
 
         container.register(SettingsRepository.self) { _ in
@@ -146,16 +137,15 @@ class SwinjectHelper: SwinjectInterface {
         container.register(KeychainRepository.self) { _ in
             KeychainRepositoryImpl()
         }
-        container.register(KeychainUseCase.self) { resolver in
-            KeychainUseCase(keychainRepository: resolver.resolve(KeychainRepository.self)!)
-        }
 
         // MARK: - Main Use Case
 
         container.register(MainUseCase.self) { resolver in
 			MainUseCase(userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
-						keychainRepository: resolver.resolve(KeychainRepository.self)!)
+						keychainRepository: resolver.resolve(KeychainRepository.self)!,
+						meRepository: resolver.resolve(MeRepository.self)!)
         }
+		.inObjectScope(.container)
 
         // MARK: - Device Details Use Case
 
@@ -185,6 +175,30 @@ class SwinjectHelper: SwinjectInterface {
 			WidgetUseCase(meRepository: resolver.resolve(MeRepository.self)!,
 						  keychainRepository: resolver.resolve(KeychainRepository.self)!)
 		}
+
+		// MARK: - Auth DI
+
+		container.register(LoginService.self) { resolver in
+			LoginServiceImpl(authRepository: resolver.resolve(AuthRepository.self)!,
+							 meRepository: resolver.resolve(MeRepository.self)!,
+							 keychainRepository: resolver.resolve(KeychainRepository.self)!,
+							 userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
+							 networkRepository: resolver.resolve(NetworkRepository.self)!)
+		}.inObjectScope(.container)
+
+		container.register(AuthRepository.self) { _ in
+			AuthRepositoryImpl()
+		}
+
+		container.register(AuthUseCase.self) { resolver in
+			AuthUseCase(authRepository: resolver.resolve(AuthRepository.self)!,
+						meRepository: resolver.resolve(MeRepository.self)!,
+						keychainRepository: resolver.resolve(KeychainRepository.self)!,
+						userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
+						networkRepository: resolver.resolve(NetworkRepository.self)!,
+						loginService: resolver.resolve(LoginService.self)!)
+		}
+
         // MARK: - Return the Container
 
         return container

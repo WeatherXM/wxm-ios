@@ -20,6 +20,9 @@ public class FirebaseManager {
 	public var notificationsAuthStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? {
 		firebaseManagerImpl.notificationsAuthStatusPublisher
 	}
+	public var fcmTokenPublisher: AnyPublisher<String?, Never>? {
+		firebaseManagerImpl.fcmTokenPublisher
+	}
 
 	private let firebaseManagerImpl: FirbaseManagerImplementation
 
@@ -42,6 +45,10 @@ public class FirebaseManager {
     public func getInstallationId() async -> String {
 		await firebaseManagerImpl.getInstallationId()
     }
+
+	public func getFCMToken() -> String? {
+		firebaseManagerImpl.getFCMToken()
+	}
 
 	public func gatAuthorizationStatus() async -> UNAuthorizationStatus {
 		await firebaseManagerImpl.getAuthorizationStatus()
@@ -72,6 +79,10 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 		notificationsHandler.authorizationStatusPublisher
 	}
 
+	var fcmTokenPublisher: AnyPublisher<String?, Never>? {
+		notificationsHandler.fcmTokenPublisher
+	}
+
 	func launch() {
 		FirebaseApp.configure()
 	}
@@ -83,6 +94,10 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 		}
 
 		return installationId
+	}
+
+	func getFCMToken() -> String? {
+		notificationsHandler.getFCMToken()
 	}
 
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
@@ -123,9 +138,11 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 private class MockFirebaseManager: FirbaseManagerImplementation {
 	var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? { nil }
 	var notificationsAuthStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? { nil }
+	var fcmTokenPublisher: AnyPublisher<String?, Never>? { nil }
 
 	func launch() {}
 	func getInstallationId() async -> String { return "" }
+	func getFCMToken() -> String? { nil }
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {}
 	func requestNotificationAuthorization() async throws {}
 	func getAuthorizationStatus() async -> UNAuthorizationStatus { .authorized }

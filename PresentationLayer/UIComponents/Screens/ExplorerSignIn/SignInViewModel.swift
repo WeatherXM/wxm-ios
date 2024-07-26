@@ -16,11 +16,9 @@ final class SignInViewModel: ObservableObject {
     @Published var isSignInButtonAvailable: Bool = false
     private var cancellableSet: Set<AnyCancellable> = []
     private final let authUseCase: AuthUseCase
-    private final let keychainUseCase: KeychainUseCase
 
-    public init(authUseCase: AuthUseCase, keychainUseCase: KeychainUseCase) {
+    public init(authUseCase: AuthUseCase) {
         self.authUseCase = authUseCase
-        self.keychainUseCase = keychainUseCase
     }
 
     public func login(completion: @escaping (String?) -> Void) {
@@ -36,8 +34,6 @@ final class SignInViewModel: ObservableObject {
                         Toast.shared.show(text: text.attributedMarkdown ?? "")
                     } else {
                         self.isSignInButtonAvailable = true
-                        self.setEmailAndPassword()
-                        self.setTokenResponse(networkTokenResponse: response.value!)
                         completion(nil)
                     }
 
@@ -57,14 +53,6 @@ final class SignInViewModel: ObservableObject {
         } else {
             isSignInButtonAvailable = true
         }
-    }
-
-    private func setEmailAndPassword() {
-        keychainUseCase.saveAccountInfoToKeychain(email: email, password: password)
-    }
-
-    private func setTokenResponse(networkTokenResponse: NetworkTokenResponse) {
-        keychainUseCase.saveNetworkTokenResponseToKeychain(item: networkTokenResponse)
     }
 }
 
