@@ -126,12 +126,6 @@ public struct MeRepositoryImpl: MeRepository {
 		let urlRequest = try builder.asURLRequest()
 		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
 	}
-
-	public func deleteNotificationsFcmToken(installationId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		let builder = MeApiRequestBuilder.deleteFCMToken(installationId: installationId)
-		let urlRequest = try builder.asURLRequest()
-		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
-	}
 }
 
 private extension MeRepositoryImpl {

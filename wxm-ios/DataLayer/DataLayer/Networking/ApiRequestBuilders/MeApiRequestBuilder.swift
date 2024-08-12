@@ -54,7 +54,6 @@ enum MeApiRequestBuilder: URLRequestConvertible {
     case unfollow(deviceId: String)
 	case setDeviceLocation(deviceId: String, lat: Double, lon: Double)
 	case setFCMToken(installationId: String, token: String)
-	case deleteFCMToken(installationId: String)
 
     // MARK: - HttpMethod
 
@@ -65,7 +64,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return .get
 			case .saveUserWallet, .claimDevice, .setFriendlyName, .disclaimDevice, .follow, .setDeviceLocation, .setFCMToken:
 				return .post
-			case .deleteAccount, .deleteFriendlyName, .unfollow, .deleteFCMToken:
+			case .deleteAccount, .deleteFriendlyName, .unfollow:
 				return .delete
 		}
 	}
@@ -122,8 +121,6 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/devices/\(deviceId)/location"
 			case let .setFCMToken(installationId, token):
 				return "me/notifications/fcm/installations/\(installationId)/tokens/\(token)"
-			case let .deleteFCMToken(installationId):
-				return "me/notifications/fcm/installations/\(installationId)/tokens"
         }
     }
 

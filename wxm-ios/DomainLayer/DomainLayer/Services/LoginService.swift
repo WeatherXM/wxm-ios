@@ -55,7 +55,7 @@ public class LoginServiceImpl: LoginService {
 	}
 
 	public func logout() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		deleteFCMToken().flatMap { [weak self] response in
+		getInstallationId().flatMap { [weak self] installationId in
 			guard let self else {
 				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)
 				let dummyResponse: DataResponse<EmptyEntity, NetworkErrorResponse> = DataResponse(request: nil,
@@ -105,23 +105,6 @@ private extension LoginServiceImpl {
 
 			}.store(in: &cancellableSet)
 		}
-	}
-
-	func deleteFCMToken() -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		getInstallationId().flatMap { installationId in
-			do {
-				return try self.meRepository.deleteNotificationsFcmToken(installationId: installationId)
-			} catch {
-				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)
-				let dummyResponse: DataResponse<EmptyEntity, NetworkErrorResponse> = DataResponse(request: nil,
-																						response: nil,
-																						data: nil,
-																						metrics: nil,
-																						serializationDuration: 0,
-																						result: .failure(error))
-				return Just(dummyResponse).eraseToAnyPublisher()
-			}
-		}.eraseToAnyPublisher()
 	}
 
 	func getInstallationId() -> AnyPublisher<String, Never> {
