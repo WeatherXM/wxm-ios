@@ -14,7 +14,7 @@ public protocol AuthRepository {
     func register(email: String, firstName: String, lastName: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
     func refresh(refreshToken: String) throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never>
     func resetPassword(email: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
-    func logout() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
+	func logout(installationId: String?) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
     func passwordValidation(password: String) throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never>
 }
 

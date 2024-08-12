@@ -68,7 +68,7 @@ public class LoginServiceImpl: LoginService {
 			}
 
 			do {
-				let logout = try self.authRepository.logout()
+				let logout = try self.authRepository.logout(installationId: installationId)
 				return logout
 			} catch {
 				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)

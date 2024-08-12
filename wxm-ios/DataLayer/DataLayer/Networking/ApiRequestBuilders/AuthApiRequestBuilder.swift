@@ -7,6 +7,7 @@
 
 import Alamofire
 import Foundation
+import Toolkit
 
 enum AuthApiRequestBuilder: URLRequestConvertible {
     // MARK: - URLRequestConvertible
@@ -38,7 +39,7 @@ enum AuthApiRequestBuilder: URLRequestConvertible {
 
     case login(username: String, password: String)
     case register(email: String, firstName: String, lastName: String)
-    case logout(accessToken: String)
+	case logout(accessToken: String, installationId: String?)
     case refresh(refreshToken: String)
     case resetPassword(email: String)
 
@@ -72,26 +73,30 @@ enum AuthApiRequestBuilder: URLRequestConvertible {
 
     // MARK: - Parameters
 
-    // This is the queries part, it's optional because an endpoint can be without parameters
-    private var parameters: Parameters? {
-        switch self {
-        case let .login(username, password):
-            return [ParameterConstants.Auth.username: username, ParameterConstants.Auth.password: password]
-        case let .register(email, firstName, lastName):
-            var finalDictionary: [String: String] = [ParameterConstants.Auth.email: email]
-            if !firstName.trimmingCharacters(in: .whitespaces).isEmpty {
-                finalDictionary[ParameterConstants.Auth.firstName] = firstName
-            }
-            if !lastName.trimmingCharacters(in: .whitespaces).isEmpty {
-                finalDictionary[ParameterConstants.Auth.lastName] = lastName
-            }
-            return finalDictionary
-        case let .refresh(refreshToken):
-            return [ParameterConstants.Auth.refreshToken: refreshToken]
-        case let .resetPassword(email):
-            return [ParameterConstants.Auth.email: email]
-        case let .logout(accessToken):
-            return [ParameterConstants.Auth.accessToken: accessToken]
-        }
-    }
+	// This is the queries part, it's optional because an endpoint can be without parameters
+	private var parameters: Parameters? {
+		switch self {
+			case let .login(username, password):
+				return [ParameterConstants.Auth.username: username, ParameterConstants.Auth.password: password]
+			case let .register(email, firstName, lastName):
+				var finalDictionary: [String: String] = [ParameterConstants.Auth.email: email]
+				if !firstName.trimmingCharacters(in: .whitespaces).isEmpty {
+					finalDictionary[ParameterConstants.Auth.firstName] = firstName
+				}
+				if !lastName.trimmingCharacters(in: .whitespaces).isEmpty {
+					finalDictionary[ParameterConstants.Auth.lastName] = lastName
+				}
+				return finalDictionary
+			case let .refresh(refreshToken):
+				return [ParameterConstants.Auth.refreshToken: refreshToken]
+			case let .resetPassword(email):
+				return [ParameterConstants.Auth.email: email]
+			case let .logout(accessToken, installationId):
+				var params = [ParameterConstants.Auth.accessToken: accessToken]
+				if let installationId {
+					params += [ParameterConstants.Auth.installationId: installationId]
+				}
+				return params
+		}
+	}
 }
