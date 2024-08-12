@@ -73,9 +73,9 @@ final class DateExtensionsTests: XCTestCase {
 	}
 
 	func testGetFormattedDateToday() {
-		var today = Date()
-		let expectedResult = "Today"
-		let formattedResult = today.getFormattedDate(format: .onlyDate)
+		var today = Date().set(hour: 12)
+		let expectedResult = "today at 12:00 pm"
+		let formattedResult = today?.getFormattedDate(format: .onlyDate, relativeFormat: true)
 		XCTAssert(expectedResult == formattedResult, "The result should be \(expectedResult)")
 	}
 
