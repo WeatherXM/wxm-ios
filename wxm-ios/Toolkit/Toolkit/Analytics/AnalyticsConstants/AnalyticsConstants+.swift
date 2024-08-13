@@ -200,9 +200,9 @@ extension ParameterValue: RawRepresentable {
 			case .frequencyDocumentation:
 				return "Frequency Documentation"
 			case .failure:
-				return "Failure"
+				return "failure"
 			case .success:
-				return "Success"
+				return "success"
 			case .light:
 				return "light"
 			case .dark:
