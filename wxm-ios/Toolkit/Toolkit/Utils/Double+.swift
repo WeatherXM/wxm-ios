@@ -33,7 +33,7 @@ public extension Double {
 	}
 	
 	var toWXMTokenPrecisionString: String {
-		toPrecisionString(minDecimals: 2, precision: 4)
+		toPrecisionString(minDecimals: 2, precision: 2)
 	}
 	
 	func toPrecisionString(minDecimals: Int = 0, precision: Int) -> String {
