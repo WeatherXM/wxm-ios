@@ -37,6 +37,11 @@ public extension Double {
 	}
 	
 	func toPrecisionString(minDecimals: Int = 0, precision: Int) -> String {
-		return formatted(.number.rounded(rule: .up).precision(.fractionLength(minDecimals...precision)))
+		var formatter = NumberFormatter()
+		formatter.maximumFractionDigits = precision
+		formatter.minimumFractionDigits = minDecimals
+		formatter.numberStyle = .decimal
+		formatter.roundingMode = .halfUp
+		return formatter.string(from: self as NSNumber) ?? "-"
 	}
 }
