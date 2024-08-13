@@ -18,9 +18,6 @@ public class RemoteConfigManager: ObservableObject {
 	@Published public var iosAppChangelog: String?
 	@Published public var iosAppLatestVersion: String?
 	@Published public var iosAppMinimumVersion: String?
-	@Published public var isFeatMainnetEnabled: Bool?
-	@Published public var featMainnetMessage: String?
-	@Published public var featMainnetUrl: String?
 
 	private init() {
 		if disableAnalytics {
@@ -50,9 +47,6 @@ private extension RemoteConfigManager {
 			self.iosAppChangelog = self.getConfigValue(key: .iosAppChangelog)
 			self.iosAppLatestVersion = self.getConfigValue(key: .iosAppLatestVersion)
 			self.iosAppMinimumVersion = self.getConfigValue(key: .iosAppMinimumVersion)
-			self.isFeatMainnetEnabled = self.getConfigValue(key: .featMainnet)
-			self.featMainnetMessage = self.getConfigValue(key: .featMainnetMessage)
-			self.featMainnetUrl = self.getConfigValue(key: .featMainnetUrl)
 		}
 	}
 }

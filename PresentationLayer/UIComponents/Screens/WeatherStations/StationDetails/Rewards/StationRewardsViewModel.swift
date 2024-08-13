@@ -13,8 +13,6 @@ import Toolkit
 class StationRewardsViewModel: ObservableObject {
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
 	@Published private(set) var viewState: ViewState = .loading
-	@Published var showMainnet: Bool? = false
-	@Published var mainnetMessage: String?
 
     private(set) var device: DeviceDetails?
 	private(set) var followState: UserDeviceFollowState?
@@ -34,9 +32,6 @@ class StationRewardsViewModel: ObservableObject {
         self.containerDelegate = containerDelegate
         self.useCase = useCase
 		
-		RemoteConfigManager.shared.$isFeatMainnetEnabled.assign(to: &$showMainnet)
-		RemoteConfigManager.shared.$featMainnetMessage.assign(to: &$mainnetMessage)
-
 		observeOffset()
     }
 
@@ -46,15 +41,6 @@ class StationRewardsViewModel: ObservableObject {
             completion()
         }
     }
-
-	func handleAnnouncementTap() {
-		guard let urlString = RemoteConfigManager.shared.featMainnetUrl,
-			  let url = URL(string: urlString) else {
-			return
-		}
-
-		Router.shared.showFullScreen(.safariView(url))
-	}
 
 	func handleViewDetailsTap() {
 		guard let device, let timestamp = response?.latest?.timestamp else {
