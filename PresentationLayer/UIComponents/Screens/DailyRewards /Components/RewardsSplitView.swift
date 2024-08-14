@@ -75,8 +75,10 @@ private extension RewardsSplitView {
 				ForEach(items, id: \.address) { item in
 					VStack(spacing: CGFloat(.smallSpacing)) {
 						HStack {
-							Text(item.address.walletAddressMaskString)
-								.font(.system(size: CGFloat(.mediumFontSize)))
+							let weight: Font.Weight = item.isUserWallet ? .bold : .regular
+							
+							Text(addressString(item: item))
+								.font(.system(size: CGFloat(.mediumFontSize), weight: weight))
 								.foregroundStyle(Color(colorEnum: .darkGrey))
 
 							Spacer()
@@ -86,7 +88,8 @@ private extension RewardsSplitView {
 
 								Text("(\(LocalizableString.percentage(Float(item.stake)).localized))")
 							}
-							.font(.system(size: CGFloat(.mediumFontSize)))
+							.font(.system(size: CGFloat(.mediumFontSize),
+										  weight: weight))
 							.foregroundStyle(Color(colorEnum: .darkGrey))
 						}
 
@@ -96,11 +99,20 @@ private extension RewardsSplitView {
 			}
 		}
 	}
+
+	func addressString(item: Item) -> String {
+		var address = item.address.walletAddressMaskString
+		if item.isUserWallet {
+			address += " (\(LocalizableString.you.localized))"
+		}
+
+		return address
+	}
 }
 
 #Preview {
 	RewardsSplitView(items: [RewardSplit(stake: 60,
 										 wallet: "0xc4E253863371fdeD8e414731DB951F4C17Bc645e",
-										 reward: 1.2).toSplitViewItem]) {}
+										 reward: 1.2).toSplitViewItem(isUserWallet: true)]) {}
 		.padding()
 }

@@ -174,6 +174,7 @@ enum LocalizableString: WXMLocalizable {
     case light
     case dark
     case system
+	case you
     case emptyGenericTitle
     case emptyGenericDescription
     case percentage(Float)
@@ -600,6 +601,8 @@ extension LocalizableString {
                 return "dark"
             case .system:
                 return "system"
+			case .you:
+				return "you"
             case .emptyGenericTitle:
                 return "empty_generic_title"
             case .emptyGenericDescription:

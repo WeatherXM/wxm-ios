@@ -25,7 +25,10 @@ class RewardDetailsViewModel: ObservableObject {
 	let date: Date
 	var rewardDetailsResponse: NetworkDeviceRewardDetailsResponse? {
 		didSet {
-			splitItems = rewardDetailsResponse?.rewardSplit?.map { $0.toSplitViewItem } ?? []
+			splitItems = rewardDetailsResponse?.rewardSplit?.map { split in
+				let isUserWallet = MainScreenViewModel.shared.userInfo?.wallet?.address == split.wallet
+				return split.toSplitViewItem(isUserWallet: isUserWallet)
+			} ?? []
 		}
 	}
 	var isDeviceOwned: Bool {

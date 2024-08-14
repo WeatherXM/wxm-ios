@@ -8459,6 +8459,17 @@
           }
         }
       }
+    },
+    "you" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
