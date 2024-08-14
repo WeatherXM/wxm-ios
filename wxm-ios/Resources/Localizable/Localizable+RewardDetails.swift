@@ -11,6 +11,8 @@ extension LocalizableString {
 	enum RewardDetails {
 		case title
 		case showSplit
+		case rewardSplit
+		case rewardSplitDescription(Int)
 		case dailyReward
 		case issues
 		case earningsFor(String)
@@ -73,7 +75,8 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 	var localized: String {
 		var localized = NSLocalizedString(key, comment: "")
 		switch self {
-			case .dataQualitySolidMessage(let count),
+			case .rewardSplitDescription(let count),
+					.dataQualitySolidMessage(let count),
 					.dataQualityAlmostPerfectMessage(let count),
 					.dataQualityGreatMessage(let count),
 					.dataQualityPublicGreatMessage(let count),
@@ -109,6 +112,10 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 				return "reward_details_title"
 			case .showSplit:
 				return "reward_details_show_split"
+			case .rewardSplit:
+				return "reward_details_reward_split"
+			case .rewardSplitDescription:
+				return "reward_details_reward_split_description"
 			case .dailyReward:
 				return "reward_details_daily_reward"
 			case .issues:

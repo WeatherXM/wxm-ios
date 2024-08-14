@@ -115,4 +115,10 @@ public struct RewardSplit: Codable, Hashable {
 	public let stake: Int?
 	public let wallet: String?
 	public let reward: Double?
+
+	public init(stake: Int?, wallet: String?, reward: Double?) {
+		self.stake = stake
+		self.wallet = wallet
+		self.reward = reward
+	}
 }
