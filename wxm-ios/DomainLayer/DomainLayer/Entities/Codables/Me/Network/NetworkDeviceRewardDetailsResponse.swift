@@ -13,7 +13,7 @@ public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable {
 	public let annotations: [RewardAnnotation]?
 	public let base: Base?
 	public let boost: Boost?
-	public let rewardSplit: RewardSplit?
+	public let rewardSplit: [RewardSplit]?
 
 	enum CodingKeys: String ,CodingKey {
 		case timestamp

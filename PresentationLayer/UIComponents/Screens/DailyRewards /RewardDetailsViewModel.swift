@@ -115,6 +115,10 @@ class RewardDetailsViewModel: ObservableObject {
 		return LocalizableString.RewardDetails.earnedBoosts(reward.toWXMTokenPrecisionString).localized
 	}
 
+	func handleSplitButtonTap() {
+
+	}
+	
 	func handleIssueButtonTap() {
 		guard let count = rewardDetailsResponse?.annotations?.count, count > 1 else {
 			rewardDetailsResponse?.mainAnnotation?.handleRewardAnnotationTap(with: device, followState: followState)

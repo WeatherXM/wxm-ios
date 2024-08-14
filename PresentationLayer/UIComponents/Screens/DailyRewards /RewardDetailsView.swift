@@ -103,10 +103,38 @@ private struct ContentView: View {
 						.foregroundColor(Color(colorEnum: .darkestBlue))
 
 					Spacer()
+					
+					if viewModel.rewardDetailsResponse?.isRewardSplitted == true {
+						splitButton
+					}
 				}
 			}
 
 		}
+	}
+
+	@ViewBuilder
+	var splitButton: some View {
+		Button {
+			viewModel.handleSplitButtonTap()
+		} label: {
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				Text(FontIcon.split.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+					.foregroundColor(Color(colorEnum: .wxmPrimary))
+					.rotationEffect(Angle(degrees: -90))
+
+				Text(LocalizableString.RewardDetails.showSplit.localized)
+					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .wxmPrimary))
+			}
+			.padding(.horizontal, CGFloat(.defaultSidePadding))
+			.padding(.vertical, CGFloat(.smallToMediumSidePadding))
+		}
+//		.background(Color(colorEnum: .blueTint))
+		.buttonStyle(WXMButtonStyle(fillColor: .layer1,
+									strokeColor: .noColor,
+									fixedSize: true))
 	}
 
 	@ViewBuilder

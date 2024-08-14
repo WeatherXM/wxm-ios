@@ -6271,6 +6271,17 @@
         }
       }
     },
+    "reward_details_show_split" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Split"
+          }
+        }
+      }
+    },
     "reward_details_timeline_info_description_format" : {
       "extractionState" : "manual",
       "localizations" : {

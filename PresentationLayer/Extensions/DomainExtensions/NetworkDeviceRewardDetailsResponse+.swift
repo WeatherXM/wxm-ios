@@ -20,6 +20,10 @@ extension NetworkDeviceRewardDetailsResponse {
 
 		return nil
 	}
+
+	var isRewardSplitted: Bool {
+		!rewardSplit.isNilOrEmpty
+	}
 }
 
 extension NetworkDeviceRewardDetailsResponse {

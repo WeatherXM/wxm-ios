@@ -10,6 +10,7 @@ import Foundation
 extension LocalizableString {
 	enum RewardDetails {
 		case title
+		case showSplit
 		case dailyReward
 		case issues
 		case earningsFor(String)
@@ -106,6 +107,8 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 		switch self {
 			case .title:
 				return "reward_details_title"
+			case .showSplit:
+				return "reward_details_show_split"
 			case .dailyReward:
 				return "reward_details_daily_reward"
 			case .issues:
