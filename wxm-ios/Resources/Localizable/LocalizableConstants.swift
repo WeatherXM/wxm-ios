@@ -16,6 +16,7 @@ enum LocalizableString: WXMLocalizable {
     case confirm
     case email
     case mandatoryEmail
+	case done
     case firstName
     case lastName
     case password
@@ -271,6 +272,8 @@ extension LocalizableString {
                 return "email"
             case .mandatoryEmail:
                 return "mandatory_email"
+			case .done:
+				return "done"
             case .firstName:
                 return "first_name"
             case .lastName:

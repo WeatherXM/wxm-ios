@@ -16,7 +16,7 @@ class RewardDetailsViewModel: ObservableObject {
 	private(set) var info: BottomSheetInfo?
 	@Published var state: ViewState = .loading
 	private(set) var failObj: FailSuccessStateObject?
-
+	@Published var showSplits: Bool = false
 
 	let useCase: RewardsTimelineUseCase
 	var device: DeviceDetails
@@ -116,7 +116,7 @@ class RewardDetailsViewModel: ObservableObject {
 	}
 
 	func handleSplitButtonTap() {
-
+		showSplits = true
 	}
 	
 	func handleIssueButtonTap() {

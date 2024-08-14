@@ -7,10 +7,10 @@
     "-" : {
 
     },
-    "%@" : {
+    "(%@)" : {
 
     },
-    "%@  %@" : {
+    "%.2f %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3148,6 +3148,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Display"
+          }
+        }
+      }
+    },
+    "done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
           }
         }
       }

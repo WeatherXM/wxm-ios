@@ -7,20 +7,31 @@
 
 import SwiftUI
 import DomainLayer
+import Toolkit
 
 struct RewardsSplitView: View {
 	let rewardSplits: [RewardSplit]
+	let buttonAction: VoidCallback
 
     var body: some View {
 		ZStack {
 			Color(colorEnum: .top)
 				.ignoresSafeArea()
 
-			VStack(spacing: CGFloat(.mediumSpacing)) {
-				titleView
+			VStack {
+				VStack(spacing: CGFloat(.mediumSpacing)) {
+					titleView
 
-				walletsList
+					walletsList
+				}
+				
+				Button(action: buttonAction) {
+					Text(LocalizableString.done.localized)
+				}
+				.buttonStyle(WXMButtonStyle.transparent(fillColor: .layer1))
+
 			}
+			.padding(CGFloat(.defaultSidePadding))
 		}
     }
 }
@@ -81,6 +92,6 @@ private extension RewardsSplitView {
 #Preview {
 	RewardsSplitView(rewardSplits: [.init(stake: 60,
 										  wallet: "0xc4E253863371fdeD8e414731DB951F4C17Bc645e",
-										  reward: 1.2)])
+										  reward: 1.2)]) {}
 	.padding()
 }

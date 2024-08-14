@@ -65,6 +65,11 @@ private struct ContentView: View {
 		.bottomSheet(show: $viewModel.showInfo) {
 			bottomInfoView(info: viewModel.info)
 		}
+		.bottomSheet(show: $viewModel.showSplits) {
+			RewardsSplitView(rewardSplits: viewModel.rewardDetailsResponse?.rewardSplit ?? []) {
+				viewModel.showSplits = false
+			}
+		}
 	}
 
 	@ViewBuilder
@@ -109,7 +114,6 @@ private struct ContentView: View {
 					}
 				}
 			}
-
 		}
 	}
 
@@ -131,7 +135,6 @@ private struct ContentView: View {
 			.padding(.horizontal, CGFloat(.defaultSidePadding))
 			.padding(.vertical, CGFloat(.smallToMediumSidePadding))
 		}
-//		.background(Color(colorEnum: .blueTint))
 		.buttonStyle(WXMButtonStyle(fillColor: .layer1,
 									strokeColor: .noColor,
 									fixedSize: true))
