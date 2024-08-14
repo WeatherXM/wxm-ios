@@ -66,7 +66,7 @@ private struct ContentView: View {
 			bottomInfoView(info: viewModel.info)
 		}
 		.bottomSheet(show: $viewModel.showSplits) {
-			RewardsSplitView(rewardSplits: viewModel.rewardDetailsResponse?.rewardSplit ?? []) {
+			RewardsSplitView(items: viewModel.splitItems) {
 				viewModel.showSplits = false
 			}
 		}

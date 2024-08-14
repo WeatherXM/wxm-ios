@@ -10,7 +10,7 @@ import DomainLayer
 import Toolkit
 
 struct RewardsSplitView: View {
-	let rewardSplits: [RewardSplit]
+	let items: [Item]
 	let buttonAction: VoidCallback
 
     var body: some View {
@@ -36,6 +36,15 @@ struct RewardsSplitView: View {
     }
 }
 
+extension RewardsSplitView {
+	struct Item {
+		let address: String
+		let reward: Double
+		let stake: Int
+		let isUserWallet: Bool
+	}
+}
+
 private extension RewardsSplitView {
 	@ViewBuilder
 	var titleView: some View {
@@ -49,7 +58,7 @@ private extension RewardsSplitView {
 			}
 
 			HStack {
-				Text(LocalizableString.RewardDetails.rewardSplitDescription(rewardSplits.count).localized)
+				Text(LocalizableString.RewardDetails.rewardSplitDescription(items.count).localized)
 					.font(.system(size: CGFloat(.normalFontSize)))
 					.foregroundStyle(Color(colorEnum: .text))
 
@@ -63,19 +72,19 @@ private extension RewardsSplitView {
 	var walletsList: some View {
 		ScrollView(showsIndicators: false) {
 			VStack(spacing: CGFloat(.smallToMediumSpacing)) {
-				ForEach(rewardSplits, id: \.wallet) { split in
+				ForEach(items, id: \.address) { item in
 					VStack(spacing: CGFloat(.smallSpacing)) {
 						HStack {
-							Text(split.wallet?.walletAddressMaskString ?? "")
+							Text(item.address.walletAddressMaskString)
 								.font(.system(size: CGFloat(.mediumFontSize)))
 								.foregroundStyle(Color(colorEnum: .darkGrey))
 
 							Spacer()
 
 							HStack(spacing: CGFloat(.smallSpacing)) {
-								Text("\(split.reward?.toWXMTokenPrecisionString ?? "") \(StringConstants.wxmCurrency)")
+								Text("\(item.reward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
 
-								Text("(\(LocalizableString.percentage(Float(split.stake ?? 0)).localized))")
+								Text("(\(LocalizableString.percentage(Float(item.stake)).localized))")
 							}
 							.font(.system(size: CGFloat(.mediumFontSize)))
 							.foregroundStyle(Color(colorEnum: .darkGrey))
@@ -90,8 +99,8 @@ private extension RewardsSplitView {
 }
 
 #Preview {
-	RewardsSplitView(rewardSplits: [.init(stake: 60,
-										  wallet: "0xc4E253863371fdeD8e414731DB951F4C17Bc645e",
-										  reward: 1.2)]) {}
-	.padding()
+	RewardsSplitView(items: [RewardSplit(stake: 60,
+										 wallet: "0xc4E253863371fdeD8e414731DB951F4C17Bc645e",
+										 reward: 1.2).toSplitViewItem]) {}
+		.padding()
 }

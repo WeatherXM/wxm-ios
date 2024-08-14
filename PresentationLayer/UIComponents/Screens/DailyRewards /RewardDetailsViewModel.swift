@@ -17,12 +17,17 @@ class RewardDetailsViewModel: ObservableObject {
 	@Published var state: ViewState = .loading
 	private(set) var failObj: FailSuccessStateObject?
 	@Published var showSplits: Bool = false
+	private(set) var splitItems: [RewardsSplitView.Item] = []
 
 	let useCase: RewardsTimelineUseCase
 	var device: DeviceDetails
 	let followState: UserDeviceFollowState?
 	let date: Date
-	var rewardDetailsResponse: NetworkDeviceRewardDetailsResponse?
+	var rewardDetailsResponse: NetworkDeviceRewardDetailsResponse? {
+		didSet {
+			splitItems = rewardDetailsResponse?.rewardSplit?.map { $0.toSplitViewItem } ?? []
+		}
+	}
 	var isDeviceOwned: Bool {
 		followState?.relation == .owned
 	}
