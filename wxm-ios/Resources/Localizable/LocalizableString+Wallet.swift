@@ -32,7 +32,6 @@ extension LocalizableString {
 		case confirmOwnershipDescription(String)
 		case scanQRCodeButton
 		case enterAddressTitle
-		case rewardsInfoText
 	}
 }
 
@@ -97,8 +96,6 @@ extension LocalizableString.Wallet: WXMLocalizable {
 				return "wallet_scan_qr_code_button"
 			case .enterAddressTitle:
 				return "wallet_enter_address_title"
-			case .rewardsInfoText:
-				return "wallet_rewards_info_text"
 		}
 	}
 }

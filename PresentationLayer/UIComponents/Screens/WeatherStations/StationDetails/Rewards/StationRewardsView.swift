@@ -17,15 +17,6 @@ struct StationRewardsView: View {
 					viewModel.refresh(completion: completion)
 				} content: {
 					VStack(spacing: CGFloat(.mediumSpacing)) {
-						if viewModel.showMainnet == true, let message = viewModel.mainnetMessage {
-							Button {
-								viewModel.handleAnnouncementTap()
-							} label: {
-								AnnouncementCardView(title: LocalizableString.StationDetails.mainnetTitle.localized,
-													 description: message)
-							}
-						}
-
 						if viewModel.viewState == .empty {
 							NoRewardsView()
 								.wxmShadow()

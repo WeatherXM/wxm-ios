@@ -13,7 +13,6 @@ extension LocalizableString {
 		case forecast
 		case rewards
 		case viewHistoricalData
-		case rewardsInfoText
 		case observationsFollowCtaText
 		case observationsLoggedOutCtaText
 		case detailedRewardsButtonTitle
@@ -41,7 +40,6 @@ extension LocalizableString {
 		case baseRewardRange(String, String)
 		case noRewardsTitle
 		case noRewardsDescription
-		case mainnetTitle
 		case rewardsTitle
 		case rewardsLatestTab
 		case rewardsSevenDaysTab
@@ -94,8 +92,6 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_rewards"
 			case .viewHistoricalData:
 				return "station_details_view_historical_data"
-			case .rewardsInfoText:
-				return "station_details_rewards_info_text"
 			case .observationsFollowCtaText:
 				return "station_details_observations_follow_cta_text"
 			case .observationsLoggedOutCtaText:
@@ -153,8 +149,6 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_no_rewards_title"
 			case .noRewardsDescription:
 				return "station_details_no_rewards_description"
-			case .mainnetTitle:
-				return "station_details_mainnet_banner_title"
 			case .ownedStationRewardWarningMessage:
 				return "station_details_owned_reward_warning_message"
 			case .rewardsTitle:

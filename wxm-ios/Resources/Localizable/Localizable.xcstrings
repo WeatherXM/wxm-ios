@@ -7217,17 +7217,6 @@
         }
       }
     },
-    "station_details_mainnet_banner_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Welcome to Mainnet!"
-          }
-        }
-      }
-    },
     "station_details_no_active_boosts" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7477,17 +7466,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Problems Found"
-          }
-        }
-      }
-    },
-    "station_details_rewards_info_text" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**IMPORTANT:** $WXM token is deployed on testnet. Rewards will be recalculated and rewarded again after WXM mainnet token launch. Actual rewards may differ from the ones you see in the chart above."
           }
         }
       }
@@ -8225,17 +8203,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You don’t have a WXM wallet?\nRead here how you can create one."
-          }
-        }
-      }
-    },
-    "wallet_rewards_info_text" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**IMPORTANT:** $WXM token is deployed on testnet. Rewards will be recalculated and rewarded again after WXM mainnet token launch."
           }
         }
       }

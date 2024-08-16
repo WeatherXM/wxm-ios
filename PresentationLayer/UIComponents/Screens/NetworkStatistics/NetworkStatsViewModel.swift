@@ -22,8 +22,6 @@ class NetworkStatsViewModel: ObservableObject {
     @Published var manufacturerCTA: NetworkStatsView.StatisticsCTA?
     @Published var lastUpdatedText: String?
     @Published var showInfo: Bool = false
-	@Published var showMainnet: Bool? = false
-	@Published var mainnetMessage: String?
     @Published var state: NetworkStatsView.State = .loading
     private(set) var failObj: FailSuccessStateObject?
 
@@ -40,8 +38,6 @@ class NetworkStatsViewModel: ObservableObject {
 
     init(useCase: NetworkUseCase? = nil) {
         self.useCase = useCase
-		RemoteConfigManager.shared.$isFeatMainnetEnabled.assign(to: &$showMainnet)
-		RemoteConfigManager.shared.$featMainnetMessage.assign(to: &$mainnetMessage)
 
         refresh { }
     }
@@ -49,15 +45,6 @@ class NetworkStatsViewModel: ObservableObject {
     func refresh(completion: @escaping VoidCallback) {
         fetchStats(completion: completion)
     }
-
-	func handleAnnouncementTap() {
-		guard let urlString = RemoteConfigManager.shared.featMainnetUrl,
-			  let url = URL(string: urlString) else {
-			return
-		}
-
-		Router.shared.showFullScreen(.safariView(url))
-	}
 
     func handleBuyStationTap() {
         HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
