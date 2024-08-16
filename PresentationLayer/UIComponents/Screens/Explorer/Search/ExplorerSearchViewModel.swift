@@ -75,7 +75,7 @@ class ExplorerSearchViewModel: ObservableObject {
     }
 
     func handleSettingsButtonTap() {
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.actionName: .explorerSettings])
+        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .explorerSettings])
         delegate?.settingsButtonTapped()
     }
 
