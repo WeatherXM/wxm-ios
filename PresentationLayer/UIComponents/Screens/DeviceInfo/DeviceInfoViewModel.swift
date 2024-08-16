@@ -25,7 +25,9 @@ class DeviceInfoViewModel: ObservableObject {
 
         let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
             DeviceInfoRowView.Row(title: field.titleFor(devie: device),
-								  description: field.descriptionFor(device: device, for: followState).attributedMarkdown ?? "",
+								  description: field.descriptionFor(device: device,
+																	for: followState,
+																	deviceInfo: deviceInfo).attributedMarkdown ?? "",
 								  imageUrl: field.imageUrlFor(device: device, followState: followState),
                                   buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
                                   warning: field.warning,
@@ -37,10 +39,12 @@ class DeviceInfoViewModel: ObservableObject {
     }
 
 	var bottomSections: [[DeviceInfoRowView.Row]] {
-		let fields = Field.bottomSections(for: followState)
+		let fields = Field.bottomSections(for: followState, deviceInfo: deviceInfo)
 		let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
 			DeviceInfoRowView.Row(title: field.titleFor(devie: device),
-								  description: field.descriptionFor(device: device, for: followState).attributedMarkdown ?? "",
+								  description: field.descriptionFor(device: device,
+																	for: followState,
+																	deviceInfo: deviceInfo).attributedMarkdown ?? "",
 								  imageUrl: field.imageUrlFor(device: device, followState: followState),
 								  buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
 								  warning: field.warning,
@@ -221,6 +225,8 @@ private extension DeviceInfoViewModel {
 			case .stationLocation:
 				let viewModel = ViewModelsFactory.getSelectLocationViewModel(device: device, followState: followState, delegate: self)
 				Router.shared.navigateTo(.selectStationLocation(viewModel))
+			case .rewardSplit:
+				break
 		}
 	}
 
