@@ -15,7 +15,7 @@ struct HistoryView: View {
 
     var body: some View {
         ZStack {
-            TrackableScrollView(offsetObject: viewModel.scrollObject) { completion in
+            TrackableScrollView { completion in
                 viewModel.refresh(completion: completion)
             } content: {
                 if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
@@ -24,10 +24,10 @@ struct HistoryView: View {
 									delegate: viewModel.chartDelegate)
 						.padding(.horizontal, CGFloat(.defaultSidePadding))
                         .id(historyData.markDate)
-						.iPadMaxWidth()
                         .padding(.top)
                 }
             }
+			.iPadMaxWidth()
         }
         .wxmEmptyView(show: Binding(get: { viewModel.currentHistoryData?.isEmpty() ?? true }, set: { _ in }),
                       configuration: .init(animationEnum: .emptyGeneric,

@@ -13,7 +13,7 @@ struct TrackableScrollView<Content>: View where Content: View {
     private let showIndicators: Bool
     private let refreshAction: PullableScrollView<Content>.RefreshCallback?
     private let content: () -> Content
-    private var offsetObject: TrackableScrollOffsetObject
+    private var offsetObject: TrackableScrollOffsetObject?
 
     /// A refreshable scroll view which tracks the offset and content size
     /// - Parameters:
@@ -23,7 +23,7 @@ struct TrackableScrollView<Content>: View where Content: View {
     ///   - refreshAction: Callback where the refresh actions should be performed. Once every request is finished call the passed callback to hide refresh control
     ///   - content: The content to be presented in scroll view
     init(showIndicators: Bool = true,
-		 offsetObject: TrackableScrollOffsetObject = .init(),
+		 offsetObject: TrackableScrollOffsetObject? = nil,
 		 refreshAction: PullableScrollView<Content>.RefreshCallback? = nil,
 		 @ViewBuilder content: @escaping () -> Content) {
         self.showIndicators = showIndicators
@@ -36,24 +36,40 @@ struct TrackableScrollView<Content>: View where Content: View {
         GeometryReader { outsideProxy in
             container {
                 ZStack {
-                    GeometryReader { insideProxy in
-                        Color.clear
-                            .preference(key: ScrollOffsetPreferenceKey.self, value: [self.calculateContentOffset(fromOutsideProxy: outsideProxy, insideProxy: insideProxy)])
-                    }
+					if offsetObject != nil {
+						GeometryReader { insideProxy in
+							Color.clear
+								.preference(key: ScrollOffsetPreferenceKey.self, value: [self.calculateContentOffset(fromOutsideProxy: outsideProxy, insideProxy: insideProxy)])
+						}
+					}
 
                     self.content()
-                        .sizeObserver(size: Binding(get: { offsetObject.contentSize }, set: { offsetObject.contentSize = $0 }))
+						.modify { view in
+							if let offsetObject {
+								view
+									.sizeObserver(size: Binding(get: { offsetObject.contentSize }, set: { offsetObject.contentSize = $0 }))
+							} else {
+								view
+							}
+						}
                 }
             }
-            .sizeObserver(size: Binding(get: { offsetObject.scrollerSize }, set: { offsetObject.scrollerSize = $0 }))
+			.modify { view in
+				if let offsetObject {
+					view
+						.sizeObserver(size: Binding(get: { offsetObject.scrollerSize }, set: { offsetObject.scrollerSize = $0 }))
+				} else {
+					view
+				}
+			}
             .onTapGesture {}
             .simultaneousGesture(LongPressGesture(minimumDuration: 0.0).onEnded { _ in
-                offsetObject.didStartDragging()
+                offsetObject?.didStartDragging()
             })
         }
         .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
             DispatchQueue.main.async {
-                self.offsetObject.contentOffset = value[0]
+                self.offsetObject?.contentOffset = value[0]
             }
         }
     }
