@@ -38,6 +38,51 @@ struct RewardsSplitView: View {
 }
 
 extension RewardsSplitView {
+	
+	struct WalletsListView: View {
+		let items: [Item]
+
+		var body: some View {
+			VStack(spacing: CGFloat(.smallToMediumSpacing)) {
+				ForEach(items, id: \.address) { item in
+					VStack(spacing: CGFloat(.smallSpacing)) {
+						HStack {
+							let weight: Font.Weight = item.isUserWallet ? .bold : .regular
+
+							Text(addressString(item: item))
+								.font(.system(size: CGFloat(.mediumFontSize), weight: weight))
+								.foregroundStyle(Color(colorEnum: .darkGrey))
+
+							Spacer()
+
+							HStack(spacing: CGFloat(.smallSpacing)) {
+								Text("\(item.reward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
+
+								Text("(\(LocalizableString.percentage(Float(item.stake)).localized))")
+							}
+							.font(.system(size: CGFloat(.mediumFontSize),
+										  weight: weight))
+							.foregroundStyle(Color(colorEnum: .darkGrey))
+						}
+
+						WXMDivider()
+					}
+				}
+			}
+		}
+
+		func addressString(item: Item) -> String {
+			var address = item.address.walletAddressMaskString
+			if item.isUserWallet {
+				address += " (\(LocalizableString.you.localized))"
+			}
+
+			return address
+		}
+	}
+}
+
+extension RewardsSplitView {
 	struct Item {
 		let address: String
 		let reward: Double
@@ -72,42 +117,8 @@ private extension RewardsSplitView {
 	@ViewBuilder
 	var walletsList: some View {
 		ScrollView(showsIndicators: false) {
-			VStack(spacing: CGFloat(.smallToMediumSpacing)) {
-				ForEach(items, id: \.address) { item in
-					VStack(spacing: CGFloat(.smallSpacing)) {
-						HStack {
-							let weight: Font.Weight = item.isUserWallet ? .bold : .regular
-							
-							Text(addressString(item: item))
-								.font(.system(size: CGFloat(.mediumFontSize), weight: weight))
-								.foregroundStyle(Color(colorEnum: .darkGrey))
-
-							Spacer()
-
-							HStack(spacing: CGFloat(.smallSpacing)) {
-								Text("\(item.reward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
-
-								Text("(\(LocalizableString.percentage(Float(item.stake)).localized))")
-							}
-							.font(.system(size: CGFloat(.mediumFontSize),
-										  weight: weight))
-							.foregroundStyle(Color(colorEnum: .darkGrey))
-						}
-
-						WXMDivider()
-					}
-				}
-			}
+			WalletsListView(items: items)
 		}
-	}
-
-	func addressString(item: Item) -> String {
-		var address = item.address.walletAddressMaskString
-		if item.isUserWallet {
-			address += " (\(LocalizableString.you.localized))"
-		}
-
-		return address
 	}
 }
 

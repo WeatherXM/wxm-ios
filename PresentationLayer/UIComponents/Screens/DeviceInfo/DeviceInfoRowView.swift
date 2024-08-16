@@ -68,6 +68,10 @@ struct DeviceInfoRowView: View {
 						}
 					}
 				}
+
+				if let customView = row.customView {
+					customView
+				}
 			}
         }
     }
@@ -87,6 +91,7 @@ extension DeviceInfoRowView {
 		let imageUrl: URL?
         let buttonInfo: DeviceInfoButtonInfo?
         var warning: Warning?
+		var customView: AnyView? = nil
         let buttonAction: () -> Void
     }
 }

@@ -189,6 +189,23 @@ extension DeviceInfoViewModel {
 					return nil
 			}
 		}
+
+		func customViewFor(deviceInfo: NetworkDevicesInfoResponse?) -> AnyView? {
+			switch self {
+				case .rewardSplit:
+					guard let rewardsplit = deviceInfo?.rewardSplit, rewardsplit.count > 0 else {
+						return nil
+					}
+					let items = rewardsplit.map { split in
+						let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address
+						let isUserWallet = split.wallet == userWallet
+						return split.toSplitViewItem(isUserWallet: isUserWallet)
+					}
+					return RewardsSplitView.WalletsListView(items: items).toAnyView
+				default:
+					return nil
+			}
+		}
 	}
 
 	enum InfoField {

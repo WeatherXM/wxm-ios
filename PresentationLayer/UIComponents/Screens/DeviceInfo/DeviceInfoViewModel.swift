@@ -31,6 +31,7 @@ class DeviceInfoViewModel: ObservableObject {
 								  imageUrl: field.imageUrlFor(device: device, followState: followState),
                                   buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
                                   warning: field.warning,
+								  customView: field.customViewFor(deviceInfo: deviceInfo),
                                   buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
             }
         }
@@ -48,6 +49,7 @@ class DeviceInfoViewModel: ObservableObject {
 								  imageUrl: field.imageUrlFor(device: device, followState: followState),
 								  buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
 								  warning: field.warning,
+								  customView: field.customViewFor(deviceInfo: deviceInfo),
 								  buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
 			}
 		}
