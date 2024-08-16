@@ -33,10 +33,15 @@ public extension Double {
 	}
 	
 	var toWXMTokenPrecisionString: String {
-		toPrecisionString(minDecimals: 2, precision: 4)
+		toPrecisionString(minDecimals: 2, precision: 2)
 	}
 	
 	func toPrecisionString(minDecimals: Int = 0, precision: Int) -> String {
-		return formatted(.number.rounded(rule: .up).precision(.fractionLength(minDecimals...precision)))
+		var formatter = NumberFormatter()
+		formatter.maximumFractionDigits = precision
+		formatter.minimumFractionDigits = minDecimals
+		formatter.numberStyle = .decimal
+		formatter.roundingMode = .halfUp
+		return formatter.string(from: self as NSNumber) ?? "-"
 	}
 }

@@ -23,7 +23,7 @@ struct TotalRewardsView: View {
 				}
 
 				HStack {
-					Text("\(rewards, specifier: "%.2f") \(StringConstants.wxmCurrency)")
+					Text("\(rewards.toWXMTokenPrecisionString)  \(StringConstants.wxmCurrency)")
 						.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
 						.foregroundColor(Color(colorEnum: .text))
 					Spacer()
