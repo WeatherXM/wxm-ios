@@ -10,7 +10,16 @@ import Foundation
 import Toolkit
 
 public struct UserDefaultsService: PersistCacheManager {
-	private let userDefaults = UserDefaults(suiteName: "group.com.weatherxm.app")
+	private let userDefaults: UserDefaults?
+
+	init() {
+		guard let appGroup: String = Bundle.main.getConfiguration(for: .appGroup) else {
+			self.userDefaults = nil
+			return
+		}
+
+		self.userDefaults = UserDefaults(suiteName: "\(appGroup)")
+	}
 
 	// MARK: - PersistCacheManager
 	public func save<T>(value: T, key: String) {

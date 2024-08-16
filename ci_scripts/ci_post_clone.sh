@@ -11,6 +11,7 @@ setupConfiguration(){
 	echo "UserRefreshTokenService = refreshTokenService;" >> $CONFIGURATION_PATH
 	echo "Account = weatherXM;" >> $CONFIGURATION_PATH
 	echo "TeamId = ${TEAM_ID};" >> $CONFIGURATION_PATH
+	echo "AppGroup = ${APP_GROUP};" >> $CONFIGURATION_PATH
 	echo "ApiUrl = ${API_URL};" >> $CONFIGURATION_PATH
 	echo "ClaimTokenUrl = ${CLAIM_TOKEN_URL};" >> $CONFIGURATION_PATH
 	echo "AppStoreUrl = ${APP_STORE_URL};" >> $CONFIGURATION_PATH
