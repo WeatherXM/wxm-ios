@@ -22,7 +22,11 @@ extension NetworkDeviceRewardDetailsResponse {
 	}
 
 	var isRewardSplitted: Bool {
-		!rewardSplit.isNilOrEmpty
+		guard let rewardSplit else {
+			return false
+		}
+
+		return rewardSplit.count > 1
 	}
 }
 
