@@ -12,12 +12,14 @@ public struct NetworkDevicesInfoResponse: Codable {
     public let claimedAt: Date?
     public let gateway: Gateway?
     public let weatherStation: WeatherStation?
+	public let rewardSplit: [RewardSplit]?
 
     enum CodingKeys: String, CodingKey {
         case name
         case claimedAt = "claimed_at"
         case gateway
         case weatherStation = "weather_station"
+		case rewardSplit = "reward_split"
     }
 
     public init(from decoder: Decoder) throws {
@@ -26,6 +28,7 @@ public struct NetworkDevicesInfoResponse: Codable {
         self.claimedAt = try container.decodeIfPresent(Date.self, forKey: .claimedAt)
         self.gateway = try container.decodeIfPresent(Gateway.self, forKey: .gateway)
         self.weatherStation = try container.decodeIfPresent(WeatherStation.self, forKey: .weatherStation)
+		self.rewardSplit = try container.decodeIfPresent([RewardSplit].self, forKey: .rewardSplit)
     }
 }
 
