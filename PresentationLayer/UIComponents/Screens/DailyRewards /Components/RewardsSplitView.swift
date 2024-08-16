@@ -52,6 +52,8 @@ extension RewardsSplitView {
 							Text(addressString(item: item))
 								.font(.system(size: CGFloat(.mediumFontSize), weight: weight))
 								.foregroundStyle(Color(colorEnum: .darkGrey))
+								.fixedSize(horizontal: true, vertical: false)
+
 
 							Spacer()
 
@@ -63,6 +65,7 @@ extension RewardsSplitView {
 							.font(.system(size: CGFloat(.mediumFontSize),
 										  weight: weight))
 							.foregroundStyle(Color(colorEnum: .darkGrey))
+							.fixedSize(horizontal: true, vertical: false)
 						}
 
 						WXMDivider()
