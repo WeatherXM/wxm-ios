@@ -28,6 +28,14 @@ extension NetworkDeviceRewardDetailsResponse {
 
 		return rewardSplit.count > 1
 	}
+
+	var isUserStakeholder: Bool {
+		guard let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address else {
+			return false
+		}
+
+		return rewardSplit?.contains { $0.wallet == userWallet } == true
+	}
 }
 
 extension NetworkDeviceRewardDetailsResponse {

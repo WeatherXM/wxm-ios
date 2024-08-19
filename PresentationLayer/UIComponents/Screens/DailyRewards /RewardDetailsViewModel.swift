@@ -125,6 +125,12 @@ class RewardDetailsViewModel: ObservableObject {
 
 	func handleSplitButtonTap() {
 		showSplits = true
+
+		let isStakeholder = rewardDetailsResponse?.isUserStakeholder == true
+		WXMAnalytics.shared.trackEvent(.userAction,
+									   parameters: [.actionName: .rewardSplitPressed,
+													.contentType: .stakeholderContentType,
+													.state: .custom(String(isStakeholder))])
 	}
 	
 	func handleIssueButtonTap() {
