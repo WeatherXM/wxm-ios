@@ -132,7 +132,16 @@ class RewardDetailsViewModel: ObservableObject {
 													.contentType: .stakeholderContentType,
 													.state: .custom(String(isStakeholder))])
 	}
-	
+
+	func trackRewardSplitViewEvent() {
+		let isStakeholder = rewardDetailsResponse?.isUserStakeholder == true
+		let userState: ParameterValue = isStakeholder ? .stakeholder : .nonStakeholder
+		let params: [Parameter: ParameterValue] = [.contentName: .rewardSplittingInDailyReward,
+												   .deviceState: .rewardSplitting,
+												   .userState: userState]
+		WXMAnalytics.shared.trackEvent(.viewContent, parameters: params)
+	}
+
 	func handleIssueButtonTap() {
 		guard let count = rewardDetailsResponse?.annotations?.count, count > 1 else {
 			rewardDetailsResponse?.mainAnnotation?.handleRewardAnnotationTap(with: device, followState: followState)
