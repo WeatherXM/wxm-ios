@@ -201,7 +201,15 @@ extension DeviceInfoViewModel {
 						let isUserWallet = split.wallet == userWallet
 						return split.toSplitViewItem(showReward: false, isUserWallet: isUserWallet)
 					}
-					return RewardsSplitView.WalletsListView(items: items).toAnyView
+					return RewardsSplitView.WalletsListView(items: items).onAppear {
+						let isStakeholder = deviceInfo?.isUserStakeholder == true
+						let userState: ParameterValue = isStakeholder ? .stakeholder : .nonStakeholder
+						let params: [Parameter: ParameterValue] = [.contentName: .rewardSplittingInDeviceSettings,
+																   .deviceState: .rewardSplitting,
+																   .userState: userState]
+						WXMAnalytics.shared.trackEvent(.viewContent, parameters: params)
+
+					}.toAnyView
 				default:
 					return nil
 			}
