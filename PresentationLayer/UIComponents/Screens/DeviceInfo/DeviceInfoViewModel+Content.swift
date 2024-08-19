@@ -199,7 +199,7 @@ extension DeviceInfoViewModel {
 					let items = rewardsplit.map { split in
 						let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address
 						let isUserWallet = split.wallet == userWallet
-						return split.toSplitViewItem(isUserWallet: isUserWallet)
+						return split.toSplitViewItem(showReward: false, isUserWallet: isUserWallet)
 					}
 					return RewardsSplitView.WalletsListView(items: items).toAnyView
 				default:

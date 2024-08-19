@@ -242,9 +242,9 @@ extension NetworkDeviceRewardDetailsResponse.BoostReward {
 }
 
 extension RewardSplit {
-	func toSplitViewItem(isUserWallet: Bool) -> RewardsSplitView.Item {
+	func toSplitViewItem(showReward: Bool = true, isUserWallet: Bool) -> RewardsSplitView.Item {
 		RewardsSplitView.Item(address: wallet ?? "-",
-							  reward: reward ?? 0.0,
+							  reward: showReward ? reward : nil,
 							  stake: stake ?? 0,
 							  isUserWallet: isUserWallet)
 	}

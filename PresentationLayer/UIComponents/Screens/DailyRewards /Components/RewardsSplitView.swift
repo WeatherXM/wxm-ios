@@ -52,20 +52,16 @@ extension RewardsSplitView {
 							Text(addressString(item: item))
 								.font(.system(size: CGFloat(.mediumFontSize), weight: weight))
 								.foregroundStyle(Color(colorEnum: .darkGrey))
-								.fixedSize(horizontal: true, vertical: false)
+								.fixedSize(horizontal: false, vertical: true)
 
 
 							Spacer()
 
-							HStack(spacing: CGFloat(.smallSpacing)) {
-								Text("\(item.reward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
-
-								Text("(\(LocalizableString.percentage(Float(item.stake)).localized))")
-							}
-							.font(.system(size: CGFloat(.mediumFontSize),
-										  weight: weight))
-							.foregroundStyle(Color(colorEnum: .darkGrey))
-							.fixedSize(horizontal: true, vertical: false)
+							Text(item.valueString)
+								.font(.system(size: CGFloat(.mediumFontSize),
+											  weight: weight))
+								.foregroundStyle(Color(colorEnum: .darkGrey))
+								.fixedSize(horizontal: false, vertical: true)
 						}
 
 						WXMDivider()
@@ -88,9 +84,20 @@ extension RewardsSplitView {
 extension RewardsSplitView {
 	struct Item {
 		let address: String
-		let reward: Double
+		let reward: Double?
 		let stake: Int
 		let isUserWallet: Bool
+	}
+}
+
+private extension RewardsSplitView.Item {
+	var valueString: String {
+		var str = "(\(LocalizableString.percentage(Float(stake)).localized))"
+		if let reward {
+			str = "\(reward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency) " + str
+		}
+
+		return str
 	}
 }
 
