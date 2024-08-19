@@ -24,7 +24,7 @@ extension Parameter: CustomStringConvertible {
 		switch self {
 			case .action, .actionName, .contentName, .contentId, .promptName, .promptType,
 					.step, .state, .date, .theme, .temperature, .wind, .windDirection, .precipitation, .pressure,
-					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn:
+					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn, .userState, .deviceState:
 				return rawValue
 			case .contentType:
 				return AnalyticsParameterContentType
