@@ -106,6 +106,7 @@ private struct ContentView: View {
 						.lineLimit(1)
 						.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
 						.foregroundColor(Color(colorEnum: .darkestBlue))
+						.minimumScaleFactor(0.8)
 
 					Spacer()
 					

@@ -32,6 +32,7 @@ struct RewardsSplitView: View {
 
 			}
 			.padding(CGFloat(.defaultSidePadding))
+			.padding(.top, CGFloat(.defaultSidePadding))
 		}
     }
 }
