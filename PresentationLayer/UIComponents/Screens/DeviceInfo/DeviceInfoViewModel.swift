@@ -118,7 +118,9 @@ class DeviceInfoViewModel: ObservableObject {
         self.device = device
         self.followState = followState
         self.deviceInfoUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCase.self)
-        refresh()
+		refresh { [weak self] in
+			self?.trackRewardSplitViewEvent()
+		}
     }
 
     func handleShareButtonTap() {
@@ -148,7 +150,6 @@ class DeviceInfoViewModel: ObservableObject {
 
         do {
             try deviceInfoUseCase?.getDeviceInfo(deviceId: deviceId).sink { [weak self] response in
-                completion?()
                 self?.isLoading = false
                 if let error = response.error {
                     self?.failObj = error.uiInfo.defaultFailObject(type: .deviceInfo) {
@@ -159,6 +160,7 @@ class DeviceInfoViewModel: ObservableObject {
                     self?.isFailed = true
                 }
                 self?.deviceInfo = response.value
+				completion?()
             }.store(in: &self.cancellable)
         } catch {
             isLoading = false
@@ -413,4 +415,16 @@ private extension DeviceInfoViewModel {
             return newText.count <= textLimit
         }
     }
+
+	func trackRewardSplitViewEvent() {
+		let isStakeholder = deviceInfo?.isUserStakeholder == true
+		let isRewardSplitted = deviceInfo?.isRewardSplitted == true
+		let userState: ParameterValue = isStakeholder ? .stakeholder : .nonStakeholder
+		let deviceState: ParameterValue = isRewardSplitted ? .rewardSplitting : .noRewardSplitting
+
+		let params: [Parameter: ParameterValue] = [.contentName: .rewardSplittingInDeviceSettings,
+												   .deviceState: deviceState,
+												   .userState: userState]
+		WXMAnalytics.shared.trackEvent(.viewContent, parameters: params)
+	}
 }

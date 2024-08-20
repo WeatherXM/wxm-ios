@@ -27,4 +27,12 @@ extension NetworkDevicesInfoResponse {
 
 		return rewardSplit?.contains { $0.wallet == userWallet } == true
 	}
+
+	var isRewardSplitted: Bool {
+		guard let rewardSplit else {
+			return false
+		}
+
+		return rewardSplit.count > 1
+	}
 }
