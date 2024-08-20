@@ -52,8 +52,8 @@ class RewardDetailsViewModel: ObservableObject {
 		self.followState = followState
 		self.date = date
 		self.useCase = tokenUseCase
-		refresh {
-			
+		refresh { [weak self] in
+			self?.trackRewardSplitViewEvent()
 		}
 	}
 
@@ -131,15 +131,6 @@ class RewardDetailsViewModel: ObservableObject {
 									   parameters: [.actionName: .rewardSplitPressed,
 													.contentType: .stakeholderContentType,
 													.state: .custom(String(isStakeholder))])
-	}
-
-	func trackRewardSplitViewEvent() {
-		let isStakeholder = rewardDetailsResponse?.isUserStakeholder == true
-		let userState: ParameterValue = isStakeholder ? .stakeholder : .nonStakeholder
-		let params: [Parameter: ParameterValue] = [.contentName: .rewardSplittingInDailyReward,
-												   .deviceState: .rewardSplitting,
-												   .userState: userState]
-		WXMAnalytics.shared.trackEvent(.viewContent, parameters: params)
 	}
 
 	func handleIssueButtonTap() {
@@ -245,6 +236,17 @@ private extension RewardDetailsViewModel {
 			return nil
 		}
 		return try? await useCase.getRewardDetails(deviceId: deviceId, date: date)
+	}
+
+	func trackRewardSplitViewEvent() {
+		let isStakeholder = rewardDetailsResponse?.isUserStakeholder == true
+		let isRewardSplitted = rewardDetailsResponse?.isRewardSplitted == true
+		let deviceState: ParameterValue = isRewardSplitted ? .rewardSplitting : .noRewardSplitting
+		let userState: ParameterValue = isStakeholder ? .stakeholder : .nonStakeholder
+		let params: [Parameter: ParameterValue] = [.contentName: .rewardSplittingInDailyReward,
+												   .deviceState: deviceState,
+												   .userState: userState]
+		WXMAnalytics.shared.trackEvent(.viewContent, parameters: params)
 	}
 }
 

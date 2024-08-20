@@ -69,9 +69,6 @@ private struct ContentView: View {
 			RewardsSplitView(items: viewModel.splitItems) {
 				viewModel.showSplits = false
 			}
-			.onAppear {
-				viewModel.trackRewardSplitViewEvent()
-			}
 		}
 	}
 
