@@ -36,11 +36,10 @@ extension NetworkDeviceRewardDetailsResponse {
 
 extension Optional where Wrapped == [RewardSplit] {
 	func isUserStakeholder(followState: UserDeviceFollowState?) -> Bool {
-		guard let followState,
-			  let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address else {
+		guard let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address else {
 			return false
 		}
-		let isOwed = followState.relation == .owned
+		let isOwed = followState?.relation == .owned
 		let splitContainsWallet = self?.contains { $0.wallet == userWallet } == true
 		return isOwed || splitContainsWallet
 	}
