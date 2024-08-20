@@ -77,9 +77,9 @@ enum DisplayedLinks {
 			case .rewardMechanism:
 				return "https://docs.weatherxm.com/rewards/reward-mechanism"
 			case .polAlgorithm:
-				return "https://docs.weatherxm.com/project/proof-of-location"
+				return "https://docs.weatherxm.com/rewards/proof-of-location"
 			case .qodAlgorithm:
-				return "https://docs.weatherxm.com/project/quality-of-data"
+				return "https://docs.weatherxm.com/rewards/quality-of-data"
 			case .troubleshooting:
 				return "https://docs.weatherxm.com/faqs#troubleshooting"
 			case .cellCapacity:
