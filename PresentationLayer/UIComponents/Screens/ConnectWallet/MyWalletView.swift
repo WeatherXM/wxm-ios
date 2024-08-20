@@ -104,7 +104,7 @@ private extension MyWalletView {
                 }
 
                 HStack {
-                    Text(LocalizableString.Wallet.createMetaMaskLink.localized.attributedMarkdown!)
+					Text(LocalizableString.Wallet.createMetaMaskLink(DisplayedLinks.createWalletsLink.linkURL).localized.attributedMarkdown!)
                         .tint(Color(colorEnum: .wxmPrimary))
                         .font(.system(size: CGFloat(.caption), weight: .bold))
                         .simultaneousGesture(TapGesture().onEnded {
@@ -130,7 +130,7 @@ private extension MyWalletView {
                                                            .action: .dismissAction])
 		} content: {
             HStack {
-                Text(LocalizableString.Wallet.compatibilityCheckLink.localized.attributedMarkdown!)
+				Text(LocalizableString.Wallet.compatibilityCheckLink(DisplayedLinks.createWalletsLink.linkURL).localized.attributedMarkdown!)
                     .tint(Color(colorEnum: .wxmPrimary))
                     .font(.system(size: CGFloat(.caption), weight: .bold))
                     .simultaneousGesture(TapGesture().onEnded {

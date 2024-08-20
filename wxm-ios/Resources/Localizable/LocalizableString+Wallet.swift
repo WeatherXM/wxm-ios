@@ -11,10 +11,10 @@ extension LocalizableString {
 	enum Wallet {
 		case myWallet
 		case enterWallet
-		case createMetaMaskLink
+		case createMetaMaskLink(String)
 		case compatibility
 		case compatibilityDescription
-		case compatibilityCheckLink
+		case compatibilityCheckLink(String)
 		case editAddress
 		case viewTransactionHistory
 		case myAccountConfirmationDescription
@@ -39,7 +39,9 @@ extension LocalizableString.Wallet: WXMLocalizable {
 	var localized: String {
 		var localized = NSLocalizedString(self.key, comment: "")
 		switch self {
-			case .confirmOwnershipDescription(let text):
+			case .confirmOwnershipDescription(let text),
+					.createMetaMaskLink(let text),
+					.compatibilityCheckLink(let text):
 				localized = String(format: localized, text)
 			default:
 				break

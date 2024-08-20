@@ -8048,7 +8048,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "[Check compatibility here](https://docs.weatherxm.com/wallet/add-edit-wallet-address#how-to-create-wallet-on-metamask)"
+            "value" : "[Check compatibility here](%@)"
           }
         }
       }
@@ -8114,7 +8114,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "[Create a Metamask wallet here](https://docs.weatherxm.com/wallet/add-edit-wallet-address#how-to-create-wallet-on-metamask)"
+            "value" : "[Create a Metamask wallet here](%@)"
           }
         }
       }
