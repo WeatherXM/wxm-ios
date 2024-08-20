@@ -61,11 +61,11 @@ enum DisplayedLinks {
 			case .appSurveyForm:
 				return "https://docs.google.com/forms/d/e/1FAIpQLSc1T-odUwpXa01nODavwEtLgO00AfPxqfrdhbn_G5Lss0dD2w/viewform?usp=pp_url"
 			case .m5Troubleshooting:
-				return "https://docs.weatherxm.com/wifi-m5-bundle/m5-troubleshooting"
+				return "https://docs.weatherxm.com/wxm-devices/m5/troubleshooting"
 			case .heliumTroubleshooting:
-				return "https://docs.weatherxm.com/helium-bundle/helium-troubleshooting"
+				return "https://docs.weatherxm.com/wxm-devices/helium/troubleshooting"
 			case .d1Troubleshooting:
-				return "https://docs.weatherxm.com/wxm-devices/D1-bundle/D1-troubleshooting"
+				return "https://docs.weatherxm.com/wxm-devices/d1/troubleshooting"
 			case .heliumRegionFrequencies:
 				return "https://docs.helium.com/iot/lorawan-region-plans"
 			case .shopLink:
