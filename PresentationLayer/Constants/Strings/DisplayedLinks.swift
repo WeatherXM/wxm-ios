@@ -83,7 +83,7 @@ enum DisplayedLinks {
 			case .troubleshooting:
 				return "https://docs.weatherxm.com/faqs#troubleshooting"
 			case .cellCapacity:
-				return "https://docs.weatherxm.com/project/cell-capacity"
+				return "https://docs.weatherxm.com/rewards/cell-capacity"
 			case .claimToken:
 				return Bundle.main.getConfiguration(for: .claimTokenUrl) ?? ""
 			case .appstore:
