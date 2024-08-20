@@ -77,6 +77,9 @@ class DeepLinkHandler {
 					Router.shared.showFullScreen(.safariView(url))
 					return true
 				}
+			case .device(let deviceId):
+				// Handle
+				return true
 		}
 
 		return false
@@ -227,12 +230,15 @@ private extension DeepLinkHandler {
 
 private enum NotificationType {
 	case announcement(String)
+	case device(String)
 }
 
 private extension UNNotificationResponse {
 	static let typeKey = "type"
 	static let announcementVal = "announcement"
+	static let stationVal = "station"
 	static let urlKey = "url"
+	static let deviceIdKey = "device_id"
 
 	var toNotificationType: NotificationType? {
 		let userInfo = notification.request.content.userInfo
@@ -245,6 +251,12 @@ private extension UNNotificationResponse {
 				if let url = userInfo[Self.urlKey] as? String {
 					return .announcement(url)
 				}
+				return nil
+			case Self.stationVal:
+				if let deviceId = userInfo[Self.deviceIdKey] as? String {
+					return .device(deviceId)
+				}
+
 				return nil
 			default:
 				return nil
