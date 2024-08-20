@@ -75,7 +75,7 @@ enum DisplayedLinks {
 			case .shareCells:
 				return "https://explorer.weatherxm.com/cells/"
 			case .rewardMechanism:
-				return "https://docs.weatherxm.com/reward-mechanism"
+				return "https://docs.weatherxm.com/rewards/reward-mechanism"
 			case .polAlgorithm:
 				return "https://docs.weatherxm.com/project/proof-of-location"
 			case .qodAlgorithm:
