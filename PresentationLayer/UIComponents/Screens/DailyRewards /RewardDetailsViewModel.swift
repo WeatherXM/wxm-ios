@@ -126,7 +126,7 @@ class RewardDetailsViewModel: ObservableObject {
 	func handleSplitButtonTap() {
 		showSplits = true
 
-		let isStakeholder = rewardDetailsResponse?.isUserStakeholder == true
+		let isStakeholder = rewardDetailsResponse?.isUserStakeholder(followState: followState) == true
 		WXMAnalytics.shared.trackEvent(.userAction,
 									   parameters: [.actionName: .rewardSplitPressed,
 													.contentType: .stakeholderContentType,
@@ -239,7 +239,7 @@ private extension RewardDetailsViewModel {
 	}
 
 	func trackRewardSplitViewEvent() {
-		let isStakeholder = rewardDetailsResponse?.isUserStakeholder == true
+		let isStakeholder = rewardDetailsResponse?.isUserStakeholder(followState: followState) == true
 		let isRewardSplitted = rewardDetailsResponse?.isRewardSplitted == true
 		let deviceState: ParameterValue = isRewardSplitted ? .rewardSplitting : .noRewardSplitting
 		let userState: ParameterValue = isStakeholder ? .stakeholder : .nonStakeholder

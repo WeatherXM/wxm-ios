@@ -29,12 +29,20 @@ extension NetworkDeviceRewardDetailsResponse {
 		return rewardSplit.count > 1
 	}
 
-	var isUserStakeholder: Bool {
-		guard let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address else {
+	func isUserStakeholder(followState: UserDeviceFollowState?) -> Bool {
+		rewardSplit.isUserStakeholder(followState: followState)
+	}
+}
+
+extension Optional where Wrapped == [RewardSplit] {
+	func isUserStakeholder(followState: UserDeviceFollowState?) -> Bool {
+		guard let followState,
+			  let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address else {
 			return false
 		}
-
-		return rewardSplit?.contains { $0.wallet == userWallet } == true
+		let isOwed = followState.relation == .owned
+		let splitContainsWallet = self?.contains { $0.wallet == userWallet } == true
+		return isOwed || splitContainsWallet
 	}
 }
 

@@ -20,19 +20,15 @@ extension BatteryState: CustomStringConvertible {
 }
 
 extension NetworkDevicesInfoResponse {
-	var isUserStakeholder: Bool {
-		guard let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address else {
-			return false
-		}
-
-		return rewardSplit?.contains { $0.wallet == userWallet } == true
-	}
-
 	var isRewardSplitted: Bool {
 		guard let rewardSplit else {
 			return false
 		}
 
 		return rewardSplit.count > 1
+	}
+
+	func isUserStakeholder(followState: UserDeviceFollowState?) -> Bool {
+		rewardSplit.isUserStakeholder(followState: followState)
 	}
 }
