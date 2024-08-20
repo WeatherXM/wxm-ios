@@ -91,11 +91,11 @@ enum DisplayedLinks {
 			case .announcements:
 				return "https://announcements.weatherxm.com"
 			case .m5Batteries:
-				return "https://docs.weatherxm.com/wxm-devices/wifi-m5-bundle/assemble-m5#installing-batteries"
+				return "https://docs.weatherxm.com/wxm-devices/m5/assemble#installing-batteries"
 			case .heliumBatteries:
-				return "https://docs.weatherxm.com/wxm-devices/helium-bundle/helium-assemble#battery-installation-diagram-external-box"
+				return "https://docs.weatherxm.com/wxm-devices/helium/assemble#battery-installation-diagram-external-box"
 			case .d1Batteries:
-				return "https://docs.weatherxm.com/wxm-devices/D1-bundle/D1-assemble#installing-batteries"
+				return "https://docs.weatherxm.com/wxm-devices/d1/assemble#installing-batteries"
 			case .m5VideoLink:
 				return "https://www.youtube.com/watch?v=sUJEwuFq1CE"
 			case .d1VideoLink:
