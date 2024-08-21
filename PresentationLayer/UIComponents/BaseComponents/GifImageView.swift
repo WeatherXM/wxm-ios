@@ -24,6 +24,11 @@ struct GifImageView: UIViewRepresentable {
 		imageView.animatedImage = image
 		imageView.contentMode = .scaleAspectFit
 
+		imageView.setContentHuggingPriority(.defaultLow, for: .vertical)
+		imageView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+		imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+		imageView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+
 		return imageView
 	}
 
@@ -36,6 +41,7 @@ struct GifImageView: UIViewRepresentable {
 			.ignoresSafeArea()
 		GifImageView(fileName: "image_pulse_claiming_key")
 			.aspectRatio(1.0, contentMode: .fit)
+			.padding(.horizontal)
 
 	}
 }
