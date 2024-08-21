@@ -78,7 +78,7 @@ class DeepLinkHandler {
 					return true
 				}
 			case .device(let deviceId):
-				// Handle
+				moveToStation(deviceId: deviceId, cellIndex: nil, cellCenter: nil)
 				return true
 		}
 
@@ -186,7 +186,7 @@ private extension DeepLinkHandler {
         }
 
         do {
-            searchCancellable = try useCase.search(term: normalizedName, exact: true, exclude: .places).sink { response in
+            searchCancellable = try useCase.search(term: normalizedName, exact: true, exclude: .places).sink { [weak self] response in
                 if let error = response.error {
                     let info = error.uiInfo
                     if let message = info.description?.attributedMarkdown {
@@ -197,19 +197,25 @@ private extension DeepLinkHandler {
                 }
 
                 if let device = response.value?.devices?.first,
-                   let deviceId = device.id,
-                   let cellIndex = device.cellIndex {
+                   let deviceId = device.id {
+					let cellIndex = device.cellIndex
                     let cellCenter = device.cellCenter?.toCLLocationCoordinate2D()
-                    let route = Route.stationDetails(ViewModelsFactory.getStationDetailsViewModel(deviceId: deviceId,
-                                                                                                  cellIndex: cellIndex,
-                                                                                                  cellCenter: cellCenter))
-                    Router.shared.navigateTo(route)
+					self?.moveToStation(deviceId: deviceId, cellIndex: cellIndex, cellCenter: cellCenter)
                 }
             }
         } catch {
 
         }
     }
+
+	func moveToStation(deviceId: String, 
+					   cellIndex: String?,
+					   cellCenter: CLLocationCoordinate2D?) {
+		let route = Route.stationDetails(ViewModelsFactory.getStationDetailsViewModel(deviceId: deviceId,
+																					  cellIndex: cellIndex,
+																					  cellCenter: cellCenter))
+		Router.shared.navigateTo(route)
+	}
 
 	func moveToCell(index: String) {
 		Task { @MainActor in
