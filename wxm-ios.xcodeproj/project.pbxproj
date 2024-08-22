@@ -443,8 +443,8 @@
 		26E5B0C229F8152800834899 /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5B0C129F8152800834899 /* Dimensions.swift */; };
 		26E685AF2C0619D700B972B1 /* SelectDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E685AE2C0619D700B972B1 /* SelectDeviceView.swift */; };
 		26E685B12C061A6600B972B1 /* SelectDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E685B02C061A6600B972B1 /* SelectDeviceViewModel.swift */; };
-		26E85B112C7752A70062667E /* Localizable_Units.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26E85B102C7752A70062667E /* Localizable_Units.xcstrings */; };
-		26E85B122C7752CD0062667E /* Localizable_Units.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26E85B102C7752A70062667E /* Localizable_Units.xcstrings */; };
+		26E85B112C7752A70062667E /* LocalizableUnits.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26E85B102C7752A70062667E /* LocalizableUnits.xcstrings */; };
+		26E85B122C7752CD0062667E /* LocalizableUnits.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26E85B102C7752A70062667E /* LocalizableUnits.xcstrings */; };
 		26E85B142C7753140062667E /* LocalizableString+Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E85B132C7753140062667E /* LocalizableString+Units.swift */; };
 		26E85B152C7753140062667E /* LocalizableString+Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E85B132C7753140062667E /* LocalizableString+Units.swift */; };
 		26E88AF129DD663D0023BBD5 /* MyWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88AF029DD663D0023BBD5 /* MyWalletView.swift */; };
@@ -948,7 +948,7 @@
 		26E5B0C129F8152800834899 /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
 		26E685AE2C0619D700B972B1 /* SelectDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeviceView.swift; sourceTree = "<group>"; };
 		26E685B02C061A6600B972B1 /* SelectDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeviceViewModel.swift; sourceTree = "<group>"; };
-		26E85B102C7752A70062667E /* Localizable_Units.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable_Units.xcstrings; sourceTree = "<group>"; };
+		26E85B102C7752A70062667E /* LocalizableUnits.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = LocalizableUnits.xcstrings; sourceTree = "<group>"; };
 		26E85B132C7753140062667E /* LocalizableString+Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Units.swift"; sourceTree = "<group>"; };
 		26E88AF029DD663D0023BBD5 /* MyWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletView.swift; sourceTree = "<group>"; };
 		26E88AF229DD68360023BBD5 /* MyWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletViewModel.swift; sourceTree = "<group>"; };
@@ -2058,7 +2058,7 @@
 			isa = PBXGroup;
 			children = (
 				26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */,
-				26E85B102C7752A70062667E /* Localizable_Units.xcstrings */,
+				26E85B102C7752A70062667E /* LocalizableUnits.xcstrings */,
 				26D611AA2A9E21080099117C /* LocalizableConstants.swift */,
 				2666D57C2BC96077003B30C0 /* LocalizableString+Forecast.swift */,
 				26E85B132C7753140062667E /* LocalizableString+Units.swift */,
@@ -2752,7 +2752,7 @@
 				266D17EE2AC70080007CDB06 /* Localizable.xcstrings in Resources */,
 				266D17F62AC700A2007CDB06 /* Font Awesome 6 Pro-Solid-900.otf in Resources */,
 				266D17F52AC700A2007CDB06 /* Font Awesome 6 Duotone-Solid-900.otf in Resources */,
-				26E85B122C7752CD0062667E /* Localizable_Units.xcstrings in Resources */,
+				26E85B122C7752CD0062667E /* LocalizableUnits.xcstrings in Resources */,
 				26B832282AC31E4600757A69 /* Assets.xcassets in Resources */,
 				266D17EF2AC700A2007CDB06 /* Font Awesome 6 Pro-Light-300.otf in Resources */,
 				2642F1C72AD598300028F4D1 /* GoogleService-Info.plist in Resources */,
@@ -2803,7 +2803,7 @@
 				26348E1E2A444AF1000846C6 /* Font Awesome 6 Sharp-Solid-900.otf in Resources */,
 				B5F9ED652860BA76000B6392 /* GoogleService-Info.plist in Resources */,
 				26D6119D2A9E1CDC0099117C /* Localizable.xcstrings in Resources */,
-				26E85B112C7752A70062667E /* Localizable_Units.xcstrings in Resources */,
+				26E85B112C7752A70062667E /* LocalizableUnits.xcstrings in Resources */,
 				B52BCC7C2824FB9000EA3DA5 /* Preview Assets.xcassets in Resources */,
 				264E2F6129DC5AEE009580A2 /* Settings.bundle in Resources */,
 				26A545352BFF804C0098FE52 /* image_station_qr.gif in Resources */,

@@ -46,7 +46,7 @@ extension LocalizableString {
 
 extension LocalizableString.Units: WXMLocalizable {
 	var localized: String {
-		let localized = NSLocalizedString(key, tableName: "Localizable_Units", comment: "")
+		let localized = NSLocalizedString(key, tableName: "LocalizableUnits", comment: "")
 		return localized
 	}
 
