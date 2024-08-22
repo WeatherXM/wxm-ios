@@ -417,7 +417,7 @@ private extension DeviceInfoViewModel {
     }
 
 	func trackRewardSplitViewEvent() {
-		let isStakeholder = deviceInfo?.isUserStakeholder == true
+		let isStakeholder = deviceInfo?.isUserStakeholder(followState: followState) == true
 		let isRewardSplitted = deviceInfo?.isRewardSplitted == true
 		let userState: ParameterValue = isStakeholder ? .stakeholder : .nonStakeholder
 		let deviceState: ParameterValue = isRewardSplitted ? .rewardSplitting : .noRewardSplitting
