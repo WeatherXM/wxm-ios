@@ -22,6 +22,25 @@ extension LocalizableString {
 		case degreesFriendlyName
 		case hectopascalFriendlyName
 		case inchOfMercuryFriendlyName
+		case celsiusSymbol
+		case fahrenheitSymbol
+		case millimetersSymbol
+		case inchesSymbol
+		case kilometersPerHourSymbol
+		case milesPerHourSymbol
+		case metersPerSecondSymbol
+		case knotsSymbol
+		case beaufortSymbol
+		case cardinalSymbol
+		case degreesSymbol
+		case hectopascalSymbol
+		case inchOfMercurySymbol
+		case uvSymbol
+		case millimetersPerHourSymbol
+		case inchesPerHourSymbol
+		case wattsPerSquareSymbol
+		case dBmSymbol
+
 	}
 }
 
@@ -59,6 +78,42 @@ extension LocalizableString.Units: WXMLocalizable {
 				"units_hectopascal_friendly_name"
 			case .inchOfMercuryFriendlyName:
 				"units_inch_of_mercury_friendly_name"
+			case .celsiusSymbol:
+				"units_celsius_symbol"
+			case .fahrenheitSymbol:
+				"units_fahrenheit_symbol"
+			case .millimetersSymbol:
+				"units_millimeters_symbol"
+			case .inchesSymbol:
+				"units_inches_symbol"
+			case .kilometersPerHourSymbol:
+				"units_km_per_hour_symbol"
+			case .milesPerHourSymbol:
+				"units_miles_per_hour_symbol"
+			case .metersPerSecondSymbol:
+				"units_meters_per_second_symbol"
+			case .knotsSymbol:
+				"units_knots_symbol"
+			case .beaufortSymbol:
+				"units_beaufort_symbol"
+			case .cardinalSymbol:
+				"units_cardinal_symbol"
+			case .degreesSymbol:
+				"units_degrees_symbol"
+			case .hectopascalSymbol:
+				"units_hectopascal_symbol"
+			case .inchOfMercurySymbol:
+				"units_inch_of_mercury_symbol"
+			case .uvSymbol:
+				"units_uv_symbol"
+			case .millimetersPerHourSymbol:
+				"units_millimeters_per_hour_symbol"
+			case .inchesPerHourSymbol:
+				"units_inches_per_hour_symbol"
+			case .wattsPerSquareSymbol:
+				"units_watts_per_square_symbol"
+			case .dBmSymbol:
+				"units_dbm_symbol"
 		}
 	}
 }
