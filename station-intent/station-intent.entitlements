@@ -5,6 +5,7 @@
 	<key>com.apple.security.application-groups</key>
 	<array>
 		<string>group.com.weatherxm.app</string>
+		<string>group.com.weatherxm.app.dev</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
