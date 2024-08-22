@@ -241,19 +241,6 @@ struct SettingsView: View {
 					}
 				}
 			)
-
-			if mainScreenViewModel.isUserLoggedIn {
-				SettingsButtonView(
-					settingsCase: .appSurvey,
-					settingCaption: SettingsEnum.appSurvey.settingsDescription,
-					action: {
-						WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .appSurvey])
-						if let url = URL(string: DisplayedLinks.appSurveyForm.linkURL) {
-							UIApplication.shared.open(url)
-						}
-					}
-				)
-			}
 		}
 		WXMDivider()
 	}
