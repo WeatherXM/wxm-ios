@@ -1,6 +1,28 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "units_beaufort_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beaufort (bf)"
+          }
+        }
+      }
+    },
+    "units_cardinal_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cardinal (e.g. N, SW, NE, etc)"
+          }
+        }
+      }
+    },
     "units_celsius_friendly_name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8,6 +30,116 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Celsius (°C)"
+          }
+        }
+      }
+    },
+    "units_degrees_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Degrees"
+          }
+        }
+      }
+    },
+    "units_fahrenheit_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fahrenheit (°F)"
+          }
+        }
+      }
+    },
+    "units_hectopascal_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hectopascal (hPa)"
+          }
+        }
+      }
+    },
+    "units_inch_of_mercury_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inch of mercury (inHg)"
+          }
+        }
+      }
+    },
+    "units_inches_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inches (in)"
+          }
+        }
+      }
+    },
+    "units_km_per_hour_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kilometers per hour (km/h)"
+          }
+        }
+      }
+    },
+    "units_knots_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knots (kn)"
+          }
+        }
+      }
+    },
+    "units_meters_per_second_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meters per second (m/s)"
+          }
+        }
+      }
+    },
+    "units_miles_per_hour_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miles per hour (mph)"
+          }
+        }
+      }
+    },
+    "units_millimeters_friendly_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Millimeters (mm)"
           }
         }
       }
