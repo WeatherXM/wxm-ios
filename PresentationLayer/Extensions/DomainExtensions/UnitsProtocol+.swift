@@ -26,7 +26,7 @@ extension TemperatureUnitsEnum: UnitsProtocolPresentable {
 	public var settingUnitFriendlyName: String {
 		switch self {
 			case .celsius:
-				return "Celsius (°C)"
+				return LocalizableString.Units.celsiusFriendlyName.localized
 			case .fahrenheit:
 				return "Fahrenheit (°F)"
 		}
