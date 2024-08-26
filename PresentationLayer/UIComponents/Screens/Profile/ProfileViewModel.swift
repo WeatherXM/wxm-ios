@@ -12,6 +12,7 @@ import Toolkit
 
 class ProfileViewModel: ObservableObject {
     private final let meUseCase: MeUseCase
+	private let surveyUseCase: SurveyUseCase
     private var cancellableSet: Set<AnyCancellable> = []
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
 
@@ -47,8 +48,9 @@ class ProfileViewModel: ObservableObject {
 		return url?.host ?? "-"
 	}
 
-    public init(meUseCase: MeUseCase) {
+	public init(meUseCase: MeUseCase, surveyUseCase: SurveyUseCase) {
         self.meUseCase = meUseCase
+		self.surveyUseCase = surveyUseCase
 		scrollOffsetObject = .init()
 		tabBarVisibilityHandler = TabBarVisibilityHandler(scrollOffsetObject: self.scrollOffsetObject)
 		tabBarVisibilityHandler.$isTabBarShowing.assign(to: &$isTabBarVisible)

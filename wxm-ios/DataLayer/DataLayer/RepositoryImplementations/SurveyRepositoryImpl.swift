@@ -15,7 +15,7 @@ public class SurveyRepositoryImpl: SurveyRepository {
 	private let currentValueSubject: CurrentValueSubject<Survey?, Never> = .init(nil)
 	private var cancellableSet: Set<AnyCancellable> = .init()
 
-	init() {
+	public init() {
 		surveyPublisher = currentValueSubject.eraseToAnyPublisher()
 
 		RemoteConfigManager.shared.$surveyShow.sink { [weak self] show in
