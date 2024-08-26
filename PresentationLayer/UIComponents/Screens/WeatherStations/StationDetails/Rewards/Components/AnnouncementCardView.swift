@@ -9,15 +9,12 @@ import SwiftUI
 import Toolkit
 
 struct AnnouncementCardView: View {
-	let title: String
-	let description: String
-	var actionTitle: String?
-	var action: VoidCallback?
+	let configuration: Configuration
 
     var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
 			HStack(spacing: CGFloat(.smallSpacing)) {
-				Text(title)
+				Text(configuration.title)
 					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
 					.foregroundColor(Color(colorEnum: .wxmWhite))
 					.lineLimit(1)
@@ -27,11 +24,12 @@ struct AnnouncementCardView: View {
 			.foregroundColor(Color(colorEnum: .text))
 			.minimumScaleFactor(0.8)
 
-			Text(description)
+			Text(configuration.description)
 				.font(.system(size: CGFloat(.normalFontSize)))
 				.foregroundColor(Color(colorEnum: .wxmWhite))
 
-			if let actionTitle, let action {
+			if let actionTitle = configuration.actionTitle,
+			   let action = configuration.action {
 				HStack {
 					Button(action: action) {
 						HStack(spacing: CGFloat(.minimumSpacing)) {
@@ -66,9 +64,19 @@ struct AnnouncementCardView: View {
     }
 }
 
+extension AnnouncementCardView {
+	struct Configuration {
+		let title: String
+		let description: String
+		var actionTitle: String?
+		var action: VoidCallback?
+	}
+}
+
 #Preview {
-    AnnouncementCardView(title: "Welcome to Mainnet!",
-						 description: "Starting the Χth of Υ all station rewards are distributed on Abritrum Mainnet!\n\nThank you for the support!",
-						 actionTitle: "Action title") { }
+	AnnouncementCardView(configuration: .init(title: "Welcome to Mainnet!",
+											  description: "Starting the Χth of Υ all station rewards are distributed on Abritrum Mainnet!\n\nThank you for the support!",
+											  actionTitle: "Action title",
+											  action: {}))
 	.padding(.horizontal, 30)
 }

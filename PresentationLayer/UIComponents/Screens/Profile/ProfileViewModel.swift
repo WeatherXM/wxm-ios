@@ -41,7 +41,7 @@ class ProfileViewModel: ObservableObject {
 	@Published var isLoading: Bool = true
 	@Published var isFailed: Bool = false
 	var failObj: FailSuccessStateObject?
-	@Published var survey: Survey?
+	@Published var surveyConfiguration: AnnouncementCardView.Configuration?
 
 	var claimWebAppUrl: String {
 		let urlString = DisplayedLinks.claimToken.linkURL
@@ -69,7 +69,9 @@ class ProfileViewModel: ObservableObject {
 
 		MainScreenViewModel.shared.$isWalletMissing.assign(to: &$showMissingWalletError)
 
-		surveyUseCase.surveyPublisher.assign(to: &$survey)
+		surveyUseCase.surveyPublisher.sink { [weak self] survey in
+			self?.surveyConfiguration = self?.getConfigurationForSurvey(survey)
+		}.store(in: &cancellableSet)
 
 		self.refresh { }
     }
@@ -240,6 +242,16 @@ private extension ProfileViewModel {
 			let hasDevices = await self.meUseCase.hasOwnedDevices()
 			self.rewardsIndicationType = self.isClaimAvailable ? .claimWeb : .buyStation
 			self.showRewardsIndication = !hasDevices || self.isClaimAvailable
+		}
+	}
+
+	func getConfigurationForSurvey(_ survey: Survey?) -> AnnouncementCardView.Configuration? {
+		survey?.toAnnouncementConfiguration(actionTitle: survey?.actionLabel) {
+			guard let urlString = survey?.url, let url = URL(string: urlString) else {
+				return
+			}
+
+			Router.shared.showFullScreen(.safariView(url))
 		}
 	}
 }

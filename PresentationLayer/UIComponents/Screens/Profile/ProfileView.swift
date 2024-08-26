@@ -62,9 +62,10 @@ private struct ContentView: View {
 
 	var fieldsView: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
-			if let survey = viewModel.survey {
-				Text(survey.title ?? "-")
+			if let surveyConf = viewModel.surveyConfiguration {
+				AnnouncementCardView(configuration: surveyConf)
 			}
+
 			ForEach(ProfileField.allCases, id: \.self) { field in
 				switch field {
 					case .rewards:

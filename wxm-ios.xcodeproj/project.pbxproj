@@ -337,6 +337,7 @@
 		26A5456A2C0609D90098FE52 /* ResetDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A545692C0609D90098FE52 /* ResetDeviceView.swift */; };
 		26A5456C2C0609FE0098FE52 /* ResetDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5456B2C0609FE0098FE52 /* ResetDeviceViewModel.swift */; };
 		26A6C5D92B601A8000FA2D2F /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6C5D82B601A8000FA2D2F /* SafariView.swift */; };
+		26A86BC42C7CB6F500F1C2CF /* Survey+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BC32C7CB6F500F1C2CF /* Survey+.swift */; };
 		26A9614C2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9614B2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift */; };
 		26A9619C2AA705FE00646A25 /* LocalizableString+StationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */; };
 		26A961B02AA7181300646A25 /* LocalizableString+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */; };
@@ -874,6 +875,7 @@
 		26A545692C0609D90098FE52 /* ResetDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetDeviceView.swift; sourceTree = "<group>"; };
 		26A5456B2C0609FE0098FE52 /* ResetDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetDeviceViewModel.swift; sourceTree = "<group>"; };
 		26A6C5D82B601A8000FA2D2F /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		26A86BC32C7CB6F500F1C2CF /* Survey+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Survey+.swift"; sourceTree = "<group>"; };
 		26A9614B2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+UpdateFirmware.swift"; sourceTree = "<group>"; };
 		26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+StationDetails.swift"; sourceTree = "<group>"; };
 		26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Wallet.swift"; sourceTree = "<group>"; };
@@ -1847,6 +1849,7 @@
 				2612AC472AB49E4000285896 /* Filters+.swift */,
 				265D2CE329D2DEB70044D032 /* NetworkDevicesInfoResponse+.swift */,
 				26A5451A2BFF2C1C0098FE52 /* NetworkStatsResponse+.swift */,
+				26A86BC32C7CB6F500F1C2CF /* Survey+.swift */,
 				2692D8912A4DC0BA0060CB3C /* NetworkSearchResponse+.swift */,
 				26AF277D2A0B91200067A1B8 /* UnitsProtocol+.swift */,
 				266B01CC2B84FB59007AC689 /* NetworkDeviceRewardsSummaryResponse+.swift */,
@@ -3186,6 +3189,7 @@
 				267547DC29A9181E008BCF40 /* UITextField+StationSerialNumber.swift in Sources */,
 				26C5AF402BF7632700476B89 /* ClaimDeviceProgressView.swift in Sources */,
 				26AF277C2A0B8F810067A1B8 /* UnitConstants.swift in Sources */,
+				26A86BC42C7CB6F500F1C2CF /* Survey+.swift in Sources */,
 				267547BB29A9181E008BCF40 /* UnitsOptionsModalView.swift in Sources */,
 				267547BA29A9181E008BCF40 /* UnitsOptionView.swift in Sources */,
 				26AF277E2A0B91200067A1B8 /* UnitsProtocol+.swift in Sources */,
