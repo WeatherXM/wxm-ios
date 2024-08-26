@@ -12,9 +12,11 @@ import UserNotifications
 protocol FirbaseManagerImplementation {
 	var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? { get }
 	var notificationsAuthStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>? { get }
+	var fcmTokenPublisher: AnyPublisher<String?, Never>? { get }
 
 	func launch()
 	func getInstallationId() async -> String
+	func getFCMToken() -> String?
 	func setAnalyticsCollectionEnabled(_ enabled: Bool)
 	func requestNotificationAuthorization() async throws
 	func getAuthorizationStatus() async -> UNAuthorizationStatus

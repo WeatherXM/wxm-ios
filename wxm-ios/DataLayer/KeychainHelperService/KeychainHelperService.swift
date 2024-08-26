@@ -10,6 +10,7 @@ import DomainLayer
 import Toolkit
 
 public final class KeychainHelperService {
+
 	private let accessGroup: String
 
 	public init() {

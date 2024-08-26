@@ -31,8 +31,10 @@ public struct MeRepositoryImpl: MeRepository {
 	}
 
     public func deleteAccount() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-        let urlRequest = try MeApiRequestBuilder.deleteAccount.asURLRequest()
-        return ApiClient.shared.requestCodableAuthorized(urlRequest)
+		let builder = MeApiRequestBuilder.deleteAccount
+        let urlRequest = try builder.asURLRequest()
+
+		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
     }
 
     public func getUser() throws -> AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> {
@@ -117,6 +119,12 @@ public struct MeRepositoryImpl: MeRepository {
 
 	public func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> {
 		try userDevicesService.setDeviceLocationById(deviceId: deviceId, lat: lat, lon: lon)
+	}
+
+	public func setNotificationsFcmToken(installationId: String, token: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+		let builder = MeApiRequestBuilder.setFCMToken(installationId: installationId, token: token)
+		let urlRequest = try builder.asURLRequest()
+		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
 	}
 }
 

@@ -35,4 +35,8 @@ public struct UserDefaultsRepositoryImp: UserDefaultsRepository {
     public func getValue<T>(for key: String) -> T? {
         userDefaultsService.get(key: key)
     }
+
+	public func clearUserSensitiveData() {
+		userDefaultsService.clearUserSensitiveData()
+	}
 }

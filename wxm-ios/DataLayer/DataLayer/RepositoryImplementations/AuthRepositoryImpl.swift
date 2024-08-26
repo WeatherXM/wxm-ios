@@ -36,12 +36,12 @@ public struct AuthRepositoryImpl: AuthRepository {
         return ApiClient.shared.requestCodable(urlRequest)
     }
 
-    public func logout() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+	public func logout(installationId: String?) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
         guard let token = KeychainHelperService().getNetworkTokenResponse()?.token else {
             throw AuthError.missingAccessToken
         }
         
-        let urlRequest = try AuthApiRequestBuilder.logout(accessToken: token).asURLRequest()
+        let urlRequest = try AuthApiRequestBuilder.logout(accessToken: token, installationId: installationId).asURLRequest()
         return ApiClient.shared.requestCodable(urlRequest)
     }
 

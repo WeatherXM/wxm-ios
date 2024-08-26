@@ -89,21 +89,19 @@ enum ViewModelsFactory {
 
     static func getSettingsViewModel(userId: String) -> SettingsViewModel {
         let settingsUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(SettingsUseCase.self)
-        return SettingsViewModel(userId: userId, settingsUseCase: settingsUseCase!)
+		let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)
+        return SettingsViewModel(userId: userId, settingsUseCase: settingsUseCase!, authUseCase: authUseCase!)
     }
 
     static func getDeleteAccountViewModel(userId: String) -> DeleteAccountViewModel {
         let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)
         let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)
-        let keychainUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(KeychainUseCase.self)
-		let settingsUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(SettingsUseCase.self)
-        return DeleteAccountViewModel(userId: userId, authUseCase: authUseCase!, meUseCase: meUseCase!, keychainUseCase: keychainUseCase!, settingsUseCase: settingsUseCase!)
+        return DeleteAccountViewModel(userId: userId, authUseCase: authUseCase!, meUseCase: meUseCase!)
     }
 
     static func getSignInViewModel() -> SignInViewModel {
         let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)
-        let keyChainUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(KeychainUseCase.self)
-        return SignInViewModel(authUseCase: authUseCase!, keychainUseCase: keyChainUseCase!)
+        return SignInViewModel(authUseCase: authUseCase!)
     }
 
     static func getRegisterViewModel() -> RegisterViewModel {

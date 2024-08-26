@@ -8,17 +8,33 @@
 import Alamofire
 import Combine
 import Foundation
+import Toolkit
+import WidgetKit
 
 public struct AuthUseCase {
     private let authRepository: AuthRepository
+	private let meRepository: MeRepository
+	private let keychainRepository: KeychainRepository
+	private let userDefaultsRepository: UserDefaultsRepository
+	private let networkRepository: NetworkRepository
+	private let loginService: LoginService
 
-    public init(authRepository: AuthRepository) {
+	public init(authRepository: AuthRepository,
+				meRepository: MeRepository,
+				keychainRepository: KeychainRepository,
+				userDefaultsRepository: UserDefaultsRepository,
+				networkRepository: NetworkRepository,
+				loginService: LoginService) {
         self.authRepository = authRepository
+		self.meRepository = meRepository
+		self.keychainRepository = keychainRepository
+		self.userDefaultsRepository = userDefaultsRepository
+		self.networkRepository = networkRepository
+		self.loginService = loginService
     }
 
     public func login(username: String, password: String) throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
-        let login = try authRepository.login(username: username, password: password)
-        return login
+		try loginService.login(username: username, password: password)
     }
 
     public func register(email: String, firstName: String, lastName: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
@@ -27,8 +43,7 @@ public struct AuthUseCase {
     }
 
     public func logout() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-        let logout = try authRepository.logout()
-        return logout
+		try loginService.logout()
     }
 
     public func refresh(refreshToken: String) throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
@@ -44,4 +59,12 @@ public struct AuthUseCase {
     public func passwordValidation(password: String)throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
         return try authRepository.passwordValidation(password: password) 
     }
+
+	public func getUsersEmail() -> String {
+		keychainRepository.getUsersEmail()
+	}
+
+	public func isUserLoggedIn() -> Bool {
+		keychainRepository.isUserLoggedIn()
+	}
 }

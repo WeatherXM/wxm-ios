@@ -41,37 +41,4 @@ public struct SettingsUseCase {
     public func optInOutAnalytics(_ option: Bool) {
         repository.optInOutAnalytics(option)
     }
-
-    public func clearUserDefaults() {
-        repository.clearUserDefaults()
-    }
-
-	public func logout(localOnly: Bool = false) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		guard !localOnly else {
-			logoutLocally()
-			return Just(DataResponse(request: nil, 
-									 response: nil,
-									 data: nil,
-									 metrics: nil,
-									 serializationDuration: 0,
-									 result: .success(EmptyEntity()))).eraseToAnyPublisher()
-		}
-
-        return try authRepository.logout().flatMap { response in
-            if response.error == nil {
-				self.logoutLocally()
-            }
-
-            return Just(response)
-        }
-        .eraseToAnyPublisher()
-    }
-
-	private func logoutLocally() {
-		clearUserDefaults()
-		keychainRepository.deleteEmailAndPasswordFromKeychain()
-		keychainRepository.deleteNetworkTokenResponseFromKeychain()
-		networkRepository.deleteAllRecent()
-		WidgetCenter.shared.reloadAllTimelines()
-	}
 }

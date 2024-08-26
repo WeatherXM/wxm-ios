@@ -18,6 +18,7 @@
 		264C10612AF3DBA100F6FF3E /* DeviceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */; };
 		264CC75B2B986AC90060DEA4 /* NetworkDeviceRewardBoostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC75A2B986AC90060DEA4 /* NetworkDeviceRewardBoostsResponse.swift */; };
 		26504E3D2A7A4753008E2B59 /* NetworkResultsConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26504E3C2A7A4753008E2B59 /* NetworkResultsConverter.swift */; };
+		2656675D2C47A12800CA49A5 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656675C2C47A12800CA49A5 /* LoginService.swift */; };
 		2664830629C218D900748F9C /* NetworkDevicesInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664830529C218D900748F9C /* NetworkDevicesInfoResponse.swift */; };
 		2664830829C21A8300748F9C /* NetworkDevicesTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664830729C21A8300748F9C /* NetworkDevicesTypes.swift */; };
 		266B01B92B84D3A7007AC689 /* NetworkDeviceRewardsSummaryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B01B82B84D3A7007AC689 /* NetworkDeviceRewardsSummaryResponse.swift */; };
@@ -70,7 +71,6 @@
 		B5667D6B2833D37000C08B57 /* NetworkUserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5667D6A2833D37000C08B57 /* NetworkUserInfoResponse.swift */; };
 		B5667D722833DF4000C08B57 /* ClaimDeviceBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5667D712833DF4000C08B57 /* ClaimDeviceBody.swift */; };
 		B56A25EA28A0F18500928141 /* KeychainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56A25E928A0F18500928141 /* KeychainRepository.swift */; };
-		B56A25EC28A0F2A900928141 /* KeychainUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56A25EB28A0F2A900928141 /* KeychainUseCase.swift */; };
 		B5799E9128254DCD00FEBB85 /* DomainLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = B5799E9028254DCD00FEBB85 /* DomainLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5E6B85D28338BF20060D050 /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6B85C28338BF20060D050 /* AuthUseCase.swift */; };
 		B5E6B85F28338C150060D050 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E6B85E28338C150060D050 /* AuthRepository.swift */; };
@@ -96,6 +96,7 @@
 		264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAnnotation.swift; sourceTree = "<group>"; };
 		264CC75A2B986AC90060DEA4 /* NetworkDeviceRewardBoostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardBoostsResponse.swift; sourceTree = "<group>"; };
 		26504E3C2A7A4753008E2B59 /* NetworkResultsConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResultsConverter.swift; sourceTree = "<group>"; };
+		2656675C2C47A12800CA49A5 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		2664830529C218D900748F9C /* NetworkDevicesInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicesInfoResponse.swift; sourceTree = "<group>"; };
 		2664830729C21A8300748F9C /* NetworkDevicesTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicesTypes.swift; sourceTree = "<group>"; };
 		266B01B82B84D3A7007AC689 /* NetworkDeviceRewardsSummaryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardsSummaryResponse.swift; sourceTree = "<group>"; };
@@ -146,7 +147,6 @@
 		B5667D6A2833D37000C08B57 /* NetworkUserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUserInfoResponse.swift; sourceTree = "<group>"; };
 		B5667D712833DF4000C08B57 /* ClaimDeviceBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBody.swift; sourceTree = "<group>"; };
 		B56A25E928A0F18500928141 /* KeychainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainRepository.swift; sourceTree = "<group>"; };
-		B56A25EB28A0F2A900928141 /* KeychainUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainUseCase.swift; sourceTree = "<group>"; };
 		B5799E8D28254DCD00FEBB85 /* DomainLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DomainLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5799E9028254DCD00FEBB85 /* DomainLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DomainLayer.h; sourceTree = "<group>"; };
 		B5E6B85C28338BF20060D050 /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
@@ -182,6 +182,14 @@
 				9968B1B428AD0C5600320413 /* ExplorerData.swift */,
 			);
 			path = Explorer;
+			sourceTree = "<group>";
+		};
+		2656675B2C47A0F400CA49A5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2656675C2C47A12800CA49A5 /* LoginService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		2674016E2A375D0900E54E35 /* Network */ = {
@@ -308,7 +316,6 @@
 				9968B1B228AD0C2D00320413 /* ExplorerUseCase.swift */,
 				2612AC252AB46AF200285896 /* FiltersUseCase.swift */,
 				992D764228B7C83F00DFE504 /* HistoryUseCase.swift */,
-				B56A25EB28A0F2A900928141 /* KeychainUseCase.swift */,
 				995A0CE428C0B6D90015DAA1 /* MainUseCase.swift */,
 				B5E6B8882833B75D0060D050 /* MeUseCase.swift */,
 				267401712A37687000E54E35 /* NetworkUseCase.swift */,
@@ -380,6 +387,7 @@
 		B5799E8F28254DCD00FEBB85 /* DomainLayer */ = {
 			isa = PBXGroup;
 			children = (
+				2656675B2C47A0F400CA49A5 /* Services */,
 				B51243ED2825505F00B66A31 /* DomainRepositoryInterfaces */,
 				B51243E92825502A00B66A31 /* Entities */,
 				99BA878628BCF4CE004611AC /* Extensions */,
@@ -521,6 +529,7 @@
 				4D1C95CA28FC766D001F66C9 /* DeviceLocationRepository.swift in Sources */,
 				4D1C95D728FD3CB9001F66C9 /* DeviceLocationUseCase.swift in Sources */,
 				B5E6B88D2833B77E0060D050 /* DevicesRepository.swift in Sources */,
+				2656675D2C47A12800CA49A5 /* LoginService.swift in Sources */,
 				2683A4C22ADEB39800D5C205 /* CountryInfo.swift in Sources */,
 				B5E6B8872833B7360060D050 /* DevicesUseCase.swift in Sources */,
 				9929BB0E28BF76EF00ED3CDE /* Double+.swift in Sources */,
@@ -540,7 +549,6 @@
 				992D764328B7C83F00DFE504 /* HistoryUseCase.swift in Sources */,
 				26FFAD762B8E08CB00BF0A6B /* NetworkDeviceRewardDetailsResponse.swift in Sources */,
 				B56A25EA28A0F18500928141 /* KeychainRepository.swift in Sources */,
-				B56A25EC28A0F2A900928141 /* KeychainUseCase.swift in Sources */,
 				26348E0E2A44360A000846C6 /* LocationCoordinates.swift in Sources */,
 				995A0CE528C0B6D90015DAA1 /* MainUseCase.swift in Sources */,
 				B5E6B88B2833B7730060D050 /* MeRepository.swift in Sources */,

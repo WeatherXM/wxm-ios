@@ -16,6 +16,7 @@ struct ParameterConstants {
         static let lastName = "lastName"
         static let refreshToken = "refreshToken"
         static let accessToken = "accessToken"
+		static let installationId = "installationId"
     }
 
     enum Me {
