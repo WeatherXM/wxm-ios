@@ -6,6 +6,14 @@
 //
 
 import Foundation
+import Combine
 
 public struct SurveyUseCase {
+	public var surveyPublisher: AnyPublisher<Survey?, Never>
+	private let repository: SurveyRepository
+
+	public init(repository: SurveyRepository) {
+		self.repository = repository
+		self.surveyPublisher = repository.surveyPublisher
+	}
 }

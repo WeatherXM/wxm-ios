@@ -12,5 +12,13 @@ public struct Survey {
 	public let title: String?
 	public let message: String?
 	public let actionLabel: String?
-	public let Url: String?
+	public let url: String?
+
+	public init(id: String?, title: String?, message: String?, actionLabel: String?, url: String?) {
+		self.id = id
+		self.title = title
+		self.message = message
+		self.actionLabel = actionLabel
+		self.url = url
+	}
 }
