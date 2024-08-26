@@ -193,8 +193,6 @@ extension ParameterValue: RawRepresentable {
 				return "Documentation"
 			case .userResearchPanel:
 				return "User Research Panel"
-			case .appSurvey:
-				return "App Survey"
 			case .bleScanAgain:
 				return "BLE Scan Again"
 			case .frequencyDocumentation:

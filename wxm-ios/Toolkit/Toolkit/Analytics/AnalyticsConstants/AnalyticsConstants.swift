@@ -169,7 +169,6 @@ public enum ParameterValue {
 	case logout
 	case documentation
 	case userResearchPanel
-	case appSurvey
 	case bleScanAgain
 	case frequencyDocumentation
 	case failure
