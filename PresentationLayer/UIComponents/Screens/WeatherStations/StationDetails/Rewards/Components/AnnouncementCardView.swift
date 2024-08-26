@@ -24,9 +24,13 @@ struct AnnouncementCardView: View {
 			.foregroundColor(Color(colorEnum: .text))
 			.minimumScaleFactor(0.8)
 
-			Text(configuration.description)
-				.font(.system(size: CGFloat(.normalFontSize)))
-				.foregroundColor(Color(colorEnum: .wxmWhite))
+			HStack {
+				Text(configuration.description)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundColor(Color(colorEnum: .wxmWhite))
+
+				Spacer()
+			}
 
 			if let actionTitle = configuration.actionTitle,
 			   let action = configuration.action {
