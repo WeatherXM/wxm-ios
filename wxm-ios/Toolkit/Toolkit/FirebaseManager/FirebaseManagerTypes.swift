@@ -34,6 +34,13 @@ public enum RemoteConfigKey: String, CaseIterable {
 	case iosAppChangelog = "ios_app_changelog"
 	case iosAppLatestVersion = "ios_app_latest_version"
 	case iosAppMinimumVersion = "ios_app_minimum_version"
+	case surveyId = "survey_id"
+	case surveyTitle = "survey_title"
+	case surveyMessage = "survey_message"
+	case surveyActionLabel = "survey_action_label"
+	case surveyUrl = "survey_url"
+	case surveyShow = "survey_show"
+
 
 	private var defaultValue: NSObject {
 		switch self {
@@ -45,6 +52,18 @@ public enum RemoteConfigKey: String, CaseIterable {
 				return "-" as NSObject
 			case .iosAppMinimumVersion:
 				return "-" as NSObject
+			case .surveyId:
+				return "-" as NSObject
+			case .surveyTitle:
+				return "-" as NSObject
+			case .surveyMessage:
+				return "-" as NSObject
+			case .surveyActionLabel:
+				return "-" as NSObject
+			case .surveyUrl:
+				return "-" as NSObject
+			case .surveyShow:
+				return false as NSObject
 		}
 	}
 

@@ -18,6 +18,13 @@ public class RemoteConfigManager: ObservableObject {
 	@Published public var iosAppChangelog: String?
 	@Published public var iosAppLatestVersion: String?
 	@Published public var iosAppMinimumVersion: String?
+	// Survey
+	@Published public var surveyId: String?
+	@Published public var surveyTitle: String?
+	@Published public var surveyMessage: String?
+	@Published public var surveyActionLabel: String?
+	@Published public var surveyUrl: String?
+	@Published public var surveyShow: Bool?
 
 	private init() {
 		if disableAnalytics {
@@ -47,6 +54,12 @@ private extension RemoteConfigManager {
 			self.iosAppChangelog = self.getConfigValue(key: .iosAppChangelog)
 			self.iosAppLatestVersion = self.getConfigValue(key: .iosAppLatestVersion)
 			self.iosAppMinimumVersion = self.getConfigValue(key: .iosAppMinimumVersion)
+			self.surveyId = self.getConfigValue(key: .surveyId)
+			self.surveyTitle = self.getConfigValue(key: .surveyTitle)
+			self.surveyMessage = self.getConfigValue(key: .surveyMessage)
+			self.surveyActionLabel = self.getConfigValue(key: .surveyActionLabel)
+			self.surveyUrl = self.getConfigValue(key: .surveyUrl)
+			self.surveyShow = self.getConfigValue(key: .surveyShow)
 		}
 	}
 }
