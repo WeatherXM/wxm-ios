@@ -41,6 +41,7 @@ class ProfileViewModel: ObservableObject {
 	@Published var isLoading: Bool = true
 	@Published var isFailed: Bool = false
 	var failObj: FailSuccessStateObject?
+	@Published var survey: Survey?
 
 	var claimWebAppUrl: String {
 		let urlString = DisplayedLinks.claimToken.linkURL
@@ -67,6 +68,8 @@ class ProfileViewModel: ObservableObject {
 		updateRewards()
 
 		MainScreenViewModel.shared.$isWalletMissing.assign(to: &$showMissingWalletError)
+
+		surveyUseCase.surveyPublisher.assign(to: &$survey)
 
 		self.refresh { }
     }
