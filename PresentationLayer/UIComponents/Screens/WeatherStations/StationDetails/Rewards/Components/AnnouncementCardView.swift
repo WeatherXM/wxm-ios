@@ -20,6 +20,15 @@ struct AnnouncementCardView: View {
 					.lineLimit(1)
 
 				Spacer()
+
+				if let closeAction = configuration.closeAction {
+					Button(action: closeAction) {
+						Text(FontIcon.close.rawValue)
+							.font(.fontAwesome(font: .FAProSolid,
+											   size: CGFloat(.caption)))
+							.foregroundColor(Color(colorEnum: .wxmWhite))
+					}
+				}
 			}
 			.foregroundColor(Color(colorEnum: .text))
 			.minimumScaleFactor(0.8)
@@ -74,6 +83,7 @@ extension AnnouncementCardView {
 		let description: String
 		var actionTitle: String?
 		var action: VoidCallback?
+		var closeAction: VoidCallback?
 	}
 }
 
@@ -81,6 +91,7 @@ extension AnnouncementCardView {
 	AnnouncementCardView(configuration: .init(title: "Welcome to Mainnet!",
 											  description: "Starting the Χth of Υ all station rewards are distributed on Abritrum Mainnet!\n\nThank you for the support!",
 											  actionTitle: "Action title",
-											  action: {}))
+											  action: {},
+											  closeAction: {}))
 	.padding(.horizontal, 30)
 }

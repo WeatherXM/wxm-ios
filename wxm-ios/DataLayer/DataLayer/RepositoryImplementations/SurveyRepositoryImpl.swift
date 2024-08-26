@@ -12,8 +12,12 @@ import Toolkit
 
 public class SurveyRepositoryImpl: SurveyRepository {
 	public var surveyPublisher: AnyPublisher<Survey?, Never>
+	
 	private let currentValueSubject: CurrentValueSubject<Survey?, Never> = .init(nil)
 	private var cancellableSet: Set<AnyCancellable> = .init()
+	private let userDefaultsService = UserDefaultsService()
+	private let lastSurveyKey = UserDefaults.GenericKey.lastSurveyId.rawValue
+
 
 	public init() {
 		surveyPublisher = currentValueSubject.eraseToAnyPublisher()
@@ -22,11 +26,25 @@ public class SurveyRepositoryImpl: SurveyRepository {
 			self?.handleSurveyShow(show)
 		}.store(in: &cancellableSet)
 	}
+
+	public func updateLastSurveyId(_ surveyId: String) {
+		userDefaultsService.save(value: surveyId, key: lastSurveyKey)
+		let show = RemoteConfigManager.shared.surveyShow
+		handleSurveyShow(show)
+	}
 }
 
 private extension SurveyRepositoryImpl {
+	func canShowSurvey(surveyId: String) -> Bool {
+		let lastSurveyId: String? = userDefaultsService.get(key: lastSurveyKey)
+
+		return lastSurveyId != surveyId
+	}
+
 	func handleSurveyShow(_ show: Bool?) {
-		guard let show else {
+		guard show == true,
+			  let surveyId = RemoteConfigManager.shared.surveyId,
+			  canShowSurvey(surveyId: surveyId) else {
 			currentValueSubject.send(nil)
 			return
 		}

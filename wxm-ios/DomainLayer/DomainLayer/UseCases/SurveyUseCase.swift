@@ -16,4 +16,8 @@ public struct SurveyUseCase {
 		self.repository = repository
 		self.surveyPublisher = repository.surveyPublisher
 	}
+
+	public func updateLastDismissedSurvey(surveyId: String) {
+		repository.updateLastSurveyId(surveyId)
+	}
 }

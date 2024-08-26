@@ -246,12 +246,22 @@ private extension ProfileViewModel {
 	}
 
 	func getConfigurationForSurvey(_ survey: Survey?) -> AnnouncementCardView.Configuration? {
-		survey?.toAnnouncementConfiguration(actionTitle: survey?.actionLabel) {
+		let action = {
 			guard let urlString = survey?.url, let url = URL(string: urlString) else {
 				return
 			}
 
 			Router.shared.showFullScreen(.safariView(url))
 		}
+
+		let closeAction = { [weak self] in
+			guard let surveyId = survey?.id else {
+				return
+			}
+
+			self?.surveyUseCase.updateLastDismissedSurvey(surveyId: surveyId)
+		}
+
+		return survey?.toAnnouncementConfiguration(actionTitle: survey?.actionLabel, action: action, closeAction: closeAction)
 	}
 }
