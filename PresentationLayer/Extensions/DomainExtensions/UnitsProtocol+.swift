@@ -26,9 +26,9 @@ extension TemperatureUnitsEnum: UnitsProtocolPresentable {
 	public var settingUnitFriendlyName: String {
 		switch self {
 			case .celsius:
-				return "Celsius (°C)"
+				return LocalizableString.Units.celsiusFriendlyName.localized
 			case .fahrenheit:
-				return "Fahrenheit (°F)"
+				return LocalizableString.Units.fahrenheitFriendlyName.localized
 		}
 	}
 }
@@ -46,9 +46,9 @@ extension PrecipitationUnitsEnum: UnitsProtocolPresentable {
 	public var settingUnitFriendlyName: String {
 		switch self {
 			case .millimeters:
-				return "Millimeters (mm)"
+				return LocalizableString.Units.millimetersFriendlyName.localized
 			case .inches:
-				return "Inches (in)"
+				return LocalizableString.Units.inchesFriendlyName.localized
 		}
 	}
 }
@@ -72,15 +72,15 @@ extension WindSpeedUnitsEnum: UnitsProtocolPresentable {
 	public var settingUnitFriendlyName: String {
 		switch self {
 			case .kilometersPerHour:
-				return "Kilometers per hour (km/h)"
+				return LocalizableString.Units.kilometersPerHourFriendlyName.localized
 			case .milesPerHour:
-				return "Miles per hour (mph)"
+				return LocalizableString.Units.milesPerHourFriendlyName.localized
 			case .metersPerSecond:
-				return "Meters per second (m/s)"
+				return LocalizableString.Units.metersPerSecondFriendlyName.localized
 			case .knots:
-				return "Knots (kn)"
+				return LocalizableString.Units.knotsFriendlyName.localized
 			case .beaufort:
-				return "Beaufort (bf)"
+				return LocalizableString.Units.beaufortFriendlyName.localized
 		}
 	}
 }
@@ -98,9 +98,9 @@ extension WindDirectionUnitsEnum: UnitsProtocolPresentable {
 	public var settingUnitFriendlyName: String {
 		switch self {
 			case .cardinal:
-				return "Cardinal (e.g. N, SW, NE, etc)"
+				return LocalizableString.Units.cardinalFriendlyName.localized
 			case .degrees:
-				return "Degrees"
+				return LocalizableString.Units.degreesFriendlyName.localized
 		}
 	}
 }
@@ -118,9 +118,9 @@ extension PressureUnitsEnum: UnitsProtocolPresentable {
 	public var settingUnitFriendlyName: String {
 		switch self {
 			case .hectopascal:
-				return "Hectopascal (hPa)"
+				return LocalizableString.Units.hectopascalFriendlyName.localized
 			case .inchOfMercury:
-				return "Inch of mercury (inHg)"
+				return LocalizableString.Units.inchOfMercuryFriendlyName.localized
 		}
 	}
 
