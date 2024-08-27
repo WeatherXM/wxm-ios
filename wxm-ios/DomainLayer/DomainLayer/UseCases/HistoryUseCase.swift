@@ -20,7 +20,9 @@ public class HistoryUseCase {
         self.userDefaultsRepository = userDefaultsRepository
     }
 
-    public func getWeatherHourlyHistory(deviceId: String, date: Date, force: Bool = false) throws -> AnyPublisher<DataResponse<[NetworkDeviceHistoryResponse], NetworkErrorResponse>, Never> {
+    public func getWeatherHourlyHistory(deviceId: String, 
+										date: Date,
+										force: Bool = false) throws -> AnyPublisher<DataResponse<[NetworkDeviceHistoryResponse], NetworkErrorResponse>, Never> {
         try meRepository.getUserDeviceHourlyHistoryById(deviceId: deviceId, date: date, force: force)
     }
 }

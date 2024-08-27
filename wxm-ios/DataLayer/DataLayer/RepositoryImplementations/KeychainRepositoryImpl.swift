@@ -10,7 +10,7 @@ import Foundation
 
 public struct KeychainRepositoryImpl: KeychainRepository {
 	public var userLoggedInStateNotificationPublisher: NotificationCenter.Publisher {
-		NotificationCenter.default.publisher(for: .keychainHelperServiceUserIsLoggedInChanged)
+		NotificationCenter.default.publisher(for: .keychainHelperServiceUserIsLoggedChanged)
 	}
 
     public func deleteEmailAndPasswordFromKeychain() {

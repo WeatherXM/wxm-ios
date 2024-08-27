@@ -128,8 +128,8 @@ public class ApiClient {
                 }
 
                 // Return an already initialized publisher if exists
-                if let publisher = self.publishers[urlConvertible.urlRequest!] {
-                    return publisher as! AnyPublisher<DataResponse<T, NetworkErrorResponse>, Never>
+                if let publisher = self.publishers[urlConvertible.urlRequest!] as? AnyPublisher<DataResponse<T, NetworkErrorResponse>, Never> {
+                    return publisher
                 }
 
                 self.insertMockResponse(for: urlConvertible, mockFileName: mockFileName)

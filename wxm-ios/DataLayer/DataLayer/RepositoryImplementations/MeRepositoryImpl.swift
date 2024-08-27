@@ -72,7 +72,9 @@ public struct MeRepositoryImpl: MeRepository {
         try userDevicesService.getUserDeviceById(deviceId: deviceId)
     }
 
-    public func getUserDeviceHourlyHistoryById(deviceId: String, date: Date, force: Bool) throws -> AnyPublisher<DataResponse<[NetworkDeviceHistoryResponse], NetworkErrorResponse>, Never> {
+    public func getUserDeviceHourlyHistoryById(deviceId: String,
+											   date: Date,
+											   force: Bool) throws -> AnyPublisher<DataResponse<[NetworkDeviceHistoryResponse], NetworkErrorResponse>, Never> {
         // If there are enough persisted samples for the date,
         // we return the local samples, otherwise we perform a server request
         let dateString = date.getFormattedDate(format: .onlyDate)
@@ -91,7 +93,10 @@ public struct MeRepositoryImpl: MeRepository {
                                  result: .success([persistedData]))).eraseToAnyPublisher()
     }
 
-    public func getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String) throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never> {
+    public func getUserDeviceForecastById(deviceId: String,
+										  fromDate: String,
+										  toDate: String,
+										  exclude: String) throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never> {
         let builder = MeApiRequestBuilder.getUserDeviceForecastById(deviceId: deviceId, fromDate: fromDate, toDate: toDate, exclude: exclude)
         let urlRequest = try builder.asURLRequest()
         return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
@@ -188,11 +193,15 @@ private extension MeRepositoryImpl {
         return hourly.count >= 24
     }
 
-    func fetchUserDeviceHistoryById(deviceId: String, fromDate: String, toDate: String, exclude: HistoryExclude) throws -> AnyPublisher<DataResponse<[NetworkDeviceHistoryResponse], NetworkErrorResponse>, Never> {
+    func fetchUserDeviceHistoryById(deviceId: String,
+									fromDate: String,
+									toDate: String,
+									exclude: HistoryExclude) throws -> AnyPublisher<DataResponse<[NetworkDeviceHistoryResponse], NetworkErrorResponse>, Never> {
         let builder = MeApiRequestBuilder.getUserDeviceHistoryById(deviceId: deviceId, fromDate: fromDate, toDate: toDate, exclude: exclude.rawValue)
         let urlRequest = try builder.asURLRequest()
 
-        let publisher: AnyPublisher<DataResponse<[NetworkDeviceHistoryResponse], NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+        let publisher: AnyPublisher<DataResponse<[NetworkDeviceHistoryResponse], NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
+																																						   mockFileName: builder.mockFileName)
         publisher.sink { response in
             guard let value = response.value else {
                 return

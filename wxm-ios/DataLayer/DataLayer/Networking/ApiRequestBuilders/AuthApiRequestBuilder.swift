@@ -10,69 +10,69 @@ import Foundation
 import Toolkit
 
 enum AuthApiRequestBuilder: URLRequestConvertible {
-    // MARK: - URLRequestConvertible
-
-    func asURLRequest() throws -> URLRequest {
-        let url = try NetworkConstants.baseUrl.asURL()
-
-        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
-
-        // Http method
-        urlRequest.httpMethod = method.rawValue
-        // Common Headers
-        urlRequest.setValue(NetworkConstants.ContentType.json.rawValue, forHTTPHeaderField: NetworkConstants.HttpHeaderField.acceptType.rawValue)
-        urlRequest.setValue(NetworkConstants.ContentType.json.rawValue, forHTTPHeaderField: NetworkConstants.HttpHeaderField.contentType.rawValue)
-        urlRequest.cachePolicy = .reloadRevalidatingCacheData
-
-        // Encoding
-        let encoding: ParameterEncoding = {
-            switch method {
-            case .get:
-                return URLEncoding.default
-            default:
-                return JSONEncoding.default
-            }
-        }()
-
-        return try encoding.encode(urlRequest, with: parameters)
-    }
-
-    case login(username: String, password: String)
-    case register(email: String, firstName: String, lastName: String)
+	// MARK: - URLRequestConvertible
+	
+	func asURLRequest() throws -> URLRequest {
+		let url = try NetworkConstants.baseUrl.asURL()
+		
+		var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+		
+		// Http method
+		urlRequest.httpMethod = method.rawValue
+		// Common Headers
+		urlRequest.setValue(NetworkConstants.ContentType.json.rawValue, forHTTPHeaderField: NetworkConstants.HttpHeaderField.acceptType.rawValue)
+		urlRequest.setValue(NetworkConstants.ContentType.json.rawValue, forHTTPHeaderField: NetworkConstants.HttpHeaderField.contentType.rawValue)
+		urlRequest.cachePolicy = .reloadRevalidatingCacheData
+		
+		// Encoding
+		let encoding: ParameterEncoding = {
+			switch method {
+				case .get:
+					return URLEncoding.default
+				default:
+					return JSONEncoding.default
+			}
+		}()
+		
+		return try encoding.encode(urlRequest, with: parameters)
+	}
+	
+	case login(username: String, password: String)
+	case register(email: String, firstName: String, lastName: String)
 	case logout(accessToken: String, installationId: String?)
-    case refresh(refreshToken: String)
-    case resetPassword(email: String)
-
-    // MARK: - HttpMethod
-
-    // This returns the HttpMethod type. It's used to determine the type if several endpoints are present
-    private var method: HTTPMethod {
-        switch self {
-        case .login, .logout, .refresh, .register, .resetPassword:
-            return .post
-        }
-    }
-
-    // MARK: - Path
-
-    // The path is the part following the base url
-    private var path: String {
-        switch self {
-        case .login:
-            return "auth/login"
-        case .register:
-            return "auth/register"
-        case .logout:
-            return "auth/logout"
-        case .refresh:
-            return "auth/refresh"
-        case .resetPassword:
-            return "auth/resetPassword"
-        }
-    }
-
-    // MARK: - Parameters
-
+	case refresh(refreshToken: String)
+	case resetPassword(email: String)
+	
+	// MARK: - HttpMethod
+	
+	// This returns the HttpMethod type. It's used to determine the type if several endpoints are present
+	private var method: HTTPMethod {
+		switch self {
+			case .login, .logout, .refresh, .register, .resetPassword:
+				return .post
+		}
+	}
+	
+	// MARK: - Path
+	
+	// The path is the part following the base url
+	private var path: String {
+		switch self {
+			case .login:
+				return "auth/login"
+			case .register:
+				return "auth/register"
+			case .logout:
+				return "auth/logout"
+			case .refresh:
+				return "auth/refresh"
+			case .resetPassword:
+				return "auth/resetPassword"
+		}
+	}
+	
+	// MARK: - Parameters
+	
 	// This is the queries part, it's optional because an endpoint can be without parameters
 	private var parameters: Parameters? {
 		switch self {
