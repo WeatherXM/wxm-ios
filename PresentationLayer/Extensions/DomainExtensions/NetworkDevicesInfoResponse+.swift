@@ -18,3 +18,17 @@ extension BatteryState: CustomStringConvertible {
         }
     }
 }
+
+extension NetworkDevicesInfoResponse {
+	var isRewardSplitted: Bool {
+		guard let rewardSplit else {
+			return false
+		}
+
+		return rewardSplit.count > 1
+	}
+
+	func isUserStakeholder(followState: UserDeviceFollowState?) -> Bool {
+		rewardSplit.isUserStakeholder(followState: followState)
+	}
+}

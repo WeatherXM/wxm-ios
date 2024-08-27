@@ -65,6 +65,11 @@ private struct ContentView: View {
 		.bottomSheet(show: $viewModel.showInfo) {
 			bottomInfoView(info: viewModel.info)
 		}
+		.bottomSheet(show: $viewModel.showSplits) {
+			RewardsSplitView(items: viewModel.splitItems) {
+				viewModel.showSplits = false
+			}
+		}
 	}
 
 	@ViewBuilder
@@ -101,12 +106,39 @@ private struct ContentView: View {
 						.lineLimit(1)
 						.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
 						.foregroundColor(Color(colorEnum: .darkestBlue))
+						.minimumScaleFactor(0.8)
 
 					Spacer()
+					
+					if viewModel.rewardDetailsResponse?.isRewardSplitted == true {
+						splitButton
+					}
 				}
 			}
-
 		}
+	}
+
+	@ViewBuilder
+	var splitButton: some View {
+		Button {
+			viewModel.handleSplitButtonTap()
+		} label: {
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				Text(FontIcon.split.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+					.foregroundColor(Color(colorEnum: .wxmPrimary))
+					.rotationEffect(Angle(degrees: -90))
+
+				Text(LocalizableString.RewardDetails.showSplit.localized)
+					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .wxmPrimary))
+			}
+			.padding(.horizontal, CGFloat(.defaultSidePadding))
+			.padding(.vertical, CGFloat(.smallToMediumSidePadding))
+		}
+		.buttonStyle(WXMButtonStyle(fillColor: .layer1,
+									strokeColor: .noColor,
+									fixedSize: true))
 	}
 
 	@ViewBuilder

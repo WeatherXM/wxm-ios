@@ -13,6 +13,7 @@ public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable {
 	public let annotations: [RewardAnnotation]?
 	public let base: Base?
 	public let boost: Boost?
+	public let rewardSplit: [RewardSplit]?
 
 	enum CodingKeys: String ,CodingKey {
 		case timestamp
@@ -20,6 +21,7 @@ public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable {
 		case annotations = "annotation_summary"
 		case base
 		case boost
+		case rewardSplit = "reward_split"
 	}
 }
 
@@ -109,3 +111,14 @@ public enum BoostCode: Codable, RawRepresentable, Hashable {
 	}
 }
 
+public struct RewardSplit: Codable, Hashable {
+	public let stake: Int?
+	public let wallet: String?
+	public let reward: Double?
+
+	public init(stake: Int?, wallet: String?, reward: Double?) {
+		self.stake = stake
+		self.wallet = wallet
+		self.reward = reward
+	}
+}

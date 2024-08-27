@@ -66,6 +66,7 @@
 		26348E232A444AF1000846C6 /* Font Awesome 6 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26348E1B2A444AF1000846C6 /* Font Awesome 6 Pro-Solid-900.otf */; };
 		26348E252A444BEE000846C6 /* FontsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E242A444BEE000846C6 /* FontsEnum.swift */; };
 		26348E292A459A45000846C6 /* ExplorerStationsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E282A459A45000846C6 /* ExplorerStationsListViewModel.swift */; };
+		263AAF2B2C6CD3CC00BA2902 /* RewardsSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AAF2A2C6CD3CC00BA2902 /* RewardsSplitView.swift */; };
 		263B8B4E2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B8B4D2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift */; };
 		263B8B502B29F17E001C5060 /* MapBoxConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B8B4F2B29F17E001C5060 /* MapBoxConstants.swift */; };
 		263B8B552B29FE34001C5060 /* MapboxStatic in Frameworks */ = {isa = PBXBuildFile; productRef = 263B8B542B29FE34001C5060 /* MapboxStatic */; };
@@ -624,6 +625,7 @@
 		26348E1B2A444AF1000846C6 /* Font Awesome 6 Pro-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 6 Pro-Solid-900.otf"; sourceTree = "<group>"; };
 		26348E242A444BEE000846C6 /* FontsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsEnum.swift; sourceTree = "<group>"; };
 		26348E282A459A45000846C6 /* ExplorerStationsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerStationsListViewModel.swift; sourceTree = "<group>"; };
+		263AAF2A2C6CD3CC00BA2902 /* RewardsSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsSplitView.swift; sourceTree = "<group>"; };
 		263B8B4D2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxSnapshotUrlGenerator.swift; sourceTree = "<group>"; };
 		263B8B4F2B29F17E001C5060 /* MapBoxConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxConstants.swift; sourceTree = "<group>"; };
 		264582382A41A14E00195C21 /* SpinningLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningLoader.swift; sourceTree = "<group>"; };
@@ -2376,6 +2378,7 @@
 				26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */,
 				26FFAE1B2B920A7300BF0A6B /* BoostsView.swift */,
 				26FFAE1D2B92102000BF0A6B /* NoBoostsView.swift */,
+				263AAF2A2C6CD3CC00BA2902 /* RewardsSplitView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2963,6 +2966,7 @@
 				2664833429C3777600748F9C /* CurrentWeather+.swift in Sources */,
 				264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */,
 				267547CE29A9181E008BCF40 /* CustomColorButtonStyle.swift in Sources */,
+				263AAF2B2C6CD3CC00BA2902 /* RewardsSplitView.swift in Sources */,
 				2675480429A9181E008BCF40 /* CustomPicker.swift in Sources */,
 				2675483629A9181E008BCF40 /* CustomRangeSlider.swift in Sources */,
 				26D5013C29B2152F00BC2951 /* CustomSegmentView.swift in Sources */,

@@ -25,10 +25,13 @@ class DeviceInfoViewModel: ObservableObject {
 
         let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
             DeviceInfoRowView.Row(title: field.titleFor(devie: device),
-								  description: field.descriptionFor(device: device, for: followState).attributedMarkdown ?? "",
+								  description: field.descriptionFor(device: device,
+																	for: followState,
+																	deviceInfo: deviceInfo).attributedMarkdown ?? "",
 								  imageUrl: field.imageUrlFor(device: device, followState: followState),
                                   buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
                                   warning: field.warning,
+								  customView: field.customViewFor(deviceInfo: deviceInfo),
                                   buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
             }
         }
@@ -37,13 +40,16 @@ class DeviceInfoViewModel: ObservableObject {
     }
 
 	var bottomSections: [[DeviceInfoRowView.Row]] {
-		let fields = Field.bottomSections(for: followState)
+		let fields = Field.bottomSections(for: followState, deviceInfo: deviceInfo)
 		let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
 			DeviceInfoRowView.Row(title: field.titleFor(devie: device),
-								  description: field.descriptionFor(device: device, for: followState).attributedMarkdown ?? "",
+								  description: field.descriptionFor(device: device,
+																	for: followState,
+																	deviceInfo: deviceInfo).attributedMarkdown ?? "",
 								  imageUrl: field.imageUrlFor(device: device, followState: followState),
 								  buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
 								  warning: field.warning,
+								  customView: field.customViewFor(deviceInfo: deviceInfo),
 								  buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
 			}
 		}
@@ -112,7 +118,9 @@ class DeviceInfoViewModel: ObservableObject {
         self.device = device
         self.followState = followState
         self.deviceInfoUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCase.self)
-        refresh()
+		refresh { [weak self] in
+			self?.trackRewardSplitViewEvent()
+		}
     }
 
     func handleShareButtonTap() {
@@ -142,7 +150,6 @@ class DeviceInfoViewModel: ObservableObject {
 
         do {
             try deviceInfoUseCase?.getDeviceInfo(deviceId: deviceId).sink { [weak self] response in
-                completion?()
                 self?.isLoading = false
                 if let error = response.error {
                     self?.failObj = error.uiInfo.defaultFailObject(type: .deviceInfo) {
@@ -153,6 +160,7 @@ class DeviceInfoViewModel: ObservableObject {
                     self?.isFailed = true
                 }
                 self?.deviceInfo = response.value
+				completion?()
             }.store(in: &self.cancellable)
         } catch {
             isLoading = false
@@ -221,6 +229,8 @@ private extension DeviceInfoViewModel {
 			case .stationLocation:
 				let viewModel = ViewModelsFactory.getSelectLocationViewModel(device: device, followState: followState, delegate: self)
 				Router.shared.navigateTo(.selectStationLocation(viewModel))
+			case .rewardSplit:
+				break
 		}
 	}
 
@@ -405,4 +415,16 @@ private extension DeviceInfoViewModel {
             return newText.count <= textLimit
         }
     }
+
+	func trackRewardSplitViewEvent() {
+		let isStakeholder = deviceInfo?.isUserStakeholder(followState: followState) == true
+		let isRewardSplitted = deviceInfo?.isRewardSplitted == true
+		let userState: ParameterValue = isStakeholder ? .stakeholder : .nonStakeholder
+		let deviceState: ParameterValue = isRewardSplitted ? .rewardSplitting : .noRewardSplitting
+
+		let params: [Parameter: ParameterValue] = [.contentName: .rewardSplittingInDeviceSettings,
+												   .deviceState: deviceState,
+												   .userState: userState]
+		WXMAnalytics.shared.trackEvent(.viewContent, parameters: params)
+	}
 }

@@ -3152,6 +3152,17 @@
         }
       }
     },
+    "done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
     "dont_have_account" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6260,6 +6271,28 @@
         }
       }
     },
+    "reward_details_reward_split" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reward Split"
+          }
+        }
+      }
+    },
+    "reward_details_reward_split_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewards of this station are split between %d wallets. You can see the percentages below."
+          }
+        }
+      }
+    },
     "reward_details_rewards_boost_failed_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6267,6 +6300,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reward Boost could not be fetched"
+          }
+        }
+      }
+    },
+    "reward_details_show_split" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Split"
           }
         }
       }
@@ -8390,6 +8434,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yes"
+          }
+        }
+      }
+    },
+    "you" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You"
           }
         }
       }

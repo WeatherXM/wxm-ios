@@ -30,6 +30,7 @@ extension DeviceInfoViewModel {
         case remove
         case reconfigureWifi
 		case stationLocation
+		case rewardSplit
 
         static func heliumSections(for followState: UserDeviceFollowState?) -> [[Field]] {
             if followState?.state == .owned {
@@ -49,12 +50,20 @@ extension DeviceInfoViewModel {
 			return [[.name], [.stationLocation]]
         }
 
-		static func bottomSections(for followState: UserDeviceFollowState?) -> [[Field]] {
-			guard followState?.state == .owned else {
-				return []
+		static func bottomSections(for followState: UserDeviceFollowState?,
+								   deviceInfo: NetworkDevicesInfoResponse?) -> [[Field]] {
+			var sections: [[Field]] = []
+
+			if let rewardSplit = deviceInfo?.rewardSplit,
+			   rewardSplit.count > 1 {
+				sections.append([.rewardSplit])
 			}
 
-			return [[.remove]]
+			if followState?.state == .owned {
+				sections.append([.remove])
+			}
+
+			return sections
 		}
 
         var warning: DeviceInfoRowView.Row.Warning? {
@@ -83,10 +92,12 @@ extension DeviceInfoViewModel {
 					return LocalizableString.deviceInfoStationReconfigureWifi.localized
 				case .stationLocation:
 					return LocalizableString.deviceInfoStationLocation.localized
+				case .rewardSplit:
+					return LocalizableString.RewardDetails.rewardSplit.localized
 			}
         }
 
-		func descriptionFor(device: DeviceDetails, for followState: UserDeviceFollowState?) -> String {
+		func descriptionFor(device: DeviceDetails, for followState: UserDeviceFollowState?, deviceInfo: NetworkDevicesInfoResponse?) -> String {
 			switch self {
 				case .name:
 					return device.displayName
@@ -109,6 +120,12 @@ extension DeviceInfoViewModel {
 						return LocalizableString.deviceInfoOwnedStationLocationDescription(device.address ?? "").localized
 					}
 					return LocalizableString.deviceInfoStationLocationDescription(device.address ?? "").localized
+				case .rewardSplit:
+					guard let rewardSplit = deviceInfo?.rewardSplit else {
+						return ""
+					}
+					let count = rewardSplit.count
+					return LocalizableString.RewardDetails.rewardSplitDescription(count).localized
 			}
         }
 		
@@ -142,6 +159,8 @@ extension DeviceInfoViewModel {
 					let fetcher = MapBoxSnapshotUrlGenerator(options: options)
 			
 					return fetcher.getUrl()
+				case .rewardSplit:
+					return nil
 			}
 		}
 		
@@ -166,6 +185,25 @@ extension DeviceInfoViewModel {
 					return .init(icon: .editIcon,
 								 title: LocalizableString.deviceinfoStationLocationButtonTitle.localized,
 								 buttonStyle: .filled())
+				case .rewardSplit:
+					return nil
+			}
+		}
+
+		func customViewFor(deviceInfo: NetworkDevicesInfoResponse?) -> AnyView? {
+			switch self {
+				case .rewardSplit:
+					guard let rewardsplit = deviceInfo?.rewardSplit, rewardsplit.count > 0 else {
+						return nil
+					}
+					let items = rewardsplit.map { split in
+						let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address
+						let isUserWallet = split.wallet == userWallet
+						return split.toSplitViewItem(showReward: false, isUserWallet: isUserWallet)
+					}
+					return RewardsSplitView.WalletsListView(items: items).toAnyView
+				default:
+					return nil
 			}
 		}
 	}

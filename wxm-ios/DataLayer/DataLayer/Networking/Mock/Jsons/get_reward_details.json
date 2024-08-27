@@ -39,5 +39,12 @@
 			"message": "Station is doing great! Minor issues detected during our data quality checks, that may be related to occasional sensor inaccuracies. That can happen once in a while.",
 			"doc_url": "https://docs.weatherxm.com/project/rewards-troubleshooting#sensor-problems"
 		}
+	],
+	"reward_split": [
+		{
+			"wallet": "0xc4E253863371fdeD8e414731DB951F4C17Bc645e",
+			"stake": 100,
+			"reward": 275.82664632199965
+		}
 	]
 }

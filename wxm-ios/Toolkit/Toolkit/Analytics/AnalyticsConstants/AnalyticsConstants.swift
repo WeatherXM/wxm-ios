@@ -98,6 +98,8 @@ public enum Parameter: String {
 	case appId = "APP_ID"
 	case stationsOwn = "STATIONS_OWN"
 	case hasWallet = "HAS_WALLET"
+	case deviceState = "DEVICE_STATE"
+	case userState = "USER_STATE"
 }
 
 public enum ParameterValue {
@@ -282,5 +284,13 @@ public enum ParameterValue {
 	case dailyDetails
 	case hourlyDetailsCard
 	case hourlyForecast
+	case rewardSplittingInDailyReward
+	case rewardSplittingInDeviceSettings
+	case rewardSplitting
+	case noRewardSplitting
+	case stakeholder
+	case nonStakeholder
+	case rewardSplitPressed
+	case stakeholderContentType
 	case custom(String)
 }

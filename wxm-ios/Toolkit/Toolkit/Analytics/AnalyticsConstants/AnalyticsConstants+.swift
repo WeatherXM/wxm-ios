@@ -24,7 +24,7 @@ extension Parameter: CustomStringConvertible {
 		switch self {
 			case .action, .actionName, .contentName, .contentId, .promptName, .promptType,
 					.step, .state, .date, .theme, .temperature, .wind, .windDirection, .precipitation, .pressure,
-					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn:
+					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn, .userState, .deviceState:
 				return rawValue
 			case .contentType:
 				return AnalyticsParameterContentType
@@ -419,6 +419,22 @@ extension ParameterValue: RawRepresentable {
 				return "Hourly Details Card"
 			case .hourlyForecast:
 				return "hourly_forecast"
+			case .rewardSplittingInDailyReward:
+				return "Reward Splitting In Daily Reward"
+			case .rewardSplittingInDeviceSettings:
+				return "Reward Splitting In Device Settings"
+			case .rewardSplitting:
+				return "reward_splitting"
+			case .noRewardSplitting:
+				return "no_reward_splitting"
+			case .stakeholder:
+				return "stakeholder"
+			case .nonStakeholder:
+				return "non_stakeholder"
+			case .rewardSplitPressed:
+				return "Reward Split pressed"
+			case .stakeholderContentType:
+				return "Stakeholder"
 		}
 	}
 }

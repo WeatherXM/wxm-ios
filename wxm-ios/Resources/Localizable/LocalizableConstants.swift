@@ -16,6 +16,7 @@ enum LocalizableString: WXMLocalizable {
     case confirm
     case email
     case mandatoryEmail
+	case done
     case firstName
     case lastName
     case password
@@ -173,6 +174,7 @@ enum LocalizableString: WXMLocalizable {
     case light
     case dark
     case system
+	case you
     case emptyGenericTitle
     case emptyGenericDescription
     case percentage(Float)
@@ -271,6 +273,8 @@ extension LocalizableString {
                 return "email"
             case .mandatoryEmail:
                 return "mandatory_email"
+			case .done:
+				return "done"
             case .firstName:
                 return "first_name"
             case .lastName:
@@ -597,6 +601,8 @@ extension LocalizableString {
                 return "dark"
             case .system:
                 return "system"
+			case .you:
+				return "you"
             case .emptyGenericTitle:
                 return "empty_generic_title"
             case .emptyGenericDescription:

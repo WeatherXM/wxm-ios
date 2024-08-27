@@ -20,6 +20,29 @@ extension NetworkDeviceRewardDetailsResponse {
 
 		return nil
 	}
+
+	var isRewardSplitted: Bool {
+		guard let rewardSplit else {
+			return false
+		}
+
+		return rewardSplit.count > 1
+	}
+
+	func isUserStakeholder(followState: UserDeviceFollowState?) -> Bool {
+		rewardSplit.isUserStakeholder(followState: followState)
+	}
+}
+
+extension Optional where Wrapped == [RewardSplit] {
+	func isUserStakeholder(followState: UserDeviceFollowState?) -> Bool {
+		guard let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address else {
+			return false
+		}
+		let isOwed = followState?.relation == .owned
+		let splitContainsWallet = self?.contains { $0.wallet == userWallet } == true
+		return isOwed || splitContainsWallet
+	}
 }
 
 extension NetworkDeviceRewardDetailsResponse {
@@ -230,5 +253,14 @@ extension NetworkDeviceRewardDetailsResponse.BoostReward {
 			default:
 				return nil
 		}
+	}
+}
+
+extension RewardSplit {
+	func toSplitViewItem(showReward: Bool = true, isUserWallet: Bool) -> RewardsSplitView.Item {
+		RewardsSplitView.Item(address: wallet ?? "-",
+							  reward: showReward ? reward : nil,
+							  stake: stake ?? 0,
+							  isUserWallet: isUserWallet)
 	}
 }

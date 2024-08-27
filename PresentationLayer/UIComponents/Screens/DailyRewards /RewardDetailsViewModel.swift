@@ -16,13 +16,21 @@ class RewardDetailsViewModel: ObservableObject {
 	private(set) var info: BottomSheetInfo?
 	@Published var state: ViewState = .loading
 	private(set) var failObj: FailSuccessStateObject?
-
+	@Published var showSplits: Bool = false
+	private(set) var splitItems: [RewardsSplitView.Item] = []
 
 	let useCase: RewardsTimelineUseCase
 	var device: DeviceDetails
 	let followState: UserDeviceFollowState?
 	let date: Date
-	var rewardDetailsResponse: NetworkDeviceRewardDetailsResponse?
+	var rewardDetailsResponse: NetworkDeviceRewardDetailsResponse? {
+		didSet {
+			splitItems = rewardDetailsResponse?.rewardSplit?.map { split in
+				let isUserWallet = MainScreenViewModel.shared.userInfo?.wallet?.address == split.wallet
+				return split.toSplitViewItem(isUserWallet: isUserWallet)
+			} ?? []
+		}
+	}
 	var isDeviceOwned: Bool {
 		followState?.relation == .owned
 	}
@@ -44,8 +52,8 @@ class RewardDetailsViewModel: ObservableObject {
 		self.followState = followState
 		self.date = date
 		self.useCase = tokenUseCase
-		refresh {
-			
+		refresh { [weak self] in
+			self?.trackRewardSplitViewEvent()
 		}
 	}
 
@@ -113,6 +121,16 @@ class RewardDetailsViewModel: ObservableObject {
 			return nil
 		}
 		return LocalizableString.RewardDetails.earnedBoosts(reward.toWXMTokenPrecisionString).localized
+	}
+
+	func handleSplitButtonTap() {
+		showSplits = true
+
+		let isStakeholder = rewardDetailsResponse?.isUserStakeholder(followState: followState) == true
+		WXMAnalytics.shared.trackEvent(.userAction,
+									   parameters: [.actionName: .rewardSplitPressed,
+													.contentType: .stakeholderContentType,
+													.state: .custom(String(isStakeholder))])
 	}
 
 	func handleIssueButtonTap() {
@@ -218,6 +236,17 @@ private extension RewardDetailsViewModel {
 			return nil
 		}
 		return try? await useCase.getRewardDetails(deviceId: deviceId, date: date)
+	}
+
+	func trackRewardSplitViewEvent() {
+		let isStakeholder = rewardDetailsResponse?.isUserStakeholder(followState: followState) == true
+		let isRewardSplitted = rewardDetailsResponse?.isRewardSplitted == true
+		let deviceState: ParameterValue = isRewardSplitted ? .rewardSplitting : .noRewardSplitting
+		let userState: ParameterValue = isStakeholder ? .stakeholder : .nonStakeholder
+		let params: [Parameter: ParameterValue] = [.contentName: .rewardSplittingInDailyReward,
+												   .deviceState: deviceState,
+												   .userState: userState]
+		WXMAnalytics.shared.trackEvent(.viewContent, parameters: params)
 	}
 }
 
