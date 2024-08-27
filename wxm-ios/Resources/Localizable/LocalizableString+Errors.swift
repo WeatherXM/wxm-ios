@@ -47,7 +47,7 @@ extension LocalizableString {
 		case unownedAnomIncreaseDescription(String)
 		case anomIncreaseDescription(String)
 		case unidentifiedAnomalousChangeDescription(String)
-		case unownedUnidentifiedAnomalousChangeDescription(String)
+		case unownedUnidentifiedAnomalousDescription(String)
 		case locationNotVerifiedTitle
 		case locationNotVerifiedDescription
 		case noLocationDataTitle
@@ -90,7 +90,7 @@ extension LocalizableString.Error: WXMLocalizable {
 					.unidentifiedSpikeDescription(let text),
 					.unownedUnidentifiedSpikeDescription(let text),
 					.unidentifiedAnomalousChangeDescription(let text),
-					.unownedUnidentifiedAnomalousChangeDescription(let text):
+					.unownedUnidentifiedAnomalousDescription(let text):
 				localized = String(format: localized, text)
 			default:
 				break
@@ -176,7 +176,7 @@ extension LocalizableString.Error: WXMLocalizable {
 				return "error_anom_increase_description"
 			case .unidentifiedAnomalousChangeDescription:
 				return "error_unidentified_anomalous_change_description"
-			case .unownedUnidentifiedAnomalousChangeDescription:
+			case .unownedUnidentifiedAnomalousDescription:
 				return "error_unowned_unidentified_anomalous_change_description"
 			case .locationNotVerifiedTitle:
 				return "error_location_not_verified_title"

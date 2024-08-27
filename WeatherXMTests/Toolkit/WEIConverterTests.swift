@@ -45,8 +45,8 @@ final class WEIConverterTests: XCTestCase {
 	func testZerosAtMostSignificant() throws {
 		let converter = WEIConverter(value: "0000300000000000000")
 		XCTAssertEqual(converter.toEthDecimal, Decimal(string: "0.0003"))
-		/// Since we are not testing the exact precision in Double values,
-		/// we use accuracy to avoid the issues with Double type precision
+		// Since we are not testing the exact precision in Double values,
+		// we use accuracy to avoid the issues with Double type precision
 		XCTAssertEqual(converter.toEthDouble!, 0.0003, accuracy: 0.0000000000000000001)
 	}
 

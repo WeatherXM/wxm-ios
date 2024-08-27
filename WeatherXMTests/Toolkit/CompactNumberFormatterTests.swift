@@ -66,22 +66,22 @@ final class CompactNumberFormatterTests: XCTestCase {
 	}
 
 	func testNSNumbers() throws {
-		let expectedResults = [NSNumber(floatLiteral: 1.0): "1",
-							   NSNumber(floatLiteral: 1.2): "1",
-							   NSNumber(floatLiteral: 1.9): "2",
-							   NSNumber(floatLiteral: 100.0): "100",
-							   NSNumber(floatLiteral: 1000.0): "1K",
-							   NSNumber(floatLiteral: 10000.0): "10K",
-							   NSNumber(floatLiteral: 10010.0): "10K",
-							   NSNumber(floatLiteral: 10110.0): "10,1K",
-							   NSNumber(floatLiteral: 10190.0): "10,2K",
-							   NSNumber(floatLiteral: 110110.0): "110,1K",
-							   NSNumber(floatLiteral: 1000110.0): "1M",
-							   NSNumber(floatLiteral: 1200110.0): "1,2M",
-							   NSNumber(floatLiteral: 1990110.0): "2M",
-							   NSNumber(floatLiteral: 11200110.0): "11,2M",
-							   NSNumber(floatLiteral: 111200110.0): "111,2M",
-							   NSNumber(floatLiteral: 1111200110.0): "1,1B"]
+		let expectedResults = [NSNumber(1.0): "1",
+							   NSNumber(1.2): "1",
+							   NSNumber(1.9): "2",
+							   NSNumber(100.0): "100",
+							   NSNumber(1000.0): "1K",
+							   NSNumber(10000.0): "10K",
+							   NSNumber(10010.0): "10K",
+							   NSNumber(10110.0): "10,1K",
+							   NSNumber(10190.0): "10,2K",
+							   NSNumber(110110.0): "110,1K",
+							   NSNumber(1000110.0): "1M",
+							   NSNumber(1200110.0): "1,2M",
+							   NSNumber(1990110.0): "2M",
+							   NSNumber(11200110.0): "11,2M",
+							   NSNumber(111200110.0): "111,2M",
+							   NSNumber(1111200110.0): "1,1B"]
 
 		expectedResults.forEach { key, value in
 			let str = formatter.string(for: key)

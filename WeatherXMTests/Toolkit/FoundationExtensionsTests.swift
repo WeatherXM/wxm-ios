@@ -34,7 +34,7 @@ final class FoundationExtensionsTests: XCTestCase {
 	func testDictionary() {
 		var dict: [String: Int] = .init()
 		dict += ["one": 1]
-		let expectedDict = ["one" : 1]
+		let expectedDict = ["one": 1]
 		XCTAssert(dict == expectedDict, "Dict should be \(expectedDict)")
 	}
 }
@@ -52,7 +52,7 @@ extension FoundationExtensionsTests {
 	func testRemoveWhile() {
 		var array = [1, 4, 2, 0, 2, 1, 7]
 		let expectedArray = [4, 2, 0, 2, 1, 7]
-		let _ = array.remove { $0 < 2 }
+		_ = array.remove { $0 < 2 }
 		XCTAssert(array == expectedArray, "The array should be \(expectedArray)")
 	}
 
@@ -118,9 +118,9 @@ extension FoundationExtensionsTests {
 		XCTAssertNotNil(httpsUrl)
 		XCTAssertNotNil(nonHttpUrl)
 
-		XCTAssert(httpsUrl!.isHttp , "\(httpsUrl!) is http")
-		XCTAssert(httpUrl!.isHttp , "\(httpUrl!) is http")
-		XCTAssert(!nonHttpUrl!.isHttp , "\(nonHttpUrl!) is not http")
+		XCTAssert(httpsUrl!.isHttp, "\(httpsUrl!) is http")
+		XCTAssert(httpUrl!.isHttp, "\(httpUrl!) is http")
+		XCTAssert(!nonHttpUrl!.isHttp, "\(nonHttpUrl!) is not http")
 	}
 
 	func testQueryParam() {
