@@ -78,6 +78,7 @@ private struct ContentView: View {
 			}
 		}
 		.padding(CGFloat(.defaultSidePadding))
+		.animation(.easeIn, value: viewModel.surveyConfiguration != nil)
 	}
 
 	var rewardsView: some View {
