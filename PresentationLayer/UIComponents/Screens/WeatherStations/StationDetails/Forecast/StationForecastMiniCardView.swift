@@ -49,7 +49,7 @@ struct StationForecastMiniCardView: View {
 		.allowsHitTesting(item.action != nil)
 		.indication(show: .constant(isSelected), borderColor: Color(colorEnum: .wxmPrimary), bgColor: Color(colorEnum: .wxmPrimary)) {
 			EmptyView()
-		}		
+		}
     }
 }
 

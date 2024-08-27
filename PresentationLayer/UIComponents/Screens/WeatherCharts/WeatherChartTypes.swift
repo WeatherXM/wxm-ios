@@ -21,7 +21,6 @@ protocol ChartCardProtocol: CaseIterable, CustomStringConvertible {
 	func getWeatherLiterals(chartEntry: ChartDataEntry?, weatherField: WeatherField) -> WeatherValueLiterals?
 }
 
-
 class ChartDelegate: ObservableObject, ChartViewDelegate {
 	@Published var selectedIndex: Int?
 

@@ -73,16 +73,14 @@ extension BTPerformCommandDelegate: CBPeripheralDelegate {
         if readCharacteristic == nil,
            let readCharacteristic = service.characteristics?.first(where: {
                $0.uuid.uuidString.contains(BTCommands.READ_CHARACTERISTIC_UUID)
-           })
-        {
+           }) {
             self.readCharacteristic = readCharacteristic
         }
 
         if writeCharacteristic == nil,
            let writeCharacteristic = service.characteristics?.first(where: {
                $0.uuid.uuidString.contains(BTCommands.WRITE_CHARACTERISTIC_UUID)
-           })
-        {
+           }) {
             self.writeCharacteristic = writeCharacteristic
         }
     }

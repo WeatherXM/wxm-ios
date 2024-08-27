@@ -60,7 +60,6 @@ struct StepsNavView: View {
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.animation(.easeOut(duration: 0.3), value: currentStep)
 
-
                 currentView
 					.iPadMaxWidth()
                     .transition(AnyTransition.asymmetric(

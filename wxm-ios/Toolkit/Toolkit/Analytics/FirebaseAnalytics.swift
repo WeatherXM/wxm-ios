@@ -9,10 +9,9 @@ import Foundation
 import Firebase
 import FirebaseAnalytics
 
-
 struct FirebaseAnalytics: AnalyticsProviderImplementation {
 
-	func trackScreen(_ screen: Screen, parameters: [Parameter : ParameterValue]?) {
+	func trackScreen(_ screen: Screen, parameters: [Parameter: ParameterValue]?) {
 		var params: [String: Any] = [AnalyticsParameterScreenName: screen.rawValue]
 		if let additionalParams = parameters?.toEventParamsDictionary {
 			params += additionalParams
@@ -21,8 +20,8 @@ struct FirebaseAnalytics: AnalyticsProviderImplementation {
 		Analytics.logEvent(AnalyticsEventScreenView, parameters: params)
 	}
 
-	func trackEvent(_ event: Event, parameters: [Parameter : ParameterValue]?) {
-		Analytics.logEvent(event.description, 
+	func trackEvent(_ event: Event, parameters: [Parameter: ParameterValue]?) {
+		Analytics.logEvent(event.description,
 						   parameters: parameters?.toEventParamsDictionary)
 	}
 

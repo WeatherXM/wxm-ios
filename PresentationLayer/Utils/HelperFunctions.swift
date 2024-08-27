@@ -27,7 +27,7 @@ struct HelperFunctions {
 	///   - addtionalInfo: Any additional info
 	///   - trackSelectContentEvent: Track the event or not
 	func openContactSupport(successFailureEnum: SuccessFailEnum,
-							email: String?, 
+							email: String?,
 							serialNumber: String? = nil,
 							errorString: String? = nil,
 							addtionalInfo: String? = nil,

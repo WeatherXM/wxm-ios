@@ -132,7 +132,7 @@ private extension MeRepositoryImpl {
 
     func saveHistoricalData(deviceId: String, historicalData: [NetworkDeviceHistoryResponse]) {
         historicalData.forEach { response in
-            response.hourly?.forEach{ weather in
+            response.hourly?.forEach { weather in
                 guard let object = weather.toManagedObject else {
                     return
                 }
@@ -160,7 +160,7 @@ private extension MeRepositoryImpl {
         }
 
         let historicalData: [NetworkDeviceHistoryResponse] = days.map {
-            NetworkDeviceHistoryResponse(tz: $0.value.first?.tz ?? "", date: $0.key, hourly: $0.value.compactMap { $0.toCodable } )
+            NetworkDeviceHistoryResponse(tz: $0.value.first?.tz ?? "", date: $0.key, hourly: $0.value.compactMap { $0.toCodable })
         }
 
         return historicalData

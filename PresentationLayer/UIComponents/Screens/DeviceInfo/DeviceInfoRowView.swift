@@ -92,7 +92,7 @@ extension DeviceInfoRowView {
 		let imageUrl: URL?
         let buttonInfo: DeviceInfoButtonInfo?
         var warning: Warning?
-		var customView: AnyView? = nil
+		var customView: AnyView?
         let buttonAction: () -> Void
     }
 }

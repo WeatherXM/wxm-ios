@@ -31,7 +31,6 @@ public struct DevicesRepositoryImpl: DevicesRepository {
 		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
 	}
 
-
 	public func deviceRewardsSummary(deviceId: String) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsSummaryResponse, NetworkErrorResponse>, Never> {
 		let builder =  DevicesApiRequestBuilder.deviceRewardsById(deviceId: deviceId)
 		let urlRequest = try builder.asURLRequest()

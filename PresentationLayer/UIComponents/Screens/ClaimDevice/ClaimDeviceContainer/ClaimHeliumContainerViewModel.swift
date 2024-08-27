@@ -58,7 +58,6 @@ private extension ClaimHeliumContainerViewModel {
 			self?.moveNext()
 		}
 
-
 		return [.reset(resetViewModel), .selectDevice(selectDeviceViewModel), .location(locationViewModel), .setFrequency(setFrequencyViewModel)]
 	}
 

@@ -23,7 +23,7 @@ public class MainUseCase {
 		self.meRepository = meRepository
 		userLoggedInStateNotificationPublisher = keychainRepository.userLoggedInStateNotificationPublisher
 
-		FirebaseManager.shared.fcmTokenPublisher?.sink { [weak self] token in
+		FirebaseManager.shared.fcmTokenPublisher?.sink { [weak self] _ in
 			self?.setFCMTokenIfNeeded()
 		}.store(in: &cancellableSet)
     }

@@ -232,7 +232,6 @@ private extension StationWidgetView {
 						  insideVerticalPadding: CGFloat(.minimumPadding),
 						  cornerRadius: CGFloat(.buttonCornerRadius))
 
-
 			if !isSmall {
 				HStack(spacing: CGFloat(.minimumSpacing)) {
 					Image(asset: device.icon)
@@ -283,8 +282,8 @@ struct StationWidgetView_Preview: PreviewProvider {
 										   id: device.id,
 										   devices: [device],
 										   followState: .init(deviceId: device.id!, relation: .followed),
-										   errorInfo: nil,//.init(title: "This is an error title",
-										   //description: LocalizableString.Error.noInternetAccess.localized),
+										   errorInfo: nil, // .init(title: "This is an error title",
+										   // description: LocalizableString.Error.noInternetAccess.localized),
 										   isLoggedIn: true))
 			.previewContext(WidgetPreviewContext(family: .systemMedium))
 		}
@@ -293,4 +292,3 @@ struct StationWidgetView_Preview: PreviewProvider {
 		}
 	}
 }
-

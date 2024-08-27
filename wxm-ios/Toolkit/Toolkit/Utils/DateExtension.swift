@@ -45,7 +45,6 @@ public extension Date {
         return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
     }
 
-
 	var startOfHour: Date? {
 		guard let date = Calendar.current.date(bySetting: .minute, value: 0, of: self) else {
 			return nil
@@ -119,7 +118,7 @@ public extension Date {
 		return calendar.component(.hour, from: self)
 	}
 
-	func set(year: Int? = nil, month: Int? = nil, day: Int? = nil, hour: Int? = nil)  -> Date? {
+	func set(year: Int? = nil, month: Int? = nil, day: Int? = nil, hour: Int? = nil) -> Date? {
 		var component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .timeZone],
 														from: self)
 

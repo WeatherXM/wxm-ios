@@ -38,7 +38,7 @@ public struct MainScreen: View {
             viewModel.deepLinkHandler.handleUrl($0)
         }
 		.onNotificationReceive { notificationResponse in
-			let _ = viewModel.deepLinkHandler.handleNotificationReceive(notificationResponse)
+			_ = viewModel.deepLinkHandler.handleNotificationReceive(notificationResponse)
 		}
     }
 

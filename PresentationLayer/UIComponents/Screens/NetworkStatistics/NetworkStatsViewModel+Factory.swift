@@ -37,7 +37,6 @@ extension NetworkStatsViewModel {
 						   analyticsItemId: .dataDays)
 		}
 
-
         return getStatistics(from: dataDays,
                              title: LocalizableString.NetStats.weatherStationDays.localized,
                              accessory: accessory,
@@ -79,7 +78,7 @@ extension NetworkStatsViewModel {
 		}
 
 		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
-			self?.showInfo(title: LocalizableString.NetStats.wxmRewardsTitle.localized, 
+			self?.showInfo(title: LocalizableString.NetStats.wxmRewardsTitle.localized,
 						   description: LocalizableString.NetStats.totalAllocatedInfoText.localized,
 						   analyticsItemId: .allocatedRewards)
 		}

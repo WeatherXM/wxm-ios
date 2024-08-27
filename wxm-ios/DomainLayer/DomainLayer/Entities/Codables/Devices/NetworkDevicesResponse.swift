@@ -19,7 +19,7 @@ public struct NetworkDevicesResponse: Codable, Identifiable {
     public var attributes: Attributes = .init()
     public var currentWeather: CurrentWeather?
     public var rewards: Rewards? = .init()
-    public var relation: DeviceRelation? = nil
+    public var relation: DeviceRelation?
 	public var bundle: StationBundle?
 
     public init() {}

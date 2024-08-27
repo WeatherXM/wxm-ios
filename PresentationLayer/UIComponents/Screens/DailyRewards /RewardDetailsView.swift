@@ -53,7 +53,7 @@ private struct ContentView: View {
 			}
 			.spinningLoader(show: .init(get: { viewModel.state == .loading }, set: { _ in }),
 							hideContent: true)
-			.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }), 
+			.fail(show: .init(get: { viewModel.state == .fail }, set: { _ in }),
 				  obj: viewModel.failObj)
 			.onAppear {
 				navigationObject.titleColor = Color(colorEnum: .text)
@@ -164,7 +164,6 @@ private struct ContentView: View {
 					}
 				}
 
-
 				CardWarningView(type: mainAnnotation.warningType ?? .warning,
 								showIcon: false,
 								title: mainAnnotation.title ?? "",
@@ -220,7 +219,7 @@ private struct ContentView: View {
 					locationQualityGrid
 				}
 			}
-		} else{
+		} else {
 			EmptyView()
 		}
 	}

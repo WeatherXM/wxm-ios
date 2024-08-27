@@ -23,7 +23,7 @@ struct ScannerView: View {
 				switch result {
 					case .success(let input):
 						completion(input.string)
-					case .failure(_):
+					case .failure:
 						completion(nil)
 				}
 			}

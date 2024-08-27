@@ -141,19 +141,19 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return [
 					ParameterConstants.Me.fromDate: fromDate,
 					ParameterConstants.Me.toDate: toDate,
-					ParameterConstants.Me.exclude: exclude,
+					ParameterConstants.Me.exclude: exclude
 				]
 			case let .getUserDeviceForecastById(_, fromDate, toDate, exclude):
 				if exclude.isEmpty {
 					return [
 						ParameterConstants.Me.fromDate: fromDate,
-						ParameterConstants.Me.toDate: toDate,
+						ParameterConstants.Me.toDate: toDate
 					]
 				} else {
 					return [
 						ParameterConstants.Me.fromDate: fromDate,
 						ParameterConstants.Me.toDate: toDate,
-						ParameterConstants.Me.exclude: exclude,
+						ParameterConstants.Me.exclude: exclude
 					]
 				}
 			case let .setFriendlyName(_, name):

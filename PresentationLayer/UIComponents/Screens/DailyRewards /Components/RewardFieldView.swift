@@ -21,7 +21,7 @@ struct RewardFieldView: View {
 
 				Spacer(minLength: 0.0)
 
-				Button{
+				Button {
 					infoAction()
 				} label: {
 					Text(FontIcon.infoCircle.rawValue)

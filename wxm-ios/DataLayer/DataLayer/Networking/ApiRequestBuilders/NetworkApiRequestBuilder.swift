@@ -64,7 +64,6 @@ enum NetworkApiRequestBuilder: URLRequestConvertible {
         }
     }
 
-
     // MARK: - Parameters
 
     // This is the queries part, it's optional because an endpoint can be without parameters
@@ -85,7 +84,6 @@ enum NetworkApiRequestBuilder: URLRequestConvertible {
         }
     }
 }
-
 
 extension NetworkApiRequestBuilder: MockResponseBuilder {
     var mockFileName: String? {

@@ -35,7 +35,7 @@ struct ResetDeviceView: View {
 							.padding(.horizontal, CGFloat(.largeSidePadding))
 
 						infoText
-					}					
+					}
 					.padding(CGFloat(.mediumSidePadding))
 				}
 

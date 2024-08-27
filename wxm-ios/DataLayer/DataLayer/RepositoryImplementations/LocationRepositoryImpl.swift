@@ -22,7 +22,7 @@ public class DeviceLocationRepositoryImpl: DeviceLocationRepository {
         .district,
         .locality,
         .place,
-        .postcode,
+        .postcode
     ]
     private let resultsSubject = CurrentValueSubject<
         [DeviceLocationSearchResult],

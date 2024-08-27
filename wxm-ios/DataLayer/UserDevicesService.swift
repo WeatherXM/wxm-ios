@@ -50,9 +50,9 @@ public class UserDevicesService {
 	func getDevices(useCache: Bool) throws -> AnyPublisher<DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>, Never> {
 		if useCache, let cachedDevices = userDevicesCache.getValue(for: userDevicesCacheKey) {
 			return Just(DataResponse(request: nil,
-									 response: nil, 
+									 response: nil,
 									 data: nil,
-									 metrics: nil, 
+									 metrics: nil,
 									 serializationDuration: 0.0,
 									 result: .success(cachedDevices))).eraseToAnyPublisher()
 		}
@@ -116,7 +116,6 @@ public class UserDevicesService {
 			}
 			.eraseToAnyPublisher()
 	}
-
 
     public func getUserDeviceById(deviceId: String) throws -> AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> {
         let builder = MeApiRequestBuilder.getUserDeviceById(deviceId: deviceId)

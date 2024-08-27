@@ -61,7 +61,7 @@ class BluetoothManager: NSObject {
                 delegate: nil,
                 queue: nil,
                 options: [
-                    CBCentralManagerOptionShowPowerAlertKey: false,
+                    CBCentralManagerOptionShowPowerAlertKey: false
                 ]
             )
             manager.delegate = self
@@ -223,8 +223,7 @@ private extension BluetoothManager {
         var eui: String?
         if let euiSubstring = (advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data)?
             .hexStringEncoded()
-            .dropFirst(4)
-        {
+            .dropFirst(4) {
             eui = String(euiSubstring)
         }
 

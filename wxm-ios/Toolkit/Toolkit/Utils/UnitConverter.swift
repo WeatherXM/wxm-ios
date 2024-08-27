@@ -10,7 +10,7 @@ public struct UnitsConverter {
 
     private let CardinalValues: [String] = [
         "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
-        "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW",
+        "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"
     ]
 
     public func celsiusToFahrenheit(celsius: Double) -> Double {

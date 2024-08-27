@@ -53,7 +53,6 @@ public class ApiClient {
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "Could not serialize date")
     }
 
-
     private init() {}
 
     /// Performs the passed request

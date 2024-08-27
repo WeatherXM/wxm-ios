@@ -18,7 +18,7 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 		Mixpanel.mainInstance().loggingEnabled = true
 	}
 
-	func trackScreen(_ screen: Screen, parameters: [Parameter : ParameterValue]?) {
+	func trackScreen(_ screen: Screen, parameters: [Parameter: ParameterValue]?) {
 		var params: [String: MixpanelType] = [analyticsScreenNameKey: screen.rawValue]
 		if let additionalParams = parameters?.toMixpanelParamsDictionary {
 			params += additionalParams
@@ -27,7 +27,7 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 									  properties: params)
 	}
 
-	func trackEvent(_ event: Event, parameters: [Parameter : ParameterValue]?) {
+	func trackEvent(_ event: Event, parameters: [Parameter: ParameterValue]?) {
 		Mixpanel.mainInstance().track(event: event.description,
 									  properties: parameters?.toMixpanelParamsDictionary)
 	}

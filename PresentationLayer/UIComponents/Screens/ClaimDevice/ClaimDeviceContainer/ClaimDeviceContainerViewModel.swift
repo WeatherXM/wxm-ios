@@ -77,7 +77,6 @@ extension ClaimDeviceContainerViewModel {
 		}
 	}
 
-
 	func handleSNInputFields(fields: [InputFieldResult]) {
 		fields.forEach { field in
 			switch field.type {
@@ -114,7 +113,6 @@ extension ClaimDeviceContainerViewModel {
 							   retries < self.CLAIMING_RETRIES_MAX {
 								print("Claiming Failed with \(responseError). Retrying after 5 seconds...")
 
-
 								DispatchQueue.main.asyncAfter(deadline: .now() + self.CLAIMING_RETRIES_DELAY_SECONDS) {
 									self.performClaim(retries: retries + 1)
 								}
@@ -150,7 +148,7 @@ extension ClaimDeviceContainerViewModel {
 											subtitle: uiInfo.description?.attributedMarkdown,
 											cancelTitle: LocalizableString.ClaimDevice.cancelClaimButton.localized,
 											retryTitle: LocalizableString.ClaimDevice.retryClaimButton.localized,
-											contactSupportAction: { 					
+											contactSupportAction: {
 			HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
 		}) {
 			Router.shared.popToRoot()

@@ -41,7 +41,7 @@ enum SerialNumberInputType: RawRepresentable, CustomStringConvertible {
 			case .serialNumber(let type):
 				switch type {
 					case .m5, .d1:
-						return UITextField.formatAsSerialNumber("", 
+						return UITextField.formatAsSerialNumber("",
 																placeholder: "A",
 																validator: .init(type: type))
 					case .pulse:

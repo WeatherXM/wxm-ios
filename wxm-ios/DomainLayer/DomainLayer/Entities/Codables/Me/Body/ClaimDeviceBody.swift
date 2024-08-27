@@ -24,8 +24,8 @@ public struct ClaimDeviceBody {
             "serialNumber": serialNumber as String,
             "location": [
                 "lat": location.latitude as Double?,
-                "lon": location.longitude as Double?,
-            ],
+                "lon": location.longitude as Double?
+            ]
         ]
 
         if secret != nil {

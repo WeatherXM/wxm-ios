@@ -182,7 +182,6 @@ extension NetworkDeviceRewardsSummaryTimelineEntry {
 	}
 }
 
-
 extension Array where Element == NetworkDeviceRewardsSummaryTimelineEntry {
 	var toWeeklyEntries: [WeeklyStreakView.Entry] {
 		compactMap { $0.toWeeklyEntry }

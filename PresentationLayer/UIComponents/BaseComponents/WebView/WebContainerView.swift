@@ -134,7 +134,7 @@ private struct WXMWebView: UIViewRepresentable {
 		func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 			DispatchQueue.main.async { [weak self] in
 				guard let requestUrl = navigationAction.request.url,
-					  MainScreenViewModel.shared.deepLinkHandler.handleUrl(requestUrl, 
+					  MainScreenViewModel.shared.deepLinkHandler.handleUrl(requestUrl,
 																		   queryParamsCallback: self?.redirectParamsCallback) else {
 					decisionHandler(.allow)
 
@@ -166,5 +166,5 @@ private struct WXMWebView: UIViewRepresentable {
 }
 
 #Preview {
-	WebContainerView(title: "Web View",url: "https://google.com", params: [.theme: "dark"])
+	WebContainerView(title: "Web View", url: "https://google.com", params: [.theme: "dark"])
 }

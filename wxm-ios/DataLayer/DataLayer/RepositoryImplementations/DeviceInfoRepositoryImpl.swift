@@ -106,7 +106,7 @@ extension BTActionWrapper.ActionError {
                 return .notInRange
             case .connect:
                 return .connect
-            case .setFrequency(let commandError):                
+            case .setFrequency(let commandError):
                 return .settingFrequency("\(commandError?.errorCode ?? -1)")
             case .unknown, .fetchClaimingKey, .fetchDevEUI:
                 return .unknown

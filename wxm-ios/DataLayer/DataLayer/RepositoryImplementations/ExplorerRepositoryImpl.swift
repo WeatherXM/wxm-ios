@@ -24,7 +24,7 @@ public struct ExplorerRepositoryImpl: ExplorerRepository {
                 return .success(coordinates)
             case .failure(let error):
                 return .failure(ExplorerLocationError(locationError: error))
-        }        
+        }
     }
 
 	public var locationAuthorization: WXMLocationManager.Status {

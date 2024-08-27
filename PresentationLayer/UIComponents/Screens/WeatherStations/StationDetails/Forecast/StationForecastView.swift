@@ -17,7 +17,7 @@ struct StationForecastView: View {
 			Color(colorEnum: .bg)
 				.ignoresSafeArea()
 			
-            ScrollViewReader { proxy in
+            ScrollViewReader { _ in
                 TrackableScrollView(showIndicators: false, offsetObject: viewModel.offsetObject) { completion in
                     viewModel.refresh(completion: completion)
                 } content: {
@@ -49,7 +49,7 @@ struct StationForecastView: View {
 							.padding(.horizontal)
 						}
 						.padding(.bottom)
-                    }					
+                    }
 					.iPadMaxWidth()
 					.padding(.vertical)
                 }

@@ -39,7 +39,6 @@ struct ForecastDetailsView: View {
 							dailyForecast
 								.padding(.horizontal, CGFloat(.mediumSidePadding))
 							
-							
 							ZStack {
 								if let item = viewModel.detailsDailyItem {
 									ForecastDetailsDailyView(item: item, scrollProxy: proxy)

@@ -44,7 +44,7 @@ struct BoostCardView: View {
 		.background {
 			WXMRemoteImageView(imageUrl: boost.imageUrl)
 		}
-		.WXMCardStyle(insideHorizontalPadding: 0.0, 
+		.WXMCardStyle(insideHorizontalPadding: 0.0,
 					  insideVerticalPadding: 0.0)
 		.contentShape(Rectangle())
     }

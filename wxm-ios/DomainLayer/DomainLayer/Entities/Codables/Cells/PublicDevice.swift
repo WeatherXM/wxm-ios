@@ -8,13 +8,13 @@
 public struct PublicDevice: Codable {
     var id: String = ""
     var name: String = ""
-    var timezone: String? = nil
-    var isActive: Bool? = nil
-    var lastWeatherStationActivity: String? = nil
-    var cellIndex: String? = nil
+    var timezone: String?
+    var isActive: Bool?
+    var lastWeatherStationActivity: String?
+    var cellIndex: String?
 	var cellCenter: LocationCoordinates?
-    var currentWeather: CurrentWeather? = nil
-	var bundle: StationBundle? = nil
+    var currentWeather: CurrentWeather?
+	var bundle: StationBundle?
 
     enum CodingKeys: String, CodingKey {
         case id

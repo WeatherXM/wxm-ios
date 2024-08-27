@@ -101,7 +101,7 @@ class SwinjectHelper: SwinjectInterface {
         // MARK: - Me DI
 
         container.register(MeRepository.self) { resolver in
-			MeRepositoryImpl(userDevicesService: resolver.resolve(UserDevicesService.self)!, 
+			MeRepositoryImpl(userDevicesService: resolver.resolve(UserDevicesService.self)!,
 							 userInfoService: resolver.resolve(UserInfoService.self)!)
         }
 
