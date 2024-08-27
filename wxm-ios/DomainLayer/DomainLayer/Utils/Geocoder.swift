@@ -12,7 +12,7 @@ import Toolkit
 struct Geocoder {
     func resolveAddressLocation(_ location: CLLocationCoordinate2D, completion: @escaping GenericCallback<String>) {
         let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(CLLocation(latitude: location.latitude, longitude: location.longitude)) { placemarks, error in
+        geocoder.reverseGeocodeLocation(CLLocation(latitude: location.latitude, longitude: location.longitude)) { placemarks, _ in
             guard let placemark = placemarks?.first else {
                 completion("")
                 return

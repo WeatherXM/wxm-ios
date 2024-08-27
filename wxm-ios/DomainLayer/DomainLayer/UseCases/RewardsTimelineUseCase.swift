@@ -18,7 +18,7 @@ public class RewardsTimelineUseCase {
 		self.meRepository = meRepository
 	}
 	
-	public func getTimeline(deviceId: String, 
+	public func getTimeline(deviceId: String,
 							page: Int,
 							fromDate: String,
 							toDate: String,

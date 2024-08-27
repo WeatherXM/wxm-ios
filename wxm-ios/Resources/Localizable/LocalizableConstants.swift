@@ -226,7 +226,7 @@ enum LocalizableString: WXMLocalizable {
 	case activeStations(Int?)
 	case activeStation(Int?)
 	case presentStations(Int?)
-	
+
 	var localized: String {
 		var localized = NSLocalizedString(self.key, comment: "")
 		switch self {
@@ -259,7 +259,7 @@ enum LocalizableString: WXMLocalizable {
 				localized = String(format: localized, count)
 			default: break
 		}
-		
+
 		return localized
 	}
 }
@@ -297,19 +297,19 @@ extension LocalizableString {
 				guard count != nil else {
 					return "total"
 				}
-				
+
 				return "total_format"
 			case .owned(let count):
 				guard count != nil else {
 					return "owned"
 				}
-				
+
 				return "owned_format"
 			case .following(let count):
 				guard count != nil else {
 					return "following"
 				}
-				
+
 				return "following_format"
 			case .resetPassword:
 				return "reset_password"

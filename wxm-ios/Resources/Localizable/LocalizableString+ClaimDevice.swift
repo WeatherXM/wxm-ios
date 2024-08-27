@@ -146,7 +146,7 @@ extension LocalizableString {
 		case connectionText
 		case stepSettingFrequency
 		case stepClaiming
-		
+
 	}
 }
 
@@ -168,10 +168,10 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 			default:
 				break
 		}
-		
+
 		return localized
 	}
-	
+
 	var key: String {
 		switch self {
 			case .selectionNavigationTitle:
@@ -430,7 +430,7 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_error_connection_time_out"
 			case .errorGeneric:
 				return "claim_device_error_generic"
-				
+
 			case .connectionTitle:
 				return "claim_device_connection_title"
 			case .connectionBullet1:

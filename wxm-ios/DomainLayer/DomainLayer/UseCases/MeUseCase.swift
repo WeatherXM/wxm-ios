@@ -65,7 +65,10 @@ public struct MeUseCase {
         return getDeviceById.convertedToDeviceDetailsResultPublisher
     }
 
-    public func getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String = "") throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never> {
+    public func getUserDeviceForecastById(deviceId: String,
+										  fromDate: String,
+										  toDate: String,
+										  exclude: String = "") throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never> {
         let getUserDeviceForecastById = try meRepository.getUserDeviceForecastById(deviceId: deviceId, fromDate: fromDate, toDate: toDate, exclude: exclude)
         return getUserDeviceForecastById
     }
