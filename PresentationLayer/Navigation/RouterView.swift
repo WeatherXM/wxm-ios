@@ -21,9 +21,9 @@ struct RouterView<Content: View>: View {
             }
 			.overlay(
 				Group {
-					/// Disable NavigationStack gesture when there is a popover.
-					/// It's a workaround to fix some interaction issues with navigation stack
-					/// More info https://stackoverflow.com/questions/71714592/sheet-dismiss-gesture-with-swipe-back-gesture-causes-app-to-freeze
+					// Disable NavigationStack gesture when there is a popover.
+					// It's a workaround to fix some interaction issues with navigation stack
+					// More info https://stackoverflow.com/questions/71714592/sheet-dismiss-gesture-with-swipe-back-gesture-causes-app-to-freeze
 					if router.showDummyOverlay {
 						Color.white.opacity(0.01)
 							.highPriorityGesture(DragGesture(minimumDistance: 0))

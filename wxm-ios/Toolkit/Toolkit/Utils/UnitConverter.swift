@@ -8,7 +8,7 @@
 public struct UnitsConverter {
     public init() {}
 
-    private let CardinalValues: [String] = [
+    private let cardinalValues: [String] = [
         "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
         "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"
     ]
@@ -38,37 +38,40 @@ public struct UnitsConverter {
     }
 
     public func msToBeaufort(ms: Double) -> Int {
-        if ms < 0.2 {
-            return 0
-        } else if ms < 1.5 {
-            return 1
-        } else if ms < 3.3 {
-            return 2
-        } else if ms < 5.4 {
-            return 3
-        } else if ms < 7.9 {
-            return 4
-        } else if ms < 10.7 {
-            return 5
-        } else if ms < 13.8 {
-            return 6
-        } else if ms < 17.1 {
-            return 7
-        } else if ms < 20.7 {
-            return 8
-        } else if ms < 24.4 {
-            return 9
-        } else if ms < 28.4 {
-            return 10
-        } else if ms < 32.6 {
-            return 11
-        } else {
-            return 12
-        }
-    }
+		switch ms {
+			case _ where ms < 0.2:
+				return 0
+			case _ where ms < 0.2:
+				return 0
+			case _ where ms < 1.5:
+				return 1
+			case _ where ms < 3.3:
+				return 2
+			case _ where ms < 5.4:
+				return 3
+			case _ where ms < 7.9:
+				return 4
+			case _ where ms < 10.7:
+				return 5
+			case _ where ms < 13.8:
+				return 6
+			case _ where ms < 17.1:
+				return 7
+			case _ where ms < 20.7:
+				return 8
+			case _ where ms < 24.4:
+				return 9
+			case _ where ms < 28.4:
+				return 10
+			case _ where ms < 32.6:
+				return 11
+			default:
+				return 12
+		}
+	}
 
     public func degreesToCardinal(value: Int) -> String {
-        CardinalValues[safe: getIndexOfCardinal(value: value)] ?? "-"
+        cardinalValues[safe: getIndexOfCardinal(value: value)] ?? "-"
     }
 
     public func getIndexOfCardinal(value: Int) -> Int {

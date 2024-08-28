@@ -248,27 +248,32 @@ private extension StationWidgetView {
 							  insideVerticalPadding: CGFloat(.minimumPadding),
 							  cornerRadius: CGFloat(.buttonCornerRadius))
 
-				if let address = device.address {
-					HStack(spacing: CGFloat(.minimumSpacing)) {
-						Text(FontIcon.hexagon.rawValue)
-							.font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: .text))
-
-						Text(address)
-							.font(.system(size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: .text))
-							.lineLimit(1)
-					}
-					.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
-								  insideHorizontalPadding: CGFloat(.smallSidePadding),
-								  insideVerticalPadding: CGFloat(.minimumPadding),
-								  cornerRadius: CGFloat(.buttonCornerRadius))
-				}
+				addressView(device: device)
 			}
 
 			Spacer(minLength: 0.0)
 		}
 		.frame(height: 25.0)
+	}
+
+	@ViewBuilder
+	func addressView(device: DeviceDetails) -> some View {
+		if let address = device.address {
+			HStack(spacing: CGFloat(.minimumSpacing)) {
+				Text(FontIcon.hexagon.rawValue)
+					.font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
+					.foregroundColor(Color(colorEnum: .text))
+
+				Text(address)
+					.font(.system(size: CGFloat(.caption)))
+					.foregroundColor(Color(colorEnum: .text))
+					.lineLimit(1)
+			}
+			.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+						  insideHorizontalPadding: CGFloat(.smallSidePadding),
+						  insideVerticalPadding: CGFloat(.minimumPadding),
+						  cornerRadius: CGFloat(.buttonCornerRadius))
+		}
 	}
 }
 

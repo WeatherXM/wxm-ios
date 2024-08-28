@@ -98,7 +98,8 @@ struct HelperFunctions {
             finalEmailString.append(info)
         }
 
-		let leaveMessageNote = ("\n\n" + LocalizableString.mailLeaveMessageNote.localized + "\n" + "-------------------------").addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+		let leaveMessageNote = ("\n\n" + LocalizableString.mailLeaveMessageNote.localized + "\n" + "-------------------------")
+			.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
 		finalEmailString.append(leaveMessageNote)
 
         if let url = URL(string: finalEmailString) {
