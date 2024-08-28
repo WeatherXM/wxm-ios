@@ -338,6 +338,7 @@
 		26A5456C2C0609FE0098FE52 /* ResetDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5456B2C0609FE0098FE52 /* ResetDeviceViewModel.swift */; };
 		26A6C5D92B601A8000FA2D2F /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6C5D82B601A8000FA2D2F /* SafariView.swift */; };
 		26A86BC42C7CB6F500F1C2CF /* Survey+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BC32C7CB6F500F1C2CF /* Survey+.swift */; };
+		26A86BE42C7F5E6A00F1C2CF /* ChartTempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BE32C7F5E6A00F1C2CF /* ChartTempView.swift */; };
 		26A86BFB2C7F68C400F1C2CF /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 26A86BFA2C7F68C400F1C2CF /* DGCharts */; };
 		26A9614C2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9614B2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift */; };
 		26A9619C2AA705FE00646A25 /* LocalizableString+StationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */; };
@@ -877,6 +878,7 @@
 		26A5456B2C0609FE0098FE52 /* ResetDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetDeviceViewModel.swift; sourceTree = "<group>"; };
 		26A6C5D82B601A8000FA2D2F /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		26A86BC32C7CB6F500F1C2CF /* Survey+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Survey+.swift"; sourceTree = "<group>"; };
+		26A86BE32C7F5E6A00F1C2CF /* ChartTempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTempView.swift; sourceTree = "<group>"; };
 		26A9614B2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+UpdateFirmware.swift"; sourceTree = "<group>"; };
 		26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+StationDetails.swift"; sourceTree = "<group>"; };
 		26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Wallet.swift"; sourceTree = "<group>"; };
@@ -1635,6 +1637,7 @@
 				2675474129A9181E008BCF40 /* WeatherStationCard */,
 				262C7C232A95F2BA0042ACE6 /* WXMAlert */,
 				2675475629A9181E008BCF40 /* AddButton.swift */,
+				26A86BE32C7F5E6A00F1C2CF /* ChartTempView.swift */,
 				2675474F29A9181E008BCF40 /* AttributedLabel.swift */,
 				2675475129A9181E008BCF40 /* AttributedTextView.swift */,
 				26325B542BE3AB4300182C59 /* GifImageView.swift */,
@@ -2986,6 +2989,7 @@
 				268B5C412BCEB2CD00E63655 /* NetworkDeviceForecastResponse+.swift in Sources */,
 				262B03072B20BC7B00C31FE7 /* AppUpdateView.swift in Sources */,
 				26A4117E29B8A17D00A2C10B /* DeviceInfoViewModel+Content.swift in Sources */,
+				26A86BE42C7F5E6A00F1C2CF /* ChartTempView.swift in Sources */,
 				26A4116D29B744FD00A2C10B /* DeviceInfoViewModel.swift in Sources */,
 				26A4118229BA1A9900A2C10B /* DeviceUpdatesLoadingView.swift in Sources */,
 				26E5B0C229F8152800834899 /* Dimensions.swift in Sources */,
