@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import Charts
+import DGCharts
 import DomainLayer
 
 enum WeatherChartsConstants {

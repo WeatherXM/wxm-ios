@@ -55,7 +55,6 @@
 		4D5AE32E28EA4882006F2EBA /* BluetoothDevicesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AE32D28EA4882006F2EBA /* BluetoothDevicesRepository.swift */; };
 		4DE3A56E293EA58300BCDD8A /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3A56D293EA58300BCDD8A /* Frequency.swift */; };
 		74D6B41C28379D8A00274A90 /* NetworkDevicesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D6B41B28379D8A00274A90 /* NetworkDevicesResponse.swift */; };
-		9929BB0528BF667900ED3CDE /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9929BB0428BF667900ED3CDE /* Charts */; };
 		9929BB0E28BF76EF00ED3CDE /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9929BB0D28BF76EF00ED3CDE /* Double+.swift */; };
 		992D764328B7C83F00DFE504 /* HistoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992D764228B7C83F00DFE504 /* HistoryUseCase.swift */; };
 		995A0CD728C0A4BB0015DAA1 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A0CD628C0A4BB0015DAA1 /* UserDefaultsRepository.swift */; };
@@ -172,7 +171,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5E6B8812833AB4A0060D050 /* Alamofire in Frameworks */,
-				9929BB0528BF667900ED3CDE /* Charts in Frameworks */,
 				4D49D907294DE32400987DE6 /* MapboxMaps in Frameworks */,
 				26DD42C829AF5547008E277E /* Toolkit.framework in Frameworks */,
 				4D49D8F9294DD65600987DE6 /* Turf in Frameworks */,
@@ -462,7 +460,6 @@
 			name = DomainLayer;
 			packageProductDependencies = (
 				B5E6B8802833AB4A0060D050 /* Alamofire */,
-				9929BB0428BF667900ED3CDE /* Charts */,
 				4D49D8F8294DD65600987DE6 /* Turf */,
 				4D49D906294DE32400987DE6 /* MapboxMaps */,
 			);
@@ -497,7 +494,6 @@
 			mainGroup = B5799E8328254DCD00FEBB85;
 			packageReferences = (
 				B5E6B87F2833AB4A0060D050 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				9929BB0328BF667900ED3CDE /* XCRemoteSwiftPackageReference "Charts" */,
 				4D49D8F6294DD61300987DE6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 				4D49D8F7294DD65600987DE6 /* XCRemoteSwiftPackageReference "turf-swift" */,
 			);
@@ -937,14 +933,6 @@
 				minimumVersion = 2.6.0;
 			};
 		};
-		9929BB0328BF667900ED3CDE /* XCRemoteSwiftPackageReference "Charts" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielgindi/Charts";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
 		B5E6B87F2833AB4A0060D050 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -965,11 +953,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4D49D8F6294DD61300987DE6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
 			productName = MapboxMaps;
-		};
-		9929BB0428BF667900ED3CDE /* Charts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9929BB0328BF667900ED3CDE /* XCRemoteSwiftPackageReference "Charts" */;
-			productName = Charts;
 		};
 		B5E6B8802833AB4A0060D050 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

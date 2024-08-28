@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Charts
+import DGCharts
 import DomainLayer
 
 enum ChartCardType: String, ChartCardProtocol {

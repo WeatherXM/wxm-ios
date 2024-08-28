@@ -7,7 +7,7 @@
 
 import Foundation
 import DomainLayer
-import Charts
+import DGCharts
 import Toolkit
 import SwiftUI
 

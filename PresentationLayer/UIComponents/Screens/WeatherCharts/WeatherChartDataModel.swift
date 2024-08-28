@@ -5,7 +5,7 @@
 //  Created by Pantelis Giazitsis on 9/5/23.
 //
 
-import Charts
+import DGCharts
 import DomainLayer
 
 struct WeatherChartDataModel {

@@ -5,7 +5,7 @@
 //  Created by Lampros Zouloumis on 25/8/22.
 //
 
-import Charts
+import DGCharts
 import Combine
 import Alamofire
 import class UIKit.UIImage

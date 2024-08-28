@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Charts
+import DGCharts
 import DomainLayer
 
 class YAxisValueFormatter: AxisValueFormatter {
@@ -26,7 +26,7 @@ class YAxisValueFormatter: AxisValueFormatter {
         self.handleSidePadding = handleSidePadding
     }
 
-    func stringForValue(_ value: Double, axis: Charts.AxisBase?) -> String {
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         var valueStr = formatter.string(from: NSNumber(value: value)) ?? ""
         if valueStr.count > 4 {
             valueStr = value.toCompactDecimaFormat ?? ""

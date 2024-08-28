@@ -7,7 +7,7 @@
 
 import Foundation
 import DomainLayer
-import Charts
+import DGCharts
 
 enum ForecastChartType: String, ChartCardProtocol {
 	case temperature

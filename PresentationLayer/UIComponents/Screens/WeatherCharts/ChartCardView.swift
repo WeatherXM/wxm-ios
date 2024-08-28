@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Charts
+import DGCharts
 
 struct ChartCardView: View {
     @EnvironmentObject var delegate: ChartDelegate

@@ -5,7 +5,7 @@
 //  Created by Lampros Zouloumis on 25/8/22.
 //
 
-import Charts
+import DGCharts
 
 public class ChartXAxisValueFormatter: AxisValueFormatter {
     private let times: [String]
