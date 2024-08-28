@@ -13,11 +13,10 @@ struct AnnouncementCardView: View {
 
     var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
-			HStack(spacing: CGFloat(.smallSpacing)) {
+			HStack(alignment: .top, spacing: CGFloat(.smallSpacing)) {
 				Text(configuration.title)
 					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
 					.foregroundColor(Color(colorEnum: .wxmWhite))
-					.lineLimit(1)
 
 				Spacer()
 
