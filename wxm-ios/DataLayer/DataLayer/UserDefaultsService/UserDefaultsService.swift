@@ -11,40 +11,40 @@ import Toolkit
 
 public struct UserDefaultsService: PersistCacheManager {
 	private let userDefaults: UserDefaults?
-	
+
 	init() {
 		guard let appGroup: String = Bundle.main.getConfiguration(for: .appGroup) else {
 			self.userDefaults = nil
 			return
 		}
-		
+
 		self.userDefaults = UserDefaults(suiteName: "\(appGroup)")
 	}
-	
+
 	// MARK: - PersistCacheManager
 	public func save<T>(value: T, key: String) {
 		userDefaults?.set(value, forKey: key)
 	}
-	
+
 	public func get<T>(key: String) -> T? {
 		userDefaults?.value(forKey: key) as? T
 	}
-	
+
 	public func remove(key: String) {
 		userDefaults?.removeObject(forKey: key)
 	}
-	
+
 	func clearUserSensitiveData() {
 		UserDefaults.userGeneratedKeys.forEach { remove(key: $0 ) }
 	}
-	
+
 	func getUnitsProtocol(key: String) -> UnitsProtocol? {
 		if let rawValue = userDefaults?.string(forKey: key) {
 			return UnitsObjectFactory().spawn(from: rawValue)
 		}
 		return nil
 	}
-	
+
 	func saveDefaultUnitProtocolFor(key: String) -> UnitsProtocol? {
 		if let unitProtocol = UnitsObjectFactory().spawnDefault(from: key) {
 			save(value: unitProtocol.value, key: unitProtocol.key)
@@ -52,7 +52,7 @@ public struct UserDefaultsService: PersistCacheManager {
 		}
 		return nil
 	}
-	
+
 	struct UnitsObjectFactory {
 		internal func spawn(from rawValue: String) -> UnitsProtocol? {
 			if let temperatureUnitsProtocol = TemperatureUnitsEnum(rawValue: rawValue) {

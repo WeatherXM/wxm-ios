@@ -12,10 +12,10 @@ public enum KeychainConstants {
 	public static let account = "Account"
 	public static let username = "Username"
 	public static let password = "Password"
-	
+
 	case saveNetworkTokenResponse
 	case saveAccountInfo
-	
+
 	public var service: String {
 		switch self {
 			case .saveNetworkTokenResponse:
@@ -24,7 +24,7 @@ public enum KeychainConstants {
 				return "SaveAccountInfo"
 		}
 	}
-	
+
 	public var account: String {
 		switch self {
 			case .saveNetworkTokenResponse, .saveAccountInfo:

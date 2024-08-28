@@ -140,7 +140,7 @@ public struct CurrentWeather: Codable {
         self.precipitationProbability = try container.decodeIfPresent(Double.self, forKey: .precipitationProbability)
 		
 		// The following value may come in different keys
-        self.precipitationAccumulated = (try? container.decodeIfPresent(Double.self, forKey: .precipitationAccumulated)) ?? 
+        self.precipitationAccumulated = (try? container.decodeIfPresent(Double.self, forKey: .precipitationAccumulated)) ??
 		(try? container.decodeIfPresent(Double.self, forKey: .precipitationIntensity))
 
         self.cloudCover = try container.decodeIfPresent(Double.self, forKey: .cloudCover)
