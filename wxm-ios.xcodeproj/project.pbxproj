@@ -260,7 +260,6 @@
 		267548DF29A91A87008BCF40 /* SettingsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548A129A91A87008BCF40 /* SettingsEnum.swift */; };
 		267548E129A91A87008BCF40 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548A429A91A87008BCF40 /* Int+.swift */; };
 		267548E529A91A87008BCF40 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548A829A91A87008BCF40 /* CGFloat+.swift */; };
-		267548E629A91A87008BCF40 /* Functions+Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548A929A91A87008BCF40 /* Functions+Units.swift */; };
 		267548EB29A91A87008BCF40 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548AE29A91A87008BCF40 /* String+.swift */; };
 		267548ED29A91A87008BCF40 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548B029A91A87008BCF40 /* Color+.swift */; };
 		267548EE29A91A87008BCF40 /* Shape+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548B129A91A87008BCF40 /* Shape+.swift */; };
@@ -386,7 +385,6 @@
 		26B832A52AC5A74900757A69 /* LocalizableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D611AA2A9E21080099117C /* LocalizableConstants.swift */; };
 		26B832A62AC5A77C00757A69 /* WeatherFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664833129C370D900748F9C /* WeatherFields.swift */; };
 		26B832A82AC5A7D200757A69 /* WeatherFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E7E2A122A540078723A /* WeatherFormatter.swift */; };
-		26B832A92AC5A7E100757A69 /* Functions+Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548A929A91A87008BCF40 /* Functions+Units.swift */; };
 		26B832AA2AC5A7F100757A69 /* UnitConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF277B2A0B8F810067A1B8 /* UnitConstants.swift */; };
 		26B832AB2AC5A80500757A69 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548B529A91A87008BCF40 /* Double+.swift */; };
 		26B832AD2AC5A8BD00757A69 /* DisplayedLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675489F29A91A87008BCF40 /* DisplayedLinks.swift */; };
@@ -803,7 +801,6 @@
 		267548A129A91A87008BCF40 /* SettingsEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsEnum.swift; sourceTree = "<group>"; };
 		267548A429A91A87008BCF40 /* Int+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		267548A829A91A87008BCF40 /* CGFloat+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
-		267548A929A91A87008BCF40 /* Functions+Units.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Functions+Units.swift"; sourceTree = "<group>"; };
 		267548AE29A91A87008BCF40 /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		267548B029A91A87008BCF40 /* Color+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		267548B129A91A87008BCF40 /* Shape+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Shape+.swift"; sourceTree = "<group>"; };
@@ -2257,7 +2254,6 @@
 			children = (
 				267548B229A91A87008BCF40 /* Image+.swift */,
 				267548B029A91A87008BCF40 /* Color+.swift */,
-				267548A929A91A87008BCF40 /* Functions+Units.swift */,
 				26CA84592AD93BB6006D47D7 /* String+Common.swift */,
 			);
 			path = Common;
@@ -2875,7 +2871,6 @@
 				26B832AB2AC5A80500757A69 /* Double+.swift in Sources */,
 				26E9A5142AE26AFE003E0830 /* View+.swift in Sources */,
 				26B832B32AC5AF9C00757A69 /* WXMButtonStyle.swift in Sources */,
-				26B832A92AC5A7E100757A69 /* Functions+Units.swift in Sources */,
 				266D18042ACB06EE007CDB06 /* StationWidgetConfiguration.intentdefinition in Sources */,
 				26B832B02AC5AEF700757A69 /* Color+.swift in Sources */,
 				26769AAE2ACEBAFE00162974 /* LocalizableString+Errors.swift in Sources */,
@@ -3013,7 +3008,6 @@
 				267548D729A91A87008BCF40 /* FontSizeEnum.swift in Sources */,
 				2666D50A2BBC4E80003B30C0 /* StationChipsView.swift in Sources */,
 				26CA845D2AD93C0C006D47D7 /* DeviceDetails+Common.swift in Sources */,
-				267548E629A91A87008BCF40 /* Functions+Units.swift in Sources */,
 				267547C729A9181E008BCF40 /* GeneralButtonStyle.swift in Sources */,
 				267548F329A91A87008BCF40 /* HelperFunctions.swift in Sources */,
 				26AF276F2A0B815B0067A1B8 /* WeatherChartModels.swift in Sources */,

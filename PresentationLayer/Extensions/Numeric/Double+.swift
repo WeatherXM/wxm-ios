@@ -16,7 +16,7 @@ extension Double {
             case .celsius:
                 return self
             case .fahrenheit:
-                let value = celsiusToFahrenheit(celsius: self)
+				let value = UnitsConverter().celsiusToFahrenheit(celsius: self)
                 return value
         }
     }
