@@ -107,14 +107,14 @@ fileprivate extension ManualSerialNumberViewModel {
 			return
 		}
 
-		canProceed = inputFields.reduce(true, { partialResult, field in
+		canProceed = inputFields.allSatisfy { field in
 			switch field.type {
 				case .claimingKey:
-					return partialResult && validator.validateStationKey(key: field.value)
+					return validator.validateStationKey(key: field.value)
 				case .serialNumber:
-					return partialResult && validator.validate(serialNumber: field.value)
+					return validator.validate(serialNumber: field.value)
 			}
-		})
+		}
 	}
 }
 

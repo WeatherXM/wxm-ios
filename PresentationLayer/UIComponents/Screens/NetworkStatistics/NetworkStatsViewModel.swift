@@ -141,7 +141,11 @@ extension NetworkStatsViewModel {
 														 xAxisTuple: nil,
 														 analyticsItemId: .dataDays)
 
-		let addtional: [NetworkStatsView.AdditionalStats] = [.init(title: "Total supply", value: "100,000,000", accessory: .init(fontIcon: .infoCircle, action: { }), analyticsItemId: nil),
+		let addtional: [NetworkStatsView.AdditionalStats] = [.init(title: "Total supply",
+																   value: "100,000,000",
+																   accessory: .init(fontIcon: .infoCircle,
+																					action: { }),
+																   analyticsItemId: nil),
 															 .init(title: "Daily Minted", value: "20,020", analyticsItemId: nil)]
 		viewModel.rewards = NetworkStatsView.Statistics(title: LocalizableString.NetStats.wxmRewardsTitle.localized,
 														description: nil,

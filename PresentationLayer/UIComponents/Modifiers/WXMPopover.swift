@@ -23,8 +23,8 @@ private struct PopOverModifier<V: View>: ViewModifier {
                         .presentationCompactAdaptation(.popover)
                 }
 				.onChange(of: show) { value in
-					/// Add an overlay on top of `NavigationStack` container to fix a SwiftUI issue with gestures
-					/// More info https://stackoverflow.com/questions/71714592/sheet-dismiss-gesture-with-swipe-back-gesture-causes-app-to-freeze
+					// Add an overlay on top of `NavigationStack` container to fix a SwiftUI issue with gestures
+					// More info https://stackoverflow.com/questions/71714592/sheet-dismiss-gesture-with-swipe-back-gesture-causes-app-to-freeze
 					Router.shared.showDummyOverlay = value
 				}
         } else {

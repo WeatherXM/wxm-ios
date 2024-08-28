@@ -35,7 +35,9 @@ class RewardDetailsViewModel: ObservableObject {
 		followState?.relation == .owned
 	}
 	var dateString: String {
-		LocalizableString.RewardDetails.earningsFor(rewardDetailsResponse?.timestamp?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone, showTimeZoneIndication: true).capitalizedSentence ?? "").localized
+		LocalizableString.RewardDetails.earningsFor(rewardDetailsResponse?.timestamp?.getFormattedDate(format: .monthLiteralDayYear,
+																									   timezone: .UTCTimezone,
+																									   showTimeZoneIndication: true).capitalizedSentence ?? "").localized
 	}
 	var dataQualityScoreObject: RewardFieldView.Score? {
 		rewardDetailsResponse?.dataQualityScoreObject(followState: followState)

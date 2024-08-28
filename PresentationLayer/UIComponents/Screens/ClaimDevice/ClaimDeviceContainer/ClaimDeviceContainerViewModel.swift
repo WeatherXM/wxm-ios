@@ -150,15 +150,14 @@ extension ClaimDeviceContainerViewModel {
 											retryTitle: LocalizableString.ClaimDevice.retryClaimButton.localized,
 											contactSupportAction: {
 			HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
-		}) {
+		}, cancelAction: {
 			Router.shared.popToRoot()
-		} retryAction: { [weak self] in
+		}, retryAction: { [weak self] in
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
 																	 .contentType: .claiming,
 																	 .action: .retry])
-
 			self?.performClaim()
-		}
+		})
 
 		return object
 	}

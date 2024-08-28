@@ -59,7 +59,7 @@ private extension HistoryViewModel {
             return
         }
 
-        /// Prevent from showing full screen loader in case of  pull to refresh
+        // Prevent from showing full screen loader in case of  pull to refresh
         loadingData = showFullScreenLoader
         isFailed = false
         do {

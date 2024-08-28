@@ -163,7 +163,9 @@ extension DailyRewardCardView {
 					let text = isOwned ? LocalizableString.StationDetails.ownedStationRewardErrorMessage.localized : LocalizableString.StationDetails.stationRewardErrorMessage(issues).localized
 					return (warningType, text)
 				case .warning:
-					let text = isOwned ? LocalizableString.StationDetails.ownedStationRewardWarningMessage.localized : LocalizableString.StationDetails.stationRewardWarningMessage(issues).localized
+					let isOwnedText = LocalizableString.StationDetails.ownedStationRewardWarningMessage.localized
+					let notOwnedText = LocalizableString.StationDetails.stationRewardWarningMessage(issues).localized
+					let text = isOwned ? isOwnedText : notOwnedText
 					return (warningType, text)
 				case .info:
 					let text = isOwned ? LocalizableString.StationDetails.ownedStationRewardInfoMessage.localized : LocalizableString.StationDetails.stationRewardInfoMessage(issues).localized

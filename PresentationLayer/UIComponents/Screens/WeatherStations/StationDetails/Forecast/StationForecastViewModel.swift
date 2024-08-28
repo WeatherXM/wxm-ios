@@ -147,7 +147,9 @@ private extension StationForecastViewModel {
 		let hourly = forecasts.map { $0.hourly }.compactMap { $0 }.flatMap { $0 }
 		let startDate = Date.now.advancedByHours(hours: -1)
 		let endDate = Date.now.advancedByHours(hours: 24)
-		let filtered = hourly.filter { ($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) >= startDate  &&  ($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) < endDate }
+		let filtered = hourly.filter {
+			($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) >= startDate  &&  ($0.timestamp?.timestampToDate(timeZone: timezone) ?? .distantPast) < endDate
+		}
 
 		hourlyItems = filtered.map { weather in
 			return weather.toMiniCardItem(with: timezone, action: { [weak  self] in
