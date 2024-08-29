@@ -51,6 +51,7 @@ private extension StationChipsView {
 					Text(FontIcon.hexagon.rawValue)
 						.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
 						.foregroundColor(Color(colorEnum: .text))
+						.lineLimit(1)
 
 					Text(address)
 						.font(.system(size: CGFloat(.caption)))
