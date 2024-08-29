@@ -105,7 +105,9 @@ extension Pager {
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PagerCell
+			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? PagerCell else {
+				fatalError()
+			}
 
             guard indexPath.section == 1 else {
                 cell.label.text = nil
@@ -131,8 +133,8 @@ extension Pager {
         }
 
         func selectElement(_ index: Int, in collectionView: UICollectionView) {
-			/// Dispatch on main thread to make sure will be scrolled as expected
-			/// The main reason for this was an issue in scroll position on appear
+			// Dispatch on main thread to make sure will be scrolled as expected
+			// The main reason for this was an issue in scroll position on appear
 			DispatchQueue.main.async { [weak collectionView] in
 				guard let collectionView,
 					  collectionView.numberOfSections > 2 else {

@@ -85,13 +85,7 @@ private extension ChartsFactory {
 					chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertPrecipitation(value: precipitation))
 				}
 			case .wind:
-				if let windSpeed = weatherUnitFormatter.convertWindSpeed(value: element.windSpeed) {
-					var windDirectionAsset: UIImage?
-					if let windDirection = element.windDirection, windSpeed > 0 {
-						windDirectionAsset = getWindImage(for: windDirection)
-					}
-					chartDataEntry = ChartDataEntry(x: xVal, y: windSpeed, icon: windDirectionAsset, data: element.windDirection)
-				}
+				chartDataEntry = getWindEntry(xVal: xVal, weather: element)
 			case .windDirection:
 				break
 			case .windGust:
@@ -131,5 +125,17 @@ private extension ChartsFactory {
 		}
 		
 		return chartDataEntry
+	}
+
+	func getWindEntry(xVal: Double, weather: CurrentWeather) -> ChartDataEntry? {
+		guard let windSpeed = weatherUnitFormatter.convertWindSpeed(value: weather.windSpeed) else {
+			return nil
+		}
+
+		var windDirectionAsset: UIImage?
+		if let windDirection = weather.windDirection, windSpeed > 0 {
+			windDirectionAsset = getWindImage(for: windDirection)
+		}
+		return ChartDataEntry(x: xVal, y: windSpeed, icon: windDirectionAsset, data: weather.windDirection)
 	}
 }

@@ -1092,14 +1092,14 @@
 			path = MultipleAlerts;
 			sourceTree = "<group>";
 		};
-		2623FF8F2AF1467E00BCDAC6 /* DailyRewards  */ = {
+		2623FF8F2AF1467E00BCDAC6 /* DailyRewards */ = {
 			isa = PBXGroup;
 			children = (
 				26FFAD772B8E125900BF0A6B /* Components */,
 				2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */,
 				2623FF922AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift */,
 			);
-			path = "DailyRewards ";
+			path = DailyRewards;
 			sourceTree = "<group>";
 		};
 		262A4CEA2A934F5D00A4BC17 /* MainScreen */ = {
@@ -1118,7 +1118,7 @@
 				26FFADD22B8F682D00BF0A6B /* RewardAnnotations */,
 				268D07912B2B1B54002BD77E /* SelectStationLocation */,
 				262B03052B20BC5400C31FE7 /* AppUpdate */,
-				2623FF8F2AF1467E00BCDAC6 /* DailyRewards  */,
+				2623FF8F2AF1467E00BCDAC6 /* DailyRewards */,
 				26D47E9F2A1783D10078723A /* Analytics */,
 				26A4118F29BF1AFE00A2C10B /* ChangeFrequency */,
 				2675471529A9181E008BCF40 /* ClaimDevice */,
@@ -1621,7 +1621,7 @@
 				266482F329C073DD00748F9C /* AccountConfirmation */,
 				262A4CEE2A935C9A00A4BC17 /* BaseTextField */,
 				2664831629C31AF400748F9C /* CustomSheet */,
-				26A4118829BA218D00A2C10B /* FailSuccess  */,
+				26A4118829BA218D00A2C10B /* FailSuccess */,
 				2675476929A9181E008BCF40 /* Lottie */,
 				2672C7812AAA0A1F00E1FDCC /* ScrollingPicker */,
 				26C464F92A40A1CE005E5245 /* ShimmerEffectLoader */,
@@ -2023,7 +2023,7 @@
 			path = RebootStation;
 			sourceTree = "<group>";
 		};
-		26A4118829BA218D00A2C10B /* FailSuccess  */ = {
+		26A4118829BA218D00A2C10B /* FailSuccess */ = {
 			isa = PBXGroup;
 			children = (
 				26A4118929BA21E600A2C10B /* FailSuccessStateObject.swift */,
@@ -2031,7 +2031,7 @@
 				2675473D29A9181E008BCF40 /* FailView.swift */,
 				2675474929A9181E008BCF40 /* SuccessView.swift */,
 			);
-			path = "FailSuccess ";
+			path = FailSuccess;
 			sourceTree = "<group>";
 		};
 		26A4118F29BF1AFE00A2C10B /* ChangeFrequency */ = {

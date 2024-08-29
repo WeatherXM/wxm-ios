@@ -158,53 +158,16 @@ private extension ChangeFrequencyViewModel {
     }
 
     func handleFrequencyError(_ error: ChangeFrequencyError) {
+		guard let failTuple = getFailDecsriptionAndAction(error: error) else {
+			return
+		}
         let title: String = LocalizableString.deviceInfoStationFrequencyChangeFailed.localized
-        let subtitle: String
+		let subtitle: String = failTuple.description
         let cancelTitle = LocalizableString.cancel.localized
         let retryTitle = LocalizableString.retry.localized
-        let contactSupportAction: () -> Void
+		let contactSupportAction: () -> Void = failTuple.action
         let cancelAction: () -> Void = { [weak self] in self?.dismissToggle.toggle()}
         let retryAction: () -> Void = { [weak self] in self?.setFrequency() }
-
-		switch error {
-			case .bluetooth(let bluetoothState):
-				subtitle = bluetoothState.errorDescription ?? ""
-				contactSupportAction = { [weak self] in
-					HelperFunctions().openContactSupport(successFailureEnum: .changeFrequency,
-														 email: self?.mainVM.userInfo?.email,
-														 serialNumber: self?.device.label,
-														 errorString: bluetoothState.errorDescription ?? "-")
-				}
-				
-			case .notInRange:
-				subtitle = LocalizableString.FirmwareUpdate.stationNotInRangeDescription.localized
-				contactSupportAction = { [weak self] in
-					HelperFunctions().openContactSupport(successFailureEnum: .changeFrequency,
-														 email: self?.mainVM.userInfo?.email,
-														 serialNumber: self?.device.label,
-														 errorString: LocalizableString.FirmwareUpdate.stationNotInRangeTitle.localized)
-				}
-			case .connect:
-				let linkString = "[\(LocalizableString.ClaimDevice.failedTroubleshootingTextLinkTitle.localized)](\(DisplayedLinks.heliumTroubleshooting.linkURL))"
-				subtitle = LocalizableString.FirmwareUpdate.failedStationConnectionDescription(linkString, LocalizableString.ClaimDevice.failedTextLinkTitle.localized).localized
-				contactSupportAction = { [weak self] in
-					HelperFunctions().openContactSupport(successFailureEnum: .changeFrequency,
-														 email: self?.mainVM.userInfo?.email,
-														 serialNumber: self?.device.label,
-														 errorString: LocalizableString.FirmwareUpdate.failedToConnectError.localized)
-				}
-			case .settingFrequency(let errorString):
-				subtitle = LocalizableString.deviceInfoStationFrequencyChangeFailureDescription(errorString ?? "-").localized
-				contactSupportAction = { [weak self] in
-					HelperFunctions().openContactSupport(successFailureEnum: .changeFrequency,
-														 email: self?.mainVM.userInfo?.email,
-														 serialNumber: self?.device.label,
-														 errorString: errorString ?? "-")
-				}
-			case .unknown:
-				return
-				
-        }
 
         let obj = FailSuccessStateObject(type: .changeFrequency,
                                          title: title,
@@ -216,6 +179,53 @@ private extension ChangeFrequencyViewModel {
                                          retryAction: retryAction)
         self.state = .failed(obj)
     }
+
+	func getFailDecsriptionAndAction(error: ChangeFrequencyError) -> (description: String, action: VoidCallback)? {
+		let description: String
+		let action: VoidCallback
+
+		switch error {
+			case .bluetooth(let bluetoothState):
+				description = bluetoothState.errorDescription ?? ""
+				action = { [weak self] in
+					HelperFunctions().openContactSupport(successFailureEnum: .changeFrequency,
+														 email: self?.mainVM.userInfo?.email,
+														 serialNumber: self?.device.label,
+														 errorString: bluetoothState.errorDescription ?? "-")
+				}
+
+			case .notInRange:
+				description = LocalizableString.FirmwareUpdate.stationNotInRangeDescription.localized
+				action = { [weak self] in
+					HelperFunctions().openContactSupport(successFailureEnum: .changeFrequency,
+														 email: self?.mainVM.userInfo?.email,
+														 serialNumber: self?.device.label,
+														 errorString: LocalizableString.FirmwareUpdate.stationNotInRangeTitle.localized)
+				}
+			case .connect:
+				let linkString = "[\(LocalizableString.ClaimDevice.failedTroubleshootingTextLinkTitle.localized)](\(DisplayedLinks.heliumTroubleshooting.linkURL))"
+				description = LocalizableString.FirmwareUpdate.failedStationConnectionDescription(linkString, LocalizableString.ClaimDevice.failedTextLinkTitle.localized).localized
+				action = { [weak self] in
+					HelperFunctions().openContactSupport(successFailureEnum: .changeFrequency,
+														 email: self?.mainVM.userInfo?.email,
+														 serialNumber: self?.device.label,
+														 errorString: LocalizableString.FirmwareUpdate.failedToConnectError.localized)
+				}
+			case .settingFrequency(let errorString):
+				description = LocalizableString.deviceInfoStationFrequencyChangeFailureDescription(errorString ?? "-").localized
+				action = { [weak self] in
+					HelperFunctions().openContactSupport(successFailureEnum: .changeFrequency,
+														 email: self?.mainVM.userInfo?.email,
+														 serialNumber: self?.device.label,
+														 errorString: errorString ?? "-")
+				}
+			case .unknown:
+				return nil
+
+		}
+
+		return (description, action)
+	}
 
     func trackViewContentEvent(success: Bool) {
         WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .changeFrequencyResult,
