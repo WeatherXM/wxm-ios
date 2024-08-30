@@ -39,17 +39,45 @@ struct WeatherStationsHomeView: View {
         }
     }
 
-    @ViewBuilder
-    var navigationBarRightView: some View {
-        Button {
-            showFilters = true
-        } label: {
-            Text(FontIcon.sliders.rawValue)
-                .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-				.foregroundColor(Color(colorEnum: viewModel.isFiltersActive ? .wxmPrimary : .text))
-                .frame(width: 30.0, height: 30.0)
-        }
-    }
+//    @ViewBuilder
+//    var navigationBarRightView: some View {
+//        Button {
+//            showFilters = true
+//        } label: {
+//            Text(FontIcon.sliders.rawValue)
+//                .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+//				.foregroundColor(Color(colorEnum: viewModel.isFiltersActive ? .wxmPrimary : .text))
+//                .frame(width: 30.0, height: 30.0)
+//        }
+//    }
+
+	@ViewBuilder
+	var navigationBarRightView: some View {
+		Button {
+			showFilters = true
+		} label: {
+			HStack(spacing: CGFloat(.mediumSpacing)) {
+				VStack(alignment: .leading, spacing: 0.0) {
+					Text(LocalizableString.Profile.totalEarned.localized)
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundStyle(Color(colorEnum: .text))
+
+					Text(viewModel.totalEarned.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
+						.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+						.foregroundStyle(Color(colorEnum: .text))
+				}
+
+				Text(FontIcon.chevronRight.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+					.foregroundColor(Color(colorEnum: .midGrey))
+
+			}
+			.WXMCardStyle(backgroundColor: Color(colorEnum: .layer1),
+						  insideHorizontalPadding: CGFloat(.smallSidePadding),
+						  insideVerticalPadding: CGFloat(.smallSidePadding),
+						  cornerRadius: CGFloat(.buttonCornerRadius))
+		}
+	}
 }
 
 private struct ContentView: View {

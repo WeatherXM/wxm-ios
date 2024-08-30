@@ -55,4 +55,5 @@ enum FontIcon: String {
 	case barcode
 	case split
 	case close
+	case chevronRight = "chevron-right"
 }

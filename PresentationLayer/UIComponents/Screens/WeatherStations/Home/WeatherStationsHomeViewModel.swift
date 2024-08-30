@@ -30,6 +30,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
     private var followStates: [String: UserDeviceFollowState] = [:] {
         didSet {
             updateFilteredDevices()
+			updateTotalEarned()
         }
     }
 
@@ -37,6 +38,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
         FilterValues.default != filters
     }
 
+	@Published var totalEarned: Double = 0.0
     @Published var shouldShowFullScreenLoader = true
     @Published var devices = [DeviceDetails]()
     @Published var scrollOffsetObject: TrackableScrollOffsetObject
@@ -295,4 +297,10 @@ private extension WeatherStationsHomeViewModel {
 
         }
     }
+
+	func updateTotalEarned() {
+		let owndedDevices = allDevices.filter { getFollowState(for: $0)?.relation == .owned}
+		let totalEarned: Double = owndedDevices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }
+		self.totalEarned = totalEarned
+	}
 }
