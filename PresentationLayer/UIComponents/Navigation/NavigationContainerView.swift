@@ -23,11 +23,14 @@ struct NavigationContainerView<Content: View, RightView: View>: View {
     @StateObject private var navigationObject = NavigationObject()
 
     private let showBackButton: Bool
+	private let titleImage: AssetEnum?
 
     init(showBackButton: Bool = true,
+		 titleImage: AssetEnum? = nil,
          @ViewBuilder rightView: () -> RightView = { EmptyView() },
          @ViewBuilder content: () -> Content) {
         self.showBackButton = showBackButton
+		self.titleImage = titleImage
         self.content = content()
         self.rightView = rightView()
     }
@@ -65,6 +68,10 @@ private extension NavigationContainerView {
 
                     VStack {
                         HStack {
+							if let titleImage {
+								Image(asset: titleImage)
+							}
+							
                             Text(navigationObject.title)
                                 .font(.system(size: CGFloat(.largeTitleFontSize)))
                                 .lineLimit(1)
@@ -103,7 +110,7 @@ private extension NavigationContainerView {
 
 struct NavigationContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationContainerView {
+		NavigationContainerView(titleImage: .wxmNavigationLogo) {
             Button {
             } label: {
                 Text(FontIcon.calendar.rawValue)

@@ -26,7 +26,7 @@ struct WeatherStationsHomeView: View {
     }
 
     var body: some View {
-        NavigationContainerView(showBackButton: false) {
+		NavigationContainerView(showBackButton: false, titleImage: .wxmNavigationLogo) {
             navigationBarRightView
         } content: {
             ContentView(vieModel: viewModel,
@@ -84,7 +84,6 @@ private struct ContentView: View {
         }.onAppear {
             viewModel.mainVM = mainVM
 			viewModel.getDevices()
-            navigationObject.title = LocalizableString.weatherStationsHomeTitle.localized
         }
     }
 
