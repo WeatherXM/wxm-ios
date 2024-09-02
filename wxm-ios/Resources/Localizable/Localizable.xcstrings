@@ -4549,6 +4549,9 @@
         }
       }
     },
+    "Hello, World!" : {
+
+    },
     "hidden_content_description_format" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5805,6 +5808,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retry"
+          }
+        }
+      }
+    },
+    "reward_analytics_station_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Rewards"
           }
         }
       }

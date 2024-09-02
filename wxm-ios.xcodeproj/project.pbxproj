@@ -354,6 +354,7 @@
 		26AA21EB2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21EA2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift */; };
 		26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F462A7BEA0700855912 /* CTAView.swift */; };
 		26AB9F582A822DB500855912 /* UserDeviceFollowState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */; };
+		26ACE8C72C86015300EA22DD /* LocalizableString+RewardAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */; };
 		26ADDF812BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF802BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift */; };
 		26ADDF8F2BE3BF8600992BEF /* ClaimDeviceBulletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF8E2BE3BF8600992BEF /* ClaimDeviceBulletView.swift */; };
 		26ADDF912BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF902BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift */; };
@@ -441,6 +442,8 @@
 		26DD42E129B0F741008E277E /* StationDetailsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */; };
 		26DD42E429B0FA9B008E277E /* StationDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42E329B0FA9B008E277E /* StationDetailsViewModel.swift */; };
 		26DF3D202C85BB86005F6FC1 /* ExplorerData+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */; };
+		26DF3D312C85FB30005F6FC1 /* RewardAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */; };
+		26DF3D332C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */; };
 		26E5B0C029F8078C00834899 /* WXMDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5B0BF29F8078C00834899 /* WXMDivider.swift */; };
 		26E5B0C229F8152800834899 /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5B0C129F8152800834899 /* Dimensions.swift */; };
 		26E685AF2C0619D700B972B1 /* SelectDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E685AE2C0619D700B972B1 /* SelectDeviceView.swift */; };
@@ -893,6 +896,7 @@
 		26AA21EA2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationMapViewModel.swift; sourceTree = "<group>"; };
 		26AB9F462A7BEA0700855912 /* CTAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAView.swift; sourceTree = "<group>"; };
 		26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDeviceFollowState+.swift"; sourceTree = "<group>"; };
+		26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+RewardAnalytics.swift"; sourceTree = "<group>"; };
 		26ADDF802BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSerialNumberView.swift; sourceTree = "<group>"; };
 		26ADDF8E2BE3BF8600992BEF /* ClaimDeviceBulletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBulletView.swift; sourceTree = "<group>"; };
 		26ADDF902BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSerialNumberViewModel.swift; sourceTree = "<group>"; };
@@ -947,6 +951,8 @@
 		26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsContainerView.swift; sourceTree = "<group>"; };
 		26DD42E329B0FA9B008E277E /* StationDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsViewModel.swift; sourceTree = "<group>"; };
 		26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerData+.swift"; sourceTree = "<group>"; };
+		26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsView.swift; sourceTree = "<group>"; };
+		26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsViewModel.swift; sourceTree = "<group>"; };
 		26E2B336297ACC0300ED9B58 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		26E5B0BF29F8078C00834899 /* WXMDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMDivider.swift; sourceTree = "<group>"; };
 		26E5B0C129F8152800834899 /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
@@ -1120,6 +1126,7 @@
 		262A4CEB2A93517300A4BC17 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				26DF3D2F2C85FB16005F6FC1 /* RewardAnalytics */,
 				264CC75E2B98729E0060DEA4 /* RewardBoosts */,
 				26FFADD22B8F682D00BF0A6B /* RewardAnnotations */,
 				268D07912B2B1B54002BD77E /* SelectStationLocation */,
@@ -2068,6 +2075,7 @@
 				26E85B102C7752A70062667E /* LocalizableUnits.xcstrings */,
 				26D611AA2A9E21080099117C /* LocalizableConstants.swift */,
 				2666D57C2BC96077003B30C0 /* LocalizableString+Forecast.swift */,
+				26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */,
 				26E85B132C7753140062667E /* LocalizableString+Units.swift */,
 				268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */,
 				264DD5072B9F3BCB002691FF /* LocalizableString+ExplorerList.swift */,
@@ -2354,6 +2362,15 @@
 				2666D5092BBC4E80003B30C0 /* StationChipsView.swift */,
 			);
 			path = StationDetails;
+			sourceTree = "<group>";
+		};
+		26DF3D2F2C85FB16005F6FC1 /* RewardAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */,
+				26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */,
+			);
+			name = RewardAnalytics;
 			sourceTree = "<group>";
 		};
 		26E685AD2C06198900B972B1 /* SelectDevice */ = {
@@ -3005,6 +3022,7 @@
 				26A6C5D92B601A8000FA2D2F /* SafariView.swift in Sources */,
 				267548DE29A91A87008BCF40 /* FailAPICodeEnum.swift in Sources */,
 				267547BF29A9181E008BCF40 /* FailedDeleteView.swift in Sources */,
+				26ACE8C72C86015300EA22DD /* LocalizableString+RewardAnalytics.swift in Sources */,
 				26A4118A29BA21E600A2C10B /* FailSuccessStateObject.swift in Sources */,
 				2645823B2A41C07000195C21 /* FailSuccessViewModifier.swift in Sources */,
 				267547F729A9181E008BCF40 /* FailView.swift in Sources */,
@@ -3156,8 +3174,10 @@
 				2632E6342A3378BF00A5ADB3 /* StatisticsChart.swift in Sources */,
 				2675480B29A9181E008BCF40 /* StepsNavView.swift in Sources */,
 				2675480629A9181E008BCF40 /* StepsView.swift in Sources */,
+				26DF3D312C85FB30005F6FC1 /* RewardAnalyticsView.swift in Sources */,
 				267548EB29A91A87008BCF40 /* String+.swift in Sources */,
 				267548C829A91A87008BCF40 /* StringConstants.swift in Sources */,
+				26DF3D332C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift in Sources */,
 				267547D229A9181E008BCF40 /* StrokeBorderModifier.swift in Sources */,
 				26A5451B2BFF2C1C0098FE52 /* NetworkStatsResponse+.swift in Sources */,
 				26ADDF912BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift in Sources */,
