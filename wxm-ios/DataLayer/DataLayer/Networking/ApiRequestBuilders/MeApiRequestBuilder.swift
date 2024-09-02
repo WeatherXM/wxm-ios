@@ -46,6 +46,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	case getUserDeviceInfoById(deviceId: String)
 	case getUserDeviceHistoryById(deviceId: String, fromDate: String, toDate: String, exclude: String)
 	case getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String)
+	case getUserDeviceRewards(deviceId: String, mode: String)
 	case getDeviceFirmwareById(deviceId: String)
 	case setFriendlyName(deviceId: String, name: String)
 	case deleteFriendlyName(deviceId: String)
@@ -108,6 +109,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/devices/\(deviceId)/history"
 			case let .getUserDeviceForecastById(deviceId, _, _, _):
 				return "me/devices/\(deviceId)/forecast"
+			ase let .getUserDeviceRewards(deviceId, _):
+				return "me/devices/\(deviceId)/rewards"
 			case let .getDeviceFirmwareById(deviceId: deviceId):
 				return "me/devices/\(deviceId)/firmware"
 			case let .setFriendlyName(deviceId, _):
@@ -157,6 +160,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 						ParameterConstants.Me.exclude: exclude
 					]
 				}
+			case let .getUserDeviceRewards(_, mode):
+				return [ParameterConstants.Me.mode: mode]
 			case let .setFriendlyName(_, name):
 				return [ParameterConstants.Me.friendlyName: name]
 			case let .setDeviceLocation(_, lat, lon):

@@ -102,6 +102,12 @@ public struct MeRepositoryImpl: MeRepository {
         return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
     }
 
+	public func getUserDeviceRewards(deviceId: String, mode: DeviceRewardsMode) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsResponse, NetworkErrorResponse>, Never> {
+		let builder = MeApiRequestBuilder.getUserDeviceRewards(deviceId: deviceId, mode: mode.rawValue)
+		let urlRequest = try builder.asURLRequest()
+		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+	}
+
     public func followStation(deviceId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
         try userDevicesService.followStation(deviceId: deviceId)
     }

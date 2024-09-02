@@ -14,6 +14,12 @@ public enum HistoryExclude: String {
     case daily
 }
 
+public enum DeviceRewardsMode: String {
+	case week
+	case month
+	case year
+}
+
 public struct UserDeviceFollowState: Hashable, Codable {
     public let deviceId: String
     public let relation: DeviceRelation
@@ -42,6 +48,7 @@ public protocol MeRepository {
 								   fromDate: String,
 								   toDate: String,
 								   exclude: String) throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never>
+	func getUserDeviceRewards(deviceId: String, mode: DeviceRewardsMode) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsResponse, NetworkErrorResponse>, Never>
     func deleteAccount() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
     func followStation(deviceId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
     func unfollowStation(deviceId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>

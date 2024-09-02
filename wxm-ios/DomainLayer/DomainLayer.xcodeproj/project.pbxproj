@@ -213,7 +213,6 @@
 				2664830529C218D900748F9C /* NetworkDevicesInfoResponse.swift */,
 				74D6B41B28379D8A00274A90 /* NetworkDevicesResponse.swift */,
 				2664830729C21A8300748F9C /* NetworkDevicesTypes.swift */,
-				26DF3D2D2C85EA24005F6FC1 /* NetworkDeviceRewardsResponse.swift */,
 			);
 			path = Devices;
 			sourceTree = "<group>";
@@ -362,6 +361,7 @@
 				266B01B82B84D3A7007AC689 /* NetworkDeviceRewardsSummaryResponse.swift */,
 				26FFAD752B8E08CB00BF0A6B /* NetworkDeviceRewardDetailsResponse.swift */,
 				264CC75A2B986AC90060DEA4 /* NetworkDeviceRewardBoostsResponse.swift */,
+				26DF3D2D2C85EA24005F6FC1 /* NetworkDeviceRewardsResponse.swift */,
 				B5611E7E2834D5FC0092F204 /* NetworkFirmwareResponse.swift */,
 				B5667D6A2833D37000C08B57 /* NetworkUserInfoResponse.swift */,
 				26A3B3DD2B18E41F0002F35F /* NetworkUserRewardsResponse.swift */,

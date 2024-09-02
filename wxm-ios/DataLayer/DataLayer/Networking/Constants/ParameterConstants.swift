@@ -31,6 +31,7 @@ struct ParameterConstants {
         static let friendlyName = "friendlyName"
 		static let lat = "lat"
 		static let lon = "lon"
+		static let mode = "mode"
     }
 
 	enum Devices {

@@ -73,6 +73,13 @@ public struct MeUseCase {
         return getUserDeviceForecastById
     }
 
+
+	public func getUserDeviceRewards(deviceId: String,
+									 mode: DeviceRewardsMode) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsResponse, NetworkErrorResponse>, Never> {
+		let getUserDeviceRewards = try meRepository.getUserDeviceRewards(deviceId: deviceId, mode: mode)
+		return getUserDeviceRewards
+	}
+
     public func deleteAccount() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
         let deleteAccount = try meRepository.deleteAccount()
         return deleteAccount
