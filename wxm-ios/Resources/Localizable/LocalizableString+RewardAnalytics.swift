@@ -10,6 +10,8 @@ import Foundation
 extension LocalizableString {
 	enum RewardAnalytics {
 		case stationRewards
+		case emptyStateTitle
+		case emptyStateDescription
 	}
 }
 
@@ -23,6 +25,10 @@ extension LocalizableString.RewardAnalytics: WXMLocalizable {
 		switch self {
 			case .stationRewards:
 				return "reward_analytics_station_rewards"
+			case .emptyStateTitle:
+				return "reward_analytics_empty_state_title"
+			case .emptyStateDescription:
+				return "reward_analytics_empty_state_description"
 		}
 	}
 }

@@ -5812,6 +5812,28 @@
         }
       }
     },
+    "reward_analytics_empty_state_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It seems you don’t have any stations yet.  Join the weather revolution! Buy a weather station and start earning $WXM tokens."
+          }
+        }
+      }
+    },
+    "reward_analytics_empty_state_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oh no!"
+          }
+        }
+      }
+    },
     "reward_analytics_station_rewards" : {
       "extractionState" : "manual",
       "localizations" : {

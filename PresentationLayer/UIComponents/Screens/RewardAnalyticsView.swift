@@ -17,20 +17,50 @@ struct RewardAnalyticsView: View {
     }
 }
 
+extension RewardAnalyticsView {
+	enum State {
+		case empty(WXMEmptyView.Configuration)
+		case noRewards
+		case content		
+	}
+}
+
 private struct ContentView: View {
 	@EnvironmentObject var navigationObject: NavigationObject
 	@ObservedObject var viewModel: RewardAnalyticsViewModel
 
 	var body: some View {
-		VStack {
-			Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-		}.onAppear {
+		Group {
+			switch viewModel.state {
+				case .empty(let configuration):
+					emptyView(configuration: configuration)
+				case .noRewards:
+					noRewards
+				case .content:
+					EmptyView()
+			}
+		}
+		.onAppear {
 			navigationObject.title = LocalizableString.RewardAnalytics.stationRewards.localized
 		}
 	}
 
+	@ViewBuilder
+	func emptyView(configuration: WXMEmptyView.Configuration) -> some View {
+		WXMEmptyView(configuration: configuration, backgroundColor: .background)
+	}
+
+	@ViewBuilder
+	var noRewards: some View {
+		NoRewardsView()
+	}
+
+	@ViewBuilder
+	var rewardsView: some View {
+		EmptyView()
+	}
 }
 
 #Preview {
-	RewardAnalyticsView(viewModel: .init())
+	RewardAnalyticsView(viewModel: .init(devices: []))
 }
