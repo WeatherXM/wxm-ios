@@ -42,13 +42,17 @@ struct WeatherStationsHomeView: View {
 		} label: {
 			HStack(spacing: CGFloat(.mediumSpacing)) {
 				VStack(alignment: .leading, spacing: 0.0) {
-					Text(LocalizableString.Profile.totalEarned.localized)
-						.font(.system(size: CGFloat(.caption)))
-						.foregroundStyle(Color(colorEnum: .text))
+					if let totalEarnedTitle = viewModel.totalEarnedTitle {
+						Text(totalEarnedTitle)
+							.font(.system(size: CGFloat(.caption)))
+							.foregroundStyle(Color(colorEnum: .text))
+					}
 
-					Text(viewModel.totalEarned.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
-						.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
-						.foregroundStyle(Color(colorEnum: .text))
+					if let totalEarnedValueText = viewModel.totalEarnedValueText {
+						Text(totalEarnedValueText)
+							.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+							.foregroundStyle(Color(colorEnum: .text))
+					}
 				}
 
 				Text(FontIcon.chevronRight.rawValue)

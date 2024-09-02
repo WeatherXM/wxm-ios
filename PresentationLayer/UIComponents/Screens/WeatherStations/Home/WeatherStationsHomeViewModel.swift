@@ -38,7 +38,8 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
         FilterValues.default != filters
     }
 
-	@Published var totalEarned: Double = 0.0
+	@Published var totalEarnedTitle: String?
+	@Published var totalEarnedValueText: String?
     @Published var shouldShowFullScreenLoader = true
     @Published var devices = [DeviceDetails]()
     @Published var scrollOffsetObject: TrackableScrollOffsetObject
@@ -300,7 +301,13 @@ private extension WeatherStationsHomeViewModel {
 
 	func updateTotalEarned() {
 		let owndedDevices = allDevices.filter { getFollowState(for: $0)?.relation == .owned}
+		let hasOwned = !owndedDevices.isEmpty
 		let totalEarned: Double = owndedDevices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }
-		self.totalEarned = totalEarned
+		
+		let noRewardsText = LocalizableString.Home.noRewardsYet.localized
+		let totalEarnedText = LocalizableString.Profile.totalEarned.localized
+		
+		self.totalEarnedTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : totalEarnedText
+		self.totalEarnedValueText = totalEarned > 0 ? "\(totalEarned.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)" : nil
 	}
 }
