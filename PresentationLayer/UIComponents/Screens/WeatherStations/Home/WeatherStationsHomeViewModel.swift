@@ -308,6 +308,6 @@ private extension WeatherStationsHomeViewModel {
 		let totalEarnedText = LocalizableString.Profile.totalEarned.localized
 		
 		self.totalEarnedTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : totalEarnedText
-		self.totalEarnedValueText = totalEarned > 0 ? "\(totalEarned.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)" : nil
+		self.totalEarnedValueText = (totalEarned == 0 && hasOwned) ? nil : "\(totalEarned.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)" 
 	}
 }
