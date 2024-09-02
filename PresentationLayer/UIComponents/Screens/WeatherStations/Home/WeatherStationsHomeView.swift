@@ -37,33 +37,36 @@ struct WeatherStationsHomeView: View {
 
 	@ViewBuilder
 	var navigationBarRightView: some View {
-		Button {
+		if let totalEarnedTitle = viewModel.totalEarnedTitle {
+			Button {
 
-		} label: {
-			HStack(spacing: CGFloat(.mediumSpacing)) {
-				VStack(alignment: .leading, spacing: 0.0) {
-					if let totalEarnedTitle = viewModel.totalEarnedTitle {
-						Text(totalEarnedTitle)
-							.font(.system(size: CGFloat(.caption)))
-							.foregroundStyle(Color(colorEnum: .text))
+			} label: {
+				HStack(spacing: CGFloat(.mediumSpacing)) {
+					VStack(alignment: .leading, spacing: 0.0) {
+						if let totalEarnedTitle = viewModel.totalEarnedTitle {
+							Text(totalEarnedTitle)
+								.font(.system(size: CGFloat(.caption)))
+								.foregroundStyle(Color(colorEnum: .text))
+						}
+
+						if let totalEarnedValueText = viewModel.totalEarnedValueText {
+							Text(totalEarnedValueText)
+								.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+								.foregroundStyle(Color(colorEnum: .text))
+						}
 					}
 
-					if let totalEarnedValueText = viewModel.totalEarnedValueText {
-						Text(totalEarnedValueText)
-							.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
-							.foregroundStyle(Color(colorEnum: .text))
-					}
+					Text(FontIcon.chevronRight.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundColor(Color(colorEnum: .midGrey))
+
 				}
-
-				Text(FontIcon.chevronRight.rawValue)
-					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-					.foregroundColor(Color(colorEnum: .midGrey))
-
+				.WXMCardStyle(backgroundColor: Color(colorEnum: .layer1),
+							  insideHorizontalPadding: CGFloat(.smallSidePadding),
+							  insideVerticalPadding: CGFloat(.smallSidePadding),
+							  cornerRadius: CGFloat(.buttonCornerRadius))
 			}
-			.WXMCardStyle(backgroundColor: Color(colorEnum: .layer1),
-						  insideHorizontalPadding: CGFloat(.smallSidePadding),
-						  insideVerticalPadding: CGFloat(.smallSidePadding),
-						  cornerRadius: CGFloat(.buttonCornerRadius))
+			.transition(.opacity.animation(.easeIn))
 		}
 	}
 }
