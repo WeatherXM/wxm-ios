@@ -13,6 +13,7 @@ import Network
 import SwiftUI
 import UIKit
 import Toolkit
+import Combine
 
 struct MapBoxMapView: View {
 	@Binding var controlsBottomOffset: CGFloat
@@ -84,6 +85,8 @@ extension MapBoxMap {
     }
 
     class Coordinator: NSObject, MapViewControllerDelegate {
+		private var canellableSet: Set<AnyCancellable> = .init()
+
         func didTapAnnotation(_: MapViewController, _ annotations: [PolygonAnnotation]) {
             guard let firstValidAnnotation = annotations.first,
 				  let hexIndex = firstValidAnnotation.userInfo?.keys.first else {
@@ -98,23 +101,19 @@ extension MapBoxMap {
         }
 
         func configureMap(_ mapViewController: MapViewController) {
-            viewModel.fetchExplorerData { explorerData in
-                guard let explorerData else {
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    mapViewController.configureHeatMapLayer(source: explorerData.geoJsonSource)
-                    mapViewController.configurePolygonLayer(polygonAnnotations: explorerData.polygonPoints)
-					self.viewModel.snapToInitialLocation()
-                }
-            }
+            viewModel.fetchExplorerData()
         }
 
         let viewModel: ExplorerViewModel
 
         init(viewModel: ExplorerViewModel) {
             self.viewModel = viewModel
+			super.init()
+			viewModel.$explorerData.sink { [weak self] data in
+				self?.viewModel.mapController?.configureHeatMapLayer(source: data.geoJsonSource)
+				self?.viewModel.mapController?.configurePolygonLayer(polygonAnnotations: data.polygonPoints)
+				self?.viewModel.snapToInitialLocation()
+			}.store(in: &canellableSet)
         }
     }
 }
@@ -230,10 +229,10 @@ class MapViewController: UIViewController {
         }
     }
 
-    internal func configurePolygonLayer(polygonAnnotations: [PolygonAnnotation]) {
+	internal func configurePolygonLayer(polygonAnnotations: [PolygonAnnotation]) {
 		let polygonAnnotationManager = self.polygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.polygonManagerId)
-        polygonAnnotationManager.annotations = polygonAnnotations
-        polygonManager = polygonAnnotationManager
+		polygonAnnotationManager.annotations = polygonAnnotations
+		polygonManager = polygonAnnotationManager
     }
 
     internal func cameraSetup() {
