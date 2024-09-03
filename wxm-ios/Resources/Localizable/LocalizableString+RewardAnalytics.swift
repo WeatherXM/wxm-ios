@@ -14,6 +14,7 @@ extension LocalizableString {
 		case emptyStateDescription
 		case totalEarnedFor(Int)
 		case lastRun
+		case totalEarned
 	}
 }
 
@@ -42,6 +43,8 @@ extension LocalizableString.RewardAnalytics: WXMLocalizable {
 				return count > 1 ? "reward_analytics_total_earned_for_plural" : "reward_analytics_total_earned_for"
 			case .lastRun:
 				return "reward_analytics_last_run"
+			case .totalEarned:
+				return "reward_analytics_total_earned"
 		}
 	}
 }

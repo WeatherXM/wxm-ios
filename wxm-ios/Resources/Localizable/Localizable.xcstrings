@@ -5853,6 +5853,17 @@
         }
       }
     },
+    "reward_analytics_total_earned" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Earned"
+          }
+        }
+      }
+    },
     "reward_analytics_total_earned_for" : {
       "extractionState" : "manual",
       "localizations" : {

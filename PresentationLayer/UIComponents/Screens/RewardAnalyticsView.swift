@@ -30,6 +30,8 @@ private struct ContentView: View {
 	@EnvironmentObject var navigationObject: NavigationObject
 	@ObservedObject var viewModel: RewardAnalyticsViewModel
 
+	@State private var selectedIndex: Int = 0
+
 	var body: some View {
 		Group {
 			switch viewModel.state {
@@ -68,6 +70,9 @@ private struct ContentView: View {
 		TrackableScrollView {
 			VStack(spacing: CGFloat(.defaultSidePadding)) {
 				titleView
+
+				summaryCard
+					.wxmShadow()
 			}
 			.padding(CGFloat(.defaultSidePadding))
 		}
@@ -99,6 +104,26 @@ private struct ContentView: View {
 					.foregroundStyle(Color(colorEnum: .success))
 			}
 		}
+	}
+
+	@ViewBuilder
+	var summaryCard: some View {
+		VStack {
+			HStack {
+				VStack(spacing: CGFloat(.smallSpacing)) {
+					Text(LocalizableString.RewardAnalytics.totalEarned.localized)
+						.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+				}
+				
+				Spacer()
+
+				CustomSegmentView(options: ["7D", "1M", "1Y"],
+								  selectedIndex: $selectedIndex,
+								  style: .compact)
+				.cornerRadius(CGFloat(.buttonCornerRadius))
+			}
+		}
+		.WXMCardStyle()
 	}
 }
 
