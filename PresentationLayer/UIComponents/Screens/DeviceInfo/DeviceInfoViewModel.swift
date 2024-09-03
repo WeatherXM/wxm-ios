@@ -234,44 +234,44 @@ private extension DeviceInfoViewModel {
 		}
 	}
 
-    func handleInfoFieldButtonTap(infoField: InfoField) {
-        switch infoField {
-            case .name:
-                break
+	func handleInfoFieldButtonTap(infoField: InfoField) {
+		switch infoField {
+			case .name:
+				break
 			case .bundleName:
 				break
 			case .gatewayModel:
 				break
-            case .devEUI:
-                break
-            case .hardwareVersion:
-                break
-            case .firmwareVersion:
-                mainVM.showFirmwareUpdate(device: device)
-            case .lastHotspot:
-                break
-            case .lastRSSI:
-                break
-            case .serialNumber:
-                break
-            case .ATECC:
-                break
-            case .GPS:
-                break
-            case .wifiSignal:
-                break
-            case .batteryState:
-                break
-            case .claimedAt:
-                break
+			case .devEUI:
+				break
+			case .hardwareVersion:
+				break
+			case .firmwareVersion:
+				mainVM.showFirmwareUpdate(device: device)
+			case .lastHotspot:
+				break
+			case .lastRSSI:
+				break
+			case .serialNumber:
+				break
+			case .ATECC:
+				break
+			case .GPS:
+				break
+			case .wifiSignal:
+				break
+			case .batteryState:
+				break
+			case .claimedAt:
+				break
 			case .lastGatewayActivity:
 				break
 			case .stationModel:
 				break
 			case .lastStationActivity:
 				break
-        }
-    }
+		}
+	}
 
     func showChangeNameAlert() {
         let okAction: AlertHelper.AlertObject.Action = (LocalizableString.save.localized, { [weak self] text in

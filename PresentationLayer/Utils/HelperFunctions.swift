@@ -27,7 +27,7 @@ struct HelperFunctions {
 	///   - addtionalInfo: Any additional info
 	///   - trackSelectContentEvent: Track the event or not
 	func openContactSupport(successFailureEnum: SuccessFailEnum,
-							email: String?, 
+							email: String?,
 							serialNumber: String? = nil,
 							errorString: String? = nil,
 							addtionalInfo: String? = nil,
@@ -98,7 +98,8 @@ struct HelperFunctions {
             finalEmailString.append(info)
         }
 
-		let leaveMessageNote = ("\n\n" + LocalizableString.mailLeaveMessageNote.localized + "\n" + "-------------------------").addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+		let leaveMessageNote = ("\n\n" + LocalizableString.mailLeaveMessageNote.localized + "\n" + "-------------------------")
+			.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
 		finalEmailString.append(leaveMessageNote)
 
         if let url = URL(string: finalEmailString) {

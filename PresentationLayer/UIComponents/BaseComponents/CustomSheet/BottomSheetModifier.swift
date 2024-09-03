@@ -145,7 +145,7 @@ struct BottomSheetInfo {
 	let title: String?
 	let description: String?
 	var scrollable: Bool = false
-	var analyticsScreen: Screen? = nil
-	var buttonTitle: String? = nil
-	var buttonAction: VoidCallback? = nil
+	var analyticsScreen: Screen?
+	var buttonTitle: String?
+	var buttonAction: VoidCallback?
 }

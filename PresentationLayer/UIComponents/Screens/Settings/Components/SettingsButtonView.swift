@@ -16,7 +16,7 @@ struct SettingsButtonView: View {
     @Binding var switchValue: Bool?
     var action: () -> Void
 
-    init(settingsCase: SettingsEnum, 
+    init(settingsCase: SettingsEnum,
 		 settingCaption: String,
 		 isToggleInteractionEnabled: Bool = true,
          unitCaseModal: Binding<SettingsEnum> = .constant(.temperature),

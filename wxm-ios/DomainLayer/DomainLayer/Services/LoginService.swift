@@ -119,7 +119,7 @@ private extension LoginServiceImpl {
 	}
 
 	func observeRefreshTokenExpiration() {
-		NotificationCenter.default.publisher(for: .AuthRefreshTokenExpired).sink { [weak self] notification in
+		NotificationCenter.default.publisher(for: .AuthRefreshTokenExpired).sink { [weak self] _ in
 			_ = try? self?.logout()
 		}.store(in: &cancellableSet)
 	}

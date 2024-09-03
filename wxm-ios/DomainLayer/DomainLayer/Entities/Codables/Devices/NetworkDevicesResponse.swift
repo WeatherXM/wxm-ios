@@ -19,7 +19,7 @@ public struct NetworkDevicesResponse: Codable, Identifiable {
     public var attributes: Attributes = .init()
     public var currentWeather: CurrentWeather?
     public var rewards: Rewards? = .init()
-    public var relation: DeviceRelation? = nil
+    public var relation: DeviceRelation?
 	public var bundle: StationBundle?
 
     public init() {}
@@ -140,7 +140,8 @@ public struct CurrentWeather: Codable {
         self.precipitationProbability = try container.decodeIfPresent(Double.self, forKey: .precipitationProbability)
 		
 		// The following value may come in different keys
-        self.precipitationAccumulated = (try? container.decodeIfPresent(Double.self, forKey: .precipitationAccumulated)) ?? (try? container.decodeIfPresent(Double.self, forKey: .precipitationIntensity))
+        self.precipitationAccumulated = (try? container.decodeIfPresent(Double.self, forKey: .precipitationAccumulated)) ??
+		(try? container.decodeIfPresent(Double.self, forKey: .precipitationIntensity))
 
         self.cloudCover = try container.decodeIfPresent(Double.self, forKey: .cloudCover)
         self.feelsLike = try container.decodeIfPresent(Double.self, forKey: .feelsLike)

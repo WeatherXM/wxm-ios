@@ -52,6 +52,9 @@ private extension ClaimPulseContainerViewModel {
 			self?.performClaim()
 		}
 
-		return [.reset(resetViewModel), .serialNumber(serialNumberViewModel), .manualSerialNumber(manualSNViewModel), .manualSerialNumber(claimingKeyViewModel), .location(locationViewModel)]
+		return [.reset(resetViewModel), .serialNumber(serialNumberViewModel),
+				.manualSerialNumber(manualSNViewModel),
+				.manualSerialNumber(claimingKeyViewModel),
+				.location(locationViewModel)]
 	}
 }

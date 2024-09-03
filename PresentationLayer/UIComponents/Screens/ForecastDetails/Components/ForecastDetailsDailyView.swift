@@ -130,7 +130,6 @@ private extension ForecastDetailsDailyView {
 	}
 }
 
-
 #Preview {
 	let forecast: NetworkDeviceForecastResponse = .init(tz: "Europe/Athens",
 														 date: "",

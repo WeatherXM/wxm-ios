@@ -7,10 +7,13 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 typealias WeatherValueLiterals = (value: String, unit: String)
 
 struct WeatherFormatter {
+	private let unitsConverter = UnitsConverter()
+	
     /// The values should be converted  before generate.
     /// When is true, is expected the passed values are in the "default" units. eg. temperature in Celsius
     /// By default is true
@@ -29,7 +32,7 @@ struct WeatherFormatter {
                 return ("\(pressureValue)", pressureMetric)
             case .inchOfMercury:
                 let pressureMetric = UnitConstants.INCH_OF_MERCURY
-                let pressureValue = (shouldConvert ? hpaToInHg(hpa: pressureValue) : pressureValue).rounded(toPlaces: 2)
+				let pressureValue = (shouldConvert ? unitsConverter.hpaToInHg(hpa: pressureValue) : pressureValue).rounded(toPlaces: 2)
                 return ("\(pressureValue)", pressureMetric)
         }
     }
@@ -51,7 +54,7 @@ struct WeatherFormatter {
             case .celsius:
                 return (String(format: format, temperature), LocalizableString.celsiusSymbol.localized)
             case .fahrenheit:
-                let value = shouldConvert ? celsiusToFahrenheit(celsius: temperature.rounded(toPlaces: 1)) : temperature
+				let value = shouldConvert ? unitsConverter.celsiusToFahrenheit(celsius: temperature.rounded(toPlaces: 1)) : temperature
                 return (String(format: format, value), LocalizableString.fahrenheitSymbol.localized)
         }
     }
@@ -75,25 +78,25 @@ struct WeatherFormatter {
 
         switch speedUnit {
             case .kilometersPerHour:
-                windSpeed = shouldConvert ? msToKmh(ms: windSpeed) : windSpeed
+				windSpeed = shouldConvert ? unitsConverter.msToKmh(ms: windSpeed) : windSpeed
                 windUnit = UnitConstants.KILOMETERS_PER_HOUR
             case .milesPerHour:
-                windSpeed = shouldConvert ? msToMph(ms: windSpeed) : windSpeed
+				windSpeed = shouldConvert ? unitsConverter.msToMph(ms: windSpeed) : windSpeed
                 windUnit = UnitConstants.MILES_PER_HOUR
             case .metersPerSecond:
                 windUnit = UnitConstants.METERS_PER_SECOND
             case .knots:
-                windSpeed = shouldConvert ? msToKnots(ms: windSpeed) : windSpeed
+				windSpeed = shouldConvert ? unitsConverter.msToKnots(ms: windSpeed) : windSpeed
                 windUnit = UnitConstants.KNOTS
             case .beaufort:
-                windSpeed = shouldConvert ? Double(msToBeaufort(ms: windSpeed)) : windSpeed
+				windSpeed = shouldConvert ? Double(unitsConverter.msToBeaufort(ms: windSpeed)) : windSpeed
                 windUnit = UnitConstants.BEAUFORT
 				showDecimals = false
         }
 
         var windDirectionString = "\(windDirection ?? 0)°"
         if directionUnit == .cardinal {
-            windDirectionString = degreesToCardinal(value: windDirection ?? 0)
+			windDirectionString = unitsConverter.degreesToCardinal(value: windDirection ?? 0)
         }
 
 		let convertedValue = windSpeed.rounded(toPlaces: 1)
@@ -144,7 +147,7 @@ struct WeatherFormatter {
             case .millimeters:
                 return ("\(value?.rounded(toPlaces: 1) ?? Double.nan)", UnitConstants.MILLIMETERS_PER_HOUR)
             case .inches:
-                let convertedValue = (shouldConvert ? millimetersToInches(mm: value ?? Double.nan) : value ?? Double.nan).rounded(toPlaces: 2)
+				let convertedValue = (shouldConvert ? unitsConverter.millimetersToInches(mm: value ?? Double.nan) : value ?? Double.nan).rounded(toPlaces: 2)
                 return ("\(convertedValue)", UnitConstants.INCHES_PER_HOUR)
         }
     }
@@ -158,7 +161,7 @@ struct WeatherFormatter {
             case .millimeters:
                 return ("\((value ?? 0.0).rounded(toPlaces: 1))", UnitConstants.MILLIMETERS)
             case .inches:
-                let convertedValue = (shouldConvert ? millimetersToInches(mm: value ?? 0.0) : value ?? 0.0).rounded(toPlaces: 2)
+				let convertedValue = (shouldConvert ? unitsConverter.millimetersToInches(mm: value ?? 0.0) : value ?? 0.0).rounded(toPlaces: 2)
                 return ("\(convertedValue)", UnitConstants.INCHES)
         }
     }

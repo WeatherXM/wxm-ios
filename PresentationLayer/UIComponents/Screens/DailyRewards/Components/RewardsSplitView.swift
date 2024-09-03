@@ -54,7 +54,6 @@ extension RewardsSplitView {
 								.foregroundStyle(Color(colorEnum: .darkGrey))
 								.fixedSize(horizontal: false, vertical: true)
 
-
 							Spacer()
 
 							Text(item.valueString)

@@ -173,100 +173,9 @@ extension NetworkStatsView {
     @ViewBuilder
     func generateStatsView(stats: Statistics) -> some View {
 		VStack(spacing: CGFloat(.smallToMediumSpacing)) {
-			VStack(spacing: CGFloat(.minimumSpacing)) {
-                HStack {
-                    Text(stats.title)
-                        .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-                        .foregroundColor(Color(colorEnum: .text))
+			statsTitleView(for: stats)
 
-                    Spacer()
-
-                    if let accessory = stats.accessory {
-                        Button {
-							accessory.action()
-                        } label: {
-							Text(accessory.fontIcon.rawValue)
-                                .font(.fontAwesome(font: .FAProLight, size: CGFloat(.caption)))
-                                .foregroundColor(Color(colorEnum: .text))
-                                .frame(width: 30.0, height: 30.0)
-                                .contentShape(Rectangle())
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }
-
-                if let description = stats.description {
-                    let mainText = Text(description)
-                        .font(.system(size: CGFloat(.normalFontSize)))
-                        .foregroundColor(Color(colorEnum: .darkestBlue))
-
-                    HStack {
-
-                        if stats.showExternalLinkIcon {
-                            Group {
-                                mainText +
-                                Text(" ") +
-                                Text(FontIcon.externalLink.rawValue)
-                                    .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
-                                    .foregroundColor(Color(colorEnum: .wxmPrimary))
-                            }
-                            .tint(Color(colorEnum: .wxmPrimary))
-                            .simultaneousGesture(TapGesture().onEnded {
-                                stats.externalLinkTapAction?()
-                            })
-                        } else {
-                            mainText
-                                .tint(Color(colorEnum: .wxmPrimary))
-                        }
-
-                        Spacer()
-                    }
-                }
-            }
-            .padding(.leading, 22.0)
-			.padding(.trailing, CGFloat(.smallToMediumSidePadding))
-			.padding(.top, CGFloat(.mediumSidePadding))
-
-            if let chartModel = stats.chartModel {
-                HStack(spacing: CGFloat(.defaultSidePadding)) {
-                    VStack(spacing: CGFloat(.smallToMediumSpacing)) {
-                        StatisticsChart(chartDataModel: chartModel)
-                            .frame(height: 45.0)
-                            .aspectRatio(4, contentMode: .fill)
-							.padding(.horizontal, CGFloat(.smallToMediumSidePadding))
-
-                        if let xAxis = stats.xAxisTuple {
-                            HStack {
-                                Text(xAxis.leading.uppercased())
-                                Spacer()
-                                Text(xAxis.trailing.uppercased())
-                            }
-                            .font(.system(size: CGFloat(.caption)))
-                            .foregroundColor(Color(colorEnum: .darkGrey))
-                        }
-                    }
-
-                    Spacer()
-
-                    VStack(spacing: 0.0) {
-                        if let mainText = stats.mainText {
-                            Text(mainText)
-                                .font(.system(size: CGFloat(.titleFontSize), weight: .bold))
-                                .foregroundColor(Color(colorEnum: .text))
-                                .multilineTextAlignment(.center)
-                        }
-
-                        if let dateString = stats.dateString {
-                            Text(dateString)
-                                .font(.system(size: CGFloat(.caption)))
-                                .foregroundColor(Color(colorEnum: .darkGrey))
-                                .multilineTextAlignment(.center)
-                        }
-                    }
-                }
-                .padding(.leading, 24.0)
-                .padding(.trailing, 28.0)
-            }
+            statsChartView(for: stats)
 
             if let additionalStats = stats.additionalStats {
                 additionalStatsView(statistics: additionalStats)
@@ -279,6 +188,107 @@ extension NetworkStatsView {
                       insideVerticalPadding: 0.0)
         .wxmShadow()
     }
+
+	@ViewBuilder
+	func statsTitleView(for stats: Statistics) -> some View {
+		VStack(spacing: CGFloat(.minimumSpacing)) {
+			HStack {
+				Text(stats.title)
+					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+					.foregroundColor(Color(colorEnum: .text))
+
+				Spacer()
+
+				if let accessory = stats.accessory {
+					Button {
+						accessory.action()
+					} label: {
+						Text(accessory.fontIcon.rawValue)
+							.font(.fontAwesome(font: .FAProLight, size: CGFloat(.caption)))
+							.foregroundColor(Color(colorEnum: .text))
+							.frame(width: 30.0, height: 30.0)
+							.contentShape(Rectangle())
+					}
+					.buttonStyle(.plain)
+				}
+			}
+
+			if let description = stats.description {
+				let mainText = Text(description)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundColor(Color(colorEnum: .darkestBlue))
+
+				HStack {
+
+					if stats.showExternalLinkIcon {
+						Group {
+							mainText +
+							Text(" ") +
+							Text(FontIcon.externalLink.rawValue)
+								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
+								.foregroundColor(Color(colorEnum: .wxmPrimary))
+						}
+						.tint(Color(colorEnum: .wxmPrimary))
+						.simultaneousGesture(TapGesture().onEnded {
+							stats.externalLinkTapAction?()
+						})
+					} else {
+						mainText
+							.tint(Color(colorEnum: .wxmPrimary))
+					}
+
+					Spacer()
+				}
+			}
+		}
+		.padding(.leading, 22.0)
+		.padding(.trailing, CGFloat(.smallToMediumSidePadding))
+		.padding(.top, CGFloat(.mediumSidePadding))
+	}
+
+	@ViewBuilder
+	func statsChartView(for stats: Statistics) -> some View {
+		if let chartModel = stats.chartModel {
+			HStack(spacing: CGFloat(.defaultSidePadding)) {
+				VStack(spacing: CGFloat(.smallToMediumSpacing)) {
+					StatisticsChart(chartDataModel: chartModel)
+						.frame(height: 45.0)
+						.aspectRatio(4, contentMode: .fill)
+						.padding(.horizontal, CGFloat(.smallToMediumSidePadding))
+
+					if let xAxis = stats.xAxisTuple {
+						HStack {
+							Text(xAxis.leading.uppercased())
+							Spacer()
+							Text(xAxis.trailing.uppercased())
+						}
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundColor(Color(colorEnum: .darkGrey))
+					}
+				}
+
+				Spacer()
+
+				VStack(spacing: 0.0) {
+					if let mainText = stats.mainText {
+						Text(mainText)
+							.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+							.foregroundColor(Color(colorEnum: .text))
+							.multilineTextAlignment(.center)
+					}
+
+					if let dateString = stats.dateString {
+						Text(dateString)
+							.font(.system(size: CGFloat(.caption)))
+							.foregroundColor(Color(colorEnum: .darkGrey))
+							.multilineTextAlignment(.center)
+					}
+				}
+			}
+			.padding(.leading, 24.0)
+			.padding(.trailing, 28.0)
+		}
+	}
 
     @ViewBuilder
     func additionalStatsView(statistics: [AdditionalStats]) -> some View {

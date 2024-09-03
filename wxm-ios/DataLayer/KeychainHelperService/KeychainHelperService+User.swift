@@ -9,7 +9,7 @@ import Foundation
 import DomainLayer
 
 extension Notification.Name {
-    static let keychainHelperServiceUserIsLoggedInChanged = Notification.Name("keychainHelperService.userIsLoggedInChanged")
+    static let keychainHelperServiceUserIsLoggedChanged = Notification.Name("keychainHelperService.userIsLoggedInChanged")
 }
 
 extension KeychainHelperService {
@@ -30,7 +30,7 @@ extension KeychainHelperService {
         delete(service: KeychainConstants.saveNetworkTokenResponse.service,
                account: KeychainConstants.saveNetworkTokenResponse.account)
 
-        NotificationCenter.default.post(name: .keychainHelperServiceUserIsLoggedInChanged,
+        NotificationCenter.default.post(name: .keychainHelperServiceUserIsLoggedChanged,
                                         object: false)
     }
 
@@ -39,7 +39,7 @@ extension KeychainHelperService {
              service: KeychainConstants.saveNetworkTokenResponse.service,
              account: KeychainConstants.saveNetworkTokenResponse.account)
 
-        NotificationCenter.default.post(name: .keychainHelperServiceUserIsLoggedInChanged,
+        NotificationCenter.default.post(name: .keychainHelperServiceUserIsLoggedChanged,
                                         object: true)
     }
 

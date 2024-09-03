@@ -29,7 +29,7 @@ public class UserDevicesService {
     let devicesListUpdatedPublisher = NotificationCenter.default.publisher(for: .userDevicesListUpdated)
 
     public init() {
-        NotificationCenter.default.addObserver(forName: .keychainHelperServiceUserIsLoggedInChanged,
+        NotificationCenter.default.addObserver(forName: .keychainHelperServiceUserIsLoggedChanged,
                                                object: nil,
 											   queue: nil) { [weak self] _ in
 			self?.invalidateCaches()
@@ -50,16 +50,17 @@ public class UserDevicesService {
 	func getDevices(useCache: Bool) throws -> AnyPublisher<DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>, Never> {
 		if useCache, let cachedDevices = userDevicesCache.getValue(for: userDevicesCacheKey) {
 			return Just(DataResponse(request: nil,
-									 response: nil, 
+									 response: nil,
 									 data: nil,
-									 metrics: nil, 
+									 metrics: nil,
 									 serializationDuration: 0.0,
 									 result: .success(cachedDevices))).eraseToAnyPublisher()
 		}
 
         let builder = MeApiRequestBuilder.getDevices
         let urlRequest = try builder.asURLRequest()
-        let publisher: AnyPublisher<DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+        let publisher: AnyPublisher<DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
+																																					 mockFileName: builder.mockFileName)
         return publisher
             .flatMap { [weak self, cacheValidationInterval, followStatesCacheKey, userDevicesCacheKey] response in
                 if let value = response.value {
@@ -117,18 +118,19 @@ public class UserDevicesService {
 			.eraseToAnyPublisher()
 	}
 
-
     public func getUserDeviceById(deviceId: String) throws -> AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> {
         let builder = MeApiRequestBuilder.getUserDeviceById(deviceId: deviceId)
         let urlRequest = try builder.asURLRequest()
-        let publisher: AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+        let publisher: AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
+																																				   mockFileName: builder.mockFileName)
         return publisher
     }
 
     func followStation(deviceId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
         let builder = MeApiRequestBuilder.follow(deviceId: deviceId)
         let urlRequest = try builder.asURLRequest()
-        let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+        let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
+																																		mockFileName: builder.mockFileName)
         return publisher
             .flatMap { [weak self] response in
                 if response.error == nil {
@@ -143,7 +145,8 @@ public class UserDevicesService {
     func unfollowStation(deviceId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
         let builder = MeApiRequestBuilder.unfollow(deviceId: deviceId)
         let urlRequest = try builder.asURLRequest()
-        let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+        let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
+																																		mockFileName: builder.mockFileName)
         return publisher
             .flatMap { [weak self] response in
                 if response.error == nil {
@@ -206,7 +209,8 @@ public class UserDevicesService {
 	func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> {
 		let builder = MeApiRequestBuilder.setDeviceLocation(deviceId: deviceId, lat: lat, lon: lon)
 		let urlRequest = try builder.asURLRequest()
-		let publisher: AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+		let publisher: AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
+																																				   mockFileName: builder.mockFileName)
 		return publisher
 			.flatMap { [weak self] response in
 				if response.error == nil {

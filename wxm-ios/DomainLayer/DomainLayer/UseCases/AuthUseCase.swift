@@ -57,7 +57,7 @@ public struct AuthUseCase {
     }
 
     public func passwordValidation(password: String)throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
-        return try authRepository.passwordValidation(password: password) 
+        return try authRepository.passwordValidation(password: password)
     }
 
 	public func getUsersEmail() -> String {

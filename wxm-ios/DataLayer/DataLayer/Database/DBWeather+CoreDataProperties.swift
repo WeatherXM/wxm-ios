@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 import DomainLayer
 
-
 extension DBWeather {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<DBWeather> {

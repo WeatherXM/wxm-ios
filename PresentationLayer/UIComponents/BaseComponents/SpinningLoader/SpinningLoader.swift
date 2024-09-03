@@ -35,7 +35,7 @@ struct SpinningLoaderModifier: ViewModifier {
 }
 
 extension View {
-    func spinningLoader(show: Binding<Bool>, 
+    func spinningLoader(show: Binding<Bool>,
 						lottieLoader: Bool = true,
 						hideContent: Bool = false) -> some View {
         modifier(SpinningLoaderModifier(show: show,

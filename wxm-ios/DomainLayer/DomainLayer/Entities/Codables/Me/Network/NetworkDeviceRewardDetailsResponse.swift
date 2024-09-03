@@ -15,7 +15,7 @@ public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable {
 	public let boost: Boost?
 	public let rewardSplit: [RewardSplit]?
 
-	enum CodingKeys: String ,CodingKey {
+	enum CodingKeys: String, CodingKey {
 		case timestamp
 		case totalDailyReward = "total_daily_reward"
 		case annotations = "annotation_summary"

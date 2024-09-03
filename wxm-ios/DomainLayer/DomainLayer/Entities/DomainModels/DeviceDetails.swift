@@ -67,9 +67,8 @@ extension NetworkDevicesResponse {
     }
 }
 
-
 extension PublicDevice {
-    public var toDeviceDetails:  DeviceDetails {
+    public var toDeviceDetails: DeviceDetails {
         DeviceDetails(id: id,
                       name: name,
                       friendlyName: nil,

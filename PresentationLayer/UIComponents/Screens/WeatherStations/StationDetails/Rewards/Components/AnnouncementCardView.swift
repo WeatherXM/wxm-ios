@@ -20,7 +20,6 @@ struct AnnouncementCardView: View {
 					.font(.fontAwesome(font: .FAPro, size: CGFloat(.XLTitleFontSize)))
 					.foregroundColor(Color(colorEnum: .wxmWhite))
 
-
 				Text(title)
 					.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
 					.foregroundColor(Color(colorEnum: .wxmWhite))

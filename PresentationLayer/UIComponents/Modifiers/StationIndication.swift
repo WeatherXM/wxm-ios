@@ -128,7 +128,6 @@ private extension StationIndicationModifier {
 							urlString = DisplayedLinks.d1Batteries.linkURL
 						case .pulse:
 							#warning("Set pulse link")
-							break
 					}
 
 					if let urlString, let url = URL(string: urlString) {

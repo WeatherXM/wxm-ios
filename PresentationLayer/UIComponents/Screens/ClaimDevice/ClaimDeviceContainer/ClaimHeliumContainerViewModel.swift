@@ -58,7 +58,6 @@ private extension ClaimHeliumContainerViewModel {
 			self?.moveNext()
 		}
 
-
 		return [.reset(resetViewModel), .selectDevice(selectDeviceViewModel), .location(locationViewModel), .setFrequency(setFrequencyViewModel)]
 	}
 
@@ -163,15 +162,15 @@ private extension ClaimHeliumContainerViewModel {
 											retryTitle: LocalizableString.ClaimDevice.retryClaimButton.localized,
 											contactSupportAction: {
 			HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
-		}) {
+		}, cancelAction: {
 			Router.shared.popToRoot()
-		} retryAction: {
+		}, retryAction: {
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .heliumBLEPopupError,
 																	 .contentType: .heliumBLEPopup,
 																	 .action: .tryAgain])
 
 			retryAction()
-		}
+		})
 
 		return object
 	}

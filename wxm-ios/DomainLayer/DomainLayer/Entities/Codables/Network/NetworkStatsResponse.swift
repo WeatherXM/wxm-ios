@@ -14,7 +14,7 @@ public struct NetworkStatsResponse: Codable {
 	public let contracts: NetworkStatsContracts?
     public let lastUpdated: Date?
 
-    enum CodingKeys: String ,CodingKey {
+    enum CodingKeys: String, CodingKey {
         case weatherStations = "weather_stations"
         case dataDays = "data_days"
         case tokens

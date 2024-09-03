@@ -7,7 +7,7 @@
 
 public struct PublicHex: Codable {
     public var index: String = ""
-    public var deviceCount: Int? = nil
+    public var deviceCount: Int?
     public var center: HexLocation = .init()
     public var polygon: [HexLocation] = []
 

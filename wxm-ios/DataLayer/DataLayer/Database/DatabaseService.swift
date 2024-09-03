@@ -111,7 +111,7 @@ private extension DatabaseService {
     }
 
     func generatePersistentContainer() -> NSPersistentContainer {
-        guard let url = Bundle(for: type(of: self)).url(forResource: "Model", withExtension:"momd"),
+        guard let url = Bundle(for: type(of: self)).url(forResource: "Model", withExtension: "momd"),
               let model = NSManagedObjectModel(contentsOf: url) else {
             fatalError("Could not load model")
         }

@@ -14,6 +14,7 @@ enum Route: Hashable, Equatable {
 		lhs.hashValue == rhs.hashValue
 	}
 	
+	// swiftlint:disable function_body_length
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(stringRepresentation)
 		
@@ -68,7 +69,8 @@ enum Route: Hashable, Equatable {
 				hasher.combine(url)
 		}
 	}
-	
+	// swiftlint:enable function_body_length
+
 	var stringRepresentation: String {
 		switch self {
 			case .stationDetails:

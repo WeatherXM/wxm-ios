@@ -232,7 +232,6 @@ private extension StationWidgetView {
 						  insideVerticalPadding: CGFloat(.minimumPadding),
 						  cornerRadius: CGFloat(.buttonCornerRadius))
 
-
 			if !isSmall {
 				HStack(spacing: CGFloat(.minimumSpacing)) {
 					Image(asset: device.icon)
@@ -249,27 +248,32 @@ private extension StationWidgetView {
 							  insideVerticalPadding: CGFloat(.minimumPadding),
 							  cornerRadius: CGFloat(.buttonCornerRadius))
 
-				if let address = device.address {
-					HStack(spacing: CGFloat(.minimumSpacing)) {
-						Text(FontIcon.hexagon.rawValue)
-							.font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: .text))
-
-						Text(address)
-							.font(.system(size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: .text))
-							.lineLimit(1)
-					}
-					.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
-								  insideHorizontalPadding: CGFloat(.smallSidePadding),
-								  insideVerticalPadding: CGFloat(.minimumPadding),
-								  cornerRadius: CGFloat(.buttonCornerRadius))
-				}
+				addressView(device: device)
 			}
 
 			Spacer(minLength: 0.0)
 		}
 		.frame(height: 25.0)
+	}
+
+	@ViewBuilder
+	func addressView(device: DeviceDetails) -> some View {
+		if let address = device.address {
+			HStack(spacing: CGFloat(.minimumSpacing)) {
+				Text(FontIcon.hexagon.rawValue)
+					.font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
+					.foregroundColor(Color(colorEnum: .text))
+
+				Text(address)
+					.font(.system(size: CGFloat(.caption)))
+					.foregroundColor(Color(colorEnum: .text))
+					.lineLimit(1)
+			}
+			.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+						  insideHorizontalPadding: CGFloat(.smallSidePadding),
+						  insideVerticalPadding: CGFloat(.minimumPadding),
+						  cornerRadius: CGFloat(.buttonCornerRadius))
+		}
 	}
 }
 
@@ -283,8 +287,8 @@ struct StationWidgetView_Preview: PreviewProvider {
 										   id: device.id,
 										   devices: [device],
 										   followState: .init(deviceId: device.id!, relation: .followed),
-										   errorInfo: nil,//.init(title: "This is an error title",
-										   //description: LocalizableString.Error.noInternetAccess.localized),
+										   errorInfo: nil, // .init(title: "This is an error title",
+										   // description: LocalizableString.Error.noInternetAccess.localized),
 										   isLoggedIn: true))
 			.previewContext(WidgetPreviewContext(family: .systemMedium))
 		}
@@ -293,4 +297,3 @@ struct StationWidgetView_Preview: PreviewProvider {
 		}
 	}
 }
-

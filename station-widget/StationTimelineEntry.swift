@@ -65,7 +65,7 @@ extension StationTimelineEntry {
 				case .empty:
 					let urlString = "\(scheme)\(WidgetUrlType.empty)"
 					return URL(string: urlString)
-				case .error(_):
+				case .error:
 					let urlString = "\(scheme)\(WidgetUrlType.error)"
 					return URL(string: urlString)
 				case .selectStation:

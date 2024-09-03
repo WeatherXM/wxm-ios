@@ -42,7 +42,7 @@ class NotificationsHandler: NSObject {
 	}
 
 	func getAuthorizationStatus() async -> UNAuthorizationStatus {
-		await UNUserNotificationCenter.current().notificationSettings().authorizationStatus		
+		await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
 	}
 
 	func setApnsToken(_ token: Data) {
@@ -74,7 +74,9 @@ private extension NotificationsHandler {
 }
 
 extension NotificationsHandler: UNUserNotificationCenterDelegate {
-	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+	func userNotificationCenter(_ center: UNUserNotificationCenter,
+								willPresent notification: UNNotification,
+								withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 		completionHandler([.banner, .badge, .sound, .list])
 	}
 

@@ -86,7 +86,7 @@ private extension SelectStationLocationViewModel {
 	}
 
 	func showSuccess() {
-		let obj = FailSuccessStateObject(type: .editLocation, 
+		let obj = FailSuccessStateObject(type: .editLocation,
 										 title: LocalizableString.SelectStationLocation.successTitle.localized,
 										 subtitle: LocalizableString.SelectStationLocation.successDescription.localized.attributedMarkdown,
 										 cancelTitle: nil,

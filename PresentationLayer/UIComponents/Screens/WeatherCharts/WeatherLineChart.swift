@@ -130,44 +130,44 @@ private extension WeatherLineChartView {
 		type.configureAxis(leftAxis: leftAxis, rightAxis: rightAxis, for: lineData)
     }
 
-    func configureDataSet(dataSet: LineChartDataSet, for weatherField: WeatherField) {
-        switch weatherField {
-            case .temperature:
-                break
-            case .feelsLike:
-                break
-            case .humidity:
-                break
-            case .wind:
-                break
+	func configureDataSet(dataSet: LineChartDataSet, for weatherField: WeatherField) {
+		switch weatherField {
+			case .temperature:
+				break
+			case .feelsLike:
+				break
+			case .humidity:
+				break
+			case .wind:
+				break
 			case .windDirection:
 				break
-            case .precipitation:
-                dataSet.drawCirclesEnabled = dataSet.entries.count == 1
-                dataSet.mode = .stepped
-            case .dailyPrecipitation:
-                dataSet.drawCirclesEnabled = dataSet.entries.count == 1
-                dataSet.lineWidth = 0.0
-                dataSet.mode = .horizontalBezier
-                dataSet.drawFilledEnabled = true
-            case .windGust:
-                break
-            case .pressure:
-                break
-            case .solarRadiation, .precipitationProbability:
-                dataSet.drawCirclesEnabled = dataSet.entries.count == 1
-                dataSet.drawFilledEnabled = true
-                dataSet.lineWidth = 0.0
-                dataSet.mode = .horizontalBezier
+			case .precipitation:
+				dataSet.drawCirclesEnabled = dataSet.entries.count == 1
+				dataSet.mode = .stepped
+			case .dailyPrecipitation:
+				dataSet.drawCirclesEnabled = dataSet.entries.count == 1
+				dataSet.lineWidth = 0.0
+				dataSet.mode = .horizontalBezier
+				dataSet.drawFilledEnabled = true
+			case .windGust:
+				break
+			case .pressure:
+				break
+			case .solarRadiation, .precipitationProbability:
+				dataSet.drawCirclesEnabled = dataSet.entries.count == 1
+				dataSet.drawFilledEnabled = true
+				dataSet.lineWidth = 0.0
+				dataSet.mode = .horizontalBezier
 			case .illuminance:
 				break
-            case .dewPoint:
-                break
-            case .uv:
-                dataSet.drawCirclesEnabled = dataSet.entries.count == 1
-                dataSet.mode = .stepped
-        }
-    }
+			case .dewPoint:
+				break
+			case .uv:
+				dataSet.drawCirclesEnabled = dataSet.entries.count == 1
+				dataSet.mode = .stepped
+		}
+	}
 
     func adjustAxisToPreventLabelsFromHiding(dataSets: [LineChartDataSet]) {
         #warning("TBD: Since the y axis labels are hidden is this snippet necessary")

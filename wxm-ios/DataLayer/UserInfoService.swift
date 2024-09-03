@@ -16,7 +16,7 @@ public class UserInfoService {
 	private var userInfoSubject = CurrentValueSubject<NetworkUserInfoResponse?, Never>(nil)
 
 	public init() {
-		NotificationCenter.default.addObserver(forName: .keychainHelperServiceUserIsLoggedInChanged,
+		NotificationCenter.default.addObserver(forName: .keychainHelperServiceUserIsLoggedChanged,
 											   object: nil,
 											   queue: nil) { [weak self] notification in
 			guard notification.object as? Bool == false else {
@@ -34,7 +34,8 @@ public class UserInfoService {
 	public func getUser() throws -> AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> {
 		let builder = MeApiRequestBuilder.getUser
 		let urlRequest = try builder.asURLRequest()
-		let publisher: AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName).share().eraseToAnyPublisher()
+		let publisher: AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
+																																					mockFileName: builder.mockFileName).share().eraseToAnyPublisher()
 		publisher.sink { [weak self] response in
 			guard let value = response.value else {
 				return

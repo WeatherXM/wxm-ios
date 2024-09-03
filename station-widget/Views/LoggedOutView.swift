@@ -12,7 +12,7 @@ struct LoggedOutView: View {
 
 	@Environment(\.widgetFamily) var family: WidgetFamily
 
-	var body: some View {		
+	var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
 			
 			VStack(spacing: CGFloat(.smallSpacing)) {

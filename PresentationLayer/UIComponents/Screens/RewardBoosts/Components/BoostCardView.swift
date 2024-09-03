@@ -30,7 +30,9 @@ struct BoostCardView: View {
 
 				if let date = boost.date {
 					HStack {
-						Text(LocalizableString.Boosts.boostTokensEarned(date.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone, showTimeZoneIndication: true).capitalizedSentence).localized)
+						Text(LocalizableString.Boosts.boostTokensEarned(date.getFormattedDate(format: .monthLiteralDayYear,
+																							  timezone: .UTCTimezone,
+																							  showTimeZoneIndication: true).capitalizedSentence).localized)
 							.font(.system(size: CGFloat(.normalFontSize)))
 							.foregroundColor(Color(colorEnum: .wxmWhite))
 						Spacer()
@@ -44,7 +46,7 @@ struct BoostCardView: View {
 		.background {
 			WXMRemoteImageView(imageUrl: boost.imageUrl)
 		}
-		.WXMCardStyle(insideHorizontalPadding: 0.0, 
+		.WXMCardStyle(insideHorizontalPadding: 0.0,
 					  insideVerticalPadding: 0.0)
 		.contentShape(Rectangle())
     }

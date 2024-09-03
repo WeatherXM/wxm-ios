@@ -20,7 +20,7 @@ extension CurrentWeather: Identifiable {
         }
 
 		return LocalizableString.lastUpdated(date.localizedDateString(timezone: timeZone)).localized
-    }	
+    }
 }
 
 // MARK: - Mock

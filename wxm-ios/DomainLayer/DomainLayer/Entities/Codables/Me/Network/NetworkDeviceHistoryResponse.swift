@@ -13,7 +13,6 @@ public struct NetworkDeviceHistoryResponse: Codable {
     public let hourly: [CurrentWeather]?
     public let daily: CurrentWeather?
 
-
     public init(tz: String, date: String, hourly: [CurrentWeather]?, daily: CurrentWeather? = nil) {
         self.tz = tz
         self.date = date

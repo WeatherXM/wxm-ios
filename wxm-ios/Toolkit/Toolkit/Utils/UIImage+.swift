@@ -24,7 +24,7 @@ public extension UIImage {
 	func withColor(_ color: UIColor) -> UIImage? {
 		UIGraphicsBeginImageContextWithOptions(size, false, scale)
 
-		let drawRect = CGRect(x: 0,y: 0,width: size.width,height: size.height)
+		let drawRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
 
 		color.setFill()
 		UIRectFill(drawRect)

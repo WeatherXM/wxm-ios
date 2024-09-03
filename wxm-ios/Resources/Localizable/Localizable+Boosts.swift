@@ -27,7 +27,7 @@ extension LocalizableString.Boosts: WXMLocalizable {
 	var localized: String {
 		var localized = NSLocalizedString(key, comment: "")
 		switch self {
-			case .boostTokensEarned(let text), 
+			case .boostTokensEarned(let text),
 				 .lostTokens(let text),
 				 .lostTokensBecauseOfQod(let text):
 				localized = String(format: localized, text)

@@ -202,7 +202,6 @@ class MapViewLocationController: UIViewController {
 		mapView.camera.fly(to: CameraOptions(zoom: zoomLevel - 1))
 	}
 
-
     internal func cameraSetup() -> CameraOptions {
         return CameraOptions(center: CLLocationCoordinate2D())
     }

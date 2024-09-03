@@ -193,7 +193,9 @@ private extension MyWalletView {
                     .labelsHidden()
                     .toggleStyle(WXMToggleStyle.Default)
 
-                    Text("\(LocalizableString.Wallet.acceptTermsOfService.localized) **[\(LocalizableString.Wallet.termsTitle.localized)](\(DisplayedLinks.termsLink.linkURL))**".attributedMarkdown!)
+					let termsTitle = LocalizableString.Wallet.termsTitle.localized
+					let termsLink = DisplayedLinks.termsLink.linkURL
+                    Text("\(LocalizableString.Wallet.acceptTermsOfService.localized) **[\(termsTitle)](\(termsLink))**".attributedMarkdown!)
                         .tint(Color(colorEnum: .wxmPrimary))
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.normalFontSize)))

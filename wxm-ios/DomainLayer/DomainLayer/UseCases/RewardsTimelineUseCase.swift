@@ -18,17 +18,17 @@ public class RewardsTimelineUseCase {
 		self.meRepository = meRepository
 	}
 	
-	public func getTimeline(deviceId: String, 
+	public func getTimeline(deviceId: String,
 							page: Int,
 							fromDate: String,
 							toDate: String,
 							timezone: TimeZone? = .UTCTimezone) async throws -> Result<NetworkDeviceRewardsTimelineResponse?, NetworkErrorResponse> {
-		let publisher = try repository.deviceRewardsTimeline(deviceId: deviceId,
-															 page: page,
-															 pageSize: nil,
-															 fromDate: fromDate,
-															 toDate: toDate,
-															 timezone: timezone)
+		let publisher = try repository.deviceRewardsTimeline(params: .init(deviceId: deviceId,
+																		   page: page,
+																		   pageSize: nil,
+																		   fromDate: fromDate,
+																		   toDate: toDate,
+																		   timezone: timezone))
 		return await withUnsafeContinuation { continuation in
 			publisher.sink { response in
 				if let error = response.error {

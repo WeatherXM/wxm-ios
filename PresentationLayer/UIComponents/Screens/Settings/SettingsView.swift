@@ -10,45 +10,47 @@ import Toolkit
 
 struct SettingsView: View {
 	@EnvironmentObject var navigationObject: NavigationObject
-    @StateObject var settingsViewModel: SettingsViewModel
+	@StateObject var settingsViewModel: SettingsViewModel
 	@ObservedObject private var mainScreenViewModel: MainScreenViewModel = .shared
 
-    var body: some View {
-        ZStack {
+	var body: some View {
+		ZStack {
 			Color(colorEnum: .bg)
 				.ignoresSafeArea()
 
-            settingsContainer
-            UnitsOptionsModalView(settingsViewModel: settingsViewModel)
-        }
-        .spinningLoader(show: $settingsViewModel.isLoading)
-        .navigationBarBackButtonHidden(settingsViewModel.isShowingUnitsOverlay)
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            WXMAnalytics.shared.trackScreen(.settings)
+			settingsContainer
+			UnitsOptionsModalView(settingsViewModel: settingsViewModel)
+		}
+		.spinningLoader(show: $settingsViewModel.isLoading)
+		.navigationBarBackButtonHidden(settingsViewModel.isShowingUnitsOverlay)
+		.navigationBarTitleDisplayMode(.inline)
+		.onAppear {
+			WXMAnalytics.shared.trackScreen(.settings)
 			navigationObject.title = LocalizableString.settings.localized
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
-        }
-    }
+		}
+	}
 
-    var settingsContainer: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: CGFloat(.defaultSpacing)) {
-                unitsContainer
-                WXMDivider()
-                displayContainer
-                accountContainer
+	var settingsContainer: some View {
+		ScrollView(showsIndicators: false) {
+			VStack(alignment: .leading, spacing: CGFloat(.defaultSpacing)) {
+				unitsContainer
+				WXMDivider()
+				displayContainer
+				accountContainer
 				feedbackContainer
-                helpContainer
-                WXMDivider()
-                aboutContainer
-                WXMDivider()
-                Spacer()
-            }
-            .padding(CGFloat(.defaultSidePadding))
-        }
-    }
+				helpContainer
+				WXMDivider()
+				aboutContainer
+				WXMDivider()
+				Spacer()
+			}
+			.padding(CGFloat(.defaultSidePadding))
+		}
+	}
+}
 
+private extension SettingsView {
     @ViewBuilder
     var unitsContainer: some View {
         unitsSectionTitle

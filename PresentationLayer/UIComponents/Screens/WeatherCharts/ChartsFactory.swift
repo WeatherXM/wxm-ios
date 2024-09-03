@@ -69,67 +69,73 @@ private extension ChartsFactory {
         return image
     }
 
-    func getChartDataEntry(type: WeatherField, element: CurrentWeather, xVal: Double) -> ChartDataEntry? {
-        var chartDataEntry: ChartDataEntry?
-        switch type {
-            case .temperature:
-                if let temperature = element.temperature {
-                    chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertTemp(value: temperature, decimals: 1))
-                }
-            case .feelsLike:
-                if let feelsLike = element.feelsLike {
-                    chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertTemp(value: feelsLike, decimals: 1))
-                }
-            case .precipitation:
-                if let precipitation = element.precipitation {
-                    chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertPrecipitation(value: precipitation))
-                }
-            case .wind:
-                if let windSpeed = weatherUnitFormatter.convertWindSpeed(value: element.windSpeed) {
-                    var windDirectionAsset: UIImage?
-					if let windDirection = element.windDirection, windSpeed > 0 {
-                        windDirectionAsset = getWindImage(for: windDirection)
-                    }
-                    chartDataEntry = ChartDataEntry(x: xVal, y: windSpeed, icon: windDirectionAsset, data: element.windDirection)
-                }
+	func getChartDataEntry(type: WeatherField, element: CurrentWeather, xVal: Double) -> ChartDataEntry? {
+		var chartDataEntry: ChartDataEntry?
+		switch type {
+			case .temperature:
+				if let temperature = element.temperature {
+					chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertTemp(value: temperature, decimals: 1))
+				}
+			case .feelsLike:
+				if let feelsLike = element.feelsLike {
+					chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertTemp(value: feelsLike, decimals: 1))
+				}
+			case .precipitation:
+				if let precipitation = element.precipitation {
+					chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertPrecipitation(value: precipitation))
+				}
+			case .wind:
+				chartDataEntry = getWindEntry(xVal: xVal, weather: element)
 			case .windDirection:
 				break
-            case .windGust:
-                if let windGust = weatherUnitFormatter.convertWindSpeed(value: element.windGust) {
-                    chartDataEntry = ChartDataEntry(x: xVal, y: windGust, data: element.windDirection)
-                }
-            case .humidity:
-                if let humidity = element.humidity {
-                    chartDataEntry = ChartDataEntry(x: xVal, y: Double(humidity))
-                }
-            case .pressure:
-                if let pressure = element.pressure {
-                    chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertPressure(value: pressure))
-                }
-            case .uv:
-                if let uvIndex = element.uvIndex {
-                    chartDataEntry = BarChartDataEntry(x: xVal, y: Double(uvIndex))
-                }
-            case .precipitationProbability:
-                if let precipitationProbability = element.precipitationProbability {
-                    chartDataEntry = ChartDataEntry(x: xVal, y: precipitationProbability)
-                }
-            case .dailyPrecipitation:
-                if let precipitationAccumulated = element.precipitationAccumulated {
-                    chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertPrecipitation(value: precipitationAccumulated))
-                }
-            case .solarRadiation:
-                if let solarIrradiance = element.solarIrradiance {
-                    chartDataEntry = ChartDataEntry(x: xVal, y: solarIrradiance)
-                }
+			case .windGust:
+				if let windGust = weatherUnitFormatter.convertWindSpeed(value: element.windGust) {
+					chartDataEntry = ChartDataEntry(x: xVal, y: windGust, data: element.windDirection)
+				}
+			case .humidity:
+				if let humidity = element.humidity {
+					chartDataEntry = ChartDataEntry(x: xVal, y: Double(humidity))
+				}
+			case .pressure:
+				if let pressure = element.pressure {
+					chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertPressure(value: pressure))
+				}
+			case .uv:
+				if let uvIndex = element.uvIndex {
+					chartDataEntry = BarChartDataEntry(x: xVal, y: Double(uvIndex))
+				}
+			case .precipitationProbability:
+				if let precipitationProbability = element.precipitationProbability {
+					chartDataEntry = ChartDataEntry(x: xVal, y: precipitationProbability)
+				}
+			case .dailyPrecipitation:
+				if let precipitationAccumulated = element.precipitationAccumulated {
+					chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertPrecipitation(value: precipitationAccumulated))
+				}
+			case .solarRadiation:
+				if let solarIrradiance = element.solarIrradiance {
+					chartDataEntry = ChartDataEntry(x: xVal, y: solarIrradiance)
+				}
 			case .illuminance:
 				break
-            case .dewPoint:
-                if let dewPoint = element.dewPoint {
-                    chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertTemp(value: dewPoint, decimals: 1))
-                }
-        }
+			case .dewPoint:
+				if let dewPoint = element.dewPoint {
+					chartDataEntry = ChartDataEntry(x: xVal, y: weatherUnitFormatter.convertTemp(value: dewPoint, decimals: 1))
+				}
+		}
+		
+		return chartDataEntry
+	}
 
-        return chartDataEntry
-    }
+	func getWindEntry(xVal: Double, weather: CurrentWeather) -> ChartDataEntry? {
+		guard let windSpeed = weatherUnitFormatter.convertWindSpeed(value: weather.windSpeed) else {
+			return nil
+		}
+
+		var windDirectionAsset: UIImage?
+		if let windDirection = weather.windDirection, windSpeed > 0 {
+			windDirectionAsset = getWindImage(for: windDirection)
+		}
+		return ChartDataEntry(x: xVal, y: windSpeed, icon: windDirectionAsset, data: weather.windDirection)
+	}
 }

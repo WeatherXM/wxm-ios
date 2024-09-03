@@ -41,7 +41,7 @@ struct MultipleAlertsView: View {
 						}.iPadMaxWidth()
 					}
 				}
-				.padding(.horizontal ,CGFloat(.defaultSidePadding))
+				.padding(.horizontal, CGFloat(.defaultSidePadding))
             }
         }
     }

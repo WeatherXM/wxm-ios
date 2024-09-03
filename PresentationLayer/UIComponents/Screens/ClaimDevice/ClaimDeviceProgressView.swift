@@ -45,8 +45,8 @@ extension ClaimDeviceProgressView {
 		let title: String
 		let subtitle: AttributedString?
 		var steps: [StepsView.Step] = []
-		var stepIndex: Int? = nil
-		var progress: UInt? = nil
+		var stepIndex: Int?
+		var progress: UInt?
 	}
 }
 

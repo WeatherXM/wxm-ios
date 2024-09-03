@@ -63,14 +63,14 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 	var localized: String {
 		var localized = NSLocalizedString(self.key, comment: "")
 		switch self {
-			case .gotRewards(let value), 
+			case .gotRewards(let value),
 					.lostRewards(let value),
 					.stationRewardInfoMessage(let value),
 					.stationRewardWarningMessage(let value),
 					.stationRewardErrorMessage(let value):
 				localized = String(format: localized, value)
-			case .rewardsTimelineCaption(let text), 
-					.rewardsErrorDescription(let text), 
+			case .rewardsTimelineCaption(let text),
+					.rewardsErrorDescription(let text),
 					.dailyRewardEarnings(let text):
 				localized = String(format: localized, text)
 			case .baseRewardRange(let text, let text1):

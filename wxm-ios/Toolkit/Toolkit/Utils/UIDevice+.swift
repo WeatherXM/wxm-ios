@@ -18,6 +18,7 @@ public extension UIDevice {
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
 
+		// swiftlint:disable function_body_length
         func mapToDevice(identifier: String) -> String {
 #if os(iOS)
             switch identifier {
@@ -69,6 +70,7 @@ public extension UIDevice {
 
         return mapToDevice(identifier: identifier)
     }()
+	// swiftlint:enable function_body_length
 
 	var isIPad: Bool {
 		UIDevice.current.userInterfaceIdiom == .pad

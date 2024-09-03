@@ -43,4 +43,3 @@ public struct DeviceLocation: Identifiable, Equatable {
         self.coordinates = coordinates
     }
 }
-

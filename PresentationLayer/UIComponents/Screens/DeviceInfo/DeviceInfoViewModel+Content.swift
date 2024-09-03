@@ -268,71 +268,71 @@ extension DeviceInfoViewModel {
             return textComps.joined(separator: "\n")
         }
 
-        var title: String {
-            switch self {
-                case .name:
-                    return LocalizableString.deviceInfoStationInfoName.localized
+		var title: String {
+			switch self {
+				case .name:
+					return LocalizableString.deviceInfoStationInfoName.localized
 				case .bundleName:
 					return LocalizableString.deviceInfoStationInfoBundleName.localized
 				case .gatewayModel, .stationModel:
 					return LocalizableString.deviceInfoStationInfoModel.localized
-                case .devEUI:
-                    return LocalizableString.deviceInfoStationInfoDevEUI.localized
-                case .hardwareVersion:
-                    return LocalizableString.deviceInfoStationInfoHardwareVersion.localized
-                case .firmwareVersion:
-                    return LocalizableString.deviceInfoStationInfoFirmwareVersion.localized
-                case .lastHotspot:
-                    return LocalizableString.deviceInfoStationInfoLastHotspot.localized
-                case .lastRSSI:
-                    return LocalizableString.deviceInfoStationInfoLastRSSI.localized
-                case .serialNumber:
-                    return LocalizableString.deviceInfoStationInfoSerialNumber.localized
-                case .ATECC:
-                    return LocalizableString.deviceInfoStationInfoATECC.localized
-                case .GPS:
-                    return LocalizableString.deviceInfoStationInfoGPS.localized
-                case .wifiSignal:
-                    return LocalizableString.deviceInfoStationInfoWifiSignal.localized
-                case .batteryState:
-                    return LocalizableString.deviceInfoStationInfoBattery.localized
-                case .claimedAt:
-                    return LocalizableString.deviceInfoClaimDate.localized
+				case .devEUI:
+					return LocalizableString.deviceInfoStationInfoDevEUI.localized
+				case .hardwareVersion:
+					return LocalizableString.deviceInfoStationInfoHardwareVersion.localized
+				case .firmwareVersion:
+					return LocalizableString.deviceInfoStationInfoFirmwareVersion.localized
+				case .lastHotspot:
+					return LocalizableString.deviceInfoStationInfoLastHotspot.localized
+				case .lastRSSI:
+					return LocalizableString.deviceInfoStationInfoLastRSSI.localized
+				case .serialNumber:
+					return LocalizableString.deviceInfoStationInfoSerialNumber.localized
+				case .ATECC:
+					return LocalizableString.deviceInfoStationInfoATECC.localized
+				case .GPS:
+					return LocalizableString.deviceInfoStationInfoGPS.localized
+				case .wifiSignal:
+					return LocalizableString.deviceInfoStationInfoWifiSignal.localized
+				case .batteryState:
+					return LocalizableString.deviceInfoStationInfoBattery.localized
+				case .claimedAt:
+					return LocalizableString.deviceInfoClaimDate.localized
 				case .lastGatewayActivity:
 					return LocalizableString.deviceInfoLastGatewayActivity.localized
 				case .lastStationActivity:
 					return LocalizableString.deviceInfoLastStationActivity.localized
-            }
-        }
+			}
+		}
 
-        func value(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse? = nil, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String? {
-            switch self {
-                case .name:
-                    return device.name
+		func value(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse? = nil, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String? {
+			switch self {
+				case .name:
+					return device.name
 				case .gatewayModel:
 					return deviceInfo?.gateway?.model
 				case .bundleName:
 					return device.bundle?.title
-                case .devEUI:
-                    return deviceInfo?.weatherStation?.devEui?.convertedDeviceIdentifier ?? device.convertedLabel
-                case .hardwareVersion:
-                    return deviceInfo?.weatherStation?.hwVersion
-                case .firmwareVersion:
-                    guard let current = device.firmware?.current else {
-                        return nil
-                    }
+				case .devEUI:
+					return deviceInfo?.weatherStation?.devEui?.convertedDeviceIdentifier ?? device.convertedLabel
+				case .hardwareVersion:
+					return deviceInfo?.weatherStation?.hwVersion
+				case .firmwareVersion:
+					guard let current = device.firmware?.current else {
+						return nil
+					}
 
-                    if device.needsUpdate(mainVM: mainVM, followState: followState) {
-                        return device.firmware?.versionUpdateString
-                    }
-                    return current
-                case .lastHotspot:
+					if device.needsUpdate(mainVM: mainVM, followState: followState) {
+						return device.firmware?.versionUpdateString
+					}
+					return current
+				case .lastHotspot:
 					let lastHs = deviceInfo?.weatherStation?.lastHs
 					let timestamp = deviceInfo?.weatherStation?.lastHsActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
 																								 timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
 					let elements = [lastHs, timestamp].compactMap { $0 }
 					return elements.isEmpty ? nil : elements.joined(separator: " @ ")
-                case .lastRSSI:
+				case .lastRSSI:
 					guard var lastTxRssi = deviceInfo?.weatherStation?.lastTxRssi else {
 						return nil
 					}
@@ -342,11 +342,11 @@ extension DeviceInfoViewModel {
 																									 timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
 					let elements = [lastTxRssi, timestamp].compactMap { $0 }
 					return elements.joined(separator: " @ ")
-                case .serialNumber:
-                    return deviceInfo?.gateway?.serialNumber?.convertedDeviceIdentifier  ?? device.convertedLabel
-                case .ATECC:
-                    return nil
-                case .GPS:
+				case .serialNumber:
+					return deviceInfo?.gateway?.serialNumber?.convertedDeviceIdentifier  ?? device.convertedLabel
+				case .ATECC:
+					return nil
+				case .GPS:
 					guard var gpsSats = deviceInfo?.gateway?.gpsSats else {
 						return nil
 					}
@@ -355,19 +355,19 @@ extension DeviceInfoViewModel {
 																							   timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
 					let elements = [gpsSats, timestamp].compactMap { $0 }
 					return elements.joined(separator: " @ ")
-                case .wifiSignal:
-                    guard var rssi = deviceInfo?.gateway?.wifiRssi else {
-                        return nil
-                    }
+				case .wifiSignal:
+					guard var rssi = deviceInfo?.gateway?.wifiRssi else {
+						return nil
+					}
 					rssi = "\(rssi) \(UnitConstants.DBM)"
 					let timestamp = deviceInfo?.gateway?.wifiRssiLastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
 																								timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
 					let elements = [rssi, timestamp].compactMap { $0 }
 					return elements.joined(separator: " @ ")
-                case .batteryState:
-                    return deviceInfo?.weatherStation?.batState?.description
-                case .claimedAt:
-                    return deviceInfo?.claimedAt?.getFormattedDate(format: .monthLiteralYearDayTime,
+				case .batteryState:
+					return deviceInfo?.weatherStation?.batState?.description
+				case .claimedAt:
+					return deviceInfo?.claimedAt?.getFormattedDate(format: .monthLiteralYearDayTime,
 																   timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
 				case .lastGatewayActivity:
 					return deviceInfo?.gateway?.lastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
@@ -377,102 +377,102 @@ extension DeviceInfoViewModel {
 				case .lastStationActivity:
 					return deviceInfo?.weatherStation?.lastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
 																					  timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
-            }
-        }
+			}
+		}
 
-        func warning(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?) -> (String, VoidCallback)? {
-            switch self {
-                case .name:
-                    return nil
+		func warning(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?) -> (String, VoidCallback)? {
+			switch self {
+				case .name:
+					return nil
 				case .bundleName:
 					return nil
 				case .gatewayModel:
 					return nil
-                case .devEUI:
-                    return nil
-                case .hardwareVersion:
-                    return nil
-                case .firmwareVersion:
-                    return nil
-                case .lastHotspot:
-                    return nil
-                case .lastRSSI:
-                    return nil
-                case .serialNumber:
-                    return nil
-                case .ATECC:
-                    return nil
-                case .GPS:
-                    return nil
-                case .wifiSignal:
-                    return nil
-                case .batteryState:
-                    guard let state = deviceInfo?.weatherStation?.batState else {
-                        return nil
-                    }
-                    switch state {
-                        case .low:
-                            let callback = {
-                                WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .lowBattery,
-                                                                               .promptType: .warnPromptType,
-                                                                               .action: .viewAction,
-                                                                               .itemId: .custom(device.id ?? "")])
-                            }
-                            return (LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized, callback)
-                        case .ok:
-                            return nil
-                    }
-                case .claimedAt:
-                    return nil
+				case .devEUI:
+					return nil
+				case .hardwareVersion:
+					return nil
+				case .firmwareVersion:
+					return nil
+				case .lastHotspot:
+					return nil
+				case .lastRSSI:
+					return nil
+				case .serialNumber:
+					return nil
+				case .ATECC:
+					return nil
+				case .GPS:
+					return nil
+				case .wifiSignal:
+					return nil
+				case .batteryState:
+					guard let state = deviceInfo?.weatherStation?.batState else {
+						return nil
+					}
+					switch state {
+						case .low:
+							let callback = {
+								WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .lowBattery,
+																					 .promptType: .warnPromptType,
+																					 .action: .viewAction,
+																					 .itemId: .custom(device.id ?? "")])
+							}
+							return (LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized, callback)
+						case .ok:
+							return nil
+					}
+				case .claimedAt:
+					return nil
 				case .lastGatewayActivity:
 					return nil
 				case .stationModel:
 					return nil
 				case .lastStationActivity:
 					return nil
-            }
-        }
+			}
+		}
 
-        func button(for device: DeviceDetails, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> DeviceInfoButtonInfo? {
-            switch self {
-                case .name:
-                    return nil
+		func button(for device: DeviceDetails, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> DeviceInfoButtonInfo? {
+			switch self {
+				case .name:
+					return nil
 				case .bundleName:
 					return nil
 				case .gatewayModel:
 					return nil
-                case .devEUI:
-                    return nil
-                case .hardwareVersion:
-                    return nil
-                case .firmwareVersion:
+				case .devEUI:
+					return nil
+				case .hardwareVersion:
+					return nil
+				case .firmwareVersion:
 					let buttonInfo = DeviceInfoButtonInfo(icon: .updateFirmwareIcon,
 														  title: LocalizableString.ClaimDevice.updateFirmwareButton.localized,
 														  buttonStyle: .filled())
-                    return device.needsUpdate(mainVM: mainVM, followState: followState) ? buttonInfo : nil
-                case .lastHotspot:
-                    return nil
-                case .lastRSSI:
-                    return nil
-                case .serialNumber:
-                    return nil
-                case .ATECC:
-                    return nil
-                case .GPS:
-                    return nil
-                case .wifiSignal:
-                    return nil
-                case .batteryState:
-                    return nil
-                case .claimedAt:
-                    return nil
+					return device.needsUpdate(mainVM: mainVM, followState: followState) ? buttonInfo : nil
+				case .lastHotspot:
+					return nil
+				case .lastRSSI:
+					return nil
+				case .serialNumber:
+					return nil
+				case .ATECC:
+					return nil
+				case .GPS:
+					return nil
+				case .wifiSignal:
+					return nil
+				case .batteryState:
+					return nil
+				case .claimedAt:
+					return nil
 				case .lastGatewayActivity:
 					return nil
 				case .stationModel:
 					return nil
 				case .lastStationActivity:
 					return nil
-            }
-        }
-    }
+			}
+		}
+	}
 }

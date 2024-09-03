@@ -208,7 +208,7 @@ private extension DeepLinkHandler {
         }
     }
 
-	func moveToStation(deviceId: String, 
+	func moveToStation(deviceId: String,
 					   cellIndex: String?,
 					   cellCenter: CLLocationCoordinate2D?) {
 		let route = Route.stationDetails(ViewModelsFactory.getStationDetailsViewModel(deviceId: deviceId,

@@ -53,7 +53,6 @@ private extension StationForecastCardView {
             Text("\(forecast.daily?.temperatureMax?.toTemeratureString(for: unitsManager.temperatureUnit) ?? "")")
 				.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
 
-
             CustomRangeSlider(minWeeklyTemp: minWeekTemperature.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0),
                               maxWeeklyTemp: maxWeekTemperature.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0),
                               minDailyTemp: forecast.daily?.temperatureMin?.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0) ?? 0.0,

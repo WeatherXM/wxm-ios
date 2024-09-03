@@ -14,11 +14,12 @@ extension UITextField {
 
     private static var textFieldAddTrailingCharacters = NSHashTable<UITextField>.weakObjects()
     var addTrailingCharacters: Bool {
-        get {
-            return Self.textFieldAddTrailingCharacters.contains(self)
-        }
-        set(value) {
-            if value {
+		get {
+			Self.textFieldAddTrailingCharacters.contains(self)
+		}
+
+        set {
+            if newValue {
                 Self.textFieldAddTrailingCharacters.add(self)
             } else {
                 Self.textFieldAddTrailingCharacters.remove(self)
@@ -29,7 +30,7 @@ extension UITextField {
     private static var textFieldPlaceholderCharacters = NSMapTable<UITextField, NSString>.weakToStrongObjects()
     var placeholderCharacter: NSString {
         get {
-            return Self.textFieldPlaceholderCharacters.object(forKey: self) ?? ""
+            Self.textFieldPlaceholderCharacters.object(forKey: self) ?? ""
         }
         set(value) {
             Self.textFieldPlaceholderCharacters.setObject(value, forKey: self)

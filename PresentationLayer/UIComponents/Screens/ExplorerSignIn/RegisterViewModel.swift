@@ -39,44 +39,9 @@ final class RegisterViewModel: ObservableObject {
                     self.isCallInProgress = false
 
                     if let error = response.error {
-                        let info = error.uiInfo
-                        let title = info.title
-                        var description = info.description
-                        if error.backendError?.code == FailAPICodeEnum.userAlreadyExists.rawValue {
-                            description = LocalizableString.Error.signupUserAlreadyExists1.localized + self.userEmail + LocalizableString.Error.signupUserAlreadyExists2.localized
-                        }
-
-                        let failObj = FailSuccessStateObject(type: .register,
-                                                             title: title,
-                                                             subtitle: description?.attributedMarkdown,
-                                                             cancelTitle: nil,
-                                                             retryTitle: LocalizableString.retry.localized,
-                                                             contactSupportAction: {
-							HelperFunctions().openContactSupport(successFailureEnum: .register,
-																 email: nil,
-																 serialNumber: nil,
-																 trackSelectContentEvent: true)
-                        },
-                                                             cancelAction: nil,
-                                                             retryAction: { [weak self] in self?.isFail = false })
-
-                        self.failSuccessObj = failObj
-                        self.isFail = true
-                        self.isSuccess = false
+						self.handleError(error)
                     } else {
-                        let description = LocalizableString.successRegisterDesc1.localized + self.userEmail + LocalizableString.successRegisterDesc2.localized
-
-                        let successObj = FailSuccessStateObject(type: .register,
-                                                                title: LocalizableString.success.localized,
-                                                                subtitle: description.attributedMarkdown,
-                                                                cancelTitle: nil,
-                                                                retryTitle: nil,
-                                                                contactSupportAction: nil,
-                                                                cancelAction: nil,
-                                                                retryAction: nil)
-                        self.failSuccessObj = successObj
-                        self.isFail = false
-                        self.isSuccess = true
+                        handleSuccess()
                     }
 
                     let isSuccessful = response.error == nil
@@ -88,6 +53,49 @@ final class RegisterViewModel: ObservableObject {
 
         } catch {}
     }
+
+	func handleError(_ error: NetworkErrorResponse) {
+		let info = error.uiInfo
+		let title = info.title
+		var description = info.description
+		if error.backendError?.code == FailAPICodeEnum.userAlreadyExists.rawValue {
+			description = LocalizableString.Error.signupUserAlreadyExists1.localized + userEmail + LocalizableString.Error.signupUserAlreadyExists2.localized
+		}
+
+		let failObj = FailSuccessStateObject(type: .register,
+											 title: title,
+											 subtitle: description?.attributedMarkdown,
+											 cancelTitle: nil,
+											 retryTitle: LocalizableString.retry.localized,
+											 contactSupportAction: {
+			HelperFunctions().openContactSupport(successFailureEnum: .register,
+												 email: nil,
+												 serialNumber: nil,
+												 trackSelectContentEvent: true)
+		},
+											 cancelAction: nil,
+											 retryAction: { [weak self] in self?.isFail = false })
+
+		failSuccessObj = failObj
+		isFail = true
+		isSuccess = false
+	}
+
+	func handleSuccess() {
+		let description = LocalizableString.successRegisterDesc1.localized + userEmail + LocalizableString.successRegisterDesc2.localized
+
+		let successObj = FailSuccessStateObject(type: .register,
+												title: LocalizableString.success.localized,
+												subtitle: description.attributedMarkdown,
+												cancelTitle: nil,
+												retryTitle: nil,
+												contactSupportAction: nil,
+												cancelAction: nil,
+												retryAction: nil)
+		failSuccessObj = successObj
+		isFail = false
+		isSuccess = true
+	}
 
     func checkSignUpButtonAvailability() {
         if userEmail.isEmpty || !userEmail.isValidEmail() {

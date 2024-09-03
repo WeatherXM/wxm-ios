@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension DBExplorerSearchEntity {
 
     @NSManaged public var timestamp: Date?
