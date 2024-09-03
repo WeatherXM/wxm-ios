@@ -9,7 +9,11 @@ import SwiftUI
 
 struct NoRewardsView: View {
 	@Environment(\.colorScheme) var colorScheme
+	
+	var showTipView = true
+
 	private let iconDimensions: CGFloat = 150
+	
 	var animation: AnimationsEnums {
 		switch colorScheme {
 			case .dark:
@@ -41,7 +45,9 @@ struct NoRewardsView: View {
 				}
 			}
 
-			tipView
+			if showTipView {
+				tipView
+			}
 		}
 		.WXMCardStyle()
 		.onChange(of: colorScheme) { value in

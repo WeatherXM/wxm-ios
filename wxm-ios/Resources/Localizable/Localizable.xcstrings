@@ -5834,6 +5834,17 @@
         }
       }
     },
+    "reward_analytics_last_run" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Run"
+          }
+        }
+      }
+    },
     "reward_analytics_station_rewards" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5841,6 +5852,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Station Rewards"
+          }
+        }
+      }
+    },
+    "reward_analytics_total_earned_for" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total earned for %d Station"
+          }
+        }
+      }
+    },
+    "reward_analytics_total_earned_for_plural" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total earned for %d Stations"
           }
         }
       }

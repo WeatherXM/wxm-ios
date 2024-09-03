@@ -10,8 +10,12 @@ import DomainLayer
 
 class RewardAnalyticsViewModel: ObservableObject {
 	
-	let devices: [NetworkDevicesResponse]
-	
+	let devices: [DeviceDetails]
+	var totalEearnedText: String {
+		let value = devices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }
+		return "\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
+	}
+
 	@Published var state: RewardAnalyticsView.State = .noRewards
 	private lazy var noStationsConfiguration: WXMEmptyView.Configuration = {
 		WXMEmptyView.Configuration(imageFontIcon: (.faceSadCry, .FAProLight),
@@ -23,7 +27,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 		}
 	}()
 
-	init(devices: [NetworkDevicesResponse]) {
+	init(devices: [DeviceDetails]) {
 		self.devices = devices
 		updateState()
 	}
@@ -33,6 +37,10 @@ private extension RewardAnalyticsViewModel {
 	func updateState() {
 		if devices.isEmpty {
 			state = .empty(noStationsConfiguration)
+		} else if devices.reduce(0, { $0 + ($1.rewards?.totalRewards ?? 0.0)}) == 0 {
+			state = .noRewards
+		} else {
+			state = .content
 		}
 	}
 }

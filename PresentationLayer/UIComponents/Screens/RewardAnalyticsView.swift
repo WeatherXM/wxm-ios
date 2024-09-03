@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DomainLayer
 
 struct RewardAnalyticsView: View {
 	@StateObject var viewModel: RewardAnalyticsViewModel
@@ -52,15 +53,55 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var noRewards: some View {
-		NoRewardsView()
+		TrackableScrollView {
+			VStack(spacing: CGFloat(.defaultSidePadding)) {
+				titleView
+				NoRewardsView(showTipView: false)
+					.wxmShadow()
+			}
+			.padding(CGFloat(.defaultSidePadding))
+		}
 	}
 
 	@ViewBuilder
 	var rewardsView: some View {
-		EmptyView()
+		TrackableScrollView {
+			VStack(spacing: CGFloat(.defaultSidePadding)) {
+				titleView
+			}
+			.padding(CGFloat(.defaultSidePadding))
+		}
+	}
+
+	@ViewBuilder
+	var titleView: some View {
+		VStack(spacing: CGFloat(.smallSpacing)) {
+			HStack {
+				Text(LocalizableString.RewardAnalytics.totalEarnedFor(viewModel.devices.count).localized)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundStyle(Color(colorEnum: .darkGrey))
+				Spacer()
+
+				Text(LocalizableString.RewardAnalytics.lastRun.localized)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundStyle(Color(colorEnum: .darkGrey))
+			}
+
+			HStack(alignment: .bottom) {
+				Text(viewModel.totalEearnedText)
+					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .darkGrey))
+				
+				Spacer()
+
+				Text(viewModel.totalEearnedText)
+					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .success))
+			}
+		}
 	}
 }
 
 #Preview {
-	RewardAnalyticsView(viewModel: .init(devices: []))
+	RewardAnalyticsView(viewModel: .init(devices: [DeviceDetails.mockDevice]))
 }
