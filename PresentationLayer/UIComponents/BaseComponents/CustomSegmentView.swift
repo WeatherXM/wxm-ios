@@ -21,7 +21,7 @@ struct CustomSegmentView: View {
 			case .plain:
 				0.0
 			case .compact:
-				CGFloat(.smallSidePadding)
+				0.0
 		}
 	}
 
@@ -135,6 +135,23 @@ private extension CustomSegmentView {
 	@ViewBuilder
 	var compactStyle: some View {
 		ZStack {
+			HStack(spacing: CGFloat(.minimumSpacing)) {
+				ForEach(0 ..< segments.count, id: \.self) { index in
+					let segment = segments[index]
+					Button {
+						selectedIndex = index
+					} label: {
+						Text(segment)
+							.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+							.padding(CGFloat(.smallSidePadding))
+							.sizeObserver(size: $sizes[index].size)
+					}
+				}
+			}
+			.foregroundStyle(Color(.darkGrey))
+		}
+		.sizeObserver(size: $containerSize)
+		.background {
 			HStack {
 				let size = selectorSizeForIndex(selectedIndex)
 				RoundedRectangle(cornerRadius: CGFloat(.buttonCornerRadius))
@@ -145,11 +162,7 @@ private extension CustomSegmentView {
 
 				Spacer()
 			}
-
-			segmentsView
-				.foregroundStyle(Color(.darkGrey))
 		}
-		.sizeObserver(size: $containerSize)
 		.padding(CGFloat(.minimumPadding))
 		.background(Color(colorEnum: .blueTint))
 		.animation(.easeIn(duration: 0.3), value: selectedIndex)
@@ -261,7 +274,7 @@ struct CustomSegmentView_Plain_Previews: PreviewProvider {
 struct CustomSegmentView_Compact_Previews: PreviewProvider {
 	static var previews: some View {
 		CustomSegmentView(options: ["7D", "1M", "1Y"],
-						  selectedIndex: .constant(1),
+						  selectedIndex: .constant(2),
 						  style: .compact)
 	}
 }
