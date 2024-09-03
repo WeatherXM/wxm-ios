@@ -38,7 +38,7 @@ private struct ContentView: View {
 				case .noRewards:
 					noRewards
 				case .content:
-					EmptyView()
+					rewardsView
 			}
 		}
 		.onAppear {
@@ -94,7 +94,7 @@ private struct ContentView: View {
 				
 				Spacer()
 
-				Text(viewModel.totalEearnedText)
+				Text(viewModel.lastRunValueText)
 					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
 					.foregroundStyle(Color(colorEnum: .success))
 			}

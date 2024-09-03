@@ -15,6 +15,10 @@ class RewardAnalyticsViewModel: ObservableObject {
 		let value = devices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }
 		return "\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
+	var lastRunValueText: String {
+		let value = devices.reduce(0.0) { $0 + ($1.rewards?.actualReward ?? 0.0) }
+		return "\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
+	}
 
 	@Published var state: RewardAnalyticsView.State = .noRewards
 	private lazy var noStationsConfiguration: WXMEmptyView.Configuration = {
@@ -23,7 +27,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 								   description: LocalizableString.RewardAnalytics.emptyStateDescription.localized.attributedMarkdown,
 								   buttonFontIcon: (.cart, .FAProSolid),
 								   buttonTitle: LocalizableString.Profile.noRewardsWarningButtonTitle.localized) {
-
+			HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
 		}
 	}()
 
@@ -42,5 +46,11 @@ private extension RewardAnalyticsViewModel {
 		} else {
 			state = .content
 		}
+	}
+}
+
+extension RewardAnalyticsViewModel: HashableViewModel {
+	func hash(into hasher: inout Hasher) {
+		hasher.combine("\(devices.map { $0.id})")
 	}
 }

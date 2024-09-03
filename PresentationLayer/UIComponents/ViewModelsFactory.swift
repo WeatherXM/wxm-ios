@@ -253,4 +253,8 @@ enum ViewModelsFactory {
 	static func getClaimDeviceSetFrequncyViewModel(completion: @escaping GenericCallback<Frequency>) -> ClaimDeviceSetFrequencyViewModel {
 		return ClaimDeviceSetFrequencyViewModel(completion: completion)
 	}
+
+	static func getRewardAnalyticsViewModel(devices: [DeviceDetails]) -> RewardAnalyticsViewModel {
+		return RewardAnalyticsViewModel(devices: devices)
+	}
 }
