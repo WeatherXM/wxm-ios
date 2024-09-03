@@ -62,6 +62,10 @@ private struct ContentView: View {
 
 	var fieldsView: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
+			if let surveyConf = viewModel.surveyConfiguration {
+				AnnouncementCardView(configuration: surveyConf)
+			}
+
 			ForEach(ProfileField.allCases, id: \.self) { field in
 				switch field {
 					case .rewards:
@@ -74,6 +78,7 @@ private struct ContentView: View {
 			}
 		}
 		.padding(CGFloat(.defaultSidePadding))
+		.animation(.easeIn, value: viewModel.surveyConfiguration != nil)
 	}
 
 	var rewardsView: some View {

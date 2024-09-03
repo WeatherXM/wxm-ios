@@ -199,6 +199,16 @@ class SwinjectHelper: SwinjectInterface {
 						loginService: resolver.resolve(LoginService.self)!)
 		}
 
+		// MARK: - Survey
+
+		container.register(SurveyRepository.self) { _ in
+			SurveyRepositoryImpl()
+		}
+
+		container.register(SurveyUseCase.self) { resolver in
+			SurveyUseCase(repository: resolver.resolve(SurveyRepository.self)!)
+		}
+
         // MARK: - Return the Container
 
         return container

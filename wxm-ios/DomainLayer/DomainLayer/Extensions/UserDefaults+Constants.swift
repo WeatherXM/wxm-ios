@@ -39,11 +39,12 @@ public extension UserDefaults {
 		case userDevicesFollowStates = "com.weatherxm.app.UserDefaults.Key.UserDevicesFollowStates"
 		case userDevices = "com.weatherxm.app.UserDefaults.Key.UserDevices"
 		case lastAppVersionPrompt = "com.weatherxm.app.UserDefaults.Key.LastAppVersionPrompt"
+		case lastSurveyId = "com.weatherxm.app.UserDefaults.Key.LastSurveyId"
 
         // MARK: - UserDefaultEntry
 
         static var userKeys: [String] {
-			let keys: [GenericKey] = [.hideWalletTimestamp, .sortByDevicesOption, .filterDevicesOption, .groupByDevicesOption, .userDevicesFollowStates, .userDevices]
+			let keys: [GenericKey] = [.hideWalletTimestamp, .sortByDevicesOption, .filterDevicesOption, .groupByDevicesOption, .userDevicesFollowStates, .userDevices, .lastSurveyId]
             return keys.map { $0.rawValue }
         }
     }

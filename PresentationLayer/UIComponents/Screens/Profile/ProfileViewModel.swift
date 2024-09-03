@@ -12,6 +12,7 @@ import Toolkit
 
 class ProfileViewModel: ObservableObject {
     private final let meUseCase: MeUseCase
+	private let surveyUseCase: SurveyUseCase
     private var cancellableSet: Set<AnyCancellable> = []
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
 
@@ -40,6 +41,7 @@ class ProfileViewModel: ObservableObject {
 	@Published var isLoading: Bool = true
 	@Published var isFailed: Bool = false
 	var failObj: FailSuccessStateObject?
+	@Published var surveyConfiguration: AnnouncementCardView.Configuration?
 
 	var claimWebAppUrl: String {
 		let urlString = DisplayedLinks.claimToken.linkURL
@@ -47,8 +49,9 @@ class ProfileViewModel: ObservableObject {
 		return url?.host ?? "-"
 	}
 
-    public init(meUseCase: MeUseCase) {
+	public init(meUseCase: MeUseCase, surveyUseCase: SurveyUseCase) {
         self.meUseCase = meUseCase
+		self.surveyUseCase = surveyUseCase
 		scrollOffsetObject = .init()
 		tabBarVisibilityHandler = TabBarVisibilityHandler(scrollOffsetObject: self.scrollOffsetObject)
 		tabBarVisibilityHandler.$isTabBarShowing.assign(to: &$isTabBarVisible)
@@ -65,6 +68,10 @@ class ProfileViewModel: ObservableObject {
 		updateRewards()
 
 		MainScreenViewModel.shared.$isWalletMissing.assign(to: &$showMissingWalletError)
+
+		surveyUseCase.surveyPublisher.sink { [weak self] survey in
+			self?.surveyConfiguration = self?.getConfigurationForSurvey(survey)
+		}.store(in: &cancellableSet)
 
 		self.refresh { }
     }
@@ -236,5 +243,25 @@ private extension ProfileViewModel {
 			self.rewardsIndicationType = self.isClaimAvailable ? .claimWeb : .buyStation
 			self.showRewardsIndication = !hasDevices || self.isClaimAvailable
 		}
+	}
+
+	func getConfigurationForSurvey(_ survey: Survey?) -> AnnouncementCardView.Configuration? {
+		let action = {
+			guard let urlString = survey?.url, let url = URL(string: urlString) else {
+				return
+			}
+
+			Router.shared.showFullScreen(.safariView(url))
+		}
+
+		let closeAction = { [weak self] in
+			guard let surveyId = survey?.id else {
+				return
+			}
+
+			self?.surveyUseCase.updateLastDismissedSurvey(surveyId: surveyId)
+		}
+
+		return survey?.toAnnouncementConfiguration(actionTitle: survey?.actionLabel, action: action, closeAction: closeAction)
 	}
 }
