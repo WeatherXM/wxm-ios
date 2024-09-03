@@ -62,7 +62,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	private var method: HTTPMethod {
 		switch self {
 			case .getUser, .getUserWallet, .getDevices, .getFirmwares, .getUserDeviceById,
-					.getUserDeviceHistoryById, .getUserDeviceForecastById, .getDeviceFirmwareById, .getUserDeviceInfoById:
+					.getUserDeviceHistoryById, .getUserDeviceForecastById, .getUserDeviceRewards, .getDeviceFirmwareById, .getUserDeviceInfoById:
 				return .get
 			case .saveUserWallet, .claimDevice, .setFriendlyName, .disclaimDevice, .follow, .setDeviceLocation, .setFCMToken:
 				return .post
@@ -109,7 +109,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/devices/\(deviceId)/history"
 			case let .getUserDeviceForecastById(deviceId, _, _, _):
 				return "me/devices/\(deviceId)/forecast"
-			ase let .getUserDeviceRewards(deviceId, _):
+			case let .getUserDeviceRewards(deviceId, _):
 				return "me/devices/\(deviceId)/rewards"
 			case let .getDeviceFirmwareById(deviceId: deviceId):
 				return "me/devices/\(deviceId)/firmware"
