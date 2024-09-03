@@ -3,6 +3,16 @@
     {
       "filename" : "wxm_navigation_logo.pdf",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "wxm_navigation_logo_dark.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
