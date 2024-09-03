@@ -39,7 +39,7 @@ extension LocalizableString.RewardAnalytics: WXMLocalizable {
 			case .emptyStateDescription:
 				return "reward_analytics_empty_state_description"
 			case .totalEarnedFor(let count):
-				return count > 1 ? "reward_analytics_total_earned_for_plurar" : "reward_analytics_total_earned_for"
+				return count > 1 ? "reward_analytics_total_earned_for_plural" : "reward_analytics_total_earned_for"
 			case .lastRun:
 				return "reward_analytics_last_run"
 		}

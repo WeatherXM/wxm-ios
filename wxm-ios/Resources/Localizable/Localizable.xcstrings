@@ -4549,9 +4549,6 @@
         }
       }
     },
-    "Hello, World!" : {
-
-    },
     "hidden_content_description_format" : {
       "extractionState" : "manual",
       "localizations" : {
