@@ -21,6 +21,7 @@ enum FontSizeEnum {
 	case XLTitleFontSize
 	case XXLTitleFontSize
 	case XXXLTitleFontSize
+	case maxFontSize
 
 	var sizeValue: CGFloat {
 		switch self {
@@ -50,6 +51,8 @@ enum FontSizeEnum {
 				return 32
 			case .XXXLTitleFontSize:
 				return 50.0
+			case .maxFontSize:
+				return 64.0
 		}
 	}
 }

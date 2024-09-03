@@ -108,7 +108,7 @@ private extension StationForecastViewModel {
         return WXMEmptyView.Configuration(image: (.lockedIcon, .darkestBlue),
                                           title: LocalizableString.hiddenContentTitle.localized,
                                           description: description.attributedMarkdown ?? "",
-                                          buttonFontIcon: buttonIcon,
+										  buttonFontIcon: (buttonIcon, .FAPro),
                                           buttonTitle: buttonTitle.localized,
                                           action: buttonAction)
     }

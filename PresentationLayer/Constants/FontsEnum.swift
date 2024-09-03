@@ -57,4 +57,5 @@ enum FontIcon: String {
 	case split
 	case close
 	case chevronRight = "chevron-right"
+	case faceSadCry = "face-sad-cry"
 }
