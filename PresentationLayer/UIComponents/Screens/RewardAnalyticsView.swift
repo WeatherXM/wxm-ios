@@ -113,8 +113,13 @@ private struct ContentView: View {
 				VStack(spacing: CGFloat(.smallSpacing)) {
 					Text(LocalizableString.RewardAnalytics.totalEarned.localized)
 						.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+
+					Text(viewModel.overallEarnedValueText)
+						.font(.system(size: CGFloat(.normalFontSize)))
+
 				}
-				
+				.foregroundStyle(Color(colorEnum: .text))
+
 				Spacer()
 
 				CustomSegmentView(options: ["7D", "1M", "1Y"],
@@ -128,5 +133,5 @@ private struct ContentView: View {
 }
 
 #Preview {
-	RewardAnalyticsView(viewModel: .init(devices: [DeviceDetails.mockDevice]))
+	RewardAnalyticsView(viewModel: ViewModelsFactory.getRewardAnalyticsViewModel(devices: [DeviceDetails.mockDevice]))
 }

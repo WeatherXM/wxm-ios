@@ -255,6 +255,7 @@ enum ViewModelsFactory {
 	}
 
 	static func getRewardAnalyticsViewModel(devices: [DeviceDetails]) -> RewardAnalyticsViewModel {
-		return RewardAnalyticsViewModel(devices: devices)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		return RewardAnalyticsViewModel(useCase: useCase, devices: devices)
 	}
 }
