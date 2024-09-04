@@ -54,6 +54,7 @@
 		26A86BC22C7C997700F1C2CF /* SurveyRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BC12C7C997700F1C2CF /* SurveyRepositoryImpl.swift */; };
 		26AB9F522A80112900855912 /* UserDevicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F512A80112900855912 /* UserDevicesService.swift */; };
 		26AB9F562A80C50200855912 /* KeychainHelperService+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F552A80C50200855912 /* KeychainHelperService+User.swift */; };
+		26ACE8EF2C883BF400EA22DD /* get_devices_rewards_analytics.json in Resources */ = {isa = PBXBuildFile; fileRef = 26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */; };
 		26B3D2B429E43D14006913E0 /* get_user_wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 26B3D2B329E43D14006913E0 /* get_user_wallet.json */; };
 		26D47E9E2A177AFB0078723A /* SettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */; };
 		26DD42AF29AF4765008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AE29AF4765008E277E /* Toolkit.framework */; };
@@ -139,6 +140,7 @@
 		26A86BC12C7C997700F1C2CF /* SurveyRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRepositoryImpl.swift; sourceTree = "<group>"; };
 		26AB9F512A80112900855912 /* UserDevicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDevicesService.swift; sourceTree = "<group>"; };
 		26AB9F552A80C50200855912 /* KeychainHelperService+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainHelperService+User.swift"; sourceTree = "<group>"; };
+		26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_devices_rewards_analytics.json; sourceTree = "<group>"; };
 		26B3D2B329E43D14006913E0 /* get_user_wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_user_wallet.json; sourceTree = "<group>"; };
 		26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryImpl.swift; sourceTree = "<group>"; };
 		26DD42AE29AF4765008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +219,7 @@
 				2646D8E729C8B4310000237F /* get_device_info_helium.json */,
 				2646D8E929C8B8CA0000237F /* get_device_info_m5.json */,
 				26348E262A4456DD000846C6 /* get_network_search.json */,
+				26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */,
 				267401792A386DA700E54E35 /* get_network_stats.json */,
 				2674EDCD2A3C4C3800616285 /* get_network_stats_alt.json */,
 				2646FCB72995018800EBB61B /* get_transactions.json */,
@@ -504,6 +507,7 @@
 				2618A6F12A1F61FD00983B7B /* get_device_history_24_samples.json in Resources */,
 				2646D8E829C8B4310000237F /* get_device_info_helium.json in Resources */,
 				266B01C52B84E7F6007AC689 /* get_device_rewards_timeline.json in Resources */,
+				26ACE8EF2C883BF400EA22DD /* get_devices_rewards_analytics.json in Resources */,
 				2646D8EA29C8B8CA0000237F /* get_device_info_m5.json in Resources */,
 				26348E272A4456DD000846C6 /* get_network_search.json in Resources */,
 				2674017A2A386DA700E54E35 /* get_network_stats.json in Resources */,
