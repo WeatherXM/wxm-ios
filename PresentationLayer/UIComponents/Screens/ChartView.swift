@@ -34,6 +34,12 @@ struct ChartView: View {
 private struct ChartAreaView: View {
 
 	let data: [ChartDataItem]
+	@State private var showSelection: Bool = false
+	@State private var selectedItem: ChartDataItem?
+	@State private var indicatorOffet: CGSize = .zero
+	@State private var popupDetailsOffset: CGSize = .zero
+	@State private var popupDetailsSize: CGSize = .zero
+
 	var body: some View {
 		Chart(data) { item in
 			LineMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
@@ -41,6 +47,68 @@ private struct ChartAreaView: View {
 				.interpolationMethod(.monotone)
 		}
 		.chartLegend(.hidden)
+		.chartXAxis {
+		  AxisMarks(stroke: StrokeStyle(lineWidth: 0))
+		}
+		.chartOverlay { chartProxy in
+			GeometryReader { proxy in
+				Color(.red).frame(width: 1.0, height: chartProxy.plotAreaSize.height)
+					.offset(indicatorOffet)
+					.opacity(showSelection ? 1.0 : 0.0)
+					.animation(.easeIn(duration: 0.1), value: showSelection)
+
+				if let selectedItem, showSelection {
+					VStack(alignment: .trailing) {
+						ChartOverlayDetailsView(title: selectedItem.xVal)
+							.sizeObserver(size: $popupDetailsSize)
+
+
+						Spacer()
+					}
+					.offset(popupDetailsOffset)
+				}
+
+				Rectangle().fill(.clear).contentShape(Rectangle())
+											.gesture(DragGesture().onChanged { value in
+												showSelection = true
+
+												let origin = proxy[chartProxy.plotAreaFrame].origin
+												let location = CGPoint(
+													x: value.location.x - origin.x,
+													y: value.location.y - origin.y
+												)
+
+												let offsetX = location.x.clamped(to: 0.0...chartProxy.plotAreaSize.width)
+												indicatorOffet = CGSize(width: offsetX, height: 0.0)
+
+												print(popupDetailsSize)
+												let popUpOffsetMin = 0.0
+												let popUpOffsetMax = chartProxy.plotAreaSize.width - popupDetailsSize.width
+												popupDetailsOffset = CGSize(width: offsetX.clamped(to: popUpOffsetMin...popUpOffsetMax),
+																			height: 0.0)
+
+												let (xVal, _) = chartProxy.value(at: location, as: (String, Double).self) ?? ("-", 0)
+												selectedItem = data.first(where: { $0.xVal == xVal })
+											}.onEnded { _ in
+												showSelection = false
+											})
+			}
+			.contentShape(Rectangle())
+		}
+	}
+}
+
+private struct ChartOverlayDetailsView: View {
+	let title: String
+
+	var body: some View {
+		VStack {
+			Text(title)
+				.font(.system(size: CGFloat(.caption)))
+				.foregroundStyle(.white)
+		}
+		.padding(CGFloat(.smallSidePadding))
+		.background(Color.black.opacity(0.9))
 	}
 }
 
@@ -52,4 +120,5 @@ private struct ChartAreaView: View {
 					 .init(xVal: "Fri", yVal: 7.090),
 					 .init(xVal: "Sat", yVal: 9.21092),
 					 .init(xVal: "Sun", yVal: 12.2132)])
+	.padding()
 }
