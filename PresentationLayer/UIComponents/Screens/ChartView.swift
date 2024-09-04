@@ -34,7 +34,7 @@ struct ChartView: View {
 private struct ChartAreaView: View {
 
 	let data: [ChartDataItem]
-	@State private var showSelection: Bool = false
+	@State private var showSelection: Bool = true
 	@State private var selectedItem: ChartDataItem?
 	@State private var indicatorOffet: CGSize = .zero
 	@State private var popupDetailsOffset: CGSize = .zero
@@ -59,7 +59,8 @@ private struct ChartAreaView: View {
 
 				if let selectedItem, showSelection {
 					VStack(alignment: .trailing) {
-						ChartOverlayDetailsView(title: selectedItem.xVal)
+						ChartOverlayDetailsView(title: selectedItem.xVal,
+												valueItems: [("Total", "\(selectedItem.yVal)")])
 							.sizeObserver(size: $popupDetailsSize)
 
 
@@ -81,7 +82,6 @@ private struct ChartAreaView: View {
 												let offsetX = location.x.clamped(to: 0.0...chartProxy.plotAreaSize.width)
 												indicatorOffet = CGSize(width: offsetX, height: 0.0)
 
-												print(popupDetailsSize)
 												let popUpOffsetMin = 0.0
 												let popUpOffsetMax = chartProxy.plotAreaSize.width - popupDetailsSize.width
 												popupDetailsOffset = CGSize(width: offsetX.clamped(to: popUpOffsetMin...popUpOffsetMax),
@@ -99,14 +99,29 @@ private struct ChartAreaView: View {
 }
 
 private struct ChartOverlayDetailsView: View {
+	typealias ValueItem = (title: String, value: String)
 	let title: String
+	let valueItems: [ValueItem]
+
 
 	var body: some View {
-		VStack {
+		VStack(spacing: CGFloat(.minimumSpacing)) {
 			Text(title)
 				.font(.system(size: CGFloat(.caption)))
 				.foregroundStyle(.white)
+
+			Color(.white).frame(height: 1)
+
+			ForEach(valueItems, id: \.title) { item in
+				HStack {
+					Text(item.title)
+					Text(item.value)
+				}
+				.font(.system(size: CGFloat(.caption)))
+				.foregroundStyle(.white)
+			}
 		}
+		.fixedSize()
 		.padding(CGFloat(.smallSidePadding))
 		.background(Color.black.opacity(0.9))
 	}
