@@ -7,9 +7,10 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 struct RewardAnalyticsChartFactory {
-	func getChartsData(overallResponse: NetworkDevicesResponse, mode: DeviceRewardsMode) -> [ChartDataItem] {
+	func getChartsData(overallResponse: NetworkDevicesRewardsResponse, mode: DeviceRewardsMode) -> [ChartDataItem] {
 		switch mode {
 			case .week:
 				getSevendaysMode(overallResponse: overallResponse)
@@ -22,15 +23,19 @@ struct RewardAnalyticsChartFactory {
 }
 
 private extension RewardAnalyticsChartFactory {
-	func getSevendaysMode(overallResponse: NetworkDevicesResponse) -> [ChartDataItem] {
+	func getSevendaysMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
+		var counter = -1
+		return overallResponse.data?.map { datum in
+			counter += 1
+			return ChartDataItem(xVal: counter, yVal: datum.totalRewards ?? 2.0, group: datum.ts?.getWeekDay() ?? "")
+		} ?? []
+	}
+
+	func getMonthlyMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
 		[]
 	}
 
-	func getMonthlyMode(overallResponse: NetworkDevicesResponse) -> [ChartDataItem] {
-		[]
-	}
-
-	func getYearlyMode(overallResponse: NetworkDevicesResponse) -> [ChartDataItem] {
+	func getYearlyMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
 		[]
 	}
 }

@@ -26,7 +26,12 @@ class RewardAnalyticsViewModel: ObservableObject {
 		return "\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
 	
-	@Published var overallResponse: NetworkDevicesRewardsResponse?
+	@Published var overallResponse: NetworkDevicesRewardsResponse? {
+		didSet {
+			updateOverallCharts()
+		}
+	}
+	@Published var overallChartDataItems: [ChartDataItem]?
 	@Published var state: RewardAnalyticsView.State = .noRewards
 	private lazy var noStationsConfiguration: WXMEmptyView.Configuration = {
 		WXMEmptyView.Configuration(imageFontIcon: (.faceSadCry, .FAProLight),
@@ -82,6 +87,14 @@ private extension RewardAnalyticsViewModel {
 		} else {
 			state = .content
 		}
+	}
+
+	func updateOverallCharts() {
+		guard let overallResponse else {
+			return
+		}
+
+		overallChartDataItems = RewardAnalyticsChartFactory().getChartsData(overallResponse: overallResponse, mode: .week)
 	}
 }
 

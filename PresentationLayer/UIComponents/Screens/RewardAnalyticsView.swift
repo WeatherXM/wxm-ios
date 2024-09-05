@@ -108,7 +108,7 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var summaryCard: some View {
-		VStack {
+		VStack(spacing: CGFloat(.smallSpacing)) {
 			HStack {
 				VStack(spacing: CGFloat(.smallSpacing)) {
 					Text(LocalizableString.RewardAnalytics.totalEarned.localized)
@@ -126,6 +126,11 @@ private struct ContentView: View {
 								  selectedIndex: $selectedIndex,
 								  style: .compact)
 				.cornerRadius(CGFloat(.buttonCornerRadius))
+			}
+
+			if let chartDataItems = viewModel.overallChartDataItems {
+				ChartView(data: chartDataItems)
+					.aspectRatio(1.0, contentMode: .fit)
 			}
 		}
 		.WXMCardStyle()
