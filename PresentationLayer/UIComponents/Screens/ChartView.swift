@@ -34,7 +34,7 @@ struct ChartView: View {
 private struct ChartAreaView: View {
 
 	let data: [ChartDataItem]
-	@State private var showSelection: Bool = true
+	@State private var showSelection: Bool = false
 	@State private var selectedItem: ChartDataItem?
 	@State private var indicatorOffet: CGSize = .zero
 	@State private var popupDetailsOffset: CGSize = .zero
@@ -52,49 +52,66 @@ private struct ChartAreaView: View {
 		}
 		.chartOverlay { chartProxy in
 			GeometryReader { proxy in
-				Color(.red).frame(width: 1.0, height: chartProxy.plotAreaSize.height)
-					.offset(indicatorOffet)
-					.opacity(showSelection ? 1.0 : 0.0)
-					.animation(.easeIn(duration: 0.1), value: showSelection)
-
-				if let selectedItem, showSelection {
-					VStack(alignment: .trailing) {
-						ChartOverlayDetailsView(title: selectedItem.xVal,
-												valueItems: [("Total", "\(selectedItem.yVal)")])
-							.sizeObserver(size: $popupDetailsSize)
-
-
-						Spacer()
-					}
-					.offset(popupDetailsOffset)
-				}
-
-				Rectangle().fill(.clear).contentShape(Rectangle())
-											.gesture(DragGesture().onChanged { value in
-												showSelection = true
-
-												let origin = proxy[chartProxy.plotAreaFrame].origin
-												let location = CGPoint(
-													x: value.location.x - origin.x,
-													y: value.location.y - origin.y
-												)
-
-												let offsetX = location.x.clamped(to: 0.0...chartProxy.plotAreaSize.width)
-												indicatorOffet = CGSize(width: offsetX, height: 0.0)
-
-												let popUpOffsetMin = 0.0
-												let popUpOffsetMax = chartProxy.plotAreaSize.width - popupDetailsSize.width
-												popupDetailsOffset = CGSize(width: offsetX.clamped(to: popUpOffsetMin...popUpOffsetMax),
-																			height: 0.0)
-
-												let (xVal, _) = chartProxy.value(at: location, as: (String, Double).self) ?? ("-", 0)
-												selectedItem = data.first(where: { $0.xVal == xVal })
-											}.onEnded { _ in
-												showSelection = false
-											})
+				selector(chartProxy: chartProxy)
+				popUpDetails
+				interactionArea(proxy: proxy,
+								chartProxy: chartProxy)
 			}
 			.contentShape(Rectangle())
 		}
+	}
+}
+
+@available(iOS 16.0, *)
+private extension ChartAreaView {
+	@ViewBuilder
+	func selector(chartProxy: ChartProxy) -> some View {
+		Color(.red).frame(width: 1.0, height: chartProxy.plotAreaSize.height)
+			.offset(indicatorOffet)
+			.opacity(showSelection ? 1.0 : 0.0)
+			.animation(.easeIn(duration: 0.1), value: showSelection)
+	}
+
+	@ViewBuilder
+	var popUpDetails: some View {
+		if let selectedItem, showSelection {
+			VStack(alignment: .trailing) {
+				ChartOverlayDetailsView(title: selectedItem.xVal,
+										valueItems: [("Total", "\(selectedItem.yVal)")])
+					.sizeObserver(size: $popupDetailsSize)
+
+
+				Spacer()
+			}
+			.offset(popupDetailsOffset)
+		}
+	}
+
+	@ViewBuilder
+	func interactionArea(proxy: GeometryProxy, chartProxy: ChartProxy) -> some View {
+		Rectangle().fill(.clear).contentShape(Rectangle())
+									.gesture(DragGesture().onChanged { value in
+										showSelection = true
+
+										let origin = proxy[chartProxy.plotAreaFrame].origin
+										let location = CGPoint(
+											x: value.location.x - origin.x,
+											y: value.location.y - origin.y
+										)
+
+										let offsetX = location.x.clamped(to: 0.0...chartProxy.plotAreaSize.width)
+										indicatorOffet = CGSize(width: offsetX, height: 0.0)
+
+										let popUpOffsetMin = 0.0
+										let popUpOffsetMax = chartProxy.plotAreaSize.width - popupDetailsSize.width
+										popupDetailsOffset = CGSize(width: offsetX.clamped(to: popUpOffsetMin...popUpOffsetMax),
+																	height: 0.0)
+
+										let (xVal, _) = chartProxy.value(at: location, as: (String, Double).self) ?? ("-", 0)
+										selectedItem = data.first(where: { $0.xVal == xVal })
+									}.onEnded { _ in
+										showSelection = false
+									})
 	}
 }
 
