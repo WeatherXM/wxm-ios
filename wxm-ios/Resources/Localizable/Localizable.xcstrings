@@ -5809,6 +5809,28 @@
         }
       }
     },
+    "reward_analytics_beta_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta Rewards"
+          }
+        }
+      }
+    },
+    "reward_analytics_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ details"
+          }
+        }
+      }
+    },
     "reward_analytics_empty_state_description" : {
       "extractionState" : "manual",
       "localizations" : {

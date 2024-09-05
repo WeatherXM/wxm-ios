@@ -32,6 +32,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 		}
 	}
 	@Published var overallChartDataItems: [ChartDataItem]?
+	@Published var currentStationReward: (stationId: String, stationReward: NetworkDeviceRewardsResponse)?
 	@Published var state: RewardAnalyticsView.State = .noRewards
 	private lazy var noStationsConfiguration: WXMEmptyView.Configuration = {
 		WXMEmptyView.Configuration(imageFontIcon: (.faceSadCry, .FAProLight),
@@ -76,6 +77,36 @@ class RewardAnalyticsViewModel: ObservableObject {
 			print(error)
 		}
 	}
+
+	func isExpanded(device: DeviceDetails) -> Bool {
+		guard let deviceId = device.id else {
+			return false
+		}
+
+		return currentStationReward?.stationId == deviceId
+	}
+
+	func handleDeviceTap(_ device: DeviceDetails) {
+		guard let deviceId = device.id, currentStationReward?.stationId != deviceId else {
+			currentStationReward = nil
+			return
+		}
+
+		Task { @MainActor in
+			guard let result = await getRewardsBreakdown(for: deviceId) else {
+				return
+			}
+			switch result {
+				case .failure(let error):
+					guard let desc = error.uiInfo.description?.attributedMarkdown else {
+						return
+					}
+					Toast.shared.show(text: desc)
+				case .success(let response):
+					currentStationReward = (deviceId, response)
+			}
+		}
+	}
 }
 
 private extension RewardAnalyticsViewModel {
@@ -94,7 +125,19 @@ private extension RewardAnalyticsViewModel {
 			return
 		}
 
-		overallChartDataItems = RewardAnalyticsChartFactory().getChartsData(overallResponse: overallResponse, mode: .week)
+		overallChartDataItems = RewardAnalyticsChartFactory().getChartsData(overallResponse: overallResponse, 
+																			mode: .week)
+	}
+
+	func getRewardsBreakdown(for deviceId: String) async -> Result<NetworkDeviceRewardsResponse, NetworkErrorResponse>? {
+		do {
+			let  result = try await useCase.getUserDeviceRewards(deviceId: deviceId,
+																 mode: .week).toAsync().result
+			return result
+		} catch {
+			print(error)
+			return nil
+		}
 	}
 }
 

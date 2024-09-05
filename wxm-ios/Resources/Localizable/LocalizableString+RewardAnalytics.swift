@@ -16,6 +16,8 @@ extension LocalizableString {
 		case lastRun
 		case totalEarned
 		case rewardsByStation
+		case details(String)
+		case betaRewards
 	}
 }
 
@@ -25,6 +27,8 @@ extension LocalizableString.RewardAnalytics: WXMLocalizable {
 		switch self {
 			case .totalEarnedFor(let count):
 				localized = String(format: localized, count)
+			case .details(let value):
+				localized = String(format: localized, value)
 			default:
 				break
 		}
@@ -48,6 +52,10 @@ extension LocalizableString.RewardAnalytics: WXMLocalizable {
 				return "reward_analytics_total_earned"
 			case .rewardsByStation:
 				return "reward_analytics_rewards_by_station"
+			case .details:
+				return "reward_analytics_details"
+			case .betaRewards:
+				return "reward_analytics_beta_rewards"
 		}
 	}
 }

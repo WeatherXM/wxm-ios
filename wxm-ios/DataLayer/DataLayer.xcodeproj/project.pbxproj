@@ -32,6 +32,7 @@
 		266B01C12B84DED4007AC689 /* get_device_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */; };
 		266B01C52B84E7F6007AC689 /* get_device_rewards_timeline.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01C42B84E7F6007AC689 /* get_device_rewards_timeline.json */; };
 		266B01CF2B861B10007AC689 /* get_device_rewards_summary_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01CE2B861B10007AC689 /* get_device_rewards_summary_empty.json */; };
+		2672B87A2C89E778002266BE /* get_device_rewards_analytics.json in Resources */ = {isa = PBXBuildFile; fileRef = 2672B8792C89E778002266BE /* get_device_rewards_analytics.json */; };
 		267401762A376A1400E54E35 /* NetworkRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267401752A376A1400E54E35 /* NetworkRepositoryImpl.swift */; };
 		267401782A376B4200E54E35 /* NetworkApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267401772A376B4200E54E35 /* NetworkApiRequestBuilder.swift */; };
 		2674017A2A386DA700E54E35 /* get_network_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 267401792A386DA700E54E35 /* get_network_stats.json */; };
@@ -118,6 +119,7 @@
 		266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_summary.json; sourceTree = "<group>"; };
 		266B01C42B84E7F6007AC689 /* get_device_rewards_timeline.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_timeline.json; sourceTree = "<group>"; };
 		266B01CE2B861B10007AC689 /* get_device_rewards_summary_empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_summary_empty.json; sourceTree = "<group>"; };
+		2672B8792C89E778002266BE /* get_device_rewards_analytics.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_analytics.json; sourceTree = "<group>"; };
 		267401752A376A1400E54E35 /* NetworkRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryImpl.swift; sourceTree = "<group>"; };
 		267401772A376B4200E54E35 /* NetworkApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiRequestBuilder.swift; sourceTree = "<group>"; };
 		267401792A386DA700E54E35 /* get_network_stats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_network_stats.json; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				2646FCB52995018800EBB61B /* get_user_device.json */,
 				2618B1E52A84EC44003B98FB /* get_user_device_forecast.json */,
 				2646FCB42995018800EBB61B /* get_user_device_just_claimed.json */,
+				2672B8792C89E778002266BE /* get_device_rewards_analytics.json */,
 				26DD42D129AFAF26008E277E /* get_user_devices.json */,
 				26B3D2B329E43D14006913E0 /* get_user_wallet.json */,
 				267CA6EE2C1314E200ABE599 /* get_user.json */,
@@ -508,6 +511,7 @@
 				2646D8E829C8B4310000237F /* get_device_info_helium.json in Resources */,
 				266B01C52B84E7F6007AC689 /* get_device_rewards_timeline.json in Resources */,
 				26ACE8EF2C883BF400EA22DD /* get_devices_rewards_analytics.json in Resources */,
+				2672B87A2C89E778002266BE /* get_device_rewards_analytics.json in Resources */,
 				2646D8EA29C8B8CA0000237F /* get_device_info_m5.json in Resources */,
 				26348E272A4456DD000846C6 /* get_network_search.json in Resources */,
 				2674017A2A386DA700E54E35 /* get_network_stats.json in Resources */,

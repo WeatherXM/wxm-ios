@@ -1,0 +1,12 @@
+{  
+	"details": [
+		{
+			"code": "beta_rewards",
+			"current_rewards": 12.3325,
+			"total_rewards": 132.38432,
+			"boost_period_start":  "2023-06-06T00:00:00+00:00",
+			"boost_period_end": "2023-06-14T00:00:00+00:00",
+			"completed_percentage": 62
+		}
+	]
+}

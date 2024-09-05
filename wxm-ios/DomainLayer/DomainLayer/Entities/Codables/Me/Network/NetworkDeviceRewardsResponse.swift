@@ -30,12 +30,12 @@ public extension NetworkDeviceRewardsResponse {
 	}
 
 	struct Details: Codable {
-		let code: BoostCode?
-		let currentRewards: Double?
-		let totalRewards: Double?
-		let boostPeriodStart: Date?
-		let boostPeriodEnd: Date?
-		let completedPercentage: Int?
+		public let code: BoostCode?
+		public let currentRewards: Double?
+		public let totalRewards: Double?
+		public let boostPeriodStart: Date?
+		public let boostPeriodEnd: Date?
+		public let completedPercentage: Int?
 
 		enum CodingKeys: String, CodingKey {
 			case code
