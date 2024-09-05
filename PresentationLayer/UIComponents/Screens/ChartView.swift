@@ -48,7 +48,36 @@ private struct ChartAreaView: View {
 		}
 		.chartLegend(.hidden)
 		.chartXAxis {
-		  AxisMarks(stroke: StrokeStyle(lineWidth: 0))
+			AxisMarks(stroke: StrokeStyle(lineWidth: 0))
+			
+			AxisMarks(values: .automatic) { value in
+				if let val = value.as(String.self) {
+					AxisValueLabel {
+						VStack(spacing: CGFloat(.minimumSpacing)) {
+
+							Text("\(val)")
+								.font(.system(size: CGFloat(.caption)))
+								.foregroundStyle(Color(colorEnum: .text))
+						}
+					}
+				}
+			}
+		}
+		.chartYAxis {
+			AxisMarks { value in
+				AxisGridLine(stroke: StrokeStyle(lineWidth: 1))
+					.foregroundStyle(Color(colorEnum: value.index == 0 ? .text : .midGrey))
+			}
+
+			AxisMarks(values: .automatic) { value in
+				if let val = value.as(Int.self) {
+					AxisValueLabel {
+						Text("\(val)")
+							.font(.system(size: CGFloat(.caption)))
+							.foregroundStyle(Color(colorEnum: .text))
+					}
+				}
+			}
 		}
 		.chartOverlay { chartProxy in
 			GeometryReader { proxy in
@@ -57,7 +86,6 @@ private struct ChartAreaView: View {
 				interactionArea(proxy: proxy,
 								chartProxy: chartProxy)
 			}
-			.contentShape(Rectangle())
 		}
 	}
 }
@@ -66,7 +94,9 @@ private struct ChartAreaView: View {
 private extension ChartAreaView {
 	@ViewBuilder
 	func selector(chartProxy: ChartProxy) -> some View {
-		Color(.red).frame(width: 1.0, height: chartProxy.plotAreaSize.height)
+		DottedLineView()
+			.foregroundColor(Color(colorEnum: .darkGrey))
+			.frame(width: 1.0, height: chartProxy.plotAreaSize.height)
 			.offset(indicatorOffet)
 			.opacity(showSelection ? 1.0 : 0.0)
 			.animation(.easeIn(duration: 0.1), value: showSelection)
@@ -125,9 +155,9 @@ private struct ChartOverlayDetailsView: View {
 		VStack(spacing: CGFloat(.minimumSpacing)) {
 			Text(title)
 				.font(.system(size: CGFloat(.caption)))
-				.foregroundStyle(.white)
+				.foregroundStyle(Color(colorEnum: .textInverse))
 
-			Color(.white).frame(height: 1)
+			Color(colorEnum: .textInverse).frame(height: 1)
 
 			ForEach(valueItems, id: \.title) { item in
 				HStack {
@@ -135,12 +165,29 @@ private struct ChartOverlayDetailsView: View {
 					Text(item.value)
 				}
 				.font(.system(size: CGFloat(.caption)))
-				.foregroundStyle(.white)
+				.foregroundStyle(Color(colorEnum: .textInverse))
 			}
 		}
 		.fixedSize()
 		.padding(CGFloat(.smallSidePadding))
 		.background(Color.black.opacity(0.9))
+	}
+}
+
+struct DottedLine: Shape {
+
+	func path(in rect: CGRect) -> Path {
+		var path = Path()
+		path.move(to: CGPoint(x: 0, y: 0))
+		path.addLine(to: CGPoint(x: rect.width, y: rect.height))
+		return path
+	}
+}
+
+struct DottedLineView: View {
+	var body: some View {
+		DottedLine()
+			.stroke(style: StrokeStyle(lineWidth: 1, dash: [8]))
 	}
 }
 

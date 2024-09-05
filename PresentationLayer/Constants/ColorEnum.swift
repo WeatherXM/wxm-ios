@@ -31,6 +31,7 @@ public enum ColorEnum: String {
     case warning
     case darkGrey
     case text
+	case textInverse
     case top
     case lightestBlue
     case layer2
