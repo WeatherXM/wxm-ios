@@ -9,12 +9,13 @@ import SwiftUI
 import Charts
 
 struct ChartDataItem: Identifiable {
-	var id: String {
+	var id: Int {
 		xVal
 	}
 
-	let xVal: String
+	let xVal: Int
 	let yVal: Double
+	let group: String
 }
 
 struct ChartView: View {
@@ -106,7 +107,7 @@ private extension ChartAreaView {
 	var popUpDetails: some View {
 		if let selectedItem, showSelection {
 			VStack(alignment: .trailing) {
-				ChartOverlayDetailsView(title: selectedItem.xVal,
+				ChartOverlayDetailsView(title: selectedItem.group,
 										valueItems: [("Total", "\(selectedItem.yVal)")])
 					.sizeObserver(size: $popupDetailsSize)
 
@@ -137,7 +138,7 @@ private extension ChartAreaView {
 										popupDetailsOffset = CGSize(width: offsetX.clamped(to: popUpOffsetMin...popUpOffsetMax),
 																	height: 0.0)
 
-										let (xVal, _) = chartProxy.value(at: location, as: (String, Double).self) ?? ("-", 0)
+										let (xVal, _) = chartProxy.value(at: location, as: (Int, Double).self) ?? (0, 0)
 										selectedItem = data.first(where: { $0.xVal == xVal })
 									}.onEnded { _ in
 										showSelection = false
@@ -192,12 +193,12 @@ struct DottedLineView: View {
 }
 
 #Preview {
-	ChartView(data: [.init(xVal: "Mon", yVal: 3.0),
-					 .init(xVal: "Tue", yVal: 4.0),
-					 .init(xVal: "Wed", yVal: 14.34234),
-					 .init(xVal: "Thu", yVal: 5.45252),
-					 .init(xVal: "Fri", yVal: 7.090),
-					 .init(xVal: "Sat", yVal: 9.21092),
-					 .init(xVal: "Sun", yVal: 12.2132)])
+	ChartView(data: [.init(xVal: 0, yVal: 3.0, group: "Mon"),
+					 .init(xVal: 1, yVal: 4.0, group: "Tue"),
+					 .init(xVal: 2, yVal: 14.34234, group: "Wed"),
+					 .init(xVal: 3, yVal: 5.45252, group: "Thu"),
+					 .init(xVal: 4, yVal: 7.090, group: "Fri"),
+					 .init(xVal: 5, yVal: 9.21092, group: "Sat"),
+					 .init(xVal: 6, yVal: 12.2132, group: "Sun")])
 	.padding()
 }
