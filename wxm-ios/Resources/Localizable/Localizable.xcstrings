@@ -5842,6 +5842,17 @@
         }
       }
     },
+    "reward_analytics_rewards_by_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewards by Station"
+          }
+        }
+      }
+    },
     "reward_analytics_station_rewards" : {
       "extractionState" : "manual",
       "localizations" : {

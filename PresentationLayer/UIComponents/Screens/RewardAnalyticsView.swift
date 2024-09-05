@@ -73,6 +73,8 @@ private struct ContentView: View {
 
 				summaryCard
 					.wxmShadow()
+
+				stationsList
 			}
 			.padding(CGFloat(.defaultSidePadding))
 		}
@@ -108,7 +110,7 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var summaryCard: some View {
-		VStack(spacing: CGFloat(.smallSpacing)) {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
 			HStack {
 				VStack(spacing: CGFloat(.smallSpacing)) {
 					Text(LocalizableString.RewardAnalytics.totalEarned.localized)
@@ -131,6 +133,48 @@ private struct ContentView: View {
 			if let chartDataItems = viewModel.overallChartDataItems {
 				ChartView(data: chartDataItems)
 					.aspectRatio(1.0, contentMode: .fit)
+			}
+		}
+		.WXMCardStyle()
+	}
+
+	@ViewBuilder
+	var stationsList: some View {
+		VStack(spacing: CGFloat(.defaultSpacing)) {
+			HStack {
+				Text(LocalizableString.RewardAnalytics.rewardsByStation.localized)
+					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Spacer()
+			}
+
+			ForEach(viewModel.devices) { device in
+				stationView(device: device)
+					.wxmShadow()
+			}
+		}
+	}
+
+	@ViewBuilder
+	func stationView(device: DeviceDetails) -> some View {
+		VStack(spacing: CGFloat(.defaultSpacing)) {
+			HStack {
+				Text(device.displayName)
+					.font(.system(size: CGFloat(.mediumFontSize), weight: .medium))
+					.foregroundStyle(Color(colorEnum: .text))
+				Spacer()
+
+				HStack(spacing: CGFloat(.mediumSpacing)) {
+					let precisionString = device.rewards?.totalRewards?.toWXMTokenPrecisionString ?? "0.00"
+					Text(precisionString + " " + StringConstants.wxmCurrency)
+						.font(.system(size: CGFloat(.mediumFontSize), weight: .medium))
+						.foregroundStyle(Color(colorEnum: .text))
+
+					Text(FontIcon.chevronDown.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundStyle(Color(colorEnum: .darkGrey))
+				}
 			}
 		}
 		.WXMCardStyle()
