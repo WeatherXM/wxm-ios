@@ -14,7 +14,7 @@ public enum HistoryExclude: String {
     case daily
 }
 
-public enum DeviceRewardsMode: String {
+public enum DeviceRewardsMode: String, CaseIterable {
 	case week
 	case month
 	case year

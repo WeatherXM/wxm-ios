@@ -26,6 +26,11 @@ class RewardAnalyticsViewModel: ObservableObject {
 		return "\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
 	
+	@Published var overallMode: DeviceRewardsMode = .week {
+		didSet {
+			refresh()
+		}
+	}
 	@Published var overallResponse: NetworkDevicesRewardsResponse? {
 		didSet {
 			updateOverallCharts()
@@ -57,7 +62,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 
 	func refresh(completion: VoidCallback? = nil) {
 		do {
-			try useCase.getUserDevicesRewards(mode: .week).sink { [weak self] response in
+			try useCase.getUserDevicesRewards(mode: overallMode).sink { [weak self] response in
 				defer {
 					completion?()
 				}

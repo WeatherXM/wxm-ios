@@ -30,8 +30,6 @@ private struct ContentView: View {
 	@EnvironmentObject var navigationObject: NavigationObject
 	@ObservedObject var viewModel: RewardAnalyticsViewModel
 
-	@State private var selectedIndex: Int = 0
-
 	var body: some View {
 		Group {
 			switch viewModel.state {
@@ -124,8 +122,11 @@ private struct ContentView: View {
 
 				Spacer()
 
-				CustomSegmentView(options: ["7D", "1M", "1Y"],
-								  selectedIndex: $selectedIndex,
+				CustomSegmentView(options: DeviceRewardsMode.allCases.map { $0.description },
+								  selectedIndex: Binding(get: { viewModel.overallMode.index ?? 0 },
+														 set: { index in
+					viewModel.overallMode = DeviceRewardsMode.value(for: index)
+				}),
 								  style: .compact)
 				.cornerRadius(CGFloat(.buttonCornerRadius))
 			}
@@ -185,6 +186,15 @@ private struct ContentView: View {
 			}
 
 			if isExpanded {
+				HStack {
+					Text(LocalizableString.RewardAnalytics.rewardsBreakdown.localized)
+						.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+						.foregroundStyle(Color(colorEnum: .text))
+					Spacer()
+				}
+
+				rewardsBreakdownSegmentView
+
 				ForEach(viewModel.currentStationReward?.stationReward.details ?? [], id: \.code) { details in
 					StationRewardDetailsView(details: details)
 				}
@@ -193,6 +203,34 @@ private struct ContentView: View {
 		.WXMCardStyle()
 		.animation(.easeIn(duration: 0.3), value: isExpanded)
 	}
+}
+
+private extension ContentView {
+	@ViewBuilder
+	var rewardsBreakdownSegmentView: some View {
+		HStack {
+			VStack(alignment: .leading, spacing: 0.0) {
+				Text(LocalizableString.RewardAnalytics.earnedByThisStation.localized)
+					.font(.system(size: CGFloat(.caption)))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Text((viewModel.currentStationReward?.stationReward.total ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
+					.font(.system(size: CGFloat(.mediumFontSize)))
+					.foregroundStyle(Color(colorEnum: .text))
+			}
+
+			Spacer()
+
+			CustomSegmentView(options: DeviceRewardsMode.allCases.map { $0.description },
+							  selectedIndex: Binding(get: { viewModel.overallMode.index ?? 0 },
+													 set: { index in
+				viewModel.overallMode = DeviceRewardsMode.value(for: index)
+			}),
+							  style: .compact)
+			.cornerRadius(CGFloat(.buttonCornerRadius))
+		}
+	}
+
 }
 
 #Preview {

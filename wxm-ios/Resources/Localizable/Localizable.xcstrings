@@ -5831,6 +5831,17 @@
         }
       }
     },
+    "reward_analytics_earned_by_this_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earned by this station"
+          }
+        }
+      }
+    },
     "reward_analytics_empty_state_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5860,6 +5871,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Last Run"
+          }
+        }
+      }
+    },
+    "reward_analytics_month_abbrevation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1M"
+          }
+        }
+      }
+    },
+    "reward_analytics_rewards_breakdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewards breakdown"
           }
         }
       }
@@ -5926,6 +5959,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Total tokens earned so far"
+          }
+        }
+      }
+    },
+    "reward_analytics_week_abbrevation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7D"
+          }
+        }
+      }
+    },
+    "reward_analytics_year_abbrevation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1Y"
           }
         }
       }
