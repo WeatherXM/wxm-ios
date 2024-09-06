@@ -186,35 +186,12 @@ private struct ContentView: View {
 
 			if isExpanded {
 				ForEach(viewModel.currentStationReward?.stationReward.details ?? [], id: \.code) { details in
-					detailsView(details: details)
+					StationRewardDetailsView(details: details)
 				}
 			}
 		}
 		.WXMCardStyle()
 		.animation(.easeIn(duration: 0.3), value: isExpanded)
-	}
-
-	@ViewBuilder
-	func detailsView(details: NetworkDeviceRewardsResponse.Details) -> some View {
-		VStack(spacing: CGFloat(.mediumSpacing)) {
-			if let code = details.code {
-				HStack {
-					Text(LocalizableString.RewardAnalytics.details(code.displayName).localized)
-						.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
-						.foregroundStyle(Color(colorEnum: .text))
-					
-					Spacer()
-				}
-
-				let progress = details.completedPercentage ?? 0
-				ProgressView(value: Float(progress), total: 100)
-					.progressViewStyle(ProgressBarStyle(text: "\(progress)%",
-														bgColor: Color(colorEnum: code.primaryColor),
-														progressColor: Color(colorEnum: code.fillColor)))
-					.frame(height: 24)
-			}
-
-		}
 	}
 }
 

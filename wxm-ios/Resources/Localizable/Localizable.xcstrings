@@ -5919,6 +5919,17 @@
         }
       }
     },
+    "reward_analytics_total_tokens_earned_so_far" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total tokens earned so far"
+          }
+        }
+      }
+    },
     "reward_details_active_boosts" : {
       "extractionState" : "manual",
       "localizations" : {

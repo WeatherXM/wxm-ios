@@ -18,6 +18,7 @@ extension LocalizableString {
 		case rewardsByStation
 		case details(String)
 		case betaRewards
+		case totalTokensEarnedSoFar
 	}
 }
 
@@ -56,6 +57,8 @@ extension LocalizableString.RewardAnalytics: WXMLocalizable {
 				return "reward_analytics_details"
 			case .betaRewards:
 				return "reward_analytics_beta_rewards"
+			case .totalTokensEarnedSoFar:
+				return "reward_analytics_total_tokens_earned_so_far"
 		}
 	}
 }

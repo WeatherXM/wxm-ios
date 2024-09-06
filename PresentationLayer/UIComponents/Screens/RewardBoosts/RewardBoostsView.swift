@@ -72,29 +72,14 @@ private extension RewardBoostsView {
 					Divider()
 						.overlay(Color(colorEnum: .layer2))
 
-					detailsFieldView(title: LocalizableString.Boosts.rewardableStationHours.localized,
-									 value: (details.stationHours ?? 0).localizedFormatted)
-
-					Divider()
-						.overlay(Color(colorEnum: .layer2))
-
-					detailsFieldView(title: LocalizableString.Boosts.dailyTokensToBeRewarded.localized,
-									 value: "\((details.maxDailyReward ?? 0.0).toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
-
-					Divider()
-						.overlay(Color(colorEnum: .layer2))
-
-					detailsFieldView(title: LocalizableString.Boosts.totalTokensToBeRewarded.localized,
-									 value: "\((details.maxTotalReward ?? 0.0).toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
-
-					Divider()
-						.overlay(Color(colorEnum: .layer2))
-
-					detailsFieldView(title: LocalizableString.Boosts.boostPeriod.localized,
-									 value: "\(details.boostStartDateString) -  \(details.boostStopDateString)")
-
-					Divider()
-						.overlay(Color(colorEnum: .layer2))
+					BoostDetailsView(items: [.init(title: LocalizableString.Boosts.rewardableStationHours.localized,
+												   value: (details.stationHours ?? 0).localizedFormatted),
+											 .init(title: LocalizableString.Boosts.dailyTokensToBeRewarded.localized,
+												   value: "\((details.maxDailyReward ?? 0.0).toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"),
+											 .init(title: LocalizableString.Boosts.totalTokensToBeRewarded.localized,
+												   value: "\((details.maxTotalReward ?? 0.0).toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"),
+											 .init(title: LocalizableString.Boosts.boostPeriod.localized,
+															  value: "\(details.boostStartDateString) -  \(details.boostStopDateString)")])
 				}
 			}
 		}
