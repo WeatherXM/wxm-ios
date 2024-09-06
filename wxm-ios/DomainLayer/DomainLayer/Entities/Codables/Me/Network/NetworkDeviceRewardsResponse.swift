@@ -14,7 +14,7 @@ public struct NetworkDeviceRewardsResponse: Codable {
 }
 
 public extension NetworkDeviceRewardsResponse {
-	enum RewardType: Codable {
+	enum RewardType: String, Codable {
 		case base
 		case boost
 	}
@@ -25,9 +25,9 @@ public extension NetworkDeviceRewardsResponse {
 	}
 
 	struct RewardItem: Codable {
-		let type: RewardType?
-		let code: BoostCode?
-		let value: Double?
+		public let type: RewardType?
+		public let code: BoostCode?
+		public let value: Double?
 	}
 
 	struct Details: Codable {
