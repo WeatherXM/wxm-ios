@@ -35,12 +35,16 @@ struct RewardAnalyticsChartFactory {
 
 private extension RewardAnalyticsChartFactory {
 	// MARK: - Overall
+	
 	func getSevendaysMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
 		return overallResponse.data?.compactMap { datum in
 			guard let ts = datum.ts else {
 				return nil
 			}
-			return ChartDataItem(xVal: ts, yVal: datum.totalRewards ?? 2.0, group: "")
+			return ChartDataItem(xVal: ts, 
+								 yVal: datum.totalRewards ?? 2.0,
+								 group: LocalizableString.total(nil).localized,
+								 displayValue: (datum.totalRewards ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
 		} ?? []
 	}
 
@@ -53,6 +57,7 @@ private extension RewardAnalyticsChartFactory {
 	}
 
 	// MARK: - Device
+
 	func getSevendaysMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
 		let items: [[ChartDataItem]]? = deviceResponse.data?.compactMap { datum in
 			guard let ts = datum.ts else {
@@ -62,8 +67,9 @@ private extension RewardAnalyticsChartFactory {
 			return datum.rewards?.map { item in
 				return ChartDataItem(xVal: ts,
 									 yVal: item.value ?? 0.0,
-									 group: item.code?.rawValue ?? "",
-									 color: item.code?.fillColor ?? .chartPrimary)
+									 group: item.code?.displayName ?? "",
+									 color: item.code?.fillColor ?? .chartPrimary,
+									 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
 			}
 		}
 

@@ -18,6 +18,7 @@ struct ChartDataItem: Identifiable {
 	let yVal: Double
 	let group: String
 	var color: ColorEnum = .chartPrimary
+	let displayValue: String
 }
 
 enum ChartMode {
@@ -128,7 +129,7 @@ private extension ChartAreaView {
 		if let selectedItems, showSelection {
 			VStack(alignment: .trailing) {
 				ChartOverlayDetailsView(title: selectedItems.first?.xVal.localizedDateString() ?? "",
-										valueItems: selectedItems.map { ($0.group, "\($0.yVal)")})
+										valueItems: selectedItems.map { ($0.group, $0.displayValue)})
 					.sizeObserver(size: $popupDetailsSize)
 
 
@@ -213,23 +214,23 @@ struct DottedLineView: View {
 }
 
 #Preview {
-	ChartView(data: [.init(xVal: Date.now, yVal: 3.0, group: "Total"),
-					 .init(xVal: Date.now.advancedByDays(days: 1), yVal: 4.0, group: "Total"),
-					 .init(xVal: Date.now.advancedByDays(days: 2), yVal: 14.34234, group: "Total"),
-					 .init(xVal: Date.now.advancedByDays(days: 3), yVal: 5.45252, group: "Total"),
-					 .init(xVal: Date.now.advancedByDays(days: 4), yVal: 7.090, group: "Total"),
-					 .init(xVal: Date.now.advancedByDays(days: 5), yVal: 9.21092, group: "Total"),
-					 .init(xVal: Date.now.advancedByDays(days: 6), yVal: 12.2132, group: "Total")])
+	ChartView(data: [.init(xVal: Date.now, yVal: 3.0, group: "Total", displayValue: 3.0.toWXMTokenPrecisionString),
+					 .init(xVal: Date.now.advancedByDays(days: 1), yVal: 4.0, group: "Total", displayValue: 4.0.toWXMTokenPrecisionString),
+					 .init(xVal: Date.now.advancedByDays(days: 2), yVal: 14.34234, group: "Total", displayValue: 14.34234.toWXMTokenPrecisionString),
+					 .init(xVal: Date.now.advancedByDays(days: 3), yVal: 5.45252, group: "Total", displayValue: 5.45252.toWXMTokenPrecisionString),
+					 .init(xVal: Date.now.advancedByDays(days: 4), yVal: 7.090, group: "Total", displayValue: 7.090.toWXMTokenPrecisionString),
+					 .init(xVal: Date.now.advancedByDays(days: 5), yVal: 9.21092, group: "Total", displayValue: 9.21092.toWXMTokenPrecisionString),
+					 .init(xVal: Date.now.advancedByDays(days: 6), yVal: 12.2132, group: "Total", displayValue: 12.2132.toWXMTokenPrecisionString)])
 	.padding()
 }
 
 #Preview {
-	ChartView(mode: .area, data: [.init(xVal: Date.now.advancedByDays(days: 0), yVal: 3.0, group: ""),
-								  .init(xVal: Date.now.advancedByDays(days: 1), yVal: 4.0, group: ""),
-								  .init(xVal: Date.now.advancedByDays(days: 2), yVal: 10.34234, group: ""),
-								  .init(xVal: Date.now.advancedByDays(days: 3), yVal: 5.45252, group: ""),
-								  .init(xVal: Date.now.advancedByDays(days: 4), yVal: 7.090, group: ""),
-								  .init(xVal: Date.now.advancedByDays(days: 5), yVal: 9.21092, group: ""),
-								  .init(xVal: Date.now.advancedByDays(days: 6), yVal: 8.2132, group: "")])
+	ChartView(mode: .area, data: [.init(xVal: Date.now.advancedByDays(days: 0), yVal: 3.0, group: "", displayValue: 3.0.toWXMTokenPrecisionString),
+								  .init(xVal: Date.now.advancedByDays(days: 1), yVal: 4.0, group: "", displayValue: 4.0.toWXMTokenPrecisionString),
+								  .init(xVal: Date.now.advancedByDays(days: 2), yVal: 10.34234, group: "", displayValue: 14.34234.toWXMTokenPrecisionString),
+								  .init(xVal: Date.now.advancedByDays(days: 3), yVal: 5.45252, group: "", displayValue: 5.45252.toWXMTokenPrecisionString),
+								  .init(xVal: Date.now.advancedByDays(days: 4), yVal: 7.090, group: "", displayValue: 7.090.toWXMTokenPrecisionString),
+								  .init(xVal: Date.now.advancedByDays(days: 5), yVal: 9.21092, group: "", displayValue: 9.21092.toWXMTokenPrecisionString),
+								  .init(xVal: Date.now.advancedByDays(days: 6), yVal: 8.2132, group: "", displayValue: 12.2132.toWXMTokenPrecisionString)])
 	.padding()
 }
