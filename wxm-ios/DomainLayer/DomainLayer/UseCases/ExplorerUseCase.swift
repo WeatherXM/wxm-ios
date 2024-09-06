@@ -106,7 +106,7 @@ public class ExplorerUseCase {
                     }
                     let ring = Ring(coordinates: ringCords)
                     let polygon = Polygon(outerRing: ring)
-                    var polygonAnnotation = PolygonAnnotation(polygon: polygon)
+					var polygonAnnotation = PolygonAnnotation(id: publicHex.index, polygon: polygon)
                     polygonAnnotation.fillColor = ExplorerUseCase.fillColor
                     polygonAnnotation.fillOpacity = ExplorerUseCase.fillOpacity
                     polygonAnnotation.fillOutlineColor = ExplorerUseCase.fillOutlineColor

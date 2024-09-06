@@ -24,6 +24,7 @@ public final class ExplorerViewModel: ObservableObject {
 
     @Published var isLoading: Bool = false
     @Published var isSearchActive: Bool = false
+	@Published var explorerData: ExplorerData = ExplorerData()
 
 	lazy var snapLocationPublisher: AnyPublisher<MapBoxMapView.SnapLocation?, Never> = snapLocationSubject.eraseToAnyPublisher()
 	private let snapLocationSubject = PassthroughSubject<MapBoxMapView.SnapLocation?, Never>()
@@ -36,29 +37,36 @@ public final class ExplorerViewModel: ObservableObject {
         return vm
     }()
 
-    func fetchExplorerData(completion: @escaping (ExplorerData?) -> Void) {
-        isLoading = true
-        explorerUseCase.getPublicHexes { result in
-            self.isLoading = false
-            switch result {
-                case let .success(explorerData):
-                    completion(explorerData)
-                case let .failure(error):
-                    print(error)
-                    switch error {
-                        case .infrastructure, .serialization:
-                            if let message = LocalizableString.Error.genericMessage.localized.attributedMarkdown {
-                                Toast.shared.show(text: message)
-                            }
-                        case .networkRelated(let neworkError):
-                            if let message = neworkError?.uiInfo.description?.attributedMarkdown {
-                                Toast.shared.show(text: message)
-                            }
-                    }
-                    completion(nil)
-            }
-        }
-    }
+	func fetchExplorerData() {
+		isLoading = true
+		explorerUseCase.getPublicHexes { [weak self] result in
+			guard let self else {
+				return
+			}
+
+			self.isLoading = false
+			switch result {
+				case let .success(explorerData):
+					guard self.explorerData != explorerData else {
+						return
+					}
+
+					self.explorerData = explorerData
+				case let .failure(error):
+					print(error)
+					switch error {
+						case .infrastructure, .serialization:
+							if let message = LocalizableString.Error.genericMessage.localized.attributedMarkdown {
+								Toast.shared.show(text: message)
+							}
+						case .networkRelated(let neworkError):
+							if let message = neworkError?.uiInfo.description?.attributedMarkdown {
+								Toast.shared.show(text: message)
+							}
+					}
+			}
+		}
+	}
 
     func routeToDeviceListFor(_ hexIndex: String, _ coordinates: CLLocationCoordinate2D?) {
         if let coordinates {
