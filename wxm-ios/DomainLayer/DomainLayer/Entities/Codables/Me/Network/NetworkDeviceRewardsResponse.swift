@@ -21,6 +21,7 @@ public extension NetworkDeviceRewardsResponse {
 
 	struct RewardsData: Codable {
 		public let ts: Date?
+		public let rewards: [RewardItem]?
 	}
 
 	struct RewardItem: Codable {
