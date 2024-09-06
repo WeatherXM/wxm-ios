@@ -10,13 +10,14 @@ import Charts
 import Toolkit
 
 struct ChartDataItem: Identifiable {
-	var id: Int {
+	var id: Date {
 		xVal
 	}
 
-	let xVal: Int
+	let xVal: Date
 	let yVal: Double
 	let group: String
+	var color: ColorEnum = .chartPrimary
 }
 
 enum ChartMode {
@@ -43,7 +44,7 @@ private struct ChartAreaView: View {
 	let mode: ChartMode
 	let data: [ChartDataItem]
 	@State private var showSelection: Bool = false
-	@State private var selectedItem: ChartDataItem?
+	@State private var selectedItems: [ChartDataItem]?
 	@State private var indicatorOffet: CGSize = .zero
 	@State private var popupDetailsOffset: CGSize = .zero
 	@State private var popupDetailsSize: CGSize = .zero
@@ -53,13 +54,14 @@ private struct ChartAreaView: View {
 			switch mode {
 				case .line:
 					LineMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
-						.foregroundStyle(Color(colorEnum: .chartPrimary))
+						.foregroundStyle(Color(colorEnum: item.color))
 						.interpolationMethod(.monotone)
 						.foregroundStyle(by: .value("group", item.group))
 
 				case .area:
 					AreaMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
 						.interpolationMethod(.monotone)
+						.foregroundStyle(Color(colorEnum: item.color))
 						.foregroundStyle(by: .value("group", item.group))
 			}
 		}
@@ -67,16 +69,18 @@ private struct ChartAreaView: View {
 		.chartXAxis {
 			AxisMarks(stroke: StrokeStyle(lineWidth: 0))
 			
-//			AxisMarks(values: data.map { $0.group }.withNoDuplicates) { value in
-//				if let val = value.as(String.self) {
+//			AxisMarks(values: .automatic(desiredCount: 8)) { value in
+//				if let val = value.as(Date.self) {
 //					AxisValueLabel {
 //						VStack(spacing: CGFloat(.minimumSpacing)) {
 //
-//							Text("\(val)")
+//							Text("\(val.localizedDateString())")
 //								.font(.system(size: CGFloat(.caption)))
 //								.foregroundStyle(Color(colorEnum: .text))
 //						}
 //					}
+//				} else {
+//					AxisValueLabel(format: .dateTime)
 //				}
 //			}
 		}
@@ -121,10 +125,10 @@ private extension ChartAreaView {
 
 	@ViewBuilder
 	var popUpDetails: some View {
-		if let selectedItem, showSelection {
+		if let selectedItems, showSelection {
 			VStack(alignment: .trailing) {
-				ChartOverlayDetailsView(title: selectedItem.group,
-										valueItems: [("Total", "\(selectedItem.yVal)")])
+				ChartOverlayDetailsView(title: selectedItems.first?.xVal.localizedDateString() ?? "",
+										valueItems: selectedItems.map { ($0.group, "\($0.yVal)")})
 					.sizeObserver(size: $popupDetailsSize)
 
 
@@ -154,8 +158,8 @@ private extension ChartAreaView {
 										popupDetailsOffset = CGSize(width: offsetX.clamped(to: popUpOffsetMin...popUpOffsetMax),
 																	height: 0.0)
 
-										let (xVal, _) = chartProxy.value(at: location, as: (Int, Double).self) ?? (0, 0)
-										selectedItem = data.first(where: { $0.xVal == xVal })
+										let (xVal, _) = chartProxy.value(at: location, as: (Date, Double).self) ?? (.now, 0)
+										selectedItems = data.filter { $0.xVal.isSameDay(with: xVal) }
 									}.onEnded { _ in
 										showSelection = false
 									})
@@ -209,23 +213,23 @@ struct DottedLineView: View {
 }
 
 #Preview {
-	ChartView(data: [.init(xVal: 0, yVal: 3.0, group: ""),
-					 .init(xVal: 1, yVal: 4.0, group: ""),
-					 .init(xVal: 2, yVal: 14.34234, group: ""),
-					 .init(xVal: 3, yVal: 5.45252, group: ""),
-					 .init(xVal: 4, yVal: 7.090, group: ""),
-					 .init(xVal: 5, yVal: 9.21092, group: ""),
-					 .init(xVal: 6, yVal: 12.2132, group: "")])
+	ChartView(data: [.init(xVal: Date.now, yVal: 3.0, group: "Total"),
+					 .init(xVal: Date.now.advancedByDays(days: 1), yVal: 4.0, group: "Total"),
+					 .init(xVal: Date.now.advancedByDays(days: 2), yVal: 14.34234, group: "Total"),
+					 .init(xVal: Date.now.advancedByDays(days: 3), yVal: 5.45252, group: "Total"),
+					 .init(xVal: Date.now.advancedByDays(days: 4), yVal: 7.090, group: "Total"),
+					 .init(xVal: Date.now.advancedByDays(days: 5), yVal: 9.21092, group: "Total"),
+					 .init(xVal: Date.now.advancedByDays(days: 6), yVal: 12.2132, group: "Total")])
 	.padding()
 }
 
 #Preview {
-	ChartView(mode: .area, data: [.init(xVal: 0, yVal: 3.0, group: ""),
-					 .init(xVal: 1, yVal: 4.0, group: ""),
-					 .init(xVal: 2, yVal: 10.34234, group: ""),
-					 .init(xVal: 3, yVal: 5.45252, group: ""),
-					 .init(xVal: 4, yVal: 7.090, group: ""),
-					 .init(xVal: 5, yVal: 9.21092, group: ""),
-					 .init(xVal: 6, yVal: 8.2132, group: "")])
+	ChartView(mode: .area, data: [.init(xVal: Date.now.advancedByDays(days: 0), yVal: 3.0, group: ""),
+								  .init(xVal: Date.now.advancedByDays(days: 1), yVal: 4.0, group: ""),
+								  .init(xVal: Date.now.advancedByDays(days: 2), yVal: 10.34234, group: ""),
+								  .init(xVal: Date.now.advancedByDays(days: 3), yVal: 5.45252, group: ""),
+								  .init(xVal: Date.now.advancedByDays(days: 4), yVal: 7.090, group: ""),
+								  .init(xVal: Date.now.advancedByDays(days: 5), yVal: 9.21092, group: ""),
+								  .init(xVal: Date.now.advancedByDays(days: 6), yVal: 8.2132, group: "")])
 	.padding()
 }

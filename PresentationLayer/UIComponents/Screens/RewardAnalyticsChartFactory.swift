@@ -20,14 +20,27 @@ struct RewardAnalyticsChartFactory {
 				getYearlyMode(overallResponse: overallResponse)
 		}
 	}
+
+	func getChartsData(deviceResponse: NetworkDeviceRewardsResponse, mode: DeviceRewardsMode) -> [ChartDataItem] {
+		switch mode {
+			case .week:
+				getSevendaysMode(deviceResponse: deviceResponse)
+			case .month:
+				getMonthlyMode(deviceResponse: deviceResponse)
+			case .year:
+				getYearlyMode(deviceResponse: deviceResponse)
+		}
+	}
 }
 
 private extension RewardAnalyticsChartFactory {
+	// MARK: - Overall
 	func getSevendaysMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
-		var counter = -1
-		return overallResponse.data?.map { datum in
-			counter += 1
-			return ChartDataItem(xVal: counter, yVal: datum.totalRewards ?? 2.0, group: datum.ts?.getWeekDay() ?? "")
+		return overallResponse.data?.compactMap { datum in
+			guard let ts = datum.ts else {
+				return nil
+			}
+			return ChartDataItem(xVal: ts, yVal: datum.totalRewards ?? 2.0, group: "")
 		} ?? []
 	}
 
@@ -38,4 +51,31 @@ private extension RewardAnalyticsChartFactory {
 	func getYearlyMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
 		[]
 	}
+
+	// MARK: - Device
+	func getSevendaysMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
+		let items: [[ChartDataItem]]? = deviceResponse.data?.compactMap { datum in
+			guard let ts = datum.ts else {
+				return nil
+			}
+
+			return datum.rewards?.map { item in
+				return ChartDataItem(xVal: ts,
+									 yVal: item.value ?? 0.0,
+									 group: item.code?.rawValue ?? "",
+									 color: item.code?.fillColor ?? .chartPrimary)
+			}
+		}
+
+		return items?.flatMap { $0 } ?? []
+	}
+
+	func getMonthlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
+		[]
+	}
+
+	func getYearlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
+		[]
+	}
+
 }

@@ -37,7 +37,14 @@ class RewardAnalyticsViewModel: ObservableObject {
 		}
 	}
 	@Published var overallChartDataItems: [ChartDataItem]?
-	@Published var currentStationReward: (stationId: String, stationReward: NetworkDeviceRewardsResponse)?
+
+	@Published var currentStationReward: (stationId: String, stationReward: NetworkDeviceRewardsResponse)? {
+		didSet {
+			updateCurrentStationCharts()
+		}
+	}
+	@Published var currentStationChartDataItems: [ChartDataItem]?
+
 	@Published var state: RewardAnalyticsView.State = .noRewards
 	private lazy var noStationsConfiguration: WXMEmptyView.Configuration = {
 		WXMEmptyView.Configuration(imageFontIcon: (.faceSadCry, .FAProLight),
@@ -132,6 +139,15 @@ private extension RewardAnalyticsViewModel {
 
 		overallChartDataItems = RewardAnalyticsChartFactory().getChartsData(overallResponse: overallResponse, 
 																			mode: .week)
+	}
+
+	func updateCurrentStationCharts() {
+		guard let currentStationReward else {
+			return
+		}
+
+		currentStationChartDataItems = RewardAnalyticsChartFactory().getChartsData(deviceResponse: currentStationReward.stationReward,
+																				   mode: .week)
 	}
 
 	func getRewardsBreakdown(for deviceId: String) async -> Result<NetworkDeviceRewardsResponse, NetworkErrorResponse>? {

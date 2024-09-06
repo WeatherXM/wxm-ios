@@ -195,6 +195,10 @@ private struct ContentView: View {
 
 				rewardsBreakdownSegmentView
 
+				if let currentStationChartData = viewModel.currentStationChartDataItems {
+					ChartView(mode: .area, data: currentStationChartData)
+						.aspectRatio(1.0, contentMode: .fit)
+				}
 				ForEach(viewModel.currentStationReward?.stationReward.details ?? [], id: \.code) { details in
 					StationRewardDetailsView(details: details)
 				}
