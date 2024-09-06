@@ -93,7 +93,7 @@ enum AuthApiRequestBuilder: URLRequestConvertible {
 				return [ParameterConstants.Auth.email: email]
 			case let .logout(accessToken, installationId):
 				var params = [ParameterConstants.Auth.accessToken: accessToken]
-				if let installationId {
+				if let installationId, !installationId.isEmpty {
 					params += [ParameterConstants.Auth.installationId: installationId]
 				}
 				return params
