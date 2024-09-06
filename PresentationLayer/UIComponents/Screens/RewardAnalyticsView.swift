@@ -137,6 +137,7 @@ private struct ContentView: View {
 			}
 		}
 		.WXMCardStyle()
+		.spinningLoader(show: $viewModel.overallRewardsIsLoading)
 	}
 
 	@ViewBuilder
