@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import Toolkit
 
 struct ChartDataItem: Identifiable {
 	var id: Int {
@@ -18,12 +19,18 @@ struct ChartDataItem: Identifiable {
 	let group: String
 }
 
-struct ChartView: View {
-	let data: [ChartDataItem]
+enum ChartMode {
+	case line
+	case area
+}
 
+struct ChartView: View {
+	var mode: ChartMode = .line
+	let data: [ChartDataItem]
+	
     var body: some View {
 		if #available(iOS 16.0, *) {
-			ChartAreaView(data: data)
+			ChartAreaView(mode: mode, data: data)
 		} else {
 			EmptyView()
 		}
@@ -33,7 +40,7 @@ struct ChartView: View {
 
 @available(iOS 16.0, *)
 private struct ChartAreaView: View {
-
+	let mode: ChartMode
 	let data: [ChartDataItem]
 	@State private var showSelection: Bool = false
 	@State private var selectedItem: ChartDataItem?
@@ -43,26 +50,35 @@ private struct ChartAreaView: View {
 
 	var body: some View {
 		Chart(data) { item in
-			LineMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
-				.foregroundStyle(Color(colorEnum: .chartPrimary))
-				.interpolationMethod(.monotone)
+			switch mode {
+				case .line:
+					LineMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
+						.foregroundStyle(Color(colorEnum: .chartPrimary))
+						.interpolationMethod(.monotone)
+						.foregroundStyle(by: .value("group", item.group))
+
+				case .area:
+					AreaMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
+						.interpolationMethod(.monotone)
+						.foregroundStyle(by: .value("group", item.group))
+			}
 		}
 		.chartLegend(.hidden)
 		.chartXAxis {
 			AxisMarks(stroke: StrokeStyle(lineWidth: 0))
 			
-			AxisMarks(values: .automatic) { value in
-				if let val = value.as(String.self) {
-					AxisValueLabel {
-						VStack(spacing: CGFloat(.minimumSpacing)) {
-
-							Text("\(val)")
-								.font(.system(size: CGFloat(.caption)))
-								.foregroundStyle(Color(colorEnum: .text))
-						}
-					}
-				}
-			}
+//			AxisMarks(values: data.map { $0.group }.withNoDuplicates) { value in
+//				if let val = value.as(String.self) {
+//					AxisValueLabel {
+//						VStack(spacing: CGFloat(.minimumSpacing)) {
+//
+//							Text("\(val)")
+//								.font(.system(size: CGFloat(.caption)))
+//								.foregroundStyle(Color(colorEnum: .text))
+//						}
+//					}
+//				}
+//			}
 		}
 		.chartYAxis {
 			AxisMarks { value in
@@ -193,12 +209,23 @@ struct DottedLineView: View {
 }
 
 #Preview {
-	ChartView(data: [.init(xVal: 0, yVal: 3.0, group: "Mon"),
-					 .init(xVal: 1, yVal: 4.0, group: "Tue"),
-					 .init(xVal: 2, yVal: 14.34234, group: "Wed"),
-					 .init(xVal: 3, yVal: 5.45252, group: "Thu"),
-					 .init(xVal: 4, yVal: 7.090, group: "Fri"),
-					 .init(xVal: 5, yVal: 9.21092, group: "Sat"),
-					 .init(xVal: 6, yVal: 12.2132, group: "Sun")])
+	ChartView(data: [.init(xVal: 0, yVal: 3.0, group: ""),
+					 .init(xVal: 1, yVal: 4.0, group: ""),
+					 .init(xVal: 2, yVal: 14.34234, group: ""),
+					 .init(xVal: 3, yVal: 5.45252, group: ""),
+					 .init(xVal: 4, yVal: 7.090, group: ""),
+					 .init(xVal: 5, yVal: 9.21092, group: ""),
+					 .init(xVal: 6, yVal: 12.2132, group: "")])
+	.padding()
+}
+
+#Preview {
+	ChartView(mode: .area, data: [.init(xVal: 0, yVal: 3.0, group: ""),
+					 .init(xVal: 1, yVal: 4.0, group: ""),
+					 .init(xVal: 2, yVal: 10.34234, group: ""),
+					 .init(xVal: 3, yVal: 5.45252, group: ""),
+					 .init(xVal: 4, yVal: 7.090, group: ""),
+					 .init(xVal: 5, yVal: 9.21092, group: ""),
+					 .init(xVal: 6, yVal: 8.2132, group: "")])
 	.padding()
 }
