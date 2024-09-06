@@ -126,7 +126,9 @@ private extension ChartAreaView {
 
 	@ViewBuilder
 	var popUpDetails: some View {
-		if let selectedItems, showSelection {
+		if let selectedItems,
+		   !selectedItems.isEmpty,
+		   showSelection {
 			VStack(alignment: .trailing) {
 				ChartOverlayDetailsView(title: selectedItems.first?.xVal.localizedDateString() ?? "",
 										valueItems: selectedItems.map { ($0.group, $0.displayValue)})
@@ -184,6 +186,7 @@ private struct ChartOverlayDetailsView: View {
 			ForEach(valueItems, id: \.title) { item in
 				HStack {
 					Text(item.title)
+					Spacer()
 					Text(item.value)
 				}
 				.font(.system(size: CGFloat(.caption)))
