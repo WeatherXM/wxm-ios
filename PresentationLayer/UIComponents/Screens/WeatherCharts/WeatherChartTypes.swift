@@ -7,7 +7,7 @@
 
 import Foundation
 import DomainLayer
-import Charts
+import DGCharts
 
 protocol ChartCardProtocol: CaseIterable, CustomStringConvertible {
 	var icon: AssetEnum { get }

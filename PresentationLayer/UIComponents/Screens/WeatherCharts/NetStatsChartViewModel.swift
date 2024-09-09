@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Charts
+import DGCharts
 
 struct NetStatsChartViewModel {
     let entries: [ChartDataEntry]

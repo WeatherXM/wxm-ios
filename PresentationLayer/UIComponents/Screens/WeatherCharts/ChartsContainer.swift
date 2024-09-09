@@ -5,7 +5,7 @@
 //  Created by Lampros Zouloumis on 6/9/22.
 //
 
-import Charts
+import DGCharts
 import DomainLayer
 import SwiftUI
 

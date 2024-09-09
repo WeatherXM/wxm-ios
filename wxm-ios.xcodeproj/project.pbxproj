@@ -338,6 +338,7 @@
 		26A5456C2C0609FE0098FE52 /* ResetDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A5456B2C0609FE0098FE52 /* ResetDeviceViewModel.swift */; };
 		26A6C5D92B601A8000FA2D2F /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A6C5D82B601A8000FA2D2F /* SafariView.swift */; };
 		26A86BC42C7CB6F500F1C2CF /* Survey+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BC32C7CB6F500F1C2CF /* Survey+.swift */; };
+		26A86BFB2C7F68C400F1C2CF /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 26A86BFA2C7F68C400F1C2CF /* DGCharts */; };
 		26A9614C2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9614B2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift */; };
 		26A9619C2AA705FE00646A25 /* LocalizableString+StationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */; };
 		26A961B02AA7181300646A25 /* LocalizableString+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */; };
@@ -1060,6 +1061,7 @@
 				261E9EB529A92B9400E8EBA3 /* MapboxMaps in Frameworks */,
 				261E9E9D29A925D500E8EBA3 /* PullableScrollView in Frameworks */,
 				261E9EA729A9275C00E8EBA3 /* Swinject in Frameworks */,
+				26A86BFB2C7F68C400F1C2CF /* DGCharts in Frameworks */,
 				26DD42CB29AF56B9008E277E /* Toolkit.framework in Frameworks */,
 				261E9EBB29A92C4200E8EBA3 /* Turf in Frameworks */,
 				261E9EA029A925EB00E8EBA3 /* Veil in Frameworks */,
@@ -2620,6 +2622,7 @@
 				269C96892BDBD5660035B8F1 /* Mixpanel */,
 				261729F32C36A14C00A1CEFA /* SwiftUIIntrospect */,
 				26C801DB2C2B162A00D6AC60 /* FLAnimatedImage */,
+				26A86BFA2C7F68C400F1C2CF /* DGCharts */,
 			);
 			productName = "wxm-ios";
 			productReference = B52BCC712824FB8F00EA3DA5 /* WeatherXM.app */;
@@ -2674,6 +2677,7 @@
 				269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 				261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				26C801DA2C2B162A00D6AC60 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
+				26A86BF92C7F68C400F1C2CF /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -4054,6 +4058,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		26A86BF92C7F68C400F1C2CF /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ChartsOrg/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 		26C801DA2C2B162A00D6AC60 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Flipboard/FLAnimatedImage";
@@ -4160,6 +4172,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
 			productName = Mixpanel;
+		};
+		26A86BFA2C7F68C400F1C2CF /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26A86BF92C7F68C400F1C2CF /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
 		};
 		26B8328F2AC57FE600757A69 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

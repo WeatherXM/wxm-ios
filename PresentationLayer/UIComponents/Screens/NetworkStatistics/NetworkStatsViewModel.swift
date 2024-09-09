@@ -8,7 +8,7 @@
 import Foundation
 import DomainLayer
 import Combine
-import Charts
+import DGCharts
 import Toolkit
 import SwiftUI
 
