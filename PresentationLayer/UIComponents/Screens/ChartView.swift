@@ -51,6 +51,20 @@ private struct ChartAreaView: View {
 	@State private var popupDetailsOffset: CGSize = .zero
 	@State private var popupDetailsSize: CGSize = .zero
 
+	private var strideBy: CGFloat {
+		let count = data.count
+		switch count {
+			case _ where count < 10:
+				return 1.0
+			case _ where count < 20:
+				return 2.0
+			case _ where count <= 30:
+				return 3.0
+			default:
+				return 5.0
+		}
+	}
+
 	var body: some View {
 		Chart(data, id: \.id) { item in
 			switch mode {
@@ -78,7 +92,7 @@ private struct ChartAreaView: View {
 		}
 		.chartXScale(domain: data.first!.xVal...data.last!.xVal)
 		.chartXAxis {
-			AxisMarks(preset: .aligned, values: .stride(by: 2)) { value in
+			AxisMarks(preset: .aligned, values: .stride(by: strideBy)) { value in
 				if let val = value.as(Int.self),
 				   let item = data.first(where: { $0.xVal == val }) {
 					AxisValueLabel {
@@ -88,10 +102,6 @@ private struct ChartAreaView: View {
 								.font(.system(size: CGFloat(.caption)))
 								.foregroundStyle(Color(colorEnum: .text))
 						}
-					}
-				} else {
-					AxisValueLabel {
-						Text("-")
 					}
 				}
 			}
