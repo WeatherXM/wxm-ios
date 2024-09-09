@@ -26,6 +26,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 		return "\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
 	
+	// Summary
 	@Published var overallRewardsIsLoading: Bool = false
 	@Published var overallMode: DeviceRewardsMode = .week {
 		didSet {
@@ -39,6 +40,17 @@ class RewardAnalyticsViewModel: ObservableObject {
 	}
 	@Published var overallChartDataItems: [ChartDataItem]?
 
+	// Selected station
+	@Published var currentStationIsLoading: Bool = false
+	@Published var currenStationMode: DeviceRewardsMode = .week {
+		didSet {
+			guard let decviceId = currentStationReward?.stationId else {
+				return
+			}
+
+			refreshCurrentDevice(deviceId: decviceId)
+		}
+	}
 	@Published var currentStationReward: (stationId: String, stationReward: NetworkDeviceRewardsResponse)? {
 		didSet {
 			updateCurrentStationCharts()
@@ -69,25 +81,35 @@ class RewardAnalyticsViewModel: ObservableObject {
 	}
 
 	func refresh(completion: VoidCallback? = nil) {
-		do {
-			try useCase.getUserDevicesRewards(mode: overallMode).sink { [weak self] response in
-				defer {
-					completion?()
-				}
+		Task { @MainActor in
+			defer {
+				completion?()
+			}
+			
+			var errorInfo: NetworkErrorResponse.UIInfo?
 
-				if let error = response.error {
-					if let message = error.backendError?.message.attributedMarkdown {
-						WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
-																				  .itemId: .custom(error.backendError?.code ?? "")])
-						Toast.shared.show(text: message)
-					}
-					return
+			if let overallResult = await getOverallRewards() {
+				switch overallResult {
+					case .success(let response):
+						self.overallResponse = response
+					case .failure(let error):
+						errorInfo = error.uiInfo
 				}
+			}
 
-				self?.overallResponse = response.value
-			}.store(in: &cancellableSet)
-		} catch {
-			print(error)
+			if let firstDeviceId = devices.first?.id,
+			   let stationResult = await getRewardsBreakdown(for: firstDeviceId) {
+				switch stationResult {
+					case .success(let response):
+						self.currentStationReward = (firstDeviceId, response)
+					case .failure(let error):
+						errorInfo = errorInfo ?? error.uiInfo
+				}
+			}
+
+			if let errorMessage = errorInfo?.description?.attributedMarkdown {
+				Toast.shared.show(text: errorMessage)
+			}
 		}
 	}
 
@@ -104,11 +126,33 @@ class RewardAnalyticsViewModel: ObservableObject {
 			currentStationReward = nil
 			return
 		}
+		
+		refreshCurrentDevice(deviceId: deviceId)
+	}
+}
 
+private extension RewardAnalyticsViewModel {
+	func updateState() {
+		if devices.isEmpty {
+			state = .empty(noStationsConfiguration)
+		} else if devices.reduce(0, { $0 + ($1.rewards?.totalRewards ?? 0.0)}) == 0 {
+			state = .noRewards
+		} else {
+			state = .content
+		}
+	}
+
+	func refreshCurrentDevice(deviceId: String) {
+		currentStationIsLoading = true
 		Task { @MainActor in
+			defer {
+				currentStationIsLoading = false
+			}
+
 			guard let result = await getRewardsBreakdown(for: deviceId) else {
 				return
 			}
+
 			switch result {
 				case .failure(let error):
 					guard let desc = error.uiInfo.description?.attributedMarkdown else {
@@ -127,9 +171,11 @@ class RewardAnalyticsViewModel: ObservableObject {
 			defer {
 				overallRewardsIsLoading = false
 			}
+
 			guard let result = await getOverallRewards() else {
 				return
 			}
+
 			switch result {
 				case .failure(let error):
 					guard let desc = error.uiInfo.description?.attributedMarkdown else {
@@ -138,20 +184,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 					Toast.shared.show(text: desc)
 				case .success(let response):
 					overallResponse = response
-
 			}
-		}
-	}
-}
-
-private extension RewardAnalyticsViewModel {
-	func updateState() {
-		if devices.isEmpty {
-			state = .empty(noStationsConfiguration)
-		} else if devices.reduce(0, { $0 + ($1.rewards?.totalRewards ?? 0.0)}) == 0 {
-			state = .noRewards
-		} else {
-			state = .content
 		}
 	}
 
@@ -161,7 +194,7 @@ private extension RewardAnalyticsViewModel {
 		}
 
 		overallChartDataItems = RewardAnalyticsChartFactory().getChartsData(overallResponse: overallResponse, 
-																			mode: .week)
+																			mode: overallMode)
 	}
 
 	func updateCurrentStationCharts() {
@@ -170,7 +203,7 @@ private extension RewardAnalyticsViewModel {
 		}
 
 		currentStationChartDataItems = RewardAnalyticsChartFactory().getChartsData(deviceResponse: currentStationReward.stationReward,
-																				   mode: .week)
+																				   mode: currenStationMode)
 	}
 
 	func getOverallRewards() async -> Result<NetworkDevicesRewardsResponse, NetworkErrorResponse>? {
@@ -186,7 +219,7 @@ private extension RewardAnalyticsViewModel {
 	func getRewardsBreakdown(for deviceId: String) async -> Result<NetworkDeviceRewardsResponse, NetworkErrorResponse>? {
 		do {
 			let  result = try await useCase.getUserDeviceRewards(deviceId: deviceId,
-																 mode: .week).toAsync().result
+																 mode: currenStationMode).toAsync().result
 			return result
 		} catch {
 			print(error)

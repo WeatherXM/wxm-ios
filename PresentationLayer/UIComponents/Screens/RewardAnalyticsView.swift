@@ -53,7 +53,9 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var noRewards: some View {
-		TrackableScrollView {
+		TrackableScrollView { completion in
+			viewModel.refresh(completion: completion)
+		} content: {
 			VStack(spacing: CGFloat(.defaultSidePadding)) {
 				titleView
 				NoRewardsView(showTipView: false)
@@ -65,7 +67,9 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var rewardsView: some View {
-		TrackableScrollView {
+		TrackableScrollView { completion in
+			viewModel.refresh(completion: completion)
+		} content: {
 			VStack(spacing: CGFloat(.defaultSidePadding)) {
 				titleView
 
@@ -207,6 +211,7 @@ private struct ContentView: View {
 		}
 		.WXMCardStyle()
 		.animation(.easeIn(duration: 0.3), value: isExpanded)
+		.spinningLoader(show: $viewModel.currentStationIsLoading)
 	}
 }
 
@@ -227,9 +232,9 @@ private extension ContentView {
 			Spacer()
 
 			CustomSegmentView(options: DeviceRewardsMode.allCases.map { $0.description },
-							  selectedIndex: Binding(get: { viewModel.overallMode.index ?? 0 },
+							  selectedIndex: Binding(get: { viewModel.currenStationMode.index ?? 0 },
 													 set: { index in
-				viewModel.overallMode = DeviceRewardsMode.value(for: index)
+				viewModel.currenStationMode = DeviceRewardsMode.value(for: index)
 			}),
 							  style: .compact)
 			.cornerRadius(CGFloat(.buttonCornerRadius))
