@@ -41,8 +41,9 @@ private extension RewardAnalyticsChartFactory {
 			guard let ts = datum.ts else {
 				return nil
 			}
-			return ChartDataItem(xVal: ts, 
-								 yVal: datum.totalRewards ?? 2.0,
+			return ChartDataItem(xVal: ts.day,
+								 yVal: datum.totalRewards ?? 0.0,
+								 xAxisLabel: ts.getWeekDay(),
 								 group: LocalizableString.total(nil).localized,
 								 displayValue: (datum.totalRewards ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
 		} ?? []
@@ -65,8 +66,9 @@ private extension RewardAnalyticsChartFactory {
 			}
 
 			return datum.rewards?.map { item in
-				return ChartDataItem(xVal: ts,
+				return ChartDataItem(xVal: ts.day,
 									 yVal: item.value ?? 0.0,
+									 xAxisLabel: ts.getWeekDay(),
 									 group: item.code?.displayName ?? "",
 									 color: item.code?.fillColor ?? .chartPrimary,
 									 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
