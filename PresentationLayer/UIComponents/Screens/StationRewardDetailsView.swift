@@ -25,6 +25,7 @@ struct StationRewardDetailsView: View {
 				let progress = details.completedPercentage ?? 0
 				ProgressView(value: Float(progress), total: 100)
 					.progressViewStyle(ProgressBarStyle(text: "\(progress)%",
+														textColor: Color(colorEnum: .textDarkStable),
 														bgColor: Color(colorEnum: code.primaryColor),
 														progressColor: Color(colorEnum: code.fillColor)))
 					.frame(height: 24)

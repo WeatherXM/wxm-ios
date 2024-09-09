@@ -10,6 +10,7 @@ import SwiftUI
 struct ProgressBarStyle: ProgressViewStyle {
 	var withOffset: Bool = false
     var text: String?
+	var textColor: Color?
     var bgColor: Color = Color(colorEnum: .midGrey)
     var progressColor: Color = Color(colorEnum: .wxmPrimary)
 
@@ -31,22 +32,29 @@ struct ProgressBarStyle: ProgressViewStyle {
                     Spacer(minLength: 0.0)
                 }
 
-                HStack(spacing: 0.0) {
-                    Color(.white)
-                        .frame(width: progressSize.width)
-                        .clipShape(Capsule())
-                        .animation(.linear, value: configuration.fractionCompleted)
+				if let textColor {
+					Text(text ?? "")
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundStyle(textColor)
+				} else {
+					HStack(spacing: 0.0) {
+						Color(.white)
+							.frame(width: progressSize.width)
+							.clipShape(Capsule())
+							.animation(.linear, value: configuration.fractionCompleted)
 
-                    progressColor
-                }.mask {
-                    if let text {
-                        Text(text)
-                            .font(.system(size: CGFloat(.caption)))
-                            .transaction { transaction in
-                                transaction.animation = nil
-                            }
-                    }
-                }
+						progressColor
+					}
+					.mask {
+						if let text {
+							Text(text)
+								.font(.system(size: CGFloat(.caption)))
+								.transaction { transaction in
+									transaction.animation = nil
+								}
+						}
+					}
+				}
             }
             .clipShape(Capsule())
         }
@@ -64,9 +72,9 @@ private extension ProgressBarStyle {
 
 struct ProgressBarStyle_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressView(value: 5,
+		ProgressView(value: 4.5,
                      total: 10)
             .progressViewStyle(ProgressBarStyle(withOffset: true, text: "\(4)"))
-            .previewLayout(.fixed(width: 256, height: 22))
+			.frame(width: 256, height: 22)
     }
 }

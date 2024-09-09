@@ -23,7 +23,7 @@ extension BoostCode {
 			case .betaReward:
 				return .betaRewardsPrimary
 			case .unknown:
-				return .layer2
+				return .wxmPrimary
 		}
 	}
 
@@ -32,7 +32,7 @@ extension BoostCode {
 			case .betaReward:
 				return .betaRewardsFill
 			case .unknown:
-				return .darkestBlue
+				return .remoteImagePlaceholder
 		}
 	}
 }

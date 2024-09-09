@@ -66,4 +66,5 @@ public enum ColorEnum: String {
 	case betaRewardsPrimary
 	case lastRun
 	case tooltip
+	case textDarkStable
 }
