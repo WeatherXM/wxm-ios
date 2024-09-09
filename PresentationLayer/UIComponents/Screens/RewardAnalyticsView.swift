@@ -120,7 +120,7 @@ private struct ContentView: View {
 					Text(LocalizableString.RewardAnalytics.totalEarned.localized)
 						.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
 
-					Text(viewModel.overallEarnedValueText)
+					Text(viewModel.summaryEarnedValueText)
 						.font(.system(size: CGFloat(.normalFontSize)))
 
 				}
@@ -129,21 +129,21 @@ private struct ContentView: View {
 				Spacer()
 
 				CustomSegmentView(options: DeviceRewardsMode.allCases.map { $0.description },
-								  selectedIndex: Binding(get: { viewModel.overallMode.index ?? 0 },
+								  selectedIndex: Binding(get: { viewModel.summaryMode.index ?? 0 },
 														 set: { index in
-					viewModel.overallMode = DeviceRewardsMode.value(for: index)
+					viewModel.summaryMode = DeviceRewardsMode.value(for: index)
 				}),
 								  style: .compact)
 				.cornerRadius(CGFloat(.buttonCornerRadius))
 			}
 
-			if let chartDataItems = viewModel.overallChartDataItems {
+			if let chartDataItems = viewModel.summaryChartDataItems {
 				ChartView(data: chartDataItems)
 					.aspectRatio(1.0, contentMode: .fit)
 			}
 		}
 		.WXMCardStyle()
-		.spinningLoader(show: $viewModel.overallRewardsIsLoading)
+		.spinningLoader(show: $viewModel.suammaryRewardsIsLoading)
 	}
 
 	@ViewBuilder

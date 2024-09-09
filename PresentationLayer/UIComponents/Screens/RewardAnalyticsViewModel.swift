@@ -21,24 +21,24 @@ class RewardAnalyticsViewModel: ObservableObject {
 		let value = devices.reduce(0.0) { $0 + ($1.rewards?.actualReward ?? 0.0) }
 		return "\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
-	var overallEarnedValueText: String {
-		let value = overallResponse?.total ?? 0.0
+	var summaryEarnedValueText: String {
+		let value = summaryResponse?.total ?? 0.0
 		return "\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
 	
 	// Summary
-	@Published var overallRewardsIsLoading: Bool = false
-	@Published var overallMode: DeviceRewardsMode = .week {
+	@Published var suammaryRewardsIsLoading: Bool = false
+	@Published var summaryMode: DeviceRewardsMode = .week {
 		didSet {
-			refreshOverallRewards()
+			refreshSummaryRewards()
 		}
 	}
-	@Published var overallResponse: NetworkDevicesRewardsResponse? {
+	@Published var summaryResponse: NetworkDevicesRewardsResponse? {
 		didSet {
-			updateOverallCharts()
+			updateSummaryCharts()
 		}
 	}
-	@Published var overallChartDataItems: [ChartDataItem]?
+	@Published var summaryChartDataItems: [ChartDataItem]?
 
 	// Selected station
 	@Published var currentStationIsLoading: Bool = false
@@ -88,10 +88,10 @@ class RewardAnalyticsViewModel: ObservableObject {
 			
 			var errorInfo: NetworkErrorResponse.UIInfo?
 
-			if let overallResult = await getOverallRewards() {
+			if let overallResult = await getSummaryRewards() {
 				switch overallResult {
 					case .success(let response):
-						self.overallResponse = response
+						self.summaryResponse = response
 					case .failure(let error):
 						errorInfo = error.uiInfo
 				}
@@ -165,14 +165,14 @@ private extension RewardAnalyticsViewModel {
 		}
 	}
 
-	func refreshOverallRewards() {
-		overallRewardsIsLoading = true
+	func refreshSummaryRewards() {
+		suammaryRewardsIsLoading = true
 		Task { @MainActor in
 			defer {
-				overallRewardsIsLoading = false
+				suammaryRewardsIsLoading = false
 			}
 
-			guard let result = await getOverallRewards() else {
+			guard let result = await getSummaryRewards() else {
 				return
 			}
 
@@ -183,18 +183,18 @@ private extension RewardAnalyticsViewModel {
 					}
 					Toast.shared.show(text: desc)
 				case .success(let response):
-					overallResponse = response
+					summaryResponse = response
 			}
 		}
 	}
 
-	func updateOverallCharts() {
-		guard let overallResponse else {
+	func updateSummaryCharts() {
+		guard let summaryResponse else {
 			return
 		}
 
-		overallChartDataItems = RewardAnalyticsChartFactory().getChartsData(overallResponse: overallResponse, 
-																			mode: overallMode)
+		summaryChartDataItems = RewardAnalyticsChartFactory().getChartsData(overallResponse: summaryResponse, 
+																			mode: summaryMode)
 	}
 
 	func updateCurrentStationCharts() {
@@ -206,9 +206,9 @@ private extension RewardAnalyticsViewModel {
 																				   mode: currenStationMode)
 	}
 
-	func getOverallRewards() async -> Result<NetworkDevicesRewardsResponse, NetworkErrorResponse>? {
+	func getSummaryRewards() async -> Result<NetworkDevicesRewardsResponse, NetworkErrorResponse>? {
 		do {
-			let  result = try await useCase.getUserDevicesRewards(mode: overallMode).toAsync().result
+			let  result = try await useCase.getUserDevicesRewards(mode: summaryMode).toAsync().result
 			return result
 		} catch {
 			print(error)

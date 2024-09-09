@@ -39,7 +39,3 @@ struct StationRewardDetailsView: View {
 		}
     }
 }
-
-//#Preview {
-//	StationRewardDetailsView()
-//}
