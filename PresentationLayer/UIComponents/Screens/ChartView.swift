@@ -195,7 +195,7 @@ private struct ChartOverlayDetailsView: View {
 		}
 		.fixedSize()
 		.padding(CGFloat(.smallSidePadding))
-		.background(Color.black.opacity(0.9))
+		.background(Color(colorEnum: .tooltip))
 	}
 }
 

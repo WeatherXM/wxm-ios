@@ -32,14 +32,17 @@ private struct ContentView: View {
 	private let animationDuration = 0.3
 
 	var body: some View {
-		Group {
-			switch viewModel.state {
-				case .empty(let configuration):
-					emptyView(configuration: configuration)
-				case .noRewards:
-					noRewards
-				case .content:
-					rewardsView
+		ZStack {
+			Color(colorEnum: .topBG)
+			Group {
+				switch viewModel.state {
+					case .empty(let configuration):
+						emptyView(configuration: configuration)
+					case .noRewards:
+						noRewards
+					case .content:
+						rewardsView
+				}
 			}
 		}
 		.onAppear {
@@ -106,8 +109,8 @@ private struct ContentView: View {
 				Spacer()
 
 				Text(viewModel.lastRunValueText)
-					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-					.foregroundStyle(Color(colorEnum: .success))
+					.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .lastRun))
 			}
 		}
 	}

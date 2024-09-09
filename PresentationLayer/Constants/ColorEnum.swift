@@ -60,8 +60,10 @@ public enum ColorEnum: String {
 	case remoteImagePlaceholder
 	case info
 	case infoTint
-	case newBG
+	case topBG
 	case newText
 	case betaRewardsFill
 	case betaRewardsPrimary
+	case lastRun
+	case tooltip
 }

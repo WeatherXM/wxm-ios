@@ -12,7 +12,7 @@ struct ClaimDeviceProgressView: View {
 
     var body: some View {
 		ZStack {
-			Color(colorEnum: .newBG)
+			Color(colorEnum: .topBG)
 				.ignoresSafeArea()
 			Group {
 				switch state {

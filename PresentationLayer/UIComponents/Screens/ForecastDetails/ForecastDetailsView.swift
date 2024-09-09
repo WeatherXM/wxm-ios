@@ -16,7 +16,7 @@ struct ForecastDetailsView: View {
 
 	var body: some View {
 		ZStack {
-			Color(colorEnum: .newBG)
+			Color(colorEnum: .topBG)
 				.ignoresSafeArea()
 
 			ScrollViewReader { proxy in
@@ -47,7 +47,7 @@ struct ForecastDetailsView: View {
 							}
 							.overlay {
 								if isTransitioning {
-									Color(colorEnum: .newBG)
+									Color(colorEnum: .topBG)
 								}
 							}
 							.onChange(of: viewModel.isTransitioning) { newValue in
@@ -62,7 +62,7 @@ struct ForecastDetailsView: View {
 				}
 			}
 		}.onAppear {
-			navigationObject.navigationBarColor = Color(.newBG)
+			navigationObject.navigationBarColor = Color(.topBG)
 
 			WXMAnalytics.shared.trackScreen(.forecastDetails)
 		}
