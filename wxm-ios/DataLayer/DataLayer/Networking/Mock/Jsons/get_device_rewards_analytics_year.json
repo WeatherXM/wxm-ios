@@ -1,0 +1,195 @@
+{
+	"total": 14234.786348,
+	"data": [
+		{
+			"ts": "2023-06-06T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.4353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 1.4353223
+				}
+			]
+		},
+		{
+			"ts": "2023-07-07T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.7353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 0.4353223
+				}
+			]
+		},
+		{
+			"ts": "2023-08-08T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.4353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 1.4353223
+				}
+			]
+		},
+		{
+			"ts": "2023-09-09T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.4353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 1.4353223
+				}
+			]
+		},
+		{
+			"ts": "2023-10-10T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.4353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 1.4353223
+				}
+			]
+		},
+		{
+			"ts": "2023-11-11T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.4353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 1.4353223
+				}
+			]
+		},
+		{
+			"ts": "2023-12-12T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.4353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 1.4353223
+				}
+			]
+		},
+        {
+			"ts": "2024-01-12T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.4353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 1.4353223
+				}
+			]
+		},
+        {
+			"ts": "2024-02-12T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.4353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 1.4353223
+				}
+			]
+		},
+        {
+			"ts": "2024-03-12T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.4353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 1.4353223
+				}
+			]
+		},
+        {
+			"ts": "2024-04-12T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.4353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 1.4353223
+				}
+			]
+		},
+        {
+			"ts": "2024-05-12T00:00:00+00:00",
+			"rewards": [
+				{
+					"type": "base",
+					"code": "base_reward",
+					"value": 2.4353223
+				},
+				{
+					"type": "boost",
+					"code": "beta_rewards",
+					"value": 1.4353223
+				}
+			]
+		}
+	],
+	"details": [
+		{
+			"code": "beta_rewards",
+			"current_rewards": 2.3325,
+			"total_rewards": 32.38432,
+			"boost_period_start":  "2023-06-06T00:00:00+00:00",
+			"boost_period_end": "2023-06-14T00:00:00+00:00",
+			"completed_percentage": 97
+		}
+	]
+}

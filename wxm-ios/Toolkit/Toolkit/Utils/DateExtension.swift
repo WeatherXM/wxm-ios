@@ -16,6 +16,7 @@ public extension Date {
         case monthLiteralDayYear = "MMM dd, yyyy"
         case monthLiteralDayYearShort = "MMM dd y"
         case monthLiteralDay = "MMM d"
+		case monthDay = "MM/dd"
 		case fullMonthLiteralDay = "MMMM d"
 		case monthLiteralDayTime = "MMM d, HH:mm"
 		case monthLiteralYearDayTime = "MMM d, yyy, HH:mm"
@@ -96,7 +97,11 @@ public extension Date {
 	func getWeekDay(_ style: FormatStyle.Symbol.Weekday = .abbreviated) -> String {
 		formatted(Date.FormatStyle().weekday(style))
 	}
-	
+
+	func getMonth(_ style: FormatStyle.Symbol.Month = .abbreviated) -> String {
+		formatted(Date.FormatStyle().month(style))
+	}
+
 	func relativeDayStringIfExists(timezone: TimeZone = .current) -> String? {
 		guard self.isToday || self.isYesterday || self.isTomorrow else {
 			return nil

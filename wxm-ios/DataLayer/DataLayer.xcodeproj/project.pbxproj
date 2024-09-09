@@ -56,6 +56,8 @@
 		26AB9F522A80112900855912 /* UserDevicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F512A80112900855912 /* UserDevicesService.swift */; };
 		26AB9F562A80C50200855912 /* KeychainHelperService+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F552A80C50200855912 /* KeychainHelperService+User.swift */; };
 		26ACE8EF2C883BF400EA22DD /* get_devices_rewards_analytics.json in Resources */ = {isa = PBXBuildFile; fileRef = 26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */; };
+		26AD3E9C2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AD3E9A2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json */; };
+		26AD3E9D2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AD3E9B2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json */; };
 		26B3D2B429E43D14006913E0 /* get_user_wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 26B3D2B329E43D14006913E0 /* get_user_wallet.json */; };
 		26D47E9E2A177AFB0078723A /* SettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */; };
 		26DD42AF29AF4765008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AE29AF4765008E277E /* Toolkit.framework */; };
@@ -143,6 +145,8 @@
 		26AB9F512A80112900855912 /* UserDevicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDevicesService.swift; sourceTree = "<group>"; };
 		26AB9F552A80C50200855912 /* KeychainHelperService+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainHelperService+User.swift"; sourceTree = "<group>"; };
 		26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_devices_rewards_analytics.json; sourceTree = "<group>"; };
+		26AD3E9A2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_analytics_year.json; sourceTree = "<group>"; };
+		26AD3E9B2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_analytics_7d.json; sourceTree = "<group>"; };
 		26B3D2B329E43D14006913E0 /* get_user_wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_user_wallet.json; sourceTree = "<group>"; };
 		26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryImpl.swift; sourceTree = "<group>"; };
 		26DD42AE29AF4765008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +234,8 @@
 				2618B1E52A84EC44003B98FB /* get_user_device_forecast.json */,
 				2646FCB42995018800EBB61B /* get_user_device_just_claimed.json */,
 				2672B8792C89E778002266BE /* get_device_rewards_analytics.json */,
+				26AD3E9B2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json */,
+				26AD3E9A2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json */,
 				26DD42D129AFAF26008E277E /* get_user_devices.json */,
 				26B3D2B329E43D14006913E0 /* get_user_wallet.json */,
 				267CA6EE2C1314E200ABE599 /* get_user.json */,
@@ -517,6 +523,7 @@
 				2674017A2A386DA700E54E35 /* get_network_stats.json in Resources */,
 				2674EDCE2A3C4C3800616285 /* get_network_stats_alt.json in Resources */,
 				264CC75D2B986F310060DEA4 /* get_reward_boosts.json in Resources */,
+				26AD3E9C2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json in Resources */,
 				267A37872AEBEBBA00469126 /* get_user_device_rewards.json in Resources */,
 				26A3B3E02B18E7A50002F35F /* get_user_rewards.json in Resources */,
 				2646FCBB2995018800EBB61B /* get_transactions.json in Resources */,
@@ -529,6 +536,7 @@
 				266B01C12B84DED4007AC689 /* get_device_rewards_summary.json in Resources */,
 				26FFAD932B8E2A5500BF0A6B /* get_reward_details.json in Resources */,
 				26B3D2B429E43D14006913E0 /* get_user_wallet.json in Resources */,
+				26AD3E9D2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -192,8 +192,15 @@ extension MeApiRequestBuilder: MockResponseBuilder {
 				return "get_user_wallet"
 			case .getUserDeviceForecastById:
 				return "get_user_device_forecast"
-			case .getUserDeviceRewards:
-				return "get_device_rewards_analytics"
+			case .getUserDeviceRewards(_, let mode):
+				switch mode {
+					case DeviceRewardsMode.week.rawValue:
+						return "get_device_rewards_analytics_7d"
+					case DeviceRewardsMode.year.rawValue:
+						return "get_device_rewards_analytics_year"
+					default:
+						return "get_device_rewards_analytics"
+				}
 			case .getUserDevicesRewards:
 				return "get_devices_rewards_analytics"
 			case .getUser:
