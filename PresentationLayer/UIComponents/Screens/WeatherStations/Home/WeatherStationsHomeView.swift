@@ -15,7 +15,6 @@ struct WeatherStationsHomeView: View {
     @Binding private var isTabBarShowing: Bool
     @Binding private var tabBarItemsSize: CGSize
     @Binding private var isWalletEmpty: Bool
-    @State private var showFilters: Bool = false
     @StateObject private var viewModel: WeatherStationsHomeViewModel
 
     init(swinjectHelper: SwinjectInterface, isTabBarShowing: Binding<Bool>, tabBarItemsSize: Binding<CGSize>, isWalletEmpty: Binding<Bool>) {
@@ -26,36 +25,57 @@ struct WeatherStationsHomeView: View {
     }
 
     var body: some View {
-        NavigationContainerView(showBackButton: false) {
+		NavigationContainerView(showBackButton: false, titleImage: .wxmNavigationLogo) {
             navigationBarRightView
         } content: {
             ContentView(vieModel: viewModel,
                         isTabBarShowing: $isTabBarShowing,
                         tabBarItemsSize: $tabBarItemsSize,
                         isWalletEmpty: $isWalletEmpty)
-            .bottomSheet(show: $showFilters, initialDetentId: .large) {
-                FilterView(show: $showFilters, viewModel: ViewModelsFactory.getFilterViewModel())
-            }
         }
     }
 
-    @ViewBuilder
-    var navigationBarRightView: some View {
-        Button {
-            showFilters = true
-        } label: {
-            Text(FontIcon.sliders.rawValue)
-                .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-				.foregroundColor(Color(colorEnum: viewModel.isFiltersActive ? .wxmPrimary : .text))
-                .frame(width: 30.0, height: 30.0)
-        }
-    }
+	@ViewBuilder
+	var navigationBarRightView: some View {
+		if let totalEarnedTitle = viewModel.totalEarnedTitle {
+			Button {
+
+			} label: {
+				HStack(spacing: CGFloat(.mediumSpacing)) {
+					VStack(alignment: .leading, spacing: 0.0) {
+						if let totalEarnedTitle = viewModel.totalEarnedTitle {
+							Text(totalEarnedTitle)
+								.font(.system(size: CGFloat(.caption)))
+								.foregroundStyle(Color(colorEnum: .text))
+						}
+
+						if let totalEarnedValueText = viewModel.totalEarnedValueText {
+							Text(totalEarnedValueText)
+								.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+								.foregroundStyle(Color(colorEnum: .text))
+						}
+					}
+
+					Text(FontIcon.chevronRight.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundColor(Color(colorEnum: .midGrey))
+
+				}
+				.WXMCardStyle(backgroundColor: Color(colorEnum: .layer1),
+							  insideHorizontalPadding: CGFloat(.smallSidePadding),
+							  insideVerticalPadding: CGFloat(.smallSidePadding),
+							  cornerRadius: CGFloat(.buttonCornerRadius))
+			}
+			.transition(.opacity.animation(.easeIn))
+		}
+	}
 }
 
 private struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var navigationObject: NavigationObject
 
+	@State private var showFilters: Bool = false
     @StateObject private var viewModel: WeatherStationsHomeViewModel
     @Binding private var isTabBarShowing: Bool
     @Binding private var tabBarItemsSize: CGSize
@@ -84,9 +104,22 @@ private struct ContentView: View {
         }.onAppear {
             viewModel.mainVM = mainVM
 			viewModel.getDevices()
-            navigationObject.title = LocalizableString.weatherStationsHomeTitle.localized
         }
+		.bottomSheet(show: $showFilters, initialDetentId: .large) {
+			FilterView(show: $showFilters, viewModel: ViewModelsFactory.getFilterViewModel())
+		}
     }
+
+	@ViewBuilder
+	var navigationBarRightView: some View {
+		Button {
+			showFilters = true
+		} label: {
+			Text(FontIcon.barsFilter.rawValue)
+				.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+				.foregroundColor(Color(colorEnum: viewModel.isFiltersActive ? .wxmPrimary : .text))
+		}
+	}
 
     @ViewBuilder
     func weatherStationsFlow(for devices: [DeviceDetails]) -> some View {
@@ -102,40 +135,48 @@ private struct ContentView: View {
                             offsetObject: viewModel.scrollOffsetObject) { completion in
             viewModel.getDevices(refreshMode: true, completion: completion)
         } content: {
-            VStack(spacing: CGFloat(.smallSpacing)) {
-                if mainVM.showWalletWarning && isWalletEmpty {
-                    CardWarningView(title: LocalizableString.walletAddressMissingTitle.localized,
-                                    message: LocalizableString.walletAddressMissingText.localized) {
+			VStack(spacing: CGFloat(.defaultSpacing)) {
+				NavigationTitleView(title: .constant(LocalizableString.weatherStationsHomeTitle.localized),
+									subtitle: .constant(nil)) {
+					navigationBarRightView
+				}
 
-                        WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
-                                                                       .promptType: .warnPromptType,
-                                                                       .action: .dismissAction])
+				VStack(spacing: CGFloat(.smallSpacing)) {
 
-                        withAnimation {
-                            mainVM.hideWalletWarning()
-                        }
-                    } content: {
-                        Button {
-                            Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
-                            WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
-                                                                           .promptType: .warnPromptType,
-                                                                           .action: .action])
+					if mainVM.showWalletWarning && isWalletEmpty {
+						CardWarningView(title: LocalizableString.walletAddressMissingTitle.localized,
+										message: LocalizableString.walletAddressMissingText.localized) {
 
-                        } label: {
-                            Text(LocalizableString.addWalletTitle.localized)
-                                .foregroundColor(Color(colorEnum: .wxmPrimary))
-                                .font(.system(size: CGFloat(.smallFontSize), weight: .bold))
-                        }
-                    }
-                    .onAppear {
-                        WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
-                                                                       .promptType: .warnPromptType,
-                                                                       .action: .viewAction])
-                    }
-                }
+							WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+																				 .promptType: .warnPromptType,
+																				 .action: .dismissAction])
 
-                weatherStationsList(devices: devices)
-            }
+							withAnimation {
+								mainVM.hideWalletWarning()
+							}
+						} content: {
+							Button {
+								Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
+								WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+																					 .promptType: .warnPromptType,
+																					 .action: .action])
+
+							} label: {
+								Text(LocalizableString.addWalletTitle.localized)
+									.foregroundColor(Color(colorEnum: .wxmPrimary))
+									.font(.system(size: CGFloat(.smallFontSize), weight: .bold))
+							}
+						}
+						.onAppear {
+							WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+																				 .promptType: .warnPromptType,
+																				 .action: .viewAction])
+						}
+					}
+
+					weatherStationsList(devices: devices)
+				}
+			}
             .padding(.horizontal, CGFloat(.defaultSidePadding))
             .padding(.top)
             .padding(.bottom, tabBarItemsSize.height)

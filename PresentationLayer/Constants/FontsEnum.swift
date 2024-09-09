@@ -40,6 +40,7 @@ enum FontIcon: String {
     case lock
     case calendar
     case sliders
+	case barsFilter = "bars-filter"
 	case pointUp = "hand-back-point-up"
 	case badgeCheck = "badge-check"
 	case triangleExclamation = "triangle-exclamation"
@@ -55,4 +56,5 @@ enum FontIcon: String {
 	case barcode
 	case split
 	case close
+	case chevronRight = "chevron-right"
 }

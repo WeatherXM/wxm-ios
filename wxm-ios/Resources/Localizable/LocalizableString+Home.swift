@@ -17,6 +17,7 @@ extension LocalizableString {
         case followingWeatherStationsEmptyTitle
         case followingWeatherStationsEmptyDescription
         case followingWeatherStationsEmptyButtonTitle
+		case noRewardsYet
     }
 }
 
@@ -43,6 +44,8 @@ extension LocalizableString.Home: WXMLocalizable {
                 return "home_following_weather_stations_empty_description"
             case .followingWeatherStationsEmptyButtonTitle:
                 return "home_following_weather_stations_empty_button_title"
+			case .noRewardsYet:
+				return "home_no_rewards_yet"
         }
     }
 }

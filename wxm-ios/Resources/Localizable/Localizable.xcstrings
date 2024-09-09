@@ -4626,6 +4626,17 @@
         }
       }
     },
+    "home_no_rewards_yet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No rewards yet!"
+          }
+        }
+      }
+    },
     "home_owned_weather_stations_empty_description" : {
       "extractionState" : "manual",
       "localizations" : {
