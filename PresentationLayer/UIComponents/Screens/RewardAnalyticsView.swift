@@ -29,6 +29,7 @@ extension RewardAnalyticsView {
 private struct ContentView: View {
 	@EnvironmentObject var navigationObject: NavigationObject
 	@ObservedObject var viewModel: RewardAnalyticsViewModel
+	private let animationDuration = 0.3
 
 	var body: some View {
 		Group {
@@ -80,6 +81,7 @@ private struct ContentView: View {
 			}
 			.padding(CGFloat(.defaultSidePadding))
 		}
+		.animation(.easeIn(duration: animationDuration), value: viewModel.currentStationReward != nil)
 	}
 
 	@ViewBuilder
@@ -185,7 +187,7 @@ private struct ContentView: View {
 							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
 							.foregroundStyle(Color(colorEnum: .darkGrey))
 							.rotationEffect(Angle(degrees: isExpanded ? -180 : 0.0))
-							.animation(.easeIn(duration: 0.3), value: isExpanded)
+							.animation(.easeIn(duration: animationDuration), value: isExpanded)
 					}
 				}
 			}
@@ -209,9 +211,10 @@ private struct ContentView: View {
 				}
 			}
 		}
+		.spinningLoader(show: $viewModel.currentStationIsLoading, lottieLoader: isExpanded)
 		.WXMCardStyle()
-		.animation(.easeIn(duration: 0.3), value: isExpanded)
-		.spinningLoader(show: $viewModel.currentStationIsLoading)
+		.animation(.easeIn(duration: animationDuration), value: isExpanded)
+
 	}
 }
 
