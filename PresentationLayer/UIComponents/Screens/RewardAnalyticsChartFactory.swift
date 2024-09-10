@@ -74,7 +74,25 @@ private extension RewardAnalyticsChartFactory {
 
 	// MARK: - Device
 
-	func getDataItems(deviceResponse: NetworkDeviceRewardsResponse, 
+	func getSevendaysMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
+		getDataItems(deviceResponse: deviceResponse) { date in
+			date.getWeekDay()
+		}
+	}
+
+	func getMonthlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
+		getDataItems(deviceResponse: deviceResponse) { date in
+			date.getFormattedDate(format: .monthDay)
+		}
+	}
+
+	func getYearlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
+		getDataItems(deviceResponse: deviceResponse) { date in
+			date.getMonth()
+		}
+	}
+
+	func getDataItems(deviceResponse: NetworkDeviceRewardsResponse,
 					  xAxisLabel: GenericValueCallback<Date, String>) -> [ChartDataItem] {
 		var counter = -1
 
@@ -97,23 +115,4 @@ private extension RewardAnalyticsChartFactory {
 
 		return items?.flatMap { $0 } ?? []
 	}
-
-	func getSevendaysMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
-		getDataItems(deviceResponse: deviceResponse) { date in
-			date.getWeekDay()
-		}
-	}
-
-	func getMonthlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
-		getDataItems(deviceResponse: deviceResponse) { date in
-			date.getFormattedDate(format: .monthDay)
-		}
-	}
-
-	func getYearlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
-		getDataItems(deviceResponse: deviceResponse) { date in
-			date.getMonth()
-		}
-	}
-
 }
