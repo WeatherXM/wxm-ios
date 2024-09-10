@@ -37,38 +37,58 @@ private extension RewardAnalyticsChartFactory {
 	// MARK: - Overall
 	
 	func getSevendaysMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
+		getDataItems(overallResponse: overallResponse) { date in
+			date.getWeekDay()
+		}
+	}
+
+	func getMonthlyMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
+		getDataItems(overallResponse: overallResponse) { date in
+			date.getFormattedDate(format: .monthDay)
+		}
+	}
+
+	func getYearlyMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
+		getDataItems(overallResponse: overallResponse) { date in
+			date.getMonth()
+		}
+	}
+
+	func getDataItems(overallResponse: NetworkDevicesRewardsResponse,
+					  xAxisLabel: GenericValueCallback<Date, String>) -> [ChartDataItem] {
+		var counter = -1
+
 		return overallResponse.data?.compactMap { datum in
+			counter += 1
+
 			guard let ts = datum.ts else {
 				return nil
 			}
-			return ChartDataItem(xVal: ts.day,
+			return ChartDataItem(xVal: counter,
 								 yVal: datum.totalRewards ?? 0.0,
-								 xAxisLabel: ts.getWeekDay(),
+								 xAxisLabel: xAxisLabel(ts),
 								 group: LocalizableString.total(nil).localized,
 								 displayValue: (datum.totalRewards ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
 		} ?? []
 	}
 
-	func getMonthlyMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
-		[]
-	}
-
-	func getYearlyMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
-		[]
-	}
-
 	// MARK: - Device
 
-	func getSevendaysMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
+	func getDataItems(deviceResponse: NetworkDeviceRewardsResponse, 
+					  xAxisLabel: GenericValueCallback<Date, String>) -> [ChartDataItem] {
+		var counter = -1
+
 		let items: [[ChartDataItem]]? = deviceResponse.data?.compactMap { datum in
+			counter += 1
+
 			guard let ts = datum.ts else {
 				return nil
 			}
 
 			return datum.rewards?.map { item in
-				return ChartDataItem(xVal: ts.day,
+				return ChartDataItem(xVal: counter,
 									 yVal: item.value ?? 0.0,
-									 xAxisLabel: ts.getWeekDay(),
+									 xAxisLabel: xAxisLabel(ts),
 									 group: item.code?.displayName ?? "",
 									 color: item.code?.fillColor ?? .chartPrimary,
 									 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
@@ -76,49 +96,24 @@ private extension RewardAnalyticsChartFactory {
 		}
 
 		return items?.flatMap { $0 } ?? []
+	}
+
+	func getSevendaysMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
+		getDataItems(deviceResponse: deviceResponse) { date in
+			date.getWeekDay()
+		}
 	}
 
 	func getMonthlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
-		var counter = -1
-
-		let items: [[ChartDataItem]]? = deviceResponse.data?.compactMap { datum in
-			counter += 1
-			guard let ts = datum.ts else {
-				return nil
-			}
-
-			return datum.rewards?.map { item in
-				return ChartDataItem(xVal: counter,
-									 yVal: item.value ?? 0.0,
-									 xAxisLabel: ts.getFormattedDate(format: .monthDay),
-									 group: item.code?.displayName ?? "",
-									 color: item.code?.fillColor ?? .chartPrimary,
-									 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
-			}
+		getDataItems(deviceResponse: deviceResponse) { date in
+			date.getFormattedDate(format: .monthDay)
 		}
-
-		return items?.flatMap { $0 } ?? []
 	}
 
 	func getYearlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
-		var counter = -1
-		let items: [[ChartDataItem]]? = deviceResponse.data?.compactMap { datum in
-			counter += 1
-			guard let ts = datum.ts else {
-				return nil
-			}
-
-			return datum.rewards?.map { item in
-				return ChartDataItem(xVal: counter,
-									 yVal: item.value ?? 0.0,
-									 xAxisLabel: ts.getMonth(),
-									 group: item.code?.displayName ?? "",
-									 color: item.code?.fillColor ?? .chartPrimary,
-									 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
-			}
+		getDataItems(deviceResponse: deviceResponse) { date in
+			date.getMonth()
 		}
-
-		return items?.flatMap { $0 } ?? []
 	}
 
 }
