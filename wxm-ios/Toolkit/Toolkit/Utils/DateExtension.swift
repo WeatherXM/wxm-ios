@@ -212,11 +212,9 @@ public extension Date {
 			dateFormatter.dateStyle = .medium
 			dateFormatter.doesRelativeDateFormatting = true
 		} else {
-			dateFormatter.dateFormat = format.rawValue
+			dateFormatter.setLocalizedDateFormatFromTemplate(format.rawValue)
 		}
-        
-		dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        
+                
 		var dateString = dateFormatter.string(from: self).lowercased()
 		
 		if showTimeZoneIndication, var timeZoneIdentifier = timezone?.identifier.uppercased() {
