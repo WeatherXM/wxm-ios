@@ -24,6 +24,7 @@ extension LocalizableString {
 		case monthAbbrevation
 		case yearAbbrevation
 		case earnedByThisStation
+		case otherBoost
 	}
 }
 
@@ -74,6 +75,8 @@ extension LocalizableString.RewardAnalytics: WXMLocalizable {
 				return "reward_analytics_year_abbrevation"
 			case .earnedByThisStation:
 				return "reward_analytics_earned_by_this_station"
+			case .otherBoost:
+				return "reward_analytics_other_boost"
 		}
 	}
 }

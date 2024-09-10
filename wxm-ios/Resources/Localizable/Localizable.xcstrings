@@ -5886,6 +5886,17 @@
         }
       }
     },
+    "reward_analytics_other_boost" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other boost"
+          }
+        }
+      }
+    },
     "reward_analytics_rewards_breakdown" : {
       "extractionState" : "manual",
       "localizations" : {

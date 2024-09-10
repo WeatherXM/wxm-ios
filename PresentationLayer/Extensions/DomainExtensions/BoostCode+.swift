@@ -14,7 +14,7 @@ extension BoostCode {
 			case .betaReward:
 				return LocalizableString.RewardAnalytics.betaRewards.localized
 			case .unknown(let value):
-				return value
+				return LocalizableString.RewardAnalytics.otherBoost.localized
 		}
 	}
 
@@ -23,7 +23,7 @@ extension BoostCode {
 			case .betaReward:
 				return .betaRewardsPrimary
 			case .unknown:
-				return .wxmPrimary
+				return .otherRewardPrimary
 		}
 	}
 
@@ -32,7 +32,7 @@ extension BoostCode {
 			case .betaReward:
 				return .betaRewardsFill
 			case .unknown:
-				return .remoteImagePlaceholder
+				return .otherRewardFill
 		}
 	}
 }
