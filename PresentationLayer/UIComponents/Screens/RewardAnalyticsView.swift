@@ -34,6 +34,8 @@ private struct ContentView: View {
 	var body: some View {
 		ZStack {
 			Color(colorEnum: .topBG)
+				.ignoresSafeArea()
+			
 			Group {
 				switch viewModel.state {
 					case .empty(let configuration):
