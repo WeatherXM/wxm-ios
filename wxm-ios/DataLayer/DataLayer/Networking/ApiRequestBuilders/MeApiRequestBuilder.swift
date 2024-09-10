@@ -201,8 +201,15 @@ extension MeApiRequestBuilder: MockResponseBuilder {
 					default:
 						return "get_device_rewards_analytics"
 				}
-			case .getUserDevicesRewards:
-				return "get_devices_rewards_analytics"
+			case .getUserDevicesRewards(let mode):
+				switch mode {
+					case DeviceRewardsMode.week.rawValue:
+						return "get_devices_rewards_analytics_7d"
+					case DeviceRewardsMode.year.rawValue:
+						return "get_devices_rewards_analytics_year"
+					default:
+						return "get_devices_rewards_analytics"
+				}
 			case .getUser:
 				return "get_user"
 			default:

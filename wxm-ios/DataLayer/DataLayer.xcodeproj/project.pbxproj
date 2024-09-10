@@ -58,6 +58,8 @@
 		26ACE8EF2C883BF400EA22DD /* get_devices_rewards_analytics.json in Resources */ = {isa = PBXBuildFile; fileRef = 26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */; };
 		26AD3E9C2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AD3E9A2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json */; };
 		26AD3E9D2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AD3E9B2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json */; };
+		26AD3EA62C90748C0040AB09 /* get_devices_rewards_analytics_year.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AD3EA42C90748B0040AB09 /* get_devices_rewards_analytics_year.json */; };
+		26AD3EA72C90748C0040AB09 /* get_devices_rewards_analytics_7d.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AD3EA52C90748C0040AB09 /* get_devices_rewards_analytics_7d.json */; };
 		26B3D2B429E43D14006913E0 /* get_user_wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 26B3D2B329E43D14006913E0 /* get_user_wallet.json */; };
 		26D47E9E2A177AFB0078723A /* SettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */; };
 		26DD42AF29AF4765008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AE29AF4765008E277E /* Toolkit.framework */; };
@@ -147,6 +149,8 @@
 		26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_devices_rewards_analytics.json; sourceTree = "<group>"; };
 		26AD3E9A2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_analytics_year.json; sourceTree = "<group>"; };
 		26AD3E9B2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_analytics_7d.json; sourceTree = "<group>"; };
+		26AD3EA42C90748B0040AB09 /* get_devices_rewards_analytics_year.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_devices_rewards_analytics_year.json; sourceTree = "<group>"; };
+		26AD3EA52C90748C0040AB09 /* get_devices_rewards_analytics_7d.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_devices_rewards_analytics_7d.json; sourceTree = "<group>"; };
 		26B3D2B329E43D14006913E0 /* get_user_wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_user_wallet.json; sourceTree = "<group>"; };
 		26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryImpl.swift; sourceTree = "<group>"; };
 		26DD42AE29AF4765008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +230,8 @@
 				2646D8E929C8B8CA0000237F /* get_device_info_m5.json */,
 				26348E262A4456DD000846C6 /* get_network_search.json */,
 				26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */,
+				26AD3EA52C90748C0040AB09 /* get_devices_rewards_analytics_7d.json */,
+				26AD3EA42C90748B0040AB09 /* get_devices_rewards_analytics_year.json */,
 				267401792A386DA700E54E35 /* get_network_stats.json */,
 				2674EDCD2A3C4C3800616285 /* get_network_stats_alt.json */,
 				2646FCB72995018800EBB61B /* get_transactions.json */,
@@ -525,6 +531,8 @@
 				264CC75D2B986F310060DEA4 /* get_reward_boosts.json in Resources */,
 				26AD3E9C2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json in Resources */,
 				267A37872AEBEBBA00469126 /* get_user_device_rewards.json in Resources */,
+				26AD3EA62C90748C0040AB09 /* get_devices_rewards_analytics_year.json in Resources */,
+				26AD3EA72C90748C0040AB09 /* get_devices_rewards_analytics_7d.json in Resources */,
 				26A3B3E02B18E7A50002F35F /* get_user_rewards.json in Resources */,
 				2646FCBB2995018800EBB61B /* get_transactions.json in Resources */,
 				2646FCBA2995018800EBB61B /* get_transactions_empty.json in Resources */,
