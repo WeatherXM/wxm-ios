@@ -11,14 +11,25 @@ import Combine
 import DomainLayer
 
 protocol SelectLocationMapViewModelDelegate: AnyObject {
-	func updatedSelectedLocation(location: DeviceLocation?)
+	func updatedResolvedLocation(location: DeviceLocation?)
+	func updatedSelectedCoordinate(coordinate: CLLocationCoordinate2D?)
+}
+
+// Make protocol functions optional
+extension SelectLocationMapViewModelDelegate {
+	func updatedResolvedLocation(location: DeviceLocation?) {}
+	func updatedSelectedCoordinate(coordinate: CLLocationCoordinate2D?) {}
 }
 
 class SelectLocationMapViewModel: ObservableObject {
-	@Published var selectedCoordinate: CLLocationCoordinate2D
+	@Published var selectedCoordinate: CLLocationCoordinate2D {
+		didSet {
+			delegate?.updatedSelectedCoordinate(coordinate: selectedCoordinate)
+		}
+	}
 	@Published private(set) var selectedDeviceLocation: DeviceLocation? {
 		didSet {
-			delegate?.updatedSelectedLocation(location: selectedDeviceLocation)
+			delegate?.updatedResolvedLocation(location: selectedDeviceLocation)
 		}
 	}
 	@Published var searchTerm: String = ""

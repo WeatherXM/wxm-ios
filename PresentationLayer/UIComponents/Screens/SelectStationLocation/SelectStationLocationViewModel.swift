@@ -20,7 +20,7 @@ class SelectStationLocationViewModel: ObservableObject {
 	let deviceLocationUseCase: DeviceLocationUseCase
 	let meUseCase: MeUseCase
 	@Published var termsAccepted: Bool = false
-	@Published private(set) var selectedDeviceLocation: DeviceLocation?
+	@Published private(set) var selectedCoordinate: CLLocationCoordinate2D?
 	@Published var isSuccessful: Bool = false
 	private(set) var successObj: FailSuccessStateObject = .emptyObj
 	let locationViewModel: SelectLocationMapViewModel
@@ -42,7 +42,7 @@ class SelectStationLocationViewModel: ObservableObject {
 	}
 
 	func handleConfirmTap() {
-		guard let selectedCoordinate = selectedDeviceLocation?.coordinates.toCLLocationCoordinate2D(),
+		guard let selectedCoordinate,
 			  deviceLocationUseCase.areLocationCoordinatesValid(LocationCoordinates.fromCLLocationCoordinate2D(selectedCoordinate)) else {
 			Toast.shared.show(text: LocalizableString.invalidLocationErrorText.localized.attributedMarkdown ?? "")
 			return
@@ -53,14 +53,14 @@ class SelectStationLocationViewModel: ObservableObject {
 }
 
 extension SelectStationLocationViewModel: SelectLocationMapViewModelDelegate {
-	func updatedSelectedLocation(location: DeviceLocation?) {
-		self.selectedDeviceLocation = location
+	func updatedSelectedCoordinate(coordinate: CLLocationCoordinate2D?) {
+		self.selectedCoordinate = coordinate
 	}
 }
 
 private extension SelectStationLocationViewModel {
 	func setLocation() {
-		guard let deviceId = device.id, let selectedCoordinate = selectedDeviceLocation?.coordinates.toCLLocationCoordinate2D() else {
+		guard let deviceId = device.id, let selectedCoordinate else {
 			return
 		}
 
