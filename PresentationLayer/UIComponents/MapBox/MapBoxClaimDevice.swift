@@ -21,14 +21,16 @@ struct MapBoxClaimDeviceView: View {
 	private let markerSize: CGSize = CGSize(width: 44.0, height: 44.0)
 	@State private var locationPoint: CGPoint = .zero
 	@State private var markerViewSize: CGSize = .zero
-	@StateObject private var controls: MapBoxClaimDevice.MapControls = .init()
+	@StateObject private var controls: MapControls
 
 	init(location: Binding<CLLocationCoordinate2D>,
 		 annotationTitle: Binding<String?>,
-		 geometryProxyForFrameOfMapView: CGRect) {
+		 geometryProxyForFrameOfMapView: CGRect,
+		 mapControls: MapControls) {
 		_location = location
 		_annotationTitle = annotationTitle
 		self.geometryProxyForFrameOfMapView = geometryProxyForFrameOfMapView
+		_controls = StateObject(wrappedValue: mapControls)
 	}
 
 	var body: some View {
@@ -103,19 +105,21 @@ private struct MapBoxClaimDevice: UIViewControllerRepresentable {
 			controller?.zoomOut()
 		}
 
+		controls.setMapCenter = { [weak controller] coordinate in
+			controller?.setCenter(coordinate)
+		}
+
 		return controller
     }
 
     func updateUIViewController(_ controller: MapViewLocationController, context _: Context) {
-        controller.setCenter(location)
     }
 }
 
-extension MapBoxClaimDevice {
-	class MapControls: ObservableObject {
-		var zoomInAction: VoidCallback?
-		var zoomOutAction: VoidCallback?
-	}
+class MapControls: ObservableObject {
+	var zoomInAction: VoidCallback?
+	var zoomOutAction: VoidCallback?
+	var setMapCenter: GenericCallback<CLLocationCoordinate2D>?
 }
 
 class MapViewLocationController: UIViewController {
@@ -182,6 +186,7 @@ class MapViewLocationController: UIViewController {
 			}
 		}.store(in: &cancelablesSet)
 
+		setCenter(location)
     }
 
     func setCenter(_ center: CLLocationCoordinate2D) {
