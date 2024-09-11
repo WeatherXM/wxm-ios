@@ -83,6 +83,7 @@ extension DeviceInfoRowView {
         static func == (lhs: DeviceInfoRowView.Row, rhs: DeviceInfoRowView.Row) -> Bool {
             lhs.title == rhs.title &&
             lhs.description == rhs.description &&
+			lhs.imageUrl == rhs.imageUrl &&
             lhs.buttonInfo == rhs.buttonInfo &&
             lhs.warning == rhs.warning
         }
