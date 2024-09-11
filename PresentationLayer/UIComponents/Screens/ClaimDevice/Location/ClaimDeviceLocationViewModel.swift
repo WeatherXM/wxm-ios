@@ -33,7 +33,7 @@ class ClaimDeviceLocationViewModel: ObservableObject {
 }
 
 extension ClaimDeviceLocationViewModel: SelectLocationMapViewModelDelegate {
-	func updatedSelectedLocation(location: DeviceLocation?) {
+	func updatedResolvedLocation(location: DeviceLocation?) {
 		self.selectedLocation = location
 	}
 }
