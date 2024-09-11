@@ -109,12 +109,12 @@ public class DeviceLocationRepositoryImpl: DeviceLocationRepository {
 		mapBoxSearchEngine.reverseGeocoding(options: options) { result in
 			switch result {
 				case let .success(addresses):
-					guard let actualAddress = addresses.first, actualAddress.isAccurate else {
+					guard let actualAddress = addresses.first else {
 						self.reverseGeocodedAddressSubject.send(nil)
 						return
 					}
 
-					self.reverseGeocodedAddressSubject.send(actualAddress.toLocation())
+					self.reverseGeocodedAddressSubject.send(actualAddress.toLocation(with: coordinates.toCLLocationCoordinate2D()))
 				case let .failure(error):
 					if let locationError = error.toDeviceLocationError() {
 						self.errorSubject.send(locationError)
@@ -190,15 +190,15 @@ extension SearchSuggestion {
 }
 
 extension SearchResult {
-	func toLocation() -> DeviceLocation {
-		let parsedAddress = address?.formattedAddress(style: .medium) ?? "-"
+	func toLocation(with locationCoordinate: CLLocationCoordinate2D? = nil) -> DeviceLocation {
+		let parsedAddress = isAccurate ? address?.formattedAddress(style: .medium) : nil
 
 		return DeviceLocation(
 			id: id,
 			name: parsedAddress,
 			country: address?.country,
 			countryCode: metadata?["iso_3166_1"],
-			coordinates: LocationCoordinates.fromCLLocationCoordinate2D(coordinate)
+			coordinates: LocationCoordinates.fromCLLocationCoordinate2D(locationCoordinate ?? coordinate)
 		)
 	}
 
