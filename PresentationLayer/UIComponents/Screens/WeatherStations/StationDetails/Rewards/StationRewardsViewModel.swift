@@ -77,22 +77,21 @@ private extension StationRewardsViewModel {
 }
 
 extension StationRewardsViewModel: StationDetailsViewModelChild {
+	@MainActor
     func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async {
         self.device = device
 		self.followState = followState
+		
 		let tuple = await getRewards()
 		if let error = tuple.error {
-            DispatchQueue.main.async {
-                self.showErrorView(error: error)
-            }
+			self.showErrorView(error: error)
+
             return
         }
-
-        DispatchQueue.main.async {
-			self.response = tuple.response
-			self.viewState = tuple.response?.isEmpty == false ? .content : .empty
-        }
-    }
+		
+		self.response = tuple.response
+		self.viewState = tuple.response?.isEmpty == false ? .content : .empty
+	}
 
     func showLoading() {
         viewState = .loading
