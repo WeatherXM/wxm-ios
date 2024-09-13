@@ -19,7 +19,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 	}
 	var lastRunValueText: String {
 		let value = devices.reduce(0.0) { $0 + ($1.rewards?.actualReward ?? 0.0) }
-		return "\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
+		return "+\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
 	var summaryEarnedValueText: String {
 		let value = summaryResponse?.total ?? 0.0
