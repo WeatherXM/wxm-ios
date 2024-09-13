@@ -34,7 +34,7 @@ echo "password ${MAPBOX_TOKEN}" >> ~/.netrc
 if ([ "$CI_WORKFLOW" = "QA Production" ]) || ([ "$CI_WORKFLOW" = "QA Dev" ]) || ([ "$CI_WORKFLOW" = "Dev Build" ]);
 then
 echo "Install Firebase CLI"
-curl -Lo ./firebase-tools-macos https://firebase.tools/bin/macos/latest
+curl -Lo ./firebase-tools-macos https://github.com/firebase/firebase-tools/releases/download/v13.16.0/firebase-tools-macos
 chmod +x ./firebase-tools-macos
 
 DEBUG_CONFIGURATION_PATH=${CI_PRIMARY_REPOSITORY_PATH}/Configuration/Debug/ConfigDebug.xcconfig

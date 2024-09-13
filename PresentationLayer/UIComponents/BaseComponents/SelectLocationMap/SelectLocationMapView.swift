@@ -19,7 +19,8 @@ struct SelectLocationMapView: View {
 				MapBoxClaimDeviceView(location: $viewModel.selectedCoordinate,
 									  annotationTitle: Binding(get: { viewModel.selectedDeviceLocation?.name },
 															   set: { _ in }),
-									  geometryProxyForFrameOfMapView: proxy.frame(in: .local))
+									  geometryProxyForFrameOfMapView: proxy.frame(in: .local),
+									  mapControls: viewModel.mapControls)
 
 				searchArea
 			}
