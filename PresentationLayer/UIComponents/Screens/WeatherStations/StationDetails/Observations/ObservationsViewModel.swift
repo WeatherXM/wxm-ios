@@ -78,21 +78,20 @@ private extension ObservationsViewModel {
 // MARK: - StationDetailsViewModelChild
 
 extension ObservationsViewModel: StationDetailsViewModelChild {
-    func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async {
-        DispatchQueue.main.async {
-            self.device = device
-            self.followState = followState
-            self.ctaObject = followState == nil ? self.generateCtaObject() : nil
-
-            if let error {
-                let info = error.uiInfo
-                self.failObj = info.defaultFailObject(type: .observations, retryAction: self.handleRetryButtonTap)
-                self.viewState = .fail
-            } else {
-                self.viewState = .content
-            }
-        }
-    }
+	@MainActor
+	func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async {
+		self.device = device
+		self.followState = followState
+		self.ctaObject = followState == nil ? self.generateCtaObject() : nil
+		
+		if let error {
+			let info = error.uiInfo
+			self.failObj = info.defaultFailObject(type: .observations, retryAction: self.handleRetryButtonTap)
+			self.viewState = .fail
+		} else {
+			self.viewState = .content
+		}
+	}
 
     func showLoading() {
         viewState = .loading
