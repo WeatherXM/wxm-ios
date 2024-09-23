@@ -216,7 +216,9 @@ private struct ContentView: View {
 				}
 			}
 		}
-		.spinningLoader(show: $viewModel.currentStationIsLoading, lottieLoader: isExpanded)
+		.spinningLoader(show: Binding(get: { viewModel.currentStationIdLoading == device.id },
+									  set: { _ in }),
+						lottieLoader: isExpanded)
 		.WXMCardStyle()
 		.animation(.easeIn(duration: animationDuration), value: isExpanded)
 

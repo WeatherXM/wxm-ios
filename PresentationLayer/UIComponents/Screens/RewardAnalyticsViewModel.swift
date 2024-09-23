@@ -41,7 +41,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 	@Published var summaryChartDataItems: [ChartDataItem]?
 
 	// Selected station
-	@Published var currentStationIsLoading: Bool = false
+	@Published var currentStationIdLoading: String? = nil
 	@Published var currenStationMode: DeviceRewardsMode = .week {
 		didSet {
 			guard let decviceId = currentStationReward?.stationId else {
@@ -143,10 +143,10 @@ private extension RewardAnalyticsViewModel {
 	}
 
 	func refreshCurrentDevice(deviceId: String) {
-		currentStationIsLoading = true
+		currentStationIdLoading = deviceId
 		Task { @MainActor in
 			defer {
-				currentStationIsLoading = false
+				currentStationIdLoading = nil
 			}
 
 			guard let result = await getRewardsBreakdown(for: deviceId) else {
