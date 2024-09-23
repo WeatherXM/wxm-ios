@@ -68,7 +68,7 @@ private extension RewardAnalyticsChartFactory {
 								 yVal: datum.totalRewards ?? 0.0,
 								 xAxisLabel: xAxisLabel(ts),
 								 group: LocalizableString.total(nil).localized,
-								 displayValue: (datum.totalRewards ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
+								 displayValue: (datum.totalRewards ?? 0.0).toWXMTokenPrecisionString)
 		} ?? []
 	}
 
@@ -107,9 +107,9 @@ private extension RewardAnalyticsChartFactory {
 				return ChartDataItem(xVal: counter,
 									 yVal: item.value ?? 0.0,
 									 xAxisLabel: xAxisLabel(ts),
-									 group: item.code?.displayName ?? "",
-									 color: item.code?.chartColor ?? .chartPrimary,
-									 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
+									 group: item.displayName ?? "",
+									 color: item.chartColor ?? .chartPrimary,
+									 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString)
 			}
 		}
 

@@ -121,7 +121,7 @@ private struct ContentView: View {
 	var summaryCard: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
 			HStack {
-				VStack(spacing: CGFloat(.smallSpacing)) {
+				VStack(alignment: .leading, spacing: CGFloat(.smallSpacing)) {
 					Text(LocalizableString.RewardAnalytics.totalEarned.localized)
 						.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
 

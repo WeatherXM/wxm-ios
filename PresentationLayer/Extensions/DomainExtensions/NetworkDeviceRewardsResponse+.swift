@@ -8,6 +8,34 @@
 import Foundation
 import DomainLayer
 
+extension NetworkDeviceRewardsResponse.RewardItem {
+	var chartColor: ColorEnum? {
+		guard let type else {
+			return nil
+		}
+
+		switch type {
+			case .base:
+				return .chartPrimary
+			case .boost:
+				return code?.chartColor
+		}
+	}
+
+	var displayName: String? {
+		guard let type else {
+			return nil
+		}
+
+		switch type {
+			case .base:
+				return LocalizableString.RewardAnalytics.base.localized
+			case .boost:
+				return code?.displayName
+		}
+	}
+}
+
 extension DeviceRewardsMode: CustomStringConvertible {
 	public var description: String {
 		switch self {

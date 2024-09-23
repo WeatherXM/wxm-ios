@@ -40,6 +40,9 @@
         }
       }
     },
+    "%@:" : {
+
+    },
     "+ %@ %@" : {
       "localizations" : {
         "en" : {
@@ -5809,13 +5812,24 @@
         }
       }
     },
+    "reward_analytics_base" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Base"
+          }
+        }
+      }
+    },
     "reward_analytics_beta_rewards" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beta Rewards"
+            "value" : "Beta"
           }
         }
       }
@@ -5892,7 +5906,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Other boost"
+            "value" : "Other"
           }
         }
       }

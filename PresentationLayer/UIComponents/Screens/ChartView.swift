@@ -197,7 +197,7 @@ private struct ChartOverlayDetailsView: View {
 
 
 	var body: some View {
-		VStack(spacing: CGFloat(.minimumSpacing)) {
+		VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
 			Text(title)
 				.font(.system(size: CGFloat(.caption)))
 				.foregroundStyle(Color(colorEnum: .textInverse))
@@ -206,7 +206,7 @@ private struct ChartOverlayDetailsView: View {
 
 			ForEach(valueItems, id: \.title) { item in
 				HStack {
-					Text(item.title)
+					Text("\(item.title):")
 					Spacer()
 					Text(item.value)
 				}
