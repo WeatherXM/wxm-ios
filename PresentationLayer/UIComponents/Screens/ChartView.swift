@@ -30,10 +30,11 @@ enum ChartMode {
 struct ChartView: View {
 	var mode: ChartMode = .line
 	let data: [ChartDataItem]
-	
+	var totalDisplayValue: GenericValueCallback<Double, String>?
+
     var body: some View {
 		if #available(iOS 16.0, *) {
-			ChartAreaView(mode: mode, data: data)
+			ChartAreaView(mode: mode, data: data, totalDisplayValue: totalDisplayValue)
 		} else {
 			EmptyView()
 		}
@@ -45,6 +46,8 @@ struct ChartView: View {
 private struct ChartAreaView: View {
 	let mode: ChartMode
 	let data: [ChartDataItem]
+	let totalDisplayValue: GenericValueCallback<Double, String>?
+
 	@GestureState private var showSelection: Bool = false
 	@State private var selectedItems: [ChartDataItem]?
 	@State private var indicatorOffet: CGSize = .zero
@@ -154,9 +157,9 @@ private extension ChartAreaView {
 		   showSelection {
 			VStack(alignment: .trailing) {
 				ChartOverlayDetailsView(title: selectedItems.first?.xAxisLabel ?? "",
-										valueItems: selectedItems.map { ($0.group, $0.displayValue) })
+										valueItems: selectedItems.map { ($0.group, $0.displayValue, $0.yVal) },
+										totalDisplayValue: totalDisplayValue)
 					.sizeObserver(size: $popupDetailsSize)
-
 
 				Spacer()
 			}
@@ -191,10 +194,13 @@ private extension ChartAreaView {
 }
 
 private struct ChartOverlayDetailsView: View {
-	typealias ValueItem = (title: String, value: String)
+	typealias ValueItem = (title: String, value: String, numericValue: Double)
 	let title: String
 	let valueItems: [ValueItem]
-
+	let totalDisplayValue: GenericValueCallback<Double, String>?
+	private var total: Double {
+		valueItems.reduce(0) { $0 + $1.numericValue }
+	}
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
@@ -203,6 +209,16 @@ private struct ChartOverlayDetailsView: View {
 				.foregroundStyle(Color(colorEnum: .textInverse))
 
 			Color(colorEnum: .textInverse).frame(height: 1)
+
+			if let totalDisplayValue {
+				HStack {
+					Text("\(LocalizableString.total(nil).localized):")
+					Spacer()
+					Text(totalDisplayValue(total))
+				}
+				.font(.system(size: CGFloat(.caption)))
+				.foregroundStyle(Color(colorEnum: .textInverse))
+			}
 
 			ForEach(valueItems, id: \.title) { item in
 				HStack {

@@ -212,9 +212,11 @@ private struct ContentView: View {
 					if let currentStationChartData = viewModel.currentStationChartDataItems,
 					   let legendItems = viewModel.currentStationChartLegendItems {
 						VStack(spacing: CGFloat(.mediumSpacing)) {
-							ChartView(mode: .area, data: currentStationChartData)
-								.aspectRatio(1.0, contentMode: .fit)
-								.frame(maxWidth: .infinity, maxHeight: .infinity)
+							ChartView(mode: .area, data: currentStationChartData) { total in
+								return total.toWXMTokenPrecisionString
+							}
+							.aspectRatio(1.0, contentMode: .fit)
+							.frame(maxWidth: .infinity, maxHeight: .infinity)
 
 							HStack {
 								ChartLegendView(items: legendItems)
