@@ -45,11 +45,12 @@ struct ChartView: View {
 private struct ChartAreaView: View {
 	let mode: ChartMode
 	let data: [ChartDataItem]
-	@State private var showSelection: Bool = false
+	@GestureState private var showSelection: Bool = false
 	@State private var selectedItems: [ChartDataItem]?
 	@State private var indicatorOffet: CGSize = .zero
 	@State private var popupDetailsOffset: CGSize = .zero
 	@State private var popupDetailsSize: CGSize = .zero
+	@GestureState var gestureState: Bool = false
 
 	private var strideBy: CGFloat {
 		let count = data.count
@@ -135,6 +136,7 @@ private struct ChartAreaView: View {
 
 @available(iOS 16.0, *)
 private extension ChartAreaView {
+
 	@ViewBuilder
 	func selector(chartProxy: ChartProxy) -> some View {
 		DottedLineView()
@@ -165,28 +167,26 @@ private extension ChartAreaView {
 	@ViewBuilder
 	func interactionArea(proxy: GeometryProxy, chartProxy: ChartProxy) -> some View {
 		Rectangle().fill(.clear).contentShape(Rectangle())
-									.gesture(DragGesture().onChanged { value in
-										showSelection = true
+			.gesture(DragGesture().updating($showSelection) { _, state, _ in
+				state = true
+			}.onChanged { value in
+				let origin = proxy[chartProxy.plotAreaFrame].origin
+				let location = CGPoint(
+					x: value.location.x - origin.x,
+					y: value.location.y - origin.y
+				)
 
-										let origin = proxy[chartProxy.plotAreaFrame].origin
-										let location = CGPoint(
-											x: value.location.x - origin.x,
-											y: value.location.y - origin.y
-										)
+				let offsetX = location.x.clamped(to: 0.0...chartProxy.plotAreaSize.width)
+				indicatorOffet = CGSize(width: offsetX, height: 0.0)
 
-										let offsetX = location.x.clamped(to: 0.0...chartProxy.plotAreaSize.width)
-										indicatorOffet = CGSize(width: offsetX, height: 0.0)
+				let popUpOffsetMin = 0.0
+				let popUpOffsetMax = chartProxy.plotAreaSize.width - popupDetailsSize.width
+				popupDetailsOffset = CGSize(width: offsetX.clamped(to: popUpOffsetMin...popUpOffsetMax),
+											height: 0.0)
 
-										let popUpOffsetMin = 0.0
-										let popUpOffsetMax = chartProxy.plotAreaSize.width - popupDetailsSize.width
-										popupDetailsOffset = CGSize(width: offsetX.clamped(to: popUpOffsetMin...popUpOffsetMax),
-																	height: 0.0)
-
-										let (xVal, _) = chartProxy.value(at: location, as: (Int, Double).self) ?? (-1, 0)
-										selectedItems = data.filter { $0.xVal == xVal }
-									}.onEnded { _ in
-										showSelection = false
-									})
+				let (xVal, _) = chartProxy.value(at: location, as: (Int, Double).self) ?? (-1, 0)
+				selectedItems = data.filter { $0.xVal == xVal }
+			})
 	}
 }
 
