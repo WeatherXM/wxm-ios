@@ -34,6 +34,19 @@ extension NetworkDeviceRewardsResponse.RewardItem {
 				return code?.displayName
 		}
 	}
+
+	var legendTitle: String? {
+		guard let type else {
+			return nil
+		}
+
+		switch type {
+			case .base:
+				return LocalizableString.RewardAnalytics.baseRewards.localized
+			case .boost:
+				return code?.legendTitle
+		}
+	}
 }
 
 extension DeviceRewardsMode: CustomStringConvertible {

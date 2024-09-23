@@ -12,7 +12,7 @@ extension BoostCode {
 	var displayName: String {
 		switch self {
 			case .betaReward:
-				return LocalizableString.RewardAnalytics.betaRewards.localized
+				return LocalizableString.RewardAnalytics.beta.localized
 			case .unknown:
 				return LocalizableString.RewardAnalytics.otherBoost.localized
 		}
@@ -42,6 +42,15 @@ extension BoostCode {
 				return .betaRewardsFill
 			case .unknown:
 				return .otherRewardChart
+		}
+	}
+
+	var legendTitle: String {
+		switch self {
+			case .betaReward:
+				return LocalizableString.RewardAnalytics.betaRewards.localized
+			case .unknown:
+				return LocalizableString.RewardAnalytics.otherRewards.localized
 		}
 	}
 }

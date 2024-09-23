@@ -205,14 +205,22 @@ private struct ContentView: View {
 						.foregroundStyle(Color(colorEnum: .text))
 					Spacer()
 				}
-
+				
 				rewardsBreakdownSegmentView
-
+				
 				Group {
-					if let currentStationChartData = viewModel.currentStationChartDataItems {
-						ChartView(mode: .area, data: currentStationChartData)
-							.aspectRatio(1.0, contentMode: .fit)
-							.frame(maxWidth: .infinity, maxHeight: .infinity)
+					if let currentStationChartData = viewModel.currentStationChartDataItems,
+					   let legendItems = viewModel.currentStationChartLegendItems {
+						VStack(spacing: CGFloat(.mediumSpacing)) {
+							ChartView(mode: .area, data: currentStationChartData)
+								.aspectRatio(1.0, contentMode: .fit)
+								.frame(maxWidth: .infinity, maxHeight: .infinity)
+
+							HStack {
+								ChartLegendView(items: legendItems)
+								Spacer()
+							}
+						}
 					}
 					ForEach(viewModel.currentStationReward?.stationReward.details ?? [], id: \.code) { details in
 						StationRewardDetailsView(details: details)

@@ -10,6 +10,8 @@ import DomainLayer
 import Toolkit
 
 struct RewardAnalyticsChartFactory {
+	typealias ChartData = (dataItems: [ChartDataItem], legendItems: [ChartLegendView.Item])
+
 	func getChartsData(overallResponse: NetworkDevicesRewardsResponse, mode: DeviceRewardsMode) -> [ChartDataItem] {
 		switch mode {
 			case .week:
@@ -21,7 +23,7 @@ struct RewardAnalyticsChartFactory {
 		}
 	}
 
-	func getChartsData(deviceResponse: NetworkDeviceRewardsResponse, mode: DeviceRewardsMode) -> [ChartDataItem] {
+	func getChartsData(deviceResponse: NetworkDeviceRewardsResponse, mode: DeviceRewardsMode) -> ChartData {
 		switch mode {
 			case .week:
 				getSevendaysMode(deviceResponse: deviceResponse)
@@ -74,45 +76,52 @@ private extension RewardAnalyticsChartFactory {
 
 	// MARK: - Device
 
-	func getSevendaysMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
+	func getSevendaysMode(deviceResponse: NetworkDeviceRewardsResponse) -> ChartData {
 		getDataItems(deviceResponse: deviceResponse) { date in
 			date.getWeekDay()
 		}
 	}
 
-	func getMonthlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
+	func getMonthlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> ChartData {
 		getDataItems(deviceResponse: deviceResponse) { date in
 			date.getFormattedDate(format: .monthDay)
 		}
 	}
 
-	func getYearlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> [ChartDataItem] {
+	func getYearlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> ChartData {
 		getDataItems(deviceResponse: deviceResponse) { date in
 			date.getMonth()
 		}
 	}
 
 	func getDataItems(deviceResponse: NetworkDeviceRewardsResponse,
-					  xAxisLabel: GenericValueCallback<Date, String>) -> [ChartDataItem] {
-		var counter = -1
+					  xAxisLabel: GenericValueCallback<Date, String>) -> ChartData {
+		var chartDataItems: [ChartDataItem] = []
+		var legendItems: [ChartLegendView.Item] = []
 
-		let items: [[ChartDataItem]]? = deviceResponse.data?.compactMap { datum in
+		var counter = -1
+		deviceResponse.data?.forEach { datum in
 			counter += 1
 
-			guard let ts = datum.ts else {
-				return nil
+			guard let ts = datum.ts, let rewards = datum.rewards else {
+				return
 			}
 
-			return datum.rewards?.map { item in
-				return ChartDataItem(xVal: counter,
-									 yVal: item.value ?? 0.0,
-									 xAxisLabel: xAxisLabel(ts),
-									 group: item.displayName ?? "",
-									 color: item.chartColor ?? .chartPrimary,
-									 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString)
+			rewards.forEach { item in
+				let dataItem = ChartDataItem(xVal: counter,
+											 yVal: item.value ?? 0.0,
+											 xAxisLabel: xAxisLabel(ts),
+											 group: item.displayName ?? "",
+											 color: item.chartColor ?? .chartPrimary,
+											 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString)
+				chartDataItems.append(dataItem)
+
+				let legendItem = ChartLegendView.Item(color: item.chartColor ?? .chartPrimary, title: item.legendTitle ?? "")
+				legendItems.append(legendItem)
 			}
+			
 		}
 
-		return items?.flatMap { $0 } ?? []
+		return (chartDataItems, legendItems.withNoDuplicates)
 	}
 }

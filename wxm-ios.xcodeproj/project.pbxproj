@@ -71,6 +71,7 @@
 		263B8B502B29F17E001C5060 /* MapBoxConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B8B4F2B29F17E001C5060 /* MapBoxConstants.swift */; };
 		263B8B552B29FE34001C5060 /* MapboxStatic in Frameworks */ = {isa = PBXBuildFile; productRef = 263B8B542B29FE34001C5060 /* MapboxStatic */; };
 		2642F1C72AD598300028F4D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26769AB32AD00D4400162974 /* GoogleService-Info.plist */; };
+		264371312CA1955800E5F382 /* ChartLegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264371302CA1955800E5F382 /* ChartLegendView.swift */; };
 		264582392A41A14E00195C21 /* SpinningLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264582382A41A14E00195C21 /* SpinningLoader.swift */; };
 		2645823B2A41C07000195C21 /* FailSuccessViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */; };
 		2646D8F329C8BF3D0000237F /* StationRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646D8F229C8BF3D0000237F /* StationRewardsView.swift */; };
@@ -638,6 +639,7 @@
 		263AAF2A2C6CD3CC00BA2902 /* RewardsSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsSplitView.swift; sourceTree = "<group>"; };
 		263B8B4D2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxSnapshotUrlGenerator.swift; sourceTree = "<group>"; };
 		263B8B4F2B29F17E001C5060 /* MapBoxConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxConstants.swift; sourceTree = "<group>"; };
+		264371302CA1955800E5F382 /* ChartLegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegendView.swift; sourceTree = "<group>"; };
 		264582382A41A14E00195C21 /* SpinningLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningLoader.swift; sourceTree = "<group>"; };
 		2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailSuccessViewModifier.swift; sourceTree = "<group>"; };
 		2646D8F229C8BF3D0000237F /* StationRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsView.swift; sourceTree = "<group>"; };
@@ -2150,6 +2152,7 @@
 			children = (
 				26ACE8F12C88474B00EA22DD /* ChartView.swift */,
 				26ACE9052C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift */,
+				264371302CA1955800E5F382 /* ChartLegendView.swift */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -3105,6 +3108,7 @@
 				2675483F29A9181E008BCF40 /* LoggedInTabViewContainer.swift in Sources */,
 				2675481E29A9181E008BCF40 /* LottieView.swift in Sources */,
 				2608A7942C09F67A00452E40 /* DeviceLocation+.swift in Sources */,
+				264371312CA1955800E5F382 /* ChartLegendView.swift in Sources */,
 				B52BCC752824FB8F00EA3DA5 /* MainApp.swift in Sources */,
 				2675481929A9181E008BCF40 /* MainScreen.swift in Sources */,
 				267547A929A9181E008BCF40 /* MainScreenViewModel.swift in Sources */,

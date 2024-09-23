@@ -19,13 +19,16 @@ extension LocalizableString {
 		case rewardsByStation
 		case details(String)
 		case betaRewards
+		case beta
 		case totalTokensEarnedSoFar
 		case weekAbbrevation
 		case monthAbbrevation
 		case yearAbbrevation
 		case earnedByThisStation
 		case otherBoost
+		case otherRewards
 		case base
+		case baseRewards
 	}
 }
 
@@ -66,6 +69,8 @@ extension LocalizableString.RewardAnalytics: WXMLocalizable {
 				return "reward_analytics_details"
 			case .betaRewards:
 				return "reward_analytics_beta_rewards"
+			case .beta:
+				return "reward_analytics_beta"
 			case .totalTokensEarnedSoFar:
 				return "reward_analytics_total_tokens_earned_so_far"
 			case .weekAbbrevation:
@@ -78,8 +83,12 @@ extension LocalizableString.RewardAnalytics: WXMLocalizable {
 				return "reward_analytics_earned_by_this_station"
 			case .otherBoost:
 				return "reward_analytics_other_boost"
+			case .otherRewards:
+				return "reward_analytics_other_rewards"
 			case .base:
 				return "reward_analytics_base"
+			case .baseRewards:
+				return "reward_analytics_base_rewards"
 		}
 	}
 }

@@ -57,6 +57,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 		}
 	}
 	@Published var currentStationChartDataItems: [ChartDataItem]?
+	@Published var currentStationChartLegendItems: [ChartLegendView.Item]?
 
 	@Published var state: RewardAnalyticsView.State = .noRewards
 	private lazy var noStationsConfiguration: WXMEmptyView.Configuration = {
@@ -202,8 +203,10 @@ private extension RewardAnalyticsViewModel {
 			return
 		}
 
-		currentStationChartDataItems = RewardAnalyticsChartFactory().getChartsData(deviceResponse: currentStationReward.stationReward,
-																				   mode: currenStationMode)
+		let data = RewardAnalyticsChartFactory().getChartsData(deviceResponse: currentStationReward.stationReward,
+															   mode: currenStationMode)
+		currentStationChartDataItems = data.dataItems
+		currentStationChartLegendItems = data.legendItems
 	}
 
 	func getSummaryRewards() async -> Result<NetworkDevicesRewardsResponse, NetworkErrorResponse>? {
