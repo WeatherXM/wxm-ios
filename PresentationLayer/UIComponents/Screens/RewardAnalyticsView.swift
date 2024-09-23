@@ -149,6 +149,7 @@ private struct ContentView: View {
 		}
 		.WXMCardStyle()
 		.spinningLoader(show: $viewModel.suammaryRewardsIsLoading)
+		.animation(.easeIn(duration: animationDuration), value: viewModel.suammaryRewardsIsLoading)
 	}
 
 	@ViewBuilder
@@ -207,13 +208,17 @@ private struct ContentView: View {
 
 				rewardsBreakdownSegmentView
 
-				if let currentStationChartData = viewModel.currentStationChartDataItems {
-					ChartView(mode: .area, data: currentStationChartData)
-						.aspectRatio(1.0, contentMode: .fit)
+				Group {
+					if let currentStationChartData = viewModel.currentStationChartDataItems {
+						ChartView(mode: .area, data: currentStationChartData)
+							.aspectRatio(1.0, contentMode: .fit)
+							.frame(maxWidth: .infinity, maxHeight: .infinity)
+					}
+					ForEach(viewModel.currentStationReward?.stationReward.details ?? [], id: \.code) { details in
+						StationRewardDetailsView(details: details)
+					}
 				}
-				ForEach(viewModel.currentStationReward?.stationReward.details ?? [], id: \.code) { details in
-					StationRewardDetailsView(details: details)
-				}
+				.animation(.easeIn(duration: animationDuration), value: viewModel.currentStationIdLoading)
 			}
 		}
 		.spinningLoader(show: Binding(get: { viewModel.currentStationIdLoading == device.id },
@@ -221,7 +226,6 @@ private struct ContentView: View {
 						lottieLoader: isExpanded)
 		.WXMCardStyle()
 		.animation(.easeIn(duration: animationDuration), value: isExpanded)
-
 	}
 }
 
