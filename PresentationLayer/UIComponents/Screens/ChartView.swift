@@ -71,12 +71,12 @@ private struct ChartAreaView: View {
 				case .line:
 					LineMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
 						.foregroundStyle(Color(colorEnum: item.color))
-						.interpolationMethod(.monotone)
+						.interpolationMethod(.linear)
 						.foregroundStyle(by: .value("group", item.group))
 
 				case .area:
 					AreaMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
-						.interpolationMethod(.monotone)
+						.interpolationMethod(.linear)
 						.foregroundStyle(Color(colorEnum: item.color))
 						.foregroundStyle(by: .value("group", item.group))
 			}

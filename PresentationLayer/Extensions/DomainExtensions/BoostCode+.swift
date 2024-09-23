@@ -13,7 +13,7 @@ extension BoostCode {
 		switch self {
 			case .betaReward:
 				return LocalizableString.RewardAnalytics.betaRewards.localized
-			case .unknown(let value):
+			case .unknown:
 				return LocalizableString.RewardAnalytics.otherBoost.localized
 		}
 	}
@@ -33,6 +33,15 @@ extension BoostCode {
 				return .betaRewardsFill
 			case .unknown:
 				return .otherRewardFill
+		}
+	}
+
+	var chartColor: ColorEnum {
+		switch self {
+			case .betaReward:
+				return .betaRewardsFill
+			case .unknown:
+				return .otherRewardChart
 		}
 	}
 }

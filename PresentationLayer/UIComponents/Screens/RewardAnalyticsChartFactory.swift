@@ -108,7 +108,7 @@ private extension RewardAnalyticsChartFactory {
 									 yVal: item.value ?? 0.0,
 									 xAxisLabel: xAxisLabel(ts),
 									 group: item.code?.displayName ?? "",
-									 color: item.code?.fillColor ?? .chartPrimary,
+									 color: item.code?.chartColor ?? .chartPrimary,
 									 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
 			}
 		}
