@@ -60,4 +60,5 @@ enum FontIcon: String {
 	case chevronUp = "chevron-up"
 	case chevronDown = "chevron-down"
 	case faceSadCry = "face-sad-cry"
+	case rotateRight = "rotate-right"
 }

@@ -22,7 +22,9 @@ class RewardAnalyticsViewModel: ObservableObject {
 		return "+\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
 	var summaryEarnedValueText: String {
-		let value = summaryResponse?.total ?? 0.0
+		guard let value = summaryResponse?.total else {
+			return ""
+		}
 		return "\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
 	
@@ -39,6 +41,8 @@ class RewardAnalyticsViewModel: ObservableObject {
 		}
 	}
 	@Published var summaryChartDataItems: [ChartDataItem]?
+	@Published var showSummaryError: Bool = false
+	private(set) var summaryFailObject: FailSuccessStateObject?
 
 	// Selected station
 	@Published var currentStationIdLoading: String? = nil
@@ -58,6 +62,8 @@ class RewardAnalyticsViewModel: ObservableObject {
 	}
 	@Published var currentStationChartDataItems: [ChartDataItem]?
 	@Published var currentStationChartLegendItems: [ChartLegendView.Item]?
+	@Published var currentStationError: Bool = false
+	private(set) var currentStationFailObject: FailSuccessStateObject?
 
 	@Published var state: RewardAnalyticsView.State = .noRewards
 	private lazy var noStationsConfiguration: WXMEmptyView.Configuration = {
@@ -87,29 +93,10 @@ class RewardAnalyticsViewModel: ObservableObject {
 				completion?()
 			}
 			
-			var errorInfo: NetworkErrorResponse.UIInfo?
+			refreshSummaryRewards()
 
-			if let overallResult = await getSummaryRewards() {
-				switch overallResult {
-					case .success(let response):
-						self.summaryResponse = response
-					case .failure(let error):
-						errorInfo = error.uiInfo
-				}
-			}
-
-			if let firstDeviceId = devices.first?.id,
-			   let stationResult = await getRewardsBreakdown(for: firstDeviceId) {
-				switch stationResult {
-					case .success(let response):
-						self.currentStationReward = (firstDeviceId, response)
-					case .failure(let error):
-						errorInfo = errorInfo ?? error.uiInfo
-				}
-			}
-
-			if let errorMessage = errorInfo?.description?.attributedMarkdown {
-				Toast.shared.show(text: errorMessage)
+			if let firstDeviceId = devices.first?.id {
+				refreshCurrentDevice(deviceId: firstDeviceId)
 			}
 		}
 	}
@@ -144,47 +131,51 @@ private extension RewardAnalyticsViewModel {
 	}
 
 	func refreshCurrentDevice(deviceId: String) {
+		currentStationError = false
 		currentStationIdLoading = deviceId
-		Task { @MainActor in
+		Task { @MainActor [weak self] in
 			defer {
 				currentStationIdLoading = nil
 			}
 
-			guard let result = await getRewardsBreakdown(for: deviceId) else {
+			guard let result = await self?.getRewardsBreakdown(for: deviceId) else {
 				return
 			}
 
 			switch result {
 				case .failure(let error):
-					guard let desc = error.uiInfo.description?.attributedMarkdown else {
-						return
+					self?.currentStationFailObject = error.uiInfo.defaultFailObject(type: .rewardAnalytics,
+																					failMode: .retry) {
+						self?.refreshCurrentDevice(deviceId: deviceId)
 					}
-					Toast.shared.show(text: desc)
+					self?.currentStationError = true
 				case .success(let response):
-					currentStationReward = (deviceId, response)
+					self?.currentStationReward = (deviceId, response)
 			}
 		}
 	}
 
 	func refreshSummaryRewards() {
+		showSummaryError = false
 		suammaryRewardsIsLoading = true
-		Task { @MainActor in
+		Task { @MainActor [weak self] in
 			defer {
 				suammaryRewardsIsLoading = false
 			}
 
-			guard let result = await getSummaryRewards() else {
+			guard let result = await self?.getSummaryRewards() else {
 				return
 			}
 
 			switch result {
 				case .failure(let error):
-					guard let desc = error.uiInfo.description?.attributedMarkdown else {
-						return
+					self?.summaryFailObject = error.uiInfo.defaultFailObject(type: .changeFrequency,
+																			 failMode: .retry) {
+						self?.refreshSummaryRewards()
 					}
-					Toast.shared.show(text: desc)
+					self?.showSummaryError = true
 				case .success(let response):
-					summaryResponse = response
+					self?.summaryResponse = response
 			}
 		}
 	}

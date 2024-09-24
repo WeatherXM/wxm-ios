@@ -142,13 +142,16 @@ private struct ContentView: View {
 				.cornerRadius(CGFloat(.buttonCornerRadius))
 			}
 
-			if let chartDataItems = viewModel.summaryChartDataItems {
-				ChartView(data: chartDataItems)
+			if let dataItems = viewModel.summaryChartDataItems {
+				ChartView(data: dataItems)
 					.aspectRatio(1.0, contentMode: .fit)
+			} else if viewModel.showSummaryError, let failObj = viewModel.summaryFailObject {
+				FailView(obj: failObj)
 			}
 		}
 		.WXMCardStyle()
-		.spinningLoader(show: $viewModel.suammaryRewardsIsLoading)
+		.spinningLoader(show: $viewModel.suammaryRewardsIsLoading,
+						lottieLoader: viewModel.summaryChartDataItems != nil)
 		.animation(.easeIn(duration: animationDuration), value: viewModel.suammaryRewardsIsLoading)
 	}
 
@@ -199,15 +202,17 @@ private struct ContentView: View {
 			}
 
 			if isExpanded {
-				HStack {
-					Text(LocalizableString.RewardAnalytics.rewardsBreakdown.localized)
-						.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
-						.foregroundStyle(Color(colorEnum: .text))
-					Spacer()
+				VStack(spacing: CGFloat(.smallToMediumSpacing)) {
+					HStack {
+						Text(LocalizableString.RewardAnalytics.rewardsBreakdown.localized)
+							.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+							.foregroundStyle(Color(colorEnum: .text))
+						Spacer()
+					}
+
+					rewardsBreakdownSegmentView
 				}
-				
-				rewardsBreakdownSegmentView
-				
+
 				Group {
 					if let currentStationChartData = viewModel.currentStationChartDataItems,
 					   let legendItems = viewModel.currentStationChartLegendItems {
@@ -223,6 +228,9 @@ private struct ContentView: View {
 								Spacer()
 							}
 						}
+					} else if viewModel.currentStationError, 
+							let obj = viewModel.currentStationFailObject {
+						FailView(obj: obj)
 					}
 					ForEach(viewModel.currentStationReward?.stationReward.details ?? [], id: \.code) { details in
 						StationRewardDetailsView(details: details)
@@ -242,15 +250,17 @@ private struct ContentView: View {
 private extension ContentView {
 	@ViewBuilder
 	var rewardsBreakdownSegmentView: some View {
-		HStack {
+		HStack(alignment: .top) {
 			VStack(alignment: .leading, spacing: 0.0) {
 				Text(LocalizableString.RewardAnalytics.earnedByThisStation.localized)
 					.font(.system(size: CGFloat(.caption)))
 					.foregroundStyle(Color(colorEnum: .text))
 
-				Text((viewModel.currentStationReward?.stationReward.total ?? 0.0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
-					.font(.system(size: CGFloat(.mediumFontSize)))
-					.foregroundStyle(Color(colorEnum: .text))
+				if let rewards = viewModel.currentStationReward?.stationReward.total {
+					Text(rewards.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
+						.font(.system(size: CGFloat(.mediumFontSize)))
+						.foregroundStyle(Color(colorEnum: .text))
+				}
 			}
 
 			Spacer()

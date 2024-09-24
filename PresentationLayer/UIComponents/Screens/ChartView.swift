@@ -94,7 +94,9 @@ private struct ChartAreaView: View {
 				view
 			}
 		}
-		.chartXScale(domain: data.first!.xVal...data.last!.xVal)
+		.if(data.count > 1) { view in
+			view.chartXScale(domain: data.first!.xVal...data.last!.xVal)
+		}
 		.chartXAxis {
 			AxisMarks(preset: .aligned, values: .stride(by: strideBy)) { value in
 				if let val = value.as(Int.self),

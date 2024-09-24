@@ -15,8 +15,11 @@ extension NetworkErrorResponse {
 		let description: String?
 
 #if MAIN_APP
-		func defaultFailObject(type: SuccessFailEnum, retryAction: VoidCallback?) -> FailSuccessStateObject {
+		func defaultFailObject(type: SuccessFailEnum,
+							   failMode: FailView.Mode = .default,
+							   retryAction: VoidCallback?) -> FailSuccessStateObject {
 			let obj = FailSuccessStateObject(type: type,
+											 failMode: failMode,
 											 title: title,
 											 subtitle: description?.attributedMarkdown,
 											 cancelTitle: nil,

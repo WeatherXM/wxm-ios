@@ -33,7 +33,8 @@ enum SuccessFailEnum: CustomStringConvertible {
 	case deleteAccount
 	case editLocation
 	case rewardDetails
-	
+	case rewardAnalytics
+
 	var description: String {
 		switch self {
 			case .settings:
@@ -85,6 +86,8 @@ enum SuccessFailEnum: CustomStringConvertible {
 			case .editLocation:
 				return ""
 			case .rewardDetails:
+				return ""
+			case .rewardAnalytics:
 				return ""
 		}
 	}

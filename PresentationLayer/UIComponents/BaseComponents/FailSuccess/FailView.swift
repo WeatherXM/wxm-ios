@@ -14,7 +14,16 @@ struct FailView: View {
     @State private var bottomButtonsSize: CGSize = .zero
     private let iconDimensions: CGFloat = 150
 
-    var body: some View {
+	var body: some View {
+		switch obj.failMode {
+			case .default:
+				defaultView
+			case .retry:
+				retryView
+		}
+	}
+
+    var defaultView: some View {
         ZStack {
 			if obj.actionButtonsAtTheBottom {
 				VStack {
@@ -74,6 +83,40 @@ struct FailView: View {
                                                                 .itemId: .custom(obj.type.description)])
         }
     }
+
+	@ViewBuilder
+	var retryView: some View {
+		Button { 
+			obj.retryAction?()
+		} label: {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				Text(FontIcon.rotateRight.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.XXLTitleFontSize)))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				VStack(spacing: 0.0) {
+					Text(obj.title)
+						.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+						.foregroundColor(Color(colorEnum: .text))
+						.multilineTextAlignment(.center)
+
+					if let subtitle = obj.subtitle {
+						Text(subtitle)
+							.font(.system(size: CGFloat(.mediumFontSize)))
+							.foregroundColor(Color(colorEnum: .text))
+							.multilineTextAlignment(.center)
+					}
+				}
+			}
+		}
+	}
+}
+
+extension FailView {
+	enum Mode {
+		case `default`
+		case retry
+	}
 }
 
 private extension FailView {
@@ -124,7 +167,7 @@ private extension FailView {
 
 struct FailView_Previews: PreviewProvider {
     static var previews: some View {
-        FailView(obj: FailSuccessStateObject.mockErrorObj)
+		FailView(obj: FailSuccessStateObject.mockErrorObj)
             .padding()
     }
 }
