@@ -28,6 +28,12 @@ public extension NetworkDeviceRewardsResponse {
 		public let type: RewardType?
 		public let code: BoostCode?
 		public let value: Double?
+
+		public init(type: RewardType?, code: BoostCode?, value: Double?) {
+			self.type = type
+			self.code = code
+			self.value = value
+		}
 	}
 
 	struct Details: Codable {

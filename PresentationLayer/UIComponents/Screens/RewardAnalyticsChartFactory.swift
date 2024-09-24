@@ -107,7 +107,7 @@ private extension RewardAnalyticsChartFactory {
 				return
 			}
 
-			rewards.forEach { item in
+			rewards.withMergedUnknownBoosts.forEach { item in
 				let dataItem = ChartDataItem(xVal: counter,
 											 yVal: item.value ?? 0.0,
 											 xAxisLabel: xAxisLabel(ts),
@@ -123,5 +123,34 @@ private extension RewardAnalyticsChartFactory {
 		}
 
 		return (chartDataItems, legendItems.withNoDuplicates)
+	}
+}
+
+private extension Array where Element == NetworkDeviceRewardsResponse.RewardItem {
+	var withMergedUnknownBoosts: Self {
+		var validItems = self.filter {
+			if $0.type == .boost, case .unknown = $0.code {
+				return false
+			}
+			return true
+		}
+		let unknownItems: Self = self.filter {
+			if $0.type == .boost, case .unknown = $0.code {
+				return true
+			}
+			return false
+		}
+
+		guard !unknownItems.isEmpty else {
+			return self
+		}
+
+		let unknownSummary = unknownItems.reduce(0) { $0 + ($1.value ?? 0.0) }
+		let mergedItem = NetworkDeviceRewardsResponse.RewardItem(type: .boost,
+																 code: unknownItems.first?.code,
+																 value: unknownSummary)
+		validItems.append(mergedItem)
+
+		return validItems
 	}
 }

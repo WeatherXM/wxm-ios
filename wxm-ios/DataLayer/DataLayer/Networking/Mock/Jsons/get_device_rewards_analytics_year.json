@@ -13,6 +13,16 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
+					"value": 0.4353223
 				}
 			]
 		},
@@ -27,6 +37,16 @@
 				{
 					"type": "boost",
 					"code": "beta_rewards",
+					"value": 0.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
 					"value": 0.4353223
 				}
 			]
@@ -43,6 +63,16 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
+					"value": 0.4353223
 				}
 			]
 		},
@@ -58,6 +88,16 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
+					"value": 0.4353223
 				}
 			]
 		},
@@ -73,6 +113,16 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
+					"value": 0.4353223
 				}
 			]
 		},
@@ -88,6 +138,16 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
+					"value": 0.4353223
 				}
 			]
 		},
@@ -103,6 +163,16 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
+					"value": 0.4353223
 				}
 			]
 		},
@@ -118,6 +188,16 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
+					"value": 0.4353223
 				}
 			]
 		},
@@ -133,6 +213,16 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
+					"value": 0.4353223
 				}
 			]
 		},
@@ -148,6 +238,16 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
+					"value": 0.4353223
 				}
 			]
 		},
@@ -163,6 +263,16 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
+					"value": 0.4353223
 				}
 			]
 		},
@@ -178,6 +288,16 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "cell_rewards",
+					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "dummy_rewards",
+					"value": 0.4353223
 				}
 			]
 		}
