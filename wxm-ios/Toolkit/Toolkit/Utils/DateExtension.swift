@@ -13,7 +13,7 @@ public extension Date {
         case timestamp = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         case onlyDate = "yyyy-MM-dd"
         case twelveHoursTime = "h a"
-        case monthLiteralDayYear = "MMM dd, yyyy"
+        case monthLiteralDayYear = "MMM dd yyyy"
         case monthLiteralDayYearShort = "MMM dd y"
         case monthLiteralDay = "MMM d"
 		case monthDay = "MM/dd"
@@ -201,7 +201,7 @@ public extension Date {
         return dateFormatter.string(from: self)
     }
 
-	func getFormattedDate(format: DateFormat, relativeFormat: Bool = false, timezone: TimeZone? = nil, showTimeZoneIndication: Bool = false) -> String {
+	func getFormattedDate(format: DateFormat, relativeFormat: Bool = false, localized: Bool = false, timezone: TimeZone? = nil, showTimeZoneIndication: Bool = false) -> String {
         let dateFormatter = DateFormatter()
 		dateFormatter.timeZone = timezone
 
@@ -211,8 +211,10 @@ public extension Date {
 			dateFormatter.timeStyle = .short
 			dateFormatter.dateStyle = .medium
 			dateFormatter.doesRelativeDateFormatting = true
-		} else {
+		} else if localized {
 			dateFormatter.setLocalizedDateFormatFromTemplate(format.rawValue)
+		} else {
+			dateFormatter.dateFormat = format.rawValue
 		}
                 
 		var dateString = dateFormatter.string(from: self).lowercased()

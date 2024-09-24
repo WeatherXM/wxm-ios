@@ -9,18 +9,18 @@ import DomainLayer
 
 extension NetworkDeviceRewardBoostsResponse.Details {
 	var boostStartDateString: String {
-		boostStartDate?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalizedSentence ?? ""
+		boostStartDate?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalized ?? ""
 	}
 
 	var boostStopDateString: String {
-		boostStopDate?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalizedSentence ?? ""
+		boostStopDate?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalized ?? ""
 	}
 
 	var participationStartDateString: String {
-		participationStartDate?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalizedSentence ?? ""
+		participationStartDate?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalized ?? ""
 	}
 
 	var participationStopDateString: String {
-		participationStopDate?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalizedSentence ?? ""
+		participationStopDate?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalized ?? ""
 	}
 }

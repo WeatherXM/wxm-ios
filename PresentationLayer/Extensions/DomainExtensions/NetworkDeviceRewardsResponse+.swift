@@ -64,10 +64,10 @@ extension DeviceRewardsMode: CustomStringConvertible {
 
 extension NetworkDeviceRewardsResponse.Details {
 	var boostStartDateString: String {
-		boostPeriodStart?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalizedSentence ?? ""
+		boostPeriodStart?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalized ?? ""
 	}
 
 	var boostStopDateString: String {
-		boostPeriodEnd?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalizedSentence ?? ""
+		boostPeriodEnd?.getFormattedDate(format: .monthLiteralDayYear, timezone: .UTCTimezone).capitalized ?? ""
 	}
 }
