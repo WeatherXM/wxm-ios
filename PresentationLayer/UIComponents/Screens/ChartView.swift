@@ -119,9 +119,9 @@ private struct ChartAreaView: View {
 			}
 
 			AxisMarks(values: .automatic) { value in
-				if let val = value.as(Int.self) {
+				if let val = value.as(Double.self) {
 					AxisValueLabel {
-						Text("\(val)")
+						Text("\(val.toPrecisionString(precision: 1))")
 							.font(.system(size: CGFloat(.caption)))
 							.foregroundStyle(Color(colorEnum: .text))
 					}
