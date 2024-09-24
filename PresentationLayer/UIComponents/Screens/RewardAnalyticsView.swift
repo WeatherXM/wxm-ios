@@ -142,17 +142,24 @@ private struct ContentView: View {
 				.cornerRadius(CGFloat(.buttonCornerRadius))
 			}
 
-			if let dataItems = viewModel.summaryChartDataItems {
-				ChartView(data: dataItems)
-					.aspectRatio(1.0, contentMode: .fit)
-			} else if viewModel.showSummaryError, let failObj = viewModel.summaryFailObject {
-				FailView(obj: failObj)
+			Group {
+				if let dataItems = viewModel.summaryChartDataItems {
+					ChartView(data: dataItems)
+						.aspectRatio(1.0, contentMode: .fit)
+				} else if viewModel.showSummaryError, let failObj = viewModel.summaryFailObject {
+					FailView(obj: failObj)
+				}
 			}
+			.spinningLoader(show: $viewModel.suammaryRewardsIsLoading,
+							hideContent: true)
 		}
 		.WXMCardStyle()
-		.spinningLoader(show: $viewModel.suammaryRewardsIsLoading,
-						lottieLoader: viewModel.summaryChartDataItems != nil)
 		.animation(.easeIn(duration: animationDuration), value: viewModel.suammaryRewardsIsLoading)
+		.if(viewModel.summaryChartDataItems == nil) { view in
+			view
+				.spinningLoader(show: $viewModel.suammaryRewardsIsLoading,
+								lottieLoader: false)
+		}
 	}
 
 	@ViewBuilder
@@ -237,13 +244,19 @@ private struct ContentView: View {
 					}
 				}
 				.animation(.easeIn(duration: animationDuration), value: viewModel.currentStationIdLoading)
+				.spinningLoader(show: Binding(get: { viewModel.currentStationIdLoading == device.id },
+											  set: { _ in }),
+								hideContent: true)
 			}
 		}
-		.spinningLoader(show: Binding(get: { viewModel.currentStationIdLoading == device.id },
-									  set: { _ in }),
-						lottieLoader: isExpanded)
 		.WXMCardStyle()
 		.animation(.easeIn(duration: animationDuration), value: isExpanded)
+		.if(!isExpanded) { view in
+			view
+				.spinningLoader(show: Binding(get: { viewModel.currentStationIdLoading == device.id },
+											  set: { _ in }),
+								lottieLoader: false)
+		}
 	}
 }
 
