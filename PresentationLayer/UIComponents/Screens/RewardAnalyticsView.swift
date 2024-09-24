@@ -220,7 +220,7 @@ private struct ContentView: View {
 					rewardsBreakdownSegmentView
 				}
 
-				Group {
+				VStack(spacing: CGFloat(.defaultSpacing)) {
 					if let currentStationChartData = viewModel.currentStationChartDataItems,
 					   let legendItems = viewModel.currentStationChartLegendItems {
 						VStack(spacing: CGFloat(.mediumSpacing)) {
