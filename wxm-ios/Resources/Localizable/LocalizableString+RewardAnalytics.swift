@@ -29,6 +29,7 @@ extension LocalizableString {
 		case otherRewards
 		case base
 		case baseRewards
+		case tapToRetry
 	}
 }
 
@@ -89,6 +90,8 @@ extension LocalizableString.RewardAnalytics: WXMLocalizable {
 				return "reward_analytics_base"
 			case .baseRewards:
 				return "reward_analytics_base_rewards"
+			case .tapToRetry:
+				return "reward_analytics_tap_to_retry"
 		}
 	}
 }

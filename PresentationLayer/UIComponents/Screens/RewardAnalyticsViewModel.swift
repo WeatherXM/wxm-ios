@@ -144,10 +144,11 @@ private extension RewardAnalyticsViewModel {
 
 			switch result {
 				case .failure(let error):
-					self?.currentStationFailObject = error.uiInfo.defaultFailObject(type: .rewardAnalytics,
-																					failMode: .retry) {
-						self?.refreshCurrentDevice(deviceId: deviceId)
-					}
+					let info = error.uiInfo(description: LocalizableString.RewardAnalytics.tapToRetry.localized)
+					self?.currentStationFailObject = info.defaultFailObject(type: .rewardAnalytics,
+																			failMode: .retry) {
+							self?.refreshCurrentDevice(deviceId: deviceId)
+						}
 					self?.currentStationError = true
 				case .success(let response):
 					self?.currentStationReward = (deviceId, response)
@@ -169,8 +170,9 @@ private extension RewardAnalyticsViewModel {
 
 			switch result {
 				case .failure(let error):
-					self?.summaryFailObject = error.uiInfo.defaultFailObject(type: .changeFrequency,
-																			 failMode: .retry) {
+					let info = error.uiInfo(description: LocalizableString.RewardAnalytics.tapToRetry.localized)
+					self?.summaryFailObject = info.defaultFailObject(type: .changeFrequency,
+																	 failMode: .retry) {
 						self?.refreshSummaryRewards()
 					}
 					self?.showSummaryError = true

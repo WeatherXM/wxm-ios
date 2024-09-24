@@ -5977,6 +5977,17 @@
         }
       }
     },
+    "reward_analytics_tap_to_retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to Retry."
+          }
+        }
+      }
+    },
     "reward_analytics_total_earned" : {
       "extractionState" : "manual",
       "localizations" : {

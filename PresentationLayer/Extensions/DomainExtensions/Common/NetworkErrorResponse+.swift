@@ -55,9 +55,9 @@ extension NetworkErrorResponse {
 		return UIInfo(title: title, description: description)
 	}
 
-	func uiInfo(title: String) -> UIInfo {
+	func uiInfo(title: String? = nil, description: String? = nil) -> UIInfo {
 		let info = uiInfo
-		return UIInfo(title: title, description: info.description)
+		return UIInfo(title: title ?? info.title, description: description ?? info.description)
 	}
 }
 
