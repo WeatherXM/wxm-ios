@@ -41,6 +41,14 @@ public enum RemoteConfigKey: String, CaseIterable {
 	case surveyUrl = "survey_url"
 	case surveyShow = "survey_show"
 
+	case infoBannerId = "info_banner_id"
+	case infoBannerTitle = "info_banner_title"
+	case infoBannerMessage = "info_banner_message"
+	case infoButtonShow = "info_button_show"
+	case infoBannerActionLabel = "info_banner_action_label"
+	case infoBannerUrl = "info_banner_url"
+	case infoBannerShow = "info_banner_show"
+	case infoBannerDismissable = "info_banner_dismissable"
 
 	private var defaultValue: NSObject {
 		switch self {
@@ -63,6 +71,22 @@ public enum RemoteConfigKey: String, CaseIterable {
 			case .surveyUrl:
 				return "-" as NSObject
 			case .surveyShow:
+				return false as NSObject
+			case .infoBannerId:
+				return "-" as NSObject
+			case .infoBannerTitle:
+				return "-" as NSObject
+			case .infoBannerMessage:
+				return "-" as NSObject
+			case .infoButtonShow:
+				return false as NSObject
+			case .infoBannerAction_label:
+				return "-" as NSObject
+			case .infoBannerUrl:
+				return "-" as NSObject
+			case .infoBannerShow:
+				return false as NSObject
+			case .infoBannerDismissable:
 				return false as NSObject
 		}
 	}
