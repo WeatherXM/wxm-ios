@@ -80,7 +80,7 @@ public enum RemoteConfigKey: String, CaseIterable {
 				return "-" as NSObject
 			case .infoButtonShow:
 				return false as NSObject
-			case .infoBannerAction_label:
+			case .infoBannerActionLabel:
 				return "-" as NSObject
 			case .infoBannerUrl:
 				return "-" as NSObject

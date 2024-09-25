@@ -12,19 +12,23 @@ import Toolkit
 
 public class SurveyRepositoryImpl: SurveyRepository {
 	public var surveyPublisher: AnyPublisher<Survey?, Never>
-	
+	public var infoBannerPublisher: AnyPublisher<InfoBanner?, Never>
+
 	private let currentValueSubject: CurrentValueSubject<Survey?, Never> = .init(nil)
+	private let infoBannerCurrentValueSubject: CurrentValueSubject<InfoBanner?, Never> = .init(nil)
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	private let userDefaultsService = UserDefaultsService()
 	private let lastSurveyKey = UserDefaults.GenericKey.lastSurveyId.rawValue
 
-
 	public init() {
 		surveyPublisher = currentValueSubject.eraseToAnyPublisher()
+		infoBannerPublisher = infoBannerCurrentValueSubject.eraseToAnyPublisher()
 
 		RemoteConfigManager.shared.$surveyShow.sink { [weak self] show in
 			self?.handleSurveyShow(show)
 		}.store(in: &cancellableSet)
+
+		observeInfoBanner()
 	}
 
 	public func updateLastSurveyId(_ surveyId: String) {
@@ -56,5 +60,33 @@ private extension SurveyRepositoryImpl {
 							url: RemoteConfigManager.shared.surveyUrl)
 
 		currentValueSubject.send(survey)
+	}
+
+	func observeInfoBanner() {
+		let infobannerId = RemoteConfigManager.shared.$infoBannerId
+		let infoBannerShow = RemoteConfigManager.shared.$infoBannerShow
+		let infoBannerDismissable = RemoteConfigManager.shared.$infoBannerDismissable
+
+		let zip = Publishers.Zip3(infobannerId, infoBannerShow, infoBannerDismissable)
+		zip.sink { [weak self] id, show, _ in
+			self?.handleInfoBannerUpdate(infoBannerId: id, show: show ?? false)
+		}.store(in: &cancellableSet)
+	}
+
+	func handleInfoBannerUpdate(infoBannerId: String?, show: Bool) {
+		guard show else {
+			infoBannerCurrentValueSubject.send(nil)
+			return
+		}
+
+		let infoBanner = InfoBanner(id: RemoteConfigManager.shared.infoBannerId,
+									title: RemoteConfigManager.shared.infoBannerTitle,
+									message: RemoteConfigManager.shared.infoBannerMessage,
+									buttonShow: RemoteConfigManager.shared.infoButtonShow,
+									actionLabel: RemoteConfigManager.shared.infoBannerActionLabel,
+									url: RemoteConfigManager.shared.infoBannerUrl,
+									dismissable: RemoteConfigManager.shared.infoBannerDismissable)
+
+		infoBannerCurrentValueSubject.send(infoBanner)
 	}
 }

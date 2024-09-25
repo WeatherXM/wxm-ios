@@ -10,5 +10,7 @@ import Combine
 
 public protocol SurveyRepository {
 	var surveyPublisher: AnyPublisher<Survey?, Never> { get set }
+	var infoBannerPublisher: AnyPublisher<InfoBanner?, Never> { get set }
+
 	func updateLastSurveyId(_ surveyId: String)
 }
