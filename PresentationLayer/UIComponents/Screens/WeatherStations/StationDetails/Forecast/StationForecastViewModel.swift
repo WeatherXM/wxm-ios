@@ -71,26 +71,24 @@ class StationForecastViewModel: ObservableObject {
 															  .itemId: .dailyForecast])
 	}
 
-    private func getDeviceForecastDaily(deviceId: String?) async -> Result<[NetworkDeviceForecastResponse], NetworkErrorResponse>? {
-        guard let deviceId = deviceId else {
-            return nil
-        }
-        
-        do {
-            let getUserDeviceForecastById = try useCase?.getUserDeviceForecastById(deviceId: deviceId,
-                                                                                   fromDate: getCurrentDateInStringForForecast(),
-                                                                                   toDate: getΤοDateForWeeklyForecastCall())
-            return await withCheckedContinuation { continuation in
 
-                getUserDeviceForecastById?.sink { response in
-                        continuation.resume(returning: response.result)
-                    }.store(in: &cancellables)
-            }
-        } catch { return nil }
-    }
 }
 
 private extension StationForecastViewModel {
+	@MainActor
+	func getDeviceForecastDaily(deviceId: String?) async -> Result<[NetworkDeviceForecastResponse], NetworkErrorResponse>? {
+		guard let deviceId = deviceId else {
+			return nil
+		}
+		
+		do {
+			let getUserDeviceForecastById = try await useCase?.getUserDeviceForecastById(deviceId: deviceId,
+																						 fromDate: getCurrentDateInStringForForecast(),
+																						 toDate: getΤοDateForWeeklyForecastCall()).toAsync()
+			return getUserDeviceForecastById?.result
+		} catch { return nil }
+	}
+
     func observeOffset() {
         offsetObject.$diffOffset.sink { [weak self] value in
             guard let self = self else {
@@ -180,24 +178,22 @@ private extension StationForecastViewModel {
 // MARK: - StationDetailsViewModelChild
 
 extension StationForecastViewModel: StationDetailsViewModelChild {
+	@MainActor
     func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async {
         self.device = device
 		self.followState = followState
 
-        if followState == nil {
-            DispatchQueue.main.async {
-                self.hiddenViewConfiguration = self.generateHiddenViewConfiguration()
-                self.viewState = .hidden
-            }
-            return
-        }
+		if followState == nil {
+			self.hiddenViewConfiguration = self.generateHiddenViewConfiguration()
+			self.viewState = .hidden
+			return
+		}
 
         guard let res = await getDeviceForecastDaily(deviceId: device?.id) else {
             return
         }
-        DispatchQueue.main.async {
-            self.handleResponseResult(res)
-        }
+
+		self.handleResponseResult(res)
     }
 
     func showLoading() {

@@ -11,18 +11,30 @@ import Combine
 import DomainLayer
 
 protocol SelectLocationMapViewModelDelegate: AnyObject {
-	func updatedSelectedLocation(location: DeviceLocation?)
+	func updatedResolvedLocation(location: DeviceLocation?)
+	func updatedSelectedCoordinate(coordinate: CLLocationCoordinate2D?)
+}
+
+// Make protocol functions optional
+extension SelectLocationMapViewModelDelegate {
+	func updatedResolvedLocation(location: DeviceLocation?) {}
+	func updatedSelectedCoordinate(coordinate: CLLocationCoordinate2D?) {}
 }
 
 class SelectLocationMapViewModel: ObservableObject {
-	@Published var selectedCoordinate: CLLocationCoordinate2D
+	@Published var selectedCoordinate: CLLocationCoordinate2D {
+		didSet {
+			delegate?.updatedSelectedCoordinate(coordinate: selectedCoordinate)
+		}
+	}
 	@Published private(set) var selectedDeviceLocation: DeviceLocation? {
 		didSet {
-			delegate?.updatedSelectedLocation(location: selectedDeviceLocation)
+			delegate?.updatedResolvedLocation(location: selectedDeviceLocation)
 		}
 	}
 	@Published var searchTerm: String = ""
 	@Published private(set) var searchResults: [DeviceLocationSearchResult] = []
+	var mapControls: MapControls = .init()
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	private var latestTask: Cancellable?
 	let useCase: DeviceLocationUseCase
@@ -54,17 +66,21 @@ class SelectLocationMapViewModel: ObservableObject {
 	func handleSearchResultTap(result: DeviceLocationSearchResult) {
 		latestTask?.cancel()
 		latestTask = useCase.locationFromSearchResult(result).sink { [weak self] location in
-			self?.selectedCoordinate = location.coordinates.toCLLocationCoordinate2D()
+			self?.mapControls.setMapCenter?(location.coordinates.toCLLocationCoordinate2D())
 		}
 	}
 
 	func moveToUserLocation() {
-		Task {
-			let result = await useCase.getUserLocation()
+		Task { [weak self] in
+			guard let self else {
+				return
+			}
+
+			let result = await self.useCase.getUserLocation()
 			DispatchQueue.main.async {
 				switch result {
 					case .success(let coordinates):
-						self.selectedCoordinate = coordinates
+						self.mapControls.setMapCenter?(coordinates)
 					case .failure(let error):
 						switch error {
 							case .locationNotFound:
@@ -85,7 +101,9 @@ class SelectLocationMapViewModel: ObservableObject {
 private extension SelectLocationMapViewModel {
 	func getLocationFromCoordinate() {
 		latestTask?.cancel()
+		print("selectedCoordinate: \(selectedCoordinate)" )
 		latestTask = useCase.locationFromCoordinates(LocationCoordinates.fromCLLocationCoordinate2D(selectedCoordinate)).sink { [weak self] location in
+			print("selectedDeviceLocation: \(location?.coordinates)" )
 			self?.selectedDeviceLocation = location
 		}
 	}

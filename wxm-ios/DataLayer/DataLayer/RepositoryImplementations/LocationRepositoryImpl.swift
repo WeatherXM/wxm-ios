@@ -114,7 +114,7 @@ public class DeviceLocationRepositoryImpl: DeviceLocationRepository {
 						return
 					}
 
-					self.reverseGeocodedAddressSubject.send(actualAddress.toLocation())
+					self.reverseGeocodedAddressSubject.send(actualAddress.toLocation(with: coordinates.toCLLocationCoordinate2D()))
 				case let .failure(error):
 					if let locationError = error.toDeviceLocationError() {
 						self.errorSubject.send(locationError)
@@ -190,20 +190,25 @@ extension SearchSuggestion {
 }
 
 extension SearchResult {
-	func toLocation() -> DeviceLocation {
-		var parsedAddress = name
-
-		if let houseNumber = address?.houseNumber {
-			parsedAddress += " \(houseNumber)"
-		}
+	func toLocation(with locationCoordinate: CLLocationCoordinate2D? = nil) -> DeviceLocation {
+		let parsedAddress = isAccurate ? address?.formattedAddress(style: .medium) : nil
 
 		return DeviceLocation(
 			id: id,
 			name: parsedAddress,
 			country: address?.country,
 			countryCode: metadata?["iso_3166_1"],
-			coordinates: LocationCoordinates.fromCLLocationCoordinate2D(coordinate)
+			coordinates: LocationCoordinates.fromCLLocationCoordinate2D(locationCoordinate ?? coordinate)
 		)
+	}
+
+	var isAccurate: Bool {
+		switch accuracy {
+			case .point, .rooftop, .street:
+				true
+			default:
+				false
+		}
 	}
 }
 

@@ -30,12 +30,12 @@ public struct DeviceLocationSearchResult: Identifiable, Equatable, Hashable {
 
 public struct DeviceLocation: Identifiable, Equatable {
     public let id: String
-    public let name: String
+    public let name: String?
     public let country: String?
     public let countryCode: String?
     public let coordinates: LocationCoordinates
 
-    public init(id: String, name: String, country: String?, countryCode: String?, coordinates: LocationCoordinates) {
+    public init(id: String, name: String?, country: String?, countryCode: String?, coordinates: LocationCoordinates) {
         self.id = id
         self.name = name
         self.country = country

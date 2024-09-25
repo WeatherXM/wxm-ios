@@ -23,15 +23,7 @@ public struct RewardsUseCase {
     }
 
 	public func getDeviceRewardsSummary(deviceId: String) async throws -> Result<NetworkDeviceRewardsSummaryResponse, NetworkErrorResponse> {
-		let rewardsPublisher = try devicesRepository.deviceRewardsSummary(deviceId: deviceId)
-		return await withUnsafeContinuation { continuation in
-			rewardsPublisher.sink { response in
-				if let error = response.error {
-					continuation.resume(returning: .failure(error))
-				} else {
-					continuation.resume(returning: .success(response.value!))
-				}
-			}.store(in: &cancellables.cancellableSet)
-		}
+		let rewardsPublisher = try await devicesRepository.deviceRewardsSummary(deviceId: deviceId).toAsync().result
+		return rewardsPublisher
 	}
 }
