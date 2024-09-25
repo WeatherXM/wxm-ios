@@ -14,6 +14,7 @@ struct WXMButtonStyle: ButtonStyle {
     private let fillColorDisabled: Color
     private let strokeColor: Color
     private let strokeColorDisabled: Color
+	private let cornerRadius: CGFloat
     private let fixedSize: Bool
 
     @Environment(\.isEnabled) private var isEnabled: Bool
@@ -25,6 +26,7 @@ struct WXMButtonStyle: ButtonStyle {
         fillColorDisabled: ColorEnum = .midGrey,
         strokeColor: ColorEnum = .wxmPrimary,
         strokeColorDisabled: ColorEnum = .midGrey,
+		cornerRadius: CGFloat = CGFloat(.buttonCornerRadius),
         fixedSize: Bool = false
     ) {
         self.fillColor = Color(colorEnum: fillColor)
@@ -33,6 +35,7 @@ struct WXMButtonStyle: ButtonStyle {
         self.textColorDisabled = Color(colorEnum: textColorDisabled)
         self.strokeColor = Color(colorEnum: strokeColor)
         self.strokeColorDisabled = Color(colorEnum: strokeColorDisabled)
+		self.cornerRadius = cornerRadius
         self.fixedSize = fixedSize
     }
 
@@ -42,6 +45,7 @@ struct WXMButtonStyle: ButtonStyle {
                  fillColorDisabled: Color,
                  strokeColor: Color,
                  strokeColorDisabled: Color,
+				 cornerRadius: CGFloat = CGFloat(.buttonCornerRadius),
                  fixedSize: Bool = false) {
         self.fillColor = fillColor
         self.fillColorDisabled = fillColorDisabled
@@ -49,6 +53,7 @@ struct WXMButtonStyle: ButtonStyle {
         self.textColorDisabled = textColorDisabled
         self.strokeColor = strokeColor
         self.strokeColorDisabled = strokeColorDisabled
+		self.cornerRadius = cornerRadius
         self.fixedSize = fixedSize
     }
 
@@ -65,10 +70,10 @@ struct WXMButtonStyle: ButtonStyle {
             .background {
                 fill
             }
-            .strokeBorder(color: stroke, lineWidth: 2.0, radius: CGFloat(.buttonCornerRadius))
+            .strokeBorder(color: stroke, lineWidth: 2.0, radius: cornerRadius)
             .opacity(configuration.isPressed ? 0.7 : 1)
             .contentShape(Rectangle())
-            .cornerRadius(CGFloat(.buttonCornerRadius))
+            .cornerRadius(cornerRadius)
     }
 }
 
