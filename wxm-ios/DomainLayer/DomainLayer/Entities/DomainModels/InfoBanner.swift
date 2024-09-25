@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct InfoBanner {
+public struct InfoBanner: Equatable {
 	public let id: String?
 	public let title: String?
 	public let message: String?

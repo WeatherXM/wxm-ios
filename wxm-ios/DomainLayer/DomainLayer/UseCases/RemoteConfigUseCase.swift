@@ -10,11 +10,13 @@ import Combine
 
 public struct RemoteConfigUseCase {
 	public var surveyPublisher: AnyPublisher<Survey?, Never>
+	public var infoBannerPublisher: AnyPublisher<InfoBanner?, Never>
 	private let repository: RemoteConfigRepository
 
 	public init(repository: RemoteConfigRepository) {
 		self.repository = repository
 		self.surveyPublisher = repository.surveyPublisher
+		self.infoBannerPublisher = repository.infoBannerPublisher
 	}
 
 	public func updateLastDismissedSurvey(surveyId: String) {
