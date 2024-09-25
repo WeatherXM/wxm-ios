@@ -205,8 +205,8 @@ class SwinjectHelper: SwinjectInterface {
 			RemoteConfigRepositoryImpl()
 		}
 
-		container.register(SurveyUseCase.self) { resolver in
-			SurveyUseCase(repository: resolver.resolve(RemoteConfigRepository.self)!)
+		container.register(RemoteConfigUseCase.self) { resolver in
+			RemoteConfigUseCase(repository: resolver.resolve(RemoteConfigRepository.self)!)
 		}
 
         // MARK: - Return the Container
