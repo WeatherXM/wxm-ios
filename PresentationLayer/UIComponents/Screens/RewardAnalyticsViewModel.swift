@@ -74,7 +74,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 		let isExpanded = stationItems[device.id ?? ""]?.isExpanded == true
 		let state: ParameterValue = isExpanded ? .closeState : .openState
 		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .deviceRewardsCard,
-																	.state: .openState])
+																	.state: state])
 
 		guard isExpanded else {
 			refreshCurrentDevice(deviceId: device.id, mode: .week, completion: completion)
