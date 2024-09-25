@@ -48,12 +48,20 @@ private struct ChartAreaView: View {
 	let data: [ChartDataItem]
 	let totalDisplayValue: GenericValueCallback<Double, String>?
 
+	private let groupedData: [String: [ChartDataItem]]
 	@GestureState private var showSelection: Bool = false
 	@State private var selectedItems: [ChartDataItem]?
 	@State private var indicatorOffet: CGSize = .zero
 	@State private var popupDetailsOffset: CGSize = .zero
 	@State private var popupDetailsSize: CGSize = .zero
 	@GestureState var gestureState: Bool = false
+
+	init(mode: ChartMode, data: [ChartDataItem], totalDisplayValue: GenericValueCallback<Double, String>?) {
+		self.mode = mode
+		self.data = data
+		self.totalDisplayValue = totalDisplayValue
+		self.groupedData = Dictionary(grouping: data, by: { $0.group })
+	}
 
 	private var strideBy: CGFloat {
 		let count = data.count
@@ -69,20 +77,30 @@ private struct ChartAreaView: View {
 		}
 	}
 
+	func shouldShowDots(for group: String) -> Bool {
+		groupedData[group]?.count == 1
+	}
+
 	var body: some View {
 		Chart(data, id: \.id) { item in
-			switch mode {
-				case .line:
-					LineMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
-						.foregroundStyle(Color(colorEnum: item.color))
-						.interpolationMethod(.linear)
-						.foregroundStyle(by: .value("group", item.group))
-
-				case .area:
-					AreaMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
-						.interpolationMethod(.linear)
-						.foregroundStyle(Color(colorEnum: item.color))
-						.foregroundStyle(by: .value("group", item.group))
+			if shouldShowDots(for: item.group) {
+				PointMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
+					.foregroundStyle(Color(colorEnum: item.color))
+					.interpolationMethod(.linear)
+					.foregroundStyle(by: .value("group", item.group))
+			} else {
+				switch mode {
+					case .line:
+						LineMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
+							.foregroundStyle(Color(colorEnum: item.color))
+							.interpolationMethod(.linear)
+							.foregroundStyle(by: .value("group", item.group))
+					case .area:
+						AreaMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
+							.interpolationMethod(.linear)
+							.foregroundStyle(Color(colorEnum: item.color))
+							.foregroundStyle(by: .value("group", item.group))
+				}
 			}
 		}
 		.chartLegend(.hidden)
