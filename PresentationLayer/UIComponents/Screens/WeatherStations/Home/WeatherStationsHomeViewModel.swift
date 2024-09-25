@@ -146,6 +146,8 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
     }
 
 	func handleRewardAnalyticsTap() {
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .tokensEarnedPress])
+		
 		let viewModel = ViewModelsFactory.getRewardAnalyticsViewModel(devices: getOwnedDevices())
 		Router.shared.navigateTo(.rewardAnalytics(viewModel))
 	}

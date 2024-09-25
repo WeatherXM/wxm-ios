@@ -58,6 +58,7 @@ public enum Screen: String {
 	case rewardIssues = "Reward Issues"
 	case boostDetails = "Boost Detail"
 	case cellCapacityInfo = "Cell Capacity info"
+	case rewardAnalytics = "Reward Analytics"
 }
 
 public enum Event: String {
@@ -266,6 +267,7 @@ public enum ParameterValue {
 	case rewardDetailsReadMore
 	case identifyProblems
 	case deviceRewards
+	case deviceRewardsCard
 	case deviceRewardTransactions
 	case rewardsScore
 	case maxRewards
@@ -292,5 +294,6 @@ public enum ParameterValue {
 	case nonStakeholder
 	case rewardSplitPressed
 	case stakeholderContentType
+	case tokensEarnedPress
 	case custom(String)
 }
