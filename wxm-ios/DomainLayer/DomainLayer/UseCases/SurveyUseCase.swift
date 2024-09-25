@@ -10,9 +10,9 @@ import Combine
 
 public struct SurveyUseCase {
 	public var surveyPublisher: AnyPublisher<Survey?, Never>
-	private let repository: SurveyRepository
+	private let repository: RemoteConfigRepository
 
-	public init(repository: SurveyRepository) {
+	public init(repository: RemoteConfigRepository) {
 		self.repository = repository
 		self.surveyPublisher = repository.surveyPublisher
 	}

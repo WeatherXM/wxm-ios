@@ -1,5 +1,5 @@
 //
-//  SurveyRepositoryImpl.swift
+//  RemoteConfigRepositoryImpl.swift
 //  DataLayer
 //
 //  Created by Pantelis Giazitsis on 26/8/24.
@@ -10,7 +10,7 @@ import DomainLayer
 import Combine
 import Toolkit
 
-public class SurveyRepositoryImpl: SurveyRepository {
+public class RemoteConfigRepositoryImpl: RemoteConfigRepository {
 	public var surveyPublisher: AnyPublisher<Survey?, Never>
 	public var infoBannerPublisher: AnyPublisher<InfoBanner?, Never>
 
@@ -38,7 +38,7 @@ public class SurveyRepositoryImpl: SurveyRepository {
 	}
 }
 
-private extension SurveyRepositoryImpl {
+private extension RemoteConfigRepositoryImpl {
 	func canShowSurvey(surveyId: String) -> Bool {
 		let lastSurveyId: String? = userDefaultsService.get(key: lastSurveyKey)
 
