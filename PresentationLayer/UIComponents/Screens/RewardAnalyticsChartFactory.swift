@@ -46,7 +46,7 @@ private extension RewardAnalyticsChartFactory {
 
 	func getMonthlyMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
 		getDataItems(overallResponse: overallResponse) { date in
-			date.getFormattedDate(format: .monthDay)
+			date.getFormattedDate(format: .monthDay, localized: true)
 		}
 	}
 

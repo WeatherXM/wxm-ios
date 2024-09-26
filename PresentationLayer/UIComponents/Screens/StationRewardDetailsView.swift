@@ -36,7 +36,7 @@ struct StationRewardDetailsView: View {
 									 .init(title: LocalizableString.Boosts.totalTokensToBeRewarded.localized,
 										   value: (details.totalRewards ?? 0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency),
 									 .init(title: LocalizableString.Boosts.boostPeriod.localized,
-										   value: "\(details.boostStartDateString) -  \(details.boostStopDateString)")])
+										   value: "\(details.boostStartDateString) - \(details.boostStopDateString)")])
 		}
     }
 }

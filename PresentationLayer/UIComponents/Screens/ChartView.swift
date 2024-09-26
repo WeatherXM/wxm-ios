@@ -64,7 +64,7 @@ private struct ChartAreaView: View {
 	}
 
 	private var strideBy: CGFloat {
-		let count = data.count
+		let count = groupedData.keys.count
 		switch count {
 			case _ where count < 10:
 				return 1.0
@@ -112,14 +112,11 @@ private struct ChartAreaView: View {
 				view
 			}
 		}
-		.if(data.count > 1) { view in
-			view.chartXScale(domain: data.first!.xVal...data.last!.xVal)
-		}
 		.chartXAxis {
 			AxisMarks(preset: .aligned, values: .stride(by: strideBy)) { value in
 				if let val = value.as(Int.self),
 				   let item = data.first(where: { $0.xVal == val }) {
-					AxisValueLabel {
+					AxisValueLabel(anchor: .topLeading, collisionResolution: .greedy) {
 						VStack(spacing: CGFloat(.minimumSpacing)) {
 
 							Text(item.xAxisLabel)

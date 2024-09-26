@@ -269,7 +269,8 @@ private extension ContentView {
 					.font(.system(size: CGFloat(.caption)))
 					.foregroundStyle(Color(colorEnum: .text))
 
-				if let rewards = viewModel.currentStationReward?.stationReward.total {
+				if viewModel.currentStationIdLoading == nil,
+				   let rewards = viewModel.currentStationReward?.stationReward.total {
 					Text(rewards.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
 						.font(.system(size: CGFloat(.mediumFontSize)))
 						.foregroundStyle(Color(colorEnum: .text))

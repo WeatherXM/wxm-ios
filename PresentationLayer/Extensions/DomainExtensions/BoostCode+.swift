@@ -39,7 +39,7 @@ extension BoostCode {
 	var chartColor: ColorEnum {
 		switch self {
 			case .betaReward:
-				return .betaRewardsFill
+				return .betaRewardsPrimary
 			case .unknown:
 				return .otherRewardChart
 		}

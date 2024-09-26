@@ -22,7 +22,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 		return "+\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
 	var summaryEarnedValueText: String {
-		guard let value = summaryResponse?.total else {
+		guard !suammaryRewardsIsLoading, let value = summaryResponse?.total else {
 			return ""
 		}
 		return "\(value.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
