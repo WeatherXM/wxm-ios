@@ -105,9 +105,8 @@ private struct ChartAreaView: View {
 		}
 		.chartLegend(.hidden)
 		.modify { view in
-			if let min = data.min(by: { $0.xVal < $1.xVal })?.xVal,
-				let max = data.max(by: { $0.xVal < $1.xVal })?.xVal {
-				view.chartXScale(domain: min...max)
+			if let max = data.max(by: { $0.yVal < $1.yVal })?.yVal, max == 0 {
+				view.chartYScale(domain: 0...1)
 			} else{
 				view
 			}
