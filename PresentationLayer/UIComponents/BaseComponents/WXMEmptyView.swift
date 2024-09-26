@@ -11,11 +11,10 @@ import Toolkit
 struct WXMEmptyView: View {
     let configuration: Configuration
     let iconDimensions: CGFloat = 150
-	var backgroundColor: ColorEnum = .bg
 
     var body: some View {
         ZStack {
-            Color(colorEnum: backgroundColor)
+			Color(colorEnum: configuration.backgroundColor)
                 .ignoresSafeArea()
 
             VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -93,6 +92,7 @@ extension WXMEmptyView {
 		#if MAIN_APP
         var animationEnum: AnimationsEnums?
 		#endif
+		var backgroundColor: ColorEnum = .bg
 		var imageFontIcon: (icon: FontIcon, font: FontAwesome)?
 		var enableSidePadding: Bool = true
         let title: String?
