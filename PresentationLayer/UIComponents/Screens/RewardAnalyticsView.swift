@@ -239,7 +239,7 @@ private struct ContentView: View {
 							let obj = viewModel.currentStationFailObject {
 						FailView(obj: obj)
 					}
-					ForEach(viewModel.currentStationReward?.stationReward.details ?? [], id: \.code) { details in
+					ForEach(viewModel.currentStationReward?.stationReward?.details ?? [], id: \.code) { details in
 						StationRewardDetailsView(details: details)
 					}
 				}
@@ -270,7 +270,7 @@ private extension ContentView {
 					.foregroundStyle(Color(colorEnum: .text))
 
 				if viewModel.currentStationIdLoading == nil,
-				   let rewards = viewModel.currentStationReward?.stationReward.total {
+				   let rewards = viewModel.currentStationReward?.stationReward?.total {
 					Text(rewards.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
 						.font(.system(size: CGFloat(.mediumFontSize)))
 						.foregroundStyle(Color(colorEnum: .text))

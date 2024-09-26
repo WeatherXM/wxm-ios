@@ -55,7 +55,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 			refreshCurrentDevice(deviceId: decviceId)
 		}
 	}
-	@Published var currentStationReward: (stationId: String, stationReward: NetworkDeviceRewardsResponse)? {
+	@Published var currentStationReward: (stationId: String, stationReward: NetworkDeviceRewardsResponse?)? {
 		didSet {
 			updateCurrentStationCharts()
 		}
@@ -150,6 +150,7 @@ private extension RewardAnalyticsViewModel {
 							self?.refreshCurrentDevice(deviceId: deviceId)
 						}
 					self?.currentStationError = true
+					self?.currentStationReward = (deviceId, nil)
 				case .success(let response):
 					self?.currentStationReward = (deviceId, response)
 			}
@@ -176,6 +177,7 @@ private extension RewardAnalyticsViewModel {
 						self?.refreshSummaryRewards()
 					}
 					self?.showSummaryError = true
+					self?.summaryResponse = nil
 				case .success(let response):
 					self?.summaryResponse = response
 			}
@@ -184,6 +186,7 @@ private extension RewardAnalyticsViewModel {
 
 	func updateSummaryCharts() {
 		guard let summaryResponse else {
+			summaryChartDataItems = nil
 			return
 		}
 
@@ -192,11 +195,13 @@ private extension RewardAnalyticsViewModel {
 	}
 
 	func updateCurrentStationCharts() {
-		guard let currentStationReward else {
+		guard let stationReward = currentStationReward?.stationReward else {
+			currentStationChartDataItems = nil
+			currentStationChartLegendItems = nil
 			return
 		}
 
-		let data = RewardAnalyticsChartFactory().getChartsData(deviceResponse: currentStationReward.stationReward,
+		let data = RewardAnalyticsChartFactory().getChartsData(deviceResponse: stationReward,
 															   mode: currenStationMode)
 		currentStationChartDataItems = data.dataItems
 		currentStationChartLegendItems = data.legendItems
