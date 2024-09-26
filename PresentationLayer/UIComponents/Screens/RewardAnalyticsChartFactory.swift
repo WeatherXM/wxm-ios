@@ -40,24 +40,25 @@ private extension RewardAnalyticsChartFactory {
 	
 	func getSevendaysMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
 		getDataItems(overallResponse: overallResponse) { date in
-			date.getWeekDay()
+			(date.getWeekDay(), date.getWeekDay(.wide))
 		}
 	}
 
 	func getMonthlyMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
 		getDataItems(overallResponse: overallResponse) { date in
-			date.getFormattedDate(format: .monthDay, localized: true)
+			(date.getFormattedDate(format: .monthDay, localized: true),
+			 date.getFormattedDate(format: .monthLiteralDay, localized: true).capitalized)
 		}
 	}
 
 	func getYearlyMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
 		getDataItems(overallResponse: overallResponse) { date in
-			date.getMonth()
+			(date.getMonth(), date.getMonth(.wide))
 		}
 	}
 
 	func getDataItems(overallResponse: NetworkDevicesRewardsResponse,
-					  xAxisLabel: GenericValueCallback<Date, String>) -> [ChartDataItem] {
+					  xAxisLabels: GenericValueCallback<Date, (String, String)>) -> [ChartDataItem] {
 		var counter = -1
 
 		return overallResponse.data?.compactMap { datum in
@@ -66,9 +67,11 @@ private extension RewardAnalyticsChartFactory {
 			guard let ts = datum.ts else {
 				return nil
 			}
+			let xLabels = xAxisLabels(ts)
 			return ChartDataItem(xVal: counter,
 								 yVal: datum.totalRewards ?? 0.0,
-								 xAxisLabel: xAxisLabel(ts),
+								 xAxisLabel: xLabels.0,
+								 xAxisDisplayLabel: xLabels.1,
 								 group: LocalizableString.total(nil).localized,
 								 displayValue: (datum.totalRewards ?? 0.0).toWXMTokenPrecisionString)
 		} ?? []
@@ -78,24 +81,25 @@ private extension RewardAnalyticsChartFactory {
 
 	func getSevendaysMode(deviceResponse: NetworkDeviceRewardsResponse) -> ChartData {
 		getDataItems(deviceResponse: deviceResponse) { date in
-			date.getWeekDay()
+			(date.getWeekDay(), date.getWeekDay(.wide))
 		}
 	}
 
 	func getMonthlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> ChartData {
 		getDataItems(deviceResponse: deviceResponse) { date in
-			date.getFormattedDate(format: .monthDay, localized: true)
+			(date.getFormattedDate(format: .monthDay, localized: true),
+			 date.getFormattedDate(format: .monthLiteralDay, localized: true).capitalized)
 		}
 	}
 
 	func getYearlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> ChartData {
 		getDataItems(deviceResponse: deviceResponse) { date in
-			date.getMonth()
+			(date.getMonth(), date.getMonth(.wide))
 		}
 	}
 
 	func getDataItems(deviceResponse: NetworkDeviceRewardsResponse,
-					  xAxisLabel: GenericValueCallback<Date, String>) -> ChartData {
+					  xAxisLabels: GenericValueCallback<Date, (String, String)>) -> ChartData {
 		var chartDataItems: [ChartDataItem] = []
 		var legendItems: [ChartLegendView.Item] = []
 
@@ -107,10 +111,12 @@ private extension RewardAnalyticsChartFactory {
 				return
 			}
 
+			let xLabels = xAxisLabels(ts)
 			rewards.withMergedUnknownBoosts.forEach { item in
 				let dataItem = ChartDataItem(xVal: counter,
 											 yVal: item.value ?? 0.0,
-											 xAxisLabel: xAxisLabel(ts),
+											 xAxisLabel: xLabels.0,
+											 xAxisDisplayLabel: xLabels.1,
 											 group: item.displayName ?? "",
 											 color: item.chartColor ?? .chartPrimary,
 											 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString)

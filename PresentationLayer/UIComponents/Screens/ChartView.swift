@@ -17,6 +17,7 @@ struct ChartDataItem: Identifiable {
 	let xVal: Int
 	let yVal: Double
 	let xAxisLabel: String
+	let xAxisDisplayLabel: String
 	let group: String
 	var color: ColorEnum = .chartPrimary
 	let displayValue: String
@@ -172,7 +173,7 @@ private extension ChartAreaView {
 		   !selectedItems.isEmpty,
 		   showSelection {
 			VStack(alignment: .trailing) {
-				ChartOverlayDetailsView(title: selectedItems.first?.xAxisLabel ?? "",
+				ChartOverlayDetailsView(title: selectedItems.first?.xAxisDisplayLabel ?? "",
 										valueItems: selectedItems.map { ($0.group, $0.displayValue, $0.yVal) },
 										totalDisplayValue: totalDisplayValue)
 					.sizeObserver(size: $popupDetailsSize)
@@ -273,36 +274,43 @@ struct DottedLineView: View {
 	ChartView(data: [.init(xVal: 0,
 						   yVal: 3.0,
 						   xAxisLabel: Date.now.getWeekDay(),
+						   xAxisDisplayLabel: Date.now.getWeekDay(.wide),
 						   group: "Total",
 						   displayValue: 3.0.toWXMTokenPrecisionString),
 					 .init(xVal: 1,
 						   yVal: 4.0,
 						   xAxisLabel: Date.now.advancedByDays(days: 1).getWeekDay(),
+						   xAxisDisplayLabel: Date.now.advancedByDays(days: 1).getWeekDay(.wide),
 						   group: "Total",
 						   displayValue: 4.0.toWXMTokenPrecisionString),
 					 .init(xVal: 2,
 						   yVal: 14.34234,
 						   xAxisLabel: Date.now.advancedByDays(days: 2).getWeekDay(),
+						   xAxisDisplayLabel: Date.now.advancedByDays(days: 2).getWeekDay(.wide),
 						   group: "Total",
 						   displayValue: 14.34234.toWXMTokenPrecisionString),
 					 .init(xVal: 3,
 						   yVal: 5.45252,
 						   xAxisLabel: Date.now.advancedByDays(days: 3).getWeekDay(),
+						   xAxisDisplayLabel: Date.now.advancedByDays(days: 3).getWeekDay(.wide),
 						   group: "Total",
 						   displayValue: 5.45252.toWXMTokenPrecisionString),
 					 .init(xVal: 4,
 						   yVal: 7.090,
 						   xAxisLabel: Date.now.advancedByDays(days: 4).getWeekDay(),
+						   xAxisDisplayLabel: Date.now.advancedByDays(days: 4).getWeekDay(.wide),
 						   group: "Total",
 						   displayValue: 7.090.toWXMTokenPrecisionString),
 					 .init(xVal: 5,
 						   yVal: 9.21092,
 						   xAxisLabel: Date.now.advancedByDays(days: 5).getWeekDay(),
+						   xAxisDisplayLabel: Date.now.advancedByDays(days: 5).getWeekDay(.wide),
 						   group: "Total",
 						   displayValue: 9.21092.toWXMTokenPrecisionString),
 					 .init(xVal: 6,
 						   yVal: 12.2132,
 						   xAxisLabel: Date.now.advancedByDays(days: 6).getWeekDay(),
+						   xAxisDisplayLabel: Date.now.advancedByDays(days: 6).getWeekDay(.wide),
 						   group: "Total",
 						   displayValue: 12.2132.toWXMTokenPrecisionString)])
 	.padding()
