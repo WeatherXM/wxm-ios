@@ -120,22 +120,27 @@ private struct ContentView: View {
 		}
 	}
 
+	@ViewBuilder
+	var infoBannerView: some View {
+		if let infoBanner = viewModel.infoBanner {
+			InfoBannerView(infoBanner: infoBanner) {
+				viewModel.handleInfoBannerDismissTap()
+			} tapUrlAction: { url in
+				viewModel.handleInfoBannerActionTap(url: url)
+			}
+			.padding(CGFloat(.defaultSidePadding))
+			.padding(.bottom, CGFloat(.cardCornerRadius))
+			.background(Color(colorEnum: .layer1))
+		}
+	}
+
     @ViewBuilder
 	func weatherStationsFlow(for devices: [DeviceDetails]) -> some View {
 		let infoBannerIsVisible = viewModel.infoBanner != nil
 
 		if viewModel.isFailed, let failObj = viewModel.failObj {
 			VStack(spacing: -CGFloat(.cardCornerRadius)) {
-				if let infoBanner = viewModel.infoBanner {
-					InfoBannerView(infoBanner: infoBanner) {
-						viewModel.handleInfoBannerDismissTap()
-					} tapUrlAction: { url in
-
-					}
-					.padding(CGFloat(.defaultSidePadding))
-					.padding(.bottom, CGFloat(.cardCornerRadius))
-					.background(Color(colorEnum: .layer1))
-				}
+				infoBannerView
 
 				FailView(obj: failObj)
 					.padding(.horizontal, CGFloat(.defaultSidePadding))
@@ -145,20 +150,11 @@ private struct ContentView: View {
 			}
 		} else if devices.isEmpty, let emptyViewConfiguration = viewModel.getEmptyViewConfiguration() {
 			VStack(spacing: -CGFloat(.cardCornerRadius)) {
-				if let infoBanner = viewModel.infoBanner {
-					InfoBannerView(infoBanner: infoBanner) {
-						viewModel.handleInfoBannerDismissTap()
-					} tapUrlAction: { url in
+				infoBannerView
 
-					}
-					.padding(CGFloat(.defaultSidePadding))
-					.padding(.bottom, CGFloat(.cardCornerRadius))
-					.background(Color(colorEnum: .layer1))
-
-					WXMEmptyView(configuration: emptyViewConfiguration)
-						.background(Color(colorEnum: .bg))
-						.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
-				}
+				WXMEmptyView(configuration: emptyViewConfiguration)
+					.background(Color(colorEnum: .bg))
+					.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
 			}
 		} else {
 			weatherStations(devices: devices)
@@ -173,16 +169,7 @@ private struct ContentView: View {
 			viewModel.getDevices(refreshMode: true, completion: completion)
 		} content: {
 			VStack(spacing: -CGFloat(.cardCornerRadius)) {
-				if let infoBanner = viewModel.infoBanner {
-					InfoBannerView(infoBanner: infoBanner) {
-						viewModel.handleInfoBannerDismissTap()
-					} tapUrlAction: { url in
-
-					}
-					.padding(CGFloat(.defaultSidePadding))
-					.padding(.bottom, CGFloat(.cardCornerRadius))
-					.background(Color(colorEnum: .layer1))
-				}
+				infoBannerView
 
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					NavigationTitleView(title: .constant(LocalizableString.weatherStationsHomeTitle.localized),

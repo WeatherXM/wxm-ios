@@ -163,6 +163,14 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	func handleInfoBannerDismissTap() {
 		infoBanner = nil
 	}
+
+	func handleInfoBannerActionTap(url: String) {
+		guard let url = URL(string: url) else {
+			return
+		}
+
+		Router.shared.showFullScreen(.safariView(url))
+	}
 }
 
 private extension WeatherStationsHomeViewModel {
