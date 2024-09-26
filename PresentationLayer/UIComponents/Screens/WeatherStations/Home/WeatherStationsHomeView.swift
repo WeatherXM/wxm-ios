@@ -91,6 +91,7 @@ private struct ContentView: View {
         VStack(spacing: 0.0) {
             weatherStationsFlow(for: viewModel.devices)
 				.spinningLoader(show: $viewModel.shouldShowFullScreenLoader, hideContent: true)
+				.animation(.easeIn, value: viewModel.infoBanner)
                 .onAppear {
                     WXMAnalytics.shared.trackScreen(.deviceList)
                 }

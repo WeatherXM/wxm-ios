@@ -68,7 +68,7 @@ private extension RemoteConfigRepositoryImpl {
 		let infoBannerDismissable = RemoteConfigManager.shared.$infoBannerDismissable
 
 		let zip = Publishers.Zip3(infobannerId, infoBannerShow, infoBannerDismissable)
-		zip.sink { [weak self] id, show, _ in
+		zip.debounce(for: 1.0, scheduler: DispatchQueue.main).sink { [weak self] id, show, dismissable in
 			self?.handleInfoBannerUpdate(infoBannerId: id, show: show ?? false)
 		}.store(in: &cancellableSet)
 	}
