@@ -19,6 +19,7 @@ public class RemoteConfigRepositoryImpl: RemoteConfigRepository {
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	private let userDefaultsService = UserDefaultsService()
 	private let lastSurveyKey = UserDefaults.GenericKey.lastSurveyId.rawValue
+	private let lastInfoBannerIdKey = UserDefaults.GenericKey.lastInfoBannerId.rawValue
 
 	public init() {
 		surveyPublisher = currentValueSubject.eraseToAnyPublisher()
@@ -35,6 +36,12 @@ public class RemoteConfigRepositoryImpl: RemoteConfigRepository {
 		userDefaultsService.save(value: surveyId, key: lastSurveyKey)
 		let show = RemoteConfigManager.shared.surveyShow
 		handleSurveyShow(show)
+	}
+
+	public func updateLastDismissedInfoBannerId(_ infoBannerId: String) {
+		userDefaultsService.save(value: infoBannerId, key: lastInfoBannerIdKey)
+		let show = RemoteConfigManager.shared.infoBannerShow
+		handleInfoBannerUpdate(show: show ?? false)
 	}
 }
 
@@ -68,18 +75,20 @@ private extension RemoteConfigRepositoryImpl {
 		let infoBannerDismissable = RemoteConfigManager.shared.$infoBannerDismissable
 
 		let zip = Publishers.Zip3(infobannerId, infoBannerShow, infoBannerDismissable)
-		zip.debounce(for: 1.0, scheduler: DispatchQueue.main).sink { [weak self] id, show, dismissable in
-			self?.handleInfoBannerUpdate(infoBannerId: id, show: show ?? false)
+		zip.debounce(for: 1.0, scheduler: DispatchQueue.main).sink { [weak self] _, show, _ in
+			self?.handleInfoBannerUpdate(show: show ?? false)
 		}.store(in: &cancellableSet)
 	}
 
-	func handleInfoBannerUpdate(infoBannerId: String?, show: Bool) {
-		guard show else {
+	func handleInfoBannerUpdate(show: Bool) {
+		guard let infoBannerId = RemoteConfigManager.shared.infoBannerId,
+			  canShowInfobanner(bannerId: infoBannerId),
+			  show  else {
 			infoBannerCurrentValueSubject.send(nil)
 			return
 		}
 
-		let infoBanner = InfoBanner(id: RemoteConfigManager.shared.infoBannerId,
+		let infoBanner = InfoBanner(id: infoBannerId,
 									title: RemoteConfigManager.shared.infoBannerTitle,
 									message: RemoteConfigManager.shared.infoBannerMessage,
 									buttonShow: RemoteConfigManager.shared.infoButtonShow,
@@ -89,4 +98,11 @@ private extension RemoteConfigRepositoryImpl {
 
 		infoBannerCurrentValueSubject.send(infoBanner)
 	}
+
+	func canShowInfobanner(bannerId: String) -> Bool {
+		let lastInfoBannerId: String? = userDefaultsService.get(key: lastInfoBannerIdKey)
+
+		return lastInfoBannerId != bannerId
+	}
+
 }

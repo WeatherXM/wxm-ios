@@ -161,7 +161,11 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 
 	func handleInfoBannerDismissTap() {
-		infoBanner = nil
+		guard let bannerId = infoBanner?.id else {
+			return
+		}
+
+		remoteConfigUseCase.updateLastDismissedInfoBannerId(bannerId)
 	}
 
 	func handleInfoBannerActionTap(url: String) {

@@ -13,4 +13,5 @@ public protocol RemoteConfigRepository {
 	var infoBannerPublisher: AnyPublisher<InfoBanner?, Never> { get set }
 
 	func updateLastSurveyId(_ surveyId: String)
+	func updateLastDismissedInfoBannerId(_ infoBannerId: String)
 }

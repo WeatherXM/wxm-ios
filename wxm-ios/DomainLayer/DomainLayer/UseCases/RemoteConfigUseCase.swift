@@ -22,4 +22,9 @@ public struct RemoteConfigUseCase {
 	public func updateLastDismissedSurvey(surveyId: String) {
 		repository.updateLastSurveyId(surveyId)
 	}
+
+	public func updateLastDismissedInfoBannerId(_ infoBannerId: String) {
+		repository.updateLastDismissedInfoBannerId(infoBannerId)
+	}
+
 }
