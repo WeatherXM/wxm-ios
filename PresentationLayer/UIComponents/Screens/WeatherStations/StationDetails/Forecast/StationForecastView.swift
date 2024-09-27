@@ -31,6 +31,14 @@ struct StationForecastView: View {
 								.foregroundColor(Color(colorEnum: .darkestBlue))
 
 							Spacer()
+
+							Button {
+
+							} label: {
+								Text(FontIcon.infoCircle.rawValue)
+									.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+									.foregroundColor(Color(colorEnum: .wxmPrimary))
+							}
 						}
 						.padding(.horizontal)
 
