@@ -28,6 +28,9 @@ struct StationForecastCardView: View {
 
 					Spacer()
 
+					Text(FontIcon.chevronRight.rawValue)
+						.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
 				}
 
                 dailyView
