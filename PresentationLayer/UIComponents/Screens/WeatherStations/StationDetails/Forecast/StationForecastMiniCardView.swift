@@ -41,10 +41,21 @@ struct StationForecastMiniCardView: View {
 							.lineLimit(1)
 					}
 				}
+
+				HStack(spacing: 0.0) {
+					Image(asset: WeatherField.precipitationProbability.hourlyIcon())
+						.renderingMode(.template)
+						.foregroundStyle(Color(colorEnum: .darkestBlue))
+					
+					Text(item.precipitation)
+						.foregroundColor(Color(colorEnum: .darkestBlue))
+						.font(.system(size: CGFloat(.normalFontSize)))
+						.lineLimit(1)
+				}
 			}
 			.WXMCardStyle(backgroundColor: isSelected ? Color(colorEnum: .layer1) : Color(colorEnum: .top),
 						  insideHorizontalPadding: CGFloat(.mediumSidePadding),
-						  insideVerticalPadding: CGFloat(.mediumSidePadding))
+						  insideVerticalPadding: CGFloat(.smallSidePadding))
 		}
 		.allowsHitTesting(item.action != nil)
 		.indication(show: .constant(isSelected), borderColor: Color(colorEnum: .wxmPrimary), bgColor: Color(colorEnum: .wxmPrimary)) {
@@ -59,6 +70,7 @@ extension StationForecastMiniCardView {
 		let animationString: String?
 		let temperature: String
 		var secondaryTemperature: String?
+		var precipitation: String
 		var action: VoidCallback?
 	}
 }
