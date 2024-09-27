@@ -12,7 +12,7 @@ import Toolkit
 
 class ProfileViewModel: ObservableObject {
     private final let meUseCase: MeUseCase
-	private let surveyUseCase: RemoteConfigUseCase
+	private let remoteConfigUseCase: RemoteConfigUseCase
     private var cancellableSet: Set<AnyCancellable> = []
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
 
@@ -49,9 +49,9 @@ class ProfileViewModel: ObservableObject {
 		return url?.host ?? "-"
 	}
 
-	public init(meUseCase: MeUseCase, surveyUseCase: RemoteConfigUseCase) {
+	public init(meUseCase: MeUseCase, remoteConfigUseCase: RemoteConfigUseCase) {
         self.meUseCase = meUseCase
-		self.surveyUseCase = surveyUseCase
+		self.remoteConfigUseCase = remoteConfigUseCase
 		scrollOffsetObject = .init()
 		tabBarVisibilityHandler = TabBarVisibilityHandler(scrollOffsetObject: self.scrollOffsetObject)
 		tabBarVisibilityHandler.$isTabBarShowing.assign(to: &$isTabBarVisible)
@@ -69,7 +69,7 @@ class ProfileViewModel: ObservableObject {
 
 		MainScreenViewModel.shared.$isWalletMissing.assign(to: &$showMissingWalletError)
 
-		surveyUseCase.surveyPublisher.sink { [weak self] survey in
+		remoteConfigUseCase.surveyPublisher.sink { [weak self] survey in
 			self?.surveyConfiguration = self?.getConfigurationForSurvey(survey)
 		}.store(in: &cancellableSet)
 
@@ -259,7 +259,7 @@ private extension ProfileViewModel {
 				return
 			}
 
-			self?.surveyUseCase.updateLastDismissedSurvey(surveyId: surveyId)
+			self?.remoteConfigUseCase.updateLastDismissedSurvey(surveyId: surveyId)
 		}
 
 		return survey?.toAnnouncementConfiguration(actionTitle: survey?.actionLabel, action: action, closeAction: closeAction)
