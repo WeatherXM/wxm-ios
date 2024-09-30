@@ -138,6 +138,39 @@ extension WeatherField: CustomStringConvertible {
 		}
 	}
 	
+	var fontIcon: FontIcon? {
+		switch self {
+			case .temperature:
+				nil
+			case .feelsLike:
+				nil
+			case .humidity:
+					.humidity
+			case .wind:
+					.locationArrow
+			case .windDirection:
+					.locationArrow
+			case .precipitation:
+					.cloudShowers
+			case .precipitationProbability:
+					.umbrella
+			case .dailyPrecipitation:
+					.cloudShowers
+			case .windGust:
+					.locationArrow
+			case .pressure:
+					.gauge
+			case .solarRadiation:
+					.sun
+			case .illuminance:
+					.sun
+			case .dewPoint:
+					.dropletDegree
+			case .uv:
+					.sun
+		}
+	}
+
 	var icon: AssetEnum {
 		switch self {
 			case .temperature:
@@ -212,7 +245,7 @@ extension WeatherField: CustomStringConvertible {
 				return .solarIconSmall
 		}
 	}
-	
+
 	func iconRotation(from weather: CurrentWeather?) -> Double {
 		switch self {
 			case .wind, .windGust:
