@@ -59,14 +59,15 @@ private extension ForecastDetailsDailyView {
 
 				dailyConditionsFields
 			}
-			.WXMCardStyle()
+			.WXMCardStyle(insideHorizontalPadding: CGFloat(.mediumSidePadding),
+						  insideVerticalPadding: CGFloat(.mediumSidePadding))
 			.wxmShadow()
 		}
 	}
 
 	@ViewBuilder
 	var dailyConditionsFields: some View {
-		LazyVGrid(columns: [.init(spacing: CGFloat(.smallToMediumSpacing)), .init(), .init()],
+		LazyVGrid(columns: [.init(), .init(), .init()],
 				  spacing: CGFloat(.smallToMediumSpacing)) {
 			Group {
 				ForEach(item.fieldItems, id: \.title) { item in
