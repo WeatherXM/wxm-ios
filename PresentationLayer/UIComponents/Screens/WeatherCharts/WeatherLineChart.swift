@@ -19,7 +19,7 @@ enum WeatherChartsConstants {
 
     /* Colors */
     static let GRID_COLOR = UIColor(colorEnum: .bg)
-    static let legendColors: [ColorEnum] = [.wxmPrimary, .chartSecondaryLine]
+    static let legendColors: [ColorEnum] = [.chartsTertiary, .chartsQuaternary]
 
 }
 
