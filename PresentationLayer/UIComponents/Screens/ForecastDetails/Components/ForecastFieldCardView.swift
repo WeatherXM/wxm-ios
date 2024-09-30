@@ -10,8 +10,8 @@ import SwiftUI
 struct ForecastFieldCardView: View {
 	let item: Item
 
-    var body: some View {
-		HStack(spacing: 0.0) {
+	var body: some View {
+		VStack(spacing: CGFloat(.minimumSpacing)) {
 			Image(asset: item.icon)
 				.resizable()
 				.renderingMode(.template)
@@ -20,25 +20,16 @@ struct ForecastFieldCardView: View {
 				.rotationEffect(Angle(degrees: item.iconRotation))
 
 			VStack(spacing: 0.0) {
-				HStack {
-					Text(item.title)
-						.foregroundColor(Color(colorEnum: .darkGrey))
-						.font(.system(size: CGFloat(.caption), weight: .bold))
-						.multilineTextAlignment(.leading)
-					Spacer()
-				}
+				Text(item.title)
+					.foregroundColor(Color(colorEnum: .darkGrey))
+					.font(.system(size: CGFloat(.caption)))
 
-				HStack {
-					Text(item.value)
-					Spacer()
-				}
-
+				Text(item.value)
 			}
 
 			Spacer()
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-		.WXMCardStyle()
     }
 }
 

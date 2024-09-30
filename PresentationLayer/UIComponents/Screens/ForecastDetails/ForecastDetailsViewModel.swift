@@ -60,7 +60,8 @@ private extension ForecastDetailsViewModel {
 			return ForecastFieldCardView.Item(icon: field.hourlyIcon(),
 											  iconRotation: field.iconRotation(from: daily),
 											  title: field.displayTitle,
-											  value: attributedString(literals: literals),
+											  value: attributedString(literals: literals,
+																	  unitWithSpace: field.shouldHaveSpaceWithUnit),
 											  scrollToGraphType: getGraphType(for: field))
 		}
 
@@ -90,20 +91,14 @@ private extension ForecastDetailsViewModel {
 		}
 	}
 
-	func attributedString(literals: WeatherValueLiterals) -> AttributedString {
+	func attributedString(literals: WeatherValueLiterals, unitWithSpace: Bool) -> AttributedString {
 		let value = literals.value
 		let unit = literals.unit
 
-		var attributedString = AttributedString("\(value) \(unit)")
-		if let valueRange = attributedString.range(of: value) {
-			attributedString[valueRange].foregroundColor = Color(colorEnum: .text)
-			attributedString[valueRange].font = .system(size: CGFloat(.mediumFontSize), weight: .bold)
-		}
-
-		if let unitRange = attributedString.range(of: unit) {
-			attributedString[unitRange].foregroundColor = Color(colorEnum: .darkGrey)
-			attributedString[unitRange].font = .system(size: CGFloat(.normalFontSize))
-		}
+		let space: String = unitWithSpace ? " " : ""
+		var attributedString = AttributedString("\(value)\(space)\(unit)")
+		attributedString.foregroundColor = Color(colorEnum: .darkestBlue)
+		attributedString.font = .system(size: CGFloat(.normalFontSize), weight: .bold)
 
 		return attributedString
 	}

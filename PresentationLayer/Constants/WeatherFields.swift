@@ -25,7 +25,7 @@ extension WeatherField: CustomStringConvertible {
 	}
 	
 	static var forecastFields: [WeatherField] {
-		[.precipitationProbability, .wind, .dailyPrecipitation, .uv, .humidity, .pressure]
+		[.precipitationProbability, .dailyPrecipitation, .humidity, .wind, .uv, .pressure]
 	}
 	
 	public var description: String {
@@ -70,7 +70,7 @@ extension WeatherField: CustomStringConvertible {
 			case .humidity:
 				return LocalizableString.humidity.localized
 			case .wind:
-				return LocalizableString.windSpeed.localized
+				return LocalizableString.wind.localized
 			case .windDirection:
 				return LocalizableString.windDirection.localized
 			case .precipitation:
@@ -90,7 +90,7 @@ extension WeatherField: CustomStringConvertible {
 			case .dewPoint:
 				return LocalizableString.dewPoint.localized
 			case .uv:
-				return LocalizableString.uv.localized
+				return LocalizableString.uvIndex.localized
 		}
 	}
 	
@@ -98,6 +98,8 @@ extension WeatherField: CustomStringConvertible {
 		switch self {
 			case .precipitationProbability:
 				return LocalizableString.probability.localized
+			case .wind:
+				return LocalizableString.windSpeed.localized
 			default:
 				return displayTitle
 		}

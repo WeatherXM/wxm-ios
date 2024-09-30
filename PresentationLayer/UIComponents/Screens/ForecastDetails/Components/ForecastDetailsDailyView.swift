@@ -66,7 +66,7 @@ private extension ForecastDetailsDailyView {
 
 	@ViewBuilder
 	var dailyConditionsFields: some View {
-		LazyVGrid(columns: [.init(spacing: CGFloat(.smallToMediumSpacing)), .init()],
+		LazyVGrid(columns: [.init(spacing: CGFloat(.smallToMediumSpacing)), .init(), .init()],
 				  spacing: CGFloat(.smallToMediumSpacing)) {
 			Group {
 				ForEach(item.fieldItems, id: \.title) { item in
@@ -78,7 +78,6 @@ private extension ForecastDetailsDailyView {
 						ForecastFieldCardView(item: item)
 					}
 				}
-				.wxmShadow()
 			}
 		}
 	}
