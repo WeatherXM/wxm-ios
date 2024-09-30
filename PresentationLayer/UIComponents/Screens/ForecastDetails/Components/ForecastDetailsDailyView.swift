@@ -46,18 +46,21 @@ private extension ForecastDetailsDailyView {
 				Spacer()
 			}
 
-			if let item = item.temperatureItem {
-				Button {
-					withAnimation {
-						scrollProxy?.scrollTo(item.scrollToGraphType?.scrollId, anchor: .top)
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				if let item = item.temperatureItem {
+					Button {
+						withAnimation {
+							scrollProxy?.scrollTo(item.scrollToGraphType?.scrollId, anchor: .top)
+						}
+					} label: {
+						ForecastTemperatureCardView(item: item)
 					}
-				} label: {
-					ForecastTemperatureCardView(item: item)
-						.wxmShadow()
 				}
-			}
 
-			dailyConditionsFields
+				dailyConditionsFields
+			}
+			.WXMCardStyle()
+			.wxmShadow()
 		}
 	}
 
