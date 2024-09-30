@@ -73,6 +73,7 @@
 		2642F1C72AD598300028F4D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26769AB32AD00D4400162974 /* GoogleService-Info.plist */; };
 		264371312CA1955800E5F382 /* ChartLegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264371302CA1955800E5F382 /* ChartLegendView.swift */; };
 		2643713C2CA41DA500E5F382 /* InfoBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2643713B2CA41DA500E5F382 /* InfoBannerView.swift */; };
+		2643715C2CA6E73900E5F382 /* TemperatureExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2643715B2CA6E73900E5F382 /* TemperatureExplanationView.swift */; };
 		264582392A41A14E00195C21 /* SpinningLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264582382A41A14E00195C21 /* SpinningLoader.swift */; };
 		2645823B2A41C07000195C21 /* FailSuccessViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */; };
 		2646D8F329C8BF3D0000237F /* StationRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646D8F229C8BF3D0000237F /* StationRewardsView.swift */; };
@@ -642,6 +643,7 @@
 		263B8B4F2B29F17E001C5060 /* MapBoxConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxConstants.swift; sourceTree = "<group>"; };
 		264371302CA1955800E5F382 /* ChartLegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegendView.swift; sourceTree = "<group>"; };
 		2643713B2CA41DA500E5F382 /* InfoBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBannerView.swift; sourceTree = "<group>"; };
+		2643715B2CA6E73900E5F382 /* TemperatureExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureExplanationView.swift; sourceTree = "<group>"; };
 		264582382A41A14E00195C21 /* SpinningLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningLoader.swift; sourceTree = "<group>"; };
 		2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailSuccessViewModifier.swift; sourceTree = "<group>"; };
 		2646D8F229C8BF3D0000237F /* StationRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsView.swift; sourceTree = "<group>"; };
@@ -1400,6 +1402,7 @@
 				2666D57E2BC977D0003B30C0 /* StationForecastMiniCardView.swift */,
 				2664832829C35AF400748F9C /* StationForecastView.swift */,
 				2664832A29C35C0300748F9C /* StationForecastViewModel.swift */,
+				2643715B2CA6E73900E5F382 /* TemperatureExplanationView.swift */,
 			);
 			path = Forecast;
 			sourceTree = "<group>";
@@ -3171,6 +3174,7 @@
 				267547B129A9181E008BCF40 /* RegisterViewModel.swift in Sources */,
 				2675481A29A9181E008BCF40 /* ResetPasswordView.swift in Sources */,
 				267547A729A9181E008BCF40 /* ResetPasswordViewModel.swift in Sources */,
+				2643715C2CA6E73900E5F382 /* TemperatureExplanationView.swift in Sources */,
 				2675482D29A9181E008BCF40 /* RewardDatePoint.swift in Sources */,
 				2646D8F329C8BF3D0000237F /* StationRewardsView.swift in Sources */,
 				268645982A6FA7C100EB85B1 /* Router.swift in Sources */,

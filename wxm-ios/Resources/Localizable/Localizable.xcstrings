@@ -4475,6 +4475,28 @@
         }
       }
     },
+    "forecast_daily_range_bar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily Range Bar"
+          }
+        }
+      }
+    },
+    "forecast_daily_range_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inside the weekly range, the strong blue bar indicates daily’s temperature range. It shows how today’s high and low temperatures fit within the weekly range."
+          }
+        }
+      }
+    },
     "forecast_hourly_forecast" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4504,6 +4526,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next 24 hours"
+          }
+        }
+      }
+    },
+    "forecast_temperature_bars_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Understanding the Temperature Bars"
+          }
+        }
+      }
+    },
+    "forecast_weekly_range_bar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weekly Range Bar"
+          }
+        }
+      }
+    },
+    "forecast_weekly_range_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The pale blue bar shows the minimum and maximum temperatures for the entire week."
           }
         }
       }
