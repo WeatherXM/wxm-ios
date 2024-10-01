@@ -145,7 +145,7 @@ private struct ContentView: View {
 			Group {
 				if let dataItems = viewModel.summaryChartDataItems {
 					ChartView(data: dataItems)
-						.aspectRatio(1.0, contentMode: .fit)
+						.aspectRatio(3.0/2.0, contentMode: .fit)
 				} else if viewModel.showSummaryError, let failObj = viewModel.summaryFailObject {
 					FailView(obj: failObj)
 				}
@@ -227,7 +227,7 @@ private struct ContentView: View {
 							ChartView(mode: .area, data: currentStationChartData) { total in
 								return total.toWXMTokenPrecisionString
 							}
-							.aspectRatio(1.0, contentMode: .fit)
+							.aspectRatio(3.0/2.0, contentMode: .fit)
 							.frame(maxWidth: .infinity, maxHeight: .infinity)
 
 							HStack {
