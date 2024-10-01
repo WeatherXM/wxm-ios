@@ -73,20 +73,23 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var rewardsView: some View {
-		TrackableScrollView { completion in
-			viewModel.refresh(completion: completion)
-		} content: {
-			VStack(spacing: CGFloat(.defaultSidePadding)) {
-				titleView
+		ScrollViewReader { proxy in
+			TrackableScrollView { completion in
+				viewModel.refresh(completion: completion)
+			} content: {
+				VStack(spacing: CGFloat(.defaultSidePadding)) {
+					titleView
 
-				summaryCard
-					.wxmShadow()
+					summaryCard
+						.wxmShadow()
 
-				stationsList
+					stationsList(scrollProxy: proxy)
+				}
+				.padding(CGFloat(.defaultSidePadding))
 			}
-			.padding(CGFloat(.defaultSidePadding))
+			.animation(.easeIn(duration: animationDuration),
+					   value: viewModel.currentStationReward != nil)
 		}
-		.animation(.easeIn(duration: animationDuration), value: viewModel.currentStationReward != nil)
 	}
 
 	@ViewBuilder
@@ -164,7 +167,7 @@ private struct ContentView: View {
 	}
 
 	@ViewBuilder
-	var stationsList: some View {
+	func stationsList(scrollProxy: ScrollViewProxy) -> some View {
 		VStack(spacing: CGFloat(.defaultSpacing)) {
 			HStack {
 				Text(LocalizableString.RewardAnalytics.rewardsByStation.localized)
@@ -175,17 +178,24 @@ private struct ContentView: View {
 			}
 
 			ForEach(viewModel.devices) { device in
-				stationView(device: device)
+				stationView(device: device, scrollProxy: scrollProxy)
 					.wxmShadow()
+					.id(device.id)
 			}
 		}
 	}
 
 	@ViewBuilder
-	func stationView(device: DeviceDetails) -> some View {
+	func stationView(device: DeviceDetails, scrollProxy: ScrollViewProxy) -> some View {
 		let isExpanded = viewModel.isExpanded(device: device)
 		VStack(spacing: CGFloat(.defaultSpacing)) {
 			Button {
+				if !isExpanded {
+					withAnimation {
+						scrollProxy.scrollTo(device.id, anchor: .top)
+					}
+				}
+
 				viewModel.handleDeviceTap(device)
 			} label: {
 				HStack {
