@@ -46,7 +46,7 @@ private extension RewardAnalyticsChartFactory {
 
 	func getMonthlyMode(overallResponse: NetworkDevicesRewardsResponse) -> [ChartDataItem] {
 		getDataItems(overallResponse: overallResponse) { date in
-			(date.getFormattedDate(format: .monthDay, localized: true),
+			(date.getFormattedDate(format: .monthDayShort, localized: true),
 			 date.getFormattedDate(format: .monthLiteralDay, localized: true).capitalized)
 		}
 	}
@@ -87,7 +87,7 @@ private extension RewardAnalyticsChartFactory {
 
 	func getMonthlyMode(deviceResponse: NetworkDeviceRewardsResponse) -> ChartData {
 		getDataItems(deviceResponse: deviceResponse) { date in
-			(date.getFormattedDate(format: .monthDay, localized: true),
+			(date.getFormattedDate(format: .monthDayShort, localized: true),
 			 date.getFormattedDate(format: .monthLiteralDay, localized: true).capitalized)
 		}
 	}
