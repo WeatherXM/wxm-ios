@@ -164,7 +164,7 @@ private extension CustomSegmentView {
 			}
 		}
 		.padding(CGFloat(.minimumPadding))
-		.background(Color(colorEnum: .blueTint))
+		.background(Color(colorEnum: .layer1))
 		.animation(.easeIn(duration: 0.3), value: selectedIndex)
 	}
 
