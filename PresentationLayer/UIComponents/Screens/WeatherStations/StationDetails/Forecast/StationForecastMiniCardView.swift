@@ -18,30 +18,32 @@ struct StationForecastMiniCardView: View {
 		Button {
 			item.action?()
 		} label: {
-			VStack(spacing: CGFloat(.smallSpacing)) {
-				Text(item.time)
-					.foregroundColor(Color(colorEnum: .darkestBlue))
-					.font(.system(size: CGFloat(.caption)))
-					.minimumScaleFactor(0.8)
-					.lineLimit(1)
-
-				weatherImage
-
-				VStack(spacing: 0.0) {
-					Text(item.temperature)
+			VStack(spacing: 0.0) {
+				VStack(spacing: CGFloat(.smallSpacing)) {
+					Text(item.time)
 						.foregroundColor(Color(colorEnum: .darkestBlue))
-						.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+						.font(.system(size: CGFloat(.caption)))
+						.minimumScaleFactor(0.8)
 						.lineLimit(1)
-						.fixedSize()
 
-					if let secondaryTemperature = item.secondaryTemperature {
-						Text(secondaryTemperature)
+					weatherImage
+
+					VStack(spacing: 0.0) {
+						Text(item.temperature)
 							.foregroundColor(Color(colorEnum: .darkestBlue))
-							.font(.system(size: CGFloat(.caption)))
+							.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
 							.lineLimit(1)
+							.fixedSize()
+
+						if let secondaryTemperature = item.secondaryTemperature {
+							Text(secondaryTemperature)
+								.foregroundColor(Color(colorEnum: .darkestBlue))
+								.font(.system(size: CGFloat(.caption)))
+								.lineLimit(1)
+						}
 					}
 				}
-
+				
 				HStack(spacing: 0.0) {
 					Image(asset: WeatherField.precipitationProbability.hourlyIcon())
 						.renderingMode(.template)
