@@ -50,12 +50,11 @@ private struct ChartAreaView: View {
 	let totalDisplayValue: GenericValueCallback<Double, String>?
 
 	private let groupedData: [String: [ChartDataItem]]
-	@GestureState private var showSelection: Bool = false
+	@GestureState private var isDragging: Bool = false
 	@State private var selectedItems: [ChartDataItem]?
 	@State private var indicatorOffet: CGSize = .zero
 	@State private var popupDetailsOffset: CGSize = .zero
 	@State private var popupDetailsSize: CGSize = .zero
-	@GestureState var gestureState: Bool = false
 
 	init(mode: ChartMode, data: [ChartDataItem], totalDisplayValue: GenericValueCallback<Double, String>?) {
 		self.mode = mode
@@ -163,15 +162,13 @@ private extension ChartAreaView {
 			.foregroundColor(Color(colorEnum: .darkGrey))
 			.frame(width: 1.0, height: chartProxy.plotAreaSize.height)
 			.offset(indicatorOffet)
-			.opacity(showSelection ? 1.0 : 0.0)
-			.animation(.easeIn(duration: 0.1), value: showSelection)
+			.opacity(selectedItems?.isEmpty == false ? 1.0 : 0.0)
 	}
 
 	@ViewBuilder
 	var popUpDetails: some View {
 		if let selectedItems,
-		   !selectedItems.isEmpty,
-		   showSelection {
+		   !selectedItems.isEmpty {
 			VStack(alignment: .trailing) {
 				ChartOverlayDetailsView(title: selectedItems.first?.xAxisDisplayLabel ?? "",
 										valueItems: selectedItems.map { ($0.group, $0.displayValue, $0.yVal) },
@@ -187,26 +184,32 @@ private extension ChartAreaView {
 	@ViewBuilder
 	func interactionArea(proxy: GeometryProxy, chartProxy: ChartProxy) -> some View {
 		Rectangle().fill(.clear).contentShape(Rectangle())
-			.gesture(DragGesture().updating($showSelection) { _, state, _ in
+			.gesture(DragGesture(minimumDistance: 0).updating($isDragging) { _, state, _ in
 				state = true
 			}.onChanged { value in
-				let origin = proxy[chartProxy.plotAreaFrame].origin
-				let location = CGPoint(
-					x: value.location.x - origin.x,
-					y: value.location.y - origin.y
-				)
-
-				let offsetX = location.x.clamped(to: 0.0...chartProxy.plotAreaSize.width)
-				indicatorOffet = CGSize(width: offsetX, height: 0.0)
-
-				let popUpOffsetMin = 0.0
-				let popUpOffsetMax = chartProxy.plotAreaSize.width - popupDetailsSize.width
-				popupDetailsOffset = CGSize(width: offsetX.clamped(to: popUpOffsetMin...popUpOffsetMax),
-											height: 0.0)
-
-				let (xVal, _) = chartProxy.value(at: location, as: (Int, Double).self) ?? (-1, 0)
-				selectedItems = data.filter { $0.xVal == xVal }
+				updateSelectedItems(position: value.location,
+									proxy: proxy,
+									chartProxy: chartProxy)
 			})
+	}
+
+	func updateSelectedItems(position: CGPoint, proxy: GeometryProxy, chartProxy: ChartProxy) {
+		let origin = proxy[chartProxy.plotAreaFrame].origin
+		let location = CGPoint(
+			x: position.x - origin.x,
+			y: position.y - origin.y
+		)
+
+		let offsetX = location.x.clamped(to: 0.0...chartProxy.plotAreaSize.width)
+		indicatorOffet = CGSize(width: offsetX, height: 0.0)
+
+		let popUpOffsetMin = 0.0
+		let popUpOffsetMax = chartProxy.plotAreaSize.width - popupDetailsSize.width
+		popupDetailsOffset = CGSize(width: offsetX.clamped(to: popUpOffsetMin...popUpOffsetMax),
+									height: 0.0)
+
+		let (xVal, _) = chartProxy.value(at: location, as: (Int, Double).self) ?? (-1, 0)
+		selectedItems = data.filter { $0.xVal == xVal }
 	}
 }
 

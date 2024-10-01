@@ -153,6 +153,7 @@ private struct ContentView: View {
 			.spinningLoader(show: $viewModel.suammaryRewardsIsLoading,
 							hideContent: true)
 		}
+		.id(viewModel.summaryMode)
 		.WXMCardStyle()
 		.animation(.easeIn(duration: animationDuration), value: viewModel.suammaryRewardsIsLoading)
 		.if(viewModel.summaryChartDataItems == nil) { view in
@@ -243,6 +244,7 @@ private struct ContentView: View {
 						StationRewardDetailsView(details: details)
 					}
 				}
+				.id(viewModel.currenStationMode)
 				.animation(.easeIn(duration: animationDuration), value: viewModel.currentStationIdLoading)
 				.spinningLoader(show: Binding(get: { viewModel.currentStationIdLoading == device.id },
 											  set: { _ in }),
