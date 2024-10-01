@@ -11,7 +11,6 @@ import Toolkit
 
 struct StationForecastView: View {
     @StateObject var viewModel: StationForecastViewModel
-	@State private var showTemperatureBarsInfo: Bool = false
 
     var body: some View {
         ZStack {
@@ -35,7 +34,7 @@ struct StationForecastView: View {
 								Spacer()
 
 								Button {
-									showTemperatureBarsInfo = true
+									viewModel.handleNextSevenDaysInfoTap()
 								} label: {
 									Text(FontIcon.infoCircle.rawValue)
 										.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
@@ -61,11 +60,11 @@ struct StationForecastView: View {
 					}
 					.iPadMaxWidth()
 					.padding(.vertical)
-				}
-			}
-		}
+                }
+            }
+        }
 		.wxmEmptyView(show: Binding(get: { viewModel.viewState == .hidden }, set: { _ in }), configuration: viewModel.hiddenViewConfiguration)
-				.bottomSheet(show: $showTemperatureBarsInfo) {
+		.bottomSheet(show: $viewModel.showTemperatureBarsInfo) {
 			TemperatureExplanationView()
 		}
         .fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)

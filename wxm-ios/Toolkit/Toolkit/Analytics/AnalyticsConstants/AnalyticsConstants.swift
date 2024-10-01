@@ -59,6 +59,7 @@ public enum Screen: String {
 	case boostDetails = "Boost Detail"
 	case cellCapacityInfo = "Cell Capacity info"
 	case rewardAnalytics = "Reward Analytics"
+	case temperatureBars = "Temperature Bars Explanation"
 }
 
 public enum Event: String {
@@ -286,6 +287,7 @@ public enum ParameterValue {
 	case dailyDetails
 	case hourlyDetailsCard
 	case hourlyForecast
+	case forecastNextSevenDays
 	case rewardSplittingInDailyReward
 	case rewardSplittingInDeviceSettings
 	case rewardSplitting

@@ -20,6 +20,7 @@ class StationForecastViewModel: ObservableObject {
 	}
     @Published private(set) var viewState: ViewState = .loading
 	@Published private(set) var hourlyItems: [StationForecastMiniCardView.Item] = []
+	@Published var showTemperatureBarsInfo: Bool = false
 
     var overallMinTemperature: Double? {
         forecasts.min { ($0.daily?.temperatureMin ?? 0.0) < ($1.daily?.temperatureMin ?? 0.0) }?.daily?.temperatureMin
@@ -68,9 +69,15 @@ class StationForecastViewModel: ObservableObject {
 		Router.shared.navigateTo(.forecastDetails(viewModel))
 
 		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .dailyCard,
-															  .itemId: .dailyForecast])
+																	.itemId: .dailyForecast,
+																	.index: .custom("\(index)")])
 	}
 
+	func handleNextSevenDaysInfoTap() {
+		showTemperatureBarsInfo = true
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
+																	.itemId: .forecastNextSevenDays])
+	}
 
 }
 
