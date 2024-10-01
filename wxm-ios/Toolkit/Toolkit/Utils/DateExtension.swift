@@ -215,6 +215,7 @@ public extension Date {
 		} else if localized {
 			dateFormatter.setLocalizedDateFormatFromTemplate(format.rawValue)
 		} else {
+			dateFormatter.locale = Locale(identifier: "en_US_POSIX")
 			dateFormatter.dateFormat = format.rawValue
 		}
                 
