@@ -46,24 +46,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 
 	// Selected station
 	@Published var currentStationIdLoading: String? = nil
-	@Published var currenStationMode: DeviceRewardsMode = .week {
-		didSet {
-			guard let decviceId = currentStationReward?.stationId else {
-				return
-			}
-
-			refreshCurrentDevice(deviceId: decviceId)
-		}
-	}
-	@Published var currentStationReward: (stationId: String, stationReward: NetworkDeviceRewardsResponse?)? {
-		didSet {
-			updateCurrentStationCharts()
-		}
-	}
-	@Published var currentStationChartDataItems: [ChartDataItem]?
-	@Published var currentStationChartLegendItems: [ChartLegendView.Item]?
-	@Published var currentStationError: Bool = false
-	private(set) var currentStationFailObject: FailSuccessStateObject?
+	@Published var stationItems: [String: StationItem] = [:]
 
 	@Published var state: RewardAnalyticsView.State = .noRewards
 	private lazy var noStationsConfiguration: WXMEmptyView.Configuration = {
@@ -84,21 +67,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 		self.devices = devices
 		updateState()
 
-		refresh()
-	}
-
-	func refresh(completion: VoidCallback? = nil) {
-		Task { @MainActor in
-			defer {
-				completion?()
-			}
-			
-			refreshSummaryRewards()
-
-			if let firstDeviceId = devices.first?.id {
-				refreshCurrentDevice(deviceId: firstDeviceId)
-			}
-		}
+		initialFetch()
 	}
 
 	func isExpanded(device: DeviceDetails) -> Bool {
@@ -106,20 +75,39 @@ class RewardAnalyticsViewModel: ObservableObject {
 			return false
 		}
 
-		return currentStationReward?.stationId == deviceId
+		return stationItems[deviceId] != nil
 	}
 
 	func handleDeviceTap(_ device: DeviceDetails) {
-		guard let deviceId = device.id, currentStationReward?.stationId != deviceId else {
-			currentStationReward = nil
+		guard stationItems[device.id ?? ""] != nil else {
+			refreshCurrentDevice(deviceId: device.id, mode: .week)
 			return
 		}
 		
-		refreshCurrentDevice(deviceId: deviceId)
+		stationItems.removeValue(forKey: device.id ?? "")
+	}
+
+	func setMode(_ mode: DeviceRewardsMode, for deviceId: String) {
+		stationItems[deviceId]?.setMode(mode)
+		refreshCurrentDevice(deviceId: deviceId, mode: mode)
 	}
 }
 
 private extension RewardAnalyticsViewModel {
+	func initialFetch(completion: VoidCallback? = nil) {
+		Task { @MainActor in
+			defer {
+				completion?()
+			}
+
+			refreshSummaryRewards()
+
+			if let firstDeviceId = devices.first?.id {
+				refreshCurrentDevice(deviceId: firstDeviceId, mode: .week)
+			}
+		}
+	}
+
 	func updateState() {
 		if devices.isEmpty {
 			state = .empty(noStationsConfiguration)
@@ -130,29 +118,37 @@ private extension RewardAnalyticsViewModel {
 		}
 	}
 
-	func refreshCurrentDevice(deviceId: String) {
-		currentStationError = false
+	func refreshCurrentDevice(deviceId: String?, mode: DeviceRewardsMode) {
+		guard let deviceId else {
+			return
+		}
+
+		stationItems[deviceId]?.setStationError(false, failObject: nil)
 		currentStationIdLoading = deviceId
 		Task { @MainActor [weak self] in
 			defer {
 				currentStationIdLoading = nil
 			}
 
-			guard let result = await self?.getRewardsBreakdown(for: deviceId) else {
+			guard let result = await self?.getRewardsBreakdown(for: deviceId, mode: mode) else {
 				return
 			}
+
+			let item = StationItem(mode: mode)
+			self?.stationItems[deviceId] = item
 
 			switch result {
 				case .failure(let error):
 					let info = error.uiInfo(description: LocalizableString.RewardAnalytics.tapToRetry.localized)
-					self?.currentStationFailObject = info.defaultFailObject(type: .rewardAnalytics,
-																			failMode: .retry) {
-							self?.refreshCurrentDevice(deviceId: deviceId)
-						}
-					self?.currentStationError = true
-					self?.currentStationReward = (deviceId, nil)
+					let failObject = info.defaultFailObject(type: .rewardAnalytics,
+															failMode: .retry) {
+						self?.refreshCurrentDevice(deviceId: deviceId, mode: mode)
+					}
+					self?.stationItems[deviceId]?.setStationError(true, failObject: failObject)
 				case .success(let response):
-					self?.currentStationReward = (deviceId, response)
+					self?.stationItems[deviceId]?.setReward(reward: response)
+					let chartData = self?.getStationCharts(from: response, mode: self?.stationItems[deviceId]?.mode ?? .week)
+					self?.stationItems[deviceId]?.setChartDataItems(chartData?.dataItems, legendItems: chartData?.legendItems)
 			}
 		}
 	}
@@ -194,17 +190,11 @@ private extension RewardAnalyticsViewModel {
 																			mode: summaryMode)
 	}
 
-	func updateCurrentStationCharts() {
-		guard let stationReward = currentStationReward?.stationReward else {
-			currentStationChartDataItems = nil
-			currentStationChartLegendItems = nil
-			return
-		}
-
-		let data = RewardAnalyticsChartFactory().getChartsData(deviceResponse: stationReward,
-															   mode: currenStationMode)
-		currentStationChartDataItems = data.dataItems
-		currentStationChartLegendItems = data.legendItems
+	func getStationCharts(from reward: NetworkDeviceRewardsResponse, mode: DeviceRewardsMode) -> RewardAnalyticsChartFactory.ChartData {
+		
+		let data = RewardAnalyticsChartFactory().getChartsData(deviceResponse: reward,
+															   mode: mode)
+		return data
 	}
 
 	func getSummaryRewards() async -> Result<NetworkDevicesRewardsResponse, NetworkErrorResponse>? {
@@ -217,14 +207,44 @@ private extension RewardAnalyticsViewModel {
 		}
 	}
 
-	func getRewardsBreakdown(for deviceId: String) async -> Result<NetworkDeviceRewardsResponse, NetworkErrorResponse>? {
+	func getRewardsBreakdown(for deviceId: String, mode: DeviceRewardsMode) async -> Result<NetworkDeviceRewardsResponse, NetworkErrorResponse>? {
 		do {
 			let  result = try await useCase.getUserDeviceRewards(deviceId: deviceId,
-																 mode: currenStationMode).toAsync().result
+																 mode: mode).toAsync().result
 			return result
 		} catch {
 			print(error)
 			return nil
+		}
+	}
+}
+
+extension RewardAnalyticsViewModel {
+	struct StationItem {
+		var reward: NetworkDeviceRewardsResponse?
+		var mode: DeviceRewardsMode = .week
+		var chartDataItems: [ChartDataItem]?
+		var legendItems: [ChartLegendView.Item]?
+		var stationError: Bool = false
+		var failObject: FailSuccessStateObject?
+
+		mutating func setReward(reward: NetworkDeviceRewardsResponse?) {
+			self.reward = reward
+		}
+
+		mutating func setMode(_ mode: DeviceRewardsMode) {
+			self.mode = mode
+		}
+
+		mutating func setChartDataItems(_ dataItems: [ChartDataItem]?,
+										legendItems: [ChartLegendView.Item]?) {
+			self.chartDataItems = dataItems
+			self.legendItems = legendItems
+		}
+
+		mutating func setStationError(_ stationError: Bool, failObject: FailSuccessStateObject?) {
+			self.failObject = failObject
+			self.stationError = stationError
 		}
 	}
 }

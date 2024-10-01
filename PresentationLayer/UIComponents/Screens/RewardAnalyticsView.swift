@@ -59,9 +59,7 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var noRewards: some View {
-		TrackableScrollView { completion in
-			viewModel.refresh(completion: completion)
-		} content: {
+		TrackableScrollView {
 			VStack(spacing: CGFloat(.defaultSidePadding)) {
 				titleView
 				NoRewardsView(showTipView: false)
@@ -74,9 +72,7 @@ private struct ContentView: View {
 	@ViewBuilder
 	var rewardsView: some View {
 		ScrollViewReader { proxy in
-			TrackableScrollView { completion in
-				viewModel.refresh(completion: completion)
-			} content: {
+			TrackableScrollView {
 				VStack(spacing: CGFloat(.defaultSidePadding)) {
 					titleView
 
@@ -88,7 +84,7 @@ private struct ContentView: View {
 				.padding(CGFloat(.defaultSidePadding))
 			}
 			.animation(.easeIn(duration: animationDuration),
-					   value: viewModel.currentStationReward != nil)
+					   value: viewModel.stationItems.keys)
 		}
 	}
 
@@ -219,7 +215,7 @@ private struct ContentView: View {
 				}
 			}
 
-			if isExpanded {
+			if isExpanded, let stationItem = viewModel.stationItems[device.id ?? ""] {
 				VStack(spacing: CGFloat(.smallToMediumSpacing)) {
 					HStack {
 						Text(LocalizableString.RewardAnalytics.rewardsBreakdown.localized)
@@ -228,12 +224,13 @@ private struct ContentView: View {
 						Spacer()
 					}
 
-					rewardsBreakdownSegmentView
+					rewardsBreakdownSegmentView(deviceId: device.id ?? "", stationItem: stationItem)
 				}
 
 				VStack(spacing: CGFloat(.defaultSpacing)) {
-					if let currentStationChartData = viewModel.currentStationChartDataItems,
-					   let legendItems = viewModel.currentStationChartLegendItems {
+					if let deviceId = device.id,
+					   let currentStationChartData = viewModel.stationItems[deviceId]?.chartDataItems,
+					   let legendItems = viewModel.stationItems[deviceId]?.legendItems {
 						VStack(spacing: CGFloat(.mediumSpacing)) {
 							ChartView(mode: .area, data: currentStationChartData) { total in
 								return total.toWXMTokenPrecisionString
@@ -246,15 +243,16 @@ private struct ContentView: View {
 								Spacer()
 							}
 						}
-					} else if viewModel.currentStationError, 
-							let obj = viewModel.currentStationFailObject {
+					} else if let deviceId = device.id,
+							  viewModel.stationItems[deviceId]?.stationError == true,
+							  let obj = viewModel.stationItems[deviceId]?.failObject {
 						FailView(obj: obj)
 					}
-					ForEach(viewModel.currentStationReward?.stationReward?.details ?? [], id: \.code) { details in
+					ForEach(viewModel.stationItems[device.id ?? ""]?.reward?.details ?? [], id: \.code) { details in
 						StationRewardDetailsView(details: details)
 					}
 				}
-				.id(viewModel.currenStationMode)
+				.id(viewModel.stationItems[device.id ?? ""]?.mode)
 				.animation(.easeIn(duration: animationDuration), value: viewModel.currentStationIdLoading)
 				.spinningLoader(show: Binding(get: { viewModel.currentStationIdLoading == device.id },
 											  set: { _ in }),
@@ -274,7 +272,7 @@ private struct ContentView: View {
 
 private extension ContentView {
 	@ViewBuilder
-	var rewardsBreakdownSegmentView: some View {
+	func rewardsBreakdownSegmentView(deviceId: String, stationItem: RewardAnalyticsViewModel.StationItem) -> some View {
 		HStack(alignment: .top) {
 			VStack(alignment: .leading, spacing: 0.0) {
 				Text(LocalizableString.RewardAnalytics.earnedByThisStation.localized)
@@ -282,7 +280,7 @@ private extension ContentView {
 					.foregroundStyle(Color(colorEnum: .text))
 
 				if viewModel.currentStationIdLoading == nil,
-				   let rewards = viewModel.currentStationReward?.stationReward?.total {
+				   let rewards = stationItem.reward?.total {
 					Text(rewards.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
 						.font(.system(size: CGFloat(.mediumFontSize)))
 						.foregroundStyle(Color(colorEnum: .text))
@@ -292,9 +290,9 @@ private extension ContentView {
 			Spacer()
 
 			CustomSegmentView(options: DeviceRewardsMode.allCases.map { $0.description },
-							  selectedIndex: Binding(get: { viewModel.currenStationMode.index ?? 0 },
+							  selectedIndex: Binding(get: { stationItem.mode.index ?? 0 },
 													 set: { index in
-				viewModel.currenStationMode = DeviceRewardsMode.value(for: index)
+				viewModel.setMode(DeviceRewardsMode.value(for: index), for: deviceId)
 			}),
 							  style: .compact)
 			.cornerRadius(CGFloat(.buttonCornerRadius))
