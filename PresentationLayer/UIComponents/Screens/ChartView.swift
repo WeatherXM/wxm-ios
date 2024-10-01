@@ -226,9 +226,9 @@ private struct ChartOverlayDetailsView: View {
 		VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
 			Text(title)
 				.font(.system(size: CGFloat(.caption)))
-				.foregroundStyle(Color(colorEnum: .textInverse))
+				.foregroundStyle(Color(colorEnum: .text))
 
-			Color(colorEnum: .textInverse).frame(height: 1)
+			Color(colorEnum: .text).frame(height: 1)
 
 			if let totalDisplayValue {
 				HStack {
@@ -237,7 +237,7 @@ private struct ChartOverlayDetailsView: View {
 					Text(totalDisplayValue(total))
 				}
 				.font(.system(size: CGFloat(.caption)))
-				.foregroundStyle(Color(colorEnum: .textInverse))
+				.foregroundStyle(Color(colorEnum: .text))
 			}
 
 			ForEach(valueItems, id: \.title) { item in
@@ -247,7 +247,7 @@ private struct ChartOverlayDetailsView: View {
 					Text(item.value)
 				}
 				.font(.system(size: CGFloat(.caption)))
-				.foregroundStyle(Color(colorEnum: .textInverse))
+				.foregroundStyle(Color(colorEnum: .text))
 			}
 		}
 		.fixedSize()
