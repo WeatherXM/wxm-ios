@@ -78,13 +78,14 @@ class RewardAnalyticsViewModel: ObservableObject {
 		return stationItems[deviceId] != nil
 	}
 
-	func handleDeviceTap(_ device: DeviceDetails) {
+	func handleDeviceTap(_ device: DeviceDetails, completion: @escaping VoidCallback) {
 		guard stationItems[device.id ?? ""] != nil else {
-			refreshCurrentDevice(deviceId: device.id, mode: .week)
+			refreshCurrentDevice(deviceId: device.id, mode: .week, completion: completion)
 			return
 		}
 		
 		stationItems.removeValue(forKey: device.id ?? "")
+		completion()
 	}
 
 	func setMode(_ mode: DeviceRewardsMode, for deviceId: String) {
@@ -118,7 +119,7 @@ private extension RewardAnalyticsViewModel {
 		}
 	}
 
-	func refreshCurrentDevice(deviceId: String?, mode: DeviceRewardsMode) {
+	func refreshCurrentDevice(deviceId: String?, mode: DeviceRewardsMode, completion: VoidCallback? = nil) {
 		guard let deviceId else {
 			return
 		}
@@ -128,6 +129,7 @@ private extension RewardAnalyticsViewModel {
 		Task { @MainActor [weak self] in
 			defer {
 				currentStationIdLoading = nil
+				completion?()
 			}
 
 			guard let result = await self?.getRewardsBreakdown(for: deviceId, mode: mode) else {

@@ -186,13 +186,15 @@ private struct ContentView: View {
 		let isExpanded = viewModel.isExpanded(device: device)
 		VStack(spacing: CGFloat(.defaultSpacing)) {
 			Button {
-				if !isExpanded {
-					withAnimation {
-						scrollProxy.scrollTo(device.id, anchor: .top)
+				viewModel.handleDeviceTap(device) {
+					if !isExpanded {
+						DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+							withAnimation {
+								scrollProxy.scrollTo(device.id, anchor: .top)
+							}
+						}
 					}
 				}
-
-				viewModel.handleDeviceTap(device)
 			} label: {
 				HStack {
 					Text(device.displayName)
