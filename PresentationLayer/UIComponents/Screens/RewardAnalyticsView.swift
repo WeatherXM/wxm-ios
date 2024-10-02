@@ -147,6 +147,7 @@ private struct ContentView: View {
 						.aspectRatio(3.0/2.0, contentMode: .fit)
 				} else if viewModel.showSummaryError, let failObj = viewModel.summaryFailObject {
 					FailView(obj: failObj)
+						.padding()
 				}
 			}
 			.spinningLoader(show: $viewModel.suammaryRewardsIsLoading,
@@ -265,6 +266,7 @@ private struct ContentView: View {
 			} else if stationItem.stationError == true,
 					  let obj = stationItem.failObject {
 				FailView(obj: obj)
+					.padding()
 			}
 			ForEach(stationItem.reward?.details ?? [], id: \.code) { details in
 				StationRewardDetailsView(details: details)
