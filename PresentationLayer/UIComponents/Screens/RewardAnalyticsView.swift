@@ -84,7 +84,7 @@ private struct ContentView: View {
 				.padding(CGFloat(.defaultSidePadding))
 			}
 			.animation(.easeIn(duration: animationDuration),
-					   value: viewModel.stationItems.keys)
+					   value: viewModel.stationItems.values.reduce(into: 0) { $0 = $0 + ($1.isExpanded ? 1 : 0) })
 		}
 	}
 

@@ -45,7 +45,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 	private(set) var summaryFailObject: FailSuccessStateObject?
 
 	// Selected station
-	@Published var stationItems: [String: StationItem] = [:]
+	@Published var stationItems: [String: StationItem]
 
 	@Published var state: RewardAnalyticsView.State = .noRewards
 	private lazy var noStationsConfiguration: WXMEmptyView.Configuration = {
@@ -64,6 +64,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 	init(useCase: MeUseCase, devices: [DeviceDetails]) {
 		self.useCase = useCase
 		self.devices = devices
+		self.stationItems = devices.reduce(into: [:]) { $0[$1.id ?? ""] = StationItem() }
 		updateState()
 
 		initialFetch()
@@ -74,16 +75,16 @@ class RewardAnalyticsViewModel: ObservableObject {
 			return false
 		}
 
-		return stationItems[deviceId] != nil
+		return stationItems[deviceId]?.isExpanded ==  true
 	}
 
 	func handleDeviceTap(_ device: DeviceDetails, completion: @escaping VoidCallback) {
-		guard stationItems[device.id ?? ""] != nil else {
+		guard stationItems[device.id ?? ""]?.isExpanded == true else {
 			refreshCurrentDevice(deviceId: device.id, mode: .week, completion: completion)
 			return
 		}
 		
-		stationItems.removeValue(forKey: device.id ?? "")
+		stationItems[device.id ?? ""] = StationItem()
 		completion()
 	}
 
@@ -135,9 +136,6 @@ private extension RewardAnalyticsViewModel {
 				return
 			}
 
-			let item = StationItem(mode: mode)
-			self?.stationItems[deviceId] = item
-
 			switch result {
 				case .failure(let error):
 					let info = error.uiInfo(description: LocalizableString.RewardAnalytics.tapToRetry.localized)
@@ -147,9 +145,11 @@ private extension RewardAnalyticsViewModel {
 					}
 					self?.stationItems[deviceId]?.setStationError(true, failObject: failObject)
 				case .success(let response):
+					self?.stationItems[deviceId]?.setIsExpanded(true)
 					self?.stationItems[deviceId]?.setReward(reward: response)
 					let chartData = self?.getStationCharts(from: response, mode: self?.stationItems[deviceId]?.mode ?? .week)
 					self?.stationItems[deviceId]?.setChartDataItems(chartData?.dataItems, legendItems: chartData?.legendItems)
+
 			}
 		}
 	}
@@ -229,6 +229,7 @@ extension RewardAnalyticsViewModel {
 		var stationError: Bool = false
 		var failObject: FailSuccessStateObject?
 		var isLoading: Bool = false
+		var isExpanded: Bool = false
 
 		mutating func setReward(reward: NetworkDeviceRewardsResponse?) {
 			self.reward = reward
@@ -251,6 +252,10 @@ extension RewardAnalyticsViewModel {
 
 		mutating func setIsLoading(_ isLoading: Bool) {
 			self.isLoading = isLoading
+		}
+
+		mutating func setIsExpanded(_ isExpanded: Bool) {
+			self.isExpanded = isExpanded
 		}
 	}
 }
