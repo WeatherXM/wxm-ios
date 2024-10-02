@@ -45,7 +45,6 @@ class RewardAnalyticsViewModel: ObservableObject {
 	private(set) var summaryFailObject: FailSuccessStateObject?
 
 	// Selected station
-	@Published var currentStationIdLoading: String? = nil
 	@Published var stationItems: [String: StationItem] = [:]
 
 	@Published var state: RewardAnalyticsView.State = .noRewards
@@ -125,10 +124,10 @@ private extension RewardAnalyticsViewModel {
 		}
 
 		stationItems[deviceId]?.setStationError(false, failObject: nil)
-		currentStationIdLoading = deviceId
+		stationItems[deviceId]?.isLoading = true
 		Task { @MainActor [weak self] in
 			defer {
-				currentStationIdLoading = nil
+				stationItems[deviceId]?.isLoading = false
 				completion?()
 			}
 
@@ -229,6 +228,7 @@ extension RewardAnalyticsViewModel {
 		var legendItems: [ChartLegendView.Item]?
 		var stationError: Bool = false
 		var failObject: FailSuccessStateObject?
+		var isLoading: Bool = false
 
 		mutating func setReward(reward: NetworkDeviceRewardsResponse?) {
 			self.reward = reward
@@ -247,6 +247,10 @@ extension RewardAnalyticsViewModel {
 		mutating func setStationError(_ stationError: Bool, failObject: FailSuccessStateObject?) {
 			self.failObject = failObject
 			self.stationError = stationError
+		}
+
+		mutating func setIsLoading(_ isLoading: Bool) {
+			self.isLoading = isLoading
 		}
 	}
 }

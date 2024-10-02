@@ -188,6 +188,7 @@ private struct ContentView: View {
 			Button {
 				viewModel.handleDeviceTap(device) {
 					if !isExpanded {
+						// Scroll to expanded once the expand animation is finished
 						DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
 							withAnimation {
 								scrollProxy.scrollTo(device.id, anchor: .top)
@@ -255,8 +256,8 @@ private struct ContentView: View {
 					}
 				}
 				.id(viewModel.stationItems[device.id ?? ""]?.mode)
-				.animation(.easeIn(duration: animationDuration), value: viewModel.currentStationIdLoading)
-				.spinningLoader(show: Binding(get: { viewModel.currentStationIdLoading == device.id },
+				.animation(.easeIn(duration: animationDuration), value: viewModel.stationItems[device.id ?? ""]?.isLoading)
+				.spinningLoader(show: Binding(get: { viewModel.stationItems[device.id ?? ""]?.isLoading == true },
 											  set: { _ in }),
 								hideContent: true)
 			}
@@ -265,7 +266,7 @@ private struct ContentView: View {
 		.animation(.easeIn(duration: animationDuration), value: isExpanded)
 		.if(!isExpanded) { view in
 			view
-				.spinningLoader(show: Binding(get: { viewModel.currentStationIdLoading == device.id },
+				.spinningLoader(show: Binding(get: { viewModel.stationItems[device.id ?? ""]?.isLoading == true },
 											  set: { _ in }),
 								lottieLoader: false)
 		}
@@ -281,7 +282,7 @@ private extension ContentView {
 					.font(.system(size: CGFloat(.caption)))
 					.foregroundStyle(Color(colorEnum: .text))
 
-				if viewModel.currentStationIdLoading == nil,
+				if !stationItem.isLoading,
 				   let rewards = stationItem.reward?.total {
 					Text(rewards.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
 						.font(.system(size: CGFloat(.mediumFontSize)))
