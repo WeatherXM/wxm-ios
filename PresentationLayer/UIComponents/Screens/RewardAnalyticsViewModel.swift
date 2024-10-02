@@ -121,6 +121,7 @@ private extension RewardAnalyticsViewModel {
 		Task { @MainActor [weak self] in
 			defer {
 				stationItems[deviceId]?.isLoading = false
+				stationItems[deviceId]?.setIsExpanded(true)
 				completion?()
 			}
 
@@ -137,7 +138,6 @@ private extension RewardAnalyticsViewModel {
 					}
 					self?.stationItems[deviceId]?.setStationError(true, failObject: failObject)
 				case .success(let response):
-					self?.stationItems[deviceId]?.setIsExpanded(true)
 					self?.stationItems[deviceId]?.setReward(reward: response)
 					let chartData = self?.getStationCharts(from: response, mode: self?.stationItems[deviceId]?.mode ?? .week)
 					self?.stationItems[deviceId]?.setChartDataItems(chartData?.dataItems, legendItems: chartData?.legendItems)
