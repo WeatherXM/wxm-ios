@@ -45,7 +45,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 	private(set) var summaryFailObject: FailSuccessStateObject?
 
 	// Selected station
-	@Published var stationItems: [String: StationItem]
+	@Published var stationItems: [String: StationCardItem]
 
 	@Published var state: RewardAnalyticsView.State = .noRewards
 	private lazy var noStationsConfiguration: WXMEmptyView.Configuration = {
@@ -64,18 +64,10 @@ class RewardAnalyticsViewModel: ObservableObject {
 	init(useCase: MeUseCase, devices: [DeviceDetails]) {
 		self.useCase = useCase
 		self.devices = devices
-		self.stationItems = devices.reduce(into: [:]) { $0[$1.id ?? ""] = StationItem() }
+		self.stationItems = devices.reduce(into: [:]) { $0[$1.id ?? ""] = StationCardItem() }
 		updateState()
 
 		initialFetch()
-	}
-
-	func isExpanded(device: DeviceDetails) -> Bool {
-		guard let deviceId = device.id else {
-			return false
-		}
-
-		return stationItems[deviceId]?.isExpanded ==  true
 	}
 
 	func handleDeviceTap(_ device: DeviceDetails, completion: @escaping VoidCallback) {
@@ -84,7 +76,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 			return
 		}
 		
-		stationItems[device.id ?? ""] = StationItem()
+		stationItems[device.id ?? ""] = StationCardItem()
 		completion()
 	}
 
@@ -221,7 +213,7 @@ private extension RewardAnalyticsViewModel {
 }
 
 extension RewardAnalyticsViewModel {
-	struct StationItem {
+	struct StationCardItem {
 		var reward: NetworkDeviceRewardsResponse?
 		var mode: DeviceRewardsMode = .week
 		var chartDataItems: [ChartDataItem]?

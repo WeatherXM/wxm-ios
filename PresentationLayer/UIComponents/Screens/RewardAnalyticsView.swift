@@ -183,7 +183,9 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	func stationView(device: DeviceDetails, scrollProxy: ScrollViewProxy) -> some View {
-		let isExpanded = viewModel.isExpanded(device: device)
+		let deviceId = device.id ?? ""
+		let stationItem = viewModel.stationItems[deviceId]
+		let isExpanded = stationItem?.isExpanded == true
 		VStack(spacing: CGFloat(.defaultSpacing)) {
 			Button {
 				viewModel.handleDeviceTap(device) {
@@ -218,64 +220,67 @@ private struct ContentView: View {
 				}
 			}
 
-			if isExpanded, let stationItem = viewModel.stationItems[device.id ?? ""] {
-				VStack(spacing: CGFloat(.smallToMediumSpacing)) {
-					HStack {
-						Text(LocalizableString.RewardAnalytics.rewardsBreakdown.localized)
-							.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
-							.foregroundStyle(Color(colorEnum: .text))
-						Spacer()
-					}
-
-					rewardsBreakdownSegmentView(deviceId: device.id ?? "", stationItem: stationItem)
-				}
-
-				VStack(spacing: CGFloat(.defaultSpacing)) {
-					if let deviceId = device.id,
-					   let currentStationChartData = viewModel.stationItems[deviceId]?.chartDataItems,
-					   let legendItems = viewModel.stationItems[deviceId]?.legendItems {
-						VStack(spacing: CGFloat(.mediumSpacing)) {
-							ChartView(mode: .area, data: currentStationChartData) { total in
-								return total.toWXMTokenPrecisionString
-							}
-							.aspectRatio(3.0/2.0, contentMode: .fit)
-							.frame(maxWidth: .infinity, maxHeight: .infinity)
-
-							HStack {
-								ChartLegendView(items: legendItems)
-								Spacer()
-							}
-						}
-					} else if let deviceId = device.id,
-							  viewModel.stationItems[deviceId]?.stationError == true,
-							  let obj = viewModel.stationItems[deviceId]?.failObject {
-						FailView(obj: obj)
-					}
-					ForEach(viewModel.stationItems[device.id ?? ""]?.reward?.details ?? [], id: \.code) { details in
-						StationRewardDetailsView(details: details)
-					}
-				}
-				.id(viewModel.stationItems[device.id ?? ""]?.mode)
-				.animation(.easeIn(duration: animationDuration), value: viewModel.stationItems[device.id ?? ""]?.isLoading)
-				.spinningLoader(show: Binding(get: { viewModel.stationItems[device.id ?? ""]?.isLoading == true },
-											  set: { _ in }),
-								hideContent: true)
+			if isExpanded, let stationItem {
+				expandedView(for: deviceId , stationItem: stationItem)
 			}
 		}
 		.WXMCardStyle()
 		.animation(.easeIn(duration: animationDuration), value: isExpanded)
 		.if(!isExpanded) { view in
 			view
-				.spinningLoader(show: Binding(get: { viewModel.stationItems[device.id ?? ""]?.isLoading == true },
+				.spinningLoader(show: Binding(get: { stationItem?.isLoading == true },
 											  set: { _ in }),
 								lottieLoader: false)
 		}
+	}
+
+	@ViewBuilder
+	func expandedView(for deviceId: String, stationItem: RewardAnalyticsViewModel.StationCardItem) -> some View {
+		VStack(spacing: CGFloat(.smallToMediumSpacing)) {
+			HStack {
+				Text(LocalizableString.RewardAnalytics.rewardsBreakdown.localized)
+					.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+					.foregroundStyle(Color(colorEnum: .text))
+				Spacer()
+			}
+
+			rewardsBreakdownSegmentView(deviceId: deviceId, stationItem: stationItem)
+		}
+
+		VStack(spacing: CGFloat(.defaultSpacing)) {
+			if let currentStationChartData = stationItem.chartDataItems,
+			   let legendItems = stationItem.legendItems {
+				VStack(spacing: CGFloat(.mediumSpacing)) {
+					ChartView(mode: .area, data: currentStationChartData) { total in
+						return total.toWXMTokenPrecisionString
+					}
+					.aspectRatio(3.0/2.0, contentMode: .fit)
+					.frame(maxWidth: .infinity, maxHeight: .infinity)
+
+					HStack {
+						ChartLegendView(items: legendItems)
+						Spacer()
+					}
+				}
+			} else if stationItem.stationError == true,
+					  let obj = stationItem.failObject {
+				FailView(obj: obj)
+			}
+			ForEach(stationItem.reward?.details ?? [], id: \.code) { details in
+				StationRewardDetailsView(details: details)
+			}
+		}
+		.id(stationItem.mode)
+		.animation(.easeIn(duration: animationDuration), value: stationItem.isLoading)
+		.spinningLoader(show: Binding(get: { stationItem.isLoading == true },
+									  set: { _ in }),
+						hideContent: true)
 	}
 }
 
 private extension ContentView {
 	@ViewBuilder
-	func rewardsBreakdownSegmentView(deviceId: String, stationItem: RewardAnalyticsViewModel.StationItem) -> some View {
+	func rewardsBreakdownSegmentView(deviceId: String, stationItem: RewardAnalyticsViewModel.StationCardItem) -> some View {
 		HStack(alignment: .top) {
 			VStack(alignment: .leading, spacing: 0.0) {
 				Text(LocalizableString.RewardAnalytics.earnedByThisStation.localized)
