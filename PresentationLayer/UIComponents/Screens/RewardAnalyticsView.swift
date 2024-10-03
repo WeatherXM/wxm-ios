@@ -142,25 +142,20 @@ private struct ContentView: View {
 			}
 
 			Group {
-				if let dataItems = viewModel.summaryChartDataItems {
-					ChartView(data: dataItems)
-						.aspectRatio(3.0/2.0, contentMode: .fit)
-				} else if viewModel.showSummaryError, let failObj = viewModel.summaryFailObject {
+				if viewModel.showSummaryError, let failObj = viewModel.summaryFailObject {
 					FailView(obj: failObj)
 						.padding()
+				} else {
+					ChartView(data: viewModel.summaryChartDataItems ?? [])
+						.aspectRatio(3.0/2.0, contentMode: .fit)
 				}
 			}
 			.spinningLoader(show: $viewModel.suammaryRewardsIsLoading,
 							hideContent: true)
+			.id(viewModel.summaryMode)
 		}
-		.id(viewModel.summaryMode)
 		.WXMCardStyle()
 		.animation(.easeIn(duration: animationDuration), value: viewModel.suammaryRewardsIsLoading)
-		.if(viewModel.summaryChartDataItems == nil) { view in
-			view
-				.spinningLoader(show: $viewModel.suammaryRewardsIsLoading,
-								lottieLoader: false)
-		}
 	}
 
 	@ViewBuilder

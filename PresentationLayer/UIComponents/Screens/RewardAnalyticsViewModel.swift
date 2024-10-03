@@ -116,7 +116,6 @@ private extension RewardAnalyticsViewModel {
 			return
 		}
 
-		stationItems[deviceId]?.setStationError(false, failObject: nil)
 		stationItems[deviceId]?.isLoading = true
 		Task { @MainActor [weak self] in
 			defer {
@@ -136,18 +135,23 @@ private extension RewardAnalyticsViewModel {
 															failMode: .retry) {
 						self?.refreshCurrentDevice(deviceId: deviceId, mode: mode)
 					}
-					self?.stationItems[deviceId]?.setStationError(true, failObject: failObject)
+					
+					self?.stationItems[deviceId]?.setReward(reward: nil)
+					self?.stationItems[deviceId]?.setStationError(true,
+																  failObject: failObject)
+					self?.stationItems[deviceId]?.setChartDataItems(nil,
+																	legendItems: nil)
 				case .success(let response):
 					self?.stationItems[deviceId]?.setReward(reward: response)
-					let chartData = self?.getStationCharts(from: response, mode: self?.stationItems[deviceId]?.mode ?? .week)
-					self?.stationItems[deviceId]?.setChartDataItems(chartData?.dataItems, legendItems: chartData?.legendItems)
-
+					let chartData = self?.getStationCharts(from: response,
+														   mode: self?.stationItems[deviceId]?.mode ?? .week)
+					self?.stationItems[deviceId]?.setChartDataItems(chartData?.dataItems,
+																	legendItems: chartData?.legendItems)
 			}
 		}
 	}
 
 	func refreshSummaryRewards() {
-		showSummaryError = false
 		suammaryRewardsIsLoading = true
 		Task { @MainActor [weak self] in
 			defer {
@@ -168,6 +172,7 @@ private extension RewardAnalyticsViewModel {
 					self?.showSummaryError = true
 					self?.summaryResponse = nil
 				case .success(let response):
+					self?.showSummaryError = false
 					self?.summaryResponse = response
 			}
 		}
