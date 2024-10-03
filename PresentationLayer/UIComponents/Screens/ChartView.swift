@@ -33,17 +33,12 @@ struct ChartView: View {
 	let data: [ChartDataItem]
 	var totalDisplayValue: GenericValueCallback<Double, String>?
 
-    var body: some View {
-		if #available(iOS 16.0, *) {
-			ChartAreaView(mode: mode, data: data, totalDisplayValue: totalDisplayValue)
-		} else {
-			EmptyView()
-		}
-    }
+	var body: some View {
+		ChartAreaView(mode: mode, data: data, totalDisplayValue: totalDisplayValue)
+	}
 }
 
 
-@available(iOS 16.0, *)
 private struct ChartAreaView: View {
 	let mode: ChartMode
 	let data: [ChartDataItem]
@@ -153,7 +148,6 @@ private struct ChartAreaView: View {
 	}
 }
 
-@available(iOS 16.0, *)
 private extension ChartAreaView {
 
 	@ViewBuilder
@@ -173,7 +167,7 @@ private extension ChartAreaView {
 				ChartOverlayDetailsView(title: selectedItems.first?.xAxisDisplayLabel ?? "",
 										valueItems: selectedItems.map { ($0.group, $0.displayValue, $0.yVal) },
 										totalDisplayValue: totalDisplayValue)
-					.sizeObserver(size: $popupDetailsSize)
+				.sizeObserver(size: $popupDetailsSize)
 
 				Spacer()
 			}
