@@ -391,6 +391,8 @@ extension ParameterValue: RawRepresentable {
 				return "Indentify Problems"
 			case .deviceRewards:
 				return "Device Rewards"
+			case .deviceRewardsCard:
+				return "Device Rewards Card"
 			case .deviceRewardTransactions:
 				return "Device Rewards Transactions"
 			case .infoDailyRewards:
@@ -435,6 +437,8 @@ extension ParameterValue: RawRepresentable {
 				return "Reward Split pressed"
 			case .stakeholderContentType:
 				return "Stakeholder"
+			case .tokensEarnedPress:
+				return "Tokens Earned pressed"
 		}
 	}
 }

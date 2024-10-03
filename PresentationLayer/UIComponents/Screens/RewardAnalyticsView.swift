@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DomainLayer
+import Toolkit
 
 struct RewardAnalyticsView: View {
 	@StateObject var viewModel: RewardAnalyticsViewModel
@@ -49,6 +50,7 @@ private struct ContentView: View {
 		}
 		.onAppear {
 			navigationObject.title = LocalizableString.RewardAnalytics.stationRewards.localized
+			WXMAnalytics.shared.trackScreen(.rewardAnalytics)
 		}
 	}
 
