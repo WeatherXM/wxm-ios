@@ -11,7 +11,8 @@ import SwiftUI
 import Toolkit
 
 public final class WeatherStationsHomeViewModel: ObservableObject {
-    private final let meUseCase: MeUseCase
+    private let meUseCase: MeUseCase
+	private let remoteConfigUseCase: RemoteConfigUseCase
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
     private var cancellableSet: Set<AnyCancellable> = []
     private var filters: FilterValues? {
@@ -38,6 +39,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
         FilterValues.default != filters
     }
 
+	@Published var infoBanner: InfoBanner?
 	@Published var totalEarnedTitle: String?
 	@Published var totalEarnedValueText: String?
     @Published var shouldShowFullScreenLoader = true
@@ -48,13 +50,18 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
     private(set) var failObj: FailSuccessStateObject?
     weak var mainVM: MainScreenViewModel?
 
-    public init(meUseCase: MeUseCase) {
+	public init(meUseCase: MeUseCase, remoteConfigUseCase: RemoteConfigUseCase) {
         self.meUseCase = meUseCase
+		self.remoteConfigUseCase = remoteConfigUseCase
 		let scrollOffsetObject: TrackableScrollOffsetObject = .init()
 		self.scrollOffsetObject = scrollOffsetObject
 		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
 		self.tabBarVisibilityHandler.$isTabBarShowing.assign(to: &$isTabBarShowing)
         observeFilters()
+		
+		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
+			self?.infoBanner = infoBanner
+		}.store(in: &cancellableSet)
     }
 
     /// Perform request to get all the essentials
@@ -137,6 +144,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 
     func getEmptyViewConfiguration() -> WXMEmptyView.Configuration? {
         let obj = WXMEmptyView.Configuration(animationEnum: .emptyDevices,
+											 backgroundColor: .noColor,
                                              title: LocalizableString.Home.totalWeatherStationsEmptyTitle.localized,
                                              description: LocalizableString.Home.totalWeatherStationsEmptyDescription.localized.attributedMarkdown,
                                              buttonTitle: LocalizableString.Home.totalWeatherStationsEmptyButtonTitle.localized) { [weak self] in
@@ -150,6 +158,22 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		
 		let viewModel = ViewModelsFactory.getRewardAnalyticsViewModel(devices: getOwnedDevices())
 		Router.shared.navigateTo(.rewardAnalytics(viewModel))
+	}
+
+	func handleInfoBannerDismissTap() {
+		guard let bannerId = infoBanner?.id else {
+			return
+		}
+
+		remoteConfigUseCase.updateLastDismissedInfoBannerId(bannerId)
+	}
+
+	func handleInfoBannerActionTap(url: String) {
+		guard let url = URL(string: url) else {
+			return
+		}
+
+		Router.shared.showFullScreen(.safariView(url))
 	}
 }
 

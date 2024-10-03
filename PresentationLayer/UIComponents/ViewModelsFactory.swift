@@ -126,13 +126,14 @@ enum ViewModelsFactory {
 
 	static func getProfileViewModel() -> ProfileViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
-		let surveyUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(SurveyUseCase.self)!
-		return ProfileViewModel(meUseCase: useCase, surveyUseCase: surveyUseCase)
+		let remoteConfigUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RemoteConfigUseCase.self)!
+		return ProfileViewModel(meUseCase: useCase, remoteConfigUseCase: remoteConfigUseCase)
 	}
 
 	static func getWeatherStationsHomeViewModel() -> WeatherStationsHomeViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
-		return WeatherStationsHomeViewModel(meUseCase: useCase)
+		let remoteConfigUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RemoteConfigUseCase.self)!
+		return WeatherStationsHomeViewModel(meUseCase: useCase, remoteConfigUseCase: remoteConfigUseCase)
 	}
 
 	static func getRewardDetailsViewModel(device: DeviceDetails,

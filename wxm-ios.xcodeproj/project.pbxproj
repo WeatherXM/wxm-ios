@@ -72,6 +72,7 @@
 		263B8B552B29FE34001C5060 /* MapboxStatic in Frameworks */ = {isa = PBXBuildFile; productRef = 263B8B542B29FE34001C5060 /* MapboxStatic */; };
 		2642F1C72AD598300028F4D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26769AB32AD00D4400162974 /* GoogleService-Info.plist */; };
 		264371312CA1955800E5F382 /* ChartLegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264371302CA1955800E5F382 /* ChartLegendView.swift */; };
+		2643713C2CA41DA500E5F382 /* InfoBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2643713B2CA41DA500E5F382 /* InfoBannerView.swift */; };
 		264582392A41A14E00195C21 /* SpinningLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264582382A41A14E00195C21 /* SpinningLoader.swift */; };
 		2645823B2A41C07000195C21 /* FailSuccessViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */; };
 		2646D8F329C8BF3D0000237F /* StationRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646D8F229C8BF3D0000237F /* StationRewardsView.swift */; };
@@ -640,6 +641,7 @@
 		263B8B4D2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxSnapshotUrlGenerator.swift; sourceTree = "<group>"; };
 		263B8B4F2B29F17E001C5060 /* MapBoxConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxConstants.swift; sourceTree = "<group>"; };
 		264371302CA1955800E5F382 /* ChartLegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLegendView.swift; sourceTree = "<group>"; };
+		2643713B2CA41DA500E5F382 /* InfoBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBannerView.swift; sourceTree = "<group>"; };
 		264582382A41A14E00195C21 /* SpinningLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningLoader.swift; sourceTree = "<group>"; };
 		2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailSuccessViewModifier.swift; sourceTree = "<group>"; };
 		2646D8F229C8BF3D0000237F /* StationRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsView.swift; sourceTree = "<group>"; };
@@ -1283,6 +1285,14 @@
 			path = MapBox;
 			sourceTree = "<group>";
 		};
+		2643713A2CA41D9100E5F382 /* InfoBanner */ = {
+			isa = PBXGroup;
+			children = (
+				2643713B2CA41DA500E5F382 /* InfoBannerView.swift */,
+			);
+			path = InfoBanner;
+			sourceTree = "<group>";
+		};
 		264582362A41A12B00195C21 /* SpinningLoader */ = {
 			isa = PBXGroup;
 			children = (
@@ -1641,6 +1651,7 @@
 		2675473B29A9181E008BCF40 /* BaseComponents */ = {
 			isa = PBXGroup;
 			children = (
+				2643713A2CA41D9100E5F382 /* InfoBanner */,
 				26A308F72C2EE46A007A029A /* Scanner */,
 				26AA21E72BF4F9A500B91A7C /* SelectLocationMap */,
 				262B02F42B1DE48A00C31FE7 /* WebView */,
@@ -3200,6 +3211,7 @@
 				2664832E29C364FE00748F9C /* StationForecastCardView.swift in Sources */,
 				2664832929C35AF400748F9C /* StationForecastView.swift in Sources */,
 				2664832B29C35C0300748F9C /* StationForecastViewModel.swift in Sources */,
+				2643713C2CA41DA500E5F382 /* InfoBannerView.swift in Sources */,
 				26A4117129B78CAC00A2C10B /* StationInfoView.swift in Sources */,
 				26D5013829B209F500BC2951 /* StationLastActiveView.swift in Sources */,
 				2646D8F529C8BFB40000237F /* StationRewardsViewModel.swift in Sources */,

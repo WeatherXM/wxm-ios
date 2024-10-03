@@ -90,6 +90,8 @@ private struct ContentView: View {
     var body: some View {
         VStack(spacing: 0.0) {
             weatherStationsFlow(for: viewModel.devices)
+				.spinningLoader(show: $viewModel.shouldShowFullScreenLoader, hideContent: true)
+				.animation(.easeIn, value: viewModel.infoBanner)
                 .onAppear {
                     WXMAnalytics.shared.trackScreen(.deviceList)
                 }
@@ -119,67 +121,106 @@ private struct ContentView: View {
 		}
 	}
 
-    @ViewBuilder
-    func weatherStationsFlow(for devices: [DeviceDetails]) -> some View {
-        weatherStations(devices: devices)
-            .wxmEmptyView(show: Binding(get: { devices.isEmpty }, set: { _ in }), configuration: viewModel.getEmptyViewConfiguration())
-            .fail(show: $viewModel.isFailed, obj: viewModel.failObj)
-            .spinningLoader(show: $viewModel.shouldShowFullScreenLoader, hideContent: true)
-    }
+	@ViewBuilder
+	var infoBannerView: some View {
+		if let infoBanner = viewModel.infoBanner {
+			InfoBannerView(infoBanner: infoBanner) {
+				viewModel.handleInfoBannerDismissTap()
+			} tapUrlAction: { url in
+				viewModel.handleInfoBannerActionTap(url: url)
+			}
+			.padding(CGFloat(.defaultSidePadding))
+			.padding(.bottom, CGFloat(.cardCornerRadius))
+			.background(Color(colorEnum: .layer1))
+		}
+	}
 
     @ViewBuilder
-    func weatherStations(devices: [DeviceDetails]) -> some View {
-        TrackableScrollView(showIndicators: false,
-                            offsetObject: viewModel.scrollOffsetObject) { completion in
-            viewModel.getDevices(refreshMode: true, completion: completion)
-        } content: {
-			VStack(spacing: CGFloat(.defaultSpacing)) {
-				NavigationTitleView(title: .constant(LocalizableString.weatherStationsHomeTitle.localized),
-									subtitle: .constant(nil)) {
-					navigationBarRightView
-				}
+	func weatherStationsFlow(for devices: [DeviceDetails]) -> some View {
+		let infoBannerIsVisible = viewModel.infoBanner != nil
 
-				VStack(spacing: CGFloat(.smallSpacing)) {
+		if viewModel.isFailed, let failObj = viewModel.failObj {
+			VStack(spacing: -CGFloat(.cardCornerRadius)) {
+				infoBannerView
 
-					if mainVM.showWalletWarning && isWalletEmpty {
-						CardWarningView(title: LocalizableString.walletAddressMissingTitle.localized,
-										message: LocalizableString.walletAddressMissingText.localized) {
+				FailView(obj: failObj)
+					.padding(.horizontal, CGFloat(.defaultSidePadding))
 
-							WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
-																				 .promptType: .warnPromptType,
-																				 .action: .dismissAction])
+					.background(Color(colorEnum: .bg))
+					.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
+			}
+		} else if devices.isEmpty, let emptyViewConfiguration = viewModel.getEmptyViewConfiguration() {
+			VStack(spacing: -CGFloat(.cardCornerRadius)) {
+				infoBannerView
 
-							withAnimation {
-								mainVM.hideWalletWarning()
-							}
-						} content: {
-							Button {
-								Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
-								WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
-																					 .promptType: .warnPromptType,
-																					 .action: .action])
+				WXMEmptyView(configuration: emptyViewConfiguration)
+					.background(Color(colorEnum: .bg))
+					.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
+			}
+		} else {
+			weatherStations(devices: devices)
+		}
+	}
 
-							} label: {
-								Text(LocalizableString.addWalletTitle.localized)
-									.foregroundColor(Color(colorEnum: .wxmPrimary))
-									.font(.system(size: CGFloat(.smallFontSize), weight: .bold))
-							}
-						}
-						.onAppear {
-							WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
-																				 .promptType: .warnPromptType,
-																				 .action: .viewAction])
-						}
+	@ViewBuilder
+	func weatherStations(devices: [DeviceDetails]) -> some View {
+		let infoBannerIsVisible = viewModel.infoBanner != nil
+		TrackableScrollView(showIndicators: false,
+							offsetObject: viewModel.scrollOffsetObject) { completion in
+			viewModel.getDevices(refreshMode: true, completion: completion)
+		} content: {
+			VStack(spacing: -CGFloat(.cardCornerRadius)) {
+				infoBannerView
+
+				VStack(spacing: CGFloat(.defaultSpacing)) {
+					NavigationTitleView(title: .constant(LocalizableString.weatherStationsHomeTitle.localized),
+										subtitle: .constant(nil)) {
+						navigationBarRightView
 					}
 
-					weatherStationsList(devices: devices)
+					VStack(spacing: CGFloat(.smallSpacing)) {
+						if mainVM.showWalletWarning && isWalletEmpty {
+							CardWarningView(title: LocalizableString.walletAddressMissingTitle.localized,
+											message: LocalizableString.walletAddressMissingText.localized) {
+
+								WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+																					 .promptType: .warnPromptType,
+																					 .action: .dismissAction])
+
+								withAnimation {
+									mainVM.hideWalletWarning()
+								}
+							} content: {
+								Button {
+									Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
+									WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+																						 .promptType: .warnPromptType,
+																						 .action: .action])
+
+								} label: {
+									Text(LocalizableString.addWalletTitle.localized)
+										.foregroundColor(Color(colorEnum: .wxmPrimary))
+										.font(.system(size: CGFloat(.smallFontSize), weight: .bold))
+								}
+							}
+							.onAppear {
+								WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+																					 .promptType: .warnPromptType,
+																					 .action: .viewAction])
+							}
+						}
+
+						weatherStationsList(devices: devices)
+					}
 				}
+				.padding(.horizontal, CGFloat(.defaultSidePadding))
+				.padding(.top)
+				.padding(.bottom, tabBarItemsSize.height)
+				.background(Color(colorEnum: .bg))
+				.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
 			}
-            .padding(.horizontal, CGFloat(.defaultSidePadding))
-            .padding(.top)
-            .padding(.bottom, tabBarItemsSize.height)
-        }
-    }
+		}
+	}
 
     @ViewBuilder
     func weatherStationsList(devices: [DeviceDetails]) -> some View {

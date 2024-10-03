@@ -201,12 +201,12 @@ class SwinjectHelper: SwinjectInterface {
 
 		// MARK: - Survey
 
-		container.register(SurveyRepository.self) { _ in
-			SurveyRepositoryImpl()
+		container.register(RemoteConfigRepository.self) { _ in
+			RemoteConfigRepositoryImpl()
 		}
 
-		container.register(SurveyUseCase.self) { resolver in
-			SurveyUseCase(repository: resolver.resolve(SurveyRepository.self)!)
+		container.register(RemoteConfigUseCase.self) { resolver in
+			RemoteConfigUseCase(repository: resolver.resolve(RemoteConfigRepository.self)!)
 		}
 
         // MARK: - Return the Container

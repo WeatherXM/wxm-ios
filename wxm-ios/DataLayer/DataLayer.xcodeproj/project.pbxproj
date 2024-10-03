@@ -52,7 +52,7 @@
 		26A3B3E02B18E7A50002F35F /* get_user_rewards.json in Resources */ = {isa = PBXBuildFile; fileRef = 26A3B3DF2B18E7A50002F35F /* get_user_rewards.json */; };
 		26A4117829B8973E00A2C10B /* DeviceInfoRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4117729B8973E00A2C10B /* DeviceInfoRepositoryImpl.swift */; };
 		26A4118C29BB2CAB00A2C10B /* BTActionsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4118B29BB2CAB00A2C10B /* BTActionsWrapper.swift */; };
-		26A86BC22C7C997700F1C2CF /* SurveyRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BC12C7C997700F1C2CF /* SurveyRepositoryImpl.swift */; };
+		26A86BC22C7C997700F1C2CF /* RemoteConfigRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BC12C7C997700F1C2CF /* RemoteConfigRepositoryImpl.swift */; };
 		26AB9F522A80112900855912 /* UserDevicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F512A80112900855912 /* UserDevicesService.swift */; };
 		26AB9F562A80C50200855912 /* KeychainHelperService+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F552A80C50200855912 /* KeychainHelperService+User.swift */; };
 		26ACE8EF2C883BF400EA22DD /* get_devices_rewards_analytics.json in Resources */ = {isa = PBXBuildFile; fileRef = 26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */; };
@@ -143,7 +143,7 @@
 		26A3B3DF2B18E7A50002F35F /* get_user_rewards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user_rewards.json; sourceTree = "<group>"; };
 		26A4117729B8973E00A2C10B /* DeviceInfoRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoRepositoryImpl.swift; sourceTree = "<group>"; };
 		26A4118B29BB2CAB00A2C10B /* BTActionsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTActionsWrapper.swift; sourceTree = "<group>"; };
-		26A86BC12C7C997700F1C2CF /* SurveyRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRepositoryImpl.swift; sourceTree = "<group>"; };
+		26A86BC12C7C997700F1C2CF /* RemoteConfigRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigRepositoryImpl.swift; sourceTree = "<group>"; };
 		26AB9F512A80112900855912 /* UserDevicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDevicesService.swift; sourceTree = "<group>"; };
 		26AB9F552A80C50200855912 /* KeychainHelperService+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainHelperService+User.swift"; sourceTree = "<group>"; };
 		26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_devices_rewards_analytics.json; sourceTree = "<group>"; };
@@ -335,7 +335,7 @@
 				267401752A376A1400E54E35 /* NetworkRepositoryImpl.swift */,
 				26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */,
 				995A0CDD28C0AA400015DAA1 /* UserDefaultsRepositoryImp.swift */,
-				26A86BC12C7C997700F1C2CF /* SurveyRepositoryImpl.swift */,
+				26A86BC12C7C997700F1C2CF /* RemoteConfigRepositoryImpl.swift */,
 			);
 			path = RepositoryImplementations;
 			sourceTree = "<group>";
@@ -596,7 +596,7 @@
 				74F922902835164A00CD8FDF /* MeApiRequestBuilder.swift in Sources */,
 				74F9229228351E4000CD8FDF /* MeRepositoryImpl.swift in Sources */,
 				26E2B3BC2982754D00ED9B58 /* MockProtocol.swift in Sources */,
-				26A86BC22C7C997700F1C2CF /* SurveyRepositoryImpl.swift in Sources */,
+				26A86BC22C7C997700F1C2CF /* RemoteConfigRepositoryImpl.swift in Sources */,
 				264710A62A4EF4F700A6C1B9 /* Model.xcdatamodeld in Sources */,
 				267401782A376B4200E54E35 /* NetworkApiRequestBuilder.swift in Sources */,
 				B5E6B85928337A820060D050 /* NetworkConstants.swift in Sources */,

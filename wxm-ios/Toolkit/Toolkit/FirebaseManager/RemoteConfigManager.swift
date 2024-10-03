@@ -25,6 +25,15 @@ public class RemoteConfigManager: ObservableObject {
 	@Published public var surveyActionLabel: String?
 	@Published public var surveyUrl: String?
 	@Published public var surveyShow: Bool?
+	// Info banner
+	@Published public var infoBannerId: String?
+	@Published public var infoBannerTitle: String?
+	@Published public var infoBannerMessage: String?
+	@Published public var infoButtonShow: Bool?
+	@Published public var infoBannerActionLabel: String?
+	@Published public var infoBannerUrl: String?
+	@Published public var infoBannerShow: Bool?
+	@Published public var infoBannerDismissable: Bool?
 
 	private init() {
 		if disableAnalytics {
@@ -60,6 +69,14 @@ private extension RemoteConfigManager {
 			self.surveyActionLabel = self.getConfigValue(key: .surveyActionLabel)
 			self.surveyUrl = self.getConfigValue(key: .surveyUrl)
 			self.surveyShow = self.getConfigValue(key: .surveyShow)
+			self.infoBannerId = self.getConfigValue(key: .infoBannerId)
+			self.infoBannerTitle = self.getConfigValue(key: .infoBannerTitle)
+			self.infoBannerMessage = self.getConfigValue(key: .infoBannerMessage)
+			self.infoButtonShow = self.getConfigValue(key: .infoButtonShow)
+			self.infoBannerActionLabel = self.getConfigValue(key: .infoBannerActionLabel)
+			self.infoBannerUrl = self.getConfigValue(key: .infoBannerUrl)
+			self.infoBannerShow = self.getConfigValue(key: .infoBannerShow)
+			self.infoBannerDismissable = self.getConfigValue(key: .infoBannerDismissable)
 		}
 	}
 }

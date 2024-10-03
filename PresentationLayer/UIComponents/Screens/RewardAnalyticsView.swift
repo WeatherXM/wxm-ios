@@ -56,7 +56,7 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	func emptyView(configuration: WXMEmptyView.Configuration) -> some View {
-		WXMEmptyView(configuration: configuration, backgroundColor: .background)
+		WXMEmptyView(configuration: configuration)
 	}
 
 	@ViewBuilder
