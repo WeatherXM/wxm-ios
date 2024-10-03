@@ -31,6 +31,7 @@ public enum ColorEnum: String {
     case warning
     case darkGrey
     case text
+	case textInverse
     case top
     case lightestBlue
     case layer2
@@ -59,6 +60,14 @@ public enum ColorEnum: String {
 	case remoteImagePlaceholder
 	case info
 	case infoTint
-	case newBG
+	case topBG
 	case newText
+	case betaRewardsFill
+	case betaRewardsPrimary
+	case lastRun
+	case tooltip
+	case textDarkStable
+	case otherRewardFill
+	case otherRewardChart
+	case otherRewardPrimary
 }

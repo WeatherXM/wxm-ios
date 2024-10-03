@@ -9,6 +9,7 @@ import Foundation
 
 struct FailSuccessStateObject {
     let type: SuccessFailEnum
+	var failMode: FailView.Mode = .default
     let title: String
     let subtitle: AttributedString?
 	var info: AttributedString?

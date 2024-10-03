@@ -216,4 +216,9 @@ public struct Rewards: Codable {
         case totalRewards = "total_rewards"
         case actualReward = "actual_reward"
     }
+
+	public init(totalRewards: Double? = nil, actualReward: Double? = nil) {
+		self.totalRewards = totalRewards
+		self.actualReward = actualReward
+	}
 }

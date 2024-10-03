@@ -65,6 +65,8 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .claimStationContainer(let vm):
 				hasher.combine(vm)
+			case .rewardAnalytics(let vm):
+				hasher.combine(vm)
 			case .safariView(let url):
 				hasher.combine(url)
 		}
@@ -119,6 +121,8 @@ enum Route: Hashable, Equatable {
 				"claimStationSelection"
 			case .claimStationContainer:
 				"claimStationContainer"
+			case .rewardAnalytics:
+				"rewardAnalytics"
 			case .safariView:
 				"safariView"
 		}
@@ -147,6 +151,7 @@ enum Route: Hashable, Equatable {
 	case forecastDetails(ForecastDetailsViewModel)
 	case claimStationSelection(ClaimStationSelectionViewModel)
 	case claimStationContainer(ClaimDeviceContainerViewModel)
+	case rewardAnalytics(RewardAnalyticsViewModel)
 	case safariView(URL)
 }
 
@@ -232,6 +237,8 @@ extension Route {
 				NavigationContainerView {
 					ClaimDeviceContainerView(viewModel: claimDeviceContainerViewModel)
 				}
+			case .rewardAnalytics(let rewardAnalyticsViewModel):
+				RewardAnalyticsView(viewModel: rewardAnalyticsViewModel)
 			case .safariView(let url):
 				SafariView(url: url)
 					.ignoresSafeArea()

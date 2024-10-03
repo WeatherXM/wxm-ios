@@ -40,6 +40,9 @@
         }
       }
     },
+    "%@:" : {
+
+    },
     "+ %@ %@" : {
       "localizations" : {
         "en" : {
@@ -5805,6 +5808,248 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retry"
+          }
+        }
+      }
+    },
+    "reward_analytics_base" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Base"
+          }
+        }
+      }
+    },
+    "reward_analytics_base_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Base Rewards"
+          }
+        }
+      }
+    },
+    "reward_analytics_beta" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
+          }
+        }
+      }
+    },
+    "reward_analytics_beta_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta Rewards"
+          }
+        }
+      }
+    },
+    "reward_analytics_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ details"
+          }
+        }
+      }
+    },
+    "reward_analytics_earned_by_this_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earned by this station"
+          }
+        }
+      }
+    },
+    "reward_analytics_empty_state_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It seems you don’t have any stations yet.  Join the weather revolution! Buy a weather station and start earning $WXM tokens."
+          }
+        }
+      }
+    },
+    "reward_analytics_empty_state_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oh no!"
+          }
+        }
+      }
+    },
+    "reward_analytics_last_run" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Run"
+          }
+        }
+      }
+    },
+    "reward_analytics_month_abbrevation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1M"
+          }
+        }
+      }
+    },
+    "reward_analytics_other_boost" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other"
+          }
+        }
+      }
+    },
+    "reward_analytics_other_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other Rewards"
+          }
+        }
+      }
+    },
+    "reward_analytics_rewards_breakdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewards breakdown"
+          }
+        }
+      }
+    },
+    "reward_analytics_rewards_by_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rewards by Station"
+          }
+        }
+      }
+    },
+    "reward_analytics_station_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Rewards"
+          }
+        }
+      }
+    },
+    "reward_analytics_tap_to_retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to Retry."
+          }
+        }
+      }
+    },
+    "reward_analytics_total_earned" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Earned"
+          }
+        }
+      }
+    },
+    "reward_analytics_total_earned_for" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total earned for %d Station"
+          }
+        }
+      }
+    },
+    "reward_analytics_total_earned_for_plural" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total earned for %d Stations"
+          }
+        }
+      }
+    },
+    "reward_analytics_total_tokens_earned_so_far" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total tokens earned so far"
+          }
+        }
+      }
+    },
+    "reward_analytics_week_abbrevation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7D"
+          }
+        }
+      }
+    },
+    "reward_analytics_year_abbrevation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1Y"
           }
         }
       }

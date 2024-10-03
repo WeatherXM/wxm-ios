@@ -46,6 +46,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	case getUserDeviceInfoById(deviceId: String)
 	case getUserDeviceHistoryById(deviceId: String, fromDate: String, toDate: String, exclude: String)
 	case getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String)
+	case getUserDeviceRewards(deviceId: String, mode: String)
+	case getUserDevicesRewards(mode: String)
 	case getDeviceFirmwareById(deviceId: String)
 	case setFriendlyName(deviceId: String, name: String)
 	case deleteFriendlyName(deviceId: String)
@@ -61,7 +63,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	private var method: HTTPMethod {
 		switch self {
 			case .getUser, .getUserWallet, .getDevices, .getFirmwares, .getUserDeviceById,
-					.getUserDeviceHistoryById, .getUserDeviceForecastById, .getDeviceFirmwareById, .getUserDeviceInfoById:
+					.getUserDeviceHistoryById, .getUserDeviceForecastById, .getUserDeviceRewards, 
+					.getUserDevicesRewards, .getDeviceFirmwareById, .getUserDeviceInfoById:
 				return .get
 			case .saveUserWallet, .claimDevice, .setFriendlyName, .disclaimDevice, .follow, .setDeviceLocation, .setFCMToken:
 				return .post
@@ -108,6 +111,10 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/devices/\(deviceId)/history"
 			case let .getUserDeviceForecastById(deviceId, _, _, _):
 				return "me/devices/\(deviceId)/forecast"
+			case let .getUserDeviceRewards(deviceId, _):
+				return "me/devices/\(deviceId)/rewards"
+			case .getUserDevicesRewards:
+				return "me/devices/rewards"
 			case let .getDeviceFirmwareById(deviceId: deviceId):
 				return "me/devices/\(deviceId)/firmware"
 			case let .setFriendlyName(deviceId, _):
@@ -157,6 +164,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 						ParameterConstants.Me.exclude: exclude
 					]
 				}
+			case let .getUserDeviceRewards(_, mode), let .getUserDevicesRewards(mode):
+				return [ParameterConstants.Me.mode: mode]
 			case let .setFriendlyName(_, name):
 				return [ParameterConstants.Me.friendlyName: name]
 			case let .setDeviceLocation(_, lat, lon):
@@ -183,6 +192,24 @@ extension MeApiRequestBuilder: MockResponseBuilder {
 				return "get_user_wallet"
 			case .getUserDeviceForecastById:
 				return "get_user_device_forecast"
+			case .getUserDeviceRewards(_, let mode):
+				switch mode {
+					case DeviceRewardsMode.week.rawValue:
+						return "get_device_rewards_analytics_7d"
+					case DeviceRewardsMode.year.rawValue:
+						return "get_device_rewards_analytics_year"
+					default:
+						return "get_device_rewards_analytics"
+				}
+			case .getUserDevicesRewards(let mode):
+				switch mode {
+					case DeviceRewardsMode.week.rawValue:
+						return "get_devices_rewards_analytics_7d"
+					case DeviceRewardsMode.year.rawValue:
+						return "get_devices_rewards_analytics_year"
+					default:
+						return "get_devices_rewards_analytics"
+				}
 			case .getUser:
 				return "get_user"
 			default:

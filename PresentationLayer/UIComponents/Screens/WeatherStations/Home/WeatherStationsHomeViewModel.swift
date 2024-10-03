@@ -144,6 +144,11 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
         }
         return obj
     }
+
+	func handleRewardAnalyticsTap() {
+		let viewModel = ViewModelsFactory.getRewardAnalyticsViewModel(devices: getOwnedDevices())
+		Router.shared.navigateTo(.rewardAnalytics(viewModel))
+	}
 }
 
 private extension WeatherStationsHomeViewModel {
@@ -295,12 +300,11 @@ private extension WeatherStationsHomeViewModel {
             case .status:
                 let dict = Dictionary(grouping: devices, by: { $0.isActive })
                 return [dict[true], dict[false]].flatMap { $0 ?? [] }
-
         }
     }
 
 	func updateTotalEarned() {
-		let owndedDevices = allDevices.filter { getFollowState(for: $0)?.relation == .owned}
+		let owndedDevices = getOwnedDevices()
 		let hasOwned = !owndedDevices.isEmpty
 		let totalEarned: Double = owndedDevices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }
 		
@@ -310,4 +314,9 @@ private extension WeatherStationsHomeViewModel {
 		self.totalEarnedTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : totalEarnedText
 		self.totalEarnedValueText = (totalEarned == 0 && hasOwned) ? nil : "\(totalEarned.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)" 
 	}
-}
+
+	func getOwnedDevices() -> [DeviceDetails] {
+		let owndedDevices = allDevices.filter { getFollowState(for: $0)?.relation == .owned}
+		return owndedDevices
+	}
+ }

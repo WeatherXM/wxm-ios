@@ -11,10 +11,30 @@ struct CustomSegmentView: View {
     private let segments: [String]
     @Binding private var selectedIndex: Int
     private let style: Style
-    private let selectorPadding: CGFloat = 20.0
     private let cornerRadius: CGFloat = 60.0
     @State private var sizes: [SizeWrapper]
     @State private var containerSize: CGSize = .zero
+	private var selectorPadding: CGFloat {
+		switch style {
+			case .normal:
+				CGFloat(.defaultSidePadding)
+			case .plain:
+				0.0
+			case .compact:
+				0.0
+		}
+	}
+
+	private var selectedTextColor: ColorEnum {
+		switch style {
+			case .normal:
+					.wxmPrimary
+			case .plain:
+					.wxmPrimary
+			case .compact:
+					.darkGrey
+		}
+	}
 
     init(options: [String], selectedIndex: Binding<Int>, style: Style = .normal) {
         self.style = style
@@ -29,6 +49,8 @@ struct CustomSegmentView: View {
                 normalStyle
             case .plain:
                 plainStyle
+			case .compact:
+				compactStyle
         }
     }
 }
@@ -37,6 +59,7 @@ extension CustomSegmentView {
     enum Style {
         case normal
         case plain
+		case compact
     }
 }
 
@@ -109,6 +132,42 @@ private extension CustomSegmentView {
         .animation(.easeIn(duration: 0.3), value: selectedIndex)
     }
 
+	@ViewBuilder
+	var compactStyle: some View {
+		ZStack {
+			HStack(spacing: CGFloat(.minimumSpacing)) {
+				ForEach(0 ..< segments.count, id: \.self) { index in
+					let segment = segments[index]
+					Button {
+						selectedIndex = index
+					} label: {
+						Text(segment)
+							.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+							.padding(CGFloat(.smallSidePadding))
+							.sizeObserver(size: $sizes[index].size)
+					}
+				}
+			}
+			.foregroundStyle(Color(.darkGrey))
+		}
+		.sizeObserver(size: $containerSize)
+		.background {
+			HStack {
+				let size = selectorSizeForIndex(selectedIndex)
+				RoundedRectangle(cornerRadius: CGFloat(.buttonCornerRadius))
+					.foregroundColor(Color(colorEnum: .layer2))
+					.frame(width: size.width,
+						   height: size.height)
+					.offset(x: selectorOffsetForIndex(selectedIndex))
+
+				Spacer()
+			}
+		}
+		.padding(CGFloat(.minimumPadding))
+		.background(Color(colorEnum: .layer1))
+		.animation(.easeIn(duration: 0.3), value: selectedIndex)
+	}
+
     @ViewBuilder
     var segmentsView: some View {
         HStack(spacing: 0.0) {
@@ -120,14 +179,14 @@ private extension CustomSegmentView {
                     Text(segment)
                         .font(.system(size: CGFloat(.normalFontSize), weight: .medium))
                         .if(selectedIndex == index, transform: { view in
-                            view.foregroundColor(Color(colorEnum: .wxmPrimary))
+                            view.foregroundColor(Color(colorEnum: selectedTextColor))
                         })
 						.padding(.vertical, CGFloat(.smallSidePadding))
                         .sizeObserver(size: $sizes[index].size)
                 }
 
                 let islast = segments.last == segment
-                if !islast {
+				if !islast {
                     Spacer(minLength: 0.0)
                 }
             }
@@ -170,7 +229,7 @@ private extension CustomSegmentView {
 
     func selectorSizeForIndex(_ index: Int) -> CGSize {
         let segmentSize = sizes[index].size
-        let sidePadding = style == .normal ? 2.0 * selectorPadding : 0.0
+        let sidePadding = 2.0 * selectorPadding
         let width = segmentSize.width + sidePadding
         let height = segmentSize.height
         return CGSize(width: width, height: height)
@@ -182,7 +241,7 @@ private extension CustomSegmentView {
         let elementsWidth = index > 0 ? (0..<index).reduce(0.0) { $0 + sizes[$1].size.width } : 0.0
         let spacersWidth: CGFloat = (max(0, floatIndex) * spacerWidth)
         let extraPadding = style == .normal ? 0.0 : selectorPadding
-        return elementsWidth + spacersWidth + extraPadding
+        return elementsWidth + spacersWidth// + extraPadding
     }
 }
 
@@ -210,4 +269,12 @@ struct CustomSegmentView_Plain_Previews: PreviewProvider {
                           selectedIndex: .constant(0),
                           style: .plain)
     }
+}
+
+struct CustomSegmentView_Compact_Previews: PreviewProvider {
+	static var previews: some View {
+		CustomSegmentView(options: ["7D", "1M", "1Y"],
+						  selectedIndex: .constant(2),
+						  style: .compact)
+	}
 }

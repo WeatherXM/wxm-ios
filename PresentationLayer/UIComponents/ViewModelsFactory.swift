@@ -253,4 +253,9 @@ enum ViewModelsFactory {
 	static func getClaimDeviceSetFrequncyViewModel(completion: @escaping GenericCallback<Frequency>) -> ClaimDeviceSetFrequencyViewModel {
 		return ClaimDeviceSetFrequencyViewModel(completion: completion)
 	}
+
+	static func getRewardAnalyticsViewModel(devices: [DeviceDetails]) -> RewardAnalyticsViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		return RewardAnalyticsViewModel(useCase: useCase, devices: devices)
+	}
 }

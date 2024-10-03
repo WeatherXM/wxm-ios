@@ -11,10 +11,11 @@ import Toolkit
 struct WXMEmptyView: View {
     let configuration: Configuration
     let iconDimensions: CGFloat = 150
+	var backgroundColor: ColorEnum = .bg
 
     var body: some View {
         ZStack {
-            Color(colorEnum: .bg)
+            Color(colorEnum: backgroundColor)
                 .ignoresSafeArea()
 
             VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -27,6 +28,11 @@ struct WXMEmptyView: View {
 						.if(image.tintColor != nil) { view in
 							view.renderingMode(.template).foregroundColor(Color(colorEnum: image.tintColor!))
 						}
+				} else if let imageFontIcon = configuration.imageFontIcon {
+					Text(imageFontIcon.icon.rawValue)
+						.font(.fontAwesome(font: imageFontIcon.font,
+										   size: CGFloat(.maxFontSize)))
+						.foregroundStyle(Color(colorEnum: .darkGrey))
 				}
 
 				#else
@@ -62,8 +68,9 @@ struct WXMEmptyView: View {
                         Button(action: action) {
 							HStack(spacing: CGFloat(.smallToMediumSpacing)) {
                                 if let fontIcon = configuration.buttonFontIcon {
-                                    Text(fontIcon.rawValue)
-										.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+									Text(fontIcon.icon.rawValue)
+										.font(.fontAwesome(font: fontIcon.font,
+														   size: CGFloat(.mediumFontSize)))
                                 }
                                 Text(buttonTitle)
                             }
@@ -82,14 +89,15 @@ struct WXMEmptyView: View {
 
 extension WXMEmptyView {
     struct Configuration {
-		var image: (icon: AssetEnum, tintColor: ColorEnum?)? = (.noWifiIcon, nil)
+		var image: (icon: AssetEnum, tintColor: ColorEnum?)?
 		#if MAIN_APP
         var animationEnum: AnimationsEnums?
 		#endif
+		var imageFontIcon: (icon: FontIcon, font: FontAwesome)?
 		var enableSidePadding: Bool = true
         let title: String?
         let description: AttributedString?
-        var buttonFontIcon: FontIcon?
+		var buttonFontIcon: (icon: FontIcon, font: FontAwesome)?
         var buttonTitle: String?
         var action: VoidCallback?
     }
@@ -100,7 +108,7 @@ struct WXMEmptyView_Previews: PreviewProvider {
         let conf = WXMEmptyView.Configuration(image: (.lockedIcon, .wxmPrimary),
                                               title: "SERVICE UNAVAILABLE",
                                               description: "Server busy, site may have moved or you lost your dial-up Internet connection",
-                                              buttonFontIcon: .gear,
+											  buttonFontIcon: (.gear, .FAPro),
                                               buttonTitle: "Reload") { }
         WXMEmptyView(configuration: conf)
     }

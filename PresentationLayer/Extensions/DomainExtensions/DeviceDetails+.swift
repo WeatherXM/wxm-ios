@@ -193,6 +193,7 @@ extension DeviceDetails {
 		device.label = "AE:66:F7:21:1F:21:75:11:EC"
 		device.address = "This is an address"
 		device.bundle = .mock()
+		device.rewards = .init(totalRewards: 53.0, actualReward: 12.53533)
 		device.isActive = true
 		device.lastActiveAt = Date.now.toTimestamp()
 		device.firmware = Firmware(assigned: "1.0.0", current: "1.0.1")
