@@ -421,6 +421,8 @@ extension ParameterValue: RawRepresentable {
 				return "Hourly Details Card"
 			case .hourlyForecast:
 				return "hourly_forecast"
+			case .forecastNextSevenDays:
+				return "forecast_next_7_days"
 			case .rewardSplittingInDailyReward:
 				return "Reward Splitting In Daily Reward"
 			case .rewardSplittingInDeviceSettings:

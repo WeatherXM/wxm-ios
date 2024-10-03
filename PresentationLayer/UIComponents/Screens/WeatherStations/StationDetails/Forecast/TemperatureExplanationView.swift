@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct TemperatureExplanationView: View {
     var body: some View {
@@ -60,6 +61,9 @@ struct TemperatureExplanationView: View {
 		}
 		.clipped()
 		.padding(.top)
+		.onAppear {
+			WXMAnalytics.shared.trackScreen(.temperatureBars)
+		}
     }
 }
 
