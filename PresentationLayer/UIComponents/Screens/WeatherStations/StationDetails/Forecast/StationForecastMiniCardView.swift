@@ -43,12 +43,14 @@ struct StationForecastMiniCardView: View {
 						}
 					}
 				}
-				
-				HStack(spacing: 0.0) {
-					Image(asset: WeatherField.precipitationProbability.hourlyIcon())
-						.renderingMode(.template)
-						.foregroundStyle(Color(colorEnum: .darkestBlue))
-					
+
+				HStack(spacing: CGFloat(.minimumSpacing)) {
+					if let fontIcon = WeatherField.precipitationProbability.fontIcon {
+						Text(fontIcon.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
+							.foregroundStyle(Color(colorEnum: .darkestBlue))
+					}
+
 					Text(item.precipitation)
 						.foregroundColor(Color(colorEnum: .darkestBlue))
 						.font(.system(size: CGFloat(.normalFontSize)))
@@ -100,5 +102,6 @@ private extension StationForecastMiniCardView {
 #Preview {
 	StationForecastMiniCardView(item: CurrentWeather.mockInstance.toMiniCardItem(with: .current), isSelected: true)
 		.wxmShadow()
+		.frame(width: StationForecastMiniCardView.defaultWidth)
 		.padding()
 }

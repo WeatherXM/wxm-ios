@@ -61,4 +61,11 @@ enum FontIcon: String {
 	case chevronDown = "chevron-down"
 	case faceSadCry = "face-sad-cry"
 	case rotateRight = "rotate-right"
+	case umbrella
+	case cloudShowers = "cloud-showers"
+	case locationArrow = "location-arrow"
+	case humidity
+	case gauge
+	case sun
+	case dropletDegree = "droplet-degree"
 }

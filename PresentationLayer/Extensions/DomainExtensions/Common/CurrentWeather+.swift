@@ -38,6 +38,7 @@ extension CurrentWeather {
         currentWeather.windDirection = 130
         currentWeather.uvIndex = 7
         currentWeather.precipitation = 1.1
+		currentWeather.precipitationProbability = 10
         currentWeather.pressure = 603.77
         currentWeather.feelsLike = 18.9
         currentWeather.icon = "drizzle"

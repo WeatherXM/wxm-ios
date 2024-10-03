@@ -46,24 +46,28 @@ private extension ForecastDetailsDailyView {
 				Spacer()
 			}
 
-			if let item = item.temperatureItem {
-				Button {
-					withAnimation {
-						scrollProxy?.scrollTo(item.scrollToGraphType?.scrollId, anchor: .top)
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				if let item = item.temperatureItem {
+					Button {
+						withAnimation {
+							scrollProxy?.scrollTo(item.scrollToGraphType?.scrollId, anchor: .top)
+						}
+					} label: {
+						ForecastTemperatureCardView(item: item)
 					}
-				} label: {
-					ForecastTemperatureCardView(item: item)
-						.wxmShadow()
 				}
-			}
 
-			dailyConditionsFields
+				dailyConditionsFields
+			}
+			.WXMCardStyle(insideHorizontalPadding: CGFloat(.mediumSidePadding),
+						  insideVerticalPadding: CGFloat(.mediumSidePadding))
+			.wxmShadow()
 		}
 	}
 
 	@ViewBuilder
 	var dailyConditionsFields: some View {
-		LazyVGrid(columns: [.init(spacing: CGFloat(.smallToMediumSpacing)), .init()],
+		LazyVGrid(columns: [.init(), .init(), .init()],
 				  spacing: CGFloat(.smallToMediumSpacing)) {
 			Group {
 				ForEach(item.fieldItems, id: \.title) { item in
@@ -75,7 +79,6 @@ private extension ForecastDetailsDailyView {
 						ForecastFieldCardView(item: item)
 					}
 				}
-				.wxmShadow()
 			}
 		}
 	}

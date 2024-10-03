@@ -27,17 +27,17 @@ struct ForecastTemperatureCardView: View {
 
 					HStack(alignment: .bottom, spacing: CGFloat(.smallToMediumSpacing)) {
 						Text(item.temperature)
-							.foregroundColor(Color(colorEnum: .text))
-							.font(.system(size: CGFloat(.XXLTitleFontSize)))
+							.foregroundColor(Color(colorEnum: .darkGrey))
+							.font(.system(size: CGFloat(.largeTitleFontSize)))
 							.frame(height: UIFont.systemFont(ofSize: CGFloat(.XXLTitleFontSize)).capHeight)
 
-						Color(colorEnum: .text)
-							.frame(width: 1.0, height: 26.0)
+						Color(colorEnum: .darkGrey)
+							.frame(width: 1.0, height: 19.0)
 
 						Text(item.secondaryTemperature)
-							.foregroundColor(Color(colorEnum: .text))
-							.font(.system(size: CGFloat(.largeTitleFontSize)))
-							.frame(height: UIFont.systemFont(ofSize: CGFloat(.largeTitleFontSize)).capHeight)
+							.foregroundColor(Color(colorEnum: .darkGrey))
+							.font(.system(size: CGFloat(.smallTitleFontSize)))
+							.frame(height: UIFont.systemFont(ofSize: CGFloat(.smallTitleFontSize)).capHeight)
 						// Set height in order ot fit baseline 👆
 
 						Spacer()
@@ -45,7 +45,6 @@ struct ForecastTemperatureCardView: View {
 				}
 			}
 		}
-		.WXMCardStyle()
     }
 }
 
@@ -69,7 +68,7 @@ private extension ForecastTemperatureCardView {
 				LottieView(animationCase: "anim_not_available", loopMode: .loop)
 			}
 		}
-		.frame(width: 100.0, height: 100.0)
+		.frame(width: 90.0, height: 90.0)
 	}
 }
 
