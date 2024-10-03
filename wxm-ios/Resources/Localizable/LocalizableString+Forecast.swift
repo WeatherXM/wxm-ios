@@ -13,6 +13,11 @@ extension LocalizableString {
 		case nextTwentyFourHours
 		case dailyConditions
 		case hourlyForecast
+		case temperatureBarsTitle
+		case weeklyRangeBar
+		case weeklyRangeDescription
+		case dailyRangeBar
+		case dailyRangeDescription
 	}
 }
 
@@ -32,6 +37,16 @@ extension LocalizableString.Forecast: WXMLocalizable {
 				return "forecast_daily_conditions"
 			case .hourlyForecast:
 				return "forecast_hourly_forecast"
+			case .temperatureBarsTitle:
+				return "forecast_temperature_bars_title"
+			case .weeklyRangeBar:
+				return "forecast_weekly_range_bar"
+			case .weeklyRangeDescription:
+				return "forecast_weekly_range_description"
+			case .dailyRangeBar:
+				return "forecast_daily_range_bar"
+			case .dailyRangeDescription:
+				return "forecast_daily_range_description"
 		}
 	}
 }
