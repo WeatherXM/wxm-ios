@@ -50,16 +50,16 @@ private extension StationForecastCardView {
     @ViewBuilder
     var temperatureBar: some View {
         HStack(spacing: CGFloat(.smallSpacing)) {
-            Text("\(forecast.daily?.temperatureMax?.toTemeratureString(for: unitsManager.temperatureUnit) ?? "")")
-				.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
+			Text("\(forecast.daily?.temperatureMin?.toTemeratureString(for: unitsManager.temperatureUnit) ?? "")")
+				.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
 
             CustomRangeSlider(minWeeklyTemp: minWeekTemperature.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0),
                               maxWeeklyTemp: maxWeekTemperature.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0),
                               minDailyTemp: forecast.daily?.temperatureMin?.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0) ?? 0.0,
                               maxDailyTemp: forecast.daily?.temperatureMax?.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0) ?? 0.0)
             
-			Text("\(forecast.daily?.temperatureMin?.toTemeratureString(for: unitsManager.temperatureUnit) ?? "")")
-				.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+			Text("\(forecast.daily?.temperatureMax?.toTemeratureString(for: unitsManager.temperatureUnit) ?? "")")
+				.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
         }
     }
 

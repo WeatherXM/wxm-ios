@@ -21,20 +21,28 @@ struct StationForecastView: View {
                 TrackableScrollView(showIndicators: false, offsetObject: viewModel.offsetObject) { completion in
                     viewModel.refresh(completion: completion)
                 } content: {
-                    VStack(spacing: CGFloat(.mediumSpacing)) {
+                    VStack(spacing: CGFloat(.largeSpacing)) {
 
 						hourlyView
 
-						HStack {
-							Text(LocalizableString.Forecast.nextSevenDays.localized)
-								.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-								.foregroundColor(Color(colorEnum: .darkestBlue))
-
-							Spacer()
-						}
-						.padding(.horizontal)
-
 						VStack(spacing: CGFloat(.mediumSpacing)) {
+							HStack {
+								Text(LocalizableString.Forecast.nextSevenDays.localized)
+									.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+									.foregroundColor(Color(colorEnum: .darkestBlue))
+
+								Spacer()
+
+								Button {
+
+								} label: {
+									Text(FontIcon.infoCircle.rawValue)
+										.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+										.foregroundColor(Color(colorEnum: .wxmPrimary))
+								}
+							}
+							.padding(.horizontal)
+
 							ForEach(viewModel.forecasts, id: \.date) { forecast in
 								Button {
 									viewModel.handleForecastTap(forecast: forecast)
@@ -49,13 +57,13 @@ struct StationForecastView: View {
 							.padding(.horizontal)
 						}
 						.padding(.bottom)
-                    }
+					}
 					.iPadMaxWidth()
 					.padding(.vertical)
-                }
-            }
-        }
-        .wxmEmptyView(show: Binding(get: { viewModel.viewState == .hidden }, set: { _ in }), configuration: viewModel.hiddenViewConfiguration)
+				}
+			}
+		}
+		.wxmEmptyView(show: Binding(get: { viewModel.viewState == .hidden }, set: { _ in }), configuration: viewModel.hiddenViewConfiguration)
         .fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)
         .spinningLoader(show: Binding(get: { viewModel.viewState == .loading }, set: { _ in }), hideContent: true)
         .onAppear {
