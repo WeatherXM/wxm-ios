@@ -35,7 +35,7 @@ private extension WeatherField {
     }
 }
 
-extension WeatherOverviewV {
+extension WeatherOverviewView {
 	@ViewBuilder
 	var weatherDataView: some View {
 		HStack(spacing: 0.0) {
