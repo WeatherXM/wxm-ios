@@ -5,14 +5,17 @@ on:
 jobs:
     pr_agent_job:
       runs-on: ubuntu-latest
-      
+      permissions:
+            issues: write
+            pull-requests: write
+            contents: write
       steps:
         - name: PR Agent action step
           id: pragent
           uses: Codium-ai/pr-agent@main
           env:
             OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
-            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             CONFIG.MODEL: "gpt-4o-mini"
             CONFIG.MODEL_TURBO: "gpt-3.5-turbo"
             CONFIG.FALLBACK_MODELS: "gpt-4o-mini-2024-07-18"
