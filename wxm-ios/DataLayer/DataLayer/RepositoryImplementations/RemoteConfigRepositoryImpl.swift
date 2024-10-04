@@ -91,9 +91,9 @@ private extension RemoteConfigRepositoryImpl {
 		let infoBanner = InfoBanner(id: infoBannerId,
 									title: RemoteConfigManager.shared.infoBannerTitle,
 									message: RemoteConfigManager.shared.infoBannerMessage,
-									buttonShow: RemoteConfigManager.shared.infoButtonShow,
+									buttonShow: RemoteConfigManager.shared.infoBannerActionShow,
 									actionLabel: RemoteConfigManager.shared.infoBannerActionLabel,
-									url: RemoteConfigManager.shared.infoBannerUrl,
+									url: RemoteConfigManager.shared.infoBannerActionUrl,
 									dismissable: RemoteConfigManager.shared.infoBannerDismissable)
 
 		infoBannerCurrentValueSubject.send(infoBanner)
