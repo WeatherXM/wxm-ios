@@ -44,9 +44,9 @@ public enum RemoteConfigKey: String, CaseIterable {
 	case infoBannerId = "info_banner_id"
 	case infoBannerTitle = "info_banner_title"
 	case infoBannerMessage = "info_banner_message"
-	case infoButtonShow = "info_button_show"
+	case infoBannerActionShow = "info_banner_action_show"
 	case infoBannerActionLabel = "info_banner_action_label"
-	case infoBannerUrl = "info_banner_url"
+	case infoBannerActionUrl = "info_banner_action_url"
 	case infoBannerShow = "info_banner_show"
 	case infoBannerDismissable = "info_banner_dismissable"
 
@@ -78,11 +78,11 @@ public enum RemoteConfigKey: String, CaseIterable {
 				return "-" as NSObject
 			case .infoBannerMessage:
 				return "-" as NSObject
-			case .infoButtonShow:
+			case .infoBannerActionShow:
 				return false as NSObject
 			case .infoBannerActionLabel:
 				return "-" as NSObject
-			case .infoBannerUrl:
+			case .infoBannerActionUrl:
 				return "-" as NSObject
 			case .infoBannerShow:
 				return false as NSObject
