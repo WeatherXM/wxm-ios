@@ -10,6 +10,7 @@
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)group.com.weatherxm.app</string>
+		<string>$(AppIdentifierPrefix)group.com.weatherxm.app.dev</string>
 	</array>
 </dict>
 </plist>
