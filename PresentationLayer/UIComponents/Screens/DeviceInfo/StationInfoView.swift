@@ -115,7 +115,7 @@ private extension StationInfoView {
             }
 
             if let warning = row.warning {
-                CardWarningView(message: warning.title, closeAction: nil) {
+                CardWarningView(configuration: .init(message: warning.title, closeAction: nil)) {
                     EmptyView()
                 }
                 .onAppear {

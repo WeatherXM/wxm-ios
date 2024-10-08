@@ -32,12 +32,12 @@ struct DailyRewardCardView: View {
 		.indication(show: Binding(get: { card.indication != nil }, set: { _ in }),
 					borderColor: Color(colorEnum: card.indicationBorderColor ?? .noColor),
 					bgColor: Color(colorEnum: card.indication?.type.tintColor ?? .noColor)) {
-			CardWarningView(type: card.indication?.type ?? .info,
-							showIcon: false,
-							title: nil,
-							message: card.indication?.text ?? "",
-							showContentFullWidth: true,
-							closeAction: nil) {
+			CardWarningView(configuration: .init(type: card.indication?.type ?? .info,
+												 showIcon: false,
+												 title: nil,
+												 message: card.indication?.text ?? "",
+												 closeAction: nil),
+							showContentFullWidth: true) {
 				Group {
 					if let buttonAction {
 						Button {
@@ -52,7 +52,7 @@ struct DailyRewardCardView: View {
 				}
 			}
 		}
-    }
+	}
 }
 
 private extension DailyRewardCardView {

@@ -128,12 +128,12 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var buyStationView: some View {
-		CardWarningView(type: .info,
-						showIcon: false,
-						title: LocalizableString.Profile.noRewardsWarningTitle.localized,
-						message: LocalizableString.Profile.noRewardsWarningDescription.localized,
-						showContentFullWidth: true,
-						closeAction: nil) {
+		CardWarningView(configuration: .init(type: .info,
+											 showIcon: false,
+											 title: LocalizableString.Profile.noRewardsWarningTitle.localized,
+											 message: LocalizableString.Profile.noRewardsWarningDescription.localized,
+											 closeAction: nil),
+						showContentFullWidth: true) {
 			Button {
 				viewModel.handleBuyStationTap()
 			} label: {
@@ -155,11 +155,11 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var claimWebView: some View {
-		CardWarningView(type: .info,
-						showIcon: false,
-						title: nil,
-						message: LocalizableString.Profile.claimFromWebDescription(viewModel.claimWebAppUrl).localized,
-						closeAction: nil) { EmptyView() }
+		CardWarningView(configuration: .init(type: .info,
+											 showIcon: false,
+											 title: nil,
+											 message: LocalizableString.Profile.claimFromWebDescription(viewModel.claimWebAppUrl).localized,
+											 closeAction: nil)) { EmptyView() }
 	}
 
 	@ViewBuilder
@@ -198,10 +198,10 @@ private struct ContentView: View {
 			.indication(show: $viewModel.showMissingWalletError,
 						borderColor: Color(colorEnum: .error),
 						bgColor: Color(colorEnum: .errorTint)) {
-				CardWarningView(type: .error,
-								title: LocalizableString.Profile.noWalletAddressErrorTitle.localized,
-								message: LocalizableString.Profile.noWalletAddressErrorDescription.localized,
-								closeAction: nil,
+				CardWarningView(configuration: .init(type: .error,
+													 title: LocalizableString.Profile.noWalletAddressErrorTitle.localized,
+													 message: LocalizableString.Profile.noWalletAddressErrorDescription.localized,
+													 closeAction: nil),
 								content: { EmptyView() })
 			}
 						.wxmShadow()
