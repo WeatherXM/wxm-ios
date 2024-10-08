@@ -209,7 +209,6 @@ extension DeviceInfoViewModel {
 	}
 
 	enum InfoField {
-
 		case name
 		case bundleName
 		case devEUI
@@ -227,6 +226,7 @@ extension DeviceInfoViewModel {
 		case claimedAt
 		case stationModel
 		case lastStationActivity
+		case stationRssi
 
 		static var heliumFields: [InfoField] {
 			[.name, .bundleName, .stationModel, .claimedAt, .devEUI, .firmwareVersion, .hardwareVersion, .batteryState, .lastHotspot, .lastRSSI, .lastStationActivity]
@@ -247,7 +247,7 @@ extension DeviceInfoViewModel {
 		}
 
 		static var wifiStationDetailsInfoFields: [InfoField] {
-			[.stationModel, .batteryState, .hardwareVersion, .lastStationActivity]
+			[.stationModel, .hardwareVersion, .stationRssi, .batteryState, .lastStationActivity]
 		}
 
         static func getShareText(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String {
@@ -267,6 +267,17 @@ extension DeviceInfoViewModel {
 
             return textComps.joined(separator: "\n")
         }
+
+		private static func getRssiText(rssi: String?, lastActivityDate: Date?, timezone: String?) -> String? {
+			guard var rssi else {
+				return nil
+			}
+			rssi = "\(rssi) \(UnitConstants.DBM)"
+			let timestamp = lastActivityDate?.getFormattedDate(format: .monthLiteralYearDayTime,
+															   timezone: timezone?.toTimezone ?? .current).capitalizedSentence
+			let elements = [rssi, timestamp].compactMap { $0 }
+			return elements.joined(separator: " @ ")
+		}
 
 		var title: String {
 			switch self {
@@ -302,6 +313,8 @@ extension DeviceInfoViewModel {
 					return LocalizableString.deviceInfoLastGatewayActivity.localized
 				case .lastStationActivity:
 					return LocalizableString.deviceInfoLastStationActivity.localized
+				case .stationRssi:
+					return LocalizableString.deviceInfoStationRssi.localized
 			}
 		}
 
@@ -333,15 +346,9 @@ extension DeviceInfoViewModel {
 					let elements = [lastHs, timestamp].compactMap { $0 }
 					return elements.isEmpty ? nil : elements.joined(separator: " @ ")
 				case .lastRSSI:
-					guard var lastTxRssi = deviceInfo?.weatherStation?.lastTxRssi else {
-						return nil
-					}
-
-					lastTxRssi = "\(lastTxRssi) \(UnitConstants.DBM)"
-					let timestamp = deviceInfo?.weatherStation?.lastTxRssiActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
-																									 timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
-					let elements = [lastTxRssi, timestamp].compactMap { $0 }
-					return elements.joined(separator: " @ ")
+					return Self.getRssiText(rssi: deviceInfo?.weatherStation?.lastTxRssi,
+											lastActivityDate: deviceInfo?.weatherStation?.lastTxRssiActivity,
+											timezone: device.timezone)
 				case .serialNumber:
 					return deviceInfo?.gateway?.serialNumber?.convertedDeviceIdentifier  ?? device.convertedLabel
 				case .ATECC:
@@ -377,6 +384,10 @@ extension DeviceInfoViewModel {
 				case .lastStationActivity:
 					return deviceInfo?.weatherStation?.lastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
 																					  timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
+				case .stationRssi:
+					return Self.getRssiText(rssi: deviceInfo?.weatherStation?.stationRssi?.formatted(),
+											lastActivityDate: deviceInfo?.weatherStation?.stationRssiLastActivity,
+											timezone: device.timezone)
 			}
 		}
 
@@ -430,6 +441,8 @@ extension DeviceInfoViewModel {
 					return nil
 				case .lastStationActivity:
 					return nil
+				case .stationRssi:
+					return nil
 			}
 		}
 
@@ -471,6 +484,8 @@ extension DeviceInfoViewModel {
 				case .stationModel:
 					return nil
 				case .lastStationActivity:
+					return nil
+				case .stationRssi:
 					return nil
 			}
 		}

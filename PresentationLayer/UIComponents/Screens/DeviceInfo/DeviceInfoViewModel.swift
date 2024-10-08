@@ -270,6 +270,8 @@ private extension DeviceInfoViewModel {
 				break
 			case .lastStationActivity:
 				break
+			case .stationRssi:
+				break
 		}
 	}
 
