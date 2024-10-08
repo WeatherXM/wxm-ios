@@ -3122,6 +3122,28 @@
         }
       }
     },
+    "device_info_station_rssi_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**No Weather Station signal**. Check that your station is working well. This will cause Data Gaps and may lead to reduced Rewards."
+          }
+        }
+      }
+    },
+    "device_info_station_rssi_warning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station signal reception is low. This may result in Data Gaps and reduced Rewards."
+          }
+        }
+      }
+    },
     "device_info_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8221,6 +8243,17 @@
         }
       }
     },
+    "troubleshoot_instructions_here" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Troubleshoot instructions here"
+          }
+        }
+      }
+    },
     "type_your_password" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8261,6 +8294,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Update Required"
+          }
+        }
+      }
+    },
+    "url_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[%@](%@)"
           }
         }
       }

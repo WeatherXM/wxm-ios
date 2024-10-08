@@ -391,7 +391,7 @@ extension DeviceInfoViewModel {
 			}
 		}
 
-		func warning(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?) -> (String, VoidCallback)? {
+		func warning(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?) -> (CardWarningConfiguration, VoidCallback)? {
 			switch self {
 				case .name:
 					return nil
@@ -429,7 +429,10 @@ extension DeviceInfoViewModel {
 																					 .action: .viewAction,
 																					 .itemId: .custom(device.id ?? "")])
 							}
-							return (LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized, callback)
+							return (CardWarningConfiguration(type: .warning,
+															 message: LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized,
+															 closeAction: nil),
+									callback)
 						case .ok:
 							return nil
 					}
@@ -442,7 +445,27 @@ extension DeviceInfoViewModel {
 				case .lastStationActivity:
 					return nil
 				case .stationRssi:
-					return nil
+					guard let rssi = deviceInfo?.weatherStation?.stationRssi else {
+						return nil
+					}
+
+					let urlText = "**\(LocalizableString.troubleshootInstructionsHere.localized)**"
+					switch rssi {
+						case _ where rssi >= -80:
+							return nil
+						case _ where rssi >= -95:
+							return (CardWarningConfiguration(type: .warning,
+															 message: LocalizableString.deviceInfoStationRssiWarning.localized,
+															 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
+															 closeAction: nil),
+									{})
+						default:
+							return (CardWarningConfiguration(type: .error,
+															 message: LocalizableString.deviceInfoStationRssiError.localized,
+															 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
+															 closeAction: nil),
+									{})
+					}
 			}
 		}
 

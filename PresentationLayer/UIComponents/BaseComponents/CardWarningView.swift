@@ -10,7 +10,7 @@ import SwiftUI
 /// A card to show warning. Requires `title` `message`. If passed a `closeAction` will render an `x` button on the top right side.
 /// `content` used to provide a custom view which will be rendered below the`message` text. If `showContentFullWidth` is true the `content` will cover the view edge to edge
 struct CardWarningView<Content: View>: View {
-	let configuration: Configuration
+	let configuration: CardWarningConfiguration
 	var showContentFullWidth: Bool = false
     var content: () -> Content
 
@@ -18,8 +18,8 @@ struct CardWarningView<Content: View>: View {
         VStack(spacing: CGFloat(.smallSpacing)) {
             HStack(spacing: CGFloat(.smallSpacing)) {
 				if configuration.showIcon {
-					Image(asset: configuration.type.icon)
-                        .renderingMode(.template)
+					Text(configuration.type.fontIcon.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
 						.foregroundColor(Color(colorEnum: configuration.type.iconColor))
                 }
 
@@ -42,10 +42,27 @@ struct CardWarningView<Content: View>: View {
                         }
                     }
 
-					Text(configuration.message.attributedMarkdown ?? "")
-                        .foregroundColor(Color(colorEnum: .text))
-                        .font(.system(size: CGFloat(.normalFontSize)))
-                        .fixedSize(horizontal: false, vertical: true)
+					VStack(alignment: .leading, spacing: 0.0) {
+						Text(configuration.message.attributedMarkdown ?? "")
+							.foregroundColor(Color(colorEnum: .text))
+							.tint(Color(colorEnum: .wxmPrimary))
+							.font(.system(size: CGFloat(.normalFontSize)))
+							.fixedSize(horizontal: false, vertical: true)
+
+						if let linkText = configuration.linkText {
+							HStack(spacing: CGFloat(.minimumSpacing)) {
+								Text(linkText.attributedMarkdown ?? "")
+									.foregroundColor(Color(colorEnum: .text))
+									.tint(Color(colorEnum: .wxmPrimary))
+									.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+									.fixedSize(horizontal: false, vertical: true)
+
+								Text(FontIcon.externalLink.rawValue)
+									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
+									.foregroundColor(Color(colorEnum: .wxmPrimary))
+							}
+						}
+					}
 
 					if !showContentFullWidth {
                         content()
@@ -65,15 +82,22 @@ struct CardWarningView<Content: View>: View {
     }
 }
 
-extension CardWarningView {
-	struct Configuration {
-		var type: CardWarningType = .warning
-		var showIcon = true
-		var title: String?
-		let message: String
-		var showBorder: Bool = false
-		let closeAction: (() -> Void)?
+struct CardWarningConfiguration: Equatable {
+	static func == (lhs: CardWarningConfiguration, rhs: CardWarningConfiguration) -> Bool {
+		lhs.type == rhs.type &&
+		lhs.showIcon == rhs.showIcon &&
+		lhs.title == rhs.title &&
+		lhs.message == rhs.message &&
+		lhs.showBorder == rhs.showBorder
 	}
+
+	var type: CardWarningType = .warning
+	var showIcon = true
+	var title: String?
+	let message: String
+	var linkText: String?
+	var showBorder: Bool = false
+	let closeAction: (() -> Void)?
 }
 
 enum CardWarningType: Comparable {

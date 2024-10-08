@@ -75,14 +75,14 @@ extension StationInfoView {
         static func == (lhs: StationInfoView.Row, rhs: StationInfoView.Row) -> Bool {
             lhs.tile == rhs.tile &&
             lhs.subtitle == rhs.subtitle &&
-            lhs.warning?.title == rhs.warning?.title &&
+			lhs.warning?.configuration == rhs.warning?.configuration &&
             lhs.buttonIcon == rhs.buttonIcon &&
             lhs.buttonTitle == rhs.buttonTitle
         }
 
         let tile: String
         let subtitle: String
-        var warning: (title: String, appearAction: VoidCallback?)?
+		var warning: (configuration: CardWarningConfiguration, appearAction: VoidCallback?)?
         let buttonIcon: AssetEnum?
         let buttonTitle: String?
 		let buttonStyle: WXMButtonStyle
@@ -115,7 +115,7 @@ private extension StationInfoView {
             }
 
             if let warning = row.warning {
-                CardWarningView(configuration: .init(message: warning.title, closeAction: nil)) {
+				CardWarningView(configuration: warning.configuration) {
                     EmptyView()
                 }
                 .onAppear {
@@ -144,7 +144,8 @@ struct StationInfoView_Previews: PreviewProvider {
     static var previews: some View {
 		let rows = [StationInfoView.Row(tile: "title",
 										subtitle: "subtile",
-										warning: (LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized, nil),
+										warning: (.init(message: LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized,
+														closeAction: nil), nil),
 										buttonIcon: .updateFirmwareIcon,
 										buttonTitle: "Update firmware",
 										buttonStyle: .filled()) {},

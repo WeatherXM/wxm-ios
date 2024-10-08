@@ -13,6 +13,7 @@ protocol WXMLocalizable {
 }
 
 enum LocalizableString: WXMLocalizable {
+	case url(String, String)
 	case confirm
 	case email
 	case mandatoryEmail
@@ -81,6 +82,7 @@ enum LocalizableString: WXMLocalizable {
 	case stationWarningLowBatteryTitle
 	case stationWarningLowBatteryDescription
 	case stationWarningLowBatteryButtonTitle
+	case troubleshootInstructionsHere
 	case deviceInfoTitle
 	case deviceInfoStationName
 	case deviceInfoStationLocation
@@ -141,6 +143,8 @@ enum LocalizableString: WXMLocalizable {
 	case deviceInfoGatewayDetails
 	case deviceInfoStationDetails
 	case deviceInfoStationRssi
+	case deviceInfoStationRssiWarning
+	case deviceInfoStationRssiError
 	case invalidLocationErrorText
 	case confirmPasswordTitle
 	case explorerViewTitle
@@ -256,6 +260,8 @@ enum LocalizableString: WXMLocalizable {
 					.hiddenContentDescription(let text),
 					.timeZoneDisclaimer(let text):
 				localized = String(format: localized, text)
+			case .url(let text, let link):
+				localized = String(format: localized, text, link)
 			case .percentage(let count):
 				localized = String(format: localized, count)
 			default: break
@@ -268,6 +274,8 @@ enum LocalizableString: WXMLocalizable {
 extension LocalizableString {
 	var key: String {
 		switch self {
+			case .url:
+				return "url_format"
 			case .confirm:
 				return "confirm"
 			case .email:
@@ -416,6 +424,8 @@ extension LocalizableString {
 				return "station_warning_low_battery_description"
 			case .stationWarningLowBatteryButtonTitle:
 				return "station_warning_low_battery_button_title"
+			case .troubleshootInstructionsHere:
+				return "troubleshoot_instructions_here"
 			case .deviceInfoTitle:
 				return "device_info_title"
 			case .deviceInfoStationName:
@@ -536,6 +546,10 @@ extension LocalizableString {
 				return "device_info_station_details"
 			case .deviceInfoStationRssi:
 				return "device_info_station_rssi"
+			case .deviceInfoStationRssiWarning:
+				return "device_info_station_rssi_warning"
+			case .deviceInfoStationRssiError:
+				return "device_info_station_rssi_error"
 			case .invalidLocationErrorText:
 				return "invalid_location_error_text"
 			case .confirmPasswordTitle:
