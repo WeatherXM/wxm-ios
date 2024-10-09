@@ -43,7 +43,7 @@ struct MyWalletView: View {
                         }
                     }
 					.iPadMaxWidth()
-                    .padding(.top)
+                    .padding(.vertical)
                 }
                 .padding(.bottom, bottomDrawerSize.height)
 
@@ -128,23 +128,29 @@ private extension MyWalletView {
     var warningCard: some View {
         CardWarningView(type: .error,
                         title: LocalizableString.Wallet.compatibility.localized,
-                        message: LocalizableString.Wallet.compatibilityDescription.localized) {
+						message: LocalizableString.Wallet.compatibilityDescription.localized,
+						showContentFullWidth: true,
+						showBorder: true) {
             viewModel.isWarningVisible = false
             WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
                                                            .promptType: .info,
                                                            .action: .dismissAction])
 		} content: {
-            HStack {
-				Text(LocalizableString.Wallet.compatibilityCheckLink(DisplayedLinks.createWalletsLink.linkURL).localized.attributedMarkdown!)
-                    .tint(Color(colorEnum: .wxmPrimary))
-                    .font(.system(size: CGFloat(.caption), weight: .bold))
-                    .simultaneousGesture(TapGesture().onEnded {
-                        WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
-                                                                       .promptType: .info,
-                                                                       .action: .action])
-                    })
-                Spacer()
+			Button {
+				viewModel.handleCheckCompatibilityTap()
+			} label: {
+				HStack {
+					Text(LocalizableString.Wallet.compatibilityCheck.localized)
+						.font(.system(size: CGFloat(.caption), weight: .bold))
+						.frame(maxWidth: .infinity)
+
+					Text(FontIcon.externalLink.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
+				}
+				.padding(.horizontal, CGFloat(.defaultSidePadding))
             }
+			.buttonStyle(WXMButtonStyle.transparent)
+			.padding(.top, CGFloat(.smallSidePadding))
         }
         .onAppear {
             WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,

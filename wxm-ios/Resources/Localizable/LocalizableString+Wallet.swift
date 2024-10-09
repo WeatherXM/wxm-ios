@@ -14,7 +14,7 @@ extension LocalizableString {
 		case createMetaMaskLink(String)
 		case compatibility
 		case compatibilityDescription
-		case compatibilityCheckLink(String)
+		case compatibilityCheck
 		case editAddress
 		case viewTransactionHistory
 		case myAccountConfirmationDescription
@@ -40,8 +40,7 @@ extension LocalizableString.Wallet: WXMLocalizable {
 		var localized = NSLocalizedString(self.key, comment: "")
 		switch self {
 			case .confirmOwnershipDescription(let text),
-					.createMetaMaskLink(let text),
-					.compatibilityCheckLink(let text):
+					.createMetaMaskLink(let text):
 				localized = String(format: localized, text)
 			default:
 				break
@@ -62,8 +61,8 @@ extension LocalizableString.Wallet: WXMLocalizable {
 				return "wallet_compatibility"
 			case .compatibilityDescription:
 				return "wallet_compatibility_description"
-			case .compatibilityCheckLink:
-				return "wallet_compatibility_check_link"
+			case .compatibilityCheck:
+				return "wallet_compatibility_check"
 			case .editAddress:
 				return "wallet_edit_address"
 			case .viewTransactionHistory:
