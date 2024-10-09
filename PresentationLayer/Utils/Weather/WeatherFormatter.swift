@@ -133,7 +133,7 @@ struct WeatherFormatter {
     /// - Parameter value: The value to generate the formatted value
     /// - Returns: A tuple with the text components eg. ("12.2", "W/m2")
     func getSolarRadiationLiterals(value: Double?) -> WeatherValueLiterals {
-        ("\(value?.rounded(toPlaces: 1) ?? 0.0)", UnitConstants.WATTS_PER_SQR)
+		("\((value ?? 0.0).toPrecisionString(minDecimals: 1, precision: 1))", UnitConstants.WATTS_PER_SQR)
     }
 
     /// The text components of the precipitation value. (value, unit)
@@ -143,10 +143,10 @@ struct WeatherFormatter {
     func getPrecipitationLiterals(value: Double?, unit: PrecipitationUnitsEnum) -> WeatherValueLiterals {
         switch unit {
             case .millimeters:
-                return ("\(value?.rounded(toPlaces: 1) ?? Double.nan)", UnitConstants.MILLIMETERS_PER_HOUR)
+				return ("\((value ?? .nan).toPrecisionString(minDecimals: 1, precision: 1))", UnitConstants.MILLIMETERS_PER_HOUR)
             case .inches:
-				let convertedValue = (shouldConvert ? unitsConverter.millimetersToInches(mm: value ?? Double.nan) : value ?? Double.nan).rounded(toPlaces: 2)
-                return ("\(convertedValue)", UnitConstants.INCHES_PER_HOUR)
+				let convertedValue = (shouldConvert ? unitsConverter.millimetersToInches(mm: value ?? Double.nan) : value ?? Double.nan)
+				return (convertedValue.toPrecisionString(minDecimals: 2, precision: 2), UnitConstants.INCHES_PER_HOUR)
         }
     }
 
@@ -157,10 +157,10 @@ struct WeatherFormatter {
     func getPrecipitationAccumulatedLiterals(from value: Double?, unit: PrecipitationUnitsEnum) -> WeatherValueLiterals? {
         switch unit {
             case .millimeters:
-                return ("\((value ?? 0.0).rounded(toPlaces: 1))", UnitConstants.MILLIMETERS)
+                return ((value ?? 0.0).toPrecisionString(minDecimals: 1, precision: 1), UnitConstants.MILLIMETERS)
             case .inches:
-				let convertedValue = (shouldConvert ? unitsConverter.millimetersToInches(mm: value ?? 0.0) : value ?? 0.0).rounded(toPlaces: 2)
-                return ("\(convertedValue)", UnitConstants.INCHES)
+				let convertedValue = (shouldConvert ? unitsConverter.millimetersToInches(mm: value ?? 0.0) : value ?? 0.0)
+                return (convertedValue.toPrecisionString(minDecimals: 2, precision: 2), UnitConstants.INCHES)
         }
     }
 
