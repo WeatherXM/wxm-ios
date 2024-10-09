@@ -183,6 +183,35 @@ extension DeviceInfoViewModel.InfoField {
 		return elements.joined(separator: " @ ")
 	}
 
+	private static func getGpsSatsText(gpsSats: String?, lastActivityDate: Date?, timezone: String?) -> String? {
+		guard var gpsSats else {
+			return nil
+		}
+		gpsSats = LocalizableString.deviceInfoSatellites(gpsSats).localized
+		let timestamp = lastActivityDate?.getFormattedDate(format: .monthLiteralYearDayTime,
+														   timezone: timezone?.toTimezone ?? .current).capitalizedSentence
+		let elements = [gpsSats, timestamp].compactMap { $0 }
+		return elements.joined(separator: " @ ")
+	}
+
+	private static func getLastHotspotText(lastHs: String?, lastActivityDate: Date?, timezone: String?) -> String? {
+		let timestamp = lastActivityDate?.getFormattedDate(format: .monthLiteralYearDayTime,
+														   timezone: timezone?.toTimezone ?? .current).capitalizedSentence
+		let elements = [lastHs, timestamp].compactMap { $0 }
+		return elements.isEmpty ? nil : elements.joined(separator: " @ ")
+	}
+
+	private static func getFirmwareVersionText(for device: DeviceDetails, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String? {
+		guard let current = device.firmware?.current else {
+			return nil
+		}
+
+		if device.needsUpdate(mainVM: mainVM, followState: followState) {
+			return device.firmware?.versionUpdateString
+		}
+		return current
+	}
+
 	var title: String {
 		switch self {
 			case .name:
@@ -222,7 +251,10 @@ extension DeviceInfoViewModel.InfoField {
 		}
 	}
 
-	func value(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse? = nil, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String? {
+	func value(for device: DeviceDetails,
+			   deviceInfo: NetworkDevicesInfoResponse? = nil,
+			   mainVM: MainScreenViewModel,
+			   followState: UserDeviceFollowState?) -> String? {
 		switch self {
 			case .name:
 				return device.name
@@ -235,20 +267,11 @@ extension DeviceInfoViewModel.InfoField {
 			case .hardwareVersion:
 				return deviceInfo?.weatherStation?.hwVersion
 			case .firmwareVersion:
-				guard let current = device.firmware?.current else {
-					return nil
-				}
-
-				if device.needsUpdate(mainVM: mainVM, followState: followState) {
-					return device.firmware?.versionUpdateString
-				}
-				return current
+				return Self.getFirmwareVersionText(for: device, mainVM: mainVM, followState: followState)
 			case .lastHotspot:
-				let lastHs = deviceInfo?.weatherStation?.lastHs
-				let timestamp = deviceInfo?.weatherStation?.lastHsActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
-																							 timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
-				let elements = [lastHs, timestamp].compactMap { $0 }
-				return elements.isEmpty ? nil : elements.joined(separator: " @ ")
+				return Self.getLastHotspotText(lastHs: deviceInfo?.weatherStation?.lastHs,
+											   lastActivityDate: deviceInfo?.weatherStation?.lastHsActivity,
+											   timezone: device.timezone)
 			case .lastRSSI:
 				return Self.getRssiText(rssi: deviceInfo?.weatherStation?.lastTxRssi,
 										lastActivityDate: deviceInfo?.weatherStation?.lastTxRssiActivity,
@@ -258,23 +281,13 @@ extension DeviceInfoViewModel.InfoField {
 			case .ATECC:
 				return nil
 			case .GPS:
-				guard var gpsSats = deviceInfo?.gateway?.gpsSats else {
-					return nil
-				}
-				gpsSats = LocalizableString.deviceInfoSatellites(gpsSats).localized
-				let timestamp = deviceInfo?.gateway?.gpsSatsLastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
-																						   timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
-				let elements = [gpsSats, timestamp].compactMap { $0 }
-				return elements.joined(separator: " @ ")
+				return Self.getGpsSatsText(gpsSats: deviceInfo?.gateway?.gpsSats,
+										   lastActivityDate: deviceInfo?.gateway?.gpsSatsLastActivity,
+										   timezone: device.timezone)
 			case .wifiSignal:
-				guard var rssi = deviceInfo?.gateway?.wifiRssi else {
-					return nil
-				}
-				rssi = "\(rssi) \(UnitConstants.DBM)"
-				let timestamp = deviceInfo?.gateway?.wifiRssiLastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
-																							timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
-				let elements = [rssi, timestamp].compactMap { $0 }
-				return elements.joined(separator: " @ ")
+				return Self.getRssiText(rssi: deviceInfo?.gateway?.wifiRssi,
+										lastActivityDate: deviceInfo?.gateway?.wifiRssiLastActivity,
+										timezone: device.timezone)
 			case .batteryState:
 				return deviceInfo?.weatherStation?.batState?.description
 			case .claimedAt:
@@ -370,14 +383,12 @@ extension DeviceInfoViewModel.InfoField {
 				return (CardWarningConfiguration(type: .warning,
 												 message: LocalizableString.deviceInfoStationRssiWarning.localized,
 												 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
-												 closeAction: nil),
-						{})
+												 closeAction: nil), {})
 			default:
 				return (CardWarningConfiguration(type: .error,
 												 message: LocalizableString.deviceInfoStationRssiError.localized,
 												 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
-												 closeAction: nil),
-						{})
+												 closeAction: nil), {})
 		}
 	}
 
