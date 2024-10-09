@@ -80,6 +80,14 @@ class MyWalletViewModel: ObservableObject {
                                                               .itemId: .custom(wallet?.address ?? "")])
     }
 
+	func handleCheckCompatibilityTap() {
+		WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
+															 .promptType: .info,
+															 .action: .action])
+
+		HelperFunctions().openUrl(DisplayedLinks.createWalletsLink.linkURL)
+	}
+
     func handleQRButtonTap() {
         WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .scanQRWallet])
         

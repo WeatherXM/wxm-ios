@@ -43,7 +43,7 @@ struct MyWalletView: View {
                         }
                     }
 					.iPadMaxWidth()
-                    .padding(.top)
+                    .padding(.vertical)
                 }
                 .padding(.bottom, bottomDrawerSize.height)
 
@@ -125,34 +125,37 @@ private extension MyWalletView {
     }
 
     @ViewBuilder
-	var warningCard: some View {
-		CardWarningView(configuration: .init(type: .error,
-											 title: LocalizableString.Wallet.compatibility.localized,
-											 message: LocalizableString.Wallet.compatibilityDescription.localized,
-											 closeAction: {
-			viewModel.isWarningVisible = false
-			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
-																 .promptType: .info,
-																 .action: .dismissAction])
-		})) {
-			HStack {
-				Text(LocalizableString.Wallet.compatibilityCheckLink(DisplayedLinks.createWalletsLink.linkURL).localized.attributedMarkdown!)
-					.tint(Color(colorEnum: .wxmPrimary))
-					.font(.system(size: CGFloat(.caption), weight: .bold))
-					.simultaneousGesture(TapGesture().onEnded {
-						WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
-																			 .promptType: .info,
-																			 .action: .action])
-					})
-				Spacer()
-			}
-		}
-		.onAppear {
-			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
-																 .promptType: .info,
-																 .action: .viewAction])
-        }
+    var warningCard: some View {
+        CardWarningView(configuration: .init(type: .error,
+                        title: LocalizableString.Wallet.compatibility.localized,
+						message: LocalizableString.Wallet.compatibilityDescription.localized,
+						showBorder: true) {
+            viewModel.isWarningVisible = false
+            WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
+                                                           .promptType: .info,
+                                                           .action: .dismissAction])
+		}, showContentFullWidth: true) {
+			Button {
+				viewModel.handleCheckCompatibilityTap()
+			} label: {
+				HStack {
+					Text(LocalizableString.Wallet.compatibilityCheck.localized)
+						.font(.system(size: CGFloat(.caption), weight: .bold))
+						.frame(maxWidth: .infinity)
 
+					Text(FontIcon.externalLink.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
+				}
+				.padding(.horizontal, CGFloat(.defaultSidePadding))
+            }
+			.buttonStyle(WXMButtonStyle.transparent)
+			.padding(.top, CGFloat(.smallSidePadding))
+        }
+        .onAppear {
+            WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
+                                                           .promptType: .info,
+                                                           .action: .viewAction])
+        }
     }
 
     @ViewBuilder

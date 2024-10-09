@@ -8430,13 +8430,13 @@
         }
       }
     },
-    "wallet_compatibility_check_link" : {
+    "wallet_compatibility_check" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "[Check compatibility here](%@)"
+            "value" : "Check compatibility here"
           }
         }
       }
@@ -8447,7 +8447,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Not sure if you own a WXM compatible wallet?\n**If your wallet is not compatible you may not be able to redeem or use $WXM rewards!**"
+            "value" : "Always make sure you use a wallet you own. If your wallet is not compatible you may not be able to redeem or use WXM rewards!\n\nNot sure if you own a WXM compatible wallet? Check our compatibility guide."
           }
         }
       }
