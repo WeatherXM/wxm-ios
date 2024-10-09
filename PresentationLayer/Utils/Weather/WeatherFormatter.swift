@@ -28,12 +28,11 @@ struct WeatherFormatter {
         switch unit {
             case .hectopascal:
                 let pressureMetric = UnitConstants.HECTOPASCAL
-                pressureValue = pressureValue.rounded(toPlaces: 1)
-                return ("\(pressureValue)", pressureMetric)
+				return ("\(pressureValue.toPrecisionString(precision: 1))", pressureMetric)
             case .inchOfMercury:
                 let pressureMetric = UnitConstants.INCH_OF_MERCURY
-				let pressureValue = (shouldConvert ? unitsConverter.hpaToInHg(hpa: pressureValue) : pressureValue).rounded(toPlaces: 2)
-                return ("\(pressureValue)", pressureMetric)
+				let pressureValue = (shouldConvert ? unitsConverter.hpaToInHg(hpa: pressureValue) : pressureValue)
+                return ("\(pressureValue.toPrecisionString(precision: 2))", pressureMetric)
         }
     }
 
@@ -99,7 +98,7 @@ struct WeatherFormatter {
         }
 
 		let convertedValue = windSpeed.rounded(toPlaces: 1)
-		let convertedValueStr = showDecimals ? "\(convertedValue)" : "\(Int(convertedValue))"
+		let convertedValueStr = showDecimals ? "\(convertedValue.toPrecisionString(minDecimals: 1, precision: 1))" : "\(Int(convertedValue))"
         return ("\(convertedValueStr)", "\(windUnit) \(includeDirection ? windDirectionString : "")".trimWhiteSpaces())
     }
 
