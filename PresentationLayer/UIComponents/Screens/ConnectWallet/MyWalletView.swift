@@ -97,13 +97,13 @@ private extension MyWalletView {
 
 			VStack(spacing: CGFloat(.smallSpacing)) {
                 HStack {
-                    Text(LocalizableString.Wallet.addressTextFieldCaption.localized)
+					Text(LocalizableString.Wallet.addressTextFieldCaption.localized.attributedMarkdown ?? "")
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.normalFontSize)))
                     Spacer()
                 }
 
-                HStack {
+				HStack(spacing: CGFloat(.minimumSpacing)) {
 					Text(LocalizableString.Wallet.createMetaMaskLink(DisplayedLinks.createWalletsLink.linkURL).localized.attributedMarkdown!)
                         .tint(Color(colorEnum: .wxmPrimary))
                         .font(.system(size: CGFloat(.caption), weight: .bold))
@@ -111,6 +111,11 @@ private extension MyWalletView {
                             WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .createMetamask,
                                                                                   .itemId: .custom(viewModel.wallet?.address ?? "")])
                         })
+
+					Text(FontIcon.externalLink.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
+
                     Spacer()
                 }
             }
@@ -248,7 +253,7 @@ private extension MyWalletView {
 struct MyWalletView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationContainerView {
-            MyWalletView(viewModel: MyWalletViewModel(useCase: nil))
+			MyWalletView(viewModel: ViewModelsFactory.getMyWalletViewModel())
 				.environmentObject(MainScreenViewModel.shared)
         }
     }

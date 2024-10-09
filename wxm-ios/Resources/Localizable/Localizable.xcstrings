@@ -8414,7 +8414,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It is highly recomended to use Metamask as the most compatible wallet."
+            "value" : "It is highly recomended to use Metamask as the most compatible wallet.  **Never use a third party wallet you don’t own, or an exchange’s deposit address.**"
           }
         }
       }
