@@ -48,14 +48,13 @@ struct WeatherFormatter {
     /// - Parameter unit: The requested unit
     /// - Parameter temperature: The value to generate the formatted value
     /// - Returns: A tuple with the text components eg. ("12", "°C")
-    func getTemperatureLiterals(temperature: Double, unit: TemperatureUnitsEnum) -> WeatherValueLiterals {
-        let format = "%.1f"
+	func getTemperatureLiterals(temperature: Double, unit: TemperatureUnitsEnum, decimals: Int = 1) -> WeatherValueLiterals {
         switch unit {
             case .celsius:
-                return (String(format: format, temperature), LocalizableString.celsiusSymbol.localized)
+				return (temperature.toPrecisionString(minDecimals: decimals, precision: decimals), LocalizableString.celsiusSymbol.localized)
             case .fahrenheit:
-				let value = shouldConvert ? unitsConverter.celsiusToFahrenheit(celsius: temperature.rounded(toPlaces: 1)) : temperature
-                return (String(format: format, value), LocalizableString.fahrenheitSymbol.localized)
+				let value = shouldConvert ? unitsConverter.celsiusToFahrenheit(celsius: temperature.rounded(toPlaces: 1)) : temperature				
+				return (value.toPrecisionString(minDecimals: decimals, precision: decimals), LocalizableString.fahrenheitSymbol.localized)
         }
     }
 
