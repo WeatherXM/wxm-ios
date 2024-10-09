@@ -22,19 +22,7 @@ extension Double {
     }
 
 	func toTemeratureString(for unit: TemperatureUnitsEnum, decimals: Int = 0) -> String {
-        let value = toTemeratureUnit(unit).rounded(toPlaces: decimals)
-
-		let formatter = NumberFormatter()
-		formatter.minimumFractionDigits = decimals
-		formatter.maximumFractionDigits = decimals
-		formatter.roundingMode = .halfUp
-		formatter.numberStyle = .decimal
-		let valueStr = formatter.string(for: value) ?? ""
-        switch unit {
-            case .celsius:
-                return "\(valueStr)\(LocalizableString.celsiusSymbol.localized)"
-            case .fahrenheit:
-                return "\(valueStr)\(LocalizableString.fahrenheitSymbol.localized)"
-        }
+		let literals = WeatherFormatter().getTemperatureLiterals(temperature: self, unit: unit, decimals: decimals)
+		return "\(literals.value)\(literals.unit)"
     }
 }
