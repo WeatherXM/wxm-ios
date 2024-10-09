@@ -312,6 +312,7 @@
 		2692D8722A4D8DEA0060CB3C /* Numeric+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8712A4D8DEA0060CB3C /* Numeric+.swift */; };
 		2692D8922A4DC0BA0060CB3C /* NetworkSearchResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8912A4DC0BA0060CB3C /* NetworkSearchResponse+.swift */; };
 		2698AE9C2CB6667A00DDB04D /* DeviceInfoFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698AE9B2CB6667A00DDB04D /* DeviceInfoFactory.swift */; };
+		2698AE9E2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698AE9D2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift */; };
 		2699F5652A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2699F5642A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift */; };
 		269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C6E782C4A97C800879263 /* CompactNumberFormatterTests.swift */; };
 		269C809C2AB9E76F005F9BD6 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C809B2AB9E76F005F9BD6 /* Badge.swift */; };
@@ -866,6 +867,7 @@
 		2692D8712A4D8DEA0060CB3C /* Numeric+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numeric+.swift"; sourceTree = "<group>"; };
 		2692D8912A4DC0BA0060CB3C /* NetworkSearchResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkSearchResponse+.swift"; sourceTree = "<group>"; };
 		2698AE9B2CB6667A00DDB04D /* DeviceInfoFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoFactory.swift; sourceTree = "<group>"; };
+		2698AE9D2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+DeviceInfo.swift"; sourceTree = "<group>"; };
 		2699F5642A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkStatsViewModel+Factory.swift"; sourceTree = "<group>"; };
 		269C6E782C4A97C800879263 /* CompactNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactNumberFormatterTests.swift; sourceTree = "<group>"; };
 		269C809B2AB9E76F005F9BD6 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
@@ -2108,6 +2110,7 @@
 				26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */,
 				26E85B102C7752A70062667E /* LocalizableUnits.xcstrings */,
 				26D611AA2A9E21080099117C /* LocalizableConstants.swift */,
+				2698AE9D2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift */,
 				2666D57C2BC96077003B30C0 /* LocalizableString+Forecast.swift */,
 				26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */,
 				26E85B132C7753140062667E /* LocalizableString+Units.swift */,
@@ -3210,6 +3213,7 @@
 				2675480029A9181E008BCF40 /* StaticButtonStyle.swift in Sources */,
 				26DD42E129B0F741008E277E /* StationDetailsContainerView.swift in Sources */,
 				267401922A3A00D500E54E35 /* StationDetailsGridView.swift in Sources */,
+				2698AE9E2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift in Sources */,
 				2664834329C89F8A00748F9C /* StationDetailsTypes.swift in Sources */,
 				264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */,
 				26FFCCDA2BD2483F00880AAD /* ForecastDetailsDailyView.swift in Sources */,

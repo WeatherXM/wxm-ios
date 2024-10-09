@@ -14,7 +14,7 @@ extension DeviceInfoViewModel.Field {
 	var warning: DeviceInfoRowView.Row.Warning? {
 		switch self {
 			case .remove:
-				return .desructive(LocalizableString.deviceInfoStationRemoveWarning.localized)
+				return .desructive(LocalizableString.DeviceInfo.stationRemoveWarning.localized)
 			default:
 				return nil
 		}
@@ -23,20 +23,20 @@ extension DeviceInfoViewModel.Field {
 	func titleFor(devie: DeviceDetails) -> String {
 		switch self {
 			case .name:
-				return LocalizableString.deviceInfoStationName.localized
+				return LocalizableString.DeviceInfo.stationName.localized
 			case .frequency:
-				return LocalizableString.deviceInfoStationFrequency.localized
+				return LocalizableString.DeviceInfo.stationFrequency.localized
 			case .reboot:
-				return LocalizableString.deviceInfoStationReboot.localized
+				return LocalizableString.DeviceInfo.stationReboot.localized
 			case .maintenance:
 #warning("TODO: Format when info is ready")
-				return LocalizableString.deviceInfoStationMaintenance("").localized
+				return LocalizableString.DeviceInfo.stationMaintenance("").localized
 			case .remove:
-				return LocalizableString.deviceInfoStationRemove.localized
+				return LocalizableString.DeviceInfo.stationRemove.localized
 			case .reconfigureWifi:
-				return LocalizableString.deviceInfoStationReconfigureWifi.localized
+				return LocalizableString.DeviceInfo.stationReconfigureWifi.localized
 			case .stationLocation:
-				return LocalizableString.deviceInfoStationLocation.localized
+				return LocalizableString.DeviceInfo.stationLocation.localized
 			case .rewardSplit:
 				return LocalizableString.RewardDetails.rewardSplit.localized
 		}
@@ -48,23 +48,23 @@ extension DeviceInfoViewModel.Field {
 				return device.displayName
 			case .frequency:
 				if device.isHelium {
-					return LocalizableString.deviceInfoStationHeliumFrequencyDescription(DisplayedLinks.heliumRegionFrequencies.linkURL).localized
+					return LocalizableString.DeviceInfo.stationHeliumFrequencyDescription(DisplayedLinks.heliumRegionFrequencies.linkURL).localized
 				}
 
 				return ""
 			case .reboot:
-				return LocalizableString.deviceInfoStationRebootDescription.localized
+				return LocalizableString.DeviceInfo.stationRebootDescription.localized
 			case .maintenance:
-				return  LocalizableString.deviceInfoStationMaintenanceDescription(DisplayedLinks.heliumTroubleshooting.linkURL).localized
+				return  LocalizableString.DeviceInfo.stationMaintenanceDescription(DisplayedLinks.heliumTroubleshooting.linkURL).localized
 			case .remove:
-				return LocalizableString.deviceInfoStationRemoveDescription(DisplayedLinks.documentationLink.linkURL).localized
+				return LocalizableString.DeviceInfo.stationRemoveDescription(DisplayedLinks.documentationLink.linkURL).localized
 			case .reconfigureWifi:
-				return LocalizableString.deviceInfoStationReconfigureWifiDescription.localized
+				return LocalizableString.DeviceInfo.stationReconfigureWifiDescription.localized
 			case .stationLocation:
 				if followState?.relation == .owned {
-					return LocalizableString.deviceInfoOwnedStationLocationDescription(device.address ?? "").localized
+					return LocalizableString.DeviceInfo.ownedStationLocationDescription(device.address ?? "").localized
 				}
-				return LocalizableString.deviceInfoStationLocationDescription(device.address ?? "").localized
+				return LocalizableString.DeviceInfo.stationLocationDescription(device.address ?? "").localized
 			case .rewardSplit:
 				guard let rewardSplit = deviceInfo?.rewardSplit else {
 					return ""
@@ -112,23 +112,23 @@ extension DeviceInfoViewModel.Field {
 	func buttonInfoFor(devie: DeviceDetails, followState: UserDeviceFollowState?) -> DeviceInfoButtonInfo? {
 		switch self {
 			case .name:
-				return .init(icon: nil, title: LocalizableString.deviceInfoButtonChangeName.localized)
+				return .init(icon: nil, title: LocalizableString.DeviceInfo.buttonChangeName.localized)
 			case .frequency:
-				return .init(icon: nil, title: LocalizableString.deviceInfoButtonChangeFrequency.localized)
+				return .init(icon: nil, title: LocalizableString.DeviceInfo.buttonChangeFrequency.localized)
 			case .reboot:
-				return .init(icon: nil, title: LocalizableString.deviceInfoButtonReboot.localized)
+				return .init(icon: nil, title: LocalizableString.DeviceInfo.buttonReboot.localized)
 			case .maintenance:
-				return .init(icon: nil, title: LocalizableString.deviceInfoButtonEnterMaintenance.localized)
+				return .init(icon: nil, title: LocalizableString.DeviceInfo.buttonEnterMaintenance.localized)
 			case .remove:
-				return .init(icon: nil, title: LocalizableString.deviceInfoButtonRemove.localized)
+				return .init(icon: nil, title: LocalizableString.DeviceInfo.buttonRemove.localized)
 			case .reconfigureWifi:
-				return .init(icon: nil, title: LocalizableString.deviceInfoButtonReconfigureWifi.localized)
+				return .init(icon: nil, title: LocalizableString.DeviceInfo.buttonReconfigureWifi.localized)
 			case .stationLocation:
 				guard followState?.relation == .owned else {
 					return nil
 				}
 				return .init(icon: .editIcon,
-							 title: LocalizableString.deviceinfoStationLocationButtonTitle.localized,
+							 title: LocalizableString.DeviceInfo.stationLocationButtonTitle.localized,
 							 buttonStyle: .filled())
 			case .rewardSplit:
 				return nil
@@ -187,7 +187,7 @@ extension DeviceInfoViewModel.InfoField {
 		guard var gpsSats else {
 			return nil
 		}
-		gpsSats = LocalizableString.deviceInfoSatellites(gpsSats).localized
+		gpsSats = LocalizableString.DeviceInfo.satellites(gpsSats).localized
 		let timestamp = lastActivityDate?.getFormattedDate(format: .monthLiteralYearDayTime,
 														   timezone: timezone?.toTimezone ?? .current).capitalizedSentence
 		let elements = [gpsSats, timestamp].compactMap { $0 }
@@ -215,39 +215,39 @@ extension DeviceInfoViewModel.InfoField {
 	var title: String {
 		switch self {
 			case .name:
-				return LocalizableString.deviceInfoStationInfoName.localized
+				return LocalizableString.DeviceInfo.stationInfoName.localized
 			case .bundleName:
-				return LocalizableString.deviceInfoStationInfoBundleName.localized
+				return LocalizableString.DeviceInfo.stationInfoBundleName.localized
 			case .gatewayModel, .stationModel:
-				return LocalizableString.deviceInfoStationInfoModel.localized
+				return LocalizableString.DeviceInfo.stationInfoModel.localized
 			case .devEUI:
-				return LocalizableString.deviceInfoStationInfoDevEUI.localized
+				return LocalizableString.DeviceInfo.stationInfoDevEUI.localized
 			case .hardwareVersion:
-				return LocalizableString.deviceInfoStationInfoHardwareVersion.localized
+				return LocalizableString.DeviceInfo.stationInfoHardwareVersion.localized
 			case .firmwareVersion:
-				return LocalizableString.deviceInfoStationInfoFirmwareVersion.localized
+				return LocalizableString.DeviceInfo.stationInfoFirmwareVersion.localized
 			case .lastHotspot:
-				return LocalizableString.deviceInfoStationInfoLastHotspot.localized
+				return LocalizableString.DeviceInfo.stationInfoLastHotspot.localized
 			case .lastRSSI:
-				return LocalizableString.deviceInfoStationInfoLastRSSI.localized
+				return LocalizableString.DeviceInfo.stationInfoLastRSSI.localized
 			case .serialNumber:
-				return LocalizableString.deviceInfoStationInfoSerialNumber.localized
+				return LocalizableString.DeviceInfo.stationInfoSerialNumber.localized
 			case .ATECC:
-				return LocalizableString.deviceInfoStationInfoATECC.localized
+				return LocalizableString.DeviceInfo.stationInfoATECC.localized
 			case .GPS:
-				return LocalizableString.deviceInfoStationInfoGPS.localized
+				return LocalizableString.DeviceInfo.stationInfoGPS.localized
 			case .wifiSignal:
-				return LocalizableString.deviceInfoStationInfoWifiSignal.localized
+				return LocalizableString.DeviceInfo.stationInfoWifiSignal.localized
 			case .batteryState:
-				return LocalizableString.deviceInfoStationInfoBattery.localized
+				return LocalizableString.DeviceInfo.stationInfoBattery.localized
 			case .claimedAt:
-				return LocalizableString.deviceInfoClaimDate.localized
+				return LocalizableString.DeviceInfo.claimDate.localized
 			case .lastGatewayActivity:
-				return LocalizableString.deviceInfoLastGatewayActivity.localized
+				return LocalizableString.DeviceInfo.lastGatewayActivity.localized
 			case .lastStationActivity:
-				return LocalizableString.deviceInfoLastStationActivity.localized
+				return LocalizableString.DeviceInfo.lastStationActivity.localized
 			case .stationRssi:
-				return LocalizableString.deviceInfoStationRssi.localized
+				return LocalizableString.DeviceInfo.stationRssi.localized
 		}
 	}
 
@@ -362,7 +362,7 @@ extension DeviceInfoViewModel.InfoField {
 																		 .itemId: .custom(deviceId)])
 				}
 				return (CardWarningConfiguration(type: .warning,
-												 message: LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized,
+												 message: LocalizableString.DeviceInfo.lowBatteryWarningMarkdown.localized,
 												 closeAction: nil),
 						callback)
 			case .ok:
@@ -381,12 +381,12 @@ extension DeviceInfoViewModel.InfoField {
 				return nil
 			case _ where rssi >= -95:
 				return (CardWarningConfiguration(type: .warning,
-												 message: LocalizableString.deviceInfoStationRssiWarning.localized,
+												 message: LocalizableString.DeviceInfo.stationRssiWarning.localized,
 												 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
 												 closeAction: nil), {})
 			default:
 				return (CardWarningConfiguration(type: .error,
-												 message: LocalizableString.deviceInfoStationRssiError.localized,
+												 message: LocalizableString.DeviceInfo.stationRssiError.localized,
 												 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
 												 closeAction: nil), {})
 		}

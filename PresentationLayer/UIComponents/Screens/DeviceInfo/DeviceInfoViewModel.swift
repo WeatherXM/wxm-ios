@@ -62,8 +62,8 @@ class DeviceInfoViewModel: ObservableObject {
 			return [getInfoSection(title: nil, fields: InfoField.heliumFields)]
 		} else {
 			let sections: [StationInfoView.Section] = [getInfoSection(title: nil, fields: InfoField.wifiInfoFields),
-													   getInfoSection(title: LocalizableString.deviceInfoGatewayDetails.localized, fields: InfoField.wifiGatewayDetailsInfoFields),
-													   getInfoSection(title: LocalizableString.deviceInfoStationDetails.localized, fields: InfoField.wifiStationDetailsInfoFields)]
+													   getInfoSection(title: LocalizableString.DeviceInfo.gatewayDetails.localized, fields: InfoField.wifiGatewayDetailsInfoFields),
+													   getInfoSection(title: LocalizableString.DeviceInfo.stationDetails.localized, fields: InfoField.wifiStationDetailsInfoFields)]
 			return sections
         }
     }
@@ -95,7 +95,7 @@ class DeviceInfoViewModel: ObservableObject {
     @Published var showAccountConfirmation = false
     var accountConfirmationViewModel: AccountConfirmationViewModel {
         AccountConfirmationViewModel(title: LocalizableString.confirmPasswordTitle.localized,
-                                     descriptionMarkdown: LocalizableString.deviceInfoRemoveStationAccountConfirmationMarkdown.localized,
+									 descriptionMarkdown: LocalizableString.DeviceInfo.removeStationAccountConfirmationMarkdown.localized,
                                      useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)) { [weak self] isvalid in
             if isvalid {
                 self?.showAccountConfirmation = false
@@ -107,7 +107,7 @@ class DeviceInfoViewModel: ObservableObject {
     }
     var contactSupportButtonTitle: String {
         let isFollowed = followState?.relation == .followed
-        return isFollowed ? LocalizableString.deviceInfoFollowedContactSupportTitle.localized : LocalizableString.contactSupport.localized
+		return isFollowed ? LocalizableString.DeviceInfo.followedContactSupportTitle.localized : LocalizableString.contactSupport.localized
     }
 
     private let deviceInfoUseCase: DeviceInfoUseCase?
@@ -284,7 +284,7 @@ private extension DeviceInfoViewModel {
             }
 
 			if !text.matches(friendlyNameRegex) {
-				Toast.shared.show(text: LocalizableString.deviceInfoInvalidFriendlyName.localized.attributedMarkdown ?? "")
+				Toast.shared.show(text: LocalizableString.DeviceInfo.invalidFriendlyName.localized.attributedMarkdown ?? "")
 				return
 			}
 
@@ -308,8 +308,8 @@ private extension DeviceInfoViewModel {
                                                                .action: .clear])
         })
 
-        let alertObject = AlertHelper.AlertObject(title: LocalizableString.deviceInfoEditNameAlertTitle.localized,
-                                                  message: LocalizableString.deviceInfoEditNameAlertMessage.localized,
+		let alertObject = AlertHelper.AlertObject(title: LocalizableString.DeviceInfo.editNameAlertTitle.localized,
+												  message: LocalizableString.DeviceInfo.editNameAlertMessage.localized,
                                                   textFieldPlaceholder: Field.name.titleFor(devie: device),
                                                   textFieldValue: device.displayName,
                                                   textFieldDelegate: AlertTexFieldDelegate(),

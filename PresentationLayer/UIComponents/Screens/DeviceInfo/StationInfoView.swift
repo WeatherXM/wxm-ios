@@ -19,7 +19,7 @@ struct StationInfoView: View {
     var body: some View {
         VStack(spacing: CGFloat(.defaultSpacing)) {
             HStack {
-                Text(LocalizableString.deviceInfoStationInformation.localized)
+				Text(LocalizableString.DeviceInfo.stationInformation.localized)
                     .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
 
                 Spacer()
@@ -144,7 +144,7 @@ struct StationInfoView_Previews: PreviewProvider {
     static var previews: some View {
 		let rows = [StationInfoView.Row(tile: "title",
 										subtitle: "subtile",
-										warning: (.init(message: LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized,
+										warning: (.init(message: LocalizableString.DeviceInfo.lowBatteryWarningMarkdown.localized,
 														closeAction: nil), nil),
 										buttonIcon: .updateFirmwareIcon,
 										buttonTitle: "Update firmware",
