@@ -418,24 +418,7 @@ extension DeviceInfoViewModel {
 				case .wifiSignal:
 					return nil
 				case .batteryState:
-					guard let state = deviceInfo?.weatherStation?.batState else {
-						return nil
-					}
-					switch state {
-						case .low:
-							let callback = {
-								WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .lowBattery,
-																					 .promptType: .warnPromptType,
-																					 .action: .viewAction,
-																					 .itemId: .custom(device.id ?? "")])
-							}
-							return (CardWarningConfiguration(type: .warning,
-															 message: LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized,
-															 closeAction: nil),
-									callback)
-						case .ok:
-							return nil
-					}
+					return warningForBatteryState(deviceInfo?.weatherStation?.batState, deviceId: device.id ?? "")
 				case .claimedAt:
 					return nil
 				case .lastGatewayActivity:
@@ -445,27 +428,52 @@ extension DeviceInfoViewModel {
 				case .lastStationActivity:
 					return nil
 				case .stationRssi:
-					guard let rssi = deviceInfo?.weatherStation?.stationRssi else {
-						return nil
-					}
+					return warningForStationRssi(for: deviceInfo?.weatherStation?.stationRssi)
+			}
+		}
 
-					let urlText = "**\(LocalizableString.troubleshootInstructionsHere.localized)**"
-					switch rssi {
-						case _ where rssi >= -80:
-							return nil
-						case _ where rssi >= -95:
-							return (CardWarningConfiguration(type: .warning,
-															 message: LocalizableString.deviceInfoStationRssiWarning.localized,
-															 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
-															 closeAction: nil),
-									{})
-						default:
-							return (CardWarningConfiguration(type: .error,
-															 message: LocalizableString.deviceInfoStationRssiError.localized,
-															 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
-															 closeAction: nil),
-									{})
+		func warningForBatteryState(_ state: BatteryState?, deviceId: String) -> (CardWarningConfiguration, VoidCallback)? {
+			guard let state else {
+				return nil
+			}
+			switch state {
+				case .low:
+					let callback = {
+						WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .lowBattery,
+																			 .promptType: .warnPromptType,
+																			 .action: .viewAction,
+																			 .itemId: .custom(deviceId)])
 					}
+					return (CardWarningConfiguration(type: .warning,
+													 message: LocalizableString.deviceInfoLowBatteryWarningMarkdown.localized,
+													 closeAction: nil),
+							callback)
+				case .ok:
+					return nil
+			}
+		}
+
+		func warningForStationRssi(for rssi: Int?) -> (CardWarningConfiguration, VoidCallback)? {
+			guard let rssi else {
+				return nil
+			}
+
+			let urlText = "**\(LocalizableString.troubleshootInstructionsHere.localized)**"
+			switch rssi {
+				case _ where rssi >= -80:
+					return nil
+				case _ where rssi >= -95:
+					return (CardWarningConfiguration(type: .warning,
+													 message: LocalizableString.deviceInfoStationRssiWarning.localized,
+													 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
+													 closeAction: nil),
+							{})
+				default:
+					return (CardWarningConfiguration(type: .error,
+													 message: LocalizableString.deviceInfoStationRssiError.localized,
+													 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
+													 closeAction: nil),
+							{})
 			}
 		}
 

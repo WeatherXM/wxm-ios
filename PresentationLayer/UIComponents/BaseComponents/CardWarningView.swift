@@ -12,7 +12,7 @@ import SwiftUI
 struct CardWarningView<Content: View>: View {
 	let configuration: CardWarningConfiguration
 	var showContentFullWidth: Bool = false
-    var content: () -> Content
+    let content: () -> Content
 
     var body: some View {
         VStack(spacing: CGFloat(.smallSpacing)) {
@@ -87,6 +87,7 @@ struct CardWarningConfiguration: Equatable {
 		lhs.type == rhs.type &&
 		lhs.showIcon == rhs.showIcon &&
 		lhs.title == rhs.title &&
+		lhs.linkText == rhs.linkText &&
 		lhs.message == rhs.message &&
 		lhs.showBorder == rhs.showBorder
 	}
