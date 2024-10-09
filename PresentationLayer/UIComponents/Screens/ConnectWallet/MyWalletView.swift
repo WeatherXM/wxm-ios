@@ -43,7 +43,7 @@ struct MyWalletView: View {
                         }
                     }
 					.iPadMaxWidth()
-                    .padding(.top)
+                    .padding(.vertical)
                 }
                 .padding(.bottom, bottomDrawerSize.height)
 
@@ -97,13 +97,13 @@ private extension MyWalletView {
 
 			VStack(spacing: CGFloat(.smallSpacing)) {
                 HStack {
-                    Text(LocalizableString.Wallet.addressTextFieldCaption.localized)
+					Text(LocalizableString.Wallet.addressTextFieldCaption.localized.attributedMarkdown ?? "")
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.normalFontSize)))
                     Spacer()
                 }
 
-                HStack {
+				HStack(spacing: CGFloat(.minimumSpacing)) {
 					Text(LocalizableString.Wallet.createMetaMaskLink(DisplayedLinks.createWalletsLink.linkURL).localized.attributedMarkdown!)
                         .tint(Color(colorEnum: .wxmPrimary))
                         .font(.system(size: CGFloat(.caption), weight: .bold))
@@ -111,6 +111,11 @@ private extension MyWalletView {
                             WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .createMetamask,
                                                                                   .itemId: .custom(viewModel.wallet?.address ?? "")])
                         })
+
+					Text(FontIcon.externalLink.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
+
                     Spacer()
                 }
             }
@@ -123,23 +128,29 @@ private extension MyWalletView {
     var warningCard: some View {
         CardWarningView(type: .error,
                         title: LocalizableString.Wallet.compatibility.localized,
-                        message: LocalizableString.Wallet.compatibilityDescription.localized) {
+						message: LocalizableString.Wallet.compatibilityDescription.localized,
+						showContentFullWidth: true,
+						showBorder: true) {
             viewModel.isWarningVisible = false
             WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
                                                            .promptType: .info,
                                                            .action: .dismissAction])
 		} content: {
-            HStack {
-				Text(LocalizableString.Wallet.compatibilityCheckLink(DisplayedLinks.createWalletsLink.linkURL).localized.attributedMarkdown!)
-                    .tint(Color(colorEnum: .wxmPrimary))
-                    .font(.system(size: CGFloat(.caption), weight: .bold))
-                    .simultaneousGesture(TapGesture().onEnded {
-                        WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
-                                                                       .promptType: .info,
-                                                                       .action: .action])
-                    })
-                Spacer()
+			Button {
+				viewModel.handleCheckCompatibilityTap()
+			} label: {
+				HStack {
+					Text(LocalizableString.Wallet.compatibilityCheck.localized)
+						.font(.system(size: CGFloat(.caption), weight: .bold))
+						.frame(maxWidth: .infinity)
+
+					Text(FontIcon.externalLink.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
+				}
+				.padding(.horizontal, CGFloat(.defaultSidePadding))
             }
+			.buttonStyle(WXMButtonStyle.transparent)
+			.padding(.top, CGFloat(.smallSidePadding))
         }
         .onAppear {
             WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
@@ -247,7 +258,7 @@ private extension MyWalletView {
 struct MyWalletView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationContainerView {
-            MyWalletView(viewModel: MyWalletViewModel(useCase: nil))
+			MyWalletView(viewModel: ViewModelsFactory.getMyWalletViewModel())
 				.environmentObject(MainScreenViewModel.shared)
         }
     }
