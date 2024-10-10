@@ -30,7 +30,7 @@ private extension WeatherStationCardView {
 	var titleView: some View {
 		StationAddressTitleView(device: device,
 								followState: followState,
-								issues: nil,
+								issues: device.getIssuesChip(followState: followState),
 								areChipsScrollable: false,
 								showStateIcon: true,
 								tapStateIconAction: followAction)
