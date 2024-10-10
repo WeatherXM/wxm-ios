@@ -127,12 +127,12 @@ private extension ChangeFrequencyViewModel {
                     case .failed(let error):
                         self?.handleFrequencyError(error)
                     case .finished:
-                        let subtitle = LocalizableString.deviceInfoStationFrequencyChangedDescription(selectedFrequency.rawValue).localized
+						let subtitle = LocalizableString.DeviceInfo.stationFrequencyChangedDescription(selectedFrequency.rawValue).localized
                         let obj = FailSuccessStateObject(type: .changeFrequency,
-                                                         title: LocalizableString.deviceInfoStationFrequencyChanged.localized,
+														 title: LocalizableString.DeviceInfo.stationFrequencyChanged.localized,
                                                          subtitle: subtitle.attributedMarkdown,
                                                          cancelTitle: nil,
-                                                         retryTitle: LocalizableString.deviceInfoStationBackToSettings.localized,
+														 retryTitle: LocalizableString.DeviceInfo.stationBackToSettings.localized,
                                                          contactSupportAction: nil,
                                                          cancelAction: nil,
                                                          retryAction: { [weak self] in self?.dismissToggle.toggle() })
@@ -161,7 +161,7 @@ private extension ChangeFrequencyViewModel {
 		guard let failTuple = getFailDecsriptionAndAction(error: error) else {
 			return
 		}
-        let title: String = LocalizableString.deviceInfoStationFrequencyChangeFailed.localized
+		let title: String = LocalizableString.DeviceInfo.stationFrequencyChangeFailed.localized
 		let subtitle: String = failTuple.description
         let cancelTitle = LocalizableString.cancel.localized
         let retryTitle = LocalizableString.retry.localized
@@ -212,7 +212,7 @@ private extension ChangeFrequencyViewModel {
 														 errorString: LocalizableString.FirmwareUpdate.failedToConnectError.localized)
 				}
 			case .settingFrequency(let errorString):
-				description = LocalizableString.deviceInfoStationFrequencyChangeFailureDescription(errorString ?? "-").localized
+				description = LocalizableString.DeviceInfo.stationFrequencyChangeFailureDescription(errorString ?? "-").localized
 				action = { [weak self] in
 					HelperFunctions().openContactSupport(successFailureEnum: .changeFrequency,
 														 email: self?.mainVM.userInfo?.email,

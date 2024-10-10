@@ -56,7 +56,7 @@ struct ChangeFrequencyView: View {
             .animation(.easeIn, value: viewModel.state)
             .padding(.horizontal, CGFloat(.defaultSidePadding))
             .onAppear {
-                navigationObject.title = LocalizableString.deviceInfoButtonChangeFrequency.localized
+				navigationObject.title = LocalizableString.DeviceInfo.buttonChangeFrequency.localized
                 WXMAnalytics.shared.trackScreen(.changeFrequency,
                                           parameters: [.itemId: .custom(viewModel.device.id ?? "")])
             }

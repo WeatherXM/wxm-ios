@@ -10,27 +10,22 @@ import SwiftUI
 /// A card to show warning. Requires `title` `message`. If passed a `closeAction` will render an `x` button on the top right side.
 /// `content` used to provide a custom view which will be rendered below the`message` text. If `showContentFullWidth` is true the `content` will cover the view edge to edge
 struct CardWarningView<Content: View>: View {
-    var type: CardWarningType = .warning
-    var showIcon = true
-    var title: String?
-    let message: String
-    var showContentFullWidth: Bool = false
-	var showBorder: Bool = false
-    let closeAction: (() -> Void)?
-    var content: () -> Content
+	let configuration: CardWarningConfiguration
+	var showContentFullWidth: Bool = false
+    let content: () -> Content
 
     var body: some View {
         VStack(spacing: CGFloat(.smallSpacing)) {
             HStack(spacing: CGFloat(.smallSpacing)) {
-                if showIcon {
-                    Image(asset: type.icon)
-                        .renderingMode(.template)
-                        .foregroundColor(Color(colorEnum: type.iconColor))
+				if configuration.showIcon {
+					Text(configuration.type.fontIcon.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundColor(Color(colorEnum: configuration.type.iconColor))
                 }
 
                 VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
                     HStack {
-                        if let title {
+						if let title = configuration.title {
                             Text(title)
                                 .foregroundColor(Color(colorEnum: .text))
                                 .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
@@ -38,7 +33,7 @@ struct CardWarningView<Content: View>: View {
 
                         Spacer()
 
-                        if let closeAction {
+                        if let closeAction = configuration.closeAction {
                             Button(action: closeAction) {
                                 Image(asset: .toggleXMark)
                                     .renderingMode(.template)
@@ -47,27 +42,63 @@ struct CardWarningView<Content: View>: View {
                         }
                     }
 
-                    Text(message.attributedMarkdown ?? "")
-                        .foregroundColor(Color(colorEnum: .text))
-                        .font(.system(size: CGFloat(.normalFontSize)))
-                        .fixedSize(horizontal: false, vertical: true)
+					VStack(alignment: .leading, spacing: 0.0) {
+						Text(configuration.message.attributedMarkdown ?? "")
+							.foregroundColor(Color(colorEnum: .text))
+							.tint(Color(colorEnum: .wxmPrimary))
+							.font(.system(size: CGFloat(.normalFontSize)))
+							.fixedSize(horizontal: false, vertical: true)
 
-                    if !showContentFullWidth {
+						if let linkText = configuration.linkText {
+							HStack(spacing: CGFloat(.minimumSpacing)) {
+								Text(linkText.attributedMarkdown ?? "")
+									.foregroundColor(Color(colorEnum: .text))
+									.tint(Color(colorEnum: .wxmPrimary))
+									.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+									.fixedSize(horizontal: false, vertical: true)
+
+								Text(FontIcon.externalLink.rawValue)
+									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
+									.foregroundColor(Color(colorEnum: .wxmPrimary))
+							}
+						}
+					}
+
+					if !showContentFullWidth {
                         content()
                     }
                 }
             }
 
-            if showContentFullWidth {
+			if showContentFullWidth {
                 content()
             }
         }
-        .WXMCardStyle(backgroundColor: Color(colorEnum: type.tintColor),
+		.WXMCardStyle(backgroundColor: Color(colorEnum: configuration.type.tintColor),
                             cornerRadius: CGFloat(.buttonCornerRadius))
-		.if(showBorder) { view in
-			view.strokeBorder(color: Color(colorEnum: type.iconColor), lineWidth: 1.0, radius: CGFloat(.buttonCornerRadius))
+		.if(configuration.showBorder) { view in
+			view.strokeBorder(color: Color(colorEnum: configuration.type.iconColor), lineWidth: 1.0, radius: CGFloat(.buttonCornerRadius))
 		}
     }
+}
+
+struct CardWarningConfiguration: Equatable {
+	static func == (lhs: CardWarningConfiguration, rhs: CardWarningConfiguration) -> Bool {
+		lhs.type == rhs.type &&
+		lhs.showIcon == rhs.showIcon &&
+		lhs.title == rhs.title &&
+		lhs.linkText == rhs.linkText &&
+		lhs.message == rhs.message &&
+		lhs.showBorder == rhs.showBorder
+	}
+
+	var type: CardWarningType = .warning
+	var showIcon = true
+	var title: String?
+	let message: String
+	var linkText: String?
+	var showBorder: Bool = false
+	let closeAction: (() -> Void)?
 }
 
 enum CardWarningType: Comparable {
@@ -121,11 +152,12 @@ enum CardWarningType: Comparable {
 }
 
 struct Previews_CardWarningView_Previews: PreviewProvider {
-    static var previews: some View {
-		CardWarningView(type: .info,
-						title: "This is title",
-						message: "This is a warning text", closeAction: nil) {
-            EmptyView()
-        }
-    }
+	static var previews: some View {
+		CardWarningView(configuration: .init(type: .info,
+											 title: "This is title",
+											 message: "This is a warning text",
+											 closeAction: nil)) {
+			EmptyView()
+		}
+	}
 }

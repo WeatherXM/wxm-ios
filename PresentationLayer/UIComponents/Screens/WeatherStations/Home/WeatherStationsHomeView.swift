@@ -180,8 +180,8 @@ private struct ContentView: View {
 
 					VStack(spacing: CGFloat(.smallSpacing)) {
 						if mainVM.showWalletWarning && isWalletEmpty {
-							CardWarningView(title: LocalizableString.walletAddressMissingTitle.localized,
-											message: LocalizableString.walletAddressMissingText.localized) {
+							CardWarningView(configuration: .init(title: LocalizableString.walletAddressMissingTitle.localized,
+																 message: LocalizableString.walletAddressMissingText.localized) {
 
 								WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
 																					 .promptType: .warnPromptType,
@@ -190,7 +190,7 @@ private struct ContentView: View {
 								withAnimation {
 									mainVM.hideWalletWarning()
 								}
-							} content: {
+							}) {
 								Button {
 									Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
 									WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,

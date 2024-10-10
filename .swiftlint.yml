@@ -19,6 +19,7 @@ identifier_name:
 switch_case_alignment:
   indented_cases: true
 function_body_length:
+  warning: 50
   error: 150
 cyclomatic_complexity:
   ignores_case_statements: true

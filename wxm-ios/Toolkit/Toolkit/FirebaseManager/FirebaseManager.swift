@@ -117,7 +117,7 @@ private class RemoteFirebaseManager: FirbaseManagerImplementation {
 	}
 
 	private func assignInstallationId() async {
-		return await withCheckedContinuation { continuation in
+		return await withUnsafeContinuation { continuation in
 			Installations.installations().installationID { [weak self] installationId, error in
 				defer {
 					continuation.resume()

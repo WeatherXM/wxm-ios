@@ -78,6 +78,8 @@ public extension NetworkDevicesInfoResponse {
 		public let lastHsActivity: Date?
         public let lastTxRssi: String?
 		public let lastTxRssiActivity: Date?
+		public let stationRssi: Int?
+		public let stationRssiLastActivity: Date?
 
         enum CodingKeys: String, CodingKey {
             case model
@@ -90,6 +92,8 @@ public extension NetworkDevicesInfoResponse {
 			case lastTxRssiActivity = "last_tx_rssi_last_activity"
             case lastActivity = "last_activity"
             case batState = "bat_state"
+			case stationRssi = "station_rssi"
+			case stationRssiLastActivity = "station_rssi_last_activity"
         }
 
         public init(from decoder: Decoder) throws {
@@ -104,6 +108,8 @@ public extension NetworkDevicesInfoResponse {
             self.lastTxRssiActivity = try container.decodeIfPresent(Date.self, forKey: .lastTxRssiActivity)
 			self.lastActivity = try container.decodeIfPresent(Date.self, forKey: .lastActivity)
             self.batState = try container.decodeIfPresent(BatteryState.self, forKey: .batState)
+			self.stationRssi = try container.decodeIfPresent(Int.self, forKey: .stationRssi)
+			self.stationRssiLastActivity = try container.decodeIfPresent(Date.self, forKey: .stationRssiLastActivity)
         }
     }
 }

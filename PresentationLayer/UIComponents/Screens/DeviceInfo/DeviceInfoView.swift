@@ -72,7 +72,7 @@ struct DeviceInfoView: View {
             .fail(show: $viewModel.isFailed, obj: viewModel.failObj)
         }
         .onAppear {
-            navigationObject.title = LocalizableString.deviceInfoTitle.localized
+			navigationObject.title = LocalizableString.DeviceInfo.title.localized
             navigationObject.navigationBarColor = Color(colorEnum: .bg)
             WXMAnalytics.shared.trackScreen(.stationSettings)
         }

@@ -120,31 +120,32 @@ private extension MyWalletView {
     }
 
     @ViewBuilder
-    var warningCard: some View {
-        CardWarningView(type: .error,
-                        title: LocalizableString.Wallet.compatibility.localized,
-                        message: LocalizableString.Wallet.compatibilityDescription.localized) {
-            viewModel.isWarningVisible = false
-            WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
-                                                           .promptType: .info,
-                                                           .action: .dismissAction])
-		} content: {
-            HStack {
+	var warningCard: some View {
+		CardWarningView(configuration: .init(type: .error,
+											 title: LocalizableString.Wallet.compatibility.localized,
+											 message: LocalizableString.Wallet.compatibilityDescription.localized,
+											 closeAction: {
+			viewModel.isWarningVisible = false
+			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
+																 .promptType: .info,
+																 .action: .dismissAction])
+		})) {
+			HStack {
 				Text(LocalizableString.Wallet.compatibilityCheckLink(DisplayedLinks.createWalletsLink.linkURL).localized.attributedMarkdown!)
-                    .tint(Color(colorEnum: .wxmPrimary))
-                    .font(.system(size: CGFloat(.caption), weight: .bold))
-                    .simultaneousGesture(TapGesture().onEnded {
-                        WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
-                                                                       .promptType: .info,
-                                                                       .action: .action])
-                    })
-                Spacer()
-            }
-        }
-        .onAppear {
-            WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
-                                                           .promptType: .info,
-                                                           .action: .viewAction])
+					.tint(Color(colorEnum: .wxmPrimary))
+					.font(.system(size: CGFloat(.caption), weight: .bold))
+					.simultaneousGesture(TapGesture().onEnded {
+						WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
+																			 .promptType: .info,
+																			 .action: .action])
+					})
+				Spacer()
+			}
+		}
+		.onAppear {
+			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
+																 .promptType: .info,
+																 .action: .viewAction])
         }
 
     }

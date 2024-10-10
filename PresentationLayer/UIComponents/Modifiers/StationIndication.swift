@@ -86,10 +86,10 @@ private extension StationIndicationModifier {
 	@ViewBuilder
 	var warningView: some View {
 		if device.needsUpdate(mainVM: mainScreenViewModel, followState: followState) {
-			CardWarningView(title: LocalizableString.stationWarningUpdateTitle.localized,
-							message: LocalizableString.stationWarningUpdateDescription.localized,
-							showContentFullWidth: true,
-							closeAction: nil) {
+			CardWarningView(configuration: .init(title: LocalizableString.stationWarningUpdateTitle.localized,
+												 message: LocalizableString.stationWarningUpdateDescription.localized,
+												 closeAction: nil),
+							showContentFullWidth: true) {
 				Button {
 					mainScreenViewModel.showFirmwareUpdate(device: device)
 
@@ -109,10 +109,10 @@ private extension StationIndicationModifier {
 															   .action: .viewAction])
 			}
 		} else if device.isBatteryLow(followState: followState) {
-			CardWarningView(title: LocalizableString.stationWarningLowBatteryTitle.localized,
-							message: LocalizableString.stationWarningLowBatteryDescription.localized,
-							showContentFullWidth: true,
-							closeAction: nil) {
+			CardWarningView(configuration: .init(title: LocalizableString.stationWarningLowBatteryTitle.localized,
+												 message: LocalizableString.stationWarningLowBatteryDescription.localized,
+												 closeAction: nil),
+							showContentFullWidth: true) {
 				Button {
 					guard let name = device.bundle?.name else {
 						return
@@ -159,10 +159,10 @@ private struct OfflineStationIndicationModifier: ViewModifier {
 									set: { _ in }),
 						borderColor: Color(colorEnum: CardWarningType.error.iconColor),
 						bgColor: Color(colorEnum: CardWarningType.error.tintColor)) {
-				CardWarningView(type: .error,
-								title: LocalizableString.offlineStation.localized,
-								message: LocalizableString.offlineStationDescription.localized,
-								closeAction: nil) {
+				CardWarningView(configuration: .init(type: .error,
+													 title: LocalizableString.offlineStation.localized,
+													 message: LocalizableString.offlineStationDescription.localized,
+													 closeAction: nil)) {
 					EmptyView()
 				}
 			}

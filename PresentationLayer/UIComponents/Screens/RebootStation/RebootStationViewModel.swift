@@ -44,10 +44,10 @@ class RebootStationViewModel: ObservableObject {
                         self.handleRebootError(rebootError)
                     case .finished:
                         let obj = FailSuccessStateObject(type: .rebootStation,
-                                                         title: LocalizableString.deviceInfoStationRebooted.localized,
-                                                         subtitle: LocalizableString.deviceInfoStationRebootedDescription.localized.attributedMarkdown,
+														 title: LocalizableString.DeviceInfo.stationRebooted.localized,
+														 subtitle: LocalizableString.DeviceInfo.stationRebootedDescription.localized.attributedMarkdown,
                                                          cancelTitle: nil,
-                                                         retryTitle: LocalizableString.deviceInfoStationBackToSettings.localized,
+														 retryTitle: LocalizableString.DeviceInfo.stationBackToSettings.localized,
                                                          contactSupportAction: nil,
                                                          cancelAction: nil,
                                                          retryAction: { [weak self] in self?.dismissToggle.toggle() })
@@ -114,7 +114,7 @@ private extension RebootStationViewModel {
     }
 
     func handleRebootError(_ rebootError: RebootError) {
-        let title: String = LocalizableString.deviceInfoStationRebootFailed.localized
+		let title: String = LocalizableString.DeviceInfo.stationRebootFailed.localized
         let subtitle: String
         let cancelTitle = LocalizableString.cancel.localized
         let retryTitle = LocalizableString.retry.localized

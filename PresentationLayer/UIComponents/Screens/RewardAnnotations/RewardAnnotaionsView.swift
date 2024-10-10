@@ -71,12 +71,12 @@ private extension ContentView {
 	var annotationsListView: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
 			ForEach(viewModel.annotations) { annotation in
-				CardWarningView(type: annotation.warningType ?? .warning,
-								showIcon: false,
-								title: annotation.title ?? "",
-								message: annotation.message ?? "",
-								showBorder: true,
-								closeAction: nil) {
+				CardWarningView(configuration: .init(type: annotation.warningType ?? .warning,
+													 showIcon: false,
+													 title: annotation.title ?? "",
+													 message: annotation.message ?? "",
+													 showBorder: true,
+													 closeAction: nil)) {
 					actionView(for: annotation)
 						.padding(.top, CGFloat(.smallSidePadding))
 				}

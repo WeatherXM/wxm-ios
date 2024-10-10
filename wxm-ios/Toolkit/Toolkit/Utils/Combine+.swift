@@ -10,7 +10,7 @@ import Combine
 
 public extension AnyPublisher {
 	func toAsync() async throws -> Output {
-		try await withCheckedThrowingContinuation { continuation in
+		try await withUnsafeThrowingContinuation { continuation in
 			var cancellable: AnyCancellable?
 			cancellable = first()
 				.sink { result in

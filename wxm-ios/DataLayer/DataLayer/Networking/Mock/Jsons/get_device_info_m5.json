@@ -17,6 +17,8 @@
     "weather_station": {
         "model": "WS1000",
         "last_activity": "2023-03-21T14:25:45+02:00",
-        "bat_state": "low"
+        "bat_state": "low",
+		"station_rssi" : -87,
+		"station_rssi_last_activity" : "2024-10-08T13:29:30+03:00"
     }
 }
