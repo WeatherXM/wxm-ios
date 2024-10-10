@@ -16,10 +16,8 @@ extension WeatherStationCard {
         StationAddressTitleView(device: device,
                                 followState: followState,
 								issues: nil,
-                                showSubtitle: false,
                                 showStateIcon: true,
-                                tapStateIconAction: followAction,
-                                tapAddressAction: nil)
+                                tapStateIconAction: followAction)
     }
 
     @ViewBuilder
