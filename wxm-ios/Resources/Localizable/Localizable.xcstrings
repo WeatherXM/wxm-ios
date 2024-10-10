@@ -8023,6 +8023,17 @@
         }
       }
     },
+    "station_inactive" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station inactive"
+          }
+        }
+      }
+    },
     "station_no_data_text" : {
       "extractionState" : "manual",
       "localizations" : {

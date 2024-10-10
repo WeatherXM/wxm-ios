@@ -65,7 +65,7 @@ private extension StationChipsView {
 
 				HStack(spacing: CGFloat(.smallSpacing)) {
 					Text(issues.icon.rawValue)
-						.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
 						.foregroundColor(Color(colorEnum: issues.type.iconColor))
 
 					Text(issues.title)

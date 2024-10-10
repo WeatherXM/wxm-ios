@@ -78,7 +78,7 @@ extension DeviceDetails {
 		var description: String {
 			switch self {
 				case .offline:
-					return LocalizableString.alertsStationOfflineTitle.localized
+					return LocalizableString.stationInactive.localized
 				case .needsUpdate:
 					return LocalizableString.updateRequiredTitle.localized
 				case .lowBattery:
@@ -121,11 +121,11 @@ extension DeviceDetails {
 
 		if issues.count > 1 {
 			return .init(type: warningType,
-						 icon: warningType.fontIcon,
+						 icon: .hexagonExclamation,
 						 title: LocalizableString.issues(issues.count).localized)
 		}
 
-		if let issue = issues.first, issue.type != .offline {
+		if let issue = issues.first {
 			return .init(type: warningType,
 						 icon: issue.type.fontIcon,
 						 title: issue.type.description)
