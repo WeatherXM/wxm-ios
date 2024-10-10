@@ -26,6 +26,8 @@ public struct DeviceDetails {
     public var rewards: Rewards?
     public var firmware: Firmware?
 	public var bundle: StationBundle?
+	public var qod: Int?
+	public var pol: PolStatus?
 }
 
 public extension DeviceDetails {
@@ -63,7 +65,9 @@ extension NetworkDevicesResponse {
                       claimedAt: attributes.claimedAt,
                       rewards: rewards,
                       firmware: attributes.firmware,
-					  bundle: bundle)
+					  bundle: bundle,
+					  qod: qod,
+					  pol: pol)
     }
 }
 
@@ -82,6 +86,8 @@ extension PublicDevice {
                       lastActiveAt: lastWeatherStationActivity,
                       rewards: nil,
                       firmware: nil,
-					  bundle: bundle)
+					  bundle: bundle,
+					  qod: qod,
+					  pol: pol)
     }
 }
