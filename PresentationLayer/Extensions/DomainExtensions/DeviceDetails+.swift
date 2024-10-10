@@ -85,6 +85,17 @@ extension DeviceDetails {
 					return LocalizableString.lowBatteryWarningTitle.localized
 			}
 		}
+
+		var fontIcon: FontIcon {
+			switch self {
+				case .offline:
+						.hexagonXmark
+				case .needsUpdate:
+						.arrowsRotate
+				case .lowBattery:
+						.batteryLow
+			}
+		}
 	}
 	
 	struct Issue {
@@ -101,7 +112,28 @@ extension DeviceDetails {
 			}
 		}
 	}
-	
+
+	func getIssuesChip(followState: UserDeviceFollowState?) -> StationChipsView.IssuesChip? {
+		guard case let issues = issues(mainVM: .shared, followState: followState).sorted(by: { $0.warningType > $1.warningType }),
+			  let warningType = issues.first?.warningType else {
+			return nil
+		}
+
+		if issues.count > 1 {
+			return .init(type: warningType,
+						 icon: warningType.fontIcon,
+						 title: LocalizableString.issues(issues.count).localized)
+		}
+
+		if let issue = issues.first, issue.type != .offline {
+			return .init(type: warningType,
+						 icon: issue.type.fontIcon,
+						 title: issue.type.description)
+		}
+
+		return nil
+	}
+
 	func isBatteryLow(followState: UserDeviceFollowState?) -> Bool {
 		guard followState?.relation == .owned else {
 			return false
@@ -193,7 +225,7 @@ extension DeviceDetails {
 		device.address = "This is an address"
 		device.bundle = .mock()
 		device.rewards = .init(totalRewards: 53.0, actualReward: 12.53533)
-		device.isActive = true
+		device.isActive = false
 		device.lastActiveAt = Date.now.toTimestamp()
 		device.firmware = Firmware(assigned: "1.0.0", current: "1.0.1")
 		device.cellCenter = .init(lat: 0.0, long: 0.0)
