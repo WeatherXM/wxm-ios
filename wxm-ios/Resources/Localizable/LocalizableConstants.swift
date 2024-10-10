@@ -14,6 +14,7 @@ protocol WXMLocalizable {
 
 enum LocalizableString: WXMLocalizable {
 	case url(String, String)
+	case notAvailable
 	case confirm
 	case email
 	case mandatoryEmail
@@ -205,6 +206,8 @@ extension LocalizableString {
 		switch self {
 			case .url:
 				return "url_format"
+			case .notAvailable:
+				return "not_available"
 			case .confirm:
 				return "confirm"
 			case .email:

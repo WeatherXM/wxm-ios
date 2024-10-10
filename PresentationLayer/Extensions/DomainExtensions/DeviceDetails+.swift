@@ -20,8 +20,7 @@ extension DeviceDetails {
 	
 	var stationLastActiveConf: StationLastActiveView.Configuration {
 		StationLastActiveView.Configuration(lastActiveAt: lastActiveAt,
-											stateColor: activeStateColor(isActive: isActive),
-											tintColor: activeStateTintColor(isActive: isActive))
+											stateColor: activeStateColor(isActive: isActive))
 	}
 	
 	/// Label without occurences of ":"

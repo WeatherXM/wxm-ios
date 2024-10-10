@@ -291,11 +291,15 @@ private extension StationDetailsViewModel {
 		}
 
 		if issues.count > 1 {
-			return (warningType, LocalizableString.issues(issues.count).localized)
+			return .init(type: warningType,
+						 icon: warningType.fontIcon,
+						 title: LocalizableString.issues(issues.count).localized)
 		}
 
 		if let issue = issues.first, issue.type != .offline {
-			return (warningType, issue.type.description)
+			return .init(type: warningType,
+						 icon: warningType.fontIcon,
+						 title: issue.type.description)
 		}
 
 		return nil
