@@ -83,3 +83,9 @@ public enum Connectivity: String, Codable {
 	case helium
 	case cellular
 }
+
+public enum PolStatus: String, Codable {
+	case verified
+	case notVerified
+	case noLocation
+}
