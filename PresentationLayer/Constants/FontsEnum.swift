@@ -70,5 +70,5 @@ enum FontIcon: String {
 	case sun
 	case dropletDegree = "droplet-degree"
 	case arrowsRotate = "arrows-rotate"
-	case batteryLow = "battery_low"
+	case batteryLow = "battery-low"
 }
