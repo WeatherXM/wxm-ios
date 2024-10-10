@@ -10,24 +10,21 @@ import DomainLayer
 import Toolkit
 
 struct StationChipsView: View {
-	typealias IssuesChip = (type: CardWarningType, title: String)
 
 	let device: DeviceDetails
 	let issues: IssuesChip?
 	var isScrollable: Bool = true
-	var addressAction: VoidCallback?
 	var warningAction: VoidCallback?
 	var statusAction: VoidCallback?
 
 	var body: some View {
 		HStack(spacing: CGFloat(.smallSpacing)) {
-			warningsChip
+			issuesChip
 				.fixedSize()
 			statusChip
 				.fixedSize()
 			bundleChip
 				.fixedSize()
-			addressChip
 
 			Spacer()
 		}
@@ -39,36 +36,15 @@ struct StationChipsView: View {
 	}
 }
 
-private extension StationChipsView {
-	@ViewBuilder
-	var addressChip: some View {
-		if let address = device.address {
-			Button {
-				addressAction?()
-			} label: {
-
-				HStack(spacing: CGFloat(.smallSpacing)) {
-					Text(FontIcon.hexagon.rawValue)
-						.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
-						.foregroundColor(Color(colorEnum: .text))
-						.lineLimit(1)
-
-					Text(address)
-						.font(.system(size: CGFloat(.caption)))
-						.foregroundColor(Color(colorEnum: .text))
-						.lineLimit(1)
-				}
-				.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
-							  insideHorizontalPadding: CGFloat(.smallSidePadding),
-							  insideVerticalPadding: CGFloat(.smallSidePadding),
-							  cornerRadius: CGFloat(.buttonCornerRadius))
-			}
-			.allowsHitTesting(addressAction != nil)
-		} else {
-			EmptyView()
-		}
+extension StationChipsView {
+	struct IssuesChip {
+		let type: CardWarningType
+		let icon: FontIcon
+		let title: String
 	}
+}
 
+private extension StationChipsView {
 	@ViewBuilder
 	var statusChip: some View {
 		Button {
@@ -81,15 +57,15 @@ private extension StationChipsView {
 	}
 
 	@ViewBuilder
-	var warningsChip: some View {
+	var issuesChip: some View {
 		if let issues {
 			Button {
 				warningAction?()
 			} label: {
 
 				HStack(spacing: CGFloat(.smallSpacing)) {
-					Text(issues.type.fontIcon.rawValue)
-						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+					Text(issues.icon.rawValue)
+						.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
 						.foregroundColor(Color(colorEnum: issues.type.iconColor))
 
 					Text(issues.title)
@@ -129,6 +105,8 @@ private extension StationChipsView {
 }
 
 #Preview {
-	StationChipsView(device: .mockDevice, issues: (.error, "2 issues"))
+	StationChipsView(device: .mockDevice, issues: .init(type: .error,
+														icon: .arrowsRotate,
+														title: "2 issues"))
 		.padding()
 }

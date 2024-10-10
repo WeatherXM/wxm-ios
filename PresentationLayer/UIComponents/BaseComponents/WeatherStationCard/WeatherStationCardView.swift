@@ -32,10 +32,8 @@ private extension WeatherStationCardView {
 								followState: followState,
 								issues: nil,
 								areChipsScrollable: false,
-								showSubtitle: false,
 								showStateIcon: true,
-								tapStateIconAction: followAction,
-								tapAddressAction: nil)
+								tapStateIconAction: followAction)
 	}
 
 	@ViewBuilder
