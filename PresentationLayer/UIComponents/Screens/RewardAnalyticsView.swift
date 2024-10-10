@@ -41,8 +41,10 @@ private struct ContentView: View {
 				switch viewModel.state {
 					case .empty(let configuration):
 						emptyView(configuration: configuration)
+							.iPadMaxWidth()
 					case .noRewards:
 						noRewards
+							.iPadMaxWidth()
 					case .content:
 						rewardsView
 				}
@@ -84,6 +86,7 @@ private struct ContentView: View {
 					stationsList(scrollProxy: proxy)
 				}
 				.padding(CGFloat(.defaultSidePadding))
+				.iPadMaxWidth()
 			}
 			.animation(.easeIn(duration: animationDuration),
 					   value: viewModel.stationItems.values.reduce(into: 0) { $0 = $0 + ($1.isExpanded ? 1 : 0) })
