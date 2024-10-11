@@ -13,23 +13,23 @@ struct MultipleAlertsView: View {
     @EnvironmentObject var navigationObject: NavigationObject
     @StateObject var viewModel: AlertsViewModel
 
-    var body: some View {
-        ZStack {
-            Color(colorEnum: .top)
-            
-            ScrollView {
+	var body: some View {
+		ZStack {
+			Color(colorEnum: .top)
+			
+			ScrollView {
 				VStack(spacing: CGFloat(.largeSpacing)) {
 					titleView
-
+					
 					VStack(spacing: CGFloat(.mediumSpacing)) {
-
+						
 						ForEach(viewModel.alerts, id: \.message) { alert in
-							CardWarningView(type: alert.type,
-											title: alert.title,
-											message: alert.message,
-											showContentFullWidth: true,
-											showBorder: true,
-											closeAction: nil) {
+							CardWarningView(configuration: .init(type: alert.type,
+																 title: alert.title,
+																 message: alert.message,
+																 showBorder: true,
+																 closeAction: nil),
+											showContentFullWidth: true) {
 								Button(action: alert.buttonAction) {
 									Text(alert.buttonTitle)
 								}
@@ -42,9 +42,9 @@ struct MultipleAlertsView: View {
 					}
 				}
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
-            }
-        }
-    }
+			}
+		}
+	}
 }
 
 private extension MultipleAlertsView {

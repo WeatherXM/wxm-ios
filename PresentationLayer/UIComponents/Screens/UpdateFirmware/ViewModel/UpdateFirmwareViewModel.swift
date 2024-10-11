@@ -44,7 +44,7 @@ class UpdateFirmwareViewModel: ObservableObject {
         self.successCallback = successCallback
         self.cancelCallback = cancelCallback
 
-        self.topTitle = LocalizableString.deviceInfoStationInfoFirmwareVersion.localized
+		self.topTitle = LocalizableString.DeviceInfo.stationInfoFirmwareVersion.localized
         self.topSubtitle = device.firmware?.versionUpdateString
         generateSteps()
         firmwareUseCase?.enableBluetooth()

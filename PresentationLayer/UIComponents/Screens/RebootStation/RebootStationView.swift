@@ -53,7 +53,7 @@ struct RebootStationView: View {
 				return true
             }
             viewModel.mainVM = mainVM
-            navigationObject.title = LocalizableString.deviceInfoStationReboot.localized
+			navigationObject.title = LocalizableString.DeviceInfo.stationReboot.localized
 
             WXMAnalytics.shared.trackScreen(.rebootStation,
                                       parameters: [.itemId: .custom(viewModel.device.id ?? "")])

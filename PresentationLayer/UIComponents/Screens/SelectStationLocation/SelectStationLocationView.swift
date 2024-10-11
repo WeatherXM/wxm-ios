@@ -25,10 +25,10 @@ struct SelectStationLocationView: View {
 						.cornerRadius(CGFloat(.cardCornerRadius), corners: [.topLeft, .topRight])
 
 					VStack(spacing: CGFloat(.defaultSpacing)) {
-						CardWarningView(message: LocalizableString.SelectStationLocation.warningText(DisplayedLinks.polAlgorithm.linkURL).localized,
-										closeAction: nil,
+						CardWarningView(configuration: .init(message: LocalizableString.SelectStationLocation.warningText(DisplayedLinks.polAlgorithm.linkURL).localized,
+															 closeAction: nil),
 										content: { EmptyView() })
-
+						
 						acknowledgementView
 
 						Button {

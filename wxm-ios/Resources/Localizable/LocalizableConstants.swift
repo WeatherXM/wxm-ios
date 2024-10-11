@@ -13,6 +13,7 @@ protocol WXMLocalizable {
 }
 
 enum LocalizableString: WXMLocalizable {
+	case url(String, String)
 	case confirm
 	case email
 	case mandatoryEmail
@@ -81,65 +82,8 @@ enum LocalizableString: WXMLocalizable {
 	case stationWarningLowBatteryTitle
 	case stationWarningLowBatteryDescription
 	case stationWarningLowBatteryButtonTitle
-	case deviceInfoTitle
-	case deviceInfoStationName
-	case deviceInfoStationLocation
-	case deviceInfoOwnedStationLocationDescription(String)
-	case deviceInfoStationLocationDescription(String)
-	case deviceinfoStationLocationButtonTitle
-	case deviceInfoStationFrequency
-	case deviceInfoStationReboot
-	case deviceInfoStationMaintenance(String)
-	case deviceInfoStationRemove
-	case deviceInfoStationReconfigureWifi
-	case deviceInfoStationHeliumFrequencyDescription(String)
-	case deviceInfoStationRebootDescription
-	case deviceInfoStationMaintenanceDescription(String)
-	case deviceInfoStationRemoveDescription(String)
-	case deviceInfoStationReconfigureWifiDescription
-	case deviceInfoStationRemoveWarning
-	case deviceInfoButtonChangeName
-	case deviceInfoButtonChangeFrequency
-	case deviceInfoButtonReboot
-	case deviceInfoButtonEnterMaintenance
-	case deviceInfoButtonRemove
-	case deviceInfoButtonReconfigureWifi
-	case deviceInfoStationInformation
-	case deviceInfoStationInfoName
-	case deviceInfoStationInfoModel
-	case deviceInfoStationInfoBundleName
-	case deviceInfoStationInfoDevEUI
-	case deviceInfoStationInfoHardwareVersion
-	case deviceInfoStationInfoFirmwareVersion
-	case deviceInfoStationInfoLastHotspot
-	case deviceInfoStationInfoLastRSSI
-	case deviceInfoStationInfoSerialNumber
-	case deviceInfoStationInfoATECC
-	case deviceInfoStationInfoGPS
-	case deviceInfoStationInfoWifiSignal
-	case deviceInfoStationInfoBattery
-	case deviceInfoEditNameAlertTitle
-	case deviceInfoEditNameAlertMessage
-	case deviceInfoInvalidFriendlyName
+	case troubleshootInstructionsHere
 	case changingFrequency
-	case deviceInfoClaimDate
-	case deviceInfoLastGatewayActivity
-	case deviceInfoLastStationActivity
-	case deviceInfoSatellites(String)
-	case deviceInfoFollowedContactSupportTitle
-	case deviceInfoStationRebooted
-	case deviceInfoStationRebootedDescription
-	case deviceInfoStationBackToSettings
-	case deviceInfoStationRebootFailed
-	case deviceInfoStationRebootErrorDescription(String)
-	case deviceInfoStationFrequencyChanged
-	case deviceInfoStationFrequencyChangedDescription(String)
-	case deviceInfoStationFrequencyChangeFailed
-	case deviceInfoStationFrequencyChangeFailureDescription(String)
-	case deviceInfoLowBatteryWarningMarkdown
-	case deviceInfoRemoveStationAccountConfirmationMarkdown
-	case deviceInfoGatewayDetails
-	case deviceInfoStationDetails
 	case invalidLocationErrorText
 	case confirmPasswordTitle
 	case explorerViewTitle
@@ -240,21 +184,13 @@ enum LocalizableString: WXMLocalizable {
 				localized = String(format: localized, count ?? 0)
 			case .unfollowAlertDescription(let text),
 					.followAlertDescription(let text),
-					.deviceInfoStationMaintenance(let text),
-					.deviceInfoStationLocationDescription(let text),
-					.deviceInfoOwnedStationLocationDescription(let text),
-					.deviceInfoStationHeliumFrequencyDescription(let text),
-					.deviceInfoStationMaintenanceDescription(let text),
-					.deviceInfoStationRemoveDescription(let text),
-					.deviceInfoStationRebootErrorDescription(let text),
-					.deviceInfoStationFrequencyChangedDescription(let text),
-					.deviceInfoStationFrequencyChangeFailureDescription(let text),
-					.deviceInfoSatellites(let text),
 					.lastUpdated(let text),
 					.favoritesloginAlertText(let text),
 					.hiddenContentDescription(let text),
 					.timeZoneDisclaimer(let text):
 				localized = String(format: localized, text)
+			case .url(let text, let link):
+				localized = String(format: localized, text, link)
 			case .percentage(let count):
 				localized = String(format: localized, count)
 			default: break
@@ -267,6 +203,8 @@ enum LocalizableString: WXMLocalizable {
 extension LocalizableString {
 	var key: String {
 		switch self {
+			case .url:
+				return "url_format"
 			case .confirm:
 				return "confirm"
 			case .email:
@@ -415,124 +353,10 @@ extension LocalizableString {
 				return "station_warning_low_battery_description"
 			case .stationWarningLowBatteryButtonTitle:
 				return "station_warning_low_battery_button_title"
-			case .deviceInfoTitle:
-				return "device_info_title"
-			case .deviceInfoStationName:
-				return "device_info_station_name"
-			case .deviceInfoStationLocation:
-				return "device_info_station_location"
-			case .deviceInfoOwnedStationLocationDescription:
-				return "device_info_owned_station_location_description_format"
-			case .deviceInfoStationLocationDescription:
-				return "device_info_station_location_description_format"
-			case .deviceinfoStationLocationButtonTitle:
-				return "device_info_station_location_button_title"
-			case .deviceInfoStationFrequency:
-				return "device_info_station_frequency"
-			case .deviceInfoStationReboot:
-				return "device_info_station_reboot"
-			case .deviceInfoStationMaintenance:
-				return "device_info_station_maintenance_format"
-			case .deviceInfoStationRemove:
-				return "device_info_station_remove"
-			case .deviceInfoStationReconfigureWifi:
-				return "device_info_station_reconfigure_wifi"
-			case .deviceInfoStationHeliumFrequencyDescription:
-				return "device_info_station_helium_frequency_description_format"
-			case .deviceInfoStationRebootDescription:
-				return "device_info_station_reboot_description"
-			case .deviceInfoStationMaintenanceDescription:
-				return "device_info_station_maintenance_description_format"
-			case .deviceInfoStationRemoveDescription:
-				return "device_info_station_remove_description_format"
-			case .deviceInfoStationReconfigureWifiDescription:
-				return "device_info_station_reconfigure_wifi_description"
-			case .deviceInfoStationRemoveWarning:
-				return "device_info_station_remove_warning"
-			case .deviceInfoButtonChangeName:
-				return "device_info_button_change_name"
-			case .deviceInfoButtonChangeFrequency:
-				return "device_info_button_change_frequency"
-			case .deviceInfoButtonReboot:
-				return "device_info_button_reboot"
-			case .deviceInfoButtonEnterMaintenance:
-				return "device_info_button_enter_maintenance"
-			case .deviceInfoButtonRemove:
-				return "device_info_button_remove"
-			case .deviceInfoButtonReconfigureWifi:
-				return "device_info_button_reconfigure_wifi"
-			case .deviceInfoStationInformation:
-				return "device_info_station_information"
-			case .deviceInfoStationInfoName:
-				return "device_info_station_info_name"
-			case .deviceInfoStationInfoModel:
-				return "device_info_station_info_model"
-			case .deviceInfoStationInfoBundleName:
-				return "device_info_station_info_bundle_name"
-			case .deviceInfoStationInfoDevEUI:
-				return "device_info_station_info_dev_EUI"
-			case .deviceInfoStationInfoHardwareVersion:
-				return "device_info_station_info_hardware_version"
-			case .deviceInfoStationInfoFirmwareVersion:
-				return "device_info_station_info_firmware_version"
-			case .deviceInfoStationInfoLastHotspot:
-				return "device_info_station_info_last_hotspot"
-			case .deviceInfoStationInfoLastRSSI:
-				return "device_info_station_info_last_RSSI"
-			case .deviceInfoStationInfoSerialNumber:
-				return "device_info_station_info_serial_number"
-			case .deviceInfoStationInfoATECC:
-				return "device_info_station_info_ATECC"
-			case .deviceInfoStationInfoGPS:
-				return "device_info_station_info_GPS"
-			case .deviceInfoStationInfoWifiSignal:
-				return "device_info_station_info_wifi_signal"
-			case .deviceInfoStationInfoBattery:
-				return "device_info_station_info_battery"
-			case .deviceInfoEditNameAlertTitle:
-				return "device_info_edit_name_alert_title"
-			case .deviceInfoEditNameAlertMessage:
-				return "device_info_edit_name_alert_message"
-			case .deviceInfoInvalidFriendlyName:
-				return "device_info_invalid_friendly_name"
+			case .troubleshootInstructionsHere:
+				return "troubleshoot_instructions_here"
 			case .changingFrequency:
 				return "changing_requency"
-			case .deviceInfoClaimDate:
-				return "device_info_claim_date"
-			case .deviceInfoLastGatewayActivity:
-				return "device_info_last_gateway_activity"
-			case .deviceInfoLastStationActivity:
-				return "device_info_last_station_activity"
-			case .deviceInfoSatellites:
-				return "device_info_satellites"
-			case .deviceInfoFollowedContactSupportTitle:
-				return "device_info_followed_contact_support_title"
-			case .deviceInfoStationRebooted:
-				return "device_info_station_rebooted"
-			case .deviceInfoStationRebootedDescription:
-				return "device_info_station_rebooted_description"
-			case .deviceInfoStationBackToSettings:
-				return "device_info_station_back_to_settings"
-			case .deviceInfoStationRebootFailed:
-				return "device_info_station_reboot_failed"
-			case .deviceInfoStationRebootErrorDescription:
-				return "device_info_station_reboot_error_description_format"
-			case .deviceInfoStationFrequencyChanged:
-				return "device_info_station_frequency_changed"
-			case .deviceInfoStationFrequencyChangedDescription:
-				return "device_info_station_frequency_changed_description_format"
-			case .deviceInfoStationFrequencyChangeFailed:
-				return "device_info_station_frequency_change_failed"
-			case .deviceInfoStationFrequencyChangeFailureDescription:
-				return "device_info_station_frequency_change_failure_description_format"
-			case .deviceInfoLowBatteryWarningMarkdown:
-				return "device_info_low_battery_warning_markdown"
-			case .deviceInfoRemoveStationAccountConfirmationMarkdown:
-				return "device_info_remove_station_account_confirmation_markdown"
-			case .deviceInfoGatewayDetails:
-				return "device_info_gateway_details"
-			case .deviceInfoStationDetails:
-				return "device_info_station_details"
 			case .invalidLocationErrorText:
 				return "invalid_location_error_text"
 			case .confirmPasswordTitle:

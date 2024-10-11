@@ -164,12 +164,12 @@ private struct ContentView: View {
 					}
 				}
 
-				CardWarningView(type: mainAnnotation.warningType ?? .warning,
-								showIcon: false,
-								title: mainAnnotation.title ?? "",
-								message: mainAnnotation.message ?? "",
-								showBorder: true,
-								closeAction: nil) {
+				CardWarningView(configuration: .init(type: mainAnnotation.warningType ?? .warning,
+													 showIcon: false,
+													 title: mainAnnotation.title ?? "",
+													 message: mainAnnotation.message ?? "",
+													 showBorder: true,
+													 closeAction: nil)) {
 					Button {
 						viewModel.handleIssueButtonTap()
 					} label: {

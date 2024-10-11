@@ -12,7 +12,7 @@
   "bundle": {
 	  "name": "h1",
 	  "title": "H1",
-	  "connectivity": "helium",
+	  "connectivity": "wifi",
 	  "ws_model": "WS1000",
 	  "gw_model": "WG1000"
   },
