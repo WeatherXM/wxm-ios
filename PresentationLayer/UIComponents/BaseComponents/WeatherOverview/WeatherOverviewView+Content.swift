@@ -74,6 +74,20 @@ extension WeatherOverviewView {
 							}
 						}
 					}
+				case .grid:
+					PercentageGridLayoutView(alignments: [.leading, .leading], firstColumnPercentage: 0.25) {
+						Group {
+							weatherImage
+
+							LazyVGrid(columns: [.init(), .init()],
+									  spacing: CGFloat(.mediumSpacing)) {
+								ForEach(WeatherField.stationListFields, id: \.description) { field in
+									weatherFieldView(for: field)
+								}
+							}
+						}
+					}
+
 			}
 		}
 	}
@@ -86,7 +100,7 @@ extension WeatherOverviewView {
 					Image(asset: .noDataIcon)
 						.renderingMode(.template)
 						.foregroundColor(Color(colorEnum: .text))
-				case .default, .medium, .large:
+				case .default, .medium, .large, .grid:
 					Image(asset: .noDataIcon)
 						.renderingMode(.template)
 						.foregroundColor(Color(colorEnum: .text))
@@ -109,7 +123,8 @@ extension WeatherOverviewView {
     @ViewBuilder
     var secondaryFieldsView: some View {
         VStack(spacing: CGFloat(.defaultSpacing)) {
-            PercentageGridLayoutView(firstColumnPercentage: 0.5) {
+			PercentageGridLayoutView(firstColumnPercentage: 0.5,
+									 linesSpacing: CGFloat(.smallSpacing)) {
                 ForEach(WeatherField.secondaryFields, id: \.description) { field in
                     weatherFieldView(for: field)
                 }
@@ -139,11 +154,10 @@ extension WeatherOverviewView {
 
     @ViewBuilder
     func weatherFieldView(for field: WeatherField) -> some View {
-        HStack(spacing: 0.0) {
-            Image(asset: field.icon)
-                .renderingMode(.template)
-                .foregroundColor(Color(colorEnum: .darkestBlue))
-				.aspectRatio(contentMode: .fill)
+		HStack(alignment: .center, spacing: CGFloat(.smallSpacing)) {
+			Text(field.fontIcon?.rawValue ?? "")
+				.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+				.foregroundColor(Color(colorEnum: .darkestBlue))
 				.rotationEffect(Angle(degrees: field.iconRotation(from: weather)))
 
             VStack(alignment: .leading, spacing: 0.0) {
@@ -157,6 +171,8 @@ extension WeatherOverviewView {
 											unitsManager: unitsManager,
 											fontSize: weatherFieldsValueFontSize))
             }
+
+			Spacer(minLength: 0.0)
         }
     }
 
@@ -231,6 +247,8 @@ private extension WeatherOverviewView {
 				return CGFloat(.minimumSpacing)
 			case .default:
 				return CGFloat(.smallSpacing)
+			case .grid:
+				return CGFloat(.mediumSpacing)
 		}
 	}
 
@@ -242,7 +260,7 @@ private extension WeatherOverviewView {
 				return CGFloat(.littleCaption)
 			case .large:
 				return CGFloat(.caption)
-			case .default:
+			case .default, .grid:
 				return CGFloat(.caption)
 		}
 	}
@@ -255,7 +273,7 @@ private extension WeatherOverviewView {
 				CGFloat(.caption)
 			case .large:
 				CGFloat(.normalFontSize)
-			case .default:
+			case .default, .grid:
 				CGFloat(.mediumFontSize)
 		}
 	}
@@ -270,6 +288,9 @@ private extension WeatherOverviewView {
 				CGFloat(.largeTitleFontSize)
 			case .default:
 				CGFloat(.XXXLTitleFontSize)
+			case .grid:
+				// There is no special position for the temperature in this layout
+					.nan
 		}
 	}
 
@@ -283,6 +304,9 @@ private extension WeatherOverviewView {
 				CGFloat(.largeTitleFontSize)
 			case .default:
 				CGFloat(.XLTitleFontSize)
+			case .grid:
+				// There is no special position for the temperature in this layout
+					.nan
 		}
 	}
 
@@ -296,6 +320,9 @@ private extension WeatherOverviewView {
 				CGFloat(.normalFontSize)
 			case .default:
 				CGFloat(.mediumFontSize)
+			case .grid:
+				// There is no special position for the temperature in this layout
+					.nan
 		}
 	}
 
@@ -309,6 +336,9 @@ private extension WeatherOverviewView {
 				CGFloat(.smallFontSize)
 			case .default:
 				CGFloat(.caption)
+			case .grid:
+				// There is no special position for the temperature in this layout
+					.nan
 		}
 	}
 
@@ -320,7 +350,7 @@ private extension WeatherOverviewView {
 				return CGFloat(.mediumFontSize)
 			case .large:
 				return CGFloat(.mediumFontSize)
-			case .default:
+			case .default, .grid:
 				return CGFloat(.smallTitleFontSize)
 		}
 	}
