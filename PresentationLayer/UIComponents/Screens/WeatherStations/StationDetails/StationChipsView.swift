@@ -20,11 +20,8 @@ struct StationChipsView: View {
 	var body: some View {
 		HStack(spacing: CGFloat(.smallSpacing)) {
 			issuesChip
-				.fixedSize()
 			statusChip
-				.fixedSize()
 			bundleChip
-				.fixedSize()
 
 			Spacer()
 		}
