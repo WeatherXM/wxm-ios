@@ -4684,6 +4684,17 @@
         }
       }
     },
+    "home_data_quality" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data Quality %d%%"
+          }
+        }
+      }
+    },
     "home_following_weather_stations_empty_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
