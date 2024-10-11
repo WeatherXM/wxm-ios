@@ -31,7 +31,7 @@ struct WeatherFormatter {
 				return ("\(pressureValue.toPrecisionString(precision: 1))", pressureMetric)
             case .inchOfMercury:
                 let pressureMetric = UnitConstants.INCH_OF_MERCURY
-				let pressureValue = (shouldConvert ? unitsConverter.hpaToInHg(hpa: pressureValue) : pressureValue)
+				pressureValue = (shouldConvert ? unitsConverter.hpaToInHg(hpa: pressureValue) : pressureValue)
                 return ("\(pressureValue.toPrecisionString(precision: 2))", pressureMetric)
         }
     }
@@ -52,7 +52,7 @@ struct WeatherFormatter {
             case .celsius:
 				return (temperature.toPrecisionString(minDecimals: decimals, precision: decimals), LocalizableString.celsiusSymbol.localized)
             case .fahrenheit:
-				let value = shouldConvert ? unitsConverter.celsiusToFahrenheit(celsius: temperature.rounded(toPlaces: 1)) : temperature				
+				let value = shouldConvert ? unitsConverter.celsiusToFahrenheit(celsius: temperature) : temperature
 				return (value.toPrecisionString(minDecimals: decimals, precision: decimals), LocalizableString.fahrenheitSymbol.localized)
         }
     }
