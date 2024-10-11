@@ -30,6 +30,7 @@ struct WeatherStationCard: View {
 					  insideHorizontalPadding: .zero,
 					  insideVerticalPadding: .zero,
 					  cornerRadius: CGFloat(.cardCornerRadius))
+		.stationIndication(device: device, followState: followState)
 		.wxmShadow()
 	}
 }

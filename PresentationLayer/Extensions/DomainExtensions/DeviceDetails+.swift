@@ -72,6 +72,10 @@ extension DeviceDetails {
 		return qod.rewardScoreColor
 	}
 
+	var qodWarningType: CardWarningType? {
+		qod?.rewardScoreType
+	}
+
 	var qodStatusText: String {
 		guard let qod else {
 			return LocalizableString.Error.noDataTitle.localized
@@ -164,9 +168,9 @@ extension DeviceDetails {
 		return batteryState == .low
 	}
 	
-	func overallWarningType(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> CardWarningType {
-		let issues = issues(mainVM: mainVM, followState: followState).sorted(by: { $0.type < $1.type })
-		return issues.first?.warningType ?? .info
+	func overallWarningType(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> CardWarningType? {
+		let issuesChipType = getIssuesChip(followState: followState)?.type
+		return [qodWarningType, pol?.warningType, issuesChipType].compactMap { $0 }.sorted(by: { $0 > $1}).first
 	}
 	
 	func needsUpdate(persistedVersion: FirmwareVersion?) -> Bool {
@@ -248,6 +252,17 @@ extension PolStatus {
 					.error
 		}
 	}
+
+	var warningType: CardWarningType? {
+		switch self {
+			case .verified:
+				nil
+			case .notVerified:
+					.warning
+			case .noLocation:
+					.error
+		}
+	}
 }
 
 // MARK: - Mock
@@ -265,8 +280,8 @@ extension DeviceDetails {
 		device.lastActiveAt = Date.now.toTimestamp()
 		device.firmware = Firmware(assigned: "1.0.0", current: "1.0.1")
 		device.cellCenter = .init(lat: 0.0, long: 0.0)
-		device.pol = .notVerified
-		device.qod = 65
+		device.pol = .verified
+		device.qod = 91
 
 		let currentWeather = CurrentWeather.mockInstance
 		device.weather = currentWeather
