@@ -55,8 +55,7 @@ private extension ObservationsView {
                                 buttonTitle: LocalizableString.StationDetails.viewHistoricalData.localized,
                                 isButtonEnabled: viewModel.followState != nil) {
                 viewModel.handleHistoricalDataButtonTap()
-			}
-			.offlineStationIndication(device: device)
+			}.stationIndication(device: device, followState: viewModel.followState)
         } else {
             EmptyView()
         }
