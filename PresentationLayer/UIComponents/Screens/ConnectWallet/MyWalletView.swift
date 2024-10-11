@@ -124,16 +124,16 @@ private extension MyWalletView {
         .wxmShadow()
     }
 
-    @ViewBuilder
-    var warningCard: some View {
-        CardWarningView(configuration: .init(type: .error,
-                        title: LocalizableString.Wallet.compatibility.localized,
-						message: LocalizableString.Wallet.compatibilityDescription.localized,
-						showBorder: true) {
-            viewModel.isWarningVisible = false
-            WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
-                                                           .promptType: .info,
-                                                           .action: .dismissAction])
+	@ViewBuilder
+	var warningCard: some View {
+		CardWarningView(configuration: .init(type: .error,
+											 title: LocalizableString.Wallet.compatibility.localized,
+											 message: LocalizableString.Wallet.compatibilityDescription.localized,
+											 showBorder: true) {
+			viewModel.isWarningVisible = false
+			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
+																 .promptType: .info,
+																 .action: .dismissAction])
 		}, showContentFullWidth: true) {
 			Button {
 				viewModel.handleCheckCompatibilityTap()
@@ -142,21 +142,21 @@ private extension MyWalletView {
 					Text(LocalizableString.Wallet.compatibilityCheck.localized)
 						.font(.system(size: CGFloat(.caption), weight: .bold))
 						.frame(maxWidth: .infinity)
-
+					
 					Text(FontIcon.externalLink.rawValue)
 						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
 				}
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
-            }
+			}
 			.buttonStyle(WXMButtonStyle.transparent)
 			.padding(.top, CGFloat(.smallSidePadding))
-        }
-        .onAppear {
-            WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
-                                                           .promptType: .info,
-                                                           .action: .viewAction])
-        }
-    }
+		}
+		.onAppear {
+			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
+																 .promptType: .info,
+																 .action: .viewAction])
+		}
+	}
 
     @ViewBuilder
     var scanQRButton: some View {
