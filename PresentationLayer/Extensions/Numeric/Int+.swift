@@ -66,4 +66,17 @@ extension Int {
 				return .noColor
 		}
 	}
+
+	var rewardScoreType: CardWarningType? {
+		switch self {
+			case 0..<10:
+				return .error
+			case 10..<95:
+				return .warning
+			case 95...100:
+				return nil
+			default:
+				return nil
+		}
+	}
 }
