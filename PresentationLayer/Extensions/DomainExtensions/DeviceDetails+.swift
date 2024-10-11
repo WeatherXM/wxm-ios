@@ -64,6 +64,29 @@ extension DeviceDetails {
 	var isHelium: Bool {
 		bundle?.connectivity == .helium
 	}
+
+	var qodStatusColor: ColorEnum {
+		guard let qod else {
+			return .success
+		}
+		return qod.rewardScoreColor
+	}
+
+	var qodStatusText: String {
+		guard let qod else {
+			return LocalizableString.Error.noDataTitle.localized
+		}
+
+		return LocalizableString.Home.dataQuality(qod).localized
+	}
+
+	var locationText: String {
+		guard let address else {
+			return LocalizableString.Error.noLocationDataTitle.localized
+		}
+
+		return address
+	}
 }
 
 // MARK: - Issues
@@ -214,6 +237,19 @@ extension Firmware {
 	}
 }
 
+extension PolStatus {
+	var color: ColorEnum {
+		switch self {
+			case .verified:
+					.success
+			case .notVerified:
+					.warning
+			case .noLocation:
+					.error
+		}
+	}
+}
+
 // MARK: - Mock
 
 extension DeviceDetails {
@@ -229,7 +265,9 @@ extension DeviceDetails {
 		device.lastActiveAt = Date.now.toTimestamp()
 		device.firmware = Firmware(assigned: "1.0.0", current: "1.0.1")
 		device.cellCenter = .init(lat: 0.0, long: 0.0)
-		
+		device.pol = .notVerified
+		device.qod = 65
+
 		let currentWeather = CurrentWeather.mockInstance
 		device.weather = currentWeather
 		
