@@ -22,8 +22,16 @@ struct MyWalletView: View {
                 TrackableScrollView(offsetObject: viewModel.trackableObject) {
                     VStack(spacing: CGFloat(.defaultSpacing)) {
 
-						enterAddressCard
-                            .padding(.horizontal, CGFloat(.defaultSidePadding))
+						VStack(spacing: CGFloat(.smallSpacing)) {
+							enterAddressCard
+								.padding(.horizontal, CGFloat(.defaultSidePadding))
+
+							if viewModel.isWarningVisible {
+								warningCard
+									.padding(.horizontal, CGFloat(.defaultSidePadding))
+									.transition(AnyTransition.opacity.animation(.easeIn(duration: 0.2)))
+							}
+						}
 
                         if !viewModel.isInEditMode {
                             Button {
@@ -34,12 +42,6 @@ struct MyWalletView: View {
                             .buttonStyle(WXMButtonStyle(fillColor: .top))
                             .padding(.horizontal, CGFloat(.defaultSidePadding))
                             .transition(AnyTransition.opacity.animation(.easeIn(duration: 0.2)))
-                        }
-
-                        if viewModel.isWarningVisible {
-                            warningCard
-                                .padding(.horizontal, CGFloat(.defaultSidePadding))
-                                .transition(AnyTransition.opacity.animation(.easeIn(duration: 0.2)))
                         }
                     }
 					.iPadMaxWidth()
