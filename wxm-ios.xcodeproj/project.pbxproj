@@ -163,6 +163,7 @@
 		266DC01B2A55786F00EC9E1F /* WXMPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DC01A2A55786F00EC9E1F /* WXMPopover.swift */; };
 		26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */; };
 		2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */; };
+		2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */; };
 		2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87B2C89F19A002266BE /* BoostCode+.swift */; };
 		2672B87E2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87D2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift */; };
 		2672B8802C8A02D0002266BE /* BoostDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87F2C8A02D0002266BE /* BoostDetailsView.swift */; };
@@ -723,6 +724,7 @@
 		26707E9C2C3ECC0400B9305F /* WeatherXMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherXMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEIConverterTests.swift; sourceTree = "<group>"; };
 		2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthView.swift; sourceTree = "<group>"; };
+		2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthInfoView.swift; sourceTree = "<group>"; };
 		2672B87B2C89F19A002266BE /* BoostCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoostCode+.swift"; sourceTree = "<group>"; };
 		2672B87D2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceRewardsResponse+.swift"; sourceTree = "<group>"; };
 		2672B87F2C8A02D0002266BE /* BoostDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostDetailsView.swift; sourceTree = "<group>"; };
@@ -2029,6 +2031,7 @@
 				26A4115829B6078500A2C10B /* ObservationsView.swift */,
 				26A4115A29B60F2900A2C10B /* ObservationsViewModel.swift */,
 				2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */,
+				2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */,
 			);
 			path = Overview;
 			sourceTree = "<group>";
@@ -3330,6 +3333,7 @@
 				26E5B0C029F8078C00834899 /* WXMDivider.swift in Sources */,
 				2674017E2A38C2AE00E54E35 /* WXMEmptyView.swift in Sources */,
 				266DC01B2A55786F00EC9E1F /* WXMPopover.swift in Sources */,
+				2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */,
 				26E88AF529DD69930023BBD5 /* WXMShadow.swift in Sources */,
 				267547CA29A9181E008BCF40 /* WXMToggleStyle.swift in Sources */,
 				267548F929A91A87008BCF40 /* XAxisValueFormatter.swift in Sources */,
