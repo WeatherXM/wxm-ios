@@ -66,6 +66,14 @@ class ObservationsViewModel: ObservableObject {
 	func handleStationHealthBottomSheetButtonTap() {
 		HelperFunctions().openUrl(DisplayedLinks.qodAlgorithm.linkURL)
 	}
+
+	func handleDataQualityTap() {
+		navigateToRewardDetails()
+	}
+
+	func handleLocationQualityTap() {
+		navigateToRewardDetails()
+	}
 }
 
 private extension ObservationsViewModel {
@@ -92,6 +100,10 @@ private extension ObservationsViewModel {
 
         return obj
     }
+
+	func navigateToRewardDetails() {
+//		guard let device
+	}
 }
 
 // MARK: - StationDetailsViewModelChild
