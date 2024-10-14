@@ -125,7 +125,7 @@ class StationDetailsViewModel: ObservableObject {
 		showShareDialog = true
     }
 
-    func followButtonTapped() {
+    func StatusButtonTapped() {
         guard MainScreenViewModel.shared.isUserLoggedIn else {
             showLogin()
             return
@@ -133,7 +133,8 @@ class StationDetailsViewModel: ObservableObject {
 
         switch followState?.state {
             case .owned:
-                return
+				Toast.shared.show(text: LocalizableString.StationDetails.ownedStationSnackBarMessage.localized.attributedMarkdown ?? "",
+								  type: .info)
             case .followed:
                 WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsFollow,
                                                                    .contentType: .unfollow])
@@ -324,7 +325,7 @@ extension StationDetailsViewModel: StationDetailsViewModelDelegate {
     }
 
     func shouldAskToFollow() {
-        followButtonTapped()
+        StatusButtonTapped()
     }
 }
 

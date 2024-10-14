@@ -7748,6 +7748,28 @@
         }
       }
     },
+    "station_details_owned_station_no_data_snackbar_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station is transmitting its initial data as expected. Sit back and relax, your rewards are on the way!"
+          }
+        }
+      }
+    },
+    "station_details_owned_station_snackbar_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are the owner of this station!"
+          }
+        }
+      }
+    },
     "station_details_reward_error_message_format" : {
       "extractionState" : "manual",
       "localizations" : {
