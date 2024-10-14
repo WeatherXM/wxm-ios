@@ -31,7 +31,8 @@ struct StationHealthView: View {
 
 					Spacer()
 				}
-				.WXMCardStyle(insideHorizontalPadding: CGFloat(.smallSidePadding),
+				.WXMCardStyle(backgroundColor: .blueTint,
+							  insideHorizontalPadding: CGFloat(.smallSidePadding),
 							  insideVerticalPadding: CGFloat(.mediumSidePadding))
 			}
 
@@ -51,7 +52,8 @@ struct StationHealthView: View {
 					
 					Spacer()
 				}
-				.WXMCardStyle(insideHorizontalPadding: CGFloat(.smallSidePadding),
+				.WXMCardStyle(backgroundColor: .blueTint,
+							  insideHorizontalPadding: CGFloat(.smallSidePadding),
 							  insideVerticalPadding: CGFloat(.mediumSidePadding))
 			}
 		}
