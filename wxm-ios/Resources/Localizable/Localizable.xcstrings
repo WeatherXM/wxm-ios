@@ -7561,6 +7561,17 @@
         }
       }
     },
+    "station_details_data_quality_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The network’s effectiveness relies on meaningful, usable data, measured by the Quality-of-Data (QoD) score, which **updates daily.** This score motivates weather station owners to follow guidelines for optimal data quality. A station’s daily reward is tied to its QoD, calculated using an open-source algorithm that assesses data quality and provides a confidence level in the data received."
+          }
+        }
+      }
+    },
     "station_details_detailed_rewards_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7601,6 +7612,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latest Weather"
+          }
+        }
+      }
+    },
+    "station_details_location_quality_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It is crucial for the Network that a station stays in the same location throughout its lifetime.\nThe Proof-of-Location algorithm, which also **updates daily,** assesses the accuracy and consistency of the station’s location data, generating a confidence score for its position."
           }
         }
       }

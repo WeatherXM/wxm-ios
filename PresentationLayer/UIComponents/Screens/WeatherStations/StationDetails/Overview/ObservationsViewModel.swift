@@ -14,6 +14,7 @@ class ObservationsViewModel: ObservableObject {
     @Published private(set) var viewState: ViewState = .loading
     @Published private(set) var ctaObject: CTAContainerView.CTAObject?
 	@Published private(set) var showNoDataInfo: Bool = false
+	@Published var showStationHealthInfo: Bool = false
 
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
 	private(set) var device: DeviceDetails? {
@@ -57,6 +58,14 @@ class ObservationsViewModel: ObservableObject {
         }
         Router.shared.navigateTo(.history(ViewModelsFactory.getHistoryContainerViewModel(device: device)))
     }
+
+	func handleStationHealthInfoTap() {
+		showStationHealthInfo = true
+	}
+
+	func handleStationHealthBottomSheetButtonTap() {
+		HelperFunctions().openUrl(DisplayedLinks.qodAlgorithm.linkURL)
+	}
 }
 
 private extension ObservationsViewModel {

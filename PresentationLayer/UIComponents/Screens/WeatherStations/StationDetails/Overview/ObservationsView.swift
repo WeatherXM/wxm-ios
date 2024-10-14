@@ -41,6 +41,11 @@ struct ObservationsView: View {
         .onAppear {
             WXMAnalytics.shared.trackScreen(.currentWeather)
         }
+		.bottomSheet(show: $viewModel.showStationHealthInfo) {
+			StationHealthInfoView() {
+				viewModel.handleStationHealthBottomSheetButtonTap()
+			}
+		}
     }
 }
 
@@ -81,7 +86,7 @@ private extension ObservationsView {
 						Spacer()
 
 						Button {
-
+							viewModel.handleStationHealthInfoTap()
 						} label: {
 							Text(FontIcon.infoCircle.rawValue)
 								.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
