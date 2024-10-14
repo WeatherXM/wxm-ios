@@ -126,7 +126,7 @@ private struct StationDetailsView: View {
 						ForEach(0..<StationDetailsViewModel.Tab.allCases.count, id: \.self) { [unowned viewModel] index in
 							let tab = StationDetailsViewModel.Tab.allCases[index]
 							switch tab {
-								case .observations:
+								case .overview:
 									ObservationsView(viewModel: viewModel.observationsVM)
 										.tag(index)
 										.conditionalOSsafeAreaTopInset(titleViewSize.height)

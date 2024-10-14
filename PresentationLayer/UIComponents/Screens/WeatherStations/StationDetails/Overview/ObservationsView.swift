@@ -20,18 +20,17 @@ struct ObservationsView: View {
             } content: {
                 LazyVStack { // Embeded in `LazyVStack` to fix iOS 15 UI issues
                     VStack(spacing: CGFloat(.defaultSpacing)) {
+						stationHealthView
+
                         currentWeatherView
-                            .shadow(color: Color(.black).opacity(0.25),
-                                    radius: ShadowEnum.stationCard.radius,
-                                    x: ShadowEnum.stationCard.xVal,
-                                    y: ShadowEnum.stationCard.yVal)
 
                         if let ctaObj = viewModel.ctaObject {
                             CTAContainerView(ctaObject: ctaObj)
                         }
                     }
 					.iPadMaxWidth()
-                    .padding()
+					.padding(.top)
+					.padding(.horizontal, CGFloat(.mediumSidePadding))
                     .padding(.bottom, containerSize.height / 2.0) // Quick fix for better experience while expanding/collapsing the containers's header
                 }
             }
@@ -49,17 +48,52 @@ private extension ObservationsView {
     @ViewBuilder
     var currentWeatherView: some View {
         if let device = viewModel.device {
-            WeatherOverviewView(weather: device.weather,
-                                showSecondaryFields: true,
-								lastUpdatedText: device.weather?.updatedAtString(with: TimeZone(identifier: device.timezone ?? "") ?? .current),
-                                buttonTitle: LocalizableString.StationDetails.viewHistoricalData.localized,
-                                isButtonEnabled: viewModel.followState != nil) {
-                viewModel.handleHistoricalDataButtonTap()
-			}.stationIndication(device: device, followState: viewModel.followState)
-        } else {
-            EmptyView()
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				HStack {
+					Text(LocalizableString.StationDetails.latestWeather.localized)
+						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+						.foregroundStyle(Color(colorEnum: .darkestBlue))
+
+					Spacer()
+				}
+
+				WeatherOverviewView(weather: device.weather,
+									showSecondaryFields: true,
+									lastUpdatedText: device.weather?.updatedAtString(with: TimeZone(identifier: device.timezone ?? "") ?? .current),
+									buttonTitle: LocalizableString.StationDetails.viewHistoricalData.localized,
+									isButtonEnabled: viewModel.followState != nil) {
+					viewModel.handleHistoricalDataButtonTap()
+				}.wxmShadow()
+			}
         }
     }
+
+	@ViewBuilder
+	var stationHealthView: some View {
+		if let device = viewModel.device {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				HStack {
+					Text(LocalizableString.StationDetails.stationHealth.localized)
+						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+						.foregroundStyle(Color(colorEnum: .darkestBlue))
+
+					Spacer()
+
+					Button {
+
+					} label: {
+						Text(FontIcon.infoCircle.rawValue)
+							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+							.foregroundColor(Color(colorEnum: .wxmPrimary))
+					}
+				}
+
+				StationHealthView(device: device,
+								  dataQualityAction: {},
+								  locationAction: {})
+			}
+		}
+	}
 }
 
 struct ObservationsView_Previews: PreviewProvider {

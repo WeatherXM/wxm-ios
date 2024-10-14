@@ -160,14 +160,14 @@ extension StationDetailsViewModel: HashableViewModel {
 
 extension StationDetailsViewModel {
     enum Tab: CaseIterable, CustomStringConvertible {
-        case observations
+        case overview
         case forecast
         case rewards
 
         var description: String {
             switch self {
-                case .observations:
-                    return LocalizableString.StationDetails.observations.localized
+                case .overview:
+                    return LocalizableString.StationDetails.overview.localized
                 case .forecast:
                     return LocalizableString.StationDetails.forecast.localized
                 case .rewards:

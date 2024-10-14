@@ -7594,6 +7594,17 @@
         }
       }
     },
+    "station_details_latest_weather" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latest Weather"
+          }
+        }
+      }
+    },
     "station_details_lost_rewards_format" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7671,17 +7682,6 @@
         }
       }
     },
-    "station_details_observations" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Observations"
-          }
-        }
-      }
-    },
     "station_details_observations_follow_cta_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7700,6 +7700,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Login to add this weather station to your favorites and see historical & forecast data."
+          }
+        }
+      }
+    },
+    "station_details_overview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overview"
           }
         }
       }
@@ -7986,6 +7997,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "7D"
+          }
+        }
+      }
+    },
+    "station_details_station_health" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Health"
           }
         }
       }
