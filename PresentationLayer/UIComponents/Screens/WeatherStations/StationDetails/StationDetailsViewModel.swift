@@ -37,8 +37,11 @@ class StationDetailsViewModel: ObservableObject {
 	@Published private(set) var device: DeviceDetails? {
 		didSet {
 			shareDialogText = device?.explorerUrl
+			let subtitle = device?.friendlyName != nil ? device?.name : nil
+			navigationTitle = .init(title: device?.friendlyName, subtitle: subtitle)
 		}
 	}
+	@Published private(set) var navigationTitle: NavigationObject.NavigationTitle?
     @Published private(set) var followState: UserDeviceFollowState?
     @Published var shouldHideHeaderToggle: Bool = false
     @Published var showLoginAlert: Bool = false
