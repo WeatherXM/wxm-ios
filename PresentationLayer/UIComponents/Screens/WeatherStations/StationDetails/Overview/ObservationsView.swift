@@ -71,26 +71,45 @@ private extension ObservationsView {
 	@ViewBuilder
 	var stationHealthView: some View {
 		if let device = viewModel.device {
-			VStack(spacing: CGFloat(.mediumSpacing)) {
-				HStack {
-					Text(LocalizableString.StationDetails.stationHealth.localized)
-						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-						.foregroundStyle(Color(colorEnum: .darkestBlue))
+			VStack(spacing: CGFloat(.defaultSpacing)) {
+				VStack(spacing: CGFloat(.mediumSpacing)) {
+					HStack {
+						Text(LocalizableString.StationDetails.stationHealth.localized)
+							.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+							.foregroundStyle(Color(colorEnum: .darkestBlue))
 
-					Spacer()
+						Spacer()
 
-					Button {
+						Button {
 
-					} label: {
+						} label: {
+							Text(FontIcon.infoCircle.rawValue)
+								.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+								.foregroundColor(Color(colorEnum: .wxmPrimary))
+						}
+					}
+
+					StationHealthView(device: device,
+									  dataQualityAction: {},
+									  locationAction: {})
+				}
+
+				if viewModel.showNoDataInfo {
+					HStack(spacing: CGFloat(.smallToMediumSpacing)) {
 						Text(FontIcon.infoCircle.rawValue)
 							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
 							.foregroundColor(Color(colorEnum: .wxmPrimary))
-					}
-				}
 
-				StationHealthView(device: device,
-								  dataQualityAction: {},
-								  locationAction: {})
+						Text(LocalizableString.StationDetails.ownedStationNoDataSnackBarMessage.localized)
+							.foregroundStyle(Color(colorEnum: .text))
+							.font(.system(size: CGFloat(.normalFontSize)))
+
+						Spacer()
+					}
+					.WXMCardStyle(insideHorizontalPadding: CGFloat(.smallToMediumSpacing),
+								  insideVerticalPadding: CGFloat(.smallToMediumSpacing))
+					.wxmShadow()
+				}
 			}
 		}
 	}
