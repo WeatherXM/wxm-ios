@@ -23,9 +23,16 @@ struct WeatherStationCard: View {
 								   followState: followState,
 								   followAction: followAction)
 
+			if UIDevice.current.isIPad {
+				Spacer()
+			}
+			
 			healthMetricsView
 		}
-		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+		.if(UIDevice.current.isIPad) { view in
+			// Modify the view to get equal heights in iPad grid layout
+			view.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+		}
 		.WXMCardStyle(backgroundColor: Color(colorEnum: .top),
 					  insideHorizontalPadding: .zero,
 					  insideVerticalPadding: .zero,

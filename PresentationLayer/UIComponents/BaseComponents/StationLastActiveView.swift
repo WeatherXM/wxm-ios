@@ -16,7 +16,7 @@ struct StationLastActiveView: View {
 		HStack(spacing: CGFloat(.smallSpacing)) {
 			Circle()
                 .foregroundColor(Color(colorEnum: configuration.stateColor))
-				.frame(width: 10.0)
+				.frame(width: 10.0, height: 10.0)
 
 			Text(configuration.lastActiveAt?.lastActiveTime() ?? LocalizableString.notAvailable.localized)
                 .font(.system(size: CGFloat(.caption)))
