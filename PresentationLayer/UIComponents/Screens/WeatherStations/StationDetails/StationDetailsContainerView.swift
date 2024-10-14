@@ -21,47 +21,56 @@ struct StationDetailsContainerView: View {
         }
     }
 
-    @ViewBuilder
-    var navigationBarRightView: some View {
-        HStack(spacing: CGFloat(.smallSidePadding)) {
-            Button { [weak viewModel] in
-                viewModel?.handleShareButtonTap()
-            } label: {
-                Text(FontIcon.share.rawValue)
-                    .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-                    .foregroundColor(Color(colorEnum: .wxmPrimary))
-                    .frame(width: 30.0, height: 30.0)
-            }
-			.wxmShareDialog(show: $viewModel.showShareDialog, text: viewModel.shareDialogText ?? "")
-
-            if viewModel.followState != nil {
-                Button {
-                    WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsPopUp])
-                    showSettingsPopOver = true
-                } label: {
-                    Text(FontIcon.threeDots.rawValue)
-                        .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-                        .foregroundColor(Color(colorEnum: .wxmPrimary))
-                        .frame(width: 30.0, height: 30.0)
-                }
-                .wxmPopOver(show: $showSettingsPopOver) {
-					VStack {
+	@ViewBuilder
+	var navigationBarRightView: some View {
+		HStack(spacing: CGFloat(.smallSidePadding)) {
+			if viewModel.followState != nil {
+				Button {
+					WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsPopUp])
+					showSettingsPopOver = true
+				} label: {
+					Text(FontIcon.threeDots.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
+						.frame(width: 30.0, height: 30.0)
+				}
+				.wxmPopOver(show: $showSettingsPopOver) {
+					VStack(alignment:.leading, spacing: CGFloat(.mediumSpacing)) {
 						Button { [weak viewModel] in
-							showSettingsPopOver = false
-							viewModel?.settingsButtonTapped()
+							viewModel?.handleShareButtonTap()
 						} label: {
-							Text(LocalizableString.settings.localized)
+							Text(LocalizableString.share.localized)
 								.font(.system(size: CGFloat(.mediumFontSize)))
 								.foregroundColor(Color(colorEnum: .text))
+						}
+
+						if viewModel.followState != nil {
+							Button { [weak viewModel] in
+								showSettingsPopOver = false
+								viewModel?.settingsButtonTapped()
+							} label: {
+								Text(LocalizableString.DeviceInfo.title.localized)
+									.font(.system(size: CGFloat(.mediumFontSize)))
+									.foregroundColor(Color(colorEnum: .text))
+							}
 						}
 					}
 					.padding()
 					.background(Color(colorEnum: .top).scaleEffect(2.0).ignoresSafeArea())
-                }
-            }
-        }
-    }
-
+				}
+			} else {
+				Button { [weak viewModel] in
+					viewModel?.handleShareButtonTap()
+				} label: {
+					Text(FontIcon.share.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
+						.frame(width: 30.0, height: 30.0)
+				}
+				.wxmShareDialog(show: $viewModel.showShareDialog, text: viewModel.shareDialogText ?? "")
+			}
+		}
+	}
 }
 
 private struct StationDetailsView: View {
