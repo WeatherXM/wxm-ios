@@ -26,7 +26,7 @@ struct WeatherStationCard: View {
 			if UIDevice.current.isIPad {
 				Spacer()
 			}
-			
+
 			healthMetricsView
 		}
 		.if(UIDevice.current.isIPad) { view in
@@ -50,19 +50,25 @@ private extension WeatherStationCard {
 				Text(FontIcon.chartSimple.rawValue)
 					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
 					.foregroundStyle(Color(colorEnum: device.qodStatusColor))
+					.fixedSize()
 
 				Text(device.qodStatusText)
 					.font(.system(size: CGFloat(.caption)))
 					.foregroundStyle(Color(colorEnum: .text))
+					.fixedSize()
 			}
 
 			HStack(spacing: CGFloat(.smallSpacing)) {
 				Text(FontIcon.hexagon.rawValue)
 					.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
 					.foregroundStyle(Color(colorEnum: device.pol?.color ?? .noColor))
+					.fixedSize()
+
 				Text(device.locationText)
 					.font(.system(size: CGFloat(.caption)))
 					.foregroundStyle(Color(colorEnum: .text))
+					.lineLimit(2)
+					.fixedSize(horizontal: false, vertical: true)
 			}
 
 			Spacer()
