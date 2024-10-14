@@ -13,9 +13,19 @@ import Combine
 class ObservationsViewModel: ObservableObject {
     @Published private(set) var viewState: ViewState = .loading
     @Published private(set) var ctaObject: CTAContainerView.CTAObject?
+	@Published private(set) var showNoDataInfo: Bool = false
 
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
-    private(set) var device: DeviceDetails?
+	private(set) var device: DeviceDetails? {
+		didSet {
+			guard let device else {
+				showNoDataInfo = false
+				return
+			}
+
+			showNoDataInfo = device.qod == nil
+		}
+	}
     private(set) var followState: UserDeviceFollowState?
     weak var containerDelegate: StationDetailsViewModelDelegate?
     private(set) var failObj: FailSuccessStateObject?
