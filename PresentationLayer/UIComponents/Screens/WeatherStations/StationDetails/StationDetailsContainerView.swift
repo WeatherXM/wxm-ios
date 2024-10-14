@@ -23,7 +23,13 @@ struct StationDetailsContainerView: View {
 
 	@ViewBuilder
 	var navigationBarRightView: some View {
-		HStack(spacing: CGFloat(.smallSidePadding)) {
+		HStack(spacing: CGFloat(.smallSpacing)) {
+			if viewModel.device != nil {
+				StationStatusButton(followState: viewModel.followState) {
+					viewModel.StatusButtonTapped()
+				}
+			}
+
 			if viewModel.followState != nil {
 				Button {
 					WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsPopUp])
