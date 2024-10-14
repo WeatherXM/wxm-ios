@@ -66,8 +66,8 @@ extension NetworkDevicesResponse {
                       rewards: rewards,
                       firmware: attributes.firmware,
 					  bundle: bundle,
-					  qod: qod,
-					  pol: pol)
+					  qod: metrics?.qodScore,
+					  pol: metrics?.polReason)
     }
 }
 
