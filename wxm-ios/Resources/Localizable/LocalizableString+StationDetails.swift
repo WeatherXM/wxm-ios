@@ -60,6 +60,8 @@ extension LocalizableString {
 		case ownedStationNoDataSnackBarMessage
 		case stationHealth
 		case latestWeather
+		case dataQualityDescription
+		case locationQualityDescription
 	}
 }
 
@@ -195,6 +197,10 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_latest_weather"
 			case .stationHealth:
 				return "station_details_station_health"
+			case .dataQualityDescription:
+				return "station_details_data_quality_description"
+			case .locationQualityDescription:
+				return "station_details_location_quality_description"
 		}
 	}
 }
