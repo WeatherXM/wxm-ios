@@ -28,12 +28,11 @@ struct WeatherFormatter {
         switch unit {
             case .hectopascal:
                 let pressureMetric = UnitConstants.HECTOPASCAL
-                pressureValue = pressureValue.rounded(toPlaces: 1)
-                return ("\(pressureValue)", pressureMetric)
+				return ("\(pressureValue.toPrecisionString(precision: 1))", pressureMetric)
             case .inchOfMercury:
                 let pressureMetric = UnitConstants.INCH_OF_MERCURY
-				let pressureValue = (shouldConvert ? unitsConverter.hpaToInHg(hpa: pressureValue) : pressureValue).rounded(toPlaces: 2)
-                return ("\(pressureValue)", pressureMetric)
+				pressureValue = (shouldConvert ? unitsConverter.hpaToInHg(hpa: pressureValue) : pressureValue)
+                return ("\(pressureValue.toPrecisionString(precision: 2))", pressureMetric)
         }
     }
 
@@ -48,14 +47,13 @@ struct WeatherFormatter {
     /// - Parameter unit: The requested unit
     /// - Parameter temperature: The value to generate the formatted value
     /// - Returns: A tuple with the text components eg. ("12", "°C")
-    func getTemperatureLiterals(temperature: Double, unit: TemperatureUnitsEnum) -> WeatherValueLiterals {
-        let format = "%.1f"
+	func getTemperatureLiterals(temperature: Double, unit: TemperatureUnitsEnum, decimals: Int = 1) -> WeatherValueLiterals {
         switch unit {
             case .celsius:
-                return (String(format: format, temperature), LocalizableString.celsiusSymbol.localized)
+				return (temperature.toPrecisionString(minDecimals: decimals, precision: decimals), LocalizableString.celsiusSymbol.localized)
             case .fahrenheit:
-				let value = shouldConvert ? unitsConverter.celsiusToFahrenheit(celsius: temperature.rounded(toPlaces: 1)) : temperature
-                return (String(format: format, value), LocalizableString.fahrenheitSymbol.localized)
+				let value = shouldConvert ? unitsConverter.celsiusToFahrenheit(celsius: temperature) : temperature
+				return (value.toPrecisionString(minDecimals: decimals, precision: decimals), LocalizableString.fahrenheitSymbol.localized)
         }
     }
 
@@ -100,7 +98,7 @@ struct WeatherFormatter {
         }
 
 		let convertedValue = windSpeed.rounded(toPlaces: 1)
-		let convertedValueStr = showDecimals ? "\(convertedValue)" : "\(Int(convertedValue))"
+		let convertedValueStr = showDecimals ? "\(convertedValue.toPrecisionString(minDecimals: 1, precision: 1))" : "\(Int(convertedValue))"
         return ("\(convertedValueStr)", "\(windUnit) \(includeDirection ? windDirectionString : "")".trimWhiteSpaces())
     }
 
@@ -135,7 +133,7 @@ struct WeatherFormatter {
     /// - Parameter value: The value to generate the formatted value
     /// - Returns: A tuple with the text components eg. ("12.2", "W/m2")
     func getSolarRadiationLiterals(value: Double?) -> WeatherValueLiterals {
-        ("\(value?.rounded(toPlaces: 1) ?? 0.0)", UnitConstants.WATTS_PER_SQR)
+		("\((value ?? 0.0).toPrecisionString(minDecimals: 1, precision: 1))", UnitConstants.WATTS_PER_SQR)
     }
 
     /// The text components of the precipitation value. (value, unit)
@@ -145,10 +143,10 @@ struct WeatherFormatter {
     func getPrecipitationLiterals(value: Double?, unit: PrecipitationUnitsEnum) -> WeatherValueLiterals {
         switch unit {
             case .millimeters:
-                return ("\(value?.rounded(toPlaces: 1) ?? Double.nan)", UnitConstants.MILLIMETERS_PER_HOUR)
+				return ("\((value ?? .nan).toPrecisionString(minDecimals: 1, precision: 1))", UnitConstants.MILLIMETERS_PER_HOUR)
             case .inches:
-				let convertedValue = (shouldConvert ? unitsConverter.millimetersToInches(mm: value ?? Double.nan) : value ?? Double.nan).rounded(toPlaces: 2)
-                return ("\(convertedValue)", UnitConstants.INCHES_PER_HOUR)
+				let convertedValue = (shouldConvert ? unitsConverter.millimetersToInches(mm: value ?? Double.nan) : value ?? Double.nan)
+				return (convertedValue.toPrecisionString(minDecimals: 2, precision: 2), UnitConstants.INCHES_PER_HOUR)
         }
     }
 
@@ -159,10 +157,10 @@ struct WeatherFormatter {
     func getPrecipitationAccumulatedLiterals(from value: Double?, unit: PrecipitationUnitsEnum) -> WeatherValueLiterals? {
         switch unit {
             case .millimeters:
-                return ("\((value ?? 0.0).rounded(toPlaces: 1))", UnitConstants.MILLIMETERS)
+                return ((value ?? 0.0).toPrecisionString(minDecimals: 1, precision: 1), UnitConstants.MILLIMETERS)
             case .inches:
-				let convertedValue = (shouldConvert ? unitsConverter.millimetersToInches(mm: value ?? 0.0) : value ?? 0.0).rounded(toPlaces: 2)
-                return ("\(convertedValue)", UnitConstants.INCHES)
+				let convertedValue = (shouldConvert ? unitsConverter.millimetersToInches(mm: value ?? 0.0) : value ?? 0.0)
+                return (convertedValue.toPrecisionString(minDecimals: 2, precision: 2), UnitConstants.INCHES)
         }
     }
 
