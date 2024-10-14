@@ -95,8 +95,8 @@ private extension ObservationsView {
 					}
 
 					StationHealthView(device: device,
-									  dataQualityAction: {},
-									  locationAction: {})
+									  dataQualityAction: { viewModel.handleDataQualityTap() },
+									  locationAction: { viewModel.handleLocationQualityTap() })
 				}
 
 				if viewModel.showNoDataInfo {
