@@ -38,7 +38,7 @@ class StationDetailsViewModel: ObservableObject {
 		didSet {
 			shareDialogText = device?.explorerUrl
 			let subtitle = device?.friendlyName != nil ? device?.name : nil
-			navigationTitle = .init(title: device?.friendlyName, subtitle: subtitle)
+			navigationTitle = .init(title: device?.displayName, subtitle: subtitle)
 		}
 	}
 	@Published private(set) var navigationTitle: NavigationObject.NavigationTitle?
