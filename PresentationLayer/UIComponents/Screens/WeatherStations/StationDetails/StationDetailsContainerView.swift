@@ -152,7 +152,6 @@ private struct StationDetailsView: View {
             }
         }
         .onAppear {
-            navigationObject.titleColor = Color(colorEnum: .wxmPrimary)
             navigationObject.navigationBarColor = Color(colorEnum: .top)
         }
         .onChange(of: selectedIndex) { _ in
@@ -163,9 +162,12 @@ private struct StationDetailsView: View {
         .onChange(of: viewModel.shouldHideHeaderToggle) { _ in
             isHeaderHidden = viewModel.isHeaderHidden
         }
-        .onChange(of: isHeaderHidden) { newValue in
+		.onChange(of: viewModel.navigationTitle) { newValue in
+			guard let newValue else {
+				return
+			}
             withAnimation {
-                navigationObject.title = newValue ? viewModel.device?.displayName ?? "" : ""
+				navigationObject.setNavigationTitle(newValue)
             }
         }
     }
@@ -174,13 +176,10 @@ private struct StationDetailsView: View {
     var titleView: some View {
         if let device = viewModel.device {
             VStack {
-                StationAddressTitleView(device: device,
-                                        followState: viewModel.followState,
-										issues: viewModel.issues,
-                                        showStateIcon: true,
-                                        tapStateIconAction: { viewModel.followButtonTapped()},
-										tapWarningAction: { viewModel.warningTapped() },
-										tapStatusAction: { viewModel.statusTapped() })
+				StationChipsView(device: device, issues: viewModel.issues,
+								 isScrollable: true,
+								 warningAction: { viewModel.warningTapped() },
+								 statusAction: { viewModel.statusTapped() })
                 .sizeObserver(size: $titleViewAddressSize)
 
                 CustomSegmentView(options: StationDetailsViewModel.Tab.allCases.map { $0.description },
