@@ -9,7 +9,7 @@ import Foundation
 
 extension LocalizableString {
 	enum StationDetails {
-		case observations
+		case overview
 		case forecast
 		case rewards
 		case viewHistoricalData
@@ -58,6 +58,8 @@ extension LocalizableString {
 		case timelineLimitMessage
 		case ownedStationSnackBarMessage
 		case ownedStationNoDataSnackBarMessage
+		case stationHealth
+		case latestWeather
 	}
 }
 
@@ -86,8 +88,8 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 
 	var key: String {
 		switch self {
-			case .observations:
-				return "station_details_observations"
+			case .overview:
+				return "station_details_overview"
 			case .forecast:
 				return "station_details_forecast"
 			case .rewards:
@@ -189,6 +191,10 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_owned_station_snackbar_message"
 			case .ownedStationNoDataSnackBarMessage:
 				return "station_details_owned_station_no_data_snackbar_message"
+			case .latestWeather:
+				return "station_details_latest_weather"
+			case .stationHealth:
+				return "station_details_station_health"
 		}
 	}
 }
