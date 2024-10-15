@@ -136,7 +136,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The station is offline. Check that it has batteries and internet connection. If the problem persists, contact our support team."
+            "value" : "The station is not sending weather data. Check the outdoor unit’s batteries and the internet connection. If the problem persists, contact our support team."
           }
         }
       }
@@ -147,7 +147,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Station Offline"
+            "value" : "Station Inactive"
           }
         }
       }
