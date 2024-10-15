@@ -328,8 +328,8 @@
 		26A3B3C72B1792890002F35F /* ProfileTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3C62B1792890002F35F /* ProfileTypes.swift */; };
 		26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3DB2B18D2480002F35F /* TabBarVisibilityHandler.swift */; };
 		26A4114A29B5ED5D00A2C10B /* ViewModelsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4114929B5ED5D00A2C10B /* ViewModelsFactory.swift */; };
-		26A4115929B6078500A2C10B /* ObservationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115829B6078500A2C10B /* ObservationsView.swift */; };
-		26A4115B29B60F2900A2C10B /* ObservationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115A29B60F2900A2C10B /* ObservationsViewModel.swift */; };
+		26A4115929B6078500A2C10B /* OverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115829B6078500A2C10B /* OverviewView.swift */; };
+		26A4115B29B60F2900A2C10B /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115A29B60F2900A2C10B /* OverviewViewModel.swift */; };
 		26A4115D29B6160600A2C10B /* WeatherOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115C29B6160600A2C10B /* WeatherOverviewView.swift */; };
 		26A4116029B618CA00A2C10B /* WeatherOverviewView+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115F29B618CA00A2C10B /* WeatherOverviewView+Content.swift */; };
 		26A4116B29B744E100A2C10B /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4116A29B744E100A2C10B /* DeviceInfoView.swift */; };
@@ -885,8 +885,8 @@
 		26A3B3C62B1792890002F35F /* ProfileTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTypes.swift; sourceTree = "<group>"; };
 		26A3B3DB2B18D2480002F35F /* TabBarVisibilityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVisibilityHandler.swift; sourceTree = "<group>"; };
 		26A4114929B5ED5D00A2C10B /* ViewModelsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelsFactory.swift; sourceTree = "<group>"; };
-		26A4115829B6078500A2C10B /* ObservationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationsView.swift; sourceTree = "<group>"; };
-		26A4115A29B60F2900A2C10B /* ObservationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationsViewModel.swift; sourceTree = "<group>"; };
+		26A4115829B6078500A2C10B /* OverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewView.swift; sourceTree = "<group>"; };
+		26A4115A29B60F2900A2C10B /* OverviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewModel.swift; sourceTree = "<group>"; };
 		26A4115C29B6160600A2C10B /* WeatherOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherOverviewView.swift; sourceTree = "<group>"; };
 		26A4115F29B618CA00A2C10B /* WeatherOverviewView+Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherOverviewView+Content.swift"; sourceTree = "<group>"; };
 		26A4116A29B744E100A2C10B /* DeviceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoView.swift; sourceTree = "<group>"; };
@@ -2028,8 +2028,8 @@
 		26A4115729B6061900A2C10B /* Overview */ = {
 			isa = PBXGroup;
 			children = (
-				26A4115829B6078500A2C10B /* ObservationsView.swift */,
-				26A4115A29B60F2900A2C10B /* ObservationsViewModel.swift */,
+				26A4115829B6078500A2C10B /* OverviewView.swift */,
+				26A4115A29B60F2900A2C10B /* OverviewViewModel.swift */,
 				2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */,
 				2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */,
 			);
@@ -3170,12 +3170,12 @@
 				2632E6322A335EF400A5ADB3 /* NetworkStatsViewModel.swift in Sources */,
 				26BA07772B7FC2AC00F7F5A0 /* WeeklyStreakView.swift in Sources */,
 				2692D8722A4D8DEA0060CB3C /* Numeric+.swift in Sources */,
-				26A4115929B6078500A2C10B /* ObservationsView.swift in Sources */,
+				26A4115929B6078500A2C10B /* OverviewView.swift in Sources */,
 				2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */,
 				266B01E52B8767E4007AC689 /* StationIndication.swift in Sources */,
 				2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */,
 				264CDE0F2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift in Sources */,
-				26A4115B29B60F2900A2C10B /* ObservationsViewModel.swift in Sources */,
+				26A4115B29B60F2900A2C10B /* OverviewViewModel.swift in Sources */,
 				267547CC29A9181E008BCF40 /* OnAnimationCompletedModifier.swift in Sources */,
 				2664831929C31AF400748F9C /* OverlayAnimator.swift in Sources */,
 				261CD81829CB2D5B00C0CECE /* PercentageGridLayoutView.swift in Sources */,

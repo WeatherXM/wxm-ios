@@ -7704,7 +7704,18 @@
         }
       }
     },
-    "station_details_observations_follow_cta_text" : {
+    "station_details_overview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overview"
+          }
+        }
+      }
+    },
+    "station_details_overview_follow_cta_text" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -7715,24 +7726,13 @@
         }
       }
     },
-    "station_details_observations_logged_out_cta_text" : {
+    "station_details_overview_logged_out_cta_text" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Login to add this weather station to your favorites and see historical & forecast data."
-          }
-        }
-      }
-    },
-    "station_details_overview" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Overview"
           }
         }
       }

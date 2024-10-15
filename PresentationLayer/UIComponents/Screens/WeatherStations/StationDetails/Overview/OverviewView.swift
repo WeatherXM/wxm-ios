@@ -1,5 +1,5 @@
 //
-//  ObservationsView.swift
+//  OverviewView.swift
 //  wxm-ios
 //
 //  Created by Pantelis Giazitsis on 6/3/23.
@@ -9,8 +9,8 @@ import SwiftUI
 import DomainLayer
 import Toolkit
 
-struct ObservationsView: View {
-    @StateObject var viewModel: ObservationsViewModel
+struct OverviewView: View {
+    @StateObject var viewModel: OverviewViewModel
     @State private var containerSize: CGSize = .zero
 
     var body: some View {
@@ -49,7 +49,7 @@ struct ObservationsView: View {
     }
 }
 
-private extension ObservationsView {
+private extension OverviewView {
     @ViewBuilder
     var currentWeatherView: some View {
         if let device = viewModel.device {
@@ -120,8 +120,8 @@ private extension ObservationsView {
 	}
 }
 
-struct ObservationsView_Previews: PreviewProvider {
+struct OverviewView_Previews: PreviewProvider {
     static var previews: some View {
-        ObservationsView(viewModel: ObservationsViewModel.mockInstance)
+        OverviewView(viewModel: OverviewViewModel.mockInstance)
     }
 }
