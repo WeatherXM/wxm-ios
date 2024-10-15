@@ -168,6 +168,8 @@ private struct StationDetailsView: View {
         }
         .onAppear {
             navigationObject.navigationBarColor = Color(colorEnum: .top)
+			navigationObject.titleFont = .system(size: CGFloat(.smallTitleFontSize), weight: .bold)
+			navigationObject.subtitleFont = .system(size: CGFloat(.caption))
         }
         .onChange(of: selectedIndex) { _ in
             withAnimation {
