@@ -235,13 +235,6 @@ private extension StationDetailsViewModel {
 
             switch res {
                 case .success(var deviceDetails):
-                    if deviceDetails.address == nil,
-                       let cellCenter,
-                       let resolvedAddress = try? await useCase?.resolveAddress(location: cellCenter) {
-
-                        deviceDetails.address = resolvedAddress
-                    }
-
                     let followState = try? await useCase?.getDeviceFollowState(deviceId: deviceId).get()
                     DispatchQueue.main.async { [weak self, deviceDetails, followState] in
                         self?.device = deviceDetails
