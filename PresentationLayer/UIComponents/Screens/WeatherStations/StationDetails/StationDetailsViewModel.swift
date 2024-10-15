@@ -84,19 +84,6 @@ class StationDetailsViewModel: ObservableObject {
         Router.shared.navigateTo(.deviceInfo(DeviceInfoViewModel(device: device!, followState: followState)))
     }
 
-    func addressTapped() {
-        guard let cellIndex = device?.cellIndex,
-              let center = device?.cellCenter?.toCLLocationCoordinate2D() else {
-            return
-        }
-
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentName: .stationDetailsChip,
-															  .contentType: .region,
-															  .itemId: .stationRegion])
-
-        Router.shared.navigateTo(.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: cellIndex, cellCenter: center)))
-    }
-
 	func warningTapped() {
 		var parameters: [Parameter: ParameterValue] = [.contentName: .stationDetailsChip,
 													   .contentType: .warnings]
