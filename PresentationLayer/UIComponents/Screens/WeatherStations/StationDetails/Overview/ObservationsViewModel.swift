@@ -102,7 +102,14 @@ private extension ObservationsViewModel {
     }
 
 	func navigateToRewardDetails() {
-//		guard let device
+		guard let device, let ts = device.latestQodTs else {
+			return
+		}
+
+		let viewModel = ViewModelsFactory.getRewardDetailsViewModel(device: device,
+																	followState: followState,
+																	date: ts)
+		Router.shared.navigateTo(.rewardDetails(viewModel))
 	}
 }
 
