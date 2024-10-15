@@ -79,7 +79,7 @@ extension PublicDevice {
                       name: name,
                       friendlyName: nil,
                       label: nil,
-                      address: nil,
+                      address: address,
                       cellIndex: cellIndex,
                       cellCenter: cellCenter,
                       isActive: isActive ?? false,
