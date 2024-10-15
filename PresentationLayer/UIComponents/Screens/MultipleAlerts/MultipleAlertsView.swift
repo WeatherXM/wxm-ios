@@ -25,6 +25,7 @@ struct MultipleAlertsView: View {
 						
 						ForEach(viewModel.alerts, id: \.message) { alert in
 							CardWarningView(configuration: .init(type: alert.type,
+																 icon: alert.icon,
 																 title: alert.title,
 																 message: alert.message,
 																 showBorder: true,
@@ -77,6 +78,7 @@ extension MultipleAlertsView {
         let type: CardWarningType
         let title: String
         let message: String
+		let icon: FontIcon?
         let buttonTitle: String
         let buttonAction: VoidCallback
         let appearAction: VoidCallback?
@@ -87,7 +89,10 @@ struct MultipleAlertsView_Previews: PreviewProvider {
     static var previews: some View {
         let mainVM = MainScreenViewModel.shared
         NavigationContainerView {
-            MultipleAlertsView(viewModel: AlertsViewModel(device: .mockDevice, mainVM: mainVM, followState: .init(deviceId: "123", relation: .owned)))
+            MultipleAlertsView(viewModel: AlertsViewModel(device: .mockDevice,
+														  mainVM: mainVM,
+														  followState: .init(deviceId: "123",
+																			 relation: .owned)))
         }
     }
 }
