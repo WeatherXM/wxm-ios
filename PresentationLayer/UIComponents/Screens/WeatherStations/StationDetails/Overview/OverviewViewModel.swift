@@ -72,7 +72,7 @@ class OverviewViewModel: ObservableObject {
 	}
 
 	func handleLocationQualityTap() {
-		navigateToRewardDetails()
+		navigateToCell()
 	}
 }
 
@@ -110,6 +110,19 @@ private extension OverviewViewModel {
 																	followState: followState,
 																	date: ts)
 		Router.shared.navigateTo(.rewardDetails(viewModel))
+	}
+
+	func navigateToCell() {
+		guard let cellIndex = device?.cellIndex,
+			  let center = device?.cellCenter?.toCLLocationCoordinate2D() else {
+			return
+		}
+
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentName: .stationDetailsChip,
+																	.contentType: .region,
+																	.itemId: .stationRegion])
+
+		Router.shared.navigateTo(.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: cellIndex, cellCenter: center)))
 	}
 }
 
