@@ -23,8 +23,8 @@ enum ViewModelsFactory {
         StationDetailsViewModel(deviceId: deviceId, cellIndex: cellIndex, cellCenter: cellCenter, swinjectHelper: SwinjectHelper.shared)
     }
 
-    static func getCurrentWeatherObservationsViewModel(device: DeviceDetails?, delegate: StationDetailsViewModelDelegate) -> ObservationsViewModel {
-        let vm = ObservationsViewModel(device: device)
+    static func getStationOverviewViewModel(device: DeviceDetails?, delegate: StationDetailsViewModelDelegate) -> OverviewViewModel {
+        let vm = OverviewViewModel(device: device)
         vm.containerDelegate = delegate
         return vm
     }

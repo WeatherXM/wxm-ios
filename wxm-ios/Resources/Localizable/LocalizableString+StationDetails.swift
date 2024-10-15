@@ -13,8 +13,8 @@ extension LocalizableString {
 		case forecast
 		case rewards
 		case viewHistoricalData
-		case observationsFollowCtaText
-		case observationsLoggedOutCtaText
+		case overviewFollowCtaText
+		case overviewLoggedOutCtaText
 		case detailedRewardsButtonTitle
 		case sevenDaysAbbreviation
 		case thirtyDaysAbbreviation
@@ -98,10 +98,10 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_rewards"
 			case .viewHistoricalData:
 				return "station_details_view_historical_data"
-			case .observationsFollowCtaText:
-				return "station_details_observations_follow_cta_text"
-			case .observationsLoggedOutCtaText:
-				return "station_details_observations_logged_out_cta_text"
+			case .overviewFollowCtaText:
+				return "station_details_overview_follow_cta_text"
+			case .overviewLoggedOutCtaText:
+				return "station_details_overview_logged_out_cta_text"
 			case .detailedRewardsButtonTitle:
 				return "station_details_detailed_rewards_button_title"
 			case .sevenDaysAbbreviation:

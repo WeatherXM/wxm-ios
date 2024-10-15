@@ -127,7 +127,7 @@ private struct StationDetailsView: View {
 							let tab = StationDetailsViewModel.Tab.allCases[index]
 							switch tab {
 								case .overview:
-									ObservationsView(viewModel: viewModel.observationsVM)
+									OverviewView(viewModel: viewModel.overviewVM)
 										.tag(index)
 										.conditionalOSsafeAreaTopInset(titleViewSize.height)
 								case .forecast:

@@ -1,5 +1,5 @@
 //
-//  ObservationsViewModel.swift
+//  OverviewViewModel.swift
 //  wxm-ios
 //
 //  Created by Pantelis Giazitsis on 6/3/23.
@@ -10,7 +10,7 @@ import DomainLayer
 import Toolkit
 import Combine
 
-class ObservationsViewModel: ObservableObject {
+class OverviewViewModel: ObservableObject {
     @Published private(set) var viewState: ViewState = .loading
     @Published private(set) var ctaObject: CTAContainerView.CTAObject?
 	@Published private(set) var showNoDataInfo: Bool = false
@@ -76,7 +76,7 @@ class ObservationsViewModel: ObservableObject {
 	}
 }
 
-private extension ObservationsViewModel {
+private extension OverviewViewModel {
     func observeOffset() {
         offsetObject.$diffOffset.sink { [weak self] value in
             guard let self = self else {
@@ -88,7 +88,7 @@ private extension ObservationsViewModel {
     }
 
     func generateCtaObject() -> CTAContainerView.CTAObject {
-        let description: LocalizableString.StationDetails = .observationsFollowCtaText
+        let description: LocalizableString.StationDetails = .overviewFollowCtaText
         let buttonTitle: LocalizableString = .favorite
         let buttonIcon: FontIcon = .heart
         let buttonAction: VoidCallback = { [weak self] in self?.containerDelegate?.shouldAskToFollow() }
@@ -115,7 +115,7 @@ private extension ObservationsViewModel {
 
 // MARK: - StationDetailsViewModelChild
 
-extension ObservationsViewModel: StationDetailsViewModelChild {
+extension OverviewViewModel: StationDetailsViewModelChild {
 	@MainActor
 	func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async {
 		self.device = device
@@ -124,7 +124,7 @@ extension ObservationsViewModel: StationDetailsViewModelChild {
 		
 		if let error {
 			let info = error.uiInfo
-			self.failObj = info.defaultFailObject(type: .observations, retryAction: self.handleRetryButtonTap)
+			self.failObj = info.defaultFailObject(type: .overview, retryAction: self.handleRetryButtonTap)
 			self.viewState = .fail
 		} else {
 			self.viewState = .content
@@ -138,7 +138,7 @@ extension ObservationsViewModel: StationDetailsViewModelChild {
 
 // MARK: - Mock
 
-extension ObservationsViewModel {
+extension OverviewViewModel {
     private convenience init() {
         var device = NetworkDevicesResponse()
         device.address = "WetherXM HQ"
@@ -148,7 +148,7 @@ extension ObservationsViewModel {
         self.init(device: nil)
     }
 
-    static var mockInstance: ObservationsViewModel {
-        ObservationsViewModel()
+    static var mockInstance: OverviewViewModel {
+        OverviewViewModel()
     }
 }

@@ -28,7 +28,7 @@ class StationDetailsViewModel: ObservableObject {
     private let cellCenter: CLLocationCoordinate2D?
     private let useCase: DeviceDetailsUseCase?
 	private let meUseCase: MeUseCase?
-    private(set) lazy var observationsVM = ViewModelsFactory.getCurrentWeatherObservationsViewModel(device: nil, delegate: self)
+    private(set) lazy var overviewVM = ViewModelsFactory.getStationOverviewViewModel(device: nil, delegate: self)
     private(set) lazy var forecastVM = ViewModelsFactory.getStationForecastViewModel(delegate: self)
     private(set) lazy var rewardsVM = ViewModelsFactory.getStationRewardsViewModel(deviceId: deviceId, delegate: self)
     private(set) var loginAlertConfiguration: WXMAlertConfiguration?
@@ -270,12 +270,12 @@ private extension StationDetailsViewModel {
     }
 
     func updateChildViewModels(device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async {
-        let children: [StationDetailsViewModelChild] = [observationsVM, forecastVM, rewardsVM]
+        let children: [StationDetailsViewModelChild] = [overviewVM, forecastVM, rewardsVM]
         await children.asyncForEach { await $0.refreshWithDevice(device, followState: followState, error: error) }
     }
 
     func showLoadingInChildViews() {
-        let children: [StationDetailsViewModelChild] = [observationsVM, forecastVM, rewardsVM]
+        let children: [StationDetailsViewModelChild] = [overviewVM, forecastVM, rewardsVM]
         children.forEach { $0.showLoading() }
     }
 
