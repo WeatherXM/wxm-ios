@@ -28,6 +28,7 @@ public struct DeviceDetails {
 	public var bundle: StationBundle?
 	public var qod: Int?
 	public var pol: PolStatus?
+	public var latestQodTs: Date?
 }
 
 public extension DeviceDetails {
@@ -67,7 +68,8 @@ extension NetworkDevicesResponse {
                       firmware: attributes.firmware,
 					  bundle: bundle,
 					  qod: metrics?.qodScore,
-					  pol: metrics?.polReason)
+					  pol: metrics?.polReason,
+					  latestQodTs: metrics?.ts)
     }
 }
 
@@ -87,7 +89,8 @@ extension PublicDevice {
                       rewards: nil,
                       firmware: nil,
 					  bundle: bundle,
-					  qod: qod,
-					  pol: pol)
+					  qod: metrics?.qodScore,
+					  pol: metrics?.polReason,
+					  latestQodTs: metrics?.ts)
     }
 }
