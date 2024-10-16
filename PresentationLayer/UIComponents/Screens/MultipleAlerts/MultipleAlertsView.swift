@@ -19,8 +19,6 @@ struct MultipleAlertsView: View {
 			
 			ScrollView {
 				VStack(spacing: CGFloat(.largeSpacing)) {
-					titleView
-					
 					VStack(spacing: CGFloat(.mediumSpacing)) {
 						
 						ForEach(viewModel.alerts, id: \.message) { alert in
@@ -45,30 +43,13 @@ struct MultipleAlertsView: View {
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
 			}
 		}
-	}
-}
+		.onAppear {
+			navigationObject.title = LocalizableString.alerts.localized
+			navigationObject.titleFont = .system(size: CGFloat(.largeTitleFontSize),
+												 weight: .bold)
+			navigationObject.subtitle = viewModel.device.displayName
+			navigationObject.subtitleFont = .system(size: CGFloat(.caption))
 
-private extension MultipleAlertsView {
-	@ViewBuilder
-	var titleView: some View {
-		VStack(spacing: CGFloat(.smallSpacing)) {
-			HStack {
-				Text(LocalizableString.alerts.localized)
-					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
-					.lineLimit(1)
-					.truncationMode(.middle)
-					.foregroundColor(Color(colorEnum: .text))
-
-				Spacer()
-			}
-
-			HStack {
-				Text(viewModel.device.displayName)
-					.font(.system(size: CGFloat(.caption)))
-					.foregroundColor(Color(colorEnum: .darkGrey))
-
-				Spacer()
-			}
 		}
 	}
 }
