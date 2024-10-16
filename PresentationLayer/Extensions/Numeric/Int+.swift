@@ -43,11 +43,11 @@ extension Int {
 
 	var rewardScoreFontIcon: FontIcon {
 		switch self {
-			case 0..<10:
+			case _ where self < 20:
 				return .hexagonXmark
-			case 10..<95:
+			case _ where self < 80:
 				return .hexagonExclamation
-			case 95...100:
+			case _ where self <= 100:
 				return .hexagonCheck
 			default:
 				return .hexagonExclamation
@@ -56,11 +56,11 @@ extension Int {
 
 	var rewardScoreColor: ColorEnum {
 		switch self {
-			case 0..<10:
+			case _ where self < 20:
 				return .error
-			case 10..<95:
+			case _ where self < 80:
 				return .warning
-			case 95...100:
+			case _ where self <= 100:
 				return .success
 			default:
 				return .noColor
@@ -69,12 +69,10 @@ extension Int {
 
 	var rewardScoreType: CardWarningType? {
 		switch self {
-			case 0..<10:
+			case _ where self < 20:
 				return .error
-			case 10..<95:
+			case _ where self < 80:
 				return .warning
-			case 95...100:
-				return nil
 			default:
 				return nil
 		}
