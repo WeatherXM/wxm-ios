@@ -55,42 +55,7 @@ public class LoginServiceImpl: LoginService {
 	}
 
 	public func logout() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		getInstallationId().flatMap { [weak self] installationId in
-			guard let self else {
-				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)
-				let dummyResponse: DataResponse<EmptyEntity, NetworkErrorResponse> = DataResponse(request: nil,
-																						response: nil,
-																						data: nil,
-																						metrics: nil,
-																						serializationDuration: 0,
-																						result: .failure(error))
-				return Just(dummyResponse).eraseToAnyPublisher()
-			}
-
-			do {
-				let logout = try self.authRepository.logout(installationId: installationId)
-				return logout
-			} catch {
-				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)
-				let dummyResponse: DataResponse<EmptyEntity, NetworkErrorResponse> = DataResponse(request: nil,
-																						response: nil,
-																						data: nil,
-																						metrics: nil,
-																						serializationDuration: 0,
-																						result: .failure(error))
-				return Just(dummyResponse).eraseToAnyPublisher()
-			}
-		}.flatMap { [weak self] response in
-			if response.error == nil {
-				self?.userDefaultsRepository.clearUserSensitiveData()
-				WidgetCenter.shared.reloadAllTimelines()
-				self?.networkRepository.deleteAllRecent()
-				self?.keychainRepository.deleteEmailAndPasswordFromKeychain()
-				self?.keychainRepository.deleteNetworkTokenResponseFromKeychain()
-			}
-
-			return Just(response)
-		}.eraseToAnyPublisher()
+		try logoutPublisher()
 	}
 }
 
@@ -120,7 +85,53 @@ private extension LoginServiceImpl {
 
 	func observeRefreshTokenExpiration() {
 		NotificationCenter.default.publisher(for: .AuthRefreshTokenExpired).sink { [weak self] _ in
-			_ = try? self?.logout()
+			self?.performLogout()
+		}.store(in: &cancellableSet)
+	}
+
+	func logoutPublisher(ignoreError: Bool = false) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+		getInstallationId().flatMap { [weak self] installationId in
+			guard let self else {
+				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)
+				let dummyResponse: DataResponse<EmptyEntity, NetworkErrorResponse> = DataResponse(request: nil,
+																						response: nil,
+																						data: nil,
+																						metrics: nil,
+																						serializationDuration: 0,
+																						result: .failure(error))
+				return Just(dummyResponse).eraseToAnyPublisher()
+			}
+
+			do {
+				let logout = try self.authRepository.logout(installationId: installationId)
+				return logout
+			} catch {
+				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)
+				let dummyResponse: DataResponse<EmptyEntity, NetworkErrorResponse> = DataResponse(request: nil,
+																						response: nil,
+																						data: nil,
+																						metrics: nil,
+																						serializationDuration: 0,
+																						result: .failure(error))
+				return Just(dummyResponse).eraseToAnyPublisher()
+			}
+		}.flatMap { [weak self] response in
+			if response.error == nil || ignoreError {
+				self?.userDefaultsRepository.clearUserSensitiveData()
+				WidgetCenter.shared.reloadAllTimelines()
+				self?.networkRepository.deleteAllRecent()
+				self?.keychainRepository.deleteEmailAndPasswordFromKeychain()
+				self?.keychainRepository.deleteNetworkTokenResponseFromKeychain()
+			}
+
+			return Just(response)
+		}.eraseToAnyPublisher()
+	}
+
+
+	func performLogout() {
+		_ = try? logoutPublisher(ignoreError: true).sink { _ in
+
 		}.store(in: &cancellableSet)
 	}
 }
