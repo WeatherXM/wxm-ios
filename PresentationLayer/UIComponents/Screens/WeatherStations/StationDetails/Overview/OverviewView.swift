@@ -29,7 +29,7 @@ struct OverviewView: View {
                         }
                     }
 					.iPadMaxWidth()
-					.padding(.top)
+					.padding(.top, CGFloat(.mediumToLargeSidePadding))
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
                     .padding(.bottom, containerSize.height / 2.0) // Quick fix for better experience while expanding/collapsing the containers's header
                 }
