@@ -23,7 +23,7 @@ enum SuccessFailEnum: CustomStringConvertible {
 	case explorerDeviceDetail
 	case networkStats
 	case myWallet
-	case observations
+	case overview
 	case stationForecast
 	case stationRewards
 	case stationRewardsIssue
@@ -67,8 +67,8 @@ enum SuccessFailEnum: CustomStringConvertible {
 				return Constants.networkStats
 			case .myWallet:
 				return Constants.myWallet
-			case .observations:
-				return Constants.observations
+			case .overview:
+				return Constants.overview
 			case .stationForecast:
 				return Constants.stationForecast
 			case .stationRewards:
@@ -104,7 +104,7 @@ private extension SuccessFailEnum {
 		static let explorerDeviceDetails = "Explorer Device Details"
 		static let networkStats = "Network Stats"
 		static let myWallet = "My Wallet"
-		static let observations = "Observations"
+		static let overview = "Overview"
 		static let stationForecast = "Station Forecast"
 		static let stationRewards = "Station Rewards"
 		static let deviceInfo = "Device Info"
