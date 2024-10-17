@@ -22,8 +22,16 @@ struct MyWalletView: View {
                 TrackableScrollView(offsetObject: viewModel.trackableObject) {
                     VStack(spacing: CGFloat(.defaultSpacing)) {
 
-						enterAddressCard
-                            .padding(.horizontal, CGFloat(.defaultSidePadding))
+						VStack(spacing: CGFloat(.smallSpacing)) {
+							enterAddressCard
+								.padding(.horizontal, CGFloat(.defaultSidePadding))
+
+							if viewModel.isWarningVisible {
+								warningCard
+									.padding(.horizontal, CGFloat(.defaultSidePadding))
+									.transition(AnyTransition.opacity.animation(.easeIn(duration: 0.2)))
+							}
+						}
 
                         if !viewModel.isInEditMode {
                             Button {
@@ -35,15 +43,9 @@ struct MyWalletView: View {
                             .padding(.horizontal, CGFloat(.defaultSidePadding))
                             .transition(AnyTransition.opacity.animation(.easeIn(duration: 0.2)))
                         }
-
-                        if viewModel.isWarningVisible {
-                            warningCard
-                                .padding(.horizontal, CGFloat(.defaultSidePadding))
-                                .transition(AnyTransition.opacity.animation(.easeIn(duration: 0.2)))
-                        }
                     }
 					.iPadMaxWidth()
-                    .padding(.top)
+                    .padding(.vertical)
                 }
                 .padding(.bottom, bottomDrawerSize.height)
 
@@ -97,13 +99,13 @@ private extension MyWalletView {
 
 			VStack(spacing: CGFloat(.smallSpacing)) {
                 HStack {
-                    Text(LocalizableString.Wallet.addressTextFieldCaption.localized)
+					Text(LocalizableString.Wallet.addressTextFieldCaption.localized.attributedMarkdown ?? "")
                         .foregroundColor(Color(colorEnum: .text))
                         .font(.system(size: CGFloat(.normalFontSize)))
                     Spacer()
                 }
 
-                HStack {
+				HStack(spacing: CGFloat(.minimumSpacing)) {
 					Text(LocalizableString.Wallet.createMetaMaskLink(DisplayedLinks.createWalletsLink.linkURL).localized.attributedMarkdown!)
                         .tint(Color(colorEnum: .wxmPrimary))
                         .font(.system(size: CGFloat(.caption), weight: .bold))
@@ -111,6 +113,11 @@ private extension MyWalletView {
                             WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .createMetamask,
                                                                                   .itemId: .custom(viewModel.wallet?.address ?? "")])
                         })
+
+					Text(FontIcon.externalLink.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
+
                     Spacer()
                 }
             }
@@ -119,36 +126,39 @@ private extension MyWalletView {
         .wxmShadow()
     }
 
-    @ViewBuilder
+	@ViewBuilder
 	var warningCard: some View {
 		CardWarningView(configuration: .init(type: .error,
 											 title: LocalizableString.Wallet.compatibility.localized,
 											 message: LocalizableString.Wallet.compatibilityDescription.localized,
-											 closeAction: {
+											 showBorder: true) {
 			viewModel.isWarningVisible = false
 			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
 																 .promptType: .info,
 																 .action: .dismissAction])
-		})) {
-			HStack {
-				Text(LocalizableString.Wallet.compatibilityCheckLink(DisplayedLinks.createWalletsLink.linkURL).localized.attributedMarkdown!)
-					.tint(Color(colorEnum: .wxmPrimary))
-					.font(.system(size: CGFloat(.caption), weight: .bold))
-					.simultaneousGesture(TapGesture().onEnded {
-						WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
-																			 .promptType: .info,
-																			 .action: .action])
-					})
-				Spacer()
+		}, showContentFullWidth: true) {
+			Button {
+				viewModel.handleCheckCompatibilityTap()
+			} label: {
+				HStack {
+					Text(LocalizableString.Wallet.compatibilityCheck.localized)
+						.font(.system(size: CGFloat(.caption), weight: .bold))
+						.frame(maxWidth: .infinity)
+					
+					Text(FontIcon.externalLink.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
+				}
+				.padding(.horizontal, CGFloat(.defaultSidePadding))
 			}
+			.buttonStyle(WXMButtonStyle.transparent)
+			.padding(.top, CGFloat(.smallSidePadding))
 		}
 		.onAppear {
 			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletCompatibility,
 																 .promptType: .info,
 																 .action: .viewAction])
-        }
-
-    }
+		}
+	}
 
     @ViewBuilder
     var scanQRButton: some View {
@@ -248,7 +258,7 @@ private extension MyWalletView {
 struct MyWalletView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationContainerView {
-            MyWalletView(viewModel: MyWalletViewModel(useCase: nil))
+			MyWalletView(viewModel: ViewModelsFactory.getMyWalletViewModel())
 				.environmentObject(MainScreenViewModel.shared)
         }
     }

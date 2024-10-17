@@ -23,7 +23,7 @@ struct CardWarningView<Content: View>: View {
 						.foregroundColor(Color(colorEnum: configuration.type.iconColor))
                 }
 
-                VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
+                VStack(alignment: .leading, spacing: CGFloat(.smallSpacing)) {
                     HStack {
 						if let title = configuration.title {
                             Text(title)
