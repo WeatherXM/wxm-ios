@@ -54,6 +54,7 @@ struct TrackableScrollView<Content>: View where Content: View {
 						}
                 }
             }
+			.frame(width: outsideProxy.size.width)
 			.modify { view in
 				if let offsetObject {
 					view

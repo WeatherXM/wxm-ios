@@ -56,6 +56,7 @@ struct TemperatureExplanationView: View {
 					.resizable()
 					.aspectRatio(contentMode: .fit)
 					.wxmShadow()
+					.iPadMaxWidth()
 			}
 			.padding(CGFloat(.defaultSidePadding))
 		}
