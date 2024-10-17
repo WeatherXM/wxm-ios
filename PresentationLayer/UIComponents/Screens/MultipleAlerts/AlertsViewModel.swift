@@ -40,6 +40,7 @@ private extension AlertsViewModel {
             let alert = MultipleAlertsView.Alert(type: .error,
                                                  title: LocalizableString.alertsStationOfflineTitle.localized,
                                                  message: LocalizableString.alertsStationOfflineDescription.localized,
+												 icon: nil,
                                                  buttonTitle: LocalizableString.contactSupport.localized,
                                                  buttonAction: handleContactSupportTap,
                                                  appearAction: nil)
@@ -50,6 +51,7 @@ private extension AlertsViewModel {
             let alert = MultipleAlertsView.Alert(type: .warning,
                                                  title: LocalizableString.stationWarningUpdateTitle.localized,
                                                  message: LocalizableString.stationWarningUpdateDescription.localized,
+												 icon: .arrowsRotate,
                                                  buttonTitle: LocalizableString.stationWarningUpdateButtonTitle.localized,
                                                  buttonAction: handleFirmwareUpdateTap,
                                                  appearAction: { [weak self] in self?.trackPromptEvent(action: .viewAction) })
@@ -60,6 +62,7 @@ private extension AlertsViewModel {
 			let alert = MultipleAlertsView.Alert(type: .warning,
 												 title: LocalizableString.stationWarningLowBatteryTitle.localized,
 												 message: LocalizableString.stationWarningLowBatteryDescription.localized,
+												 icon: .batteryLow,
 												 buttonTitle: LocalizableString.stationWarningLowBatteryButtonTitle.localized,
 												 buttonAction: handleLowBatteryTap,
 												 appearAction: nil)
