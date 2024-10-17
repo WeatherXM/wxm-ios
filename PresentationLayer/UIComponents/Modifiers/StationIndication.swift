@@ -17,8 +17,7 @@ private struct StationIndicationModifier: ViewModifier {
 	func body(content: Content) -> some View {
 		let warningType = device.overallWarningType(mainVM: mainScreenViewModel, followState: followState)
 		content
-			.indication(show: .init(get: { warningType != nil },
-									set: { _ in }),
+			.indication(show: .constant(warningType != nil),
 						borderColor: Color(colorEnum: warningType?.iconColor ?? .noColor),
 						bgColor: Color(colorEnum: warningType?.tintColor ?? .noColor)) {
 				EmptyView()

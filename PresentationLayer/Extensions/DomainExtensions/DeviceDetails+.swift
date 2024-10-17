@@ -141,24 +141,21 @@ extension DeviceDetails {
 	}
 
 	func getIssuesChip(followState: UserDeviceFollowState?) -> StationChipsView.IssuesChip? {
-		guard case let issues = issues(mainVM: .shared, followState: followState).sorted(by: { $0.warningType > $1.warningType }),
-			  let warningType = issues.first?.warningType else {
+		let issues = issues(mainVM: .shared, followState: followState).sorted(by: { $0.warningType > $1.warningType })
+		guard let firstIssue = issues.first else {
 			return nil
 		}
 
 		if issues.count > 1 {
-			return .init(type: warningType,
+			return .init(type: firstIssue.warningType,
 						 icon: .hexagonExclamation,
 						 title: LocalizableString.issues(issues.count).localized)
 		}
 
-		if let issue = issues.first {
-			return .init(type: warningType,
-						 icon: issue.type.fontIcon,
-						 title: issue.type.description)
-		}
 
-		return nil
+		return .init(type: firstIssue.warningType,
+					 icon: firstIssue.type.fontIcon,
+					 title: firstIssue.type.description)
 	}
 
 	func isBatteryLow(followState: UserDeviceFollowState?) -> Bool {

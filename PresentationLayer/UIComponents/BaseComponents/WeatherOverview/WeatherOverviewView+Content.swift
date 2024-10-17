@@ -290,7 +290,7 @@ private extension WeatherOverviewView {
 				CGFloat(.XXXLTitleFontSize)
 			case .grid:
 				// There is no special position for the temperature in this layout
-					.nan
+				0.0
 		}
 	}
 
@@ -306,7 +306,7 @@ private extension WeatherOverviewView {
 				CGFloat(.XLTitleFontSize)
 			case .grid:
 				// There is no special position for the temperature in this layout
-					.nan
+				0.0
 		}
 	}
 
@@ -322,7 +322,7 @@ private extension WeatherOverviewView {
 				CGFloat(.mediumFontSize)
 			case .grid:
 				// There is no special position for the temperature in this layout
-					.nan
+				0.0
 		}
 	}
 
@@ -338,7 +338,7 @@ private extension WeatherOverviewView {
 				CGFloat(.caption)
 			case .grid:
 				// There is no special position for the temperature in this layout
-					.nan
+				0.0
 		}
 	}
 
