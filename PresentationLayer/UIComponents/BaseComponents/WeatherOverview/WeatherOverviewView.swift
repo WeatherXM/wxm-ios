@@ -27,7 +27,7 @@ struct WeatherOverviewView: View {
 				CGFloat(.weatherIconMediumDimension)
 			case .large:
 				CGFloat(.weatherIconLargeDimension)
-			case .default:
+			case .default, .grid:
 				CGFloat(.weatherIconDefaultDimension)
 		}
 	}
@@ -76,6 +76,7 @@ extension WeatherOverviewView {
 		case large
 		/// Main app
 		case `default`
+		case grid
 	}
 
 	private var mainViewVerticalPadding: CGFloat {
@@ -86,7 +87,7 @@ extension WeatherOverviewView {
 				CGFloat(.minimumPadding)
 			case .large:
 				CGFloat(.smallSidePadding)
-			case .default:
+			case .default, .grid:
 				CGFloat(.defaultSidePadding)
 		}
 	}
@@ -99,6 +100,13 @@ struct WeatherOverviewView_Previews: PreviewProvider {
             WeatherOverviewView(weather: CurrentWeather.mockInstance, showSecondaryFields: true, buttonTitle: "Button text", isButtonEnabled: false) {}
         }
     }
+}
+
+#Preview("Grid Layout") {
+	return ZStack {
+		Color(.red)
+		WeatherOverviewView(mode: .grid, weather: CurrentWeather.mockInstance, showSecondaryFields: false) {}
+	}
 }
 
 #Preview {

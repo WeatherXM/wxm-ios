@@ -20,8 +20,7 @@ extension DeviceDetails {
 	
 	var stationLastActiveConf: StationLastActiveView.Configuration {
 		StationLastActiveView.Configuration(lastActiveAt: lastActiveAt,
-											stateColor: activeStateColor(isActive: isActive),
-											tintColor: activeStateTintColor(isActive: isActive))
+											stateColor: activeStateColor(isActive: isActive))
 	}
 	
 	/// Label without occurences of ":"
@@ -65,6 +64,33 @@ extension DeviceDetails {
 	var isHelium: Bool {
 		bundle?.connectivity == .helium
 	}
+
+	var qodStatusColor: ColorEnum {
+		guard let qod else {
+			return .success
+		}
+		return qod.rewardScoreColor
+	}
+
+	var qodWarningType: CardWarningType? {
+		qod?.rewardScoreType
+	}
+
+	var qodStatusText: String {
+		guard let qod else {
+			return LocalizableString.Error.noDataTitle.localized
+		}
+
+		return LocalizableString.Home.dataQuality(qod).localized
+	}
+
+	var locationText: String {
+		guard let address else {
+			return LocalizableString.Error.noLocationDataTitle.localized
+		}
+
+		return address
+	}
 }
 
 // MARK: - Issues
@@ -79,11 +105,22 @@ extension DeviceDetails {
 		var description: String {
 			switch self {
 				case .offline:
-					return LocalizableString.alertsStationOfflineTitle.localized
+					return LocalizableString.stationInactive.localized
 				case .needsUpdate:
 					return LocalizableString.updateRequiredTitle.localized
 				case .lowBattery:
 					return LocalizableString.lowBatteryWarningTitle.localized
+			}
+		}
+
+		var fontIcon: FontIcon {
+			switch self {
+				case .offline:
+						.hexagonXmark
+				case .needsUpdate:
+						.arrowsRotate
+				case .lowBattery:
+						.batteryLow
 			}
 		}
 	}
@@ -102,7 +139,25 @@ extension DeviceDetails {
 			}
 		}
 	}
-	
+
+	func getIssuesChip(followState: UserDeviceFollowState?) -> StationChipsView.IssuesChip? {
+		let issues = issues(mainVM: .shared, followState: followState).sorted(by: { $0.warningType > $1.warningType })
+		guard let firstIssue = issues.first else {
+			return nil
+		}
+
+		if issues.count > 1 {
+			return .init(type: firstIssue.warningType,
+						 icon: .hexagonExclamation,
+						 title: LocalizableString.issues(issues.count).localized)
+		}
+
+
+		return .init(type: firstIssue.warningType,
+					 icon: firstIssue.type.fontIcon,
+					 title: firstIssue.type.description)
+	}
+
 	func isBatteryLow(followState: UserDeviceFollowState?) -> Bool {
 		guard followState?.relation == .owned else {
 			return false
@@ -110,9 +165,9 @@ extension DeviceDetails {
 		return batteryState == .low
 	}
 	
-	func overallWarningType(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> CardWarningType {
-		let issues = issues(mainVM: mainVM, followState: followState).sorted(by: { $0.type < $1.type })
-		return issues.first?.warningType ?? .info
+	func overallWarningType(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> CardWarningType? {
+		let issuesChipType = getIssuesChip(followState: followState)?.type
+		return [qodWarningType, pol?.warningType, issuesChipType].compactMap { $0 }.sorted(by: { $0 > $1}).first
 	}
 	
 	func needsUpdate(persistedVersion: FirmwareVersion?) -> Bool {
@@ -183,6 +238,30 @@ extension Firmware {
 	}
 }
 
+extension PolStatus {
+	var color: ColorEnum {
+		switch self {
+			case .verified:
+					.success
+			case .notVerified:
+					.warning
+			case .noLocation:
+					.error
+		}
+	}
+
+	var warningType: CardWarningType? {
+		switch self {
+			case .verified:
+				nil
+			case .notVerified:
+					.warning
+			case .noLocation:
+					.error
+		}
+	}
+}
+
 // MARK: - Mock
 
 extension DeviceDetails {
@@ -194,11 +273,13 @@ extension DeviceDetails {
 		device.address = "This is an address"
 		device.bundle = .mock()
 		device.rewards = .init(totalRewards: 53.0, actualReward: 12.53533)
-		device.isActive = true
+		device.isActive = false
 		device.lastActiveAt = Date.now.toTimestamp()
 		device.firmware = Firmware(assigned: "1.0.0", current: "1.0.1")
 		device.cellCenter = .init(lat: 0.0, long: 0.0)
-		
+		device.pol = .verified
+		device.qod = 91
+
 		let currentWeather = CurrentWeather.mockInstance
 		device.weather = currentWeather
 		

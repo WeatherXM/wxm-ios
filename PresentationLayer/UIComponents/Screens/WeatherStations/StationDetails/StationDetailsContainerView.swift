@@ -179,7 +179,6 @@ private struct StationDetailsView: View {
 										issues: viewModel.issues,
                                         showStateIcon: true,
                                         tapStateIconAction: { viewModel.followButtonTapped()},
-                                        tapAddressAction: { viewModel.addressTapped() },
 										tapWarningAction: { viewModel.warningTapped() },
 										tapStatusAction: { viewModel.statusTapped() })
                 .sizeObserver(size: $titleViewAddressSize)
