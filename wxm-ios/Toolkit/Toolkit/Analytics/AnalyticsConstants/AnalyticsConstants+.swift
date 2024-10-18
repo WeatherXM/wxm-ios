@@ -314,9 +314,9 @@ extension ParameterValue: RawRepresentable {
 			case .deviceDetailsFollow:
 				return "Device Details Follow"
 			case .follow:
-				return "Follow"
+				return "follow"
 			case .unfollow:
-				return "Unfollow"
+				return "unfollow"
 			case .stationDetailsChip:
 				return "Station Details Chip"
 			case .warnings:
