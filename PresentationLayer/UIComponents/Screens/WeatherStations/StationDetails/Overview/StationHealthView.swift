@@ -71,7 +71,11 @@ private extension StationHealthView {
 
 	var qodStatusText: AttributedString {
 		guard let qod = device.qod else {
-			return LocalizableString.Error.noDataTitle.localized.attributedMarkdown ?? ""
+			var attributedString = AttributedString(LocalizableString.Error.noDataTitle.localized)
+			attributedString.font = .systemFont(ofSize: CGFloat(.normalFontSize), weight: .bold)
+			attributedString.foregroundColor = Color(colorEnum: .text)
+
+			return attributedString
 		}
 
 		let percentSymbol = "%"
