@@ -61,7 +61,7 @@ private extension WeatherStationCard {
 			HStack(spacing: CGFloat(.smallSpacing)) {
 				Text(FontIcon.hexagon.rawValue)
 					.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
-					.foregroundStyle(Color(colorEnum: device.pol?.color ?? .noColor))
+					.foregroundStyle(Color(colorEnum: device.polStatusColor))
 					.fixedSize()
 
 				Text(device.locationText)

@@ -67,9 +67,16 @@ extension DeviceDetails {
 
 	var qodStatusColor: ColorEnum {
 		guard let qod else {
-			return .success
+			return .darkGrey
 		}
 		return qod.rewardScoreColor
+	}
+
+	var polStatusColor: ColorEnum {
+		guard let pol else {
+			return .darkGrey
+		}
+		return pol.color
 	}
 
 	var qodWarningType: CardWarningType? {
@@ -277,8 +284,8 @@ extension DeviceDetails {
 		device.lastActiveAt = Date.now.toTimestamp()
 		device.firmware = Firmware(assigned: "1.0.0", current: "1.0.1")
 		device.cellCenter = .init(lat: 0.0, long: 0.0)
-		device.pol = .verified
-		device.qod = 91
+		device.pol = nil
+		device.qod = nil
 
 		let currentWeather = CurrentWeather.mockInstance
 		device.weather = currentWeather
