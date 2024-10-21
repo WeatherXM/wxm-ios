@@ -7572,6 +7572,17 @@
         }
       }
     },
+    "station_details_data_quality_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data Quality Score"
+          }
+        }
+      }
+    },
     "station_details_detailed_rewards_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7649,6 +7660,17 @@
         }
       }
     },
+    "station_details_no_location_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No location data"
+          }
+        }
+      }
+    },
     "station_details_no_rewards_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7700,6 +7722,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No weather data found for your device\nfor "
+          }
+        }
+      }
+    },
+    "station_details_not_verified" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Verified"
           }
         }
       }
@@ -7799,6 +7832,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You are the owner of this station!"
+          }
+        }
+      }
+    },
+    "station_details_pending_verification" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pending verification"
           }
         }
       }
@@ -8052,6 +8096,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You’ve reached the end of the Timeline."
+          }
+        }
+      }
+    },
+    "station_details_verified" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verified"
           }
         }
       }

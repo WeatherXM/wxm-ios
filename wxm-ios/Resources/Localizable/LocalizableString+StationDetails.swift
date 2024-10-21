@@ -62,6 +62,11 @@ extension LocalizableString {
 		case latestWeather
 		case dataQualityDescription
 		case locationQualityDescription
+		case dataQualityScore
+		case verified
+		case notVerified
+		case pendingVerification
+		case noLocationData
 	}
 }
 
@@ -201,6 +206,16 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_data_quality_description"
 			case .locationQualityDescription:
 				return "station_details_location_quality_description"
+			case .dataQualityScore:
+				return "station_details_data_quality_score"
+			case .verified:
+				return "station_details_verified"
+			case .notVerified:
+				return "station_details_not_verified"
+			case .pendingVerification:
+				return "station_details_pending_verification"
+			case .noLocationData:
+				return "station_details_no_location_data"
 		}
 	}
 }
