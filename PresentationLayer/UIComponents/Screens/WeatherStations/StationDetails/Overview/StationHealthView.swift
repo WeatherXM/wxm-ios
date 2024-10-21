@@ -17,47 +17,83 @@ struct StationHealthView: View {
     var body: some View {
 		LazyVGrid(columns: [.init(spacing: CGFloat(.mediumSpacing)), .init()]) {
 			Button(action: dataQualityAction) {
-				HStack(spacing: CGFloat(.smallSpacing)) {
-					Spacer()
-
-					Text(FontIcon.chartSimple.rawValue)
-						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-						.foregroundStyle(Color(colorEnum: device.qodStatusColor))
-
-					Text(device.qodStatusText)
-						.font(.system(size: CGFloat(.caption)))
-						.foregroundStyle(Color(colorEnum: .text))
-						.lineLimit(1)
-
-					Spacer()
-				}
-				.WXMCardStyle(backgroundColor: .blueTint,
-							  insideHorizontalPadding: CGFloat(.minimumPadding),
-							  insideVerticalPadding: CGFloat(.mediumSidePadding))
+				pillView(title: LocalizableString.StationDetails.dataQualityScore.localized,
+						 statusIcon: (FontIcon.chartSimple, .fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize))),
+						 statusText: qodStatusText,
+						 statusColor: device.qodStatusColor)
 			}
 
 			Button(action: locationAction) {
-				HStack(spacing: CGFloat(.smallSpacing)) {
-					Spacer()
-					
-					Text(FontIcon.hexagon.rawValue)
-						.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
-						.foregroundStyle(Color(colorEnum: device.pol?.color ?? .noColor))
-						.fixedSize()
-					
-					Text(device.locationText)
-						.font(.system(size: CGFloat(.caption)))
-						.foregroundStyle(Color(colorEnum: .text))
-						.lineLimit(1)
-					
-					Spacer()
-				}
-				.WXMCardStyle(backgroundColor: .blueTint,
-							  insideHorizontalPadding: CGFloat(.minimumPadding),
-							  insideVerticalPadding: CGFloat(.mediumSidePadding))
+				pillView(title: device.locationText,
+						 statusIcon: (FontIcon.hexagon, .fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize))),
+						 statusText: polStatusText,
+						 statusColor: device.polStatusColor)
 			}
 		}
     }
+}
+
+private extension StationHealthView {
+	@ViewBuilder
+	func pillView(title: String,
+				  statusIcon: (icon: FontIcon, font: Font),
+				  statusText: AttributedString,
+				  statusColor: ColorEnum) -> some View {
+		VStack(spacing: CGFloat(.smallSpacing)) {
+			HStack {
+				Text(title)
+					.font(.system(size: CGFloat(.caption), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .darkestBlue))
+					.multilineTextAlignment(.leading)
+					.lineLimit(1)
+
+				Spacer()
+			}
+
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				Text(statusIcon.icon.rawValue)
+					.font(statusIcon.font)
+					.foregroundStyle(Color(colorEnum: statusColor))
+					.fixedSize()
+
+				Text(statusText)
+					.multilineTextAlignment(.leading)
+
+				Spacer()
+			}
+			.frame(maxWidth: .infinity, maxHeight: .infinity)
+		}
+		.WXMCardStyle(backgroundColor: .blueTint,
+					  insideHorizontalPadding: CGFloat(.mediumSidePadding),
+					  insideVerticalPadding: CGFloat(.mediumSidePadding))
+
+	}
+
+	var qodStatusText: AttributedString {
+		guard let qod = device.qod else {
+			return LocalizableString.Error.noDataTitle.localized.attributedMarkdown ?? ""
+		}
+
+		let percentSymbol = "%"
+		var attributedString = AttributedString("\(qod)\(percentSymbol)")
+		attributedString.font = .systemFont(ofSize: CGFloat(.mediumFontSize), weight: .bold)
+		attributedString.foregroundColor = Color(colorEnum: .text)
+
+		if let percentSymbolRange = attributedString.range(of: percentSymbol) {
+			attributedString[percentSymbolRange].font = .system(size: CGFloat(.caption))
+			attributedString[percentSymbolRange].foregroundColor = Color(colorEnum: .darkGrey)
+		}
+
+
+		return attributedString
+	}
+
+	var polStatusText: AttributedString {
+		var attributedString = AttributedString("\(device.polStatusText)")
+		attributedString.font = .systemFont(ofSize: CGFloat(.normalFontSize), weight: .bold)
+		attributedString.foregroundColor = Color(colorEnum: .text)
+		return attributedString
+	}
 }
 
 #Preview {
