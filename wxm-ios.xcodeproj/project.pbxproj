@@ -35,6 +35,8 @@
 		2623FF912AF147A800BCDAC6 /* RewardDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */; };
 		2623FF932AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623FF922AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift */; };
 		2623FF952AF157FE00BCDAC6 /* Localizable+RewardDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623FF942AF157FE00BCDAC6 /* Localizable+RewardDetails.swift */; };
+		2624DCC42CBD0E5300E75802 /* StationStatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624DCC32CBD0E5300E75802 /* StationStatusButton.swift */; };
+		2624DCC52CBD0E5300E75802 /* StationStatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624DCC32CBD0E5300E75802 /* StationStatusButton.swift */; };
 		262A0DFD29DC1823005B14A2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 262A0DFC29DC1823005B14A2 /* Lottie */; };
 		262A4CED2A93567A00A4BC17 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262A4CEC2A93567A00A4BC17 /* InfoView.swift */; };
 		262A4CF92A93726700A4BC17 /* sort-Xcode-project-file in Resources */ = {isa = PBXBuildFile; fileRef = 262A4CF82A93726700A4BC17 /* sort-Xcode-project-file */; };
@@ -160,6 +162,8 @@
 		266DC0132A54260900EC9E1F /* NetworkErrorResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DC0122A54260900EC9E1F /* NetworkErrorResponse+.swift */; };
 		266DC01B2A55786F00EC9E1F /* WXMPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DC01A2A55786F00EC9E1F /* WXMPopover.swift */; };
 		26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */; };
+		2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */; };
+		2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */; };
 		2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87B2C89F19A002266BE /* BoostCode+.swift */; };
 		2672B87E2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87D2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift */; };
 		2672B8802C8A02D0002266BE /* BoostDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87F2C8A02D0002266BE /* BoostDetailsView.swift */; };
@@ -324,8 +328,8 @@
 		26A3B3C72B1792890002F35F /* ProfileTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3C62B1792890002F35F /* ProfileTypes.swift */; };
 		26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3DB2B18D2480002F35F /* TabBarVisibilityHandler.swift */; };
 		26A4114A29B5ED5D00A2C10B /* ViewModelsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4114929B5ED5D00A2C10B /* ViewModelsFactory.swift */; };
-		26A4115929B6078500A2C10B /* ObservationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115829B6078500A2C10B /* ObservationsView.swift */; };
-		26A4115B29B60F2900A2C10B /* ObservationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115A29B60F2900A2C10B /* ObservationsViewModel.swift */; };
+		26A4115929B6078500A2C10B /* OverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115829B6078500A2C10B /* OverviewView.swift */; };
+		26A4115B29B60F2900A2C10B /* OverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115A29B60F2900A2C10B /* OverviewViewModel.swift */; };
 		26A4115D29B6160600A2C10B /* WeatherOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115C29B6160600A2C10B /* WeatherOverviewView.swift */; };
 		26A4116029B618CA00A2C10B /* WeatherOverviewView+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4115F29B618CA00A2C10B /* WeatherOverviewView+Content.swift */; };
 		26A4116B29B744E100A2C10B /* DeviceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A4116A29B744E100A2C10B /* DeviceInfoView.swift */; };
@@ -610,6 +614,7 @@
 		2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailsView.swift; sourceTree = "<group>"; };
 		2623FF922AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailsViewModel.swift; sourceTree = "<group>"; };
 		2623FF942AF157FE00BCDAC6 /* Localizable+RewardDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localizable+RewardDetails.swift"; sourceTree = "<group>"; };
+		2624DCC32CBD0E5300E75802 /* StationStatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationStatusButton.swift; sourceTree = "<group>"; };
 		262A4CEC2A93567A00A4BC17 /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		262A4CF82A93726700A4BC17 /* sort-Xcode-project-file */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "sort-Xcode-project-file"; sourceTree = "<group>"; };
 		262A4D852A94D89300A4BC17 /* TabViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewWrapper.swift; sourceTree = "<group>"; };
@@ -718,6 +723,8 @@
 		266DC01A2A55786F00EC9E1F /* WXMPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMPopover.swift; sourceTree = "<group>"; };
 		26707E9C2C3ECC0400B9305F /* WeatherXMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherXMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEIConverterTests.swift; sourceTree = "<group>"; };
+		2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthView.swift; sourceTree = "<group>"; };
+		2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthInfoView.swift; sourceTree = "<group>"; };
 		2672B87B2C89F19A002266BE /* BoostCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoostCode+.swift"; sourceTree = "<group>"; };
 		2672B87D2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceRewardsResponse+.swift"; sourceTree = "<group>"; };
 		2672B87F2C8A02D0002266BE /* BoostDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostDetailsView.swift; sourceTree = "<group>"; };
@@ -878,8 +885,8 @@
 		26A3B3C62B1792890002F35F /* ProfileTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTypes.swift; sourceTree = "<group>"; };
 		26A3B3DB2B18D2480002F35F /* TabBarVisibilityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVisibilityHandler.swift; sourceTree = "<group>"; };
 		26A4114929B5ED5D00A2C10B /* ViewModelsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelsFactory.swift; sourceTree = "<group>"; };
-		26A4115829B6078500A2C10B /* ObservationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationsView.swift; sourceTree = "<group>"; };
-		26A4115A29B60F2900A2C10B /* ObservationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationsViewModel.swift; sourceTree = "<group>"; };
+		26A4115829B6078500A2C10B /* OverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewView.swift; sourceTree = "<group>"; };
+		26A4115A29B60F2900A2C10B /* OverviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewModel.swift; sourceTree = "<group>"; };
 		26A4115C29B6160600A2C10B /* WeatherOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherOverviewView.swift; sourceTree = "<group>"; };
 		26A4115F29B618CA00A2C10B /* WeatherOverviewView+Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherOverviewView+Content.swift"; sourceTree = "<group>"; };
 		26A4116A29B744E100A2C10B /* DeviceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoView.swift; sourceTree = "<group>"; };
@@ -2018,13 +2025,15 @@
 			path = TrackableScrollView;
 			sourceTree = "<group>";
 		};
-		26A4115729B6061900A2C10B /* Observations */ = {
+		26A4115729B6061900A2C10B /* Overview */ = {
 			isa = PBXGroup;
 			children = (
-				26A4115829B6078500A2C10B /* ObservationsView.swift */,
-				26A4115A29B60F2900A2C10B /* ObservationsViewModel.swift */,
+				26A4115829B6078500A2C10B /* OverviewView.swift */,
+				26A4115A29B60F2900A2C10B /* OverviewViewModel.swift */,
+				2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */,
+				2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */,
 			);
-			path = Observations;
+			path = Overview;
 			sourceTree = "<group>";
 		};
 		26A4115E29B6184F00A2C10B /* WeatherOverview */ = {
@@ -2401,12 +2410,13 @@
 			isa = PBXGroup;
 			children = (
 				2664832729C35ABA00748F9C /* Forecast */,
-				26A4115729B6061900A2C10B /* Observations */,
+				26A4115729B6061900A2C10B /* Overview */,
 				2646D8F129C8BF240000237F /* Rewards */,
 				26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */,
 				2664834229C89F8A00748F9C /* StationDetailsTypes.swift */,
 				26DD42E329B0FA9B008E277E /* StationDetailsViewModel.swift */,
 				2666D5092BBC4E80003B30C0 /* StationChipsView.swift */,
+				2624DCC32CBD0E5300E75802 /* StationStatusButton.swift */,
 			);
 			path = StationDetails;
 			sourceTree = "<group>";
@@ -2941,6 +2951,7 @@
 				26CA84632AD94B50006D47D7 /* CurrentWeather+.swift in Sources */,
 				26B832BC2AC5B07D00757A69 /* SizeObserver.swift in Sources */,
 				26B832A52AC5A74900757A69 /* LocalizableConstants.swift in Sources */,
+				2624DCC52CBD0E5300E75802 /* StationStatusButton.swift in Sources */,
 				266D17EA2AC6F68D007CDB06 /* StationWidgetView.swift in Sources */,
 				266105A72AE023CC000E4712 /* DeviceDetails+Widget.swift in Sources */,
 				26769AAF2ACEBB1A00162974 /* LocalizableString+ClaimDevice.swift in Sources */,
@@ -3025,6 +3036,7 @@
 				266B01CD2B84FB59007AC689 /* NetworkDeviceRewardsSummaryResponse+.swift in Sources */,
 				268E8E0A2B07A1E30025163F /* AdaptiveGridContainerView.swift in Sources */,
 				26AA21D32BF3A45E00B91A7C /* ManualSerialNumberViewModel.swift in Sources */,
+				2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */,
 				267548ED29A91A87008BCF40 /* Color+.swift in Sources */,
 				267548D429A91A87008BCF40 /* ColorEnum.swift in Sources */,
 				26ADDF8F2BE3BF8600992BEF /* ClaimDeviceBulletView.swift in Sources */,
@@ -3158,12 +3170,12 @@
 				2632E6322A335EF400A5ADB3 /* NetworkStatsViewModel.swift in Sources */,
 				26BA07772B7FC2AC00F7F5A0 /* WeeklyStreakView.swift in Sources */,
 				2692D8722A4D8DEA0060CB3C /* Numeric+.swift in Sources */,
-				26A4115929B6078500A2C10B /* ObservationsView.swift in Sources */,
+				26A4115929B6078500A2C10B /* OverviewView.swift in Sources */,
 				2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */,
 				266B01E52B8767E4007AC689 /* StationIndication.swift in Sources */,
 				2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */,
 				264CDE0F2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift in Sources */,
-				26A4115B29B60F2900A2C10B /* ObservationsViewModel.swift in Sources */,
+				26A4115B29B60F2900A2C10B /* OverviewViewModel.swift in Sources */,
 				267547CC29A9181E008BCF40 /* OnAnimationCompletedModifier.swift in Sources */,
 				2664831929C31AF400748F9C /* OverlayAnimator.swift in Sources */,
 				261CD81829CB2D5B00C0CECE /* PercentageGridLayoutView.swift in Sources */,
@@ -3238,6 +3250,7 @@
 				26A5451B2BFF2C1C0098FE52 /* NetworkStatsResponse+.swift in Sources */,
 				26ADDF912BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift in Sources */,
 				267548D829A91A87008BCF40 /* SuccessFailEnum.swift in Sources */,
+				2624DCC42CBD0E5300E75802 /* StationStatusButton.swift in Sources */,
 				26ACE9062C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift in Sources */,
 				267547BC29A9181E008BCF40 /* SuccessfulDeleteView.swift in Sources */,
 				2675480229A9181E008BCF40 /* SuccessView.swift in Sources */,
@@ -3320,6 +3333,7 @@
 				26E5B0C029F8078C00834899 /* WXMDivider.swift in Sources */,
 				2674017E2A38C2AE00E54E35 /* WXMEmptyView.swift in Sources */,
 				266DC01B2A55786F00EC9E1F /* WXMPopover.swift in Sources */,
+				2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */,
 				26E88AF529DD69930023BBD5 /* WXMShadow.swift in Sources */,
 				267547CA29A9181E008BCF40 /* WXMToggleStyle.swift in Sources */,
 				267548F929A91A87008BCF40 /* XAxisValueFormatter.swift in Sources */,

@@ -9,12 +9,12 @@ import Foundation
 
 extension LocalizableString {
 	enum StationDetails {
-		case observations
+		case overview
 		case forecast
 		case rewards
 		case viewHistoricalData
-		case observationsFollowCtaText
-		case observationsLoggedOutCtaText
+		case overviewFollowCtaText
+		case overviewLoggedOutCtaText
 		case detailedRewardsButtonTitle
 		case sevenDaysAbbreviation
 		case thirtyDaysAbbreviation
@@ -56,6 +56,17 @@ extension LocalizableString {
 		case proTipTitle
 		case proTipDescription
 		case timelineLimitMessage
+		case ownedStationSnackBarMessage
+		case ownedStationNoDataSnackBarMessage
+		case stationHealth
+		case latestWeather
+		case dataQualityDescription
+		case locationQualityDescription
+		case dataQualityScore
+		case verified
+		case notVerified
+		case pendingVerification
+		case noLocationData
 	}
 }
 
@@ -84,18 +95,18 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 
 	var key: String {
 		switch self {
-			case .observations:
-				return "station_details_observations"
+			case .overview:
+				return "station_details_overview"
 			case .forecast:
 				return "station_details_forecast"
 			case .rewards:
 				return "station_details_rewards"
 			case .viewHistoricalData:
 				return "station_details_view_historical_data"
-			case .observationsFollowCtaText:
-				return "station_details_observations_follow_cta_text"
-			case .observationsLoggedOutCtaText:
-				return "station_details_observations_logged_out_cta_text"
+			case .overviewFollowCtaText:
+				return "station_details_overview_follow_cta_text"
+			case .overviewLoggedOutCtaText:
+				return "station_details_overview_logged_out_cta_text"
 			case .detailedRewardsButtonTitle:
 				return "station_details_detailed_rewards_button_title"
 			case .sevenDaysAbbreviation:
@@ -183,6 +194,28 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_rewards_pro_tip_description"
 			case .timelineLimitMessage:
 				return "station_details_timeline_limit_message"
+			case .ownedStationSnackBarMessage:
+				return "station_details_owned_station_snackbar_message"
+			case .ownedStationNoDataSnackBarMessage:
+				return "station_details_owned_station_no_data_snackbar_message"
+			case .latestWeather:
+				return "station_details_latest_weather"
+			case .stationHealth:
+				return "station_details_station_health"
+			case .dataQualityDescription:
+				return "station_details_data_quality_description"
+			case .locationQualityDescription:
+				return "station_details_location_quality_description"
+			case .dataQualityScore:
+				return "station_details_data_quality_score"
+			case .verified:
+				return "station_details_verified"
+			case .notVerified:
+				return "station_details_not_verified"
+			case .pendingVerification:
+				return "station_details_pending_verification"
+			case .noLocationData:
+				return "station_details_no_location_data"
 		}
 	}
 }

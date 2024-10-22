@@ -79,6 +79,14 @@ extension DeviceDetails {
 		return pol.color
 	}
 
+	var polStatusText: String {
+		guard let pol else {
+			return LocalizableString.StationDetails.pendingVerification.localized
+		}
+
+		return pol.statusText
+	}
+
 	var qodWarningType: CardWarningType? {
 		qod?.rewardScoreType
 	}
@@ -267,6 +275,17 @@ extension PolStatus {
 					.error
 		}
 	}
+
+	var statusText: String {
+		switch self {
+			case .verified:
+				LocalizableString.StationDetails.verified.localized
+			case .notVerified:
+				LocalizableString.StationDetails.notVerified.localized
+			case .noLocation:
+				LocalizableString.StationDetails.noLocationData.localized
+		}
+	}
 }
 
 // MARK: - Mock
@@ -284,8 +303,8 @@ extension DeviceDetails {
 		device.lastActiveAt = Date.now.toTimestamp()
 		device.firmware = Firmware(assigned: "1.0.0", current: "1.0.1")
 		device.cellCenter = .init(lat: 0.0, long: 0.0)
-		device.pol = nil
-		device.qod = nil
+		device.pol = .verified
+		device.qod = 80
 
 		let currentWeather = CurrentWeather.mockInstance
 		device.weather = currentWeather
