@@ -19,12 +19,11 @@ struct MultipleAlertsView: View {
 			
 			ScrollView {
 				VStack(spacing: CGFloat(.largeSpacing)) {
-					titleView
-					
 					VStack(spacing: CGFloat(.mediumSpacing)) {
 						
 						ForEach(viewModel.alerts, id: \.message) { alert in
 							CardWarningView(configuration: .init(type: alert.type,
+																 icon: alert.icon,
 																 title: alert.title,
 																 message: alert.message,
 																 showBorder: true,
@@ -44,30 +43,13 @@ struct MultipleAlertsView: View {
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
 			}
 		}
-	}
-}
+		.onAppear {
+			navigationObject.title = LocalizableString.alerts.localized
+			navigationObject.titleFont = .system(size: CGFloat(.largeTitleFontSize),
+												 weight: .bold)
+			navigationObject.subtitle = viewModel.device.displayName
+			navigationObject.subtitleFont = .system(size: CGFloat(.caption))
 
-private extension MultipleAlertsView {
-	@ViewBuilder
-	var titleView: some View {
-		VStack(spacing: CGFloat(.smallSpacing)) {
-			HStack {
-				Text(LocalizableString.alerts.localized)
-					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
-					.lineLimit(1)
-					.truncationMode(.middle)
-					.foregroundColor(Color(colorEnum: .text))
-
-				Spacer()
-			}
-
-			HStack {
-				Text(viewModel.device.displayName)
-					.font(.system(size: CGFloat(.caption)))
-					.foregroundColor(Color(colorEnum: .darkGrey))
-
-				Spacer()
-			}
 		}
 	}
 }
@@ -77,6 +59,7 @@ extension MultipleAlertsView {
         let type: CardWarningType
         let title: String
         let message: String
+		let icon: FontIcon?
         let buttonTitle: String
         let buttonAction: VoidCallback
         let appearAction: VoidCallback?
@@ -87,7 +70,10 @@ struct MultipleAlertsView_Previews: PreviewProvider {
     static var previews: some View {
         let mainVM = MainScreenViewModel.shared
         NavigationContainerView {
-            MultipleAlertsView(viewModel: AlertsViewModel(device: .mockDevice, mainVM: mainVM, followState: .init(deviceId: "123", relation: .owned)))
+            MultipleAlertsView(viewModel: AlertsViewModel(device: .mockDevice,
+														  mainVM: mainVM,
+														  followState: .init(deviceId: "123",
+																			 relation: .owned)))
         }
     }
 }

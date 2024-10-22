@@ -298,6 +298,7 @@ extension DeviceDetails {
 		device.label = "AE:66:F7:21:1F:21:75:11:EC"
 		device.address = "This is an address"
 		device.bundle = .mock()
+		device.batteryState = .low
 		device.rewards = .init(totalRewards: 53.0, actualReward: 12.53533)
 		device.isActive = false
 		device.lastActiveAt = Date.now.toTimestamp()
@@ -317,7 +318,7 @@ extension StationBundle {
 	static func mock(name: StationBundle.Code = .m5) -> StationBundle {
 		.init(name: name,
 			  title: "M5",
-			  connectivity: .wifi,
+			  connectivity: .helium,
 			  wsModel: "WS1000",
 			  gwModel: "WG1000",
 			  hwClass: "A")
