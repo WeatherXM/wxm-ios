@@ -35,13 +35,15 @@ extension AlertsViewModel: HashableViewModel {
 private extension AlertsViewModel {
     func generateAlerts() {
         var alerts: [MultipleAlertsView.Alert] = []
+		let isOwned = followState?.relation == .owned
 
-        if !device.isActive {
+		if !device.isActive {
+			let description: LocalizableString = isOwned ? .alertsOwnedStationOfflineDescription : .alertsStationOfflineDescription
             let alert = MultipleAlertsView.Alert(type: .error,
                                                  title: LocalizableString.alertsStationOfflineTitle.localized,
-                                                 message: LocalizableString.alertsStationOfflineDescription.localized,
+                                                 message: description.localized,
 												 icon: nil,
-                                                 buttonTitle: LocalizableString.contactSupport.localized,
+												 buttonTitle: isOwned ? LocalizableString.contactSupport.localized : nil,
                                                  buttonAction: handleContactSupportTap,
                                                  appearAction: nil)
             alerts.append(alert)

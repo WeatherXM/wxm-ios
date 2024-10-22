@@ -130,13 +130,24 @@
         }
       }
     },
-    "alerts_station_offline_description" : {
+    "alerts_owned_station_offline_description" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "The station is not sending weather data. Check the outdoor unit’s batteries and the internet connection. If the problem persists, contact our support team."
+          }
+        }
+      }
+    },
+    "alerts_station_offline_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We’re unable to show live station data. Please check back later for further updates."
           }
         }
       }

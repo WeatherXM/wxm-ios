@@ -29,11 +29,18 @@ struct MultipleAlertsView: View {
 																 showBorder: true,
 																 closeAction: nil),
 											showContentFullWidth: true) {
-								Button(action: alert.buttonAction) {
-									Text(alert.buttonTitle)
+								Group {
+									if let buttonTitle = alert.buttonTitle,
+									   let buttonAction = alert.buttonAction {
+										Button(action: buttonAction) {
+											Text(buttonTitle)
+										}
+										.buttonStyle(WXMButtonStyle.transparent)
+										.padding(.top, CGFloat(.smallSidePadding))
+									} else {
+										EmptyView()
+									}
 								}
-								.buttonStyle(WXMButtonStyle.transparent)
-								.padding(.top, CGFloat(.smallSidePadding))
 							}
 											.onAppear(perform: alert.appearAction)
 											.wxmShadow()
@@ -60,8 +67,8 @@ extension MultipleAlertsView {
         let title: String
         let message: String
 		let icon: FontIcon?
-        let buttonTitle: String
-        let buttonAction: VoidCallback
+        let buttonTitle: String?
+        let buttonAction: VoidCallback?
         let appearAction: VoidCallback?
     }
 }

@@ -131,6 +131,7 @@ enum LocalizableString: WXMLocalizable {
 	case hiddenContentTitle
 	case hiddenContentDescription(String)
 	case alertsStationOfflineTitle
+	case alertsOwnedStationOfflineDescription
 	case alertsStationOfflineDescription
 	case lowBatteryWarningTitle
 	case updateRequiredTitle
@@ -453,6 +454,8 @@ extension LocalizableString {
 				return "hidden_content_description_format"
 			case .alertsStationOfflineTitle:
 				return "alerts_station_offline_title"
+			case .alertsOwnedStationOfflineDescription:
+				return "alerts_owned_station_offline_description"
 			case .alertsStationOfflineDescription:
 				return "alerts_station_offline_description"
 			case .lowBatteryWarningTitle:
