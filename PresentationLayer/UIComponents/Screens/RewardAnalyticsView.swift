@@ -189,14 +189,11 @@ private struct ContentView: View {
 		let isExpanded = stationItem?.isExpanded == true
 		VStack(spacing: CGFloat(.defaultSpacing)) {
 			Button {
-				viewModel.handleDeviceTap(device) {
-					if !isExpanded {
-						// Scroll to expanded once the expand animation is finished
-						DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-							withAnimation {
-								scrollProxy.scrollTo(device.id, anchor: .top)
-							}
-						}
+				viewModel.handleDeviceTap(device)
+				if !isExpanded {
+					// Scroll to expanded once the expand animation is finished
+					withAnimation {
+						scrollProxy.scrollTo(device.id, anchor: .top)
 					}
 				}
 			} label: {
