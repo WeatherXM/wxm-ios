@@ -112,7 +112,7 @@ class StationDetailsViewModel: ObservableObject {
 		showShareDialog = true
     }
 
-    func StatusButtonTapped() {
+    func statusButtonTapped() {
         guard MainScreenViewModel.shared.isUserLoggedIn else {
             showLogin()
             return
@@ -305,7 +305,7 @@ extension StationDetailsViewModel: StationDetailsViewModelDelegate {
     }
 
     func shouldAskToFollow() {
-        StatusButtonTapped()
+        statusButtonTapped()
     }
 }
 
