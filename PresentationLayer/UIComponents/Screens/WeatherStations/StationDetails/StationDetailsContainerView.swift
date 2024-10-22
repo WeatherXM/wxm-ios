@@ -26,7 +26,7 @@ struct StationDetailsContainerView: View {
 		HStack(spacing: CGFloat(.smallSpacing)) {
 			if viewModel.device != nil {
 				StationStatusButton(followState: viewModel.followState) {
-					viewModel.StatusButtonTapped()
+					viewModel.statusButtonTapped()
 				}
 			}
 
