@@ -83,3 +83,28 @@ public enum Connectivity: String, Codable {
 	case helium
 	case cellular
 }
+
+public enum PolStatus: String, Codable {
+	case verified
+	case notVerified = "LOCATION_NOT_VERIFIED"
+	case noLocation = "NO_LOCATION_DATA"
+}
+
+public struct Metrics: Codable {
+	public let ts: Date?
+	public let qodScore: Int?
+	public let polReason: PolStatus?
+
+	enum CodingKeys: String, CodingKey {
+		case ts
+		case qodScore = "qod_score"
+		case polReason = "pol_reason"
+	}
+
+	public init(from decoder: any Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.ts = try container.decodeIfPresent(Date.self, forKey: .ts)
+		self.qodScore = try container.decodeIfPresent(Int.self, forKey: .qodScore)
+		self.polReason = try? container.decodeIfPresent(PolStatus.self, forKey: .polReason) ?? .verified
+	}
+}

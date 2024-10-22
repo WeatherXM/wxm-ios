@@ -11,7 +11,11 @@ import DomainLayer
 import Toolkit
 
 extension WeatherField: CustomStringConvertible {
-	
+
+	static var stationListFields: [WeatherField] {
+		[.temperature, .wind, .humidity, .precipitation]
+	}
+
 	static var mainFields: [WeatherField] {
 		[.humidity, .wind, .precipitation]
 	}
@@ -41,7 +45,7 @@ extension WeatherField: CustomStringConvertible {
 			case .windDirection:
 				return LocalizableString.windDirection.localized
 			case .precipitation:
-				return LocalizableString.precipitationRate.localized
+				return LocalizableString.precipRate.localized
 			case .precipitationProbability:
 				return LocalizableString.precipitationProbability.localized
 			case .dailyPrecipitation:
@@ -141,9 +145,9 @@ extension WeatherField: CustomStringConvertible {
 	var fontIcon: FontIcon? {
 		switch self {
 			case .temperature:
-				nil
+					.temperatureThreeQuarters
 			case .feelsLike:
-				nil
+					.temperatureThreeQuarters
 			case .humidity:
 					.humidity
 			case .wind:

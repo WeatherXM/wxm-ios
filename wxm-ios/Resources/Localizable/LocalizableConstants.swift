@@ -14,6 +14,7 @@ protocol WXMLocalizable {
 
 enum LocalizableString: WXMLocalizable {
 	case url(String, String)
+	case notAvailable
 	case confirm
 	case email
 	case mandatoryEmail
@@ -170,6 +171,7 @@ enum LocalizableString: WXMLocalizable {
 	case activeStations(Int?)
 	case activeStation(Int?)
 	case presentStations(Int?)
+	case stationInactive
 
 	var localized: String {
 		var localized = NSLocalizedString(self.key, comment: "")
@@ -205,6 +207,8 @@ extension LocalizableString {
 		switch self {
 			case .url:
 				return "url_format"
+			case .notAvailable:
+				return "not_available"
 			case .confirm:
 				return "confirm"
 			case .email:
@@ -529,6 +533,8 @@ extension LocalizableString {
 				return "active_station_format"
 			case .presentStations:
 				return "present_stations_format"
+			case .stationInactive:
+				return "station_inactive"
 		}
 	}
 }

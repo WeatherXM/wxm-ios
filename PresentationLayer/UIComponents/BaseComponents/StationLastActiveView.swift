@@ -16,13 +16,13 @@ struct StationLastActiveView: View {
 		HStack(spacing: CGFloat(.smallSpacing)) {
 			Circle()
                 .foregroundColor(Color(colorEnum: configuration.stateColor))
-				.frame(width: 10.0)
+				.frame(width: 10.0, height: 10.0)
 
-            Text(configuration.lastActiveAt?.lastActiveTime() ?? "-")
+			Text(configuration.lastActiveAt?.lastActiveTime() ?? LocalizableString.notAvailable.localized)
                 .font(.system(size: CGFloat(.caption)))
 				.foregroundColor(Color(colorEnum: .text))
         }
-        .WXMCardStyle(backgroundColor: Color(colorEnum: configuration.tintColor),
+		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
                       insideHorizontalPadding: CGFloat(.smallSidePadding),
                       insideVerticalPadding: CGFloat(.smallSidePadding),
                       cornerRadius: CGFloat(.buttonCornerRadius))
@@ -33,13 +33,11 @@ extension StationLastActiveView {
     struct Configuration {
         let lastActiveAt: String?
         let stateColor: ColorEnum
-        let tintColor: ColorEnum
     }
 
     init(device: DeviceDetails) {
         let conf = Configuration(lastActiveAt: device.lastActiveAt,
-                                 stateColor: device.isActiveStateColor,
-                                 tintColor: device.isActiveStateTintColor)
+                                 stateColor: device.isActiveStateColor)
         self.configuration = conf
     }
 }

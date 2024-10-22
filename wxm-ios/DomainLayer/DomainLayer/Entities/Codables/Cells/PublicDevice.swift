@@ -15,6 +15,7 @@ public struct PublicDevice: Codable {
 	var cellCenter: LocationCoordinates?
     var currentWeather: CurrentWeather?
 	var bundle: StationBundle?
+	var metrics: Metrics?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -26,5 +27,6 @@ public struct PublicDevice: Codable {
 		case cellCenter
         case currentWeather = "current_weather"
 		case bundle
+		case metrics
     }
 }

@@ -18,12 +18,22 @@ extension LocalizableString {
         case followingWeatherStationsEmptyDescription
         case followingWeatherStationsEmptyButtonTitle
 		case noRewardsYet
+		case dataQuality(Int)
     }
 }
 
 extension LocalizableString.Home: WXMLocalizable {
     var localized: String {
-        NSLocalizedString(key, comment: "")
+		var localized = NSLocalizedString(self.key, comment: "")
+		switch self {
+			case .dataQuality(let num):
+				localized = String(format: localized, num)
+			default:
+				break
+		}
+
+		return localized
+
     }
 
     var key: String {
@@ -46,6 +56,8 @@ extension LocalizableString.Home: WXMLocalizable {
                 return "home_following_weather_stations_empty_button_title"
 			case .noRewardsYet:
 				return "home_no_rewards_yet"
+			case .dataQuality:
+				return "home_data_quality"
         }
     }
 }
