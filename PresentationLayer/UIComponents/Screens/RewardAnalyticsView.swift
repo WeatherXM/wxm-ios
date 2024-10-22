@@ -227,12 +227,6 @@ private struct ContentView: View {
 		}
 		.WXMCardStyle()
 		.animation(.easeIn(duration: animationDuration), value: isExpanded)
-		.if(!isExpanded) { view in
-			view
-				.spinningLoader(show: Binding(get: { stationItem?.isLoading == true },
-											  set: { _ in }),
-								lottieLoader: false)
-		}
 	}
 
 	@ViewBuilder
@@ -268,10 +262,12 @@ private struct ContentView: View {
 				FailView(obj: obj)
 					.padding()
 			}
+
 			ForEach(stationItem.reward?.details ?? [], id: \.code) { details in
 				StationRewardDetailsView(details: details)
 			}
 		}
+		.frame(minHeight: SpinningLoaderView.dimensions)
 		.id(stationItem.mode)
 		.animation(.easeIn(duration: animationDuration), value: stationItem.isLoading)
 		.spinningLoader(show: Binding(get: { stationItem.isLoading == true },

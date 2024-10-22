@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct SpinningLoaderView: View {
-    private let dimensions: CGFloat = 150
+    static let dimensions: CGFloat = 150
 
     var body: some View {
         LottieView(animationCase: AnimationsEnums.loading.animationString,
                    loopMode: .loop)
-        .frame(width: dimensions,
-               height: dimensions)
+		.frame(width: Self.dimensions,
+			   height: Self.dimensions)
     }
 }
 

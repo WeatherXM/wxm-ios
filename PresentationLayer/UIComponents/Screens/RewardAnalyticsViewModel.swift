@@ -77,6 +77,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 																	.state: state])
 
 		guard isExpanded else {
+			stationItems[device.id ?? ""]?.setIsExpanded(true)
 			refreshCurrentDevice(deviceId: device.id, mode: .week, completion: completion)
 			return
 		}
