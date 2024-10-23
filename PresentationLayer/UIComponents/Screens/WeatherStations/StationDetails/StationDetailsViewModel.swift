@@ -106,10 +106,15 @@ class StationDetailsViewModel: ObservableObject {
 		navigateToAlerts()
 	}
 
+	@MainActor
     func handleShareButtonTap() {
         WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsShare])
 
-		showShareDialog = true
+		// Not so smart solution to handle the race condition between 
+		// the popover dismissal and the share dialog presentation
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+			self.showShareDialog = true
+		}
     }
 
     func statusButtonTapped() {
