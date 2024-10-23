@@ -224,14 +224,14 @@ private extension ProfileViewModel {
 		if let cumulative = userRewardsResponse?.cumulativeAmount?.toEthDouble {
 			totalEarned = cumulative.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
 		} else {
-			totalEarned = "N/A"
+			totalEarned = LocalizableString.notAvailable.localized
 		}
 
 		if let total = userRewardsResponse?.totalClaimed?.toEthDouble {
 			let claimed = total + (additionalClaimed?.toEthDouble ?? 0.0)
 			totalClaimed = claimed.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
 		} else {
-			totalClaimed = "N/A"
+			totalClaimed = LocalizableString.notAvailable.localized
 		}
 
 		if let available = userRewardsResponse?.available?.toEthDouble {
@@ -241,7 +241,7 @@ private extension ProfileViewModel {
 			let valueString = allocated.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
 			allocatedRewards = allocated == 0.0 ? noRewardsString : valueString
 		} else {
-			allocatedRewards = "N/A"
+			allocatedRewards = LocalizableString.notAvailable.localized
 			isClaimAvailable = false
 		}
 	}
