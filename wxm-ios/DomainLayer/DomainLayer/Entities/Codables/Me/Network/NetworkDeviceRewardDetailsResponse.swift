@@ -88,7 +88,7 @@ public extension NetworkDeviceRewardDetailsResponse {
 	}
 }
 
-public enum BoostCode: Codable, RawRepresentable, Hashable {
+public enum BoostCode: Codable, RawRepresentable, Hashable, Comparable {
 	case betaReward
 	case unknown(String)
 
