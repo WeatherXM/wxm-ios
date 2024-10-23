@@ -43,6 +43,7 @@ struct StationDetailsContainerView: View {
 				.wxmPopOver(show: $showSettingsPopOver) {
 					VStack(alignment:.leading, spacing: CGFloat(.mediumSpacing)) {
 						Button { [weak viewModel] in
+							showSettingsPopOver = false
 							viewModel?.handleShareButtonTap()
 						} label: {
 							Text(LocalizableString.share.localized)
@@ -73,9 +74,9 @@ struct StationDetailsContainerView: View {
 						.foregroundColor(Color(colorEnum: .wxmPrimary))
 						.frame(width: 30.0, height: 30.0)
 				}
-				.wxmShareDialog(show: $viewModel.showShareDialog, text: viewModel.shareDialogText ?? "")
 			}
 		}
+		.wxmShareDialog(show: $viewModel.showShareDialog, text: viewModel.shareDialogText ?? "")
 	}
 }
 
