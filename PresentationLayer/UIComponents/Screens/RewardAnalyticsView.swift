@@ -160,7 +160,8 @@ private struct ContentView: View {
 			.id(viewModel.summaryMode)
 		}
 		.WXMCardStyle()
-		.animation(.easeIn(duration: animationDuration), value: viewModel.suammaryRewardsIsLoading)
+		.animation(.easeIn(duration: animationDuration),
+				   value: viewModel.suammaryRewardsIsLoading)
 	}
 
 	@ViewBuilder
@@ -248,6 +249,9 @@ private struct ContentView: View {
 					}
 					.aspectRatio(3.0/2.0, contentMode: .fit)
 					.frame(maxWidth: .infinity, maxHeight: .infinity)
+					.transaction { transaction in
+						transaction.animation = nil
+					}
 
 					HStack {
 						ChartLegendView(items: legendItems)
@@ -266,7 +270,8 @@ private struct ContentView: View {
 		}
 		.frame(minHeight: SpinningLoaderView.dimensions)
 		.id(stationItem.mode)
-		.animation(.easeIn(duration: animationDuration), value: stationItem.isLoading)
+		.animation(.easeIn(duration: animationDuration),
+				   value: stationItem.isLoading)
 		.spinningLoader(show: Binding(get: { stationItem.isLoading == true },
 									  set: { _ in }),
 						hideContent: true)
