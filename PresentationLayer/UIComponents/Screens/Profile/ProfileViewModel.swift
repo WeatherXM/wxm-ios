@@ -221,17 +221,29 @@ private extension ProfileViewModel {
 	}
 
 	func updateRewards(additionalClaimed: String? = nil) {
-		let cumulative = userRewardsResponse?.cumulativeAmount?.toEthDouble ?? 0.0
-		totalEarned = cumulative.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
+		if let cumulative = userRewardsResponse?.cumulativeAmount?.toEthDouble {
+			totalEarned = cumulative.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
+		} else {
+			totalEarned = LocalizableString.notAvailable.localized
+		}
 
-		let claimed = (userRewardsResponse?.totalClaimed?.toEthDouble ?? 0.0) + (additionalClaimed?.toEthDouble ?? 0.0)
-		totalClaimed = claimed.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
+		if let total = userRewardsResponse?.totalClaimed?.toEthDouble {
+			let claimed = total + (additionalClaimed?.toEthDouble ?? 0.0)
+			totalClaimed = claimed.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
+		} else {
+			totalClaimed = LocalizableString.notAvailable.localized
+		}
 
-		let allocated = (userRewardsResponse?.available?.toEthDouble ?? 0.0) - (additionalClaimed?.toEthDouble ?? 0.0)
-		isClaimAvailable = allocated > 0.0
-		let noRewardsString = LocalizableString.Profile.noRewardsDescription.localized
-		let valueString = allocated.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
-		allocatedRewards = allocated == 0.0 ? noRewardsString : valueString
+		if let available = userRewardsResponse?.available?.toEthDouble {
+			let allocated = available - (additionalClaimed?.toEthDouble ?? 0.0)
+			isClaimAvailable = allocated > 0.0
+			let noRewardsString = LocalizableString.Profile.noRewardsDescription.localized
+			let valueString = allocated.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
+			allocatedRewards = allocated == 0.0 ? noRewardsString : valueString
+		} else {
+			allocatedRewards = LocalizableString.notAvailable.localized
+			isClaimAvailable = false
+		}
 	}
 
 	func updateUserInfoValues() {

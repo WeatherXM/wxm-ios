@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 setupConfiguration(){
 	CONFIGURATION_PATH=$1
