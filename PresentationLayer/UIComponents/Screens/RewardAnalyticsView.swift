@@ -189,14 +189,11 @@ private struct ContentView: View {
 		let isExpanded = stationItem?.isExpanded == true
 		VStack(spacing: CGFloat(.defaultSpacing)) {
 			Button {
-				viewModel.handleDeviceTap(device) {
-					if !isExpanded {
-						// Scroll to expanded once the expand animation is finished
-						DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-							withAnimation {
-								scrollProxy.scrollTo(device.id, anchor: .top)
-							}
-						}
+				viewModel.handleDeviceTap(device)
+				if !isExpanded {
+					// Scroll to expanded once the expand animation is finished
+					withAnimation {
+						scrollProxy.scrollTo(device.id, anchor: .top)
 					}
 				}
 			} label: {
@@ -227,12 +224,6 @@ private struct ContentView: View {
 		}
 		.WXMCardStyle()
 		.animation(.easeIn(duration: animationDuration), value: isExpanded)
-		.if(!isExpanded) { view in
-			view
-				.spinningLoader(show: Binding(get: { stationItem?.isLoading == true },
-											  set: { _ in }),
-								lottieLoader: false)
-		}
 	}
 
 	@ViewBuilder
@@ -268,10 +259,12 @@ private struct ContentView: View {
 				FailView(obj: obj)
 					.padding()
 			}
+
 			ForEach(stationItem.reward?.details ?? [], id: \.code) { details in
 				StationRewardDetailsView(details: details)
 			}
 		}
+		.frame(minHeight: SpinningLoaderView.dimensions)
 		.id(stationItem.mode)
 		.animation(.easeIn(duration: animationDuration), value: stationItem.isLoading)
 		.spinningLoader(show: Binding(get: { stationItem.isLoading == true },

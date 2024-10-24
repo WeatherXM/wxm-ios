@@ -70,19 +70,20 @@ class RewardAnalyticsViewModel: ObservableObject {
 		initialFetch()
 	}
 
-	func handleDeviceTap(_ device: DeviceDetails, completion: @escaping VoidCallback) {
+	func handleDeviceTap(_ device: DeviceDetails, completion: VoidCallback? = nil) {
 		let isExpanded = stationItems[device.id ?? ""]?.isExpanded == true
 		let state: ParameterValue = isExpanded ? .closeState : .openState
 		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .deviceRewardsCard,
 																	.state: state])
 
 		guard isExpanded else {
+			stationItems[device.id ?? ""]?.setIsExpanded(true)
 			refreshCurrentDevice(deviceId: device.id, mode: .week, completion: completion)
 			return
 		}
 		
 		stationItems[device.id ?? ""] = StationCardItem()
-		completion()
+		completion?()
 	}
 
 	func setMode(_ mode: DeviceRewardsMode, for deviceId: String) {
