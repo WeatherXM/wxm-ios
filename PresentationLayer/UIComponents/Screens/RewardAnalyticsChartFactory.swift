@@ -101,7 +101,7 @@ private extension RewardAnalyticsChartFactory {
 	func getDataItems(deviceResponse: NetworkDeviceRewardsResponse,
 					  xAxisLabels: GenericValueCallback<Date, (String, String)>) -> ChartData {
 		var chartDataItems: [ChartDataItem] = []
-		var legendItems: [ChartLegendView.Item] = []
+		let legendItems: [ChartLegendView.Item] = deviceResponse.data?.legendItems ?? []
 
 		var counter = -1
 		deviceResponse.data?.forEach { datum in
@@ -112,7 +112,8 @@ private extension RewardAnalyticsChartFactory {
 			}
 
 			let xLabels = xAxisLabels(ts)
-			rewards.withMergedUnknownBoosts.forEach { item in
+			let withMergedDuplicates = rewards.withMergedDuplicates
+			withMergedDuplicates.forEach { item in
 				let dataItem = ChartDataItem(xVal: counter,
 											 yVal: item.value ?? 0.0,
 											 xAxisLabel: xLabels.0,
@@ -121,42 +122,49 @@ private extension RewardAnalyticsChartFactory {
 											 color: item.chartColor ?? .chartPrimary,
 											 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString)
 				chartDataItems.append(dataItem)
-
-				let legendItem = ChartLegendView.Item(color: item.chartColor ?? .chartPrimary, title: item.legendTitle ?? "")
-				legendItems.append(legendItem)
 			}
-			
 		}
 
-		return (chartDataItems, legendItems.withNoDuplicates)
+		return (chartDataItems, legendItems)
 	}
 }
 
 private extension Array where Element == NetworkDeviceRewardsResponse.RewardItem {
-	var withMergedUnknownBoosts: Self {
-		var validItems = self.filter {
-			if $0.type == .boost, case .unknown = $0.code {
-				return false
-			}
-			return true
+	var withMergedDuplicates: Self {
+		let dict = Dictionary(grouping: self) { $0.sortIdentifier }
+
+		return dict.values.map { elements in
+			let sum = elements.reduce(0) { $0 + ($1.value ?? 0.0) }
+			let firstItem = elements.first
+			let mergedItem = NetworkDeviceRewardsResponse.RewardItem(type: firstItem?.type,
+																	 code: firstItem?.code,
+																	 value: sum)
+			return mergedItem
 		}
-		let unknownItems: Self = self.filter {
-			if $0.type == .boost, case .unknown = $0.code {
-				return true
-			}
-			return false
+		.sortedByCriteria(criterias: [{ ($0.type?.index ?? 0) < ($1.type?.index ?? 0) },
+									  { ($0.code ?? .unknown("")) < ($1.code ?? .unknown("")) }])
+
+	}
+}
+
+private extension NetworkDeviceRewardsResponse.RewardItem {
+	var sortIdentifier: String {
+		guard type == .boost else {
+			return type?.rawValue ?? ""
 		}
 
-		guard !unknownItems.isEmpty else {
-			return self
+		if case .unknown = code {
+			return "\(type?.rawValue ?? "")-unknown"
 		}
 
-		let unknownSummary = unknownItems.reduce(0) { $0 + ($1.value ?? 0.0) }
-		let mergedItem = NetworkDeviceRewardsResponse.RewardItem(type: .boost,
-																 code: unknownItems.first?.code,
-																 value: unknownSummary)
-		validItems.append(mergedItem)
+		return "\(type?.rawValue ?? "")-\(code?.rawValue ?? "")"
+	}
+}
 
-		return validItems
+private extension Array where Element ==  NetworkDeviceRewardsResponse.RewardsData {
+	var legendItems: [ChartLegendView.Item] {
+		let items: [NetworkDeviceRewardsResponse.RewardItem]? = self.compactMap { $0.rewards }.flatMap { $0 }.sortedByCriteria(criterias:  [{ ($0.type?.index ?? 0) < ($1.type?.index ?? 0) },
+																																	{ ($0.code ?? .unknown("")) < ($1.code ?? .unknown("")) }])
+		return items?.map { ChartLegendView.Item(color: $0.chartColor ?? .chartPrimary, title: $0.legendTitle ?? "")}.withNoDuplicates ?? []
 	}
 }
