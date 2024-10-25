@@ -83,9 +83,10 @@ struct LoggedInTabViewContainer: View {
         VStack(spacing: CGFloat(.defaultSpacing)) {
             Spacer()
             VStack(spacing: CGFloat(.defaultSpacing)) {
-                if mainViewModel.selectedTab == .mapTab {
+                if mainViewModel.selectedTab == .mapTab, explorerViewModel.showTopOfMapItems {
                     fabButtons
 						.padding(.trailing, CGFloat(.defaultSidePadding))
+						.transition(AnyTransition.move(edge: .trailing))
                 }
 
                 if mainViewModel.selectedTab == .homeTab {
@@ -97,6 +98,7 @@ struct LoggedInTabViewContainer: View {
 					.sizeObserver(size: $tabBarItemsSize)
             }
         }
+		.animation(.easeIn, value: explorerViewModel.showTopOfMapItems)
     }
 }
 
@@ -119,27 +121,27 @@ private extension LoggedInTabViewContainer {
         .animation(.easeIn(duration: 0.4), value: explorerViewModel.showTopOfMapItems)
     }
 
-    @ViewBuilder
-    var fabButtons: some View {
-        VStack(spacing: CGFloat(.defaultSidePadding)) {
-            if explorerViewModel.showTopOfMapItems {
-                Spacer()
+	@ViewBuilder
+	var fabButtons: some View {
+		VStack(spacing: CGFloat(.defaultSidePadding)) {
+			Spacer()
 
-                VStack(spacing: CGFloat(.defaultSpacing)) {
-                    HStack {
-                        Spacer()
-                        userLocationButton
-                    }
+			VStack(spacing: CGFloat(.defaultSpacing)) {
+				HStack {
+					Spacer()
+					userLocationButton
+				}
 
-                    HStack {
-                        Spacer()
-                        netStatsButton
-                    }
-                }
-                .transition(AnyTransition.move(edge: .trailing))
-				.animation(.easeIn, value: explorerViewModel.showTopOfMapItems)
-            }
-        }
+				HStack {
+					Spacer()
+					netStatsButton
+				}
+			}
+
+			//				.animation(.easeIn, value: explorerViewModel.showTopOfMapItems)
+		}
+		//			.transition(AnyTransition.move(edge: .trailing).animation(.easeIn(duration: 0.5)))
+		//			.animation(.easeOut, value: explorerViewModel.showTopOfMapItems)
     }
 
     @ViewBuilder
