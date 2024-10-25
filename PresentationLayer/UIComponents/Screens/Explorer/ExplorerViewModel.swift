@@ -38,32 +38,34 @@ public final class ExplorerViewModel: ObservableObject {
     }()
 
 	func fetchExplorerData() {
-		isLoading = true
-		explorerUseCase.getPublicHexes { [weak self] result in
-			guard let self else {
-				return
-			}
-
-			self.isLoading = false
-			switch result {
-				case let .success(explorerData):
-					guard self.explorerData != explorerData else {
-						return
-					}
-
-					self.explorerData = explorerData
-				case let .failure(error):
-					print(error)
-					switch error {
-						case .infrastructure, .serialization:
-							if let message = LocalizableString.Error.genericMessage.localized.attributedMarkdown {
-								Toast.shared.show(text: message)
-							}
-						case .networkRelated(let neworkError):
-							if let message = neworkError?.uiInfo.description?.attributedMarkdown {
-								Toast.shared.show(text: message)
-							}
-					}
+		Task { @MainActor in
+			isLoading = true
+			explorerUseCase.getPublicHexes { [weak self] result in
+				guard let self else {
+					return
+				}
+				
+				self.isLoading = false
+				switch result {
+					case let .success(explorerData):
+						guard self.explorerData != explorerData else {
+							return
+						}
+						
+						self.explorerData = explorerData
+					case let .failure(error):
+						print(error)
+						switch error {
+							case .infrastructure, .serialization:
+								if let message = LocalizableString.Error.genericMessage.localized.attributedMarkdown {
+									Toast.shared.show(text: message)
+								}
+							case .networkRelated(let neworkError):
+								if let message = neworkError?.uiInfo.description?.attributedMarkdown {
+									Toast.shared.show(text: message)
+								}
+						}
+				}
 			}
 		}
 	}
