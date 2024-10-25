@@ -14,7 +14,7 @@ public struct NetworkDeviceRewardsResponse: Codable {
 }
 
 public extension NetworkDeviceRewardsResponse {
-	enum RewardType: String, Codable {
+	enum RewardType: String, Codable, CaseIterable {
 		case base
 		case boost
 	}
