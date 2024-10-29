@@ -13,6 +13,7 @@ import Toolkit
 class MyWalletViewModel: ObservableObject {
     private let ethAddressPrefix = "0x"
     private let ethAddressLength = 42
+	private let maskStringOffset = 5
 
     let trackableObject = TrackableScrollOffsetObject()
     @Published var input: String = "" {
@@ -24,7 +25,11 @@ class MyWalletViewModel: ObservableObject {
     @Published var isTermsOfServiceAccepted: Bool = false
     @Published var isOwnershipAcknowledged: Bool = false
     @Published var isWarningVisible: Bool = false
-    @Published var isInEditMode: Bool = false
+	@Published var isInEditMode: Bool = false {
+		didSet {
+			input = isInEditMode ? wallet?.address ?? "" : ""
+		}
+	}
     @Published var showQrScanner: Bool = false
     @Published var showAccountConfirmation: Bool = false
     @Published var isLoading: Bool = false
@@ -34,6 +39,15 @@ class MyWalletViewModel: ObservableObject {
         isTermsOfServiceAccepted &&
         isOwnershipAcknowledged
     }
+	var addressFieldPlaceholder: String {
+		let address = wallet?.address ?? ""
+		return isInEditMode ? LocalizableString.Wallet.enterAddressTitle.localized : address.maskString(offsetStart: maskStringOffset,
+																										offsetEnd: maskStringOffset,
+																										maskedCharactersToShow: maskStringOffset)
+	}
+	var maxCount: Int? {
+		isInEditMode ? ethAddressLength : nil
+	}
     var accountConfirmationViewModel: AccountConfirmationViewModel?
 	private let mainVM: MainScreenViewModel = .shared
 
@@ -47,20 +61,25 @@ class MyWalletViewModel: ObservableObject {
     }
 
     func handleEditButtonTap() {
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .editWallet,
-                                                              .itemId: .custom(wallet?.address ?? "")])
+//        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .editWallet,
+//                                                              .itemId: .custom(wallet?.address ?? "")])
+//
+//        accountConfirmationViewModel = AccountConfirmationViewModel(title: LocalizableString.confirmPasswordTitle.localized,
+//                                                                    descriptionMarkdown: LocalizableString.Wallet.myAccountConfirmationDescription.localized,
+//                                                                   useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)) { [weak self] isvalid in
+//            guard isvalid else {
+//                return
+//            }
+//            self?.showAccountConfirmation = false
+//            self?.isInEditMode = true
+//            self?.isWarningVisible = true
+//        }
+//        showAccountConfirmation = true
 
-        accountConfirmationViewModel = AccountConfirmationViewModel(title: LocalizableString.confirmPasswordTitle.localized,
-                                                                    descriptionMarkdown: LocalizableString.Wallet.myAccountConfirmationDescription.localized,
-                                                                   useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)) { [weak self] isvalid in
-            guard isvalid else {
-                return
-            }
-            self?.showAccountConfirmation = false
-            self?.isInEditMode = true
-            self?.isWarningVisible = true
-        }
-        showAccountConfirmation = true
+		showAccountConfirmation = false
+		isInEditMode = true
+		isWarningVisible = true
+
     }
 
     func handleSaveButtonTap() {

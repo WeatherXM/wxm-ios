@@ -11,6 +11,7 @@ struct FloatingLabelTextfield: View {
 
 	let placeholder: String?
 	var maxCount: Int?
+	var textFieldError: TextFieldError?
 	@Binding var text: String
 
     var body: some View {
@@ -28,24 +29,33 @@ struct FloatingLabelTextfield: View {
 						  radius: CGFloat(.lightCornerRadius))
 
 			HStack {
+				if let textFieldError {
+					Text(textFieldError.description)
+						.transition(.move(edge: .top).animation(.easeIn(duration: 1.2)))
+				}
+
 				Spacer()
+				
 				if let maxCount {
 					Text("\(text.count)/\(maxCount)")
-						.foregroundStyle(Color(colorEnum: counterColor))
-						.font(.system(size: CGFloat(.caption)))
 				}
 			}
+			.foregroundStyle(Color(colorEnum: counterColor))
+			.font(.system(size: CGFloat(.caption)))
 		}
     }
 }
 
 private extension FloatingLabelTextfield {
 	var isError: Bool {
-		guard let maxCount else {
-			return false
+		if let textFieldError {
+			return true
 		}
-		let isError: Bool = text.count > maxCount
-		return isError
+		if let maxCount  {
+			return text.count > maxCount
+		}
+
+		return false
 	}
 
 	private var borderColor: ColorEnum {
@@ -54,32 +64,6 @@ private extension FloatingLabelTextfield {
 
 	private var counterColor: ColorEnum {
 		return isError ? .error : .text
-	}
-}
-
-private struct BorderModifier: ViewModifier {
-	let textCount: Int
-	let maxCount: Int?
-
-	private var color: ColorEnum {
-		guard let maxCount else {
-			return .midGrey
-		}
-		let isError: Bool = textCount > maxCount
-
-		return isError ? .error : .midGrey
-	}
-
-	func body(content: Content) -> some View {
-		content
-			.strokeBorder(color: Color(colorEnum: color), lineWidth: 1.0, radius: CGFloat(.lightCornerRadius))
-	}
-}
-
-private extension View {
-	@ViewBuilder
-	func bordered(textCount: Int, maxCount: Int?) -> some View {
-		modifier(BorderModifier(textCount: textCount, maxCount: maxCount))
 	}
 }
 
