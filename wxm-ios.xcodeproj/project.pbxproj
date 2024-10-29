@@ -298,6 +298,7 @@
 		267CA6CD2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CC2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift */; };
 		267CA6CF2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CE2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift */; };
 		267EC3B62CCBDF2C0085B50A /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 267EC3B52CCBDF2C0085B50A /* PulseUI */; };
+		267EC3CF2CD112290085B50A /* FloatingLabelTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC3CE2CD112290085B50A /* FloatingLabelTextfield.swift */; };
 		267EC4262A98C14700F2C37E /* UIKitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4252A98C14700F2C37E /* UIKitUtils.swift */; };
 		267EC4292A98C3D300F2C37E /* WXMAlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4272A98C3D300F2C37E /* WXMAlertModifier.swift */; };
 		267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4282A98C3D300F2C37E /* WXMAlertView.swift */; };
@@ -855,6 +856,7 @@
 		267CA6CC2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimD1ContainerViewModel.swift; sourceTree = "<group>"; };
 		267CA6CE2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimHeliumContainerViewModel.swift; sourceTree = "<group>"; };
 		267E22BD2AC1B1A300B9E196 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
+		267EC3CE2CD112290085B50A /* FloatingLabelTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextfield.swift; sourceTree = "<group>"; };
 		267EC4252A98C14700F2C37E /* UIKitUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitUtils.swift; sourceTree = "<group>"; };
 		267EC4272A98C3D300F2C37E /* WXMAlertModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMAlertModifier.swift; sourceTree = "<group>"; };
 		267EC4282A98C3D300F2C37E /* WXMAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMAlertView.swift; sourceTree = "<group>"; };
@@ -1194,6 +1196,7 @@
 			children = (
 				2675474E29A9181E008BCF40 /* BaseTextField.swift */,
 				2675489E29A91A87008BCF40 /* BaseTextFieldEnum.swift */,
+				267EC3CE2CD112290085B50A /* FloatingLabelTextfield.swift */,
 			);
 			path = BaseTextField;
 			sourceTree = "<group>";
@@ -3241,6 +3244,7 @@
 				2643713C2CA41DA500E5F382 /* InfoBannerView.swift in Sources */,
 				26A4117129B78CAC00A2C10B /* StationInfoView.swift in Sources */,
 				26D5013829B209F500BC2951 /* StationLastActiveView.swift in Sources */,
+				267EC3CF2CD112290085B50A /* FloatingLabelTextfield.swift in Sources */,
 				2646D8F529C8BFB40000237F /* StationRewardsViewModel.swift in Sources */,
 				26BA07672B7F5E1E00F7F5A0 /* TotalRewardsView.swift in Sources */,
 				2632E6342A3378BF00A5ADB3 /* StatisticsChart.swift in Sources */,
