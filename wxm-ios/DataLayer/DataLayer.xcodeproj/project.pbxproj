@@ -39,6 +39,9 @@
 		2674EDCE2A3C4C3800616285 /* get_network_stats_alt.json in Resources */ = {isa = PBXBuildFile; fileRef = 2674EDCD2A3C4C3800616285 /* get_network_stats_alt.json */; };
 		267A37872AEBEBBA00469126 /* get_user_device_rewards.json in Resources */ = {isa = PBXBuildFile; fileRef = 267A37862AEBEBBA00469126 /* get_user_device_rewards.json */; };
 		267CA6EF2C1314E300ABE599 /* get_user.json in Resources */ = {isa = PBXBuildFile; fileRef = 267CA6EE2C1314E200ABE599 /* get_user.json */; };
+		267EC3BC2CD0E8BD0085B50A /* MainRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC3BB2CD0E8BD0085B50A /* MainRepositoryImpl.swift */; };
+		267EC3BF2CD0ECE60085B50A /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = 267EC3BE2CD0ECE60085B50A /* Pulse */; };
+		267EC3C12CD0ECE60085B50A /* PulseProxy in Frameworks */ = {isa = PBXBuildFile; productRef = 267EC3C02CD0ECE60085B50A /* PulseProxy */; };
 		2683A4C42ADECF3100D5C205 /* countries_information.json in Resources */ = {isa = PBXBuildFile; fileRef = 2683A4C32ADECBA800D5C205 /* countries_information.json */; };
 		268ACD052C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268ACD032C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift */; };
 		268ACD062C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268ACD042C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift */; };
@@ -130,6 +133,7 @@
 		2674EDCD2A3C4C3800616285 /* get_network_stats_alt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_network_stats_alt.json; sourceTree = "<group>"; };
 		267A37862AEBEBBA00469126 /* get_user_device_rewards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user_device_rewards.json; sourceTree = "<group>"; };
 		267CA6EE2C1314E200ABE599 /* get_user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user.json; sourceTree = "<group>"; };
+		267EC3BB2CD0E8BD0085B50A /* MainRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepositoryImpl.swift; sourceTree = "<group>"; };
 		2683A4C32ADECBA800D5C205 /* countries_information.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_information.json; sourceTree = "<group>"; };
 		268ACD032C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBBundle+CoreDataClass.swift"; sourceTree = "<group>"; };
 		268ACD042C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBBundle+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -195,7 +199,9 @@
 				B51244012825516A00B66A31 /* Alamofire in Frameworks */,
 				B51243F5282550B100B66A31 /* DomainLayer.framework in Frameworks */,
 				4D49D910294DE53700987DE6 /* MapboxMaps in Frameworks */,
+				267EC3BF2CD0ECE60085B50A /* Pulse in Frameworks */,
 				4D49D90A294DE3B300987DE6 /* MapboxSearch in Frameworks */,
+				267EC3C12CD0ECE60085B50A /* PulseProxy in Frameworks */,
 				264BDA0A298ABF6B005C1F82 /* NordicDFU in Frameworks */,
 				26DD42AF29AF4765008E277E /* Toolkit.framework in Frameworks */,
 			);
@@ -331,6 +337,7 @@
 				264BDA0B298AC792005C1F82 /* FirmwareUpdateImpl.swift */,
 				B56A25ED28A0F5F500928141 /* KeychainRepositoryImpl.swift */,
 				4D1C95CF28FC7EB1001F66C9 /* LocationRepositoryImpl.swift */,
+				267EC3BB2CD0E8BD0085B50A /* MainRepositoryImpl.swift */,
 				74F9229128351E4000CD8FDF /* MeRepositoryImpl.swift */,
 				267401752A376A1400E54E35 /* NetworkRepositoryImpl.swift */,
 				26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */,
@@ -466,6 +473,8 @@
 				4D49D909294DE3B300987DE6 /* MapboxSearch */,
 				4D49D90F294DE53700987DE6 /* MapboxMaps */,
 				264BDA09298ABF6B005C1F82 /* NordicDFU */,
+				267EC3BE2CD0ECE60085B50A /* Pulse */,
+				267EC3C02CD0ECE60085B50A /* PulseProxy */,
 			);
 			productName = DataLayer;
 			productReference = B5799E7328254CC100FEBB85 /* DataLayer.framework */;
@@ -500,6 +509,7 @@
 				4D49D908294DE3B300987DE6 /* XCRemoteSwiftPackageReference "search-ios" */,
 				4D49D90E294DE53700987DE6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 				264BDA08298ABF6B005C1F82 /* XCRemoteSwiftPackageReference "IOS-DFU-Library" */,
+				267EC3BD2CD0ECE60085B50A /* XCRemoteSwiftPackageReference "Pulse" */,
 			);
 			productRefGroup = B5799E7428254CC100FEBB85 /* Products */;
 			projectDirPath = "";
@@ -607,6 +617,7 @@
 				995A0CDE28C0AA400015DAA1 /* UserDefaultsRepositoryImp.swift in Sources */,
 				995A0CDC28C0A9830015DAA1 /* UserDefaultsService.swift in Sources */,
 				26AB9F522A80112900855912 /* UserDevicesService.swift in Sources */,
+				267EC3BC2CD0E8BD0085B50A /* MainRepositoryImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,6 +951,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		267EC3BD2CD0ECE60085B50A /* XCRemoteSwiftPackageReference "Pulse" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Pulse";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.2;
+			};
+		};
 		4D49D908294DE3B300987DE6 /* XCRemoteSwiftPackageReference "search-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mapbox/search-ios.git";
@@ -971,6 +990,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 264BDA08298ABF6B005C1F82 /* XCRemoteSwiftPackageReference "IOS-DFU-Library" */;
 			productName = NordicDFU;
+		};
+		267EC3BE2CD0ECE60085B50A /* Pulse */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 267EC3BD2CD0ECE60085B50A /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = Pulse;
+		};
+		267EC3C02CD0ECE60085B50A /* PulseProxy */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 267EC3BD2CD0ECE60085B50A /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = PulseProxy;
 		};
 		4D49D909294DE3B300987DE6 /* MapboxSearch */ = {
 			isa = XCSwiftPackageProductDependency;
