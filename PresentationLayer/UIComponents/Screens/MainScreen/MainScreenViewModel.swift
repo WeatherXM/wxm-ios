@@ -55,6 +55,7 @@ class MainScreenViewModel: ObservableObject {
 	}
 	@Published var isWalletMissing: Bool = false
     @Published var showAppUpdatePrompt: Bool = false
+	@Published var showHttpMonitor: Bool = false
 
     let swinjectHelper: SwinjectInterface
 
@@ -103,6 +104,12 @@ class MainScreenViewModel: ObservableObject {
 		}.store(in: &cancellableSet)
 
 		requestNotificationAuthorizationIfNeeded()
+
+		NotificationCenter.default.addObserver(forName: .deviceDidShake,
+											   object: nil,
+											   queue: .main) { [weak self] _ in
+			self?.showHttpMonitor = true
+		}
     }
 
     @Published var showFirmwareUpdate = false

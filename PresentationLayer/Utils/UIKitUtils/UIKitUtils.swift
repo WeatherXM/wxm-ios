@@ -8,6 +8,11 @@
 import UIKit
 import Toolkit
 
+extension Notification.Name {
+	static let deviceDidShake = Notification.Name("deviceDidShake")
+}
+
+
 extension UIApplication {
 
     var currentKeyWindow: UIWindow? {
@@ -57,6 +62,14 @@ extension UIWindow {
         isHidden = true
         windowScene = nil
     }
+
+	open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+		guard motion == .motionShake else {
+			return
+		}
+
+		NotificationCenter.default.post(name: .deviceDidShake, object: nil)
+	}
 }
 
 /// Used for keeping weak refs on hosting controllers
