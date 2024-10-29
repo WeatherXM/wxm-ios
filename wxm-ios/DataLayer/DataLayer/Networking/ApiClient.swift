@@ -228,7 +228,12 @@ public class ApiClient {
 				print("data: \(String(data: data ?? Data(), encoding: .utf8) ?? "-")")
 				return
 			}
-			print(NSString(string: String(data: prettyPrintedJsonData, encoding: .utf8)!))
+
+			if let jsonString = String(data: prettyPrintedJsonData, encoding: .utf8) {
+				print(NSString(string: jsonString))
+			} else {
+				print("Failed to encode JSON string")
+			}
 			
 			if let noSlashesString = String(data: noSlashesJsonData, encoding: .utf8),
 			   noSlashesString.contains(Constants.emptyObjectString.rawValue) {

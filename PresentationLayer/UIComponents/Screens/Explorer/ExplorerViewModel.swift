@@ -60,8 +60,8 @@ public final class ExplorerViewModel: ObservableObject {
 								if let message = LocalizableString.Error.genericMessage.localized.attributedMarkdown {
 									Toast.shared.show(text: message)
 								}
-							case .networkRelated(let neworkError):
-								if let message = neworkError?.uiInfo.description?.attributedMarkdown {
+							case .networkRelated(let networkError):
+								if let message = networkError?.uiInfo.description?.attributedMarkdown {
 									Toast.shared.show(text: message)
 								}
 						}
