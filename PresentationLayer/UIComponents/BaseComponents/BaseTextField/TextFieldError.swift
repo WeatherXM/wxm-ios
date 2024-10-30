@@ -7,9 +7,14 @@
 
 import Foundation
 
-enum TextFieldError: String {
-	case emptyField, invalidSerialNumber, invalidNewAddress, invalidPassword, invalidDeviceEUIKey
-	
+enum TextFieldError: CustomStringConvertible, Equatable {
+	case emptyField
+	case invalidSerialNumber
+	case invalidNewAddress
+	case invalidPassword
+	case invalidDeviceEUIKey
+	case custom(String)
+
 	var description: String {
 		switch self {
 			case .emptyField:
@@ -22,6 +27,8 @@ enum TextFieldError: String {
 				return LocalizableString.Error.invalidPassword.localized
 			case .invalidDeviceEUIKey:
 				return LocalizableString.ClaimDevice.heliumInvalidEUIKey.localized
+			case .custom(let text):
+				return text
 		}
 	}
 }

@@ -75,4 +75,5 @@ enum FontIcon: String {
 	case chartSimple = "chart-simple"
 	case eye
 	case eyeSlash = "eye-slash"
+	case envelope
 }

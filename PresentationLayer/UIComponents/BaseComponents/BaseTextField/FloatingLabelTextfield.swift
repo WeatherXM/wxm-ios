@@ -51,6 +51,7 @@ extension FloatingLabelTextfield {
 	struct Configuration {
 		var floatingPlaceholder: Bool = false
 		var isPassword: Bool = false
+		var icon: FontIcon? = nil
 	}
 
 	@ViewBuilder
@@ -69,6 +70,12 @@ extension FloatingLabelTextfield {
 	@ViewBuilder
 	var textField: some View {
 		HStack {
+			if let icon = configuration.icon {
+				Text(icon.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+					.foregroundStyle(Color(colorEnum: .darkGrey))
+			}
+
 			Group {
 				if configuration.isPassword, !showPassword {
 					SecureField(placeholder ?? "",
@@ -125,7 +132,9 @@ private extension FloatingLabelTextfield {
 }
 
 #Preview {
-	FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true, isPassword: true),
+	FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true,
+												isPassword: true,
+												icon: .envelope),
 						   placeholder: "Placeholder",
 						   maxCount: 10,
 						   textFieldError: .constant(nil),
