@@ -17,7 +17,7 @@ class AccountConfirmationViewModel: ObservableObject {
         }
     }
     @Published private(set) var isConfirmButtonEnabled: Bool = false
-    @Published private(set) var textFieldError: TextFieldError?
+    @Published var textFieldError: TextFieldError?
     @Published var isLoading: Bool = false
     let title: String
     let descriptionMarkdown: String?

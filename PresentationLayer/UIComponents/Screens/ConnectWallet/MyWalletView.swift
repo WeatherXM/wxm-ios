@@ -92,7 +92,8 @@ private extension MyWalletView {
 //                                 input: $viewModel.input,
 //                                 newAddressError: viewModel.textFieldError)
 
-				FloatingLabelTextfield(placeholder: viewModel.addressFieldPlaceholder,
+				FloatingLabelTextfield(configuration: .init(),
+									   placeholder: viewModel.addressFieldPlaceholder,
 									   maxCount: viewModel.maxCount,
 									   textFieldError: $viewModel.textFieldError,
 									   text: $viewModel.input)

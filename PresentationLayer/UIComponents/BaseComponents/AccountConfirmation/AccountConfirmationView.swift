@@ -31,9 +31,10 @@ struct AccountConfirmationView: View {
                 }
             }
 
-            BaseTextField(input: $viewModel.password,
-                          textFieldStyle: .accountConfirmation,
-                          error: viewModel.textFieldError)
+			FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true),
+								   placeholder: LocalizableString.typeYourPassword.localized,
+								   textFieldError: $viewModel.textFieldError,
+								   text: $viewModel.password)
 
             Button {
                 viewModel.confirmButtonTapped()
@@ -48,6 +49,7 @@ struct AccountConfirmationView: View {
         .onAppear {
             WXMAnalytics.shared.trackScreen(.passwordConfirm)
         }
+		.animation(.easeIn, value: viewModel.password)
     }
 }
 

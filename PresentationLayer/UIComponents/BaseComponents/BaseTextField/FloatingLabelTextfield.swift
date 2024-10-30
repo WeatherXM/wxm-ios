@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FloatingLabelTextfield: View {
-
+	let configuration: Configuration
 	let placeholder: String?
 	var maxCount: Int?
 	@Binding var textFieldError: TextFieldError?
@@ -18,6 +18,10 @@ struct FloatingLabelTextfield: View {
 
     var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
+			floatingLabel
+				.transition(.move(edge: .bottom).combined(with: .opacity))
+				.zIndex(0)
+
 			HStack {
 				TextField(placeholder ?? "",
 						  text: $text)
@@ -30,7 +34,7 @@ struct FloatingLabelTextfield: View {
 			.strokeBorder(color: Color(colorEnum: borderColor),
 						  lineWidth: 1.0,
 						  radius: CGFloat(.lightCornerRadius))
-			.zIndex(1)
+			.zIndex(2)
 
 			HStack {
 				if let textFieldError {
@@ -46,10 +50,32 @@ struct FloatingLabelTextfield: View {
 			}
 			.foregroundStyle(Color(colorEnum: counterColor))
 			.font(.system(size: CGFloat(.caption)))
-			.zIndex(0)
+			.zIndex(1)
 			.animation(.easeIn(duration: 0.2), value: textFieldError)
+			.animation(.easeIn(duration: 0.2), value: text)
 		}
     }
+}
+
+extension FloatingLabelTextfield {
+	struct Configuration {
+		var floatingPlaceholder: Bool = false
+	}
+
+	@ViewBuilder
+	var floatingLabel: some View {
+		if configuration.floatingPlaceholder,
+		   isFocused, 
+			!text.isEmpty,
+		   let placeholder {
+			HStack {
+				Text(placeholder)
+					.font(.system(size: CGFloat(.smallFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .wxmPrimary))
+				Spacer()
+			}
+		}
+	}
 }
 
 private extension FloatingLabelTextfield {
@@ -75,7 +101,8 @@ private extension FloatingLabelTextfield {
 }
 
 #Preview {
-	FloatingLabelTextfield(placeholder: "Placeholder",
+	FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true),
+						   placeholder: "Placeholder",
 						   maxCount: 10,
 						   textFieldError: .constant(nil),
 						   text: .constant(""))
