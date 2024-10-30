@@ -101,7 +101,7 @@ extension FloatingLabelTextfield {
 			}
 		}
 		.padding(.horizontal, CGFloat(.mediumSidePadding))
-		.padding(.vertical, CGFloat(.smallSidePadding))
+		.padding(.vertical, CGFloat(.smallToMediumSidePadding))
 		.strokeBorder(color: Color(colorEnum: borderColor),
 					  lineWidth: 1.0,
 					  radius: CGFloat(.lightCornerRadius))

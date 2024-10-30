@@ -12,7 +12,11 @@ import UIKit
 import Toolkit
 
 final class DeleteAccountViewModel: ObservableObject {
-    @Published var password = ""
+	@Published var password = "" {
+		didSet {
+			passwordHasError = false
+		}
+	}
     @Published var passwordHasError = false
     @Published var isToggleOn = false
 	@Published var currentScreen: DeleteScreen = .info
