@@ -15,6 +15,7 @@ struct FloatingLabelTextfield: View {
 	@Binding var text: String
 
 	@FocusState private var isFocused: Bool
+	@State private var showPassword: Bool = false
 
     var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
@@ -22,19 +23,8 @@ struct FloatingLabelTextfield: View {
 				.transition(.move(edge: .bottom).combined(with: .opacity))
 				.zIndex(0)
 
-			HStack {
-				TextField(placeholder ?? "",
-						  text: $text)
-				.foregroundColor(Color(colorEnum: .text))
-				.font(.system(size: CGFloat(.mediumFontSize)))
-				.focused($isFocused)
-			}
-			.padding(.horizontal, CGFloat(.mediumSidePadding))
-			.padding(.vertical, CGFloat(.smallSidePadding))
-			.strokeBorder(color: Color(colorEnum: borderColor),
-						  lineWidth: 1.0,
-						  radius: CGFloat(.lightCornerRadius))
-			.zIndex(2)
+			textField
+				.zIndex(2)
 
 			HStack {
 				if let textFieldError {
@@ -60,13 +50,12 @@ struct FloatingLabelTextfield: View {
 extension FloatingLabelTextfield {
 	struct Configuration {
 		var floatingPlaceholder: Bool = false
+		var isPassword: Bool = false
 	}
 
 	@ViewBuilder
 	var floatingLabel: some View {
-		if configuration.floatingPlaceholder,
-		   isFocused, 
-			!text.isEmpty,
+		if configuration.floatingPlaceholder, !text.isEmpty,
 		   let placeholder {
 			HStack {
 				Text(placeholder)
@@ -75,6 +64,41 @@ extension FloatingLabelTextfield {
 				Spacer()
 			}
 		}
+	}
+
+	@ViewBuilder
+	var textField: some View {
+		HStack {
+			Group {
+				if configuration.isPassword, !showPassword {
+					SecureField(placeholder ?? "",
+								text: $text)
+					.textContentType(.password)
+				} else {
+					TextField(placeholder ?? "",
+							  text: $text)
+				}
+			}
+			.foregroundColor(Color(colorEnum: .text))
+			.font(.system(size: CGFloat(.mediumFontSize)))
+			.focused($isFocused)
+
+			if configuration.isPassword {
+				Button {
+					showPassword.toggle()
+				} label: {
+					Text(showPassword ? FontIcon.eyeSlash.rawValue : FontIcon.eye.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+						.foregroundStyle(Color(colorEnum: .darkGrey))
+				}
+			}
+		}
+		.padding(.horizontal, CGFloat(.mediumSidePadding))
+		.padding(.vertical, CGFloat(.smallSidePadding))
+		.strokeBorder(color: Color(colorEnum: borderColor),
+					  lineWidth: 1.0,
+					  radius: CGFloat(.lightCornerRadius))
+
 	}
 }
 
@@ -101,7 +125,7 @@ private extension FloatingLabelTextfield {
 }
 
 #Preview {
-	FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true),
+	FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true, isPassword: true),
 						   placeholder: "Placeholder",
 						   maxCount: 10,
 						   textFieldError: .constant(nil),

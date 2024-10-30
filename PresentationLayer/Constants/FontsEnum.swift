@@ -73,4 +73,6 @@ enum FontIcon: String {
 	case arrowsRotate = "arrows-rotate"
 	case batteryLow = "battery-low"
 	case chartSimple = "chart-simple"
+	case eye
+	case eyeSlash = "eye-slash"
 }

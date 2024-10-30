@@ -31,7 +31,8 @@ struct AccountConfirmationView: View {
                 }
             }
 
-			FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true),
+			FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true,
+														isPassword: true),
 								   placeholder: LocalizableString.typeYourPassword.localized,
 								   textFieldError: $viewModel.textFieldError,
 								   text: $viewModel.password)
