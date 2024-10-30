@@ -14,6 +14,8 @@ struct FloatingLabelTextfield: View {
 	@Binding var textFieldError: TextFieldError?
 	@Binding var text: String
 
+	@FocusState private var isFocused: Bool
+
     var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
 			HStack {
@@ -21,6 +23,7 @@ struct FloatingLabelTextfield: View {
 						  text: $text)
 				.foregroundColor(Color(colorEnum: .text))
 				.font(.system(size: CGFloat(.mediumFontSize)))
+				.focused($isFocused)
 			}
 			.padding(.horizontal, CGFloat(.mediumSidePadding))
 			.padding(.vertical, CGFloat(.smallSidePadding))
@@ -62,7 +65,8 @@ private extension FloatingLabelTextfield {
 	}
 
 	private var borderColor: ColorEnum {
-		return isError ? .error : .midGrey
+		let defaultColor: ColorEnum = isFocused ? .wxmPrimary : .midGrey
+		return isError ? .error : defaultColor
 	}
 
 	private var counterColor: ColorEnum {
