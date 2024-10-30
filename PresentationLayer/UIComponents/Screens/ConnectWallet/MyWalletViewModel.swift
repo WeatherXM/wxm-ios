@@ -61,25 +61,20 @@ class MyWalletViewModel: ObservableObject {
     }
 
     func handleEditButtonTap() {
-//        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .editWallet,
-//                                                              .itemId: .custom(wallet?.address ?? "")])
-//
-//        accountConfirmationViewModel = AccountConfirmationViewModel(title: LocalizableString.confirmPasswordTitle.localized,
-//                                                                    descriptionMarkdown: LocalizableString.Wallet.myAccountConfirmationDescription.localized,
-//                                                                   useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)) { [weak self] isvalid in
-//            guard isvalid else {
-//                return
-//            }
-//            self?.showAccountConfirmation = false
-//            self?.isInEditMode = true
-//            self?.isWarningVisible = true
-//        }
-//        showAccountConfirmation = true
-
-		showAccountConfirmation = false
-		isInEditMode = true
-		isWarningVisible = true
-
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .editWallet,
+																	.itemId: .custom(wallet?.address ?? "")])
+		
+		accountConfirmationViewModel = AccountConfirmationViewModel(title: LocalizableString.confirmPasswordTitle.localized,
+																	descriptionMarkdown: LocalizableString.Wallet.myAccountConfirmationDescription.localized,
+																	useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)) { [weak self] isvalid in
+			guard isvalid else {
+				return
+			}
+			self?.showAccountConfirmation = false
+			self?.isInEditMode = true
+			self?.isWarningVisible = true
+		}
+		showAccountConfirmation = true
     }
 
     func handleSaveButtonTap() {
