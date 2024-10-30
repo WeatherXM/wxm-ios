@@ -11,7 +11,7 @@ struct FloatingLabelTextfield: View {
 
 	let placeholder: String?
 	var maxCount: Int?
-	var textFieldError: TextFieldError?
+	@Binding var textFieldError: TextFieldError?
 	@Binding var text: String
 
     var body: some View {
@@ -27,11 +27,12 @@ struct FloatingLabelTextfield: View {
 			.strokeBorder(color: Color(colorEnum: borderColor),
 						  lineWidth: 1.0,
 						  radius: CGFloat(.lightCornerRadius))
+			.zIndex(1)
 
 			HStack {
 				if let textFieldError {
 					Text(textFieldError.description)
-						.transition(.move(edge: .top).animation(.easeIn(duration: 1.2)))
+						.transition(.move(edge: .top).combined(with: .opacity))
 				}
 
 				Spacer()
@@ -42,13 +43,15 @@ struct FloatingLabelTextfield: View {
 			}
 			.foregroundStyle(Color(colorEnum: counterColor))
 			.font(.system(size: CGFloat(.caption)))
+			.zIndex(0)
+			.animation(.easeIn(duration: 0.2), value: textFieldError)
 		}
     }
 }
 
 private extension FloatingLabelTextfield {
 	var isError: Bool {
-		if let textFieldError {
+		if textFieldError != nil {
 			return true
 		}
 		if let maxCount  {
@@ -70,6 +73,7 @@ private extension FloatingLabelTextfield {
 #Preview {
 	FloatingLabelTextfield(placeholder: "Placeholder",
 						   maxCount: 10,
+						   textFieldError: .constant(nil),
 						   text: .constant(""))
 	.padding()
 }

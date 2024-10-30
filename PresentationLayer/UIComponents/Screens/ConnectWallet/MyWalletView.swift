@@ -94,7 +94,7 @@ private extension MyWalletView {
 
 				FloatingLabelTextfield(placeholder: viewModel.addressFieldPlaceholder,
 									   maxCount: viewModel.maxCount,
-									   textFieldError: viewModel.textFieldError,
+									   textFieldError: $viewModel.textFieldError,
 									   text: $viewModel.input)
 				.disabled(!viewModel.isInEditMode)
             }
