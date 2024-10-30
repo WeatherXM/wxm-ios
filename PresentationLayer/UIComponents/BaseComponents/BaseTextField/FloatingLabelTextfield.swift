@@ -52,6 +52,7 @@ extension FloatingLabelTextfield {
 		var floatingPlaceholder: Bool = false
 		var isPassword: Bool = false
 		var icon: FontIcon? = nil
+		var keyboardType: UIKeyboardType = .default
 	}
 
 	@ViewBuilder
@@ -86,6 +87,7 @@ extension FloatingLabelTextfield {
 							  text: $text)
 				}
 			}
+			.keyboardType(configuration.keyboardType)
 			.foregroundColor(Color(colorEnum: .text))
 			.font(.system(size: CGFloat(.mediumFontSize)))
 			.focused($isFocused)

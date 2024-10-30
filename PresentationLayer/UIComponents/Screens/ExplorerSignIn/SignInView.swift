@@ -65,10 +65,21 @@ struct SignInView: View {
     @ViewBuilder
     var signInTextFields: some View {
 		VStack(spacing: CGFloat(.defaultSpacing)) {
-			BaseTextField(input: $viewModel.email, textFieldStyle: .user, keyboardType: .emailAddress)
+			FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true,
+														icon: .envelope,
+														keyboardType: .emailAddress),
+								   placeholder: LocalizableString.email.localized,
+								   textFieldError: .constant(nil),
+								   text: $viewModel.email)
 
-			BaseTextField(input: $viewModel.password, textFieldStyle: .password)
+			FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true,
+														isPassword: true,
+														icon: .lock),
+								   placeholder: LocalizableString.password.localized,
+								   textFieldError: .constant(nil),
+								   text: $viewModel.password)
 		}
+		.animation(.easeIn(duration: 0.2))
     }
 
     var forgotPasswordButton: some View {
@@ -98,4 +109,10 @@ struct SignInView: View {
         .buttonStyle(WXMButtonStyle.filled())
         .disabled(!viewModel.isSignInButtonAvailable)
     }
+}
+
+#Preview {
+	NavigationContainerView {
+		SignInView(viewModel: ViewModelsFactory.getSignInViewModel())
+	}
 }
