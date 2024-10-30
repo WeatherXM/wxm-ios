@@ -1197,6 +1197,7 @@
 				2675474E29A9181E008BCF40 /* BaseTextField.swift */,
 				2675489E29A91A87008BCF40 /* BaseTextFieldEnum.swift */,
 				267EC3D62CD2179C0085B50A /* FloatingLabelTextfield.swift */,
+				2675489029A91A87008BCF40 /* TextFieldError.swift */,
 			);
 			path = BaseTextField;
 			sourceTree = "<group>";
@@ -1853,7 +1854,6 @@
 				2675489F29A91A87008BCF40 /* DisplayedLinks.swift */,
 				2675488929A91A87008BCF40 /* StringConstants.swift */,
 				2675489A29A91A87008BCF40 /* SuccessFailEnum.swift */,
-				2675489029A91A87008BCF40 /* TextFieldError.swift */,
 			);
 			path = Strings;
 			sourceTree = "<group>";

@@ -43,6 +43,16 @@
     "%@:" : {
 
     },
+    "%@/%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@/%2$@"
+          }
+        }
+      }
+    },
     "+ %@ %@" : {
       "localizations" : {
         "en" : {
@@ -3309,6 +3319,17 @@
         }
       }
     },
+    "error_empty_text_field" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cannot be empty"
+          }
+        }
+      }
+    },
     "error_frozen_sensor_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3360,6 +3381,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oops! Could not load data from network."
+          }
+        }
+      }
+    },
+    "error_invalid_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wrong password!"
+          }
+        }
+      }
+    },
+    "error_invalid_serial_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid serial number"
+          }
+        }
+      }
+    },
+    "error_invalid_wxm_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid WXM Address"
           }
         }
       }

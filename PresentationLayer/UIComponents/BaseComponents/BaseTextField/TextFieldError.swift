@@ -13,13 +13,13 @@ enum TextFieldError: String {
 	var description: String {
 		switch self {
 			case .emptyField:
-				return "Cannot be empty"
+				return LocalizableString.Error.emtyTextField.localized
 			case .invalidSerialNumber:
-				return "Invalid serial number"
+				return LocalizableString.Error.invalidSerialNumber.localized
 			case .invalidNewAddress:
-				return "Invalid WXM Address"
+				return LocalizableString.Error.invalidWXMAddress.localized
 			case .invalidPassword:
-				return "Wrong password!"
+				return LocalizableString.Error.invalidPassword.localized
 			case .invalidDeviceEUIKey:
 				return LocalizableString.ClaimDevice.heliumInvalidEUIKey.localized
 		}
