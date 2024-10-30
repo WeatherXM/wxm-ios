@@ -86,12 +86,6 @@ private extension MyWalletView {
                     Spacer()
                 }
 
-				
-
-//                TextFieldsWallet(type: viewModel.isInEditMode ? .newWXMAddress : .currentWXMAddress,
-//                                 input: $viewModel.input,
-//                                 newAddressError: viewModel.textFieldError)
-
 				FloatingLabelTextfield(configuration: .init(),
 									   placeholder: viewModel.addressFieldPlaceholder,
 									   maxCount: viewModel.maxCount,

@@ -70,7 +70,7 @@ extension FloatingLabelTextfield {
 
 	@ViewBuilder
 	var textField: some View {
-		HStack {
+		HStack(spacing: CGFloat(.smallToMediumSpacing)) {
 			if let icon = configuration.icon {
 				Text(icon.rawValue)
 					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
