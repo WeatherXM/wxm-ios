@@ -46,3 +46,20 @@ private struct LottieViewRepresentable: UIViewRepresentable {
 
     func updateUIView(_: UIView, context _: UIViewRepresentableContext<LottieViewRepresentable>) {}
 }
+
+#Preview {
+	ScrollView {
+		HStack {
+			Spacer()
+			
+			VStack {
+				ForEach(AnimationsEnums.allCases, id: \.rawValue) { anim in
+					LottieView(animationCase: anim.animationString, loopMode: .loop)
+						.frame(width: 100.0, height: 100.0, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+				}
+			}
+
+			Spacer()
+		}
+	}
+}

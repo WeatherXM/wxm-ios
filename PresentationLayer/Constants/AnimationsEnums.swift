@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AnimationsEnums: String {
+enum AnimationsEnums: String, CaseIterable {
 	case notAvailable = "not-available"
 	case clearDay = "clear-day"
 	case clearNight = "clear-night"
