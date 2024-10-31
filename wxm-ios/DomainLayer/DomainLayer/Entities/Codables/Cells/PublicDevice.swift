@@ -11,10 +11,12 @@ public struct PublicDevice: Codable {
     var timezone: String?
     var isActive: Bool?
     var lastWeatherStationActivity: String?
+	var address: String?
     var cellIndex: String?
 	var cellCenter: LocationCoordinates?
     var currentWeather: CurrentWeather?
 	var bundle: StationBundle?
+	var metrics: Metrics?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -22,9 +24,11 @@ public struct PublicDevice: Codable {
         case timezone
         case isActive
         case lastWeatherStationActivity
+		case address
         case cellIndex
 		case cellCenter
         case currentWeather = "current_weather"
 		case bundle
+		case metrics
     }
 }

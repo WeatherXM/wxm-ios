@@ -248,3 +248,10 @@ private struct ContentView: View {
         .padding(.bottom)
     }
 }
+
+#Preview {
+	WeatherStationsHomeView(swinjectHelper: SwinjectHelper.shared,
+							isTabBarShowing: .constant(false),
+							tabBarItemsSize: .constant(.zero),
+							isWalletEmpty: .constant(false))
+}

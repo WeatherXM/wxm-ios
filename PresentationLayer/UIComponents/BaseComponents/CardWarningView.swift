@@ -18,7 +18,7 @@ struct CardWarningView<Content: View>: View {
         VStack(spacing: CGFloat(.smallSpacing)) {
             HStack(spacing: CGFloat(.smallSpacing)) {
 				if configuration.showIcon {
-					Text(configuration.type.fontIcon.rawValue)
+					Text(configuration.icon?.rawValue ?? configuration.type.fontIcon.rawValue)
 						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
 						.foregroundColor(Color(colorEnum: configuration.type.iconColor))
                 }
@@ -86,6 +86,7 @@ struct CardWarningConfiguration: Equatable {
 	static func == (lhs: CardWarningConfiguration, rhs: CardWarningConfiguration) -> Bool {
 		lhs.type == rhs.type &&
 		lhs.showIcon == rhs.showIcon &&
+		lhs.icon == rhs.icon &&
 		lhs.title == rhs.title &&
 		lhs.linkText == rhs.linkText &&
 		lhs.message == rhs.message &&
@@ -94,6 +95,7 @@ struct CardWarningConfiguration: Equatable {
 
 	var type: CardWarningType = .warning
 	var showIcon = true
+	var icon: FontIcon?
 	var title: String?
 	let message: String
 	var linkText: String?

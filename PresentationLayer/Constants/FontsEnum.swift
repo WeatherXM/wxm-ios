@@ -52,6 +52,7 @@ enum FontIcon: String {
 	case circleTwo = "circle-2"
 	case circleThree = "circle-3"
 	case circleFour = "circle-4"
+	case circleSmall = "circle-small"
 	case qrcode
 	case barcode
 	case split
@@ -61,6 +62,7 @@ enum FontIcon: String {
 	case chevronDown = "chevron-down"
 	case faceSadCry = "face-sad-cry"
 	case rotateRight = "rotate-right"
+	case temperatureThreeQuarters = "temperature-three-quarters"
 	case umbrella
 	case cloudShowers = "cloud-showers"
 	case locationArrow = "location-arrow"
@@ -68,4 +70,7 @@ enum FontIcon: String {
 	case gauge
 	case sun
 	case dropletDegree = "droplet-degree"
+	case arrowsRotate = "arrows-rotate"
+	case batteryLow = "battery-low"
+	case chartSimple = "chart-simple"
 }

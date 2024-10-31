@@ -35,12 +35,15 @@ extension AlertsViewModel: HashableViewModel {
 private extension AlertsViewModel {
     func generateAlerts() {
         var alerts: [MultipleAlertsView.Alert] = []
+		let isOwned = followState?.relation == .owned
 
-        if !device.isActive {
+		if !device.isActive {
+			let description: LocalizableString = isOwned ? .alertsOwnedStationOfflineDescription : .alertsStationOfflineDescription
             let alert = MultipleAlertsView.Alert(type: .error,
                                                  title: LocalizableString.alertsStationOfflineTitle.localized,
-                                                 message: LocalizableString.alertsStationOfflineDescription.localized,
-                                                 buttonTitle: LocalizableString.contactSupport.localized,
+                                                 message: description.localized,
+												 icon: nil,
+												 buttonTitle: isOwned ? LocalizableString.contactSupport.localized : nil,
                                                  buttonAction: handleContactSupportTap,
                                                  appearAction: nil)
             alerts.append(alert)
@@ -50,6 +53,7 @@ private extension AlertsViewModel {
             let alert = MultipleAlertsView.Alert(type: .warning,
                                                  title: LocalizableString.stationWarningUpdateTitle.localized,
                                                  message: LocalizableString.stationWarningUpdateDescription.localized,
+												 icon: .arrowsRotate,
                                                  buttonTitle: LocalizableString.stationWarningUpdateButtonTitle.localized,
                                                  buttonAction: handleFirmwareUpdateTap,
                                                  appearAction: { [weak self] in self?.trackPromptEvent(action: .viewAction) })
@@ -60,6 +64,7 @@ private extension AlertsViewModel {
 			let alert = MultipleAlertsView.Alert(type: .warning,
 												 title: LocalizableString.stationWarningLowBatteryTitle.localized,
 												 message: LocalizableString.stationWarningLowBatteryDescription.localized,
+												 icon: .batteryLow,
 												 buttonTitle: LocalizableString.stationWarningLowBatteryButtonTitle.localized,
 												 buttonAction: handleLowBatteryTap,
 												 appearAction: nil)

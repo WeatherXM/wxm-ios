@@ -21,47 +21,63 @@ struct StationDetailsContainerView: View {
         }
     }
 
-    @ViewBuilder
-    var navigationBarRightView: some View {
-        HStack(spacing: CGFloat(.smallSidePadding)) {
-            Button { [weak viewModel] in
-                viewModel?.handleShareButtonTap()
-            } label: {
-                Text(FontIcon.share.rawValue)
-                    .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-                    .foregroundColor(Color(colorEnum: .wxmPrimary))
-                    .frame(width: 30.0, height: 30.0)
-            }
-			.wxmShareDialog(show: $viewModel.showShareDialog, text: viewModel.shareDialogText ?? "")
+	@ViewBuilder
+	var navigationBarRightView: some View {
+		HStack(spacing: CGFloat(.smallSpacing)) {
+			if viewModel.device != nil {
+				StationStatusButton(followState: viewModel.followState) {
+					viewModel.statusButtonTapped()
+				}
+			}
 
-            if viewModel.followState != nil {
-                Button {
-                    WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsPopUp])
-                    showSettingsPopOver = true
-                } label: {
-                    Text(FontIcon.threeDots.rawValue)
-                        .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-                        .foregroundColor(Color(colorEnum: .wxmPrimary))
-                        .frame(width: 30.0, height: 30.0)
-                }
-                .wxmPopOver(show: $showSettingsPopOver) {
-					VStack {
+			if viewModel.followState != nil {
+				Button {
+					WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsPopUp])
+					showSettingsPopOver = true
+				} label: {
+					Text(FontIcon.threeDots.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
+						.frame(width: 30.0, height: 30.0)
+				}
+				.wxmPopOver(show: $showSettingsPopOver) {
+					VStack(alignment:.leading, spacing: CGFloat(.mediumSpacing)) {
 						Button { [weak viewModel] in
 							showSettingsPopOver = false
-							viewModel?.settingsButtonTapped()
+							viewModel?.handleShareButtonTap()
 						} label: {
-							Text(LocalizableString.settings.localized)
+							Text(LocalizableString.share.localized)
 								.font(.system(size: CGFloat(.mediumFontSize)))
 								.foregroundColor(Color(colorEnum: .text))
+						}
+
+						if viewModel.followState != nil {
+							Button { [weak viewModel] in
+								showSettingsPopOver = false
+								viewModel?.settingsButtonTapped()
+							} label: {
+								Text(LocalizableString.DeviceInfo.title.localized)
+									.font(.system(size: CGFloat(.mediumFontSize)))
+									.foregroundColor(Color(colorEnum: .text))
+							}
 						}
 					}
 					.padding()
 					.background(Color(colorEnum: .top).scaleEffect(2.0).ignoresSafeArea())
-                }
-            }
-        }
-    }
-
+				}
+			} else {
+				Button { [weak viewModel] in
+					viewModel?.handleShareButtonTap()
+				} label: {
+					Text(FontIcon.share.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
+						.frame(width: 30.0, height: 30.0)
+				}
+			}
+		}
+		.wxmShareDialog(show: $viewModel.showShareDialog, text: viewModel.shareDialogText ?? "")
+	}
 }
 
 private struct StationDetailsView: View {
@@ -111,8 +127,8 @@ private struct StationDetailsView: View {
 						ForEach(0..<StationDetailsViewModel.Tab.allCases.count, id: \.self) { [unowned viewModel] index in
 							let tab = StationDetailsViewModel.Tab.allCases[index]
 							switch tab {
-								case .observations:
-									ObservationsView(viewModel: viewModel.observationsVM)
+								case .overview:
+									OverviewView(viewModel: viewModel.overviewVM)
 										.tag(index)
 										.conditionalOSsafeAreaTopInset(titleViewSize.height)
 								case .forecast:
@@ -152,8 +168,9 @@ private struct StationDetailsView: View {
             }
         }
         .onAppear {
-            navigationObject.titleColor = Color(colorEnum: .wxmPrimary)
             navigationObject.navigationBarColor = Color(colorEnum: .top)
+			navigationObject.titleFont = .system(size: CGFloat(.smallTitleFontSize), weight: .bold)
+			navigationObject.subtitleFont = .system(size: CGFloat(.caption))
         }
         .onChange(of: selectedIndex) { _ in
             withAnimation {
@@ -163,9 +180,12 @@ private struct StationDetailsView: View {
         .onChange(of: viewModel.shouldHideHeaderToggle) { _ in
             isHeaderHidden = viewModel.isHeaderHidden
         }
-        .onChange(of: isHeaderHidden) { newValue in
+		.onChange(of: viewModel.navigationTitle) { newValue in
+			guard let newValue else {
+				return
+			}
             withAnimation {
-                navigationObject.title = newValue ? viewModel.device?.displayName ?? "" : ""
+				navigationObject.setNavigationTitle(newValue)
             }
         }
     }
@@ -174,14 +194,10 @@ private struct StationDetailsView: View {
     var titleView: some View {
         if let device = viewModel.device {
             VStack {
-                StationAddressTitleView(device: device,
-                                        followState: viewModel.followState,
-										issues: viewModel.issues,
-                                        showStateIcon: true,
-                                        tapStateIconAction: { viewModel.followButtonTapped()},
-                                        tapAddressAction: { viewModel.addressTapped() },
-										tapWarningAction: { viewModel.warningTapped() },
-										tapStatusAction: { viewModel.statusTapped() })
+				StationChipsView(device: device, issues: viewModel.issues,
+								 isScrollable: true,
+								 warningAction: { viewModel.warningTapped() },
+								 statusAction: { viewModel.statusTapped() })
                 .sizeObserver(size: $titleViewAddressSize)
 
                 CustomSegmentView(options: StationDetailsViewModel.Tab.allCases.map { $0.description },

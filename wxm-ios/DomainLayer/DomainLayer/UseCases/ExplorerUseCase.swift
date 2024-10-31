@@ -132,12 +132,10 @@ public class ExplorerUseCase {
                     }
 
                     Task { [weak self] in
-                        let address = await self?.resolveAddressLocation(hexCoordinates) ?? ""
                         var explorerDevices = [DeviceDetails]()
                         await devices.asyncForEach { publicDevice in
                             _ = try? await self?.meRepository.getDeviceFollowState(deviceId: publicDevice.id).get()
                             var device = publicDevice.toDeviceDetails
-                            device.address = address
 							if let hexCoordinates {
 								device.cellCenter = LocationCoordinates(lat: hexCoordinates.latitude, long: hexCoordinates.longitude)
 							}

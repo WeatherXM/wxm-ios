@@ -12,8 +12,23 @@ class NavigationObject: ObservableObject {
     @Published var title = ""
     @Published var subtitle: String?
     @Published var titleColor = Color(colorEnum: .text)
+	@Published var titleFont = Font.system(size: CGFloat(.largeTitleFontSize))
+	@Published var subtitleColor = Color(colorEnum: .darkGrey)
+	@Published var subtitleFont = Font.system(size: CGFloat(.largeFontSize))
     @Published var navigationBarColor: Color? = Color(colorEnum: .top)
     var shouldDismissAction: (() -> Bool)?
+
+	func setNavigationTitle(_ navigationTitle: NavigationTitle) {
+		self.title = navigationTitle.title ?? ""
+		self.subtitle = navigationTitle.subtitle
+	}
+}
+
+extension NavigationObject {
+	struct NavigationTitle: Equatable {
+		let title: String?
+		let subtitle: String?
+	}
 }
 
 struct NavigationContainerView<Content: View, RightView: View>: View {
@@ -73,7 +88,7 @@ private extension NavigationContainerView {
 							}
 							
                             Text(navigationObject.title)
-                                .font(.system(size: CGFloat(.largeTitleFontSize)))
+								.font(navigationObject.titleFont)
                                 .lineLimit(1)
                                 .truncationMode(.middle)
                                 .foregroundColor(navigationObject.titleColor)
@@ -84,8 +99,8 @@ private extension NavigationContainerView {
                         if let subtitle = navigationObject.subtitle {
                             HStack {
                                 Text(subtitle)
-                                    .font(.system(size: CGFloat(.largeFontSize)))
-                                    .foregroundColor(navigationObject.titleColor)
+									.font(navigationObject.subtitleFont)
+                                    .foregroundColor(navigationObject.subtitleColor)
 
                                 Spacer()
                             }

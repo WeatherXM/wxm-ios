@@ -130,13 +130,24 @@
         }
       }
     },
+    "alerts_owned_station_offline_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The station is not sending weather data. Check the outdoor unit’s batteries and the internet connection. If the problem persists, contact our support team."
+          }
+        }
+      }
+    },
     "alerts_station_offline_description" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The station is offline. Check that it has batteries and internet connection. If the problem persists, contact our support team."
+            "value" : "We’re unable to show live station data. Please check back later for further updates."
           }
         }
       }
@@ -147,7 +158,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Station Offline"
+            "value" : "Station Inactive"
           }
         }
       }
@@ -4684,6 +4695,17 @@
         }
       }
     },
+    "home_data_quality" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data Quality %d%%"
+          }
+        }
+      }
+    },
     "home_following_weather_stations_empty_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7550,6 +7572,28 @@
         }
       }
     },
+    "station_details_data_quality_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The network’s effectiveness relies on meaningful, usable data, measured by the Quality-of-Data (QoD) score, which **updates daily.** This score motivates weather station owners to follow guidelines for optimal data quality. A station’s daily reward is tied to its QoD, calculated using an open-source algorithm that assesses data quality and provides a confidence level in the data received."
+          }
+        }
+      }
+    },
+    "station_details_data_quality_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data Quality Score"
+          }
+        }
+      }
+    },
     "station_details_detailed_rewards_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7583,6 +7627,28 @@
         }
       }
     },
+    "station_details_latest_weather" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latest Weather"
+          }
+        }
+      }
+    },
+    "station_details_location_quality_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It is crucial for the Network that a station stays in the same location throughout its lifetime.\nThe Proof-of-Location algorithm, which also **updates daily,** assesses the accuracy and consistency of the station’s location data, generating a confidence score for its position."
+          }
+        }
+      }
+    },
     "station_details_lost_rewards_format" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7601,6 +7667,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No Active"
+          }
+        }
+      }
+    },
+    "station_details_no_location_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No location data"
           }
         }
       }
@@ -7660,18 +7737,29 @@
         }
       }
     },
-    "station_details_observations" : {
+    "station_details_not_verified" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Observations"
+            "value" : "Not Verified"
           }
         }
       }
     },
-    "station_details_observations_follow_cta_text" : {
+    "station_details_overview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overview"
+          }
+        }
+      }
+    },
+    "station_details_overview_follow_cta_text" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -7682,7 +7770,7 @@
         }
       }
     },
-    "station_details_observations_logged_out_cta_text" : {
+    "station_details_overview_logged_out_cta_text" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -7733,6 +7821,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Identify & Fix Problems"
+          }
+        }
+      }
+    },
+    "station_details_owned_station_no_data_snackbar_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station is transmitting its initial data as expected. Sit back and relax, your rewards are on the way!"
+          }
+        }
+      }
+    },
+    "station_details_owned_station_snackbar_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are the owner of this station!"
+          }
+        }
+      }
+    },
+    "station_details_pending_verification" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pending verification"
           }
         }
       }
@@ -7957,6 +8078,17 @@
         }
       }
     },
+    "station_details_station_health" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Health"
+          }
+        }
+      }
+    },
     "station_details_thirty_days_abbreviation" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7975,6 +8107,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You’ve reached the end of the Timeline."
+          }
+        }
+      }
+    },
+    "station_details_verified" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verified"
           }
         }
       }
@@ -8019,6 +8162,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Weekly Streak"
+          }
+        }
+      }
+    },
+    "station_inactive" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station inactive"
           }
         }
       }

@@ -22,19 +22,17 @@ struct StationAddressTitleView: View {
 	
 	let device: DeviceDetails
 	let followState: UserDeviceFollowState?
-    let subtitle: String?
 	let issues: StationChipsView.IssuesChip?
 	let areChipsScrollable: Bool
     let showStateIcon: Bool
     let stateFAIcon: StateFontAwesome
     let isStateIconEnabled: Bool
     let tapStateIconAction: VoidCallback?
-    let tapAddressAction: VoidCallback?
 	let tapWarningAction: VoidCallback?
 	let tapStatusAction: VoidCallback?
 
     var body: some View {
-        VStack(spacing: CGFloat(.mediumSpacing)) {
+        VStack(spacing: CGFloat(.minimumSpacing)) {
             HStack {
                 VStack(spacing: CGFloat(.minimumSpacing)) {
                     HStack {
@@ -42,16 +40,6 @@ struct StationAddressTitleView: View {
                             .font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
                             .foregroundColor(Color(colorEnum: .text))
                         Spacer()
-                    }
-
-                    if let subtitle {
-                        HStack {
-                            Text(subtitle)
-                                .font(.system(size: CGFloat(.caption)))
-                                .foregroundColor(Color(colorEnum: .darkGrey))
-                            Spacer()
-                        }
-
                     }
                 }
 
@@ -72,7 +60,6 @@ struct StationAddressTitleView: View {
 			StationChipsView(device: device,
 							 issues: issues,
 							 isScrollable: areChipsScrollable,
-							 addressAction: tapAddressAction,
 							 warningAction: tapWarningAction,
 							 statusAction: tapStatusAction)
         }
@@ -85,23 +72,18 @@ extension StationAddressTitleView {
 		 followState: UserDeviceFollowState?,
 		 issues: StationChipsView.IssuesChip?,
 		 areChipsScrollable: Bool = true,
-		 showSubtitle: Bool = true,
 		 showStateIcon: Bool = true,
 		 tapStateIconAction: VoidCallback? = nil,
-		 tapAddressAction: VoidCallback? = nil,
 		 tapWarningAction: VoidCallback? = nil,
 		 tapStatusAction: VoidCallback? = nil) {
 		self.device = device
 		self.followState = followState
-        let subtitle = device.friendlyName != nil ? device.name : nil
-        self.subtitle = showSubtitle ? subtitle : nil
 		self.issues = issues
 		self.areChipsScrollable = areChipsScrollable
         self.showStateIcon = showStateIcon
         self.stateFAIcon = followState?.state.FAIcon ?? UserDeviceFollowState.defaultFAIcon
         self.isStateIconEnabled = followState?.state.isActionable ?? true
         self.tapStateIconAction = tapStateIconAction
-        self.tapAddressAction = tapAddressAction
 		self.tapWarningAction = tapWarningAction
 		self.tapStatusAction = tapStatusAction
     }

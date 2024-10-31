@@ -110,6 +110,11 @@
     "rewards": {
       "actual_reward": 10.165180164109882,
       "total_rewards": 323.64723442479493
-    }
+    },
+	"metrics" : {
+	  "pol_reason" : "NO_LOCATION_DATA",
+	  "ts" : "2024-10-14T00:00:00+00:00",
+	  "qod_score" : 99
+	}
   }
 ]

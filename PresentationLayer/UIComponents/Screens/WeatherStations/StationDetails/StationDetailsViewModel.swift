@@ -28,7 +28,7 @@ class StationDetailsViewModel: ObservableObject {
     private let cellCenter: CLLocationCoordinate2D?
     private let useCase: DeviceDetailsUseCase?
 	private let meUseCase: MeUseCase?
-    private(set) lazy var observationsVM = ViewModelsFactory.getCurrentWeatherObservationsViewModel(device: nil, delegate: self)
+    private(set) lazy var overviewVM = ViewModelsFactory.getStationOverviewViewModel(device: nil, delegate: self)
     private(set) lazy var forecastVM = ViewModelsFactory.getStationForecastViewModel(delegate: self)
     private(set) lazy var rewardsVM = ViewModelsFactory.getStationRewardsViewModel(deviceId: deviceId, delegate: self)
     private(set) var loginAlertConfiguration: WXMAlertConfiguration?
@@ -37,8 +37,11 @@ class StationDetailsViewModel: ObservableObject {
 	@Published private(set) var device: DeviceDetails? {
 		didSet {
 			shareDialogText = device?.explorerUrl
+			let subtitle = device?.friendlyName != nil ? device?.name : nil
+			navigationTitle = .init(title: device?.displayName, subtitle: subtitle)
 		}
 	}
+	@Published private(set) var navigationTitle: NavigationObject.NavigationTitle?
     @Published private(set) var followState: UserDeviceFollowState?
     @Published var shouldHideHeaderToggle: Bool = false
     @Published var showLoginAlert: Bool = false
@@ -46,7 +49,7 @@ class StationDetailsViewModel: ObservableObject {
 	private(set) var shareDialogText: String?
     private(set) var isHeaderHidden: Bool = false
 	var issues: StationChipsView.IssuesChip? {
-		getIssuesChip()
+		device?.getIssuesChip(followState: followState)
 	}
 
     private var cancellables: Set<AnyCancellable> = []
@@ -81,19 +84,6 @@ class StationDetailsViewModel: ObservableObject {
         Router.shared.navigateTo(.deviceInfo(DeviceInfoViewModel(device: device!, followState: followState)))
     }
 
-    func addressTapped() {
-        guard let cellIndex = device?.cellIndex,
-              let center = device?.cellCenter?.toCLLocationCoordinate2D() else {
-            return
-        }
-
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentName: .stationDetailsChip,
-															  .contentType: .region,
-															  .itemId: .stationRegion])
-
-        Router.shared.navigateTo(.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: cellIndex, cellCenter: center)))
-    }
-
 	func warningTapped() {
 		var parameters: [Parameter: ParameterValue] = [.contentName: .stationDetailsChip,
 													   .contentType: .warnings]
@@ -116,13 +106,18 @@ class StationDetailsViewModel: ObservableObject {
 		navigateToAlerts()
 	}
 
+	@MainActor
     func handleShareButtonTap() {
         WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsShare])
 
-		showShareDialog = true
+		// Not so smart solution to handle the race condition between 
+		// the popover dismissal and the share dialog presentation
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+			self.showShareDialog = true
+		}
     }
 
-    func followButtonTapped() {
+    func statusButtonTapped() {
         guard MainScreenViewModel.shared.isUserLoggedIn else {
             showLogin()
             return
@@ -130,7 +125,8 @@ class StationDetailsViewModel: ObservableObject {
 
         switch followState?.state {
             case .owned:
-                return
+				Toast.shared.show(text: LocalizableString.StationDetails.ownedStationSnackBarMessage.localized.attributedMarkdown ?? "",
+								  type: .info)
             case .followed:
                 WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsFollow,
                                                                    .contentType: .unfollow])
@@ -156,14 +152,14 @@ extension StationDetailsViewModel: HashableViewModel {
 
 extension StationDetailsViewModel {
     enum Tab: CaseIterable, CustomStringConvertible {
-        case observations
+        case overview
         case forecast
         case rewards
 
         var description: String {
             switch self {
-                case .observations:
-                    return LocalizableString.StationDetails.observations.localized
+                case .overview:
+                    return LocalizableString.StationDetails.overview.localized
                 case .forecast:
                     return LocalizableString.StationDetails.forecast.localized
                 case .rewards:
@@ -244,13 +240,6 @@ private extension StationDetailsViewModel {
 
             switch res {
                 case .success(var deviceDetails):
-                    if deviceDetails.address == nil,
-                       let cellCenter,
-                       let resolvedAddress = try? await useCase?.resolveAddress(location: cellCenter) {
-
-                        deviceDetails.address = resolvedAddress
-                    }
-
                     let followState = try? await useCase?.getDeviceFollowState(deviceId: deviceId).get()
                     DispatchQueue.main.async { [weak self, deviceDetails, followState] in
                         self?.device = deviceDetails
@@ -266,12 +255,12 @@ private extension StationDetailsViewModel {
     }
 
     func updateChildViewModels(device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async {
-        let children: [StationDetailsViewModelChild] = [observationsVM, forecastVM, rewardsVM]
+        let children: [StationDetailsViewModelChild] = [overviewVM, forecastVM, rewardsVM]
         await children.asyncForEach { await $0.refreshWithDevice(device, followState: followState, error: error) }
     }
 
     func showLoadingInChildViews() {
-        let children: [StationDetailsViewModelChild] = [observationsVM, forecastVM, rewardsVM]
+        let children: [StationDetailsViewModelChild] = [overviewVM, forecastVM, rewardsVM]
         children.forEach { $0.showLoading() }
     }
 
@@ -283,23 +272,6 @@ private extension StationDetailsViewModel {
         loginAlertConfiguration = conf
         showLoginAlert = true
     }
-
-	func getIssuesChip() -> StationChipsView.IssuesChip? {
-		guard let issues = device?.issues(mainVM: .shared, followState: followState).sorted(by: { $0.warningType > $1.warningType }),
-			  let warningType = issues.first?.warningType else {
-			return nil
-		}
-
-		if issues.count > 1 {
-			return (warningType, LocalizableString.issues(issues.count).localized)
-		}
-
-		if let issue = issues.first, issue.type != .offline {
-			return (warningType, issue.type.description)
-		}
-
-		return nil
-	}
 
 	func navigateToAlerts() {
 		guard let device else {
@@ -338,7 +310,7 @@ extension StationDetailsViewModel: StationDetailsViewModelDelegate {
     }
 
     func shouldAskToFollow() {
-        followButtonTapped()
+        statusButtonTapped()
     }
 }
 
