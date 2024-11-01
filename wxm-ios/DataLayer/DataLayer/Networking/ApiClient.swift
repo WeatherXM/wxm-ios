@@ -215,23 +215,31 @@ public class ApiClient {
         #endif
     }
 
-	private func debugResponse(urlString: String?, data: Data?) {
-		print(urlString ?? "-")
-		guard let data = data,
-			  let json = try? JSONSerialization.jsonObject(with: data, options: []),
-			  let prettyPrintedJsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted),
-			  let noSlashesJsonData = try? JSONSerialization.data(withJSONObject: json, options: .withoutEscapingSlashes)
-		else {
-			print("Can not serialize JSON")
-			print("data: \(String(data: data ?? Data(), encoding: .utf8) ?? "-")")
-			return
-		}
-		print(NSString(string: String(data: prettyPrintedJsonData, encoding: .utf8)!))
 
-		if let noSlashesString = String(data: noSlashesJsonData, encoding: .utf8),
-		   noSlashesString.contains(Constants.emptyObjectString.rawValue) {
-			let error = NSError(domain: Constants.emptyJsonObject.rawValue, code: -1, userInfo: [Constants.url.rawValue: urlString ?? ""])
-			Logger.shared.logError(error)
+	private func debugResponse(urlString: String?, data: Data?) {
+		DispatchQueue.global(qos: .background).async {
+			print(urlString ?? "-")
+			guard let data = data,
+				  let json = try? JSONSerialization.jsonObject(with: data, options: []),
+				  let prettyPrintedJsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted),
+				  let noSlashesJsonData = try? JSONSerialization.data(withJSONObject: json, options: .withoutEscapingSlashes)
+			else {
+				print("Can not serialize JSON")
+				print("data: \(String(data: data ?? Data(), encoding: .utf8) ?? "-")")
+				return
+			}
+
+			if let jsonString = String(data: prettyPrintedJsonData, encoding: .utf8) {
+				print(NSString(string: jsonString))
+			} else {
+				print("Failed to encode JSON string")
+			}
+			
+			if let noSlashesString = String(data: noSlashesJsonData, encoding: .utf8),
+			   noSlashesString.contains(Constants.emptyObjectString.rawValue) {
+				let error = NSError(domain: Constants.emptyJsonObject.rawValue, code: -1, userInfo: [Constants.url.rawValue: urlString ?? ""])
+				Logger.shared.logError(error)
+			}
 		}
     }
 }
