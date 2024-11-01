@@ -18,7 +18,7 @@ enum TextFieldError: CustomStringConvertible, Equatable {
 	var description: String {
 		switch self {
 			case .emptyField:
-				return LocalizableString.Error.emtyTextField.localized
+				return LocalizableString.Error.emptyTextField.localized
 			case .invalidSerialNumber:
 				return LocalizableString.Error.invalidSerialNumber.localized
 			case .invalidNewAddress:
