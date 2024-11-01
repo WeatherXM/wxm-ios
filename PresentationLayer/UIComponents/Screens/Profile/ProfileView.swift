@@ -43,7 +43,7 @@ private struct ContentView: View {
 			.zIndex(0)
 		}
 		.spinningLoader(show: $viewModel.isLoading, hideContent: true)
-		.bottomSheet(show: $viewModel.showInfo, fitContent: true) {
+		.bottomSheet(show: $viewModel.showInfo) {
 			bottomInfoView(info: viewModel.info)
 		}
 		.onAppear {

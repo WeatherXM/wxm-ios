@@ -35,7 +35,7 @@ struct NetworkStatsView: View {
 
             WXMAnalytics.shared.trackScreen(.networkStats)
         }
-        .bottomSheet(show: $viewModel.showInfo, fitContent: true) {
+        .bottomSheet(show: $viewModel.showInfo) {
 			bottomInfoView(info: viewModel.info)
         }
     }

@@ -10,65 +10,48 @@ import Toolkit
 
 struct BottomSheetModifier<V: View>: ViewModifier {
     @Binding var show: Bool
-    var fitContent: Bool = false
-    var initialDetentId: UISheetPresentationController.Detent.Identifier?
+    let fitContent: Bool
     let content: () -> V
     @State private var hostingWrapper: HostingWrapper = HostingWrapper()
     @State private var contentSize: CGSize = .zero
 
-    func body(content: Content) -> some View {
-        content
-            .if(fitContent) { view in
-                view.customSheet(isPresented: $show) { _ in
-                    VStack {
-                        Capsule()
-                            .foregroundColor(Color(colorEnum: .layer2))
-                            .frame(width: 40.0, height: 5.0)
-                            .padding(.top)
+	func body(content: Content) -> some View {
+		content
+			.onChange(of: show) { _ in
+				if show, hostingWrapper.hostingController == nil {
+					let containerView = BottomSheetContainerView(contentSize: $contentSize, fitContent: fitContent, content: self.content)
+					let controller = BottomSheetHostingController(rootView: containerView)
 
-                        self.content()
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    .WXMCardStyle(
-                        backgroundColor: Color(colorEnum: .layer1),
-                        insideHorizontalPadding: 0,
-                        insideVerticalPadding: 0
-                    )
-                }
-            }
-            .if(!fitContent) { view in
-                view.onChange(of: show) { _ in
-                    if show, hostingWrapper.hostingController == nil {
-						let containerView = BottomSheetContainerView(contentSize: $contentSize, content: self.content)
-                        let controller = BottomSheetHostingController(rootView: containerView)
-
+					if fitContent {
 						let customDetent: UISheetPresentationController.Detent = .custom { context in
 
 							return contentSize.height
 						}
-
 						(controller.presentationController as? UISheetPresentationController)?.detents = [customDetent]
+					} else {
+						(controller.presentationController as? UISheetPresentationController)?.detents = [.medium(), .large()]
+					}
 
-						/*
-						 For some crazy reason the following line causes a memory leak in versions < iOS 17.
-						 So the easiest and cleaner solution is to omit the grabber.
-						 https://developer.apple.com/forums/thread/729183
-						 */
-						if #available(iOS 17.0, *) {
-							(controller.presentationController as? UISheetPresentationController)?.prefersGrabberVisible = true
-						}
-                        
-						controller.willDismissCallback = {
-                            show = false
-                        }
-                        UIApplication.shared.topViewController?.present(controller, animated: true)
-                        hostingWrapper.hostingController = controller
-						controller.sheetPresentationController?.invalidateDetents()
-                    } else if !show {
-                        hostingWrapper.hostingController?.dismiss(animated: true)
-                    }
-                }
-            }
+
+					/*
+					 For some crazy reason the following line causes a memory leak in versions < iOS 17.
+					 So the easiest and cleaner solution is to omit the grabber.
+					 https://developer.apple.com/forums/thread/729183
+					 */
+					if #available(iOS 17.0, *) {
+						(controller.presentationController as? UISheetPresentationController)?.prefersGrabberVisible = true
+					}
+
+					controller.willDismissCallback = {
+						show = false
+					}
+					UIApplication.shared.topViewController?.present(controller, animated: true)
+					hostingWrapper.hostingController = controller
+					controller.sheetPresentationController?.invalidateDetents()
+				} else if !show {
+					hostingWrapper.hostingController?.dismiss(animated: true)
+				}
+			}
 			.onChange(of: contentSize) { _ in
 				invalidateDetents()
 			}
@@ -93,6 +76,7 @@ struct BottomSheetModifier<V: View>: ViewModifier {
 
 private struct BottomSheetContainerView<V: View>: View {
 	@Binding var contentSize: CGSize
+	let fitContent: Bool
 	let content: () -> V
 
 	var body: some View {
@@ -101,8 +85,11 @@ private struct BottomSheetContainerView<V: View>: View {
 				.ignoresSafeArea()
 
 			content()
-				.fixedSize(horizontal: false, vertical: true)
-				.sizeObserver(size: $contentSize)
+				.if(fitContent) { view in
+					view
+						.fixedSize(horizontal: false, vertical: true)
+						.sizeObserver(size: $contentSize)
+				}
 		}
 	}
 }
@@ -111,10 +98,9 @@ extension View {
 
     @ViewBuilder
     func bottomSheet<Content: View>(show: Binding<Bool>,
-                                    fitContent: Bool = false,
-                                    initialDetentId: UISheetPresentationController.Detent.Identifier? = nil,
+                                    fitContent: Bool = true,
                                     content: @escaping () -> Content) -> some View {
-        modifier(BottomSheetModifier(show: show, fitContent: fitContent, initialDetentId: initialDetentId, content: content))
+		modifier(BottomSheetModifier(show: show, fitContent: fitContent, content: content))
     }
 
 	@ViewBuilder

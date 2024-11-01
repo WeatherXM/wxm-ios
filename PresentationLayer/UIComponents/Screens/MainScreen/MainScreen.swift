@@ -44,7 +44,7 @@ public struct MainScreen: View {
 			_ = viewModel.deepLinkHandler.handleNotificationReceive(notificationResponse)
 		}
 		#if DEBUG
-		.bottomSheet(show: $viewModel.showHttpMonitor, initialDetentId: .large) {
+		.bottomSheet(show: $viewModel.showHttpMonitor, fitContent: false) {
 			NavigationStack {
 				ConsoleView()
 			}
