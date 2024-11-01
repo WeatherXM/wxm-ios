@@ -39,10 +39,15 @@ struct BottomSheetModifier<V: View>: ViewModifier {
             .if(!fitContent) { view in
                 view.onChange(of: show) { _ in
                     if show, hostingWrapper.hostingController == nil {
-                        let controller = BottomSheetHostingController(rootView: self.content())
+						let containerView = BottomSheetContainerView(contentSize: $contentSize, content: self.content)
+                        let controller = BottomSheetHostingController(rootView: containerView)
 
-                        (controller.presentationController as? UISheetPresentationController)?.detents = [.medium(), .large()]
-                        (controller.presentationController as? UISheetPresentationController)?.selectedDetentIdentifier = initialDetentId
+						let customDetent: UISheetPresentationController.Detent = .custom { context in
+
+							return contentSize.height
+						}
+
+						(controller.presentationController as? UISheetPresentationController)?.detents = [customDetent]
 
 						/*
 						 For some crazy reason the following line causes a memory leak in versions < iOS 17.
@@ -58,14 +63,18 @@ struct BottomSheetModifier<V: View>: ViewModifier {
                         }
                         UIApplication.shared.topViewController?.present(controller, animated: true)
                         hostingWrapper.hostingController = controller
+						controller.sheetPresentationController?.invalidateDetents()
                     } else if !show {
                         hostingWrapper.hostingController?.dismiss(animated: true)
                     }
                 }
             }
+			.onChange(of: contentSize) { _ in
+				invalidateDetents()
+			}
     }
 
-    private class BottomSheetHostingController: UIHostingController<V> {
+    private class BottomSheetHostingController: UIHostingController<BottomSheetContainerView<V>> {
 
         var willDismissCallback: VoidCallback?
 
@@ -76,6 +85,26 @@ struct BottomSheetModifier<V: View>: ViewModifier {
             }
         }
     }
+
+	private func invalidateDetents() {
+		(hostingWrapper.hostingController?.presentationController as? UISheetPresentationController)?.invalidateDetents()
+	}
+}
+
+private struct BottomSheetContainerView<V: View>: View {
+	@Binding var contentSize: CGSize
+	let content: () -> V
+
+	var body: some View {
+		ZStack {
+			Color(colorEnum: .layer1)
+				.ignoresSafeArea()
+
+			content()
+				.fixedSize(horizontal: false, vertical: true)
+				.sizeObserver(size: $contentSize)
+		}
+	}
 }
 
 extension View {
