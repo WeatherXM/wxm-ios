@@ -18,6 +18,14 @@ enum AnimationsEnums: String, CaseIterable {
 	case overcastSnow = "overcast-snow"
 	case overcastDay = "overcast-day"
 	case overcastNight = "overcast-night"
+	case drizzle
+	case rain
+	case thunderstormsRain = "thunderstorms-rain"
+	case snow
+	case sleet
+	case wind
+	case fog
+	case cloudy
 	case overcastDrizzle = "overcast-drizzle"
 	case overcastLightSnow = "overcast-light-snow"
 	case overcastSleet = "overcast-sleet"
@@ -152,6 +160,22 @@ enum AnimationsEnums: String, CaseIterable {
 				return "weather_partly-cloudy-day-snow"
 			case .partlyCloudyNightSnow:
 				return "weather_partly-cloudy-night-snow"
+			case .drizzle:
+				return "anim_weather_drizzle"
+			case .rain:
+				return "anim_weather_rain"
+			case .thunderstormsRain:
+				return "anim_weather_thunderstorms_rain"
+			case .snow:
+				return "anim_weather_snow"
+			case .sleet:
+				return "anim_weather_sleet"
+			case .wind:
+				return "anim_weather_wind"
+			case .fog:
+				return "anim_weather_fog"
+			case .cloudy:
+				return "anim_weather_cloudy"
 		}
 	}
 }

@@ -464,6 +464,13 @@
 		26C5D61A2CD3CD7D004940D0 /* weather_partly-cloudy-night-drizzle.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C5D5F42CD3CD7D004940D0 /* weather_partly-cloudy-night-drizzle.json */; };
 		26C5D61B2CD3CD7D004940D0 /* weather_overcast-rain.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C5D5F52CD3CD7D004940D0 /* weather_overcast-rain.json */; };
 		26C5D61C2CD3CD7D004940D0 /* weather_partly-cloudy-night-snow.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C5D5F62CD3CD7D004940D0 /* weather_partly-cloudy-night-snow.json */; };
+		26C5D6542CD52A0E004940D0 /* anim_weather_rain.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C5D64D2CD52A0D004940D0 /* anim_weather_rain.json */; };
+		26C5D6552CD52A0E004940D0 /* anim_weather_cloudy.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C5D64E2CD52A0D004940D0 /* anim_weather_cloudy.json */; };
+		26C5D6562CD52A0E004940D0 /* anim_weather_sleet.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C5D64F2CD52A0D004940D0 /* anim_weather_sleet.json */; };
+		26C5D6572CD52A0E004940D0 /* anim_weather_wind.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C5D6502CD52A0D004940D0 /* anim_weather_wind.json */; };
+		26C5D6582CD52A0E004940D0 /* anim_weather_drizzle.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C5D6512CD52A0D004940D0 /* anim_weather_drizzle.json */; };
+		26C5D6592CD52A0E004940D0 /* anim_weather_fog.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C5D6522CD52A0D004940D0 /* anim_weather_fog.json */; };
+		26C5D65A2CD52A0E004940D0 /* anim_weather_snow.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C5D6532CD52A0D004940D0 /* anim_weather_snow.json */; };
 		26C624572AB09C78007A3162 /* LocalizableString+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C624562AB09C78007A3162 /* LocalizableString+Settings.swift */; };
 		26C801D92C2B0A1200D6AC60 /* image_pulse_claiming_key.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26C801D82C2B0A1200D6AC60 /* image_pulse_claiming_key.gif */; };
 		26C801DC2C2B162A00D6AC60 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = 26C801DB2C2B162A00D6AC60 /* FLAnimatedImage */; };
@@ -1020,6 +1027,13 @@
 		26C5D5F42CD3CD7D004940D0 /* weather_partly-cloudy-night-drizzle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "weather_partly-cloudy-night-drizzle.json"; sourceTree = "<group>"; };
 		26C5D5F52CD3CD7D004940D0 /* weather_overcast-rain.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "weather_overcast-rain.json"; sourceTree = "<group>"; };
 		26C5D5F62CD3CD7D004940D0 /* weather_partly-cloudy-night-snow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "weather_partly-cloudy-night-snow.json"; sourceTree = "<group>"; };
+		26C5D64D2CD52A0D004940D0 /* anim_weather_rain.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_rain.json; sourceTree = "<group>"; };
+		26C5D64E2CD52A0D004940D0 /* anim_weather_cloudy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_cloudy.json; sourceTree = "<group>"; };
+		26C5D64F2CD52A0D004940D0 /* anim_weather_sleet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_sleet.json; sourceTree = "<group>"; };
+		26C5D6502CD52A0D004940D0 /* anim_weather_wind.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_wind.json; sourceTree = "<group>"; };
+		26C5D6512CD52A0D004940D0 /* anim_weather_drizzle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_drizzle.json; sourceTree = "<group>"; };
+		26C5D6522CD52A0D004940D0 /* anim_weather_fog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_fog.json; sourceTree = "<group>"; };
+		26C5D6532CD52A0D004940D0 /* anim_weather_snow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_weather_snow.json; sourceTree = "<group>"; };
 		26C624562AB09C78007A3162 /* LocalizableString+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Settings.swift"; sourceTree = "<group>"; };
 		26C801D82C2B0A1200D6AC60 /* image_pulse_claiming_key.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_pulse_claiming_key.gif; sourceTree = "<group>"; };
 		26C904C82A77EF980047A388 /* DeviceDetails+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceDetails+.swift"; sourceTree = "<group>"; };
@@ -2575,6 +2589,13 @@
 				26C5D5EB2CD3CD7C004940D0 /* weather_thunderstorms-light-rain.json */,
 				26C5D5D12CD3CD7B004940D0 /* weather_thunderstorms-overcast-rain.json */,
 				7423EC0A283F81E2004E9B26 /* weather_thunderstorms_rain.json */,
+				26C5D64E2CD52A0D004940D0 /* anim_weather_cloudy.json */,
+				26C5D6512CD52A0D004940D0 /* anim_weather_drizzle.json */,
+				26C5D6522CD52A0D004940D0 /* anim_weather_fog.json */,
+				26C5D64D2CD52A0D004940D0 /* anim_weather_rain.json */,
+				26C5D64F2CD52A0D004940D0 /* anim_weather_sleet.json */,
+				26C5D6532CD52A0D004940D0 /* anim_weather_snow.json */,
+				26C5D6502CD52A0D004940D0 /* anim_weather_wind.json */,
 			);
 			path = LottieJSON;
 			sourceTree = "<group>";
@@ -2929,6 +2950,7 @@
 			files = (
 				26C5D6122CD3CD7D004940D0 /* weather_dust-wind.json in Resources */,
 				26C5D6172CD3CD7D004940D0 /* weather_overcast.json in Resources */,
+				26C5D6592CD52A0E004940D0 /* anim_weather_fog.json in Resources */,
 				26C5D6012CD3CD7D004940D0 /* weather_extreme-night.json in Resources */,
 				B5275660288A7EC500279853 /* .swift-version in Resources */,
 				7423EC19283F81E2004E9B26 /* empty_devices.json in Resources */,
@@ -2936,12 +2958,14 @@
 				7423EC25283F81E2004E9B26 /* empty_generic.json in Resources */,
 				7423EC1B283F81E2004E9B26 /* error.json in Resources */,
 				26E88AFF29E02F590023BBD5 /* loader.json in Resources */,
+				26C5D65A2CD52A0E004940D0 /* anim_weather_snow.json in Resources */,
 				7423EC1F283F81E2004E9B26 /* loading.json in Resources */,
 				2661059E2AE006A9000E4712 /* Launch Screen.storyboard in Resources */,
 				7423EC17283F81E2004E9B26 /* not_available.json in Resources */,
 				7423EC20283F81E2004E9B26 /* success.json in Resources */,
 				26C5D61B2CD3CD7D004940D0 /* weather_overcast-rain.json in Resources */,
 				26C5D5FF2CD3CD7D004940D0 /* weather_clear-night.json in Resources */,
+				26C5D6572CD52A0E004940D0 /* anim_weather_wind.json in Resources */,
 				26C5D6192CD3CD7D004940D0 /* weather_extreme-rain.json in Resources */,
 				26C5D6052CD3CD7D004940D0 /* weather_extreme-night-snow.json in Resources */,
 				26C5D5FD2CD3CD7D004940D0 /* weather_extreme-day-sleet.json in Resources */,
@@ -2961,6 +2985,8 @@
 				26C5D6132CD3CD7D004940D0 /* weather_extreme-night-drizzle.json in Resources */,
 				26C5D60A2CD3CD7D004940D0 /* weather_partly-cloudy-day-snow.json in Resources */,
 				26C5D60E2CD3CD7D004940D0 /* weather_haze-day.json in Resources */,
+				26C5D6542CD52A0E004940D0 /* anim_weather_rain.json in Resources */,
+				26C5D6562CD52A0E004940D0 /* anim_weather_sleet.json in Resources */,
 				74E29FA4282A9FC800925E4C /* Colors.xcassets in Resources */,
 				26C5D61A2CD3CD7D004940D0 /* weather_partly-cloudy-night-drizzle.json in Resources */,
 				26348E212A444AF1000846C6 /* Font Awesome 6 Brands-Regular-400.otf in Resources */,
@@ -2971,6 +2997,7 @@
 				26CA84552AD93646006D47D7 /* CommonAssets.xcassets in Resources */,
 				26348E1D2A444AF1000846C6 /* Font Awesome 6 Pro-Light-300.otf in Resources */,
 				26C5D5FE2CD3CD7D004940D0 /* weather_extreme-day-snow.json in Resources */,
+				26C5D6582CD52A0E004940D0 /* anim_weather_drizzle.json in Resources */,
 				26C5D6162CD3CD7D004940D0 /* weather_haze-night.json in Resources */,
 				26C5D6062CD3CD7D004940D0 /* weather_extreme-night-sleet.json in Resources */,
 				26348E202A444AF1000846C6 /* Font Awesome 6 Pro-Regular-400.otf in Resources */,
@@ -2993,6 +3020,7 @@
 				26C5D6032CD3CD7D004940D0 /* weather_extreme-day-rain.json in Resources */,
 				26C5D60F2CD3CD7D004940D0 /* weather_extreme-day-drizzle.json in Resources */,
 				26C5D6102CD3CD7D004940D0 /* weather_partly-cloudy-night.json in Resources */,
+				26C5D6552CD52A0E004940D0 /* anim_weather_cloudy.json in Resources */,
 				26C5D61C2CD3CD7D004940D0 /* weather_partly-cloudy-night-snow.json in Resources */,
 				264E2F6129DC5AEE009580A2 /* Settings.bundle in Resources */,
 				26A545352BFF804C0098FE52 /* image_station_qr.gif in Resources */,
