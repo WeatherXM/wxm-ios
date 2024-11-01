@@ -63,19 +63,19 @@ enum AnimationsEnums: String, CaseIterable {
 			case .notAvailable:
 				return "not_available"
 			case .clearDay:
-				return "weather_clear_day"
+				return "weather_clear-day"
 			case .clearNight:
-				return "weather_clear_night"
+				return "weather_clear-night"
 			case .partlyCloudyDay:
-				return "weather_partly_cloudy_day"
+				return "weather_partly-cloudy-day"
 			case .partlyCloudyNight:
-				return "weather_partly_cloudy_night"
+				return "weather_partly-cloudy-night"
 			case .overcastDay:
-				return "weather_overcast_day"
+				return "weather_overcast-day"
 			case .overcastNight:
-				return "weather_overcast_night"
+				return "weather_overcast-night"
 			case .thunderstormsOvercastRain:
-				return "weather_thunderstorms_rain"
+				return "weather_thunderstorms-overcast-rain"
 			case .success:
 				return "success"
 			case .fail:
