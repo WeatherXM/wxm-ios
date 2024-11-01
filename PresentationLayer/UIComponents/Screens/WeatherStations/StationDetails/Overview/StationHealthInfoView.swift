@@ -13,7 +13,7 @@ struct StationHealthInfoView: View {
 
 	var body: some View {
 		ZStack {
-			Color(colorEnum: .layer1)
+			Color(colorEnum: .bottomSheetBg)
 				.ignoresSafeArea()
 
 			VStack {
