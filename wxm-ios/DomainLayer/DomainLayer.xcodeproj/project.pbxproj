@@ -28,6 +28,7 @@
 		267401702A375D3800E54E35 /* NetworkStatsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2674016F2A375D3800E54E35 /* NetworkStatsResponse.swift */; };
 		267401722A37687000E54E35 /* NetworkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267401712A37687000E54E35 /* NetworkUseCase.swift */; };
 		267401742A3768AF00E54E35 /* NetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267401732A3768AF00E54E35 /* NetworkRepository.swift */; };
+		267EC3BA2CD0E85A0085B50A /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC3B92CD0E85A0085B50A /* MainRepository.swift */; };
 		2683A4C22ADEB39800D5C205 /* CountryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2683A4C12ADEB39800D5C205 /* CountryInfo.swift */; };
 		2691840C2C08ABD300705755 /* BluetoothHeliumError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2691840B2C08ABD300705755 /* BluetoothHeliumError.swift */; };
 		26A3B3DE2B18E41F0002F35F /* NetworkUserRewardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3DD2B18E41F0002F35F /* NetworkUserRewardsResponse.swift */; };
@@ -111,6 +112,7 @@
 		2674016F2A375D3800E54E35 /* NetworkStatsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsResponse.swift; sourceTree = "<group>"; };
 		267401712A37687000E54E35 /* NetworkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUseCase.swift; sourceTree = "<group>"; };
 		267401732A3768AF00E54E35 /* NetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepository.swift; sourceTree = "<group>"; };
+		267EC3B92CD0E85A0085B50A /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		2683A4C12ADEB39800D5C205 /* CountryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryInfo.swift; sourceTree = "<group>"; };
 		2691840B2C08ABD300705755 /* BluetoothHeliumError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothHeliumError.swift; sourceTree = "<group>"; };
 		26A3B3DD2B18E41F0002F35F /* NetworkUserRewardsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUserRewardsResponse.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				2612AC212AB4621A00285896 /* FiltersRepository.swift */,
 				264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */,
 				B56A25E928A0F18500928141 /* KeychainRepository.swift */,
+				267EC3B92CD0E85A0085B50A /* MainRepository.swift */,
 				B5E6B88A2833B7730060D050 /* MeRepository.swift */,
 				267401732A3768AF00E54E35 /* NetworkRepository.swift */,
 				26D47E9B2A177A0F0078723A /* SettingsRepository.swift */,
@@ -534,6 +537,7 @@
 				B5E6B85D28338BF20060D050 /* AuthUseCase.swift in Sources */,
 				4D5AE32E28EA4882006F2EBA /* BluetoothDevicesRepository.swift in Sources */,
 				B5667D722833DF4000C08B57 /* ClaimDeviceBody.swift in Sources */,
+				267EC3BA2CD0E85A0085B50A /* MainRepository.swift in Sources */,
 				99BA878828BCF4D9004611AC /* Collection+.swift in Sources */,
 				26C904C32A77DBA90047A388 /* DeviceDetails.swift in Sources */,
 				26C904C12A77DA5A0047A388 /* DeviceDetailsUseCase.swift in Sources */,

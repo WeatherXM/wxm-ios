@@ -12,12 +12,17 @@ import Combine
 public class MainUseCase {
 	public var userLoggedInStateNotificationPublisher: NotificationCenter.Publisher
 
+	private let mainRepository: MainRepository
     private let userDefaultsRepository: UserDefaultsRepository
 	private let keychainRepository: KeychainRepository
 	private let meRepository: MeRepository
 	private var cancellableSet: Set<AnyCancellable> = .init()
 
-	public init(userDefaultsRepository: UserDefaultsRepository, keychainRepository: KeychainRepository, meRepository: MeRepository) {
+	public init(mainRepository: MainRepository,
+				userDefaultsRepository: UserDefaultsRepository,
+				keychainRepository: KeychainRepository,
+				meRepository: MeRepository) {
+		self.mainRepository = mainRepository
         self.userDefaultsRepository = userDefaultsRepository
 		self.keychainRepository = keychainRepository
 		self.meRepository = meRepository
@@ -26,6 +31,8 @@ public class MainUseCase {
 		FirebaseManager.shared.fcmTokenPublisher?.sink { [weak self] _ in
 			self?.setFCMTokenIfNeeded()
 		}.store(in: &cancellableSet)
+
+		mainRepository.initializeHttpMonitor()
     }
 
     public func saveOrUpdateWeatherMetric(unitProtocol: UnitsProtocol) {

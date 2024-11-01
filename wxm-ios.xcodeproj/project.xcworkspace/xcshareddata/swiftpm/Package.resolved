@@ -1,5 +1,5 @@
 {
-  "originHash" : "2e3116a5925db1fe7150c03a08565be9319199a74ecea5c3c950e3f110ed83e1",
+  "originHash" : "5805be532f0c6b45837aaa55fee5ad0c95fa51a6e7aa0140094adb54f266fb12",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -29,39 +29,12 @@
       }
     },
     {
-      "identity" : "charts",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ChartsOrg/Charts.git",
-      "state" : {
-        "revision" : "dd9c72e3d7e751e769971092a6bd72d39198ae63",
-        "version" : "5.1.0"
-      }
-    },
-    {
-      "identity" : "codescanner",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/twostraws/CodeScanner",
-      "state" : {
-        "revision" : "9fa582f4b36c69c2a55bff5fb3377eb170ae273c",
-        "version" : "2.5.1"
-      }
-    },
-    {
       "identity" : "firebase-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
         "revision" : "eca84fd638116dd6adb633b5a3f31cc7befcbb7d",
         "version" : "10.29.0"
-      }
-    },
-    {
-      "identity" : "flanimatedimage",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Flipboard/FLAnimatedImage",
-      "state" : {
-        "revision" : "d4f07b6f164d53c1212c3e54d6460738b1981e9f",
-        "version" : "1.0.17"
       }
     },
     {
@@ -128,39 +101,12 @@
       }
     },
     {
-      "identity" : "iqkeyboardmanager",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/hackiftekhar/IQKeyboardManager.git",
-      "state" : {
-        "revision" : "c00b1ae9fa1ad8af4465bb6ca901f6943fc98eba",
-        "version" : "6.5.16"
-      }
-    },
-    {
-      "identity" : "lazyloadingpager",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/WeatherXM/LazyLoadingPager",
-      "state" : {
-        "revision" : "6c3573a3eabb7692b841061b5f3f14c14e50bb27",
-        "version" : "1.0.0"
-      }
-    },
-    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
       "state" : {
         "revision" : "a0bc79961d7be727d258d33d5a6b2f1023270ba1",
         "version" : "1.22.5"
-      }
-    },
-    {
-      "identity" : "lottie-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/airbnb/lottie-ios.git",
-      "state" : {
-        "revision" : "fe4c6fe3a0aa66cdeb51d549623c82ca9704b9a5",
-        "version" : "4.5.0"
       }
     },
     {
@@ -191,15 +137,6 @@
       }
     },
     {
-      "identity" : "mapboxstatic.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mapbox/MapboxStatic.swift",
-      "state" : {
-        "revision" : "886e17c242fe9f573ab6c27871a26c0795400017",
-        "version" : "0.12.0"
-      }
-    },
-    {
       "identity" : "mixpanel-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mixpanel/mixpanel-swift",
@@ -218,24 +155,6 @@
       }
     },
     {
-      "identity" : "nuke",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kean/Nuke.git",
-      "state" : {
-        "revision" : "0ead44350d2737db384908569c012fe67c421e4d",
-        "version" : "12.8.0"
-      }
-    },
-    {
-      "identity" : "polyline",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/raphaelmor/Polyline.git",
-      "state" : {
-        "revision" : "353f80378dcd8f17eefe8550090c6b1ae3c9da23",
-        "version" : "5.1.0"
-      }
-    },
-    {
       "identity" : "promises",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/promises.git",
@@ -245,12 +164,12 @@
       }
     },
     {
-      "identity" : "pullablescrollview",
+      "identity" : "pulse",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/pantelisss/PullableScrollView.git",
+      "location" : "https://github.com/kean/Pulse",
       "state" : {
-        "revision" : "da9d37dc041c2554a7ea163f6bdc5b5d3027cc99",
-        "version" : "1.0.1"
+        "revision" : "c102aaa266ac69a26d08ee6861da710283988e3b",
+        "version" : "5.1.2"
       }
     },
     {
@@ -272,39 +191,12 @@
       }
     },
     {
-      "identity" : "swiftui-introspect",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/siteline/SwiftUI-Introspect.git",
-      "state" : {
-        "revision" : "668a65735751432b640260c56dfa621cec568368",
-        "version" : "1.2.0"
-      }
-    },
-    {
-      "identity" : "swinject",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Swinject/Swinject",
-      "state" : {
-        "revision" : "be9dbcc7b86811bc131539a20c6f9c2d3e56919f",
-        "version" : "2.9.1"
-      }
-    },
-    {
       "identity" : "turf-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mapbox/turf-swift.git",
       "state" : {
         "revision" : "213050191cfcb3d5aa76e1fa90c6ff1e182a42ca",
         "version" : "2.8.0"
-      }
-    },
-    {
-      "identity" : "veil",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/DanielCardonaRojas/Veil",
-      "state" : {
-        "revision" : "967a2f103972ce5043e28f1920330ee934bcbadc",
-        "version" : "0.2.0"
       }
     },
     {

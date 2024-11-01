@@ -297,6 +297,7 @@
 		267CA6CB2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */; };
 		267CA6CD2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CC2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift */; };
 		267CA6CF2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CE2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift */; };
+		267EC3B62CCBDF2C0085B50A /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 267EC3B52CCBDF2C0085B50A /* PulseUI */; };
 		267EC4262A98C14700F2C37E /* UIKitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4252A98C14700F2C37E /* UIKitUtils.swift */; };
 		267EC4292A98C3D300F2C37E /* WXMAlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4272A98C3D300F2C37E /* WXMAlertModifier.swift */; };
 		267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4282A98C3D300F2C37E /* WXMAlertView.swift */; };
@@ -1087,6 +1088,7 @@
 				261E9EAA29A927BE00E8EBA3 /* CodeScanner in Frameworks */,
 				B5799E9F28254E3300FEBB85 /* DataLayer.framework in Frameworks */,
 				B5799E9D28254E3000FEBB85 /* DomainLayer.framework in Frameworks */,
+				267EC3B62CCBDF2C0085B50A /* PulseUI in Frameworks */,
 				263B8B552B29FE34001C5060 /* MapboxStatic in Frameworks */,
 				269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */,
 				26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */,
@@ -2699,6 +2701,7 @@
 				261729F32C36A14C00A1CEFA /* SwiftUIIntrospect */,
 				26C801DB2C2B162A00D6AC60 /* FLAnimatedImage */,
 				26A86BFA2C7F68C400F1C2CF /* DGCharts */,
+				267EC3B52CCBDF2C0085B50A /* PulseUI */,
 			);
 			productName = "wxm-ios";
 			productReference = B52BCC712824FB8F00EA3DA5 /* WeatherXM.app */;
@@ -2754,6 +2757,7 @@
 				261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				26C801DA2C2B162A00D6AC60 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
 				26A86BF92C7F68C400F1C2CF /* XCRemoteSwiftPackageReference "Charts" */,
+				267EC3B42CCBDF2C0085B50A /* XCRemoteSwiftPackageReference "Pulse" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -4144,6 +4148,14 @@
 				minimumVersion = 12.4.0;
 			};
 		};
+		267EC3B42CCBDF2C0085B50A /* XCRemoteSwiftPackageReference "Pulse" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Pulse";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.2;
+			};
+		};
 		269C96882BDBD5660035B8F1 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mixpanel/mixpanel-swift";
@@ -4261,6 +4273,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9EB629A92BE000E8EBA3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		267EC3B52CCBDF2C0085B50A /* PulseUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 267EC3B42CCBDF2C0085B50A /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = PulseUI;
 		};
 		269C96892BDBD5660035B8F1 /* Mixpanel */ = {
 			isa = XCSwiftPackageProductDependency;

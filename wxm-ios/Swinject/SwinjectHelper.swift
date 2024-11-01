@@ -31,6 +31,10 @@ class SwinjectHelper: SwinjectInterface {
 		}
 		.inObjectScope(.container)
 
+		container.register(MainRepository.self) { _ in
+			MainRepositoryImpl()
+		}
+
         // MARK: - Settings
 
         container.register(SettingsRepository.self) { _ in
@@ -141,7 +145,8 @@ class SwinjectHelper: SwinjectInterface {
         // MARK: - Main Use Case
 
         container.register(MainUseCase.self) { resolver in
-			MainUseCase(userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
+			MainUseCase(mainRepository: resolver.resolve(MainRepository.self)!,
+						userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
 						keychainRepository: resolver.resolve(KeychainRepository.self)!,
 						meRepository: resolver.resolve(MeRepository.self)!)
         }

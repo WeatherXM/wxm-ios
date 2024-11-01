@@ -8,6 +8,9 @@
 import Network
 import SwiftUI
 import DomainLayer
+#if DEBUG
+import PulseUI
+#endif
 
 public struct MainScreen: View {
     @StateObject var viewModel: MainScreenViewModel
@@ -40,6 +43,13 @@ public struct MainScreen: View {
 		.onNotificationReceive { notificationResponse in
 			_ = viewModel.deepLinkHandler.handleNotificationReceive(notificationResponse)
 		}
+		#if DEBUG
+		.bottomSheet(show: $viewModel.showHttpMonitor, initialDetentId: .large) {
+			NavigationStack {
+				ConsoleView()
+			}
+		}
+		#endif
     }
 
     public var mainScreenSwitch: some View {
