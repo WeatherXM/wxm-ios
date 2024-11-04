@@ -21,6 +21,7 @@ struct StationLastActiveView: View {
 			Text(configuration.lastActiveAt?.lastActiveTime() ?? LocalizableString.notAvailable.localized)
                 .font(.system(size: CGFloat(.caption)))
 				.foregroundColor(Color(colorEnum: .text))
+				.lineLimit(1)
         }
 		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
                       insideHorizontalPadding: CGFloat(.smallSidePadding),
