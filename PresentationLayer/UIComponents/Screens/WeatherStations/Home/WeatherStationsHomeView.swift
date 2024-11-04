@@ -105,7 +105,7 @@ private struct ContentView: View {
             viewModel.mainVM = mainVM
 			viewModel.getDevices()
         }
-		.bottomSheet(show: $showFilters) {
+		.bottomSheet(show: $showFilters, fitContent: false) {
 			FilterView(show: $showFilters, viewModel: ViewModelsFactory.getFilterViewModel())
 		}
     }

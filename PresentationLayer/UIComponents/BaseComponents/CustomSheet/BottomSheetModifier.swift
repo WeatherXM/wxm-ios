@@ -59,8 +59,8 @@ private struct BottomSheetContainerView<V: View>: View {
 							.sizeObserver(size: $contentSize)
 					}
 					.scrollIndicators(.hidden)
-					.padding(.top)
 				}
+				.padding(.top)
 		}
 		.if(fitContent) { view in
 			view
