@@ -55,6 +55,7 @@ private extension WeatherStationCard {
 				Text(device.qodStatusText)
 					.font(.system(size: CGFloat(.caption)))
 					.foregroundStyle(Color(colorEnum: .text))
+					.lineLimit(1)
 					.fixedSize()
 			}
 
@@ -67,7 +68,7 @@ private extension WeatherStationCard {
 				Text(device.locationText)
 					.font(.system(size: CGFloat(.caption)))
 					.foregroundStyle(Color(colorEnum: .text))
-					.lineLimit(2)
+					.lineLimit(1)
 					.fixedSize(horizontal: false, vertical: true)
 			}
 
