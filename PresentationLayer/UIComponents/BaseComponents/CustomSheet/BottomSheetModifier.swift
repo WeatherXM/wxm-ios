@@ -67,12 +67,12 @@ private struct BottomSheetContainerView<V: View>: View {
 							view
 						}
 					}
-					.padding(.top, CGFloat(.defaultSidePadding))
 				}
 				.if(fitContent) { view in
 					view
 						.presentationDetents([.height(contentSize.height + CGFloat(.defaultSidePadding))])
 				}
+				.padding(.top, CGFloat(.defaultSidePadding))
 		}
 		.presentationDragIndicator(.visible)
 	}
