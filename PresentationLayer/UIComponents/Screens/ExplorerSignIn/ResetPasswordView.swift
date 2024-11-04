@@ -50,6 +50,7 @@ struct ResetPasswordView: View {
             Spacer()
             sendEmailButton
         }
+		.animation(.easeIn(duration: 0.2), value: viewModel.userEmail)
     }
 
     var containerDescription: some View {
@@ -60,7 +61,11 @@ struct ResetPasswordView: View {
     }
 
     var emailTextField: some View {
-        BaseTextField(input: $viewModel.userEmail, textFieldStyle: .email)
+		FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true,
+													icon: .envelope),
+							   placeholder: LocalizableString.email.localized,
+							   textFieldError: .constant(nil),
+							   text: $viewModel.userEmail)
     }
 
     var sendEmailButton: some View {

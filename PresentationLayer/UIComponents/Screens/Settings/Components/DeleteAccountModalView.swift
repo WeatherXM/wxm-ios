@@ -31,10 +31,10 @@ struct DeleteAccountModalView: View {
 
     var passwordInput: some View {
         VStack {
-            BaseTextField(input: $viewModel.password,
-                          textFieldStyle: .password,
-                          error: viewModel.passwordHasError ? TextFieldError.invalidPassword : nil,
-                          isInputForDeleteAccount: true)
+			FloatingLabelTextfield(configuration: .init(isPassword: true),
+								   placeholder: LocalizableString.typeYourPassword.localized,
+								   textFieldError: .constant(viewModel.passwordHasError ? TextFieldError.invalidPassword : nil),
+								   text: $viewModel.password)
                 .padding(.bottom, CGFloat(.defaultSidePadding))
         }
     }
@@ -80,4 +80,9 @@ struct DeleteAccountModalView: View {
                   viewModel.isValidatingPassword)
 
     }
+}
+
+#Preview {
+	DeleteAccountModalView()
+		.environmentObject(ViewModelsFactory.getDeleteAccountViewModel(userId: ""))
 }

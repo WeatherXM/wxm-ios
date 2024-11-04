@@ -14,10 +14,11 @@ class AccountConfirmationViewModel: ObservableObject {
     @Published var password: String = "" {
         didSet {
             isConfirmButtonEnabled = !password.trimWhiteSpaces().isEmpty
+			textFieldError = nil
         }
     }
     @Published private(set) var isConfirmButtonEnabled: Bool = false
-    @Published private(set) var textFieldError: TextFieldError?
+    @Published var textFieldError: TextFieldError?
     @Published var isLoading: Bool = false
     let title: String
     let descriptionMarkdown: String?
@@ -48,8 +49,8 @@ private extension AccountConfirmationViewModel {
                 if let error = response.error {
                     if error.backendError?.code == FailAPICodeEnum.invalidCredentials.rawValue {
                         self?.textFieldError = .invalidPassword
-                    } else if let errorMessage = response.error?.uiInfo.description?.attributedMarkdown {
-                        Toast.shared.show(text: errorMessage)
+                    } else if let errorMessage = response.error?.uiInfo.description {
+						self?.textFieldError = .custom(errorMessage)
                         WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
                                                                             .itemId: .custom(response.error?.backendError?.code ?? "")])
                     }

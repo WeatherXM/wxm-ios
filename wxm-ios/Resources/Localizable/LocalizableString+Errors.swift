@@ -71,6 +71,10 @@ extension LocalizableString {
 		case unknownTitle
 		case unownedUnknownDescription
 		case unknownDescription
+		case emptyTextField
+		case invalidSerialNumber
+		case invalidWXMAddress
+		case invalidPassword
     }
 }
 
@@ -224,6 +228,14 @@ extension LocalizableString.Error: WXMLocalizable {
 				return "error_unowned_unknown_description"
 			case .unknownDescription:
 				return "error_unknown_description"
+			case .emptyTextField:
+				return "error_empty_text_field"
+			case .invalidSerialNumber:
+				return "error_invalid_serial_number"
+			case .invalidWXMAddress:
+				return "error_invalid_wxm_address"
+			case .invalidPassword:
+				return "error_invalid_password"
 		}
 	}
 }

@@ -189,7 +189,6 @@
 		267547AE29A9181E008BCF40 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546E129A9181E008BCF40 /* SignInViewModel.swift */; };
 		267547B029A9181E008BCF40 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546E329A9181E008BCF40 /* ProfileViewModel.swift */; };
 		267547B129A9181E008BCF40 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546E429A9181E008BCF40 /* RegisterViewModel.swift */; };
-		267547B429A9181E008BCF40 /* TextFieldsWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546E929A9181E008BCF40 /* TextFieldsWallet.swift */; };
 		267547B529A9181E008BCF40 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546EB29A9181E008BCF40 /* SettingsView.swift */; };
 		267547B729A9181E008BCF40 /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546ED29A9181E008BCF40 /* DeleteAccountView.swift */; };
 		267547B929A9181E008BCF40 /* SettingsSectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267546F029A9181E008BCF40 /* SettingsSectionTitle.swift */; };
@@ -230,7 +229,6 @@
 		2675480429A9181E008BCF40 /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675474B29A9181E008BCF40 /* CustomPicker.swift */; };
 		2675480529A9181E008BCF40 /* ProgressBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675474C29A9181E008BCF40 /* ProgressBarStyle.swift */; };
 		2675480629A9181E008BCF40 /* StepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675474D29A9181E008BCF40 /* StepsView.swift */; };
-		2675480729A9181E008BCF40 /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675474E29A9181E008BCF40 /* BaseTextField.swift */; };
 		2675480829A9181E008BCF40 /* AttributedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675474F29A9181E008BCF40 /* AttributedLabel.swift */; };
 		2675480929A9181E008BCF40 /* NavigationContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675475029A9181E008BCF40 /* NavigationContainerView.swift */; };
 		2675480A29A9181E008BCF40 /* AttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675475129A9181E008BCF40 /* AttributedTextView.swift */; };
@@ -265,7 +263,6 @@
 		267548D729A91A87008BCF40 /* FontSizeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675489929A91A87008BCF40 /* FontSizeEnum.swift */; };
 		267548D829A91A87008BCF40 /* SuccessFailEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675489A29A91A87008BCF40 /* SuccessFailEnum.swift */; };
 		267548D929A91A87008BCF40 /* AssetEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675489B29A91A87008BCF40 /* AssetEnum.swift */; };
-		267548DC29A91A87008BCF40 /* BaseTextFieldEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675489E29A91A87008BCF40 /* BaseTextFieldEnum.swift */; };
 		267548DD29A91A87008BCF40 /* DisplayedLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675489F29A91A87008BCF40 /* DisplayedLinks.swift */; };
 		267548DE29A91A87008BCF40 /* FailAPICodeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548A029A91A87008BCF40 /* FailAPICodeEnum.swift */; };
 		267548DF29A91A87008BCF40 /* SettingsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548A129A91A87008BCF40 /* SettingsEnum.swift */; };
@@ -298,6 +295,7 @@
 		267CA6CD2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CC2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift */; };
 		267CA6CF2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CE2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift */; };
 		267EC3B62CCBDF2C0085B50A /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 267EC3B52CCBDF2C0085B50A /* PulseUI */; };
+		267EC3D72CD2179C0085B50A /* FloatingLabelTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC3D62CD2179C0085B50A /* FloatingLabelTextfield.swift */; };
 		267EC4262A98C14700F2C37E /* UIKitUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4252A98C14700F2C37E /* UIKitUtils.swift */; };
 		267EC4292A98C3D300F2C37E /* WXMAlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4272A98C3D300F2C37E /* WXMAlertModifier.swift */; };
 		267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4282A98C3D300F2C37E /* WXMAlertView.swift */; };
@@ -751,7 +749,6 @@
 		267546E129A9181E008BCF40 /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		267546E329A9181E008BCF40 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		267546E429A9181E008BCF40 /* RegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
-		267546E929A9181E008BCF40 /* TextFieldsWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsWallet.swift; sourceTree = "<group>"; };
 		267546EB29A9181E008BCF40 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		267546ED29A9181E008BCF40 /* DeleteAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
 		267546F029A9181E008BCF40 /* SettingsSectionTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSectionTitle.swift; sourceTree = "<group>"; };
@@ -792,7 +789,6 @@
 		2675474B29A9181E008BCF40 /* CustomPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		2675474C29A9181E008BCF40 /* ProgressBarStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBarStyle.swift; sourceTree = "<group>"; };
 		2675474D29A9181E008BCF40 /* StepsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsView.swift; sourceTree = "<group>"; };
-		2675474E29A9181E008BCF40 /* BaseTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		2675474F29A9181E008BCF40 /* AttributedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedLabel.swift; sourceTree = "<group>"; };
 		2675475029A9181E008BCF40 /* NavigationContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContainerView.swift; sourceTree = "<group>"; };
 		2675475129A9181E008BCF40 /* AttributedTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedTextView.swift; sourceTree = "<group>"; };
@@ -827,7 +823,6 @@
 		2675489929A91A87008BCF40 /* FontSizeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontSizeEnum.swift; sourceTree = "<group>"; };
 		2675489A29A91A87008BCF40 /* SuccessFailEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessFailEnum.swift; sourceTree = "<group>"; };
 		2675489B29A91A87008BCF40 /* AssetEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetEnum.swift; sourceTree = "<group>"; };
-		2675489E29A91A87008BCF40 /* BaseTextFieldEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextFieldEnum.swift; sourceTree = "<group>"; };
 		2675489F29A91A87008BCF40 /* DisplayedLinks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayedLinks.swift; sourceTree = "<group>"; };
 		267548A029A91A87008BCF40 /* FailAPICodeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailAPICodeEnum.swift; sourceTree = "<group>"; };
 		267548A129A91A87008BCF40 /* SettingsEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsEnum.swift; sourceTree = "<group>"; };
@@ -855,6 +850,7 @@
 		267CA6CC2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimD1ContainerViewModel.swift; sourceTree = "<group>"; };
 		267CA6CE2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimHeliumContainerViewModel.swift; sourceTree = "<group>"; };
 		267E22BD2AC1B1A300B9E196 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
+		267EC3D62CD2179C0085B50A /* FloatingLabelTextfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingLabelTextfield.swift; sourceTree = "<group>"; };
 		267EC4252A98C14700F2C37E /* UIKitUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitUtils.swift; sourceTree = "<group>"; };
 		267EC4272A98C3D300F2C37E /* WXMAlertModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMAlertModifier.swift; sourceTree = "<group>"; };
 		267EC4282A98C3D300F2C37E /* WXMAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMAlertView.swift; sourceTree = "<group>"; };
@@ -1192,8 +1188,8 @@
 		262A4CEE2A935C9A00A4BC17 /* BaseTextField */ = {
 			isa = PBXGroup;
 			children = (
-				2675474E29A9181E008BCF40 /* BaseTextField.swift */,
-				2675489E29A91A87008BCF40 /* BaseTextFieldEnum.swift */,
+				267EC3D62CD2179C0085B50A /* FloatingLabelTextfield.swift */,
+				2675489029A91A87008BCF40 /* TextFieldError.swift */,
 			);
 			path = BaseTextField;
 			sourceTree = "<group>";
@@ -1523,7 +1519,6 @@
 			children = (
 				26E88AF029DD663D0023BBD5 /* MyWalletView.swift */,
 				26E88AF229DD68360023BBD5 /* MyWalletViewModel.swift */,
-				267546E929A9181E008BCF40 /* TextFieldsWallet.swift */,
 			);
 			path = ConnectWallet;
 			sourceTree = "<group>";
@@ -1850,7 +1845,6 @@
 				2675489F29A91A87008BCF40 /* DisplayedLinks.swift */,
 				2675488929A91A87008BCF40 /* StringConstants.swift */,
 				2675489A29A91A87008BCF40 /* SuccessFailEnum.swift */,
-				2675489029A91A87008BCF40 /* TextFieldError.swift */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -3013,8 +3007,6 @@
 				2675480829A9181E008BCF40 /* AttributedLabel.swift in Sources */,
 				2675480A29A9181E008BCF40 /* AttributedTextView.swift in Sources */,
 				269C809C2AB9E76F005F9BD6 /* Badge.swift in Sources */,
-				2675480729A9181E008BCF40 /* BaseTextField.swift in Sources */,
-				267548DC29A91A87008BCF40 /* BaseTextFieldEnum.swift in Sources */,
 				267CA6CD2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift in Sources */,
 				261729CD2C32CF7700A1CEFA /* Haptics.swift in Sources */,
 				267547E229A9181E008BCF40 /* BluetoothMessageView.swift in Sources */,
@@ -3241,6 +3233,7 @@
 				2643713C2CA41DA500E5F382 /* InfoBannerView.swift in Sources */,
 				26A4117129B78CAC00A2C10B /* StationInfoView.swift in Sources */,
 				26D5013829B209F500BC2951 /* StationLastActiveView.swift in Sources */,
+				267EC3D72CD2179C0085B50A /* FloatingLabelTextfield.swift in Sources */,
 				2646D8F529C8BFB40000237F /* StationRewardsViewModel.swift in Sources */,
 				26BA07672B7F5E1E00F7F5A0 /* TotalRewardsView.swift in Sources */,
 				2632E6342A3378BF00A5ADB3 /* StatisticsChart.swift in Sources */,
@@ -3276,7 +3269,6 @@
 				267548F429A91A87008BCF40 /* Text+.swift in Sources */,
 				26348DF82A42F430000846C6 /* TextfieldClearButton.swift in Sources */,
 				267548CE29A91A87008BCF40 /* TextFieldError.swift in Sources */,
-				267547B429A9181E008BCF40 /* TextFieldsWallet.swift in Sources */,
 				264E2F5329DC3533009580A2 /* ThemeEnum.swift in Sources */,
 				26ADDF812BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift in Sources */,
 				2664830129C0C73E00748F9C /* Toast.swift in Sources */,

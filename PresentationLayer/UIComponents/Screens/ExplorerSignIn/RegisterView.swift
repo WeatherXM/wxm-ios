@@ -64,12 +64,22 @@ struct RegisterView: View {
     @ViewBuilder
     var textFields: some View {
         VStack(spacing: CGFloat(.defaultSpacing)) {
-            BaseTextField(input: $viewModel.userEmail, textFieldStyle: .mandatoryEmail)
+			FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true, icon: .envelope),
+								   placeholder: LocalizableString.mandatoryEmail.localized,
+								   textFieldError: .constant(nil),
+								   text: $viewModel.userEmail)
 
-            BaseTextField(input: $viewModel.userName, textFieldStyle: .name)
+			FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true, icon: .user),
+								   placeholder: LocalizableString.firstName.localized,
+								   textFieldError: .constant(nil),
+								   text: $viewModel.userName)
 
-            BaseTextField(input: $viewModel.userSurname, textFieldStyle: .surname)
+			FloatingLabelTextfield(configuration: .init(floatingPlaceholder: true, icon: .user),
+								   placeholder: LocalizableString.lastName.localized,
+								   textFieldError: .constant(nil),
+								   text: $viewModel.userSurname)
         }
+		.animation(.easeIn(duration: 0.2))
     }
 
     @ViewBuilder
