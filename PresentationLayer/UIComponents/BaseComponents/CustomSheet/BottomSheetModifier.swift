@@ -59,12 +59,20 @@ private struct BottomSheetContainerView<V: View>: View {
 							.sizeObserver(size: $contentSize)
 					}
 					.scrollIndicators(.hidden)
+					.modify { view in
+						if #available(iOS 16.4, *) {
+							view
+								.scrollBounceBehavior(.basedOnSize, axes: [.vertical])
+						} else {
+							view
+						}
+					}
+					.padding(.top, CGFloat(.defaultSidePadding))
 				}
-				.padding(.top)
-		}
-		.if(fitContent) { view in
-			view
-				.presentationDetents([.height(contentSize.height)])
+				.if(fitContent) { view in
+					view
+						.presentationDetents([.height(contentSize.height + CGFloat(.defaultSidePadding))])
+				}
 		}
 		.presentationDragIndicator(.visible)
 	}
