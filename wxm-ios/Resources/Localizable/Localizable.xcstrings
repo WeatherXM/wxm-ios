@@ -136,7 +136,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The station is not sending weather data. Check the outdoor unit’s batteries and the internet connection. If the problem persists, contact our support team."
+            "value" : "The station is not sending weather data. Check your network connection and the outdoor unit’s batteries. If the problem persists, contact our support team."
           }
         }
       }
