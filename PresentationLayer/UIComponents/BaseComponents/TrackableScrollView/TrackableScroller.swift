@@ -128,7 +128,7 @@ class ContainerViewController: UIViewController {
 	NavigationStack {
 		NavigationContainerView {
 			TrackableScroller(contentSize: .constant(.zero)) {
-				Text("Text")
+				Text(verbatim: "Text")
 			}
 		}
 	}
