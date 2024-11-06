@@ -39,7 +39,7 @@ struct StationHealthInfoView: View {
 				Button(action: buttonAction) {
 					Text(LocalizableString.RewardDetails.readMore.localized)
 				}
-				.buttonStyle(WXMButtonStyle.transparent(fillColor: .top))
+				.buttonStyle(WXMButtonStyle.transparent(fillColor: .bottomSheetButton))
 				.padding(CGFloat(.defaultSidePadding))
 
 			}
