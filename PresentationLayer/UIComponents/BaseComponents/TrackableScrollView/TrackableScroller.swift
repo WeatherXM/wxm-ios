@@ -11,12 +11,14 @@ import Toolkit
 
 struct TrackableScroller<V: View>: UIViewControllerRepresentable {
 	@Binding var contentSize: CGSize
+	var showIndicators: Bool = true
 	var offsetObject: TrackableScrollOffsetObject?
 	let content: () -> V
 
 	func makeUIViewController(context: Context) -> ContainerViewController {
 		let vc = ContainerViewController()
 		vc.scrollView.delegate = context.coordinator
+		vc.scrollView.showsVerticalScrollIndicator = showIndicators
 		let hostVc = UIHostingController(rootView: content())
 		hostVc.view.backgroundColor = .clear
 		_ = vc.view
