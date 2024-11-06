@@ -13,10 +13,11 @@ struct TrackableScroller<V: View>: UIViewControllerRepresentable {
 	@Binding var contentSize: CGSize
 	var showIndicators: Bool = true
 	var offsetObject: TrackableScrollOffsetObject?
+	var refreshCallback: GenericCallback<VoidCallback>?
 	let content: () -> V
 
 	func makeUIViewController(context: Context) -> ContainerViewController {
-		let vc = ContainerViewController()
+		let vc = ContainerViewController(refreshCallback: refreshCallback)
 		vc.scrollView.delegate = context.coordinator
 		vc.scrollView.showsVerticalScrollIndicator = showIndicators
 		let hostVc = UIHostingController(rootView: content())
@@ -64,11 +65,28 @@ class ContainerViewController: UIViewController {
 	
 	lazy var scrollView: UIScrollView = {
 		let scrollView = UIScrollView(frame: .zero)
+		scrollView.contentInsetAdjustmentBehavior = .never
 		scrollView.backgroundColor = .clear
 		scrollView.alwaysBounceVertical = true
+		if let refreshCallback {
+			let refreshControl = UIRefreshControl()
+			refreshControl.tintColor = UIColor(colorEnum: .wxmPrimary)
+			refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+			scrollView.refreshControl = refreshControl
+		}
 		return scrollView
 	}()
+	let refreshCallback: GenericCallback<VoidCallback>?
 
+	init(refreshCallback: GenericCallback<VoidCallback>?) {
+		self.refreshCallback = refreshCallback
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
 	override func viewDidLoad() {
 		view.backgroundColor = .clear
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -94,6 +112,14 @@ class ContainerViewController: UIViewController {
 		])
 
 		view.layoutIfNeeded()
+	}
+
+	@objc 
+	private func handleRefresh() {
+		scrollView.refreshControl?.beginRefreshing()
+		refreshCallback?() { [weak self] in
+			self?.scrollView.refreshControl?.endRefreshing()
+		}
 	}
 }
 
