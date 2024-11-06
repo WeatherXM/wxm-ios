@@ -202,3 +202,10 @@ public extension Int {
 		Float(self)
 	}
 }
+
+infix operator ~==
+public extension CGSize {
+	static func ~== (lhs: Self, rhs: Self) -> Bool {
+		(lhs.width ~== rhs.width) && (lhs.height ~== rhs.height)
+	}
+}

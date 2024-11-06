@@ -30,7 +30,7 @@ struct TrackableScroller<V: View>: UIViewControllerRepresentable {
 	}
 
 	func updateUIViewController(_ uiViewController: ContainerViewController, context: Context) {
-		let sizeChanged = contentSize != uiViewController.scrollView.contentSize
+		let sizeChanged = !(contentSize ~== uiViewController.scrollView.contentSize)
 		guard sizeChanged else {
 			return
 		}
