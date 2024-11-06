@@ -73,6 +73,7 @@ private struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var navigationObject: NavigationObject
 
+	@State private var contentSize: CGSize = .zero
 	@State private var showFilters: Bool = false
     @StateObject private var viewModel: WeatherStationsHomeViewModel
     @Binding private var isTabBarShowing: Bool
@@ -165,28 +166,29 @@ private struct ContentView: View {
 	@ViewBuilder
 	func weatherStations(devices: [DeviceDetails]) -> some View {
 		let infoBannerIsVisible = viewModel.infoBanner != nil
-		TrackableScrollView(showIndicators: false,
-							offsetObject: viewModel.scrollOffsetObject) { completion in
+		TrackableScroller(contentSize: $contentSize,
+						  showIndicators: false,
+						  offsetObject: viewModel.scrollOffsetObject) {  completion in
 			viewModel.getDevices(refreshMode: true, completion: completion)
 		} content: {
 			VStack(spacing: -CGFloat(.cardCornerRadius)) {
 				infoBannerView
-
+				
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					NavigationTitleView(title: .constant(LocalizableString.weatherStationsHomeTitle.localized),
 										subtitle: .constant(nil)) {
 						navigationBarRightView
 					}
-
+					
 					VStack(spacing: CGFloat(.smallSpacing)) {
 						if mainVM.showWalletWarning && isWalletEmpty {
 							CardWarningView(configuration: .init(title: LocalizableString.walletAddressMissingTitle.localized,
 																 message: LocalizableString.walletAddressMissingText.localized) {
-
+								
 								WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
 																					 .promptType: .warnPromptType,
 																					 .action: .dismissAction])
-
+								
 								withAnimation {
 									mainVM.hideWalletWarning()
 								}
@@ -196,7 +198,7 @@ private struct ContentView: View {
 									WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
 																						 .promptType: .warnPromptType,
 																						 .action: .action])
-
+									
 								} label: {
 									Text(LocalizableString.addWalletTitle.localized)
 										.foregroundColor(Color(colorEnum: .wxmPrimary))
@@ -209,7 +211,7 @@ private struct ContentView: View {
 																					 .action: .viewAction])
 							}
 						}
-
+						
 						weatherStationsList(devices: devices)
 					}
 				}
@@ -219,19 +221,20 @@ private struct ContentView: View {
 				.background(Color(colorEnum: .bg))
 				.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
 			}
+			.sizeObserver(size: $contentSize)
 		}
 	}
-
-    @ViewBuilder
-    func weatherStationsList(devices: [DeviceDetails]) -> some View {
+	
+	@ViewBuilder
+	func weatherStationsList(devices: [DeviceDetails]) -> some View {
 		AdaptiveGridContainerView {
-            ForEach(devices) { device in
-                WeatherStationCard(device: device, followState: viewModel.getFollowState(for: device)) {
-                    mainVM.showFirmwareUpdate(device: device)
-                } viewMoreAction: {
-                    Router.shared.navigateTo(.viewMoreAlerts(ViewModelsFactory.getAlertsViewModel(device: device,
-                                                                                                  mainVM: mainVM,
-                                                                                                  followState: viewModel.getFollowState(for: device))))
+			ForEach(devices) { device in
+				WeatherStationCard(device: device, followState: viewModel.getFollowState(for: device)) {
+					mainVM.showFirmwareUpdate(device: device)
+				} viewMoreAction: {
+					Router.shared.navigateTo(.viewMoreAlerts(ViewModelsFactory.getAlertsViewModel(device: device,
+																								  mainVM: mainVM,
+																								  followState: viewModel.getFollowState(for: device))))
                 } followAction: {
                     viewModel.followButtonTapped(device: device)
                 }
