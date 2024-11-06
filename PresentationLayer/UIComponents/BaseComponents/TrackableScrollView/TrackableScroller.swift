@@ -7,24 +7,37 @@
 
 import Foundation
 import SwiftUI
+import Toolkit
 
 struct TrackableScroller<V: View>: UIViewControllerRepresentable {
-
+	@Binding var contentSize: CGSize
 	var offsetObject: TrackableScrollOffsetObject?
 	let content: () -> V
 
-	func makeUIViewController(context: Context) -> UIViewController {
+	func makeUIViewController(context: Context) -> ContainerViewController {
 		let vc = ContainerViewController()
 		vc.scrollView.delegate = context.coordinator
 		let hostVc = UIHostingController(rootView: content())
 		hostVc.view.backgroundColor = .clear
 		_ = vc.view
 		vc.insertChildVC(hostVc)
+		context.coordinator.hostVC = hostVc
+
 		return vc
 	}
 
-	func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+	func updateUIViewController(_ uiViewController: ContainerViewController, context: Context) {
+		let sizeChanged = contentSize != uiViewController.scrollView.contentSize
+		guard sizeChanged else {
+			return
+		}
 
+		uiViewController.scrollView.contentSize = contentSize
+
+		if let vc = context.coordinator.hostVC {
+			vc.view.removeFromSuperview()
+			uiViewController.insertChildVC(vc)
+		}
 	}
 
 	func makeCoordinator() -> TrackableCoordinator {
@@ -36,34 +49,36 @@ struct TrackableScroller<V: View>: UIViewControllerRepresentable {
 
 class TrackableCoordinator: NSObject, UIScrollViewDelegate {
 	weak var offsetObject: TrackableScrollOffsetObject?
+	weak var hostVC: UIViewController?
 
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		offsetObject?.contentSize = scrollView.contentSize
 		offsetObject?.scrollerSize = scrollView.frame.size
 		offsetObject?.contentOffset = scrollView.contentOffset.y
-		print(scrollView.contentOffset.y)
 	}
 }
 
-private class ContainerViewController: UIViewController {
+class ContainerViewController: UIViewController {
 	
 	lazy var scrollView: UIScrollView = {
 		let scrollView = UIScrollView(frame: .zero)
-		scrollView.backgroundColor = .red
+		scrollView.backgroundColor = .clear
 		scrollView.alwaysBounceVertical = true
 		return scrollView
 	}()
 
 	override func viewDidLoad() {
+		view.backgroundColor = .clear
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(scrollView)
 		scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-		scrollView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: 0).isActive = true
+		scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
 		scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
 		scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
 	}
 
 	func insertChildVC(_ vc: UIViewController) {
+		vc.view.layoutIfNeeded()
 		vc.view.translatesAutoresizingMaskIntoConstraints = false
 		addChild(vc)
 		scrollView.addSubview(vc.view)
@@ -75,12 +90,18 @@ private class ContainerViewController: UIViewController {
 			vc.view.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
 			vc.view.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
 		])
+
+		view.layoutIfNeeded()
 	}
 }
 
 
 #Preview {
-	TrackableScroller {
-		Text("Text")
+	NavigationStack {
+		NavigationContainerView {
+			TrackableScroller(contentSize: .constant(.zero)) {
+				Text("Text")
+			}
+		}
 	}
 }
