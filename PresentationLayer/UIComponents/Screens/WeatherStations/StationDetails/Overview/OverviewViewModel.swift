@@ -16,6 +16,9 @@ class OverviewViewModel: ObservableObject {
 	@Published private(set) var showNoDataInfo: Bool = false
 	@Published var showStationHealthInfo: Bool = false
 
+	var weatherNoDataText: LocalizableString {
+		followState.weatherNoDataText
+	}
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
 	private(set) var device: DeviceDetails? {
 		didSet {

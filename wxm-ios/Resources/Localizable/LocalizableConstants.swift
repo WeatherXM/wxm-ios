@@ -74,6 +74,7 @@ enum LocalizableString: WXMLocalizable {
 	case offlineStationDescription
 	case stationNoDataTitle
 	case stationNoDataText
+	case stationUnownedNoDataText
 	case walletAddressMissingTitle
 	case walletAddressMissingText
 	case addWalletTitle
@@ -340,6 +341,8 @@ extension LocalizableString {
 				return "station_no_data_title"
 			case .stationNoDataText:
 				return "station_no_data_text"
+			case .stationUnownedNoDataText:
+				return "station_unowned_no_data_text"
 			case .walletAddressMissingTitle:
 				return "wallet_address_missing_title"
 			case .walletAddressMissingText:
