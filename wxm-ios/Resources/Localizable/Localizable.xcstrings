@@ -6180,7 +6180,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Total earned for %d Station"
+            "value" : "Total earned for %d owned Station"
           }
         }
       }
@@ -6191,7 +6191,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Total earned for %d Stations"
+            "value" : "Total earned for %d owned Stations"
           }
         }
       }
