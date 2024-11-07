@@ -30,13 +30,13 @@ struct TrackableScroller<V: View>: UIViewControllerRepresentable {
 	}
 
 	func updateUIViewController(_ uiViewController: ContainerViewController, context: Context) {
+		(context.coordinator.hostVC as? UIHostingController<V>)?.rootView = content()
+
 		let sizeChanged = !(contentSize ~== uiViewController.scrollView.contentSize)
-		guard sizeChanged else {
+		guard sizeChanged, !uiViewController.scrollView.isDragging else {
 			return
 		}
-
-		uiViewController.scrollView.contentSize = contentSize
-
+		
 		if let vc = context.coordinator.hostVC {
 			vc.view.removeFromSuperview()
 			uiViewController.insertChildVC(vc)
@@ -102,6 +102,7 @@ class ContainerViewController: UIViewController {
 		vc.view.translatesAutoresizingMaskIntoConstraints = false
 		addChild(vc)
 		scrollView.addSubview(vc.view)
+		vc.didMove(toParent: self)
 
 		NSLayoutConstraint.activate([
 			vc.view.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
@@ -128,8 +129,20 @@ class ContainerViewController: UIViewController {
 	NavigationStack {
 		NavigationContainerView {
 			TrackableScroller(contentSize: .constant(.zero)) {
-				Text(verbatim: "Text")
+				TestView()
 			}
+		}
+	}
+}
+
+private struct TestView: View {
+	@State private var toggle: Bool = false
+	
+	var body: some View {
+		Button {
+			toggle.toggle()
+		} label: {
+			Text("\(toggle)")
 		}
 	}
 }

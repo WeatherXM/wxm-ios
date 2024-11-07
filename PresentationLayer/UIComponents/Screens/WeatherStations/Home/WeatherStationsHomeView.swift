@@ -79,7 +79,7 @@ private struct ContentView: View {
     @Binding private var isTabBarShowing: Bool
     @Binding private var tabBarItemsSize: CGSize
     @Binding private var isWalletEmpty: Bool
-	private let mainVM: MainScreenViewModel = .shared
+	@StateObject var mainVM: MainScreenViewModel = .shared
 
     init(vieModel: WeatherStationsHomeViewModel, isTabBarShowing: Binding<Bool>, tabBarItemsSize: Binding<CGSize>, isWalletEmpty: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: vieModel)
