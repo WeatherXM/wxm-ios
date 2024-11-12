@@ -13,36 +13,33 @@ struct StationHealthInfoView: View {
 
 	var body: some View {
 		ZStack {
-			Color(colorEnum: .layer1)
+			Color(colorEnum: .bottomSheetBg)
 				.ignoresSafeArea()
 
 			VStack {
-				ScrollView {
-					VStack(spacing: CGFloat(.defaultSpacing)) {
-						HStack {
-							Text(LocalizableString.StationDetails.stationHealth.localized)
-								.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
-								.foregroundStyle(Color(colorEnum: .text))
-
-							Spacer()
-						}
-
-						paragraph(title: LocalizableString.RewardDetails.dataQuality.localized,
-								  text: LocalizableString.StationDetails.dataQualityDescription.localized)
-
-						paragraph(title: LocalizableString.RewardDetails.locationQuality.localized,
-								  text: LocalizableString.StationDetails.locationQualityDescription.localized)
-
+				VStack(spacing: CGFloat(.defaultSpacing)) {
+					HStack {
+						Text(LocalizableString.StationDetails.stationHealth.localized)
+							.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
+							.foregroundStyle(Color(colorEnum: .text))
+						
+						Spacer()
 					}
-					.padding(CGFloat(.defaultSidePadding))
+					
+					paragraph(title: LocalizableString.RewardDetails.dataQuality.localized,
+							  text: LocalizableString.StationDetails.dataQualityDescription.localized)
+					
+					paragraph(title: LocalizableString.RewardDetails.locationQuality.localized,
+							  text: LocalizableString.StationDetails.locationQualityDescription.localized)
+					
 				}
-				.scrollIndicators(.hidden)
+				.padding(CGFloat(.defaultSidePadding))
 				.padding(.top)
 
 				Button(action: buttonAction) {
 					Text(LocalizableString.RewardDetails.readMore.localized)
 				}
-				.buttonStyle(WXMButtonStyle.transparent(fillColor: .top))
+				.buttonStyle(WXMButtonStyle.transparent(fillColor: .bottomSheetButton))
 				.padding(CGFloat(.defaultSidePadding))
 
 			}

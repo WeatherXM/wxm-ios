@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26052B5C2CDA2EE7009A7D92 /* TrackableScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26052B5B2CDA2EE7009A7D92 /* TrackableScroller.swift */; };
 		2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */; };
 		2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */; };
 		2608A7942C09F67A00452E40 /* DeviceLocation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7932C09F67A00452E40 /* DeviceLocation+.swift */; };
@@ -594,6 +595,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		26052B5B2CDA2EE7009A7D92 /* TrackableScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScroller.swift; sourceTree = "<group>"; };
 		2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyView.swift; sourceTree = "<group>"; };
 		2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyViewModel.swift; sourceTree = "<group>"; };
 		2608A7932C09F67A00452E40 /* DeviceLocation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceLocation+.swift"; sourceTree = "<group>"; };
@@ -2017,6 +2019,7 @@
 			children = (
 				2675473C29A9181E008BCF40 /* TrackableScrollView.swift */,
 				26A3B3DB2B18D2480002F35F /* TabBarVisibilityHandler.swift */,
+				26052B5B2CDA2EE7009A7D92 /* TrackableScroller.swift */,
 			);
 			path = TrackableScrollView;
 			sourceTree = "<group>";
@@ -3128,6 +3131,7 @@
 				266BAF632AA88996004F5DE0 /* LocalizableString+Search.swift in Sources */,
 				266CC4CF2AB30CD900EC794C /* LocalizableString+SelectFrequency.swift in Sources */,
 				26C624572AB09C78007A3162 /* LocalizableString+Settings.swift in Sources */,
+				26052B5C2CDA2EE7009A7D92 /* TrackableScroller.swift in Sources */,
 				26DF3D202C85BB86005F6FC1 /* ExplorerData+.swift in Sources */,
 				26A9619C2AA705FE00646A25 /* LocalizableString+StationDetails.swift in Sources */,
 				263B8B4E2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift in Sources */,

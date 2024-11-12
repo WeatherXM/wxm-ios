@@ -45,3 +45,10 @@ public extension Double {
 		return formatter.string(from: self as NSNumber) ?? "-"
 	}
 }
+
+infix operator ~==
+public extension FloatingPoint {
+	static func ~== (lhs: Self, rhs: Self) -> Bool {
+		lhs == rhs || lhs.nextDown == rhs || lhs.nextUp == rhs
+	}
+}
