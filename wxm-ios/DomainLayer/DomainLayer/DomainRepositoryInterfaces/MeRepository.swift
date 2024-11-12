@@ -15,6 +15,11 @@ public enum HistoryExclude: String {
 }
 
 public enum DeviceRewardsMode: String, CaseIterable {
+	// Temporary disable the year mode.
+	// Once we want it back, just remove the `allCases` implementation below
+	public static var allCases: [DeviceRewardsMode] {
+		[.week, .month]
+	}
 	case week
 	case month
 	case year
