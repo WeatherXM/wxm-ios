@@ -8275,6 +8275,17 @@
         }
       }
     },
+    "station_unowned_no_data_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No weather data received from this station yet, likely due to connectivity or operational issues."
+          }
+        }
+      }
+    },
     "station_warning_low_battery_button_title" : {
       "extractionState" : "manual",
       "localizations" : {

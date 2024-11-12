@@ -22,7 +22,7 @@ extension WeatherStationCard {
 
     @ViewBuilder
     var weatherView: some View {
-        WeatherOverviewView(weather: device.weather)
+        WeatherOverviewView(weather: device.weather, noDataText: followState.weatherNoDataText)
     }
 }
 

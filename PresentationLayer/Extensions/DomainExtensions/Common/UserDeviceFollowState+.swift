@@ -39,3 +39,20 @@ extension UserDeviceFollowState {
         return relation == .followed ? .followed : .owned
     }
 }
+
+extension UserDeviceFollowState? {
+	var weatherNoDataText: LocalizableString {
+		switch self?.state {
+
+			case .none:
+				return .stationUnownedNoDataText
+			case .some(let value):
+				switch value {
+					case .owned:
+						return .stationNoDataText
+					case .followed:
+						return .stationUnownedNoDataText
+				}
+		}
+	}
+}

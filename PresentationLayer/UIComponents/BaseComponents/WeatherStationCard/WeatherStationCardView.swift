@@ -38,7 +38,7 @@ private extension WeatherStationCardView {
 
 	@ViewBuilder
 	var weatherView: some View {
-		WeatherOverviewView(mode: .grid, weather: device.weather)
+		WeatherOverviewView(mode: .grid, weather: device.weather, noDataText: followState.weatherNoDataText)
 	}
 }
 

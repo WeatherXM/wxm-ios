@@ -63,7 +63,8 @@ private extension OverviewView {
 				}
 
 				WeatherOverviewView(weather: device.weather,
-									showSecondaryFields: true,
+									showSecondaryFields: device.weather != nil,
+									noDataText: viewModel.weatherNoDataText,
 									lastUpdatedText: device.weather?.updatedAtString(with: TimeZone(identifier: device.timezone ?? "") ?? .current),
 									buttonTitle: LocalizableString.StationDetails.viewHistoricalData.localized,
 									isButtonEnabled: viewModel.followState != nil) {

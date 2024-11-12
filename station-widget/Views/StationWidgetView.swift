@@ -111,7 +111,7 @@ private extension StationWidgetView {
 
 			Spacer()
 
-			WeatherOverviewView(mode: .minimal, weather: device.weather)
+			WeatherOverviewView(mode: .minimal, weather: device.weather, noDataText: followState.weatherNoDataText)
 		}
 		.padding(.vertical, CGFloat(.smallSidePadding))
 		.widgetBackground {
@@ -127,7 +127,7 @@ private extension StationWidgetView {
 			titleView(device: device, followState: followState)
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 
-			WeatherOverviewView(mode: uiMode, weather: device.weather)
+			WeatherOverviewView(mode: uiMode, weather: device.weather, noDataText: followState.weatherNoDataText)
 
 			Spacer(minLength: 0.0)
 		}
@@ -143,7 +143,7 @@ private extension StationWidgetView {
 			titleView(device: device, followState: followState)
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 
-			WeatherOverviewView(mode: .large, weather: device.weather, showSecondaryFields: true)
+			WeatherOverviewView(mode: .large, weather: device.weather, showSecondaryFields: true, noDataText: followState.weatherNoDataText)
 				.cornerRadius(CGFloat(.cardCornerRadius))
 
 		}

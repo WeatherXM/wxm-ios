@@ -12,7 +12,7 @@ struct WeatherOverviewView: View {
 	var mode: Mode = .default
     let weather: CurrentWeather?
     var showSecondaryFields: Bool = false
-    var noDataText: LocalizableString = .stationNoDataText
+    let noDataText: LocalizableString
     var lastUpdatedText: String?
     var buttonTitle: String?
     var isButtonEnabled: Bool = true
@@ -97,7 +97,11 @@ struct WeatherOverviewView_Previews: PreviewProvider {
     static var previews: some View {
         return ZStack {
             Color(.red)
-            WeatherOverviewView(weather: CurrentWeather.mockInstance, showSecondaryFields: true, buttonTitle: "Button text", isButtonEnabled: false) {}
+			WeatherOverviewView(weather: CurrentWeather.mockInstance,
+								showSecondaryFields: true,
+								noDataText: .stationNoDataText,
+								buttonTitle: "Button text",
+								isButtonEnabled: false) {}
         }
     }
 }
@@ -105,20 +109,20 @@ struct WeatherOverviewView_Previews: PreviewProvider {
 #Preview("Grid Layout") {
 	return ZStack {
 		Color(.red)
-		WeatherOverviewView(mode: .grid, weather: CurrentWeather.mockInstance, showSecondaryFields: false) {}
+		WeatherOverviewView(mode: .grid, weather: CurrentWeather.mockInstance, showSecondaryFields: false, noDataText: .stationUnownedNoDataText) {}
 	}
 }
 
 #Preview {
 	return ZStack {
 		Color(.red)
-		WeatherOverviewView(mode: .minimal, weather: CurrentWeather.mockInstance, showSecondaryFields: false) {}
+		WeatherOverviewView(mode: .minimal, weather: CurrentWeather.mockInstance, showSecondaryFields: false, noDataText: .stationNoDataText) {}
 	}
 }
 
 #Preview {
 	return ZStack {
 		Color(.red)
-		WeatherOverviewView(mode: .minimal, weather: nil, showSecondaryFields: false) {}
+		WeatherOverviewView(mode: .minimal, weather: nil, showSecondaryFields: false, noDataText: .stationNoDataText) {}
 	}
 }
