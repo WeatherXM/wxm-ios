@@ -110,7 +110,7 @@ private struct ContentView: View {
 			HStack(alignment: .bottom) {
 				Text(viewModel.totalEearnedText)
 					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
-					.foregroundStyle(Color(colorEnum: .darkGrey))
+					.foregroundStyle(Color(colorEnum: .text))
 				
 				Spacer()
 
