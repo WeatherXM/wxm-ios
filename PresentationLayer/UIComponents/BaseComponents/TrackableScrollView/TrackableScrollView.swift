@@ -161,7 +161,7 @@ class TrackableScrollOffsetObject: ObservableObject {
         return (contentSize.height - offset) <= scrollerSize.height
     }
 
-    fileprivate func didStartDragging() {
+    func didStartDragging() {
         willStartDraggingAction?()
         initialOffset = contentOffset
     }

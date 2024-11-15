@@ -59,6 +59,10 @@ class TrackableCoordinator: NSObject, UIScrollViewDelegate {
 		offsetObject?.scrollerSize = scrollView.frame.size
 		offsetObject?.contentOffset = scrollView.contentOffset.y
 	}
+
+	func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+		offsetObject?.didStartDragging()
+	}
 }
 
 class ContainerViewController: UIViewController {
@@ -68,6 +72,7 @@ class ContainerViewController: UIViewController {
 		scrollView.contentInsetAdjustmentBehavior = .never
 		scrollView.backgroundColor = .clear
 		scrollView.alwaysBounceVertical = true
+		scrollView.clipsToBounds = false
 		if let refreshCallback {
 			let refreshControl = UIRefreshControl()
 			refreshControl.tintColor = UIColor(colorEnum: .wxmPrimary)
