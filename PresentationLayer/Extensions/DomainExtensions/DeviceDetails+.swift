@@ -294,6 +294,7 @@ extension DeviceDetails {
 	static var mockDevice: DeviceDetails {
 		var device = DeviceDetails.emptyDeviceDetails
 		device.name = "Test name"
+		device.friendlyName = "Friendly name"
 		device.id = "0"
 		device.label = "AE:66:F7:21:1F:21:75:11:EC"
 		device.address = "This is an address"

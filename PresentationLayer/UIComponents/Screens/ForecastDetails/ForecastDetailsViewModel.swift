@@ -14,6 +14,8 @@ class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
 	let device: DeviceDetails
 	let followState: UserDeviceFollowState?
+	let navigationTitle: String
+	let navigationSubtitle: String?
 	@Published private(set) var isTransitioning: Bool = false
 	@Published private(set) var chartDelegate: ChartDelegate = ChartDelegate()
 	@Published var selectedForecastIndex: Int? {
@@ -38,6 +40,8 @@ class ForecastDetailsViewModel: ObservableObject {
 		self.forecasts = configuration.forecasts
 		self.device = configuration.device
 		self.followState = configuration.followState
+		self.navigationTitle = device.displayName
+		self.navigationSubtitle = device.friendlyName.isNilOrEmpty ? nil : device.name
 		if !forecasts.isEmpty {
 			self.selectedForecastIndex = configuration.selectedforecastIndex
 		}
