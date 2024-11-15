@@ -9,11 +9,14 @@ import SwiftUI
 import Toolkit
 struct StationRewardsView: View {
     @StateObject var viewModel: StationRewardsViewModel
+	@State private var contentsize: CGSize = .zero
 
     var body: some View {
 		GeometryReader { proxy in
 			ZStack {
-				TrackableScrollView(offsetObject: viewModel.offsetObject) { completion in
+				TrackableScroller(contentSize: $contentsize,
+								  showIndicators: false,
+								  offsetObject: viewModel.offsetObject) { completion in
 					viewModel.refresh(completion: completion)
 				} content: {
 					VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -40,6 +43,7 @@ struct StationRewardsView: View {
 					.iPadMaxWidth()
 					.padding()
 					.padding(.bottom, proxy.size.height / 2.0) // Quick fix for better experience while expanding/collapsing the containers's header
+					.sizeObserver(size: $contentsize)
 				}
 				.spinningLoader(show: Binding(get: { viewModel.viewState == .loading }, set: { _ in }), hideContent: true)
 				.fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)
