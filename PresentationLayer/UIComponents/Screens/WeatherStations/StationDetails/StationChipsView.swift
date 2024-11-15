@@ -15,7 +15,6 @@ struct StationChipsView: View {
 	let issues: IssuesChip?
 	var isScrollable: Bool = true
 	var warningAction: VoidCallback?
-	var statusAction: VoidCallback?
 
 	var body: some View {
 		HStack(spacing: CGFloat(.smallSpacing)) {
@@ -44,13 +43,7 @@ extension StationChipsView {
 private extension StationChipsView {
 	@ViewBuilder
 	var statusChip: some View {
-		Button {
-			statusAction?()
-		} label: {
-			StationLastActiveView(device: device)
-		}
-		.allowsHitTesting(statusAction != nil)
-
+		StationLastActiveView(device: device)
 	}
 
 	@ViewBuilder
