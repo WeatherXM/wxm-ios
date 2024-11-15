@@ -11,6 +11,7 @@ import Toolkit
 
 struct StationForecastView: View {
     @StateObject var viewModel: StationForecastViewModel
+	@State private var contentsize: CGSize = .zero
 
     var body: some View {
         ZStack {
@@ -18,7 +19,9 @@ struct StationForecastView: View {
 				.ignoresSafeArea()
 			
             ScrollViewReader { _ in
-                TrackableScrollView(showIndicators: false, offsetObject: viewModel.offsetObject) { completion in
+				TrackableScroller(contentSize: $contentsize,
+								  showIndicators: false,
+								  offsetObject: viewModel.offsetObject) { completion in
                     viewModel.refresh(completion: completion)
                 } content: {
                     VStack(spacing: CGFloat(.largeSpacing)) {
@@ -60,6 +63,7 @@ struct StationForecastView: View {
 					}
 					.iPadMaxWidth()
 					.padding(.vertical)
+					.sizeObserver(size: $contentsize)
                 }
             }
         }
@@ -100,6 +104,7 @@ private extension StationForecastView {
 					}.padding(.horizontal)
 				}
 				.disableScrollClip()
+				.fixedSize(horizontal: false, vertical: true)
 			}
 		} else {
 			EmptyView()
