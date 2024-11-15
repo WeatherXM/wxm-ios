@@ -16,6 +16,11 @@
 	  "ws_model": "WS1000",
 	  "gw_model": "WG1000"
   },
+  "metrics" : {
+	"pol_reason" : null,
+	"ts" : null,
+	"qod_score" : null
+  },
   "bat_state": "low",
   "attributes": {
     "friendlyName": "Home",

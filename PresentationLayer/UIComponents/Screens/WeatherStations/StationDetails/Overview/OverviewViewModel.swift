@@ -22,12 +22,13 @@ class OverviewViewModel: ObservableObject {
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
 	private(set) var device: DeviceDetails? {
 		didSet {
-			guard let device else {
+			guard let device,
+				  let followState else {
 				showNoDataInfo = false
 				return
 			}
 
-			showNoDataInfo = device.qod == nil
+			showNoDataInfo = (device.qod == nil && followState.relation == .owned)
 		}
 	}
     private(set) var followState: UserDeviceFollowState?
