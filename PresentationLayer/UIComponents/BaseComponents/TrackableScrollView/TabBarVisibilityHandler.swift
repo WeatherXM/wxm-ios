@@ -42,7 +42,7 @@ private extension TabBarVisibilityHandler {
 	/// - Parameter newContentOffset: The new scrolling offset
 	/// - Returns: If should show or hide tab bar
 	func isTabBarVisible(newContentOffset: CGFloat) -> Bool {
-		if scrollOffsetObject.hasReachedBottom(with: newContentOffset) {
+		if scrollOffsetObject.hasReachedBottom {
 			return false
 		}
 
