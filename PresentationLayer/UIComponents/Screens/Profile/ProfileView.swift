@@ -32,7 +32,7 @@ private struct ContentView: View {
 			titleView
 				.zIndex(1)
 
-			TrackableScrollView(offsetObject: viewModel.scrollOffsetObject) { completion in
+			TrackableScroller(offsetObject: viewModel.scrollOffsetObject) { completion in
 				viewModel.refresh(completion: completion)
 			} content: {
 				fieldsView
