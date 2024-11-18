@@ -15,7 +15,6 @@ class MyWalletViewModel: ObservableObject {
     private let ethAddressLength = 42
 	private let maskStringOffset = 5
 
-    let trackableObject = TrackableScrollOffsetObject()
     @Published var input: String = "" {
         didSet {
             textFieldError = nil

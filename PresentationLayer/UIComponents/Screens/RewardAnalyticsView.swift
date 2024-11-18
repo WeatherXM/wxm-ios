@@ -63,7 +63,7 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	var noRewards: some View {
-		TrackableScrollView {
+		ScrollView {
 			VStack(spacing: CGFloat(.defaultSidePadding)) {
 				titleView
 				NoRewardsView(showTipView: false)
@@ -71,12 +71,13 @@ private struct ContentView: View {
 			}
 			.padding(CGFloat(.defaultSidePadding))
 		}
+		.scrollIndicators(.hidden)
 	}
 
 	@ViewBuilder
 	var rewardsView: some View {
 		ScrollViewReader { proxy in
-			TrackableScrollView {
+			ScrollView {
 				VStack(spacing: CGFloat(.defaultSidePadding)) {
 					titleView
 
@@ -88,6 +89,7 @@ private struct ContentView: View {
 				.padding(CGFloat(.defaultSidePadding))
 				.iPadMaxWidth()
 			}
+			.scrollIndicators(.hidden)
 			.animation(.easeIn(duration: animationDuration),
 					   value: viewModel.stationItems.values.reduce(into: 0) { $0 = $0 + ($1.isExpanded ? 1 : 0) })
 		}
