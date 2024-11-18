@@ -196,8 +196,7 @@ private struct StationDetailsView: View {
             VStack {
 				StationChipsView(device: device, issues: viewModel.issues,
 								 isScrollable: true,
-								 warningAction: { viewModel.warningTapped() },
-								 statusAction: { viewModel.statusTapped() })
+								 warningAction: { viewModel.warningTapped() })
                 .sizeObserver(size: $titleViewAddressSize)
 
                 CustomSegmentView(options: StationDetailsViewModel.Tab.allCases.map { $0.description },

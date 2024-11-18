@@ -99,13 +99,6 @@ class StationDetailsViewModel: ObservableObject {
 		navigateToAlerts()
 	}
 
-	func statusTapped() {
-		guard device?.isActive == false else {
-			return
-		}
-		navigateToAlerts()
-	}
-
 	@MainActor
     func handleShareButtonTap() {
         WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .deviceDetailsShare])

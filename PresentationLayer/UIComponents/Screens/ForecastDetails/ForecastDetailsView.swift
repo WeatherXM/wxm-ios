@@ -22,8 +22,8 @@ struct ForecastDetailsView: View {
 			ScrollViewReader { proxy in
 				ScrollView(showsIndicators: false) {
 					VStack(spacing: CGFloat(.largeSpacing)) {
-						NavigationTitleView(title: .constant(viewModel.device.displayName),
-											subtitle: .constant(viewModel.device.address)) {
+						NavigationTitleView(title: .constant(viewModel.navigationTitle),
+											subtitle: .constant(viewModel.navigationSubtitle)) {
 							Group {
 								if let faIcon = viewModel.followState?.state.FAIcon {
 									Text(faIcon.icon.rawValue)
