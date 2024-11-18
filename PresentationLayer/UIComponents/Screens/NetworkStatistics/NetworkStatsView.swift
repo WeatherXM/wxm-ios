@@ -12,7 +12,6 @@ struct NetworkStatsView: View {
 
     @StateObject var viewModel: NetworkStatsViewModel
     @EnvironmentObject var navigationObject: NavigationObject
-    @StateObject private var scrollObject = TrackableScrollOffsetObject()
 
     var body: some View {
         ZStack {
@@ -44,7 +43,7 @@ struct NetworkStatsView: View {
 private extension NetworkStatsView {
     @ViewBuilder
     var contentView: some View {
-        TrackableScrollView(offsetObject: scrollObject) { completion in
+        TrackableScroller(showIndicators: false) { completion in
             viewModel.refresh(completion: completion)
         } content: {
             VStack(spacing: CGFloat(.mediumSpacing)) {

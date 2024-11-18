@@ -30,16 +30,17 @@ struct RewardsTimelineView: View {
     @ViewBuilder
 	var timelineView: some View {
 		ZStack(alignment: .bottom) {
-			TrackableScrollView(showIndicators: false,
-								offsetObject: viewModel.scrollOffsetObject) { completion in
+			TrackableScroller(showIndicators: false) { completion in
 				viewModel.refresh(showFullScreenLoader: false, reset: true, completion: completion)
 			} content: {
-				if viewModel.transactions.isEmpty {
-					NoRewardsView()
-						.padding(CGFloat(.mediumSidePadding))
-
-				} else {
-					timelineList
+				Group {
+					if viewModel.transactions.isEmpty {
+						NoRewardsView()
+							.padding(CGFloat(.mediumSidePadding))
+						
+					} else {
+						timelineList
+					}
 				}
 			}
 			.iPadMaxWidth()

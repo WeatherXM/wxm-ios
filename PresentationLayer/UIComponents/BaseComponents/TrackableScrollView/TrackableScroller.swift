@@ -11,7 +11,7 @@ import Toolkit
 
 struct TrackableScroller<V: View>: View {
 	var showIndicators: Bool = true
-	var offsetObject: TrackableScrollOffsetObject?
+	var offsetObject: TrackableScrollOffsetObject? = nil
 	var refreshCallback: GenericCallback<VoidCallback>?
 	let content: () -> V
 
