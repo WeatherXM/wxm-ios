@@ -135,6 +135,9 @@ private struct StationDetailsView: View {
 									StationForecastView(viewModel: viewModel.forecastVM)
 										.tag(index)
 										.conditionalOSsafeAreaTopInset(titleViewSize.height)
+										.clipped()
+									// Apply this modifier to clip the horizontal scroller (Hourly) of the forecast view.
+									// Not the best solution but the cleaner.
 								case .rewards:
 									StationRewardsView(viewModel: viewModel.rewardsVM)
 										.tag(index)
