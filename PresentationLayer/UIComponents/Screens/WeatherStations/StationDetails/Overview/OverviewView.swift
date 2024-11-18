@@ -12,11 +12,10 @@ import Toolkit
 struct OverviewView: View {
     @StateObject var viewModel: OverviewViewModel
     @State private var containerSize: CGSize = .zero
-	@State private var contentSize: CGSize = .zero
 
     var body: some View {
         ZStack {
-			TrackableScroller(contentSize: $contentSize, showIndicators: false,
+			TrackableScroller(showIndicators: false,
 							  offsetObject: viewModel.offsetObject) { completion in
                 viewModel.refresh(completion: completion)
             } content: {
@@ -33,7 +32,6 @@ struct OverviewView: View {
 				.padding(.top, CGFloat(.mediumToLargeSidePadding))
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 				.padding(.bottom, containerSize.height / 2.0) // Quick fix for better experience while expanding/collapsing the containers's header
-				.sizeObserver(size: $contentSize)
             }
             .sizeObserver(size: $containerSize)
         }

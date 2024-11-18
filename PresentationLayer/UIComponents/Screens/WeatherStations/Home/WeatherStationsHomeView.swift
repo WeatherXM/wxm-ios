@@ -73,7 +73,6 @@ private struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var navigationObject: NavigationObject
 
-	@State private var contentSize: CGSize = .zero
 	@State private var showFilters: Bool = false
     @StateObject private var viewModel: WeatherStationsHomeViewModel
     @Binding private var isTabBarShowing: Bool
@@ -166,8 +165,7 @@ private struct ContentView: View {
 	@ViewBuilder
 	func weatherStations(devices: [DeviceDetails]) -> some View {
 		let infoBannerIsVisible = viewModel.infoBanner != nil
-		TrackableScroller(contentSize: $contentSize,
-						  showIndicators: false,
+		TrackableScroller(showIndicators: false,
 						  offsetObject: viewModel.scrollOffsetObject) {  completion in
 			viewModel.getDevices(refreshMode: true, completion: completion)
 		} content: {
@@ -221,7 +219,6 @@ private struct ContentView: View {
 				.background(Color(colorEnum: .bg))
 				.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
 			}
-			.sizeObserver(size: $contentSize)
 		}
 	}
 	

@@ -9,7 +9,44 @@ import Foundation
 import SwiftUI
 import Toolkit
 
-struct TrackableScroller<V: View>: UIViewControllerRepresentable {
+struct TrackableScroller<V: View>: View {
+	var showIndicators: Bool = true
+	var offsetObject: TrackableScrollOffsetObject?
+	var refreshCallback: GenericCallback<VoidCallback>?
+	let content: () -> V
+
+	@State private var contentSize: CGSize = .zero
+
+	var body: some View {
+		if offsetObject == nil {
+			ScrollView(content: content)
+				.scrollContentBackground(.hidden)
+				.scrollIndicators(showIndicators ? .automatic : .hidden)
+				.refreshable {
+					await refresh()
+				}
+		} else {
+			TrackableScrollerRepresentable(contentSize: $contentSize,
+										   showIndicators: showIndicators,
+										   offsetObject: offsetObject,
+										   refreshCallback: refreshCallback) {
+				content().sizeObserver(size: $contentSize)
+			}
+		}
+	}
+
+	private func refresh() async {
+		return await withCheckedContinuation { continuation in
+			DispatchQueue.main.async {
+				self.refreshCallback? {
+					continuation.resume()
+				}
+			}
+		}
+	}
+}
+
+private struct TrackableScrollerRepresentable<V: View>: UIViewControllerRepresentable {
 	@Binding var contentSize: CGSize
 	var showIndicators: Bool = true
 	var offsetObject: TrackableScrollOffsetObject?
@@ -36,7 +73,7 @@ struct TrackableScroller<V: View>: UIViewControllerRepresentable {
 		guard sizeChanged, !uiViewController.scrollView.isDragging else {
 			return
 		}
-		
+
 		if let vc = context.coordinator.hostVC {
 			vc.view.removeFromSuperview()
 			uiViewController.insertChildVC(vc)
@@ -50,7 +87,7 @@ struct TrackableScroller<V: View>: UIViewControllerRepresentable {
 	}
 }
 
-class TrackableCoordinator: NSObject, UIScrollViewDelegate {
+private class TrackableCoordinator: NSObject, UIScrollViewDelegate {
 	weak var offsetObject: TrackableScrollOffsetObject?
 	weak var hostVC: UIViewController?
 
@@ -65,8 +102,8 @@ class TrackableCoordinator: NSObject, UIScrollViewDelegate {
 	}
 }
 
-class ContainerViewController: UIViewController {
-	
+private class ContainerViewController: UIViewController {
+
 	lazy var scrollView: UIScrollView = {
 		let scrollView = UIScrollView(frame: .zero)
 		scrollView.contentInsetAdjustmentBehavior = .never
@@ -133,7 +170,7 @@ class ContainerViewController: UIViewController {
 #Preview {
 	NavigationStack {
 		NavigationContainerView {
-			TrackableScroller(contentSize: .constant(.zero)) {
+			TrackableScroller {
 				TestView()
 			}
 		}

@@ -20,7 +20,7 @@ class OverviewViewModel: ObservableObject {
 		followState.weatherNoDataText
 	}
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
-	private(set) var device: DeviceDetails? {
+	@Published private(set) var device: DeviceDetails? {
 		didSet {
 			guard let device,
 				  let followState else {
