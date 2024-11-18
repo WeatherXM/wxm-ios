@@ -19,6 +19,7 @@ class TrackableScrollOffsetObject: ObservableObject {
 	var contentSize: CGSize = .zero
 	var scrollerSize: CGSize = .zero
 	var willStartDraggingAction: VoidCallback?
+	var didEndDraggingAction: VoidCallback?
 	var hasReachedBottom: Bool {
 		guard contentSize.height >= scrollerSize.height else {
 			return false
@@ -32,6 +33,10 @@ class TrackableScrollOffsetObject: ObservableObject {
 	func didStartDragging() {
 		willStartDraggingAction?()
 		initialOffset = contentOffset
+	}
+
+	func didEndDragging() {
+		didEndDraggingAction?()
 	}
 
 	private func updateDiffOffset() {

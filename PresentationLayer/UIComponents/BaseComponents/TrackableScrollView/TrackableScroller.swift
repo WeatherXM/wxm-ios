@@ -100,6 +100,10 @@ private class TrackableCoordinator: NSObject, UIScrollViewDelegate {
 	func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
 		offsetObject?.didStartDragging()
 	}
+
+	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+		offsetObject?.didEndDragging()
+	}
 }
 
 private class ContainerViewController: UIViewController {
