@@ -13,7 +13,7 @@ import FirebaseMessaging
 import Combine
 
 public class FirebaseManager {
-    public static let shared: FirebaseManager = .init()
+	nonisolated(unsafe) public static let shared: FirebaseManager = .init()
 	public var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? {
 		firebaseManagerImpl.latestReceivedNotificationPublisher
 	}
