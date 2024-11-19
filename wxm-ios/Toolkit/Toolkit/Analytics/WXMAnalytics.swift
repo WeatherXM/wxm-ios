@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class WXMAnalytics {
+public actor WXMAnalytics {
     public static let shared = WXMAnalytics()
 	private var providers: [AnalyticsProviderImplementation] = []
 
