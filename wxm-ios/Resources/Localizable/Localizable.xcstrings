@@ -1,10 +1,10 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    " " : {
+    "" : {
 
     },
-    "-" : {
+    " " : {
 
     },
     "%@" : {
@@ -16,16 +16,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$@  %2$@"
-          }
-        }
-      }
-    },
-    "%@ **[%@](%@)**" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ **[%2$@](%3$@)**"
           }
         }
       }
@@ -168,7 +158,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Station Inactive"
+            "value" : "Inactive"
           }
         }
       }
@@ -8226,7 +8216,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Station inactive"
+            "value" : "Inactive"
           }
         }
       }
