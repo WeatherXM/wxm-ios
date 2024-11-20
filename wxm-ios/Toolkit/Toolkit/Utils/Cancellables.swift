@@ -15,10 +15,9 @@ public class CancellableWrapper {
     public init() {}
 }
 
+
 public extension AnyCancellable {
-	func storeThreadSafe(in set: inout Set<AnyCancellable>) {
-		DispatchQueue.main.sync {
-			self.store(in: &set)
-		}
+	@MainActor func storeThreadSafe(in set: inout Set<AnyCancellable>) {
+		store(in: &set)
 	}
 }

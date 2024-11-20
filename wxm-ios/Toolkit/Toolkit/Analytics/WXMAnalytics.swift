@@ -7,7 +7,7 @@
 
 import Foundation
 
-public actor WXMAnalytics {
+public class WXMAnalytics: @unchecked Sendable {
     public static let shared = WXMAnalytics()
 	private var providers: [AnalyticsProviderImplementation] = []
 

@@ -8,10 +8,9 @@
 import Foundation
 import FirebaseRemoteConfig
 
-@MainActor
-public class RemoteConfigManager: ObservableObject {
+public class RemoteConfigManager: ObservableObject, @unchecked Sendable {
 
-	public let shared: RemoteConfigManager = .init()
+	public static let shared: RemoteConfigManager = .init()
 	private let remoteConfigManagerImpl: RemoteConfigManagerImplementation
 
 	// MARK: - Remote config entries
