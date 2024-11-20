@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseCrashlytics
 
-public class Logger {
+public class Logger: @unchecked Sendable {
 	public static let shared = Logger()
 
 	private init() {}

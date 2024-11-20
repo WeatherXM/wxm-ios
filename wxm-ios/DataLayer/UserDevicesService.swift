@@ -158,6 +158,7 @@ public class UserDevicesService {
             .eraseToAnyPublisher()
     }
 
+	@MainActor
     func getFollowState(deviceId: String) async throws -> Result<UserDeviceFollowState?, NetworkErrorResponse> {
         // If the id is in cache the device id is for a user device
         if let cachedStates = followStatesCache.getValue(for: followStatesCacheKey) {
@@ -189,6 +190,7 @@ public class UserDevicesService {
         }
     }
 
+	@MainActor
 	func getFollowStates() async throws -> Result<[UserDeviceFollowState]?, NetworkErrorResponse> {
 		if let cachedStates = followStatesCache.getValue(for: followStatesCacheKey) {
 			return .success(cachedStates)
