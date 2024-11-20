@@ -38,7 +38,7 @@ public class WXMLocationManager: NSObject {
 
         return await withCheckedContinuation { continuation in
             statusSubject?.sink { status in
-                continuation.resume(returning: status)
+				continuation.resume(returning: status)
             }.store(in: &cancellableSet)
         }
     }
@@ -87,7 +87,7 @@ extension WXMLocationManager: CLLocationManagerDelegate {
 }
 
 extension WXMLocationManager {
-    public enum Status {
+	public enum Status: Sendable {
         case authorized
         case denied
         case notDetermined
