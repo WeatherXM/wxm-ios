@@ -6,7 +6,7 @@
 //
 
 import Intents
-import DomainLayer
+@preconcurrency import DomainLayer
 import Combine
 import Toolkit
 
