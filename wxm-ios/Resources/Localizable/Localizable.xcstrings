@@ -8293,7 +8293,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your station is reporting low battery. This may lead to data gaps at night, or in low-sunlight conditions and, eventually, lose rewards. Read more on how to replace your station batteries."
+            "value" : "Your station is reporting low battery. This will lead to data gaps and eventually loss of rewards. Read more on how to replace your station batteries."
           }
         }
       }
