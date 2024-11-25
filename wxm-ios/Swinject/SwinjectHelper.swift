@@ -5,14 +5,14 @@
 //  Created by Hristos Condrea on 6/5/22.
 //
 
-import DataLayer
-import DomainLayer
+@preconcurrency import DataLayer
+@preconcurrency import DomainLayer
 import Foundation
 import Swinject
 import Toolkit
 
 class SwinjectHelper: SwinjectInterface {
-    static let shared = SwinjectHelper()
+	nonisolated(unsafe) static let shared = SwinjectHelper()
 
     private init() {}
 

@@ -10,8 +10,8 @@ import Toolkit
 import DomainLayer
 
 class WeatherUnitsManager: ObservableObject {
-
-	static let `default`: WeatherUnitsManager =  {
+	
+	nonisolated(unsafe) static let `default`: WeatherUnitsManager =  {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MainUseCase.self)!
 		let manager = WeatherUnitsManager(mainUseCase: useCase)
 		
