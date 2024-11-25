@@ -8,7 +8,7 @@
 @preconcurrency import DataLayer
 @preconcurrency import DomainLayer
 import Foundation
-import Swinject
+@preconcurrency import Swinject
 import Toolkit
 
 class SwinjectHelper: SwinjectInterface {
