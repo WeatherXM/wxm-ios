@@ -7,7 +7,7 @@
 
 import Foundation
 import WidgetKit
-import DomainLayer
+@preconcurrency import DomainLayer
 
 struct StationTimelineEntry: @unchecked Sendable, TimelineEntry {
 	let date: Date
