@@ -234,7 +234,7 @@ private extension LineChartDataSet {
         drawCircleHoleEnabled = false
         circleRadius = WeatherChartsConstants.POINT_SIZE
         lineWidth = WeatherChartsConstants.LINE_WIDTH
-        mode = .cubicBezier
+		mode = .linear
         setColor(color)
         setCircleColor(color)
         fillColor = color
