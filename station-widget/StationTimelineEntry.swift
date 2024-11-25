@@ -9,7 +9,7 @@ import Foundation
 import WidgetKit
 import DomainLayer
 
-struct StationTimelineEntry: TimelineEntry {
+struct StationTimelineEntry: @unchecked Sendable, TimelineEntry {
 	let date: Date
 	let displaySize: CGSize
 	let timelineCase: TimelineCase

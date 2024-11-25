@@ -9,7 +9,7 @@ import Foundation
 import DomainLayer
 import Toolkit
 
-extension CurrentWeather: Identifiable {
+extension CurrentWeather: @retroactive Identifiable {
     public var id: String {
         timestamp ?? ""
     }
