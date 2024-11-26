@@ -14,11 +14,13 @@ struct LoggedInTabViewContainer: View {
     @State var isTabBarShowing: Bool = true
     @StateObject var explorerViewModel: ExplorerViewModel
 	@StateObject var profileViewModel: ProfileViewModel
+	@StateObject var homeViewModel: WeatherStationsHomeViewModel
     @State var tabBarItemsSize: CGSize = .zero
 
     public init(swinjectHelper: SwinjectInterface) {
 		_explorerViewModel = StateObject(wrappedValue: ViewModelsFactory.getExplorerViewModel())
 		_profileViewModel = StateObject(wrappedValue: ViewModelsFactory.getProfileViewModel())
+		_homeViewModel = StateObject(wrappedValue: ViewModelsFactory.getWeatherStationsHomeViewModel())
     }
 
     var body: some View {
@@ -55,7 +57,7 @@ struct LoggedInTabViewContainer: View {
         ZStack {
             switch mainViewModel.selectedTab {
                 case .homeTab:
-                    WeatherStationsHomeView(swinjectHelper: mainViewModel.swinjectHelper,
+					WeatherStationsHomeView(viewModel: homeViewModel,
                                             isTabBarShowing: $isTabBarShowing,
                                             tabBarItemsSize: $tabBarItemsSize,
 											isWalletEmpty: $mainViewModel.isWalletMissing)

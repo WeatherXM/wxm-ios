@@ -17,8 +17,8 @@ struct WeatherStationsHomeView: View {
     @Binding private var isWalletEmpty: Bool
     @StateObject private var viewModel: WeatherStationsHomeViewModel
 
-    init(swinjectHelper: SwinjectInterface, isTabBarShowing: Binding<Bool>, tabBarItemsSize: Binding<CGSize>, isWalletEmpty: Binding<Bool>) {
-		_viewModel = StateObject(wrappedValue: ViewModelsFactory.getWeatherStationsHomeViewModel())
+	init(viewModel: WeatherStationsHomeViewModel, isTabBarShowing: Binding<Bool>, tabBarItemsSize: Binding<CGSize>, isWalletEmpty: Binding<Bool>) {
+		_viewModel = StateObject(wrappedValue: viewModel)
         _isTabBarShowing = isTabBarShowing
         _tabBarItemsSize = tabBarItemsSize
         _isWalletEmpty = isWalletEmpty
@@ -250,7 +250,7 @@ private struct ContentView: View {
 }
 
 #Preview {
-	WeatherStationsHomeView(swinjectHelper: SwinjectHelper.shared,
+	WeatherStationsHomeView(viewModel: ViewModelsFactory.getWeatherStationsHomeViewModel(),
 							isTabBarShowing: .constant(false),
 							tabBarItemsSize: .constant(.zero),
 							isWalletEmpty: .constant(false))
