@@ -10,7 +10,7 @@ import Alamofire
 import Toolkit
 import UIKit
 
-class RequestHeadersAdapter: RequestAdapter {
+class RequestHeadersAdapter: @unchecked Sendable, RequestAdapter {
 
     func adapt(_ urlRequest: URLRequest, for session: Alamofire.Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var urlRequest = urlRequest
@@ -22,8 +22,8 @@ class RequestHeadersAdapter: RequestAdapter {
 }
 
 private extension RequestHeadersAdapter {
-    func generateClientId(callback: @escaping GenericCallback<String>) {
-        Task {
+    func generateClientId(callback: @escaping @Sendable GenericCallback<String>) {
+		Task {
             // App Info
             let bundleId: String = Bundle.main.bundleID
             let appVersion: String = Bundle.main.releaseVersionNumberPretty

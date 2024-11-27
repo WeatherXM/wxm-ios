@@ -17,7 +17,7 @@ class MockProtocol: URLProtocol {
     /// A static dictionary where we keep the moke file name for each mocked endpoint. Every entry is expected to be inserted from `ApiClient`
     /// The stucture is [`request url`: `file name`]
     /// eg ["https:/api-mock.weatherxm.com/api/v1/me/devices/123":  "get_user_device"]
-    static var responses: [String: String] = [:]
+	nonisolated(unsafe) static var responses: [String: String] = [:]
 
     override init(request: URLRequest, cachedResponse: CachedURLResponse?, client: URLProtocolClient?) {
         super.init(request: request, cachedResponse: cachedResponse, client: client)
