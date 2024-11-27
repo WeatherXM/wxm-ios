@@ -12,8 +12,8 @@ import FirebaseAnalytics
 import FirebaseMessaging
 import Combine
 
-public class FirebaseManager {
-	nonisolated(unsafe) public static let shared: FirebaseManager = .init()
+public class FirebaseManager: @unchecked Sendable {
+	public static let shared: FirebaseManager = .init()
 	public var latestReceivedNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>? {
 		firebaseManagerImpl.latestReceivedNotificationPublisher
 	}

@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-import DomainLayer
+@preconcurrency import DomainLayer
 
 /// Wraps the bluetooth actions such as connect to station, reboot, set frequency etc.
 /// The goal is to encapsulate the apple's API with delegation pattern and expose async functions
@@ -220,7 +220,7 @@ private extension BTActionWrapper {
                     return
                 }
                 self.stopScanning()
-                continuation.resume(returning: btDevice)
+				continuation.resume(returning: btDevice)
             }.store(in: &self.cancellables)
         }
     }

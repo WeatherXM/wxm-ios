@@ -17,28 +17,28 @@ public protocol DeviceInfoRepository {
     func changeFrequency(device: DeviceDetails, frequency: Frequency) -> AnyPublisher<ChangeFrequencyState, Never>
 }
 
-public enum RebootStationState {
+public enum RebootStationState: Sendable {
     case connect
     case rebooting
     case failed(RebootError)
     case finished
 }
 
-public enum RebootError {
+public enum RebootError: Sendable {
     case bluetooth(BluetoothState)
     case notInRange
     case connect
     case unknown
 }
 
-public enum ChangeFrequencyState {
+public enum ChangeFrequencyState: Sendable {
     case connect
     case changing
     case failed(ChangeFrequencyError)
     case finished
 }
 
-public enum ChangeFrequencyError {
+public enum ChangeFrequencyError: Sendable {
     case bluetooth(BluetoothState)
     case notInRange
     case connect

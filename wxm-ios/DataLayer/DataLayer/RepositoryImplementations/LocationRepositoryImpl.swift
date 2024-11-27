@@ -7,7 +7,7 @@
 
 import Combine
 import DomainLayer
-import MapboxSearch
+@preconcurrency import MapboxSearch
 import Toolkit
 
 public class DeviceLocationRepositoryImpl: DeviceLocationRepository {

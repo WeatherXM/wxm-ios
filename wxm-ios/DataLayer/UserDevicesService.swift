@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 import Alamofire
-import DomainLayer
+@preconcurrency import DomainLayer
 import Toolkit
 import WidgetKit
 
@@ -16,7 +16,7 @@ extension Notification.Name {
     static let userDevicesListUpdated = Notification.Name("userDevices.updated")
 }
 
-public class UserDevicesService {
+public class UserDevicesService: @unchecked Sendable {
 
     private var cancellableSet: Set<AnyCancellable> = []
     private let cacheValidationInterval: TimeInterval = 3.0 * 60.0 // 3 minutes
@@ -158,7 +158,6 @@ public class UserDevicesService {
             .eraseToAnyPublisher()
     }
 
-	@MainActor
     func getFollowState(deviceId: String) async throws -> Result<UserDeviceFollowState?, NetworkErrorResponse> {
         // If the id is in cache the device id is for a user device
         if let cachedStates = followStatesCache.getValue(for: followStatesCacheKey) {
@@ -182,7 +181,7 @@ public class UserDevicesService {
                         continuation.resume(returning: .success(userDeviceState))
                     }
                 }
-                .storeThreadSafe(in: &cancellableSet)
+                .store(in: &cancellableSet)
 
             } catch {
                 continuation.resume(throwing: error)

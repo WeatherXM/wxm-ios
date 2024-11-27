@@ -5,7 +5,7 @@
 //  Created by Pantelis Giazitsis on 12/6/23.
 //
 
-import DomainLayer
+@preconcurrency import DomainLayer
 import Combine
 import Alamofire
 

@@ -13,7 +13,7 @@ protocol MockResponseBuilder {
 }
 
 /// Monitors the url requests and if provided a mock file we return the file data as response
-class MockProtocol: URLProtocol {
+class MockProtocol: URLProtocol, @unchecked Sendable {
     /// A static dictionary where we keep the moke file name for each mocked endpoint. Every entry is expected to be inserted from `ApiClient`
     /// The stucture is [`request url`: `file name`]
     /// eg ["https:/api-mock.weatherxm.com/api/v1/me/devices/123":  "get_user_device"]
