@@ -25,6 +25,7 @@ struct TrackableScroller<V: View>: View {
 				.refreshable {
 					await refresh()
 				}
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
 		} else {
 			TrackableScrollerRepresentable(contentSize: $contentSize,
 										   showIndicators: showIndicators,
