@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import DomainLayer
+@preconcurrency import DomainLayer
 import Toolkit
 import Combine
 import Alamofire
 
-public class UserInfoService {
+public class UserInfoService: @unchecked Sendable {
 	private var cancellableSet: Set<AnyCancellable> = []
 	private var userInfoSubject = CurrentValueSubject<NetworkUserInfoResponse?, Never>(nil)
 
