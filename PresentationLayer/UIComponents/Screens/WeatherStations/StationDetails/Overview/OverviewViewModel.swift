@@ -20,7 +20,7 @@ class OverviewViewModel: ObservableObject {
 		followState.weatherNoDataText
 	}
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
-	private(set) var device: DeviceDetails? {
+	@Published private(set) var device: DeviceDetails? {
 		didSet {
 			guard let device,
 				  let followState else {
@@ -89,6 +89,11 @@ private extension OverviewViewModel {
             self.containerDelegate?.offsetUpdated(diffOffset: value)
         }
         .store(in: &cancellables)
+
+		offsetObject.didEndDraggingAction = { [weak self] in
+			guard let self else { return }
+			self.containerDelegate?.didEndScrollerDragging()
+		}
     }
 
     func generateCtaObject() -> CTAContainerView.CTAObject {

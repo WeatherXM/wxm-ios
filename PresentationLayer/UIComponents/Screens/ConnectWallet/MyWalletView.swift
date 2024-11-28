@@ -19,7 +19,7 @@ struct MyWalletView: View {
             Color(colorEnum: .bg).ignoresSafeArea()
 
             ZStack {
-                TrackableScrollView(offsetObject: viewModel.trackableObject) {
+                ScrollView {
                     VStack(spacing: CGFloat(.defaultSpacing)) {
 
 						VStack(spacing: CGFloat(.smallSpacing)) {
@@ -47,6 +47,7 @@ struct MyWalletView: View {
 					.iPadMaxWidth()
                     .padding(.vertical)
                 }
+				.scrollIndicators(.hidden)
                 .padding(.bottom, bottomDrawerSize.height)
 
                 if viewModel.isInEditMode {

@@ -20,8 +20,7 @@ struct DeviceInfoView: View {
                 .ignoresSafeArea()
 
             ZStack {
-                TrackableScrollView(showIndicators: false,
-                                    offsetObject: viewModel.offestObject) { completion in
+                TrackableScroller(showIndicators: false) { completion in
                     viewModel.refresh(completion: completion)
 				} content: {
                     VStack(spacing: CGFloat(.defaultSpacing)) {

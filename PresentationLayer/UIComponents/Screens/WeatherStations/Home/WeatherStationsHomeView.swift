@@ -17,8 +17,8 @@ struct WeatherStationsHomeView: View {
     @Binding private var isWalletEmpty: Bool
     @StateObject private var viewModel: WeatherStationsHomeViewModel
 
-    init(swinjectHelper: SwinjectInterface, isTabBarShowing: Binding<Bool>, tabBarItemsSize: Binding<CGSize>, isWalletEmpty: Binding<Bool>) {
-		_viewModel = StateObject(wrappedValue: ViewModelsFactory.getWeatherStationsHomeViewModel())
+	init(viewModel: WeatherStationsHomeViewModel, isTabBarShowing: Binding<Bool>, tabBarItemsSize: Binding<CGSize>, isWalletEmpty: Binding<Bool>) {
+		_viewModel = StateObject(wrappedValue: viewModel)
         _isTabBarShowing = isTabBarShowing
         _tabBarItemsSize = tabBarItemsSize
         _isWalletEmpty = isWalletEmpty
@@ -73,7 +73,6 @@ private struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var navigationObject: NavigationObject
 
-	@State private var contentSize: CGSize = .zero
 	@State private var showFilters: Bool = false
     @StateObject private var viewModel: WeatherStationsHomeViewModel
     @Binding private var isTabBarShowing: Bool
@@ -166,8 +165,7 @@ private struct ContentView: View {
 	@ViewBuilder
 	func weatherStations(devices: [DeviceDetails]) -> some View {
 		let infoBannerIsVisible = viewModel.infoBanner != nil
-		TrackableScroller(contentSize: $contentSize,
-						  showIndicators: false,
+		TrackableScroller(showIndicators: false,
 						  offsetObject: viewModel.scrollOffsetObject) {  completion in
 			viewModel.getDevices(refreshMode: true, completion: completion)
 		} content: {
@@ -221,7 +219,6 @@ private struct ContentView: View {
 				.background(Color(colorEnum: .bg))
 				.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
 			}
-			.sizeObserver(size: $contentSize)
 		}
 	}
 	
@@ -253,7 +250,7 @@ private struct ContentView: View {
 }
 
 #Preview {
-	WeatherStationsHomeView(swinjectHelper: SwinjectHelper.shared,
+	WeatherStationsHomeView(viewModel: ViewModelsFactory.getWeatherStationsHomeViewModel(),
 							isTabBarShowing: .constant(false),
 							tabBarItemsSize: .constant(.zero),
 							isWalletEmpty: .constant(false))

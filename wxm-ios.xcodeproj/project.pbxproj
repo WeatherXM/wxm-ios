@@ -24,7 +24,6 @@
 		2618A7162A21014200983B7B /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7152A21014200983B7B /* AlertsViewModel.swift */; };
 		2618A7262A24F93000983B7B /* BottomSheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7252A24F93000983B7B /* BottomSheetModifier.swift */; };
 		261CD81829CB2D5B00C0CECE /* PercentageGridLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */; };
-		261E9E9D29A925D500E8EBA3 /* PullableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9E9C29A925D500E8EBA3 /* PullableScrollView */; };
 		261E9EA029A925EB00E8EBA3 /* Veil in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9E9F29A925EB00E8EBA3 /* Veil */; };
 		261E9EA729A9275C00E8EBA3 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EA629A9275C00E8EBA3 /* Swinject */; };
 		261E9EAA29A927BE00E8EBA3 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EA929A927BE00E8EBA3 /* CodeScanner */; };
@@ -115,6 +114,7 @@
 		2664833429C3777600748F9C /* CurrentWeather+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664833329C3777600748F9C /* CurrentWeather+.swift */; };
 		2664833F29C8953E00748F9C /* SpinningLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664833E29C8953E00748F9C /* SpinningLoaderView.swift */; };
 		2664834329C89F8A00748F9C /* StationDetailsTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664834229C89F8A00748F9C /* StationDetailsTypes.swift */; };
+		2664D6692CEB690200902995 /* TrackableScrollOffsetObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664D6682CEB68FD00902995 /* TrackableScrollOffsetObject.swift */; };
 		2666D50A2BBC4E80003B30C0 /* StationChipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2666D5092BBC4E80003B30C0 /* StationChipsView.swift */; };
 		2666D57D2BC96077003B30C0 /* LocalizableString+Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2666D57C2BC96077003B30C0 /* LocalizableString+Forecast.swift */; };
 		2666D57F2BC977D0003B30C0 /* StationForecastMiniCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2666D57E2BC977D0003B30C0 /* StationForecastMiniCardView.swift */; };
@@ -218,7 +218,6 @@
 		267547DC29A9181E008BCF40 /* UITextField+StationSerialNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675471B29A9181E008BCF40 /* UITextField+StationSerialNumber.swift */; };
 		267547E229A9181E008BCF40 /* BluetoothMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675472429A9181E008BCF40 /* BluetoothMessageView.swift */; };
 		267547ED29A9181E008BCF40 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675473029A9181E008BCF40 /* WebView.swift */; };
-		267547F629A9181E008BCF40 /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675473C29A9181E008BCF40 /* TrackableScrollView.swift */; };
 		267547F729A9181E008BCF40 /* FailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675473D29A9181E008BCF40 /* FailView.swift */; };
 		267547F829A9181E008BCF40 /* ScannerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675473E29A9181E008BCF40 /* ScannerOverlayView.swift */; };
 		267547FB29A9181E008BCF40 /* WeatherStationCard+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675474229A9181E008BCF40 /* WeatherStationCard+Content.swift */; };
@@ -725,6 +724,7 @@
 		2664833329C3777600748F9C /* CurrentWeather+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentWeather+.swift"; sourceTree = "<group>"; };
 		2664833E29C8953E00748F9C /* SpinningLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningLoaderView.swift; sourceTree = "<group>"; };
 		2664834229C89F8A00748F9C /* StationDetailsTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsTypes.swift; sourceTree = "<group>"; };
+		2664D6682CEB68FD00902995 /* TrackableScrollOffsetObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollOffsetObject.swift; sourceTree = "<group>"; };
 		2666D5092BBC4E80003B30C0 /* StationChipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationChipsView.swift; sourceTree = "<group>"; };
 		2666D5692BC911D6003B30C0 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		2666D5722BC9171B003B30C0 /* git_version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = git_version.sh; sourceTree = "<group>"; };
@@ -814,7 +814,6 @@
 		2675471B29A9181E008BCF40 /* UITextField+StationSerialNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+StationSerialNumber.swift"; sourceTree = "<group>"; };
 		2675472429A9181E008BCF40 /* BluetoothMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothMessageView.swift; sourceTree = "<group>"; };
 		2675473029A9181E008BCF40 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		2675473C29A9181E008BCF40 /* TrackableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
 		2675473D29A9181E008BCF40 /* FailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailView.swift; sourceTree = "<group>"; };
 		2675473E29A9181E008BCF40 /* ScannerOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerOverlayView.swift; sourceTree = "<group>"; };
 		2675474229A9181E008BCF40 /* WeatherStationCard+Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeatherStationCard+Content.swift"; sourceTree = "<group>"; };
@@ -1164,7 +1163,6 @@
 				261E9EB029A9296900E8EBA3 /* IQKeyboardManagerSwift in Frameworks */,
 				262A0DFD29DC1823005B14A2 /* Lottie in Frameworks */,
 				261E9EB529A92B9400E8EBA3 /* MapboxMaps in Frameworks */,
-				261E9E9D29A925D500E8EBA3 /* PullableScrollView in Frameworks */,
 				261E9EA729A9275C00E8EBA3 /* Swinject in Frameworks */,
 				26A86BFB2C7F68C400F1C2CF /* DGCharts in Frameworks */,
 				26DD42CB29AF56B9008E277E /* Toolkit.framework in Frameworks */,
@@ -2087,7 +2085,7 @@
 		26A3B3DA2B18D21B0002F35F /* TrackableScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				2675473C29A9181E008BCF40 /* TrackableScrollView.swift */,
+				2664D6682CEB68FD00902995 /* TrackableScrollOffsetObject.swift */,
 				26A3B3DB2B18D2480002F35F /* TabBarVisibilityHandler.swift */,
 				26052B5B2CDA2EE7009A7D92 /* TrackableScroller.swift */,
 			);
@@ -2787,7 +2785,6 @@
 			);
 			name = "wxm-ios";
 			packageProductDependencies = (
-				261E9E9C29A925D500E8EBA3 /* PullableScrollView */,
 				261E9E9F29A925EB00E8EBA3 /* Veil */,
 				261E9EA629A9275C00E8EBA3 /* Swinject */,
 				261E9EA929A927BE00E8EBA3 /* CodeScanner */,
@@ -2843,7 +2840,6 @@
 			);
 			mainGroup = B52BCC682824FB8F00EA3DA5;
 			packageReferences = (
-				261E9E9B29A925D500E8EBA3 /* XCRemoteSwiftPackageReference "PullableScrollView" */,
 				261E9E9E29A925EB00E8EBA3 /* XCRemoteSwiftPackageReference "Veil" */,
 				261E9EA529A9275C00E8EBA3 /* XCRemoteSwiftPackageReference "Swinject" */,
 				261E9EA829A927BE00E8EBA3 /* XCRemoteSwiftPackageReference "CodeScanner" */,
@@ -3369,6 +3365,7 @@
 				2664834329C89F8A00748F9C /* StationDetailsTypes.swift in Sources */,
 				264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */,
 				26FFCCDA2BD2483F00880AAD /* ForecastDetailsDailyView.swift in Sources */,
+				2664D6692CEB690200902995 /* TrackableScrollOffsetObject.swift in Sources */,
 				26DD42E429B0FA9B008E277E /* StationDetailsViewModel.swift in Sources */,
 				2664833029C36B0900748F9C /* StationForeCastCardView+Content.swift in Sources */,
 				2664832E29C364FE00748F9C /* StationForecastCardView.swift in Sources */,
@@ -3417,7 +3414,6 @@
 				26ADDF812BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift in Sources */,
 				2664830129C0C73E00748F9C /* Toast.swift in Sources */,
 				266482FF29C0BDCF00748F9C /* ToastView.swift in Sources */,
-				267547F629A9181E008BCF40 /* TrackableScrollView.swift in Sources */,
 				2675482E29A9181E008BCF40 /* RewardsTimelineView.swift in Sources */,
 				267547A829A9181E008BCF40 /* RewardsTimelineViewModel.swift in Sources */,
 				2675480129A9181E008BCF40 /* UberTextField.swift in Sources */,
@@ -4196,14 +4192,6 @@
 				minimumVersion = 1.2.0;
 			};
 		};
-		261E9E9B29A925D500E8EBA3 /* XCRemoteSwiftPackageReference "PullableScrollView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pantelisss/PullableScrollView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		261E9E9E29A925EB00E8EBA3 /* XCRemoteSwiftPackageReference "Veil" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/DanielCardonaRojas/Veil";
@@ -4339,11 +4327,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = SwiftUIIntrospect;
-		};
-		261E9E9C29A925D500E8EBA3 /* PullableScrollView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 261E9E9B29A925D500E8EBA3 /* XCRemoteSwiftPackageReference "PullableScrollView" */;
-			productName = PullableScrollView;
 		};
 		261E9E9F29A925EB00E8EBA3 /* Veil */ = {
 			isa = XCSwiftPackageProductDependency;

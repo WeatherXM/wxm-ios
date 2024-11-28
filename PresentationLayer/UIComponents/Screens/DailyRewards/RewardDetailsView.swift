@@ -35,7 +35,7 @@ private struct ContentView: View {
 			Color(colorEnum: .background)
 				.ignoresSafeArea()
 
-			TrackableScrollView { completion in
+			TrackableScroller(showIndicators: false) { completion in
 				viewModel.refresh(completion: completion)
 			} content: {
 				VStack(spacing: CGFloat(.defaultSpacing)) {

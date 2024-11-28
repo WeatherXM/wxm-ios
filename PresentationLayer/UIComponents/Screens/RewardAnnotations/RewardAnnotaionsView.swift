@@ -27,7 +27,7 @@ private struct ContentView: View {
 		ZStack {
 			Color(colorEnum: .background)
 				.ignoresSafeArea()
-			TrackableScrollView {
+			ScrollView {
 				VStack(spacing: CGFloat(.largeSpacing)) {
 					titleView
 
@@ -35,6 +35,7 @@ private struct ContentView: View {
 				}
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
 			}
+			.scrollIndicators(.hidden)
 		}
 		.onAppear {
 			navigationObject.navigationBarColor = Color(colorEnum: .background)

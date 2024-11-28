@@ -73,6 +73,11 @@ private extension StationRewardsViewModel {
             self.containerDelegate?.offsetUpdated(diffOffset: value)
         }
         .store(in: &cancellables)
+
+		offsetObject.didEndDraggingAction = { [weak self] in
+			guard let self else { return }
+			self.containerDelegate?.didEndScrollerDragging()
+		}
     }
 }
 

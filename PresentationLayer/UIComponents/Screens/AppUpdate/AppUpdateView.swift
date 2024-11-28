@@ -29,7 +29,7 @@ private struct ContentView: View {
 				.ignoresSafeArea()
 
 			VStack(spacing: CGFloat(.defaultSpacing)) {
-				TrackableScrollView {
+				ScrollView {
 					VStack(spacing: CGFloat(.defaultSpacing)) {
 						HStack {
 							Text(LocalizableString.AppUpdate.description.localized)
@@ -53,6 +53,7 @@ private struct ContentView: View {
 						}
 					}
 				}
+				.scrollIndicators(.hidden)
 
 				Spacer(minLength: 0.0)
 

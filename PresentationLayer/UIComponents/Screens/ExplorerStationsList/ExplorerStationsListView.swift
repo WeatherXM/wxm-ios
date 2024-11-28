@@ -51,7 +51,7 @@ private struct ContentView: View {
 					.wxmShadow()
 					.zIndex(1)
 
-                TrackableScrollView {
+                ScrollView {
 					AdaptiveGridContainerView {
 						ForEach(viewModel.devices) { device in
 							WeatherStationCard(device: device,
@@ -64,6 +64,7 @@ private struct ContentView: View {
 					}
                     .padding(CGFloat(.defaultSpacing))
                 }
+				.scrollIndicators(.hidden)
 				.zIndex(0)
                 .spinningLoader(show: $viewModel.isLoadingDeviceList, hideContent: true)
                 .fail(show: $viewModel.isDeviceListFailVisible, obj: viewModel.deviceListFailObject)

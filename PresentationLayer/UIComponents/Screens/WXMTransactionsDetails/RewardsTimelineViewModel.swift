@@ -25,8 +25,7 @@ final class RewardsTimelineViewModel: ObservableObject {
     weak var mainVM: MainScreenViewModel?
 	@Published var isRequestInProgress: Bool = false
     @Published var transactions = [[NetworkDeviceRewardsSummary]]()
-    @Published var showFullScreenLoader = false
-    let scrollOffsetObject: TrackableScrollOffsetObject = .init()
+    @Published var showFullScreenLoader = false    
 
     @Published var navigationTitle: String = ""
     @Published var isFailed: Bool = false

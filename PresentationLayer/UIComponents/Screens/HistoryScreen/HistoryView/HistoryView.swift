@@ -15,17 +15,19 @@ struct HistoryView: View {
 
     var body: some View {
         ZStack {
-            TrackableScrollView { completion in
+            TrackableScroller(showIndicators: false) { completion in
                 viewModel.refresh(completion: completion)
             } content: {
-                if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
-					ChartsContainer(historyData: historyData,
-									chartTypes: ChartCardType.allCases,
-									delegate: viewModel.chartDelegate)
+				Group {
+					if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
+						ChartsContainer(historyData: historyData,
+										chartTypes: ChartCardType.allCases,
+										delegate: viewModel.chartDelegate)
 						.padding(.horizontal, CGFloat(.defaultSidePadding))
-                        .id(historyData.markDate)
-                        .padding(.top)
-                }
+						.id(historyData.markDate)
+						.padding(.top)
+					}
+				}
             }
 			.iPadMaxWidth()
         }

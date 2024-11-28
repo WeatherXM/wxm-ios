@@ -18,7 +18,8 @@ struct StationForecastView: View {
 				.ignoresSafeArea()
 			
             ScrollViewReader { _ in
-                TrackableScrollView(showIndicators: false, offsetObject: viewModel.offsetObject) { completion in
+				TrackableScroller(showIndicators: false,
+								  offsetObject: viewModel.offsetObject) { completion in
                     viewModel.refresh(completion: completion)
                 } content: {
                     VStack(spacing: CGFloat(.largeSpacing)) {
@@ -100,6 +101,7 @@ private extension StationForecastView {
 					}.padding(.horizontal)
 				}
 				.disableScrollClip()
+				.fixedSize(horizontal: false, vertical: true)
 			}
 		} else {
 			EmptyView()

@@ -16,7 +16,7 @@ struct RewardBoostsView: View {
 		ZStack {
 			Color(colorEnum: .background)
 
-			TrackableScrollView { completion in
+			TrackableScroller(showIndicators: false) { completion in
 				viewModel.refresh(completion: completion)
 			} content: {
 				VStack(spacing: CGFloat(.mediumSpacing)) {

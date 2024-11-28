@@ -13,7 +13,8 @@ struct StationRewardsView: View {
     var body: some View {
 		GeometryReader { proxy in
 			ZStack {
-				TrackableScrollView(offsetObject: viewModel.offsetObject) { completion in
+				TrackableScroller(showIndicators: false,
+								  offsetObject: viewModel.offsetObject) { completion in
 					viewModel.refresh(completion: completion)
 				} content: {
 					VStack(spacing: CGFloat(.mediumSpacing)) {

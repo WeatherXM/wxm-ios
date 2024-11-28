@@ -14,6 +14,7 @@ import CoreLocation
 protocol StationDetailsViewModelDelegate: AnyObject {
     func shouldRefresh() async
     func offsetUpdated(diffOffset: CGFloat)
+	func didEndScrollerDragging()
     func shouldAskToFollow()
 }
 
@@ -302,6 +303,10 @@ extension StationDetailsViewModel: StationDetailsViewModelDelegate {
         }
     }
 
+	func didEndScrollerDragging() {
+
+	}
+	
     func shouldAskToFollow() {
         statusButtonTapped()
     }

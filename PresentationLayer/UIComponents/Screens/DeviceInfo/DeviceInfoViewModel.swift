@@ -13,7 +13,6 @@ import UIKit
 
 class DeviceInfoViewModel: ObservableObject {
 
-	let offestObject = TrackableScrollOffsetObject()
 	let mainVM: MainScreenViewModel = .shared
     var sections: [[DeviceInfoRowView.Row]] {
         var fields: [[Field]] = []

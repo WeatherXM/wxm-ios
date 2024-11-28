@@ -9,7 +9,45 @@ import Foundation
 import SwiftUI
 import Toolkit
 
-struct TrackableScroller<V: View>: UIViewControllerRepresentable {
+struct TrackableScroller<V: View>: View {
+	var showIndicators: Bool = true
+	var offsetObject: TrackableScrollOffsetObject? = nil
+	var refreshCallback: GenericCallback<VoidCallback>?
+	let content: () -> V
+
+	@State private var contentSize: CGSize = .zero
+
+	var body: some View {
+		if offsetObject == nil {
+			ScrollView(content: content)
+				.scrollContentBackground(.hidden)
+				.scrollIndicators(showIndicators ? .automatic : .hidden)
+				.refreshable {
+					await refresh()
+				}
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
+		} else {
+			TrackableScrollerRepresentable(contentSize: $contentSize,
+										   showIndicators: showIndicators,
+										   offsetObject: offsetObject,
+										   refreshCallback: refreshCallback) {
+				content().sizeObserver(size: $contentSize)
+			}
+		}
+	}
+
+	private func refresh() async {
+		return await withCheckedContinuation { continuation in
+			DispatchQueue.main.async {
+				self.refreshCallback? {
+					continuation.resume()
+				}
+			}
+		}
+	}
+}
+
+private struct TrackableScrollerRepresentable<V: View>: UIViewControllerRepresentable {
 	@Binding var contentSize: CGSize
 	var showIndicators: Bool = true
 	var offsetObject: TrackableScrollOffsetObject?
@@ -36,7 +74,7 @@ struct TrackableScroller<V: View>: UIViewControllerRepresentable {
 		guard sizeChanged, !uiViewController.scrollView.isDragging else {
 			return
 		}
-		
+
 		if let vc = context.coordinator.hostVC {
 			vc.view.removeFromSuperview()
 			uiViewController.insertChildVC(vc)
@@ -50,7 +88,7 @@ struct TrackableScroller<V: View>: UIViewControllerRepresentable {
 	}
 }
 
-class TrackableCoordinator: NSObject, UIScrollViewDelegate {
+private class TrackableCoordinator: NSObject, UIScrollViewDelegate {
 	weak var offsetObject: TrackableScrollOffsetObject?
 	weak var hostVC: UIViewController?
 
@@ -59,15 +97,24 @@ class TrackableCoordinator: NSObject, UIScrollViewDelegate {
 		offsetObject?.scrollerSize = scrollView.frame.size
 		offsetObject?.contentOffset = scrollView.contentOffset.y
 	}
+
+	func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+		offsetObject?.didStartDragging()
+	}
+
+	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+		offsetObject?.didEndDragging()
+	}
 }
 
-class ContainerViewController: UIViewController {
-	
+private class ContainerViewController: UIViewController {
+
 	lazy var scrollView: UIScrollView = {
 		let scrollView = UIScrollView(frame: .zero)
 		scrollView.contentInsetAdjustmentBehavior = .never
 		scrollView.backgroundColor = .clear
 		scrollView.alwaysBounceVertical = true
+		scrollView.clipsToBounds = false
 		if let refreshCallback {
 			let refreshControl = UIRefreshControl()
 			refreshControl.tintColor = UIColor(colorEnum: .wxmPrimary)
@@ -128,7 +175,7 @@ class ContainerViewController: UIViewController {
 #Preview {
 	NavigationStack {
 		NavigationContainerView {
-			TrackableScroller(contentSize: .constant(.zero)) {
+			TrackableScroller {
 				TestView()
 			}
 		}
