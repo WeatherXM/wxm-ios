@@ -25,7 +25,7 @@ public enum DeviceRewardsMode: String, CaseIterable {
 	case year
 }
 
-public struct UserDeviceFollowState: Hashable, Codable {
+public struct UserDeviceFollowState: Hashable, Codable, Sendable {
     public let deviceId: String
     public let relation: DeviceRelation
 
