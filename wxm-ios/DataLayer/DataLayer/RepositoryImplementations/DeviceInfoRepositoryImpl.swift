@@ -7,7 +7,7 @@
 
 import Foundation
 @preconcurrency import DomainLayer
-import Combine
+@preconcurrency import Combine
 import Alamofire
 
 public class DeviceInfoRepositoryImpl: @unchecked Sendable, DeviceInfoRepository {
@@ -41,7 +41,8 @@ extension DeviceInfoRepositoryImpl {
 
 	public func rebootStation(device: DeviceDetails) -> AnyPublisher<RebootStationState, Never> {
 		let valueSubject = CurrentValueSubject<RebootStationState, Never>(.connect)
-		Task { [weak self] in
+
+		Task { @MainActor [weak self, valueSubject] in
 			valueSubject.send(.connect)
 			if let error = await self?.bluetoothWrapper.connect(device: device) {
 				valueSubject.send(.failed(error.toRebootError))

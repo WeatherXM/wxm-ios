@@ -11,7 +11,7 @@ import Combine
 
 /// Wraps the bluetooth actions such as connect to station, reboot, set frequency etc.
 /// The goal is to encapsulate the apple's API with delegation pattern and expose async functions
-class BTActionWrapper {
+class BTActionWrapper: @unchecked Sendable {
     private let bluetoothManager: BluetoothManager
     private var cancellables: Set<AnyCancellable> = []
     private var scanningTimeoutWorkItem: DispatchWorkItem?

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct DeviceDetails {
+public struct DeviceDetails: @unchecked Sendable {
     public var id: String?
     public var name: String
     public var friendlyName: String?
