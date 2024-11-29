@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Firmware: Codable {
+public struct Firmware: Codable, Sendable {
     public let assigned: String?
     public let current: String?
 
@@ -28,12 +28,12 @@ public enum DeviceRelation: String, Codable, Sendable {
     case followed
 }
 
-public enum BatteryState: String, Codable {
+public enum BatteryState: String, Codable, Sendable {
 	case low
 	case ok
 }
 
-public struct StationBundle: Codable {
+public struct StationBundle: Codable, Sendable {
 	public let name: Code?
 	public let title: String?
 	public let connectivity: Connectivity?
@@ -50,7 +50,7 @@ public struct StationBundle: Codable {
 		case hwClass = "hw_class"
 	}
 
-	public enum Code: String, Codable {
+	public enum Code: String, Codable, Sendable {
 		case m5
 		case h1
 		case h2
@@ -78,19 +78,19 @@ public struct StationBundle: Codable {
 	}
 }
 
-public enum Connectivity: String, Codable {
+public enum Connectivity: String, Codable, Sendable {
 	case wifi
 	case helium
 	case cellular
 }
 
-public enum PolStatus: String, Codable {
+public enum PolStatus: String, Codable, Sendable {
 	case verified
 	case notVerified = "LOCATION_NOT_VERIFIED"
 	case noLocation = "NO_LOCATION_DATA"
 }
 
-public struct Metrics: Codable {
+public struct Metrics: Codable, Sendable {
 	public let ts: Date?
 	public let qodScore: Int?
 	public let polReason: PolStatus?

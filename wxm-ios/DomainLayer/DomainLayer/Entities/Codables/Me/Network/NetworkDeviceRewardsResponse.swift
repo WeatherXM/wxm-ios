@@ -7,24 +7,24 @@
 
 import Foundation
 
-public struct NetworkDeviceRewardsResponse: Codable {
+public struct NetworkDeviceRewardsResponse: Codable, Sendable {
 	public let total: Double?
 	public let data: [RewardsData]?
 	public let details: [Details]?
 }
 
 public extension NetworkDeviceRewardsResponse {
-	enum RewardType: String, Codable, CaseIterable {
+	enum RewardType: String, Codable, CaseIterable, Sendable {
 		case base
 		case boost
 	}
 
-	struct RewardsData: Codable {
+	struct RewardsData: Codable, Sendable {
 		public let ts: Date?
 		public let rewards: [RewardItem]?
 	}
 
-	struct RewardItem: Codable {
+	struct RewardItem: Codable, Sendable {
 		public let type: RewardType?
 		public let code: BoostCode?
 		public let value: Double?
@@ -36,7 +36,7 @@ public extension NetworkDeviceRewardsResponse {
 		}
 	}
 
-	struct Details: Codable {
+	struct Details: Codable, Sendable {
 		public let code: BoostCode?
 		public let currentRewards: Double?
 		public let totalRewards: Double?

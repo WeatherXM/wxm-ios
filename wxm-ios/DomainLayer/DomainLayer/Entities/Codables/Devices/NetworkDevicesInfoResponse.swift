@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkDevicesInfoResponse: Codable {
+public struct NetworkDevicesInfoResponse: Codable, Sendable {
     public let name: String?
     public let claimedAt: Date?
     public let gateway: Gateway?
@@ -33,7 +33,7 @@ public struct NetworkDevicesInfoResponse: Codable {
 }
 
 public extension NetworkDevicesInfoResponse {
-    struct Gateway: Codable {
+	struct Gateway: Codable, Sendable {
         public let model: String?
         public let serialNumber: String?
         public let firmware: Firmware?
@@ -67,7 +67,7 @@ public extension NetworkDevicesInfoResponse {
         }
     }
 
-    struct WeatherStation: Codable {
+	struct WeatherStation: Codable, Sendable {
         public let model: String?
         public let lastActivity: Date?
         public let batState: BatteryState?

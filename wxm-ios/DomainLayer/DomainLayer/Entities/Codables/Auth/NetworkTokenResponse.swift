@@ -6,7 +6,7 @@
 //
 
 import Foundation
-public struct NetworkTokenResponse: Codable {
+public struct NetworkTokenResponse: Codable, Sendable {
     public var token: String = ""
     public var refreshToken: String = ""
 

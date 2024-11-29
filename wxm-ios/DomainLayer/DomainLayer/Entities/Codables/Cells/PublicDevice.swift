@@ -5,7 +5,7 @@
 //  Created by Lampros Zouloumis on 17/8/22.
 //
 
-public struct PublicDevice: Codable {
+public struct PublicDevice: Codable, Sendable {
     var id: String = ""
     var name: String = ""
     var timezone: String?

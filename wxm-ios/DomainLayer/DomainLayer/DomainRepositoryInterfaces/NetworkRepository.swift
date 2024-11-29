@@ -19,6 +19,6 @@ public protocol NetworkRepository {
 	func getRewardsWithdraw(wallet: String) throws -> AnyPublisher<DataResponse<NetworkUserRewardsResponse, NetworkErrorResponse>, Never>
 }
 
-public enum SearchExclude: String {
+public enum SearchExclude: String, Sendable {
     case places
 }

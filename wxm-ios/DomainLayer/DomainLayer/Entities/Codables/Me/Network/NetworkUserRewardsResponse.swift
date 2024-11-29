@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkUserRewardsResponse: Codable {
+public struct NetworkUserRewardsResponse: Codable, Sendable {
 	public let proof: [String]?
 	public let cumulativeAmount: String?
 	public let cycle: Int?

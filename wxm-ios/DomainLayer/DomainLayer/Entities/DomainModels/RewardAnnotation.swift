@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RewardAnnotation: Codable, Equatable, Hashable {
+public struct RewardAnnotation: Codable, Equatable, Hashable, Sendable {
 	public let severity: Severity?
 	public let group: Group?
 	public let title: String?
@@ -42,13 +42,13 @@ public struct RewardAnnotation: Codable, Equatable, Hashable {
 }
 
 public extension RewardAnnotation {
-	enum Severity: String, Codable {
+	enum Severity: String, Codable, Sendable {
 		case info = "INFO"
 		case warning = "WARNING"
 		case error = "ERROR"
 	}
 
-	enum Group: Codable, Equatable, Hashable, RawRepresentable {
+	enum Group: Codable, Equatable, Hashable, RawRepresentable, Sendable {
 		public init?(rawValue: String) {
 			switch rawValue {
 				case "NO_WALLET":
