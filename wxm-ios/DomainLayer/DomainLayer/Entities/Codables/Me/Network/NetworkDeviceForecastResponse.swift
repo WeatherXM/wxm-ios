@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkDeviceForecastResponse: Codable {
+public struct NetworkDeviceForecastResponse: Codable, Sendable {
     public var tz: String = ""
     public var date: String = ""
     public var hourly: [CurrentWeather]? = []

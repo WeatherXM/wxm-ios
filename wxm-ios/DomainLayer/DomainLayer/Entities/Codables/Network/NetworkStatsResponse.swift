@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkStatsResponse: Codable {
+public struct NetworkStatsResponse: Codable, Sendable {
     public let weatherStations: NetworkWeatherStations?
     public let dataDays: [NetworkStatsTimeSeries]?
     public let tokens: NetworkStationsStatsTokens?
@@ -23,18 +23,18 @@ public struct NetworkStatsResponse: Codable {
     }
 }
 
-public struct NetworkWeatherStations: Codable {
+public struct NetworkWeatherStations: Codable, Sendable {
     public let onboarded: NetworkStationsStats?
     public let claimed: NetworkStationsStats?
     public let active: NetworkStationsStats?
 }
 
-public struct NetworkStationsStats: Codable {
+public struct NetworkStationsStats: Codable, Sendable {
     public let total: Int?
     public let details: [NetworkStationsStatsDetails]?
 }
 
-public struct NetworkStationsStatsDetails: Codable {
+public struct NetworkStationsStatsDetails: Codable, Sendable {
     public let model: String?
     public let connectivity: Connectivity?
     public let amount: Int?
@@ -42,7 +42,7 @@ public struct NetworkStationsStatsDetails: Codable {
     public let url: String?
 }
 
-public struct NetworkStationsStatsTokens: Codable {
+public struct NetworkStationsStatsTokens: Codable, Sendable {
     public let totalSupply: Int?
 	public let circulatingSupply: Int?
 	public let totalAllocated: Double?
@@ -60,7 +60,7 @@ public struct NetworkStationsStatsTokens: Codable {
     }
 }
 
-public struct NetworkStatsContracts: Codable {
+public struct NetworkStatsContracts: Codable, Sendable {
 	public let tokenUrl: String?
 	public let rewardsUrl: String?
 
@@ -70,7 +70,7 @@ public struct NetworkStatsContracts: Codable {
 	}
 }
 
-public struct NetworkStatsTimeSeries: Codable {
+public struct NetworkStatsTimeSeries: Codable, Sendable {
     public let ts: Date?
     public let value: Double?
 }

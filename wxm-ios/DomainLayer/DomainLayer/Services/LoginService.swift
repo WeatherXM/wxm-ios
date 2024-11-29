@@ -20,7 +20,7 @@ public protocol LoginService {
 	func login(username: String, password: String) throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never>
 }
 
-public class LoginServiceImpl: LoginService {
+public class LoginServiceImpl: LoginService, @unchecked Sendable {
 	private let authRepository: AuthRepository
 	private let meRepository: MeRepository
 	private let keychainRepository: KeychainRepository
@@ -74,7 +74,7 @@ private extension LoginServiceImpl {
 
 	func getInstallationId() -> AnyPublisher<String, Never> {
 		let publisher = PassthroughSubject<String, Never>()
-		Task { @MainActor in
+		Task { @MainActor [publisher] in
 			let installationId = await FirebaseManager.shared.getInstallationId()
 			publisher.send(installationId)
 			publisher.send(completion: .finished)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkUserInfoResponse: Codable {
+public struct NetworkUserInfoResponse: Codable, Sendable {
     public var id: String? = ""
     public var email: String? = ""
     public var name: String? = ""
@@ -18,7 +18,7 @@ public struct NetworkUserInfoResponse: Codable {
     public init() {}
 }
 
-public struct Wallet: Codable {
+public struct Wallet: Codable, Sendable {
     public var address: String? = ""
     public var updatedAt: Int? = 0
 
