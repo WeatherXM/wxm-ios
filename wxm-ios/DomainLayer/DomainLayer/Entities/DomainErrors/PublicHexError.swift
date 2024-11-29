@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum PublicHexError: Error {
+public enum PublicHexError: Error, Sendable {
     case infrastructure
     case networkRelated(NetworkErrorResponse?)
     case serialization

@@ -5,7 +5,7 @@
 //  Created by Lampros Zouloumis on 17/8/22.
 //
 
-import Combine
+@preconcurrency import Combine
 import CoreLocation
 import Foundation
 @preconcurrency import MapboxMaps
@@ -122,18 +122,18 @@ public class ExplorerUseCase: @unchecked Sendable {
         }
     }
 
-	public func getPublicDevicesOfHexIndex(hexIndex: String, hexCoordinates: CLLocationCoordinate2D?, completion: @escaping @Sendable ((Result<[DeviceDetails], PublicHexError>) -> Void)) {
+	public func getPublicDevicesOfHexIndex(hexIndex: String, hexCoordinates: CLLocationCoordinate2D?, completion: @escaping @Sendable (Result<[DeviceDetails], PublicHexError>) -> Void) {
         do {
             try explorerRepository.getPublicDevicesOfHex(index: hexIndex)
-                .sink(receiveValue: { [weak self] response in
-                    guard let devices = response.value, response.error == nil else {
+				.sink(receiveValue: { [weak self] response in
+                    guard let self, let devices = response.value, response.error == nil else {
                         completion(.failure(PublicHexError.networkRelated(response.error)))
                         return
                     }
 
 					Task { [weak self] in
                         var explorerDevices = [DeviceDetails]()
-                        await devices.asyncForEach { publicDevice in
+                        await devices.asyncForEach { [weak self] publicDevice in
                             _ = try? await self?.meRepository.getDeviceFollowState(deviceId: publicDevice.id).get()
                             var device = publicDevice.toDeviceDetails
 							if let hexCoordinates {
@@ -150,7 +150,6 @@ public class ExplorerUseCase: @unchecked Sendable {
                             return true
                         })
                         completion(.success(explorerDevices))
-
                     }
                 }).store(in: &cancellableSet)
 
