@@ -9,6 +9,7 @@ import Foundation
 import AVFoundation
 import Toolkit
 
+@MainActor
 class ClaimDeviceSerialNumberViewModel: ObservableObject {
 	let completion: GenericCallback<SerialNumber?>
 	@Published var showQrScanner: Bool = false

@@ -83,6 +83,7 @@ extension NetworkDeviceRewardsSummary: @retroactive Identifiable {
 	}
 }
 
+@MainActor
 extension RewardAnnotation {
 	var warningType: CardWarningType? {
 		guard let severity else {

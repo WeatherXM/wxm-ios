@@ -19,6 +19,7 @@ extension BatteryState: @retroactive CustomStringConvertible {
     }
 }
 
+@MainActor
 extension NetworkDevicesInfoResponse {
 	var isRewardSplitted: Bool {
 		guard let rewardSplit else {

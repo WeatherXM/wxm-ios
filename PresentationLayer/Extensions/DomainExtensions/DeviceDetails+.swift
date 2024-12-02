@@ -14,7 +14,7 @@ struct FirmwareVersion: Codable {
 	let version: String
 }
 
-extension DeviceDetails: Identifiable { }
+extension DeviceDetails: @retroactive Identifiable { }
 
 extension DeviceDetails {
 	
@@ -109,6 +109,7 @@ extension DeviceDetails {
 }
 
 // MARK: - Issues
+@MainActor
 extension DeviceDetails {
 	private static let firmwareUpdateInterval: TimeInterval = .hour
 	

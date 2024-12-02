@@ -39,7 +39,7 @@ class RewardAnnotationsViewModel: ObservableObject {
 }
 
 extension RewardAnnotationsViewModel: HashableViewModel {
-	func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
 		hasher.combine("\(String(describing: device.id))-\(refDate.timeIntervalSince1970)")
 	}
 }

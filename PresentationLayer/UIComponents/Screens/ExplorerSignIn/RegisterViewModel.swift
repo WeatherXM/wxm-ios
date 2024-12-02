@@ -108,6 +108,6 @@ final class RegisterViewModel: ObservableObject {
 }
 
 extension RegisterViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
     }
 }

@@ -11,6 +11,7 @@ import CoreLocation
 import Toolkit
 import SwiftUI
 
+@MainActor
 protocol ExplorerSearchViewModelDelegate: AnyObject {
     func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?)
     func searchWillBecomeActive(_ active: Bool)

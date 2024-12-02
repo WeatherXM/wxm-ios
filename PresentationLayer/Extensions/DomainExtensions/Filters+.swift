@@ -13,6 +13,7 @@ protocol FilterPresentable: CustomStringConvertible where Self: CaseIterable {
     var analyticsParameterValue: ParameterValue { get }
 }
 
+extension GroupBy: @retroactive CustomStringConvertible {}
 extension GroupBy: FilterPresentable {
     static var title: String {
         LocalizableString.Filters.groupByTitle.localized
@@ -41,6 +42,7 @@ extension GroupBy: FilterPresentable {
     }
 }
 
+extension SortBy: @retroactive CustomStringConvertible {}
 extension SortBy: FilterPresentable {
     static var title: String {
         LocalizableString.Filters.sortByTitle.localized
@@ -69,6 +71,7 @@ extension SortBy: FilterPresentable {
     }
 }
 
+extension Filter: @retroactive CustomStringConvertible {}
 extension Filter: FilterPresentable {
     static var title: String {
         LocalizableString.Filters.filterTitle.localized
