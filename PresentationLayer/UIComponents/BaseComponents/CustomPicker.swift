@@ -175,12 +175,13 @@ private extension CustomPicker {
     }
 }
 
+@MainActor
 private class CustomPickerManager {
     private init() {}
 
     var customPickerHostController: UIHostingController<AnyView>?
 
-    static let `default` = CustomPickerManager()
+	static let `default` = CustomPickerManager()
 
     var pickerFieldFrame: CGRect = .zero
     var containerBounds: CGRect = .zero

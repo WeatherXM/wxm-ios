@@ -79,7 +79,7 @@ class NetworkStatsViewModel: ObservableObject {
 }
 
 extension NetworkStatsViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
 
     }
 }

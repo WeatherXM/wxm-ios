@@ -11,6 +11,7 @@ import Toolkit
 import DomainLayer
 import Combine
 
+@MainActor
 class AppUpdateViewModel: ObservableObject {
 	@Published var whatsNewText: String?
 	@Published var forceUpdate: Bool = false

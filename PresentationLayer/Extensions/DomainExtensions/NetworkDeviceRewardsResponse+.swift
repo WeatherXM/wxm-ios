@@ -49,7 +49,7 @@ extension NetworkDeviceRewardsResponse.RewardItem {
 	}
 }
 
-extension DeviceRewardsMode: CustomStringConvertible {
+extension DeviceRewardsMode: @retroactive CustomStringConvertible {
 	public var description: String {
 		switch self {
 			case .week:
