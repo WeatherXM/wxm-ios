@@ -206,7 +206,6 @@
 		267547C929A9181E008BCF40 /* WXMButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470329A9181E008BCF40 /* WXMButtonStyle.swift */; };
 		267547CA29A9181E008BCF40 /* WXMToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470429A9181E008BCF40 /* WXMToggleStyle.swift */; };
 		267547CB29A9181E008BCF40 /* TabBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470529A9181E008BCF40 /* TabBarModifier.swift */; };
-		267547CC29A9181E008BCF40 /* OnAnimationCompletedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470629A9181E008BCF40 /* OnAnimationCompletedModifier.swift */; };
 		267547CE29A9181E008BCF40 /* CustomColorButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470829A9181E008BCF40 /* CustomColorButtonStyle.swift */; };
 		267547CF29A9181E008BCF40 /* WXMCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470929A9181E008BCF40 /* WXMCardStyle.swift */; };
 		267547D029A9181E008BCF40 /* ChartModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470A29A9181E008BCF40 /* ChartModifier.swift */; };
@@ -800,7 +799,6 @@
 		2675470329A9181E008BCF40 /* WXMButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMButtonStyle.swift; sourceTree = "<group>"; };
 		2675470429A9181E008BCF40 /* WXMToggleStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMToggleStyle.swift; sourceTree = "<group>"; };
 		2675470529A9181E008BCF40 /* TabBarModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarModifier.swift; sourceTree = "<group>"; };
-		2675470629A9181E008BCF40 /* OnAnimationCompletedModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnAnimationCompletedModifier.swift; sourceTree = "<group>"; };
 		2675470829A9181E008BCF40 /* CustomColorButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColorButtonStyle.swift; sourceTree = "<group>"; };
 		2675470929A9181E008BCF40 /* WXMCardStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMCardStyle.swift; sourceTree = "<group>"; };
 		2675470A29A9181E008BCF40 /* ChartModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartModifier.swift; sourceTree = "<group>"; };
@@ -1643,7 +1641,6 @@
 				26D5013929B20F5200BC2951 /* CornerRadius.swift */,
 				2675470829A9181E008BCF40 /* CustomColorButtonStyle.swift */,
 				2675470129A9181E008BCF40 /* GeneralButtonStyle.swift */,
-				2675470629A9181E008BCF40 /* OnAnimationCompletedModifier.swift */,
 				2675470B29A9181E008BCF40 /* SizeObserver.swift */,
 				2675470C29A9181E008BCF40 /* StrokeBorderModifier.swift */,
 				2675470529A9181E008BCF40 /* TabBarModifier.swift */,
@@ -3308,7 +3305,6 @@
 				2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */,
 				264CDE0F2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift in Sources */,
 				26A4115B29B60F2900A2C10B /* OverviewViewModel.swift in Sources */,
-				267547CC29A9181E008BCF40 /* OnAnimationCompletedModifier.swift in Sources */,
 				2664831929C31AF400748F9C /* OverlayAnimator.swift in Sources */,
 				261CD81829CB2D5B00C0CECE /* PercentageGridLayoutView.swift in Sources */,
 				2675481829A9181E008BCF40 /* ProfileView.swift in Sources */,
