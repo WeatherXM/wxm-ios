@@ -68,8 +68,9 @@ struct MyWalletView: View {
         .sheet(isPresented: $viewModel.showQrScanner) {
 			ScannerView(mode: .qr, completion: viewModel.handleScanResult)
         }
-        .customSheet(isPresented: $viewModel.showAccountConfirmation) { _ in
+		.bottomSheet(show: $viewModel.showAccountConfirmation) {
             AccountConfirmationView(viewModel: viewModel.accountConfirmationViewModel!)
+				.padding(CGFloat(.defaultSidePadding))
         }
 
     }
