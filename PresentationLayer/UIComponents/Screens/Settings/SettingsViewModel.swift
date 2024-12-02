@@ -129,7 +129,7 @@ final class SettingsViewModel: ObservableObject {
 	}
 
     func logoutUser(completion: @escaping (Bool) -> Void) {
-        let logoutAction: GenericCallback<String?> = { [weak  self] _ in
+		let logoutAction: GenericMainActorCallback<String?> = { [weak  self] _ in
             guard let self else {
                 return
             }

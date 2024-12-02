@@ -64,7 +64,9 @@ private struct PopOverModifier<V: View>: ViewModifier {
 }
 
 private extension PopOverModifier {
-    struct Store {
+
+	@MainActor
+	struct Store {
         var anchorView = UIView()
     }
 

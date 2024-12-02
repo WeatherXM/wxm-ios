@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 private struct TextfieldClearButtonModifier: ViewModifier {
     @Binding var text: String
     @Binding var isLoading: Bool
@@ -50,6 +51,7 @@ private struct TextfieldClearButtonModifier: ViewModifier {
     }
 }
 
+@MainActor
 extension TextField {
     @ViewBuilder
     func textFieldClearButton(text: Binding<String>,

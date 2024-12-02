@@ -7,6 +7,7 @@
 
 import UIKit
 
+@MainActor
 extension UITextField {
     private static let PLACEHOLDER_CHARACTER = " "
     private static let SEPARATOR_CHARACTER = ":"

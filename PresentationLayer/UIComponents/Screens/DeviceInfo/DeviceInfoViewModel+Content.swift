@@ -10,10 +10,13 @@ import DomainLayer
 import Toolkit
 import SwiftUI
 
+@MainActor
 struct DeviceInfoButtonInfo: Equatable {
-	static func == (lhs: DeviceInfoButtonInfo, rhs: DeviceInfoButtonInfo) -> Bool {
-		lhs.icon == rhs.icon &&
-		lhs.title == rhs.title
+	nonisolated static func == (lhs: DeviceInfoButtonInfo, rhs: DeviceInfoButtonInfo) -> Bool {
+		MainActor.assumeIsolated {
+			lhs.icon == rhs.icon &&
+			lhs.title == rhs.title
+		}
 	}
 	
 	let icon: AssetEnum?
