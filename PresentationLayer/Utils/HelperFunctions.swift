@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Toolkit
 
+@MainActor
 struct HelperFunctions {
 
     func openUrl(_ urlString: String) {
@@ -85,7 +86,7 @@ struct HelperFunctions {
         let installationIdParameter = ("\n" + (Constants.installationId + installationId)).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         finalEmailString.append(installationIdParameter)
 
-        let versionParameter = await ("\n" + (Constants.iOSVersion + (UIDevice.current.systemVersion))).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        let versionParameter = ("\n" + (Constants.iOSVersion + (UIDevice.current.systemVersion))).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         finalEmailString.append(versionParameter)
 
         if let errorString {

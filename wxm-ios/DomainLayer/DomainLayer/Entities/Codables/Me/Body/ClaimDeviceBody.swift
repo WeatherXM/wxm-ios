@@ -8,7 +8,7 @@
 import CoreLocation
 import Foundation
 
-public struct ClaimDeviceBody {
+public struct ClaimDeviceBody: Sendable {
     public var serialNumber: String
     public var location: CLLocationCoordinate2D
     public var secret: String?

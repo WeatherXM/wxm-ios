@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 import Toolkit
 
+@MainActor
 struct AlertHelper {
-    struct AlertObject {
-        typealias Action = (title: String, action: ((String?) -> Void)?)
+	struct AlertObject: @unchecked Sendable {
+		typealias Action = (title: String, action: @MainActor (String?) -> Void)
         let title: String?
         let message: String?
         var textFieldPlaceholder: String?
@@ -54,7 +55,7 @@ struct AlertHelper {
         obj.secondaryActions?.forEach { [weak alertController] action in
             let text = alertController?.textFields?.first?.text
             let alertAction = UIAlertAction(title: action.title, style: .default) { _ in
-                action.action?(text)
+                action.action(text)
             }
 
             alertController?.addAction(alertAction)
@@ -63,7 +64,7 @@ struct AlertHelper {
         if let okTitle = obj.okAction?.title {
             let okAction = UIAlertAction(title: okTitle, style: .default) { [weak alertController] _ in
                 let text = alertController?.textFields?.first?.text
-                obj.okAction?.action?(text)
+                obj.okAction?.action(text)
             }
             alertController.addAction(okAction)
         }

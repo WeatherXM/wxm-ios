@@ -17,6 +17,7 @@ protocol ExplorerSearchViewModelDelegate: AnyObject {
     func settingsButtonTapped()
 }
 
+@MainActor
 class ExplorerSearchViewModel: ObservableObject {
 
     @Published var isSearchActive: Bool = false {

@@ -10,6 +10,7 @@ import CoreLocation
 import DomainLayer
 import Toolkit
 
+@MainActor
 public final class ExplorerViewModel: ObservableObject {
     private final let explorerUseCase: ExplorerUseCase
     /// Keep a ref in map controller in order to persist  and show

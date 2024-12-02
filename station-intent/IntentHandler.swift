@@ -6,11 +6,11 @@
 //
 
 import Intents
-@preconcurrency import DomainLayer
+import DomainLayer
 import Combine
 import Toolkit
 
-class IntentHandler: INExtension, StationWidgetConfigurationIntentHandling {
+class IntentHandler: INExtension, StationWidgetConfigurationIntentHandling, @unchecked Sendable {
 	let useCase: WidgetUseCase
 	var cancellables: Set<AnyCancellable> = []
 

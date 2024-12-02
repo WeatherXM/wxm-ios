@@ -11,6 +11,7 @@ import Foundation
 import UIKit
 import Toolkit
 
+@MainActor
 final class DeleteAccountViewModel: ObservableObject {
 	@Published var password = "" {
 		didSet {

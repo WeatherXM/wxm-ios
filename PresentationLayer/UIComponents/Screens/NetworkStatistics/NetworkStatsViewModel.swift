@@ -12,6 +12,7 @@ import DGCharts
 import Toolkit
 import SwiftUI
 
+@MainActor
 class NetworkStatsViewModel: ObservableObject {
 
     @Published var dataDays: NetworkStatsView.Statistics?

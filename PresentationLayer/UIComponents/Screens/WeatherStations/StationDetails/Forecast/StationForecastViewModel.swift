@@ -10,6 +10,7 @@ import Toolkit
 import DomainLayer
 import Combine
 
+@MainActor
 class StationForecastViewModel: ObservableObject {
     weak var containerDelegate: StationDetailsViewModelDelegate?
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()

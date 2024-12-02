@@ -10,6 +10,7 @@ import DomainLayer
 import Combine
 import Toolkit
 
+@MainActor
 class ClaimDeviceContainerViewModel: ObservableObject {
 	@Published var selectedIndex: Int = 0
 	@Published var isMovingNext = true

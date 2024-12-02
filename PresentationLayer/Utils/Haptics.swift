@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+@MainActor
 enum Haptics {
 	static func performSuccessHapticEffect() {
 		let notificationFeedbackGenerator = UINotificationFeedbackGenerator()

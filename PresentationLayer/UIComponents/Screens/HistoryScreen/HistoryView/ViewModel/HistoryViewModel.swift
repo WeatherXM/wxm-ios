@@ -9,6 +9,7 @@ import Combine
 import DomainLayer
 import Toolkit
 
+@MainActor
 class HistoryViewModel: ObservableObject {
     private let historyUseCase: HistoryUseCase
 

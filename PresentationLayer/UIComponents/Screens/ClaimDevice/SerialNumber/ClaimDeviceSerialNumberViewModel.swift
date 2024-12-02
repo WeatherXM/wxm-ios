@@ -115,7 +115,9 @@ private extension ClaimDeviceSerialNumberViewModel {
 				let message = LocalizableString.ClaimDevice.cammeraPermissionDeniedText.localized
 				let alertObj = AlertHelper.AlertObject.getNavigateToSettingsAlert(title: title,
 																				  message: message)
-				AlertHelper().showAlert(alertObj)
+				DispatchQueue.main.async {
+					AlertHelper().showAlert(alertObj)
+				}
 			case .authorized:
 				showQrScanner = true
 			@unknown default:

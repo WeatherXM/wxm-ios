@@ -9,6 +9,7 @@ import Combine
 import DomainLayer
 import Toolkit
 
+@MainActor
 final class RegisterViewModel: ObservableObject {
     @Published var userEmail: String = ""
     @Published var userName: String = ""
