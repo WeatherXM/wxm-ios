@@ -85,8 +85,9 @@ struct DeviceInfoView: View {
                 ChangeFrequencyView(viewModel: viewModel.changeFrequencyViewModel)
             }
         }
-        .customSheet(isPresented: $viewModel.showAccountConfirmation) { _ in
+        .bottomSheet(show: $viewModel.showAccountConfirmation) {
             AccountConfirmationView(viewModel: viewModel.accountConfirmationViewModel)
+				.padding(CGFloat(.defaultSidePadding))
         }
     }
 }

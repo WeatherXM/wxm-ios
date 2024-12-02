@@ -45,7 +45,6 @@ struct AccountConfirmationView: View {
             .buttonStyle(WXMButtonStyle.filled())
             .disabled(!viewModel.isConfirmButtonEnabled)
         }
-        .WXMCardStyle()
         .spinningLoader(show: $viewModel.isLoading)
         .onAppear {
             WXMAnalytics.shared.trackScreen(.passwordConfirm)
