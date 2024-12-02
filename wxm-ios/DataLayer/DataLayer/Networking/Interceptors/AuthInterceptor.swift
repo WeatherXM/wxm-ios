@@ -5,13 +5,13 @@
 //  Created by Hristos Condrea on 8/8/22.
 //
 
-import Alamofire
-import Combine
-import DomainLayer
+@preconcurrency import Alamofire
+@preconcurrency import Combine
+@preconcurrency import DomainLayer
 import Toolkit
 import UIKit
 
-class AuthInterceptor: RequestInterceptor {
+class AuthInterceptor: @unchecked Sendable, RequestInterceptor {
     let retryLimit = 4
     let retryDelay: TimeInterval = 1
     let keychainHelperService = KeychainHelperService()

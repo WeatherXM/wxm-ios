@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DomainLayer
+@preconcurrency import DomainLayer
 import WidgetKit
 
 struct ErrorView: View {

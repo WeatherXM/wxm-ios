@@ -7,10 +7,10 @@
 
 import WidgetKit
 import SwiftUI
-import DomainLayer
+@preconcurrency import DomainLayer
 import Toolkit
 
-struct Provider: IntentTimelineProvider {
+struct Provider: IntentTimelineProvider, @unchecked Sendable {
 	private let useCase: WidgetUseCase
 	private let cancellableWrapper: CancellableWrapper = .init()
 	private let refreshInterval: TimeInterval = 5.0 * 60.0 // 5 mins
@@ -49,19 +49,22 @@ struct Provider: IntentTimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(for configuration: StationWidgetConfigurationIntent,
+	
+	func getTimeline(for configuration: StationWidgetConfigurationIntent,
 					 in context: Context,
-					 completion: @escaping (Timeline<StationTimelineEntry>) -> Void) {
+					 completion: @escaping @Sendable (Timeline<StationTimelineEntry>) -> Void) {
 
 		let nextUpdate = Date.now.advanced(by: refreshInterval)
 		let displaySize = context.displaySize
-		Task {
-			let entry = await getEntry(for: configuration.selectedStation, displaySize: displaySize)
+		nonisolated(unsafe) let station = configuration.selectedStation
+		Task { @MainActor in
+			let entry = await getEntry(for: station, displaySize: displaySize)
 			let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
 			completion(timeline)
 		}
     }
 
+	nonisolated
 	private func getEntry(for station: Station?, displaySize: CGSize) async -> StationTimelineEntry {
 		let isUserLoggedIn = useCase.isUserLoggedIn
 		guard let result = try? await useCase.getDevices(useCache: true) else {

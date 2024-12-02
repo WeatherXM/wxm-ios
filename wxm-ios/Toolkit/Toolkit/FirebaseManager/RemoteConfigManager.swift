@@ -8,9 +8,9 @@
 import Foundation
 import FirebaseRemoteConfig
 
-public class RemoteConfigManager: ObservableObject {
+public class RemoteConfigManager: ObservableObject, @unchecked Sendable {
 
-	static public let shared: RemoteConfigManager = .init()
+	public static let shared: RemoteConfigManager = .init()
 	private let remoteConfigManagerImpl: RemoteConfigManagerImplementation
 
 	// MARK: - Remote config entries
@@ -154,12 +154,7 @@ private class DefaultRemoteConfigManager: RemoteConfigManagerImplementation {
 	}
 
 	func updateProperties() {
-		DispatchQueue.main.async { [weak self] in
-			guard let self else {
-				return
-			}
-			self.shouldUpdateCallback?()
-		}
+		shouldUpdateCallback?()
 	}
 }
 

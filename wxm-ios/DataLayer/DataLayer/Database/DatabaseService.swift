@@ -9,7 +9,7 @@ import CoreData
 
 class DatabaseService {
 
-    static let shared: DatabaseService = DatabaseService()
+	nonisolated(unsafe) static let shared: DatabaseService = DatabaseService()
 
     var context: NSManagedObjectContext {
         persistentContainer.viewContext

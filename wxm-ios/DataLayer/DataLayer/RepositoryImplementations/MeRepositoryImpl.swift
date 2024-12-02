@@ -7,7 +7,7 @@
 
 import Alamofire
 import Combine
-import DomainLayer
+@preconcurrency import DomainLayer
 import Foundation
 import Toolkit
 

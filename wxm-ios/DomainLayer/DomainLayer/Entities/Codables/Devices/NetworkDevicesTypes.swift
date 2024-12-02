@@ -23,7 +23,7 @@ public struct Firmware: Codable {
     }
 }
 
-public enum DeviceRelation: String, Codable {
+public enum DeviceRelation: String, Codable, Sendable {
     case owned
     case followed
 }

@@ -19,7 +19,7 @@ public struct ClaimDeviceBody {
         self.secret = secret
     }
 
-    public var dictionaryRepresentation: [String: Any] {
+    public var dictionaryRepresentation: [String: Any & Sendable] {
         var dict: [String: Any] = [
             "serialNumber": serialNumber as String,
             "location": [
