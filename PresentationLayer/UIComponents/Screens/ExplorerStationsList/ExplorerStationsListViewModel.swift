@@ -278,7 +278,7 @@ private extension ExplorerStationsListViewModel {
 }
 
 extension ExplorerStationsListViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(cellIndex)
     }
 }
