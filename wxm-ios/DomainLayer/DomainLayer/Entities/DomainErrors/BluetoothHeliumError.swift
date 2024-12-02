@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum BluetoothHeliumError: Error {
+public enum BluetoothHeliumError: Error, Sendable {
 	case peripheralNotFound
 	case connectionError
 	case reboot

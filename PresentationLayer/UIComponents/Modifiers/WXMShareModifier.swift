@@ -39,6 +39,7 @@ private struct WXMShareModifier: ViewModifier {
 }
 
 private extension WXMShareModifier {
+	@MainActor
 	struct Store {
 		var anchorView = UIView()
 	}
