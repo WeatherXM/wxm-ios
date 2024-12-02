@@ -9,6 +9,7 @@ import Combine
 import DomainLayer
 import Toolkit
 
+@MainActor
 final class ResetPasswordViewModel: ObservableObject {
     @Published var userEmail: String = ""
     @Published var isSendResetPasswordButtonAvailable: Bool = false

@@ -9,6 +9,7 @@ import Combine
 import DomainLayer
 import Toolkit
 
+@MainActor
 final class SignInViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""

@@ -9,15 +9,17 @@ import Foundation
 import DomainLayer
 import Toolkit
 
+@MainActor
 extension NetworkErrorResponse {
 	struct UIInfo {
 		let title: String
 		let description: String?
 
 #if MAIN_APP
+		@MainActor
 		func defaultFailObject(type: SuccessFailEnum,
-							   failMode: FailView.Mode = .default,
-							   retryAction: VoidCallback?) -> FailSuccessStateObject {
+										  failMode: FailView.Mode = .default,
+										  retryAction: VoidCallback?) -> FailSuccessStateObject {
 			let obj = FailSuccessStateObject(type: type,
 											 failMode: failMode,
 											 title: title,

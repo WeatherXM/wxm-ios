@@ -11,7 +11,7 @@ public extension Sequence {
 
     /// Iterates the sequence with async operations. Similar functionality to `ForEach`
     /// - Parameter operation: The async operation to be performed for each element
-    func asyncForEach(_ operation: (Element) async throws -> Void) async rethrows {
+	func asyncForEach(_ operation: @Sendable (Element) async throws -> Void) async rethrows {
         for element in self {
             try await operation(element)
         }

@@ -10,6 +10,7 @@ import Combine
 import DomainLayer
 import Toolkit
 
+@MainActor
 class ChangeFrequencyViewModel: ObservableObject {
     @Published var state: State = .setFrequency
     @Published var selectedFrequency: Frequency?

@@ -11,6 +11,7 @@ import Foundation
 import Toolkit
 import CoreLocation
 
+@MainActor
 protocol StationDetailsViewModelDelegate: AnyObject {
     func shouldRefresh() async
     func offsetUpdated(diffOffset: CGFloat)
@@ -18,11 +19,13 @@ protocol StationDetailsViewModelDelegate: AnyObject {
     func shouldAskToFollow()
 }
 
+@MainActor
 protocol StationDetailsViewModelChild: AnyObject {
-    func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async
+	func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async
     func showLoading()
 }
 
+@MainActor
 class StationDetailsViewModel: ObservableObject {
     private let deviceId: String
     private let cellIndex: String?
@@ -139,8 +142,8 @@ class StationDetailsViewModel: ObservableObject {
 }
 
 extension StationDetailsViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(deviceId)
+	nonisolated func hash(into hasher: inout Hasher) {
+		hasher.combine(deviceId)
     }
 }
 
@@ -170,8 +173,9 @@ private extension StationDetailsViewModel {
                 return
             }
             LoaderView.shared.show()
-            Task {
-                guard let result = try await self.useCase?.followStation(deviceId: self.deviceId) else {
+            Task { [weak self] in
+                guard let self,
+					  let result = try await self.useCase?.followStation(deviceId: self.deviceId) else {
                     return
                 }
 
@@ -233,7 +237,7 @@ private extension StationDetailsViewModel {
             }
 
             switch res {
-                case .success(var deviceDetails):
+                case .success(let deviceDetails):
                     let followState = try? await useCase?.getDeviceFollowState(deviceId: deviceId).get()
                     DispatchQueue.main.async { [weak self, deviceDetails, followState] in
                         self?.device = deviceDetails
@@ -250,7 +254,7 @@ private extension StationDetailsViewModel {
 
     func updateChildViewModels(device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async {
         let children: [StationDetailsViewModelChild] = [overviewVM, forecastVM, rewardsVM]
-        await children.asyncForEach { await $0.refreshWithDevice(device, followState: followState, error: error) }
+		await children.asyncForEach { await $0.refreshWithDevice(device, followState: followState, error: error) }
     }
 
     func showLoadingInChildViews() {

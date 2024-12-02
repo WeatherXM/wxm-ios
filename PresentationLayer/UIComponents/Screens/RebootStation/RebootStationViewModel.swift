@@ -9,6 +9,7 @@ import Foundation
 import DomainLayer
 import Combine
 
+@MainActor
 class RebootStationViewModel: ObservableObject {
     @Published var state: State = .reboot
     @Published private(set) var steps: [StepsView.Step] = Step.allCases.map { StepsView.Step(text: $0.description, isCompleted: false) }

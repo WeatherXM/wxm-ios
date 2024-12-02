@@ -10,6 +10,7 @@ import Combine
 import DomainLayer
 import Toolkit
 
+@MainActor
 class MyWalletViewModel: ObservableObject {
     private let ethAddressPrefix = "0x"
     private let ethAddressLength = 42

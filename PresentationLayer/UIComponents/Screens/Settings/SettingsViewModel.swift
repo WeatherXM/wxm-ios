@@ -9,6 +9,7 @@ import DomainLayer
 import SwiftUI
 import Toolkit
 
+@MainActor
 final class SettingsViewModel: ObservableObject {
     @Published var isShowingUnitsOverlay: Bool = false
     @Published var totalUnitOptions: Int = 0

@@ -11,6 +11,7 @@ import DomainLayer
 import SwiftUI
 import Toolkit
 
+@MainActor
 class RewardAnnotationsViewModel: ObservableObject {
 	let device: DeviceDetails
 	let annotations: [RewardAnnotation]

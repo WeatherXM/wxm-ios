@@ -10,6 +10,7 @@ import CoreLocation
 import Combine
 import DomainLayer
 
+@MainActor
 protocol SelectLocationMapViewModelDelegate: AnyObject {
 	func updatedResolvedLocation(location: DeviceLocation?)
 	func updatedSelectedCoordinate(coordinate: CLLocationCoordinate2D?)
@@ -21,6 +22,7 @@ extension SelectLocationMapViewModelDelegate {
 	func updatedSelectedCoordinate(coordinate: CLLocationCoordinate2D?) {}
 }
 
+@MainActor
 class SelectLocationMapViewModel: ObservableObject {
 	@Published var selectedCoordinate: CLLocationCoordinate2D {
 		didSet {

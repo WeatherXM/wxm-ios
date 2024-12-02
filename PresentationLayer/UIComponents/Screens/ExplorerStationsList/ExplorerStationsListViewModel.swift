@@ -11,6 +11,7 @@ import CoreLocation
 import Toolkit
 import UIKit
 
+@MainActor
 class ExplorerStationsListViewModel: ObservableObject {
 
     @Published var isLoadingDeviceList: Bool = false

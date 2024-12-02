@@ -9,6 +9,7 @@ import Foundation
 import DomainLayer
 import Toolkit
 
+@MainActor
 class ClaimHeliumContainerViewModel: ClaimDeviceContainerViewModel {
 	private var btDevice: BTWXMDevice?
 	private var heliumFrequency: Frequency?

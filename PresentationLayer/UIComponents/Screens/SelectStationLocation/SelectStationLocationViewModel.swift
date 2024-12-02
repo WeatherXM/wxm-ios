@@ -10,10 +10,12 @@ import DomainLayer
 import CoreLocation
 import Combine
 
+@MainActor
 protocol SelectStationLocationViewModelDelegate: AnyObject {
 	func locationUpdated(with device: DeviceDetails)
 }
 
+@MainActor
 class SelectStationLocationViewModel: ObservableObject {
 
 	let device: DeviceDetails
@@ -103,7 +105,7 @@ private extension SelectStationLocationViewModel {
 }
 
 extension SelectStationLocationViewModel: HashableViewModel {
-	func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
 		hasher.combine("\(String(describing: device.id))")
 	}
 }

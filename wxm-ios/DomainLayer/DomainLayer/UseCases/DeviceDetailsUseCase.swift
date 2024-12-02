@@ -11,7 +11,7 @@ import Alamofire
 import Toolkit
 import CoreLocation
 
-public struct DeviceDetailsUseCase {
+public struct DeviceDetailsUseCase: @unchecked Sendable {
 
     private let meRepository: MeRepository
     private let explorerRepository: ExplorerRepository
