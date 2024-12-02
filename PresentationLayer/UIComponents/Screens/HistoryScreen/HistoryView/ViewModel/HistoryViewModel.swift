@@ -48,7 +48,7 @@ class HistoryViewModel: ObservableObject {
 }
 
 extension HistoryViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(device.id)
     }
 }

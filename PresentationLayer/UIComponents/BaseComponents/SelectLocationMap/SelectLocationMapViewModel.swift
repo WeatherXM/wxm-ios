@@ -105,7 +105,7 @@ private extension SelectLocationMapViewModel {
 		latestTask?.cancel()
 		print("selectedCoordinate: \(selectedCoordinate)" )
 		latestTask = useCase.locationFromCoordinates(LocationCoordinates.fromCLLocationCoordinate2D(selectedCoordinate)).sink { [weak self] location in
-			print("selectedDeviceLocation: \(location?.coordinates)" )
+			print("selectedDeviceLocation: \(String(describing: location?.coordinates))" )
 			self?.selectedDeviceLocation = location
 		}
 	}

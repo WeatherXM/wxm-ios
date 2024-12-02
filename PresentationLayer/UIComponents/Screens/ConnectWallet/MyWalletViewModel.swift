@@ -126,8 +126,10 @@ class MyWalletViewModel: ObservableObject {
 }
 
 extension MyWalletViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(wallet?.address)
+	nonisolated func hash(into hasher: inout Hasher) {
+		MainActor.assumeIsolated {
+			hasher.combine(wallet?.address)
+		}
     }
 }
 

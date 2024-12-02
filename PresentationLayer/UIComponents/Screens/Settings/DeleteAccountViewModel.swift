@@ -125,7 +125,7 @@ extension DeleteAccountViewModel {
 }
 
 extension DeleteAccountViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(userID)
     }
 }

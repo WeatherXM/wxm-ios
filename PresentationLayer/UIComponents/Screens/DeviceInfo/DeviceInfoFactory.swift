@@ -109,6 +109,7 @@ extension DeviceInfoViewModel.Field {
 		}
 	}
 
+	@MainActor
 	func buttonInfoFor(devie: DeviceDetails, followState: UserDeviceFollowState?) -> DeviceInfoButtonInfo? {
 		switch self {
 			case .name:
@@ -135,6 +136,7 @@ extension DeviceInfoViewModel.Field {
 		}
 	}
 
+	@MainActor
 	func customViewFor(deviceInfo: NetworkDevicesInfoResponse?) -> AnyView? {
 		switch self {
 			case .rewardSplit:
@@ -153,6 +155,7 @@ extension DeviceInfoViewModel.Field {
 	}
 }
 
+@MainActor
 extension DeviceInfoViewModel.InfoField {
 	static func getShareText(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String {
 		var fields: [Self] = []
@@ -392,6 +395,7 @@ extension DeviceInfoViewModel.InfoField {
 		}
 	}
 
+	@MainActor
 	func button(for device: DeviceDetails, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> DeviceInfoButtonInfo? {
 		switch self {
 			case .name:

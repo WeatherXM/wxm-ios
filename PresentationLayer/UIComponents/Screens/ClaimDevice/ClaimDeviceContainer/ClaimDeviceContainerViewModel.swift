@@ -224,6 +224,6 @@ extension ClaimDeviceContainerViewModel {
 }
 
 extension ClaimDeviceContainerViewModel: HashableViewModel {
-	func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
 	}
 }

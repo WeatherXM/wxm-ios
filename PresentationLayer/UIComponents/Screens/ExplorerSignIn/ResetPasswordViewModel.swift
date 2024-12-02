@@ -73,6 +73,6 @@ final class ResetPasswordViewModel: ObservableObject {
 }
 
 extension ResetPasswordViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
     }
 }

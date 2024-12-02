@@ -58,6 +58,6 @@ final class SignInViewModel: ObservableObject {
 }
 
 extension SignInViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
     }
 }
