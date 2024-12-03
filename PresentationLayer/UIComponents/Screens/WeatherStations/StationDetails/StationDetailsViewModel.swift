@@ -21,7 +21,7 @@ protocol StationDetailsViewModelDelegate: AnyObject {
 
 @MainActor
 protocol StationDetailsViewModelChild: AnyObject {
-	func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async
+	nonisolated func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async
     func showLoading()
 }
 

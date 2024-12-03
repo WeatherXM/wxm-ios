@@ -265,9 +265,9 @@ private extension ExplorerStationsListViewModel {
     }
 
     func refreshFollowStates() {
-        Task { @MainActor [weak self] in
+		Task { @MainActor [weak self] in
             guard let self else { return }
-            self.userDeviceFolowStates = await self.devices.asyncCompactMap { device in
+			self.userDeviceFolowStates = await self.devices.asyncCompactMap { device in
                 guard let deviceId = device.id else {
                     return nil
                 }
