@@ -517,6 +517,8 @@
 		26E88AF529DD69930023BBD5 /* WXMShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88AF429DD69930023BBD5 /* WXMShadow.swift */; };
 		26E88AFF29E02F590023BBD5 /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 26E88AFE29E02F590023BBD5 /* loader.json */; };
 		26E9A5142AE26AFE003E0830 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A5132AE26AFE003E0830 /* View+.swift */; };
+		26EAF8252D004BFE009EEB31 /* PhotoIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAF8242D004BFE009EEB31 /* PhotoIntroView.swift */; };
+		26EAF8272D004C13009EEB31 /* PhotoIntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAF8262D004C13009EEB31 /* PhotoIntroViewModel.swift */; };
 		26F149E22BDFC5040029F981 /* ClaimStationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */; };
 		26F149E52BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E42BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift */; };
 		26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */; };
@@ -1070,6 +1072,8 @@
 		26E88AF429DD69930023BBD5 /* WXMShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMShadow.swift; sourceTree = "<group>"; };
 		26E88AFE29E02F590023BBD5 /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
 		26E9A5132AE26AFE003E0830 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		26EAF8242D004BFE009EEB31 /* PhotoIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIntroView.swift; sourceTree = "<group>"; };
+		26EAF8262D004C13009EEB31 /* PhotoIntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIntroViewModel.swift; sourceTree = "<group>"; };
 		26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionView.swift; sourceTree = "<group>"; };
 		26F149E42BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionViewModel.swift; sourceTree = "<group>"; };
 		26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionTypes.swift; sourceTree = "<group>"; };
@@ -1219,6 +1223,7 @@
 		262A4CEB2A93517300A4BC17 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				26EAF8222D004BC8009EEB31 /* PhotoVerification */,
 				26DF3D2F2C85FB16005F6FC1 /* RewardAnalytics */,
 				264CC75E2B98729E0060DEA4 /* RewardBoosts */,
 				26FFADD22B8F682D00BF0A6B /* RewardAnnotations */,
@@ -2503,6 +2508,23 @@
 			path = SelectDevice;
 			sourceTree = "<group>";
 		};
+		26EAF8222D004BC8009EEB31 /* PhotoVerification */ = {
+			isa = PBXGroup;
+			children = (
+				26EAF8232D004BD7009EEB31 /* Intro */,
+			);
+			path = PhotoVerification;
+			sourceTree = "<group>";
+		};
+		26EAF8232D004BD7009EEB31 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				26EAF8242D004BFE009EEB31 /* PhotoIntroView.swift */,
+				26EAF8262D004C13009EEB31 /* PhotoIntroViewModel.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
 		26F149E32BDFC83D0029F981 /* ClaimStationSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -3244,6 +3266,7 @@
 				267548EF29A91A87008BCF40 /* Image+.swift in Sources */,
 				262A4CED2A93567A00A4BC17 /* InfoView.swift in Sources */,
 				267548E129A91A87008BCF40 /* Int+.swift in Sources */,
+				26EAF8252D004BFE009EEB31 /* PhotoIntroView.swift in Sources */,
 				266482FC29C0B2B000748F9C /* LoaderView.swift in Sources */,
 				26325B052BE12E4300182C59 /* ClaimDeviceFactory.swift in Sources */,
 				26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */,
@@ -3409,6 +3432,7 @@
 				2675482E29A9181E008BCF40 /* RewardsTimelineView.swift in Sources */,
 				267547A829A9181E008BCF40 /* RewardsTimelineViewModel.swift in Sources */,
 				2675480129A9181E008BCF40 /* UberTextField.swift in Sources */,
+				26EAF8272D004C13009EEB31 /* PhotoIntroViewModel.swift in Sources */,
 				267548F829A91A87008BCF40 /* UIColor+.swift in Sources */,
 				264DD5082B9F3BCB002691FF /* LocalizableString+ExplorerList.swift in Sources */,
 				2623FF912AF147A800BCDAC6 /* RewardDetailsView.swift in Sources */,
