@@ -8,9 +8,27 @@
 import SwiftUI
 
 struct PhotoIntroExamplesView: View {
+	var isDestructive: Bool = false
 	let containerWidth: CGFloat
 	let title: String
 	let examples: [Example]
+
+	private var bulletIcon: FontIcon {
+		isDestructive ? .xmark : .check
+	}
+
+	private var titleIcon: FontIcon {
+		isDestructive ? .circleXmark : .circleCheck
+	}
+
+	private var bulletColor: ColorEnum {
+		isDestructive ? .error : .success
+	}
+
+	private var tintColor: ColorEnum {
+		isDestructive ? .errorTint : .successTint
+	}
+
 
     var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
@@ -20,9 +38,9 @@ struct PhotoIntroExamplesView: View {
 					.foregroundStyle(Color(colorEnum: .text))
 					.fixedSize(horizontal: false, vertical: true)
 
-				Text(FontIcon.circleCheck.rawValue)
+				Text(titleIcon.rawValue)
 					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
-					.foregroundStyle(Color(colorEnum: .success))
+					.foregroundStyle(Color(colorEnum: bulletColor))
 					.fixedSize()
 
 				Spacer()
@@ -38,7 +56,7 @@ struct PhotoIntroExamplesView: View {
 			.disableScrollClip()
 			.scrollIndicators(.hidden)
 		}
-		.WXMCardStyle(backgroundColor: Color(colorEnum: .successTint))
+		.WXMCardStyle(backgroundColor: Color(colorEnum: tintColor))
     }
 }
 
@@ -63,9 +81,9 @@ private extension PhotoIntroExamplesView {
 
 			ForEach(example.bullets, id: \.self) { text in
 				HStack(alignment: .top, spacing: CGFloat(.smallSpacing)) {
-					Text(FontIcon.check.rawValue)
+					Text(bulletIcon.rawValue)
 						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
-						.foregroundStyle(Color(colorEnum: .success))
+						.foregroundStyle(Color(colorEnum: bulletColor))
 						.fixedSize()
 
 					Text(text)
@@ -83,7 +101,8 @@ private extension PhotoIntroExamplesView {
 
 #Preview {
 	GeometryReader { proxy in
-		PhotoIntroExamplesView(containerWidth: proxy.size.width,
+		PhotoIntroExamplesView(isDestructive: true,
+							   containerWidth: proxy.size.width,
 							   title: LocalizableString.PhotoVerification.yourPhotoShouldLook.localized,
 							   examples: [.init(image: .recommendedInstallation0,
 												bullets: [LocalizableString.PhotoVerification.checkFromTheRainGauge.localized]),
