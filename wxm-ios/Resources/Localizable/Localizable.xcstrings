@@ -5559,6 +5559,193 @@
         }
       }
     },
+    "photo_verification_check_clear_view" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "photo_verification_check_clear_view"
+          }
+        }
+      }
+    },
+    "photo_verification_check_clear_view_of_the_horizon" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear view of the horizon (no obstacles)"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_anemometer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From the anemometer looking towards the rain gauge"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_other_side" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From the other side, showing the anemometer on the left and rain gauge on the right"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_rain_gauge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From the rain gauge looking towards the anemometer"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_side" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "photo_verification_check_from_the_side"
+          }
+        }
+      }
+    },
+    "photo_verification_check_good_distance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good distance from the subject"
+          }
+        }
+      }
+    },
+    "photo_verification_check_showing_possible_obastacle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Showing possible obstacle (near wall)"
+          }
+        }
+      }
+    },
+    "photo_verification_check_showing_the_surface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Showing the surface of installation"
+          }
+        }
+      }
+    },
+    "photo_verification_check_subject" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subject is in the middle of the photo"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_facing_bottom_up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facing bottom up"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_no_surface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No surface of installation"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_not_showing_possible_obstacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not showing possible obstacles"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_not_showing_surroundings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not showing surrounding area"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_subject_not_in_middle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subject not in the middle"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_tilted_angle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilted angle"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_too_close" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Too close"
+          }
+        }
+      }
+    },
     "photo_verification_how_to_take_photo" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5603,6 +5790,28 @@
         }
       }
     },
+    "photo_verification_not_like_this" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NOT like this"
+          }
+        }
+      }
+    },
+    "photo_verification_photo_examples" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo examples"
+          }
+        }
+      }
+    },
     "photo_verification_rotate_instruction" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5621,6 +5830,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ensure at least 1 photo clearly shows the surface where the station is installed."
+          }
+        }
+      }
+    },
+    "photo_verification_your_photo_should_look" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your photos should look like this"
           }
         }
       }
