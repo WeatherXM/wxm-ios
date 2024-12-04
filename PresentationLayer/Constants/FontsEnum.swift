@@ -39,6 +39,8 @@ enum FontIcon: String {
     case heart
     case lock
     case calendar
+	case check
+	case circleCheck = "circle-check"
     case sliders
 	case barsFilter = "bars-filter"
 	case pointUp = "hand-back-point-up"
