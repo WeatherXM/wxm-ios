@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "recommended_installation_1.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
