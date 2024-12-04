@@ -5537,6 +5537,50 @@
         }
       }
     },
+    "photo_verification_all_about" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All About"
+          }
+        }
+      }
+    },
+    "photo_verification_boost_network_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost network health with a few photos of your setup!"
+          }
+        }
+      }
+    },
+    "photo_verification_how_to_take_photo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to take the photos"
+          }
+        }
+      }
+    },
+    "photo_verification_intro_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo Verification"
+          }
+        }
+      }
+    },
     "precip_probability" : {
       "extractionState" : "manual",
       "localizations" : {
