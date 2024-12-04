@@ -127,4 +127,8 @@ public enum AssetEnum: String {
 	case wrongInstallation0 = "wrong_installation_0"
 	case wrongInstallation1 = "wrong_installation_1"
 	case wrongInstallation2 = "wrong_installation_2"
+	case iconRotate = "icon_rotate"
+	case iconSurface = "icon_surface"
+	case iconNoFaces = "icon_no_faces"
+	case iconMaxPhotos = "icon_max_photos"
 }
