@@ -20,7 +20,7 @@ public struct ClaimDeviceBody {
     }
 
     public var dictionaryRepresentation: [String: Any & Sendable] {
-        var dict: [String: Any] = [
+        var dict: [String: Any & Sendable] = [
             "serialNumber": serialNumber as String,
             "location": [
                 "lat": location.latitude as Double?,

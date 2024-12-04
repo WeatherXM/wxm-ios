@@ -9,7 +9,7 @@ import WidgetKit
 import Toolkit
 import Combine
 
-public class MainUseCase {
+public class MainUseCase: @unchecked Sendable {
 	public var userLoggedInStateNotificationPublisher: NotificationCenter.Publisher
 
 	private let mainRepository: MainRepository

@@ -7,14 +7,14 @@
 
 import Foundation
 
-public struct NetworkDeviceRewardBoostsResponse: Codable, Hashable {
+public struct NetworkDeviceRewardBoostsResponse: Codable, Hashable, Sendable {
 	public let code: BoostCode?
 	public let metadata: Metadata?
 	public let details: Details?
 }
 
 public extension NetworkDeviceRewardBoostsResponse {
-	struct Metadata: Codable, Hashable {
+	struct Metadata: Codable, Hashable, Sendable {
 		public let title: String?
 		public let description: String?
 		public let imageUrl: String?
@@ -30,7 +30,7 @@ public extension NetworkDeviceRewardBoostsResponse {
 		}
 	}
 
-	struct Details: Codable, Hashable {
+	struct Details: Codable, Hashable, Sendable {
 		public let stationHours: Int?
 		public let maxDailyReward: Double?
 		public let maxTotalReward: Double?

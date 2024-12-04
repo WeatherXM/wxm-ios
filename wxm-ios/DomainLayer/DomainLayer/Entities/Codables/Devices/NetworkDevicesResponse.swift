@@ -8,7 +8,7 @@
 import CoreLocation
 import Foundation
 
-public struct NetworkDevicesResponse: Codable, Identifiable {
+public struct NetworkDevicesResponse: Codable, Identifiable, Sendable {
     public var id: String? = ""
     public var name: String = ""
     public var label: String? = ""
@@ -51,7 +51,7 @@ public struct NetworkDevicesResponse: Codable, Identifiable {
 
 // MARK: - Attributes
 
-public struct Attributes: Codable {
+public struct Attributes: Codable, Sendable {
     public var isActive: Bool = false
     public var lastActiveAt: String? = ""
     public var claimedAt: String? = ""
@@ -76,7 +76,7 @@ public struct Attributes: Codable {
 
 // MARK: - Hex for Hex3 and Hex7
 
-public struct Hex: Codable {
+public struct Hex: Codable, Sendable {
     public var index: String? = ""
     public var polygon: [LocationCoordinates]? = [LocationCoordinates]()
     public var center: LocationCoordinates?
@@ -84,7 +84,7 @@ public struct Hex: Codable {
 
 // MARK: - CurrentWeather
 
-public struct CurrentWeather: Codable {
+public struct CurrentWeather: Codable, Sendable {
     public var timestamp: String? = ""
     public var temperature: Double? = 0.0
     public var temperatureMax: Double? = 0.0
@@ -210,7 +210,7 @@ public struct CurrentWeather: Codable {
     }
 }
 
-public struct Rewards: Codable {
+public struct Rewards: Codable, Sendable {
     public var totalRewards: Double? = 0.0
     public var actualReward: Double? = 0.0
 

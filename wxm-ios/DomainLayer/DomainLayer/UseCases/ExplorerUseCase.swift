@@ -5,13 +5,13 @@
 //  Created by Lampros Zouloumis on 17/8/22.
 //
 
-import Combine
+@preconcurrency import Combine
 import CoreLocation
 import Foundation
-import MapboxMaps
+@preconcurrency import MapboxMaps
 import Toolkit
 
-public class ExplorerUseCase {
+public class ExplorerUseCase: @unchecked Sendable {
     private static let DEVICE_COUNT_KEY = "device_count"
     private static let fillOpacity = 0.5
     private static let fillColor = StyleColor(red: 51.0, green: 136.0, blue: 255.0, alpha: 1.0)
@@ -122,18 +122,18 @@ public class ExplorerUseCase {
         }
     }
 
-    public func getPublicDevicesOfHexIndex(hexIndex: String, hexCoordinates: CLLocationCoordinate2D?, completion: @escaping ((Result<[DeviceDetails], PublicHexError>) -> Void)) {
+	public func getPublicDevicesOfHexIndex(hexIndex: String, hexCoordinates: CLLocationCoordinate2D?, completion: @escaping @Sendable (Result<[DeviceDetails], PublicHexError>) -> Void) {
         do {
             try explorerRepository.getPublicDevicesOfHex(index: hexIndex)
-                .sink(receiveValue: { [weak self] response in
-                    guard let devices = response.value, response.error == nil else {
+				.sink(receiveValue: { [weak self] response in
+                    guard let self, let devices = response.value, response.error == nil else {
                         completion(.failure(PublicHexError.networkRelated(response.error)))
                         return
                     }
 
-                    Task { [weak self] in
+					Task { [weak self] in
                         var explorerDevices = [DeviceDetails]()
-                        await devices.asyncForEach { publicDevice in
+                        await devices.asyncForEach { [weak self] publicDevice in
                             _ = try? await self?.meRepository.getDeviceFollowState(deviceId: publicDevice.id).get()
                             var device = publicDevice.toDeviceDetails
 							if let hexCoordinates {
@@ -150,7 +150,6 @@ public class ExplorerUseCase {
                             return true
                         })
                         completion(.success(explorerDevices))
-
                     }
                 }).store(in: &cancellableSet)
 

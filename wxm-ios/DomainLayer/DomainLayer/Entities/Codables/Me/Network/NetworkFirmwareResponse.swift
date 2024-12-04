@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkFirmwareResponse: Codable {
+public struct NetworkFirmwareResponse: Codable, Sendable {
     public var id: EntityType = .init()
     public var createdTime: Int = 0
     public var additionalInfo: AdditionalInfo = .init()
@@ -26,11 +26,11 @@ public struct NetworkFirmwareResponse: Codable {
     public var dataSize: Int = 0
 }
 
-public struct EntityType: Codable {
+public struct EntityType: Codable, Sendable {
     public var entityType: String = ""
     public var id: String = ""
 }
 
-public struct AdditionalInfo: Codable {
+public struct AdditionalInfo: Codable, Sendable {
     public var description: String = ""
 }
