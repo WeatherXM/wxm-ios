@@ -94,10 +94,10 @@ private extension PhotoIntroView {
 						Text(FontIcon.arrowLeft.rawValue)
 							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
 							.foregroundColor(Color(colorEnum: .text))
-					}
-					.padding(CGFloat(.smallSidePadding))
-					.background {
-						Circle().foregroundStyle(Color.black.opacity(0.4))
+							.padding(CGFloat(.smallSidePadding))
+							.background {
+								Circle().foregroundStyle(Color.black.opacity(0.4))
+							}
 					}
 
 					Spacer()
