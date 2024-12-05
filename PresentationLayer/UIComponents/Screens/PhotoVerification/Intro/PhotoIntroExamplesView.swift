@@ -56,7 +56,11 @@ struct PhotoIntroExamplesView: View {
 			.disableScrollClip()
 			.scrollIndicators(.hidden)
 		}
-		.WXMCardStyle(backgroundColor: Color(colorEnum: tintColor))
+		.padding(CGFloat(.mediumSidePadding))
+		.background {
+			Color(colorEnum: tintColor)
+				.cornerRadius(CGFloat(.cardCornerRadius))
+		}
     }
 }
 
