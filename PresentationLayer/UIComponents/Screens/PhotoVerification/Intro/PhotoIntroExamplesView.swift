@@ -29,6 +29,13 @@ struct PhotoIntroExamplesView: View {
 		isDestructive ? .errorTint : .successTint
 	}
 
+	private var scaleFactor: CGFloat {
+		isDestructive ? 0.5 : 0.8
+	}
+
+	private var imageRatio: CGFloat {
+		isDestructive ? 0.8 : 1.3
+	}
 
     var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
@@ -80,7 +87,12 @@ private extension PhotoIntroExamplesView {
 		VStack(spacing: CGFloat(.smallSpacing)) {
 			Image(asset: example.image)
 				.resizable()
-				.aspectRatio(1.0,contentMode: .fit)
+				.aspectRatio(contentMode: .fill)
+				.frame(minWidth: 0,
+					   maxWidth: .infinity,
+					   minHeight: 0,
+					   maxHeight: .infinity)
+				.aspectRatio(imageRatio, contentMode: .fit)
 				.cornerRadius(CGFloat(.smallCornerRadius))
 
 			ForEach(example.bullets, id: \.self) { text in
@@ -99,7 +111,7 @@ private extension PhotoIntroExamplesView {
 				}
 			}
 		}
-		.frame(width: 0.8 * containerWidth)
+		.frame(width: scaleFactor * containerWidth)
 	}
 }
 
