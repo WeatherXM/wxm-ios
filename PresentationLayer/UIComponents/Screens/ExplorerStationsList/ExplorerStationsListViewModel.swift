@@ -11,6 +11,7 @@ import CoreLocation
 import Toolkit
 import UIKit
 
+@MainActor
 class ExplorerStationsListViewModel: ObservableObject {
 
     @Published var isLoadingDeviceList: Bool = false
@@ -264,9 +265,9 @@ private extension ExplorerStationsListViewModel {
     }
 
     func refreshFollowStates() {
-        Task { @MainActor [weak self] in
+		Task { @MainActor [weak self] in
             guard let self else { return }
-            self.userDeviceFolowStates = await self.devices.asyncCompactMap { device in
+			self.userDeviceFolowStates = await self.devices.asyncCompactMap { device in
                 guard let deviceId = device.id else {
                     return nil
                 }
@@ -277,7 +278,7 @@ private extension ExplorerStationsListViewModel {
 }
 
 extension ExplorerStationsListViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(cellIndex)
     }
 }

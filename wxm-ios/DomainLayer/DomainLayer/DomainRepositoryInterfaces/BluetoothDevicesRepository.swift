@@ -23,7 +23,7 @@ public protocol BluetoothDevicesRepository {
     func disconnect(device: BTWXMDevice)
 }
 
-public struct BTWXMDeviceInfo {
+public struct BTWXMDeviceInfo: Sendable {
 	public let devEUI: String
 	public let claimingKey: String
 

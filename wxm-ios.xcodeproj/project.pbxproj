@@ -206,7 +206,6 @@
 		267547C929A9181E008BCF40 /* WXMButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470329A9181E008BCF40 /* WXMButtonStyle.swift */; };
 		267547CA29A9181E008BCF40 /* WXMToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470429A9181E008BCF40 /* WXMToggleStyle.swift */; };
 		267547CB29A9181E008BCF40 /* TabBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470529A9181E008BCF40 /* TabBarModifier.swift */; };
-		267547CC29A9181E008BCF40 /* OnAnimationCompletedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470629A9181E008BCF40 /* OnAnimationCompletedModifier.swift */; };
 		267547CE29A9181E008BCF40 /* CustomColorButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470829A9181E008BCF40 /* CustomColorButtonStyle.swift */; };
 		267547CF29A9181E008BCF40 /* WXMCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470929A9181E008BCF40 /* WXMCardStyle.swift */; };
 		267547D029A9181E008BCF40 /* ChartModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675470A29A9181E008BCF40 /* ChartModifier.swift */; };
@@ -523,7 +522,6 @@
 		26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */; };
 		26F149E92BDFEAFA0029F981 /* ClaimDeviceContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */; };
 		26F149EB2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */; };
-		26F246362A278DAB0089D3E7 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664831829C31AF400748F9C /* CustomSheet.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
 		26FFAD792B8E12DC00BF0A6B /* RewardFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */; };
 		26FFADA72B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */; };
@@ -715,7 +713,6 @@
 		266482FE29C0BDCF00748F9C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		2664830029C0C73E00748F9C /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		2664831729C31AF400748F9C /* OverlayAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayAnimator.swift; sourceTree = "<group>"; };
-		2664831829C31AF400748F9C /* CustomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSheet.swift; sourceTree = "<group>"; };
 		2664832829C35AF400748F9C /* StationForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationForecastView.swift; sourceTree = "<group>"; };
 		2664832A29C35C0300748F9C /* StationForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationForecastViewModel.swift; sourceTree = "<group>"; };
 		2664832D29C364FE00748F9C /* StationForecastCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationForecastCardView.swift; sourceTree = "<group>"; };
@@ -802,7 +799,6 @@
 		2675470329A9181E008BCF40 /* WXMButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMButtonStyle.swift; sourceTree = "<group>"; };
 		2675470429A9181E008BCF40 /* WXMToggleStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMToggleStyle.swift; sourceTree = "<group>"; };
 		2675470529A9181E008BCF40 /* TabBarModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarModifier.swift; sourceTree = "<group>"; };
-		2675470629A9181E008BCF40 /* OnAnimationCompletedModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnAnimationCompletedModifier.swift; sourceTree = "<group>"; };
 		2675470829A9181E008BCF40 /* CustomColorButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColorButtonStyle.swift; sourceTree = "<group>"; };
 		2675470929A9181E008BCF40 /* WXMCardStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMCardStyle.swift; sourceTree = "<group>"; };
 		2675470A29A9181E008BCF40 /* ChartModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartModifier.swift; sourceTree = "<group>"; };
@@ -1466,7 +1462,6 @@
 			isa = PBXGroup;
 			children = (
 				2618A7252A24F93000983B7B /* BottomSheetModifier.swift */,
-				2664831829C31AF400748F9C /* CustomSheet.swift */,
 				2664831729C31AF400748F9C /* OverlayAnimator.swift */,
 			);
 			path = CustomSheet;
@@ -1646,7 +1641,6 @@
 				26D5013929B20F5200BC2951 /* CornerRadius.swift */,
 				2675470829A9181E008BCF40 /* CustomColorButtonStyle.swift */,
 				2675470129A9181E008BCF40 /* GeneralButtonStyle.swift */,
-				2675470629A9181E008BCF40 /* OnAnimationCompletedModifier.swift */,
 				2675470B29A9181E008BCF40 /* SizeObserver.swift */,
 				2675470C29A9181E008BCF40 /* StrokeBorderModifier.swift */,
 				2675470529A9181E008BCF40 /* TabBarModifier.swift */,
@@ -3189,7 +3183,6 @@
 				2675480429A9181E008BCF40 /* CustomPicker.swift in Sources */,
 				2675483629A9181E008BCF40 /* CustomRangeSlider.swift in Sources */,
 				26D5013C29B2152F00BC2951 /* CustomSegmentView.swift in Sources */,
-				26F246362A278DAB0089D3E7 /* CustomSheet.swift in Sources */,
 				267548FA29A91A87008BCF40 /* CustomYAxisFormatter.swift in Sources */,
 				265D7CE72AB1CA5D00782606 /* DateRange.swift in Sources */,
 				26B7C98B2A6EBFBE00C30CE1 /* DeepLinkHandler.swift in Sources */,
@@ -3312,7 +3305,6 @@
 				2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */,
 				264CDE0F2B5A8817004C8F39 /* ReceiveNotificationsModifier.swift in Sources */,
 				26A4115B29B60F2900A2C10B /* OverviewViewModel.swift in Sources */,
-				267547CC29A9181E008BCF40 /* OnAnimationCompletedModifier.swift in Sources */,
 				2664831929C31AF400748F9C /* OverlayAnimator.swift in Sources */,
 				261CD81829CB2D5B00C0CECE /* PercentageGridLayoutView.swift in Sources */,
 				2675481829A9181E008BCF40 /* ProfileView.swift in Sources */,
@@ -3910,7 +3902,8 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Mock;
@@ -4079,7 +4072,8 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -4129,7 +4123,8 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

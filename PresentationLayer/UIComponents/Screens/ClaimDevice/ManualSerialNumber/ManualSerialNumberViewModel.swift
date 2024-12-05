@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Toolkit
 
+@MainActor
 class ManualSerialNumberViewModel: ObservableObject {
 	@Published var inputFields: [SerialNumberInputField]
 	@Published var canProceed: Bool = false

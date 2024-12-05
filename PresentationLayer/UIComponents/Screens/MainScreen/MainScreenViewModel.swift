@@ -13,6 +13,7 @@ import SwiftUI
 import Toolkit
 import WidgetKit
 
+@MainActor
 class MainScreenViewModel: ObservableObject {
 
     static let shared = MainScreenViewModel()
@@ -108,7 +109,9 @@ class MainScreenViewModel: ObservableObject {
 		NotificationCenter.default.addObserver(forName: .deviceDidShake,
 											   object: nil,
 											   queue: .main) { [weak self] _ in
-			self?.showHttpMonitor = true
+			MainActor.assumeIsolated {
+				self?.showHttpMonitor = true
+			}
 		}
     }
 
@@ -144,11 +147,13 @@ class MainScreenViewModel: ObservableObject {
 
     private func startMonitoring() {
         networkMonitor.pathUpdateHandler = { path in
-            if path.status == .satisfied {
-                self.isInternetAvailable = true
-            } else {
-                self.isInternetAvailable = false
-            }
+			DispatchQueue.main.async {
+				if path.status == .satisfied {
+					self.isInternetAvailable = true
+				} else {
+					self.isInternetAvailable = false
+				}
+			}
         }
         networkMonitor.start(queue: DispatchQueue.main)
     }

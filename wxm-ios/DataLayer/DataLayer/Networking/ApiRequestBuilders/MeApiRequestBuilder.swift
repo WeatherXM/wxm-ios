@@ -6,7 +6,7 @@
 //
 
 import Alamofire
-@preconcurrency import DomainLayer
+import DomainLayer
 import Foundation
 
 enum MeApiRequestBuilder: URLRequestConvertible {

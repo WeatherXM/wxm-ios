@@ -10,6 +10,7 @@ import DomainLayer
 import SwiftUI
 import Toolkit
 
+@MainActor
 class ProfileViewModel: ObservableObject {
     private final let meUseCase: MeUseCase
 	private let remoteConfigUseCase: RemoteConfigUseCase

@@ -9,7 +9,7 @@ import Alamofire
 import Foundation
 import Toolkit
 
-public struct NetworkErrorResponse: Error {
+public struct NetworkErrorResponse: Error, Sendable {
     public let initialError: AFError
     public let backendError: BackendError?
 

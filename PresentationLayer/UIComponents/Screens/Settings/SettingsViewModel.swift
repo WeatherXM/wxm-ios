@@ -9,6 +9,7 @@ import DomainLayer
 import SwiftUI
 import Toolkit
 
+@MainActor
 final class SettingsViewModel: ObservableObject {
     @Published var isShowingUnitsOverlay: Bool = false
     @Published var totalUnitOptions: Int = 0
@@ -128,7 +129,7 @@ final class SettingsViewModel: ObservableObject {
 	}
 
     func logoutUser(completion: @escaping (Bool) -> Void) {
-        let logoutAction: GenericCallback<String?> = { [weak  self] _ in
+		let logoutAction: GenericMainActorCallback<String?> = { [weak  self] _ in
             guard let self else {
                 return
             }
@@ -222,7 +223,7 @@ private extension SettingsViewModel {
 }
 
 extension SettingsViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(userID)
     }
 }

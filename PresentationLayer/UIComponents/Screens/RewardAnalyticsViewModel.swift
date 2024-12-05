@@ -8,8 +8,9 @@
 import Foundation
 import DomainLayer
 import Toolkit
-import Combine
+@preconcurrency import Combine
 
+@MainActor
 class RewardAnalyticsViewModel: ObservableObject {
 	
 	let devices: [DeviceDetails]
@@ -125,8 +126,8 @@ private extension RewardAnalyticsViewModel {
 		stationItems[deviceId]?.isLoading = true
 		Task { @MainActor [weak self] in
 			defer {
-				stationItems[deviceId]?.isLoading = false
-				stationItems[deviceId]?.setIsExpanded(true)
+				self?.stationItems[deviceId]?.isLoading = false
+				self?.stationItems[deviceId]?.setIsExpanded(true)
 				completion?()
 			}
 
@@ -161,7 +162,7 @@ private extension RewardAnalyticsViewModel {
 		suammaryRewardsIsLoading = true
 		Task { @MainActor [weak self] in
 			defer {
-				suammaryRewardsIsLoading = false
+				self?.suammaryRewardsIsLoading = false
 			}
 
 			guard let result = await self?.getSummaryRewards() else {
@@ -264,7 +265,7 @@ extension RewardAnalyticsViewModel {
 }
 
 extension RewardAnalyticsViewModel: HashableViewModel {
-	func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
 		hasher.combine("\(devices.map { $0.id})")
 	}
 }

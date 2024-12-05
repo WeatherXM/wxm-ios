@@ -17,7 +17,7 @@ extension NetworkDeviceRewardsSummaryResponse {
 	}
 }
 
-extension NetworkDeviceRewardsSummary: Identifiable {
+extension NetworkDeviceRewardsSummary: @retroactive Identifiable {
 	public var id: Int {
 		hashValue
 	}
@@ -83,6 +83,7 @@ extension NetworkDeviceRewardsSummary: Identifiable {
 	}
 }
 
+@MainActor
 extension RewardAnnotation {
 	var warningType: CardWarningType? {
 		guard let severity else {
@@ -128,6 +129,7 @@ extension RewardAnnotation {
 		}
 	}
 
+	@MainActor
 	func handleRewardAnnotationTap(with device: DeviceDetails, followState: UserDeviceFollowState?) {
 		guard let group else {
 			return

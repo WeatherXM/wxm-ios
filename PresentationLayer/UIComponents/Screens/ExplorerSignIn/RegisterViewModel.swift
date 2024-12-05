@@ -9,6 +9,7 @@ import Combine
 import DomainLayer
 import Toolkit
 
+@MainActor
 final class RegisterViewModel: ObservableObject {
     @Published var userEmail: String = ""
     @Published var userName: String = ""
@@ -107,6 +108,6 @@ final class RegisterViewModel: ObservableObject {
 }
 
 extension RegisterViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
     }
 }

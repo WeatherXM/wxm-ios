@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftUIIntrospect
 
+@MainActor
 extension ScrollView {
 	func disableScrollClip() -> some View {
 		self

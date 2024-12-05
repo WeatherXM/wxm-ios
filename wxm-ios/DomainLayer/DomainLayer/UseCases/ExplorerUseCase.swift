@@ -132,14 +132,14 @@ public class ExplorerUseCase: @unchecked Sendable {
                     }
 
 					Task { [weak self] in
-                        var explorerDevices = [DeviceDetails]()
-                        await devices.asyncForEach { [weak self] publicDevice in
+						var explorerDevices = await devices.asyncMap { [weak self] publicDevice in
                             _ = try? await self?.meRepository.getDeviceFollowState(deviceId: publicDevice.id).get()
                             var device = publicDevice.toDeviceDetails
 							if let hexCoordinates {
 								device.cellCenter = LocationCoordinates(lat: hexCoordinates.latitude, long: hexCoordinates.longitude)
 							}
-                            explorerDevices.append(device)
+
+							return device
                         }
                         explorerDevices = explorerDevices.sorted(by: { dev1, dev2 -> Bool in
                             dev1.isActive == !dev2.isActive

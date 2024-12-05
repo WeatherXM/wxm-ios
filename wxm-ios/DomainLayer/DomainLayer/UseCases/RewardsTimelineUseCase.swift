@@ -8,7 +8,7 @@
 import Combine
 import Toolkit
 
-public class RewardsTimelineUseCase {
+public class RewardsTimelineUseCase: @unchecked Sendable {
 	private let repository: DevicesRepository
 	private let meRepository: MeRepository
 	private var cancellableSet: Set<AnyCancellable> = []

@@ -10,6 +10,7 @@ import DomainLayer
 import Toolkit
 import UIKit
 
+@MainActor
 class RewardBoostsViewModel: ObservableObject {
 	let boost: BoostCardView.Boost
 	private var useCase: RewardsTimelineUseCase
@@ -78,7 +79,9 @@ private extension RewardBoostsViewModel {
 }
 
 extension RewardBoostsViewModel: HashableViewModel {
-	func hash(into hasher: inout Hasher) {
-		hasher.combine("\(boost.title)-\(boost.reward)-\(String(describing: boost.date))")
+	nonisolated func hash(into hasher: inout Hasher) {
+		MainActor.assumeIsolated {
+			hasher.combine("\(boost.title)-\(boost.reward)-\(String(describing: boost.date))")
+		}
 	}
 }

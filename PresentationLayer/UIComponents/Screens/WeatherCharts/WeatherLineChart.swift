@@ -10,6 +10,7 @@ import SwiftUI
 import DGCharts
 import DomainLayer
 
+@MainActor
 enum WeatherChartsConstants {
     static let LINE_WIDTH: CGFloat = 2.0
     static let POINT_SIZE: CGFloat = 2.0
@@ -229,6 +230,7 @@ private extension WeatherLineChartView {
     }
 }
 
+@MainActor
 private extension LineChartDataSet {
     func setDefaultSettings(color: UIColor = UIColor(colorEnum: .wxmPrimary)) {
         drawCircleHoleEnabled = false

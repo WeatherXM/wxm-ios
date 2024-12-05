@@ -9,7 +9,7 @@ import Foundation
 @preconcurrency import Combine
 
 public extension AnyPublisher {
-	func toAsync() async throws -> Output {
+	nonisolated func toAsync() async throws -> Output {
 		try await withUnsafeThrowingContinuation { continuation in
 			var cancellable: AnyCancellable?
 			cancellable = first()
