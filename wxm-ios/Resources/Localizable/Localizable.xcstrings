@@ -5768,6 +5768,17 @@
         }
       }
     },
+    "photo_verification_lets_take_the_first_photo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let’s take the first photo!"
+          }
+        }
+      }
+    },
     "photo_verification_max_photos_instruction" : {
       "extractionState" : "manual",
       "localizations" : {
