@@ -11,22 +11,29 @@ struct PhotoIntroView: View {
 	@StateObject var viewModel: PhotoIntroViewModel
 
     var body: some View {
-		GeometryReader { proxy in
-			ScrollView {
-				VStack(spacing: CGFloat(.XLSpacing)) {
-					titleView
+		ZStack {
+			Color(colorEnum: .bg)
+				.ignoresSafeArea()
 
-					instructionsView
+			GeometryReader { proxy in
+				ScrollView {
+					VStack(spacing: CGFloat(.XLSpacing)) {
+						titleView
 
-					examplesView(containerWidth: proxy.size.width)
+						instructionsView
 
-					uploadPhotosView
+						examplesView(containerWidth: proxy.size.width)
 
-					termsView
+						uploadPhotosView
+
+						termsView
+					}
+					.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
+					.padding(.bottom, CGFloat(.mediumToLargeSidePadding))
 				}
-				.padding(CGFloat(.mediumToLargeSidePadding))
+				.scrollIndicators(.hidden)
 			}
-			.scrollIndicators(.hidden)
+			.ignoresSafeArea()
 		}
     }
 }
@@ -46,6 +53,8 @@ private extension PhotoIntroView {
 	@ViewBuilder
 	var titleView: some View {
 		VStack(spacing: CGFloat(.smallToMediumSpacing)) {
+			Spacer()
+
 			VStack(spacing: 0.0) {
 				Text(LocalizableString.PhotoVerification.allAbout.localized.uppercased())
 					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
@@ -60,6 +69,19 @@ private extension PhotoIntroView {
 			Text(LocalizableString.PhotoVerification.boostNetworkDescription.localized)
 				.font(.system(size: CGFloat(.normalFontSize)))
 				.foregroundStyle(Color(colorEnum: .text))
+		}
+		.aspectRatio(1.0, contentMode: .fit)
+		.background {
+			Image(asset: .photoVerificationCover)
+				.resizable()
+				.aspectRatio(contentMode: .fill)
+				.overlay {
+					LinearGradient(gradient: Gradient(colors: [Color(colorEnum: .bg),
+															   Color(colorEnum: .bg).opacity(0.0)]),
+								   startPoint: .bottom,
+								   endPoint: .top)
+
+				}
 		}
 	}
 
