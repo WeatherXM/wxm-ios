@@ -77,11 +77,34 @@ private extension PhotoIntroView {
 				.aspectRatio(contentMode: .fill)
 				.overlay {
 					LinearGradient(gradient: Gradient(colors: [Color(colorEnum: .bg),
+															   Color(colorEnum: .bg).opacity(0.3),
+															   Color(colorEnum: .bg).opacity(0.5),
 															   Color(colorEnum: .bg).opacity(0.0)]),
 								   startPoint: .bottom,
 								   endPoint: .top)
 
 				}
+		}
+		.overlay {
+			VStack {
+				HStack {
+					Button {
+
+					} label: {
+						Text(FontIcon.arrowLeft.rawValue)
+							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+							.foregroundColor(Color(colorEnum: .text))
+					}
+					.padding(CGFloat(.smallSidePadding))
+					.background {
+						Circle().foregroundStyle(Color.black.opacity(0.4))
+					}
+
+					Spacer()
+				}
+				Spacer()
+			}
+			.padding(.top, CGFloat(.largeSidePadding))
 		}
 	}
 
