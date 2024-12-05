@@ -39,6 +39,8 @@ extension DeviceInfoViewModel.Field {
 				return LocalizableString.DeviceInfo.stationLocation.localized
 			case .rewardSplit:
 				return LocalizableString.RewardDetails.rewardSplit.localized
+			case .photos:
+				return LocalizableString.PhotoVerification.uploadPhotos.localized
 		}
 	}
 
@@ -71,6 +73,8 @@ extension DeviceInfoViewModel.Field {
 				}
 				let count = rewardSplit.count
 				return LocalizableString.RewardDetails.rewardSplitDescription(count).localized
+			case .photos:
+				return LocalizableString.PhotoVerification.uploadPhotosDescription.localized
 		}
 	}
 
@@ -106,6 +110,8 @@ extension DeviceInfoViewModel.Field {
 				return fetcher.getUrl()
 			case .rewardSplit:
 				return nil
+			case .photos:
+				return nil
 		}
 	}
 
@@ -133,6 +139,8 @@ extension DeviceInfoViewModel.Field {
 							 buttonStyle: .filled())
 			case .rewardSplit:
 				return nil
+			case .photos:
+				return .init(icon: nil, title: LocalizableString.PhotoVerification.letsTakeTheFirstPhoto.localized)
 		}
 	}
 

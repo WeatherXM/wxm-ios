@@ -30,6 +30,11 @@ class PhotoIntroViewModel: ObservableObject {
 	}
 }
 
+extension PhotoIntroViewModel: HashableViewModel {
+	nonisolated func hash(into hasher: inout Hasher) {
+	}
+}
+
 private extension PhotoIntroViewModel {
 	static func getRecommendedExamples() -> [PhotoIntroExamplesView.Example] {
 		[.init(image: .recommendedInstallation0,
