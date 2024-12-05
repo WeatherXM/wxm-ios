@@ -29,12 +29,33 @@ struct PhotoIntroView: View {
 
 						termsView
 					}
+					.padding(.top, -proxy.safeAreaInsets.top)
 					.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 					.padding(.bottom, CGFloat(.mediumToLargeSidePadding))
+					.overlay {
+						VStack {
+							HStack {
+								Button {
+									dismiss()
+								} label: {
+									Text(FontIcon.arrowLeft.rawValue)
+										.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+										.foregroundColor(Color(colorEnum: .text))
+										.padding(CGFloat(.smallSidePadding))
+										.background {
+											Circle().foregroundStyle(Color.black.opacity(0.4))
+										}
+								}
+
+								Spacer()
+							}
+							Spacer()
+						}
+						.padding(.leading, CGFloat(.largeSidePadding))
+					}
 				}
 				.scrollIndicators(.hidden)
 			}
-			.ignoresSafeArea()
 		}
 		.navigationBarHidden(true)
     }
@@ -86,27 +107,6 @@ private extension PhotoIntroView {
 								   endPoint: .top)
 
 				}
-		}
-		.overlay {
-			VStack {
-				HStack {
-					Button {
-						dismiss()
-					} label: {
-						Text(FontIcon.arrowLeft.rawValue)
-							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
-							.foregroundColor(Color(colorEnum: .text))
-							.padding(CGFloat(.smallSidePadding))
-							.background {
-								Circle().foregroundStyle(Color.black.opacity(0.4))
-							}
-					}
-
-					Spacer()
-				}
-				Spacer()
-			}
-			.padding(.top, CGFloat(.largeSidePadding))
 		}
 	}
 
