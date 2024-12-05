@@ -5537,6 +5537,347 @@
         }
       }
     },
+    "photo_verification_all_about" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All About"
+          }
+        }
+      }
+    },
+    "photo_verification_boost_network_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost network health with a few photos of your setup!"
+          }
+        }
+      }
+    },
+    "photo_verification_check_clear_view" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear view of the horizon (no obstacles)"
+          }
+        }
+      }
+    },
+    "photo_verification_check_clear_view_of_the_horizon" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear view of the horizon (no obstacles)"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_anemometer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From the anemometer looking towards the rain gauge"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_other_side" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From the other side, showing the anemometer on the left and rain gauge on the right"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_rain_gauge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From the rain gauge looking towards the anemometer"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_side" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From the side, showing the rain gauge on the left and anemometer on the right"
+          }
+        }
+      }
+    },
+    "photo_verification_check_good_distance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good distance from the subject"
+          }
+        }
+      }
+    },
+    "photo_verification_check_showing_possible_obastacle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Showing possible obstacle (near wall)"
+          }
+        }
+      }
+    },
+    "photo_verification_check_showing_the_surface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Showing the surface of installation"
+          }
+        }
+      }
+    },
+    "photo_verification_check_subject" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subject is in the middle of the photo"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_facing_bottom_up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facing bottom up"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_no_surface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No surface of installation"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_not_showing_possible_obstacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not showing possible obstacles"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_not_showing_surroundings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not showing surrounding area"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_subject_not_in_middle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subject not in the middle"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_tilted_angle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilted angle"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_too_close" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Too close"
+          }
+        }
+      }
+    },
+    "photo_verification_how_to_take_photo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to take the photos"
+          }
+        }
+      }
+    },
+    "photo_verification_intro_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo Verification"
+          }
+        }
+      }
+    },
+    "photo_verification_lets_take_the_first_photo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let’s take the first photo!"
+          }
+        }
+      }
+    },
+    "photo_verification_max_photos_instruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take 2-4 photos of the station from the following angles:\n• from the rain gauge looking towards the anemometer \n• from the anemometer looking towards the rain gauge\n• from the side, showing the rain gauge on the left and anemometer on the right\n• from the other side, showing the anemometer on the left and rain gauge on the right"
+          }
+        }
+      }
+    },
+    "photo_verification_no_faces_instruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avoid capturing faces or personal items in any of the photos."
+          }
+        }
+      }
+    },
+    "photo_verification_not_like_this" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NOT like this"
+          }
+        }
+      }
+    },
+    "photo_verification_photo_examples" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo examples"
+          }
+        }
+      }
+    },
+    "photo_verification_rotate_instruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotate to landscape and use a wide-angle lens to include as much of the horizon as possible."
+          }
+        }
+      }
+    },
+    "photo_verification_surface_instruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ensure at least 1 photo clearly shows the surface where the station is installed."
+          }
+        }
+      }
+    },
+    "photo_verification_upload_photos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload your photos"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_photos_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After taking the photos, tap ‘Upload’ to send them to us for installation evaluation. Your photos are used solely for this purpose.\n\nUploading will run in the background, so feel free to navigate the app while we handle the transfer."
+          }
+        }
+      }
+    },
+    "photo_verification_your_photo_should_look" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your photos should look like this"
+          }
+        }
+      }
+    },
     "precip_probability" : {
       "extractionState" : "manual",
       "localizations" : {

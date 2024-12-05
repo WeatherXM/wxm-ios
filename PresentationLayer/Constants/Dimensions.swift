@@ -26,6 +26,7 @@ enum Dimension {
 	case XLSpacing
 
 	case lightCornerRadius
+	case smallCornerRadius
 	case cardCornerRadius
 	case buttonCornerRadius
 	case tabBarCornerRadius
@@ -74,6 +75,8 @@ extension Dimension {
 			
 			case .lightCornerRadius:
 				return 4.0
+			case .smallCornerRadius:
+				return 8.0
 			case .cardCornerRadius:
 				return 20.0
 			case .buttonCornerRadius:

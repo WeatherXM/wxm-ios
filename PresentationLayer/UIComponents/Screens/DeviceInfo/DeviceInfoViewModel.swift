@@ -233,6 +233,9 @@ private extension DeviceInfoViewModel {
 				Router.shared.navigateTo(.selectStationLocation(viewModel))
 			case .rewardSplit:
 				break
+			case .photos:
+				let viewModel = ViewModelsFactory.getPhotoIntroViewModel()
+				Router.shared.navigateTo(.photoIntro(viewModel))
 		}
 	}
 
