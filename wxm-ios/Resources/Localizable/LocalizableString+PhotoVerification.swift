@@ -37,7 +37,8 @@ extension LocalizableString {
 		case faultNoSurface
 		case faultTiltedAngle
 		case faultSubjectNotInMiddle
-
+		case uploadPhotos
+		case uploadPhotosDescription
 	}
 }
 
@@ -105,6 +106,10 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_fault_tilted_angle"
 			case .faultSubjectNotInMiddle:
 				"photo_verification_fault_subject_not_in_middle"
+			case .uploadPhotos:
+				"photo_verification_upload_photos"
+			case .uploadPhotosDescription:
+				"photo_verification_upload_photos_description"
 		}
 	}
 }

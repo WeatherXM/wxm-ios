@@ -19,6 +19,8 @@ struct PhotoIntroView: View {
 					instructionsView
 
 					examplesView(containerWidth: proxy.size.width)
+
+					uploadPhotosView
 				}
 				.padding(CGFloat(.mediumToLargeSidePadding))
 			}
@@ -113,6 +115,27 @@ private extension PhotoIntroView {
 								   containerWidth: containerWidth,
 								   title: faultyExamples.title,
 								   examples: faultyExamples.examples)
+		}
+	}
+
+	@ViewBuilder
+	var uploadPhotosView: some View {
+		VStack(spacing: CGFloat(.defaultSpacing)) {
+			HStack {
+				Text(LocalizableString.PhotoVerification.uploadPhotos.localized)
+					.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Spacer()
+			}
+
+			HStack {
+				Text(LocalizableString.PhotoVerification.uploadPhotosDescription.localized)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Spacer()
+			}
 		}
 	}
 }
