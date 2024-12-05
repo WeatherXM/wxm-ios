@@ -39,6 +39,7 @@ extension LocalizableString {
 		case faultSubjectNotInMiddle
 		case uploadPhotos
 		case uploadPhotosDescription
+		case letsTakeTheFirstPhoto
 	}
 }
 
@@ -110,6 +111,8 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_upload_photos"
 			case .uploadPhotosDescription:
 				"photo_verification_upload_photos_description"
+			case .letsTakeTheFirstPhoto:
+				"photo_verification_lets_take_the_first_photo"
 		}
 	}
 }
