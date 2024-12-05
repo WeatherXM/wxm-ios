@@ -131,4 +131,5 @@ public enum AssetEnum: String {
 	case iconSurface = "icon_surface"
 	case iconNoFaces = "icon_no_faces"
 	case iconMaxPhotos = "icon_max_photos"
+	case photoVerificationCover = "photo_verification_cover"
 }
