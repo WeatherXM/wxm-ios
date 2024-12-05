@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 class PhotoIntroViewModel: ObservableObject {
-
+	@Published var isTermsAccepted: Bool = false
 	lazy var instructions: [PhotoIntroView.Instruction] = {
 		[.init(icon: .iconRotate,
 			   text: LocalizableString.PhotoVerification.rotateInstruction.localized),
@@ -26,6 +26,8 @@ class PhotoIntroViewModel: ObservableObject {
 		(LocalizableString.PhotoVerification.notLikeThis.localized, Self.getFaultExamples())
 	}()
 
+	func handleBeginButtonTap() {
+	}
 }
 
 private extension PhotoIntroViewModel {
