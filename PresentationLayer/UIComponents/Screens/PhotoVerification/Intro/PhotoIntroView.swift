@@ -21,6 +21,8 @@ struct PhotoIntroView: View {
 					examplesView(containerWidth: proxy.size.width)
 
 					uploadPhotosView
+
+					termsView
 				}
 				.padding(CGFloat(.mediumToLargeSidePadding))
 			}
@@ -136,6 +138,36 @@ private extension PhotoIntroView {
 
 				Spacer()
 			}
+		}
+	}
+
+	@ViewBuilder
+	var termsView: some View {
+		VStack(spacing: CGFloat(.defaultSpacing)) {
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				Toggle("", isOn: $viewModel.isTermsAccepted)
+					.labelsHidden()
+					.toggleStyle(WXMToggleStyle.Default)
+
+				let termsTitle = LocalizableString.Wallet.termsTitle.localized
+				let termsLink = DisplayedLinks.termsLink.linkURL
+				Text("\(LocalizableString.Wallet.acceptTermsOfService.localized) **[\(termsTitle)](\(termsLink))**".attributedMarkdown!)
+					.tint(Color(colorEnum: .wxmPrimary))
+					.foregroundColor(Color(colorEnum: .text))
+					.font(.system(size: CGFloat(.normalFontSize)))
+
+				Spacer()
+			}
+
+			Button {
+				viewModel.handleBeginButtonTap()
+			} label: {
+				Text(LocalizableString.PhotoVerification.letsTakeTheFirstPhoto.localized)
+			}
+			.buttonStyle(WXMButtonStyle(textColor: .top,
+										fillColor: .wxmPrimary))
+			.disabled(!viewModel.isTermsAccepted)
+
 		}
 	}
 }
