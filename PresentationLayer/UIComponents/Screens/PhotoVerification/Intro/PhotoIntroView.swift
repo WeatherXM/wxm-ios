@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PhotoIntroView: View {
 	@StateObject var viewModel: PhotoIntroViewModel
+	@Environment(\.dismiss) private var dismiss
 
     var body: some View {
 		ZStack {
@@ -35,6 +36,7 @@ struct PhotoIntroView: View {
 			}
 			.ignoresSafeArea()
 		}
+		.navigationBarHidden(true)
     }
 }
 
@@ -89,7 +91,7 @@ private extension PhotoIntroView {
 			VStack {
 				HStack {
 					Button {
-
+						dismiss()
 					} label: {
 						Text(FontIcon.arrowLeft.rawValue)
 							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
