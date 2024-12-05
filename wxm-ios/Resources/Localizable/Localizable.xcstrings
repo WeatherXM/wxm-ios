@@ -5856,6 +5856,28 @@
         }
       }
     },
+    "photo_verification_upload_photos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload your photos"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_photos_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After taking the photos, tap ‘Upload’ to send them to us for installation evaluation. Your photos are used solely for this purpose.\n\nUploading will run in the background, so feel free to navigate the app while we handle the transfer."
+          }
+        }
+      }
+    },
     "photo_verification_your_photo_should_look" : {
       "extractionState" : "manual",
       "localizations" : {
