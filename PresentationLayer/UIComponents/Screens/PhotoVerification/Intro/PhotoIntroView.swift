@@ -11,15 +11,19 @@ struct PhotoIntroView: View {
 	@StateObject var viewModel: PhotoIntroViewModel
 
     var body: some View {
-		ScrollView {
-			VStack(spacing: CGFloat(.XLSpacing)) {
-				titleView
+		GeometryReader { proxy in
+			ScrollView {
+				VStack(spacing: CGFloat(.XLSpacing)) {
+					titleView
 
-				instructionsView
+					instructionsView
+
+					examplesView(containerWidth: proxy.size.width)
+				}
+				.padding(CGFloat(.mediumToLargeSidePadding))
 			}
-			.padding(CGFloat(.mediumToLargeSidePadding))
+			.scrollIndicators(.hidden)
 		}
-		.scrollIndicators(.hidden)
     }
 }
 
@@ -85,6 +89,30 @@ private extension PhotoIntroView {
 				.foregroundStyle(Color(colorEnum: .text))
 
 			Spacer()
+		}
+	}
+
+	@ViewBuilder
+	func examplesView(containerWidth: CGFloat) -> some View {
+		VStack(spacing: CGFloat(.defaultSpacing)) {
+			HStack {
+				Text(LocalizableString.PhotoVerification.photoExamples.localized)
+					.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Spacer()
+			}
+
+			let recommendedExamples = viewModel.recommendedExamples
+			PhotoIntroExamplesView(containerWidth: containerWidth,
+								   title: recommendedExamples.title,
+								   examples: recommendedExamples.examples)
+
+			let faultyExamples = viewModel.faultExamples
+			PhotoIntroExamplesView(isDestructive: true,
+								   containerWidth: containerWidth,
+								   title: faultyExamples.title,
+								   examples: faultyExamples.examples)
 		}
 	}
 }
