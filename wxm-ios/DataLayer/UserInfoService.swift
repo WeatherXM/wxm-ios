@@ -24,6 +24,7 @@ public class UserInfoService: @unchecked Sendable {
 			}
 			self?.userInfoSubject.send(nil)
 			WXMAnalytics.shared.removeUserProperty(key: .hasWallet)
+			WXMAnalytics.shared.userLoggedOut()
 		}
 	}
 
