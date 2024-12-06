@@ -52,4 +52,8 @@ public extension WXMAnalytics {
     func setDefaultParameter(key: Parameter, value: ParameterValue) {
 		providers.forEach { $0.setDefaultParameter(key: key, value: value) }
     }
+
+	func userLoggedOut() {
+		providers.forEach { $0.userLoggedOut() }
+	}
 }
