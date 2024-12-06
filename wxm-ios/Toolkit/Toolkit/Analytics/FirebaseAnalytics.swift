@@ -45,6 +45,10 @@ struct FirebaseAnalytics: AnalyticsProviderImplementation {
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
 		FirebaseManager.shared.setAnalyticsCollectionEnabled(enabled)
 	}
+
+	func userLoggedOut() {
+		setUserId(nil)
+	}
 }
 
 private extension Dictionary where Key == Parameter, Value == ParameterValue {

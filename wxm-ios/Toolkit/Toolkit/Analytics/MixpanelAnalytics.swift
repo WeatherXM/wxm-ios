@@ -59,6 +59,9 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 		}
 	}
 
+	func userLoggedOut() {
+		resetMixpanel()
+	}
 }
 
 private extension MixpanelAnalytics {
