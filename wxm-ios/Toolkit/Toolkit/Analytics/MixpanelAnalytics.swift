@@ -14,7 +14,6 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 
 	init(mixpanelId: String) {
 		Mixpanel.initialize(token: mixpanelId, trackAutomaticEvents: false)
-		resetMixpanel()
 		Mixpanel.mainInstance().loggingEnabled = true
 	}
 
@@ -33,11 +32,11 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 	}
 
 	func setUserId(_ userId: String?) {
-		if let userId {
-			Mixpanel.mainInstance().identify(distinctId: userId)
-		} else {
-			resetMixpanel()
+		guard let userId else {
+			return
 		}
+
+		Mixpanel.mainInstance().identify(distinctId: userId)
 	}
 
 	func setUserProperty(key: Parameter, value: ParameterValue) {
