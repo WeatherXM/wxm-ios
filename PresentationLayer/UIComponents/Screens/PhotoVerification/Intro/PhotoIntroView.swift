@@ -40,7 +40,7 @@ struct PhotoIntroView: View {
 								} label: {
 									Text(FontIcon.arrowLeft.rawValue)
 										.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
-										.foregroundColor(Color(colorEnum: .text))
+										.foregroundColor(Color(colorEnum: .textDarkStable))
 										.padding(CGFloat(.smallSidePadding))
 										.background {
 											Circle().foregroundStyle(Color.black.opacity(0.4))
