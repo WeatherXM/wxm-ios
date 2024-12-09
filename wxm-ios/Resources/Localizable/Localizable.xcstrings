@@ -5856,6 +5856,17 @@
         }
       }
     },
+    "photo_verification_more_photos_to_upload" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add %d more photos to upload"
+          }
+        }
+      }
+    },
     "photo_verification_no_faces_instruction" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5900,6 +5911,17 @@
         }
       }
     },
+    "photo_verification_station_photos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station photos"
+          }
+        }
+      }
+    },
     "photo_verification_surface_instruction" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5907,6 +5929,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ensure at least 1 photo clearly shows the surface where the station is installed."
+          }
+        }
+      }
+    },
+    "photo_verification_upload" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload"
           }
         }
       }

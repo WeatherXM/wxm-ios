@@ -274,4 +274,8 @@ enum ViewModelsFactory {
 	static func getPhotoIntroViewModel() -> PhotoIntroViewModel {
 		return PhotoIntroViewModel()
 	}
+
+	static func getGalleryViewModel() -> GalleryViewModel {
+		return GalleryViewModel()
+	}
 }
