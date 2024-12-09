@@ -526,6 +526,10 @@
 		26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */; };
 		26F149E92BDFEAFA0029F981 /* ClaimDeviceContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */; };
 		26F149EB2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */; };
+		26F6F7392D07068C00FB256B /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F7382D07068C00FB256B /* GalleryView.swift */; };
+		26F6F73B2D07069E00FB256B /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */; };
+		26F6F73E2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */; };
+		26F6F73F2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
 		26FFAD792B8E12DC00BF0A6B /* RewardFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */; };
 		26FFADA72B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */; };
@@ -1083,6 +1087,9 @@
 		26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionTypes.swift; sourceTree = "<group>"; };
 		26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceContainerView.swift; sourceTree = "<group>"; };
 		26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceContainerViewModel.swift; sourceTree = "<group>"; };
+		26F6F7382D07068C00FB256B /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
+		26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMCapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
 		26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceRewardDetailsResponse+.swift"; sourceTree = "<group>"; };
 		26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotaionsView.swift; sourceTree = "<group>"; };
@@ -1654,7 +1661,7 @@
 				2675470C29A9181E008BCF40 /* StrokeBorderModifier.swift */,
 				2675470529A9181E008BCF40 /* TabBarModifier.swift */,
 				26348DF72A42F430000846C6 /* TextfieldClearButton.swift */,
-				2675470329A9181E008BCF40 /* WXMButtonStyle.swift */,
+				26F6F73C2D070DFC00FB256B /* ButtonStyles */,
 				2675470929A9181E008BCF40 /* WXMCardStyle.swift */,
 				266DC01A2A55786F00EC9E1F /* WXMPopover.swift */,
 				26E88AF429DD69930023BBD5 /* WXMShadow.swift */,
@@ -2516,6 +2523,7 @@
 		26EAF8222D004BC8009EEB31 /* PhotoVerification */ = {
 			isa = PBXGroup;
 			children = (
+				26F6F7372D0705B200FB256B /* GalleryView */,
 				26EAF8232D004BD7009EEB31 /* Intro */,
 			);
 			path = PhotoVerification;
@@ -2539,6 +2547,24 @@
 				26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */,
 			);
 			path = ClaimStationSelection;
+			sourceTree = "<group>";
+		};
+		26F6F7372D0705B200FB256B /* GalleryView */ = {
+			isa = PBXGroup;
+			children = (
+				26F6F7382D07068C00FB256B /* GalleryView.swift */,
+				26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */,
+			);
+			path = GalleryView;
+			sourceTree = "<group>";
+		};
+		26F6F73C2D070DFC00FB256B /* ButtonStyles */ = {
+			isa = PBXGroup;
+			children = (
+				2675470329A9181E008BCF40 /* WXMButtonStyle.swift */,
+				26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */,
+			);
+			path = ButtonStyles;
 			sourceTree = "<group>";
 		};
 		26FFAD772B8E125900BF0A6B /* Components */ = {
@@ -3086,6 +3112,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26F6F73F2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */,
 				26B832BA2AC5B05700757A69 /* Image+.swift in Sources */,
 				26B832A62AC5A77C00757A69 /* WeatherFields.swift in Sources */,
 				26B832262AC31E4500757A69 /* Station_widget.swift in Sources */,
@@ -3317,6 +3344,7 @@
 				268028AA2AF298290031379C /* Indication.swift in Sources */,
 				26A308EA2C2E97B5007A029A /* ZoomControls.swift in Sources */,
 				266DC0132A54260900EC9E1F /* NetworkErrorResponse+.swift in Sources */,
+				26F6F7392D07068C00FB256B /* GalleryView.swift in Sources */,
 				26E685AF2C0619D700B972B1 /* SelectDeviceView.swift in Sources */,
 				2692D8922A4DC0BA0060CB3C /* NetworkSearchResponse+.swift in Sources */,
 				2674016D2A372FC100E54E35 /* NetworkStats+Content.swift in Sources */,
@@ -3388,6 +3416,7 @@
 				26FFCCDA2BD2483F00880AAD /* ForecastDetailsDailyView.swift in Sources */,
 				2664D6692CEB690200902995 /* TrackableScrollOffsetObject.swift in Sources */,
 				26DD42E429B0FA9B008E277E /* StationDetailsViewModel.swift in Sources */,
+				26F6F73B2D07069E00FB256B /* GalleryViewModel.swift in Sources */,
 				2664833029C36B0900748F9C /* StationForeCastCardView+Content.swift in Sources */,
 				2664832E29C364FE00748F9C /* StationForecastCardView.swift in Sources */,
 				2664832929C35AF400748F9C /* StationForecastView.swift in Sources */,
@@ -3419,6 +3448,7 @@
 				B557E20328251EF700E0BDCB /* SwinjectHelper.swift in Sources */,
 				2672B87E2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift in Sources */,
 				2675484229A91930008BCF40 /* SwinjectInterface.swift in Sources */,
+				26F6F73E2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */,
 				267547CB29A9181E008BCF40 /* TabBarModifier.swift in Sources */,
 				2675483E29A9181E008BCF40 /* TabBarView.swift in Sources */,
 				262B02F62B1DE4A600C31FE7 /* WebContainerView.swift in Sources */,

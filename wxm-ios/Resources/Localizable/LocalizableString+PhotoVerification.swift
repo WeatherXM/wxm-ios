@@ -44,13 +44,24 @@ extension LocalizableString {
 		case uploadPhotos
 		case uploadPhotosDescription
 		case letsTakeTheFirstPhoto
+		case stationPhotos
+		case morePhotosToUpload(Int)
+		case upload
+
 	}
 }
 
 extension LocalizableString.PhotoVerification: WXMLocalizable {
 	var localized: String {
-		let localized = NSLocalizedString(key, comment: "")
+		var localized = NSLocalizedString(key, comment: "")
+		switch self {
+			case .morePhotosToUpload(let count):
+				localized = String(format: localized, count)
+			default: break
+		}
+
 		return localized
+
 	}
 
 	var key: String {
@@ -125,6 +136,12 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_upload_photos_description"
 			case .letsTakeTheFirstPhoto:
 				"photo_verification_lets_take_the_first_photo"
+			case .stationPhotos:
+				"photo_verification_station_photos"
+			case .morePhotosToUpload:
+				"photo_verification_more_photos_to_upload"
+			case .upload:
+				"photo_verification_upload"
 		}
 	}
 }
