@@ -11,11 +11,15 @@ import Foundation
 class PhotoIntroViewModel: ObservableObject {
 	@Published var isTermsAccepted: Bool = false
 	lazy var instructions: [PhotoIntroView.Instruction] = {
-		[.init(icon: .iconRotate,
-			   text: LocalizableString.PhotoVerification.rotateInstruction.localized),
-		 .init(icon: .iconSurface, text: LocalizableString.PhotoVerification.surfaceInstruction.localized),
-		 .init(icon: .iconNoFaces, text: LocalizableString.PhotoVerification.noFacesInstruction.localized),
-		 .init(icon: .iconMaxPhotos, text: LocalizableString.PhotoVerification.maxPhotosInstruction.localized)]
+		[.init(icon: .iconRotate, text: LocalizableString.PhotoVerification.rotateInstruction.localized, bullets: []),
+		 .init(icon: .iconSurface, text: LocalizableString.PhotoVerification.surfaceInstruction.localized, bullets: []),
+		 .init(icon: .iconNoFaces, text: LocalizableString.PhotoVerification.noFacesInstruction.localized, bullets: []),
+		 .init(icon: .iconMaxPhotos,
+			   text: LocalizableString.PhotoVerification.maxPhotosInstruction.localized,
+			   bullets: [LocalizableString.PhotoVerification.maxPhotosInstructionBullet0.localized,
+						 LocalizableString.PhotoVerification.maxPhotosInstructionBullet1.localized,
+						 LocalizableString.PhotoVerification.maxPhotosInstructionBullet2.localized,
+						 LocalizableString.PhotoVerification.maxPhotosInstructionBullet3.localized])]
 	}()
 
 	lazy var recommendedExamples: (title: String, examples: [PhotoIntroExamplesView.Example]) = {
