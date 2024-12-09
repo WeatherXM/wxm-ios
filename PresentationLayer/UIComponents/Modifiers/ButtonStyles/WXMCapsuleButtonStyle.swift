@@ -19,5 +19,6 @@ struct WXMCapsuleButtonStyle: ButtonStyle {
 			.background {
 				Capsule().fill(Color(colorEnum: isEnabled ? .wxmPrimary : .midGrey))
 		}
+			.opacity(configuration.isPressed ? 0.7 : 1.0)
 	}
 }

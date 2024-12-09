@@ -47,7 +47,7 @@ extension LocalizableString {
 		case stationPhotos
 		case morePhotosToUpload(Int)
 		case upload
-
+		case instructions
 	}
 }
 
@@ -142,6 +142,8 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_more_photos_to_upload"
 			case .upload:
 				"photo_verification_upload"
+			case .instructions:
+				"photo_verification_instructions"
 		}
 	}
 }
