@@ -52,6 +52,34 @@ struct GalleryView: View {
 				GeometryReader { proxy in
 					Text(verbatim: "hrgeb")
 				}
+
+				HStack {
+					Button {
+
+					} label: {
+						Text(FontIcon.trash.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+							.foregroundStyle(Color(colorEnum: .error))
+							.padding(CGFloat(.mediumSidePadding))
+							.background(Circle().fill(Color(colorEnum: .layer1)))
+					}
+					.buttonStyle(WXMButtonOpacityStyle())
+
+					Spacer()
+
+					Button {
+
+					} label: {
+						Text(LocalizableString.PhotoVerification.instructions.localized)
+							.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+							.foregroundStyle(Color(colorEnum: .text))
+							.padding(CGFloat(.mediumSidePadding))
+							.background(Capsule().fill(Color(colorEnum: .layer1)))
+					}
+					.buttonStyle(WXMButtonOpacityStyle())
+				}
+				.padding(.horizontal, CGFloat(.defaultSidePadding))
+				.padding(.bottom, CGFloat(.defaultSidePadding))
 			}
 		}
     }
