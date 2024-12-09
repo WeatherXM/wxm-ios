@@ -15,6 +15,7 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 	init(mixpanelId: String) {
 		Mixpanel.initialize(token: mixpanelId, trackAutomaticEvents: false)
 		Mixpanel.mainInstance().loggingEnabled = true
+		addMixpanelSuperProperties(properties: mixpanelSuperParams)
 	}
 
 	func trackScreen(_ screen: Screen, parameters: [Parameter: ParameterValue]?) {
