@@ -56,6 +56,7 @@ struct PhotoIntroView: View {
 				}
 				.scrollIndicators(.hidden)
 			}
+			.iPadMaxWidth()
 		}
 		.navigationBarHidden(true)
     }
@@ -98,6 +99,7 @@ private extension PhotoIntroView {
 		.aspectRatio(0.8, contentMode: .fit)
 		.background {
 			Image(asset: .photoVerificationCover)
+				.resizable()
 				.aspectRatio(contentMode: .fill)
 				.overlay {
 					LinearGradient(gradient: Gradient(colors: [Color(colorEnum: .bg),
