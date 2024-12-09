@@ -5779,6 +5779,17 @@
         }
       }
     },
+    "photo_verification_instructions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instructions"
+          }
+        }
+      }
+    },
     "photo_verification_intro_title" : {
       "extractionState" : "manual",
       "localizations" : {
