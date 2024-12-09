@@ -46,7 +46,7 @@ enum DisplayedLinks {
 			case .emptyValue:
 				return ""
 			case .termsLink:
-				return "https://weatherxm.com/mobile/terms/"
+				return "https://weatherxm.com/terms-conditions/"
 			case .termsOfUse:
 				return "https://weatherxm.network/terms-of-use.pdf"
 			case .privacyPolicy:
