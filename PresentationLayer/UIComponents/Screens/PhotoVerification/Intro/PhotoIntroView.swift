@@ -69,6 +69,7 @@ extension PhotoIntroView {
 
 		let icon: AssetEnum
 		let text: String
+		let bullets: [String]
 	}
 }
 
@@ -92,19 +93,17 @@ private extension PhotoIntroView {
 			Text(LocalizableString.PhotoVerification.boostNetworkDescription.localized)
 				.font(.system(size: CGFloat(.normalFontSize)))
 				.foregroundStyle(Color(colorEnum: .text))
+				.multilineTextAlignment(.center)
 		}
-		.aspectRatio(1.0, contentMode: .fit)
+		.aspectRatio(0.8, contentMode: .fit)
 		.background {
 			Image(asset: .photoVerificationCover)
-				.resizable()
 				.aspectRatio(contentMode: .fill)
 				.overlay {
 					LinearGradient(gradient: Gradient(colors: [Color(colorEnum: .bg),
-															   Color(colorEnum: .bg).opacity(0.3),
-															   Color(colorEnum: .bg).opacity(0.5),
 															   Color(colorEnum: .bg).opacity(0.0)]),
-								   startPoint: .bottom,
-								   endPoint: .top)
+								   startPoint: UnitPoint(x: 0.5, y: 0.78),
+								   endPoint: UnitPoint(x: 0.5, y: 0.1))
 
 				}
 		}
@@ -135,9 +134,26 @@ private extension PhotoIntroView {
 				.foregroundStyle(Color(colorEnum: .wxmPrimary))
 				.frame(width: 30.0, height: 30.0)
 
-			Text(instruction.text)
-				.font(.system(size: CGFloat(.normalFontSize)))
-				.foregroundStyle(Color(colorEnum: .text))
+			VStack(spacing: 2) {
+				HStack {
+					Text(instruction.text)
+						.font(.system(size: CGFloat(.normalFontSize)))
+						.foregroundStyle(Color(colorEnum: .text))
+
+					Spacer()
+				}
+
+				ForEach(instruction.bullets, id: \.self) { bullet in
+					HStack(alignment: .top, spacing: 2.0) {
+						Text(verbatim: "•")
+						Text(bullet)
+						Spacer()
+					}
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundStyle(Color(colorEnum: .text))
+				}
+
+			}
 
 			Spacer()
 		}
