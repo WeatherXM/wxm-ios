@@ -214,6 +214,16 @@ class SwinjectHelper: SwinjectInterface {
 			RemoteConfigUseCase(repository: resolver.resolve(RemoteConfigRepository.self)!)
 		}
 
+		// MARK: - Photos
+
+		container.register(PhotosRepository.self) { _ in
+			PhotosRepositoryImpl()
+		}
+
+		container.register(PhotoGalleryUseCase.self) { resolver in
+			PhotoGalleryUseCase(photosRepository: resolver.resolve(PhotosRepository.self)!)
+		}
+
         // MARK: - Return the Container
 
         return container
