@@ -31,7 +31,7 @@ class ExplorerSearchViewModel: ObservableObject {
     /// Will be assigned from the view. We do not assign directly this proprety as a binding in theTextfield
     @Published private var searchTerm: String = "" {
         didSet {
-            handleSearchTermChanges()
+            updateUIState()
         }
     }
 
@@ -50,6 +50,8 @@ class ExplorerSearchViewModel: ObservableObject {
                 self?.performSearch(searchTerm: newValue)
             }
             .store(in: &cancellables)
+
+		updateUIState()
     }
 
     func handleTapOnResult(_ result: SearchView.Row) {
@@ -99,15 +101,7 @@ class ExplorerSearchViewModel: ObservableObject {
 
 private extension ExplorerSearchViewModel {
 
-    /// Handles search term changes.
-    /// 1. Cancels the pending requst
-    /// 2. If search term lenght is less than `searchTermLimit` we do nothing
-    /// 3. If search term is empty we show recent results
-    /// 4. Otherwise we schedule a new search request (ln 46)
-    func handleSearchTermChanges() {
-        searchCancellable?.cancel()
-        isLoading = false
-
+    func updateUIState() {
         guard searchTerm.count >= searchTermLimit else {
             if searchTerm.isEmpty {
 
@@ -116,8 +110,6 @@ private extension ExplorerSearchViewModel {
             }
             return
         }
-
-        isLoading = true
     }
 
     func performSearch(searchTerm: String) {
@@ -125,32 +117,30 @@ private extension ExplorerSearchViewModel {
         isLoading = false
 
         guard searchTerm.count >= searchTermLimit else {
-            if searchTerm.isEmpty {
-                loadRecent()
-                isShowingRecent = true
-            }
             return
         }
 
         isLoading = true
 
-        do {
-            searchCancellable = try useCase?.search(term: searchTerm).sink { [weak self] response in
-                self?.isLoading = false
-                if let error = response.error {
-                    let info = error.uiInfo
-                    if let message = info.description?.attributedMarkdown {
-                        Toast.shared.show(text: message)
-                    }
-                }
+		do {
+			searchCancellable = try useCase?.search(term: searchTerm)
+				.receive(on: DispatchQueue.main)
+				.sink { [weak self] response in
+					self?.isLoading = false
+					if let error = response.error {
+						let info = error.uiInfo
+						if let message = info.description?.attributedMarkdown {
+							Toast.shared.show(text: message)
+						}
+					}
 
-                self?.updateSearchResults(response: response.value)
-                self?.isShowingRecent = false
-            }
-        } catch {
+					self?.updateSearchResults(response: response.value)
+					self?.isShowingRecent = false
+				}
+		} catch {
 
-        }
-    }
+		}
+	}
 
     func updateSearchResults(response: NetworkSearchResponse?) {
         let devices: [any NetworkSearchItem] = response?.devices ?? []

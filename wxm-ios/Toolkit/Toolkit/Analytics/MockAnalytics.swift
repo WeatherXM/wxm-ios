@@ -17,4 +17,5 @@ struct MockAnalytics: AnalyticsProviderImplementation {
 	func removeUserProperty(key: Parameter) {}
 	func setDefaultParameter(key: Parameter, value: ParameterValue) {}
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {}
+	func userLoggedOut() {}
 }
