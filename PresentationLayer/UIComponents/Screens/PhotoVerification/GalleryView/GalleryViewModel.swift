@@ -12,13 +12,14 @@ import DomainLayer
 @MainActor
 class GalleryViewModel: ObservableObject {
 	@Published var subtitle: String? = ""
-	@Published var images: [String] = ["https://weatherxm.s3.eu-west-1.amazonaws.com/resources/public/BetaRewardsBoostImg.png"]
+	@Published var images: [String] = ["https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/09/5-5.png"]
+	@Published var selectedImage: String?
 
 	private let useCase: PhotoGalleryUseCase
 	private lazy var imagePickerDelegate = {
 		let picker = ImagePickerDelegate(useCase: useCase)
 		picker.imageCallback = { [weak self] imageUrl in
-			self?.images.append(imageUrl)
+			self?.images.insert(imageUrl, at: 0)
 		}
 		return picker
 	}()
@@ -26,6 +27,7 @@ class GalleryViewModel: ObservableObject {
 	init(photoGalleryUseCase: PhotoGalleryUseCase) {
 		self.useCase = photoGalleryUseCase
 		updateSubtitle()
+		selectedImage = images.first
 	}
 
 	func handlePlusButtonTap() {
