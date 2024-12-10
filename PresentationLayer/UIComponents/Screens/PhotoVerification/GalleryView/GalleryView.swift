@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import NukeUI
 
 struct GalleryView: View {
+	@Environment(\.dismiss) private var dismiss
 	@StateObject var viewModel: GalleryViewModel
 	
     var body: some View {
@@ -17,7 +19,7 @@ struct GalleryView: View {
 			VStack(spacing: 0.0) {
 				HStack(spacing: CGFloat(.mediumSpacing)) {
 					Button {
-
+						dismiss()
 					} label: {
 						Text(FontIcon.xmark.rawValue)
 							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
@@ -53,36 +55,75 @@ struct GalleryView: View {
 					Text(verbatim: "hrgeb")
 				}
 
-				HStack {
-					Button {
+				VStack(spacing: CGFloat(.largeSpacing)) {
+					galleryScroller
 
-					} label: {
-						Text(FontIcon.trash.rawValue)
-							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-							.foregroundStyle(Color(colorEnum: .error))
-							.padding(CGFloat(.mediumSidePadding))
-							.background(Circle().fill(Color(colorEnum: .layer1)))
+					HStack {
+						Button {
+
+						} label: {
+							Text(FontIcon.trash.rawValue)
+								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+								.foregroundStyle(Color(colorEnum: .error))
+								.padding(CGFloat(.mediumSidePadding))
+								.background(Circle().fill(Color(colorEnum: .layer1)))
+						}
+						.buttonStyle(WXMButtonOpacityStyle())
+
+						Spacer()
+
+						Button {
+
+						} label: {
+							Text(LocalizableString.PhotoVerification.instructions.localized)
+								.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+								.foregroundStyle(Color(colorEnum: .text))
+								.padding(CGFloat(.mediumSidePadding))
+								.background(Capsule().fill(Color(colorEnum: .layer1)))
+						}
+						.buttonStyle(WXMButtonOpacityStyle())
 					}
-					.buttonStyle(WXMButtonOpacityStyle())
-
-					Spacer()
-
-					Button {
-
-					} label: {
-						Text(LocalizableString.PhotoVerification.instructions.localized)
-							.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-							.foregroundStyle(Color(colorEnum: .text))
-							.padding(CGFloat(.mediumSidePadding))
-							.background(Capsule().fill(Color(colorEnum: .layer1)))
-					}
-					.buttonStyle(WXMButtonOpacityStyle())
 				}
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
 				.padding(.bottom, CGFloat(.defaultSidePadding))
 			}
 		}
+		.navigationBarHidden(true)
     }
+}
+
+private extension GalleryView {
+	@ViewBuilder
+	var galleryScroller: some View {
+		ScrollView(.horizontal) {
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				ForEach(viewModel.images, id: \.self) { imageUrl in
+					LazyImage(url: URL(string: imageUrl)) { state in
+						if let image = state.image {
+							image
+								.resizable()
+								.aspectRatio(contentMode: .fill)
+								.frame(width: 50.0, height: 70.0)
+								.cornerRadius(CGFloat(.buttonCornerRadius))
+						} else {
+							ProgressView()
+								.frame(width: 50.0, height: 70.0)
+						}
+					}
+				}
+				Button {
+					viewModel.handlePlusButtonTap()
+				} label: {
+					Text(FontIcon.plus.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundStyle(Color(colorEnum: .wxmPrimary))
+						.frame(width: 50.0, height: 70.0)
+						.background(Color(colorEnum: .layer1))
+						.cornerRadius(CGFloat(.buttonCornerRadius))
+				}
+			}
+		}
+	}
 }
 
 #Preview {
