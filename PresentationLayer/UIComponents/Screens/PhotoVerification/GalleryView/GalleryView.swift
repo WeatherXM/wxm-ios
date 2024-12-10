@@ -52,7 +52,26 @@ struct GalleryView: View {
 				.background(Color(colorEnum: .top))
 
 				GeometryReader { proxy in
-					Text(verbatim: "hrgeb")
+					if let selectedImage = viewModel.selectedImage {
+						LazyImage(url: URL(string: selectedImage)) { state in
+							if let image = state.image {
+								image
+									.resizable()
+									.aspectRatio(contentMode: .fill)
+									.frame(width: proxy.size.width - 2 * CGFloat(.defaultSidePadding),
+										   height: proxy.size.height - 2 * CGFloat(.defaultSidePadding),
+										   alignment: .center)
+									.clipped()
+									.position(x: proxy.frame(in: .local).midX,
+											  y: proxy.frame(in: .local).midY)
+							} else {
+								ProgressView()
+							}
+						}
+					} else {
+						noImageView
+							.frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+					}
 				}
 
 				VStack(spacing: CGFloat(.largeSpacing)) {
@@ -95,34 +114,57 @@ struct GalleryView: View {
 private extension GalleryView {
 	@ViewBuilder
 	var galleryScroller: some View {
+		let normalSize = CGSize(width: 50.0, height: 70.0)
+		let selectedSize = CGSize(width: 62.0, height: 88.0)
+
 		ScrollView(.horizontal) {
 			HStack(spacing: CGFloat(.smallSpacing)) {
 				ForEach(viewModel.images, id: \.self) { imageUrl in
-					LazyImage(url: URL(string: imageUrl)) { state in
-						if let image = state.image {
-							image
-								.resizable()
-								.aspectRatio(contentMode: .fill)
-								.frame(width: 50.0, height: 70.0)
-								.cornerRadius(CGFloat(.buttonCornerRadius))
-						} else {
-							ProgressView()
-								.frame(width: 50.0, height: 70.0)
+					let isSelected = viewModel.selectedImage == imageUrl
+					let size = isSelected ? selectedSize : normalSize
+
+					Button {
+						viewModel.selectedImage = imageUrl
+					} label: {
+						LazyImage(url: URL(string: imageUrl)) { state in
+							if let image = state.image {
+								image
+									.resizable()
+									.aspectRatio(contentMode: .fill)
+									.frame(width: size.width, height: size.height)
+									.cornerRadius(CGFloat(.buttonCornerRadius))
+									.indication(show: .constant(isSelected),
+												borderColor: Color(colorEnum: .wxmPrimary),
+												bgColor: .clear,
+												cornerRadius: CGFloat(.buttonCornerRadius),
+												content: { EmptyView() })
+							} else {
+								ProgressView()
+									.frame(width: normalSize.width, height: normalSize.height)
+							}
 						}
 					}
 				}
+				
 				Button {
 					viewModel.handlePlusButtonTap()
 				} label: {
 					Text(FontIcon.plus.rawValue)
 						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
 						.foregroundStyle(Color(colorEnum: .wxmPrimary))
-						.frame(width: 50.0, height: 70.0)
+						.frame(width: normalSize.width, height: normalSize.height)
 						.background(Color(colorEnum: .layer1))
 						.cornerRadius(CGFloat(.buttonCornerRadius))
 				}
 			}
+			.frame(height: selectedSize.height)
 		}
+		.animation(.easeIn(duration: 0.1), value: viewModel.selectedImage)
+	}
+
+	@ViewBuilder
+	var noImageView: some View {
+		Text(verbatim: "Empty")
 	}
 }
 
