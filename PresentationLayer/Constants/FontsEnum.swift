@@ -83,4 +83,5 @@ enum FontIcon: String {
 	case eyeSlash = "eye-slash"
 	case envelope
 	case user
+	case plus = "plus-large"
 }
