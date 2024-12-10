@@ -267,6 +267,7 @@ enum ViewModelsFactory {
 	}
 
 	static func getGalleryViewModel() -> GalleryViewModel {
-		return GalleryViewModel()
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
+		return GalleryViewModel(photoGalleryUseCase: useCase)
 	}
 }
