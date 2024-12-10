@@ -31,6 +31,8 @@ class PhotoIntroViewModel: ObservableObject {
 	}()
 
 	func handleBeginButtonTap() {
+		let viewModel = ViewModelsFactory.getGalleryViewModel()
+		Router.shared.navigateTo(.photoGallery(viewModel))
 	}
 }
 
