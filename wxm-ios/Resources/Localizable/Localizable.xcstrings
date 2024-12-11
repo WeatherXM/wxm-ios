@@ -5867,13 +5867,24 @@
         }
       }
     },
-    "photo_verification_more_photos_to_upload" : {
+    "photo_verification_more_photos_to_upload_plural" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Add %d more photos to upload"
+          }
+        }
+      }
+    },
+    "photo_verification_more_photos_to_upload_singular" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add %d more photo to upload"
           }
         }
       }
