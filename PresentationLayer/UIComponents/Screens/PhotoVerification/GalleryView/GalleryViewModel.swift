@@ -37,6 +37,19 @@ class GalleryViewModel: ObservableObject {
 		imagePicker.delegate = imagePickerDelegate
 		UIApplication.shared.topViewController?.present(imagePicker, animated: true)
 	}
+
+	func handleDeleteButtonTap() {
+		guard let selectedImage else {
+			return
+		}
+
+		do {
+			try useCase.deleteImage(selectedImage)
+			images.removeAll(where: { $0 == selectedImage })
+		} catch {
+			Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
+		}
+	}
 }
 
 extension GalleryViewModel: HashableViewModel {
