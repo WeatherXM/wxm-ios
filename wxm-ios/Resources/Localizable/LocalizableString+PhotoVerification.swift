@@ -138,8 +138,8 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_lets_take_the_first_photo"
 			case .stationPhotos:
 				"photo_verification_station_photos"
-			case .morePhotosToUpload:
-				"photo_verification_more_photos_to_upload"
+			case .morePhotosToUpload(let count):
+				count == 1 ? "photo_verification_more_photos_to_upload_singular" : "photo_verification_more_photos_to_upload_plural"
 			case .upload:
 				"photo_verification_upload"
 			case .instructions:
