@@ -12,10 +12,16 @@ import DomainLayer
 @MainActor
 class GalleryViewModel: ObservableObject {
 	@Published var subtitle: String? = ""
-	@Published var images: [String] = ["https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/09/5-5.png"]
+	@Published var images: [String] = [] {
+		didSet {
+			updateSubtitle()
+		}
+	}
 	@Published var selectedImage: String?
 	@Published var showInstructions: Bool = false
 
+	private let minPhotosCount = 2
+	private let maxPhotosCount = 6
 	private let useCase: PhotoGalleryUseCase
 	private lazy var imagePickerDelegate = {
 		let picker = ImagePickerDelegate(useCase: useCase)
@@ -83,6 +89,11 @@ private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UI
 
 private extension GalleryViewModel {
 	func updateSubtitle() {
-		subtitle = LocalizableString.PhotoVerification.morePhotosToUpload(2).localized
+		let remainingCount = minPhotosCount - images.count
+		if remainingCount > 0 {
+			subtitle = LocalizableString.PhotoVerification.morePhotosToUpload(remainingCount).localized
+		} else {
+			subtitle = nil
+		}
 	}
 }
