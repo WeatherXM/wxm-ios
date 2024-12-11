@@ -14,6 +14,7 @@ class GalleryViewModel: ObservableObject {
 	@Published var subtitle: String? = ""
 	@Published var images: [String] = ["https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/09/5-5.png"]
 	@Published var selectedImage: String?
+	@Published var showInstructions: Bool = false
 
 	private let useCase: PhotoGalleryUseCase
 	private lazy var imagePickerDelegate = {
@@ -51,6 +52,10 @@ class GalleryViewModel: ObservableObject {
 		} catch {
 			Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
 		}
+	}
+
+	func handleInstructionsButtonTap() {
+		showInstructions = true
 	}
 }
 
