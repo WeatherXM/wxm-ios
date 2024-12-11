@@ -20,6 +20,7 @@ class GalleryViewModel: ObservableObject {
 		let picker = ImagePickerDelegate(useCase: useCase)
 		picker.imageCallback = { [weak self] imageUrl in
 			self?.images.insert(imageUrl, at: 0)
+			self?.selectedImage = self?.images.first
 		}
 		return picker
 	}()
@@ -46,6 +47,7 @@ class GalleryViewModel: ObservableObject {
 		do {
 			try useCase.deleteImage(selectedImage)
 			images.removeAll(where: { $0 == selectedImage })
+			self.selectedImage = images.first
 		} catch {
 			Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
 		}
