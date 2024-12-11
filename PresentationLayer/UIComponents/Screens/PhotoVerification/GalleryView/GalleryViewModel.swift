@@ -18,9 +18,13 @@ class GalleryViewModel: ObservableObject {
 		}
 	}
 	@Published var selectedImage: String?
+	@Published var isCameraDenied: Bool = false
 	@Published var showInstructions: Bool = false
-	var isPlusButtonEnabled: Bool {
+	var isPlusButtonVisible: Bool {
 		images.count < maxPhotosCount
+	}
+	var isPlusButtonEnabled: Bool {
+		useCase.getCameraPermission() != .denied
 	}
 	var isUploadButtonEnabled: Bool {
 		images.count >= minPhotosCount
@@ -39,15 +43,37 @@ class GalleryViewModel: ObservableObject {
 
 	init(photoGalleryUseCase: PhotoGalleryUseCase) {
 		self.useCase = photoGalleryUseCase
-		updateSubtitle()
 		selectedImage = images.first
+		updateSubtitle()
+		updateCameraPermissionState()
 	}
 
 	func handlePlusButtonTap() {
-		let imagePicker = UIImagePickerController()
-		imagePicker.sourceType = .camera
-		imagePicker.delegate = imagePickerDelegate
-		UIApplication.shared.topViewController?.present(imagePicker, animated: true)
+		let openPikerCallback = { @MainActor [weak self] in
+			guard let self else { return }
+			let imagePicker = UIImagePickerController()
+			imagePicker.sourceType = .camera
+			imagePicker.delegate = self.imagePickerDelegate
+			UIApplication.shared.topViewController?.present(imagePicker, animated: true)
+		}
+
+		// If permission is authorized, we open the camera
+		let permission = useCase.getCameraPermission()
+		if permission == .authorized {
+			openPikerCallback()
+			return
+		}
+
+		// If not, we request permission and then present the camera picker
+		Task { @MainActor in
+			let permission = await useCase.requestCameraPermission()
+			updateCameraPermissionState()
+			guard permission == .authorized else {
+				return
+			}
+
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: openPikerCallback)
+		}
 	}
 
 	func handleDeleteButtonTap() {
@@ -70,6 +96,14 @@ class GalleryViewModel: ObservableObject {
 
 	func handleUploadButtonTap() {
 		
+	}
+
+	func handleOpenSettingsTap() {
+		guard let url = URL(string: UIApplication.openSettingsURLString) else {
+			return
+		}
+
+		UIApplication.shared.open(url, options: [:], completionHandler: nil)
 	}
 }
 
@@ -103,6 +137,18 @@ private extension GalleryViewModel {
 			subtitle = LocalizableString.PhotoVerification.morePhotosToUpload(remainingCount).localized
 		} else {
 			subtitle = nil
+		}
+	}
+
+	func updateCameraPermissionState() {
+		let status = useCase.getCameraPermission()
+		switch status {
+			case .notDetermined, .authorized:
+				isCameraDenied = false
+			case .restricted, .denied:
+				isCameraDenied = true
+			@unknown default:
+				isCameraDenied = true
 		}
 	}
 }

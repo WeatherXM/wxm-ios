@@ -5548,6 +5548,17 @@
         }
       }
     },
+    "photo_verification_allow_access" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow WeatherXM to access your camera to continue with Photo Verification"
+          }
+        }
+      }
+    },
     "photo_verification_boost_network_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5889,6 +5900,17 @@
         }
       }
     },
+    "photo_verification_open_settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open settings"
+          }
+        }
+      }
+    },
     "photo_verification_photo_examples" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5933,6 +5955,17 @@
         }
       }
     },
+    "photo_verification_tap_the_plus_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the plus icon to take a photo"
+          }
+        }
+      }
+    },
     "photo_verification_upload" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5962,6 +5995,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "After taking the photos, tap ‘Upload’ to send them to us for installation evaluation. Your photos are used solely for this purpose.\n\nUploading will run in the background, so feel free to navigate the app while we handle the transfer."
+          }
+        }
+      }
+    },
+    "photo_verification_your_camera_will_open" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your camera will open"
           }
         }
       }
