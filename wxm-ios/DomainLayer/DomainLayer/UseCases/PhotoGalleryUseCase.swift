@@ -19,4 +19,8 @@ public struct PhotoGalleryUseCase: Sendable {
 	public func saveImage(_ image: UIImage) throws -> String? {
 		try photosRepository.saveImage(image)
 	}
+
+	public func deleteImage(_ imageUrl: String) throws {
+		try photosRepository.deleteImage(imageUrl)
+	}
 }

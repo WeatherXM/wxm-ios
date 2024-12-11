@@ -27,6 +27,21 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 
 		return fileName.absoluteString
 	}
+
+	public func deleteImage(_ imageUrl: String) throws {
+		guard let url = URL(string: imageUrl) else {
+			return
+		}
+
+		if url.isFileURL, FileManager.default.fileExists(atPath: url.path) {
+			try FileManager.default.removeItem(at: url)
+			return
+		} else if url.isHttp {
+			// Delete from backend
+		}
+
+		throw PhotosError.failedToDeleteImage
+	}
 }
 
 private extension PhotosRepositoryImpl {

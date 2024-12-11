@@ -79,7 +79,7 @@ struct GalleryView: View {
 
 					HStack {
 						Button {
-
+							viewModel.handleDeleteButtonTap()
 						} label: {
 							Text(FontIcon.trash.rawValue)
 								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
