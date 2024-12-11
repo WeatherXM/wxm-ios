@@ -95,7 +95,7 @@ struct GalleryView: View {
 						Spacer()
 
 						Button {
-
+							viewModel.handleInstructionsButtonTap()
 						} label: {
 							Text(LocalizableString.PhotoVerification.instructions.localized)
 								.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
@@ -111,6 +111,9 @@ struct GalleryView: View {
 			}
 		}
 		.navigationBarHidden(true)
+		.sheet(isPresented: $viewModel.showInstructions) {
+			PhotoIntroView(viewModel: ViewModelsFactory.getPhotoInstructionsViewModel())
+		}
     }
 }
 
