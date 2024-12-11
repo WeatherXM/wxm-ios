@@ -209,7 +209,7 @@ private extension PhotoIntroView {
 
 	@ViewBuilder
 	var termsView: some View {
-		if viewModel.isTermsAccepted {
+		if viewModel.showTerms {
 			VStack(spacing: CGFloat(.defaultSpacing)) {
 				HStack(spacing: CGFloat(.smallSpacing)) {
 					Toggle("", isOn: $viewModel.isTermsAccepted)

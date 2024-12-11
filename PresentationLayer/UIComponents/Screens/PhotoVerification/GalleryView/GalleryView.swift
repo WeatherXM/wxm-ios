@@ -123,49 +123,56 @@ private extension GalleryView {
 		let normalSize = CGSize(width: 50.0, height: 70.0)
 		let selectedSize = CGSize(width: 62.0, height: 88.0)
 
-		ScrollView(.horizontal) {
-			HStack(spacing: CGFloat(.smallSpacing)) {
-				ForEach(viewModel.images, id: \.self) { imageUrl in
-					let isSelected = viewModel.selectedImage == imageUrl
-					let size = isSelected ? selectedSize : normalSize
+		GeometryReader { proxy in
+			ScrollView(.horizontal) {
+				ZStack {
+					Color.clear
+						.frame(width: proxy.size.width)
+					HStack(spacing: CGFloat(.smallSpacing)) {
+						ForEach(viewModel.images, id: \.self) { imageUrl in
+							let isSelected = viewModel.selectedImage == imageUrl
+							let size = isSelected ? selectedSize : normalSize
 
-					Button {
-						viewModel.selectedImage = imageUrl
-					} label: {
-						LazyImage(url: URL(string: imageUrl)) { state in
-							if let image = state.image {
-								image
-									.resizable()
-									.aspectRatio(contentMode: .fill)
-									.frame(width: size.width, height: size.height)
-									.cornerRadius(CGFloat(.buttonCornerRadius))
-									.indication(show: .constant(isSelected),
-												borderColor: Color(colorEnum: .wxmPrimary),
-												bgColor: .clear,
-												cornerRadius: CGFloat(.buttonCornerRadius),
-												content: { EmptyView() })
-							} else {
-								ProgressView()
-									.frame(width: normalSize.width, height: normalSize.height)
+							Button {
+								viewModel.selectedImage = imageUrl
+							} label: {
+								LazyImage(url: URL(string: imageUrl)) { state in
+									if let image = state.image {
+										image
+											.resizable()
+											.aspectRatio(contentMode: .fill)
+											.frame(width: size.width, height: size.height)
+											.cornerRadius(CGFloat(.buttonCornerRadius))
+											.indication(show: .constant(isSelected),
+														borderColor: Color(colorEnum: .wxmPrimary),
+														bgColor: .clear,
+														cornerRadius: CGFloat(.buttonCornerRadius),
+														content: { EmptyView() })
+									} else {
+										ProgressView()
+											.frame(width: normalSize.width, height: normalSize.height)
+									}
+								}
 							}
+						}
+
+						Button {
+							viewModel.handlePlusButtonTap()
+						} label: {
+							Text(FontIcon.plus.rawValue)
+								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+								.foregroundStyle(Color(colorEnum: .wxmPrimary))
+								.frame(width: normalSize.width, height: normalSize.height)
+								.background(Color(colorEnum: .layer1))
+								.cornerRadius(CGFloat(.buttonCornerRadius))
 						}
 					}
 				}
-				
-				Button {
-					viewModel.handlePlusButtonTap()
-				} label: {
-					Text(FontIcon.plus.rawValue)
-						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-						.foregroundStyle(Color(colorEnum: .wxmPrimary))
-						.frame(width: normalSize.width, height: normalSize.height)
-						.background(Color(colorEnum: .layer1))
-						.cornerRadius(CGFloat(.buttonCornerRadius))
-				}
 			}
-			.frame(height: selectedSize.height)
+			.scrollIndicators(.hidden)
+			.animation(.easeIn(duration: 0.1), value: viewModel.selectedImage)
 		}
-		.animation(.easeIn(duration: 0.1), value: viewModel.selectedImage)
+		.frame(height: selectedSize.height)
 	}
 
 	@ViewBuilder
