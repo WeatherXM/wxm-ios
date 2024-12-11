@@ -19,7 +19,12 @@ class GalleryViewModel: ObservableObject {
 	}
 	@Published var selectedImage: String?
 	@Published var showInstructions: Bool = false
-
+	var isPlusButtonEnabled: Bool {
+		images.count < maxPhotosCount
+	}
+	var isUploadButtonEnabled: Bool {
+		images.count >= minPhotosCount
+	}
 	private let minPhotosCount = 2
 	private let maxPhotosCount = 6
 	private let useCase: PhotoGalleryUseCase
@@ -61,6 +66,10 @@ class GalleryViewModel: ObservableObject {
 
 	func handleInstructionsButtonTap() {
 		showInstructions = true
+	}
+
+	func handleUploadButtonTap() {
+		
 	}
 }
 
