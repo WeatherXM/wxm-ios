@@ -75,6 +75,7 @@ struct GalleryView: View {
 							.frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
 					}
 				}
+				.animation(.easeIn(duration: 0.3), value: viewModel.selectedImage)
 
 				VStack(spacing: CGFloat(.largeSpacing)) {
 					galleryScroller
