@@ -41,11 +41,12 @@ struct GalleryView: View {
 					Spacer()
 
 					Button {
-
+						viewModel.handleUploadButtonTap()
 					} label: {
 						Text(LocalizableString.PhotoVerification.upload.localized)
 					}
 					.buttonStyle(WXMCapsuleButtonStyle())
+					.disabled(!viewModel.isUploadButtonEnabled)
 
 				}
 				.padding(CGFloat(.mediumSidePadding))
@@ -91,6 +92,7 @@ struct GalleryView: View {
 								.background(Circle().fill(Color(colorEnum: .layer1)))
 						}
 						.buttonStyle(WXMButtonOpacityStyle())
+						.disabled(viewModel.selectedImage == nil)
 
 						Spacer()
 
@@ -156,15 +158,18 @@ private extension GalleryView {
 							}
 						}
 
-						Button {
-							viewModel.handlePlusButtonTap()
-						} label: {
-							Text(FontIcon.plus.rawValue)
-								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-								.foregroundStyle(Color(colorEnum: .wxmPrimary))
-								.frame(width: normalSize.width, height: normalSize.height)
-								.background(Color(colorEnum: .layer1))
-								.cornerRadius(CGFloat(.buttonCornerRadius))
+						if viewModel.isPlusButtonEnabled {
+							Button {
+								viewModel.handlePlusButtonTap()
+							} label: {
+								Text(FontIcon.plus.rawValue)
+									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+									.foregroundStyle(Color(colorEnum: .wxmPrimary))
+									.frame(width: normalSize.width, height: normalSize.height)
+									.background(Color(colorEnum: .layer1))
+									.cornerRadius(CGFloat(.buttonCornerRadius))
+							}
+							.transition(.opacity)
 						}
 					}
 				}
