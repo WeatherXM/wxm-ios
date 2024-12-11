@@ -48,6 +48,10 @@ extension LocalizableString {
 		case morePhotosToUpload(Int)
 		case upload
 		case instructions
+		case tapThePlusButton
+		case yourCameraWillOpen
+		case allowAccess
+		case openSettings
 	}
 }
 
@@ -144,6 +148,14 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_upload"
 			case .instructions:
 				"photo_verification_instructions"
+			case .tapThePlusButton:
+				"photo_verification_tap_the_plus_button"
+			case .yourCameraWillOpen:
+				"photo_verification_your_camera_will_open"
+			case .allowAccess:
+				"photo_verification_allow_access"
+			case .openSettings:
+				"photo_verification_open_settings"
 		}
 	}
 }

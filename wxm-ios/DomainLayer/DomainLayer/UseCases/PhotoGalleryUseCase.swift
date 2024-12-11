@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 public struct PhotoGalleryUseCase: Sendable {
 
@@ -22,5 +23,13 @@ public struct PhotoGalleryUseCase: Sendable {
 
 	public func deleteImage(_ imageUrl: String) throws {
 		try photosRepository.deleteImage(imageUrl)
+	}
+
+	public func getCameraPermission() -> AVAuthorizationStatus {
+		photosRepository.getCameraPermission()
+	}
+
+	public func requestCameraPermission() async -> AVAuthorizationStatus {
+		await photosRepository.reqeustCameraPermission()
 	}
 }
