@@ -38,7 +38,7 @@ struct PhotoIntroView: View {
 								Button {
 									dismiss()
 								} label: {
-									Text(FontIcon.arrowLeft.rawValue)
+									Text(viewModel.closeButtonIcon.rawValue)
 										.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
 										.foregroundColor(Color(colorEnum: .textDarkStable))
 										.padding(CGFloat(.smallSidePadding))
@@ -51,6 +51,7 @@ struct PhotoIntroView: View {
 							}
 							Spacer()
 						}
+						.padding(.top, CGFloat(.smallSidePadding))
 						.padding(.leading, CGFloat(.largeSidePadding))
 					}
 				}
@@ -208,35 +209,40 @@ private extension PhotoIntroView {
 
 	@ViewBuilder
 	var termsView: some View {
-		VStack(spacing: CGFloat(.defaultSpacing)) {
-			HStack(spacing: CGFloat(.smallSpacing)) {
-				Toggle("", isOn: $viewModel.isTermsAccepted)
-					.labelsHidden()
-					.toggleStyle(WXMToggleStyle.Default)
-
-				let termsTitle = LocalizableString.Wallet.termsTitle.localized
-				let termsLink = DisplayedLinks.termsLink.linkURL
-				Text("\(LocalizableString.Wallet.acceptTermsOfService.localized) **[\(termsTitle)](\(termsLink))**".attributedMarkdown!)
-					.tint(Color(colorEnum: .wxmPrimary))
-					.foregroundColor(Color(colorEnum: .text))
-					.font(.system(size: CGFloat(.normalFontSize)))
-
-				Spacer()
+		if viewModel.isTermsAccepted {
+			VStack(spacing: CGFloat(.defaultSpacing)) {
+				HStack(spacing: CGFloat(.smallSpacing)) {
+					Toggle("", isOn: $viewModel.isTermsAccepted)
+						.labelsHidden()
+						.toggleStyle(WXMToggleStyle.Default)
+					
+					let termsTitle = LocalizableString.Wallet.termsTitle.localized
+					let termsLink = DisplayedLinks.termsLink.linkURL
+					Text("\(LocalizableString.Wallet.acceptTermsOfService.localized) **[\(termsTitle)](\(termsLink))**".attributedMarkdown!)
+						.tint(Color(colorEnum: .wxmPrimary))
+						.foregroundColor(Color(colorEnum: .text))
+						.font(.system(size: CGFloat(.normalFontSize)))
+					
+					Spacer()
+				}
+				
+				Button {
+					viewModel.handleBeginButtonTap()
+				} label: {
+					Text(LocalizableString.PhotoVerification.letsTakeTheFirstPhoto.localized)
+				}
+				.buttonStyle(WXMButtonStyle(textColor: .top,
+											fillColor: .wxmPrimary))
+				.disabled(!viewModel.isTermsAccepted)
 			}
-
-			Button {
-				viewModel.handleBeginButtonTap()
-			} label: {
-				Text(LocalizableString.PhotoVerification.letsTakeTheFirstPhoto.localized)
-			}
-			.buttonStyle(WXMButtonStyle(textColor: .top,
-										fillColor: .wxmPrimary))
-			.disabled(!viewModel.isTermsAccepted)
-
 		}
 	}
 }
 
 #Preview {
 	PhotoIntroView(viewModel: ViewModelsFactory.getPhotoIntroViewModel())
+}
+
+#Preview {
+	PhotoIntroView(viewModel: ViewModelsFactory.getPhotoInstructionsViewModel())
 }
