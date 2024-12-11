@@ -9,6 +9,7 @@ import Foundation
 import DomainLayer
 import UIKit
 import Toolkit
+import AVFoundation
 
 private enum Constants: String {
 	case folderName = "photos"
@@ -41,6 +42,15 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		}
 
 		throw PhotosError.failedToDeleteImage
+	}
+
+	public func getCameraPermission() -> AVAuthorizationStatus {
+		AVCaptureDevice.authorizationStatus(for: .video)
+	}
+
+	public func reqeustCameraPermission() async -> AVAuthorizationStatus {
+		await AVCaptureDevice.requestAccess(for: .video)
+		return getCameraPermission()
 	}
 }
 

@@ -158,7 +158,7 @@ private extension GalleryView {
 							}
 						}
 
-						if viewModel.isPlusButtonEnabled {
+						if viewModel.isPlusButtonVisible {
 							Button {
 								viewModel.handlePlusButtonTap()
 							} label: {
@@ -169,6 +169,8 @@ private extension GalleryView {
 									.background(Color(colorEnum: .layer1))
 									.cornerRadius(CGFloat(.buttonCornerRadius))
 							}
+							.buttonStyle(WXMButtonOpacityStyle())
+							.disabled(!viewModel.isPlusButtonEnabled)
 							.transition(.opacity)
 						}
 					}
@@ -182,7 +184,41 @@ private extension GalleryView {
 
 	@ViewBuilder
 	var noImageView: some View {
-		Text(verbatim: "Empty")
+		if viewModel.isCameraDenied {
+			noPermissionView
+		} else {
+			emptyImagesView
+		}
+	}
+
+	@ViewBuilder
+	var emptyImagesView: some View {
+		VStack(spacing: CGFloat(.smallSpacing)) {
+			Text(LocalizableString.PhotoVerification.tapThePlusButton.localized)
+				.foregroundStyle(Color(colorEnum: .text))
+				.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+			Text(LocalizableString.PhotoVerification.yourCameraWillOpen.localized)
+				.foregroundStyle(Color(colorEnum: .text))
+				.font(.system(size: CGFloat(.mediumFontSize)))
+		}
+	}
+
+	@ViewBuilder
+	var noPermissionView: some View {
+		VStack(spacing: CGFloat(.defaultSpacing)) {
+			Text(LocalizableString.PhotoVerification.allowAccess.localized)
+				.foregroundStyle(Color(colorEnum: .text))
+				.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+				.multilineTextAlignment(.center)
+
+			Button {
+				viewModel.handleOpenSettingsTap()
+			} label: {
+				Text(LocalizableString.PhotoVerification.openSettings.localized)
+			}
+			.buttonStyle(WXMButtonStyle.filled())
+		}
+		.padding(CGFloat(.largeSidePadding))
 	}
 }
 
