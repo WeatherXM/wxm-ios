@@ -52,64 +52,67 @@ struct GalleryView: View {
 				.padding(CGFloat(.mediumSidePadding))
 				.background(Color(colorEnum: .top))
 
-				GeometryReader { proxy in
-					if let selectedImage = viewModel.selectedImage {
-						LazyImage(url: URL(string: selectedImage)) { state in
-							if let image = state.image {
-								image
-									.resizable()
-									.aspectRatio(contentMode: .fill)
-									.frame(width: proxy.size.width - 2 * CGFloat(.defaultSidePadding),
-										   height: proxy.size.height - 2 * CGFloat(.defaultSidePadding),
-										   alignment: .center)
-									.clipped()
-									.position(x: proxy.frame(in: .local).midX,
-											  y: proxy.frame(in: .local).midY)
-							} else {
-								ProgressView()
-									.position(x: proxy.frame(in: .local).midX,
-											  y: proxy.frame(in: .local).midY)
+				Group {
+					GeometryReader { proxy in
+						if let selectedImage = viewModel.selectedImage {
+							LazyImage(url: URL(string: selectedImage)) { state in
+								if let image = state.image {
+									image
+										.resizable()
+										.aspectRatio(contentMode: .fill)
+										.frame(width: proxy.size.width - 2 * CGFloat(.defaultSidePadding),
+											   height: proxy.size.height - 2 * CGFloat(.defaultSidePadding),
+											   alignment: .center)
+										.clipped()
+										.position(x: proxy.frame(in: .local).midX,
+												  y: proxy.frame(in: .local).midY)
+								} else {
+									ProgressView()
+										.position(x: proxy.frame(in: .local).midX,
+												  y: proxy.frame(in: .local).midY)
+								}
 							}
+						} else {
+							noImageView
+								.frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
 						}
-					} else {
-						noImageView
-							.frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
 					}
-				}
-				.animation(.easeIn(duration: 0.3), value: viewModel.selectedImage)
+					.animation(.easeIn(duration: 0.3), value: viewModel.selectedImage)
 
-				VStack(spacing: CGFloat(.largeSpacing)) {
-					galleryScroller
+					VStack(spacing: CGFloat(.largeSpacing)) {
+						galleryScroller
 
-					HStack {
-						Button {
-							viewModel.handleDeleteButtonTap()
-						} label: {
-							Text(FontIcon.trash.rawValue)
-								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-								.foregroundStyle(Color(colorEnum: .error))
-								.padding(CGFloat(.mediumSidePadding))
-								.background(Circle().fill(Color(colorEnum: .layer1)))
+						HStack {
+							Button {
+								viewModel.handleDeleteButtonTap()
+							} label: {
+								Text(FontIcon.trash.rawValue)
+									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+									.foregroundStyle(Color(colorEnum: .error))
+									.padding(CGFloat(.mediumSidePadding))
+									.background(Circle().fill(Color(colorEnum: .layer1)))
+							}
+							.buttonStyle(WXMButtonOpacityStyle())
+							.disabled(viewModel.selectedImage == nil)
+
+							Spacer()
+
+							Button {
+								viewModel.handleInstructionsButtonTap()
+							} label: {
+								Text(LocalizableString.PhotoVerification.instructions.localized)
+									.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+									.foregroundStyle(Color(colorEnum: .text))
+									.padding(CGFloat(.mediumSidePadding))
+									.background(Capsule().fill(Color(colorEnum: .layer1)))
+							}
+							.buttonStyle(WXMButtonOpacityStyle())
 						}
-						.buttonStyle(WXMButtonOpacityStyle())
-						.disabled(viewModel.selectedImage == nil)
-
-						Spacer()
-
-						Button {
-							viewModel.handleInstructionsButtonTap()
-						} label: {
-							Text(LocalizableString.PhotoVerification.instructions.localized)
-								.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-								.foregroundStyle(Color(colorEnum: .text))
-								.padding(CGFloat(.mediumSidePadding))
-								.background(Capsule().fill(Color(colorEnum: .layer1)))
-						}
-						.buttonStyle(WXMButtonOpacityStyle())
 					}
+					.padding(.horizontal, CGFloat(.defaultSidePadding))
+					.padding(.bottom, CGFloat(.defaultSidePadding))
 				}
-				.padding(.horizontal, CGFloat(.defaultSidePadding))
-				.padding(.bottom, CGFloat(.defaultSidePadding))
+				.iPadMaxWidth()
 			}
 		}
 		.navigationBarHidden(true)
