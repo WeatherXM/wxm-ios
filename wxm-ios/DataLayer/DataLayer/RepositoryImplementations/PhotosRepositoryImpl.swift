@@ -17,15 +17,15 @@ private enum Constants: String {
 
 public struct PhotosRepositoryImpl: PhotosRepository {
 
+	nonisolated(unsafe) private let locationManager = WXMLocationManager()
+
 	public init() {}
 	
-	public func saveImage(_ image: UIImage) throws -> String? {
+	public func saveImage(_ image: UIImage, metadata: NSDictionary?) throws -> String? {
 		let fileName = self.folderPath.appendingPathComponent("image_\(UUID().uuidString).jpg")
-		guard let data = image.jpegData(compressionQuality: 0.8) else {
+		guard saveImageWithEXIF(image: image, metadata: metadata, saveFilename: fileName) else {
 			return nil
 		}
-
-		try data.write(to: fileName)
 
 		return fileName.absoluteString
 	}
@@ -67,5 +67,22 @@ private extension PhotosRepositoryImpl {
 		docUrl.createDirectory()
 
 		return docUrl
+	}
+
+	func saveImageWithEXIF(image: UIImage, metadata: NSDictionary?, saveFilename: URL) -> Bool {
+		guard let data = image.jpegData(compressionQuality: 0.8) else {
+			return false
+		}
+
+		let imageRef: CGImageSource = CGImageSourceCreateWithData((data as CFData), nil)!
+		let uti: CFString = CGImageSourceGetType(imageRef)!
+		let dataWithEXIF: NSMutableData = NSMutableData(data: data as Data)
+		let destination: CGImageDestination = CGImageDestinationCreateWithData((dataWithEXIF as CFMutableData), uti, 1, nil)!
+
+		CGImageDestinationAddImageFromSource(destination, imageRef, 0, (metadata! as CFDictionary))
+		CGImageDestinationFinalize(destination)
+
+		let manager: FileManager = FileManager.default
+		return manager.createFile(atPath: saveFilename.path(), contents: dataWithEXIF as Data, attributes: nil)
 	}
 }
