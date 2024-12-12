@@ -17,8 +17,8 @@ public struct PhotoGalleryUseCase: Sendable {
 		self.photosRepository = photosRepository
 	}
 
-	public func saveImage(_ image: UIImage, metadata: NSDictionary?) throws -> String? {
-		try photosRepository.saveImage(image, metadata: metadata)
+	public func saveImage(_ image: UIImage, metadata: NSDictionary?) async throws -> String? {
+		try await photosRepository.saveImage(image, metadata: metadata)
 	}
 
 	public func deleteImage(_ imageUrl: String) throws {
