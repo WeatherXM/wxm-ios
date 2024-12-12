@@ -21,9 +21,10 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 
 	public init() {}
 	
-	public func saveImage(_ image: UIImage, metadata: NSDictionary?) throws -> String? {
+	public func saveImage(_ image: UIImage, metadata: NSDictionary?) async throws -> String? {
 		let fileName = self.folderPath.appendingPathComponent("image_\(UUID().uuidString).jpg")
-		guard saveImageWithEXIF(image: image, metadata: metadata, saveFilename: fileName) else {
+		let fixedMetadata = await injectLocationInMetadata(metadata)
+		guard saveImageWithEXIF(image: image, metadata: fixedMetadata, saveFilename: fileName) else {
 			return nil
 		}
 
@@ -84,5 +85,22 @@ private extension PhotosRepositoryImpl {
 
 		let manager: FileManager = FileManager.default
 		return manager.createFile(atPath: saveFilename.path(), contents: dataWithEXIF as Data, attributes: nil)
+	}
+
+	func injectLocationInMetadata(_ metadata: NSDictionary?) async -> NSDictionary? {
+		guard let metadata else {
+			return metadata
+		}
+
+		let result = await locationManager.getUserLocation()
+		switch result {
+			case .success(let location):
+				let mutableDict = metadata.mutableCopy() as? NSMutableDictionary
+				mutableDict?.setValue([kCGImagePropertyGPSLongitude: location.longitude, kCGImagePropertyGPSLatitude: location.latitude],
+									  forKey: kCGImagePropertyGPSDictionary as String)
+				return mutableDict
+			case .failure(_):
+				return metadata
+		}
 	}
 }
