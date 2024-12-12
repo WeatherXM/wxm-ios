@@ -119,6 +119,9 @@ struct GalleryView: View {
 		.sheet(isPresented: $viewModel.showInstructions) {
 			PhotoIntroView(viewModel: ViewModelsFactory.getPhotoInstructionsViewModel())
 		}
+		.task {
+			viewModel.viewLoaded()
+		}
     }
 }
 
