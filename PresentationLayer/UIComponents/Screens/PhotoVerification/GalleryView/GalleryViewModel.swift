@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import DomainLayer
+import SwiftUI
 
 @MainActor
 class GalleryViewModel: ObservableObject {
@@ -84,6 +85,18 @@ class GalleryViewModel: ObservableObject {
 
 	func viewLoaded() {
 		openCamera()
+	}
+
+	func handleBackButtonTap(dismissAction: DismissAction) {
+		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.exit.localized, { _ in  dismissAction() })
+		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.exitPhotoVerification.localized,
+												  message: LocalizableString.PhotoVerification.exitPhotoVerificationText.localized,
+												  cancelActionTitle: LocalizableString.back.localized,
+												  cancelAction: {
+		},
+												  okAction: exitAction)
+
+		AlertHelper().showAlert(alertObject)
 	}
 }
 
