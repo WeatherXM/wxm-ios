@@ -49,31 +49,7 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func handlePlusButtonTap() {
-		let openPikerCallback = { @MainActor [weak self] in
-			guard let self else { return }
-			let imagePicker = UIImagePickerController()
-			imagePicker.sourceType = .camera
-			imagePicker.delegate = self.imagePickerDelegate
-			UIApplication.shared.topViewController?.present(imagePicker, animated: true)
-		}
-
-		// If permission is authorized, we open the camera
-		let permission = useCase.getCameraPermission()
-		if permission == .authorized {
-			openPikerCallback()
-			return
-		}
-
-		// If not, we request permission and then present the camera picker
-		Task { @MainActor in
-			let permission = await useCase.requestCameraPermission()
-			updateCameraPermissionState()
-			guard permission == .authorized else {
-				return
-			}
-
-			DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: openPikerCallback)
-		}
+		openCamera()
 	}
 
 	func handleDeleteButtonTap() {
@@ -104,6 +80,10 @@ class GalleryViewModel: ObservableObject {
 		}
 
 		UIApplication.shared.open(url, options: [:], completionHandler: nil)
+	}
+
+	func viewLoaded() {
+		openCamera()
 	}
 }
 
@@ -149,6 +129,34 @@ private extension GalleryViewModel {
 				isCameraDenied = true
 			@unknown default:
 				isCameraDenied = true
+		}
+	}
+
+	func openCamera() {
+		let openPikerCallback = { @MainActor [weak self] in
+			guard let self else { return }
+			let imagePicker = UIImagePickerController()
+			imagePicker.sourceType = .camera
+			imagePicker.delegate = self.imagePickerDelegate
+			UIApplication.shared.topViewController?.present(imagePicker, animated: true)
+		}
+
+		// If permission is authorized, we open the camera
+		let permission = useCase.getCameraPermission()
+		if permission == .authorized {
+			openPikerCallback()
+			return
+		}
+
+		// If not, we request permission and then present the camera picker
+		Task { @MainActor in
+			let permission = await useCase.requestCameraPermission()
+			updateCameraPermissionState()
+			guard permission == .authorized else {
+				return
+			}
+
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: openPikerCallback)
 		}
 	}
 }
