@@ -16,6 +16,7 @@ private enum Constants: String {
 }
 
 public struct PhotosRepositoryImpl: PhotosRepository {
+
 	public init() {}
 	
 	public func saveImage(_ image: UIImage) throws -> String? {
@@ -51,6 +52,11 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 	public func reqeustCameraPermission() async -> AVAuthorizationStatus {
 		await AVCaptureDevice.requestAccess(for: .video)
 		return getCameraPermission()
+	}
+
+	public func purgeImages() throws {
+		let folderPath = self.folderPath
+		try FileManager.default.removeItem(at: folderPath)
 	}
 }
 

@@ -14,6 +14,7 @@ public protocol PhotosRepository: Sendable {
 	func deleteImage(_ imageUrl: String) throws
 	func getCameraPermission() -> AVAuthorizationStatus
 	func reqeustCameraPermission() async -> AVAuthorizationStatus
+	func purgeImages() throws
 }
 
 public enum PhotosError: String, Error {
