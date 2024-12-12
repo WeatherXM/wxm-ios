@@ -11,6 +11,7 @@ import Combine
 import Toolkit
 import UIKit
 
+@MainActor
 class DeviceInfoViewModel: ObservableObject {
 
 	let mainVM: MainScreenViewModel = .shared
@@ -170,8 +171,10 @@ class DeviceInfoViewModel: ObservableObject {
 }
 
 extension DeviceInfoViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(device.id)
+	nonisolated func hash(into hasher: inout Hasher) {
+		MainActor.assumeIsolated {
+			hasher.combine(device.id)
+		}
     }
 }
 

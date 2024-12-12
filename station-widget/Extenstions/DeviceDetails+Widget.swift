@@ -5,7 +5,7 @@
 //  Created by Pantelis Giazitsis on 18/10/23.
 //
 
-import DomainLayer
+@preconcurrency import DomainLayer
 
 // MARK: - Mock
 

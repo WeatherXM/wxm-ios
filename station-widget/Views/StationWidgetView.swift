@@ -7,7 +7,7 @@
 
 import SwiftUI
 import WidgetKit
-import DomainLayer
+@preconcurrency import DomainLayer
 
 struct StationWidgetView: View {
 	let entry: StationTimelineEntry

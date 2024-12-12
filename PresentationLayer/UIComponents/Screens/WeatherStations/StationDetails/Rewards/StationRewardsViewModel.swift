@@ -10,6 +10,7 @@ import Combine
 import DomainLayer
 import Toolkit
 
+@MainActor
 class StationRewardsViewModel: ObservableObject {
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
 	@Published private(set) var viewState: ViewState = .loading

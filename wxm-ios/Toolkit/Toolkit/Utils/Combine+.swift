@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import Combine
+@preconcurrency import Combine
 
 public extension AnyPublisher {
-	func toAsync() async throws -> Output {
+	nonisolated func toAsync() async throws -> Output {
 		try await withUnsafeThrowingContinuation { continuation in
 			var cancellable: AnyCancellable?
 			cancellable = first()
@@ -22,7 +22,8 @@ public extension AnyPublisher {
 					}
 					cancellable?.cancel()
 				} receiveValue: { value in
-					continuation.resume(with: .success(value))
+					nonisolated(unsafe) let receivedValue = value
+					continuation.resume(returning: receivedValue)
 				}
 		}
 	}

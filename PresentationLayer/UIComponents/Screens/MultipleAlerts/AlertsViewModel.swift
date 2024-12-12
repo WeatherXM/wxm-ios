@@ -11,6 +11,7 @@ import DomainLayer
 import Toolkit
 import UIKit
 
+@MainActor
 class AlertsViewModel: ObservableObject {
 
     @Published private(set) var alerts: [MultipleAlertsView.Alert] = []
@@ -27,7 +28,7 @@ class AlertsViewModel: ObservableObject {
 }
 
 extension AlertsViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(device.id)
     }
 }

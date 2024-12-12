@@ -8,7 +8,7 @@
 import Foundation
 import DomainLayer
 
-extension BatteryState: CustomStringConvertible {
+extension BatteryState: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
             case .low:
@@ -19,6 +19,7 @@ extension BatteryState: CustomStringConvertible {
     }
 }
 
+@MainActor
 extension NetworkDevicesInfoResponse {
 	var isRewardSplitted: Bool {
 		guard let rewardSplit else {

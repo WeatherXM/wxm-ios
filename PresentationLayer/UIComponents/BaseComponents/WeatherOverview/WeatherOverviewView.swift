@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DomainLayer
+@preconcurrency import DomainLayer
 
 struct WeatherOverviewView: View {
 	var mode: Mode = .default

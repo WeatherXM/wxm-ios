@@ -9,6 +9,7 @@ import Foundation
 import AVFoundation
 import Toolkit
 
+@MainActor
 class ClaimDeviceSerialNumberViewModel: ObservableObject {
 	let completion: GenericCallback<SerialNumber?>
 	@Published var showQrScanner: Bool = false
@@ -115,7 +116,9 @@ private extension ClaimDeviceSerialNumberViewModel {
 				let message = LocalizableString.ClaimDevice.cammeraPermissionDeniedText.localized
 				let alertObj = AlertHelper.AlertObject.getNavigateToSettingsAlert(title: title,
 																				  message: message)
-				AlertHelper().showAlert(alertObj)
+				DispatchQueue.main.async {
+					AlertHelper().showAlert(alertObj)
+				}
 			case .authorized:
 				showQrScanner = true
 			@unknown default:

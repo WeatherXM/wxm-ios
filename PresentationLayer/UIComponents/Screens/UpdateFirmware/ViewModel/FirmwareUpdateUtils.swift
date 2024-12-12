@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import Toolkit
 
-extension FirmwareUpdateError: CustomStringConvertible {
+extension FirmwareUpdateError: @retroactive CustomStringConvertible {
     public var title: String {
         switch self {
             case .downloadFile:

@@ -7,13 +7,13 @@
 
 import Foundation
 
-public struct NetworkDevicesRewardsResponse: Codable {
+public struct NetworkDevicesRewardsResponse: Codable, Sendable {
 	public let total: Double?
 	public let data: [RewardsData]?
 }
 
 public extension NetworkDevicesRewardsResponse {
-	struct RewardsData: Codable {
+	struct RewardsData: Codable, Sendable {
 		public let ts: Date?
 		public let totalRewards: Double?
 

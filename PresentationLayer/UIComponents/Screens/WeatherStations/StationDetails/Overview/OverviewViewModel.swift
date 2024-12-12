@@ -10,6 +10,7 @@ import DomainLayer
 import Toolkit
 import Combine
 
+@MainActor
 class OverviewViewModel: ObservableObject {
     @Published private(set) var viewState: ViewState = .loading
     @Published private(set) var ctaObject: CTAContainerView.CTAObject?

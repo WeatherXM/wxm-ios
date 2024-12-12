@@ -8,7 +8,7 @@
 import struct Alamofire.DataResponse
 import Combine
 import CoreLocation
-import DomainLayer
+@preconcurrency import DomainLayer
 import Toolkit
 
 public struct ExplorerRepositoryImpl: ExplorerRepository {

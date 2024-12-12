@@ -6,10 +6,11 @@
 //
 
 import Foundation
-import DGCharts
+@preconcurrency import DGCharts
 import DomainLayer
 
-class YAxisValueFormatter: AxisValueFormatter {
+@MainActor
+class YAxisValueFormatter: @preconcurrency AxisValueFormatter {
 
     let weatherField: WeatherField
     let handleSidePadding: Bool

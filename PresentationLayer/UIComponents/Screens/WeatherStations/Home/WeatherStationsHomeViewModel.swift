@@ -10,6 +10,7 @@ import DomainLayer
 import SwiftUI
 import Toolkit
 
+@MainActor
 public final class WeatherStationsHomeViewModel: ObservableObject {
     private let meUseCase: MeUseCase
 	private let remoteConfigUseCase: RemoteConfigUseCase

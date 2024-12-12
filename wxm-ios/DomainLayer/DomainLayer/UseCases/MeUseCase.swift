@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import Toolkit
 
-public struct MeUseCase {
+public struct MeUseCase: @unchecked Sendable {
     private let meRepository: MeRepository
 	private let networkRepository: NetworkRepository
     private let filtersRepository: FiltersRepository

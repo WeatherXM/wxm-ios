@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkDeviceRewardsSummaryResponse: Codable, Hashable {
+public struct NetworkDeviceRewardsSummaryResponse: Codable, Hashable, Sendable {
 	public let totalRewards: Double?
 	public let latest: NetworkDeviceRewardsSummary?
 	public let timeline: [NetworkDeviceRewardsSummaryTimelineEntry]?
@@ -19,7 +19,7 @@ public struct NetworkDeviceRewardsSummaryResponse: Codable, Hashable {
 	}
 }
 
-public struct NetworkDeviceRewardsSummary: Codable, Hashable {
+public struct NetworkDeviceRewardsSummary: Codable, Hashable, Sendable {
 	public let timestamp: Date?
 	public let baseReward: Double?
 	public let totalBoostReward: Double?
@@ -46,7 +46,7 @@ public struct NetworkDeviceRewardsSummary: Codable, Hashable {
 	}
 }
 
-public struct NetworkDeviceRewardsSummaryTimelineEntry: Codable, Hashable {
+public struct NetworkDeviceRewardsSummaryTimelineEntry: Codable, Hashable, Sendable {
 	public let timestamp: Date?
 	public let baseRewardScore: Int?
 

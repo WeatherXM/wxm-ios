@@ -9,13 +9,14 @@ import Foundation
 import SwiftUI
 import Toolkit
 
+@MainActor
 enum Route: Hashable, Equatable {
-	static func == (lhs: Route, rhs: Route) -> Bool {
+	nonisolated static func == (lhs: Route, rhs: Route) -> Bool {
 		lhs.hashValue == rhs.hashValue
 	}
 	
 	// swiftlint:disable function_body_length
-	func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
 		hasher.combine(stringRepresentation)
 		
 		switch self {
@@ -73,6 +74,7 @@ enum Route: Hashable, Equatable {
 	}
 	// swiftlint:enable function_body_length
 
+	nonisolated
 	var stringRepresentation: String {
 		switch self {
 			case .stationDetails:
@@ -246,6 +248,7 @@ extension Route {
 	}
 }
 
+@MainActor
 class Router: ObservableObject {
 	
 	static let shared = Router()

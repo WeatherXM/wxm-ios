@@ -131,7 +131,7 @@ private struct WXMWebView: UIViewRepresentable {
 			print(urlSchemeTask)
 		}
 
-		func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+		func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping @MainActor (WKNavigationActionPolicy) -> Void) {
 			DispatchQueue.main.async { [weak self] in
 				guard let requestUrl = navigationAction.request.url,
 					  MainScreenViewModel.shared.deepLinkHandler.handleUrl(requestUrl,

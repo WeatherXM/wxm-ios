@@ -10,6 +10,7 @@ import DomainLayer
 import SwiftUI
 import Toolkit
 
+@MainActor
 class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
 	let device: DeviceDetails
@@ -173,7 +174,7 @@ private extension ForecastDetailsViewModel {
 }
 
 extension ForecastDetailsViewModel: HashableViewModel {
-	func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
 		hasher.combine(device.id)
 	}
 }

@@ -8,7 +8,7 @@
 import Combine
 import CoreLocation
 
-public struct DeviceLocationUseCase {
+public struct DeviceLocationUseCase: @unchecked Sendable {
     let deviceLocationRepository: DeviceLocationRepository
     public init(deviceLocationRepository: DeviceLocationRepository) {
         self.deviceLocationRepository = deviceLocationRepository

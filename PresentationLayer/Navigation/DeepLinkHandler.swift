@@ -13,6 +13,7 @@ import Toolkit
 import UserNotifications
 import CoreLocation
 
+@MainActor
 class DeepLinkHandler {
 	typealias QueryParamsCallBack = GenericCallback<[String: String]?>
 	static let httpsScheme = "https"

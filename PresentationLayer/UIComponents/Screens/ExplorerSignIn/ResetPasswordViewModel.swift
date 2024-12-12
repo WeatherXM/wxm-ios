@@ -9,6 +9,7 @@ import Combine
 import DomainLayer
 import Toolkit
 
+@MainActor
 final class ResetPasswordViewModel: ObservableObject {
     @Published var userEmail: String = ""
     @Published var isSendResetPasswordButtonAvailable: Bool = false
@@ -72,6 +73,6 @@ final class ResetPasswordViewModel: ObservableObject {
 }
 
 extension ResetPasswordViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
     }
 }

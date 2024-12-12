@@ -29,8 +29,7 @@ extension WEIConverter {
 		guard var decimal = Decimal(string: weiString) else {
 			return nil
 		}
-
-		var etherInWei = self.etherInWei
+		
 		var result: Decimal = .nan
 		NSDecimalMultiplyByPowerOf10(&result, &decimal, -18, .up)
 		return result

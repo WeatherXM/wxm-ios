@@ -23,7 +23,7 @@ public protocol BluetoothDevicesRepository {
     func disconnect(device: BTWXMDevice)
 }
 
-public struct BTWXMDeviceInfo {
+public struct BTWXMDeviceInfo: Sendable {
 	public let devEUI: String
 	public let claimingKey: String
 
@@ -33,7 +33,7 @@ public struct BTWXMDeviceInfo {
 	}
 }
 
-public enum BluetoothState {
+public enum BluetoothState: Sendable {
     case unsupported
     case unauthorized
     case poweredOff
@@ -42,7 +42,7 @@ public enum BluetoothState {
     case resetting
 }
 
-public enum BTWXMDeviceState: String {
+public enum BTWXMDeviceState: String, Sendable {
     case unknown
     case disconnected
     case connecting
@@ -50,7 +50,7 @@ public enum BTWXMDeviceState: String {
     case disconnecting
 }
 
-public struct BTWXMDevice: Equatable, Identifiable {
+public struct BTWXMDevice: Equatable, Identifiable, Sendable {
     public var id: UUID {
         return identifier
     }

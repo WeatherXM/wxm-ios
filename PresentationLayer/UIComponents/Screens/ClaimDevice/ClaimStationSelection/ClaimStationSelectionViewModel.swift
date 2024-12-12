@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class ClaimStationSelectionViewModel: ObservableObject {
 
 	func handleTypeTap(_ type: ClaimStationType) {
@@ -16,6 +17,6 @@ class ClaimStationSelectionViewModel: ObservableObject {
 }
 
 extension ClaimStationSelectionViewModel: HashableViewModel {
-	func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
 	}
 }

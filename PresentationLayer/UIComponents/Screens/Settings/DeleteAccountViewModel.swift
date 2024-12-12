@@ -11,6 +11,7 @@ import Foundation
 import UIKit
 import Toolkit
 
+@MainActor
 final class DeleteAccountViewModel: ObservableObject {
 	@Published var password = "" {
 		didSet {
@@ -124,7 +125,7 @@ extension DeleteAccountViewModel {
 }
 
 extension DeleteAccountViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(userID)
     }
 }
