@@ -35,15 +35,15 @@ class GalleryViewModel: ObservableObject {
 	private lazy var imagePickerDelegate = {
 		let picker = ImagePickerDelegate(useCase: useCase)
 		picker.imageCallback = { [weak self] imageUrl in
-			self?.images.insert(imageUrl, at: 0)
-			self?.selectedImage = self?.images.first
+			self?.images.append(imageUrl)
+			self?.selectedImage = self?.images.last
 		}
 		return picker
 	}()
 
 	init(photoGalleryUseCase: PhotoGalleryUseCase) {
 		self.useCase = photoGalleryUseCase
-		selectedImage = images.first
+		selectedImage = images.last
 		updateSubtitle()
 		updateCameraPermissionState()
 	}
@@ -84,7 +84,7 @@ class GalleryViewModel: ObservableObject {
 		do {
 			try useCase.deleteImage(selectedImage)
 			images.removeAll(where: { $0 == selectedImage })
-			self.selectedImage = images.first
+			self.selectedImage = images.last
 		} catch {
 			Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
 		}
