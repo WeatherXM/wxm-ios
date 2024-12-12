@@ -328,6 +328,17 @@
         }
       }
     },
+    "back" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
+    },
     "bluetooth_go_to_settings_grant_access" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3991,6 +4002,17 @@
         }
       }
     },
+    "exit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit"
+          }
+        }
+      }
+    },
     "explorer_list_cell_capacity" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5698,6 +5720,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Subject is in the middle of the photo"
+          }
+        }
+      }
+    },
+    "photo_verification_exit_photo_verification" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit Photo Verification"
+          }
+        }
+      }
+    },
+    "photo_verification_exit_photo_verification_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to exit the Photo Verification process? \n\nYou can always do it later from the station’s settings."
           }
         }
       }

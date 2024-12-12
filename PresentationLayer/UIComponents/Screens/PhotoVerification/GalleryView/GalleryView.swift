@@ -19,7 +19,7 @@ struct GalleryView: View {
 			VStack(spacing: 0.0) {
 				HStack(spacing: CGFloat(.mediumSpacing)) {
 					Button {
-						dismiss()
+						viewModel.handleBackButtonTap(dismissAction: dismiss)
 					} label: {
 						Text(FontIcon.xmark.rawValue)
 							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
@@ -153,6 +153,7 @@ private extension GalleryView {
 											.cornerRadius(CGFloat(.buttonCornerRadius))
 											.indication(show: .constant(isSelected),
 														borderColor: Color(colorEnum: .wxmPrimary),
+														borderWidth: 2.0,
 														bgColor: .clear,
 														cornerRadius: CGFloat(.buttonCornerRadius),
 														content: { EmptyView() })
