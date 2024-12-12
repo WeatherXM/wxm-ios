@@ -52,6 +52,8 @@ extension LocalizableString {
 		case yourCameraWillOpen
 		case allowAccess
 		case openSettings
+		case exitPhotoVerification
+		case exitPhotoVerificationText
 	}
 }
 
@@ -156,6 +158,10 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_allow_access"
 			case .openSettings:
 				"photo_verification_open_settings"
+			case .exitPhotoVerification:
+				"photo_verification_exit_photo_verification"
+			case .exitPhotoVerificationText:
+				"photo_verification_exit_photo_verification_text"
 		}
 	}
 }

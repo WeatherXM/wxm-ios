@@ -11,7 +11,7 @@ import Foundation
 class PhotoIntroViewModel: ObservableObject {
 	@Published var isTermsAccepted: Bool = false
 
-	var closeButtonIcon: FontIcon { .arrowLeft }
+	var closeButtonIcon: FontIcon { .xmark }
 	var showTerms: Bool { true }
 	lazy var instructions: [PhotoIntroView.Instruction] = {
 		[.init(icon: .iconRotate, text: LocalizableString.PhotoVerification.rotateInstruction.localized, bullets: []),
@@ -77,6 +77,6 @@ private extension PhotoIntroViewModel {
 }
 
 class PhotoInstructionsViewModel: PhotoIntroViewModel {
-	override var closeButtonIcon: FontIcon { .xmark }
+	override var closeButtonIcon: FontIcon { .arrowLeft }
 	override var showTerms: Bool { false }
 }
