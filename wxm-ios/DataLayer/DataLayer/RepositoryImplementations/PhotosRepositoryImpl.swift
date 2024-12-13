@@ -27,7 +27,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		guard saveImageWithEXIF(image: image, metadata: fixedMetadata, saveFilename: fileName) else {
 			return nil
 		}
-
+		print("Image saved in \(fileName.path())")
 		return fileName.absoluteString
 	}
 
