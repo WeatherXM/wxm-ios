@@ -54,6 +54,19 @@ class PhotoIntroViewModel: ObservableObject {
 extension PhotoIntroViewModel: HashableViewModel {
 	nonisolated func hash(into hasher: inout Hasher) {
 	}
+
+	static func getInitialRoute() -> Route {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
+		let areTermsAccepted = useCase.areTermsAccepted
+
+		if areTermsAccepted {
+			let viewModel = ViewModelsFactory.getGalleryViewModel()
+			return .photoGallery(viewModel)
+		}
+
+		let viewModel = ViewModelsFactory.getPhotoIntroViewModel()
+		return .photoIntro(viewModel)
+	}
 }
 
 private extension PhotoIntroViewModel {
