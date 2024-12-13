@@ -74,7 +74,10 @@ struct GalleryView: View {
 							}
 						} else {
 							noImageView
-								.frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+								.frame(width: proxy.size.width * 0.85, height: proxy.size.height, alignment: .center)
+								.position(x: proxy.frame(in: .local).midX,
+										  y: proxy.frame(in: .local).midY)
+
 						}
 					}
 					.animation(.easeIn(duration: 0.3), value: viewModel.selectedImage)
@@ -225,7 +228,6 @@ private extension GalleryView {
 			}
 			.buttonStyle(WXMButtonStyle.filled())
 		}
-		.padding(CGFloat(.largeSidePadding))
 	}
 }
 
