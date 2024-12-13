@@ -43,6 +43,7 @@ class MainScreenViewModel: ObservableObject {
     private let mainUseCase: MainUseCase
 	private let meUseCase: MeUseCase
     private let settingsUseCase: SettingsUseCase
+	private let photosUseCase: PhotoGalleryUseCase
     private var cancellableSet: Set<AnyCancellable> = []
     let networkMonitor: NWPathMonitor
     @Published var isUserLoggedIn: Bool = false
@@ -64,12 +65,14 @@ class MainScreenViewModel: ObservableObject {
         self.swinjectHelper = SwinjectHelper.shared
         mainUseCase = swinjectHelper.getContainerForSwinject().resolve(MainUseCase.self)!
 		meUseCase = swinjectHelper.getContainerForSwinject().resolve(MeUseCase.self)!
+		photosUseCase = swinjectHelper.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
 
         networkMonitor = NWPathMonitor()
         settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCase.self)!
 
         checkIfUserIsLoggedIn()
         settingsUseCase.initializeAnalyticsTracking()
+		purgeSavedPhotos()
 
 		NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { _ in
 			WidgetCenter.shared.reloadAllTimelines()
@@ -289,6 +292,15 @@ class MainScreenViewModel: ObservableObject {
         }
         WXMAnalytics.shared.setUserId(nil)
     }
+
+	// MARK: Photos
+	private func purgeSavedPhotos() {
+		do {
+			try photosUseCase.purgeImages()
+		} catch {
+			print("Error purging photos: \(error)")
+		}
+	}
 
 	// MARK: - App Update
 }

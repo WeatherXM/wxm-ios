@@ -72,6 +72,7 @@
 		26E88B3429E582070023BBD5 /* DBWeather+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88B3329E582070023BBD5 /* DBWeather+CoreDataClass.swift */; };
 		26E88B3529E582070023BBD5 /* DBWeather+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88B3229E582070023BBD5 /* DBWeather+CoreDataProperties.swift */; };
 		26E88B3729E586B00023BBD5 /* DBProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88B3629E586B00023BBD5 /* DBProtocols.swift */; };
+		26F6F7542D0855FE00FB256B /* PhotosRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F7532D0855FE00FB256B /* PhotosRepositoryImpl.swift */; };
 		26FFAD932B8E2A5500BF0A6B /* get_reward_details.json in Resources */ = {isa = PBXBuildFile; fileRef = 26FFAD922B8E2A5500BF0A6B /* get_reward_details.json */; };
 		4D1C95D028FC7EB1001F66C9 /* LocationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C95CF28FC7EB1001F66C9 /* LocationRepositoryImpl.swift */; };
 		4D49D90A294DE3B300987DE6 /* MapboxSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D909294DE3B300987DE6 /* MapboxSearch */; };
@@ -164,6 +165,7 @@
 		26E88B3229E582070023BBD5 /* DBWeather+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBWeather+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		26E88B3329E582070023BBD5 /* DBWeather+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBWeather+CoreDataClass.swift"; sourceTree = "<group>"; };
 		26E88B3629E586B00023BBD5 /* DBProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBProtocols.swift; sourceTree = "<group>"; };
+		26F6F7532D0855FE00FB256B /* PhotosRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRepositoryImpl.swift; sourceTree = "<group>"; };
 		26FFAD922B8E2A5500BF0A6B /* get_reward_details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_reward_details.json; sourceTree = "<group>"; };
 		4D1C95CF28FC7EB1001F66C9 /* LocationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepositoryImpl.swift; sourceTree = "<group>"; };
 		4D5AE32F28EA49C7006F2EBA /* BluetoothDevicesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevicesRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */,
 				995A0CDD28C0AA400015DAA1 /* UserDefaultsRepositoryImp.swift */,
 				26A86BC12C7C997700F1C2CF /* RemoteConfigRepositoryImpl.swift */,
+				26F6F7532D0855FE00FB256B /* PhotosRepositoryImpl.swift */,
 			);
 			path = RepositoryImplementations;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				2609D3AD29FC04C300D945D9 /* RequestHeadersAdapter.swift in Sources */,
 				26D47E9E2A177AFB0078723A /* SettingsRepositoryImpl.swift in Sources */,
 				995A0CDE28C0AA400015DAA1 /* UserDefaultsRepositoryImp.swift in Sources */,
+				26F6F7542D0855FE00FB256B /* PhotosRepositoryImpl.swift in Sources */,
 				995A0CDC28C0A9830015DAA1 /* UserDefaultsService.swift in Sources */,
 				26AB9F522A80112900855912 /* UserDevicesService.swift in Sources */,
 				267EC3BC2CD0E8BD0085B50A /* MainRepositoryImpl.swift in Sources */,
@@ -704,7 +708,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -864,7 +868,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -900,7 +904,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

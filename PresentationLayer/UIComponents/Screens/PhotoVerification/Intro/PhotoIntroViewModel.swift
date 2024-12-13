@@ -10,6 +10,9 @@ import Foundation
 @MainActor
 class PhotoIntroViewModel: ObservableObject {
 	@Published var isTermsAccepted: Bool = false
+
+	var closeButtonIcon: FontIcon { .xmark }
+	var showTerms: Bool { true }
 	lazy var instructions: [PhotoIntroView.Instruction] = {
 		[.init(icon: .iconRotate, text: LocalizableString.PhotoVerification.rotateInstruction.localized, bullets: []),
 		 .init(icon: .iconSurface, text: LocalizableString.PhotoVerification.surfaceInstruction.localized, bullets: []),
@@ -31,6 +34,8 @@ class PhotoIntroViewModel: ObservableObject {
 	}()
 
 	func handleBeginButtonTap() {
+		let viewModel = ViewModelsFactory.getGalleryViewModel()
+		Router.shared.navigateTo(.photoGallery(viewModel))
 	}
 }
 
@@ -69,5 +74,9 @@ private extension PhotoIntroViewModel {
 			   bullets: [LocalizableString.PhotoVerification.faultTiltedAngle.localized,
 						 LocalizableString.PhotoVerification.faultSubjectNotInMiddle.localized])]
 	}
+}
 
+class PhotoInstructionsViewModel: PhotoIntroViewModel {
+	override var closeButtonIcon: FontIcon { .arrowLeft }
+	override var showTerms: Bool { false }
 }

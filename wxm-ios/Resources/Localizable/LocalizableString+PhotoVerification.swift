@@ -44,13 +44,30 @@ extension LocalizableString {
 		case uploadPhotos
 		case uploadPhotosDescription
 		case letsTakeTheFirstPhoto
+		case stationPhotos
+		case morePhotosToUpload(Int)
+		case upload
+		case instructions
+		case tapThePlusButton
+		case yourCameraWillOpen
+		case allowAccess
+		case openSettings
+		case exitPhotoVerification
+		case exitPhotoVerificationText
 	}
 }
 
 extension LocalizableString.PhotoVerification: WXMLocalizable {
 	var localized: String {
-		let localized = NSLocalizedString(key, comment: "")
+		var localized = NSLocalizedString(key, comment: "")
+		switch self {
+			case .morePhotosToUpload(let count):
+				localized = String(format: localized, count)
+			default: break
+		}
+
 		return localized
+
 	}
 
 	var key: String {
@@ -125,6 +142,26 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_upload_photos_description"
 			case .letsTakeTheFirstPhoto:
 				"photo_verification_lets_take_the_first_photo"
+			case .stationPhotos:
+				"photo_verification_station_photos"
+			case .morePhotosToUpload(let count):
+				count == 1 ? "photo_verification_more_photos_to_upload_singular" : "photo_verification_more_photos_to_upload_plural"
+			case .upload:
+				"photo_verification_upload"
+			case .instructions:
+				"photo_verification_instructions"
+			case .tapThePlusButton:
+				"photo_verification_tap_the_plus_button"
+			case .yourCameraWillOpen:
+				"photo_verification_your_camera_will_open"
+			case .allowAccess:
+				"photo_verification_allow_access"
+			case .openSettings:
+				"photo_verification_open_settings"
+			case .exitPhotoVerification:
+				"photo_verification_exit_photo_verification"
+			case .exitPhotoVerificationText:
+				"photo_verification_exit_photo_verification_text"
 		}
 	}
 }

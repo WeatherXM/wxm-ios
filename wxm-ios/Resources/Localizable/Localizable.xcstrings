@@ -328,6 +328,17 @@
         }
       }
     },
+    "back" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
+    },
     "bluetooth_go_to_settings_grant_access" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3991,6 +4002,17 @@
         }
       }
     },
+    "exit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit"
+          }
+        }
+      }
+    },
     "explorer_list_cell_capacity" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5548,6 +5570,17 @@
         }
       }
     },
+    "photo_verification_allow_access" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow WeatherXM to access your camera to continue with Photo Verification"
+          }
+        }
+      }
+    },
     "photo_verification_boost_network_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5669,6 +5702,28 @@
         }
       }
     },
+    "photo_verification_exit_photo_verification" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit Photo Verification"
+          }
+        }
+      }
+    },
+    "photo_verification_exit_photo_verification_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to exit the Photo Verification process? \n\nYou can always do it later from the station’s settings."
+          }
+        }
+      }
+    },
     "photo_verification_fault_facing_bottom_up" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5757,6 +5812,17 @@
         }
       }
     },
+    "photo_verification_instructions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instructions"
+          }
+        }
+      }
+    },
     "photo_verification_intro_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5834,6 +5900,28 @@
         }
       }
     },
+    "photo_verification_more_photos_to_upload_plural" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add %d more photos to upload"
+          }
+        }
+      }
+    },
+    "photo_verification_more_photos_to_upload_singular" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add %d more photo to upload"
+          }
+        }
+      }
+    },
     "photo_verification_no_faces_instruction" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5852,6 +5940,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "NOT like this"
+          }
+        }
+      }
+    },
+    "photo_verification_open_settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open settings"
           }
         }
       }
@@ -5878,6 +5977,17 @@
         }
       }
     },
+    "photo_verification_station_photos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station photos"
+          }
+        }
+      }
+    },
     "photo_verification_surface_instruction" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5885,6 +5995,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ensure at least 1 photo clearly shows the surface where the station is installed."
+          }
+        }
+      }
+    },
+    "photo_verification_tap_the_plus_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the plus icon to take a photo"
+          }
+        }
+      }
+    },
+    "photo_verification_upload" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload"
           }
         }
       }
@@ -5907,6 +6039,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "After taking the photos, tap ‘Upload’ to send them to us for installation evaluation. Your photos are used solely for this purpose.\n\nUploading will run in the background, so feel free to navigate the app while we handle the transfer."
+          }
+        }
+      }
+    },
+    "photo_verification_your_camera_will_open" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your camera will open"
           }
         }
       }
