@@ -6,10 +6,15 @@
 //
 
 import Foundation
+import DomainLayer
 
 @MainActor
 class PhotoIntroViewModel: ObservableObject {
-	@Published var isTermsAccepted: Bool = false
+	@Published var areTermsAccepted: Bool {
+		didSet {
+			photoGalleryUseCase.setTermsAccepted(areTermsAccepted)
+		}
+	}
 
 	var closeButtonIcon: FontIcon { .xmark }
 	var showTerms: Bool { true }
@@ -32,6 +37,13 @@ class PhotoIntroViewModel: ObservableObject {
 	lazy var faultExamples: (title: String, examples: [PhotoIntroExamplesView.Example]) = {
 		(LocalizableString.PhotoVerification.notLikeThis.localized, Self.getFaultExamples())
 	}()
+
+	private let photoGalleryUseCase: PhotoGalleryUseCase
+
+	init(photoGalleryUseCase: PhotoGalleryUseCase) {
+		self.photoGalleryUseCase = photoGalleryUseCase
+		areTermsAccepted = photoGalleryUseCase.areTermsAccepted
+	}
 
 	func handleBeginButtonTap() {
 		let viewModel = ViewModelsFactory.getGalleryViewModel()

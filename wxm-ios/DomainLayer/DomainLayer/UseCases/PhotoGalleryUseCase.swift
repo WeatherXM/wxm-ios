@@ -11,10 +11,16 @@ import AVFoundation
 
 public struct PhotoGalleryUseCase: Sendable {
 
+	public var areTermsAccepted: Bool { photosRepository.areTermsAccepted }
+
 	private let photosRepository: PhotosRepository
 
 	public init(photosRepository: PhotosRepository) {
 		self.photosRepository = photosRepository
+	}
+
+	public func setTermsAccepted(_ termsAccepted: Bool) {
+		photosRepository.setTermsAccepted(termsAccepted)
 	}
 
 	public func saveImage(_ image: UIImage, metadata: NSDictionary?) async throws -> String? {
