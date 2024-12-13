@@ -114,9 +114,12 @@ private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UI
 	}
 
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-		if let image = info[.originalImage] as? UIImage,
-		   let imageUrl = try? useCase.saveImage(image) {
-			imageCallback?(imageUrl)
+		let metadata = info[.mediaMetadata] as? NSDictionary
+		Task { @MainActor in
+			if let image = info[.originalImage] as? UIImage,
+			   let imageUrl = try? await useCase.saveImage(image, metadata: metadata) {
+				imageCallback?(imageUrl)
+			}
 		}
 
 		picker.dismiss(animated: true)

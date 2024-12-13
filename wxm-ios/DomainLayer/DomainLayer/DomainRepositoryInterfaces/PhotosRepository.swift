@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 public protocol PhotosRepository: Sendable {
-	func saveImage(_ image: UIImage) throws -> String?
+	func saveImage(_ image: UIImage, metadata: NSDictionary?) async throws -> String?
 	func deleteImage(_ imageUrl: String) throws
 	func getCameraPermission() -> AVAuthorizationStatus
 	func reqeustCameraPermission() async -> AVAuthorizationStatus
