@@ -23,7 +23,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 	
 	public func saveImage(_ image: UIImage, metadata: NSDictionary?) async throws -> String? {
 		let fileName = self.folderPath.appendingPathComponent("image_\(UUID().uuidString).jpg")
-		let fixedMetadata = await injectLocationInMetadata(metadata)
+		let fixedMetadata = await injectLocationInMetadata(metadata ?? .init())
 		guard saveImageWithEXIF(image: image, metadata: fixedMetadata, saveFilename: fileName) else {
 			return nil
 		}
@@ -80,18 +80,14 @@ private extension PhotosRepositoryImpl {
 		let dataWithEXIF: NSMutableData = NSMutableData(data: data as Data)
 		let destination: CGImageDestination = CGImageDestinationCreateWithData((dataWithEXIF as CFMutableData), uti, 1, nil)!
 
-		CGImageDestinationAddImageFromSource(destination, imageRef, 0, (metadata! as CFDictionary))
+		CGImageDestinationAddImageFromSource(destination, imageRef, 0, (metadata ?? [:] as CFDictionary))
 		CGImageDestinationFinalize(destination)
 
 		let manager: FileManager = FileManager.default
 		return manager.createFile(atPath: saveFilename.path(), contents: dataWithEXIF as Data, attributes: nil)
 	}
 
-	func injectLocationInMetadata(_ metadata: NSDictionary?) async -> NSDictionary? {
-		guard let metadata else {
-			return metadata
-		}
-
+	func injectLocationInMetadata(_ metadata: NSDictionary) async -> NSDictionary? {
 		let result = await locationManager.getUserLocation()
 		switch result {
 			case .success(let location):
