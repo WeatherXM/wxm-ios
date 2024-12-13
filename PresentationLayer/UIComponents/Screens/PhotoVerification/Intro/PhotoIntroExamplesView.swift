@@ -63,10 +63,10 @@ struct PhotoIntroExamplesView: View {
 			.disableScrollClip()
 			.scrollIndicators(.hidden)
 		}
-		.padding(CGFloat(.mediumSidePadding))
+		.padding(.vertical, CGFloat(.mediumSidePadding))
+		.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 		.background {
 			Color(colorEnum: tintColor)
-				.cornerRadius(CGFloat(.cardCornerRadius))
 		}
     }
 }
