@@ -218,7 +218,7 @@ private extension PhotoIntroView {
 		if viewModel.showTerms {
 			VStack(spacing: CGFloat(.defaultSpacing)) {
 				HStack(spacing: CGFloat(.smallSpacing)) {
-					Toggle("", isOn: $viewModel.isTermsAccepted)
+					Toggle("", isOn: $viewModel.areTermsAccepted)
 						.labelsHidden()
 						.toggleStyle(WXMToggleStyle.Default)
 					
@@ -239,7 +239,7 @@ private extension PhotoIntroView {
 				}
 				.buttonStyle(WXMButtonStyle(textColor: .top,
 											fillColor: .wxmPrimary))
-				.disabled(!viewModel.isTermsAccepted)
+				.disabled(!viewModel.areTermsAccepted)
 			}
 		}
 	}

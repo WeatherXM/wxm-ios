@@ -18,9 +18,20 @@ private enum Constants: String {
 public struct PhotosRepositoryImpl: PhotosRepository {
 
 	nonisolated(unsafe) private let locationManager = WXMLocationManager()
+	nonisolated(unsafe) private let userDefaultsService = UserDefaultsService()
+	private let termsAcceptedKey = UserDefaults.GenericKey.arePhotoVerificationTermsAccepted.rawValue
+
+	public var areTermsAccepted: Bool {
+		let accepted: Bool? = userDefaultsService.get(key: termsAcceptedKey)
+		return accepted == true
+	}
 
 	public init() {}
-	
+
+	public func setTermsAccepted(_ termsAccepted: Bool) {
+		userDefaultsService.save(value: termsAccepted, key: termsAcceptedKey)
+	}
+
 	public func saveImage(_ image: UIImage, metadata: NSDictionary?) async throws -> String? {
 		let fileName = self.folderPath.appendingPathComponent("image_\(UUID().uuidString).jpg")
 		let fixedMetadata = await injectLocationInMetadata(metadata ?? .init())
