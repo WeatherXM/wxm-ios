@@ -20,17 +20,22 @@ struct PhotoIntroView: View {
 				ScrollView {
 					VStack(spacing: CGFloat(.XLSpacing)) {
 						titleView
+							.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
+
 
 						instructionsView
+							.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 
 						examplesView(containerWidth: proxy.size.width)
 
 						uploadPhotosView
+							.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 
 						termsView
+							.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
+
 					}
 					.padding(.top, -proxy.safeAreaInsets.top)
-					.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 					.padding(.bottom, CGFloat(.mediumToLargeSidePadding))
 					.overlay {
 						VStack {
@@ -172,6 +177,7 @@ private extension PhotoIntroView {
 
 				Spacer()
 			}
+			.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 
 			let recommendedExamples = viewModel.recommendedExamples
 			PhotoIntroExamplesView(containerWidth: containerWidth,
