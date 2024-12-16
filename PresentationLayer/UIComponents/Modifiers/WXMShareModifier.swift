@@ -13,6 +13,7 @@ import Toolkit
 private struct WXMShareModifier: ViewModifier {
 	@Binding var show: Bool
 	let text: String
+	let files: [URL]
 	@State private var hostingWrapper: HostingWrapper = HostingWrapper()
 	@State private var store = Store()
 
@@ -21,20 +22,25 @@ private struct WXMShareModifier: ViewModifier {
 			.background(InternalAnchorView(uiView: store.anchorView))
 			.onChange(of: show) { newValue in
 				if newValue {
-					presentShare(text: text, sourceView: store.anchorView)
+					presentShare(sourceView: store.anchorView)
 				} else {
 					hostingWrapper.hostingController?.dismiss(animated: true)
 				}
 			}
 	}
 
-	func presentShare(text: String, sourceView: UIView?) {
-		let items = [text]
+	func presentShare(sourceView: UIView?) {
+		var items: [Any] = [text]
+		items.append(contentsOf: files.map { getItemSource(file: $0) })
 		let activityController = WXMActivityViewController(activityItems: items, applicationActivities: nil)
 		activityController.popoverPresentationController?.sourceView = sourceView
 		activityController.willDismissCallback = { show = false }
 		hostingWrapper.hostingController = activityController
 		UIApplication.shared.rootViewController?.present(activityController, animated: true)
+	}
+
+	func getItemSource(file: URL) -> ShareFileItemSource? {
+		ShareFileItemSource(fileUrl: file)
 	}
 }
 
@@ -73,7 +79,7 @@ private extension WXMShareModifier {
 
 extension View {
 	@ViewBuilder
-	func wxmShareDialog(show: Binding<Bool>, text: String) -> some View {
-		modifier(WXMShareModifier(show: show, text: text))
+	func wxmShareDialog(show: Binding<Bool>, text: String, files: [URL] = []) -> some View {
+		modifier(WXMShareModifier(show: show, text: text, files: files))
 	}
 }
