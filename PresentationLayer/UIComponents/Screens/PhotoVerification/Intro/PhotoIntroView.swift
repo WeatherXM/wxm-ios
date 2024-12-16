@@ -20,17 +20,22 @@ struct PhotoIntroView: View {
 				ScrollView {
 					VStack(spacing: CGFloat(.XLSpacing)) {
 						titleView
+							.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
+
 
 						instructionsView
+							.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 
 						examplesView(containerWidth: proxy.size.width)
 
 						uploadPhotosView
+							.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 
 						termsView
+							.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
+
 					}
 					.padding(.top, -proxy.safeAreaInsets.top)
-					.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 					.padding(.bottom, CGFloat(.mediumToLargeSidePadding))
 					.overlay {
 						VStack {
@@ -172,6 +177,7 @@ private extension PhotoIntroView {
 
 				Spacer()
 			}
+			.padding(.horizontal, CGFloat(.mediumToLargeSidePadding))
 
 			let recommendedExamples = viewModel.recommendedExamples
 			PhotoIntroExamplesView(containerWidth: containerWidth,
@@ -212,7 +218,7 @@ private extension PhotoIntroView {
 		if viewModel.showTerms {
 			VStack(spacing: CGFloat(.defaultSpacing)) {
 				HStack(spacing: CGFloat(.smallSpacing)) {
-					Toggle("", isOn: $viewModel.isTermsAccepted)
+					Toggle("", isOn: $viewModel.areTermsAccepted)
 						.labelsHidden()
 						.toggleStyle(WXMToggleStyle.Default)
 					
@@ -233,7 +239,7 @@ private extension PhotoIntroView {
 				}
 				.buttonStyle(WXMButtonStyle(textColor: .top,
 											fillColor: .wxmPrimary))
-				.disabled(!viewModel.isTermsAccepted)
+				.disabled(!viewModel.areTermsAccepted)
 			}
 		}
 	}

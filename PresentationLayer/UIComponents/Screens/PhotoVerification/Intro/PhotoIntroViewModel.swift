@@ -6,10 +6,15 @@
 //
 
 import Foundation
+import DomainLayer
 
 @MainActor
 class PhotoIntroViewModel: ObservableObject {
-	@Published var isTermsAccepted: Bool = false
+	@Published var areTermsAccepted: Bool {
+		didSet {
+			photoGalleryUseCase.setTermsAccepted(areTermsAccepted)
+		}
+	}
 
 	var closeButtonIcon: FontIcon { .xmark }
 	var showTerms: Bool { true }
@@ -33,6 +38,13 @@ class PhotoIntroViewModel: ObservableObject {
 		(LocalizableString.PhotoVerification.notLikeThis.localized, Self.getFaultExamples())
 	}()
 
+	private let photoGalleryUseCase: PhotoGalleryUseCase
+
+	init(photoGalleryUseCase: PhotoGalleryUseCase) {
+		self.photoGalleryUseCase = photoGalleryUseCase
+		areTermsAccepted = photoGalleryUseCase.areTermsAccepted
+	}
+
 	func handleBeginButtonTap() {
 		let viewModel = ViewModelsFactory.getGalleryViewModel()
 		Router.shared.navigateTo(.photoGallery(viewModel))
@@ -41,6 +53,19 @@ class PhotoIntroViewModel: ObservableObject {
 
 extension PhotoIntroViewModel: HashableViewModel {
 	nonisolated func hash(into hasher: inout Hasher) {
+	}
+
+	static func getInitialRoute() -> Route {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
+		let areTermsAccepted = useCase.areTermsAccepted
+
+		if areTermsAccepted {
+			let viewModel = ViewModelsFactory.getGalleryViewModel()
+			return .photoGallery(viewModel)
+		}
+
+		let viewModel = ViewModelsFactory.getPhotoIntroViewModel()
+		return .photoIntro(viewModel)
 	}
 }
 
