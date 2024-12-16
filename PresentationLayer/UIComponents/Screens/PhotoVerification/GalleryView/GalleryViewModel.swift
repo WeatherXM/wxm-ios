@@ -76,7 +76,8 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func handleUploadButtonTap() {
-		
+		// TEMP
+		showShareSheet = true
 	}
 
 	func handleOpenSettingsTap() {
