@@ -125,6 +125,7 @@ struct GalleryView: View {
 		.task {
 			viewModel.viewLoaded()
 		}
+		.wxmShareDialog(show: $viewModel.showShareSheet, text: "", files: viewModel.shareFileUrls ?? [])
     }
 }
 

@@ -21,6 +21,10 @@ class GalleryViewModel: ObservableObject {
 	@Published var selectedImage: String?
 	@Published var isCameraDenied: Bool = false
 	@Published var showInstructions: Bool = false
+	@Published var showShareSheet: Bool = false
+	var shareFileUrls: [URL]? {
+		images.compactMap { try? $0.asURL() }
+	}
 	var isPlusButtonVisible: Bool {
 		images.count < maxPhotosCount
 	}
