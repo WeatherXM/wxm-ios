@@ -9,6 +9,7 @@ import Foundation
 
 import SwiftUI
 import Toolkit
+import LinkPresentation
 
 private struct WXMShareModifier: ViewModifier {
 	@Binding var show: Bool
@@ -60,6 +61,7 @@ private extension WXMShareModifier {
 			}
 		}
 
+
 		deinit {
 			print("deinit \(Self.self)")
 		}
@@ -74,6 +76,32 @@ private extension WXMShareModifier {
 		}
 
 		func updateUIView(_ uiView: Self.UIViewType, context: Self.Context) { }
+	}
+
+	class ShareFileItemSource: NSObject, UIActivityItemSource {
+		let fileUrl: URL
+
+		init(fileUrl: URL) {
+			self.fileUrl = fileUrl
+		}
+
+		func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+			UIImage()
+		}
+		
+		func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+			fileUrl
+		}
+
+		func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+			guard let image = UIImage(contentsOfFile: fileUrl.path()) else {
+				return nil
+			}
+			let imageProvider = NSItemProvider(object: image)
+			let metadata = LPLinkMetadata()
+			metadata.imageProvider = imageProvider
+			return metadata
+		}
 	}
 }
 
