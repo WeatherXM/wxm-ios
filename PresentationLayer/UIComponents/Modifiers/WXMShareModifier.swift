@@ -9,10 +9,12 @@ import Foundation
 
 import SwiftUI
 import Toolkit
+import LinkPresentation
 
 private struct WXMShareModifier: ViewModifier {
 	@Binding var show: Bool
 	let text: String
+	let files: [URL]
 	@State private var hostingWrapper: HostingWrapper = HostingWrapper()
 	@State private var store = Store()
 
@@ -21,20 +23,25 @@ private struct WXMShareModifier: ViewModifier {
 			.background(InternalAnchorView(uiView: store.anchorView))
 			.onChange(of: show) { newValue in
 				if newValue {
-					presentShare(text: text, sourceView: store.anchorView)
+					presentShare(sourceView: store.anchorView)
 				} else {
 					hostingWrapper.hostingController?.dismiss(animated: true)
 				}
 			}
 	}
 
-	func presentShare(text: String, sourceView: UIView?) {
-		let items = [text]
+	func presentShare(sourceView: UIView?) {
+		var items: [Any] = [text]
+		items.append(contentsOf: files.map { getItemSource(file: $0) })
 		let activityController = WXMActivityViewController(activityItems: items, applicationActivities: nil)
 		activityController.popoverPresentationController?.sourceView = sourceView
 		activityController.willDismissCallback = { show = false }
 		hostingWrapper.hostingController = activityController
 		UIApplication.shared.rootViewController?.present(activityController, animated: true)
+	}
+
+	func getItemSource(file: URL) -> ShareFileItemSource? {
+		ShareFileItemSource(fileUrl: file)
 	}
 }
 
@@ -54,6 +61,7 @@ private extension WXMShareModifier {
 			}
 		}
 
+
 		deinit {
 			print("deinit \(Self.self)")
 		}
@@ -69,11 +77,37 @@ private extension WXMShareModifier {
 
 		func updateUIView(_ uiView: Self.UIViewType, context: Self.Context) { }
 	}
+
+	class ShareFileItemSource: NSObject, UIActivityItemSource {
+		let fileUrl: URL
+
+		init(fileUrl: URL) {
+			self.fileUrl = fileUrl
+		}
+
+		func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+			UIImage()
+		}
+		
+		func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+			fileUrl
+		}
+
+		func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+			guard let image = UIImage(contentsOfFile: fileUrl.path()) else {
+				return nil
+			}
+			let imageProvider = NSItemProvider(object: image)
+			let metadata = LPLinkMetadata()
+			metadata.imageProvider = imageProvider
+			return metadata
+		}
+	}
 }
 
 extension View {
 	@ViewBuilder
-	func wxmShareDialog(show: Binding<Bool>, text: String) -> some View {
-		modifier(WXMShareModifier(show: show, text: text))
+	func wxmShareDialog(show: Binding<Bool>, text: String, files: [URL] = []) -> some View {
+		modifier(WXMShareModifier(show: show, text: text, files: files))
 	}
 }
