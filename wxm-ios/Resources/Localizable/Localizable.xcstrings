@@ -2028,7 +2028,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "There is a brand new firmware update for your station.\n**We highly recommend you update, as this will improve the experience you’ll have with your WeatherXM station!**"
+            "value" : "**We strongly recommend you to update for a better station experience!**\nYou will be able to photo verify your station after the update."
           }
         }
       }
