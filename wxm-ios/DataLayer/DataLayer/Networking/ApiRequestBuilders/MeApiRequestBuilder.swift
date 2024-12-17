@@ -186,6 +186,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 extension MeApiRequestBuilder: MockResponseBuilder {
 	var mockFileName: String? {
 		switch self {
+			case .claimDevice:
+				return "claim_device"
 			case .getDevices:
 				return "get_user_devices"
 			case .getUserDeviceById:
