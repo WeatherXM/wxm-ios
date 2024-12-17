@@ -12,6 +12,7 @@ struct SuccessView: View {
     let title: String
     let subtitle: AttributedString?
 	var info: CardWarningConfiguration?
+	var infoCustomView: AnyView? = nil
 	var infoOnAppearAction: VoidCallback?
     let buttonTitle: String
     let buttonAction: VoidCallback?
@@ -29,7 +30,13 @@ struct SuccessView: View {
 				VStack(spacing: CGFloat(.mediumSpacing)) {
 					if let info {
 						CardWarningView(configuration: info) {
-							EmptyView()
+							Group {
+								if let infoCustomView {
+									infoCustomView
+								} else {
+									EmptyView()
+								}
+							}
 						}
 						.onAppear {
 							infoOnAppearAction?()
@@ -85,6 +92,7 @@ extension SuccessView {
         self.title = obj.title
         self.subtitle = obj.subtitle
 		self.info = obj.info
+		self.infoCustomView = obj.infoCustomView
 		self.infoOnAppearAction = obj.infoOnAppearAction
         self.buttonTitle = obj.retryTitle ?? ""
         self.buttonAction = obj.retryAction
