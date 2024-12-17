@@ -90,8 +90,10 @@ public class UserDevicesService: @unchecked Sendable {
     }
 
     func claimDevice(claimDeviceBody: ClaimDeviceBody) throws -> AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> {
-        let urlRequest = try MeApiRequestBuilder.claimDevice(claimDeviceBody: claimDeviceBody).asURLRequest()
-        let publisher: AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest)
+		let builder = MeApiRequestBuilder.claimDevice(claimDeviceBody: claimDeviceBody)
+		let urlRequest = try builder.asURLRequest()
+		let publisher: AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
+																																				   mockFileName: builder.mockFileName)
         return publisher
             .flatMap { [weak self] response in
                 if response.error == nil {
