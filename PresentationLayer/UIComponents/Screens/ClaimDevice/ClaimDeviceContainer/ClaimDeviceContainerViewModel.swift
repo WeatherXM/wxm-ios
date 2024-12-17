@@ -9,6 +9,7 @@ import Foundation
 import DomainLayer
 import Combine
 import Toolkit
+import SwiftUI
 
 @MainActor
 class ClaimDeviceContainerViewModel: ObservableObject {
@@ -174,6 +175,26 @@ extension ClaimDeviceContainerViewModel {
 
 			self?.dismissAndNavigate(device: device)
 		}
+
+		let updateFirmwareButton = Button(action: { [weak self] in
+			self?.dismissAndNavigate(device: nil)
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
+				MainScreenViewModel.shared.showFirmwareUpdate(device: device)
+			}
+		}, label: {
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				Text(FontIcon.sparkles.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+
+				HStack {
+					Spacer()
+					Text(LocalizableString.ClaimDevice.updateFirmwareAlertTitle.localized)
+					Spacer()
+				}
+			}
+			.padding(.horizontal, CGFloat(.defaultSidePadding))
+		}).buttonStyle(WXMButtonStyle.filled()).toAnyView
+
 		let updateFirmwareAction: VoidCallback = { [weak self] in
 			self?.dismissAndNavigate(device: nil)
 			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
@@ -195,6 +216,7 @@ extension ClaimDeviceContainerViewModel {
 											title: LocalizableString.ClaimDevice.successTitle.localized,
 											subtitle: LocalizableString.ClaimDevice.successText(device.displayName).localized.attributedMarkdown,
 											info: needsUpdate ? info : nil,
+											infoCustomView: needsUpdate ? updateFirmwareButton : nil,
 											infoOnAppearAction: needsUpdate ? infoAppearAction : nil,
 											cancelTitle: cancelTitle,
 											retryTitle: retryTitle,

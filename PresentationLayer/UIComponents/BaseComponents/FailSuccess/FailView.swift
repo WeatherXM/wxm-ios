@@ -140,7 +140,13 @@ private extension FailView {
 
 			if let info = obj.info {
 				CardWarningView(configuration: info) {
-					EmptyView()
+					Group {
+						if let customView = obj.infoCustomView {
+							customView
+						} else {
+							EmptyView()
+						}
+					}
 				}
 				.onAppear {
 					obj.infoOnAppearAction?()
