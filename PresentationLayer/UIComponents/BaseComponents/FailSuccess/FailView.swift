@@ -153,7 +153,10 @@ private extension FailView {
 				}
 			}
 
-			HStack(spacing: CGFloat(.mediumSpacing)) {
+			let layout = obj.actionButtonsLayout == .horizontal ?
+			AnyLayout(HStackLayout(spacing: CGFloat(.defaultSpacing))) : AnyLayout(VStackLayout(spacing: CGFloat(.smallToMediumSpacing)))
+
+			layout {
 				if let cancelAction = obj.cancelAction {
 					Button(action: cancelAction) {
 						Text(obj.cancelTitle ?? "")
