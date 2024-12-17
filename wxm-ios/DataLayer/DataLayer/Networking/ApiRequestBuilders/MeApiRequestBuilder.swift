@@ -186,7 +186,10 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 extension MeApiRequestBuilder: MockResponseBuilder {
 	var mockFileName: String? {
 		switch self {
-			case .claimDevice:
+			case .claimDevice(let body):
+				if body.secret != nil {
+					return "claim_device_helium"
+				}
 				return "claim_device"
 			case .getDevices:
 				return "get_user_devices"
