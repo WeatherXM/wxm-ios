@@ -69,6 +69,6 @@ struct AlertHelper {
             alertController.addAction(okAction)
         }
 
-        UIApplication.shared.rootViewController?.present(alertController, animated: true)
+		UIApplication.shared.topViewController?.present(alertController, animated: true)
     }
 }

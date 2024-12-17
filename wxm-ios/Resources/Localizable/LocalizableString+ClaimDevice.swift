@@ -148,8 +148,8 @@ extension LocalizableString {
 		case stepClaiming
 		case continueToPhotoVerification
 		case skipPhotoVerificationForNow
-
-
+		case skipPhotoVerificationAlertTitle
+		case skipPhotoVerificationAlertText
 	}
 }
 
@@ -456,6 +456,10 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_continue_to_photo_verification"
 			case .skipPhotoVerificationForNow:
 				return "claim_device_skip_photo_verification_for_now"
+			case .skipPhotoVerificationAlertTitle:
+				return "claim_device_skip_photo_verification_alert_title"
+			case .skipPhotoVerificationAlertText:
+				return "claim_device_skip_photo_verification_alert_text"
 		}
 	}
 }
