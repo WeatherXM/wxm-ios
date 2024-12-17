@@ -82,8 +82,11 @@ private extension ClaimHeliumContainerViewModel {
 			showLoading = true
 
 			// Fetch device info
-
+#if targetEnvironment(simulator)
+			let result: Result<BTWXMDeviceInfo?, BluetoothHeliumError> = .success(.init(devEUI: "", claimingKey: ""))
+#else
 			let result = await devicesUseCase.getDeviceInfo(device: btDevice)
+#endif
 			switch result {
 				case .success(let info):
 					// perform claim request
@@ -160,6 +163,9 @@ private extension ClaimHeliumContainerViewModel {
 	}
 
 	func setHeliumFrequency() async -> BluetoothHeliumError? {
+#if targetEnvironment(simulator)
+		return nil
+#endif
 		guard let heliumFrequency, let btDevice else {
 			return .unknown
 		}
@@ -178,6 +184,10 @@ private extension ClaimHeliumContainerViewModel {
 	}
 
 	func reboot() async -> BluetoothHeliumError? {
+#if targetEnvironment(simulator)
+		return nil
+#endif
+
 		guard let btDevice else {
 			return .unknown
 		}
