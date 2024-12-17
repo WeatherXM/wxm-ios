@@ -1054,6 +1054,17 @@
         }
       }
     },
+    "claim_device_continue_to_photo_verification" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue to Photo Verification"
+          }
+        }
+      }
+    },
     "claim_device_d1_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1842,6 +1853,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Set and Claim"
+          }
+        }
+      }
+    },
+    "claim_device_skip_photo_verification_for_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip for now"
           }
         }
       }
