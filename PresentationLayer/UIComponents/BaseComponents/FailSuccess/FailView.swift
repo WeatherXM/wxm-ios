@@ -139,10 +139,12 @@ private extension FailView {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
 
 			if let info = obj.info {
-				InfoView(text: info)
-					.onAppear {
-						obj.infoOnAppearAction?()
-					}
+				CardWarningView(configuration: info) {
+					EmptyView()
+				}
+				.onAppear {
+					obj.infoOnAppearAction?()
+				}
 			}
 
 			HStack(spacing: CGFloat(.mediumSpacing)) {
