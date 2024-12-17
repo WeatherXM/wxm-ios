@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct FailSuccessStateObject {
     let type: SuccessFailEnum
@@ -13,7 +14,8 @@ struct FailSuccessStateObject {
     let title: String
     let subtitle: AttributedString?
 	var info: CardWarningConfiguration?
-	var infoOnAppearAction: (() -> Void)?
+	var infoCustomView: AnyView? = nil
+ 	var infoOnAppearAction: (() -> Void)?
     let cancelTitle: String?
     let retryTitle: String?
 	var actionButtonsAtTheBottom: Bool = true
