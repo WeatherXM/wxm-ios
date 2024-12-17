@@ -146,6 +146,9 @@ extension LocalizableString {
 		case connectionText
 		case stepSettingFrequency
 		case stepClaiming
+		case continueToPhotoVerification
+		case skipPhotoVerificationForNow
+
 
 	}
 }
@@ -449,6 +452,10 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_step_setting_frequency"
 			case .stepClaiming:
 				return "claim_device_step_claiming"
+			case .continueToPhotoVerification:
+				return "claim_device_continue_to_photo_verification"
+			case .skipPhotoVerificationForNow:
+				return "claim_device_skip_photo_verification_for_now"
 		}
 	}
 }

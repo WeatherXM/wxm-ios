@@ -18,10 +18,16 @@ struct FailSuccessStateObject {
  	var infoOnAppearAction: (() -> Void)?
     let cancelTitle: String?
     let retryTitle: String?
+	var actionButtonsLayout: ActionButtonsLayout = .horizontal
 	var actionButtonsAtTheBottom: Bool = true
     let contactSupportAction: (() -> Void)?
     let cancelAction: (() -> Void)?
     let retryAction: (() -> Void)?
+
+	enum ActionButtonsLayout {
+		case horizontal
+		case vertical
+	}
 }
 
 extension FailSuccessStateObject {
