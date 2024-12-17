@@ -1857,6 +1857,28 @@
         }
       }
     },
+    "claim_device_skip_photo_verification_alert_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to skip the Photo Verification process? \n\nYou can always do it later from the station’s settings."
+          }
+        }
+      }
+    },
+    "claim_device_skip_photo_verification_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip Photo Verification"
+          }
+        }
+      }
+    },
     "claim_device_skip_photo_verification_for_now" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8063,6 +8085,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sign Up"
+          }
+        }
+      }
+    },
+    "skip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip"
           }
         }
       }

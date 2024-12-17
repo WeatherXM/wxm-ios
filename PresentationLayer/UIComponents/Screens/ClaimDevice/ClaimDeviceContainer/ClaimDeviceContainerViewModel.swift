@@ -172,8 +172,7 @@ extension ClaimDeviceContainerViewModel {
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
 																	 .contentType: .claiming,
 																	 .action: .viewStation])
-
-			self?.dismissAndNavigate(device: device)
+			self?.showSkipPhotoAlert(device: device)
 		}
 
 		let updateFirmwareButton = Button(action: { [weak self] in
@@ -245,6 +244,19 @@ extension ClaimDeviceContainerViewModel {
 																						  cellCenter: device.cellCenter?.toCLLocationCoordinate2D()))
 			Router.shared.navigateTo(route)
 		}
+	}
+
+	func showSkipPhotoAlert(device: DeviceDetails) {
+		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.skip.localized, { [weak self] _ in
+			self?.dismissAndNavigate(device: device)
+		})
+		let alertObject = AlertHelper.AlertObject(title: LocalizableString.ClaimDevice.skipPhotoVerificationAlertTitle.localized,
+												  message: LocalizableString.ClaimDevice.skipPhotoVerificationAlertText.localized,
+												  cancelActionTitle: LocalizableString.back.localized,
+												  cancelAction: {},
+												  okAction: exitAction)
+
+		AlertHelper().showAlert(alertObject)
 	}
 }
 
