@@ -14,6 +14,7 @@ struct SuccessView: View {
 	var info: CardWarningConfiguration?
 	var infoCustomView: AnyView? = nil
 	var infoOnAppearAction: VoidCallback?
+	let actionButtonsLayout: FailSuccessStateObject.ActionButtonsLayout
     let buttonTitle: String
     let buttonAction: VoidCallback?
 	var secondaryButtonTitle: String?
@@ -43,21 +44,7 @@ struct SuccessView: View {
 						}
 					}
 
-					HStack(spacing: CGFloat(.defaultSpacing)) {
-						if let secondaryButtonTitle, let secondaryButtonAction {
-							Button(action: secondaryButtonAction) {
-								Text(secondaryButtonTitle)
-							}
-							.buttonStyle(WXMButtonStyle())
-						}
-
-						if let buttonAction {
-							Button(action: buttonAction) {
-								Text(buttonTitle)
-							}
-							.buttonStyle(WXMButtonStyle.filled())
-						}
-					}
+					actionButtons
 				}
 				.sizeObserver(size: $bottomButtonsSize)
 			}
@@ -94,6 +81,7 @@ extension SuccessView {
 		self.info = obj.info
 		self.infoCustomView = obj.infoCustomView
 		self.infoOnAppearAction = obj.infoOnAppearAction
+		self.actionButtonsLayout = obj.actionButtonsLayout
         self.buttonTitle = obj.retryTitle ?? ""
         self.buttonAction = obj.retryAction
 		self.secondaryButtonTitle = obj.cancelTitle
@@ -107,6 +95,28 @@ private extension SuccessView {
         LottieView(animationCase: AnimationsEnums.success.animationString, loopMode: .playOnce)
             .frame(width: iconDimensions, height: iconDimensions)
     }
+
+	@ViewBuilder
+	var actionButtons: some View {
+		let layout = actionButtonsLayout == .horizontal ?
+		AnyLayout(HStackLayout(spacing: CGFloat(.defaultSpacing))) : AnyLayout(VStackLayout(spacing: CGFloat(.smallToMediumSpacing)))
+
+		layout {
+			if let secondaryButtonTitle, let secondaryButtonAction {
+				Button(action: secondaryButtonAction) {
+					Text(secondaryButtonTitle)
+				}
+				.buttonStyle(WXMButtonStyle())
+			}
+
+			if let buttonAction {
+				Button(action: buttonAction) {
+					Text(buttonTitle)
+				}
+				.buttonStyle(WXMButtonStyle.filled())
+			}
+		}
+	}
 }
 
 struct SuccessView_Previews: PreviewProvider {
@@ -114,6 +124,7 @@ struct SuccessView_Previews: PreviewProvider {
 		SuccessView(title: "Station Updated!",
 					subtitle: "Your station is updated to the latest Firmware!",
 					info: .init(type: .info, message: "Info text", closeAction: nil),
+					actionButtonsLayout: .horizontal,
 					buttonTitle: "View Station",
 					buttonAction: {},
 					secondaryButtonTitle: "Cancel",

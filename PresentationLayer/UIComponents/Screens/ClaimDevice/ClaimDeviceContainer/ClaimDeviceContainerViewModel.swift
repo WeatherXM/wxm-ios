@@ -166,8 +166,8 @@ extension ClaimDeviceContainerViewModel {
 
 	func getSuccessObject(for device: DeviceDetails, followState: UserDeviceFollowState?) -> FailSuccessStateObject {
 		let needsUpdate = device.needsUpdate(mainVM: MainScreenViewModel.shared, followState: followState) == true
-		let cancelTitle: String? = needsUpdate ? LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized : nil
-		let retryTitle: String? = needsUpdate ? LocalizableString.ClaimDevice.updateFirmwareAlertTitle.localized : LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized
+		let cancelTitle: String? = LocalizableString.ClaimDevice.skipPhotoVerificationForNow.localized
+		let retryTitle: String? = LocalizableString.ClaimDevice.continueToPhotoVerification.localized
 		let goToStationAction: VoidCallback = { [weak self] in
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
 																	 .contentType: .claiming,
@@ -195,11 +195,10 @@ extension ClaimDeviceContainerViewModel {
 			.padding(.horizontal, CGFloat(.defaultSidePadding))
 		}).buttonStyle(WXMButtonStyle.filled()).toAnyView
 
-		let updateFirmwareAction: VoidCallback = { [weak self] in
+		let continueToPhotoVerificationAction: VoidCallback = { [weak self] in
 			self?.dismissAndNavigate(device: nil)
-			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
-				MainScreenViewModel.shared.showFirmwareUpdate(device: device)
-			}
+			let route = PhotoIntroViewModel.getInitialRoute()
+			Router.shared.navigateTo(route)
 		}
 
 		let info: CardWarningConfiguration =  .init(type: .info,
@@ -217,12 +216,13 @@ extension ClaimDeviceContainerViewModel {
 											subtitle: LocalizableString.ClaimDevice.successText(device.displayName).localized.attributedMarkdown,
 											info: needsUpdate ? info : nil,
 											infoCustomView: needsUpdate ? updateFirmwareButton : nil,
-											infoOnAppearAction: needsUpdate ? infoAppearAction : nil,
+											infoOnAppearAction: needsUpdate ? infoAppearAction : nil,											
 											cancelTitle: cancelTitle,
 											retryTitle: retryTitle,
+											actionButtonsLayout: .vertical,
 											contactSupportAction: nil,
-											cancelAction: needsUpdate ? goToStationAction : nil ,
-											retryAction: needsUpdate ? updateFirmwareAction : goToStationAction)
+											cancelAction: goToStationAction,
+											retryAction: continueToPhotoVerificationAction)
 
 		return object
 	}
