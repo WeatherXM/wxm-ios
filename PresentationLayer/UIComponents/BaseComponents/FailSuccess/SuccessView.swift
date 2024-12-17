@@ -11,7 +11,7 @@ import Toolkit
 struct SuccessView: View {
     let title: String
     let subtitle: AttributedString?
-	var info: AttributedString?
+	var info: CardWarningConfiguration?
 	var infoOnAppearAction: VoidCallback?
     let buttonTitle: String
     let buttonAction: VoidCallback?
@@ -28,10 +28,12 @@ struct SuccessView: View {
 
 				VStack(spacing: CGFloat(.mediumSpacing)) {
 					if let info {
-						InfoView(text: info)
-							.onAppear {
-								infoOnAppearAction?()
-							}
+						CardWarningView(configuration: info) {
+							EmptyView()
+						}
+						.onAppear {
+							infoOnAppearAction?()
+						}
 					}
 
 					HStack(spacing: CGFloat(.defaultSpacing)) {
@@ -103,7 +105,7 @@ struct SuccessView_Previews: PreviewProvider {
     static var previews: some View {
 		SuccessView(title: "Station Updated!",
 					subtitle: "Your station is updated to the latest Firmware!",
-					info: "Info text",
+					info: .init(type: .info, message: "Info text", closeAction: nil),
 					buttonTitle: "View Station",
 					buttonAction: {},
 					secondaryButtonTitle: "Cancel",
