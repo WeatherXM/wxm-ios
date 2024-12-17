@@ -16,7 +16,7 @@ struct CardWarningView<Content: View>: View {
 
     var body: some View {
         VStack(spacing: CGFloat(.smallSpacing)) {
-            HStack(spacing: CGFloat(.smallSpacing)) {
+            HStack(spacing: CGFloat(.smallToMediumSpacing)) {
 				if configuration.showIcon {
 					Text(configuration.icon?.rawValue ?? configuration.type.fontIcon.rawValue)
 						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
@@ -144,7 +144,7 @@ enum CardWarningType: Comparable {
 			case .error:
 				return .error
 			case .info:
-				return .info
+				return .wxmPrimary
 		}
 	}
 

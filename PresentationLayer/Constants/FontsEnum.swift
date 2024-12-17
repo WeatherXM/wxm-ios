@@ -48,6 +48,7 @@ enum FontIcon: String {
 	case pointUp = "hand-back-point-up"
 	case badgeCheck = "badge-check"
 	case triangleExclamation = "triangle-exclamation"
+	case sparkles
 	case trash
 	case cog
 	case coins
