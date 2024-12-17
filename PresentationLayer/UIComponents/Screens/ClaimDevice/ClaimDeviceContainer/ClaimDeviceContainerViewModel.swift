@@ -181,11 +181,14 @@ extension ClaimDeviceContainerViewModel {
 			}
 		}
 
-		let info = LocalizableString.ClaimDevice.updateFirmwareInfoMarkdown.localized.attributedMarkdown
+		let info: CardWarningConfiguration =  .init(type: .info,
+													message: LocalizableString.ClaimDevice.updateFirmwareInfoMarkdown.localized,
+													showBorder: true,
+													closeAction: nil)
 		let infoAppearAction = {
 			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
-														   .promptType: .warnPromptType,
-														   .action: .viewAction])
+																 .promptType: .warnPromptType,
+																 .action: .viewAction])
 		}
 
 		let object = FailSuccessStateObject(type: .claimDeviceFlow,
