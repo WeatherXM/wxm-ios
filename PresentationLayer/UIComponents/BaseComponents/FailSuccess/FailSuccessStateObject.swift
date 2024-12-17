@@ -12,7 +12,7 @@ struct FailSuccessStateObject {
 	var failMode: FailView.Mode = .default
     let title: String
     let subtitle: AttributedString?
-	var info: AttributedString?
+	var info: CardWarningConfiguration?
 	var infoOnAppearAction: (() -> Void)?
     let cancelTitle: String?
     let retryTitle: String?
@@ -38,6 +38,7 @@ extension FailSuccessStateObject {
         return FailSuccessStateObject(type: .changeFrequency,
                                       title: "Update Failed",
                                       subtitle: "Pairing failed, please try again! If the problem persists, please contact our support team at support.weatherxm.com \n \n Please make sure to mention that you’re facing an **Error 666** for faster resolution".attributedMarkdown,
+									  info: .init(type: .info, showIcon: true, message: "This is info text", closeAction: nil),
                                       cancelTitle: "Cancel",
                                       retryTitle: "Retry Updating",
 									  actionButtonsAtTheBottom: false,
