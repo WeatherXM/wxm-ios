@@ -9,6 +9,7 @@ import Foundation
 import DomainLayer
 import Combine
 import Toolkit
+import SwiftUI
 
 @MainActor
 class ClaimDeviceContainerViewModel: ObservableObject {
@@ -165,39 +166,64 @@ extension ClaimDeviceContainerViewModel {
 
 	func getSuccessObject(for device: DeviceDetails, followState: UserDeviceFollowState?) -> FailSuccessStateObject {
 		let needsUpdate = device.needsUpdate(mainVM: MainScreenViewModel.shared, followState: followState) == true
-		let cancelTitle: String? = needsUpdate ? LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized : nil
-		let retryTitle: String? = needsUpdate ? LocalizableString.ClaimDevice.updateFirmwareAlertTitle.localized : LocalizableString.ClaimDevice.updateFirmwareAlertGoToStation.localized
+		let cancelTitle: String? = LocalizableString.ClaimDevice.skipPhotoVerificationForNow.localized
+		let retryTitle: String? = LocalizableString.ClaimDevice.continueToPhotoVerification.localized
 		let goToStationAction: VoidCallback = { [weak self] in
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
 																	 .contentType: .claiming,
 																	 .action: .viewStation])
-
-			self?.dismissAndNavigate(device: device)
+			self?.showSkipPhotoAlert(device: device)
 		}
-		let updateFirmwareAction: VoidCallback = { [weak self] in
+
+		let updateFirmwareButton = Button(action: { [weak self] in
 			self?.dismissAndNavigate(device: nil)
 			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
 				MainScreenViewModel.shared.showFirmwareUpdate(device: device)
 			}
+		}, label: {
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				Text(FontIcon.sparkles.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+
+				HStack {
+					Spacer()
+					Text(LocalizableString.ClaimDevice.updateFirmwareAlertTitle.localized)
+					Spacer()
+				}
+			}
+			.padding(.horizontal, CGFloat(.defaultSidePadding))
+		}).buttonStyle(WXMButtonStyle.filled()).toAnyView
+
+		let continueToPhotoVerificationAction: VoidCallback = { [weak self] in
+			self?.dismissAndNavigate(device: nil)
+			let route = PhotoIntroViewModel.getInitialRoute()
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
+				Router.shared.navigateTo(route)
+			}
 		}
 
-		let info = LocalizableString.ClaimDevice.updateFirmwareInfoMarkdown.localized.attributedMarkdown
+		let info: CardWarningConfiguration =  .init(type: .info,
+													message: LocalizableString.ClaimDevice.updateFirmwareInfoMarkdown.localized,
+													showBorder: true,
+													closeAction: nil)
 		let infoAppearAction = {
 			WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
-														   .promptType: .warnPromptType,
-														   .action: .viewAction])
+																 .promptType: .warnPromptType,
+																 .action: .viewAction])
 		}
 
 		let object = FailSuccessStateObject(type: .claimDeviceFlow,
 											title: LocalizableString.ClaimDevice.successTitle.localized,
 											subtitle: LocalizableString.ClaimDevice.successText(device.displayName).localized.attributedMarkdown,
 											info: needsUpdate ? info : nil,
-											infoOnAppearAction: needsUpdate ? infoAppearAction : nil,
+											infoCustomView: needsUpdate ? updateFirmwareButton : nil,
+											infoOnAppearAction: needsUpdate ? infoAppearAction : nil,											
 											cancelTitle: cancelTitle,
 											retryTitle: retryTitle,
+											actionButtonsLayout: .vertical,
 											contactSupportAction: nil,
-											cancelAction: needsUpdate ? goToStationAction : nil ,
-											retryAction: needsUpdate ? updateFirmwareAction : goToStationAction)
+											cancelAction: goToStationAction,
+											retryAction: continueToPhotoVerificationAction)
 
 		return object
 	}
@@ -220,6 +246,19 @@ extension ClaimDeviceContainerViewModel {
 																						  cellCenter: device.cellCenter?.toCLLocationCoordinate2D()))
 			Router.shared.navigateTo(route)
 		}
+	}
+
+	func showSkipPhotoAlert(device: DeviceDetails) {
+		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.skip.localized, { [weak self] _ in
+			self?.dismissAndNavigate(device: device)
+		})
+		let alertObject = AlertHelper.AlertObject(title: LocalizableString.ClaimDevice.skipPhotoVerificationAlertTitle.localized,
+												  message: LocalizableString.ClaimDevice.skipPhotoVerificationAlertText.localized,
+												  cancelActionTitle: LocalizableString.back.localized,
+												  cancelAction: {},
+												  okAction: exitAction)
+
+		AlertHelper().showAlert(alertObject)
 	}
 }
 

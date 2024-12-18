@@ -11,8 +11,10 @@ import Toolkit
 struct SuccessView: View {
     let title: String
     let subtitle: AttributedString?
-	var info: AttributedString?
+	var info: CardWarningConfiguration?
+	var infoCustomView: AnyView? = nil
 	var infoOnAppearAction: VoidCallback?
+	let actionButtonsLayout: FailSuccessStateObject.ActionButtonsLayout
     let buttonTitle: String
     let buttonAction: VoidCallback?
 	var secondaryButtonTitle: String?
@@ -28,27 +30,21 @@ struct SuccessView: View {
 
 				VStack(spacing: CGFloat(.mediumSpacing)) {
 					if let info {
-						InfoView(text: info)
-							.onAppear {
-								infoOnAppearAction?()
+						CardWarningView(configuration: info) {
+							Group {
+								if let infoCustomView {
+									infoCustomView
+								} else {
+									EmptyView()
+								}
 							}
-					}
-
-					HStack(spacing: CGFloat(.defaultSpacing)) {
-						if let secondaryButtonTitle, let secondaryButtonAction {
-							Button(action: secondaryButtonAction) {
-								Text(secondaryButtonTitle)
-							}
-							.buttonStyle(WXMButtonStyle())
 						}
-
-						if let buttonAction {
-							Button(action: buttonAction) {
-								Text(buttonTitle)
-							}
-							.buttonStyle(WXMButtonStyle.filled())
+						.onAppear {
+							infoOnAppearAction?()
 						}
 					}
+
+					actionButtons
 				}
 				.sizeObserver(size: $bottomButtonsSize)
 			}
@@ -83,7 +79,9 @@ extension SuccessView {
         self.title = obj.title
         self.subtitle = obj.subtitle
 		self.info = obj.info
+		self.infoCustomView = obj.infoCustomView
 		self.infoOnAppearAction = obj.infoOnAppearAction
+		self.actionButtonsLayout = obj.actionButtonsLayout
         self.buttonTitle = obj.retryTitle ?? ""
         self.buttonAction = obj.retryAction
 		self.secondaryButtonTitle = obj.cancelTitle
@@ -97,13 +95,56 @@ private extension SuccessView {
         LottieView(animationCase: AnimationsEnums.success.animationString, loopMode: .playOnce)
             .frame(width: iconDimensions, height: iconDimensions)
     }
+
+	@ViewBuilder
+	var actionButtons: some View {
+		let layout = actionButtonsLayout == .horizontal ?
+		AnyLayout(HStackLayout(spacing: CGFloat(.defaultSpacing))) : AnyLayout(VStackLayout(spacing: CGFloat(.smallToMediumSpacing)))
+
+		layout {
+			orderedActionButtons
+		}
+	}
+
+	@ViewBuilder
+	var orderedActionButtons: some View {
+		switch actionButtonsLayout {
+			case .horizontal:
+				secondaryButton
+				primaryButton
+			case .vertical:
+				primaryButton
+				secondaryButton
+		}
+	}
+
+	@ViewBuilder
+	var secondaryButton: some View {
+		if let secondaryButtonTitle, let secondaryButtonAction {
+			Button(action: secondaryButtonAction) {
+				Text(secondaryButtonTitle)
+			}
+			.buttonStyle(WXMButtonStyle())
+		}
+	}
+
+	@ViewBuilder
+	var primaryButton: some View {
+		if let buttonAction {
+			Button(action: buttonAction) {
+				Text(buttonTitle)
+			}
+			.buttonStyle(WXMButtonStyle.filled())
+		}
+	}
 }
 
 struct SuccessView_Previews: PreviewProvider {
     static var previews: some View {
 		SuccessView(title: "Station Updated!",
 					subtitle: "Your station is updated to the latest Firmware!",
-					info: "Info text",
+					info: .init(type: .info, message: "Info text", closeAction: nil),
+					actionButtonsLayout: .horizontal,
 					buttonTitle: "View Station",
 					buttonAction: {},
 					secondaryButtonTitle: "Cancel",

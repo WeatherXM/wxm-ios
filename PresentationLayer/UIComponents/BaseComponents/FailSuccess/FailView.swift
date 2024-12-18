@@ -139,30 +139,62 @@ private extension FailView {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
 
 			if let info = obj.info {
-				InfoView(text: info)
-					.onAppear {
-						obj.infoOnAppearAction?()
+				CardWarningView(configuration: info) {
+					Group {
+						if let customView = obj.infoCustomView {
+							customView
+						} else {
+							EmptyView()
+						}
 					}
+				}
+				.onAppear {
+					obj.infoOnAppearAction?()
+				}
 			}
 
-			HStack(spacing: CGFloat(.mediumSpacing)) {
-				if let cancelAction = obj.cancelAction {
-					Button(action: cancelAction) {
-						Text(obj.cancelTitle ?? "")
-					}
-					.buttonStyle(WXMButtonStyle())
-				}
+			let layout = obj.actionButtonsLayout == .horizontal ?
+			AnyLayout(HStackLayout(spacing: CGFloat(.defaultSpacing))) : AnyLayout(VStackLayout(spacing: CGFloat(.smallToMediumSpacing)))
 
-				if let retryAction = obj.retryAction {
-					Button(action: retryAction) {
-						Text(obj.retryTitle ?? "")
-					}
-					.buttonStyle(WXMButtonStyle.filled())
-				}
+			layout {
+				orderedActionButtons
 			}
 		}
 		.sizeObserver(size: $bottomButtonsSize)
 	}
+
+	@ViewBuilder
+	var orderedActionButtons: some View {
+		switch obj.actionButtonsLayout {
+			case .horizontal:
+				secondaryButton
+				primaryButton
+			case .vertical:
+				primaryButton
+				secondaryButton
+		}
+	}
+
+	@ViewBuilder
+	var secondaryButton: some View {
+		if let cancelAction = obj.cancelAction {
+			Button(action: cancelAction) {
+				Text(obj.cancelTitle ?? "")
+			}
+			.buttonStyle(WXMButtonStyle())
+		}
+	}
+
+	@ViewBuilder
+	var primaryButton: some View {
+		if let retryAction = obj.retryAction {
+			Button(action: retryAction) {
+				Text(obj.retryTitle ?? "")
+			}
+			.buttonStyle(WXMButtonStyle.filled())
+		}
+	}
+
 }
 
 struct FailView_Previews: PreviewProvider {

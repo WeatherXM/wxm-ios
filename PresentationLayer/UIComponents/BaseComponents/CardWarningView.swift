@@ -16,38 +16,43 @@ struct CardWarningView<Content: View>: View {
 
     var body: some View {
         VStack(spacing: CGFloat(.smallSpacing)) {
-            HStack(spacing: CGFloat(.smallSpacing)) {
+            HStack(spacing: CGFloat(.smallToMediumSpacing)) {
 				if configuration.showIcon {
 					Text(configuration.icon?.rawValue ?? configuration.type.fontIcon.rawValue)
 						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
 						.foregroundColor(Color(colorEnum: configuration.type.iconColor))
                 }
 
-                VStack(alignment: .leading, spacing: CGFloat(.smallSpacing)) {
-                    HStack {
-						if let title = configuration.title {
-                            Text(title)
-                                .foregroundColor(Color(colorEnum: .text))
-                                .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-                        }
+                VStack(spacing: CGFloat(.smallSpacing)) {
+					if configuration.title != nil || configuration.closeAction != nil {
+						HStack {
+							if let title = configuration.title {
+								Text(title)
+									.foregroundColor(Color(colorEnum: .text))
+									.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+							}
 
-                        Spacer()
+							Spacer()
 
-                        if let closeAction = configuration.closeAction {
-                            Button(action: closeAction) {
-                                Image(asset: .toggleXMark)
-                                    .renderingMode(.template)
-                                    .foregroundColor(Color(colorEnum: .text))
-                            }
-                        }
-                    }
+							if let closeAction = configuration.closeAction {
+								Button(action: closeAction) {
+									Image(asset: .toggleXMark)
+										.renderingMode(.template)
+										.foregroundColor(Color(colorEnum: .text))
+								}
+							}
+						}
+					}
 
-					VStack(alignment: .leading, spacing: 0.0) {
-						Text(configuration.message.attributedMarkdown ?? "")
-							.foregroundColor(Color(colorEnum: .text))
-							.tint(Color(colorEnum: .wxmPrimary))
-							.font(.system(size: CGFloat(.normalFontSize)))
-							.fixedSize(horizontal: false, vertical: true)
+					VStack(spacing: 0.0) {
+						HStack {
+							Text(configuration.message.attributedMarkdown ?? "")
+								.foregroundColor(Color(colorEnum: .text))
+								.tint(Color(colorEnum: .wxmPrimary))
+								.font(.system(size: CGFloat(.normalFontSize)))
+								.fixedSize(horizontal: false, vertical: true)
+							Spacer()
+						}
 
 						if let linkText = configuration.linkText {
 							HStack(spacing: CGFloat(.minimumSpacing)) {
@@ -60,6 +65,8 @@ struct CardWarningView<Content: View>: View {
 								Text(FontIcon.externalLink.rawValue)
 									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
 									.foregroundColor(Color(colorEnum: .wxmPrimary))
+
+								Spacer()
 							}
 						}
 					}
@@ -137,7 +144,7 @@ enum CardWarningType: Comparable {
 			case .error:
 				return .error
 			case .info:
-				return .info
+				return .wxmPrimary
 		}
 	}
 
@@ -156,9 +163,9 @@ enum CardWarningType: Comparable {
 struct Previews_CardWarningView_Previews: PreviewProvider {
 	static var previews: some View {
 		CardWarningView(configuration: .init(type: .info,
-											 title: "This is title",
+											 title: "title",
 											 message: "This is a warning text",
-											 closeAction: nil)) {
+											 closeAction: {})) {
 			EmptyView()
 		}
 	}

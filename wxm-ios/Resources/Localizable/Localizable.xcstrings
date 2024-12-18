@@ -1054,6 +1054,17 @@
         }
       }
     },
+    "claim_device_continue_to_photo_verification" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue to Photo Verification"
+          }
+        }
+      }
+    },
     "claim_device_d1_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1846,6 +1857,39 @@
         }
       }
     },
+    "claim_device_skip_photo_verification_alert_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to skip the Photo Verification process? \n\nYou can always do it later from the station’s settings."
+          }
+        }
+      }
+    },
+    "claim_device_skip_photo_verification_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip Photo Verification"
+          }
+        }
+      }
+    },
+    "claim_device_skip_photo_verification_for_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip for now"
+          }
+        }
+      }
+    },
     "claim_device_station_loading_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2028,7 +2072,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "There is a brand new firmware update for your station.\n**We highly recommend you update, as this will improve the experience you’ll have with your WeatherXM station!**"
+            "value" : "**We strongly recommend you to update for a better station experience!**\nYou will be able to photo verify your station after the update."
           }
         }
       }
@@ -8041,6 +8085,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sign Up"
+          }
+        }
+      }
+    },
+    "skip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip"
           }
         }
       }
