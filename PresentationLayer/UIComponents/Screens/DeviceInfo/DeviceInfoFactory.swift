@@ -20,27 +20,27 @@ extension DeviceInfoViewModel.Field {
 		}
 	}
 
-	func titleFor(devie: DeviceDetails) -> String {
+	func titleFor(devie: DeviceDetails) -> (title: String, badge: String?) {
 		switch self {
 			case .name:
-				return LocalizableString.DeviceInfo.stationName.localized
+				return (LocalizableString.DeviceInfo.stationName.localized, nil)
 			case .frequency:
-				return LocalizableString.DeviceInfo.stationFrequency.localized
+				return (LocalizableString.DeviceInfo.stationFrequency.localized, nil)
 			case .reboot:
-				return LocalizableString.DeviceInfo.stationReboot.localized
+				return (LocalizableString.DeviceInfo.stationReboot.localized, nil)
 			case .maintenance:
 #warning("TODO: Format when info is ready")
-				return LocalizableString.DeviceInfo.stationMaintenance("").localized
+				return (LocalizableString.DeviceInfo.stationMaintenance("").localized, nil)
 			case .remove:
-				return LocalizableString.DeviceInfo.stationRemove.localized
+				return (LocalizableString.DeviceInfo.stationRemove.localized, nil)
 			case .reconfigureWifi:
-				return LocalizableString.DeviceInfo.stationReconfigureWifi.localized
+				return (LocalizableString.DeviceInfo.stationReconfigureWifi.localized, nil)
 			case .stationLocation:
-				return LocalizableString.DeviceInfo.stationLocation.localized
+				return (LocalizableString.DeviceInfo.stationLocation.localized, nil)
 			case .rewardSplit:
-				return LocalizableString.RewardDetails.rewardSplit.localized
+				return (LocalizableString.RewardDetails.rewardSplit.localized, nil)
 			case .photos:
-				return LocalizableString.PhotoVerification.uploadPhotos.localized
+				return (LocalizableString.PhotoVerification.photoVerificationIntroTitle.localized, LocalizableString.new.localized)
 		}
 	}
 
@@ -74,7 +74,7 @@ extension DeviceInfoViewModel.Field {
 				let count = rewardSplit.count
 				return LocalizableString.RewardDetails.rewardSplitDescription(count).localized
 			case .photos:
-				return LocalizableString.PhotoVerification.uploadPhotosDescription.localized
+				return LocalizableString.DeviceInfo.photoVerificationEmptyText.localized
 		}
 	}
 
@@ -140,7 +140,9 @@ extension DeviceInfoViewModel.Field {
 			case .rewardSplit:
 				return nil
 			case .photos:
-				return .init(icon: nil, title: LocalizableString.PhotoVerification.letsTakeTheFirstPhoto.localized)
+				return .init(icon: nil,
+							 title: LocalizableString.DeviceInfo.photoVerificationStartButtonTitle.localized,
+							 buttonStyle: .filled())
 		}
 	}
 

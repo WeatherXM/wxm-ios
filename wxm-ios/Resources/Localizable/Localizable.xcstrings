@@ -2726,6 +2726,28 @@
         }
       }
     },
+    "device_info_photo_verification_empty_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To ensure optimal performance and rewards, take a few quick photos of your station’s installation!"
+          }
+        }
+      }
+    },
+    "device_info_photo_verification_start_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Photo Verification"
+          }
+        }
+      }
+    },
     "device_info_remove_station_account_confirmation_markdown" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5489,6 +5511,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Network Max"
+          }
+        }
+      }
+    },
+    "new" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New"
           }
         }
       }
