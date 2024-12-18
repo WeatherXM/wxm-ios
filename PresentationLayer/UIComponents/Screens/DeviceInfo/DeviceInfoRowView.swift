@@ -13,12 +13,24 @@ struct DeviceInfoRowView: View {
 
     var body: some View {
         VStack(spacing: CGFloat(.smallToMediumSpacing)) {
-            VStack(spacing: CGFloat(.minimumSpacing)) {
+			VStack(spacing: CGFloat(.smallSpacing)) {
                 HStack {
                     Text(row.title)
                         .foregroundColor(Color(colorEnum: .darkestBlue))
                         .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-                    Spacer()
+
+					Spacer()
+
+					if let badge = row.badge {
+						Text(badge.uppercased())
+							.foregroundColor(Color(colorEnum: .wxmPrimary))
+							.font(.system(size: CGFloat(.littleCaption), weight: .bold))
+							.padding(.horizontal, CGFloat(.smallSidePadding))
+							.padding(.vertical, CGFloat(.minimumPadding))
+							.background {
+								Capsule().fill(Color(colorEnum: .layer2))
+							}
+					}
                 }
 
                 HStack {
@@ -82,6 +94,7 @@ extension DeviceInfoRowView {
     struct Row: Equatable {
         static func == (lhs: DeviceInfoRowView.Row, rhs: DeviceInfoRowView.Row) -> Bool {
             lhs.title == rhs.title &&
+			lhs.badge == rhs.badge &&
             lhs.description == rhs.description &&
 			lhs.imageUrl == rhs.imageUrl &&
             lhs.buttonInfo == rhs.buttonInfo &&
@@ -89,6 +102,7 @@ extension DeviceInfoRowView {
         }
 
         let title: String
+		var badge: String?
         let description: AttributedString
 		let imageUrl: URL?
         let buttonInfo: DeviceInfoButtonInfo?
@@ -154,6 +168,7 @@ private extension DeviceInfoRowView {
 struct DeviceInfoRowView_Previews: PreviewProvider {
     static var previews: some View {
         DeviceInfoRowView(row: DeviceInfoRowView.Row(title: "TItle",
+													 badge: "New",
                                                      description: "This is a **desription**".attributedMarkdown!,
 													 imageUrl: URL(string: "https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/12/Home-header-image-1200-x-1200-px-5.png?w=1200&ssl=1"),
 													 buttonInfo: .init(icon: nil, title: "Button title"),
