@@ -24,16 +24,18 @@ class DeviceInfoViewModel: ObservableObject {
         }
 
         let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
-            DeviceInfoRowView.Row(title: field.titleFor(devie: device),
-								  description: field.descriptionFor(device: device,
-																	for: followState,
-																	deviceInfo: deviceInfo).attributedMarkdown ?? "",
-								  imageUrl: field.imageUrlFor(device: device, followState: followState),
-                                  buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
-                                  warning: field.warning,
-								  customView: field.customViewFor(deviceInfo: deviceInfo),
-                                  buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
-            }
+			let title = field.titleFor(devie: device)
+			return DeviceInfoRowView.Row(title: title.title,
+										 badge: title.badge,
+										 description: field.descriptionFor(device: device,
+																		   for: followState,
+																		   deviceInfo: deviceInfo).attributedMarkdown ?? "",
+										 imageUrl: field.imageUrlFor(device: device, followState: followState),
+										 buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
+										 warning: field.warning,
+										 customView: field.customViewFor(deviceInfo: deviceInfo),
+										 buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
+		}
         }
 
         return rows
@@ -42,16 +44,18 @@ class DeviceInfoViewModel: ObservableObject {
 	var bottomSections: [[DeviceInfoRowView.Row]] {
 		let fields = Field.bottomSections(for: followState, deviceInfo: deviceInfo)
 		let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
-			DeviceInfoRowView.Row(title: field.titleFor(devie: device),
-								  description: field.descriptionFor(device: device,
-																	for: followState,
-																	deviceInfo: deviceInfo).attributedMarkdown ?? "",
-								  imageUrl: field.imageUrlFor(device: device, followState: followState),
-								  buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
-								  warning: field.warning,
-								  customView: field.customViewFor(deviceInfo: deviceInfo),
-								  buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
-			}
+			let title = field.titleFor(devie: device)
+			return DeviceInfoRowView.Row(title: title.title,
+										 badge: title.badge,
+										 description: field.descriptionFor(device: device,
+																		   for: followState,
+																		   deviceInfo: deviceInfo).attributedMarkdown ?? "",
+										 imageUrl: field.imageUrlFor(device: device, followState: followState),
+										 buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
+										 warning: field.warning,
+										 customView: field.customViewFor(deviceInfo: deviceInfo),
+										 buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
+		}
 		}
 
 		return rows
@@ -315,7 +319,7 @@ private extension DeviceInfoViewModel {
 
 		let alertObject = AlertHelper.AlertObject(title: LocalizableString.DeviceInfo.editNameAlertTitle.localized,
 												  message: LocalizableString.DeviceInfo.editNameAlertMessage.localized,
-                                                  textFieldPlaceholder: Field.name.titleFor(devie: device),
+												  textFieldPlaceholder: Field.name.titleFor(devie: device).title,
                                                   textFieldValue: device.displayName,
                                                   textFieldDelegate: AlertTexFieldDelegate(),
                                                   cancelAction: {
