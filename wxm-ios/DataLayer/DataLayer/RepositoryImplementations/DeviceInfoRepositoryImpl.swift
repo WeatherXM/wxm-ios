@@ -80,6 +80,12 @@ extension DeviceInfoRepositoryImpl {
 
 		return valueSubject.eraseToAnyPublisher()
 	}
+
+	public func getDevicePhotos(deviceId: String) throws -> AnyPublisher<DataResponse<[NetworkDevicePhotosResponse], NetworkErrorResponse>, Never> {
+		let builder = MeApiRequestBuilder.getUserDevicePhotos(deviceId: deviceId)
+		let urlRequest = try builder.asURLRequest()
+		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+	}
 }
 
 extension BTActionWrapper.ActionError {

@@ -15,6 +15,7 @@ public protocol DeviceInfoRepository {
     func disclaimDevice(serialNumber: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
     func rebootStation(device: DeviceDetails) -> AnyPublisher<RebootStationState, Never>
     func changeFrequency(device: DeviceDetails, frequency: Frequency) -> AnyPublisher<ChangeFrequencyState, Never>
+	func getDevicePhotos(deviceId: String) throws -> AnyPublisher<DataResponse<[NetworkDevicePhotosResponse], NetworkErrorResponse>, Never>
 }
 
 public enum RebootStationState: Sendable {

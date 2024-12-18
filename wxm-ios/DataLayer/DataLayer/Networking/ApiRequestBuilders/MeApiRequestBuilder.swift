@@ -49,6 +49,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	case getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String)
 	case getUserDeviceRewards(deviceId: String, mode: String)
 	case getUserDevicesRewards(mode: String)
+	case getUserDevicePhotos(deviceId: String)
 	case getDeviceFirmwareById(deviceId: String)
 	case setFriendlyName(deviceId: String, name: String)
 	case deleteFriendlyName(deviceId: String)
@@ -65,7 +66,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 		switch self {
 			case .getUser, .getUserWallet, .getDevices, .getFirmwares, .getUserDeviceById,
 					.getUserDeviceHistoryById, .getUserDeviceForecastById, .getUserDeviceRewards, 
-					.getUserDevicesRewards, .getDeviceFirmwareById, .getUserDeviceInfoById:
+					.getUserDevicesRewards, .getUserDevicePhotos, .getDeviceFirmwareById, .getUserDeviceInfoById:
 				return .get
 			case .saveUserWallet, .claimDevice, .setDeviceFrequency, .setFriendlyName, .disclaimDevice, .follow, .setDeviceLocation, .setFCMToken:
 				return .post
@@ -118,6 +119,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/devices/\(deviceId)/rewards"
 			case .getUserDevicesRewards:
 				return "me/devices/rewards"
+			case let .getUserDevicePhotos(deviceId):
+				return "me/devices/\(deviceId)/photos"
 			case let .getDeviceFirmwareById(deviceId: deviceId):
 				return "me/devices/\(deviceId)/firmware"
 			case let .setFriendlyName(deviceId, _):
@@ -212,6 +215,8 @@ extension MeApiRequestBuilder: MockResponseBuilder {
 					default:
 						return "get_device_rewards_analytics"
 				}
+			case .getUserDevicePhotos:
+				return "get_user_device_photos"
 			case .getUserDevicesRewards(let mode):
 				switch mode {
 					case DeviceRewardsMode.week.rawValue:
