@@ -78,6 +78,7 @@ class DeviceInfoViewModel: ObservableObject {
     @Published var isFailed: Bool = false
     var failObj: FailSuccessStateObject?
     @Published private(set) var device: DeviceDetails
+	@Published private(set) var devicePhotos: [NetworkDevicePhotosResponse]?
 	@Published private(set) var deviceInfo: NetworkDevicesInfoResponse? {
 		didSet {
 			shareDialogText = InfoField.getShareText(for: device,
@@ -171,6 +172,8 @@ class DeviceInfoViewModel: ObservableObject {
             print(error)
             completion?()
         }
+
+		fetchPhotos()
     }
 }
 
@@ -189,6 +192,22 @@ extension DeviceInfoViewModel: SelectStationLocationViewModelDelegate {
 }
 
 private extension DeviceInfoViewModel {
+
+	func fetchPhotos() {
+		guard let deviceId = device.id else {
+			return
+		}
+
+		do {
+			try deviceInfoUseCase?.getDevicePhotos(deviceId: deviceId).sink { [weak self] response in
+				guard let self else { return }
+				
+				self.devicePhotos = response.value
+			}.store(in: &cancellable)
+		} catch {
+			print(error)
+		}
+	}
 
 	func getInfoSection(title: String?, fields: [InfoField]) -> StationInfoView.Section {
 		let infoRows: [StationInfoView.Row] = fields.compactMap { field in
