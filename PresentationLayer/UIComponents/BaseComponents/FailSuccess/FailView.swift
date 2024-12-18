@@ -157,23 +157,44 @@ private extension FailView {
 			AnyLayout(HStackLayout(spacing: CGFloat(.defaultSpacing))) : AnyLayout(VStackLayout(spacing: CGFloat(.smallToMediumSpacing)))
 
 			layout {
-				if let cancelAction = obj.cancelAction {
-					Button(action: cancelAction) {
-						Text(obj.cancelTitle ?? "")
-					}
-					.buttonStyle(WXMButtonStyle())
-				}
-
-				if let retryAction = obj.retryAction {
-					Button(action: retryAction) {
-						Text(obj.retryTitle ?? "")
-					}
-					.buttonStyle(WXMButtonStyle.filled())
-				}
+				orderedActionButtons
 			}
 		}
 		.sizeObserver(size: $bottomButtonsSize)
 	}
+
+	@ViewBuilder
+	var orderedActionButtons: some View {
+		switch obj.actionButtonsLayout {
+			case .horizontal:
+				secondaryButton
+				primaryButton
+			case .vertical:
+				primaryButton
+				secondaryButton
+		}
+	}
+
+	@ViewBuilder
+	var secondaryButton: some View {
+		if let cancelAction = obj.cancelAction {
+			Button(action: cancelAction) {
+				Text(obj.cancelTitle ?? "")
+			}
+			.buttonStyle(WXMButtonStyle())
+		}
+	}
+
+	@ViewBuilder
+	var primaryButton: some View {
+		if let retryAction = obj.retryAction {
+			Button(action: retryAction) {
+				Text(obj.retryTitle ?? "")
+			}
+			.buttonStyle(WXMButtonStyle.filled())
+		}
+	}
+
 }
 
 struct FailView_Previews: PreviewProvider {
