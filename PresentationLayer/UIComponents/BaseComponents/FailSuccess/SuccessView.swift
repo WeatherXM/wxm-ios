@@ -102,19 +102,39 @@ private extension SuccessView {
 		AnyLayout(HStackLayout(spacing: CGFloat(.defaultSpacing))) : AnyLayout(VStackLayout(spacing: CGFloat(.smallToMediumSpacing)))
 
 		layout {
-			if let secondaryButtonTitle, let secondaryButtonAction {
-				Button(action: secondaryButtonAction) {
-					Text(secondaryButtonTitle)
-				}
-				.buttonStyle(WXMButtonStyle())
-			}
+			orderedActionButtons
+		}
+	}
 
-			if let buttonAction {
-				Button(action: buttonAction) {
-					Text(buttonTitle)
-				}
-				.buttonStyle(WXMButtonStyle.filled())
+	@ViewBuilder
+	var orderedActionButtons: some View {
+		switch actionButtonsLayout {
+			case .horizontal:
+				secondaryButton
+				primaryButton
+			case .vertical:
+				primaryButton
+				secondaryButton
+		}
+	}
+
+	@ViewBuilder
+	var secondaryButton: some View {
+		if let secondaryButtonTitle, let secondaryButtonAction {
+			Button(action: secondaryButtonAction) {
+				Text(secondaryButtonTitle)
 			}
+			.buttonStyle(WXMButtonStyle())
+		}
+	}
+
+	@ViewBuilder
+	var primaryButton: some View {
+		if let buttonAction {
+			Button(action: buttonAction) {
+				Text(buttonTitle)
+			}
+			.buttonStyle(WXMButtonStyle.filled())
 		}
 	}
 }
