@@ -29,7 +29,15 @@ class PhotoVerificationStateViewModel: ObservableObject {
 	}
 
 	func handleCancelUploadTap() {
-		
+		let yesAction: AlertHelper.AlertObject.Action = (LocalizableString.PhotoVerification.yesCancel.localized, { _ in   })
+		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.cancelUpload.localized,
+												  message: LocalizableString.PhotoVerification.cancelUploadAlertMessage.localized,
+												  cancelActionTitle: LocalizableString.back.localized,
+												  cancelAction: {},
+												  okAction: yesAction)
+
+		AlertHelper().showAlert(alertObject)
+
 	}
 
 	func handleImageTap() {
