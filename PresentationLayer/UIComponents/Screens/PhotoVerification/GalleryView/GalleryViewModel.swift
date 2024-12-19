@@ -94,12 +94,14 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func handleBackButtonTap(dismissAction: DismissAction) {
+		let remoteImageCount = images.compactMap { URL(string: $0) }.filter { $0.isHttp }.count
+		let message = remoteImageCount == 1 ? LocalizableString.PhotoVerification.exitPhotoVerificationMinimumPhotosText.localized : LocalizableString.PhotoVerification.exitPhotoVerificationText.localized
+
 		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.exit.localized, { _ in  dismissAction() })
 		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.exitPhotoVerification.localized,
-												  message: LocalizableString.PhotoVerification.exitPhotoVerificationText.localized,
+												  message: message,
 												  cancelActionTitle: LocalizableString.back.localized,
-												  cancelAction: {
-		},
+												  cancelAction: {},
 												  okAction: exitAction)
 
 		AlertHelper().showAlert(alertObject)
