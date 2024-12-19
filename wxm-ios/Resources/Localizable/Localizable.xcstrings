@@ -5721,6 +5721,17 @@
         }
       }
     },
+    "photo_verification_cancel_upload_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to cancel the upload and lose the photos?\nYou will need to retake them."
+          }
+        }
+      }
+    },
     "photo_verification_check_clear_view" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6212,6 +6223,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uploading…"
+          }
+        }
+      }
+    },
+    "photo_verification_yes_cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, cancel"
           }
         }
       }
