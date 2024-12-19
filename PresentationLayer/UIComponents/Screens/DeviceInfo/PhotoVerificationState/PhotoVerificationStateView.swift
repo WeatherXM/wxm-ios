@@ -101,6 +101,10 @@ extension PhotoVerificationStateView {
 				Spacer()
 			}
 
+			ProgressView(value: progress, total: 100.0)
+				.tint(Color(colorEnum: .wxmPrimary))				
+				.animation(.easeOut(duration: 0.3), value: progress)
+
 			Button {
 				viewModel.handleCancelUploadTap()
 			} label: {
