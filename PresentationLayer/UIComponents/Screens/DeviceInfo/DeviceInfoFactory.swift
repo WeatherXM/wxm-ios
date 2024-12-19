@@ -44,7 +44,10 @@ extension DeviceInfoViewModel.Field {
 		}
 	}
 
-	func descriptionFor(device: DeviceDetails, for followState: UserDeviceFollowState?, deviceInfo: NetworkDevicesInfoResponse?) -> String {
+	func descriptionFor(device: DeviceDetails,
+						for followState: UserDeviceFollowState?,
+						deviceInfo: NetworkDevicesInfoResponse?,
+						photoVerificationState: PhotoVerificationStateView.State?) -> String {
 		switch self {
 			case .name:
 				return device.displayName
@@ -74,7 +77,20 @@ extension DeviceInfoViewModel.Field {
 				let count = rewardSplit.count
 				return LocalizableString.RewardDetails.rewardSplitDescription(count).localized
 			case .photos:
-				return LocalizableString.DeviceInfo.photoVerificationEmptyText.localized
+				guard let photoVerificationState else {
+					return ""
+				}
+
+				switch photoVerificationState {
+						case .uploading:
+						return LocalizableString.DeviceInfo.photoVerificationUploadingDescription.localized
+					case .content(let photos, _):
+						if photos.isEmpty {
+							return LocalizableString.DeviceInfo.photoVerificationEmptyText.localized
+						}
+
+						return LocalizableString.DeviceInfo.photoVerificationWithPhotosDescription.localized
+				}
 		}
 	}
 
@@ -116,7 +132,9 @@ extension DeviceInfoViewModel.Field {
 	}
 
 	@MainActor
-	func buttonInfoFor(devie: DeviceDetails, followState: UserDeviceFollowState?) -> DeviceInfoButtonInfo? {
+	func buttonInfoFor(devie: DeviceDetails,
+					   followState: UserDeviceFollowState?,
+					   photoVerificationState: PhotoVerificationStateView.State?) -> DeviceInfoButtonInfo? {
 		switch self {
 			case .name:
 				return .init(icon: nil, title: LocalizableString.DeviceInfo.buttonChangeName.localized)
@@ -140,9 +158,23 @@ extension DeviceInfoViewModel.Field {
 			case .rewardSplit:
 				return nil
 			case .photos:
-				return .init(icon: nil,
-							 title: LocalizableString.DeviceInfo.photoVerificationStartButtonTitle.localized,
-							 buttonStyle: .filled())
+				guard let photoVerificationState else {
+					return nil
+				}
+
+				switch photoVerificationState {
+					case .content(let photos, _):
+						if photos.isEmpty {
+							return .init(icon: nil,
+										 title: LocalizableString.DeviceInfo.photoVerificationStartButtonTitle.localized,
+										 buttonStyle: .filled())
+
+						}
+						
+						fallthrough
+					default:
+						return nil
+				}
 		}
 	}
 }
