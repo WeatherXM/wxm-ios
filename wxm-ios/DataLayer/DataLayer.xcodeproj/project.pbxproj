@@ -75,6 +75,7 @@
 		26F6F7542D0855FE00FB256B /* PhotosRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F7532D0855FE00FB256B /* PhotosRepositoryImpl.swift */; };
 		26FC21B62D119C0E00FC79B1 /* claim_device.json in Resources */ = {isa = PBXBuildFile; fileRef = 26FC21B52D119C0E00FC79B1 /* claim_device.json */; };
 		26FC21B82D11A46A00FC79B1 /* claim_device_helium.json in Resources */ = {isa = PBXBuildFile; fileRef = 26FC21B72D11A45700FC79B1 /* claim_device_helium.json */; };
+		26FC21C22D12E80400FC79B1 /* get_user_device_photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 26FC21C12D12E7FD00FC79B1 /* get_user_device_photos.json */; };
 		26FFAD932B8E2A5500BF0A6B /* get_reward_details.json in Resources */ = {isa = PBXBuildFile; fileRef = 26FFAD922B8E2A5500BF0A6B /* get_reward_details.json */; };
 		4D1C95D028FC7EB1001F66C9 /* LocationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C95CF28FC7EB1001F66C9 /* LocationRepositoryImpl.swift */; };
 		4D49D90A294DE3B300987DE6 /* MapboxSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 4D49D909294DE3B300987DE6 /* MapboxSearch */; };
@@ -170,6 +171,7 @@
 		26F6F7532D0855FE00FB256B /* PhotosRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRepositoryImpl.swift; sourceTree = "<group>"; };
 		26FC21B52D119C0E00FC79B1 /* claim_device.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = claim_device.json; sourceTree = "<group>"; };
 		26FC21B72D11A45700FC79B1 /* claim_device_helium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = claim_device_helium.json; sourceTree = "<group>"; };
+		26FC21C12D12E7FD00FC79B1 /* get_user_device_photos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_user_device_photos.json; sourceTree = "<group>"; };
 		26FFAD922B8E2A5500BF0A6B /* get_reward_details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_reward_details.json; sourceTree = "<group>"; };
 		4D1C95CF28FC7EB1001F66C9 /* LocationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepositoryImpl.swift; sourceTree = "<group>"; };
 		4D5AE32F28EA49C7006F2EBA /* BluetoothDevicesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevicesRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				26AD3E9B2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json */,
 				26AD3E9A2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json */,
 				26DD42D129AFAF26008E277E /* get_user_devices.json */,
+				26FC21C12D12E7FD00FC79B1 /* get_user_device_photos.json */,
 				26B3D2B329E43D14006913E0 /* get_user_wallet.json */,
 				267CA6EE2C1314E200ABE599 /* get_user.json */,
 				26FC21B52D119C0E00FC79B1 /* claim_device.json */,
@@ -552,6 +555,7 @@
 				267A37872AEBEBBA00469126 /* get_user_device_rewards.json in Resources */,
 				26AD3EA62C90748C0040AB09 /* get_devices_rewards_analytics_year.json in Resources */,
 				26FC21B62D119C0E00FC79B1 /* claim_device.json in Resources */,
+				26FC21C22D12E80400FC79B1 /* get_user_device_photos.json in Resources */,
 				26AD3EA72C90748C0040AB09 /* get_devices_rewards_analytics_7d.json in Resources */,
 				26A3B3E02B18E7A50002F35F /* get_user_rewards.json in Resources */,
 				2646FCBB2995018800EBB61B /* get_transactions.json in Resources */,

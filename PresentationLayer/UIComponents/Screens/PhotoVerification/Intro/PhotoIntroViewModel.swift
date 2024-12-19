@@ -46,7 +46,7 @@ class PhotoIntroViewModel: ObservableObject {
 	}
 
 	func handleBeginButtonTap() {
-		let viewModel = ViewModelsFactory.getGalleryViewModel()
+		let viewModel = ViewModelsFactory.getGalleryViewModel(images: [])
 		Router.shared.navigateTo(.photoGallery(viewModel))
 	}
 }
@@ -55,12 +55,12 @@ extension PhotoIntroViewModel: HashableViewModel {
 	nonisolated func hash(into hasher: inout Hasher) {
 	}
 
-	static func getInitialRoute() -> Route {
+	static func getInitialRoute(images: [String]) -> Route {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
 		let areTermsAccepted = useCase.areTermsAccepted
 
 		if areTermsAccepted {
-			let viewModel = ViewModelsFactory.getGalleryViewModel()
+			let viewModel = ViewModelsFactory.getGalleryViewModel(images: images)
 			return .photoGallery(viewModel)
 		}
 

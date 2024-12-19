@@ -233,5 +233,5 @@ private extension GalleryView {
 }
 
 #Preview {
-	GalleryView(viewModel: ViewModelsFactory.getGalleryViewModel())
+	GalleryView(viewModel: ViewModelsFactory.getGalleryViewModel(images: []))
 }

@@ -51,6 +51,7 @@
 		26DF3D2E2C85EA24005F6FC1 /* NetworkDeviceRewardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D2D2C85EA24005F6FC1 /* NetworkDeviceRewardsResponse.swift */; };
 		26F6F7502D08540900FB256B /* PhotoGalleryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F74F2D08540900FB256B /* PhotoGalleryUseCase.swift */; };
 		26F6F7522D08559800FB256B /* PhotosRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F7512D08559800FB256B /* PhotosRepository.swift */; };
+		26FC21C02D12E5AB00FC79B1 /* NetworkDevicePhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21BF2D12E5AB00FC79B1 /* NetworkDevicePhotosResponse.swift */; };
 		26FFAD762B8E08CB00BF0A6B /* NetworkDeviceRewardDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAD752B8E08CB00BF0A6B /* NetworkDeviceRewardDetailsResponse.swift */; };
 		4D1C95CA28FC766D001F66C9 /* DeviceLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C95C928FC766D001F66C9 /* DeviceLocationRepository.swift */; };
 		4D1C95D528FCB248001F66C9 /* DeviceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C95D428FCB248001F66C9 /* DeviceLocation.swift */; };
@@ -137,6 +138,7 @@
 		26DF3D2D2C85EA24005F6FC1 /* NetworkDeviceRewardsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardsResponse.swift; sourceTree = "<group>"; };
 		26F6F74F2D08540900FB256B /* PhotoGalleryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryUseCase.swift; sourceTree = "<group>"; };
 		26F6F7512D08559800FB256B /* PhotosRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRepository.swift; sourceTree = "<group>"; };
+		26FC21BF2D12E5AB00FC79B1 /* NetworkDevicePhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicePhotosResponse.swift; sourceTree = "<group>"; };
 		26FFAD752B8E08CB00BF0A6B /* NetworkDeviceRewardDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardDetailsResponse.swift; sourceTree = "<group>"; };
 		4D1C95C928FC766D001F66C9 /* DeviceLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationRepository.swift; sourceTree = "<group>"; };
 		4D1C95D428FCB248001F66C9 /* DeviceLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocation.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				B5611E7E2834D5FC0092F204 /* NetworkFirmwareResponse.swift */,
 				B5667D6A2833D37000C08B57 /* NetworkUserInfoResponse.swift */,
 				26A3B3DD2B18E41F0002F35F /* NetworkUserRewardsResponse.swift */,
+				26FC21BF2D12E5AB00FC79B1 /* NetworkDevicePhotosResponse.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				264CC75B2B986AC90060DEA4 /* NetworkDeviceRewardBoostsResponse.swift in Sources */,
 				995A0CEE28C0B93C0015DAA1 /* UserDefaults+Constants.swift in Sources */,
 				995A0CD728C0A4BB0015DAA1 /* UserDefaultsRepository.swift in Sources */,
+				26FC21C02D12E5AB00FC79B1 /* NetworkDevicePhotosResponse.swift in Sources */,
 				26A86BC02C7C97F800F1C2CF /* RemoteConfigRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

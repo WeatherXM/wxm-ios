@@ -20,5 +20,17 @@
         "bat_state": "low",
 		"station_rssi" : -87,
 		"station_rssi_last_activity" : "2024-10-08T13:29:30+03:00"
-    }
+    },
+	"reward_split": [
+		{
+			"wallet": "0xc4E253863371fdeD8e414731DB951F4C17Bc645e",
+			"stake": 90,
+			"reward": 275.82664632199965
+		},
+		{
+			"wallet": "0xc4E253863371fdeD8e414731DB951F4C17Bc643e",
+			"stake": 10,
+			"reward": 27.82664632199965
+		}
+	]
 }

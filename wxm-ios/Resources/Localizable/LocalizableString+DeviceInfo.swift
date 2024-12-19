@@ -70,6 +70,10 @@ extension LocalizableString {
 		case stationRssi
 		case stationRssiWarning
 		case stationRssiError
+		case photoVerificationEmptyText
+		case photoVerificationStartButtonTitle
+		case photoVerificationUploadingDescription
+		case photoVerificationWithPhotosDescription
 	}
 }
 
@@ -218,6 +222,14 @@ extension LocalizableString.DeviceInfo: WXMLocalizable {
 				return "device_info_station_rssi_warning"
 			case .stationRssiError:
 				return "device_info_station_rssi_error"
+			case .photoVerificationEmptyText:
+				return "device_info_photo_verification_empty_text"
+			case .photoVerificationStartButtonTitle:
+				return "device_info_photo_verification_start_button_title"
+			case .photoVerificationUploadingDescription:
+				return "device_info_photo_verification_uploading_description"
+			case .photoVerificationWithPhotosDescription:
+				return "device_info_photo_verification_with_photos_description"
 		}
 	}
 }

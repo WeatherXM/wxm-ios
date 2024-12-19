@@ -39,4 +39,8 @@ public struct DeviceInfoUseCase {
     public func changeFrequency(device: DeviceDetails, frequency: Frequency) -> AnyPublisher<ChangeFrequencyState, Never> {
         repository.changeFrequency(device: device, frequency: frequency)
     }
+
+	public func getDevicePhotos(deviceId: String) throws -> AnyPublisher<DataResponse<[NetworkDevicePhotosResponse], NetworkErrorResponse>, Never> {
+		try repository.getDevicePhotos(deviceId: deviceId)
+	}
 }

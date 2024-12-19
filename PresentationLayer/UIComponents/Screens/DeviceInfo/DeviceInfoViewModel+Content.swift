@@ -38,7 +38,8 @@ extension DeviceInfoViewModel {
 
         static func heliumSections(for followState: UserDeviceFollowState?) -> [[Field]] {
             if followState?.state == .owned {
-				return [[.name, .frequency, .reboot, .photos],
+				return [[.photos],
+						[.name, .frequency, .reboot],						
 						[.stationLocation]]
             }
 
@@ -47,7 +48,8 @@ extension DeviceInfoViewModel {
 
         static func wifiSections(for followState: UserDeviceFollowState?) -> [[Field]] {
             if followState?.state == .owned {
-                return [[.name, .photos],
+                return [[.name],
+						[.photos],
 						[.stationLocation]]
             }
             
