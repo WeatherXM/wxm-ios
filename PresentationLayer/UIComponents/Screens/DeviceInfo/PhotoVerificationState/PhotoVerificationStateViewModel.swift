@@ -56,6 +56,7 @@ private extension PhotoVerificationStateViewModel {
 				}
 			}.store(in: &cancellable)
 		} catch {
+			state = .content(photos: [], isFailed: false)
 			print(error)
 		}
 	}
