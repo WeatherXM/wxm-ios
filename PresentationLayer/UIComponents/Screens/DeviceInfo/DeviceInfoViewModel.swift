@@ -31,7 +31,7 @@ class DeviceInfoViewModel: ObservableObject {
 										 description: field.descriptionFor(device: device,
 																		   for: followState,
 																		   deviceInfo: deviceInfo,
-																		   photoVerificationState: photoStateViewModel?.state).attributedMarkdown ?? "",
+																		   photoVerificationState: photoVerificationState).attributedMarkdown ?? "",
 										 imageUrl: field.imageUrlFor(device: device, followState: followState),
 										 buttonInfo: field.buttonInfoFor(devie: device,
 																		 followState: followState,
@@ -54,7 +54,7 @@ class DeviceInfoViewModel: ObservableObject {
 										 description: field.descriptionFor(device: device,
 																		   for: followState,
 																		   deviceInfo: deviceInfo,
-																		   photoVerificationState: photoStateViewModel?.state).attributedMarkdown ?? "",
+																		   photoVerificationState: photoVerificationState).attributedMarkdown ?? "",
 										 imageUrl: field.imageUrlFor(device: device, followState: followState),
 										 buttonInfo: field.buttonInfoFor(devie: device,
 																		 followState: followState,
@@ -94,6 +94,7 @@ class DeviceInfoViewModel: ObservableObject {
 													 followState: followState)
 		}
 	}
+	@Published private(set) var photoVerificationState: PhotoVerificationStateView.State?
     let followState: UserDeviceFollowState?
     @Published var showRebootStation = false
     var rebootStationViewModel: RebootStationViewModel {
@@ -137,6 +138,10 @@ class DeviceInfoViewModel: ObservableObject {
 		} else {
 			self.photoStateViewModel = nil
 		}
+
+		photoStateViewModel?.$state.sink { state in
+			self.photoVerificationState = state
+		}.store(in: &cancellable)
 
 		refresh { [weak self] in
 			self?.trackRewardSplitViewEvent()
