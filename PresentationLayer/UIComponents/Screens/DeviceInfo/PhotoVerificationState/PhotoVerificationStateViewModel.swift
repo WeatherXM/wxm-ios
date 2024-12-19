@@ -33,8 +33,6 @@ class PhotoVerificationStateViewModel: ObservableObject {
 	}
 
 	func handleImageTap() {
-		guard case let .content(photos, _) = state else { return }
-
 		let route = PhotoIntroViewModel.getInitialRoute(images: allPhotos.compactMap { $0.url })
 		Router.shared.navigateTo(route)
 	}
