@@ -21,7 +21,12 @@ class PhotoVerificationStateViewModel: ObservableObject {
 		self.deviceId = deviceId
 		self.deviceInfoUseCase = deviceInfoUseCase
 
-		fetchPhotos()
+//		fetchPhotos()
+		state = .uploading(progress: 62)
+	}
+
+	func handleCancelUploadTap() {
+		
 	}
 }
 
