@@ -11,7 +11,7 @@ import Combine
 
 @MainActor
 class PhotoVerificationStateViewModel: ObservableObject {
-	@Published private(set) var state: PhotoVerificationStateView.State = .empty
+	@Published private(set) var state: PhotoVerificationStateView.State = .content(photos: [], isFailed: false)
 	@Published private(set) var morePhotosCount: Int = 0
 	private var cancellable: Set<AnyCancellable> = []
 	private let deviceInfoUseCase: DeviceInfoUseCase?
@@ -21,8 +21,10 @@ class PhotoVerificationStateViewModel: ObservableObject {
 		self.deviceId = deviceId
 		self.deviceInfoUseCase = deviceInfoUseCase
 
-		fetchPhotos()
-		state = .uploading(progress: 62)
+		DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+
+			self.fetchPhotos()
+		}
 	}
 
 	func handleCancelUploadTap() {
@@ -49,7 +51,7 @@ private extension PhotoVerificationStateViewModel {
 					self.morePhotosCount = remainingCount
 					self.state = .content(photos: Array(urlsToShow), isFailed: false)
 				} else {
-					self.state = .empty
+					self.state = .content(photos: [], isFailed: false)
 				}
 			}.store(in: &cancellable)
 		} catch {
