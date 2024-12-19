@@ -82,7 +82,7 @@ extension DeviceInfoViewModel.Field {
 				}
 
 				switch photoVerificationState {
-						case .uploading:
+					case .uploading:
 						return LocalizableString.DeviceInfo.photoVerificationUploadingDescription.localized
 					case .content(let photos, _):
 						if photos.isEmpty {
@@ -90,6 +90,8 @@ extension DeviceInfoViewModel.Field {
 						}
 
 						return LocalizableString.DeviceInfo.photoVerificationWithPhotosDescription.localized
+					case .isLoading:
+						return ""
 				}
 		}
 	}

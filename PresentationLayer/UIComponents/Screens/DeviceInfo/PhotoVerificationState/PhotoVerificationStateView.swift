@@ -17,6 +17,8 @@ struct PhotoVerificationStateView: View {
 				photosView(photos: photos, isFailed: isFailed)
 			case .uploading(let progress):
 				uploadingView(progress: progress)
+			case .isLoading:
+				SpinningLoaderView()
 		}
     }
 }
@@ -25,6 +27,7 @@ extension PhotoVerificationStateView {
 	enum State {
 		case content(photos: [URL], isFailed: Bool)
 		case uploading(progress: CGFloat)
+		case isLoading
 	}
 
 	@ViewBuilder

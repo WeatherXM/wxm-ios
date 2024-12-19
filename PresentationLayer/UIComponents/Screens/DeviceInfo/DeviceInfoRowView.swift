@@ -83,7 +83,6 @@ struct DeviceInfoRowView: View {
 
 				if let customView = row.customView {
 					customView
-						.padding(.top, CGFloat(.defaultSidePadding))
 				}
 			}
         }
