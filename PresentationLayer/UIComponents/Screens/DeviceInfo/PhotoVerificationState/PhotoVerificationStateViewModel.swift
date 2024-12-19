@@ -30,6 +30,11 @@ class PhotoVerificationStateViewModel: ObservableObject {
 	func handleCancelUploadTap() {
 		
 	}
+
+	func handleImageTap() {
+		let route = PhotoIntroViewModel.getInitialRoute()
+		Router.shared.navigateTo(route)
+	}
 }
 
 private extension PhotoVerificationStateViewModel {
