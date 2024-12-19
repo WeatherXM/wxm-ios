@@ -16,7 +16,7 @@ struct PhotoVerificationStateView: View {
 			case .content(let photos):
 				photosView(photos: photos)
 			case .uploading(let progress):
-				Text(verbatim: "Uploading")
+				uploadingView(progress: progress)
 			case .empty:
 				Text(verbatim: "Empty")
 		}
@@ -63,6 +63,30 @@ extension PhotoVerificationStateView {
 					}
 					.cornerRadius(CGFloat(.buttonCornerRadius))
 			}
+		}
+	}
+
+	@ViewBuilder
+	func uploadingView(progress: CGFloat) -> some View {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			HStack(alignment: .bottom, spacing: CGFloat(.smallSpacing)) {
+				Text(LocalizableString.percentage(Float(progress)).localized)
+					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Text(LocalizableString.PhotoVerification.uploading.localized)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Spacer()
+			}
+
+			Button {
+				viewModel.handleCancelUploadTap()
+			} label: {
+				Text(LocalizableString.PhotoVerification.cancelUpload.localized)
+			}
+			.buttonStyle(WXMButtonStyle())
 		}
 	}
 }
