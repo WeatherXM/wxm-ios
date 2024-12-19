@@ -46,8 +46,9 @@ class GalleryViewModel: ObservableObject {
 		return picker
 	}()
 
-	init(photoGalleryUseCase: PhotoGalleryUseCase) {
+	init(images: [String], photoGalleryUseCase: PhotoGalleryUseCase) {
 		self.useCase = photoGalleryUseCase
+		self.images = images
 		selectedImage = images.last
 		updateSubtitle()
 		updateCameraPermissionState()
