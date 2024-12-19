@@ -36,33 +36,37 @@ extension PhotoVerificationStateView {
 			let last = photos.last
 			LazyVGrid(columns: [.init(spacing: CGFloat(.smallSpacing)), .init()]) {
 				ForEach(photos, id: \.self) { url in
-					Color.clear
-						.aspectRatio(1.0, contentMode: .fit)
-						.overlay {
-							LazyImage(url: url) { state in
-								if let image = state.image {
-									image
-										.resizable()
-										.aspectRatio(contentMode: .fill)
-										.clipped()
-								} else {
-									ProgressView()
+					Button {
+						viewModel.handleImageTap()
+					} label: {
+						Color.clear
+							.aspectRatio(1.0, contentMode: .fit)
+							.overlay {
+								LazyImage(url: url) { state in
+									if let image = state.image {
+										image
+											.resizable()
+											.aspectRatio(contentMode: .fill)
+											.clipped()
+									} else {
+										ProgressView()
+									}
 								}
 							}
-						}
-						.overlay {
-							let isLast = url == last
-							if isLast, viewModel.morePhotosCount > 0 {
-								ZStack {
-									Text("+\(viewModel.morePhotosCount)")
-										.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
-										.foregroundStyle(Color(colorEnum: .textInverse))
+							.overlay {
+								let isLast = url == last
+								if isLast, viewModel.morePhotosCount > 0 {
+									ZStack {
+										Text("+\(viewModel.morePhotosCount)")
+											.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
+											.foregroundStyle(Color(colorEnum: .textInverse))
 
-									Color.black.opacity(0.6)
+										Color.black.opacity(0.6)
+									}
 								}
 							}
-						}
-						.cornerRadius(CGFloat(.buttonCornerRadius))
+					}
+					.cornerRadius(CGFloat(.buttonCornerRadius))
 				}
 			}
 
@@ -102,7 +106,7 @@ extension PhotoVerificationStateView {
 			}
 
 			ProgressView(value: progress, total: 100.0)
-				.tint(Color(colorEnum: .wxmPrimary))				
+				.tint(Color(colorEnum: .wxmPrimary))
 				.animation(.easeOut(duration: 0.3), value: progress)
 
 			Button {
