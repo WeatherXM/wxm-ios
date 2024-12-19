@@ -11,7 +11,7 @@ import Combine
 
 @MainActor
 class PhotoVerificationStateViewModel: ObservableObject {
-	@Published private(set) var state: PhotoVerificationStateView.State = .content(photos: [], isFailed: false)
+	@Published private(set) var state: PhotoVerificationStateView.State = .isLoading
 	@Published private(set) var morePhotosCount: Int = 0
 	private var cancellable: Set<AnyCancellable> = []
 	private let deviceInfoUseCase: DeviceInfoUseCase?
@@ -34,6 +34,7 @@ class PhotoVerificationStateViewModel: ObservableObject {
 
 private extension PhotoVerificationStateViewModel {
 	func fetchPhotos() {
+		state = .isLoading
 		do {
 			try deviceInfoUseCase?.getDevicePhotos(deviceId: deviceId).sink { [weak self] response in
 				guard let self else { return }
