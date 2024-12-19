@@ -21,7 +21,7 @@ class PhotoVerificationStateViewModel: ObservableObject {
 		self.deviceId = deviceId
 		self.deviceInfoUseCase = deviceInfoUseCase
 
-//		fetchPhotos()
+		fetchPhotos()
 		state = .uploading(progress: 62)
 	}
 
@@ -47,7 +47,7 @@ private extension PhotoVerificationStateViewModel {
 					let urlsToShow = urls.prefix(2)
 					let remainingCount = urls.dropFirst(2).count
 					self.morePhotosCount = remainingCount
-					self.state = .content(photos: Array(urlsToShow))
+					self.state = .content(photos: Array(urlsToShow), isFailed: false)
 				} else {
 					self.state = .empty
 				}
