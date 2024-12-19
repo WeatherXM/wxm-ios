@@ -53,6 +53,9 @@
         }
       }
     },
+    "+%@" : {
+
+    },
     "about" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5003,12 +5006,6 @@
         }
       }
     },
-    "Key 1" : {
-      "extractionState" : "manual"
-    },
-    "Key 2" : {
-      "extractionState" : "manual"
-    },
     "last_name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5691,6 +5688,17 @@
         }
       }
     },
+    "photo_verification_cancel_upload" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel upload"
+          }
+        }
+      }
+    },
     "photo_verification_check_clear_view" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6065,6 +6073,17 @@
         }
       }
     },
+    "photo_verification_retry_upload" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry upload"
+          }
+        }
+      }
+    },
     "photo_verification_rotate_instruction" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6120,6 +6139,17 @@
         }
       }
     },
+    "photo_verification_upload_error_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We faced an unexpected error while uploading your photos."
+          }
+        }
+      }
+    },
     "photo_verification_upload_photos" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6138,6 +6168,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "After taking the photos, tap ‘Upload’ to send them to us for installation evaluation. Your photos are used solely for this purpose.\n\nUploading will run in the background, so feel free to navigate the app while we handle the transfer."
+          }
+        }
+      }
+    },
+    "photo_verification_uploading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploading…"
           }
         }
       }
