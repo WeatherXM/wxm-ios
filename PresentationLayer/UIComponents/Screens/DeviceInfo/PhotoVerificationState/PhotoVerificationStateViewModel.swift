@@ -12,6 +12,7 @@ import Combine
 @MainActor
 class PhotoVerificationStateViewModel: ObservableObject {
 	@Published private(set) var state: PhotoVerificationStateView.State = .isLoading
+	private var allPhotos: [NetworkDevicePhotosResponse] = []
 	@Published private(set) var morePhotosCount: Int = 0
 	private var cancellable: Set<AnyCancellable> = []
 	private let deviceInfoUseCase: DeviceInfoUseCase?
@@ -32,7 +33,9 @@ class PhotoVerificationStateViewModel: ObservableObject {
 	}
 
 	func handleImageTap() {
-		let route = PhotoIntroViewModel.getInitialRoute()
+		guard case let .content(photos, _) = state else { return }
+
+		let route = PhotoIntroViewModel.getInitialRoute(images: allPhotos.compactMap { $0.url })
 		Router.shared.navigateTo(route)
 	}
 }
@@ -50,6 +53,8 @@ private extension PhotoVerificationStateViewModel {
 					}
 					return URL(string: url)
 				}
+
+				self.allPhotos = response.value ?? []
 
 				if let urls {
 					let urlsToShow = urls.prefix(2)
