@@ -52,6 +52,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 			return
 		} else if url.isHttp {
 			// Delete from backend
+			return
 		}
 
 		throw PhotosError.failedToDeleteImage

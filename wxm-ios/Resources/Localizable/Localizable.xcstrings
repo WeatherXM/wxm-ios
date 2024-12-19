@@ -5842,6 +5842,17 @@
         }
       }
     },
+    "photo_verification_exit_photo_verification_minimum_photos_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At least 2 photos are required.\nExiting now means starting over next time."
+          }
+        }
+      }
+    },
     "photo_verification_exit_photo_verification_text" : {
       "extractionState" : "manual",
       "localizations" : {
