@@ -2751,6 +2751,28 @@
         }
       }
     },
+    "device_info_photo_verification_uploading_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Once completed, the photos will appear here!"
+          }
+        }
+      }
+    },
+    "device_info_photo_verification_with_photos_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanks for helping us build a healthier network! Here you can see your photos."
+          }
+        }
+      }
+    },
     "device_info_remove_station_account_confirmation_markdown" : {
       "extractionState" : "manual",
       "localizations" : {
