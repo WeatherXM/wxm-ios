@@ -57,11 +57,12 @@ extension PhotoVerificationStateView {
 								let isLast = url == last
 								if isLast, viewModel.morePhotosCount > 0 {
 									ZStack {
+										Color.black.opacity(0.6)
+
 										Text("+\(viewModel.morePhotosCount)")
 											.font(.system(size: CGFloat(.XLTitleFontSize), weight: .bold))
-											.foregroundStyle(Color(colorEnum: .textInverse))
+											.foregroundStyle(Color(colorEnum: .textWhite))
 
-										Color.black.opacity(0.6)
 									}
 								}
 							}
