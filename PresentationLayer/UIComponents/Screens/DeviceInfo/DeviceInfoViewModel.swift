@@ -85,7 +85,6 @@ class DeviceInfoViewModel: ObservableObject {
     @Published var isFailed: Bool = false
     var failObj: FailSuccessStateObject?
     @Published private(set) var device: DeviceDetails
-	@Published private(set) var devicePhotos: [NetworkDevicePhotosResponse]?
 	@Published private(set) var deviceInfo: NetworkDevicesInfoResponse? {
 		didSet {
 			shareDialogText = InfoField.getShareText(for: device,
@@ -173,27 +172,28 @@ class DeviceInfoViewModel: ObservableObject {
             return
         }
 
-        do {
-            try deviceInfoUseCase?.getDeviceInfo(deviceId: deviceId).sink { [weak self] response in
-                self?.isLoading = false
-                if let error = response.error {
-                    self?.failObj = error.uiInfo.defaultFailObject(type: .deviceInfo) {
-                        self?.isFailed = false
-                        self?.isLoading = true
-                        self?.refresh()
-                    }
-                    self?.isFailed = true
-                }
-                self?.deviceInfo = response.value
-				completion?()
-            }.store(in: &self.cancellable)
-        } catch {
-            isLoading = false
-            print(error)
-            completion?()
-        }
+		Task { @MainActor [weak self] in
+			let photosError = await self?.photoStateViewModel?.refresh()
 
-		fetchPhotos()
+			do {
+				let response = try await self?.deviceInfoUseCase?.getDeviceInfo(deviceId: deviceId).toAsync()
+				self?.isLoading = false
+				if let error = response?.error ?? photosError {
+					self?.failObj = error.uiInfo.defaultFailObject(type: .deviceInfo) {
+						self?.isFailed = false
+						self?.isLoading = true
+						self?.refresh()
+					}
+					self?.isFailed = true
+				}
+				self?.deviceInfo = response?.value
+				completion?()
+			} catch {
+				self?.isLoading = false
+				print(error)
+				completion?()
+			}
+		}
     }
 }
 
@@ -212,22 +212,6 @@ extension DeviceInfoViewModel: SelectStationLocationViewModelDelegate {
 }
 
 private extension DeviceInfoViewModel {
-
-	func fetchPhotos() {
-		guard let deviceId = device.id else {
-			return
-		}
-
-		do {
-			try deviceInfoUseCase?.getDevicePhotos(deviceId: deviceId).sink { [weak self] response in
-				guard let self else { return }
-				
-				self.devicePhotos = response.value
-			}.store(in: &cancellable)
-		} catch {
-			print(error)
-		}
-	}
 
 	func getInfoSection(title: String?, fields: [InfoField]) -> StationInfoView.Section {
 		let infoRows: [StationInfoView.Row] = fields.compactMap { field in

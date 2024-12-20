@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import Combine
 
-public struct DeviceInfoUseCase {
+public struct DeviceInfoUseCase: @unchecked Sendable {
 
     private let repository: DeviceInfoRepository
     public init(repository: DeviceInfoRepository) {
