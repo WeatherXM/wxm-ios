@@ -91,21 +91,23 @@ extension PhotoVerificationStateView {
 	@ViewBuilder
 	func uploadingView(progress: CGFloat) -> some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
-			HStack(alignment: .bottom, spacing: CGFloat(.smallSpacing)) {
-				Text(LocalizableString.percentage(Float(progress)).localized)
-					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
-					.foregroundStyle(Color(colorEnum: .text))
+			VStack(spacing: CGFloat(.smallSpacing)) {
+				HStack(alignment: .bottom, spacing: CGFloat(.smallSpacing)) {
+					Text(LocalizableString.percentage(Float(progress)).localized)
+						.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+						.foregroundStyle(Color(colorEnum: .text))
 
-				Text(LocalizableString.PhotoVerification.uploading.localized)
-					.font(.system(size: CGFloat(.normalFontSize)))
-					.foregroundStyle(Color(colorEnum: .text))
+					Text(LocalizableString.PhotoVerification.uploading.localized)
+						.font(.system(size: CGFloat(.normalFontSize)))
+						.foregroundStyle(Color(colorEnum: .text))
 
-				Spacer()
+					Spacer()
+				}
+
+				ProgressView(value: progress, total: 100.0)
+					.tint(Color(colorEnum: .wxmPrimary))
+					.animation(.easeOut(duration: 0.3), value: progress)
 			}
-
-			ProgressView(value: progress, total: 100.0)
-				.tint(Color(colorEnum: .wxmPrimary))
-				.animation(.easeOut(duration: 0.3), value: progress)
 
 			Button {
 				viewModel.handleCancelUploadTap()
