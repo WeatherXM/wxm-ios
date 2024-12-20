@@ -61,6 +61,8 @@ extension LocalizableString {
 		case yesCancel
 		case retryUpload
 		case uploadErrorDescription
+		case uploadFailedTapToRetry
+
 	}
 }
 
@@ -183,6 +185,8 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_retry_upload"
 			case .uploadErrorDescription:
 				"photo_verification_upload_error_description"
+			case .uploadFailedTapToRetry:
+				"photo_verification_upload_failed_tap_to_retry"
 		}
 	}
 }
