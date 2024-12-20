@@ -54,6 +54,13 @@ extension LocalizableString {
 		case openSettings
 		case exitPhotoVerification
 		case exitPhotoVerificationText
+		case exitPhotoVerificationMinimumPhotosText
+		case uploading
+		case cancelUpload
+		case cancelUploadAlertMessage
+		case yesCancel
+		case retryUpload
+		case uploadErrorDescription
 	}
 }
 
@@ -162,6 +169,20 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_exit_photo_verification"
 			case .exitPhotoVerificationText:
 				"photo_verification_exit_photo_verification_text"
+			case .exitPhotoVerificationMinimumPhotosText:
+				"photo_verification_exit_photo_verification_minimum_photos_text"
+			case .uploading:
+				"photo_verification_uploading"
+			case .cancelUpload:
+				"photo_verification_cancel_upload"
+			case .cancelUploadAlertMessage:
+				"photo_verification_cancel_upload_alert_message"
+			case .yesCancel:
+				"photo_verification_yes_cancel"
+			case .retryUpload:
+				"photo_verification_retry_upload"
+			case .uploadErrorDescription:
+				"photo_verification_upload_error_description"
 		}
 	}
 }

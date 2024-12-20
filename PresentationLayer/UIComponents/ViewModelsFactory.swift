@@ -271,8 +271,13 @@ enum ViewModelsFactory {
 		return PhotoInstructionsViewModel(photoGalleryUseCase: useCase)
 	}
 
-	static func getGalleryViewModel() -> GalleryViewModel {
+	static func getGalleryViewModel(images: [String], isNewVerification: Bool) -> GalleryViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
-		return GalleryViewModel(photoGalleryUseCase: useCase)
+		return GalleryViewModel(images: images, photoGalleryUseCase: useCase, isNewPhotoVerification: isNewVerification)
+	}
+
+	static func getPhotoVerificationStateViewModel(deviceId: String) -> PhotoVerificationStateViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCase.self)!
+		return PhotoVerificationStateViewModel(deviceId: deviceId, deviceInfoUseCase: useCase)
 	}
 }

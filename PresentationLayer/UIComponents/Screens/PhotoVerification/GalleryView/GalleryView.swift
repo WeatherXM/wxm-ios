@@ -21,7 +21,7 @@ struct GalleryView: View {
 					Button {
 						viewModel.handleBackButtonTap(dismissAction: dismiss)
 					} label: {
-						Text(FontIcon.xmark.rawValue)
+						Text(viewModel.backButtonIcon.rawValue)
 							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
 							.foregroundStyle(.text)
 					}
@@ -233,5 +233,6 @@ private extension GalleryView {
 }
 
 #Preview {
-	GalleryView(viewModel: ViewModelsFactory.getGalleryViewModel())
+	GalleryView(viewModel: ViewModelsFactory.getGalleryViewModel(images: [],
+																 isNewVerification: true))
 }
