@@ -2168,6 +2168,17 @@
         }
       }
     },
+    "completed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed"
+          }
+        }
+      }
+    },
     "confirm" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6190,6 +6201,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "We faced an unexpected error while uploading your photos."
+          }
+        }
+      }
+    },
+    "photo_verification_upload_failed_tap_to_retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload failed. Tap to retry "
           }
         }
       }
