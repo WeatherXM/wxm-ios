@@ -181,7 +181,11 @@ private struct ContentView: View {
 					
 					VStack(spacing: CGFloat(.smallSpacing)) {
 						if let uploadState = viewModel.uploadState {
-							UploadProgressView(state: uploadState, stationName: devices.first?.displayName ?? "") {
+							UploadProgressView(state: uploadState,
+											   stationName: devices.first?.displayName ?? "",
+											   retryAction: {
+								viewModel.handleRetryUploadTap()
+							}) {
 								withAnimation {
 									viewModel.uploadState = nil
 								}
