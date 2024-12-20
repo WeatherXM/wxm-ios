@@ -41,7 +41,24 @@ class PhotoVerificationStateViewModel: ObservableObject {
 	}
 
 	func refresh() async -> NetworkErrorResponse? {
+		// Comment the following line and ucomment one of the rest to test each ui case along with the
+		// return nil at the bottom
 		await fetchPhotos()
+
+		// ---Uploading state---
+		//state = .uploading(progress: 63)
+
+		// ---Empty---
+		//state = .content(photos: [], isFailed: false)
+
+		//---Empty with error---
+		//state = .content(photos: [], isFailed: true)
+
+		// ---Photos with error---
+//		state = .content(photos: [URL(string: "https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/09/5-5.png")!,
+//								  URL(string: "https://docs.weatherxm.com/img/wxm-devices/deployments/good-example-1.jpg")!], isFailed: true)
+
+		//return nil
 	}
 }
 
