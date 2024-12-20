@@ -177,6 +177,10 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 
 		Router.shared.showFullScreen(.safariView(url))
 	}
+
+	func handleRetryUploadTap() {
+
+	}
 }
 
 private extension WeatherStationsHomeViewModel {

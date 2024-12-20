@@ -12,6 +12,7 @@ struct UploadProgressView: View {
 	@Environment(\.colorScheme) var colorScheme
 	let state: UploadState
 	let stationName: String
+	let retryAction: VoidCallback
 	let shouldDismissAction: VoidCallback
 
 	private let iconDimensions: CGFloat = 50.0
@@ -58,6 +59,10 @@ struct UploadProgressView: View {
 				}
 			}
 		})
+		.onTapGesture {
+			guard state == .failed else { return }
+			retryAction()
+		}
     }
 }
 
@@ -166,13 +171,16 @@ private extension UploadProgressView {
 #Preview {
 	VStack {
 		UploadProgressView(state: .uploading(progress: 59.0),
-						   stationName: "Test name") {}
+						   stationName: "Test name",
+						   retryAction: {}) {}
 
 		UploadProgressView(state: .completed,
-						   stationName: "Test name") {}
+						   stationName: "Test name",
+						   retryAction: {}) {}
 
 		UploadProgressView(state: .failed,
-						   stationName: "Test name") {}
+						   stationName: "Test name",
+						   retryAction: {}) {}
 
 	}
 }
