@@ -63,7 +63,10 @@ enum AnimationsEnums: String, CaseIterable {
 	case emptyGeneric
 	case rocket
 	case rocketDark
-	
+	case uploadingLight
+	case uploadingDark
+	case uploadCompleted
+
 	var animationString: String {
 		switch self {
 			case .emptyDevices:
@@ -176,6 +179,12 @@ enum AnimationsEnums: String, CaseIterable {
 				return "deprecated_weather_fog"
 			case .cloudy:
 				return "deprecated_weather_cloudy"
+			case .uploadingLight:
+				return "uploading_light"
+			case .uploadingDark:
+				return "uploading_dark"
+			case .uploadCompleted:
+				return "upload_completed"
 		}
 	}
 }

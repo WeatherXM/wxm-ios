@@ -14,6 +14,7 @@ protocol WXMLocalizable {
 
 enum LocalizableString: WXMLocalizable {
 	case url(String, String)
+	case completed
 	case new
 	case notAvailable
 	case confirm
@@ -220,6 +221,8 @@ extension LocalizableString {
 		switch self {
 			case .url:
 				return "url_format"
+			case .completed:
+				return "completed"
 			case .new:
 				return "new"
 			case .notAvailable:
