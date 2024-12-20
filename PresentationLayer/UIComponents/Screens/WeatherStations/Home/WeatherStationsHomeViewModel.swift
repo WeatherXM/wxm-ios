@@ -40,6 +40,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
         FilterValues.default != filters
     }
 
+	@Published var uploadState: UploadProgressView.UploadState? = .completed
 	@Published var infoBanner: InfoBanner?
 	@Published var totalEarnedTitle: String?
 	@Published var totalEarnedValueText: String?
