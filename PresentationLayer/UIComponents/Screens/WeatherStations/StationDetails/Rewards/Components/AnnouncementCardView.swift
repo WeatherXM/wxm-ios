@@ -16,7 +16,7 @@ struct AnnouncementCardView: View {
 			HStack(alignment: .top, spacing: CGFloat(.smallSpacing)) {
 				Text(configuration.title)
 					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-					.foregroundColor(Color(colorEnum: .wxmWhite))
+					.foregroundColor(Color(colorEnum: .textWhite))
 
 				Spacer()
 
@@ -25,7 +25,7 @@ struct AnnouncementCardView: View {
 						Text(FontIcon.close.rawValue)
 							.font(.fontAwesome(font: .FAProSolid,
 											   size: CGFloat(.caption)))
-							.foregroundColor(Color(colorEnum: .wxmWhite))
+							.foregroundColor(Color(colorEnum: .textWhite))
 					}
 				}
 			}
@@ -35,7 +35,7 @@ struct AnnouncementCardView: View {
 			HStack {
 				Text(configuration.description)
 					.font(.system(size: CGFloat(.normalFontSize)))
-					.foregroundColor(Color(colorEnum: .wxmWhite))
+					.foregroundColor(Color(colorEnum: .textWhite))
 
 				Spacer()
 			}
@@ -47,18 +47,18 @@ struct AnnouncementCardView: View {
 						HStack(spacing: CGFloat(.minimumSpacing)) {
 							Text(actionTitle)
 								.font(.system(size: CGFloat(.caption), weight: .bold))
-								.foregroundColor(Color(colorEnum: .wxmWhite))
+								.foregroundColor(Color(colorEnum: .textWhite))
 
 							Text(FontIcon.externalLink.rawValue)
 								.font(.fontAwesome(font: .FAProSolid,
 												   size: CGFloat(.caption)))
-								.foregroundColor(Color(colorEnum: .wxmWhite))
+								.foregroundColor(Color(colorEnum: .textWhite))
 
 						}
 						.padding(.horizontal, CGFloat(.mediumSidePadding))
 						.padding(.vertical, CGFloat(.smallSidePadding))
 						.background {
-							Capsule().foregroundStyle(Color(colorEnum: .wxmWhite).opacity(0.2))
+							Capsule().foregroundStyle(Color(colorEnum: .textWhite).opacity(0.2))
 						}
 					}
 

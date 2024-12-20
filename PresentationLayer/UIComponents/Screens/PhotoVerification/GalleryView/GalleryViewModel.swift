@@ -34,9 +34,17 @@ class GalleryViewModel: ObservableObject {
 	var isUploadButtonEnabled: Bool {
 		images.count >= minPhotosCount
 	}
+	var backButtonIcon: FontIcon {
+		if isNewPhotoVerification {
+			return .xmark
+		}
+
+		return .arrowLeft
+	}
 	private let minPhotosCount = 2
 	private let maxPhotosCount = 6
 	private let useCase: PhotoGalleryUseCase
+	private let isNewPhotoVerification: Bool
 	private lazy var imagePickerDelegate = {
 		let picker = ImagePickerDelegate(useCase: useCase)
 		picker.imageCallback = { [weak self] imageUrl in
@@ -46,9 +54,10 @@ class GalleryViewModel: ObservableObject {
 		return picker
 	}()
 
-	init(images: [String], photoGalleryUseCase: PhotoGalleryUseCase) {
+	init(images: [String], photoGalleryUseCase: PhotoGalleryUseCase, isNewPhotoVerification: Bool) {
 		self.useCase = photoGalleryUseCase
 		self.images = images
+		self.isNewPhotoVerification = isNewPhotoVerification
 		selectedImage = images.last
 		updateSubtitle()
 		updateCameraPermissionState()
@@ -94,17 +103,22 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func handleBackButtonTap(dismissAction: DismissAction) {
+		if isNewPhotoVerification {
+			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationText.localized,
+						  dismissAction: dismissAction)
+
+			return
+		}
+
 		let remoteImageCount = images.compactMap { URL(string: $0) }.filter { $0.isHttp }.count
-		let message = remoteImageCount == 1 ? LocalizableString.PhotoVerification.exitPhotoVerificationMinimumPhotosText.localized : LocalizableString.PhotoVerification.exitPhotoVerificationText.localized
+		if remoteImageCount < minPhotosCount {
+			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationMinimumPhotosText.localized,
+						  dismissAction: dismissAction)
+			
+			return
+		}
 
-		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.exit.localized, { _ in  dismissAction() })
-		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.exitPhotoVerification.localized,
-												  message: message,
-												  cancelActionTitle: LocalizableString.back.localized,
-												  cancelAction: {},
-												  okAction: exitAction)
-
-		AlertHelper().showAlert(alertObject)
+		dismissAction()
 	}
 }
 
@@ -182,5 +196,16 @@ private extension GalleryViewModel {
 
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: openPikerCallback)
 		}
+	}
+
+	func showExitAlert(message: String, dismissAction: DismissAction) {
+		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.exit.localized, { _ in  dismissAction() })
+		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.exitPhotoVerification.localized,
+												  message: message,
+												  cancelActionTitle: LocalizableString.back.localized,
+												  cancelAction: {},
+												  okAction: exitAction)
+
+		AlertHelper().showAlert(alertObject)
 	}
 }
