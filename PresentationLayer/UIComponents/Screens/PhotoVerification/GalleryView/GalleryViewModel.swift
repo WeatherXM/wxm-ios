@@ -79,7 +79,7 @@ class GalleryViewModel: ObservableObject {
 
 		Task { @MainActor in
 			do {
-				try await useCase.deleteImage(selectedImage, deviceId: "")
+				try await useCase.deleteImage(selectedImage, deviceId: deviceId)
 				images.removeAll(where: { $0 == selectedImage })
 				self.selectedImage = images.last
 			} catch PhotosError.networkError(let error) {
