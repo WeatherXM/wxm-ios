@@ -42,4 +42,8 @@ public struct PhotoGalleryUseCase: Sendable {
 	public func purgeImages() throws {
 		try photosRepository.purgeImages()
 	}
+
+	public func startFilesUpload(deviceId: String, files: [URL]) async throws {
+		try await photosRepository.startFilesUpload(deviceId: deviceId, files: files)
+	}
 }
