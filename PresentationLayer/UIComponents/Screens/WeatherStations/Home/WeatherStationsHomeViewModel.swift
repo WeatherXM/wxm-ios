@@ -178,8 +178,22 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		Router.shared.showFullScreen(.safariView(url))
 	}
 
-	func handleRetryUploadTap() {
+	func handleUploadBannerTap() {
+		switch uploadState {
+			case .uploading, .completed:
+				// Navigate to the station
+				guard let device = devices.first, let deviceId = device.id else {
+					return
+				}
 
+				let viewModel = ViewModelsFactory.getDeviceInfoViewModel(device: device, followState: followStates[deviceId])
+				Router.shared.navigateTo(.deviceInfo(viewModel))
+			case .failed:
+				// retry
+				break
+			case nil:
+				break
+		}
 	}
 }
 
