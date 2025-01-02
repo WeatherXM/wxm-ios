@@ -52,6 +52,26 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
     private(set) var failObj: FailSuccessStateObject?
     weak var mainVM: MainScreenViewModel?
 
+	// TEMP
+	private lazy var timer: Timer = {
+		Timer(timeInterval: 0.2, repeats: true) { [weak self] timer in
+			DispatchQueue.main.async { [weak timer] in
+				if case .uploading(let progress) = self?.uploadState {
+					let newProgress = progress + 1.0
+					if newProgress >= 100.0 {
+						self?.invalidateTimer()
+						self?.uploadState = .completed
+						return
+					}
+
+					self?.uploadState = .uploading(progress: newProgress)
+
+					return
+				}
+				self?.uploadState = .uploading(progress: 0)
+			}
+		}
+	}()
 	public init(meUseCase: MeUseCase, remoteConfigUseCase: RemoteConfigUseCase) {
         self.meUseCase = meUseCase
 		self.remoteConfigUseCase = remoteConfigUseCase
@@ -64,7 +84,15 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
 			self?.infoBanner = infoBanner
 		}.store(in: &cancellableSet)
+
+		// Uncomment the following to test the uploading progress UI
+		//RunLoop.main.add(timer, forMode: .common)
     }
+
+	// TEMP
+	func invalidateTimer() {
+		timer.invalidate()
+	}
 
     /// Perform request to get all the essentials
     /// - Parameters:
