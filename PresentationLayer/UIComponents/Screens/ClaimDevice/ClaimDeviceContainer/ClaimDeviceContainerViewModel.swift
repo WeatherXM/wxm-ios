@@ -196,7 +196,10 @@ extension ClaimDeviceContainerViewModel {
 
 		let continueToPhotoVerificationAction: VoidCallback = { [weak self] in
 			self?.dismissAndNavigate(device: nil)
-			let route = PhotoIntroViewModel.getInitialRoute(images: [], isNewPhotoVerification: true)
+			guard let deviceId = device.id else {
+				return
+			}
+			let route = PhotoIntroViewModel.getInitialRoute(deviceId: deviceId, images: [], isNewPhotoVerification: true)
 			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
 				Router.shared.navigateTo(route)
 			}
