@@ -66,7 +66,7 @@ private extension PhotoVerificationStateViewModel {
 	@MainActor
 	func fetchPhotos() async -> NetworkErrorResponse? {
 		do {
-			guard let result = try await deviceInfoUseCase?.getDevicePhotos(deviceId: deviceId).toAsync().result else {
+			guard let result = try await deviceInfoUseCase?.getDevicePhotos(deviceId: "718e5830-882e-11ec-966b-a173bf0cd052") else {
 				return nil
 			}
 
