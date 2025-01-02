@@ -183,8 +183,8 @@ private struct ContentView: View {
 						if let uploadState = viewModel.uploadState {
 							UploadProgressView(state: uploadState,
 											   stationName: devices.first?.displayName ?? "",
-											   retryAction: {
-								viewModel.handleRetryUploadTap()
+											   tapAction: {
+								viewModel.handleUploadBannerTap()
 							}) {
 								withAnimation {
 									viewModel.uploadState = nil
