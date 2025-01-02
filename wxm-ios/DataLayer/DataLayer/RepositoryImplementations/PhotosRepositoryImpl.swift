@@ -42,9 +42,9 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		return fileName.absoluteString
 	}
 
-	public func deleteImage(_ imageUrl: String) throws {
+	public func deleteImage(_ imageUrl: String, deviceId: String) async throws {
 		guard let url = URL(string: imageUrl) else {
-			return
+			throw PhotosError.imageNotFound
 		}
 
 		if url.isFileURL, FileManager.default.fileExists(atPath: url.path) {
@@ -52,6 +52,17 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 			return
 		} else if url.isHttp {
 			// Delete from backend
+			let photoId = url.lastPathComponent
+			let builder = MeApiRequestBuilder.deleteUserDevicePhoto(deviceId: deviceId, photoId: photoId)
+			let urlRequest = try builder.asURLRequest()
+			let result: Result<EmptyEntity, NetworkErrorResponse> = try await ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName).toAsync().result
+			switch result {
+				case .success:
+					break
+				case .failure(let error):
+					throw PhotosError.networkError(error)
+			}
+
 			return
 		}
 

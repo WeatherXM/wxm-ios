@@ -72,12 +72,20 @@ class GalleryViewModel: ObservableObject {
 			return
 		}
 
-		do {
-			try useCase.deleteImage(selectedImage)
-			images.removeAll(where: { $0 == selectedImage })
-			self.selectedImage = images.last
-		} catch {
-			Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
+		Task { @MainActor in
+			do {
+				try await useCase.deleteImage(selectedImage, deviceId: "")
+				images.removeAll(where: { $0 == selectedImage })
+				self.selectedImage = images.last
+			} catch PhotosError.networkError(let error) {
+				let info = error.uiInfo
+				if let message = info.description?.attributedMarkdown {
+					Toast.shared.show(text: message)
+				}
+			}
+			catch {
+				Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
+			}
 		}
 	}
 

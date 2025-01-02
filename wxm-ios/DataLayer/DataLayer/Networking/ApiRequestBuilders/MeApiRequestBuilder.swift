@@ -49,6 +49,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	case getUserDeviceRewards(deviceId: String, mode: String)
 	case getUserDevicesRewards(mode: String)
 	case getUserDevicePhotos(deviceId: String)
+	case deleteUserDevicePhoto(deviceId: String, photoId: String)
 	case getDeviceFirmwareById(deviceId: String)
 	case setFriendlyName(deviceId: String, name: String)
 	case deleteFriendlyName(deviceId: String)
@@ -69,7 +70,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return .get
 			case .saveUserWallet, .claimDevice, .setFriendlyName, .disclaimDevice, .follow, .setDeviceLocation, .setFCMToken:
 				return .post
-			case .deleteAccount, .deleteFriendlyName, .unfollow:
+			case .deleteUserDevicePhoto, .deleteAccount, .deleteFriendlyName, .unfollow:
 				return .delete
 		}
 	}
@@ -118,6 +119,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/devices/rewards"
 			case let .getUserDevicePhotos(deviceId):
 				return "me/devices/\(deviceId)/photos"
+			case let .deleteUserDevicePhoto(deviceId, photoId):
+				return "me/devices/\(deviceId)/photos/\(photoId)"
 			case let .getDeviceFirmwareById(deviceId: deviceId):
 				return "me/devices/\(deviceId)/firmware"
 			case let .setFriendlyName(deviceId, _):
@@ -222,6 +225,8 @@ extension MeApiRequestBuilder: MockResponseBuilder {
 				}
 			case .getUser:
 				return "get_user"
+			case .deleteUserDevicePhoto:
+				return "empty_response"
 			default:
 				return nil
 		}
