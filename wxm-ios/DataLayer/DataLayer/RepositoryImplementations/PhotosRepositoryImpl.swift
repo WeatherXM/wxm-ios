@@ -82,6 +82,18 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		let folderPath = self.folderPath
 		try FileManager.default.removeItem(at: folderPath)
 	}
+
+	public func startFilesUpload(deviceId: String, files: [URL]) async throws {
+		let fileNames = files.map { $0.lastPathComponent }
+		let resut = try await retrievePhotosUpload(for: deviceId, names: fileNames)
+		switch resut {
+			case .success(let objects):
+				// upload
+				break
+			case .failure(let error):
+				throw PhotosError.networkError(error)
+		}
+	}
 }
 
 private extension PhotosRepositoryImpl {
@@ -121,5 +133,12 @@ private extension PhotosRepositoryImpl {
 			case .failure(_):
 				return metadata
 		}
+	}
+
+	func retrievePhotosUpload(for deviceId: String, names: [String]) async throws -> Result<NetworkPostDevicePhotosResponse, NetworkErrorResponse> {
+		let builder = MeApiRequestBuilder.postPhotoNames(deviceId: deviceId, photos: names)
+		let urlRequest = try builder.asURLRequest()
+		return try await ApiClient.shared.requestCodableAuthorized(urlRequest,
+																   mockFileName: builder.mockFileName).toAsync().result
 	}
 }

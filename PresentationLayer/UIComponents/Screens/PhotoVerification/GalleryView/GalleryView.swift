@@ -120,7 +120,7 @@ struct GalleryView: View {
 		}
 		.navigationBarHidden(true)
 		.sheet(isPresented: $viewModel.showInstructions) {
-			PhotoIntroView(viewModel: ViewModelsFactory.getPhotoInstructionsViewModel())
+			PhotoIntroView(viewModel: ViewModelsFactory.getPhotoInstructionsViewModel(deviceId: viewModel.deviceId))
 		}
 		.task {
 			viewModel.viewLoaded()
@@ -233,6 +233,7 @@ private extension GalleryView {
 }
 
 #Preview {
-	GalleryView(viewModel: ViewModelsFactory.getGalleryViewModel(images: [],
+	GalleryView(viewModel: ViewModelsFactory.getGalleryViewModel(deviceId: "",
+																 images: [],
 																 isNewVerification: true))
 }

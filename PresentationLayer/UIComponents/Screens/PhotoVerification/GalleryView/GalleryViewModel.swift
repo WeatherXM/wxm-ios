@@ -43,6 +43,7 @@ class GalleryViewModel: ObservableObject {
 	}
 	private let minPhotosCount = 2
 	private let maxPhotosCount = 6
+	let deviceId: String
 	private let useCase: PhotoGalleryUseCase
 	private let isNewPhotoVerification: Bool
 	private lazy var imagePickerDelegate = {
@@ -54,7 +55,11 @@ class GalleryViewModel: ObservableObject {
 		return picker
 	}()
 
-	init(images: [String], photoGalleryUseCase: PhotoGalleryUseCase, isNewPhotoVerification: Bool) {
+	init(deviceId: String,
+		 images: [String],
+		 photoGalleryUseCase: PhotoGalleryUseCase,
+		 isNewPhotoVerification: Bool) {
+		self.deviceId = deviceId
 		self.useCase = photoGalleryUseCase
 		self.images = images
 		self.isNewPhotoVerification = isNewPhotoVerification
@@ -94,8 +99,22 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func handleUploadButtonTap() {
-		// TEMP
-		showShareSheet = true
+		guard let fileUrls = shareFileUrls?.filter({ $0.isFileURL }) else {
+			return
+		}
+		Task { @MainActor in
+			do {
+				try await useCase.startFilesUpload(deviceId: deviceId, files: fileUrls)
+			} catch PhotosError.networkError(let error) {
+				let info = error.uiInfo
+				if let message = info.description?.attributedMarkdown {
+					Toast.shared.show(text: message)
+				}
+			}
+			catch {
+				Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
+			}
+		}
 	}
 
 	func handleOpenSettingsTap() {
