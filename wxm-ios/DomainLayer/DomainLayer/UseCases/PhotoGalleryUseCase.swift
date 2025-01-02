@@ -27,8 +27,8 @@ public struct PhotoGalleryUseCase: Sendable {
 		try await photosRepository.saveImage(image, metadata: metadata)
 	}
 
-	public func deleteImage(_ imageUrl: String) throws {
-		try photosRepository.deleteImage(imageUrl)
+	public func deleteImage(_ imageUrl: String, deviceId: String) async throws {
+		try await photosRepository.deleteImage(imageUrl, deviceId: deviceId)
 	}
 
 	public func getCameraPermission() -> AVAuthorizationStatus {
