@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import MobileCoreServices
 
 public final class FileUploaderService: Sendable {
 
@@ -51,24 +52,43 @@ private extension FileUploaderService {
 	func generateRequestBody(fileData: Data, boundary: String) -> Data {
 		var data = Data()
 		let paramName = "file"
-
+		let fileName = "file.jpg"
+		let mimeType = "image/*"
 		data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-		data.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\r\n\r\n".data(using: .utf8)!)
-//		data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
+		data.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+		data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
 		data.append(fileData)
 		data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
 
 		return data
 	}
 
-	private func saveBodyToTemp(_ data: Data) throws -> URL {
+	func saveBodyToTemp(_ data: Data) throws -> URL {
 		let tempDirectory = FileManager.default.temporaryDirectory
 		let tempFileURL = tempDirectory.appendingPathComponent(UUID().uuidString)
 		try data.write(to: tempFileURL)
 		return tempFileURL
 	}
+
+	func mimeType(for path: String) -> String {
+		let pathExtension = URL(fileURLWithPath: path).pathExtension as NSString
+		guard
+			let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, nil)?.takeRetainedValue(),
+			let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue()
+		else {
+			return "application/octet-stream"
+		}
+
+		return mimetype as String
+	}
 }
 
-private final class SessionDelegate: NSObject, URLSessionDelegate {
+private final class SessionDelegate: NSObject, URLSessionDataDelegate, URLSessionTaskDelegate, URLSessionDelegate {
+	func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+		print("\(error), \(task)")
+	}
 
+	func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+		print(dataTask)
+	}
 }
