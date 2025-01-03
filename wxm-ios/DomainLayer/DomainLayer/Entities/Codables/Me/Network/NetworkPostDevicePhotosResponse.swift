@@ -8,6 +8,6 @@
 import Foundation
 
 public struct NetworkPostDevicePhotosResponse: Sendable, Codable {
-	public let url: String
-	public let fields: [String: String]
+	public let url: String?
+	public let fields: [String: String]?
 }
