@@ -91,8 +91,12 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		let resut = try await retrievePhotosUpload(for: deviceId, names: fileNames)
 		switch resut {
 			case .success(let objects):
-				// upload
-				break
+				for (index, element) in files.enumerated() {
+					if let uploadUrl = objects[index].url,
+					   let url = URL(string: uploadUrl) {
+						try fileUploader.uploadFile(file: element, to: url)
+					}
+				}
 			case .failure(let error):
 				throw PhotosError.networkError(error)
 		}
