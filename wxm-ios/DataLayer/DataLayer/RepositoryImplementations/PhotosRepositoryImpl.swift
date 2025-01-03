@@ -19,6 +19,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 
 	nonisolated(unsafe) private let locationManager = WXMLocationManager()
 	nonisolated(unsafe) private let userDefaultsService = UserDefaultsService()
+	private let fileUploader: FileUploaderService
 	private let termsAcceptedKey = UserDefaults.GenericKey.arePhotoVerificationTermsAccepted.rawValue
 
 	public var areTermsAccepted: Bool {
@@ -26,7 +27,9 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		return accepted == true
 	}
 
-	public init() {}
+	public init(fileUploader: FileUploaderService) {
+		self.fileUploader = fileUploader
+	}
 
 	public func setTermsAccepted(_ termsAccepted: Bool) {
 		userDefaultsService.save(value: termsAccepted, key: termsAcceptedKey)
