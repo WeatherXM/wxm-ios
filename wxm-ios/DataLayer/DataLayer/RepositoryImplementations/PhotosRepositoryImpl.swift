@@ -135,7 +135,7 @@ private extension PhotosRepositoryImpl {
 		}
 	}
 
-	func retrievePhotosUpload(for deviceId: String, names: [String]) async throws -> Result<NetworkPostDevicePhotosResponse, NetworkErrorResponse> {
+	func retrievePhotosUpload(for deviceId: String, names: [String]) async throws -> Result<[NetworkPostDevicePhotosResponse], NetworkErrorResponse> {
 		let builder = MeApiRequestBuilder.postPhotoNames(deviceId: deviceId, photos: names)
 		let urlRequest = try builder.asURLRequest()
 		return try await ApiClient.shared.requestCodableAuthorized(urlRequest,
