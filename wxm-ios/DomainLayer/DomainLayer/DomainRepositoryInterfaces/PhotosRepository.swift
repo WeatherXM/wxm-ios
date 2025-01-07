@@ -8,10 +8,12 @@
 import Foundation
 import UIKit
 import AVFoundation
+import Combine
 
 public protocol PhotosRepository: Sendable {
 	var areTermsAccepted: Bool { get }
-	func setTermsAccepted(_ termsAccepted: Bool)	
+	var uploadProgressPublisher: AnyPublisher<Double?, Error> { get }
+	func setTermsAccepted(_ termsAccepted: Bool)
 	func saveImage(_ image: UIImage, metadata: NSDictionary?) async throws -> String?
 	func deleteImage(_ imageUrl: String, deviceId: String) async throws
 	func getCameraPermission() -> AVAuthorizationStatus
@@ -28,6 +30,7 @@ public enum PhotosError: CustomStringConvertible, Error {
 			case .failedToSaveImage: return "failedToSaveImage"
 			case .failedToDeleteImage: return "failedToDeleteImage"
 			case .networkError: return "networkError"
+			case .uploadFailed: return "uploadFailed"
 		}
 	}
 
@@ -35,4 +38,5 @@ public enum PhotosError: CustomStringConvertible, Error {
 	case failedToSaveImage
 	case failedToDeleteImage
 	case networkError(NetworkErrorResponse)
+	case uploadFailed(Error)
 }

@@ -8,15 +8,22 @@
 import Foundation
 import UIKit
 import AVFoundation
+@preconcurrency import Combine
 
 public struct PhotoGalleryUseCase: Sendable {
 
 	public var areTermsAccepted: Bool { photosRepository.areTermsAccepted }
+	public var uploadProgressPublisher: AnyPublisher<Double?, PhotosError>
 
 	private let photosRepository: PhotosRepository
 
 	public init(photosRepository: PhotosRepository) {
 		self.photosRepository = photosRepository
+		uploadProgressPublisher = photosRepository.uploadProgressPublisher.map { res in
+			return res
+		}.mapError { error in
+			return PhotosError.uploadFailed(error)
+		}.eraseToAnyPublisher()
 	}
 
 	public func setTermsAccepted(_ termsAccepted: Bool) {
