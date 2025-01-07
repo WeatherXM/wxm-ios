@@ -179,7 +179,7 @@ private struct ContentView: View {
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					if let uploadState = viewModel.uploadState {
 						UploadProgressView(state: uploadState,
-										   stationName: devices.first?.displayName ?? "",
+										   stationName: viewModel.uploadInProgressStationName ?? "",
 										   tapAction: {
 							viewModel.handleUploadBannerTap()
 						}) {
