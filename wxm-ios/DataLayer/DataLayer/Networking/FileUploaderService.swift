@@ -29,17 +29,21 @@ public final class FileUploaderService: Sendable {
 		totalProgressPublisher = sessionDelegate.totalProgressPublisher
 	}
 
-	func uploadFile(file: URL, to url: URL) throws {
+	func uploadFile(file: URL, to url: URL, for deviceId: String) throws {
 		guard let data = FileManager.default.contents(atPath: file.path) else {
 			return
 		}
 
-		try uploadData(data, to: url)
+		try uploadData(data, to: url, for: deviceId)
+	}
+
+	func getUploadInProgressDeviceId() -> String? {
+		sessionDelegate.getInProgressTaskDescription()
 	}
 }
 
 private extension FileUploaderService {
-	func uploadData(_ data: Data, to url: URL) throws {
+	func uploadData(_ data: Data, to url: URL, for deviceId: String) throws {
 		let boundary = UUID().uuidString
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.post.rawValue
@@ -49,6 +53,7 @@ private extension FileUploaderService {
 		request.setValue(String(body.count), forHTTPHeaderField: "Content-Length")
 		let bodyFileURL = try saveBodyToTemp(body)
 		let task = backgroundSession.uploadTask(with: request, fromFile: bodyFileURL)
+		task.taskDescription = deviceId
 		task.resume()
 	}
 
@@ -103,6 +108,10 @@ private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDa
 		super.init()
 	}
 
+	func getInProgressTaskDescription() -> String? {
+		progresses.keys.first?.taskDescription
+	}
+
 	func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
 		print("\(error), \(task)")
 		if let error {
@@ -116,7 +125,8 @@ private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDa
 
 	func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
 		let progress = Double(totalBytesSent) / Double(totalBytesExpectedToSend) * 100.0
-		print("Task \(task.taskIdentifier): Upload progress: \(progress)%")
+		print("Task \(task.taskIdentifier)-\(task.taskDescription): Upload progress: \(progress)%")
+		print("TASK protgress \(task.progress)")
 		DispatchQueue.main.async { [weak self] in
 			self?.progresses[task] = progress
 		}
