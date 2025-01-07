@@ -8,11 +8,13 @@
 import Foundation
 import Alamofire
 import MobileCoreServices
+@preconcurrency import Combine
 
 public final class FileUploaderService: Sendable {
-
+	let totalProgressPublisher: AnyPublisher<Double?, Error>
 	private let backgroundSession: URLSession!
 	private let sessionDelegate: SessionDelegate = SessionDelegate()
+	nonisolated(unsafe) private var cancellables: Set<AnyCancellable> = Set()
 
 	public init() {
 		let bundleIdentifier = Bundle.main.bundleIdentifier ?? UUID().uuidString
@@ -24,6 +26,7 @@ public final class FileUploaderService: Sendable {
 		config.isDiscretionary = false // Disables discretionary behavior, meaning the system will not delay tasks based on power or network conditions.
 
 		backgroundSession = URLSession(configuration: config, delegate: sessionDelegate, delegateQueue: nil)
+		totalProgressPublisher = sessionDelegate.totalProgressPublisher
 	}
 
 	func uploadFile(file: URL, to url: URL) throws {
@@ -52,7 +55,7 @@ private extension FileUploaderService {
 	func generateRequestBody(fileData: Data, boundary: String) -> Data {
 		var data = Data()
 		let paramName = "file"
-		let fileName = "file.jpg"
+		let fileName = "\(UUID().uuidString).jpg"
 		let mimeType = "image/*"
 		data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
 		data.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
@@ -83,12 +86,39 @@ private extension FileUploaderService {
 	}
 }
 
-private final class SessionDelegate: NSObject, URLSessionDataDelegate, URLSessionTaskDelegate, URLSessionDelegate {
+private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDataDelegate, URLSessionTaskDelegate, URLSessionDelegate {
+	let totalProgressPublisher: AnyPublisher<Double?, Error>
+	nonisolated(unsafe) private var progresses: [URLSessionTask: Double] = [:] {
+		didSet {
+			let count = self.progresses.count
+			let sum = self.progresses.values.reduce(0, +)
+			totalProgressValueSubject.send(sum/Double(count))
+		}
+	}
+	private var totalProgressValueSubject: PassthroughSubject<Double?, Error> = .init()
+	private let queue: DispatchQueue = DispatchQueue(label: "com.weatherxm.app.file_upload")
+
+	override init() {
+		totalProgressPublisher = totalProgressValueSubject.eraseToAnyPublisher()
+		super.init()
+	}
+
 	func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
 		print("\(error), \(task)")
+		if let error {
+			totalProgressValueSubject.send(completion: .failure(error))
+		}
 	}
 
 	func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
 		print(dataTask)
+	}
+
+	func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+		let progress = Double(totalBytesSent) / Double(totalBytesExpectedToSend) * 100.0
+		print("Task \(task.taskIdentifier): Upload progress: \(progress)%")
+		DispatchQueue.main.async { [weak self] in
+			self?.progresses[task] = progress
+		}
 	}
 }
