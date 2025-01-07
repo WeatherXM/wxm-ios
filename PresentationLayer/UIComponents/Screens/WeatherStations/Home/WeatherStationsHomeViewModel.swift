@@ -13,6 +13,7 @@ import Toolkit
 @MainActor
 public final class WeatherStationsHomeViewModel: ObservableObject {
     private let meUseCase: MeUseCase
+	private let photosUseCase: PhotoGalleryUseCase
 	private let remoteConfigUseCase: RemoteConfigUseCase
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
     private var cancellableSet: Set<AnyCancellable> = []
@@ -40,7 +41,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
         FilterValues.default != filters
     }
 
-	@Published var uploadState: UploadProgressView.UploadState? = .completed
+	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
 	@Published var totalEarnedTitle: String?
 	@Published var totalEarnedValueText: String?
@@ -52,29 +53,10 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
     private(set) var failObj: FailSuccessStateObject?
     weak var mainVM: MainScreenViewModel?
 
-	// TEMP
-	private lazy var timer: Timer = {
-		Timer(timeInterval: 0.2, repeats: true) { [weak self] timer in
-			DispatchQueue.main.async { [weak timer] in
-				if case .uploading(let progress) = self?.uploadState {
-					let newProgress = progress + 1.0
-					if newProgress >= 100.0 {
-						self?.invalidateTimer()
-						self?.uploadState = .completed
-						return
-					}
-
-					self?.uploadState = .uploading(progress: newProgress)
-
-					return
-				}
-				self?.uploadState = .uploading(progress: 0)
-			}
-		}
-	}()
-	public init(meUseCase: MeUseCase, remoteConfigUseCase: RemoteConfigUseCase) {
+	public init(meUseCase: MeUseCase, remoteConfigUseCase: RemoteConfigUseCase, photosGalleryUseCase: PhotoGalleryUseCase) {
         self.meUseCase = meUseCase
 		self.remoteConfigUseCase = remoteConfigUseCase
+		self.photosUseCase = photosGalleryUseCase
 		let scrollOffsetObject: TrackableScrollOffsetObject = .init()
 		self.scrollOffsetObject = scrollOffsetObject
 		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
@@ -85,13 +67,23 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 			self?.infoBanner = infoBanner
 		}.store(in: &cancellableSet)
 
-		// Uncomment the following to test the uploading progress UI
-		//RunLoop.main.add(timer, forMode: .common)
+		photosUseCase.uploadProgressPublisher.sink(receiveCompletion: { [weak self] error in
+			self?.uploadState = .failed
+		}) { [weak self] progress in
+			guard let progress else {
+				return
+			}
+			self?.handleProgressUpload(progress: progress)
+		}.store(in: &cancellableSet)
     }
 
-	// TEMP
-	func invalidateTimer() {
-		timer.invalidate()
+	func handleProgressUpload(progress: Double) {
+		if progress >= 100.0 {
+			uploadState = .completed
+			return
+		}
+
+		uploadState = .uploading(progress: Float(progress))
 	}
 
     /// Perform request to get all the essentials
