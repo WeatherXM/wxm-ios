@@ -14,6 +14,9 @@ public struct PhotoGalleryUseCase: Sendable {
 
 	public var areTermsAccepted: Bool { photosRepository.areTermsAccepted }
 	public var uploadProgressPublisher: AnyPublisher<Double?, PhotosError>
+	public var uploadInProgressDeviceId: String? {
+		photosRepository.uploadInProgressDeviceId
+	}
 
 	private let photosRepository: PhotosRepository
 

@@ -41,6 +41,13 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
         FilterValues.default != filters
     }
 
+	var uploadInProgressStationName: String? {
+		guard let deviceId = photosUseCase.uploadInProgressDeviceId else {
+			return nil
+		}
+		return devices.first(where: { $0.id == deviceId })?.displayName
+	}
+
 	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
 	@Published var totalEarnedTitle: String?
