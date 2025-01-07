@@ -10,6 +10,7 @@ import DomainLayer
 import UIKit
 import Toolkit
 import AVFoundation
+import Combine
 
 private enum Constants: String {
 	case folderName = "photos"
@@ -25,6 +26,14 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 	public var areTermsAccepted: Bool {
 		let accepted: Bool? = userDefaultsService.get(key: termsAcceptedKey)
 		return accepted == true
+	}
+
+	public var uploadProgressPublisher: AnyPublisher<Double?, Error> {
+		fileUploader.totalProgressPublisher
+	}
+
+	public var uploadInProgressDeviceId: String? {
+		fileUploader.getUploadInProgressDeviceId()
 	}
 
 	public init(fileUploader: FileUploaderService) {
@@ -94,7 +103,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 				for (index, element) in files.enumerated() {
 					if let uploadUrl = objects[index].url,
 					   let url = URL(string: uploadUrl) {
-						try fileUploader.uploadFile(file: element, to: url)
+						try fileUploader.uploadFile(file: element, to: url, for: deviceId)
 					}
 				}
 			case .failure(let error):
