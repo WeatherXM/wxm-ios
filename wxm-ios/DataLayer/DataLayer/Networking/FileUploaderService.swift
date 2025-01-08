@@ -13,8 +13,8 @@ import Toolkit
 @preconcurrency import Combine
 
 public final class FileUploaderService: Sendable {
-	let totalProgressPublisher: AnyPublisher<Double?, Error>
-	private let totalProgressValueSubject: PassthroughSubject<Double?, Error> = .init()
+	let totalProgressPublisher: AnyPublisher<(String, Double?), Error>
+	private let totalProgressValueSubject: PassthroughSubject<(String, Double?), Error> = .init()
 	private let backgroundSession: URLSession!
 	private let sessionDelegate: SessionDelegate = SessionDelegate()
 	nonisolated(unsafe) private var cancellables: Set<AnyCancellable> = Set()
@@ -38,8 +38,7 @@ public final class FileUploaderService: Sendable {
 
 		sessionDelegate.taskCompletedCallback = { [weak self] task in
 			self?.removeFileBody(for: task)
-			// Check if all tasks are completed and send finished
-//			self?.totalProgressValueSubject.send(completion: .finished)
+			self?.removeFile(for: task)
 		}
 
 		sessionDelegate.taskFailedCallback =  { [weak self] task, error in
@@ -51,7 +50,7 @@ public final class FileUploaderService: Sendable {
 		sessionDelegate.taskProgressCallback =  { [weak self] task, progress in
 			// Gather all tasks progess and send
 			let total = self?.sessionDelegate.getTotalProgressForTaks(with: task.taskDescription)
-			self?.totalProgressValueSubject.send(progress)
+			self?.totalProgressValueSubject.send((task.taskDescription ?? "", progress))
 		}
 
 		backgroundSession.getAllTasks { tasks in
@@ -68,20 +67,6 @@ public final class FileUploaderService: Sendable {
 			return
 		}
 
-		try uploadData(data, to: url, for: deviceId)
-
-	}
-
-	func getUploadInProgressDeviceId(completion: @escaping GenericSendableCallback<String?>) {
-		backgroundSession.getAllTasks { tasks in
-			let validTaskDescription = tasks.first(where: { $0.taskDescription != nil })?.taskDescription
-			completion(validTaskDescription)
-		}
-	}
-}
-
-private extension FileUploaderService {
-	func uploadData(_ data: Data, to url: URL, for deviceId: String) throws {
 		let boundary = UUID().uuidString
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.post.rawValue
@@ -94,8 +79,18 @@ private extension FileUploaderService {
 		task.taskDescription = deviceId
 		task.resume()
 		taskFileBodyUrls[task] = bodyFileURL
+		taskFileUrls[task] = file
 	}
 
+	func getUploadInProgressDeviceId(completion: @escaping GenericSendableCallback<String?>) {
+		backgroundSession.getAllTasks { tasks in
+			let validTaskDescription = tasks.first(where: { $0.taskDescription != nil })?.taskDescription
+			completion(validTaskDescription)
+		}
+	}
+}
+
+private extension FileUploaderService {
 	func generateRequestBody(fileData: Data, boundary: String) -> Data {
 		var data = Data()
 		let paramName = "file"
