@@ -21,6 +21,11 @@ class GalleryViewModel: ObservableObject {
 	@Published var selectedImage: String?
 	@Published var isCameraDenied: Bool = false
 	@Published var showInstructions: Bool = false
+	@Published var showLoading: Bool = false
+	let loadingTitle: String = LocalizableString.PhotoVerification.preparingUploadTitle.localized
+	let loadingSubtitle: String = LocalizableString.PhotoVerification.preparingUploadDescription.localized
+	@Published var showUploadStartedSuccess = false
+	private(set) var uploadStartedObject: FailSuccessStateObject?
 	@Published var showShareSheet: Bool = false
 	var shareFileUrls: [URL]? {
 		images.compactMap { try? $0.asURL() }
@@ -104,7 +109,10 @@ class GalleryViewModel: ObservableObject {
 		}
 		Task { @MainActor in
 			do {
+				showLoading = true
 				try await useCase.startFilesUpload(deviceId: deviceId, files: fileUrls)
+				showLoading = false
+				showUploadStarted()
 			} catch PhotosError.networkError(let error) {
 				let info = error.uiInfo
 				if let message = info.description?.attributedMarkdown {
@@ -234,5 +242,25 @@ private extension GalleryViewModel {
 												  okAction: exitAction)
 
 		AlertHelper().showAlert(alertObject)
+	}
+
+	func showUploadStarted() {
+		let obj = FailSuccessStateObject(type: .changeFrequency,
+										 title: LocalizableString.PhotoVerification.uploadStartedSuccessfully.localized,
+										 subtitle: LocalizableString.PhotoVerification.uploadStartedSuccessfullyDescription.localized.attributedMarkdown,
+										 cancelTitle: LocalizableString.continue.localized,
+										 retryTitle: LocalizableString.share.localized,
+										 actionButtonsLayout: .vertical,
+										 actionButtonsAtTheBottom: true,
+										 contactSupportAction: nil,
+										 cancelAction: {
+			Router.shared.popToRoot()
+		},
+										 retryAction: { [weak self] in
+			self?.showShareSheet = true
+		})
+
+		uploadStartedObject = obj
+		showUploadStartedSuccess = true
 	}
 }
