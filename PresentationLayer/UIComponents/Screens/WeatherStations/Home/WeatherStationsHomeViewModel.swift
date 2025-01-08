@@ -44,11 +44,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 
 	@Published var uploadInProgressStationName: String?
-	@Published var uploadState: UploadProgressView.UploadState? {
-		didSet {
-			updateUploadInProgressDevice()
-		}
-	}
+	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
 	@Published var totalEarnedTitle: String?
 	@Published var totalEarnedValueText: String?
@@ -81,10 +77,13 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 //			}
 
 			self?.uploadState = .failed
-		}) { [weak self] progress in
-			guard let progress else {
+		}) { [weak self] progressResult in
+			guard let progress = progressResult.1 else {
 				return
 			}
+
+			let deviceId = progressResult.0
+			self?.updateUploadInProgressDevice(deviceId: deviceId)
 			self?.handleProgressUpload(progress: progress)
 		}.store(in: &cancellableSet)
     }
@@ -239,11 +238,9 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 }
 
 private extension WeatherStationsHomeViewModel {
-	func updateUploadInProgressDevice() {
-		Task { @MainActor in
-			self.uploadInProgressDeviceId = await photosUseCase.getUploadInProgressDeviceId()
-			self.uploadInProgressStationName = devices.first(where: { $0.id == self.uploadInProgressDeviceId })?.displayName
-		}
+	func updateUploadInProgressDevice(deviceId: String) {
+		self.uploadInProgressDeviceId = deviceId
+		self.uploadInProgressStationName = devices.first(where: { $0.id == deviceId })?.displayName
 	}
 
     func refreshFollowStates() {
