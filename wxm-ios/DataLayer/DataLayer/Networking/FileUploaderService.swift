@@ -1,3 +1,4 @@
+
 //
 //  FileUploaderService.swift
 //  DataLayer
@@ -8,13 +9,17 @@
 import Foundation
 import Alamofire
 import MobileCoreServices
+import Toolkit
 @preconcurrency import Combine
 
 public final class FileUploaderService: Sendable {
 	let totalProgressPublisher: AnyPublisher<Double?, Error>
+	private let totalProgressValueSubject: PassthroughSubject<Double?, Error> = .init()
 	private let backgroundSession: URLSession!
 	private let sessionDelegate: SessionDelegate = SessionDelegate()
 	nonisolated(unsafe) private var cancellables: Set<AnyCancellable> = Set()
+	nonisolated(unsafe) private var taskFileBodyUrls: [URLSessionTask: URL] = [:]
+	nonisolated(unsafe) private var taskFileUrls: [URLSessionTask: URL] = [:]
 
 	public init() {
 		let bundleIdentifier = Bundle.main.bundleIdentifier ?? UUID().uuidString
@@ -26,7 +31,36 @@ public final class FileUploaderService: Sendable {
 		config.isDiscretionary = false // Disables discretionary behavior, meaning the system will not delay tasks based on power or network conditions.
 
 		backgroundSession = URLSession(configuration: config, delegate: sessionDelegate, delegateQueue: nil)
-		totalProgressPublisher = sessionDelegate.totalProgressPublisher
+		backgroundSession.configuration.timeoutIntervalForRequest = 5
+		backgroundSession.configuration.timeoutIntervalForResource = 10
+
+		totalProgressPublisher = totalProgressValueSubject.eraseToAnyPublisher()
+
+		sessionDelegate.taskCompletedCallback = { [weak self] task in
+			self?.removeFileBody(for: task)
+			// Check if all tasks are completed and send finished
+//			self?.totalProgressValueSubject.send(completion: .finished)
+		}
+
+		sessionDelegate.taskFailedCallback =  { [weak self] task, error in
+			self?.removeFileBody(for: task)
+			// Cancel all corresponding tasks and send failure
+//			self?.totalProgressValueSubject.send(completion: .finished)
+		}
+
+		sessionDelegate.taskProgressCallback =  { [weak self] task, progress in
+			// Gather all tasks progess and send
+			let total = self?.sessionDelegate.getTotalProgressForTaks(with: task.taskDescription)
+			self?.totalProgressValueSubject.send(progress)
+		}
+
+		backgroundSession.getAllTasks { tasks in
+			tasks.forEach { print("\($0.taskIdentifier) - \($0.state)") }
+			tasks.forEach { $0.cancel() }
+			tasks.forEach { print("\($0.taskIdentifier) - \($0.state)") }
+
+			print(tasks)
+		}
 	}
 
 	func uploadFile(file: URL, to url: URL, for deviceId: String) throws {
@@ -35,10 +69,14 @@ public final class FileUploaderService: Sendable {
 		}
 
 		try uploadData(data, to: url, for: deviceId)
+
 	}
 
-	func getUploadInProgressDeviceId() -> String? {
-		sessionDelegate.getInProgressTaskDescription()
+	func getUploadInProgressDeviceId(completion: @escaping GenericSendableCallback<String?>) {
+		backgroundSession.getAllTasks { tasks in
+			let validTaskDescription = tasks.first(where: { $0.taskDescription != nil })?.taskDescription
+			completion(validTaskDescription)
+		}
 	}
 }
 
@@ -55,13 +93,14 @@ private extension FileUploaderService {
 		let task = backgroundSession.uploadTask(with: request, fromFile: bodyFileURL)
 		task.taskDescription = deviceId
 		task.resume()
+		taskFileBodyUrls[task] = bodyFileURL
 	}
 
 	func generateRequestBody(fileData: Data, boundary: String) -> Data {
 		var data = Data()
 		let paramName = "file"
 		let fileName = "\(UUID().uuidString).jpg"
-		let mimeType = "image/*"
+		let mimeType = mimeType(for: fileName)
 		data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
 		data.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
 		data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
@@ -78,6 +117,22 @@ private extension FileUploaderService {
 		return tempFileURL
 	}
 
+	func removeFileBody(for task: URLSessionTask) {
+		guard let fileUrl = taskFileBodyUrls[task] else {
+			return
+		}
+		try? FileManager.default.removeItem(at: fileUrl)
+		taskFileBodyUrls.removeValue(forKey: task)
+	}
+
+	func removeFile(for task: URLSessionTask) {
+		guard let fileUrl = taskFileUrls[task] else {
+			return
+		}
+		try? FileManager.default.removeItem(at: fileUrl)
+		taskFileUrls.removeValue(forKey: task)
+	}
+
 	func mimeType(for path: String) -> String {
 		let pathExtension = URL(fileURLWithPath: path).pathExtension as NSString
 		guard
@@ -92,30 +147,35 @@ private extension FileUploaderService {
 }
 
 private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDataDelegate, URLSessionTaskDelegate, URLSessionDelegate {
-	let totalProgressPublisher: AnyPublisher<Double?, Error>
-	nonisolated(unsafe) private var progresses: [URLSessionTask: Double] = [:] {
-		didSet {
-			let count = self.progresses.count
-			let sum = self.progresses.values.reduce(0, +)
-			totalProgressValueSubject.send(sum/Double(count))
-		}
-	}
-	private var totalProgressValueSubject: PassthroughSubject<Double?, Error> = .init()
+	var taskCompletedCallback: GenericCallback<URLSessionTask>?
+	var taskFailedCallback: ((URLSessionTask, Error) -> Void)?
+	var taskProgressCallback: ((URLSessionTask, Double) -> Void)?
+
+	nonisolated(unsafe) private var progresses: [URLSessionTask: Double] = [:]
 	private let queue: DispatchQueue = DispatchQueue(label: "com.weatherxm.app.file_upload")
 
 	override init() {
-		totalProgressPublisher = totalProgressValueSubject.eraseToAnyPublisher()
 		super.init()
 	}
 
-	func getInProgressTaskDescription() -> String? {
-		progresses.keys.first?.taskDescription
+	func getTotalProgressForTaks(with description: String?) -> Double {
+		let tasks = progresses.keys.filter { $0.taskDescription == description }
+		let total = tasks.reduce(0.0) { $0 + (progresses[$1] ?? 0.0) }
+		return total
 	}
 
-	func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-		print("\(error), \(task)")
+	func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: (any Error)?) {
+		print("completed \(error), \(task)")
 		if let error {
-			totalProgressValueSubject.send(completion: .failure(error))
+			DispatchQueue.main.async { [weak self] in
+				self?.taskFailedCallback?(task, error)
+			}
+		}
+
+		if task.state == .completed {
+			DispatchQueue.main.async { [weak self] in
+				self?.taskCompletedCallback?(task)
+			}
 		}
 	}
 
@@ -129,6 +189,7 @@ private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDa
 		print("TASK protgress \(task.progress)")
 		DispatchQueue.main.async { [weak self] in
 			self?.progresses[task] = progress
+			self?.taskProgressCallback?(task, progress)
 		}
 	}
 }
