@@ -52,7 +52,7 @@ public final class FileUploaderService: Sendable {
 		sessionDelegate.taskProgressCallback =  { [weak self] task, progress in
 			// Gather all tasks progess and send
 			let total = self?.sessionDelegate.getTotalProgressForTaks(with: task.taskDescription)
-			self?.totalProgressValueSubject.send((task.taskDescription ?? "", progress))
+			self?.totalProgressValueSubject.send((task.taskDescription ?? "", total))
 		}
 
 		backgroundSession.getAllTasks { tasks in
