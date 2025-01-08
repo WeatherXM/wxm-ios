@@ -218,8 +218,13 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 				let viewModel = ViewModelsFactory.getDeviceInfoViewModel(device: device, followState: followStates[deviceId])
 				Router.shared.navigateTo(.deviceInfo(viewModel))
 			case .failed:
-				// retry
-				break
+				guard let deviceId = uploadInProgressDeviceId else {
+					return
+				}
+
+				Task { @MainActor in
+					try? await photosUseCase.retryUpload(deviceId: deviceId)
+				}
 			case nil:
 				break
 		}
