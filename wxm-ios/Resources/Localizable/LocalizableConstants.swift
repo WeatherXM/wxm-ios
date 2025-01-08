@@ -17,6 +17,7 @@ enum LocalizableString: WXMLocalizable {
 	case completed
 	case new
 	case notAvailable
+	case `continue`
 	case confirm
 	case email
 	case mandatoryEmail
@@ -227,6 +228,8 @@ extension LocalizableString {
 				return "new"
 			case .notAvailable:
 				return "not_available"
+			case .continue:
+				return "continue"
 			case .confirm:
 				return "confirm"
 			case .email:

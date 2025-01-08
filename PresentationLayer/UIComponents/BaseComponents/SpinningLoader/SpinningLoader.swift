@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SpinningLoaderModifier: ViewModifier {
     @Binding var show: Bool
+	let title: String?
+	let subtitle: String?
 	let lottieLoader: Bool
     let hideContent: Bool
 
@@ -17,7 +19,7 @@ struct SpinningLoaderModifier: ViewModifier {
 			.opacity((hideContent && show) ? 0.0 : 1.0)
 			.overlay {
 				if show {
-					VStack {
+					VStack(spacing: CGFloat(.smallSpacing)) {
 						Group {
 							if lottieLoader {
 								SpinningLoaderView()
@@ -28,6 +30,21 @@ struct SpinningLoaderModifier: ViewModifier {
 						.if(!hideContent) { view in
 							view.wxmShadow()
 						}
+
+						VStack(spacing: CGFloat(.largeSpacing)) {
+							if let title {
+								Text(title)
+									.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+									.foregroundStyle(Color(colorEnum: .text))
+							}
+
+							if let subtitle {
+								Text(subtitle)
+									.font(.system(size: CGFloat(.normalFontSize)))
+									.foregroundStyle(Color(colorEnum: .text))
+							}
+						}
+						.multilineTextAlignment(.center)
 					}
 				}
 			}
@@ -36,9 +53,13 @@ struct SpinningLoaderModifier: ViewModifier {
 
 extension View {
     func spinningLoader(show: Binding<Bool>,
+						title: String? = nil,
+						subtitle: String? = nil,
 						lottieLoader: Bool = true,
 						hideContent: Bool = false) -> some View {
         modifier(SpinningLoaderModifier(show: show,
+										title: title,
+										subtitle: subtitle,
 										lottieLoader: lottieLoader,
 										hideContent: hideContent))
     }
@@ -50,6 +71,10 @@ struct Previews_SpinningLoader_Previews: PreviewProvider {
             Color.white
                 .ignoresSafeArea()
         }
-        .spinningLoader(show: .constant(true), lottieLoader: false, hideContent: true)
+		.spinningLoader(show: .constant(true),
+						title: "title",
+						subtitle: "subtitle",
+						lottieLoader: true,
+						hideContent: true)
     }
 }
