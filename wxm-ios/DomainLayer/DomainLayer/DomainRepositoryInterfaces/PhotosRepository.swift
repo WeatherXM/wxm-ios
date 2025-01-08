@@ -12,7 +12,7 @@ import Combine
 
 public protocol PhotosRepository: Sendable {
 	var areTermsAccepted: Bool { get }
-	var uploadProgressPublisher: AnyPublisher<Double?, Error> { get }
+	var uploadProgressPublisher: AnyPublisher<(String, Double?), Error> { get }
 	func getUploadInProgressDeviceId() async -> String?
 	func setTermsAccepted(_ termsAccepted: Bool)
 	func saveImage(_ image: UIImage, metadata: NSDictionary?) async throws -> String?
