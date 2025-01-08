@@ -122,6 +122,7 @@ struct GalleryView: View {
 							subtitle: viewModel.loadingSubtitle,
 							hideContent: true)
 			.success(show: $viewModel.showUploadStartedSuccess, obj: viewModel.uploadStartedObject)
+			.fail(show: $viewModel.showFail, obj: viewModel.failObject)
 		}
 		.navigationBarHidden(true)
 		.sheet(isPresented: $viewModel.showInstructions) {
