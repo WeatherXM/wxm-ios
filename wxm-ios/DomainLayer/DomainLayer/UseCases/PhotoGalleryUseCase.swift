@@ -55,4 +55,8 @@ public struct PhotoGalleryUseCase: Sendable {
 	public func startFilesUpload(deviceId: String, files: [URL]) async throws {
 		try await photosRepository.startFilesUpload(deviceId: deviceId, files: files)
 	}
+
+	public func retryUpload(deviceId: String) async throws {
+		try await photosRepository.retryFilesUpload(deviceId: deviceId)
+	}
 }
