@@ -118,6 +118,12 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 				throw PhotosError.networkError(error)
 		}
 	}
+
+	public func retryFilesUpload(deviceId: String) async throws {
+		let contents = try FileManager.default.contentsOfDirectory(atPath: folderPath.path())
+		let fileUrls = contents.map { URL(fileURLWithPath: $0)}
+		try await startFilesUpload(deviceId: deviceId, files: fileUrls)
+	}
 }
 
 private extension PhotosRepositoryImpl {
