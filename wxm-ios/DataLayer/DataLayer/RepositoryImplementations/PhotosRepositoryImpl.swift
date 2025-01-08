@@ -28,10 +28,14 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		return accepted == true
 	}
 
-	public var uploadProgressPublisher: AnyPublisher<(String, Double?), Error> {
+	public var uploadProgressPublisher: AnyPublisher<(String, Double?), Never> {
 		fileUploader.totalProgressPublisher
 	}
 
+	public var uploadErrorPublisher: AnyPublisher<(String, Error), Never> {
+		fileUploader.uploadErrorPublisher
+	}
+	
 	public init(fileUploader: FileUploaderService) {
 		self.fileUploader = fileUploader
 	}
