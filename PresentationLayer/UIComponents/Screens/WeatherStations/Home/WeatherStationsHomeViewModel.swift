@@ -12,43 +12,43 @@ import Toolkit
 
 @MainActor
 public final class WeatherStationsHomeViewModel: ObservableObject {
-    private let meUseCase: MeUseCase
+	private let meUseCase: MeUseCase
 	private let photosUseCase: PhotoGalleryUseCase
 	private let remoteConfigUseCase: RemoteConfigUseCase
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
-    private var cancellableSet: Set<AnyCancellable> = []
-    private var filters: FilterValues? {
-        didSet {
-            updateFilteredDevices()
-        }
-    }
-    private var allDevices: [DeviceDetails] = [] {
-        didSet {
-            updateFilteredDevices()
-        }
-    }
-
-    /// Dicitonary with device id as key.
-    /// We use dictionany to reduce the access complexity
-    private var followStates: [String: UserDeviceFollowState] = [:] {
-        didSet {
-            updateFilteredDevices()
-			updateTotalEarned()
-        }
-    }
-
-    var isFiltersActive: Bool {
-        FilterValues.default != filters
-    }
-
-	var uploadInProgressStationName: String? {
-		guard let deviceId = photosUseCase.uploadInProgressDeviceId else {
-			return nil
+	private var cancellableSet: Set<AnyCancellable> = []
+	private var filters: FilterValues? {
+		didSet {
+			updateFilteredDevices()
 		}
-		return devices.first(where: { $0.id == deviceId })?.displayName
+	}
+	private var allDevices: [DeviceDetails] = [] {
+		didSet {
+			updateFilteredDevices()
+		}
 	}
 
-	@Published var uploadState: UploadProgressView.UploadState?
+	/// Dicitonary with device id as key.
+	/// We use dictionany to reduce the access complexity
+	private var followStates: [String: UserDeviceFollowState] = [:] {
+		didSet {
+			updateFilteredDevices()
+			updateTotalEarned()
+		}
+	}
+
+	private var uploadInProgressDeviceId: String?
+
+	var isFiltersActive: Bool {
+		FilterValues.default != filters
+	}
+
+	@Published var uploadInProgressStationName: String?
+	@Published var uploadState: UploadProgressView.UploadState? {
+		didSet {
+			updateUploadInProgressDevice()
+		}
+	}
 	@Published var infoBanner: InfoBanner?
 	@Published var totalEarnedTitle: String?
 	@Published var totalEarnedValueText: String?
@@ -75,6 +75,11 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		}.store(in: &cancellableSet)
 
 		photosUseCase.uploadProgressPublisher.sink(receiveCompletion: { [weak self] error in
+//			guard let error = error else {
+//				self?.uploadState = .completed
+//				return
+//			}
+
 			self?.uploadState = .failed
 		}) { [weak self] progress in
 			guard let progress else {
@@ -209,7 +214,8 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		switch uploadState {
 			case .uploading, .completed:
 				// Navigate to the station
-				guard let device = devices.first, let deviceId = device.id else {
+				guard let device = devices.first(where: { $0.id == uploadInProgressDeviceId}),
+					  let deviceId = device.id else {
 					return
 				}
 
@@ -233,6 +239,13 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 }
 
 private extension WeatherStationsHomeViewModel {
+	func updateUploadInProgressDevice() {
+		Task { @MainActor in
+			self.uploadInProgressDeviceId = await photosUseCase.getUploadInProgressDeviceId()
+			self.uploadInProgressStationName = devices.first(where: { $0.id == self.uploadInProgressDeviceId })?.displayName
+		}
+	}
+
     func refreshFollowStates() {
         Task { @MainActor [weak self] in
             guard let self else { return }

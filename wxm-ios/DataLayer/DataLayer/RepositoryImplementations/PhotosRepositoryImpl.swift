@@ -32,16 +32,20 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		fileUploader.totalProgressPublisher
 	}
 
-	public var uploadInProgressDeviceId: String? {
-		fileUploader.getUploadInProgressDeviceId()
-	}
-
 	public init(fileUploader: FileUploaderService) {
 		self.fileUploader = fileUploader
 	}
 
 	public func setTermsAccepted(_ termsAccepted: Bool) {
 		userDefaultsService.save(value: termsAccepted, key: termsAcceptedKey)
+	}
+
+	public func getUploadInProgressDeviceId() async -> String? {
+		return await withUnsafeContinuation { continuation in
+			fileUploader.getUploadInProgressDeviceId { deviceId in
+				continuation.resume(returning: deviceId)
+			}
+		}
 	}
 
 	public func saveImage(_ image: UIImage, metadata: NSDictionary?) async throws -> String? {
