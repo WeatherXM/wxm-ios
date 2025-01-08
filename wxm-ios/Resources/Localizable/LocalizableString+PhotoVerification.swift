@@ -62,7 +62,10 @@ extension LocalizableString {
 		case retryUpload
 		case uploadErrorDescription
 		case uploadFailedTapToRetry
-
+		case uploadStartedSuccessfully
+		case uploadStartedSuccessfullyDescription
+		case preparingUploadTitle
+		case preparingUploadDescription
 	}
 }
 
@@ -187,6 +190,14 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_upload_error_description"
 			case .uploadFailedTapToRetry:
 				"photo_verification_upload_failed_tap_to_retry"
+			case .uploadStartedSuccessfully:
+				"photo_verification_upload_started_successfully"
+			case .uploadStartedSuccessfullyDescription:
+				"photo_verification_upload_started_successfully_description"
+			case .preparingUploadTitle:
+				"photo_verification_preparing_upload_title"
+			case .preparingUploadDescription:
+				"photo_verification_preparing_upload_description"
 		}
 	}
 }
