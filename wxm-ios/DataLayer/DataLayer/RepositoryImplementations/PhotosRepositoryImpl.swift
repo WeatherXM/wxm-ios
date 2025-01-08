@@ -28,7 +28,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		return accepted == true
 	}
 
-	public var uploadProgressPublisher: AnyPublisher<Double?, Error> {
+	public var uploadProgressPublisher: AnyPublisher<(String, Double?), Error> {
 		fileUploader.totalProgressPublisher
 	}
 

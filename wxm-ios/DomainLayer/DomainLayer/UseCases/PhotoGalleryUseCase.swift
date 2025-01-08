@@ -13,7 +13,7 @@ import AVFoundation
 public struct PhotoGalleryUseCase: Sendable {
 
 	public var areTermsAccepted: Bool { photosRepository.areTermsAccepted }
-	public var uploadProgressPublisher: AnyPublisher<Double?, PhotosError>
+	public var uploadProgressPublisher: AnyPublisher<(String, Double?), PhotosError>
 
 	private let photosRepository: PhotosRepository
 
