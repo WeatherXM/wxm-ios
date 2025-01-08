@@ -26,6 +26,8 @@ class GalleryViewModel: ObservableObject {
 	let loadingSubtitle: String = LocalizableString.PhotoVerification.preparingUploadDescription.localized
 	@Published var showUploadStartedSuccess = false
 	private(set) var uploadStartedObject: FailSuccessStateObject?
+	@Published var showFail = false
+	private(set) var failObject: FailSuccessStateObject?
 	@Published var showShareSheet: Bool = false
 	var shareFileUrls: [URL]? {
 		images.compactMap { try? $0.asURL() }
@@ -114,10 +116,7 @@ class GalleryViewModel: ObservableObject {
 				showLoading = false
 				showUploadStarted()
 			} catch PhotosError.networkError(let error) {
-				let info = error.uiInfo
-				if let message = info.description?.attributedMarkdown {
-					Toast.shared.show(text: message)
-				}
+				showFail(error: error)
 			}
 			catch {
 				Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
@@ -262,5 +261,15 @@ private extension GalleryViewModel {
 
 		uploadStartedObject = obj
 		showUploadStartedSuccess = true
+	}
+
+	func showFail(error: NetworkErrorResponse) {
+		let info = error.uiInfo
+		let obj = info.defaultFailObject(type: .gallery) { [weak self] in
+			self?.showFail = false
+		}
+
+		failObject = obj
+		showFail = true
 	}
 }
