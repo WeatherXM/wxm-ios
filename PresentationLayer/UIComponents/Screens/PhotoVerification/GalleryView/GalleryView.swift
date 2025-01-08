@@ -117,6 +117,11 @@ struct GalleryView: View {
 				}
 				.iPadMaxWidth()
 			}
+			.spinningLoader(show: $viewModel.showLoading,
+							title: viewModel.loadingTitle,
+							subtitle: viewModel.loadingSubtitle,
+							hideContent: true)
+			.success(show: $viewModel.showUploadStartedSuccess, obj: viewModel.uploadStartedObject)
 		}
 		.navigationBarHidden(true)
 		.sheet(isPresented: $viewModel.showInstructions) {
