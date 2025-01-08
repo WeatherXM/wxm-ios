@@ -22,6 +22,7 @@ public protocol PhotosRepository: Sendable {
 	func reqeustCameraPermission() async -> AVAuthorizationStatus
 	func purgeImages() throws
 	func startFilesUpload(deviceId: String, files: [URL]) async throws
+	func retryFilesUpload(deviceId: String) async throws
 }
 
 public enum PhotosError: CustomStringConvertible, Error {
