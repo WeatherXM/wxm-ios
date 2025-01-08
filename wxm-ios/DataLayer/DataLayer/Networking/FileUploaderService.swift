@@ -13,8 +13,10 @@ import Toolkit
 @preconcurrency import Combine
 
 public final class FileUploaderService: Sendable {
-	let totalProgressPublisher: AnyPublisher<(String, Double?), Error>
-	private let totalProgressValueSubject: PassthroughSubject<(String, Double?), Error> = .init()
+	let totalProgressPublisher: AnyPublisher<(String, Double?), Never>
+	let uploadErrorPublisher: AnyPublisher<(String, Error), Never>
+	private let totalProgressValueSubject: PassthroughSubject<(String, Double?), Never> = .init()
+	private let uploadErrorPassthroughSubject: PassthroughSubject<(String, Error), Never> = .init()
 	private let backgroundSession: URLSession!
 	private let sessionDelegate: SessionDelegate = SessionDelegate()
 	nonisolated(unsafe) private var cancellables: Set<AnyCancellable> = Set()
@@ -35,6 +37,7 @@ public final class FileUploaderService: Sendable {
 		backgroundSession.configuration.timeoutIntervalForResource = 10
 
 		totalProgressPublisher = totalProgressValueSubject.eraseToAnyPublisher()
+		uploadErrorPublisher = uploadErrorPassthroughSubject.eraseToAnyPublisher()
 
 		sessionDelegate.taskCompletedCallback = { [weak self] task in
 			self?.removeFileBody(for: task)
@@ -43,8 +46,7 @@ public final class FileUploaderService: Sendable {
 
 		sessionDelegate.taskFailedCallback =  { [weak self] task, error in
 			self?.removeFileBody(for: task)
-			// Cancel all corresponding tasks and send failure
-//			self?.totalProgressValueSubject.send(completion: .finished)
+			self?.uploadErrorPassthroughSubject.send((task.taskDescription ?? "", error))
 		}
 
 		sessionDelegate.taskProgressCallback =  { [weak self] task, progress in
@@ -147,7 +149,6 @@ private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDa
 	var taskProgressCallback: ((URLSessionTask, Double) -> Void)?
 
 	nonisolated(unsafe) private var progresses: [URLSessionTask: Double] = [:]
-	private let queue: DispatchQueue = DispatchQueue(label: "com.weatherxm.app.file_upload")
 
 	override init() {
 		super.init()
@@ -165,9 +166,13 @@ private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDa
 			DispatchQueue.main.async { [weak self] in
 				self?.taskFailedCallback?(task, error)
 			}
-		}
-
-		if task.state == .completed {
+		} else if let httpResponse = task.response as? HTTPURLResponse,
+		   !httpResponse.statusCode.isSuccessCode {
+			let error = NSError(domain: "", code: httpResponse.statusCode)
+			DispatchQueue.main.async { [weak self] in
+				self?.taskFailedCallback?(task, error)
+			}
+		} else if task.state == .completed {
 			DispatchQueue.main.async { [weak self] in
 				self?.taskCompletedCallback?(task)
 			}
@@ -186,5 +191,11 @@ private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDa
 			self?.progresses[task] = progress
 			self?.taskProgressCallback?(task, progress)
 		}
+	}
+}
+
+private extension Int {
+	var isSuccessCode: Bool {
+		200..<300 ~= self
 	}
 }
