@@ -13,17 +13,15 @@ import AVFoundation
 public struct PhotoGalleryUseCase: Sendable {
 
 	public var areTermsAccepted: Bool { photosRepository.areTermsAccepted }
-	public var uploadProgressPublisher: AnyPublisher<(String, Double?), PhotosError>
+	public var uploadProgressPublisher: AnyPublisher<(String, Double?), Never>
+	public var uploadErrorPublisher: AnyPublisher<(String, Error), Never>
 
 	private let photosRepository: PhotosRepository
 
 	public init(photosRepository: PhotosRepository) {
 		self.photosRepository = photosRepository
-		uploadProgressPublisher = photosRepository.uploadProgressPublisher.map { res in
-			return res
-		}.mapError { error in
-			return PhotosError.uploadFailed(error)
-		}.eraseToAnyPublisher()
+		uploadProgressPublisher = photosRepository.uploadProgressPublisher
+		uploadErrorPublisher = photosRepository.uploadErrorPublisher
 	}
 
 	public func getUploadInProgressDeviceId() async -> String? {
