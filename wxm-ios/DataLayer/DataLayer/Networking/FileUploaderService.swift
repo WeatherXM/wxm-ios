@@ -114,8 +114,8 @@ public final class FileUploaderService: Sendable {
 		}
 	}
 
-	func getUploadInProgressDeviceId(completion: @escaping GenericSendableCallback<String?>) {
-		completion(taskFileUrls.keys.first?.taskDescription)
+	func getUploadInProgressDeviceId() -> String? {
+		taskFileUrls.keys.first?.taskDescription
 	}
 
 	func getUploadState(for deviceId: String) -> UploadState? {

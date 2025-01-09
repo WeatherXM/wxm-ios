@@ -77,21 +77,35 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 
 			let deviceId = progressResult.0
 			self?.updateUploadInProgressDevice(deviceId: deviceId)
-			self?.handleProgressUpload(progress: progress)
+			self?.updateProgressUpload()
 		}.store(in: &cancellableSet)
 
-		photosUseCase.uploadErrorPublisher.sink { [weak self] error in
-			self?.uploadState = .failed
+		photosUseCase.uploadErrorPublisher.sink { [weak self] deviceId, error in
+			self?.updateUploadInProgressDevice(deviceId: deviceId)
+			self?.updateProgressUpload()
 		}.store(in: &cancellableSet)
+
+		if let deviceId = photosUseCase.getUploadInProgressDeviceId() {
+			updateUploadInProgressDevice(deviceId: deviceId)
+			updateProgressUpload()
+		}
     }
 
-	func handleProgressUpload(progress: Double) {
-		if progress >= 100.0 {
-			uploadState = .completed
+	func updateProgressUpload() {
+		guard let deviceId = uploadInProgressDeviceId else {
+			uploadState = nil
 			return
 		}
 
-		uploadState = .uploading(progress: Float(progress))
+		let state = photosUseCase.getUploadState(deviceId: deviceId)
+		switch state {
+			case .uploading(let progress):
+				self.uploadState = .uploading(progress: Float(progress))
+			case .failed:
+				self.uploadState = .failed
+			case nil:
+				self.uploadState = nil
+		}
 	}
 
     /// Perform request to get all the essentials
