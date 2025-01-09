@@ -24,8 +24,8 @@ public struct PhotoGalleryUseCase: Sendable {
 		uploadErrorPublisher = photosRepository.uploadErrorPublisher
 	}
 
-	public func getUploadInProgressDeviceId() async -> String? {
-		await photosRepository.getUploadInProgressDeviceId()
+	public func getUploadInProgressDeviceId() -> String? {
+		photosRepository.getUploadInProgressDeviceId()
 	}
 
 	public func setTermsAccepted(_ termsAccepted: Bool) {
