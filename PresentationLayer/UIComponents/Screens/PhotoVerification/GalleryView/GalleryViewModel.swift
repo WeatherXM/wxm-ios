@@ -32,6 +32,9 @@ class GalleryViewModel: ObservableObject {
 	var shareFileUrls: [URL]? {
 		images.compactMap { try? $0.asURL() }
 	}
+	var fileUrls: [URL]? {
+		shareFileUrls?.filter({ $0.isFileURL })
+	}
 	var isPlusButtonVisible: Bool {
 		images.count < maxPhotosCount
 	}
@@ -39,7 +42,7 @@ class GalleryViewModel: ObservableObject {
 		useCase.getCameraPermission() != .denied
 	}
 	var isUploadButtonEnabled: Bool {
-		images.count >= minPhotosCount
+		images.count >= minPhotosCount && fileUrls?.isEmpty == false
 	}
 	var backButtonIcon: FontIcon {
 		if isNewPhotoVerification {
