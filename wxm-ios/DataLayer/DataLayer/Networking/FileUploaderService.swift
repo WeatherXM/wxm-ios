@@ -55,18 +55,21 @@ public final class FileUploaderService: Sendable {
 				return
 			}
 
+			if (error as NSError).code == NSURLErrorCancelled {
+				self?.removeFile(for: task)
+			}
+
 			self?.removeFileBody(for: task)
-			self?.uploadErrorPassthroughSubject.send((deviceId, error))
 			self?.purgeProgressesIfNeeded(for: deviceId)
+			self?.uploadErrorPassthroughSubject.send((deviceId, error))
 		}
 
 		sessionDelegate.taskProgressCallback =  { [weak self] task, progress in
-			// Gather all tasks progess and send
 			guard let self,
 				  let deviceId = task.taskDescription else {
 				return
 			}
-			
+
 			self.taskProgresses[task] = progress
 			self.totalProgressValueSubject.send((deviceId, self.getTotalProgress(for: deviceId)))
 		}
@@ -100,11 +103,43 @@ public final class FileUploaderService: Sendable {
 		taskFileUrls[task] = file
 	}
 
-	func getUploadInProgressDeviceId(completion: @escaping GenericSendableCallback<String?>) {
+	func cancelUpload(for deviceId: String) {
 		backgroundSession.getAllTasks { tasks in
-			let validTaskDescription = tasks.first(where: { $0.taskDescription != nil })?.taskDescription
-			completion(validTaskDescription)
+			tasks.forEach { task in
+				guard task.taskDescription == deviceId else {
+					return
+				}
+				task.cancel()
+			}
 		}
+	}
+
+	func getUploadInProgressDeviceId(completion: @escaping GenericSendableCallback<String?>) {
+		completion(taskFileUrls.keys.first?.taskDescription)
+	}
+
+	func getUploadState(for deviceId: String) -> UploadState? {
+		// If there is progress, we assume there are files in uploading state
+		if let deviceProgress = getTotalProgress(for: deviceId) {
+			return .uploading(deviceProgress)
+		}
+
+		// If there is no progress but there are still file url entries with existing files for this id,
+		// we assume the process is failed
+		let tasks = taskFileUrls.keys.filter { $0.taskDescription == deviceId }
+		let files = tasks.compactMap { taskFileUrls[$0] }
+		if files.first(where: { FileManager.default.fileExists(atPath: $0.path()) }) != nil {
+			return .failed
+		}
+
+		return nil
+	}
+}
+
+extension FileUploaderService {
+	enum UploadState {
+		case uploading(Double)
+		case failed
 	}
 }
 
@@ -142,6 +177,7 @@ private extension FileUploaderService {
 		guard let fileUrl = taskFileUrls[task] else {
 			return
 		}
+
 		try? FileManager.default.removeItem(at: fileUrl)
 		taskFileUrls.removeValue(forKey: task)
 	}
@@ -158,8 +194,13 @@ private extension FileUploaderService {
 		return mimetype as String
 	}
 
-	func getTotalProgress(for deviceId: String) -> Double {
+	func getTotalProgress(for deviceId: String) -> Double? {
 		let tasks = taskProgresses.keys.filter { $0.taskDescription == deviceId }
+
+		if tasks.isEmpty {
+			return nil
+		}
+
 		let totalProgress = tasks.reduce(0) { $0 + (taskProgresses[$1] ?? 0.0) }
 		return totalProgress
 	}
