@@ -23,6 +23,8 @@ public protocol PhotosRepository: Sendable {
 	func purgeImages() throws
 	func startFilesUpload(deviceId: String, files: [URL]) async throws
 	func retryFilesUpload(deviceId: String) async throws
+	func cancelUpload(deviceId: String)
+	func getUploadState(deviceId: String) -> PhotoUploadState?
 }
 
 public enum PhotosError: CustomStringConvertible, Error {
@@ -42,4 +44,9 @@ public enum PhotosError: CustomStringConvertible, Error {
 	case failedToDeleteImage
 	case networkError(NetworkErrorResponse)
 	case uploadFailed(Error)
+}
+
+public enum PhotoUploadState {
+	case uploading(Double)
+	case failed
 }
