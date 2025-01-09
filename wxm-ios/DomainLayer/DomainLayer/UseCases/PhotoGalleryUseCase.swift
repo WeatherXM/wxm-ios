@@ -59,4 +59,12 @@ public struct PhotoGalleryUseCase: Sendable {
 	public func retryUpload(deviceId: String) async throws {
 		try await photosRepository.retryFilesUpload(deviceId: deviceId)
 	}
+
+	public func cancelUpload(deviceId: String) {
+		photosRepository.cancelUpload(deviceId: deviceId)
+	}
+
+	public func getUploadState(deviceId: String) -> PhotoUploadState? {
+		photosRepository.getUploadState(deviceId: deviceId)
+	}
 }
