@@ -74,7 +74,7 @@ extension PhotoVerificationStateView {
 													 closeAction: nil)) {
 					HStack {
 						Button {
-
+							viewModel.retryUpload()
 						} label: {
 							Text(LocalizableString.PhotoVerification.retryUpload.localized)
 								.font(.system(size: CGFloat(.caption), weight: .bold))

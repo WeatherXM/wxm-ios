@@ -14,13 +14,17 @@ class PhotoVerificationStateViewModel: ObservableObject {
 	@Published private(set) var state: PhotoVerificationStateView.State = .content(photos: [], isFailed: false)
 	private var allPhotos: [NetworkDevicePhotosResponse] = []
 	@Published private(set) var morePhotosCount: Int = 0
-	private var cancellable: Set<AnyCancellable> = []
+	private var cancellables: Set<AnyCancellable> = []
 	private let deviceInfoUseCase: DeviceInfoUseCase?
+	private let photoGalleryUseCase: PhotoGalleryUseCase?
 	private let deviceId: String
 
-	init(deviceId: String, deviceInfoUseCase: DeviceInfoUseCase?) {
+	init(deviceId: String, deviceInfoUseCase: DeviceInfoUseCase?, photoGalleryUseCase: PhotoGalleryUseCase?) {
 		self.deviceId = deviceId
 		self.deviceInfoUseCase = deviceInfoUseCase
+		self.photoGalleryUseCase = photoGalleryUseCase
+
+		observePhotoUploadState()
 	}
 
 	func handleCancelUploadTap() {
@@ -32,7 +36,6 @@ class PhotoVerificationStateViewModel: ObservableObject {
 												  okAction: yesAction)
 
 		AlertHelper().showAlert(alertObject)
-
 	}
 
 	func handleImageTap() {
@@ -42,25 +45,14 @@ class PhotoVerificationStateViewModel: ObservableObject {
 		Router.shared.navigateTo(route)
 	}
 
+	func retryUpload() {
+		Task {
+			try? await photoGalleryUseCase?.retryUpload(deviceId: deviceId)
+		}
+	}
+
 	func refresh() async -> NetworkErrorResponse? {
-		// Comment the following line and ucomment one of the rest to test each ui case along with the
-		// return nil at the bottom
 		await fetchPhotos()
-
-		// ---Uploading state---
-		//state = .uploading(progress: 63)
-
-		// ---Empty---
-		//state = .content(photos: [], isFailed: false)
-
-		//---Empty with error---
-		//state = .content(photos: [], isFailed: true)
-
-		// ---Photos with error---
-//		state = .content(photos: [URL(string: "https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/09/5-5.png")!,
-//								  URL(string: "https://docs.weatherxm.com/img/wxm-devices/deployments/good-example-1.jpg")!], isFailed: true)
-
-		//return nil
 	}
 }
 
@@ -74,23 +66,8 @@ private extension PhotoVerificationStateViewModel {
 
 			switch result {
 				case .success(let response):
-					let urls: [URL]? = response.compactMap { photo in
-						guard let url = photo.url else {
-							return nil
-						}
-						return URL(string: url)
-					}
-
 					self.allPhotos = response
-
-					if let urls {
-						let urlsToShow = urls.prefix(2)
-						let remainingCount = urls.dropFirst(2).count
-						self.morePhotosCount = remainingCount
-						self.state = .content(photos: Array(urlsToShow), isFailed: false)
-					} else {
-						self.state = .content(photos: [], isFailed: false)
-					}
+					self.updateState(error: nil)
 				case .failure(let error):
 					return error
 			}
@@ -100,5 +77,35 @@ private extension PhotoVerificationStateViewModel {
 		}
 
 		return nil
+	}
+
+	func observePhotoUploadState() {
+		photoGalleryUseCase?.uploadErrorPublisher.sink { deviceId, error in
+			guard deviceId == self.deviceId else { return }
+			self.updateState(error: error)
+		}.store(in: &cancellables)
+
+		photoGalleryUseCase?.uploadProgressPublisher.sink { deviceId, progress in
+			guard deviceId == self.deviceId else { return }
+			self.state = .uploading(progress: progress ?? 0.0)
+		}.store(in: &cancellables)
+	}
+
+	func updateState(error: Error?) {
+		let urls: [URL]? = self.allPhotos.compactMap { photo in
+			guard let url = photo.url else {
+				return nil
+			}
+			return URL(string: url)
+		}
+
+		if let urls {
+			let urlsToShow = urls.prefix(2)
+			let remainingCount = urls.dropFirst(2).count
+			self.morePhotosCount = remainingCount
+			self.state = .content(photos: Array(urlsToShow), isFailed: error != nil)
+		} else {
+			self.state = .content(photos: [], isFailed: error != nil)
+		}
 	}
 }
