@@ -52,8 +52,8 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		}
 	}
 
-	public func saveImage(_ image: UIImage, metadata: NSDictionary?) async throws -> String? {
-		let fileName = self.folderPath.appendingPathComponent("image_\(UUID().uuidString).jpg")
+	public func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String? {
+		let fileName = self.getFolderPath(for: deviceId).appendingPathComponent("image_\(UUID().uuidString).jpg")
 		let fixedMetadata = await injectLocationInMetadata(metadata ?? .init())
 		guard saveImageWithEXIF(image: image, metadata: fixedMetadata, saveFilename: fileName) else {
 			return nil
@@ -120,8 +120,8 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 	}
 
 	public func retryFilesUpload(deviceId: String) async throws {
-		let contents = try FileManager.default.contentsOfDirectory(atPath: folderPath.path())
-		let fileUrls = contents.map { folderPath.appending(path: $0) }
+		let contents = try FileManager.default.contentsOfDirectory(atPath: getFolderPath(for: deviceId).path())
+		let fileUrls = contents.map { getFolderPath(for: deviceId).appending(path: $0) }
 		try await startFilesUpload(deviceId: deviceId, files: fileUrls)
 	}
 
@@ -142,6 +142,13 @@ private extension PhotosRepositoryImpl {
 		docUrl.createDirectory()
 
 		return docUrl
+	}
+
+	func getFolderPath(for deviceId: String) -> URL {
+		let url = folderPath.appendingPathComponent(deviceId)
+		url.createDirectory()
+
+		return url
 	}
 
 	func saveImageWithEXIF(image: UIImage, metadata: NSDictionary?, saveFilename: URL) -> Bool {

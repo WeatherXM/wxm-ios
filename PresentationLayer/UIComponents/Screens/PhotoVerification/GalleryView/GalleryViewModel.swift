@@ -57,7 +57,7 @@ class GalleryViewModel: ObservableObject {
 	private let useCase: PhotoGalleryUseCase
 	private let isNewPhotoVerification: Bool
 	private lazy var imagePickerDelegate = {
-		let picker = ImagePickerDelegate(useCase: useCase)
+		let picker = ImagePickerDelegate(useCase: useCase, deviceId: deviceId)
 		picker.imageCallback = { [weak self] imageUrl in
 			self?.images.append(imageUrl)
 			self?.selectedImage = self?.images.last
@@ -169,16 +169,18 @@ extension GalleryViewModel: HashableViewModel {
 private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	var imageCallback: ((String) -> Void)?
 	private let useCase: PhotoGalleryUseCase
+	private let deviceId: String
 
-	init(useCase: PhotoGalleryUseCase) {
+	init(useCase: PhotoGalleryUseCase, deviceId: String) {
 		self.useCase = useCase
+		self.deviceId = deviceId
 	}
 
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
 		let metadata = info[.mediaMetadata] as? NSDictionary
 		Task { @MainActor in
 			if let image = info[.originalImage] as? UIImage,
-			   let imageUrl = try? await useCase.saveImage(image, metadata: metadata) {
+			   let imageUrl = try? await useCase.saveImage(image, deviceId: deviceId, metadata: metadata) {
 				imageCallback?(imageUrl)
 			}
 		}
