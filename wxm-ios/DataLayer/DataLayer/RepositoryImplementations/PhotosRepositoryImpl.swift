@@ -121,7 +121,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 
 	public func retryFilesUpload(deviceId: String) async throws {
 		let contents = try FileManager.default.contentsOfDirectory(atPath: folderPath.path())
-		let fileUrls = contents.map { URL(fileURLWithPath: $0)}
+		let fileUrls = contents.map { folderPath.appending(path: $0) }
 		try await startFilesUpload(deviceId: deviceId, files: fileUrls)
 	}
 }

@@ -285,7 +285,8 @@ enum ViewModelsFactory {
 
 	static func getPhotoVerificationStateViewModel(deviceId: String) -> PhotoVerificationStateViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCase.self)!
-		return PhotoVerificationStateViewModel(deviceId: deviceId, deviceInfoUseCase: useCase)
+		let photoGalleryUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
+		return PhotoVerificationStateViewModel(deviceId: deviceId, deviceInfoUseCase: useCase, photoGalleryUseCase: photoGalleryUseCase)
 	}
 
 	static func getDeviceInfoViewModel(device: DeviceDetails, followState: UserDeviceFollowState?) -> DeviceInfoViewModel {
