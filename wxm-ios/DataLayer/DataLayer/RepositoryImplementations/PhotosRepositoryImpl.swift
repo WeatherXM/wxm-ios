@@ -124,6 +124,15 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		let fileUrls = contents.map { folderPath.appending(path: $0) }
 		try await startFilesUpload(deviceId: deviceId, files: fileUrls)
 	}
+
+	public func cancelUpload(deviceId: String) {
+		fileUploader.cancelUpload(for: deviceId)
+	}
+
+	public func getUploadState(deviceId: String) -> PhotoUploadState? {
+		let state = fileUploader.getUploadState(for: deviceId)
+		return state?.toPhotoUploadState
+	}
 }
 
 private extension PhotosRepositoryImpl {
@@ -170,5 +179,16 @@ private extension PhotosRepositoryImpl {
 		let urlRequest = try builder.asURLRequest()
 		return try await ApiClient.shared.requestCodableAuthorized(urlRequest,
 																   mockFileName: builder.mockFileName).toAsync().result
+	}
+}
+
+private extension FileUploaderService.UploadState {
+	var toPhotoUploadState: PhotoUploadState {
+		switch self {
+			case .uploading(let progress):
+				return .uploading(progress)
+			case .failed:
+				return .failed
+		}
 	}
 }

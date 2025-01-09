@@ -28,7 +28,12 @@ class PhotoVerificationStateViewModel: ObservableObject {
 	}
 
 	func handleCancelUploadTap() {
-		let yesAction: AlertHelper.AlertObject.Action = (LocalizableString.PhotoVerification.yesCancel.localized, { _ in   })
+		let yesAction: AlertHelper.AlertObject.Action = (LocalizableString.PhotoVerification.yesCancel.localized, { [weak self] _ in
+			guard let self else {
+				return
+			}
+			self.photoGalleryUseCase?.cancelUpload(deviceId: deviceId)
+		})
 		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.cancelUpload.localized,
 												  message: LocalizableString.PhotoVerification.cancelUploadAlertMessage.localized,
 												  cancelActionTitle: LocalizableString.back.localized,
@@ -66,13 +71,14 @@ private extension PhotoVerificationStateViewModel {
 
 			switch result {
 				case .success(let response):
-					self.allPhotos = response
-					self.updateState(error: nil)
+					allPhotos = response
+					updateState()
 				case .failure(let error):
+					updateState()
 					return error
 			}
 		} catch {
-			state = .content(photos: [], isFailed: false)
+			updateState()
 			print(error)
 		}
 
@@ -82,30 +88,38 @@ private extension PhotoVerificationStateViewModel {
 	func observePhotoUploadState() {
 		photoGalleryUseCase?.uploadErrorPublisher.sink { deviceId, error in
 			guard deviceId == self.deviceId else { return }
-			self.updateState(error: error)
+			self.updateState()
 		}.store(in: &cancellables)
 
 		photoGalleryUseCase?.uploadProgressPublisher.sink { deviceId, progress in
 			guard deviceId == self.deviceId else { return }
-			self.state = .uploading(progress: progress ?? 0.0)
+			self.updateState()
 		}.store(in: &cancellables)
 	}
 
-	func updateState(error: Error?) {
-		let urls: [URL]? = self.allPhotos.compactMap { photo in
+	func updateState() {
+		let uploadState = photoGalleryUseCase?.getUploadState(deviceId: deviceId)
+		var isFailed: Bool
+		switch uploadState {
+			case .uploading(let progress):
+				state = .uploading(progress: progress)
+				return
+			case .failed:
+				isFailed = true
+			case nil:
+				isFailed = false
+		}
+
+		let urls: [URL] = self.allPhotos.compactMap { photo in
 			guard let url = photo.url else {
 				return nil
 			}
 			return URL(string: url)
 		}
 
-		if let urls {
-			let urlsToShow = urls.prefix(2)
-			let remainingCount = urls.dropFirst(2).count
-			self.morePhotosCount = remainingCount
-			self.state = .content(photos: Array(urlsToShow), isFailed: error != nil)
-		} else {
-			self.state = .content(photos: [], isFailed: error != nil)
-		}
+		let urlsToShow = urls.prefix(2)
+		let remainingCount = urls.dropFirst(2).count
+		self.morePhotosCount = remainingCount
+		self.state = .content(photos: Array(urlsToShow), isFailed: isFailed)
 	}
 }
