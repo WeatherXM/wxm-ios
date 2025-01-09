@@ -44,12 +44,8 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		userDefaultsService.save(value: termsAccepted, key: termsAcceptedKey)
 	}
 
-	public func getUploadInProgressDeviceId() async -> String? {
-		return await withUnsafeContinuation { continuation in
-			fileUploader.getUploadInProgressDeviceId { deviceId in
-				continuation.resume(returning: deviceId)
-			}
-		}
+	public func getUploadInProgressDeviceId() -> String? {
+		fileUploader.getUploadInProgressDeviceId()
 	}
 
 	public func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String? {
