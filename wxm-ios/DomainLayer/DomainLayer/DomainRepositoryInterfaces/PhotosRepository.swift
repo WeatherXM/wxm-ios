@@ -16,7 +16,7 @@ public protocol PhotosRepository: Sendable {
 	var uploadErrorPublisher: AnyPublisher<(String, Error), Never> { get }
 	func getUploadInProgressDeviceId() async -> String?
 	func setTermsAccepted(_ termsAccepted: Bool)
-	func saveImage(_ image: UIImage, metadata: NSDictionary?) async throws -> String?
+	func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String?
 	func deleteImage(_ imageUrl: String, deviceId: String) async throws
 	func getCameraPermission() -> AVAuthorizationStatus
 	func reqeustCameraPermission() async -> AVAuthorizationStatus
