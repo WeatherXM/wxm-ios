@@ -35,6 +35,10 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 	public var uploadErrorPublisher: AnyPublisher<(String, Error), Never> {
 		fileUploader.uploadErrorPublisher
 	}
+
+	public var uploadCompletedPublisher: AnyPublisher<String, Never> {
+		fileUploader.uploadCompletedPublisher
+	}
 	
 	public init(fileUploader: FileUploaderService) {
 		self.fileUploader = fileUploader

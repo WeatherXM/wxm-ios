@@ -71,10 +71,6 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		}.store(in: &cancellableSet)
 
 		photosUseCase.uploadProgressPublisher.sink { [weak self] progressResult in
-			guard let progress = progressResult.1 else {
-				return
-			}
-
 			let deviceId = progressResult.0
 			self?.updateUploadInProgressDevice(deviceId: deviceId)
 			self?.updateProgressUpload()
@@ -83,6 +79,11 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		photosUseCase.uploadErrorPublisher.sink { [weak self] deviceId, error in
 			self?.updateUploadInProgressDevice(deviceId: deviceId)
 			self?.updateProgressUpload()
+		}.store(in: &cancellableSet)
+
+		photosUseCase.uploadCompletedPublisher.sink { [weak self] deviceId in
+			self?.updateUploadInProgressDevice(deviceId: deviceId)
+			self?.uploadState = .completed
 		}.store(in: &cancellableSet)
 
 		if let deviceId = photosUseCase.getUploadInProgressDeviceId() {
