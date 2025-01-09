@@ -22,6 +22,7 @@ public final class FileUploaderService: Sendable {
 	nonisolated(unsafe) private var cancellables: Set<AnyCancellable> = Set()
 	nonisolated(unsafe) private var taskFileBodyUrls: [URLSessionTask: URL] = [:]
 	nonisolated(unsafe) private var taskFileUrls: [URLSessionTask: URL] = [:]
+	nonisolated(unsafe) private var taskProgresses: [URLSessionTask: Double] = [:]
 
 	public init() {
 		let bundleIdentifier = Bundle.main.bundleIdentifier ?? UUID().uuidString
@@ -40,19 +41,34 @@ public final class FileUploaderService: Sendable {
 		uploadErrorPublisher = uploadErrorPassthroughSubject.eraseToAnyPublisher()
 
 		sessionDelegate.taskCompletedCallback = { [weak self] task in
+			guard let deviceId = task.taskDescription else {
+				return
+			}
+
 			self?.removeFileBody(for: task)
 			self?.removeFile(for: task)
+			self?.purgeProgressesIfNeeded(for: deviceId)
 		}
 
 		sessionDelegate.taskFailedCallback =  { [weak self] task, error in
+			guard let deviceId = task.taskDescription else {
+				return
+			}
+
 			self?.removeFileBody(for: task)
-			self?.uploadErrorPassthroughSubject.send((task.taskDescription ?? "", error))
+			self?.uploadErrorPassthroughSubject.send((deviceId, error))
+			self?.purgeProgressesIfNeeded(for: deviceId)
 		}
 
 		sessionDelegate.taskProgressCallback =  { [weak self] task, progress in
 			// Gather all tasks progess and send
-			let total = self?.sessionDelegate.getTotalProgressForTaks(with: task.taskDescription)
-			self?.totalProgressValueSubject.send((task.taskDescription ?? "", total))
+			guard let self,
+				  let deviceId = task.taskDescription else {
+				return
+			}
+			
+			self.taskProgresses[task] = progress
+			self.totalProgressValueSubject.send((deviceId, self.getTotalProgress(for: deviceId)))
 		}
 
 		backgroundSession.getAllTasks { tasks in
@@ -141,6 +157,19 @@ private extension FileUploaderService {
 
 		return mimetype as String
 	}
+
+	func getTotalProgress(for deviceId: String) -> Double {
+		let tasks = taskProgresses.keys.filter { $0.taskDescription == deviceId }
+		let totalProgress = tasks.reduce(0) { $0 + (taskProgresses[$1] ?? 0.0) }
+		return totalProgress
+	}
+
+	func purgeProgressesIfNeeded(for deviceId: String) {
+		let tasks = taskProgresses.keys.filter { $0.taskDescription == deviceId }
+		let isFinished = tasks.filter { $0.state == .running }.isEmpty
+		guard isFinished else { return }
+		tasks.forEach { taskProgresses.removeValue(forKey: $0) }
+	}
 }
 
 private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDataDelegate, URLSessionTaskDelegate, URLSessionDelegate {
@@ -148,16 +177,8 @@ private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDa
 	var taskFailedCallback: ((URLSessionTask, Error) -> Void)?
 	var taskProgressCallback: ((URLSessionTask, Double) -> Void)?
 
-	nonisolated(unsafe) private var progresses: [URLSessionTask: Double] = [:]
-
 	override init() {
 		super.init()
-	}
-
-	func getTotalProgressForTaks(with description: String?) -> Double {
-		let tasks = progresses.keys.filter { $0.taskDescription == description }
-		let total = tasks.reduce(0.0) { $0 + (progresses[$1] ?? 0.0) }
-		return total
 	}
 
 	func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: (any Error)?) {
@@ -188,7 +209,6 @@ private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDa
 		print("Task \(task.taskIdentifier)-\(task.taskDescription): Upload progress: \(progress)%")
 		print("TASK protgress \(task.progress)")
 		DispatchQueue.main.async { [weak self] in
-			self?.progresses[task] = progress
 			self?.taskProgressCallback?(task, progress)
 		}
 	}
