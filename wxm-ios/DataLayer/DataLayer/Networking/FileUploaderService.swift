@@ -15,10 +15,10 @@ import Toolkit
 public final class FileUploaderService: Sendable {
 	let totalProgressPublisher: AnyPublisher<(String, Double?), Never>
 	let uploadErrorPublisher: AnyPublisher<(String, Error), Never>
-	let uploadCompletedPublisher: AnyPublisher<String, Never>
+	let uploadCompletedPublisher: AnyPublisher<(String, Int), Never>
 	private let totalProgressValueSubject: PassthroughSubject<(String, Double?), Never> = .init()
 	private let uploadErrorPassthroughSubject: PassthroughSubject<(String, Error), Never> = .init()
-	private let uploadCompletedPassthroughSubject: PassthroughSubject<String, Never> = .init()
+	private let uploadCompletedPassthroughSubject: PassthroughSubject<(String, Int), Never> = .init()
 	private let backgroundSession: URLSession!
 	private let sessionDelegate: SessionDelegate = SessionDelegate()
 	nonisolated(unsafe) private var cancellables: Set<AnyCancellable> = Set()
@@ -50,11 +50,12 @@ public final class FileUploaderService: Sendable {
 
 			self?.removeFileBody(for: task)
 			self?.removeFile(for: task)
+			let totalFiles = self?.taskProgresses.keys.filter { $0.taskDescription == deviceId }.count ?? 0
 			self?.purgeProgressesIfNeeded(for: deviceId)
 
 			if let deviceId = task.taskDescription,
 			   self?.getUploadState(for: deviceId) == nil {
-				self?.uploadCompletedPassthroughSubject.send(deviceId)
+				self?.uploadCompletedPassthroughSubject.send((deviceId, totalFiles))
 			}
 		}
 

@@ -96,7 +96,7 @@ private extension PhotoVerificationStateViewModel {
 			self.updateState()
 		}.store(in: &cancellables)
 
-		photoGalleryUseCase?.uploadCompletedPublisher.sink { deviceId in
+		photoGalleryUseCase?.uploadCompletedPublisher.sink { deviceId, _ in
 			guard deviceId == self.deviceId else { return }
 			self.updateState()
 		}.store(in: &cancellables)

@@ -116,6 +116,8 @@ class MainScreenViewModel: ObservableObject {
 				self?.showHttpMonitor = true
 			}
 		}
+
+		observePhotoUploads()
     }
 
     @Published var showFirmwareUpdate = false
@@ -300,6 +302,27 @@ class MainScreenViewModel: ObservableObject {
 		} catch {
 			print("Error purging photos: \(error)")
 		}
+	}
+
+	private func observePhotoUploads() {
+		photosUseCase.uploadStartedPublisher.sink { deviceId in
+			LocalNotificationScheduler().postNotification(id: deviceId,
+														  title: LocalizableString.PhotoVerification.uploadStartedSuccessfully.localized,
+														  body: nil)
+		}.store(in: &cancellableSet)
+
+		photosUseCase.uploadCompletedPublisher.sink { deviceId, count in
+			LocalNotificationScheduler().postNotification(id: deviceId,
+														  title: LocalizableString.PhotoVerification.uploadFinishedNotificationTitle(count).localized,
+														  body: nil)
+
+		}.store(in: &cancellableSet)
+
+		photosUseCase.uploadErrorPublisher.sink { deviceId, _ in
+			LocalNotificationScheduler().postNotification(id: deviceId,
+														  title: LocalizableString.PhotoVerification.uploadFailedNotificationFailedTitle.localized,
+														  body: LocalizableString.PhotoVerification.uploadFailedNotificationFailedDescription.localized)
+		}.store(in: &cancellableSet)
 	}
 
 	// MARK: - App Update
