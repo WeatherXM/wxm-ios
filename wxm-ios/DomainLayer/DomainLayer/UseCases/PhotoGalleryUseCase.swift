@@ -15,7 +15,8 @@ public struct PhotoGalleryUseCase: Sendable {
 	public var areTermsAccepted: Bool { photosRepository.areTermsAccepted }
 	public var uploadProgressPublisher: AnyPublisher<(String, Double?), Never>
 	public var uploadErrorPublisher: AnyPublisher<(String, Error), Never>
-	public var uploadCompletedPublisher: AnyPublisher<String, Never>
+	public var uploadCompletedPublisher: AnyPublisher<(String, Int), Never>
+	public var uploadStartedPublisher: AnyPublisher<(String), Never>
 
 	private let photosRepository: PhotosRepository
 
@@ -24,6 +25,7 @@ public struct PhotoGalleryUseCase: Sendable {
 		uploadProgressPublisher = photosRepository.uploadProgressPublisher
 		uploadErrorPublisher = photosRepository.uploadErrorPublisher
 		uploadCompletedPublisher = photosRepository.uploadCompletedPublisher
+		uploadStartedPublisher = photosRepository.uploadStartedPublisher
 	}
 
 	public func getUploadInProgressDeviceId() -> String? {
