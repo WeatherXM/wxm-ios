@@ -81,7 +81,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 			self?.updateProgressUpload()
 		}.store(in: &cancellableSet)
 
-		photosUseCase.uploadCompletedPublisher.sink { [weak self] deviceId in
+		photosUseCase.uploadCompletedPublisher.sink { [weak self] deviceId, _ in
 			self?.updateUploadInProgressDevice(deviceId: deviceId)
 			self?.uploadState = .completed
 		}.store(in: &cancellableSet)

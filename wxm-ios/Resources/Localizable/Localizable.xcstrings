@@ -6238,6 +6238,28 @@
         }
       }
     },
+    "photo_verification_upload_failed_notification_failed_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An error occurred"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_failed_notification_failed_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload failed"
+          }
+        }
+      }
+    },
     "photo_verification_upload_failed_tap_to_retry" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6245,6 +6267,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Upload failed. Tap to retry "
+          }
+        }
+      }
+    },
+    "photo_verification_upload_finished_notification_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploaded %d file"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_finished_notification_title_plural" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploaded %d files"
           }
         }
       }
@@ -6267,6 +6311,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "After taking the photos, tap ‘Upload’ to send them to us for installation evaluation. Your photos are used solely for this purpose.\n\nUploading will run in the background, so feel free to navigate the app while we handle the transfer."
+          }
+        }
+      }
+    },
+    "photo_verification_upload_started_notification_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload started"
           }
         }
       }

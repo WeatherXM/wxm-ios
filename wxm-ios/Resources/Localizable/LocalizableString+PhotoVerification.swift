@@ -66,6 +66,10 @@ extension LocalizableString {
 		case uploadStartedSuccessfullyDescription
 		case preparingUploadTitle
 		case preparingUploadDescription
+		case uploadStartedNotificationTitle
+		case uploadFinishedNotificationTitle(Int)
+		case uploadFailedNotificationFailedTitle
+		case uploadFailedNotificationFailedDescription
 	}
 }
 
@@ -73,7 +77,8 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 	var localized: String {
 		var localized = NSLocalizedString(key, comment: "")
 		switch self {
-			case .morePhotosToUpload(let count):
+			case .morePhotosToUpload(let count),
+					.uploadFinishedNotificationTitle(let count):
 				localized = String(format: localized, count)
 			default: break
 		}
@@ -198,6 +203,14 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_preparing_upload_title"
 			case .preparingUploadDescription:
 				"photo_verification_preparing_upload_description"
+			case .uploadStartedNotificationTitle:
+				"photo_verification_upload_started_notification_title"
+			case .uploadFinishedNotificationTitle(let count):
+				count == 1 ? "photo_verification_upload_finished_notification_title" : "photo_verification_upload_finished_notification_title_plural"
+			case .uploadFailedNotificationFailedTitle:
+				"photo_verification_upload_failed_notification_failed_title"
+			case .uploadFailedNotificationFailedDescription:
+				"photo_verification_upload_failed_notification_failed_description"
 		}
 	}
 }
