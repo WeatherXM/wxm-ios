@@ -36,12 +36,16 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		fileUploader.uploadErrorPublisher
 	}
 
-	public var uploadCompletedPublisher: AnyPublisher<String, Never> {
+	public var uploadCompletedPublisher: AnyPublisher<(String, Int), Never> {
 		fileUploader.uploadCompletedPublisher
 	}
-	
+
+	nonisolated(unsafe) public let uploadStartedPublisher: AnyPublisher<String, Never>
+	nonisolated(unsafe) private let uploadStartedPassthroughSubject: PassthroughSubject<String, Never> = .init()
+
 	public init(fileUploader: FileUploaderService) {
 		self.fileUploader = fileUploader
+		uploadStartedPublisher = uploadStartedPassthroughSubject.eraseToAnyPublisher()
 	}
 
 	public func setTermsAccepted(_ termsAccepted: Bool) {
@@ -114,6 +118,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 						try fileUploader.uploadFile(file: element, to: url, for: deviceId)
 					}
 				}
+				uploadStartedPassthroughSubject.send(deviceId)
 			case .failure(let error):
 				throw PhotosError.networkError(error)
 		}

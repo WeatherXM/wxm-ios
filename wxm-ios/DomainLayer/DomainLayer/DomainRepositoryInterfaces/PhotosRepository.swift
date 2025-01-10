@@ -14,7 +14,8 @@ public protocol PhotosRepository: Sendable {
 	var areTermsAccepted: Bool { get }
 	var uploadProgressPublisher: AnyPublisher<(String, Double?), Never> { get }
 	var uploadErrorPublisher: AnyPublisher<(String, Error), Never> { get }
-	var uploadCompletedPublisher: AnyPublisher<String, Never> { get }
+	var uploadCompletedPublisher: AnyPublisher<(String, Int), Never> { get }
+	var uploadStartedPublisher: AnyPublisher<String, Never> { get }
 	func getUploadInProgressDeviceId() -> String?
 	func setTermsAccepted(_ termsAccepted: Bool)
 	func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String?
