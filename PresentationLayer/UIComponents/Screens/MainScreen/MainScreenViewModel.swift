@@ -358,7 +358,7 @@ class MainScreenViewModel: ObservableObject {
 	}
 
 	private func observePhotoUploads() {
-		photosUseCase.uploadStartedPublisher.sink { deviceId in
+		photosUseCase.uploadStartedPublisher.receive(on: DispatchQueue.main).sink { deviceId in
 			LocalNotificationScheduler().postNotification(id: deviceId,
 														  title: LocalizableString.PhotoVerification.uploadStartedSuccessfully.localized,
 														  body: nil)
