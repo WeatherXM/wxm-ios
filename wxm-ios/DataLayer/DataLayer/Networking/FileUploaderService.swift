@@ -100,7 +100,7 @@ public final class FileUploaderService: Sendable {
 		for (index, element) in files.enumerated() {
 			if let uploadUrl = objects[index].url,
 			   let url = URL(string: uploadUrl) {
-				try uploadFile(file: element, to: url, for: deviceId)
+				try uploadFile(file: element, to: url, for: deviceId, fields: objects[index].fields)
 			}
 		}
 
@@ -148,7 +148,7 @@ extension FileUploaderService {
 }
 
 private extension FileUploaderService {
-	func uploadFile(file: URL, to url: URL, for deviceId: String) throws {
+	func uploadFile(file: URL, to url: URL, for deviceId: String, fields: [String: String]?) throws {
 		guard let data = FileManager.default.contents(atPath: file.path) else {
 			return
 		}
@@ -158,7 +158,7 @@ private extension FileUploaderService {
 		request.httpMethod = HTTPMethod.post.rawValue
 
 		request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-		let body = generateRequestBody(fileData: data, boundary: boundary)
+		let body = generateRequestBody(fileData: data, boundary: boundary, fields: fields)
 		request.setValue(String(body.count), forHTTPHeaderField: "Content-Length")
 		let bodyFileURL = try saveBodyToTemp(body)
 		let task = backgroundSession.uploadTask(with: request, fromFile: bodyFileURL)
@@ -168,11 +168,19 @@ private extension FileUploaderService {
 		taskFileUrls[task] = file
 	}
 
-	func generateRequestBody(fileData: Data, boundary: String) -> Data {
+	func generateRequestBody(fileData: Data, boundary: String, fields: [String: String]?) -> Data {
 		var data = Data()
 		let paramName = "file"
 		let fileName = "\(UUID().uuidString).jpg"
 		let mimeType = mimeType(for: fileName)
+
+		if let fields {
+			for (key, value) in fields {
+				data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+				data.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n\(value)".data(using: .utf8)!)
+			}
+		}
+
 		data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
 		data.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
 		data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
@@ -266,7 +274,7 @@ private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDa
 	}
 
 	func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-		print(dataTask)
+		print("didReceive \(String(data: data, encoding: .utf8)!) on \(dataTask)")
 	}
 
 	func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
