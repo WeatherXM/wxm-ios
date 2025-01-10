@@ -215,7 +215,7 @@ private extension GalleryViewModel {
 		let openPikerCallback = { @MainActor [weak self] in
 			guard let self else { return }
 			let imagePicker = UIImagePickerController()
-			imagePicker.sourceType = .photoLibrary
+			imagePicker.sourceType = .camera
 			imagePicker.delegate = self.imagePickerDelegate
 			UIApplication.shared.topViewController?.present(imagePicker, animated: true)
 		}
