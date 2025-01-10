@@ -106,26 +106,6 @@ public final class FileUploaderService: Sendable {
 
 		uploadStartedPassthroughSubject.send(deviceId)
 	}
-	
-	func uploadFile(file: URL, to url: URL, for deviceId: String) throws {
-		guard let data = FileManager.default.contents(atPath: file.path) else {
-			return
-		}
-
-		let boundary = UUID().uuidString
-		var request = URLRequest(url: url)
-		request.httpMethod = HTTPMethod.post.rawValue
-
-		request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-		let body = generateRequestBody(fileData: data, boundary: boundary)
-		request.setValue(String(body.count), forHTTPHeaderField: "Content-Length")
-		let bodyFileURL = try saveBodyToTemp(body)
-		let task = backgroundSession.uploadTask(with: request, fromFile: bodyFileURL)
-		task.taskDescription = deviceId
-		task.resume()
-		taskFileBodyUrls[task] = bodyFileURL
-		taskFileUrls[task] = file
-	}
 
 	func cancelUpload(for deviceId: String) {
 		backgroundSession.getAllTasks { tasks in
@@ -168,6 +148,26 @@ extension FileUploaderService {
 }
 
 private extension FileUploaderService {
+	func uploadFile(file: URL, to url: URL, for deviceId: String) throws {
+		guard let data = FileManager.default.contents(atPath: file.path) else {
+			return
+		}
+
+		let boundary = UUID().uuidString
+		var request = URLRequest(url: url)
+		request.httpMethod = HTTPMethod.post.rawValue
+
+		request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+		let body = generateRequestBody(fileData: data, boundary: boundary)
+		request.setValue(String(body.count), forHTTPHeaderField: "Content-Length")
+		let bodyFileURL = try saveBodyToTemp(body)
+		let task = backgroundSession.uploadTask(with: request, fromFile: bodyFileURL)
+		task.taskDescription = deviceId
+		task.resume()
+		taskFileBodyUrls[task] = bodyFileURL
+		taskFileUrls[task] = file
+	}
+
 	func generateRequestBody(fileData: Data, boundary: String) -> Data {
 		var data = Data()
 		let paramName = "file"
@@ -226,7 +226,7 @@ private extension FileUploaderService {
 		}
 
 		let totalProgress = tasks.reduce(0) { $0 + (taskProgresses[$1] ?? 0.0) }
-		return totalProgress
+		return totalProgress / Double(tasks.count)
 	}
 
 	func purgeProgressesIfNeeded(for deviceId: String) {
