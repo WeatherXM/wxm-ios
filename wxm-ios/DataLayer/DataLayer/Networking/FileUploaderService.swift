@@ -10,15 +10,18 @@ import Foundation
 import Alamofire
 import MobileCoreServices
 import Toolkit
+import DomainLayer
 @preconcurrency import Combine
 
 public final class FileUploaderService: Sendable {
 	let totalProgressPublisher: AnyPublisher<(String, Double?), Never>
 	let uploadErrorPublisher: AnyPublisher<(String, Error), Never>
 	let uploadCompletedPublisher: AnyPublisher<(String, Int), Never>
+	let uploadStartedPublisher: AnyPublisher<String, Never>
 	private let totalProgressValueSubject: PassthroughSubject<(String, Double?), Never> = .init()
 	private let uploadErrorPassthroughSubject: PassthroughSubject<(String, Error), Never> = .init()
 	private let uploadCompletedPassthroughSubject: PassthroughSubject<(String, Int), Never> = .init()
+	private let uploadStartedPassthroughSubject: PassthroughSubject<String, Never> = .init()
 	private let backgroundSession: URLSession!
 	private let sessionDelegate: SessionDelegate = SessionDelegate()
 	nonisolated(unsafe) private var cancellables: Set<AnyCancellable> = Set()
@@ -42,6 +45,7 @@ public final class FileUploaderService: Sendable {
 		totalProgressPublisher = totalProgressValueSubject.eraseToAnyPublisher()
 		uploadErrorPublisher = uploadErrorPassthroughSubject.eraseToAnyPublisher()
 		uploadCompletedPublisher = uploadCompletedPassthroughSubject.eraseToAnyPublisher()
+		uploadStartedPublisher = uploadStartedPassthroughSubject.eraseToAnyPublisher()
 
 		sessionDelegate.taskCompletedCallback = { [weak self] task in
 			guard let deviceId = task.taskDescription else {
@@ -92,6 +96,17 @@ public final class FileUploaderService: Sendable {
 		}
 	}
 
+	func uploadFiles(files: [URL], to objects: [NetworkPostDevicePhotosResponse], for deviceId: String) throws {
+		for (index, element) in files.enumerated() {
+			if let uploadUrl = objects[index].url,
+			   let url = URL(string: uploadUrl) {
+				try uploadFile(file: element, to: url, for: deviceId)
+			}
+		}
+
+		uploadStartedPassthroughSubject.send(deviceId)
+	}
+	
 	func uploadFile(file: URL, to url: URL, for deviceId: String) throws {
 		guard let data = FileManager.default.contents(atPath: file.path) else {
 			return
