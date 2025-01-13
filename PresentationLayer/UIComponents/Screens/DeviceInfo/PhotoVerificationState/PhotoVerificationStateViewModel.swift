@@ -89,6 +89,9 @@ private extension PhotoVerificationStateViewModel {
 		photoGalleryUseCase?.uploadErrorPublisher.sink { deviceId, error in
 			guard deviceId == self.deviceId else { return }
 			self.updateState()
+			Task { @MainActor [weak self] in
+				await self?.fetchPhotos()
+			}
 		}.store(in: &cancellables)
 
 		photoGalleryUseCase?.uploadProgressPublisher.sink { deviceId, progress in
@@ -99,6 +102,9 @@ private extension PhotoVerificationStateViewModel {
 		photoGalleryUseCase?.uploadCompletedPublisher.sink { deviceId, _ in
 			guard deviceId == self.deviceId else { return }
 			self.updateState()
+			Task { @MainActor [weak self] in
+				await self?.fetchPhotos()
+			}
 		}.store(in: &cancellables)
 	}
 
