@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260134532D15A1B500AF1125 /* UploadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260134522D15A1B500AF1125 /* UploadProgressView.swift */; };
+		260134562D15A8A700AF1125 /* uploading_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 260134542D15A8A700AF1125 /* uploading_dark.json */; };
+		260134572D15A8A700AF1125 /* uploading_light.json in Resources */ = {isa = PBXBuildFile; fileRef = 260134552D15A8A700AF1125 /* uploading_light.json */; };
+		260134592D15AC5500AF1125 /* upload_completed.json in Resources */ = {isa = PBXBuildFile; fileRef = 260134582D15AC5500AF1125 /* upload_completed.json */; };
 		26052B5C2CDA2EE7009A7D92 /* TrackableScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26052B5B2CDA2EE7009A7D92 /* TrackableScroller.swift */; };
 		2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */; };
 		2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */; };
@@ -638,6 +642,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		260134522D15A1B500AF1125 /* UploadProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadProgressView.swift; sourceTree = "<group>"; };
+		260134542D15A8A700AF1125 /* uploading_dark.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = uploading_dark.json; sourceTree = "<group>"; };
+		260134552D15A8A700AF1125 /* uploading_light.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = uploading_light.json; sourceTree = "<group>"; };
+		260134582D15AC5500AF1125 /* upload_completed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = upload_completed.json; sourceTree = "<group>"; };
 		26052B5B2CDA2EE7009A7D92 /* TrackableScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScroller.swift; sourceTree = "<group>"; };
 		2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyView.swift; sourceTree = "<group>"; };
 		2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyViewModel.swift; sourceTree = "<group>"; };
@@ -1190,6 +1198,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		260134512D15A17600AF1125 /* UploadProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				260134522D15A1B500AF1125 /* UploadProgressView.swift */,
+			);
+			path = UploadProgressView;
+			sourceTree = "<group>";
+		};
 		2608A78E2C09D34B00452E40 /* SetFrequecncy */ = {
 			isa = PBXGroup;
 			children = (
@@ -1855,6 +1871,7 @@
 		2675476F29A9181E008BCF40 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				260134512D15A17600AF1125 /* UploadProgressView */,
 				2612AC182AB45AFA00285896 /* Filters */,
 				2675477029A9181E008BCF40 /* WeatherStationsHomeView.swift */,
 				267546DE29A9181E008BCF40 /* WeatherStationsHomeViewModel.swift */,
@@ -2656,6 +2673,9 @@
 				7423EC02283F81E2004E9B26 /* empty_devices.json */,
 				7423EC0E283F81E2004E9B26 /* empty_generic.json */,
 				7423EC04283F81E2004E9B26 /* error.json */,
+				260134542D15A8A700AF1125 /* uploading_dark.json */,
+				260134552D15A8A700AF1125 /* uploading_light.json */,
+				260134582D15AC5500AF1125 /* upload_completed.json */,
 				26E88AFE29E02F590023BBD5 /* loader.json */,
 				7423EC08283F81E2004E9B26 /* loading.json */,
 				7423EC00283F81E2004E9B26 /* not_available.json */,
@@ -3014,6 +3034,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				26C5D6B82CD8BDDB004940D0 /* weather_overcast_light_snow.json in Resources */,
+				260134562D15A8A700AF1125 /* uploading_dark.json in Resources */,
+				260134572D15A8A700AF1125 /* uploading_light.json in Resources */,
 				26C5D6172CD3CD7D004940D0 /* weather_overcast.json in Resources */,
 				26C5D6B32CD8BDDB004940D0 /* deprecated_weather_sleet.json in Resources */,
 				26C5D69A2CD8BDDB004940D0 /* weather_overcast_snow.json in Resources */,
@@ -3049,6 +3071,7 @@
 				26C5D6BF2CD8BDDB004940D0 /* weather_extreme_night_rain.json in Resources */,
 				26C5D6A42CD8BDDB004940D0 /* partly_cloudy_day.json in Resources */,
 				26C5D6992CD8BDDB004940D0 /* weather_overcast_drizzle.json in Resources */,
+				260134592D15AC5500AF1125 /* upload_completed.json in Resources */,
 				74E29FA4282A9FC800925E4C /* Colors.xcassets in Resources */,
 				26348E212A444AF1000846C6 /* Font Awesome 6 Brands-Regular-400.otf in Resources */,
 				26C5D6AC2CD8BDDB004940D0 /* weather_extreme_day_drizzle.json in Resources */,
@@ -3521,6 +3544,7 @@
 				267547FC29A9181E008BCF40 /* WeatherStationCard.swift in Sources */,
 				2675482129A9181E008BCF40 /* WeatherStationsHomeView.swift in Sources */,
 				26A5456C2C0609FE0098FE52 /* ResetDeviceViewModel.swift in Sources */,
+				260134532D15A1B500AF1125 /* UploadProgressView.swift in Sources */,
 				262B03092B20BDB700C31FE7 /* LocalizableString+AppUpdate.swift in Sources */,
 				267547AB29A9181E008BCF40 /* WeatherStationsHomeViewModel.swift in Sources */,
 				26AF27742A0B86DD0067A1B8 /* WeatherUnitsConverter.swift in Sources */,

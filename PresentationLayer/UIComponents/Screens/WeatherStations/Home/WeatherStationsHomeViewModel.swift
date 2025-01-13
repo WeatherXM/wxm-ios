@@ -40,6 +40,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
         FilterValues.default != filters
     }
 
+	@Published var uploadState: UploadProgressView.UploadState? = .completed
 	@Published var infoBanner: InfoBanner?
 	@Published var totalEarnedTitle: String?
 	@Published var totalEarnedValueText: String?
@@ -51,6 +52,26 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
     private(set) var failObj: FailSuccessStateObject?
     weak var mainVM: MainScreenViewModel?
 
+	// TEMP
+	private lazy var timer: Timer = {
+		Timer(timeInterval: 0.2, repeats: true) { [weak self] timer in
+			DispatchQueue.main.async { [weak timer] in
+				if case .uploading(let progress) = self?.uploadState {
+					let newProgress = progress + 1.0
+					if newProgress >= 100.0 {
+						self?.invalidateTimer()
+						self?.uploadState = .completed
+						return
+					}
+
+					self?.uploadState = .uploading(progress: newProgress)
+
+					return
+				}
+				self?.uploadState = .uploading(progress: 0)
+			}
+		}
+	}()
 	public init(meUseCase: MeUseCase, remoteConfigUseCase: RemoteConfigUseCase) {
         self.meUseCase = meUseCase
 		self.remoteConfigUseCase = remoteConfigUseCase
@@ -63,7 +84,15 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
 			self?.infoBanner = infoBanner
 		}.store(in: &cancellableSet)
+
+		// Uncomment the following to test the uploading progress UI
+		//RunLoop.main.add(timer, forMode: .common)
     }
+
+	// TEMP
+	func invalidateTimer() {
+		timer.invalidate()
+	}
 
     /// Perform request to get all the essentials
     /// - Parameters:
@@ -175,6 +204,32 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		}
 
 		Router.shared.showFullScreen(.safariView(url))
+	}
+
+	func handleUploadBannerTap() {
+		switch uploadState {
+			case .uploading, .completed:
+				// Navigate to the station
+				guard let device = devices.first, let deviceId = device.id else {
+					return
+				}
+
+				let viewModel = ViewModelsFactory.getDeviceInfoViewModel(device: device, followState: followStates[deviceId])
+				Router.shared.navigateTo(.deviceInfo(viewModel))
+			case .failed:
+				// retry
+				break
+			case nil:
+				break
+		}
+	}
+
+	func viewWillDisappear() {
+		guard uploadState == .completed else {
+			return
+		}
+
+		uploadState = nil
 	}
 }
 
