@@ -266,7 +266,7 @@ private extension GalleryViewModel {
 										 actionButtonsAtTheBottom: true,
 										 contactSupportAction: nil,
 										 cancelAction: {
-			Router.shared.pop()//ToRoot()
+			Router.shared.popToRoot()
 		},
 										 retryAction: { [weak self] in
 			self?.showShareSheet = true
