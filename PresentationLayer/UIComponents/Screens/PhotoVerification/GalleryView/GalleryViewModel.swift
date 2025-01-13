@@ -138,7 +138,9 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func viewLoaded() {
-		openCamera()
+		if images.isEmpty {
+			openCamera()
+		}
 	}
 
 	func handleBackButtonTap(dismissAction: DismissAction) {
