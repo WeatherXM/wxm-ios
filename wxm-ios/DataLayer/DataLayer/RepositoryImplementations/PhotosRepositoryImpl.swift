@@ -57,7 +57,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 	}
 
 	public func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String? {
-		let fileName = self.getFolderPath(for: deviceId).appendingPathComponent("image_\(UUID().uuidString).jpg")
+		let fileName = self.getFolderPath(for: deviceId).appendingPathComponent("\(UUID().uuidString).jpg")
 		let fixedMetadata = await injectLocationInMetadata(metadata ?? .init())
 		guard saveImageWithEXIF(image: image, metadata: fixedMetadata, saveFilename: fileName) else {
 			return nil
