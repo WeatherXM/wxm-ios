@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import DomainLayer
 import SwiftUI
+import Toolkit
 
 @MainActor
 class GalleryViewModel: ObservableObject {
@@ -89,8 +90,7 @@ class GalleryViewModel: ObservableObject {
 
 		Task { @MainActor in
 			do {
-				try await useCase.deleteImage(selectedImage, deviceId: deviceId)
-				images.removeAll(where: { $0 == selectedImage })
+				try await deleteImageImage(selectedImage)
 				self.selectedImage = images.last
 			} catch PhotosError.networkError(let error) {
 				let info = error.uiInfo
@@ -145,17 +145,20 @@ class GalleryViewModel: ObservableObject {
 
 	func handleBackButtonTap(dismissAction: DismissAction) {
 		if isNewPhotoVerification {
-			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationText.localized,
-						  dismissAction: dismissAction)
+			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationText.localized) {
+				dismissAction()
+			}
 
 			return
 		}
 
 		let remoteImageCount = images.compactMap { URL(string: $0) }.filter { $0.isHttp }.count
 		if remoteImageCount < minPhotosCount {
-			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationMinimumPhotosText.localized,
-						  dismissAction: dismissAction)
-			
+			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationMinimumPhotosText.localized) { [weak self] in
+				self?.deleteAllImages()
+				dismissAction()
+			}
+
 			return
 		}
 
@@ -241,7 +244,7 @@ private extension GalleryViewModel {
 		}
 	}
 
-	func showExitAlert(message: String, dismissAction: DismissAction) {
+	func showExitAlert(message: String, dismissAction: @escaping VoidCallback) {
 		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.exit.localized, { _ in  dismissAction() })
 		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.exitPhotoVerification.localized,
 												  message: message,
@@ -280,5 +283,20 @@ private extension GalleryViewModel {
 
 		failObject = obj
 		showFail = true
+	}
+
+	func deleteImageImage(_ image: String) async throws {
+		try await useCase.deleteImage(image, deviceId: deviceId)
+		images.removeAll(where: { $0 == selectedImage })
+	}
+
+	func deleteAllImages() {
+		let imagesToDelete = images
+
+		Task { @MainActor in
+			await imagesToDelete.asyncForEach { url in
+				try? await deleteImageImage(url)
+			}
+		}
 	}
 }
