@@ -80,8 +80,11 @@ extension NotificationsHandler: UNUserNotificationCenterDelegate {
 		completionHandler([.banner, .badge, .sound, .list])
 	}
 
-	func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+	func userNotificationCenter(_ center: UNUserNotificationCenter,
+								didReceive response: UNNotificationResponse,
+								withCompletionHandler completionHandler: @escaping () -> Void) {
 		latestNotificationSubject.send(response)
+		completionHandler()
 	}
 }
 
