@@ -33,6 +33,9 @@ struct WeatherStationsHomeView: View {
                         tabBarItemsSize: $tabBarItemsSize,
                         isWalletEmpty: $isWalletEmpty)
         }
+		.onDisappear {
+			viewModel.viewWillDisappear()
+		}
     }
 
 	@ViewBuilder
@@ -174,23 +177,24 @@ private struct ContentView: View {
 				infoBannerView
 				
 				VStack(spacing: CGFloat(.defaultSpacing)) {
+					if let uploadState = viewModel.uploadState {
+						UploadProgressView(state: uploadState,
+										   stationName: devices.first?.displayName ?? "",
+										   tapAction: {
+							viewModel.handleUploadBannerTap()
+						}) {
+							withAnimation {
+								viewModel.uploadState = nil
+							}
+						}
+					}
+
 					NavigationTitleView(title: .constant(LocalizableString.weatherStationsHomeTitle.localized),
 										subtitle: .constant(nil)) {
 						navigationBarRightView
 					}
 					
 					VStack(spacing: CGFloat(.smallSpacing)) {
-						if let uploadState = viewModel.uploadState {
-							UploadProgressView(state: uploadState,
-											   stationName: devices.first?.displayName ?? "",
-											   tapAction: {
-								viewModel.handleUploadBannerTap()
-							}) {
-								withAnimation {
-									viewModel.uploadState = nil
-								}
-							}
-						}
 
 						if mainVM.showWalletWarning && isWalletEmpty {
 							CardWarningView(configuration: .init(title: LocalizableString.walletAddressMissingTitle.localized,
