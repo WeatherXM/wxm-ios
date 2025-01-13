@@ -20,7 +20,7 @@ public extension Sequence {
     /// Returns an array containing the results of mapping the given async operation, similar to `map`
     /// - Parameter transform: The async operation to be performed for each element
     /// - Returns: The array with the mapped elements
-    func asyncMap<T>(_ transform: (Element) async throws -> T) async rethrows -> [T] {
+	nonisolated func asyncMap<T>(_ transform: (Element) async throws -> T) async rethrows -> [T] {
         var values = [T]()
 
         for element in self {
