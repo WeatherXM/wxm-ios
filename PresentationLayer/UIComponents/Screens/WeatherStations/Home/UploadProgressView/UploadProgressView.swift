@@ -45,20 +45,23 @@ struct UploadProgressView: View {
 			.offset(x: offset)
 		}
 		.sizeObserver(size: $size)
-		.gesture(DragGesture(minimumDistance: 0).onChanged { value in
-			offset = min(0.0, value.translation.width)
-		}.onEnded { value in
-			let shouldDimiss = abs(offset) >= size.width / 2
-			withAnimation(.easeIn(duration: 0.2)) {
-				offset = shouldDimiss ? -2.0 * size.width : 0.0
-			}
+		.if(isSwipeEnabled) { view in
+			view
+				.gesture(DragGesture(minimumDistance: 0).onChanged { value in
+					offset = min(0.0, value.translation.width)
+				}.onEnded { value in
+					let shouldDimiss = abs(offset) >= size.width / 2
+					withAnimation(.easeIn(duration: 0.2)) {
+						offset = shouldDimiss ? -2.0 * size.width : 0.0
+					}
 
-			if shouldDimiss {
-				DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-					shouldDismissAction()
-				}
-			}
-		})
+					if shouldDimiss {
+						DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+							shouldDismissAction()
+						}
+					}
+				})
+		}
 		.simultaneousGesture(TapGesture().onEnded {
 			tapAction()
 		})
@@ -75,6 +78,10 @@ extension UploadProgressView {
 }
 
 private extension UploadProgressView {
+	var isSwipeEnabled: Bool {
+		state == .completed || state == .failed
+	}
+
 	@ViewBuilder
 	var mainContent: some View {
 		switch state {
