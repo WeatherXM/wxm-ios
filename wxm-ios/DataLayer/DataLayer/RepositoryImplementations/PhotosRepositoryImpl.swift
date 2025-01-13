@@ -107,6 +107,11 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		try FileManager.default.removeItem(at: folderPath)
 	}
 
+	public func clearLocalImages(deviceId: String) throws {
+		let folderPath = self.getFolderPath(for: deviceId)
+		try FileManager.default.removeItem(at: folderPath)
+	}
+
 	public func startFilesUpload(deviceId: String, files: [URL]) async throws {
 		let fileNames = files.map { $0.lastPathComponent }
 		let resut = try await retrievePhotosUpload(for: deviceId, names: fileNames)
