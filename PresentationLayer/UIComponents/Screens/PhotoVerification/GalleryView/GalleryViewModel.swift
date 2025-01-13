@@ -30,9 +30,9 @@ class GalleryViewModel: ObservableObject {
 	@Published var showFail = false
 	private(set) var failObject: FailSuccessStateObject?
 	@Published var showShareSheet: Bool = false
-//	var shareFileUrls: [URL]? {
-//		images.compactMap { try? $0.asURL() }
-//	}
+	var shareImages: [UIImage]? {
+		images.compactMap { $0.uiImage }
+	}
 	var localImages: [GalleryView.GalleryImage]? {
 		images.filter { $0.uiImage != nil }
 	}

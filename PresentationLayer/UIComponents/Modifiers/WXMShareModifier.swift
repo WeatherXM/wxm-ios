@@ -14,7 +14,7 @@ import LinkPresentation
 private struct WXMShareModifier: ViewModifier {
 	@Binding var show: Bool
 	let text: String
-	let files: [URL]
+	let images: [UIImage]
 	@State private var hostingWrapper: HostingWrapper = HostingWrapper()
 	@State private var store = Store()
 
@@ -32,7 +32,7 @@ private struct WXMShareModifier: ViewModifier {
 
 	func presentShare(sourceView: UIView?) {
 		var items: [Any] = [text]
-		items.append(contentsOf: files.map { getItemSource(file: $0) })
+		items.append(contentsOf: images.map { getItemSource(image: $0) })
 		let activityController = WXMActivityViewController(activityItems: items, applicationActivities: nil)
 		activityController.popoverPresentationController?.sourceView = sourceView
 		activityController.willDismissCallback = { show = false }
@@ -40,8 +40,8 @@ private struct WXMShareModifier: ViewModifier {
 		UIApplication.shared.rootViewController?.present(activityController, animated: true)
 	}
 
-	func getItemSource(file: URL) -> ShareFileItemSource? {
-		ShareFileItemSource(fileUrl: file)
+	func getItemSource(image: UIImage) -> ShareFileItemSource? {
+		ShareFileItemSource(image: image)
 	}
 }
 
@@ -79,10 +79,10 @@ private extension WXMShareModifier {
 	}
 
 	class ShareFileItemSource: NSObject, UIActivityItemSource {
-		let fileUrl: URL
+		let image: UIImage
 
-		init(fileUrl: URL) {
-			self.fileUrl = fileUrl
+		init(image: UIImage) {
+			self.image = image
 		}
 
 		func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
@@ -90,13 +90,10 @@ private extension WXMShareModifier {
 		}
 		
 		func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-			fileUrl
+			image
 		}
 
 		func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-			guard let image = UIImage(contentsOfFile: fileUrl.path()) else {
-				return nil
-			}
 			let imageProvider = NSItemProvider(object: image)
 			let metadata = LPLinkMetadata()
 			metadata.imageProvider = imageProvider
@@ -107,7 +104,7 @@ private extension WXMShareModifier {
 
 extension View {
 	@ViewBuilder
-	func wxmShareDialog(show: Binding<Bool>, text: String, files: [URL] = []) -> some View {
-		modifier(WXMShareModifier(show: show, text: text, files: files))
+	func wxmShareDialog(show: Binding<Bool>, text: String, images: [UIImage] = []) -> some View {
+		modifier(WXMShareModifier(show: show, text: text, images: images))
 	}
 }
