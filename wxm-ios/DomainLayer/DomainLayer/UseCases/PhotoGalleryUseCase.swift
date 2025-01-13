@@ -56,6 +56,10 @@ public struct PhotoGalleryUseCase: Sendable {
 		try photosRepository.purgeImages()
 	}
 
+	public func clearLocalImages(deviceId: String) throws {
+		try photosRepository.clearLocalImages(deviceId: deviceId)
+	}
+
 	public func startFilesUpload(deviceId: String, files: [URL]) async throws {
 		try await photosRepository.startFilesUpload(deviceId: deviceId, files: files)
 	}
