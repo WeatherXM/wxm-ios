@@ -239,7 +239,7 @@ private extension FileUploaderService {
 
 	func purgeProgressesIfNeeded(for deviceId: String) {
 		let tasks = taskProgresses.keys.filter { $0.taskDescription == deviceId }
-		let isFinished = tasks.filter { $0.state == .running }.isEmpty
+		let isFinished = tasks.reduce(0) { $0 + ($1.state == .completed ? 1 : 0) } == tasks.count
 		guard isFinished else { return }
 		tasks.forEach { taskProgresses.removeValue(forKey: $0) }
 	}
