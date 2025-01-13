@@ -106,6 +106,18 @@ private extension PhotoVerificationStateViewModel {
 				await self?.fetchPhotos()
 			}
 		}.store(in: &cancellables)
+
+		NotificationCenter.default.addObserver(forName: .devicePhotoDeleted,
+											   object: nil,
+											   queue: .main) { [weak self] notification in
+			guard notification.object as? String == self?.deviceId else {
+				return
+			}
+
+			Task { @MainActor [weak self] in
+				await self?.refresh()
+			}
+		}
 	}
 
 	func updateState() {

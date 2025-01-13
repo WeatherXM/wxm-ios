@@ -10,6 +10,10 @@ import UIKit
 import AVFoundation
 import Combine
 
+public extension Notification.Name {
+	static let devicePhotoDeleted = Notification.Name("photos.deleted")
+}
+
 public protocol PhotosRepository: Sendable {
 	var areTermsAccepted: Bool { get }
 	var uploadProgressPublisher: AnyPublisher<(String, Double?), Never> { get }
