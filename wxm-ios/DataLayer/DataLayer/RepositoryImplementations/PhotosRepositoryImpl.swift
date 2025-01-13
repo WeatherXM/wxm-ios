@@ -82,7 +82,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 			let result: Result<EmptyEntity, NetworkErrorResponse> = try await ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName).toAsync().result
 			switch result {
 				case .success:
-					break
+					NotificationCenter.default.post(name: .devicePhotoDeleted, object: deviceId)
 				case .failure(let error):
 					throw PhotosError.networkError(error)
 			}
