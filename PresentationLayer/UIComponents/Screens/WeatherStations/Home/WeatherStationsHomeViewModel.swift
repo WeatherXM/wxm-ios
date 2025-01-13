@@ -223,6 +223,14 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 				break
 		}
 	}
+
+	func viewWillDisappear() {
+		guard uploadState == .completed else {
+			return
+		}
+
+		uploadState = nil
+	}
 }
 
 private extension WeatherStationsHomeViewModel {
