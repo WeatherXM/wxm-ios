@@ -169,6 +169,8 @@ extension ParameterValue: RawRepresentable {
 				return "device_info"
 			case .settingsSource:
 				return "settings"
+			case .claimingSource:
+				return "claiming"
 			case .errorSource:
 				return "error"
 			case .networkStatsSource:
@@ -453,6 +455,8 @@ extension ParameterValue: RawRepresentable {
 				return "Start Uploading Photos"
 			case .uploadingPhotoSuccess:
 				return "Uploading Photo Success"
+			case .goToPhotoVerification:
+				return "Go To Photo Verification"
 		}
 	}
 }

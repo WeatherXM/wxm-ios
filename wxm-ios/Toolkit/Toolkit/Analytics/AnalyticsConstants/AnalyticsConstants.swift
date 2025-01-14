@@ -161,6 +161,7 @@ public enum ParameterValue {
 	case stationOffline
 	case deviceInfoSource
 	case settingsSource
+	case claimingSource
 	case errorSource
 	case networkStatsSource
 	case contactSupport
@@ -303,5 +304,6 @@ public enum ParameterValue {
 	case retryUploadingPhotos
 	case startUploadingPhotos
 	case uploadingPhotoSuccess
+	case goToPhotoVerification
 	case custom(String)
 }
