@@ -11,6 +11,7 @@ import Toolkit
 struct BottomSheetModifier<V: View>: ViewModifier {
     @Binding var show: Bool
     let fitContent: Bool
+	let bgColor: ColorEnum
     let content: () -> V
     @State private var hostingWrapper: HostingWrapper = HostingWrapper()
     @State private var contentSize: CGSize = .zero
@@ -20,6 +21,7 @@ struct BottomSheetModifier<V: View>: ViewModifier {
 			.sheet(isPresented: $show) {
 				BottomSheetContainerView(contentSize: $contentSize,
 										 fitContent: fitContent,
+										 bgColor: bgColor,
 										 content: self.content)
 			}
     }
@@ -44,11 +46,12 @@ struct BottomSheetModifier<V: View>: ViewModifier {
 private struct BottomSheetContainerView<V: View>: View {
 	@Binding var contentSize: CGSize
 	let fitContent: Bool
+	let bgColor: ColorEnum
 	let content: () -> V
 
 	var body: some View {
 		ZStack {
-			Color(colorEnum: .bottomSheetBg)
+			Color(colorEnum: bgColor)
 				.ignoresSafeArea()
 
 			content()
@@ -83,8 +86,12 @@ extension View {
     @ViewBuilder
     func bottomSheet<Content: View>(show: Binding<Bool>,
                                     fitContent: Bool = true,
+									bgColor: ColorEnum = .bottomSheetBg,
                                     content: @escaping () -> Content) -> some View {
-		modifier(BottomSheetModifier(show: show, fitContent: fitContent, content: content))
+		modifier(BottomSheetModifier(show: show,
+									 fitContent: fitContent,
+									 bgColor: bgColor,
+									 content: content))
     }
 
 	@ViewBuilder
