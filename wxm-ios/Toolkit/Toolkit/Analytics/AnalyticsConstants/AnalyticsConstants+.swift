@@ -441,6 +441,16 @@ extension ParameterValue: RawRepresentable {
 				return "Stakeholder"
 			case .tokensEarnedPress:
 				return "Tokens Earned pressed"
+			case .addStationPhoto:
+				return "Add Station Photo"
+			case .exitPhotoVerification:
+				return "Exit Photo Verification"
+			case .cancelUploadingPhotos:
+				return "Cancel Uploading Photos"
+			case .retryUploadingPhotos:
+				return "Retry Uploading Photos"
+			case .startUploadingPhotos:
+				return "Start Uploading Photos"
 		}
 	}
 }

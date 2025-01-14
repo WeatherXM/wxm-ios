@@ -297,5 +297,10 @@ public enum ParameterValue {
 	case rewardSplitPressed
 	case stakeholderContentType
 	case tokensEarnedPress
+	case addStationPhoto
+	case exitPhotoVerification
+	case cancelUploadingPhotos
+	case retryUploadingPhotos
+	case startUploadingPhotos
 	case custom(String)
 }
