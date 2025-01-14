@@ -8,6 +8,7 @@
 import Foundation
 import DomainLayer
 import Combine
+import Toolkit
 
 @MainActor
 class PhotoVerificationStateViewModel: ObservableObject {
@@ -32,6 +33,8 @@ class PhotoVerificationStateViewModel: ObservableObject {
 			guard let self else {
 				return
 			}
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .cancelUploadingPhotos])
+
 			self.photoGalleryUseCase?.cancelUpload(deviceId: deviceId)
 		})
 		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.cancelUpload.localized,

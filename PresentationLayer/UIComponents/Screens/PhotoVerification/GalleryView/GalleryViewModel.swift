@@ -62,6 +62,8 @@ class GalleryViewModel: ObservableObject {
 		picker.imageCallback = { [weak self] imageUrl in
 			self?.images.append(imageUrl)
 			self?.selectedImage = self?.images.last
+
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto])
 		}
 		return picker
 	}()
@@ -109,6 +111,8 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func handleUploadButtonTap() {
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .startUploadingPhotos])
+
 		guard let localImages = localImages else {
 			return
 		}
@@ -148,6 +152,7 @@ class GalleryViewModel: ObservableObject {
 	func handleBackButtonTap(dismissAction: DismissAction) {
 		if isNewPhotoVerification {
 			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationText.localized) {
+				WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .exitPhotoVerification])
 				dismissAction()
 			}
 
@@ -158,12 +163,14 @@ class GalleryViewModel: ObservableObject {
 		if remoteImageCount < minPhotosCount {
 			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationMinimumPhotosText.localized) { [weak self] in
 				self?.deleteAllImages()
+				WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .exitPhotoVerification])
 				dismissAction()
 			}
 
 			return
 		}
 
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .exitPhotoVerification])
 		dismissAction()
 	}
 }
