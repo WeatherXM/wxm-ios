@@ -266,6 +266,9 @@ private extension DeviceInfoViewModel {
 				}
 				let route = PhotoIntroViewModel.getInitialRoute(deviceId: deviceId, images: [], isNewPhotoVerification: true)
 				Router.shared.navigateTo(route)
+
+				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .goToPhotoVerification,
+																			.source: .settingsSource])
 		}
 	}
 
