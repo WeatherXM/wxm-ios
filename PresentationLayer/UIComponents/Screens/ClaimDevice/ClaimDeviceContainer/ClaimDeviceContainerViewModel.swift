@@ -203,6 +203,9 @@ extension ClaimDeviceContainerViewModel {
 			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
 				Router.shared.navigateTo(route)
 			}
+
+			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .goToPhotoVerification,
+																		.source: .claimingSource])
 		}
 
 		let info: CardWarningConfiguration =  .init(type: .info,
