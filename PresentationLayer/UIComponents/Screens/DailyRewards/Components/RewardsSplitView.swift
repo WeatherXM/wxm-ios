@@ -84,7 +84,7 @@ extension RewardsSplitView {
 	struct Item {
 		let address: String
 		let reward: Double?
-		let stake: Int
+		let stake: Double
 		let isUserWallet: Bool
 	}
 }
