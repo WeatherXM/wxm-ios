@@ -94,7 +94,7 @@ extension RewardsSplitView {
 
 private extension RewardsSplitView.Item {
 	var valueString: String {
-		var str = "\(stake.toPrecisionString(precision: 2))%"
+		var str = "\(stake.toPrecisionString(minDecimals:2, precision: 2))%"
 		if let reward {
 			str = "\(reward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency) " + "(\(str))"
 		}
