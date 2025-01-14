@@ -302,5 +302,6 @@ public enum ParameterValue {
 	case cancelUploadingPhotos
 	case retryUploadingPhotos
 	case startUploadingPhotos
+	case uploadingPhotoSuccess
 	case custom(String)
 }
