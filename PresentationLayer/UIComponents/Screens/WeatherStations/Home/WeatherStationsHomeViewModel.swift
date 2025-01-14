@@ -237,6 +237,8 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 					return
 				}
 
+				WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .retryUploadingPhotos])
+
 				Task { @MainActor in
 					try? await photosUseCase.retryUpload(deviceId: deviceId)
 				}
