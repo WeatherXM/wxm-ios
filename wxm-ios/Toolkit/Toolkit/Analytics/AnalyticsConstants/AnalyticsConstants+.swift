@@ -451,6 +451,8 @@ extension ParameterValue: RawRepresentable {
 				return "Retry Uploading Photos"
 			case .startUploadingPhotos:
 				return "Start Uploading Photos"
+			case .uploadingPhotoSuccess:
+				return "Uploading Photo Success"
 		}
 	}
 }
