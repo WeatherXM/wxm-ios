@@ -55,22 +55,34 @@ struct GalleryView: View {
 				Group {
 					GeometryReader { proxy in
 						if let selectedImage = viewModel.selectedImage {
-							LazyImage(url: URL(string: selectedImage)) { state in
-								if let image = state.image {
-									image
-										.resizable()
-										.aspectRatio(contentMode: .fill)
-										.frame(width: proxy.size.width - 2 * CGFloat(.defaultSidePadding),
-											   height: proxy.size.height - 2 * CGFloat(.defaultSidePadding),
-											   alignment: .center)
-										.clipped()
-										.position(x: proxy.frame(in: .local).midX,
-												  y: proxy.frame(in: .local).midY)
-								} else {
-									ProgressView()
-										.position(x: proxy.frame(in: .local).midX,
-												  y: proxy.frame(in: .local).midY)
+							if let remoteUrl = selectedImage.remoteUrl {
+								LazyImage(url: URL(string: remoteUrl)) { state in
+									if let image = state.image {
+										image
+											.resizable()
+											.aspectRatio(contentMode: .fill)
+											.frame(width: proxy.size.width - 2 * CGFloat(.defaultSidePadding),
+												   height: proxy.size.height - 2 * CGFloat(.defaultSidePadding),
+												   alignment: .center)
+											.clipped()
+											.position(x: proxy.frame(in: .local).midX,
+													  y: proxy.frame(in: .local).midY)
+									} else {
+										ProgressView()
+											.position(x: proxy.frame(in: .local).midX,
+													  y: proxy.frame(in: .local).midY)
+									}
 								}
+							} else if let image = selectedImage.image {
+								image
+									.resizable()
+									.aspectRatio(contentMode: .fill)
+									.frame(width: proxy.size.width - 2 * CGFloat(.defaultSidePadding),
+										   height: proxy.size.height - 2 * CGFloat(.defaultSidePadding),
+										   alignment: .center)
+									.clipped()
+									.position(x: proxy.frame(in: .local).midX,
+											  y: proxy.frame(in: .local).midY)
 							}
 						} else {
 							noImageView
@@ -117,16 +129,39 @@ struct GalleryView: View {
 				}
 				.iPadMaxWidth()
 			}
+			.spinningLoader(show: $viewModel.showLoading,
+							title: viewModel.loadingTitle,
+							subtitle: viewModel.loadingSubtitle,
+							hideContent: true)
+			.success(show: $viewModel.showUploadStartedSuccess, obj: viewModel.uploadStartedObject)
+			.fail(show: $viewModel.showFail, obj: viewModel.failObject)
 		}
 		.navigationBarHidden(true)
 		.sheet(isPresented: $viewModel.showInstructions) {
-			PhotoIntroView(viewModel: ViewModelsFactory.getPhotoInstructionsViewModel())
+			PhotoIntroView(viewModel: ViewModelsFactory.getPhotoInstructionsViewModel(deviceId: viewModel.deviceId))
 		}
 		.task {
 			viewModel.viewLoaded()
 		}
-		.wxmShareDialog(show: $viewModel.showShareSheet, text: "", files: viewModel.shareFileUrls ?? [])
+		.wxmShareDialog(show: $viewModel.showShareSheet, text: "", images: viewModel.shareImages ?? [])
     }
+}
+
+extension GalleryView {
+	struct GalleryImage: Identifiable, Equatable {
+		let remoteUrl: String?
+		let uiImage: UIImage?
+		let metadata: NSDictionary?
+
+		var id: String {
+			remoteUrl ?? "\(uiImage.hashValue)"
+		}
+
+		var image: Image? {
+			guard let uiImage else { return nil }
+			return Image(uiImage: uiImage)
+		}
+	}
 }
 
 private extension GalleryView {
@@ -141,30 +176,46 @@ private extension GalleryView {
 					Color.clear
 						.frame(width: proxy.size.width)
 					HStack(spacing: CGFloat(.smallSpacing)) {
-						ForEach(viewModel.images, id: \.self) { imageUrl in
-							let isSelected = viewModel.selectedImage == imageUrl
+						ForEach(viewModel.images) { image in
+							let isSelected = viewModel.selectedImage == image
 							let size = isSelected ? selectedSize : normalSize
 
 							Button {
-								viewModel.selectedImage = imageUrl
+								viewModel.selectedImage = image
 							} label: {
-								LazyImage(url: URL(string: imageUrl)) { state in
-									if let image = state.image {
-										image
-											.resizable()
-											.aspectRatio(contentMode: .fill)
-											.frame(width: size.width, height: size.height)
-											.cornerRadius(CGFloat(.buttonCornerRadius))
-											.indication(show: .constant(isSelected),
-														borderColor: Color(colorEnum: .wxmPrimary),
-														borderWidth: 2.0,
-														bgColor: .clear,
-														cornerRadius: CGFloat(.buttonCornerRadius),
-														content: { EmptyView() })
-									} else {
-										ProgressView()
-											.frame(width: normalSize.width, height: normalSize.height)
+								if let imageUrl = image.remoteUrl {
+									LazyImage(url: URL(string: imageUrl)) { state in
+										if let image = state.image {
+											image
+												.resizable()
+												.aspectRatio(contentMode: .fill)
+												.frame(width: size.width, height: size.height)
+												.cornerRadius(CGFloat(.buttonCornerRadius))
+												.indication(show: .constant(isSelected),
+															borderColor: Color(colorEnum: .wxmPrimary),
+															borderWidth: 2.0,
+															bgColor: .clear,
+															cornerRadius: CGFloat(.buttonCornerRadius),
+															content: { EmptyView() })
+										} else {
+											ProgressView()
+												.frame(width: normalSize.width, height: normalSize.height)
+										}
 									}
+								} else if let imageView = image.image {
+									imageView
+										.resizable()
+										.aspectRatio(contentMode: .fill)
+										.frame(width: size.width, height: size.height)
+										.cornerRadius(CGFloat(.buttonCornerRadius))
+										.indication(show: .constant(isSelected),
+													borderColor: Color(colorEnum: .wxmPrimary),
+													borderWidth: 2.0,
+													bgColor: .clear,
+													cornerRadius: CGFloat(.buttonCornerRadius),
+													content: { EmptyView() })
+								} else {
+									EmptyView()
 								}
 							}
 						}
@@ -233,6 +284,7 @@ private extension GalleryView {
 }
 
 #Preview {
-	GalleryView(viewModel: ViewModelsFactory.getGalleryViewModel(images: [],
+	GalleryView(viewModel: ViewModelsFactory.getGalleryViewModel(deviceId: "",
+																 images: [],
 																 isNewVerification: true))
 }

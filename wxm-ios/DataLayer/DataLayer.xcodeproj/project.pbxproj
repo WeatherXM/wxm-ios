@@ -64,6 +64,9 @@
 		26AD3EA62C90748C0040AB09 /* get_devices_rewards_analytics_year.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AD3EA42C90748B0040AB09 /* get_devices_rewards_analytics_year.json */; };
 		26AD3EA72C90748C0040AB09 /* get_devices_rewards_analytics_7d.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AD3EA52C90748C0040AB09 /* get_devices_rewards_analytics_7d.json */; };
 		26B3D2B429E43D14006913E0 /* get_user_wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 26B3D2B329E43D14006913E0 /* get_user_wallet.json */; };
+		26C71CD62D26B53400D2F0F3 /* empty_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C71CD52D26B52900D2F0F3 /* empty_response.json */; };
+		26C71CD82D26D97500D2F0F3 /* post_device_photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C71CD72D26D95F00D2F0F3 /* post_device_photos.json */; };
+		26C71CDC2D27D89300D2F0F3 /* FileUploaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */; };
 		26D47E9E2A177AFB0078723A /* SettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */; };
 		26DD42AF29AF4765008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AE29AF4765008E277E /* Toolkit.framework */; };
 		26DD42D229AFAF26008E277E /* get_user_devices.json in Resources */ = {isa = PBXBuildFile; fileRef = 26DD42D129AFAF26008E277E /* get_user_devices.json */; };
@@ -160,6 +163,9 @@
 		26AD3EA42C90748B0040AB09 /* get_devices_rewards_analytics_year.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_devices_rewards_analytics_year.json; sourceTree = "<group>"; };
 		26AD3EA52C90748C0040AB09 /* get_devices_rewards_analytics_7d.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_devices_rewards_analytics_7d.json; sourceTree = "<group>"; };
 		26B3D2B329E43D14006913E0 /* get_user_wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_user_wallet.json; sourceTree = "<group>"; };
+		26C71CD52D26B52900D2F0F3 /* empty_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = empty_response.json; sourceTree = "<group>"; };
+		26C71CD72D26D95F00D2F0F3 /* post_device_photos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = post_device_photos.json; sourceTree = "<group>"; };
+		26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderService.swift; sourceTree = "<group>"; };
 		26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryImpl.swift; sourceTree = "<group>"; };
 		26DD42AE29AF4765008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DD42D129AFAF26008E277E /* get_user_devices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user_devices.json; sourceTree = "<group>"; };
@@ -262,6 +268,8 @@
 				267CA6EE2C1314E200ABE599 /* get_user.json */,
 				26FC21B52D119C0E00FC79B1 /* claim_device.json */,
 				26FC21B72D11A45700FC79B1 /* claim_device_helium.json */,
+				26C71CD72D26D95F00D2F0F3 /* post_device_photos.json */,
+				26C71CD52D26B52900D2F0F3 /* empty_response.json */,
 			);
 			path = Jsons;
 			sourceTree = "<group>";
@@ -368,6 +376,7 @@
 				26E2B3A329816C2E00ED9B58 /* Mock */,
 				B55668912832DE96006D0B71 /* ApiClient.swift */,
 				B54B809D2850C25900FB52B9 /* Connectivity.swift */,
+				26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -539,6 +548,7 @@
 			files = (
 				266B01CF2B861B10007AC689 /* get_device_rewards_summary_empty.json in Resources */,
 				2631872C29A4E2D400FA1691 /* get_device_history.json in Resources */,
+				26C71CD82D26D97500D2F0F3 /* post_device_photos.json in Resources */,
 				2683A4C42ADECF3100D5C205 /* countries_information.json in Resources */,
 				267CA6EF2C1314E300ABE599 /* get_user.json in Resources */,
 				2618A6F12A1F61FD00983B7B /* get_device_history_24_samples.json in Resources */,
@@ -565,6 +575,7 @@
 				26FC21B82D11A46A00FC79B1 /* claim_device_helium.json in Resources */,
 				2646FCB82995018800EBB61B /* get_user_device_just_claimed.json in Resources */,
 				26DD42D229AFAF26008E277E /* get_user_devices.json in Resources */,
+				26C71CD62D26B53400D2F0F3 /* empty_response.json in Resources */,
 				26943D792B06240900EE6C7E /* get_cell_devices.json in Resources */,
 				266B01C12B84DED4007AC689 /* get_device_rewards_summary.json in Resources */,
 				26FFAD932B8E2A5500BF0A6B /* get_reward_details.json in Resources */,
@@ -612,6 +623,7 @@
 				2612AC242AB465EF00285896 /* FiltersRepositoryImpl.swift in Sources */,
 				2612AC622AB88EB400285896 /* FiltersService.swift in Sources */,
 				264BDA0C298AC792005C1F82 /* FirmwareUpdateImpl.swift in Sources */,
+				26C71CDC2D27D89300D2F0F3 /* FileUploaderService.swift in Sources */,
 				264BDA11298BA108005C1F82 /* FirmwareUpdater.swift in Sources */,
 				B56A25F028A0F6AF00928141 /* KeychainConstants.swift in Sources */,
 				26AB9F562A80C50200855912 /* KeychainHelperService+User.swift in Sources */,

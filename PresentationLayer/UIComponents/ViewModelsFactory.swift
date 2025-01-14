@@ -134,7 +134,10 @@ enum ViewModelsFactory {
 	static func getWeatherStationsHomeViewModel() -> WeatherStationsHomeViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
 		let remoteConfigUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RemoteConfigUseCase.self)!
-		return WeatherStationsHomeViewModel(meUseCase: useCase, remoteConfigUseCase: remoteConfigUseCase)
+		let photoGalleryUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
+		return WeatherStationsHomeViewModel(meUseCase: useCase,
+											remoteConfigUseCase: remoteConfigUseCase,
+											photosGalleryUseCase: photoGalleryUseCase)
 	}
 
 	static func getRewardDetailsViewModel(device: DeviceDetails,
@@ -261,24 +264,28 @@ enum ViewModelsFactory {
 		return RewardAnalyticsViewModel(useCase: useCase, devices: devices)
 	}
 
-	static func getPhotoIntroViewModel() -> PhotoIntroViewModel {
+	static func getPhotoIntroViewModel(deviceId: String) -> PhotoIntroViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
-		return PhotoIntroViewModel(photoGalleryUseCase: useCase)
+		return PhotoIntroViewModel(deviceId: deviceId, photoGalleryUseCase: useCase)
 	}
 
-	static func getPhotoInstructionsViewModel() -> PhotoInstructionsViewModel {
+	static func getPhotoInstructionsViewModel(deviceId: String) -> PhotoInstructionsViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
-		return PhotoInstructionsViewModel(photoGalleryUseCase: useCase)
+		return PhotoInstructionsViewModel(deviceId: deviceId, photoGalleryUseCase: useCase)
 	}
 
-	static func getGalleryViewModel(images: [String], isNewVerification: Bool) -> GalleryViewModel {
+	static func getGalleryViewModel(deviceId: String, images: [String], isNewVerification: Bool) -> GalleryViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
-		return GalleryViewModel(images: images, photoGalleryUseCase: useCase, isNewPhotoVerification: isNewVerification)
+		return GalleryViewModel(deviceId: deviceId,
+								images: images,
+								photoGalleryUseCase: useCase,
+								isNewPhotoVerification: isNewVerification)
 	}
 
 	static func getPhotoVerificationStateViewModel(deviceId: String) -> PhotoVerificationStateViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCase.self)!
-		return PhotoVerificationStateViewModel(deviceId: deviceId, deviceInfoUseCase: useCase)
+		let photoGalleryUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
+		return PhotoVerificationStateViewModel(deviceId: deviceId, deviceInfoUseCase: useCase, photoGalleryUseCase: photoGalleryUseCase)
 	}
 
 	static func getDeviceInfoViewModel(device: DeviceDetails, followState: UserDeviceFollowState?) -> DeviceInfoViewModel {

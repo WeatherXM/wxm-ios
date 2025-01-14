@@ -261,7 +261,10 @@ private extension DeviceInfoViewModel {
 			case .rewardSplit:
 				break
 			case .photos:
-				let route = PhotoIntroViewModel.getInitialRoute(images: [], isNewPhotoVerification: true)
+				guard let deviceId = device.id else {
+					return
+				}
+				let route = PhotoIntroViewModel.getInitialRoute(deviceId: deviceId, images: [], isNewPhotoVerification: true)
 				Router.shared.navigateTo(route)
 		}
 	}

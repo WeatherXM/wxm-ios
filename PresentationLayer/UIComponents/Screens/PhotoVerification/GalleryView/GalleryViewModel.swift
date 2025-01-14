@@ -9,21 +9,32 @@ import Foundation
 import UIKit
 import DomainLayer
 import SwiftUI
+import Toolkit
 
 @MainActor
 class GalleryViewModel: ObservableObject {
 	@Published var subtitle: String? = ""
-	@Published var images: [String] = [] {
+	@Published var images: [GalleryView.GalleryImage] = [] {
 		didSet {
 			updateSubtitle()
 		}
 	}
-	@Published var selectedImage: String?
+	@Published var selectedImage: GalleryView.GalleryImage?
 	@Published var isCameraDenied: Bool = false
 	@Published var showInstructions: Bool = false
+	@Published var showLoading: Bool = false
+	let loadingTitle: String = LocalizableString.PhotoVerification.preparingUploadTitle.localized
+	let loadingSubtitle: String = LocalizableString.PhotoVerification.preparingUploadDescription.localized
+	@Published var showUploadStartedSuccess = false
+	private(set) var uploadStartedObject: FailSuccessStateObject?
+	@Published var showFail = false
+	private(set) var failObject: FailSuccessStateObject?
 	@Published var showShareSheet: Bool = false
-	var shareFileUrls: [URL]? {
-		images.compactMap { try? $0.asURL() }
+	var shareImages: [UIImage]? {
+		images.compactMap { $0.uiImage }
+	}
+	var localImages: [GalleryView.GalleryImage]? {
+		images.filter { $0.uiImage != nil }
 	}
 	var isPlusButtonVisible: Bool {
 		images.count < maxPhotosCount
@@ -32,7 +43,7 @@ class GalleryViewModel: ObservableObject {
 		useCase.getCameraPermission() != .denied
 	}
 	var isUploadButtonEnabled: Bool {
-		images.count >= minPhotosCount
+		images.count >= minPhotosCount && localImages?.isEmpty == false
 	}
 	var backButtonIcon: FontIcon {
 		if isNewPhotoVerification {
@@ -43,10 +54,11 @@ class GalleryViewModel: ObservableObject {
 	}
 	private let minPhotosCount = 2
 	private let maxPhotosCount = 6
+	let deviceId: String
 	private let useCase: PhotoGalleryUseCase
 	private let isNewPhotoVerification: Bool
 	private lazy var imagePickerDelegate = {
-		let picker = ImagePickerDelegate(useCase: useCase)
+		let picker = ImagePickerDelegate(useCase: useCase, deviceId: deviceId)
 		picker.imageCallback = { [weak self] imageUrl in
 			self?.images.append(imageUrl)
 			self?.selectedImage = self?.images.last
@@ -54,11 +66,15 @@ class GalleryViewModel: ObservableObject {
 		return picker
 	}()
 
-	init(images: [String], photoGalleryUseCase: PhotoGalleryUseCase, isNewPhotoVerification: Bool) {
+	init(deviceId: String,
+		 images: [String],
+		 photoGalleryUseCase: PhotoGalleryUseCase,
+		 isNewPhotoVerification: Bool) {
+		self.deviceId = deviceId
 		self.useCase = photoGalleryUseCase
-		self.images = images
+		self.images = images.map { GalleryView.GalleryImage(remoteUrl: $0, uiImage: nil, metadata: nil) }
 		self.isNewPhotoVerification = isNewPhotoVerification
-		selectedImage = images.last
+		selectedImage = self.images.last
 		updateSubtitle()
 		updateCameraPermissionState()
 	}
@@ -72,12 +88,19 @@ class GalleryViewModel: ObservableObject {
 			return
 		}
 
-		do {
-			try useCase.deleteImage(selectedImage)
-			images.removeAll(where: { $0 == selectedImage })
-			self.selectedImage = images.last
-		} catch {
-			Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
+		Task { @MainActor in
+			do {
+				try await deleteImageImage(selectedImage)
+				self.selectedImage = images.last
+			} catch PhotosError.networkError(let error) {
+				let info = error.uiInfo
+				if let message = info.description?.attributedMarkdown {
+					Toast.shared.show(text: message)
+				}
+			}
+			catch {
+				Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
+			}
 		}
 	}
 
@@ -86,8 +109,26 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func handleUploadButtonTap() {
-		// TEMP
-		showShareSheet = true
+		guard let localImages = localImages else {
+			return
+		}
+		Task { @MainActor [localImages] in
+			do {
+				showLoading = true
+				try useCase.clearLocalImages(deviceId: deviceId)
+				let fileUrls = await localImages.asyncCompactMap { try? await useCase.saveImage($0.uiImage!, deviceId: deviceId, metadata: $0.metadata)}
+				try await useCase.startFilesUpload(deviceId: deviceId, files: fileUrls.compactMap { try? $0.asURL() })
+				showLoading = false
+				showUploadStarted()
+			} catch PhotosError.networkError(let error) {
+				showLoading = false
+				showFail(error: error)
+			}
+			catch {
+				showLoading = false
+				Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
+			}
+		}
 	}
 
 	func handleOpenSettingsTap() {
@@ -99,22 +140,27 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func viewLoaded() {
-		openCamera()
+		if images.isEmpty {
+			openCamera()
+		}
 	}
 
 	func handleBackButtonTap(dismissAction: DismissAction) {
 		if isNewPhotoVerification {
-			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationText.localized,
-						  dismissAction: dismissAction)
+			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationText.localized) {
+				dismissAction()
+			}
 
 			return
 		}
 
-		let remoteImageCount = images.compactMap { URL(string: $0) }.filter { $0.isHttp }.count
+		let remoteImageCount = images.filter { $0.remoteUrl != nil }.count
 		if remoteImageCount < minPhotosCount {
-			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationMinimumPhotosText.localized,
-						  dismissAction: dismissAction)
-			
+			showExitAlert(message: LocalizableString.PhotoVerification.exitPhotoVerificationMinimumPhotosText.localized) { [weak self] in
+				self?.deleteAllImages()
+				dismissAction()
+			}
+
 			return
 		}
 
@@ -128,19 +174,20 @@ extension GalleryViewModel: HashableViewModel {
 }
 
 private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-	var imageCallback: ((String) -> Void)?
+	var imageCallback: ((GalleryView.GalleryImage) -> Void)?
 	private let useCase: PhotoGalleryUseCase
+	private let deviceId: String
 
-	init(useCase: PhotoGalleryUseCase) {
+	init(useCase: PhotoGalleryUseCase, deviceId: String) {
 		self.useCase = useCase
+		self.deviceId = deviceId
 	}
 
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
 		let metadata = info[.mediaMetadata] as? NSDictionary
 		Task { @MainActor in
-			if let image = info[.originalImage] as? UIImage,
-			   let imageUrl = try? await useCase.saveImage(image, metadata: metadata) {
-				imageCallback?(imageUrl)
+			if let image = info[.originalImage] as? UIImage {
+				imageCallback?(GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata))
 			}
 		}
 
@@ -198,7 +245,7 @@ private extension GalleryViewModel {
 		}
 	}
 
-	func showExitAlert(message: String, dismissAction: DismissAction) {
+	func showExitAlert(message: String, dismissAction: @escaping VoidCallback) {
 		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.exit.localized, { _ in  dismissAction() })
 		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.exitPhotoVerification.localized,
 												  message: message,
@@ -207,5 +254,53 @@ private extension GalleryViewModel {
 												  okAction: exitAction)
 
 		AlertHelper().showAlert(alertObject)
+	}
+
+	func showUploadStarted() {
+		let obj = FailSuccessStateObject(type: .changeFrequency,
+										 title: LocalizableString.PhotoVerification.uploadStartedSuccessfully.localized,
+										 subtitle: LocalizableString.PhotoVerification.uploadStartedSuccessfullyDescription.localized.attributedMarkdown,
+										 cancelTitle: LocalizableString.continue.localized,
+										 retryTitle: LocalizableString.share.localized,
+										 actionButtonsLayout: .vertical,
+										 actionButtonsAtTheBottom: true,
+										 contactSupportAction: nil,
+										 cancelAction: {
+			Router.shared.popToRoot()
+		},
+										 retryAction: { [weak self] in
+			self?.showShareSheet = true
+		})
+
+		uploadStartedObject = obj
+		showUploadStartedSuccess = true
+	}
+
+	func showFail(error: NetworkErrorResponse) {
+		let info = error.uiInfo
+		let obj = info.defaultFailObject(type: .gallery) { [weak self] in
+			self?.showFail = false
+		}
+
+		failObject = obj
+		showFail = true
+	}
+
+	func deleteImageImage(_ image: GalleryView.GalleryImage) async throws {
+		if let remoteUrl = image.remoteUrl {
+			try await useCase.deleteImage(remoteUrl, deviceId: deviceId)
+		}
+		images.removeAll(where: { $0 == image })
+	}
+
+	func deleteAllImages() {
+		nonisolated(unsafe) let imagesToDelete = images
+
+		Task { @MainActor in
+			await imagesToDelete.asyncForEach { galleryImage in
+				nonisolated(unsafe) let image = galleryImage
+				try? await deleteImageImage(image)
+			}
+		}
 	}
 }

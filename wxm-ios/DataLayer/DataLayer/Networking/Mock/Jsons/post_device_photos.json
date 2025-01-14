@@ -1,0 +1,14 @@
+[
+	{
+		"url": "https://wxm-station-photos-dev.s3.eu-west-2.amazonaws.com/",
+		"fields": {
+			"bucket": "wxm-station-photos-dev",
+			"X-Amz-Algorithm": "AWS4-HMAC-SHA256",
+			"X-Amz-Credential": "AKIA5L3Q742TP4MZSCEB/20241220/eu-west-2/s3/aws4_request",
+			"X-Amz-Date": "20241220T120102Z",
+			"key": "exotic-pecan-aurora/1",
+			"Policy": "eyJleHBpcmF0aW9uIjoiMi9zMy9hd3M0x3J1cXV1c3QifSx71lgtQW16LURhdGU10ilylOMTIyMFQxMjAxMDJaIn®seyJ[ZXki0¡JleG90аWMtcGVjYW4tYXVyb3JhLzEifV19",
+			"X-Amz-Signature": "7738c4930d8da4d42fe41697f6f1168374e8de5db50f386ec0d910d6c7d6c9c6"
+		}
+	}
+]

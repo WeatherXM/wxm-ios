@@ -216,8 +216,13 @@ class SwinjectHelper: SwinjectInterface {
 
 		// MARK: - Photos
 
-		container.register(PhotosRepository.self) { _ in
-			PhotosRepositoryImpl()
+		container.register(FileUploaderService.self) { _ in
+			FileUploaderService()
+		}
+		.inObjectScope(.container)
+
+		container.register(PhotosRepository.self) { resolver in
+			PhotosRepositoryImpl(fileUploader: resolver.resolve(FileUploaderService.self)!)
 		}
 
 		container.register(PhotoGalleryUseCase.self) { resolver in

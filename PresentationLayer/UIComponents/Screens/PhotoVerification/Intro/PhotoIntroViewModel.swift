@@ -38,15 +38,17 @@ class PhotoIntroViewModel: ObservableObject {
 		(LocalizableString.PhotoVerification.notLikeThis.localized, Self.getFaultExamples())
 	}()
 
+	private let deviceId: String
 	private let photoGalleryUseCase: PhotoGalleryUseCase
 
-	init(photoGalleryUseCase: PhotoGalleryUseCase) {
+	init(deviceId: String, photoGalleryUseCase: PhotoGalleryUseCase) {
+		self.deviceId = deviceId
 		self.photoGalleryUseCase = photoGalleryUseCase
 		areTermsAccepted = photoGalleryUseCase.areTermsAccepted
 	}
 
 	func handleBeginButtonTap() {
-		let viewModel = ViewModelsFactory.getGalleryViewModel(images: [], isNewVerification: true)
+		let viewModel = ViewModelsFactory.getGalleryViewModel(deviceId: deviceId, images: [], isNewVerification: true)
 		Router.shared.navigateTo(.photoGallery(viewModel))
 	}
 }
@@ -55,16 +57,18 @@ extension PhotoIntroViewModel: HashableViewModel {
 	nonisolated func hash(into hasher: inout Hasher) {
 	}
 
-	static func getInitialRoute(images: [String], isNewPhotoVerification: Bool) -> Route {
+	static func getInitialRoute(deviceId: String, images: [String], isNewPhotoVerification: Bool) -> Route {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
 		let areTermsAccepted = useCase.areTermsAccepted
 
 		if areTermsAccepted {
-			let viewModel = ViewModelsFactory.getGalleryViewModel(images: images, isNewVerification: isNewPhotoVerification)
+			let viewModel = ViewModelsFactory.getGalleryViewModel(deviceId: deviceId,
+																  images: images,
+																  isNewVerification: isNewPhotoVerification)
 			return .photoGallery(viewModel)
 		}
 
-		let viewModel = ViewModelsFactory.getPhotoIntroViewModel()
+		let viewModel = ViewModelsFactory.getPhotoIntroViewModel(deviceId: deviceId)
 		return .photoIntro(viewModel)
 	}
 }
