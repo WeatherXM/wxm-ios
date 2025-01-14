@@ -84,6 +84,11 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		photosUseCase.uploadCompletedPublisher.sink { [weak self] deviceId, _ in
 			self?.updateUploadInProgressDevice(deviceId: deviceId)
 			self?.uploadState = .completed
+
+			let stationName = self?.uploadInProgressStationName ?? "-"
+			WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .uploadingPhotoSuccess,
+																	  .itemId: .custom(stationName)])
+
 		}.store(in: &cancellableSet)
 
 		if let deviceId = photosUseCase.getUploadInProgressDeviceId() {
