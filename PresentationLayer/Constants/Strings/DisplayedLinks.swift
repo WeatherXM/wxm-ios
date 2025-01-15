@@ -14,6 +14,7 @@ enum DisplayedLinks {
 	case termsLink
 	case termsOfUse
 	case privacyPolicy
+	case acceptanceUsePolicy
 	case contactLink
 	case weatherXMWebsiteLink
 	case createWalletsLink
@@ -51,6 +52,8 @@ enum DisplayedLinks {
 				return "https://weatherxm.network/terms-of-use.pdf"
 			case .privacyPolicy:
 				return "https://weatherxm.network/privacy-policy.pdf"
+			case .acceptanceUsePolicy:
+				return "https://weatherxm.com/wp-content/uploads/2025/01/WeatherXM-Acceptable-Use-Policy.pdf"
 			case .contactLink:
 				return "https://weatherxm.com/contact/"
 			case .weatherXMWebsiteLink:

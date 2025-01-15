@@ -5699,6 +5699,17 @@
         }
       }
     },
+    "photo_verification_acceptance_use_policy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acceptable Use Policy (AUP)"
+          }
+        }
+      }
+    },
     "photo_verification_all_about" : {
       "extractionState" : "manual",
       "localizations" : {
