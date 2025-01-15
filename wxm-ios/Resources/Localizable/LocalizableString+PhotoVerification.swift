@@ -9,6 +9,7 @@ import Foundation
 
 extension LocalizableString {
 	enum PhotoVerification {
+		case acceptanceUsePolicy
 		case allAbout
 		case photoVerificationIntroTitle
 		case boostNetworkDescription
@@ -89,6 +90,8 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 
 	var key: String {
 		switch self {
+			case .acceptanceUsePolicy:
+				"photo_verification_acceptance_use_policy"
 			case .allAbout:
 				"photo_verification_all_about"
 			case .photoVerificationIntroTitle:

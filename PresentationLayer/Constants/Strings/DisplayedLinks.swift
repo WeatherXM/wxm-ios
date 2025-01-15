@@ -12,6 +12,7 @@ import Toolkit
 enum DisplayedLinks {
 	case emptyValue
 	case termsLink
+	case acceptanceUsePolicy
 	case contactLink
 	case weatherXMWebsiteLink
 	case createWalletsLink
@@ -45,6 +46,8 @@ enum DisplayedLinks {
 				return ""
 			case .termsLink:
 				return "https://weatherxm.com/terms-conditions/"
+			case .acceptanceUsePolicy:
+				return "https://weatherxm.com/wp-content/uploads/2025/01/WeatherXM-Acceptable-Use-Policy.pdf"
 			case .contactLink:
 				return "https://weatherxm.com/contact/"
 			case .weatherXMWebsiteLink:
