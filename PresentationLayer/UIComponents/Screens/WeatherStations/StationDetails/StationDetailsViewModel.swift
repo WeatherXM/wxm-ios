@@ -192,19 +192,15 @@ private extension StationDetailsViewModel {
                 return
             }
             LoaderView.shared.show()
-            Task { [weak self] in
+			Task { @MainActor [weak self] in
                 guard let self,
 					  let result = try await self.useCase?.followStation(deviceId: self.deviceId) else {
                     return
                 }
 
-                DispatchQueue.main.async {
-                    LoaderView.shared.dismiss {
-                        Task {
-                            await self.handleFollowResult(result)
-                        }
-                    }
-                }
+				await self.handleFollowResult(result)
+
+				LoaderView.shared.dismiss()
             }
         }
 
@@ -218,19 +214,15 @@ private extension StationDetailsViewModel {
     func performUnFollow() {
         let okAction = {
             LoaderView.shared.show()
-            Task { [weak self] in
+			Task { @MainActor [weak self] in
                 guard let self,
                       let result = try await self.useCase?.unfollowStation(deviceId: self.deviceId) else {
                     return
                 }
 
-                DispatchQueue.main.async {
-                    LoaderView.shared.dismiss {
-                        Task {
-                            await self.handleFollowResult(result)
-                        }
-                    }
-                }
+				await self.handleFollowResult(result)
+
+				LoaderView.shared.dismiss()
             }
         }
 
