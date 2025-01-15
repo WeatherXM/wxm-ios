@@ -95,8 +95,10 @@ enum ForecastChartType: String, ChartCardProtocol {
 	
 	func configureAxis(leftAxis: YAxis, rightAxis: YAxis, for lineData: LineChartData) {
 		switch self {
-			case .temperature, .wind, .humidity, .uv:
+			case .temperature, .wind, .humidity:
 				break
+			case .uv:
+				leftAxis.axisMinimum = 0.0
 			case .precipitation:
 				rightAxis.axisMinimum = 0.0
 				leftAxis.axisMinimum = 0.0
