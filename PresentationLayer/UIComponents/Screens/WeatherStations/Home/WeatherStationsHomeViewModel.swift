@@ -84,6 +84,11 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		photosUseCase.uploadCompletedPublisher.sink { [weak self] deviceId, _ in
 			self?.updateUploadInProgressDevice(deviceId: deviceId)
 			self?.uploadState = .completed
+
+			let stationName = self?.uploadInProgressStationName ?? "-"
+			WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .uploadingPhotosSuccess,
+																	  .itemId: .custom(stationName)])
+
 		}.store(in: &cancellableSet)
 
 		if let deviceId = photosUseCase.getUploadInProgressDeviceId() {
@@ -214,11 +219,13 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 
 	func handleInfoBannerActionTap(url: String) {
-		guard let url = URL(string: url) else {
+		guard let webUrl = URL(string: url) else {
 			return
 		}
 
-		Router.shared.showFullScreen(.safariView(url))
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .announcementButton,
+																	.itemId: .custom(url)])
+		Router.shared.showFullScreen(.safariView(webUrl))
 	}
 
 	func handleUploadBannerTap() {
@@ -236,6 +243,8 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 				guard let deviceId = uploadInProgressDeviceId else {
 					return
 				}
+
+				WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .retryUploadingPhotos])
 
 				Task { @MainActor in
 					try? await photosUseCase.retryUpload(deviceId: deviceId)

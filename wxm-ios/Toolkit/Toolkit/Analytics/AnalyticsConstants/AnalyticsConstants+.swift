@@ -103,6 +103,8 @@ extension ParameterValue: RawRepresentable {
 				return "Change Password"
 			case .announcements:
 				return "Announcements"
+			case .announcementButton:
+				return "Announcement Button"
 			case .login:
 				return "Login"
 			case .email:
@@ -169,6 +171,8 @@ extension ParameterValue: RawRepresentable {
 				return "device_info"
 			case .settingsSource:
 				return "settings"
+			case .claimingSource:
+				return "claiming"
 			case .errorSource:
 				return "error"
 			case .networkStatsSource:
@@ -441,6 +445,20 @@ extension ParameterValue: RawRepresentable {
 				return "Stakeholder"
 			case .tokensEarnedPress:
 				return "Tokens Earned pressed"
+			case .addStationPhoto:
+				return "Add Station Photo"
+			case .exitPhotoVerification:
+				return "Exit Photo Verification"
+			case .cancelUploadingPhotos:
+				return "Cancel Uploading Photos"
+			case .retryUploadingPhotos:
+				return "Retry Uploading Photos"
+			case .startUploadingPhotos:
+				return "Start Uploading Photos"
+			case .uploadingPhotosSuccess:
+				return "Uploading Photos Success"
+			case .goToPhotoVerification:
+				return "Go To Photo Verification"
 		}
 	}
 }
