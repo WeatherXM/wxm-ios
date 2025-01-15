@@ -103,6 +103,8 @@ extension ParameterValue: RawRepresentable {
 				return "Change Password"
 			case .announcements:
 				return "Announcements"
+			case .announcementButton:
+				return "Announcement Button"
 			case .login:
 				return "Login"
 			case .email:
@@ -453,8 +455,8 @@ extension ParameterValue: RawRepresentable {
 				return "Retry Uploading Photos"
 			case .startUploadingPhotos:
 				return "Start Uploading Photos"
-			case .uploadingPhotoSuccess:
-				return "Uploading Photo Success"
+			case .uploadingPhotosSuccess:
+				return "Uploading Photos Success"
 			case .goToPhotoVerification:
 				return "Go To Photo Verification"
 		}
