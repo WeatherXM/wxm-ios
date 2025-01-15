@@ -195,6 +195,7 @@ private extension StationDetailsViewModel {
 			Task { @MainActor [weak self] in
                 guard let self,
 					  let result = try await self.useCase?.followStation(deviceId: self.deviceId) else {
+					LoaderView.shared.dismiss()
                     return
                 }
 
@@ -217,6 +218,7 @@ private extension StationDetailsViewModel {
 			Task { @MainActor [weak self] in
                 guard let self,
                       let result = try await self.useCase?.unfollowStation(deviceId: self.deviceId) else {
+					LoaderView.shared.dismiss()
                     return
                 }
 
