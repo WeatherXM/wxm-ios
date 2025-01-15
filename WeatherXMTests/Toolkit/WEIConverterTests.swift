@@ -58,8 +58,8 @@ final class WEIConverterTests: XCTestCase {
 
 	func testOnlySpacesString() throws {
 		let converter = WEIConverter(value: "  ")
-		XCTAssertNil(converter.toEthDecimal)
-		XCTAssertNil(converter.toEthDouble)
+		XCTAssertEqual(converter.toEthDecimal, 0.0)
+		XCTAssertEqual(converter.toEthDouble, 0.0)
 	}
 
 	func testNonDigitsString() throws {

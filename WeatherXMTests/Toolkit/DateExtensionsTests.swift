@@ -42,8 +42,9 @@ final class DateExtensionsTests: XCTestCase {
 		date = date?.set(day: 5)
 		date = date?.set(month: 5)
 		date = date?.set(year: 2024)
-		let expectedResult = "2024-05-05T03:00:00\(TimeZone.current.fomattedGMTOffset)"
-		XCTAssert(date?.toTimestamp() == expectedResult, "Timestamp should be \(expectedResult)")
+		let expectedResult = "2024-05-05T03:00:00\(TimeZone.current.fomattedGMTOffset(date: date!))"
+		let result = date?.toTimestamp()
+		XCTAssert(result == expectedResult, "Timestamp should be \(expectedResult)")
 	}
 
 	func testTransactionsDateFormat() {
