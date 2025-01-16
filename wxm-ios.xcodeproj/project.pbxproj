@@ -24,13 +24,11 @@
 		2618A7162A21014200983B7B /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7152A21014200983B7B /* AlertsViewModel.swift */; };
 		2618A7262A24F93000983B7B /* BottomSheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7252A24F93000983B7B /* BottomSheetModifier.swift */; };
 		261CD81829CB2D5B00C0CECE /* PercentageGridLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */; };
-		261E9EA029A925EB00E8EBA3 /* Veil in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9E9F29A925EB00E8EBA3 /* Veil */; };
 		261E9EA729A9275C00E8EBA3 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EA629A9275C00E8EBA3 /* Swinject */; };
 		261E9EAA29A927BE00E8EBA3 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EA929A927BE00E8EBA3 /* CodeScanner */; };
 		261E9EB029A9296900E8EBA3 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EAF29A9296900E8EBA3 /* IQKeyboardManagerSwift */; };
 		261E9EB529A92B9400E8EBA3 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EB429A92B9400E8EBA3 /* MapboxMaps */; };
 		261E9EB829A92BE000E8EBA3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EB729A92BE000E8EBA3 /* Alamofire */; };
-		261E9EBB29A92C4200E8EBA3 /* Turf in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EBA29A92C4200E8EBA3 /* Turf */; };
 		2623E2232A6FC29100E3E306 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623E2222A6FC29100E3E306 /* RouterView.swift */; };
 		2623FF912AF147A800BCDAC6 /* RewardDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */; };
 		2623FF932AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623FF922AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift */; };
@@ -45,6 +43,7 @@
 		262B03072B20BC7B00C31FE7 /* AppUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B03062B20BC7B00C31FE7 /* AppUpdateView.swift */; };
 		262B03092B20BDB700C31FE7 /* LocalizableString+AppUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B03082B20BDB700C31FE7 /* LocalizableString+AppUpdate.swift */; };
 		262B030B2B20CB7200C31FE7 /* AppUpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B030A2B20CB7200C31FE7 /* AppUpdateViewModel.swift */; };
+		262B97482D393FC0002EFC6B /* Turf in Frameworks */ = {isa = PBXBuildFile; productRef = 262B97472D393FC0002EFC6B /* Turf */; };
 		262C7C1C2A94F6AF0042ACE6 /* YAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C7C1B2A94F6AF0042ACE6 /* YAxisValueFormatter.swift */; };
 		262C7C5A2A9745350042ACE6 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C7C592A9745350042ACE6 /* AlertHelper.swift */; };
 		262C7C5D2A9746420042ACE6 /* AlertHelper+Follow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262C7C5C2A9746420042ACE6 /* AlertHelper+Follow.swift */; };
@@ -1160,10 +1159,9 @@
 				262A0DFD29DC1823005B14A2 /* Lottie in Frameworks */,
 				261E9EB529A92B9400E8EBA3 /* MapboxMaps in Frameworks */,
 				261E9EA729A9275C00E8EBA3 /* Swinject in Frameworks */,
+				262B97482D393FC0002EFC6B /* Turf in Frameworks */,
 				26A86BFB2C7F68C400F1C2CF /* DGCharts in Frameworks */,
 				26DD42CB29AF56B9008E277E /* Toolkit.framework in Frameworks */,
-				261E9EBB29A92C4200E8EBA3 /* Turf in Frameworks */,
-				261E9EA029A925EB00E8EBA3 /* Veil in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2779,13 +2777,11 @@
 			);
 			name = "wxm-ios";
 			packageProductDependencies = (
-				261E9E9F29A925EB00E8EBA3 /* Veil */,
 				261E9EA629A9275C00E8EBA3 /* Swinject */,
 				261E9EA929A927BE00E8EBA3 /* CodeScanner */,
 				261E9EAF29A9296900E8EBA3 /* IQKeyboardManagerSwift */,
 				261E9EB429A92B9400E8EBA3 /* MapboxMaps */,
 				261E9EB729A92BE000E8EBA3 /* Alamofire */,
-				261E9EBA29A92C4200E8EBA3 /* Turf */,
 				262A0DFC29DC1823005B14A2 /* Lottie */,
 				263B8B542B29FE34001C5060 /* MapboxStatic */,
 				26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */,
@@ -2795,6 +2791,7 @@
 				26C801DB2C2B162A00D6AC60 /* FLAnimatedImage */,
 				26A86BFA2C7F68C400F1C2CF /* DGCharts */,
 				267EC3B52CCBDF2C0085B50A /* PulseUI */,
+				262B97472D393FC0002EFC6B /* Turf */,
 			);
 			productName = "wxm-ios";
 			productReference = B52BCC712824FB8F00EA3DA5 /* WeatherXM.app */;
@@ -2834,13 +2831,11 @@
 			);
 			mainGroup = B52BCC682824FB8F00EA3DA5;
 			packageReferences = (
-				261E9E9E29A925EB00E8EBA3 /* XCRemoteSwiftPackageReference "Veil" */,
 				261E9EA529A9275C00E8EBA3 /* XCRemoteSwiftPackageReference "Swinject" */,
 				261E9EA829A927BE00E8EBA3 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				261E9EAE29A9296900E8EBA3 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				261E9EB329A92B9400E8EBA3 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 				261E9EB629A92BE000E8EBA3 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				261E9EB929A92C4200E8EBA3 /* XCRemoteSwiftPackageReference "turf-swift" */,
 				262A0DFB29DC1823005B14A2 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				263B8B4B2B29EA64001C5060 /* XCRemoteSwiftPackageReference "MapboxStatic" */,
 				26FFAD662B8DF9C200BF0A6B /* XCRemoteSwiftPackageReference "LazyLoadingPager" */,
@@ -2850,6 +2845,7 @@
 				26C801DA2C2B162A00D6AC60 /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
 				26A86BF92C7F68C400F1C2CF /* XCRemoteSwiftPackageReference "Charts" */,
 				267EC3B42CCBDF2C0085B50A /* XCRemoteSwiftPackageReference "Pulse" */,
+				262B97462D393FC0002EFC6B /* XCRemoteSwiftPackageReference "turf-swift" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -4193,14 +4189,6 @@
 				minimumVersion = 1.2.0;
 			};
 		};
-		261E9E9E29A925EB00E8EBA3 /* XCRemoteSwiftPackageReference "Veil" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/DanielCardonaRojas/Veil";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.0;
-			};
-		};
 		261E9EA529A9275C00E8EBA3 /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject";
@@ -4241,20 +4229,20 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		261E9EB929A92C4200E8EBA3 /* XCRemoteSwiftPackageReference "turf-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mapbox/turf-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		262A0DFB29DC1823005B14A2 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
+			};
+		};
+		262B97462D393FC0002EFC6B /* XCRemoteSwiftPackageReference "turf-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/turf-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
 			};
 		};
 		263B8B4B2B29EA64001C5060 /* XCRemoteSwiftPackageReference "MapboxStatic" */ = {
@@ -4329,11 +4317,6 @@
 			package = 261729F22C36A14C00A1CEFA /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = SwiftUIIntrospect;
 		};
-		261E9E9F29A925EB00E8EBA3 /* Veil */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 261E9E9E29A925EB00E8EBA3 /* XCRemoteSwiftPackageReference "Veil" */;
-			productName = Veil;
-		};
 		261E9EA629A9275C00E8EBA3 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9EA529A9275C00E8EBA3 /* XCRemoteSwiftPackageReference "Swinject" */;
@@ -4359,15 +4342,15 @@
 			package = 261E9EB629A92BE000E8EBA3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		261E9EBA29A92C4200E8EBA3 /* Turf */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 261E9EB929A92C4200E8EBA3 /* XCRemoteSwiftPackageReference "turf-swift" */;
-			productName = Turf;
-		};
 		262A0DFC29DC1823005B14A2 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 262A0DFB29DC1823005B14A2 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		262B97472D393FC0002EFC6B /* Turf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 262B97462D393FC0002EFC6B /* XCRemoteSwiftPackageReference "turf-swift" */;
+			productName = Turf;
 		};
 		263B8B542B29FE34001C5060 /* MapboxStatic */ = {
 			isa = XCSwiftPackageProductDependency;
