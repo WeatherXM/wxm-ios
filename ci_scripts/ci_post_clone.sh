@@ -49,6 +49,12 @@ CONFIGURATION_PATH=${CI_PRIMARY_REPOSITORY_PATH}/Configuration/Production/Config
 setupConfiguration $CONFIGURATION_PATH
 fi
 
+if [ "$CI_WORKFLOW" = "Unit tests" ];
+then
+CONFIGURATION_PATH=${CI_PRIMARY_REPOSITORY_PATH}/Configuration/Debug/ConfigDebug.xcconfig
+setupConfiguration $CONFIGURATION_PATH
+fi
+
 defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
 defaults delete com.apple.dt.Xcode IDEPackageOnlyUseVersionsFromResolvedFile
 defaults delete com.apple.dt.Xcode IDEDisableAutomaticPackageResolution

@@ -151,9 +151,9 @@ public extension Date {
 
     func toTimestamp(with timeZone: TimeZone = .current) -> String {
         let dateformat = DateFormatter()
+		dateformat.timeZone = timeZone
         dateformat.dateFormat = DateFormat.timestamp.rawValue
         dateformat.locale = Locale(identifier: "en_US_POSIX")
-        dateformat.timeZone = timeZone
         return dateformat.string(from: self)
     }
 
@@ -324,10 +324,12 @@ public extension TimeZone {
 		secondsFromGMT() == 0
 	}
 
-	var fomattedGMTOffset: String {
-	  let timeZoneFormatter = DateFormatter()
-	  timeZoneFormatter.dateFormat = "ZZZZZ"
-	  return timeZoneFormatter.string(from: Date())
+	func fomattedGMTOffset(date: Date = .now) -> String {
+		let timeZoneFormatter = DateFormatter()
+		timeZoneFormatter.dateFormat = "ZZZZZ"
+		timeZoneFormatter.timeZone = self
+		timeZoneFormatter.locale = Locale(identifier: "en_US_POSIX")
+		return timeZoneFormatter.string(from: date)
   }
 
 	static var UTCTimezone: TimeZone? {
