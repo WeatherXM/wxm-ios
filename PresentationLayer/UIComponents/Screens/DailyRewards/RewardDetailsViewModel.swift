@@ -10,6 +10,7 @@ import DomainLayer
 import SwiftUI
 import Toolkit
 
+@MainActor
 class RewardDetailsViewModel: ObservableObject {
 
 	@Published var showInfo: Bool = false
@@ -259,7 +260,9 @@ extension RewardDetailsViewModel: SelectStationLocationViewModelDelegate {
 }
 
 extension RewardDetailsViewModel: HashableViewModel {
-	func hash(into hasher: inout Hasher) {
-		hasher.combine("\(String(describing: device.id))-\(String(describing: rewardDetailsResponse?.hashValue))")
+	nonisolated func hash(into hasher: inout Hasher) {
+		MainActor.assumeIsolated {
+			hasher.combine("\(String(describing: device.id))-\(String(describing: rewardDetailsResponse?.hashValue))")
+		}
 	}
 }

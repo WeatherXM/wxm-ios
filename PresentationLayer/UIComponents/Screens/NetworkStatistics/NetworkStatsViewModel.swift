@@ -12,6 +12,7 @@ import DGCharts
 import Toolkit
 import SwiftUI
 
+@MainActor
 class NetworkStatsViewModel: ObservableObject {
 
     @Published var dataDays: NetworkStatsView.Statistics?
@@ -78,7 +79,7 @@ class NetworkStatsViewModel: ObservableObject {
 }
 
 extension NetworkStatsViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
 
     }
 }

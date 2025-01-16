@@ -9,6 +9,7 @@ import Foundation
 import DomainLayer
 import Toolkit
 
+@MainActor
 class ClaimDeviceLocationViewModel: ObservableObject {
 	@Published var termsAccepted = false
 	@Published var selectedLocation: DeviceLocation?

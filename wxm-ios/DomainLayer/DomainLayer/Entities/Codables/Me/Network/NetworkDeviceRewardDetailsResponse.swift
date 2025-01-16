@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable {
+public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable, Sendable {
 	public let timestamp: Date?
 	public let totalDailyReward: Double?
 	public let annotations: [RewardAnnotation]?
@@ -26,7 +26,7 @@ public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable {
 }
 
 public extension NetworkDeviceRewardDetailsResponse {
-	struct Base: Codable, Hashable {
+	struct Base: Codable, Hashable, Sendable {
 		public let actualReward: Double?
 		public let rewardScore: Int?
 		public let maxReward: Double?
@@ -44,7 +44,7 @@ public extension NetworkDeviceRewardDetailsResponse {
 		}
 	}
 
-	struct Boost: Codable, Hashable {
+	struct Boost: Codable, Hashable, Sendable {
 		public let totalReward: Double?
 		public let data: [BoostReward]?
 
@@ -54,7 +54,7 @@ public extension NetworkDeviceRewardDetailsResponse {
 		}
 	}
 
-	struct BoostReward: Codable, Hashable {
+	struct BoostReward: Codable, Hashable, Sendable {
 		public let code: BoostCode?
 		public let title: String?
 		public let description: String?
@@ -88,7 +88,7 @@ public extension NetworkDeviceRewardDetailsResponse {
 	}
 }
 
-public enum BoostCode: Codable, RawRepresentable, Hashable, Comparable {
+public enum BoostCode: Codable, RawRepresentable, Hashable, Comparable, Sendable {
 	case betaReward
 	case unknown(String)
 
@@ -111,7 +111,7 @@ public enum BoostCode: Codable, RawRepresentable, Hashable, Comparable {
 	}
 }
 
-public struct RewardSplit: Codable, Hashable {
+public struct RewardSplit: Codable, Hashable, Sendable {
 	public let stake: Double?
 	public let wallet: String?
 	public let reward: Double?

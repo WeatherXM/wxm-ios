@@ -9,7 +9,7 @@ import Foundation
 import DomainLayer
 import MapboxMaps
 
-extension ExplorerData: Equatable {
+extension ExplorerData: @retroactive Equatable {
 	public static func == (lhs: ExplorerData, rhs: ExplorerData) -> Bool {
 		lhs.totalDevices == rhs.totalDevices &&
 		lhs.polygonPoints == rhs.polygonPoints

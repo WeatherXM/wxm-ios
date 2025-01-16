@@ -10,6 +10,7 @@ import Combine
 import DomainLayer
 import Toolkit
 
+@MainActor
 class MyWalletViewModel: ObservableObject {
     private let ethAddressPrefix = "0x"
     private let ethAddressLength = 42
@@ -125,8 +126,10 @@ class MyWalletViewModel: ObservableObject {
 }
 
 extension MyWalletViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(wallet?.address)
+	nonisolated func hash(into hasher: inout Hasher) {
+		MainActor.assumeIsolated {
+			hasher.combine(wallet?.address)
+		}
     }
 }
 

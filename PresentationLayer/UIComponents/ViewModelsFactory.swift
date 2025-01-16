@@ -18,6 +18,7 @@ extension HashableViewModel {
     }
 }
 
+@MainActor
 enum ViewModelsFactory {
     static func getStationDetailsViewModel(deviceId: String, cellIndex: String?, cellCenter: CLLocationCoordinate2D?) -> StationDetailsViewModel {
         StationDetailsViewModel(deviceId: deviceId, cellIndex: cellIndex, cellCenter: cellCenter, swinjectHelper: SwinjectHelper.shared)

@@ -11,6 +11,7 @@ import struct SwiftUI.CGFloat
 import UIKit
 import Toolkit
 
+@MainActor
 final class RewardsTimelineViewModel: ObservableObject {
     private let useCase: RewardsTimelineUseCase
 
@@ -119,7 +120,7 @@ final class RewardsTimelineViewModel: ObservableObject {
 }
 
 extension RewardsTimelineViewModel: HashableViewModel {
-    func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(device.id)
     }
 }

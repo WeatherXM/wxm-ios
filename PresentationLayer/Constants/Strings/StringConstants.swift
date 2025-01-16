@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum StringConstants {
     static let plusSign = "+"
     static let wxm = "WXM"

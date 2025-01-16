@@ -10,6 +10,7 @@ import DomainLayer
 import Toolkit
 import Combine
 
+@MainActor
 class AccountConfirmationViewModel: ObservableObject {
     @Published var password: String = "" {
         didSet {

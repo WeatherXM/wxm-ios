@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct LocationCoordinates: Equatable, Codable {
+public struct LocationCoordinates: Equatable, Codable, Sendable {
     public let lat: Double
     public let lon: Double
 

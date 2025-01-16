@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkDeviceHistoryResponse: Codable {
+public struct NetworkDeviceHistoryResponse: Codable, Sendable {
     public let tz: String
     public let date: String
     public let hourly: [CurrentWeather]?

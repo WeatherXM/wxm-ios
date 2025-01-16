@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import DomainLayer
-import Combine
+@preconcurrency import DomainLayer
+@preconcurrency import Combine
 import Alamofire
 
-public class DeviceInfoRepositoryImpl: DeviceInfoRepository {
-	private lazy var bluetoothWrapper: BTActionWrapper = BTActionWrapper()
+public class DeviceInfoRepositoryImpl: @unchecked Sendable, DeviceInfoRepository {
+	nonisolated(unsafe) private lazy var bluetoothWrapper: BTActionWrapper = BTActionWrapper()
 	private var canellables: Set<AnyCancellable> = []
 	private let userDevicesService: UserDevicesService
 
@@ -41,15 +41,16 @@ extension DeviceInfoRepositoryImpl {
 
 	public func rebootStation(device: DeviceDetails) -> AnyPublisher<RebootStationState, Never> {
 		let valueSubject = CurrentValueSubject<RebootStationState, Never>(.connect)
-		Task {
+
+		Task { @MainActor [weak self, valueSubject] in
 			valueSubject.send(.connect)
-			if let error = await bluetoothWrapper.connect(device: device) {
+			if let error = await self?.bluetoothWrapper.connect(device: device) {
 				valueSubject.send(.failed(error.toRebootError))
 				return
 			}
 
 			valueSubject.send(.rebooting)
-			if let error = await bluetoothWrapper.reboot(device: device) {
+			if let error = await self?.bluetoothWrapper.reboot(device: device) {
 				valueSubject.send(.failed(error.toRebootError))
 				return
 			}

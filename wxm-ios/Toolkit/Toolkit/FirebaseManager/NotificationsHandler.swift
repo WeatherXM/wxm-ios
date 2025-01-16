@@ -8,9 +8,9 @@
 import Foundation
 import FirebaseMessaging
 import UIKit
-import Combine
+@preconcurrency import Combine
 
-class NotificationsHandler: NSObject {
+final class NotificationsHandler: NSObject, Sendable {
 	let latestNotificationPublisher: AnyPublisher<UNNotificationResponse?, Never>
 	let authorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>
 	let fcmTokenPublisher: AnyPublisher<String?, Never>
@@ -19,7 +19,7 @@ class NotificationsHandler: NSObject {
 	private let authorizationStatusSubject: CurrentValueSubject<UNAuthorizationStatus?, Never> = .init(nil)
 	private let fcmTokenSubject: PassthroughSubject<String?, Never> = .init()
 
-	private var cancellableSet: Set<AnyCancellable> = .init()
+	nonisolated(unsafe) private var cancellableSet: Set<AnyCancellable> = .init()
 
 	override init() {
 		latestNotificationPublisher = latestNotificationSubject.eraseToAnyPublisher()
@@ -66,7 +66,7 @@ private extension NotificationsHandler {
 	}
 
 	func refreshAuthorizationStatus() {
-		Task {
+		Task { @Sendable in
 			let status = await getAuthorizationStatus()
 			authorizationStatusSubject.send(status)
 		}
@@ -80,7 +80,6 @@ extension NotificationsHandler: UNUserNotificationCenterDelegate {
 		completionHandler([.banner, .badge, .sound, .list])
 	}
 
-	@MainActor
 	func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
 		latestNotificationSubject.send(response)
 	}

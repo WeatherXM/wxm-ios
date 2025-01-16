@@ -84,7 +84,7 @@ extension MapBoxMap {
         Coordinator(viewModel: explorerViewModel)
     }
 
-    class Coordinator: NSObject, MapViewControllerDelegate {
+	@MainActor class Coordinator: NSObject, MapViewControllerDelegate {
 		private var canellableSet: Set<AnyCancellable> = .init()
 
         func didTapAnnotation(_: MapViewController, _ annotations: [PolygonAnnotation]) {
@@ -292,6 +292,7 @@ class MapViewController: UIViewController {
 	}
 }
 
+@MainActor
 protocol MapViewControllerDelegate: AnyObject {
 	func configureMap(_ mapViewController: MapViewController)
 	func didTapAnnotation(_ mapViewController: MapViewController, _ annotations: [PolygonAnnotation])

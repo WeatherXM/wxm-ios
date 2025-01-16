@@ -10,6 +10,7 @@ import Toolkit
 import DomainLayer
 import Combine
 
+@MainActor
 class SelectDeviceViewModel: ObservableObject {
 	let scanDuration: CGFloat = 5.0
 	@Published var isBluetoothReady: Bool = false

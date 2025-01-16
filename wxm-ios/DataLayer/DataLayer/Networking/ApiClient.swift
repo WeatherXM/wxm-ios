@@ -30,7 +30,7 @@ public class ApiClient {
         return session
     }()
 
-    static let shared: ApiClient = ApiClient()
+	nonisolated(unsafe) static let shared: ApiClient = ApiClient()
 
     #warning("TODO: Improve publishers caching. For now, we perform everything in main thread to avoid race conditions")
     private let queue = DispatchQueue.main

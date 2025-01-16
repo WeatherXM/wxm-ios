@@ -9,7 +9,7 @@ import Combine
 import DomainLayer
 import Foundation
 
-public class FirmwareUpdateImpl {
+public class FirmwareUpdateImpl: @unchecked Sendable {
 	private let stateSubject = CurrentValueSubject<FirmwareUpdateState, Never>(.unknown)
 	private var cancellableSet: Set<AnyCancellable> = []
 	private var updater: FirmwareUpdater?

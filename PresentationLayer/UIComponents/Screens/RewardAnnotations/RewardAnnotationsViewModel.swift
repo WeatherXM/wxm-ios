@@ -11,6 +11,7 @@ import DomainLayer
 import SwiftUI
 import Toolkit
 
+@MainActor
 class RewardAnnotationsViewModel: ObservableObject {
 	let device: DeviceDetails
 	let annotations: [RewardAnnotation]
@@ -38,7 +39,7 @@ class RewardAnnotationsViewModel: ObservableObject {
 }
 
 extension RewardAnnotationsViewModel: HashableViewModel {
-	func hash(into hasher: inout Hasher) {
+	nonisolated func hash(into hasher: inout Hasher) {
 		hasher.combine("\(String(describing: device.id))-\(refDate.timeIntervalSince1970)")
 	}
 }

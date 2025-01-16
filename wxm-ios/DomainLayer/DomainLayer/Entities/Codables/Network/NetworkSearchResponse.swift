@@ -17,12 +17,12 @@ extension NetworkSearchItem {
     public typealias Codable = Self
 }
 
-public struct NetworkSearchResponse: Codable {
+public struct NetworkSearchResponse: Codable, Sendable {
     public let devices: [NetworkSearchDevice]?
     public let addresses: [NetworkSearchAddress]?
 }
 
-public struct NetworkSearchDevice: Codable, NetworkSearchItem {
+public struct NetworkSearchDevice: Codable, NetworkSearchItem, Sendable {
     public let id: String?
     public let name: String?
     public let bundle: StationBundle?
@@ -46,7 +46,7 @@ public struct NetworkSearchDevice: Codable, NetworkSearchItem {
     }
 }
 
-public struct NetworkSearchAddress: Codable, NetworkSearchItem {
+public struct NetworkSearchAddress: Codable, NetworkSearchItem, Sendable {
     public let name: String?
     public let place: String?
     public let center: LocationCoordinates?

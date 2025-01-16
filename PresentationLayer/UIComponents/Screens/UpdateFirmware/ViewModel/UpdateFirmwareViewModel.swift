@@ -12,6 +12,7 @@ import Foundation
 import UIKit
 import Toolkit
 
+@MainActor
 class UpdateFirmwareViewModel: ObservableObject {
     let topTitle: String?
     let topSubtitle: String?

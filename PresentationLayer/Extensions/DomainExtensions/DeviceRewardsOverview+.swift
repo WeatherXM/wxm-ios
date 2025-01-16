@@ -9,13 +9,13 @@ import Foundation
 import DomainLayer
 import Toolkit
 
-extension RewardAnnotation: Identifiable {
+extension RewardAnnotation: @retroactive Identifiable {
 	public var id: Int {
 		hashValue
 	}
 }
 
-extension RewardAnnotation.Severity: Comparable {
+extension RewardAnnotation.Severity: @retroactive Comparable {
 	public static func < (lhs: RewardAnnotation.Severity, rhs: RewardAnnotation.Severity) -> Bool {
 		lhs.sortOrder < rhs.sortOrder
 	}

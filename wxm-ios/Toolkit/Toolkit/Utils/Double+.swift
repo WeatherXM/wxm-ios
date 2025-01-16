@@ -37,7 +37,7 @@ public extension Double {
 	}
 	
 	func toPrecisionString(minDecimals: Int = 0, precision: Int) -> String {
-		var formatter = NumberFormatter()
+		let formatter = NumberFormatter()
 		formatter.maximumFractionDigits = precision
 		formatter.minimumFractionDigits = minDecimals
 		formatter.numberStyle = .decimal

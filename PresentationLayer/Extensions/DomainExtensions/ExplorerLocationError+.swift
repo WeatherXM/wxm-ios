@@ -7,7 +7,7 @@
 
 import DomainLayer
 
-extension ExplorerLocationError: CustomStringConvertible {
+extension ExplorerLocationError: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
             case .locationNotFound:

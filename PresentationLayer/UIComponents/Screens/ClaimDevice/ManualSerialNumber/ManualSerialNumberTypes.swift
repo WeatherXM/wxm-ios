@@ -34,6 +34,7 @@ enum SerialNumberInputType: RawRepresentable, CustomStringConvertible {
 		}
 	}
 
+	@MainActor
 	var placeholder: String {
 		switch self {
 			case .claimingKey:

@@ -10,7 +10,7 @@ import SwiftUI
 import DomainLayer
 import Toolkit
 
-extension WeatherField: CustomStringConvertible {
+extension WeatherField: @retroactive CustomStringConvertible {
 
 	static var stationListFields: [WeatherField] {
 		[.temperature, .wind, .humidity, .precipitation]

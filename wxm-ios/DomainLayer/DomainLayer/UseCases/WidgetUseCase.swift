@@ -29,10 +29,11 @@ public struct WidgetUseCase {
 		meRepository.getCachedDevices()?.map { $0.toDeviceDetails }
 	}
 
+	@MainActor
 	public func getDevices(useCache: Bool = true) async throws -> Result<[DeviceDetails], NetworkErrorResponse> {
 		let userDevices = try meRepository.getDevices(useCache: useCache)
 		let publisher = userDevices.convertedToDeviceDetailsResultPublisher
-		return await withUnsafeContinuation { continuation in
+		return await withUnsafeContinuation {  continuation in
 			publisher.sink { result in
 				continuation.resume(returning: result)
 			}

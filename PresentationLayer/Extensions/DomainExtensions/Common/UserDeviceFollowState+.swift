@@ -10,7 +10,7 @@ import DomainLayer
 typealias StateFontAwesome = (icon: FontIcon, color: ColorEnum, font: FontAwesome)
 
 extension UserDeviceFollowState {
-    static let defaultFAIcon: StateFontAwesome = (FontIcon.heart, ColorEnum.favoriteHeart, FontAwesome.FAPro)
+	nonisolated(unsafe) static let defaultFAIcon: StateFontAwesome = (FontIcon.heart, ColorEnum.favoriteHeart, FontAwesome.FAPro)
 
     enum State {
         case owned

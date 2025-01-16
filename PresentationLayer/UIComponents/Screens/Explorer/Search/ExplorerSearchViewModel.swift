@@ -11,12 +11,14 @@ import CoreLocation
 import Toolkit
 import SwiftUI
 
+@MainActor
 protocol ExplorerSearchViewModelDelegate: AnyObject {
     func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?)
     func searchWillBecomeActive(_ active: Bool)
     func settingsButtonTapped()
 }
 
+@MainActor
 class ExplorerSearchViewModel: ObservableObject {
 
     @Published var isSearchActive: Bool = false {

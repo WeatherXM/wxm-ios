@@ -14,7 +14,7 @@ public enum HistoryExclude: String {
     case daily
 }
 
-public enum DeviceRewardsMode: String, CaseIterable {
+public enum DeviceRewardsMode: String, CaseIterable, Sendable {
 	// Temporary disable the year mode.
 	// Once we want it back, just remove the `allCases` implementation below
 	public static var allCases: [DeviceRewardsMode] {
@@ -25,7 +25,7 @@ public enum DeviceRewardsMode: String, CaseIterable {
 	case year
 }
 
-public struct UserDeviceFollowState: Hashable, Codable {
+public struct UserDeviceFollowState: Hashable, Codable, Sendable {
     public let deviceId: String
     public let relation: DeviceRelation
 

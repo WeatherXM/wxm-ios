@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DomainLayer
+@preconcurrency import DomainLayer
 
 private extension WeatherField {
 	func attributedString(from weather: CurrentWeather?,

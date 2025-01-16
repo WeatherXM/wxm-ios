@@ -8,7 +8,7 @@
 import CoreLocation
 import Foundation
 
-public struct ClaimDeviceBody {
+public struct ClaimDeviceBody: Sendable {
     public var serialNumber: String
     public var location: CLLocationCoordinate2D
     public var secret: String?
@@ -19,8 +19,8 @@ public struct ClaimDeviceBody {
         self.secret = secret
     }
 
-    public var dictionaryRepresentation: [String: Any] {
-        var dict: [String: Any] = [
+    public var dictionaryRepresentation: [String: Any & Sendable] {
+        var dict: [String: Any & Sendable] = [
             "serialNumber": serialNumber as String,
             "location": [
                 "lat": location.latitude as Double?,

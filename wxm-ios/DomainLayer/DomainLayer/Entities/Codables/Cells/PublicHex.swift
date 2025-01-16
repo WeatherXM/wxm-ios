@@ -5,7 +5,7 @@
 //  Created by Lampros Zouloumis on 17/8/22.
 //
 
-public struct PublicHex: Codable {
+public struct PublicHex: Codable, Sendable {
     public var index: String = ""
     public var deviceCount: Int?
     public var center: HexLocation = .init()
@@ -19,7 +19,7 @@ public struct PublicHex: Codable {
     }
 }
 
-public struct HexLocation: Codable {
+public struct HexLocation: Codable, Sendable {
     public var lat: Double = 0.0
     public var lon: Double = 0.0
 }

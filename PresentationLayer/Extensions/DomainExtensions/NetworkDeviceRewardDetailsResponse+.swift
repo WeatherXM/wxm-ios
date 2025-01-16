@@ -8,6 +8,7 @@
 import Foundation
 import DomainLayer
 
+@MainActor
 extension NetworkDeviceRewardDetailsResponse {
 	var mainAnnotation: RewardAnnotation? {
 		if let annotation = annotations?.first(where: { $0.severity == .error }) {
@@ -35,6 +36,7 @@ extension NetworkDeviceRewardDetailsResponse {
 }
 
 extension Optional where Wrapped == [RewardSplit] {
+	@MainActor
 	func isUserStakeholder(followState: UserDeviceFollowState?) -> Bool {
 		guard let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address else {
 			return false
