@@ -112,11 +112,11 @@ public enum BoostCode: Codable, RawRepresentable, Hashable, Comparable, Sendable
 }
 
 public struct RewardSplit: Codable, Hashable, Sendable {
-	public let stake: Int?
+	public let stake: Double?
 	public let wallet: String?
 	public let reward: Double?
 
-	public init(stake: Int?, wallet: String?, reward: Double?) {
+	public init(stake: Double?, wallet: String?, reward: Double?) {
 		self.stake = stake
 		self.wallet = wallet
 		self.reward = reward

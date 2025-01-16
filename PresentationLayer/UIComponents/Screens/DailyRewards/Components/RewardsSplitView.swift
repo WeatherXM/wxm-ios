@@ -46,13 +46,14 @@ extension RewardsSplitView {
 			VStack(spacing: CGFloat(.smallToMediumSpacing)) {
 				ForEach(items, id: \.address) { item in
 					VStack(spacing: CGFloat(.smallSpacing)) {
-						HStack {
+						HStack(alignment: .top) {
 							let weight: Font.Weight = item.isUserWallet ? .bold : .regular
 
 							Text(addressString(item: item))
 								.font(.system(size: CGFloat(.mediumFontSize), weight: weight))
 								.foregroundStyle(Color(colorEnum: .darkGrey))
-								.fixedSize(horizontal: false, vertical: true)
+								.lineLimit(1)
+								.fixedSize()
 
 							Spacer()
 
@@ -60,6 +61,8 @@ extension RewardsSplitView {
 								.font(.system(size: CGFloat(.mediumFontSize),
 											  weight: weight))
 								.foregroundStyle(Color(colorEnum: .darkGrey))
+								.lineLimit(2)
+								.multilineTextAlignment(.trailing)
 								.fixedSize(horizontal: false, vertical: true)
 						}
 
@@ -84,16 +87,16 @@ extension RewardsSplitView {
 	struct Item {
 		let address: String
 		let reward: Double?
-		let stake: Int
+		let stake: Double
 		let isUserWallet: Bool
 	}
 }
 
 private extension RewardsSplitView.Item {
 	var valueString: String {
-		var str = "(\(LocalizableString.percentage(Float(stake)).localized))"
+		var str = "\(stake.toPrecisionString(minDecimals:2, precision: 2))%"
 		if let reward {
-			str = "\(reward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency) " + str
+			str = "\(reward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency) " + "(\(str))"
 		}
 
 		return str
@@ -132,8 +135,8 @@ private extension RewardsSplitView {
 }
 
 #Preview {
-	RewardsSplitView(items: [RewardSplit(stake: 60,
+	RewardsSplitView(items: [RewardSplit(stake: 60.4342,
 										 wallet: "0xc4E253863371fdeD8e414731DB951F4C17Bc645e",
-										 reward: 1.2).toSplitViewItem(isUserWallet: true)]) {}
+										 reward: 1.2).toSplitViewItem(showReward: true, isUserWallet: true)]) {}
 		.padding()
 }
