@@ -139,6 +139,14 @@ class StationDetailsViewModel: ObservableObject {
         showLoginAlert = false
         Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel()))
     }
+
+	func trackScreenViewEvent(for index: Int) {
+		guard let tab = StationDetailsViewModel.Tab.allCases[safe: index] else {
+			return
+		}
+
+		WXMAnalytics.shared.trackScreen(tab.analyticsScreen)
+	}
 }
 
 extension StationDetailsViewModel: HashableViewModel {
@@ -163,6 +171,17 @@ extension StationDetailsViewModel {
                     return LocalizableString.StationDetails.rewards.localized
             }
         }
+
+		var analyticsScreen: Screen {
+			switch self {
+				case .overview:
+					return .currentWeather
+				case .forecast:
+					return .forecast
+				case .rewards:
+					return .rewards
+			}
+		}
     }
 }
 
