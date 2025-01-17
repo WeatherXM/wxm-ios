@@ -70,9 +70,6 @@ struct StationForecastView: View {
 		}
         .fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)
         .spinningLoader(show: Binding(get: { viewModel.viewState == .loading }, set: { _ in }), hideContent: true)
-        .onAppear {
-            WXMAnalytics.shared.trackScreen(.forecast)
-        }
     }
 }
 
