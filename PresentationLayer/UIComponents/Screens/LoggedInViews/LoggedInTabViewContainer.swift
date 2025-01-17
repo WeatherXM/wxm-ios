@@ -61,9 +61,6 @@ struct LoggedInTabViewContainer: View {
                                             isTabBarShowing: $isTabBarShowing,
                                             tabBarItemsSize: $tabBarItemsSize,
 											isWalletEmpty: $mainViewModel.isWalletMissing)
-                    .onAppear {
-                        WXMAnalytics.shared.trackScreen(.deviceList)
-                    }
                 case .mapTab:
                     explorer
                         .onAppear {
