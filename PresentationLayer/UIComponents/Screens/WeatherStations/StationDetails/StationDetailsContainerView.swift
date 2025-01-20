@@ -175,10 +175,12 @@ private struct StationDetailsView: View {
 			navigationObject.titleFont = .system(size: CGFloat(.smallTitleFontSize), weight: .bold)
 			navigationObject.subtitleFont = .system(size: CGFloat(.caption))
         }
-        .onChange(of: selectedIndex) { _ in
+        .onChange(of: selectedIndex) { index in
             withAnimation {
                 isHeaderHidden = false
             }
+
+			viewModel.trackScreenViewEvent(for: index)
         }
         .onChange(of: viewModel.shouldHideHeaderToggle) { _ in
             isHeaderHidden = viewModel.isHeaderHidden
@@ -191,6 +193,9 @@ private struct StationDetailsView: View {
 				navigationObject.setNavigationTitle(newValue)
             }
         }
+		.task {
+			viewModel.trackScreenViewEvent(for: selectedIndex)
+		}
     }
 
     @ViewBuilder

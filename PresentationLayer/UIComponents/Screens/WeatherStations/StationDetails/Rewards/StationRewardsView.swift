@@ -46,9 +46,6 @@ struct StationRewardsView: View {
 				.fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)
 			}
 		}
-        .onAppear {
-            WXMAnalytics.shared.trackScreen(.rewards)
-        }
     }
 }
 

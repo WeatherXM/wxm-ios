@@ -37,9 +37,6 @@ struct OverviewView: View {
         }
         .spinningLoader(show: Binding(get: { viewModel.viewState == .loading }, set: { _ in }), hideContent: true)
         .fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)
-        .onAppear {
-            WXMAnalytics.shared.trackScreen(.currentWeather)
-        }
 		.bottomSheet(show: $viewModel.showStationHealthInfo) {
 			StationHealthInfoView() {
 				viewModel.handleStationHealthBottomSheetButtonTap()

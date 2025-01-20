@@ -30,10 +30,12 @@ public extension WXMAnalytics {
 	}
 
     func trackScreen(_ screen: Screen, parameters: [Parameter: ParameterValue]? = nil) {
+		print("WXMAnalytics screen: \(screen.rawValue)") // TEMP for testing
 		providers.forEach { $0.trackScreen(screen, parameters: parameters) }
     }
 
     func trackEvent(_ event: Event, parameters: [Parameter: ParameterValue]?) {
+		print("WXMAnalytics event: \(event.rawValue) parameters: \(parameters?.testString ?? "")") // TEMP for testing
 		providers.forEach { $0.trackEvent(event, parameters: parameters) }
     }
 
@@ -55,5 +57,14 @@ public extension WXMAnalytics {
 
 	func userLoggedOut() {
 		providers.forEach { $0.userLoggedOut() }
+	}
+}
+
+// TEMP for testing
+extension Dictionary where Key == Parameter, Value == ParameterValue {
+	var testString: String {
+		return map { key, value in
+			"\(key): \(value)"
+		}.joined(separator: ", ")
 	}
 }
