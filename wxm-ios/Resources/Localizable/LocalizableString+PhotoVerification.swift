@@ -71,6 +71,10 @@ extension LocalizableString {
 		case uploadFinishedNotificationTitle(Int)
 		case uploadFailedNotificationFailedTitle
 		case uploadFailedNotificationFailedDescription
+		case deletePhotoAlertTitle
+		case deletePhotoAlertMessage
+		case uploadPhotosAlertTitle
+		case uploadPhotosAlertMessage
 	}
 }
 
@@ -214,6 +218,14 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_upload_failed_notification_failed_title"
 			case .uploadFailedNotificationFailedDescription:
 				"photo_verification_upload_failed_notification_failed_description"
+			case .deletePhotoAlertTitle:
+				"photo_verification_delete_photo_alert_title"
+			case .deletePhotoAlertMessage:
+				"photo_verification_delete_photo_alert_message"
+			case .uploadPhotosAlertTitle:
+				"photo_verification_upload_photos_alert_title"
+			case .uploadPhotosAlertMessage:
+				"photo_verification_upload_photos_alert_message"
 		}
 	}
 }
