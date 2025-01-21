@@ -247,7 +247,7 @@ private extension PhotoIntroView {
 }
 
 #Preview {
-	PhotoIntroView(viewModel: ViewModelsFactory.getPhotoIntroViewModel(deviceId: ""))
+	PhotoIntroView(viewModel: ViewModelsFactory.getPhotoIntroViewModel(deviceId: "", images: []))
 }
 
 #Preview {

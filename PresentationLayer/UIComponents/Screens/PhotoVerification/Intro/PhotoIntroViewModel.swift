@@ -39,16 +39,18 @@ class PhotoIntroViewModel: ObservableObject {
 	}()
 
 	private let deviceId: String
+	private let images: [String]
 	private let photoGalleryUseCase: PhotoGalleryUseCase
 
-	init(deviceId: String, photoGalleryUseCase: PhotoGalleryUseCase) {
+	init(deviceId: String, images: [String], photoGalleryUseCase: PhotoGalleryUseCase) {
 		self.deviceId = deviceId
+		self.images = images
 		self.photoGalleryUseCase = photoGalleryUseCase
 		areTermsAccepted = photoGalleryUseCase.areTermsAccepted
 	}
 
 	func handleBeginButtonTap() {
-		let viewModel = ViewModelsFactory.getGalleryViewModel(deviceId: deviceId, images: [], isNewVerification: true)
+		let viewModel = ViewModelsFactory.getGalleryViewModel(deviceId: deviceId, images: images, isNewVerification: true)
 		Router.shared.navigateTo(.photoGallery(viewModel))
 	}
 }
@@ -68,7 +70,7 @@ extension PhotoIntroViewModel: HashableViewModel {
 			return .photoGallery(viewModel)
 		}
 
-		let viewModel = ViewModelsFactory.getPhotoIntroViewModel(deviceId: deviceId)
+		let viewModel = ViewModelsFactory.getPhotoIntroViewModel(deviceId: deviceId, images: images)
 		return .photoIntro(viewModel)
 	}
 }
