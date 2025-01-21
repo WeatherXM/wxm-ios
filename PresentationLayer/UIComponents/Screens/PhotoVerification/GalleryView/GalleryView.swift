@@ -240,6 +240,13 @@ private extension GalleryView {
 						}
 					}
 				}
+			}.modify { view in
+				if #available(iOS 16.4, *) {
+					view
+						.scrollBounceBehavior(.basedOnSize, axes: .horizontal)
+				} else {
+					view
+				}
 			}
 			.scrollIndicators(.hidden)
 			.animation(.easeIn(duration: 0.1), value: viewModel.selectedImage)
@@ -288,6 +295,7 @@ private extension GalleryView {
 
 #Preview {
 	GalleryView(viewModel: ViewModelsFactory.getGalleryViewModel(deviceId: "",
-																 images: [],
+																 images: ["https://wxm-station-photos-dev.s3.eu-west-2.amazonaws.com/daring-garnet-gust/81B2CA91-DBC5-45A1-AF33-6FA031604EA2.jpg",
+																		 "https://wxm-station-photos-dev.s3.eu-west-2.amazonaws.com/daring-garnet-gust/ADDF4312-640F-44C7-AFB6-B437C6FBBBC7.jpg"],
 																 isNewVerification: true))
 }
