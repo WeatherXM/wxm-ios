@@ -31,7 +31,7 @@ class GalleryViewModel: ObservableObject {
 	private(set) var failObject: FailSuccessStateObject?
 	@Published var showShareSheet: Bool = false
 	var shareImages: [UIImage]? {
-		images.compactMap { $0.uiImage }
+		images.compactMap { $0.uiImage?.scaleDown(newWidth: 800.0) }
 	}
 	var localImages: [GalleryView.GalleryImage]? {
 		images.filter { $0.uiImage != nil }

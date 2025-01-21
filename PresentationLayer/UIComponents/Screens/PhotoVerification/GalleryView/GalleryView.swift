@@ -143,7 +143,10 @@ struct GalleryView: View {
 		.task {
 			viewModel.viewLoaded()
 		}
-		.wxmShareDialog(show: $viewModel.showShareSheet, text: "", images: viewModel.shareImages ?? [])
+		.wxmShareDialog(show: $viewModel.showShareSheet,
+						text: "",
+						images: viewModel.shareImages ?? [],
+						disablePopοver: true)
     }
 }
 
