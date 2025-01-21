@@ -53,7 +53,7 @@ public enum PhotosError: CustomStringConvertible, Error {
 	case uploadFailed(Error)
 }
 
-public enum PhotoUploadState {
+public enum PhotoUploadState: Equatable {
 	case uploading(Double)
 	case failed
 }
