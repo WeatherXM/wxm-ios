@@ -372,9 +372,11 @@ class MainScreenViewModel: ObservableObject {
 		}.store(in: &cancellableSet)
 
 		photosUseCase.uploadErrorPublisher.sink { deviceId, _ in
-			LocalNotificationScheduler().postNotification(id: deviceId,
-														  title: LocalizableString.PhotoVerification.uploadFailedNotificationFailedTitle.localized,
-														  body: LocalizableString.PhotoVerification.uploadFailedNotificationFailedDescription.localized)
+			if self.photosUseCase.getUploadState(deviceId: deviceId)  == .failed {
+				LocalNotificationScheduler().postNotification(id: deviceId,
+															  title: LocalizableString.PhotoVerification.uploadFailedNotificationFailedTitle.localized,
+															  body: LocalizableString.PhotoVerification.uploadFailedNotificationFailedDescription.localized)
+			}
 		}.store(in: &cancellableSet)
 	}
 }
