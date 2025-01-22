@@ -65,6 +65,7 @@ struct GalleryView: View {
 												   height: proxy.size.height - 2 * CGFloat(.defaultSidePadding),
 												   alignment: .center)
 											.clipped()
+											.contentShape(Rectangle())
 											.position(x: proxy.frame(in: .local).midX,
 													  y: proxy.frame(in: .local).midY)
 									} else {
@@ -81,6 +82,7 @@ struct GalleryView: View {
 										   height: proxy.size.height - 2 * CGFloat(.defaultSidePadding),
 										   alignment: .center)
 									.clipped()
+									.contentShape(Rectangle())
 									.position(x: proxy.frame(in: .local).midX,
 											  y: proxy.frame(in: .local).midY)
 							}
