@@ -123,6 +123,9 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 			updateProgressUpload()
 		}
 
+		// Refresh the user to handle some corner cases with the wallet state
+		_ = try? meUseCase.getUserInfo()
+		
         do {
             shouldShowFullScreenLoader = !refreshMode
             try meUseCase.getDevices()
