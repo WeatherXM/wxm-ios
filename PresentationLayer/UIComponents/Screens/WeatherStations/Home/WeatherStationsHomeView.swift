@@ -189,44 +189,48 @@ private struct ContentView: View {
 						}
 					}
 
+					if mainVM.showWalletWarning && isWalletEmpty {
+						CardWarningView(configuration: .init(title: LocalizableString.walletAddressMissingTitle.localized,
+															 message: LocalizableString.walletAddressMissingText.localized) {
+
+							WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+																				 .promptType: .warnPromptType,
+																				 .action: .dismissAction])
+
+							withAnimation {
+								mainVM.hideWalletWarning()
+							}
+						}) {
+							HStack {
+								Button {
+									Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
+									WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+																						 .promptType: .warnPromptType,
+																						 .action: .action])
+
+								} label: {
+									Text(LocalizableString.addWalletTitle.localized)
+										.foregroundColor(Color(colorEnum: .wxmPrimary))
+										.font(.system(size: CGFloat(.smallFontSize), weight: .bold))
+								}
+
+								Spacer()
+							}
+						}
+						.onAppear {
+							WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
+																				 .promptType: .warnPromptType,
+																				 .action: .viewAction])
+						}
+					}
+
+
 					NavigationTitleView(title: .constant(LocalizableString.weatherStationsHomeTitle.localized),
 										subtitle: .constant(nil)) {
 						navigationBarRightView
 					}
 					
 					VStack(spacing: CGFloat(.smallSpacing)) {
-
-						if mainVM.showWalletWarning && isWalletEmpty {
-							CardWarningView(configuration: .init(title: LocalizableString.walletAddressMissingTitle.localized,
-																 message: LocalizableString.walletAddressMissingText.localized) {
-								
-								WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
-																					 .promptType: .warnPromptType,
-																					 .action: .dismissAction])
-								
-								withAnimation {
-									mainVM.hideWalletWarning()
-								}
-							}) {
-								Button {
-									Router.shared.navigateTo(.wallet(ViewModelsFactory.getMyWalletViewModel()))
-									WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
-																						 .promptType: .warnPromptType,
-																						 .action: .action])
-									
-								} label: {
-									Text(LocalizableString.addWalletTitle.localized)
-										.foregroundColor(Color(colorEnum: .wxmPrimary))
-										.font(.system(size: CGFloat(.smallFontSize), weight: .bold))
-								}
-							}
-							.onAppear {
-								WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .walletMissing,
-																					 .promptType: .warnPromptType,
-																					 .action: .viewAction])
-							}
-						}
-						
 						weatherStationsList(devices: devices)
 					}
 				}
