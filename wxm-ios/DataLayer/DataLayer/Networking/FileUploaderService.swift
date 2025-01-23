@@ -166,6 +166,7 @@ private extension FileUploaderService {
 		task.resume()
 		taskFileBodyUrls[task] = bodyFileURL
 		taskFileUrls[task] = file
+		taskProgresses[task] = 0.0
 	}
 
 	func generateRequestBody(fileData: Data, boundary: String, fields: [String: String]?) -> Data {
