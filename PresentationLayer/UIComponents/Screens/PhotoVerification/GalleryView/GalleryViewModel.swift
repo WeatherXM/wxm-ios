@@ -119,7 +119,7 @@ class GalleryViewModel: ObservableObject {
 		showInstructions = true
 	}
 
-	func handleUploadButtonTap() {
+	func handleUploadButtonTap(dismissAction: DismissAction) {
 		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .startUploadingPhotos])
 
 		guard let localImages = localImages else {
@@ -136,7 +136,7 @@ class GalleryViewModel: ObservableObject {
 					let fileUrls = await localImages.asyncCompactMap { try? await self.useCase.saveImage($0.uiImage!, deviceId: self.deviceId, metadata: $0.metadata)}
 					try await self.useCase.startFilesUpload(deviceId: self.deviceId, files: fileUrls.compactMap { try? $0.asURL() })
 					self.showLoading = false
-					self.showUploadStarted()
+					self.showUploadStarted { dismissAction() }
 				} catch PhotosError.networkError(let error) {
 					self.showLoading = false
 					self.showFail(error: error)
@@ -279,7 +279,7 @@ private extension GalleryViewModel {
 		AlertHelper().showAlert(alertObject)
 	}
 
-	func showUploadStarted() {
+	func showUploadStarted(dismissAction: @escaping VoidCallback) {
 		let obj = FailSuccessStateObject(type: .changeFrequency,
 										 title: LocalizableString.PhotoVerification.uploadStartedSuccessfully.localized,
 										 subtitle: LocalizableString.PhotoVerification.uploadStartedSuccessfullyDescription.localized.attributedMarkdown,
@@ -289,7 +289,7 @@ private extension GalleryViewModel {
 										 actionButtonsAtTheBottom: true,
 										 contactSupportAction: nil,
 										 cancelAction: {
-			Router.shared.popToRoot()
+			dismissAction()
 		},
 										 retryAction: { [weak self] in
 			self?.showShareSheet = true
