@@ -41,7 +41,7 @@ struct GalleryView: View {
 					Spacer()
 
 					Button {
-						viewModel.handleUploadButtonTap()
+						viewModel.handleUploadButtonTap(dismissAction: dismiss)
 					} label: {
 						Text(LocalizableString.PhotoVerification.upload.localized)
 					}
