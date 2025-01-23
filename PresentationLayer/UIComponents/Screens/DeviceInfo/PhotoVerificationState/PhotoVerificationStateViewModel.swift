@@ -89,22 +89,22 @@ private extension PhotoVerificationStateViewModel {
 	}
 
 	func observePhotoUploadState() {
-		photoGalleryUseCase?.uploadErrorPublisher.sink { deviceId, error in
-			guard deviceId == self.deviceId else { return }
-			self.updateState()
+		photoGalleryUseCase?.uploadErrorPublisher.sink { [weak self] deviceId, error in
+			guard deviceId == self?.deviceId else { return }
+			self?.updateState()
 			Task { @MainActor [weak self] in
 				await self?.fetchPhotos()
 			}
 		}.store(in: &cancellables)
 
-		photoGalleryUseCase?.uploadProgressPublisher.sink { deviceId, progress in
-			guard deviceId == self.deviceId else { return }
-			self.updateState()
+		photoGalleryUseCase?.uploadProgressPublisher.sink { [weak self] deviceId, progress in
+			guard deviceId == self?.deviceId else { return }
+			self?.updateState()
 		}.store(in: &cancellables)
 
-		photoGalleryUseCase?.uploadCompletedPublisher.sink { deviceId, _ in
-			guard deviceId == self.deviceId else { return }
-			self.updateState()
+		photoGalleryUseCase?.uploadCompletedPublisher.sink { [weak self] deviceId, _ in
+			guard deviceId == self?.deviceId else { return }
+			self?.updateState()
 			Task { @MainActor [weak self] in
 				await self?.fetchPhotos()
 			}
