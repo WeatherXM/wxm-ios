@@ -43,7 +43,7 @@ private struct WXMShareModifier: ViewModifier {
 																				  height: 0.0)
 			activityController.popoverPresentationController?.permittedArrowDirections = []
 		}
-		activityController.willDismissCallback = { show = false }
+		activityController.delegate = self
 		hostingWrapper.hostingController = activityController
 		UIApplication.shared.rootViewController?.present(activityController, animated: true)
 	}
@@ -53,19 +53,30 @@ private struct WXMShareModifier: ViewModifier {
 	}
 }
 
+extension WXMShareModifier:  WXMShareModifier.WXMActivityViewControllerDelegate {
+	func willDismissActivityViewController() {
+		show = false
+	}
+}
+
 private extension WXMShareModifier {
 	@MainActor
 	struct Store {
 		var anchorView = UIView()
 	}
 
+	@MainActor
+	protocol WXMActivityViewControllerDelegate {
+		func willDismissActivityViewController()
+	}
+
 	class WXMActivityViewController: UIActivityViewController {
-		var willDismissCallback: VoidCallback?
+		var delegate: WXMActivityViewControllerDelegate?
 
 		override func viewWillDisappear(_ animated: Bool) {
 			super.viewWillDisappear(animated)
 			if isBeingDismissed {
-				willDismissCallback?()
+				delegate?.willDismissActivityViewController()
 			}
 		}
 
