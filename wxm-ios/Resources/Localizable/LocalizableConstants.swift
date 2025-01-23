@@ -25,6 +25,7 @@ enum LocalizableString: WXMLocalizable {
 	case back
 	case exit
 	case skip
+	case delete
 	case firstName
 	case lastName
 	case password
@@ -237,6 +238,8 @@ extension LocalizableString {
 				return "exit"
 			case .skip:
 				return "skip"
+			case .delete:
+				return "delete"
 			case .firstName:
 				return "first_name"
 			case .lastName:

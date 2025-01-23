@@ -31,7 +31,7 @@ class GalleryViewModel: ObservableObject {
 	private(set) var failObject: FailSuccessStateObject?
 	@Published var showShareSheet: Bool = false
 	var shareImages: [UIImage]? {
-		images.compactMap { $0.uiImage }
+		images.compactMap { $0.uiImage?.scaleDown(newWidth: 800.0) }
 	}
 	var localImages: [GalleryView.GalleryImage]? {
 		images.filter { $0.uiImage != nil }
@@ -90,20 +90,29 @@ class GalleryViewModel: ObservableObject {
 			return
 		}
 
-		Task { @MainActor in
-			do {
-				try await deleteImageImage(selectedImage)
-				self.selectedImage = images.last
-			} catch PhotosError.networkError(let error) {
-				let info = error.uiInfo
-				if let message = info.description?.attributedMarkdown {
-					Toast.shared.show(text: message)
+		let action: VoidCallback = { [weak self] in
+			Task { @MainActor in
+				do {
+					try await self?.deleteImageImage(selectedImage)
+					self?.selectedImage = self?.images.last
+				} catch PhotosError.networkError(let error) {
+					let info = error.uiInfo
+					if let message = info.description?.attributedMarkdown {
+						Toast.shared.show(text: message)
+					}
+				}
+				catch {
+					Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
 				}
 			}
-			catch {
-				Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
-			}
 		}
+
+		if selectedImage.remoteUrl != nil {
+			showDeleteAlert(dismissAction: action)
+			return
+		}
+
+		action()
 	}
 
 	func handleInstructionsButtonTap() {
@@ -116,23 +125,30 @@ class GalleryViewModel: ObservableObject {
 		guard let localImages = localImages else {
 			return
 		}
-		Task { @MainActor [localImages] in
-			do {
-				showLoading = true
-				try useCase.clearLocalImages(deviceId: deviceId)
-				let fileUrls = await localImages.asyncCompactMap { try? await useCase.saveImage($0.uiImage!, deviceId: deviceId, metadata: $0.metadata)}
-				try await useCase.startFilesUpload(deviceId: deviceId, files: fileUrls.compactMap { try? $0.asURL() })
-				showLoading = false
-				showUploadStarted()
-			} catch PhotosError.networkError(let error) {
-				showLoading = false
-				showFail(error: error)
-			}
-			catch {
-				showLoading = false
-				Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
+
+		let action: VoidCallback = { [weak self] in
+			Task { @MainActor in
+				guard let self else { return }
+
+				do {
+					self.showLoading = true
+					try self.useCase.clearLocalImages(deviceId: self.deviceId)
+					let fileUrls = await localImages.asyncCompactMap { try? await self.useCase.saveImage($0.uiImage!, deviceId: self.deviceId, metadata: $0.metadata)}
+					try await self.useCase.startFilesUpload(deviceId: self.deviceId, files: fileUrls.compactMap { try? $0.asURL() })
+					self.showLoading = false
+					self.showUploadStarted()
+				} catch PhotosError.networkError(let error) {
+					self.showLoading = false
+					self.showFail(error: error)
+				}
+				catch {
+					self.showLoading = false
+					Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
+				}
 			}
 		}
+
+		showUploadAlert(dismissAction: action)
 	}
 
 	func handleOpenSettingsTap() {
@@ -281,6 +297,31 @@ private extension GalleryViewModel {
 
 		uploadStartedObject = obj
 		showUploadStartedSuccess = true
+	}
+
+	func showUploadAlert(dismissAction: @escaping VoidCallback) {
+		let message = LocalizableString.PhotoVerification.uploadPhotosAlertMessage.localized
+		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.PhotoVerification.upload.localized, { _ in  dismissAction() })
+		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.uploadPhotosAlertTitle.localized,
+												  message: message,
+												  cancelActionTitle: LocalizableString.back.localized,
+												  cancelAction: {},
+												  okAction: exitAction)
+
+		AlertHelper().showAlert(alertObject)
+	}
+
+
+	func showDeleteAlert(dismissAction: @escaping VoidCallback) {
+		let message = LocalizableString.PhotoVerification.deletePhotoAlertMessage.localized
+		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.delete.localized, { _ in  dismissAction() })
+		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.deletePhotoAlertTitle.localized,
+												  message: message,
+												  cancelActionTitle: LocalizableString.back.localized,
+												  cancelAction: {},
+												  okAction: exitAction)
+
+		AlertHelper().showAlert(alertObject)
 	}
 
 	func showFail(error: NetworkErrorResponse) {

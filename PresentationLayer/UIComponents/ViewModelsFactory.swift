@@ -264,14 +264,14 @@ enum ViewModelsFactory {
 		return RewardAnalyticsViewModel(useCase: useCase, devices: devices)
 	}
 
-	static func getPhotoIntroViewModel(deviceId: String) -> PhotoIntroViewModel {
+	static func getPhotoIntroViewModel(deviceId: String, images: [String]) -> PhotoIntroViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
-		return PhotoIntroViewModel(deviceId: deviceId, photoGalleryUseCase: useCase)
+		return PhotoIntroViewModel(deviceId: deviceId, images: images, photoGalleryUseCase: useCase)
 	}
 
 	static func getPhotoInstructionsViewModel(deviceId: String) -> PhotoInstructionsViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
-		return PhotoInstructionsViewModel(deviceId: deviceId, photoGalleryUseCase: useCase)
+		return PhotoInstructionsViewModel(deviceId: deviceId, images: [], photoGalleryUseCase: useCase)
 	}
 
 	static func getGalleryViewModel(deviceId: String, images: [String], isNewVerification: Bool) -> GalleryViewModel {

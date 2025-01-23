@@ -46,6 +46,7 @@ struct SpinningLoaderModifier: ViewModifier {
 						}
 						.multilineTextAlignment(.center)
 					}
+					.padding(CGFloat(.defaultSidePadding))
 				}
 			}
 	}

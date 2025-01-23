@@ -15,6 +15,7 @@ private struct WXMShareModifier: ViewModifier {
 	@Binding var show: Bool
 	let text: String
 	let images: [UIImage]
+	let disablePopοver: Bool
 	@State private var hostingWrapper: HostingWrapper = HostingWrapper()
 	@State private var store = Store()
 
@@ -35,6 +36,13 @@ private struct WXMShareModifier: ViewModifier {
 		items.append(contentsOf: images.map { getItemSource(image: $0) })
 		let activityController = WXMActivityViewController(activityItems: items, applicationActivities: nil)
 		activityController.popoverPresentationController?.sourceView = sourceView
+		if disablePopοver {
+			activityController.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2.0,
+																				  y: UIScreen.main.bounds.height / 2.0,
+																				  width: 0.0,
+																				  height: 0.0)
+			activityController.popoverPresentationController?.permittedArrowDirections = []
+		}
 		activityController.willDismissCallback = { show = false }
 		hostingWrapper.hostingController = activityController
 		UIApplication.shared.rootViewController?.present(activityController, animated: true)
@@ -104,7 +112,7 @@ private extension WXMShareModifier {
 
 extension View {
 	@ViewBuilder
-	func wxmShareDialog(show: Binding<Bool>, text: String, images: [UIImage] = []) -> some View {
-		modifier(WXMShareModifier(show: show, text: text, images: images))
+	func wxmShareDialog(show: Binding<Bool>, text: String, images: [UIImage] = [], disablePopοver: Bool = false) -> some View {
+		modifier(WXMShareModifier(show: show, text: text, images: images, disablePopοver: disablePopοver))
 	}
 }

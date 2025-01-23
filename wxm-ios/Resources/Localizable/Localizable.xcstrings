@@ -2300,6 +2300,17 @@
         }
       }
     },
+    "delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
     "delete_account_cancel_deletion" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5853,6 +5864,28 @@
         }
       }
     },
+    "photo_verification_delete_photo_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This photo is already uploaded, are you sure you want to delete it?"
+          }
+        }
+      }
+    },
+    "photo_verification_delete_photo_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete this photo?"
+          }
+        }
+      }
+    },
     "photo_verification_exit_photo_verification" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6283,6 +6316,28 @@
       }
     },
     "photo_verification_upload_photos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload your photos"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_photos_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure that your photos follow our guidelines?\nIf you are having second thoughts you can go back and retake any of them!"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_photos_alert_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

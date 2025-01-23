@@ -119,6 +119,13 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
     ///   - refreshMode: Set true if coming from pull to refresh to prevent showing full screen loader
     ///   - completion: Called once the request is finished
     func getDevices(refreshMode: Bool = false, completion: (() -> Void)? = nil) {
+		if refreshMode {
+			updateProgressUpload()
+		}
+
+		// Refresh the user to handle some corner cases with the wallet state
+		_ = try? meUseCase.getUserInfo()
+		
         do {
             shouldShowFullScreenLoader = !refreshMode
             try meUseCase.getDevices()

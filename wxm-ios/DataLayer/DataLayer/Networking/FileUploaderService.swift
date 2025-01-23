@@ -68,7 +68,7 @@ public final class FileUploaderService: Sendable {
 				return
 			}
 
-			if (error as NSError).code == NSURLErrorCancelled {
+			if task.isCancelled {
 				self?.removeFile(for: task)
 			}
 
@@ -130,7 +130,7 @@ public final class FileUploaderService: Sendable {
 
 		// If there is no progress but there are still file url entries with existing files for this id,
 		// we assume the process is failed
-		let tasks = taskFileUrls.keys.filter { $0.taskDescription == deviceId }
+		let tasks = taskFileUrls.keys.filter { ($0.taskDescription == deviceId) && !$0.isCancelled }
 		let files = tasks.compactMap { taskFileUrls[$0] }
 		if files.first(where: { FileManager.default.fileExists(atPath: $0.path()) }) != nil {
 			return .failed
@@ -290,5 +290,11 @@ private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDa
 private extension Int {
 	var isSuccessCode: Bool {
 		200..<300 ~= self
+	}
+}
+
+private extension URLSessionTask {
+	var isCancelled: Bool {
+		(error as? NSError)?.code == NSURLErrorCancelled 
 	}
 }
