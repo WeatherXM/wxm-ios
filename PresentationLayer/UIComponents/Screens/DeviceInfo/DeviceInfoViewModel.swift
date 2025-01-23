@@ -138,8 +138,8 @@ class DeviceInfoViewModel: ObservableObject {
 			self.photoStateViewModel = nil
 		}
 
-		photoStateViewModel?.$state.sink { state in
-			self.photoVerificationState = state
+		photoStateViewModel?.$state.sink { [weak self] state in
+			self?.photoVerificationState = state
 		}.store(in: &cancellable)
 
 		refresh { [weak self] in
