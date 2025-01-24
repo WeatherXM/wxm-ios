@@ -4860,6 +4860,17 @@
         }
       }
     },
+    "i_understand" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I understand"
+          }
+        }
+      }
+    },
     "illuminance" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8481,6 +8492,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Temperature"
+          }
+        }
+      }
+    },
+    "terms_alert_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We’ve implemented the new %@ and %@ to better serve you and ensure alignment with best practices and applicable laws. By continuing to use the app for the next 30 days, it is considered that you accept the new terms and privacy policy mentioned above.\n\nBy accepting these Terms of Use and Privacy Policy, you agree that they apply to all prior and future interactions with the app."
+          }
+        }
+      }
+    },
+    "terms_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About our legal terms"
           }
         }
       }

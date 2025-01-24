@@ -11,6 +11,7 @@ import Toolkit
 struct WXMAlertConfiguration {
     let title: String
     let text: AttributedString
+	var canDismiss: Bool = true
     var buttonsLayout: Layout = .vertical
     var secondaryButtons: [ActionButton] = []
     let primaryButtons: [ActionButton]
@@ -35,6 +36,9 @@ struct WXMAlertView<V: View>: View {
     let configuration: WXMAlertConfiguration
     let bottomView: () -> V
 
+	@State private var showInAppBrowser: Bool = false
+	@State private  var inAppBrowserURL: URL?
+
     var body: some View {
         GeometryReader { proxy in
             VStack {
@@ -45,7 +49,7 @@ struct WXMAlertView<V: View>: View {
 
                     alertView
 						.iPadMaxWidth()
-                        .frame(width: 0.8 * proxy.size.width)
+                        .frame(width: 0.9 * proxy.size.width)
 
                     Spacer()
                 }
@@ -60,7 +64,7 @@ private extension WXMAlertView {
 
     @ViewBuilder
     var alertView: some View {
-        VStack(spacing: CGFloat(.smallSpacing)) {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
             HStack {
                 Text(configuration.title)
                     .foregroundColor(Color(colorEnum: .darkestBlue))
@@ -68,20 +72,23 @@ private extension WXMAlertView {
 
                 Spacer()
 
-                Button {
-                    show = false
-                } label: {
-                    Image(asset: .closeIcon)
-                        .renderingMode(.template)
-                        .foregroundColor(Color(colorEnum: .text))
-                }
-
+				if configuration.canDismiss {
+					Button {
+						show = false
+					} label: {
+						Image(asset: .closeIcon)
+							.renderingMode(.template)
+							.foregroundColor(Color(colorEnum: .text))
+					}
+				}
             }
 
             HStack {
                 Text(configuration.text)
                     .foregroundColor(Color(colorEnum: .text))
                     .font(.system(size: CGFloat(.normalFontSize)))
+					.tint(Color(colorEnum: .wxmPrimary))
+
                 Spacer()
             }
 
@@ -90,6 +97,19 @@ private extension WXMAlertView {
             bottomView()
         }
         .WXMCardStyle()
+		.environment(\.openURL, OpenURLAction { url in
+			self.inAppBrowserURL = url
+			self.showInAppBrowser = true
+			return .handled
+		})
+		.fullScreenCover(isPresented: $showInAppBrowser) {
+			if let inAppBrowserURL {
+				SafariView(url: inAppBrowserURL)
+			} else {
+				EmptyView()
+			}
+		}
+
     }
 
     @ViewBuilder

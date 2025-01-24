@@ -87,7 +87,8 @@ public class MainUseCase: @unchecked Sendable {
 	}
 
 	public func areTermsOfUseAccepted() -> Bool {
-		userDefaultsRepository.getValue(for: UserDefaults.GenericKey.termsOfUseAcceptedTimestamp.rawValue) != nil
+		let timestamp: Date? = userDefaultsRepository.getValue(for: UserDefaults.GenericKey.termsOfUseAcceptedTimestamp.rawValue)
+		return timestamp != nil
 	}
 }
 

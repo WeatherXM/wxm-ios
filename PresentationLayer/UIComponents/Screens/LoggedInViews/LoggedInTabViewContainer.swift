@@ -50,6 +50,13 @@ struct LoggedInTabViewContainer: View {
             AnalyticsView(show: $mainViewModel.showAnalyticsPrompt,
                           viewModel: ViewModelsFactory.getAnalyticsViewModel())
         }
+		.wxmAlert(show: $mainViewModel.showTermsPrompt) {
+			WXMAlertView(show: $mainViewModel.showTermsPrompt,
+						 configuration: mainViewModel.termsAlertConfiguration, bottomView: { EmptyView() })
+		}
+		.onAppear {
+			print("onAppear \(Self.self)")
+		}
     }
 
     @ViewBuilder
