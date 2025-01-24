@@ -334,6 +334,7 @@ class MainScreenViewModel: ObservableObject {
 									 canDismiss: false,
 									 primaryButtons: [.init(title: LocalizableString.iUnderstand.localized,
 															action: { [weak self] in
+			self?.mainUseCase.setTermsOfUseAccepted()
 			self?.showTermsPrompt = false
 		})])
 	}
