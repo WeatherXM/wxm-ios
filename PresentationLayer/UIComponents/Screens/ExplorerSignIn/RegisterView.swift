@@ -26,7 +26,6 @@ struct RegisterView: View {
             .padding(.bottom, CGFloat(.defaultSidePadding))
             .padding(.horizontal, CGFloat(.defaultSidePadding))
         }
-        .navigationBarTitle(Text(LocalizableString.createAccount.localized), displayMode: .large)
         .onChange(of: viewModel.userEmail) { email in
             viewModel.userEmail = email.trimWhiteSpaces()
         }

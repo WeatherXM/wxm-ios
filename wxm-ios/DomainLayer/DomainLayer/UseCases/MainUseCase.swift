@@ -81,6 +81,14 @@ public class MainUseCase: @unchecked Sendable {
 
 		return currentVersion.semVersionCompare(minimumVersion) == .orderedAscending
 	}
+
+	public func setTermsOfUseAccepted() {
+		userDefaultsRepository.saveValue(key: UserDefaults.GenericKey.termsOfUseAcceptedTimestamp.rawValue, value: Date.now)
+	}
+
+	public func areTermsOfUseAccepted() -> Bool {
+		userDefaultsRepository.getValue(for: UserDefaults.GenericKey.termsOfUseAcceptedTimestamp.rawValue) != nil
+	}
 }
 
 private extension MainUseCase {
