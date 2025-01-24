@@ -195,6 +195,8 @@ final class SettingsViewModel: ObservableObject {
 	}
 
 	func handleTermsOfUseTap() {
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .termsOfUse])
+
 		guard let url = URL(string: DisplayedLinks.termsOfUse.linkURL) else {
 			return
 		}
@@ -203,6 +205,8 @@ final class SettingsViewModel: ObservableObject {
 	}
 
 	func handlePrivacyPolicyTap() {
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .privacyPolicy])
+
 		guard let url = URL(string: DisplayedLinks.privacyPolicy.linkURL) else {
 			return
 		}
