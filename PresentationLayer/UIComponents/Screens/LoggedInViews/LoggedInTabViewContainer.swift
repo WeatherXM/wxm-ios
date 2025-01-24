@@ -54,9 +54,6 @@ struct LoggedInTabViewContainer: View {
 			WXMAlertView(show: $mainViewModel.showTermsPrompt,
 						 configuration: mainViewModel.termsAlertConfiguration, bottomView: { EmptyView() })
 		}
-		.onAppear {
-			print("onAppear \(Self.self)")
-		}
     }
 
     @ViewBuilder
