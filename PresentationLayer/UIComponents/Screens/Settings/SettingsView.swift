@@ -41,6 +41,8 @@ struct SettingsView: View {
 				feedbackContainer
 				helpContainer
 				WXMDivider()
+				legalContainer
+				WXMDivider()
 				aboutContainer
 				WXMDivider()
 				Spacer()
@@ -304,6 +306,27 @@ private extension SettingsView {
 			}
         )
     }
+
+	@ViewBuilder
+	var legalContainer: some View {
+		SettingsSectionTitle(title: .legal)
+
+		SettingsButtonView(
+			settingsCase: .termsOfUse,
+			settingCaption: SettingsEnum.termsOfUse.settingsDescription,
+			action: {
+				settingsViewModel.handleTermsOfUseTap()
+			}
+		)
+
+		SettingsButtonView(
+			settingsCase: .privacyPolicy,
+			settingCaption: SettingsEnum.privacyPolicy.settingsDescription,
+			action: {
+				settingsViewModel.handlePrivacyPolicyTap()
+			}
+		)
+	}
 
     @ViewBuilder
     var aboutContainer: some View {

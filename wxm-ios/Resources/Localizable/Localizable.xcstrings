@@ -4904,10 +4904,10 @@
         }
       }
     },
-    "Key" : {
+    "Key 1" : {
       "extractionState" : "manual"
     },
-    "Key 1" : {
+    "Key 2" : {
       "extractionState" : "manual"
     },
     "last_name" : {
@@ -4928,6 +4928,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Last updated on %@"
+          }
+        }
+      }
+    },
+    "legal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legal"
           }
         }
       }
@@ -7458,6 +7469,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Change Password"
+          }
+        }
+      }
+    },
+    "settings_privacy_policy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        }
+      }
+    },
+    "settings_privacy_policy_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read about our privacy standards."
+          }
+        }
+      }
+    },
+    "settings_terms_of_use" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms of Use"
+          }
+        }
+      }
+    },
+    "settings_terms_of_use_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read about our terms and conditions."
           }
         }
       }

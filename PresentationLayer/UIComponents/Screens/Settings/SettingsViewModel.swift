@@ -193,6 +193,22 @@ final class SettingsViewModel: ObservableObject {
 
 		Router.shared.showFullScreen(.safariView(url))
 	}
+
+	func handleTermsOfUseTap() {
+		guard let url = URL(string: DisplayedLinks.termsOfUse.linkURL) else {
+			return
+		}
+
+		Router.shared.showFullScreen(.safariView(url))
+	}
+
+	func handlePrivacyPolicyTap() {
+		guard let url = URL(string: DisplayedLinks.privacyPolicy.linkURL) else {
+			return
+		}
+
+		Router.shared.showFullScreen(.safariView(url))
+	}
 }
 
 private extension SettingsViewModel {

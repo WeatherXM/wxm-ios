@@ -10,7 +10,7 @@ import SwiftUI
 
 enum SettingsEnum {
 	case units, account, display, theme, temperature, precipitation, windSpeed, windDirection, pressure, notifications, announcements, analytics, logout, changePassword,
-		 help, about, appVersion(installationId: String?), documentation, contactSupport, deleteAccount, deleteAccountCaption, deleteAccountWarning,
+		 help, legal, termsOfUse, privacyPolicy, about, appVersion(installationId: String?), documentation, contactSupport, deleteAccount, deleteAccountCaption, deleteAccountWarning,
 		 deleteAccountGeneralInfo, deleteAccountMoreInfoLink, toDeleteTitle, toDeleteName, toDeleteAddress, toDeletePersonalData,
 		 notDeleteTitle, notDeleteWeatherData, notDeleteRewards, noCollectDataTitle, contactForSupport, feedback, joinUserPanel
 
@@ -26,6 +26,8 @@ enum SettingsEnum {
 				return LocalizableString.display.localized
 			case .about:
 				return LocalizableString.about.localized
+			case .legal:
+				return LocalizableString.legal.localized
 			case .feedback:
 				return LocalizableString.feedback.localized
 			default:
@@ -67,6 +69,10 @@ enum SettingsEnum {
 				return LocalizableString.appVersion.localized
 			case .joinUserPanel:
 				return LocalizableString.Settings.joinUserPanelTitle.localized
+			case .termsOfUse:
+				return LocalizableString.Settings.termsOfUse.localized
+			case .privacyPolicy:
+				return LocalizableString.Settings.privacyPolicy.localized
 			default:
 				return ""
 		}
@@ -97,6 +103,10 @@ enum SettingsEnum {
 				return LocalizableString.Settings.announcementsDescription.localized
 			case .joinUserPanel:
 				return LocalizableString.Settings.joinUserPanelDescription.localized
+			case .termsOfUse:
+				return LocalizableString.Settings.termsOfUseDescription.localized
+			case .privacyPolicy:
+				return LocalizableString.Settings.privacyPolicyDescription.localized
 			default:
 				return ""
 		}

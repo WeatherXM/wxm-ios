@@ -114,6 +114,7 @@ enum LocalizableString: WXMLocalizable {
 	case extreme
 	case display
 	case about
+	case legal
 	case feedback
 	case theme
 	case appVersion
@@ -421,6 +422,8 @@ extension LocalizableString {
 				return "display"
 			case .about:
 				return "about"
+			case .legal:
+				return "legal"
 			case .feedback:
 				return "feedback"
 			case .theme:
