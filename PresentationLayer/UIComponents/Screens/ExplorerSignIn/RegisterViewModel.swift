@@ -14,11 +14,20 @@ final class RegisterViewModel: ObservableObject {
     @Published var userEmail: String = ""
     @Published var userName: String = ""
     @Published var userSurname: String = ""
-    @Published var isSignUpButtonAvailable: Bool = false
     @Published var isCallInProgress: Bool = false
+	@Published var termsAccepted = false
     @Published var isSuccess: Bool = false
     @Published var isFail = false
 
+	var isSignUpButtonAvailable: Bool {
+		guard !userEmail.isEmpty &&
+				userEmail.isValidEmail() &&
+				termsAccepted else {
+			return false
+		}
+
+		return true
+	}
     var failSuccessObj: FailSuccessStateObject?
     private var cancellableSet: Set<AnyCancellable> = []
 
@@ -97,14 +106,6 @@ final class RegisterViewModel: ObservableObject {
 		isFail = false
 		isSuccess = true
 	}
-
-    func checkSignUpButtonAvailability() {
-        if userEmail.isEmpty || !userEmail.isValidEmail() {
-            isSignUpButtonAvailable = false
-        } else {
-            isSignUpButtonAvailable = true
-        }
-    }
 }
 
 extension RegisterViewModel: HashableViewModel {

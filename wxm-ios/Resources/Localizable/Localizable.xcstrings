@@ -5922,6 +5922,17 @@
         }
       }
     },
+    "read_terms_and_privacy_policy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I have read and accept the %@ and %@."
+          }
+        }
+      }
+    },
     "rebooting_station" : {
       "extractionState" : "manual",
       "localizations" : {

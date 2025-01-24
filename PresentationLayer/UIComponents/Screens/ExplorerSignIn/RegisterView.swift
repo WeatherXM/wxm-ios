@@ -29,7 +29,6 @@ struct RegisterView: View {
         .navigationBarTitle(Text(LocalizableString.createAccount.localized), displayMode: .large)
         .onChange(of: viewModel.userEmail) { email in
             viewModel.userEmail = email.trimWhiteSpaces()
-            viewModel.checkSignUpButtonAvailability()
         }
         .onAppear {
             WXMAnalytics.shared.trackScreen(.signup)
@@ -50,7 +49,10 @@ struct RegisterView: View {
             resisterDescription
             textFields
             Spacer()
-            signUpButton
+			VStack(spacing: CGFloat(.defaultSpacing)) {
+				acknowledgementView
+				signUpButton
+			}
         }
     }
 
@@ -92,6 +94,49 @@ struct RegisterView: View {
         .buttonStyle(WXMButtonStyle.filled())
         .disabled(!viewModel.isSignUpButtonAvailable)
     }
+
+	@ViewBuilder
+	var acknowledgementView: some View {
+		HStack(alignment: .top, spacing: CGFloat(.smallSpacing)) {
+			Toggle("",
+				   isOn: $viewModel.termsAccepted)
+			.labelsHidden()
+			.toggleStyle(WXMToggleStyle.Default)
+
+			Text(termsText)
+				.foregroundColor(Color(colorEnum: .text))
+				.font(.system(size: CGFloat(.normalFontSize)))
+				.tint(Color(colorEnum: .wxmPrimary))
+				.fixedSize(horizontal: false, vertical: true)
+		}
+		.environment(\.openURL, OpenURLAction { url in
+			Router.shared.showFullScreen(.safariView(url))
+			return .handled
+		})
+
+	}
+
+	var termsText: AttributedString {
+		let terms = LocalizableString.Settings.termsOfUse.localized
+		let termsUrl = LocalizableString.url(terms,
+											 DisplayedLinks.termsOfUse.linkURL).localized
+
+		let privacy = LocalizableString.Settings.privacyPolicy.localized
+		let privacyUrl = LocalizableString.url(privacy,
+											   DisplayedLinks.privacyPolicy.linkURL).localized
+
+		var str = LocalizableString.readTermsAndPrivacyPolicy(termsUrl, privacyUrl).localized.attributedMarkdown!
+
+		if let termsRange = str.range(of: terms) {
+			str[termsRange].underlineStyle = .single
+		}
+
+		if let privacyRange = str.range(of: privacy) {
+			str[privacyRange].underlineStyle = .single
+		}
+
+		return str
+	}
 }
 
 struct Previews_RegisterView_Previews: PreviewProvider {
