@@ -73,7 +73,7 @@ struct ChangeFrequencyView_Set_Previews: PreviewProvider {
 		device.bundle = .mock(name: .h1)
 
         return NavigationContainerView {
-            ChangeFrequencyView(viewModel: ChangeFrequencyViewModel(device: device, useCase: nil))
+			ChangeFrequencyView(viewModel: ViewModelsFactory.getChangeFrequencyViewModel(device: device))
         }
     }
 }
@@ -82,7 +82,7 @@ struct ChangeFrequencyView_Change_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
 		device.bundle = .mock(name: .h1)
-        let vm = ChangeFrequencyViewModel(device: device, useCase: nil)
+        let vm = ViewModelsFactory.getChangeFrequencyViewModel(device: device)
         vm.state = .changeFrequency
         return NavigationContainerView {
             ChangeFrequencyView(viewModel: vm)
@@ -94,7 +94,7 @@ struct ChangeFrequencyView_Fail_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
 		device.bundle = .mock(name: .h1)
-        let vm = ChangeFrequencyViewModel(device: device, useCase: nil)
+        let vm = ViewModelsFactory.getChangeFrequencyViewModel(device: device)
         vm.state = .failed(.mockErrorObj)
         return NavigationContainerView {
             ChangeFrequencyView(viewModel: vm)
@@ -106,7 +106,7 @@ struct ChangeFrequencyView_Success_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
 		device.bundle = .mock(name: .h1)
-        let vm = ChangeFrequencyViewModel(device: device, useCase: nil)
+        let vm = ViewModelsFactory.getChangeFrequencyViewModel(device: device)
         vm.state = .success(.mockSuccessObj)
         return NavigationContainerView {
             ChangeFrequencyView(viewModel: vm)

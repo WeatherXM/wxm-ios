@@ -257,6 +257,15 @@ enum ViewModelsFactory {
 		return ClaimDeviceSetFrequencyViewModel(completion: completion)
 	}
 
+	static func getChangeFrequencyViewModel(device: DeviceDetails, frequncy: Frequency? = Frequency.allCases.first) -> ChangeFrequencyViewModel {
+		let deviceInfoUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCase.self)!
+		let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		return ChangeFrequencyViewModel(device: device,
+										useCase: deviceInfoUseCase,
+										meUseCase: meUseCase,
+										frequency: frequncy)
+	}
+
 	static func getRewardAnalyticsViewModel(devices: [DeviceDetails]) -> RewardAnalyticsViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
 		return RewardAnalyticsViewModel(useCase: useCase, devices: devices)
