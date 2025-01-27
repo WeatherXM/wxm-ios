@@ -42,7 +42,6 @@ struct SettingsView: View {
 				helpContainer
 				WXMDivider()
 				legalContainer
-				WXMDivider()
 				aboutContainer
 				WXMDivider()
 				Spacer()
@@ -327,6 +326,8 @@ private extension SettingsView {
 					settingsViewModel.handlePrivacyPolicyTap()
 				}
 			)
+
+			WXMDivider()
 		}
 	}
 
