@@ -124,13 +124,9 @@ class MainScreenViewModel: ObservableObject {
 				self?.showHttpMonitor = true
 			}
 		}
-<<<<<<< HEAD
-	}
-=======
 
 		observePhotoUploads()
     }
->>>>>>> 71ce5905 (Local notification)
 
 	@Published var showFirmwareUpdate = false
 	var deviceToUpdate: DeviceDetails?
