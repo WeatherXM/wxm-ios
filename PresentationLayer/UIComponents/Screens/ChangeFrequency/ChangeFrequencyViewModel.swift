@@ -149,6 +149,10 @@ private extension ChangeFrequencyViewModel {
 		Task { @MainActor [weak self] in
 			do {
 				if let apiError = try await self?.meUseCase?.setFrequncy(serialNumber, frequency: frequency) {
+					let uiInfo = apiError.uiInfo
+					let obj = uiInfo.defaultFailObject(type: .changeFrequency,
+													   retryAction: { [weak self] in self?.dismissToggle.toggle() })
+					self?.state = .failed(obj)
 					return
 				}
 			} catch {
