@@ -309,23 +309,25 @@ private extension SettingsView {
 
 	@ViewBuilder
 	var legalContainer: some View {
-		SettingsSectionTitle(title: .legal)
-
-		SettingsButtonView(
-			settingsCase: .termsOfUse,
-			settingCaption: SettingsEnum.termsOfUse.settingsDescription,
-			action: {
-				settingsViewModel.handleTermsOfUseTap()
-			}
-		)
-
-		SettingsButtonView(
-			settingsCase: .privacyPolicy,
-			settingCaption: SettingsEnum.privacyPolicy.settingsDescription,
-			action: {
-				settingsViewModel.handlePrivacyPolicyTap()
-			}
-		)
+		if mainScreenViewModel.isUserLoggedIn {
+			SettingsSectionTitle(title: .legal)
+			
+			SettingsButtonView(
+				settingsCase: .termsOfUse,
+				settingCaption: SettingsEnum.termsOfUse.settingsDescription,
+				action: {
+					settingsViewModel.handleTermsOfUseTap()
+				}
+			)
+			
+			SettingsButtonView(
+				settingsCase: .privacyPolicy,
+				settingCaption: SettingsEnum.privacyPolicy.settingsDescription,
+				action: {
+					settingsViewModel.handlePrivacyPolicyTap()
+				}
+			)
+		}
 	}
 
     @ViewBuilder
