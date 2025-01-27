@@ -127,6 +127,8 @@ public enum ParameterValue {
 	case change
 	case changePassword
 	case announcements
+	case termsOfUse
+	case privacyPolicy
 	case heliumBLEPopupError
 	case heliumBLEPopup
 	case searchLocation

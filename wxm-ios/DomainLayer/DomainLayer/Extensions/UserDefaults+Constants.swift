@@ -41,6 +41,7 @@ public extension UserDefaults {
 		case lastAppVersionPrompt = "com.weatherxm.app.UserDefaults.Key.LastAppVersionPrompt"
 		case lastSurveyId = "com.weatherxm.app.UserDefaults.Key.LastSurveyId"
 		case lastInfoBannerId = "com.weatherxm.app.UserDefaults.Key.LastInfoBannerId"
+		case termsOfUseAcceptedTimestamp = "com.weatherxm.app.UserDefaults.Key.TermsOfUseAcceptedTimestamp"
 
         // MARK: - UserDefaultEntry
 

@@ -31,6 +31,10 @@ enum LocalizableString: WXMLocalizable {
 	case total(Int?)
 	case owned(Int?)
 	case following(Int?)
+	case readTermsAndPrivacyPolicy(String, String)
+	case termsAlertTitle
+	case termsAlertDescription(String, String)
+	case iUnderstand
 	case resetPassword
 	case sendEmail
 	case signInDescription
@@ -114,6 +118,7 @@ enum LocalizableString: WXMLocalizable {
 	case extreme
 	case display
 	case about
+	case legal
 	case feedback
 	case theme
 	case appVersion
@@ -193,7 +198,9 @@ enum LocalizableString: WXMLocalizable {
 					.hiddenContentDescription(let text),
 					.timeZoneDisclaimer(let text):
 				localized = String(format: localized, text)
-			case .url(let text, let link):
+			case .url(let text, let link),
+					.readTermsAndPrivacyPolicy(let text, let link),
+					.termsAlertDescription(let text, let link):
 				localized = String(format: localized, text, link)
 			case .percentage(let count):
 				localized = String(format: localized, count)
@@ -255,6 +262,14 @@ extension LocalizableString {
 				}
 
 				return "following_format"
+			case .readTermsAndPrivacyPolicy:
+				return "read_terms_and_privacy_policy"
+			case .termsAlertTitle:
+				return "terms_alert_title"
+			case .termsAlertDescription:
+				return "terms_alert_description"
+			case .iUnderstand:
+				return "i_understand"
 			case .resetPassword:
 				return "reset_password"
 			case .sendEmail:
@@ -421,6 +436,8 @@ extension LocalizableString {
 				return "display"
 			case .about:
 				return "about"
+			case .legal:
+				return "legal"
 			case .feedback:
 				return "feedback"
 			case .theme:

@@ -193,6 +193,26 @@ final class SettingsViewModel: ObservableObject {
 
 		Router.shared.showFullScreen(.safariView(url))
 	}
+
+	func handleTermsOfUseTap() {
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .termsOfUse])
+
+		guard let url = URL(string: DisplayedLinks.termsOfUse.linkURL) else {
+			return
+		}
+
+		Router.shared.showFullScreen(.safariView(url))
+	}
+
+	func handlePrivacyPolicyTap() {
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .privacyPolicy])
+
+		guard let url = URL(string: DisplayedLinks.privacyPolicy.linkURL) else {
+			return
+		}
+
+		Router.shared.showFullScreen(.safariView(url))
+	}
 }
 
 private extension SettingsViewModel {

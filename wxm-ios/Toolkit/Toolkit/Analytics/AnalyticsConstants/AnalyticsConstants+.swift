@@ -103,6 +103,10 @@ extension ParameterValue: RawRepresentable {
 				return "Change Password"
 			case .announcements:
 				return "Announcements"
+			case .termsOfUse:
+				return "Terms of Use"
+			case .privacyPolicy:
+				return "Privacy Policy"
 			case .login:
 				return "Login"
 			case .email:

@@ -4860,6 +4860,17 @@
         }
       }
     },
+    "i_understand" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I understand"
+          }
+        }
+      }
+    },
     "illuminance" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4904,10 +4915,10 @@
         }
       }
     },
-    "Key" : {
+    "Key 1" : {
       "extractionState" : "manual"
     },
-    "Key 1" : {
+    "Key 2" : {
       "extractionState" : "manual"
     },
     "last_name" : {
@@ -4928,6 +4939,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Last updated on %@"
+          }
+        }
+      }
+    },
+    "legal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legal"
           }
         }
       }
@@ -5907,6 +5929,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rate"
+          }
+        }
+      }
+    },
+    "read_terms_and_privacy_policy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I have read and accept the %@ and %@."
           }
         }
       }
@@ -7462,6 +7495,50 @@
         }
       }
     },
+    "settings_privacy_policy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        }
+      }
+    },
+    "settings_privacy_policy_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read about our privacy standards."
+          }
+        }
+      }
+    },
+    "settings_terms_of_use" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms of Use"
+          }
+        }
+      }
+    },
+    "settings_terms_of_use_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read about our terms and conditions."
+          }
+        }
+      }
+    },
     "settings_weather_units" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8415,6 +8492,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Temperature"
+          }
+        }
+      }
+    },
+    "terms_alert_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We’ve implemented the new %@ and %@ to better serve you and ensure alignment with best practices and applicable laws. By continuing to use the app for the next 30 days, it is considered that you accept the new terms and privacy policy mentioned above.\n\nBy accepting these Terms of Use and Privacy Policy, you agree that they apply to all prior and future interactions with the app."
+          }
+        }
+      }
+    },
+    "terms_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About our legal terms"
           }
         }
       }

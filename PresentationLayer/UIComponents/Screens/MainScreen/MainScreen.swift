@@ -8,6 +8,7 @@
 import Network
 import SwiftUI
 import DomainLayer
+import Toolkit
 #if DEBUG
 import PulseUI
 #endif
@@ -42,6 +43,16 @@ public struct MainScreen: View {
         }
 		.onNotificationReceive { notificationResponse in
 			_ = viewModel.deepLinkHandler.handleNotificationReceive(notificationResponse)
+		}
+		.modify { view in
+			if isRunningOnMac {
+				view
+					.onAppear {
+						viewModel.initializeConfigurations()
+					}
+			} else {
+				view
+			}
 		}
 		#if DEBUG
 		.bottomSheet(show: $viewModel.showHttpMonitor, fitContent: false) {

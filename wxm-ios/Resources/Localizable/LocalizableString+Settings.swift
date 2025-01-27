@@ -26,6 +26,10 @@ extension LocalizableString {
 		case notificationAlertDisableDescription
 		case joinUserPanelTitle
 		case joinUserPanelDescription
+		case termsOfUse
+		case termsOfUseDescription
+		case privacyPolicy
+		case privacyPolicyDescription
     }
 }
 
@@ -70,6 +74,14 @@ extension LocalizableString.Settings: WXMLocalizable {
 				return "settings_join_user_panel_title"
 			case .joinUserPanelDescription:
 				return "settings_join_user_panel_description"
+			case .termsOfUse:
+				return "settings_terms_of_use"
+			case .termsOfUseDescription:
+				return "settings_terms_of_use_description"
+			case .privacyPolicy:
+				return "settings_privacy_policy"
+			case .privacyPolicyDescription:
+				return "settings_privacy_policy_description"
 		}
 	}
 }
