@@ -48,9 +48,9 @@ enum DisplayedLinks {
 			case .termsLink:
 				return "https://weatherxm.com/mobile/terms/"
 			case .termsOfUse:
-				return "https://weatherxm.com/wp-content/uploads/2025/01/WeatherXM-Network-Terms-of-Use-Station-Owners.pdf"
+				return "https://weatherxm.network/terms-of-use.pdf"
 			case .privacyPolicy:
-				return "https://weatherxm.com/wp-content/uploads/2025/01/WeatherXM-Network-Privacy-Policy-Station-Owners.pdf"
+				return "https://weatherxm.network/privacy-policy.pdf"
 			case .contactLink:
 				return "https://weatherxm.com/contact/"
 			case .weatherXMWebsiteLink:
