@@ -91,6 +91,15 @@ private extension ClaimHeliumContainerViewModel {
 				return
 			}
 
+			if let apiFrequencyError = await self.setApiHeliumFrequency() {
+				let uiInfo = apiFrequencyError.uiInfo
+				let failObj = uiInfo.defaultFailObject(type: .claimDeviceFlow, failMode: .retry) { [weak self] in
+					self?.showLoading = false
+				}
+				loadingState = .fail(failObj)
+				return
+			}
+
 			steps[0].isCompleted = true
 
 			// Reboot
@@ -143,6 +152,15 @@ private extension ClaimHeliumContainerViewModel {
 		}
 
 		let error = await devicesUseCase.setHeliumFrequency(btDevice, frequency: heliumFrequency)
+		return error
+	}
+
+	func setApiHeliumFrequency() async -> NetworkErrorResponse? {
+		guard let heliumFrequency, let serialNumber else {
+			return nil
+		}
+
+		let error = try? await useCase.setFrequncy(serialNumber, frequency: heliumFrequency)
 		return error
 	}
 
