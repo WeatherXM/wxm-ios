@@ -63,6 +63,13 @@ public struct MeRepositoryImpl: MeRepository {
         try userDevicesService.claimDevice(claimDeviceBody: claimDeviceBody)
     }
 
+	public func setFrequency(serialNumber: String, frequency: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+		let builder = MeApiRequestBuilder.setDeviceFrequency(serialNumber: serialNumber, frequency: frequency)
+		let urlRequest = try builder.asURLRequest()
+
+		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+	}
+
     public func getFirmwares(testSearch: String) throws -> AnyPublisher<DataResponse<[NetworkFirmwareResponse], NetworkErrorResponse>, Never> {
         let urlRequest = try MeApiRequestBuilder.getFirmwares(testSearch: testSearch).asURLRequest()
         return ApiClient.shared.requestCodableAuthorized(urlRequest)

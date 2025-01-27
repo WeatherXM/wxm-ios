@@ -22,6 +22,7 @@ struct ParameterConstants {
     enum Me {
         static let address = "address"
         static let serialNumber = "serialNumber"
+		static let freq = "freq"
         static let location = "location"
         static let testSearch = "testSearch"
         static let deviceId = "deviceId"
