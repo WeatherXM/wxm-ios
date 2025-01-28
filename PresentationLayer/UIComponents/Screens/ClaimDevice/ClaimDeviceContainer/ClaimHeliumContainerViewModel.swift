@@ -107,14 +107,25 @@ private extension ClaimHeliumContainerViewModel {
 				return
 			}
 
-			if let apiFrequencyError = await self.setApiHeliumFrequency() {
-				let uiInfo = apiFrequencyError.uiInfo
+			do {
+				if let apiFrequencyError = try await self.setApiHeliumFrequency() {
+					let uiInfo = apiFrequencyError.uiInfo
+					let failObj = uiInfo.defaultFailObject(type: .claimDeviceFlow, failMode: .default) { [weak self] in
+						self?.showLoading = false
+					}
+					loadingState = .fail(failObj)
+					return
+				}
+			} catch {
+				let uiInfo = NetworkErrorResponse.UIInfo(title: LocalizableString.Error.genericMessage.localized,
+														 description: nil)
 				let failObj = uiInfo.defaultFailObject(type: .claimDeviceFlow, failMode: .default) { [weak self] in
 					self?.showLoading = false
 				}
 				loadingState = .fail(failObj)
 				return
 			}
+
 
 			steps[0].isCompleted = true
 
@@ -157,12 +168,12 @@ private extension ClaimHeliumContainerViewModel {
 		return error
 	}
 
-	func setApiHeliumFrequency() async -> NetworkErrorResponse? {
+	func setApiHeliumFrequency() async throws -> NetworkErrorResponse? {
 		guard let heliumFrequency, let serialNumber = serialNumber?.replacingOccurrences(of: ":", with: "") else {
-			return nil
+			throw NSError(domain: "", code: -1)
 		}
 
-		let error = try? await useCase.setFrequncy(serialNumber, frequency: heliumFrequency)
+		let error = try? await useCase.setFrequency(serialNumber, frequency: heliumFrequency)
 		return error
 	}
 

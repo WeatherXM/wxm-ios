@@ -133,14 +133,14 @@ private extension ChangeFrequencyViewModel {
                     case .failed(let error):
                         self?.handleFrequencyError(error)
                     case .finished:
-						self?.upateApiFrequency(frequency: selectedFrequency)
+						self?.updateApiFrequency(frequency: selectedFrequency)
                 }
                 self?.updateSteps()
             }
         }.store(in: &cancellables)
     }
 
-	func upateApiFrequency(frequency: Frequency) {
+	func updateApiFrequency(frequency: Frequency) {
 		guard let serialNumber = device.label?.replacingOccurrences(of: ":", with: "") else {
 
 			return
@@ -148,7 +148,7 @@ private extension ChangeFrequencyViewModel {
 
 		Task { @MainActor [weak self] in
 			do {
-				if let apiError = try await self?.meUseCase?.setFrequncy(serialNumber, frequency: frequency) {
+				if let apiError = try await self?.meUseCase?.setFrequency(serialNumber, frequency: frequency) {
 					let uiInfo = apiError.uiInfo
 					let obj = uiInfo.defaultFailObject(type: .changeFrequency,
 													   retryAction: { [weak self] in self?.dismissToggle.toggle() })
@@ -156,6 +156,12 @@ private extension ChangeFrequencyViewModel {
 					return
 				}
 			} catch {
+				let uiInfo = NetworkErrorResponse.UIInfo(title: LocalizableString.Error.genericMessage.localized,
+														 description: nil)
+				let obj = uiInfo.defaultFailObject(type: .changeFrequency,
+												   retryAction: { [weak self] in self?.dismissToggle.toggle() })
+				self?.state = .failed(obj)
+
 				return
 			}
 

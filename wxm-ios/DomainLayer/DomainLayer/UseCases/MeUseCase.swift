@@ -55,7 +55,7 @@ public struct MeUseCase: @unchecked Sendable {
         return claimDevice.convertedToDeviceDetailsResultPublisher
     }
 
-	public func setFrequncy(_ serialNumber: String, frequency: Frequency) async throws -> NetworkErrorResponse? {
+	public func setFrequency(_ serialNumber: String, frequency: Frequency) async throws -> NetworkErrorResponse? {
 		let response = try await meRepository.setFrequency(serialNumber: serialNumber, frequency: frequency.rawValue).toAsync()
 		return response.error
 	}
