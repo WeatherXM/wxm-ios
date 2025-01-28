@@ -8,21 +8,24 @@
 import Foundation
 import DomainLayer
 import Combine
+import Toolkit
 
 public class FiltersService {
 
-    private let userDefaultsService = UserDefaultsService()
+	private let cacheManager: PersistCacheManager
     private let filtersSubject: CurrentValueSubject<FilterValues, Never> = .init(FilterValues(sortBy: .defaultValue, filter: .defaultValue, groupBy: .defaultValue))
 
-    public init() {}
+	public init(cacheManager: PersistCacheManager) {
+		self.cacheManager = cacheManager
+	}
 
     public func setValue(value: FilterProtocol, for key: String) {
-        userDefaultsService.save(value: value.udValue, key: key)
+		cacheManager.save(value: value.udValue, key: key)
         notifyChanges()
     }
 
     public func getValue(for key: String) -> FilterProtocol? {
-        guard let rawValue: String = userDefaultsService.get(key: key) else {
+        guard let rawValue: String = cacheManager.get(key: key) else {
             return nil
         }
 
@@ -42,7 +45,7 @@ public class FiltersService {
     }
 
     public func clearValue(key: String) {
-        userDefaultsService.remove(key: key)
+		cacheManager.remove(key: key)
         notifyChanges()
     }
 

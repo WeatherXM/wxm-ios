@@ -31,6 +31,10 @@ class SwinjectHelper: SwinjectInterface {
 		}
 		.inObjectScope(.container)
 
+		container.register(UserDefaultsService.self) { _ in
+			UserDefaultsService()
+		}
+
 		container.register(MainRepository.self) { _ in
 			MainRepositoryImpl()
 		}
@@ -113,8 +117,8 @@ class SwinjectHelper: SwinjectInterface {
             UserDefaultsRepositoryImp()
         }
 
-        container.register(FiltersService.self) { _ in
-            FiltersService()
+        container.register(FiltersService.self) { resolver in
+			FiltersService(cacheManager: resolver.resolve(UserDefaultsService.self)!)
         }
         .inObjectScope(.container)
 
