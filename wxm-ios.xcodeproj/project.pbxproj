@@ -291,6 +291,8 @@
 		26769AB22ACEC58600162974 /* StationTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26769AB12ACEC58600162974 /* StationTimelineEntry.swift */; };
 		26769AB62AD0139900162974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26769AB52AD0139900162974 /* GoogleService-Info.plist */; };
 		267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267811052D490EC000D22B67 /* UserDefaultsServiceTests.swift */; };
+		267811082D49269500D22B67 /* MockCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267811072D49268300D22B67 /* MockCacheManager.swift */; };
+		2678110A2D49279300D22B67 /* FiltersServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267811092D49279300D22B67 /* FiltersServiceTest.swift */; };
 		2678ED8F2AFD1B1400940D59 /* RewardsTimelinePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */; };
 		267A37832AEBB4C900469126 /* StationRewardsTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */; };
 		267A378A2AEBFF2F00469126 /* DeviceRewardsOverview+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */; };
@@ -896,6 +898,8 @@
 		26769AB32AD00D4400162974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		26769AB52AD0139900162974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		267811052D490EC000D22B67 /* UserDefaultsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsServiceTests.swift; sourceTree = "<group>"; };
+		267811072D49268300D22B67 /* MockCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCacheManager.swift; sourceTree = "<group>"; };
+		267811092D49279300D22B67 /* FiltersServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersServiceTest.swift; sourceTree = "<group>"; };
 		2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelinePagination.swift; sourceTree = "<group>"; };
 		267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsTimelineView.swift; sourceTree = "<group>"; };
 		267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceRewardsOverview+.swift"; sourceTree = "<group>"; };
@@ -2025,7 +2029,9 @@
 		267811042D490E8B00D22B67 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				267811072D49268300D22B67 /* MockCacheManager.swift */,
 				267811052D490EC000D22B67 /* UserDefaultsServiceTests.swift */,
+				267811092D49279300D22B67 /* FiltersServiceTest.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -3156,8 +3162,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2678110A2D49279300D22B67 /* FiltersServiceTest.swift in Sources */,
 				269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */,
 				26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */,
+				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
 				265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */,
 				265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */,
 				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
