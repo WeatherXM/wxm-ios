@@ -290,6 +290,7 @@
 		26769AB02ACEBB2000162974 /* LocalizableString+Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */; };
 		26769AB22ACEC58600162974 /* StationTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26769AB12ACEC58600162974 /* StationTimelineEntry.swift */; };
 		26769AB62AD0139900162974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26769AB52AD0139900162974 /* GoogleService-Info.plist */; };
+		267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267811052D490EC000D22B67 /* UserDefaultsServiceTests.swift */; };
 		2678ED8F2AFD1B1400940D59 /* RewardsTimelinePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */; };
 		267A37832AEBB4C900469126 /* StationRewardsTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */; };
 		267A378A2AEBFF2F00469126 /* DeviceRewardsOverview+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */; };
@@ -894,6 +895,7 @@
 		26769AB12ACEC58600162974 /* StationTimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTimelineEntry.swift; sourceTree = "<group>"; };
 		26769AB32AD00D4400162974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		26769AB52AD0139900162974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		267811052D490EC000D22B67 /* UserDefaultsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsServiceTests.swift; sourceTree = "<group>"; };
 		2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelinePagination.swift; sourceTree = "<group>"; };
 		267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsTimelineView.swift; sourceTree = "<group>"; };
 		267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceRewardsOverview+.swift"; sourceTree = "<group>"; };
@@ -1562,6 +1564,7 @@
 		26707E9D2C3ECC0400B9305F /* WeatherXMTests */ = {
 			isa = PBXGroup;
 			children = (
+				267811032D490E7800D22B67 /* DataLayer */,
 				269C6E652C4A71CE00879263 /* Toolkit */,
 			);
 			path = WeatherXMTests;
@@ -2009,6 +2012,22 @@
 				2672B87D2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift */,
 			);
 			path = DomainExtensions;
+			sourceTree = "<group>";
+		};
+		267811032D490E7800D22B67 /* DataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				267811042D490E8B00D22B67 /* Services */,
+			);
+			path = DataLayer;
+			sourceTree = "<group>";
+		};
+		267811042D490E8B00D22B67 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				267811052D490EC000D22B67 /* UserDefaultsServiceTests.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		267CA6C92C11C0DC00ABE599 /* ClaimDeviceContainer */ = {
@@ -3141,6 +3160,7 @@
 				26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */,
 				265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */,
 				265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */,
+				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
 				26D32FE82C510DF000E765E0 /* DateExtensionsTests.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
 			);
