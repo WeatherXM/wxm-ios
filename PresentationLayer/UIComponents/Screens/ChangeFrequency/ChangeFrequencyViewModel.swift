@@ -142,7 +142,7 @@ private extension ChangeFrequencyViewModel {
 
 	func updateApiFrequency(frequency: Frequency) {
 		guard let serialNumber = device.label?.replacingOccurrences(of: ":", with: "") else {
-
+			self.showGenericError()
 			return
 		}
 
@@ -156,11 +156,7 @@ private extension ChangeFrequencyViewModel {
 					return
 				}
 			} catch {
-				let uiInfo = NetworkErrorResponse.UIInfo(title: LocalizableString.Error.genericMessage.localized,
-														 description: nil)
-				let obj = uiInfo.defaultFailObject(type: .changeFrequency,
-												   retryAction: { [weak self] in self?.dismissToggle.toggle() })
-				self?.state = .failed(obj)
+				self?.showGenericError()
 
 				return
 			}
@@ -190,6 +186,14 @@ private extension ChangeFrequencyViewModel {
             steps[index].setCompleted(index < currentStepIndex)
         }
     }
+
+	func showGenericError() {
+		let uiInfo = NetworkErrorResponse.UIInfo(title: LocalizableString.Error.genericMessage.localized,
+												 description: nil)
+		let obj = uiInfo.defaultFailObject(type: .changeFrequency,
+										   retryAction: { [weak self] in self?.dismissToggle.toggle() })
+		state = .failed(obj)
+	}
 
     func handleFrequencyError(_ error: ChangeFrequencyError) {
 		guard let failTuple = getFailDecsriptionAndAction(error: error) else {
