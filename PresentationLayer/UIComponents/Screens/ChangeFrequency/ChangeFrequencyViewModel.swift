@@ -141,8 +141,8 @@ private extension ChangeFrequencyViewModel {
     }
 
 	func upateApiFrequency(frequency: Frequency) {
-		guard let serialNumber = device.label else {
-			
+		guard let serialNumber = device.label?.replacingOccurrences(of: ":", with: "") else {
+
 			return
 		}
 
