@@ -172,8 +172,10 @@ extension GalleryView {
 private extension GalleryView {
 	@ViewBuilder
 	var galleryScroller: some View {
-		let normalSize = CGSize(width: 50.0, height: 70.0)
-		let selectedSize = CGSize(width: 62.0, height: 88.0)
+		let normalWidth = 50.0
+		let normalHeight = 70.0
+		let selectedScale: CGFloat = 1.25
+		let selectedSize = CGSize(width: normalWidth * selectedScale, height: normalHeight * selectedScale)
 
 		GeometryReader { proxy in
 			ScrollView(.horizontal) {
@@ -183,19 +185,17 @@ private extension GalleryView {
 					HStack(spacing: CGFloat(.smallSpacing)) {
 						ForEach(viewModel.images) { image in
 							let isSelected = viewModel.selectedImage == image
-							let size = isSelected ? selectedSize : normalSize
 
-							Button {
-								viewModel.selectedImage = image
-							} label: {
+							Group {
 								if let imageUrl = image.remoteUrl {
 									LazyImage(url: URL(string: imageUrl)) { state in
 										if let image = state.image {
 											image
 												.resizable()
 												.aspectRatio(contentMode: .fill)
-												.frame(width: size.width, height: size.height)
+												.frame(width: normalWidth, height: normalHeight)
 												.cornerRadius(CGFloat(.buttonCornerRadius))
+												.contentShape(Rectangle())
 												.indication(show: .constant(isSelected),
 															borderColor: Color(colorEnum: .wxmPrimary),
 															borderWidth: 2.0,
@@ -204,14 +204,15 @@ private extension GalleryView {
 															content: { EmptyView() })
 										} else {
 											ProgressView()
-												.frame(width: normalSize.width, height: normalSize.height)
+												.frame(width: normalWidth, height: normalHeight)
 										}
 									}
 								} else if let imageView = image.image {
 									imageView
 										.resizable()
 										.aspectRatio(contentMode: .fill)
-										.frame(width: size.width, height: size.height)
+										.frame(width: normalWidth, height: normalHeight)
+										.contentShape(Rectangle())
 										.cornerRadius(CGFloat(.buttonCornerRadius))
 										.indication(show: .constant(isSelected),
 													borderColor: Color(colorEnum: .wxmPrimary),
@@ -223,6 +224,12 @@ private extension GalleryView {
 									EmptyView()
 								}
 							}
+							.onTapGesture {
+								viewModel.selectedImage = image
+							}
+							.frame(width: normalWidth, height: normalHeight)
+							.scaleEffect(isSelected ? selectedScale : 1.0)
+							.animation(.easeIn(duration: 0.1), value: viewModel.selectedImage)
 						}
 
 						if viewModel.isPlusButtonVisible {
@@ -232,7 +239,7 @@ private extension GalleryView {
 								Text(FontIcon.plus.rawValue)
 									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
 									.foregroundStyle(Color(colorEnum: .wxmPrimary))
-									.frame(width: normalSize.width, height: normalSize.height)
+									.frame(width: normalWidth, height: normalHeight)
 									.background(Color(colorEnum: .layer1))
 									.cornerRadius(CGFloat(.buttonCornerRadius))
 							}
@@ -297,7 +304,8 @@ private extension GalleryView {
 
 #Preview {
 	GalleryView(viewModel: ViewModelsFactory.getGalleryViewModel(deviceId: "",
-																 images: ["https://wxm-station-photos-dev.s3.eu-west-2.amazonaws.com/daring-garnet-gust/81B2CA91-DBC5-45A1-AF33-6FA031604EA2.jpg",
-																		 "https://wxm-station-photos-dev.s3.eu-west-2.amazonaws.com/daring-garnet-gust/ADDF4312-640F-44C7-AFB6-B437C6FBBBC7.jpg"],
+																 images: ["https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/12/Home-header-image-1200-x-1200-px-2.png?w=1200&ssl=1",
+																		 "https://i0.wp.com/weatherxm.com/wp-content/uploads/2024/09/Home-header-image-1200-x-1200-px-15-1.png?w=1200&ssl=1",
+																		 "https://i0.wp.com/weatherxm.com/wp-content/uploads/2024/05/Untitled-design-_41_.webp?w=700&ssl=1"],
 																 isNewVerification: true))
 }
