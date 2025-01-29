@@ -19,38 +19,51 @@ struct ChangeFrequencyView: View {
         ZStack {
             Color(colorEnum: .top)
                 .ignoresSafeArea()
+			GeometryReader { _ in
+				VStack {
+					if viewModel.state == .setFrequency {
+						VStack(spacing: 0.0) {
+							SelectFrequencyView(selectedFrequency: $viewModel.selectedFrequency,
+												isFrequencyAcknowledged: $viewModel.isFrequencyAcknowledged)
 
-            VStack {
-                if viewModel.state == .setFrequency {
-                    VStack(spacing: 0.0) {
-                        SelectFrequencyView(selectedFrequency: $viewModel.selectedFrequency,
-                                            isFrequencyAcknowledged: $viewModel.isFrequencyAcknowledged)
+							HStack(spacing: CGFloat(.mediumSpacing)) {
+								Button {
+									viewModel.cancelButtonTapped()
+								} label: {
+									Text(LocalizableString.cancel.localized)
+								}
+								.buttonStyle(WXMButtonStyle())
 
-                        HStack(spacing: CGFloat(.mediumSpacing)) {
-                            Button {
-                                viewModel.cancelButtonTapped()
-                            } label: {
-                                Text(LocalizableString.cancel.localized)
-                            }
-                            .buttonStyle(WXMButtonStyle())
+								Button {
+									viewModel.changeButtonTapped()
+								} label: {
+									Text(LocalizableString.change.localized)
+								}
+								.buttonStyle(WXMButtonStyle.filled())
+								.disabled(!viewModel.isFrequencyAcknowledged)
+							}
+						}
+					} else {
+						VStack {
+							Spacer()
 
-                            Button {
-                                viewModel.changeButtonTapped()
-                            } label: {
-                                Text(LocalizableString.change.localized)
-                            }
-                            .buttonStyle(WXMButtonStyle.filled())
-                            .disabled(!viewModel.isFrequencyAcknowledged)
-                        }
-                    }
-                } else {
-                    DeviceUpdatesLoadingView(title: LocalizableString.changingFrequency.localized,
-                                             subtitle: nil,
-                                             steps: viewModel.steps,
-                                             currentStepIndex: $viewModel.currentStepIndex,
-                                             progress: .constant(nil))
-                }
-            }
+							HStack {
+								Spacer()
+
+								DeviceUpdatesLoadingView(title: LocalizableString.changingFrequency.localized,
+														 subtitle: nil,
+														 steps: viewModel.steps,
+														 currentStepIndex: $viewModel.currentStepIndex,
+														 progress: .constant(nil))
+
+								Spacer()
+							}
+
+							Spacer()
+						}
+					}
+				}
+			}
             .fail(show: Binding(get: { viewModel.state.isFailed }, set: { _ in }), obj: viewModel.state.stateObject)
             .success(show: Binding(get: { viewModel.state.isSuccess }, set: { _ in }), obj: viewModel.state.stateObject)
             .animation(.easeIn, value: viewModel.state)
