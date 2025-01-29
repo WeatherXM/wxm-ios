@@ -57,7 +57,7 @@ struct PhotoIntroView: View {
 							Spacer()
 						}
 						.padding(.top, CGFloat(.smallSidePadding))
-						.padding(.leading, CGFloat(.largeSidePadding))
+						.padding(.leading, CGFloat(.defaultSidePadding))
 					}
 				}
 				.scrollIndicators(.hidden)
