@@ -30,6 +30,16 @@
         }
       }
     },
+    "%@ %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@."
+          }
+        }
+      }
+    },
     "%@:" : {
 
     },
@@ -6321,7 +6331,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uploaded %d file"
+            "value" : "Uploaded %d photo"
           }
         }
       }
@@ -6332,7 +6342,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uploaded %d files"
+            "value" : "Uploaded %d photo"
           }
         }
       }
