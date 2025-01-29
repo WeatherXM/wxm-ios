@@ -225,7 +225,7 @@ private extension PhotoIntroView {
 					let termsTitle = LocalizableString.PhotoVerification.acceptanceUsePolicy.localized
 					let termsLink = DisplayedLinks.acceptanceUsePolicy.linkURL
 					let termsText = Text("**[\(termsTitle)](\(termsLink))**".attributedMarkdown!).underline(color: Color(colorEnum: .wxmPrimary))
-					Text("\(LocalizableString.Wallet.acceptTermsOfService.localized) \(termsText)")
+					Text("\(LocalizableString.Wallet.acceptTermsOfService.localized) \(termsText).")
 						.tint(Color(colorEnum: .wxmPrimary))
 						.foregroundColor(Color(colorEnum: .text))
 						.font(.system(size: CGFloat(.normalFontSize)))
