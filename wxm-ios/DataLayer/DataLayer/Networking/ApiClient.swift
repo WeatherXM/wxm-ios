@@ -17,95 +17,97 @@ private enum Constants: String {
 	case emptyObjectString = "{}"
 }
 
-public class ApiClient {
-    let session = {
-        let conf = URLSessionConfiguration.default
+public class ApiClient: Client {
+	let session = {
+		let conf = URLSessionConfiguration.default
 
-        #if MOCK
-            /// In case of mock build we inject the MockProtocol to monitor the requests
-            conf.protocolClasses?.insert(MockProtocol.self, at: 0)
-        #endif
+#if MOCK
+		/// In case of mock build we inject the MockProtocol to monitor the requests
+		conf.protocolClasses?.insert(MockProtocol.self, at: 0)
+#endif
 
-        let session = Session(configuration: conf)
-        return session
-    }()
+		let session = Session(configuration: conf)
+		return session
+	}()
 
 	nonisolated(unsafe) static let shared: ApiClient = ApiClient()
 
-    #warning("TODO: Improve publishers caching. For now, we perform everything in main thread to avoid race conditions")
-    private let queue = DispatchQueue.main
-    /// Cached publishers
-    private var publishers: [URLRequest: Any] = [:]
+#warning("TODO: Improve publishers caching. For now, we perform everything in main thread to avoid race conditions")
+	private let queue = DispatchQueue.main
+	/// Cached publishers
+	private var publishers: [URLRequest: Any] = [:]
 
-    private lazy var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .custom { [weak self] decoder in
-        let container = try decoder.singleValueContainer()
-        let dateStr = try container.decode(String.self)
-        let formatter = ISO8601DateFormatter()
-        if let date = formatter.date(from: dateStr) {
-            return date
-        }
+	private lazy var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .custom { [weak self] decoder in
+		let container = try decoder.singleValueContainer()
+		let dateStr = try container.decode(String.self)
+		let formatter = ISO8601DateFormatter()
+		if let date = formatter.date(from: dateStr) {
+			return date
+		}
 
-        formatter.formatOptions = [.withFullDate, .withFullTime, .withFractionalSeconds]
-        if let date = formatter.date(from: dateStr) {
-            return date
-        }
+		formatter.formatOptions = [.withFullDate, .withFullTime, .withFractionalSeconds]
+		if let date = formatter.date(from: dateStr) {
+			return date
+		}
 
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "Could not serialize date")
-    }
+		throw DecodingError.dataCorruptedError(in: container, debugDescription: "Could not serialize date")
+	}
 
-    private init() {}
+	private init() {}
 
-    /// Performs the passed request
-    /// - Parameters:
-    ///   - urlConvertible: The request to perform
-    ///   - mockFileName: For mock builds. Pass the json file you want to be returned
-    /// - Returns: A publisher which contains the response
-    func requestCodable<T: Codable>(_ urlConvertible: URLRequestConvertible, mockFileName: String? = nil) -> AnyPublisher<DataResponse<T, NetworkErrorResponse>, Never> {
-        return performRequest(urlConvertible, mockFileName: mockFileName, additionalInterceptors: [])
-    }
+	/// Performs the passed request
+	/// - Parameters:
+	///   - urlConvertible: The request to perform
+	///   - mockFileName: For mock builds. Pass the json file you want to be returned
+	/// - Returns: A publisher which contains the response
+	func requestCodable<T: Codable>(_ urlConvertible: URLRequestConvertible, mockFileName: String? = nil) -> AnyPublisher<DataResponse<T, NetworkErrorResponse>, Never> {
+		return performRequest(urlConvertible, mockFileName: mockFileName, additionalInterceptors: [])
+	}
 
-    /// Performs the passed request adding auth token
-    /// - Parameters:
-    ///   - urlConvertible: The request to perform
-    ///   - mockFileName: For mock builds. Pass the json file you want to be returned
-    /// - Returns: A publisher which contains the response
-    func requestCodableAuthorized<T: Codable>(_ urlConvertible: URLRequestConvertible, mockFileName: String? = nil) -> AnyPublisher<DataResponse<T, NetworkErrorResponse>, Never> {
-        let authInterceptor = AuthInterceptor()
-        return performRequest(urlConvertible, mockFileName: mockFileName, additionalInterceptors: [authInterceptor])
-    }
+	/// Performs the passed request adding auth token
+	/// - Parameters:
+	///   - urlConvertible: The request to perform
+	///   - mockFileName: For mock builds. Pass the json file you want to be returned
+	/// - Returns: A publisher which contains the response
+	func requestCodableAuthorized<T: Codable>(_ urlConvertible: URLRequestConvertible, mockFileName: String? = nil) -> AnyPublisher<DataResponse<T, NetworkErrorResponse>, Never> {
+		let authInterceptor = AuthInterceptor()
+		return performRequest(urlConvertible, mockFileName: mockFileName, additionalInterceptors: [authInterceptor])
+	}
 
-    /// Downloads the file for the passed request
-    /// - Parameters:
-    ///   - urlConvertible: The request to perform
-    ///   - destinationFileUrl: The file url where the downloaded file will be saved
-    /// - Returns: A publisher which contains the response
-    func downloadFile(_ urlConvertible: URLRequestConvertible, destinationFileUrl: URL) -> AnyPublisher<DownloadResponse<Data, NetworkErrorResponse>, Never> {
-        let interceptor = AuthInterceptor()
-        let destination: DownloadRequest.Destination = { _, _ in
-            (destinationFileUrl, [.removePreviousFile, .createIntermediateDirectories])
-        }
+	/// Downloads the file for the passed request
+	/// - Parameters:
+	///   - urlConvertible: The request to perform
+	///   - destinationFileUrl: The file url where the downloaded file will be saved
+	/// - Returns: A publisher which contains the response
+	func downloadFile(_ urlConvertible: URLRequestConvertible, destinationFileUrl: URL) -> AnyPublisher<DownloadResponse<Data, NetworkErrorResponse>, Never> {
+		let interceptor = AuthInterceptor()
+		let destination: DownloadRequest.Destination = { _, _ in
+			(destinationFileUrl, [.removePreviousFile, .createIntermediateDirectories])
+		}
 
-        return session.download(urlConvertible, interceptor: interceptor, to: destination)
-            .validate()
-            .publishData()
-            .map { [weak self] response in
-                self?.debugPrintDownloadResponse(urlString: urlConvertible.urlRequest?.url?.absoluteString, fileUrl: response.fileURL)
+		return session.download(urlConvertible, interceptor: interceptor, to: destination)
+			.validate()
+			.publishData()
+			.map { [weak self] response in
+				self?.debugPrintDownloadResponse(urlString: urlConvertible.urlRequest?.url?.absoluteString, fileUrl: response.fileURL)
 
-                return response.mapError { error in
-                    guard let fileUrl = response.fileURL, let data = try? Data(contentsOf: fileUrl) else {
-                        return NetworkErrorResponse(initialError: error, backendError: nil)
-                    }
+				return response.mapError { error in
+					guard let fileUrl = response.fileURL, let data = try? Data(contentsOf: fileUrl) else {
+						return NetworkErrorResponse(initialError: error, backendError: nil)
+					}
 
-                    let backendError = try? JSONDecoder().decode(BackendError.self, from: data)
-                    try? FileManager.default.removeItem(at: fileUrl)
-                    let networkError = NetworkErrorResponse(initialError: error, backendError: backendError)
-                    self?.logError(networkError)
-                    return networkError
-                }
-            }
-            .eraseToAnyPublisher()
-    }
+					let backendError = try? JSONDecoder().decode(BackendError.self, from: data)
+					try? FileManager.default.removeItem(at: fileUrl)
+					let networkError = NetworkErrorResponse(initialError: error, backendError: backendError)
+					self?.logError(networkError)
+					return networkError
+				}
+			}
+			.eraseToAnyPublisher()
+	}
+}
 
+private extension ApiClient {
     func performRequest<T: Codable>(_ urlConvertible: URLRequestConvertible,
                                                    mockFileName: String? = nil,
                                                    additionalInterceptors: [RequestInterceptor]) -> AnyPublisher<DataResponse<T, NetworkErrorResponse>, Never> {
@@ -201,11 +203,11 @@ public class ApiClient {
         MockProtocol.responses[url] = mockFileName
     }
 
-    private func logError(_ error: NetworkErrorResponse) {
+    func logError(_ error: NetworkErrorResponse) {
         Logger.shared.logNetworkError(error)
     }
 
-    private func debugPrintDownloadResponse(urlString: String?, fileUrl: URL?) {
+    func debugPrintDownloadResponse(urlString: String?, fileUrl: URL?) {
         #if DEBUG || MOCK
             guard let fileUrl = fileUrl else {
                 return
@@ -216,7 +218,7 @@ public class ApiClient {
     }
 
 
-	private func debugResponse(urlString: String?, data: Data?) {
+	func debugResponse(urlString: String?, data: Data?) {
 		DispatchQueue.global(qos: .background).async {
 			print(urlString ?? "-")
 			guard let data = data,
