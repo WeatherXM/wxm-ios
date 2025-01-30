@@ -269,12 +269,13 @@ private extension GalleryViewModel {
 	}
 
 	func showExitAlert(message: String, dismissAction: @escaping VoidCallback) {
-		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.exit.localized, { _ in  dismissAction() })
+		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.exitAnyway.localized, { _ in  dismissAction() })
+		let verifyAction: AlertHelper.AlertObject.Action = (LocalizableString.PhotoVerification.stayAndVerify.localized, { _ in  })
 		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.exitPhotoVerification.localized,
 												  message: message,
-												  cancelActionTitle: LocalizableString.back.localized,
-												  cancelAction: {},
-												  okAction: exitAction)
+												  cancelActionTitle: exitAction.title,
+												  cancelAction: { exitAction.action(nil) },
+												  okAction: verifyAction)
 
 		AlertHelper().showAlert(alertObject)
 	}

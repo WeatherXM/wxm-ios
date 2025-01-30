@@ -75,6 +75,7 @@ extension LocalizableString {
 		case deletePhotoAlertMessage
 		case uploadPhotosAlertTitle
 		case uploadPhotosAlertMessage
+		case stayAndVerify
 	}
 }
 
@@ -226,6 +227,8 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_upload_photos_alert_title"
 			case .uploadPhotosAlertMessage:
 				"photo_verification_upload_photos_alert_message"
+			case .stayAndVerify:
+				"photo_verification_stay_and_verify"
 		}
 	}
 }
