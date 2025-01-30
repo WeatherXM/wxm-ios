@@ -41,6 +41,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	case getDevices
 	case claimDevice(claimDeviceBody: ClaimDeviceBody)
 	case disclaimDevice(serialNumber: String)
+	case setDeviceFrequency(serialNumber: String, frequency: String)
 	case getFirmwares(testSearch: String)
 	case getUserDeviceById(deviceId: String)
 	case getUserDeviceInfoById(deviceId: String)
@@ -66,7 +67,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 					.getUserDeviceHistoryById, .getUserDeviceForecastById, .getUserDeviceRewards, 
 					.getUserDevicesRewards, .getDeviceFirmwareById, .getUserDeviceInfoById:
 				return .get
-			case .saveUserWallet, .claimDevice, .setFriendlyName, .disclaimDevice, .follow, .setDeviceLocation, .setFCMToken:
+			case .saveUserWallet, .claimDevice, .setDeviceFrequency, .setFriendlyName, .disclaimDevice, .follow, .setDeviceLocation, .setFCMToken:
 				return .post
 			case .deleteAccount, .deleteFriendlyName, .unfollow:
 				return .delete
@@ -99,6 +100,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/devices"
 			case .claimDevice:
 				return "me/devices/claim"
+			case .setDeviceFrequency:
+				return "me/devices/frequency"
 			case .disclaimDevice:
 				return "me/devices/disclaim"
 			case .getFirmwares:
@@ -141,6 +144,9 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return [ParameterConstants.Me.address: address]
 			case let .claimDevice(claimDeviceBody):
 				return claimDeviceBody.dictionaryRepresentation
+			case let .setDeviceFrequency(serialNumber, frequency):
+				return [ParameterConstants.Me.serialNumber: serialNumber,
+						ParameterConstants.Me.freq: frequency]
 			case let .disclaimDevice(serialNumber):
 				return [ParameterConstants.Me.serialNumber: serialNumber]
 			case let .getFirmwares(testSearch):

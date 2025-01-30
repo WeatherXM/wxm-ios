@@ -55,6 +55,11 @@ public struct MeUseCase: @unchecked Sendable {
         return claimDevice.convertedToDeviceDetailsResultPublisher
     }
 
+	public func setFrequency(_ serialNumber: String, frequency: Frequency) async throws -> NetworkErrorResponse? {
+		let response = try await meRepository.setFrequency(serialNumber: serialNumber, frequency: frequency.rawValue).toAsync()
+		return response.error
+	}
+
     public func getFirmwares(testSearch: String) throws -> AnyPublisher<DataResponse<[NetworkFirmwareResponse], NetworkErrorResponse>, Never> {
         let getFirmwares = try meRepository.getFirmwares(testSearch: testSearch)
         return getFirmwares

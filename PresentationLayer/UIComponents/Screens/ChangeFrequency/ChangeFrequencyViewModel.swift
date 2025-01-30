@@ -22,12 +22,17 @@ class ChangeFrequencyViewModel: ObservableObject {
 	private let mainVM: MainScreenViewModel = .shared
 
     private let useCase: DeviceInfoUseCase?
+	private let meUseCase: MeUseCase?
     let device: DeviceDetails
     private var cancellables: Set<AnyCancellable> = []
 
-    init(device: DeviceDetails, useCase: DeviceInfoUseCase?, frequency: Frequency? = Frequency.allCases.first) {
+    init(device: DeviceDetails,
+		 useCase: DeviceInfoUseCase?,
+		 meUseCase: MeUseCase?,
+		 frequency: Frequency? = Frequency.allCases.first) {
         self.device = device
         self.useCase = useCase
+		self.meUseCase = meUseCase
         self.selectedFrequency = frequency
     }
 
@@ -128,22 +133,46 @@ private extension ChangeFrequencyViewModel {
                     case .failed(let error):
                         self?.handleFrequencyError(error)
                     case .finished:
-						let subtitle = LocalizableString.DeviceInfo.stationFrequencyChangedDescription(selectedFrequency.rawValue).localized
-                        let obj = FailSuccessStateObject(type: .changeFrequency,
-														 title: LocalizableString.DeviceInfo.stationFrequencyChanged.localized,
-                                                         subtitle: subtitle.attributedMarkdown,
-                                                         cancelTitle: nil,
-														 retryTitle: LocalizableString.DeviceInfo.stationBackToSettings.localized,
-                                                         contactSupportAction: nil,
-                                                         cancelAction: nil,
-                                                         retryAction: { [weak self] in self?.dismissToggle.toggle() })
-                        self?.state = .success(obj)
-
+						self?.updateApiFrequency(frequency: selectedFrequency)
                 }
                 self?.updateSteps()
             }
         }.store(in: &cancellables)
     }
+
+	func updateApiFrequency(frequency: Frequency) {
+		guard let serialNumber = device.label?.replacingOccurrences(of: ":", with: "") else {
+			self.showGenericError()
+			return
+		}
+
+		Task { @MainActor [weak self] in
+			do {
+				if let apiError = try await self?.meUseCase?.setFrequency(serialNumber, frequency: frequency) {
+					let uiInfo = apiError.uiInfo
+					let obj = uiInfo.defaultFailObject(type: .changeFrequency,
+													   retryAction: { [weak self] in self?.dismissToggle.toggle() })
+					self?.state = .failed(obj)
+					return
+				}
+			} catch {
+				self?.showGenericError()
+
+				return
+			}
+
+			let subtitle = LocalizableString.DeviceInfo.stationFrequencyChangedDescription(frequency.rawValue).localized
+			let obj = FailSuccessStateObject(type: .changeFrequency,
+											 title: LocalizableString.DeviceInfo.stationFrequencyChanged.localized,
+											 subtitle: subtitle.attributedMarkdown,
+											 cancelTitle: nil,
+											 retryTitle: LocalizableString.DeviceInfo.stationBackToSettings.localized,
+											 contactSupportAction: nil,
+											 cancelAction: nil,
+											 retryAction: { [weak self] in self?.dismissToggle.toggle() })
+			self?.state = .success(obj)
+		}
+	}
 
     func updateSteps() {
         guard let currentStepIndex else {
@@ -157,6 +186,14 @@ private extension ChangeFrequencyViewModel {
             steps[index].setCompleted(index < currentStepIndex)
         }
     }
+
+	func showGenericError() {
+		let uiInfo = NetworkErrorResponse.UIInfo(title: LocalizableString.Error.genericMessage.localized,
+												 description: nil)
+		let obj = uiInfo.defaultFailObject(type: .changeFrequency,
+										   retryAction: { [weak self] in self?.dismissToggle.toggle() })
+		state = .failed(obj)
+	}
 
     func handleFrequencyError(_ error: ChangeFrequencyError) {
 		guard let failTuple = getFailDecsriptionAndAction(error: error) else {

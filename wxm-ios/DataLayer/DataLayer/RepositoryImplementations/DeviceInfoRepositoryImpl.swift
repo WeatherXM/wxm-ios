@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@preconcurrency import DomainLayer
+import DomainLayer
 @preconcurrency import Combine
 import Alamofire
 
@@ -62,15 +62,16 @@ extension DeviceInfoRepositoryImpl {
 
 	public func changeFrequency(device: DeviceDetails, frequency: Frequency) -> AnyPublisher<ChangeFrequencyState, Never> {
 		let valueSubject = CurrentValueSubject<ChangeFrequencyState, Never>(.connect)
-		Task {
+
+		Task { @MainActor [weak self, valueSubject] in
 			valueSubject.send(.connect)
-			if let error = await bluetoothWrapper.connect(device: device) {
+			if let error = await self?.bluetoothWrapper.connect(device: device) {
 				valueSubject.send(.failed(error.toChangeFrequencyError))
 				return
 			}
 
 			valueSubject.send(.changing)
-			if let error = await bluetoothWrapper.setFrequency(device: device, frequency: frequency) {
+			if let error = await self?.bluetoothWrapper.setFrequency(device: device, frequency: frequency) {
 				valueSubject.send(.failed(error.toChangeFrequencyError))
 				return
 			}

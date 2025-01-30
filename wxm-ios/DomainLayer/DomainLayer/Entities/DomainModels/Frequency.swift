@@ -5,7 +5,7 @@
 //  Created by Manolis Katsifarakis on 26/11/22.
 //
 
-public enum Frequency: String, CaseIterable, Identifiable, Equatable, Codable {
+public enum Frequency: String, CaseIterable, Identifiable, Equatable, Codable, Sendable {
     case EU868
     case US915
     case AU915

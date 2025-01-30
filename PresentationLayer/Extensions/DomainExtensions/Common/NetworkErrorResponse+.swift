@@ -18,8 +18,8 @@ extension NetworkErrorResponse {
 #if MAIN_APP
 		@MainActor
 		func defaultFailObject(type: SuccessFailEnum,
-										  failMode: FailView.Mode = .default,
-										  retryAction: VoidCallback?) -> FailSuccessStateObject {
+							   failMode: FailView.Mode = .default,
+							   retryAction: VoidCallback?) -> FailSuccessStateObject {
 			let obj = FailSuccessStateObject(type: type,
 											 failMode: failMode,
 											 title: title,

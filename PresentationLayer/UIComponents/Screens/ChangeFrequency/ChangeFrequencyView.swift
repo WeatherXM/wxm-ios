@@ -19,38 +19,51 @@ struct ChangeFrequencyView: View {
         ZStack {
             Color(colorEnum: .top)
                 .ignoresSafeArea()
+			GeometryReader { _ in
+				VStack {
+					if viewModel.state == .setFrequency {
+						VStack(spacing: 0.0) {
+							SelectFrequencyView(selectedFrequency: $viewModel.selectedFrequency,
+												isFrequencyAcknowledged: $viewModel.isFrequencyAcknowledged)
 
-            VStack {
-                if viewModel.state == .setFrequency {
-                    VStack(spacing: 0.0) {
-                        SelectFrequencyView(selectedFrequency: $viewModel.selectedFrequency,
-                                            isFrequencyAcknowledged: $viewModel.isFrequencyAcknowledged)
+							HStack(spacing: CGFloat(.mediumSpacing)) {
+								Button {
+									viewModel.cancelButtonTapped()
+								} label: {
+									Text(LocalizableString.cancel.localized)
+								}
+								.buttonStyle(WXMButtonStyle())
 
-                        HStack(spacing: CGFloat(.mediumSpacing)) {
-                            Button {
-                                viewModel.cancelButtonTapped()
-                            } label: {
-                                Text(LocalizableString.cancel.localized)
-                            }
-                            .buttonStyle(WXMButtonStyle())
+								Button {
+									viewModel.changeButtonTapped()
+								} label: {
+									Text(LocalizableString.change.localized)
+								}
+								.buttonStyle(WXMButtonStyle.filled())
+								.disabled(!viewModel.isFrequencyAcknowledged)
+							}
+						}
+					} else {
+						VStack {
+							Spacer()
 
-                            Button {
-                                viewModel.changeButtonTapped()
-                            } label: {
-                                Text(LocalizableString.change.localized)
-                            }
-                            .buttonStyle(WXMButtonStyle.filled())
-                            .disabled(!viewModel.isFrequencyAcknowledged)
-                        }
-                    }
-                } else {
-                    DeviceUpdatesLoadingView(title: LocalizableString.changingFrequency.localized,
-                                             subtitle: nil,
-                                             steps: viewModel.steps,
-                                             currentStepIndex: $viewModel.currentStepIndex,
-                                             progress: .constant(nil))
-                }
-            }
+							HStack {
+								Spacer()
+
+								DeviceUpdatesLoadingView(title: LocalizableString.changingFrequency.localized,
+														 subtitle: nil,
+														 steps: viewModel.steps,
+														 currentStepIndex: $viewModel.currentStepIndex,
+														 progress: .constant(nil))
+
+								Spacer()
+							}
+
+							Spacer()
+						}
+					}
+				}
+			}
             .fail(show: Binding(get: { viewModel.state.isFailed }, set: { _ in }), obj: viewModel.state.stateObject)
             .success(show: Binding(get: { viewModel.state.isSuccess }, set: { _ in }), obj: viewModel.state.stateObject)
             .animation(.easeIn, value: viewModel.state)
@@ -73,7 +86,7 @@ struct ChangeFrequencyView_Set_Previews: PreviewProvider {
 		device.bundle = .mock(name: .h1)
 
         return NavigationContainerView {
-            ChangeFrequencyView(viewModel: ChangeFrequencyViewModel(device: device, useCase: nil))
+			ChangeFrequencyView(viewModel: ViewModelsFactory.getChangeFrequencyViewModel(device: device))
         }
     }
 }
@@ -82,7 +95,7 @@ struct ChangeFrequencyView_Change_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
 		device.bundle = .mock(name: .h1)
-        let vm = ChangeFrequencyViewModel(device: device, useCase: nil)
+        let vm = ViewModelsFactory.getChangeFrequencyViewModel(device: device)
         vm.state = .changeFrequency
         return NavigationContainerView {
             ChangeFrequencyView(viewModel: vm)
@@ -94,7 +107,7 @@ struct ChangeFrequencyView_Fail_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
 		device.bundle = .mock(name: .h1)
-        let vm = ChangeFrequencyViewModel(device: device, useCase: nil)
+        let vm = ViewModelsFactory.getChangeFrequencyViewModel(device: device)
         vm.state = .failed(.mockErrorObj)
         return NavigationContainerView {
             ChangeFrequencyView(viewModel: vm)
@@ -106,7 +119,7 @@ struct ChangeFrequencyView_Success_Previews: PreviewProvider {
     static var previews: some View {
         var device = DeviceDetails.emptyDeviceDetails
 		device.bundle = .mock(name: .h1)
-        let vm = ChangeFrequencyViewModel(device: device, useCase: nil)
+        let vm = ViewModelsFactory.getChangeFrequencyViewModel(device: device)
         vm.state = .success(.mockSuccessObj)
         return NavigationContainerView {
             ChangeFrequencyView(viewModel: vm)

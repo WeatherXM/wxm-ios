@@ -81,6 +81,22 @@ private extension ClaimHeliumContainerViewModel {
 										  progress: nil))
 			showLoading = true
 
+			// Fetch device info
+
+			let result = await devicesUseCase.getDeviceInfo(device: btDevice)
+			switch result {
+				case .success(let info):
+					// perform claim request
+					self.serialNumber = info?.devEUI
+					self.claimingKey = info?.claimingKey
+				case .failure(let error):
+					let failObj = self.getFailObject(for: error) { [weak self] in
+						self?.showLoading = false
+					}
+					loadingState = .fail(failObj)
+					return
+			}
+
 			// Set frequency
 			if let setFrequencyError = await setHeliumFrequency() {
 				let failObj = self.getFailObject(for: setFrequencyError) { [weak self] in
@@ -90,6 +106,26 @@ private extension ClaimHeliumContainerViewModel {
 
 				return
 			}
+
+			do {
+				if let apiFrequencyError = try await self.setApiHeliumFrequency() {
+					let uiInfo = apiFrequencyError.uiInfo
+					let failObj = uiInfo.defaultFailObject(type: .claimDeviceFlow, failMode: .default) { [weak self] in
+						self?.showLoading = false
+					}
+					loadingState = .fail(failObj)
+					return
+				}
+			} catch {
+				let uiInfo = NetworkErrorResponse.UIInfo(title: LocalizableString.Error.genericMessage.localized,
+														 description: nil)
+				let failObj = uiInfo.defaultFailObject(type: .claimDeviceFlow, failMode: .default) { [weak self] in
+					self?.showLoading = false
+				}
+				loadingState = .fail(failObj)
+				return
+			}
+
 
 			steps[0].isCompleted = true
 
@@ -113,27 +149,13 @@ private extension ClaimHeliumContainerViewModel {
 
 			steps[1].isCompleted = true
 
-			// Fetch device info
-
 			loadingState = .loading(.init(title: title,
 										  subtitle: subtitle.attributedMarkdown,
 										  steps: steps,
 										  stepIndex: 2,
 										  progress: nil))
 
-			let result = await devicesUseCase.getDeviceInfo(device: btDevice)
-			switch result {
-				case .success(let info):
-					// perform claim request
-					self.serialNumber = info?.devEUI
-					self.claimingKey = info?.claimingKey
-					self.performClaim(retries: 0)
-				case .failure(let error):
-					let failObj = self.getFailObject(for: error) { [weak self] in
-						self?.showLoading = false
-					}
-					loadingState = .fail(failObj)
-			}
+			self.performClaim(retries: 0)
 		}
 	}
 
@@ -143,6 +165,15 @@ private extension ClaimHeliumContainerViewModel {
 		}
 
 		let error = await devicesUseCase.setHeliumFrequency(btDevice, frequency: heliumFrequency)
+		return error
+	}
+
+	func setApiHeliumFrequency() async throws -> NetworkErrorResponse? {
+		guard let heliumFrequency, let serialNumber = serialNumber?.replacingOccurrences(of: ":", with: "") else {
+			throw NSError(domain: "", code: -1)
+		}
+
+		let error = try? await useCase.setFrequency(serialNumber, frequency: heliumFrequency)
 		return error
 	}
 

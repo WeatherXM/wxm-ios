@@ -89,7 +89,7 @@ class DeviceInfoViewModel: ObservableObject {
     }
     @Published var showChangeFrequency = false
     var changeFrequencyViewModel: ChangeFrequencyViewModel {
-        ChangeFrequencyViewModel(device: device, useCase: deviceInfoUseCase)
+		ViewModelsFactory.getChangeFrequencyViewModel(device: device)
     }
 
     @Published var showAccountConfirmation = false
