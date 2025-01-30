@@ -25,9 +25,16 @@ public final class FileUploaderService: Sendable {
 	private let backgroundSession: URLSession!
 	private let sessionDelegate: SessionDelegate = SessionDelegate()
 	nonisolated(unsafe) private var cancellables: Set<AnyCancellable> = Set()
+
+	// Keeps the mulitpart form data file in order to delete it once the correpondig task is copleted
 	nonisolated(unsafe) private var taskFileBodyUrls: [URLSessionTask: URL] = [:]
+	// Keeps the file url in order to delete it once the correpondig task is copleted,
+	// or to keep it in case of error to support retries
 	nonisolated(unsafe) private var taskFileUrls: [URLSessionTask: URL] = [:]
+	// Keeps the progress for each upload task. Will be purged once a task is completed
 	nonisolated(unsafe) private var taskProgresses: [URLSessionTask: Double] = [:]
+	// Keeps the total number of pending uploads for each device id
+	nonisolated(unsafe) private var totalUploads: [String: Int] = [:]
 
 	public init() {
 		let bundleIdentifier = Bundle.main.bundleIdentifier ?? UUID().uuidString
@@ -54,7 +61,7 @@ public final class FileUploaderService: Sendable {
 
 			self?.removeFileBody(for: task)
 			self?.removeFile(for: task)
-			let totalFiles = self?.taskProgresses.keys.filter { $0.taskDescription == deviceId }.count ?? 0
+			let totalFiles = self?.totalUploads[deviceId] ?? 0
 			self?.purgeProgressesIfNeeded(for: deviceId)
 
 			if let deviceId = task.taskDescription,
@@ -104,6 +111,7 @@ public final class FileUploaderService: Sendable {
 			}
 		}
 
+		totalUploads[deviceId] = files.count
 		uploadStartedPassthroughSubject.send(deviceId)
 	}
 
