@@ -4147,6 +4147,17 @@
         }
       }
     },
+    "exit_anyway" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit anyway"
+          }
+        }
+      }
+    },
     "explorer_list_cell_capacity" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6061,6 +6072,17 @@
         }
       }
     },
+    "photo_verification_keep_taking_photos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep taking photos"
+          }
+        }
+      }
+    },
     "photo_verification_lets_take_the_first_photo" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6244,6 +6266,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Station photos"
+          }
+        }
+      }
+    },
+    "photo_verification_stay_and_verify" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stay & verify"
           }
         }
       }
