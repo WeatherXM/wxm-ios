@@ -6342,7 +6342,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uploaded %d photo"
+            "value" : "Uploaded %d photos"
           }
         }
       }
@@ -6353,7 +6353,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Upload your photos"
+            "value" : "Upload your photo"
           }
         }
       }
