@@ -37,6 +37,7 @@
 		267401782A376B4200E54E35 /* NetworkApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267401772A376B4200E54E35 /* NetworkApiRequestBuilder.swift */; };
 		2674017A2A386DA700E54E35 /* get_network_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 267401792A386DA700E54E35 /* get_network_stats.json */; };
 		2674EDCE2A3C4C3800616285 /* get_network_stats_alt.json in Resources */ = {isa = PBXBuildFile; fileRef = 2674EDCD2A3C4C3800616285 /* get_network_stats_alt.json */; };
+		2678114E2D4BA57C00D22B67 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678114D2D4BA57800D22B67 /* Client.swift */; };
 		267A37872AEBEBBA00469126 /* get_user_device_rewards.json in Resources */ = {isa = PBXBuildFile; fileRef = 267A37862AEBEBBA00469126 /* get_user_device_rewards.json */; };
 		267CA6EF2C1314E300ABE599 /* get_user.json in Resources */ = {isa = PBXBuildFile; fileRef = 267CA6EE2C1314E200ABE599 /* get_user.json */; };
 		267EC3BC2CD0E8BD0085B50A /* MainRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC3BB2CD0E8BD0085B50A /* MainRepositoryImpl.swift */; };
@@ -138,6 +139,7 @@
 		267401772A376B4200E54E35 /* NetworkApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiRequestBuilder.swift; sourceTree = "<group>"; };
 		267401792A386DA700E54E35 /* get_network_stats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_network_stats.json; sourceTree = "<group>"; };
 		2674EDCD2A3C4C3800616285 /* get_network_stats_alt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_network_stats_alt.json; sourceTree = "<group>"; };
+		2678114D2D4BA57800D22B67 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		267A37862AEBEBBA00469126 /* get_user_device_rewards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user_device_rewards.json; sourceTree = "<group>"; };
 		267CA6EE2C1314E200ABE599 /* get_user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user.json; sourceTree = "<group>"; };
 		267EC3BB2CD0E8BD0085B50A /* MainRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				2609D3AB29FC04A400D945D9 /* Interceptors */,
 				26E2B3A329816C2E00ED9B58 /* Mock */,
 				B55668912832DE96006D0B71 /* ApiClient.swift */,
+				2678114D2D4BA57800D22B67 /* Client.swift */,
 				B54B809D2850C25900FB52B9 /* Connectivity.swift */,
 				26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */,
 			);
@@ -636,6 +639,7 @@
 				26A86BC22C7C997700F1C2CF /* RemoteConfigRepositoryImpl.swift in Sources */,
 				264710A62A4EF4F700A6C1B9 /* Model.xcdatamodeld in Sources */,
 				267401782A376B4200E54E35 /* NetworkApiRequestBuilder.swift in Sources */,
+				2678114E2D4BA57C00D22B67 /* Client.swift in Sources */,
 				B5E6B85928337A820060D050 /* NetworkConstants.swift in Sources */,
 				267401762A376A1400E54E35 /* NetworkRepositoryImpl.swift in Sources */,
 				B5E6B85B283385A10060D050 /* ParameterConstants.swift in Sources */,
