@@ -233,8 +233,8 @@ private extension PhotoIntroView {
 					Spacer()
 				}
 				
-				Button {
-					viewModel.handleBeginButtonTap()
+				Button {					
+					viewModel.handleBeginButtonTap(dismiss: dismiss)
 				} label: {
 					Text(LocalizableString.PhotoVerification.letsTakeTheFirstPhoto.localized)
 				}
