@@ -38,6 +38,7 @@
 		2674017A2A386DA700E54E35 /* get_network_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 267401792A386DA700E54E35 /* get_network_stats.json */; };
 		2674EDCE2A3C4C3800616285 /* get_network_stats_alt.json in Resources */ = {isa = PBXBuildFile; fileRef = 2674EDCD2A3C4C3800616285 /* get_network_stats_alt.json */; };
 		2678114E2D4BA57C00D22B67 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678114D2D4BA57800D22B67 /* Client.swift */; };
+		267811562D4CC41200D22B67 /* empty_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 267811552D4CC41200D22B67 /* empty_response.json */; };
 		267A37872AEBEBBA00469126 /* get_user_device_rewards.json in Resources */ = {isa = PBXBuildFile; fileRef = 267A37862AEBEBBA00469126 /* get_user_device_rewards.json */; };
 		267CA6EF2C1314E300ABE599 /* get_user.json in Resources */ = {isa = PBXBuildFile; fileRef = 267CA6EE2C1314E200ABE599 /* get_user.json */; };
 		267EC3BC2CD0E8BD0085B50A /* MainRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC3BB2CD0E8BD0085B50A /* MainRepositoryImpl.swift */; };
@@ -140,6 +141,7 @@
 		267401792A386DA700E54E35 /* get_network_stats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_network_stats.json; sourceTree = "<group>"; };
 		2674EDCD2A3C4C3800616285 /* get_network_stats_alt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_network_stats_alt.json; sourceTree = "<group>"; };
 		2678114D2D4BA57800D22B67 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		267811552D4CC41200D22B67 /* empty_response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = empty_response.json; sourceTree = "<group>"; };
 		267A37862AEBEBBA00469126 /* get_user_device_rewards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user_device_rewards.json; sourceTree = "<group>"; };
 		267CA6EE2C1314E200ABE599 /* get_user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user.json; sourceTree = "<group>"; };
 		267EC3BB2CD0E8BD0085B50A /* MainRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 				266B01CF2B861B10007AC689 /* get_device_rewards_summary_empty.json in Resources */,
 				2631872C29A4E2D400FA1691 /* get_device_history.json in Resources */,
 				26C71CD82D26D97500D2F0F3 /* post_device_photos.json in Resources */,
+				267811562D4CC41200D22B67 /* empty_response.json in Resources */,
 				2683A4C42ADECF3100D5C205 /* countries_information.json in Resources */,
 				267CA6EF2C1314E300ABE599 /* get_user.json in Resources */,
 				2618A6F12A1F61FD00983B7B /* get_device_history_24_samples.json in Resources */,

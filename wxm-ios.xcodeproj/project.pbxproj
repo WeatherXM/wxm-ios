@@ -293,6 +293,8 @@
 		267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267811052D490EC000D22B67 /* UserDefaultsServiceTests.swift */; };
 		267811082D49269500D22B67 /* MockCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267811072D49268300D22B67 /* MockCacheManager.swift */; };
 		2678110A2D49279300D22B67 /* FiltersServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267811092D49279300D22B67 /* FiltersServiceTest.swift */; };
+		267811502D4BB21700D22B67 /* UserInfoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678114F2D4BB21700D22B67 /* UserInfoServiceTests.swift */; };
+		267811522D4BB61800D22B67 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 267811512D4BB61800D22B67 /* Alamofire */; };
 		2678ED8F2AFD1B1400940D59 /* RewardsTimelinePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */; };
 		267A37832AEBB4C900469126 /* StationRewardsTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */; };
 		267A378A2AEBFF2F00469126 /* DeviceRewardsOverview+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */; };
@@ -900,6 +902,7 @@
 		267811052D490EC000D22B67 /* UserDefaultsServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsServiceTests.swift; sourceTree = "<group>"; };
 		267811072D49268300D22B67 /* MockCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCacheManager.swift; sourceTree = "<group>"; };
 		267811092D49279300D22B67 /* FiltersServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersServiceTest.swift; sourceTree = "<group>"; };
+		2678114F2D4BB21700D22B67 /* UserInfoServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoServiceTests.swift; sourceTree = "<group>"; };
 		2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelinePagination.swift; sourceTree = "<group>"; };
 		267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsTimelineView.swift; sourceTree = "<group>"; };
 		267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceRewardsOverview+.swift"; sourceTree = "<group>"; };
@@ -1159,6 +1162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				267811522D4BB61800D22B67 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2032,6 +2036,7 @@
 				267811072D49268300D22B67 /* MockCacheManager.swift */,
 				267811052D490EC000D22B67 /* UserDefaultsServiceTests.swift */,
 				267811092D49279300D22B67 /* FiltersServiceTest.swift */,
+				2678114F2D4BB21700D22B67 /* UserInfoServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2850,6 +2855,7 @@
 			);
 			name = WeatherXMTests;
 			packageProductDependencies = (
+				267811512D4BB61800D22B67 /* Alamofire */,
 			);
 			productName = WeatherXMTests;
 			productReference = 26707E9C2C3ECC0400B9305F /* WeatherXMTests.xctest */;
@@ -3168,6 +3174,7 @@
 				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
 				265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */,
 				265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */,
+				267811502D4BB21700D22B67 /* UserInfoServiceTests.swift in Sources */,
 				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
 				26D32FE82C510DF000E765E0 /* DateExtensionsTests.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
@@ -4513,6 +4520,11 @@
 			productName = Swinject;
 		};
 		266D18242ACC0653007CDB06 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 261E9EB629A92BE000E8EBA3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		267811512D4BB61800D22B67 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9EB629A92BE000E8EBA3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;

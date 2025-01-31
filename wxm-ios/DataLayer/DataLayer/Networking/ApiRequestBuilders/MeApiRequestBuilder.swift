@@ -241,6 +241,8 @@ extension MeApiRequestBuilder: MockResponseBuilder {
 				return "empty_response"
 			case .postPhotoNames:
 				return "post_device_photos"
+			case .saveUserWallet:
+				return "empty_response"
 			default:
 				return nil
 		}
