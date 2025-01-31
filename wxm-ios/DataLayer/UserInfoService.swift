@@ -56,8 +56,8 @@ public class UserInfoService: @unchecked Sendable {
 		let urlRequest = try builder.asURLRequest()
 		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
 		return publisher.flatMap { [weak self] response in
-			if response.error == nil {
-				_ = try? self?.getUser().sink { _ in }.store(in: &self!.cancellableSet)
+			if let self, response.error == nil {
+				_ = try? self.getUser().sink { _ in }.store(in: &self.cancellableSet)
 			}
 			return Just(response)
 		}
