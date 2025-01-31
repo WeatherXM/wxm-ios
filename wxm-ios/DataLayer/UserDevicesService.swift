@@ -20,15 +20,18 @@ public class UserDevicesService: @unchecked Sendable {
 
     private var cancellableSet: Set<AnyCancellable> = []
     private let cacheValidationInterval: TimeInterval = 3.0 * 60.0 // 3 minutes
-	private let followStatesCache = TimeValidationCache<[UserDeviceFollowState]>(persistCacheManager: UserDefaultsService(),
-																				 persistKey: UserDefaults.GenericKey.userDevicesFollowStates.rawValue) // Store user device follow states
-	private let userDevicesCache = TimeValidationCache<[NetworkDevicesResponse]>(persistCacheManager: UserDefaultsService(),
-																				 persistKey: UserDefaults.GenericKey.userDevices.rawValue) // Store user devices
+	private let followStatesCache: TimeValidationCache<[UserDeviceFollowState]> // Store user device follow states
+	private let userDevicesCache: TimeValidationCache<[NetworkDevicesResponse]> // Store user devices
     private let followStatesCacheKey = "userDevicesService.deviceFollowStates"
 	private let userDevicesCacheKey = "userDevicesService.devices"
     let devicesListUpdatedPublisher = NotificationCenter.default.publisher(for: .userDevicesListUpdated)
 
-    public init() {
+	public init(followStatesCacheManager: PersistCacheManager, userDevicesCacheManager: PersistCacheManager) {
+		followStatesCache = TimeValidationCache<[UserDeviceFollowState]>(persistCacheManager: followStatesCacheManager,
+																		 persistKey: UserDefaults.GenericKey.userDevicesFollowStates.rawValue)
+		userDevicesCache  = TimeValidationCache<[NetworkDevicesResponse]>(persistCacheManager: userDevicesCacheManager,
+																		  persistKey: UserDefaults.GenericKey.userDevices.rawValue)
+
         NotificationCenter.default.addObserver(forName: .keychainHelperServiceUserIsLoggedChanged,
                                                object: nil,
 											   queue: nil) { [weak self] _ in

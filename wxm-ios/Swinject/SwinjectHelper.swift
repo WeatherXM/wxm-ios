@@ -21,11 +21,6 @@ class SwinjectHelper: SwinjectInterface {
 
         let container = Container()
 
-		container.register(UserDevicesService.self) { _ in
-			UserDevicesService()
-		}
-		.inObjectScope(.container)
-
 		container.register(UserInfoService.self) { _ in
 			UserInfoService()
 		}
@@ -34,6 +29,12 @@ class SwinjectHelper: SwinjectInterface {
 		container.register(UserDefaultsService.self) { _ in
 			UserDefaultsService()
 		}
+
+		container.register(UserDevicesService.self) { resolver in
+			UserDevicesService(followStatesCacheManager: resolver.resolve(UserDefaultsService.self)!,
+							   userDevicesCacheManager: resolver.resolve(UserDefaultsService.self)!)
+		}
+		.inObjectScope(.container)
 
 		container.register(MainRepository.self) { _ in
 			MainRepositoryImpl()
