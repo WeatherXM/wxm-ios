@@ -37,28 +37,27 @@ public class UserInfoService: @unchecked Sendable {
 		let urlRequest = try builder.asURLRequest()
 		let publisher: AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
 																																					mockFileName: builder.mockFileName).share().eraseToAnyPublisher()
-		publisher.sink { [weak self] response in
-			guard let value = response.value else {
-				return
-			}
-			WXMAnalytics.shared.setUserId(value.id)
-			
-			let hasWallet = value.wallet?.address?.isEmpty == false
+		return publisher.flatMap { [weak self] response in
+			let value = response.value
+
+			WXMAnalytics.shared.setUserId(value?.id)
+
+			let hasWallet = value?.wallet?.address?.isEmpty == false
 			WXMAnalytics.shared.setUserProperty(key: .hasWallet, value: .custom(String(hasWallet)))
 
 			self?.userInfoSubject.send(value)
-		}
-		.store(in: &cancellableSet)
-		
-		return publisher
+
+			return Just(response)
+		}.eraseToAnyPublisher()
 	}
 
 	public func saveUserWallet(address: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		let urlRequest = try MeApiRequestBuilder.saveUserWallet(address: address).asURLRequest()
-		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest)
+		let builder = MeApiRequestBuilder.saveUserWallet(address: address)
+		let urlRequest = try builder.asURLRequest()
+		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
 		return publisher.flatMap { [weak self] response in
 			if response.error == nil {
-				_ = try? self?.getUser()
+				_ = try? self?.getUser().sink { _ in }.store(in: &self!.cancellableSet)
 			}
 			return Just(response)
 		}

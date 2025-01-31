@@ -1,5 +1,5 @@
 {
-  "originHash" : "681297f8ac832854e6e0cc0b09a265340e2f7aae666e785cb2905a97406d01c4",
+  "originHash" : "eba6e4dd0296274a47f3045a76a18c0e46d6020e78594f1d69f8e980f25323f2",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -116,15 +116,6 @@
       "state" : {
         "revision" : "2d12673670417654f08f5f90fdd62926dc3a2648",
         "version" : "100.0.0"
-      }
-    },
-    {
-      "identity" : "ios-dfu-library",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/NordicSemiconductor/IOS-DFU-Library.git",
-      "state" : {
-        "revision" : "4773d7eed944684dfdd177a4a91af8a89ebbaac8",
-        "version" : "4.16.0"
       }
     },
     {
@@ -254,15 +245,6 @@
       }
     },
     {
-      "identity" : "search-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mapbox/search-ios.git",
-      "state" : {
-        "revision" : "f18fe4dc2539f820a437e4ae2d473dc5b5c694b9",
-        "version" : "2.0.0-rc.1"
-      }
-    },
-    {
       "identity" : "swift-protobuf",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
@@ -296,15 +278,6 @@
       "state" : {
         "revision" : "213050191cfcb3d5aa76e1fa90c6ff1e182a42ca",
         "version" : "2.8.0"
-      }
-    },
-    {
-      "identity" : "zipfoundation",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/weichsel/ZIPFoundation",
-      "state" : {
-        "revision" : "02b6abe5f6eef7e3cbd5f247c5cc24e246efcfe0",
-        "version" : "0.9.19"
       }
     }
   ],
