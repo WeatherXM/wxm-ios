@@ -47,10 +47,9 @@ class PhotoVerificationStateViewModel: ObservableObject {
 	}
 
 	func handleImageTap() {
-		let route = PhotoIntroViewModel.getInitialRoute(deviceId: deviceId,
-														images: allPhotos.compactMap { $0.url },
-														isNewPhotoVerification: false)
-		Router.shared.navigateTo(route)
+		PhotoIntroViewModel.startPhotoVerification(deviceId: deviceId,
+												   images: allPhotos.compactMap { $0.url },
+												   isNewPhotoVerification: false)
 	}
 
 	func retryUpload() {

@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import SwiftUI
 
 @MainActor
 class PhotoIntroViewModel: ObservableObject {
@@ -49,7 +50,8 @@ class PhotoIntroViewModel: ObservableObject {
 		areTermsAccepted = photoGalleryUseCase.areTermsAccepted
 	}
 
-	func handleBeginButtonTap() {
+	func handleBeginButtonTap(dismiss: DismissAction) {
+		dismiss()
 		let viewModel = ViewModelsFactory.getGalleryViewModel(deviceId: deviceId, images: images, isNewVerification: true)
 		Router.shared.navigateTo(.photoGallery(viewModel))
 	}
@@ -59,7 +61,8 @@ extension PhotoIntroViewModel: HashableViewModel {
 	nonisolated func hash(into hasher: inout Hasher) {
 	}
 
-	static func getInitialRoute(deviceId: String, images: [String], isNewPhotoVerification: Bool) -> Route {
+	@MainActor
+	static func startPhotoVerification(deviceId: String, images: [String], isNewPhotoVerification: Bool) {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
 		let areTermsAccepted = useCase.areTermsAccepted
 
@@ -67,11 +70,12 @@ extension PhotoIntroViewModel: HashableViewModel {
 			let viewModel = ViewModelsFactory.getGalleryViewModel(deviceId: deviceId,
 																  images: images,
 																  isNewVerification: isNewPhotoVerification)
-			return .photoGallery(viewModel)
+			Router.shared.navigateTo(.photoGallery(viewModel))
+			return
 		}
 
 		let viewModel = ViewModelsFactory.getPhotoIntroViewModel(deviceId: deviceId, images: images)
-		return .photoIntro(viewModel)
+		Router.shared.showFullScreen(.photoIntro(viewModel))
 	}
 }
 

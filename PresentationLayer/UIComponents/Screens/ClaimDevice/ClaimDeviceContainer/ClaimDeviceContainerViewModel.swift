@@ -199,9 +199,9 @@ extension ClaimDeviceContainerViewModel {
 			guard let deviceId = device.id else {
 				return
 			}
-			let route = PhotoIntroViewModel.getInitialRoute(deviceId: deviceId, images: [], isNewPhotoVerification: true)
+
 			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
-				Router.shared.navigateTo(route)
+				PhotoIntroViewModel.startPhotoVerification(deviceId: deviceId, images: [], isNewPhotoVerification: true)
 			}
 
 			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .goToPhotoVerification,
