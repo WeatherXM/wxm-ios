@@ -271,7 +271,14 @@ class Router: ObservableObject {
 	/// We use this to add an, almost, invisible ovelray above `NavigationStack` to fix an issue with dragging gestures of sheet/popover and navigation stack
 	/// More info https://stackoverflow.com/questions/71714592/sheet-dismiss-gesture-with-swipe-back-gesture-causes-app-to-freeze
 	@Published var showDummyOverlay: Bool = false
-	@Published var showFullScreen = false
+	@Published var showFullScreen = false {
+		didSet {
+			if !showFullScreen {
+				// Set ref to nil in order to deallocate the corresponding view model
+				fullScreenRoute = nil
+			}
+		}
+	}
 	var fullScreenRoute: Route?
 	let navigationHost = HostingWrapper()
 	
