@@ -76,10 +76,8 @@ private extension UpdateFirmwareViewModel {
 
         UIApplication.shared.isIdleTimerDisabled = true
         let publisher = firmwareUseCase?.updateDeviceFirmware(device: device, firmwareDeviceId: firmwareDeviceId)
-        publisher?.sink { [weak self] state in
-            DispatchQueue.main.async {
-                self?.handleState(state: state)
-            }
+		publisher?.receive(on: DispatchQueue.main).sink { [weak self] state in
+			self?.handleState(state: state)
         }.store(in: &cancellableSet)
     }
 
