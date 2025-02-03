@@ -193,45 +193,52 @@ private extension UpdateFirmwareViewModel {
                 currentStepIndex = Step.install.rawValue
                 self.progress = UInt(progress)
             case .finished:
-                let finishedObject = FailSuccessStateObject(type: .otaFlow,
-                                                            title: LocalizableString.FirmwareUpdate.successTitle.localized,
-                                                            subtitle: LocalizableString.FirmwareUpdate.successDescription.localized.attributedMarkdown,
-                                                            cancelTitle: nil,
-                                                            retryTitle: LocalizableString.FirmwareUpdate.successButtonTitle.localized,
-                                                            contactSupportAction: nil,
-                                                            cancelAction: cancelCallback,
-                                                            retryAction: { [weak self] in
-                    self?.successCallback?()
-                })
-
-                self.state = .success(finishedObject)
-                UIApplication.shared.isIdleTimerDisabled = false
-                if let deviceId = device?.id, let version = device?.firmware?.current {
-                    mainVM?.firmwareUpdated(for: deviceId, version: version)
-                }
-                WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .OTAResult,
-                                                                    .contentId: .otaResultContentId,
-                                                                    .itemId: .custom(device?.id ?? ""),
-                                                                    .success: .custom("1")])
+				showFinishedState()
             case let .error(error):
-                var params: [Parameter: ParameterValue] = [.contentName: .OTAError,
-                                                           .contentId: .failureOtaContentId,
-                                                           .itemId: .custom(device?.id ?? "")]
-                if let currentStepIndex, let step = Step(rawValue: currentStepIndex) {
-                    params += [.step: step.analyticsValue]
-                }
-                WXMAnalytics.shared.trackEvent(.viewContent, parameters: params)
-
-                WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .OTAResult,
-                                                                    .contentId: .otaResultContentId,
-                                                                    .itemId: .custom(device?.id ?? ""),
-                                                                    .success: .custom("0")])
-
+				trackErrorEvents(error: error)
                 handleError(error)
         }
 
         markCompletedSteps()
     }
+
+	func showFinishedState() {
+		let finishedObject = FailSuccessStateObject(type: .otaFlow,
+													title: LocalizableString.FirmwareUpdate.successTitle.localized,
+													subtitle: LocalizableString.FirmwareUpdate.successDescription.localized.attributedMarkdown,
+													cancelTitle: nil,
+													retryTitle: LocalizableString.FirmwareUpdate.successButtonTitle.localized,
+													contactSupportAction: nil,
+													cancelAction: cancelCallback,
+													retryAction: { [weak self] in
+			self?.successCallback?()
+		})
+
+		self.state = .success(finishedObject)
+		UIApplication.shared.isIdleTimerDisabled = false
+		if let deviceId = device?.id, let version = device?.firmware?.current {
+			mainVM?.firmwareUpdated(for: deviceId, version: version)
+		}
+		WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .OTAResult,
+															.contentId: .otaResultContentId,
+															.itemId: .custom(device?.id ?? ""),
+															.success: .custom("1")])
+	}
+
+	func trackErrorEvents(error: FirmwareUpdateError) {
+		var params: [Parameter: ParameterValue] = [.contentName: .OTAError,
+												   .contentId: .failureOtaContentId,
+												   .itemId: .custom(device?.id ?? "")]
+		if let currentStepIndex, let step = Step(rawValue: currentStepIndex) {
+			params += [.step: step.analyticsValue]
+		}
+		WXMAnalytics.shared.trackEvent(.viewContent, parameters: params)
+
+		WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .OTAResult,
+															.contentId: .otaResultContentId,
+															.itemId: .custom(device?.id ?? ""),
+															.success: .custom("0")])
+	}
 
     /// Updates the UI state according to the firmware update error
     /// - Parameter error: The error to be handled
