@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import AVFoundation
+@preconcurrency import AVFoundation
 import Toolkit
 
 @MainActor
@@ -102,11 +102,11 @@ private extension ClaimDeviceSerialNumberViewModel {
 	func requestCameraPermission() {
 		switch AVCaptureDevice.authorizationStatus(for: .video) {
 			case .notDetermined:
-				AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
+				AVCaptureDevice.requestAccess(for: .video) { @Sendable [weak self] granted in
 					if granted {
-						self?.showQrScanner = true
-					} else {
-						
+						DispatchQueue.main.async {
+							self?.showQrScanner = true
+						}
 					}
 				}
 			case .restricted:
