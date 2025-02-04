@@ -25,7 +25,7 @@ public protocol PhotosRepository: Sendable {
 	func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String?
 	func deleteImage(_ imageUrl: String, deviceId: String) async throws
 	func getCameraPermission() -> AVAuthorizationStatus
-	func reqeustCameraPermission() async -> AVAuthorizationStatus
+	func requestCameraPermission() async -> AVAuthorizationStatus
 	func purgeImages() throws
 	func clearLocalImages(deviceId: String) throws
 	func startFilesUpload(deviceId: String, files: [URL]) async throws

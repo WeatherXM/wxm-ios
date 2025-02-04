@@ -49,7 +49,7 @@ public struct PhotoGalleryUseCase: Sendable {
 	}
 
 	public func requestCameraPermission() async -> AVAuthorizationStatus {
-		await photosRepository.reqeustCameraPermission()
+		await photosRepository.requestCameraPermission()
 	}
 
 	public func purgeImages() throws {

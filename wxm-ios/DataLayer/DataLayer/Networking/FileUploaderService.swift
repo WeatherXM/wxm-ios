@@ -105,7 +105,7 @@ public final class FileUploaderService: Sendable {
 
 	func uploadFiles(files: [URL], to objects: [NetworkPostDevicePhotosResponse], for deviceId: String) throws {
 		for (index, element) in files.enumerated() {
-			if let uploadUrl = objects[index].url,
+			if let uploadUrl = objects[safe: index]?.url,
 			   let url = URL(string: uploadUrl) {
 				try uploadFile(file: element, to: url, for: deviceId, fields: objects[index].fields)
 			}

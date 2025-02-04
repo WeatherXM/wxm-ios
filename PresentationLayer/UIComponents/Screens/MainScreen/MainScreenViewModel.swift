@@ -360,14 +360,14 @@ class MainScreenViewModel: ObservableObject {
 														  body: nil)
 		}.store(in: &cancellableSet)
 
-		photosUseCase.uploadCompletedPublisher.sink { deviceId, count in
+		photosUseCase.uploadCompletedPublisher.receive(on: DispatchQueue.main).sink { deviceId, count in
 			LocalNotificationScheduler().postNotification(id: deviceId,
 														  title: LocalizableString.PhotoVerification.uploadFinishedNotificationTitle(count).localized,
 														  body: nil)
 
 		}.store(in: &cancellableSet)
 
-		photosUseCase.uploadErrorPublisher.sink { deviceId, _ in
+		photosUseCase.uploadErrorPublisher.receive(on: DispatchQueue.main).sink { deviceId, _ in
 			if self.photosUseCase.getUploadState(deviceId: deviceId)  == .failed {
 				LocalNotificationScheduler().postNotification(id: deviceId,
 															  title: LocalizableString.PhotoVerification.uploadFailedNotificationFailedTitle.localized,

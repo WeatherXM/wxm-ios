@@ -97,7 +97,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		AVCaptureDevice.authorizationStatus(for: .video)
 	}
 
-	public func reqeustCameraPermission() async -> AVAuthorizationStatus {
+	public func requestCameraPermission() async -> AVAuthorizationStatus {
 		await AVCaptureDevice.requestAccess(for: .video)
 		return getCameraPermission()
 	}
@@ -156,14 +156,13 @@ private extension PhotosRepositoryImpl {
 	}
 
 	func saveImageWithEXIF(image: UIImage, metadata: NSDictionary?, saveFilename: URL) -> Bool {
-		guard let data = image.jpegData(compressionQuality: 0.8) else {
+		guard let data = image.jpegData(compressionQuality: 0.8),
+			  let imageRef: CGImageSource = CGImageSourceCreateWithData((data as CFData), nil),
+			  let uti: CFString = CGImageSourceGetType(imageRef),
+			  case let dataWithEXIF: NSMutableData = NSMutableData(data: data as Data),
+			  let destination: CGImageDestination = CGImageDestinationCreateWithData((dataWithEXIF as CFMutableData), uti, 1, nil) else {
 			return false
 		}
-
-		let imageRef: CGImageSource = CGImageSourceCreateWithData((data as CFData), nil)!
-		let uti: CFString = CGImageSourceGetType(imageRef)!
-		let dataWithEXIF: NSMutableData = NSMutableData(data: data as Data)
-		let destination: CGImageDestination = CGImageDestinationCreateWithData((dataWithEXIF as CFMutableData), uti, 1, nil)!
 
 		CGImageDestinationAddImageFromSource(destination, imageRef, 0, (metadata ?? [:] as CFDictionary))
 		CGImageDestinationFinalize(destination)
