@@ -60,7 +60,7 @@ struct GalleryView: View {
 									if let image = state.image {
 										image
 											.resizable()
-											.aspectRatio(contentMode: .fill)
+											.aspectRatio(contentMode: .fit)
 											.frame(width: proxy.size.width - 2 * CGFloat(.defaultSidePadding),
 												   height: proxy.size.height - 2 * CGFloat(.defaultSidePadding),
 												   alignment: .center)
@@ -77,7 +77,7 @@ struct GalleryView: View {
 							} else if let image = selectedImage.image {
 								image
 									.resizable()
-									.aspectRatio(contentMode: .fill)
+									.aspectRatio(contentMode: .fit)
 									.frame(width: proxy.size.width - 2 * CGFloat(.defaultSidePadding),
 										   height: proxy.size.height - 2 * CGFloat(.defaultSidePadding),
 										   alignment: .center)
