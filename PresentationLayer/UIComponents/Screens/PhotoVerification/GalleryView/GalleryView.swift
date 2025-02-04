@@ -232,21 +232,18 @@ private extension GalleryView {
 							.animation(.easeIn(duration: 0.1), value: viewModel.selectedImage)
 						}
 
-						if viewModel.isPlusButtonVisible {
-							Button {
-								viewModel.handlePlusButtonTap()
-							} label: {
-								Text(FontIcon.plus.rawValue)
-									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-									.foregroundStyle(Color(colorEnum: .wxmPrimary))
-									.frame(width: normalWidth, height: normalHeight)
-									.background(Color(colorEnum: .layer1))
-									.cornerRadius(CGFloat(.buttonCornerRadius))
-							}
-							.buttonStyle(WXMButtonOpacityStyle())
-							.disabled(!viewModel.isPlusButtonEnabled)
-							.transition(.opacity)
+						Button {
+							viewModel.handlePlusButtonTap()
+						} label: {
+							Text(FontIcon.plus.rawValue)
+								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+								.foregroundStyle(Color(colorEnum: .wxmPrimary))
+								.frame(width: normalWidth, height: normalHeight)
+								.background(Color(colorEnum: .layer1))
+								.cornerRadius(CGFloat(.buttonCornerRadius))
 						}
+						.buttonStyle(WXMButtonOpacityStyle())
+						.opacity(viewModel.isPlusButtonEnabled ? 1.0 : 0.4)
 					}
 				}
 			}.modify { view in
