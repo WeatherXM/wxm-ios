@@ -39,11 +39,17 @@ enum FontIcon: String {
     case heart
     case lock
     case calendar
+	case check
+	case circleCheck = "circle-check"
+	case circleXmark = "circle-xmark"
+	case xmark
     case sliders
 	case barsFilter = "bars-filter"
 	case pointUp = "hand-back-point-up"
 	case badgeCheck = "badge-check"
 	case triangleExclamation = "triangle-exclamation"
+	case sparkles
+	case trash
 	case cog
 	case coins
 	case wallet
@@ -71,10 +77,12 @@ enum FontIcon: String {
 	case sun
 	case dropletDegree = "droplet-degree"
 	case arrowsRotate = "arrows-rotate"
+	case arrowLeft = "arrow-left"
 	case batteryLow = "battery-low"
 	case chartSimple = "chart-simple"
 	case eye
 	case eyeSlash = "eye-slash"
 	case envelope
 	case user
+	case plus = "plus-large"
 }

@@ -120,4 +120,16 @@ public enum AssetEnum: String {
 	case imageStationQR = "image_station_qr"
 	case imageD1Claim = "image_d1_claim"
 	case temperatureBars
+	case recommendedInstallation0 = "recommended_installation_0"
+	case recommendedInstallation1 = "recommended_installation_1"
+	case recommendedInstallation2 = "recommended_installation_2"
+	case recommendedInstallation3 = "recommended_installation_3"
+	case wrongInstallation0 = "wrong_installation_0"
+	case wrongInstallation1 = "wrong_installation_1"
+	case wrongInstallation2 = "wrong_installation_2"
+	case iconRotate = "icon_rotate"
+	case iconSurface = "icon_surface"
+	case iconNoFaces = "icon_no_faces"
+	case iconMaxPhotos = "icon_max_photos"
+	case photoVerificationCover = "photo_verification_cover"
 }

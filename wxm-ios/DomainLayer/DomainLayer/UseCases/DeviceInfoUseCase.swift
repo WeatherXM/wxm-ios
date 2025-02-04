@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import Combine
 
-public struct DeviceInfoUseCase {
+public struct DeviceInfoUseCase: @unchecked Sendable {
 
     private let repository: DeviceInfoRepository
     public init(repository: DeviceInfoRepository) {
@@ -39,4 +39,15 @@ public struct DeviceInfoUseCase {
     public func changeFrequency(device: DeviceDetails, frequency: Frequency) -> AnyPublisher<ChangeFrequencyState, Never> {
         repository.changeFrequency(device: device, frequency: frequency)
     }
+
+	public func getDevicePhotos(deviceId: String) async throws -> Result<[NetworkDevicePhotosResponse], NetworkErrorResponse> {
+		let response = try await repository.getDevicePhotos(deviceId: deviceId).toAsync()
+		switch response.result {
+			case .success(let urls):
+				let photos = urls.map { NetworkDevicePhotosResponse(url: $0) }
+				return .success(photos)
+			case .failure(let error):
+				return .failure(error)
+		}
+	}
 }

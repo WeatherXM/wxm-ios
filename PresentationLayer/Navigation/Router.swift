@@ -68,6 +68,10 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .rewardAnalytics(let vm):
 				hasher.combine(vm)
+			case .photoIntro(let vm):
+				hasher.combine(vm)
+			case .photoGallery(let vm):
+				hasher.combine(vm)
 			case .safariView(let url):
 				hasher.combine(url)
 		}
@@ -125,6 +129,10 @@ enum Route: Hashable, Equatable {
 				"claimStationContainer"
 			case .rewardAnalytics:
 				"rewardAnalytics"
+			case .photoIntro:
+				"photoIntro"
+			case .photoGallery:
+				"photoGallery"
 			case .safariView:
 				"safariView"
 		}
@@ -154,6 +162,8 @@ enum Route: Hashable, Equatable {
 	case claimStationSelection(ClaimStationSelectionViewModel)
 	case claimStationContainer(ClaimDeviceContainerViewModel)
 	case rewardAnalytics(RewardAnalyticsViewModel)
+	case photoIntro(PhotoIntroViewModel)
+	case photoGallery(GalleryViewModel)
 	case safariView(URL)
 }
 
@@ -241,6 +251,10 @@ extension Route {
 				}
 			case .rewardAnalytics(let rewardAnalyticsViewModel):
 				RewardAnalyticsView(viewModel: rewardAnalyticsViewModel)
+			case .photoIntro(let photoIntroViewModel):
+				PhotoIntroView(viewModel: photoIntroViewModel)
+			case .photoGallery(let galleryViewModel):
+				GalleryView(viewModel: galleryViewModel)
 			case .safariView(let url):
 				SafariView(url: url)
 					.ignoresSafeArea()
@@ -257,7 +271,14 @@ class Router: ObservableObject {
 	/// We use this to add an, almost, invisible ovelray above `NavigationStack` to fix an issue with dragging gestures of sheet/popover and navigation stack
 	/// More info https://stackoverflow.com/questions/71714592/sheet-dismiss-gesture-with-swipe-back-gesture-causes-app-to-freeze
 	@Published var showDummyOverlay: Bool = false
-	@Published var showFullScreen = false
+	@Published var showFullScreen = false {
+		didSet {
+			if !showFullScreen {
+				// Set ref to nil in order to deallocate the corresponding view model
+				fullScreenRoute = nil
+			}
+		}
+	}
 	var fullScreenRoute: Route?
 	let navigationHost = HostingWrapper()
 	

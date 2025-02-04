@@ -32,6 +32,7 @@
 		26AB9F4F2A7CFE6200855912 /* AsyncOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F4E2A7CFE6200855912 /* AsyncOperations.swift */; };
 		26AB9F542A801C5300855912 /* TimeValidationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F532A801C5300855912 /* TimeValidationCache.swift */; };
 		26B795DC2B4D700A00ADBCA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B795DB2B4D700A00ADBCA8 /* Constants.swift */; };
+		26C71CF02D31095E00D2F0F3 /* LocalNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C71CEF2D31095E00D2F0F3 /* LocalNotificationScheduler.swift */; };
 		26C904C72A77EB480047A388 /* Cancellables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C904C62A77EB470047A388 /* Cancellables.swift */; };
 		26CD5BB12AF529300097093F /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CD5BB02AF529300097093F /* RemoteConfigManager.swift */; };
 		26CD5BC32AF54C920097093F /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 26CD5BC22AF54C920097093F /* FirebaseRemoteConfig */; };
@@ -45,6 +46,7 @@
 		26DD42BE29AF4FAD008E277E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 26DD42BD29AF4FAD008E277E /* FirebaseCrashlytics */; };
 		26DD42C029AF4FAD008E277E /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 26DD42BF29AF4FAD008E277E /* FirebasePerformance */; };
 		26E88B3929E599D70023BBD5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88B3829E599D70023BBD5 /* DateExtension.swift */; };
+		26F6F7562D0856F200FB256B /* FileStorage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F7552D0856F200FB256B /* FileStorage+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,7 @@
 		26AB9F4E2A7CFE6200855912 /* AsyncOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperations.swift; sourceTree = "<group>"; };
 		26AB9F532A801C5300855912 /* TimeValidationCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeValidationCache.swift; sourceTree = "<group>"; };
 		26B795DB2B4D700A00ADBCA8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		26C71CEF2D31095E00D2F0F3 /* LocalNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationScheduler.swift; sourceTree = "<group>"; };
 		26C904C62A77EB470047A388 /* Cancellables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellables.swift; sourceTree = "<group>"; };
 		26CD5BB02AF529300097093F /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		26CD5BCA2AF906BC0097093F /* ThreadSafe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafe.swift; sourceTree = "<group>"; };
@@ -81,6 +84,7 @@
 		26DD42B729AF49E3008E277E /* LoggerTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTypes.swift; sourceTree = "<group>"; };
 		26DD42BA29AF4B5B008E277E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		26E88B3829E599D70023BBD5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		26F6F7552D0856F200FB256B /* FileStorage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileStorage+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,8 @@
 				26968CD32B1A1AB8003856D9 /* WEIConverter.swift */,
 				260669572B4C0C3A000B4B42 /* Combine+.swift */,
 				265985562C4E57B000BDF225 /* Double+.swift */,
+				26F6F7552D0856F200FB256B /* FileStorage+.swift */,
+				26C71CEF2D31095E00D2F0F3 /* LocalNotificationScheduler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26C71CF02D31095E00D2F0F3 /* LocalNotificationScheduler.swift in Sources */,
 				265985572C4E57B000BDF225 /* Double+.swift in Sources */,
 				26AA219E2BF20C0300B91A7C /* FirebaseAnalytics.swift in Sources */,
 				26CD5BCB2AF906BC0097093F /* ThreadSafe.swift in Sources */,
@@ -315,6 +322,7 @@
 				266F09262ADD46C1005F1A20 /* StorageWrapper.swift in Sources */,
 				2674017C2A38B7F200E54E35 /* CompactNumberFormatter.swift in Sources */,
 				26E88B3929E599D70023BBD5 /* DateExtension.swift in Sources */,
+				26F6F7562D0856F200FB256B /* FileStorage+.swift in Sources */,
 				2666D5432BC6D145003B30C0 /* AnalyticsConstants+.swift in Sources */,
 				26DD42BB29AF4B5B008E277E /* FirebaseManager.swift in Sources */,
 				26CD5BB12AF529300097093F /* RemoteConfigManager.swift in Sources */,
@@ -479,7 +487,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -514,7 +522,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -614,7 +622,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

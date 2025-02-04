@@ -129,6 +129,7 @@ public enum ParameterValue {
 	case announcements
 	case termsOfUse
 	case privacyPolicy
+	case announcementButton
 	case heliumBLEPopupError
 	case heliumBLEPopup
 	case searchLocation
@@ -163,6 +164,7 @@ public enum ParameterValue {
 	case stationOffline
 	case deviceInfoSource
 	case settingsSource
+	case claimingSource
 	case errorSource
 	case networkStatsSource
 	case contactSupport
@@ -299,5 +301,12 @@ public enum ParameterValue {
 	case rewardSplitPressed
 	case stakeholderContentType
 	case tokensEarnedPress
+	case addStationPhoto
+	case exitPhotoVerification
+	case cancelUploadingPhotos
+	case retryUploadingPhotos
+	case startUploadingPhotos
+	case uploadingPhotosSuccess
+	case goToPhotoVerification
 	case custom(String)
 }

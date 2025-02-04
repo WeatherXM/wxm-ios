@@ -12,34 +12,39 @@ import Toolkit
 
 @MainActor
 public final class WeatherStationsHomeViewModel: ObservableObject {
-    private let meUseCase: MeUseCase
+	private let meUseCase: MeUseCase
+	private let photosUseCase: PhotoGalleryUseCase
 	private let remoteConfigUseCase: RemoteConfigUseCase
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
-    private var cancellableSet: Set<AnyCancellable> = []
-    private var filters: FilterValues? {
-        didSet {
-            updateFilteredDevices()
-        }
-    }
-    private var allDevices: [DeviceDetails] = [] {
-        didSet {
-            updateFilteredDevices()
-        }
-    }
+	private var cancellableSet: Set<AnyCancellable> = []
+	private var filters: FilterValues? {
+		didSet {
+			updateFilteredDevices()
+		}
+	}
+	private var allDevices: [DeviceDetails] = [] {
+		didSet {
+			updateFilteredDevices()
+		}
+	}
 
-    /// Dicitonary with device id as key.
-    /// We use dictionany to reduce the access complexity
-    private var followStates: [String: UserDeviceFollowState] = [:] {
-        didSet {
-            updateFilteredDevices()
+	/// Dicitonary with device id as key.
+	/// We use dictionany to reduce the access complexity
+	private var followStates: [String: UserDeviceFollowState] = [:] {
+		didSet {
+			updateFilteredDevices()
 			updateTotalEarned()
-        }
-    }
+		}
+	}
 
-    var isFiltersActive: Bool {
-        FilterValues.default != filters
-    }
+	private var uploadInProgressDeviceId: String?
 
+	var isFiltersActive: Bool {
+		FilterValues.default != filters
+	}
+
+	@Published var uploadInProgressStationName: String?
+	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
 	@Published var totalEarnedTitle: String?
 	@Published var totalEarnedValueText: String?
@@ -51,9 +56,10 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
     private(set) var failObj: FailSuccessStateObject?
     weak var mainVM: MainScreenViewModel?
 
-	public init(meUseCase: MeUseCase, remoteConfigUseCase: RemoteConfigUseCase) {
+	public init(meUseCase: MeUseCase, remoteConfigUseCase: RemoteConfigUseCase, photosGalleryUseCase: PhotoGalleryUseCase) {
         self.meUseCase = meUseCase
 		self.remoteConfigUseCase = remoteConfigUseCase
+		self.photosUseCase = photosGalleryUseCase
 		let scrollOffsetObject: TrackableScrollOffsetObject = .init()
 		self.scrollOffsetObject = scrollOffsetObject
 		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
@@ -63,13 +69,63 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
 			self?.infoBanner = infoBanner
 		}.store(in: &cancellableSet)
+
+		photosUseCase.uploadProgressPublisher.sink { [weak self] progressResult in
+			let deviceId = progressResult.0
+			self?.updateUploadInProgressDevice(deviceId: deviceId)
+			self?.updateProgressUpload()
+		}.store(in: &cancellableSet)
+
+		photosUseCase.uploadErrorPublisher.sink { [weak self] deviceId, error in
+			self?.updateUploadInProgressDevice(deviceId: deviceId)
+			self?.updateProgressUpload()
+		}.store(in: &cancellableSet)
+
+		photosUseCase.uploadCompletedPublisher.sink { [weak self] deviceId, _ in
+			self?.updateUploadInProgressDevice(deviceId: deviceId)
+			self?.uploadState = .completed
+
+			let stationName = self?.uploadInProgressStationName ?? "-"
+			WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .uploadingPhotosSuccess,
+																	  .itemId: .custom(stationName)])
+
+		}.store(in: &cancellableSet)
+
+		if let deviceId = photosUseCase.getUploadInProgressDeviceId() {
+			updateUploadInProgressDevice(deviceId: deviceId)
+			updateProgressUpload()
+		}
     }
+
+	func updateProgressUpload() {
+		guard let deviceId = uploadInProgressDeviceId else {
+			uploadState = nil
+			return
+		}
+
+		let state = photosUseCase.getUploadState(deviceId: deviceId)
+		switch state {
+			case .uploading(let progress):
+				self.uploadState = .uploading(progress: Float(progress))
+			case .failed:
+				self.uploadState = .failed
+			case nil:
+				self.uploadState = nil
+		}
+	}
 
     /// Perform request to get all the essentials
     /// - Parameters:
     ///   - refreshMode: Set true if coming from pull to refresh to prevent showing full screen loader
     ///   - completion: Called once the request is finished
     func getDevices(refreshMode: Bool = false, completion: (() -> Void)? = nil) {
+		if refreshMode {
+			updateProgressUpload()
+		}
+
+		// Refresh the user to handle some corner cases with the wallet state
+		_ = try? meUseCase.getUserInfo()
+		
         do {
             shouldShowFullScreenLoader = !refreshMode
             try meUseCase.getDevices()
@@ -170,15 +226,56 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 
 	func handleInfoBannerActionTap(url: String) {
-		guard let url = URL(string: url) else {
+		guard let webUrl = URL(string: url) else {
 			return
 		}
 
-		Router.shared.showFullScreen(.safariView(url))
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .announcementButton,
+																	.itemId: .custom(url)])
+		Router.shared.showFullScreen(.safariView(webUrl))
+	}
+
+	func handleUploadBannerTap() {
+		switch uploadState {
+			case .uploading, .completed:
+				// Navigate to the station
+				guard let device = devices.first(where: { $0.id == uploadInProgressDeviceId}),
+					  let deviceId = device.id else {
+					return
+				}
+
+				let viewModel = ViewModelsFactory.getDeviceInfoViewModel(device: device, followState: followStates[deviceId])
+				Router.shared.navigateTo(.deviceInfo(viewModel))
+			case .failed:
+				guard let deviceId = uploadInProgressDeviceId else {
+					return
+				}
+
+				WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .retryUploadingPhotos])
+
+				Task { @MainActor in
+					try? await photosUseCase.retryUpload(deviceId: deviceId)
+				}
+			case nil:
+				break
+		}
+	}
+
+	func viewWillDisappear() {
+		guard uploadState == .completed else {
+			return
+		}
+
+		uploadState = nil
 	}
 }
 
 private extension WeatherStationsHomeViewModel {
+	func updateUploadInProgressDevice(deviceId: String) {
+		self.uploadInProgressDeviceId = deviceId
+		self.uploadInProgressStationName = devices.first(where: { $0.id == deviceId })?.displayName
+	}
+
     func refreshFollowStates() {
         Task { @MainActor [weak self] in
             guard let self else { return }

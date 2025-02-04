@@ -30,6 +30,16 @@
         }
       }
     },
+    "%@ %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@."
+          }
+        }
+      }
+    },
     "%@:" : {
 
     },
@@ -52,6 +62,9 @@
           }
         }
       }
+    },
+    "+%@" : {
+
     },
     "about" : {
       "extractionState" : "manual",
@@ -324,6 +337,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "App Version"
+          }
+        }
+      }
+    },
+    "back" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
           }
         }
       }
@@ -1039,6 +1063,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Connect M5 via WiFi"
+          }
+        }
+      }
+    },
+    "claim_device_continue_to_photo_verification" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue to Photo Verification"
           }
         }
       }
@@ -1835,6 +1870,39 @@
         }
       }
     },
+    "claim_device_skip_photo_verification_alert_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to skip the Photo Verification process? \n\nYou can always do it later from the station’s settings."
+          }
+        }
+      }
+    },
+    "claim_device_skip_photo_verification_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip Photo Verification"
+          }
+        }
+      }
+    },
+    "claim_device_skip_photo_verification_for_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip for now"
+          }
+        }
+      }
+    },
     "claim_device_station_loading_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2017,7 +2085,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "There is a brand new firmware update for your station.\n**We highly recommend you update, as this will improve the experience you’ll have with your WeatherXM station!**"
+            "value" : "**We strongly recommend you to update for a better station experience!**\nYou will be able to photo verify your station after the update."
           }
         }
       }
@@ -2110,6 +2178,17 @@
         }
       }
     },
+    "completed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed"
+          }
+        }
+      }
+    },
     "confirm" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2150,6 +2229,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contact Support"
+          }
+        }
+      }
+    },
+    "continue" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
           }
         }
       }
@@ -2216,6 +2306,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Days"
+          }
+        }
+      }
+    },
+    "delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
           }
         }
       }
@@ -2667,6 +2768,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The deployment location you set for this station is **%@**. If the location you see on the map doesn’t match the actual deployment location, press the button below to edit."
+          }
+        }
+      }
+    },
+    "device_info_photo_verification_empty_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To ensure optimal performance and rewards, take a few quick photos of your station’s installation!"
+          }
+        }
+      }
+    },
+    "device_info_photo_verification_start_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Photo Verification"
+          }
+        }
+      }
+    },
+    "device_info_photo_verification_uploading_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Once completed, the photos will appear here!"
+          }
+        }
+      }
+    },
+    "device_info_photo_verification_with_photos_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanks for helping us build a healthier network! Here you can see your photos."
           }
         }
       }
@@ -3991,6 +4136,28 @@
         }
       }
     },
+    "exit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit"
+          }
+        }
+      }
+    },
+    "exit_anyway" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit anyway"
+          }
+        }
+      }
+    },
     "explorer_list_cell_capacity" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4915,12 +5082,6 @@
         }
       }
     },
-    "Key 1" : {
-      "extractionState" : "manual"
-    },
-    "Key 2" : {
-      "extractionState" : "manual"
-    },
     "last_name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5427,6 +5588,17 @@
         }
       }
     },
+    "new" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New"
+          }
+        }
+      }
+    },
     "no" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5555,6 +5727,787 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%.0f%%"
+          }
+        }
+      }
+    },
+    "photo_verification_acceptance_use_policy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acceptable Use Policy (AUP)"
+          }
+        }
+      }
+    },
+    "photo_verification_all_about" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All About"
+          }
+        }
+      }
+    },
+    "photo_verification_allow_access" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow WeatherXM to access your camera to continue with Photo Verification"
+          }
+        }
+      }
+    },
+    "photo_verification_boost_network_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost network health with a few photos of your setup!"
+          }
+        }
+      }
+    },
+    "photo_verification_cancel_upload" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel upload"
+          }
+        }
+      }
+    },
+    "photo_verification_cancel_upload_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to cancel the upload and lose the photos?\nYou will need to retake them."
+          }
+        }
+      }
+    },
+    "photo_verification_check_clear_view" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear view of the horizon (no obstacles)"
+          }
+        }
+      }
+    },
+    "photo_verification_check_clear_view_of_the_horizon" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear view of the horizon (no obstacles)"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_anemometer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From the anemometer looking towards the rain gauge"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_other_side" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From the other side, showing the anemometer on the left and rain gauge on the right"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_rain_gauge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From the rain gauge looking towards the anemometer"
+          }
+        }
+      }
+    },
+    "photo_verification_check_from_the_side" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From the side, showing the rain gauge on the left and anemometer on the right"
+          }
+        }
+      }
+    },
+    "photo_verification_check_good_distance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good distance from the subject"
+          }
+        }
+      }
+    },
+    "photo_verification_check_showing_possible_obastacle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Showing possible obstacle (near wall)"
+          }
+        }
+      }
+    },
+    "photo_verification_check_showing_the_surface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Showing the surface of installation"
+          }
+        }
+      }
+    },
+    "photo_verification_check_subject" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subject is in the middle of the photo"
+          }
+        }
+      }
+    },
+    "photo_verification_delete_photo_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This photo is already uploaded, are you sure you want to delete it?"
+          }
+        }
+      }
+    },
+    "photo_verification_delete_photo_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete this photo?"
+          }
+        }
+      }
+    },
+    "photo_verification_exit_photo_verification" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit Photo Verification"
+          }
+        }
+      }
+    },
+    "photo_verification_exit_photo_verification_minimum_photos_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At least 2 photos are required.\nExiting now means starting over next time."
+          }
+        }
+      }
+    },
+    "photo_verification_exit_photo_verification_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to exit the Photo Verification process? \n\nYou can always do it later from the station’s settings."
+          }
+        }
+      }
+    },
+    "photo_verification_fault_facing_bottom_up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facing bottom up"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_no_surface" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No surface of installation"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_not_showing_possible_obstacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not showing possible obstacles"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_not_showing_surroundings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not showing surrounding area"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_subject_not_in_middle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subject not in the middle"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_tilted_angle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilted angle"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_too_close" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Too close"
+          }
+        }
+      }
+    },
+    "photo_verification_how_to_take_photo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to take the photos"
+          }
+        }
+      }
+    },
+    "photo_verification_instructions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instructions"
+          }
+        }
+      }
+    },
+    "photo_verification_intro_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo Verification"
+          }
+        }
+      }
+    },
+    "photo_verification_keep_taking_photos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep taking photos"
+          }
+        }
+      }
+    },
+    "photo_verification_lets_take_the_first_photo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let’s take the first photo!"
+          }
+        }
+      }
+    },
+    "photo_verification_max_limit_photos_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’ve reached the limit of %d photos. Remove some photos to add new ones if needed."
+          }
+        }
+      }
+    },
+    "photo_verification_max_photos_instruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take 2-4 photos of the station from the following angles:"
+          }
+        }
+      }
+    },
+    "photo_verification_max_photos_instruction_bullet_0" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "from the rain gauge looking towards the anemometer"
+          }
+        }
+      }
+    },
+    "photo_verification_max_photos_instruction_bullet_1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "from the anemometer looking towards the rain gauge"
+          }
+        }
+      }
+    },
+    "photo_verification_max_photos_instruction_bullet_2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "from the side, showing the rain gauge on the left and anemometer on the right"
+          }
+        }
+      }
+    },
+    "photo_verification_max_photos_instruction_bullet_3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "from the other side, showing the anemometer on the left and rain gauge on the right"
+          }
+        }
+      }
+    },
+    "photo_verification_more_photos_to_upload_plural" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add %d more photos to upload"
+          }
+        }
+      }
+    },
+    "photo_verification_more_photos_to_upload_singular" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add %d more photo to upload"
+          }
+        }
+      }
+    },
+    "photo_verification_no_faces_instruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avoid capturing faces or personal items in any of the photos."
+          }
+        }
+      }
+    },
+    "photo_verification_not_like_this" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NOT like this"
+          }
+        }
+      }
+    },
+    "photo_verification_open_settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open settings"
+          }
+        }
+      }
+    },
+    "photo_verification_photo_examples" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo examples"
+          }
+        }
+      }
+    },
+    "photo_verification_preparing_upload_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Almost there! We’ll let you know once everything is ready."
+          }
+        }
+      }
+    },
+    "photo_verification_preparing_upload_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparing the upload..."
+          }
+        }
+      }
+    },
+    "photo_verification_retry_upload" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry upload"
+          }
+        }
+      }
+    },
+    "photo_verification_rotate_instruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotate to landscape and use a wide-angle lens to include as much of the horizon as possible."
+          }
+        }
+      }
+    },
+    "photo_verification_station_photos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station photos"
+          }
+        }
+      }
+    },
+    "photo_verification_stay_and_verify" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stay & verify"
+          }
+        }
+      }
+    },
+    "photo_verification_surface_instruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ensure at least 1 photo clearly shows the surface where the station is installed."
+          }
+        }
+      }
+    },
+    "photo_verification_tap_the_plus_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap the plus icon to take a photo"
+          }
+        }
+      }
+    },
+    "photo_verification_upload" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_error_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We faced an unexpected error while uploading your photos."
+          }
+        }
+      }
+    },
+    "photo_verification_upload_failed_notification_failed_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An error occurred"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_failed_notification_failed_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload failed"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_failed_tap_to_retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload failed. Tap to retry "
+          }
+        }
+      }
+    },
+    "photo_verification_upload_finished_notification_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploaded %d photo"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_finished_notification_title_plural" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploaded %d photos"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_photos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload your photo"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_photos_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure that your photos follow our guidelines?\nIf you are having second thoughts you can go back and retake any of them!"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_photos_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload your photos"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_photos_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After taking the photos, tap ‘Upload’ to send them to us for installation evaluation. Your photos are used solely for this purpose.\n\nUploading will run in the background, so feel free to navigate the app while we handle the transfer."
+          }
+        }
+      }
+    },
+    "photo_verification_upload_started_notification_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload started"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_started_successfully" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload started successfully"
+          }
+        }
+      }
+    },
+    "photo_verification_upload_started_successfully_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanks for helping us build a healthier network!\n\nOnce uploaded, the photos will appear in your station’s settings."
+          }
+        }
+      }
+    },
+    "photo_verification_uploading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploading…"
+          }
+        }
+      }
+    },
+    "photo_verification_yes_cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, cancel"
+          }
+        }
+      }
+    },
+    "photo_verification_your_camera_will_open" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your camera will open"
+          }
+        }
+      }
+    },
+    "photo_verification_your_photo_should_look" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your photos should look like this"
           }
         }
       }
@@ -7594,6 +8547,17 @@
         }
       }
     },
+    "skip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip"
+          }
+        }
+      }
+    },
     "solar" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8689,7 +9653,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I have read and accept the "
+            "value" : "I have read and accept the"
           }
         }
       }

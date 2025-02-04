@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260134532D15A1B500AF1125 /* UploadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260134522D15A1B500AF1125 /* UploadProgressView.swift */; };
+		260134562D15A8A700AF1125 /* uploading_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 260134542D15A8A700AF1125 /* uploading_dark.json */; };
+		260134572D15A8A700AF1125 /* uploading_light.json in Resources */ = {isa = PBXBuildFile; fileRef = 260134552D15A8A700AF1125 /* uploading_light.json */; };
+		260134592D15AC5500AF1125 /* upload_completed.json in Resources */ = {isa = PBXBuildFile; fileRef = 260134582D15AC5500AF1125 /* upload_completed.json */; };
 		26052B5C2CDA2EE7009A7D92 /* TrackableScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26052B5B2CDA2EE7009A7D92 /* TrackableScroller.swift */; };
 		2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */; };
 		2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */; };
@@ -36,7 +40,6 @@
 		2624DCC42CBD0E5300E75802 /* StationStatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624DCC32CBD0E5300E75802 /* StationStatusButton.swift */; };
 		2624DCC52CBD0E5300E75802 /* StationStatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2624DCC32CBD0E5300E75802 /* StationStatusButton.swift */; };
 		262A0DFD29DC1823005B14A2 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 262A0DFC29DC1823005B14A2 /* Lottie */; };
-		262A4CED2A93567A00A4BC17 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262A4CEC2A93567A00A4BC17 /* InfoView.swift */; };
 		262A4CF92A93726700A4BC17 /* sort-Xcode-project-file in Resources */ = {isa = PBXBuildFile; fileRef = 262A4CF82A93726700A4BC17 /* sort-Xcode-project-file */; };
 		262A4D862A94D89300A4BC17 /* TabViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262A4D852A94D89300A4BC17 /* TabViewWrapper.swift */; };
 		262B02F62B1DE4A600C31FE7 /* WebContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B02F52B1DE4A600C31FE7 /* WebContainerView.swift */; };
@@ -516,11 +519,23 @@
 		26E88AF529DD69930023BBD5 /* WXMShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88AF429DD69930023BBD5 /* WXMShadow.swift */; };
 		26E88AFF29E02F590023BBD5 /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 26E88AFE29E02F590023BBD5 /* loader.json */; };
 		26E9A5142AE26AFE003E0830 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A5132AE26AFE003E0830 /* View+.swift */; };
+		26EAF8252D004BFE009EEB31 /* PhotoIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAF8242D004BFE009EEB31 /* PhotoIntroView.swift */; };
+		26EAF8272D004C13009EEB31 /* PhotoIntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAF8262D004C13009EEB31 /* PhotoIntroViewModel.swift */; };
+		26EAF8292D0059E5009EEB31 /* LocalizableString+PhotoVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAF8282D0059E5009EEB31 /* LocalizableString+PhotoVerification.swift */; };
+		26EAF82B2D008DB6009EEB31 /* PhotoIntroExamplesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EAF82A2D008DB6009EEB31 /* PhotoIntroExamplesView.swift */; };
 		26F149E22BDFC5040029F981 /* ClaimStationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */; };
 		26F149E52BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E42BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift */; };
 		26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */; };
 		26F149E92BDFEAFA0029F981 /* ClaimDeviceContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */; };
 		26F149EB2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */; };
+		26F6F7392D07068C00FB256B /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F7382D07068C00FB256B /* GalleryView.swift */; };
+		26F6F73B2D07069E00FB256B /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */; };
+		26F6F73E2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */; };
+		26F6F73F2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */; };
+		26F6F7412D0725FF00FB256B /* WXMButtonOpacityStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F7402D0725FF00FB256B /* WXMButtonOpacityStyle.swift */; };
+		26F6F7422D0725FF00FB256B /* WXMButtonOpacityStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F7402D0725FF00FB256B /* WXMButtonOpacityStyle.swift */; };
+		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
+		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
 		26FFAD792B8E12DC00BF0A6B /* RewardFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */; };
 		26FFADA72B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */; };
@@ -626,6 +641,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		260134522D15A1B500AF1125 /* UploadProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadProgressView.swift; sourceTree = "<group>"; };
+		260134542D15A8A700AF1125 /* uploading_dark.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = uploading_dark.json; sourceTree = "<group>"; };
+		260134552D15A8A700AF1125 /* uploading_light.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = uploading_light.json; sourceTree = "<group>"; };
+		260134582D15AC5500AF1125 /* upload_completed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = upload_completed.json; sourceTree = "<group>"; };
 		26052B5B2CDA2EE7009A7D92 /* TrackableScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScroller.swift; sourceTree = "<group>"; };
 		2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyView.swift; sourceTree = "<group>"; };
 		2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyViewModel.swift; sourceTree = "<group>"; };
@@ -647,7 +666,6 @@
 		2623FF922AF14B4E00BCDAC6 /* RewardDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailsViewModel.swift; sourceTree = "<group>"; };
 		2623FF942AF157FE00BCDAC6 /* Localizable+RewardDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localizable+RewardDetails.swift"; sourceTree = "<group>"; };
 		2624DCC32CBD0E5300E75802 /* StationStatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationStatusButton.swift; sourceTree = "<group>"; };
-		262A4CEC2A93567A00A4BC17 /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		262A4CF82A93726700A4BC17 /* sort-Xcode-project-file */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "sort-Xcode-project-file"; sourceTree = "<group>"; };
 		262A4D852A94D89300A4BC17 /* TabViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewWrapper.swift; sourceTree = "<group>"; };
 		262B02F52B1DE4A600C31FE7 /* WebContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContainerView.swift; sourceTree = "<group>"; };
@@ -1069,11 +1087,21 @@
 		26E88AF429DD69930023BBD5 /* WXMShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMShadow.swift; sourceTree = "<group>"; };
 		26E88AFE29E02F590023BBD5 /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
 		26E9A5132AE26AFE003E0830 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		26EAF8242D004BFE009EEB31 /* PhotoIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIntroView.swift; sourceTree = "<group>"; };
+		26EAF8262D004C13009EEB31 /* PhotoIntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIntroViewModel.swift; sourceTree = "<group>"; };
+		26EAF8282D0059E5009EEB31 /* LocalizableString+PhotoVerification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+PhotoVerification.swift"; sourceTree = "<group>"; };
+		26EAF82A2D008DB6009EEB31 /* PhotoIntroExamplesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIntroExamplesView.swift; sourceTree = "<group>"; };
 		26F149E12BDFC5040029F981 /* ClaimStationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionView.swift; sourceTree = "<group>"; };
 		26F149E42BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionViewModel.swift; sourceTree = "<group>"; };
 		26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionTypes.swift; sourceTree = "<group>"; };
 		26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceContainerView.swift; sourceTree = "<group>"; };
 		26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceContainerViewModel.swift; sourceTree = "<group>"; };
+		26F6F7382D07068C00FB256B /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
+		26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMCapsuleButtonStyle.swift; sourceTree = "<group>"; };
+		26F6F7402D0725FF00FB256B /* WXMButtonOpacityStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMButtonOpacityStyle.swift; sourceTree = "<group>"; };
+		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
+		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
 		26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkDeviceRewardDetailsResponse+.swift"; sourceTree = "<group>"; };
 		26FFADD32B8F684C00BF0A6B /* RewardAnnotaionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotaionsView.swift; sourceTree = "<group>"; };
@@ -1168,6 +1196,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		260134512D15A17600AF1125 /* UploadProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				260134522D15A1B500AF1125 /* UploadProgressView.swift */,
+			);
+			path = UploadProgressView;
+			sourceTree = "<group>";
+		};
 		2608A78E2C09D34B00452E40 /* SetFrequecncy */ = {
 			isa = PBXGroup;
 			children = (
@@ -1217,6 +1253,7 @@
 		262A4CEB2A93517300A4BC17 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				26EAF8222D004BC8009EEB31 /* PhotoVerification */,
 				26DF3D2F2C85FB16005F6FC1 /* RewardAnalytics */,
 				264CC75E2B98729E0060DEA4 /* RewardBoosts */,
 				26FFADD22B8F682D00BF0A6B /* RewardAnnotations */,
@@ -1643,7 +1680,7 @@
 				2675470C29A9181E008BCF40 /* StrokeBorderModifier.swift */,
 				2675470529A9181E008BCF40 /* TabBarModifier.swift */,
 				26348DF72A42F430000846C6 /* TextfieldClearButton.swift */,
-				2675470329A9181E008BCF40 /* WXMButtonStyle.swift */,
+				26F6F73C2D070DFC00FB256B /* ButtonStyles */,
 				2675470929A9181E008BCF40 /* WXMCardStyle.swift */,
 				266DC01A2A55786F00EC9E1F /* WXMPopover.swift */,
 				26E88AF429DD69930023BBD5 /* WXMShadow.swift */,
@@ -1753,7 +1790,6 @@
 				2675474B29A9181E008BCF40 /* CustomPicker.swift */,
 				26D5013B29B2152F00BC2951 /* CustomSegmentView.swift */,
 				26A4118129BA1A9900A2C10B /* DeviceUpdatesLoadingView.swift */,
-				262A4CEC2A93567A00A4BC17 /* InfoView.swift */,
 				261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */,
 				2675474C29A9181E008BCF40 /* ProgressBarStyle.swift */,
 				2675474729A9181E008BCF40 /* StaticButtonStyle.swift */,
@@ -1833,6 +1869,7 @@
 		2675476F29A9181E008BCF40 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				260134512D15A17600AF1125 /* UploadProgressView */,
 				2612AC182AB45AFA00285896 /* Filters */,
 				2675477029A9181E008BCF40 /* WeatherStationsHomeView.swift */,
 				267546DE29A9181E008BCF40 /* WeatherStationsHomeViewModel.swift */,
@@ -2113,6 +2150,7 @@
 				26A4116C29B744FC00A2C10B /* DeviceInfoViewModel.swift */,
 				26A4117029B78CAC00A2C10B /* StationInfoView.swift */,
 				2698AE9B2CB6667A00DDB04D /* DeviceInfoFactory.swift */,
+				26FC21C32D12F79E00FC79B1 /* PhotoVerificationState */,
 			);
 			path = DeviceInfo;
 			sourceTree = "<group>";
@@ -2180,6 +2218,7 @@
 				26D611AA2A9E21080099117C /* LocalizableConstants.swift */,
 				2698AE9D2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift */,
 				2666D57C2BC96077003B30C0 /* LocalizableString+Forecast.swift */,
+				26EAF8282D0059E5009EEB31 /* LocalizableString+PhotoVerification.swift */,
 				26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */,
 				26E85B132C7753140062667E /* LocalizableString+Units.swift */,
 				268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */,
@@ -2501,6 +2540,25 @@
 			path = SelectDevice;
 			sourceTree = "<group>";
 		};
+		26EAF8222D004BC8009EEB31 /* PhotoVerification */ = {
+			isa = PBXGroup;
+			children = (
+				26F6F7372D0705B200FB256B /* GalleryView */,
+				26EAF8232D004BD7009EEB31 /* Intro */,
+			);
+			path = PhotoVerification;
+			sourceTree = "<group>";
+		};
+		26EAF8232D004BD7009EEB31 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				26EAF8242D004BFE009EEB31 /* PhotoIntroView.swift */,
+				26EAF8262D004C13009EEB31 /* PhotoIntroViewModel.swift */,
+				26EAF82A2D008DB6009EEB31 /* PhotoIntroExamplesView.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
 		26F149E32BDFC83D0029F981 /* ClaimStationSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -2509,6 +2567,34 @@
 				26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */,
 			);
 			path = ClaimStationSelection;
+			sourceTree = "<group>";
+		};
+		26F6F7372D0705B200FB256B /* GalleryView */ = {
+			isa = PBXGroup;
+			children = (
+				26F6F7382D07068C00FB256B /* GalleryView.swift */,
+				26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */,
+			);
+			path = GalleryView;
+			sourceTree = "<group>";
+		};
+		26F6F73C2D070DFC00FB256B /* ButtonStyles */ = {
+			isa = PBXGroup;
+			children = (
+				2675470329A9181E008BCF40 /* WXMButtonStyle.swift */,
+				26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */,
+				26F6F7402D0725FF00FB256B /* WXMButtonOpacityStyle.swift */,
+			);
+			path = ButtonStyles;
+			sourceTree = "<group>";
+		};
+		26FC21C32D12F79E00FC79B1 /* PhotoVerificationState */ = {
+			isa = PBXGroup;
+			children = (
+				26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */,
+				26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */,
+			);
+			path = PhotoVerificationState;
 			sourceTree = "<group>";
 		};
 		26FFAD772B8E125900BF0A6B /* Components */ = {
@@ -2585,6 +2671,9 @@
 				7423EC02283F81E2004E9B26 /* empty_devices.json */,
 				7423EC0E283F81E2004E9B26 /* empty_generic.json */,
 				7423EC04283F81E2004E9B26 /* error.json */,
+				260134542D15A8A700AF1125 /* uploading_dark.json */,
+				260134552D15A8A700AF1125 /* uploading_light.json */,
+				260134582D15AC5500AF1125 /* upload_completed.json */,
 				26E88AFE29E02F590023BBD5 /* loader.json */,
 				7423EC08283F81E2004E9B26 /* loading.json */,
 				7423EC00283F81E2004E9B26 /* not_available.json */,
@@ -2941,6 +3030,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				26C5D6B82CD8BDDB004940D0 /* weather_overcast_light_snow.json in Resources */,
+				260134562D15A8A700AF1125 /* uploading_dark.json in Resources */,
+				260134572D15A8A700AF1125 /* uploading_light.json in Resources */,
 				26C5D6172CD3CD7D004940D0 /* weather_overcast.json in Resources */,
 				26C5D6B32CD8BDDB004940D0 /* deprecated_weather_sleet.json in Resources */,
 				26C5D69A2CD8BDDB004940D0 /* weather_overcast_snow.json in Resources */,
@@ -2976,6 +3067,7 @@
 				26C5D6BF2CD8BDDB004940D0 /* weather_extreme_night_rain.json in Resources */,
 				26C5D6A42CD8BDDB004940D0 /* partly_cloudy_day.json in Resources */,
 				26C5D6992CD8BDDB004940D0 /* weather_overcast_drizzle.json in Resources */,
+				260134592D15AC5500AF1125 /* upload_completed.json in Resources */,
 				74E29FA4282A9FC800925E4C /* Colors.xcassets in Resources */,
 				26348E212A444AF1000846C6 /* Font Awesome 6 Brands-Regular-400.otf in Resources */,
 				26C5D6AC2CD8BDDB004940D0 /* weather_extreme_day_drizzle.json in Resources */,
@@ -3054,11 +3146,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26F6F73F2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */,
 				26B832BA2AC5B05700757A69 /* Image+.swift in Sources */,
 				26B832A62AC5A77C00757A69 /* WeatherFields.swift in Sources */,
 				26B832262AC31E4500757A69 /* Station_widget.swift in Sources */,
 				26B832B82AC5B03200757A69 /* StrokeBorderModifier.swift in Sources */,
 				26B832AA2AC5A7F100757A69 /* UnitConstants.swift in Sources */,
+				26F6F7412D0725FF00FB256B /* WXMButtonOpacityStyle.swift in Sources */,
 				26CA845B2AD93BB6006D47D7 /* String+Common.swift in Sources */,
 				26B832242AC31E4500757A69 /* Station_widgetBundle.swift in Sources */,
 				26769AB22ACEC58600162974 /* StationTimelineEntry.swift in Sources */,
@@ -3228,6 +3322,7 @@
 				26AF276F2A0B815B0067A1B8 /* WeatherChartModels.swift in Sources */,
 				26AA21E92BF4FA3B00B91A7C /* SelectLocationMapView.swift in Sources */,
 				26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */,
+				26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */,
 				2672C77A2AA9BBEB00E1FDCC /* HistoryContainerView.swift in Sources */,
 				26A308F92C2EE481007A029A /* ScannerView.swift in Sources */,
 				2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */,
@@ -3238,8 +3333,8 @@
 				26F149E52BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift in Sources */,
 				267547A329A9181E008BCF40 /* HistoryViewModel.swift in Sources */,
 				267548EF29A91A87008BCF40 /* Image+.swift in Sources */,
-				262A4CED2A93567A00A4BC17 /* InfoView.swift in Sources */,
 				267548E129A91A87008BCF40 /* Int+.swift in Sources */,
+				26EAF8252D004BFE009EEB31 /* PhotoIntroView.swift in Sources */,
 				266482FC29C0B2B000748F9C /* LoaderView.swift in Sources */,
 				26325B052BE12E4300182C59 /* ClaimDeviceFactory.swift in Sources */,
 				26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */,
@@ -3284,6 +3379,7 @@
 				268028AA2AF298290031379C /* Indication.swift in Sources */,
 				26A308EA2C2E97B5007A029A /* ZoomControls.swift in Sources */,
 				266DC0132A54260900EC9E1F /* NetworkErrorResponse+.swift in Sources */,
+				26F6F7392D07068C00FB256B /* GalleryView.swift in Sources */,
 				26E685AF2C0619D700B972B1 /* SelectDeviceView.swift in Sources */,
 				2692D8922A4DC0BA0060CB3C /* NetworkSearchResponse+.swift in Sources */,
 				2674016D2A372FC100E54E35 /* NetworkStats+Content.swift in Sources */,
@@ -3342,6 +3438,7 @@
 				26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */,
 				26C464F82A40A0D0005E5245 /* ShimmerEffectLoaderView.swift in Sources */,
 				2675481B29A9181E008BCF40 /* SignInView.swift in Sources */,
+				26F6F7422D0725FF00FB256B /* WXMButtonOpacityStyle.swift in Sources */,
 				267547AE29A9181E008BCF40 /* SignInViewModel.swift in Sources */,
 				267547D129A9181E008BCF40 /* SizeObserver.swift in Sources */,
 				264582392A41A14E00195C21 /* SpinningLoader.swift in Sources */,
@@ -3355,10 +3452,12 @@
 				26FFCCDA2BD2483F00880AAD /* ForecastDetailsDailyView.swift in Sources */,
 				2664D6692CEB690200902995 /* TrackableScrollOffsetObject.swift in Sources */,
 				26DD42E429B0FA9B008E277E /* StationDetailsViewModel.swift in Sources */,
+				26F6F73B2D07069E00FB256B /* GalleryViewModel.swift in Sources */,
 				2664833029C36B0900748F9C /* StationForeCastCardView+Content.swift in Sources */,
 				2664832E29C364FE00748F9C /* StationForecastCardView.swift in Sources */,
 				2664832929C35AF400748F9C /* StationForecastView.swift in Sources */,
 				2664832B29C35C0300748F9C /* StationForecastViewModel.swift in Sources */,
+				26EAF8292D0059E5009EEB31 /* LocalizableString+PhotoVerification.swift in Sources */,
 				2643713C2CA41DA500E5F382 /* InfoBannerView.swift in Sources */,
 				26A4117129B78CAC00A2C10B /* StationInfoView.swift in Sources */,
 				26D5013829B209F500BC2951 /* StationLastActiveView.swift in Sources */,
@@ -3385,6 +3484,7 @@
 				B557E20328251EF700E0BDCB /* SwinjectHelper.swift in Sources */,
 				2672B87E2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift in Sources */,
 				2675484229A91930008BCF40 /* SwinjectInterface.swift in Sources */,
+				26F6F73E2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */,
 				267547CB29A9181E008BCF40 /* TabBarModifier.swift in Sources */,
 				2675483E29A9181E008BCF40 /* TabBarView.swift in Sources */,
 				262B02F62B1DE4A600C31FE7 /* WebContainerView.swift in Sources */,
@@ -3405,6 +3505,7 @@
 				2675482E29A9181E008BCF40 /* RewardsTimelineView.swift in Sources */,
 				267547A829A9181E008BCF40 /* RewardsTimelineViewModel.swift in Sources */,
 				2675480129A9181E008BCF40 /* UberTextField.swift in Sources */,
+				26EAF8272D004C13009EEB31 /* PhotoIntroViewModel.swift in Sources */,
 				267548F829A91A87008BCF40 /* UIColor+.swift in Sources */,
 				264DD5082B9F3BCB002691FF /* LocalizableString+ExplorerList.swift in Sources */,
 				2623FF912AF147A800BCDAC6 /* RewardDetailsView.swift in Sources */,
@@ -3428,6 +3529,7 @@
 				26AF27712A0B815B0067A1B8 /* WeatherChartDataModel.swift in Sources */,
 				2664833229C370D900748F9C /* WeatherFields.swift in Sources */,
 				26D47E7F2A122A540078723A /* WeatherFormatter.swift in Sources */,
+				26EAF82B2D008DB6009EEB31 /* PhotoIntroExamplesView.swift in Sources */,
 				26AA21E62BF4F61B00B91A7C /* ClaimDeviceLocationViewModel.swift in Sources */,
 				26AF27922A0CD6F60067A1B8 /* WeatherLineChart.swift in Sources */,
 				26A4116029B618CA00A2C10B /* WeatherOverviewView+Content.swift in Sources */,
@@ -3438,6 +3540,7 @@
 				267547FC29A9181E008BCF40 /* WeatherStationCard.swift in Sources */,
 				2675482129A9181E008BCF40 /* WeatherStationsHomeView.swift in Sources */,
 				26A5456C2C0609FE0098FE52 /* ResetDeviceViewModel.swift in Sources */,
+				260134532D15A1B500AF1125 /* UploadProgressView.swift in Sources */,
 				262B03092B20BDB700C31FE7 /* LocalizableString+AppUpdate.swift in Sources */,
 				267547AB29A9181E008BCF40 /* WeatherStationsHomeViewModel.swift in Sources */,
 				26AF27742A0B86DD0067A1B8 /* WeatherUnitsConverter.swift in Sources */,
@@ -3455,6 +3558,7 @@
 				267A378A2AEBFF2F00469126 /* DeviceRewardsOverview+.swift in Sources */,
 				2698AE9C2CB6667A00DDB04D /* DeviceInfoFactory.swift in Sources */,
 				26E5B0C029F8078C00834899 /* WXMDivider.swift in Sources */,
+				26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */,
 				2674017E2A38C2AE00E54E35 /* WXMEmptyView.swift in Sources */,
 				266DC01B2A55786F00EC9E1F /* WXMPopover.swift in Sources */,
 				2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */,
@@ -3696,7 +3800,7 @@
 				INFOPLIST_FILE = "station-widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "station-widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3734,7 +3838,7 @@
 				INFOPLIST_FILE = "station-widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "station-widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3771,7 +3875,7 @@
 				INFOPLIST_FILE = "station-widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "station-widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3860,11 +3964,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "wxm-ios/wxm-ios.entitlements";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"wxm-ios/PreviewContent\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = G6DMWDA6X5;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = (
 					"Resources/Release/*",
@@ -3874,8 +3979,9 @@
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "WXM Mock";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera for scanning the QR";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This allows you to take photos from within the app (e.g. your station deployment).";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "WeatherXM uses your location to provide relevant weather data, and verify station installation.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WeatherXM uses your location to provide relevant weather data, and verify station installation.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -4045,8 +4151,9 @@
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "WXM Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera for scanning the QR";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This allows you to take photos from within the app (e.g. your station deployment).";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "WeatherXM uses your location to provide relevant weather data, and verify station installation.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WeatherXM uses your location to provide relevant weather data, and verify station installation.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -4095,8 +4202,9 @@
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = WeatherXM;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Need access to camera for scanning the QR";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This allows you to take photos from within the app (e.g. your station deployment).";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "WeatherXM uses your location to provide relevant weather data, and verify station installation.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "WeatherXM uses your location to provide relevant weather data, and verify station installation.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

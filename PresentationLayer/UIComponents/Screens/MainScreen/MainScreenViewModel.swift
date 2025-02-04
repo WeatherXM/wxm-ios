@@ -43,6 +43,7 @@ class MainScreenViewModel: ObservableObject {
 	private let mainUseCase: MainUseCase
 	private let meUseCase: MeUseCase
 	private let settingsUseCase: SettingsUseCase
+	private let photosUseCase: PhotoGalleryUseCase
 	private var cancellableSet: Set<AnyCancellable> = []
 	let networkMonitor: NWPathMonitor
 	@Published var isUserLoggedIn: Bool = false
@@ -72,12 +73,14 @@ class MainScreenViewModel: ObservableObject {
 		self.swinjectHelper = SwinjectHelper.shared
 		mainUseCase = swinjectHelper.getContainerForSwinject().resolve(MainUseCase.self)!
 		meUseCase = swinjectHelper.getContainerForSwinject().resolve(MeUseCase.self)!
+		photosUseCase = swinjectHelper.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
 
 		networkMonitor = NWPathMonitor()
 		settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCase.self)!
 
-		checkIfUserIsLoggedIn()
-		settingsUseCase.initializeAnalyticsTracking()
+        checkIfUserIsLoggedIn()
+        settingsUseCase.initializeAnalyticsTracking()
+		purgeSavedPhotos()
 
 		NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { _ in
 			WidgetCenter.shared.reloadAllTimelines()
@@ -121,7 +124,9 @@ class MainScreenViewModel: ObservableObject {
 				self?.showHttpMonitor = true
 			}
 		}
-	}
+
+		observePhotoUploads()
+    }
 
 	@Published var showFirmwareUpdate = false
 	var deviceToUpdate: DeviceDetails?
@@ -337,5 +342,37 @@ class MainScreenViewModel: ObservableObject {
 			self?.mainUseCase.setTermsOfUseAccepted()
 			self?.showTermsPrompt = false
 		})])
+	}
+	
+	// MARK: Photos
+	private func purgeSavedPhotos() {
+		do {
+			try photosUseCase.purgeImages()
+		} catch {
+			print("Error purging photos: \(error)")
+		}
+	}
+
+	private func observePhotoUploads() {
+		photosUseCase.uploadStartedPublisher.receive(on: DispatchQueue.main).sink { deviceId in
+			LocalNotificationScheduler().postNotification(id: deviceId,
+														  title: LocalizableString.PhotoVerification.uploadStartedSuccessfully.localized,
+														  body: nil)
+		}.store(in: &cancellableSet)
+
+		photosUseCase.uploadCompletedPublisher.receive(on: DispatchQueue.main).sink { deviceId, count in
+			LocalNotificationScheduler().postNotification(id: deviceId,
+														  title: LocalizableString.PhotoVerification.uploadFinishedNotificationTitle(count).localized,
+														  body: nil)
+
+		}.store(in: &cancellableSet)
+
+		photosUseCase.uploadErrorPublisher.receive(on: DispatchQueue.main).sink { deviceId, _ in
+			if self.photosUseCase.getUploadState(deviceId: deviceId)  == .failed {
+				LocalNotificationScheduler().postNotification(id: deviceId,
+															  title: LocalizableString.PhotoVerification.uploadFailedNotificationFailedTitle.localized,
+															  body: LocalizableString.PhotoVerification.uploadFailedNotificationFailedDescription.localized)
+			}
+		}.store(in: &cancellableSet)
 	}
 }

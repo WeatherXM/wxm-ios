@@ -14,11 +14,19 @@ protocol WXMLocalizable {
 
 enum LocalizableString: WXMLocalizable {
 	case url(String, String)
+	case completed
+	case new
 	case notAvailable
+	case `continue`
 	case confirm
 	case email
 	case mandatoryEmail
 	case done
+	case back
+	case exit
+	case exitAnyway
+	case skip
+	case delete
 	case firstName
 	case lastName
 	case password
@@ -216,8 +224,14 @@ extension LocalizableString {
 		switch self {
 			case .url:
 				return "url_format"
+			case .completed:
+				return "completed"
+			case .new:
+				return "new"
 			case .notAvailable:
 				return "not_available"
+			case .continue:
+				return "continue"
 			case .confirm:
 				return "confirm"
 			case .email:
@@ -226,6 +240,16 @@ extension LocalizableString {
 				return "mandatory_email"
 			case .done:
 				return "done"
+			case .back:
+				return "back"
+			case .exit:
+				return "exit"
+			case .exitAnyway:
+				return "exit_anyway"
+			case .skip:
+				return "skip"
+			case .delete:
+				return "delete"
 			case .firstName:
 				return "first_name"
 			case .lastName:

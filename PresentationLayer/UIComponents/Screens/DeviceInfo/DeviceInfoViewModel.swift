@@ -10,48 +10,59 @@ import DomainLayer
 import Combine
 import Toolkit
 import UIKit
+import SwiftUI
 
 @MainActor
 class DeviceInfoViewModel: ObservableObject {
 
 	let mainVM: MainScreenViewModel = .shared
-    var sections: [[DeviceInfoRowView.Row]] {
-        var fields: [[Field]] = []
+	var sections: [[DeviceInfoRowView.Row]] {
+		var fields: [[Field]] = []
 		if device.isHelium {
 			fields = Field.heliumSections(for: followState)
 		} else {
 			fields = Field.wifiSections(for: followState)
-        }
+		}
 
-        let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
-            DeviceInfoRowView.Row(title: field.titleFor(devie: device),
-								  description: field.descriptionFor(device: device,
-																	for: followState,
-																	deviceInfo: deviceInfo).attributedMarkdown ?? "",
-								  imageUrl: field.imageUrlFor(device: device, followState: followState),
-                                  buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
-                                  warning: field.warning,
-								  customView: field.customViewFor(deviceInfo: deviceInfo),
-                                  buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
-            }
-        }
+		let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
+			let title = field.titleFor(devie: device)
+			return DeviceInfoRowView.Row(title: title.title,
+										 badge: title.badge,
+										 description: field.descriptionFor(device: device,
+																		   for: followState,
+																		   deviceInfo: deviceInfo,
+																		   photoVerificationState: photoVerificationState).attributedMarkdown ?? "",
+										 imageUrl: field.imageUrlFor(device: device, followState: followState),
+										 buttonInfo: field.buttonInfoFor(devie: device,
+																		 followState: followState,
+																		 photoVerificationState: photoStateViewModel?.state),
+										 warning: field.warning,
+										 customView: customViewFor(field: field),
+										 buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
+		}
+		}
 
-        return rows
-    }
+		return rows
+	}
 
 	var bottomSections: [[DeviceInfoRowView.Row]] {
 		let fields = Field.bottomSections(for: followState, deviceInfo: deviceInfo)
 		let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
-			DeviceInfoRowView.Row(title: field.titleFor(devie: device),
-								  description: field.descriptionFor(device: device,
-																	for: followState,
-																	deviceInfo: deviceInfo).attributedMarkdown ?? "",
-								  imageUrl: field.imageUrlFor(device: device, followState: followState),
-								  buttonInfo: field.buttonInfoFor(devie: device, followState: followState),
-								  warning: field.warning,
-								  customView: field.customViewFor(deviceInfo: deviceInfo),
-								  buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
-			}
+			let title = field.titleFor(devie: device)
+			return DeviceInfoRowView.Row(title: title.title,
+										 badge: title.badge,
+										 description: field.descriptionFor(device: device,
+																		   for: followState,
+																		   deviceInfo: deviceInfo,
+																		   photoVerificationState: photoVerificationState).attributedMarkdown ?? "",
+										 imageUrl: field.imageUrlFor(device: device, followState: followState),
+										 buttonInfo: field.buttonInfoFor(devie: device,
+																		 followState: followState,
+																		 photoVerificationState: photoStateViewModel?.state),
+										 warning: field.warning,
+										 customView: customViewFor(field: field),
+										 buttonAction: { [weak self] in self?.handleButtonTap(field: field) })
+		}
 		}
 
 		return rows
@@ -82,6 +93,7 @@ class DeviceInfoViewModel: ObservableObject {
 													 followState: followState)
 		}
 	}
+	@Published private(set) var photoVerificationState: PhotoVerificationStateView.State?
     let followState: UserDeviceFollowState?
     @Published var showRebootStation = false
     var rebootStationViewModel: RebootStationViewModel {
@@ -113,11 +125,23 @@ class DeviceInfoViewModel: ObservableObject {
     private let deviceInfoUseCase: DeviceInfoUseCase?
     private var cancellable: Set<AnyCancellable> = []
 	private let friendlyNameRegex = "^\\S.{0,64}$"
+	private let photoStateViewModel: PhotoVerificationStateViewModel?
 
     init(device: DeviceDetails, followState: UserDeviceFollowState?) {
         self.device = device
         self.followState = followState
         self.deviceInfoUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCase.self)
+
+		if let deviceId = device.id {
+			self.photoStateViewModel = ViewModelsFactory.getPhotoVerificationStateViewModel(deviceId: deviceId)
+		} else {
+			self.photoStateViewModel = nil
+		}
+
+		photoStateViewModel?.$state.sink { [weak self] state in
+			self?.photoVerificationState = state
+		}.store(in: &cancellable)
+
 		refresh { [weak self] in
 			self?.trackRewardSplitViewEvent()
 		}
@@ -148,25 +172,28 @@ class DeviceInfoViewModel: ObservableObject {
             return
         }
 
-        do {
-            try deviceInfoUseCase?.getDeviceInfo(deviceId: deviceId).sink { [weak self] response in
-                self?.isLoading = false
-                if let error = response.error {
-                    self?.failObj = error.uiInfo.defaultFailObject(type: .deviceInfo) {
-                        self?.isFailed = false
-                        self?.isLoading = true
-                        self?.refresh()
-                    }
-                    self?.isFailed = true
-                }
-                self?.deviceInfo = response.value
+		Task { @MainActor [weak self] in
+			let photosError = await self?.photoStateViewModel?.refresh()
+
+			do {
+				let response = try await self?.deviceInfoUseCase?.getDeviceInfo(deviceId: deviceId).toAsync()
+				self?.isLoading = false
+				if let error = response?.error ?? photosError {
+					self?.failObj = error.uiInfo.defaultFailObject(type: .deviceInfo) {
+						self?.isFailed = false
+						self?.isLoading = true
+						self?.refresh()
+					}
+					self?.isFailed = true
+				}
+				self?.deviceInfo = response?.value
 				completion?()
-            }.store(in: &self.cancellable)
-        } catch {
-            isLoading = false
-            print(error)
-            completion?()
-        }
+			} catch {
+				self?.isLoading = false
+				print(error)
+				completion?()
+			}
+		}
     }
 }
 
@@ -233,6 +260,15 @@ private extension DeviceInfoViewModel {
 				Router.shared.navigateTo(.selectStationLocation(viewModel))
 			case .rewardSplit:
 				break
+			case .photos:
+				guard let deviceId = device.id else {
+					return
+				}
+
+				PhotoIntroViewModel.startPhotoVerification(deviceId: deviceId, images: [], isNewPhotoVerification: true)
+
+				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .goToPhotoVerification,
+																			.source: .settingsSource])
 		}
 	}
 
@@ -312,7 +348,7 @@ private extension DeviceInfoViewModel {
 
 		let alertObject = AlertHelper.AlertObject(title: LocalizableString.DeviceInfo.editNameAlertTitle.localized,
 												  message: LocalizableString.DeviceInfo.editNameAlertMessage.localized,
-                                                  textFieldPlaceholder: Field.name.titleFor(devie: device),
+												  textFieldPlaceholder: Field.name.titleFor(devie: device).title,
                                                   textFieldValue: device.displayName,
                                                   textFieldDelegate: AlertTexFieldDelegate(),
                                                   cancelAction: {
@@ -404,6 +440,28 @@ private extension DeviceInfoViewModel {
                                                             .contentId: .changeStationNameResultContentId,
                                                             .success: .custom(isSuccessful ? "1" : "0")])
     }
+
+	func customViewFor(field: Field) -> AnyView? {
+		switch field {
+			case .rewardSplit:
+				guard let rewardsplit = deviceInfo?.rewardSplit, rewardsplit.count > 0 else {
+					return nil
+				}
+				let items = rewardsplit.map { split in
+					let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address
+					let isUserWallet = split.wallet == userWallet
+					return split.toSplitViewItem(showReward: false, isUserWallet: isUserWallet)
+				}
+				return RewardsSplitView.WalletsListView(items: items).toAnyView
+			case .photos:
+				guard let photoStateViewModel else {
+					return nil
+				}
+				return PhotoVerificationStateView(viewModel: photoStateViewModel).toAnyView
+			default:
+				return nil
+		}
+	}
 }
 
 private extension DeviceInfoViewModel {
