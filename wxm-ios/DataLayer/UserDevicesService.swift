@@ -109,8 +109,9 @@ public class UserDevicesService: @unchecked Sendable {
     }
 
 	func disclaimDevice(serialNumber: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		let urlRequest = try MeApiRequestBuilder.disclaimDevice(serialNumber: serialNumber).asURLRequest()
-		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest)
+		let builder = MeApiRequestBuilder.disclaimDevice(serialNumber: serialNumber)
+		let urlRequest = try builder.asURLRequest()
+		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
 
 		return publisher
 			.flatMap { [weak self] response in
@@ -230,8 +231,10 @@ public class UserDevicesService: @unchecked Sendable {
 	}
 
 	func setFriendlyName(deviceId: String, name: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		let urlRequest = try MeApiRequestBuilder.setFriendlyName(deviceId: deviceId, name: name).asURLRequest()
-		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest)
+		let builder = MeApiRequestBuilder.setFriendlyName(deviceId: deviceId, name: name)
+		let urlRequest = try builder.asURLRequest()
+		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
+																																		mockFileName: builder.mockFileName)
 		return publisher
 			.flatMap { [weak self] response in
 				if response.error == nil {
@@ -245,8 +248,9 @@ public class UserDevicesService: @unchecked Sendable {
 	}
 
 	func deleteFriendlyName(deviceId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		let urlRequest = try MeApiRequestBuilder.deleteFriendlyName(deviceId: deviceId).asURLRequest()
-		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest)
+		let builder = MeApiRequestBuilder.deleteFriendlyName(deviceId: deviceId)
+		let urlRequest = try builder.asURLRequest()
+		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
 		return publisher
 			.flatMap { [weak self] response in
 				if response.error == nil {
