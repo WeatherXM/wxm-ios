@@ -36,11 +36,8 @@ class GalleryViewModel: ObservableObject {
 	var localImages: [GalleryView.GalleryImage]? {
 		images.filter { $0.uiImage != nil }
 	}
-	var isPlusButtonVisible: Bool {
-		images.count < maxPhotosCount
-	}
 	var isPlusButtonEnabled: Bool {
-		useCase.getCameraPermission() != .denied
+		(useCase.getCameraPermission() != .denied) && (images.count < maxPhotosCount)
 	}
 	var isUploadButtonEnabled: Bool {
 		images.count >= minPhotosCount && localImages?.isEmpty == false
@@ -82,6 +79,16 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func handlePlusButtonTap() {
+		guard useCase.getCameraPermission() != .denied else {
+			return
+		}
+
+		if images.count >= maxPhotosCount,
+		   let text = LocalizableString.PhotoVerification.maxLimitPhotosInfo(maxPhotosCount).localized.attributedMarkdown {
+			Toast.shared.show(text: text, type: .info, visibleDuration: 5.0)
+			return
+		}
+
 		openCamera()
 	}
 

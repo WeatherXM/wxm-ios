@@ -76,6 +76,7 @@ extension LocalizableString {
 		case uploadPhotosAlertTitle
 		case uploadPhotosAlertMessage
 		case stayAndVerify
+		case maxLimitPhotosInfo(Int)
 	}
 }
 
@@ -84,7 +85,8 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 		var localized = NSLocalizedString(key, comment: "")
 		switch self {
 			case .morePhotosToUpload(let count),
-					.uploadFinishedNotificationTitle(let count):
+					.uploadFinishedNotificationTitle(let count),
+					.maxLimitPhotosInfo(let count):
 				localized = String(format: localized, count)
 			default: break
 		}
@@ -229,6 +231,8 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_upload_photos_alert_message"
 			case .stayAndVerify:
 				"photo_verification_stay_and_verify"
+			case .maxLimitPhotosInfo:
+				"photo_verification_max_limit_photos_info"
 		}
 	}
 }

@@ -6094,6 +6094,17 @@
         }
       }
     },
+    "photo_verification_max_limit_photos_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’ve reached the limit of %d photos. Remove some photos to add new ones if needed."
+          }
+        }
+      }
+    },
     "photo_verification_max_photos_instruction" : {
       "extractionState" : "manual",
       "localizations" : {

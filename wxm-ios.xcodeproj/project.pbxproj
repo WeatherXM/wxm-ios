@@ -503,6 +503,7 @@
 		26DD42CC29AF56B9008E277E /* Toolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26DD42E129B0F741008E277E /* StationDetailsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */; };
 		26DD42E429B0FA9B008E277E /* StationDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42E329B0FA9B008E277E /* StationDetailsViewModel.swift */; };
+		26DF1F322D52086F0001E936 /* GalleryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F312D52086F0001E936 /* GalleryInfoView.swift */; };
 		26DF3D202C85BB86005F6FC1 /* ExplorerData+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */; };
 		26DF3D312C85FB30005F6FC1 /* RewardAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */; };
 		26DF3D332C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */; };
@@ -1072,6 +1073,7 @@
 		26DD42A529AF4633008E277E /* Toolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolkit.xcodeproj; path = "wxm-ios/Toolkit/Toolkit.xcodeproj"; sourceTree = "<group>"; };
 		26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsContainerView.swift; sourceTree = "<group>"; };
 		26DD42E329B0FA9B008E277E /* StationDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsViewModel.swift; sourceTree = "<group>"; };
+		26DF1F312D52086F0001E936 /* GalleryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryInfoView.swift; sourceTree = "<group>"; };
 		26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerData+.swift"; sourceTree = "<group>"; };
 		26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsView.swift; sourceTree = "<group>"; };
 		26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsViewModel.swift; sourceTree = "<group>"; };
@@ -2574,6 +2576,7 @@
 			children = (
 				26F6F7382D07068C00FB256B /* GalleryView.swift */,
 				26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */,
+				26DF1F312D52086F0001E936 /* GalleryInfoView.swift */,
 			);
 			path = GalleryView;
 			sourceTree = "<group>";
@@ -3434,6 +3437,7 @@
 				267548CF29A91A87008BCF40 /* ShadowEnum.swift in Sources */,
 				26F149EB2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift in Sources */,
 				267548EE29A91A87008BCF40 /* Shape+.swift in Sources */,
+				26DF1F322D52086F0001E936 /* GalleryInfoView.swift in Sources */,
 				268B5C3F2BCE95DB00E63655 /* ForecastTemperatureCardView.swift in Sources */,
 				26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */,
 				26C464F82A40A0D0005E5245 /* ShimmerEffectLoaderView.swift in Sources */,
