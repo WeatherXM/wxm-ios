@@ -24,19 +24,19 @@ struct UserDevicesServiceTests {
 
 	@Test func initialFetch() async throws {
 		let devices = try await service.getDevices(useCache: true).toAsync().result.get()
-		#expect(devices.count == 1)
+		#expect(devices.count == 2)
 
 		let cachedDevices = service.getCachedDevices()
-		#expect(cachedDevices?.count == 1)
+		#expect(cachedDevices?.count == 2)
 		#expect(cachedDevices?.first?.id == devices.first?.id)
 	}
 
 	@Test func claimFlow() async throws {
 		let devices = try await service.getDevices(useCache: true).toAsync().result.get()
-		#expect(devices.count == 1)
+		#expect(devices.count == 2)
 
 		var cachedDevices = service.getCachedDevices()
-		#expect(cachedDevices?.count == 1)
+		#expect(cachedDevices?.count == 2)
 
 		let dummyDeviceBody = ClaimDeviceBody(serialNumber: "124",
 											  location: .init(latitude: 0.0,
