@@ -243,7 +243,7 @@ private extension GalleryView {
 								.cornerRadius(CGFloat(.buttonCornerRadius))
 						}
 						.buttonStyle(WXMButtonOpacityStyle())
-						.opacity(viewModel.isPlusButtonEnabled ? 1.0 : 0.4)
+						.disabled(!viewModel.isPlusButtonEnabled)
 					}
 				}
 			}.modify { view in
