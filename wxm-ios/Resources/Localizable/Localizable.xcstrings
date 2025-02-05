@@ -6226,6 +6226,17 @@
         }
       }
     },
+    "photo_verification_photo_upload_completed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo upload completed"
+          }
+        }
+      }
+    },
     "photo_verification_preparing_upload_description" : {
       "extractionState" : "manual",
       "localizations" : {
