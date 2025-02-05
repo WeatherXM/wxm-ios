@@ -291,6 +291,7 @@
 				2612AC612AB88EB400285896 /* FiltersService.swift */,
 				26AB9F512A80112900855912 /* UserDevicesService.swift */,
 				262B02F72B1F3B5300C31FE7 /* UserInfoService.swift */,
+				26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */,
 			);
 			name = Services;
 			path = ..;
@@ -386,7 +387,6 @@
 				B55668912832DE96006D0B71 /* ApiClient.swift */,
 				2678114D2D4BA57800D22B67 /* Client.swift */,
 				B54B809D2850C25900FB52B9 /* Connectivity.swift */,
-				26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
