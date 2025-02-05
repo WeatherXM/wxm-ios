@@ -510,6 +510,7 @@
 		26DD42CC29AF56B9008E277E /* Toolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26DD42E129B0F741008E277E /* StationDetailsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */; };
 		26DD42E429B0FA9B008E277E /* StationDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42E329B0FA9B008E277E /* StationDetailsViewModel.swift */; };
+		26DF1F522D535EB10001E936 /* KeychainHelperServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F512D535EB10001E936 /* KeychainHelperServiceTests.swift */; };
 		26DF3D202C85BB86005F6FC1 /* ExplorerData+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */; };
 		26DF3D312C85FB30005F6FC1 /* RewardAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */; };
 		26DF3D332C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */; };
@@ -1085,6 +1086,7 @@
 		26DD42A529AF4633008E277E /* Toolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolkit.xcodeproj; path = "wxm-ios/Toolkit/Toolkit.xcodeproj"; sourceTree = "<group>"; };
 		26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsContainerView.swift; sourceTree = "<group>"; };
 		26DD42E329B0FA9B008E277E /* StationDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsViewModel.swift; sourceTree = "<group>"; };
+		26DF1F512D535EB10001E936 /* KeychainHelperServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelperServiceTests.swift; sourceTree = "<group>"; };
 		26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerData+.swift"; sourceTree = "<group>"; };
 		26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsView.swift; sourceTree = "<group>"; };
 		26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsViewModel.swift; sourceTree = "<group>"; };
@@ -2040,6 +2042,7 @@
 				267811092D49279300D22B67 /* FiltersServiceTest.swift */,
 				2678114F2D4BB21700D22B67 /* UserInfoServiceTests.swift */,
 				267811572D4CD84E00D22B67 /* UserDevicesServiceTests.swift */,
+				26DF1F512D535EB10001E936 /* KeychainHelperServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -3181,6 +3184,7 @@
 				267811582D4CD84E00D22B67 /* UserDevicesServiceTests.swift in Sources */,
 				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
 				26D32FE82C510DF000E765E0 /* DateExtensionsTests.swift in Sources */,
+				26DF1F522D535EB10001E936 /* KeychainHelperServiceTests.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
