@@ -118,7 +118,7 @@ private extension UploadProgressView {
 						.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 						.foregroundStyle(Color(colorEnum: .text))
 
-					Text(LocalizableString.completed.localized)
+					Text(LocalizableString.PhotoVerification.photoUploadCompleted.localized)
 						.font(.system(size: CGFloat(.normalFontSize)))
 						.foregroundStyle(Color(colorEnum: .text))
 

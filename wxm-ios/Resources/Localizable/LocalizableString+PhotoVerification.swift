@@ -56,6 +56,7 @@ extension LocalizableString {
 		case exitPhotoVerification
 		case exitPhotoVerificationText
 		case exitPhotoVerificationMinimumPhotosText
+		case photoUploadCompleted
 		case uploading
 		case cancelUpload
 		case cancelUploadAlertMessage
@@ -191,6 +192,8 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_exit_photo_verification_text"
 			case .exitPhotoVerificationMinimumPhotosText:
 				"photo_verification_exit_photo_verification_minimum_photos_text"
+			case .photoUploadCompleted:
+				"photo_verification_photo_upload_completed"
 			case .uploading:
 				"photo_verification_uploading"
 			case .cancelUpload:
