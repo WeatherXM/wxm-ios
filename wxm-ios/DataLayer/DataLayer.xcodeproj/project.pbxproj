@@ -71,6 +71,7 @@
 		26D47E9E2A177AFB0078723A /* SettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */; };
 		26DD42AF29AF4765008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AE29AF4765008E277E /* Toolkit.framework */; };
 		26DD42D229AFAF26008E277E /* get_user_devices.json in Resources */ = {isa = PBXBuildFile; fileRef = 26DD42D129AFAF26008E277E /* get_user_devices.json */; };
+		26DF1F542D549A310001E936 /* FileUploadMockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */; };
 		26E2B3BC2982754D00ED9B58 /* MockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E2B3BB2982754D00ED9B58 /* MockProtocol.swift */; };
 		26E88B2F29E5717D0023BBD5 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88B2E29E5717D0023BBD5 /* DatabaseService.swift */; };
 		26E88B3429E582070023BBD5 /* DBWeather+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88B3329E582070023BBD5 /* DBWeather+CoreDataClass.swift */; };
@@ -171,6 +172,7 @@
 		26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryImpl.swift; sourceTree = "<group>"; };
 		26DD42AE29AF4765008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DD42D129AFAF26008E277E /* get_user_devices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user_devices.json; sourceTree = "<group>"; };
+		26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadMockProtocol.swift; sourceTree = "<group>"; };
 		26E2B3BB2982754D00ED9B58 /* MockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProtocol.swift; sourceTree = "<group>"; };
 		26E88B2E29E5717D0023BBD5 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		26E88B3229E582070023BBD5 /* DBWeather+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBWeather+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			children = (
 				2646FCB32995018800EBB61B /* Jsons */,
 				26E2B3BB2982754D00ED9B58 /* MockProtocol.swift */,
+				26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				26E88B2F29E5717D0023BBD5 /* DatabaseService.swift in Sources */,
 				2692D88B2A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift in Sources */,
 				2692D88C2A4DB2B50060CB3C /* DBExplorerAddress+CoreDataProperties.swift in Sources */,
+				26DF1F542D549A310001E936 /* FileUploadMockProtocol.swift in Sources */,
 				2692D88F2A4DB2B50060CB3C /* DBExplorerDevice+CoreDataClass.swift in Sources */,
 				2692D8902A4DB2B50060CB3C /* DBExplorerDevice+CoreDataProperties.swift in Sources */,
 				262B02F82B1F3B5300C31FE7 /* UserInfoService.swift in Sources */,

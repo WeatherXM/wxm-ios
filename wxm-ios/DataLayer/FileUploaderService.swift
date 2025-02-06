@@ -36,11 +36,16 @@ public final class FileUploaderService: Sendable {
 	// Keeps the total number of pending uploads for each device id
 	nonisolated(unsafe) private var totalUploads: [String: Int] = [:]
 
-	public init() {
+	public init(mock: Bool = false) {
 		let bundleIdentifier = Bundle.main.bundleIdentifier ?? UUID().uuidString
 		let sessionId = "\(bundleIdentifier).background"
 
-		let config = URLSessionConfiguration.background(withIdentifier: sessionId)
+		var config = URLSessionConfiguration.background(withIdentifier: sessionId)
+		if mock {
+			config = .default
+			FileUploadMockProtocol.sessionDelegate = sessionDelegate
+			config.protocolClasses = [FileUploadMockProtocol.self]
+		}
 		config.shouldUseExtendedBackgroundIdleMode = true
 		config.sessionSendsLaunchEvents = true // Ensures the app is launched or resumed in the background when a download or upload task completes.
 		config.isDiscretionary = false // Disables discretionary behavior, meaning the system will not delay tasks based on power or network conditions.
@@ -149,7 +154,7 @@ public final class FileUploaderService: Sendable {
 }
 
 extension FileUploaderService {
-	enum UploadState {
+	enum UploadState: Equatable {
 		case uploading(Double)
 		case failed
 	}
@@ -289,7 +294,7 @@ private final class SessionDelegate: NSObject, @unchecked Sendable, URLSessionDa
 	func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
 		let progress = Double(totalBytesSent) / Double(totalBytesExpectedToSend) * 100.0
 		print("Task \(task.taskIdentifier)-\(task.taskDescription): Upload progress: \(progress)%")
-		print("TASK protgress \(task.progress)")
+//		print("TASK protgress \(task.progress)")
 		DispatchQueue.main.async { [weak self] in
 			self?.taskProgressCallback?(task, progress)
 		}
