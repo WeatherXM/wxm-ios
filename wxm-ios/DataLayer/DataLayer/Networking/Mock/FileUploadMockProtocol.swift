@@ -15,7 +15,6 @@ class FileUploadMockProtocol: URLProtocol, @unchecked Sendable {
 	private let expectedBytesToSend: Int64 = 1000000  // 1MB
 
 	override init(request: URLRequest, cachedResponse: CachedURLResponse?, client: URLProtocolClient?) {
-		print("init(request: URLRequest, cachedResponse: CachedURLResponse?, client: URLProtocolClient?)")
 		super.init(request: request, cachedResponse: cachedResponse, client: client)
 	}
 
@@ -28,13 +27,25 @@ class FileUploadMockProtocol: URLProtocol, @unchecked Sendable {
 	}
 
 	override func startLoading() {
-		startUploadProgress()
+		if task?.originalRequest?.url?.absoluteString == Self.failUrl {
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+				self.client?.urlProtocol(self, didFailWithError: NSError(domain: "\(Self.self)", code: -1))
+				self.client?.urlProtocolDidFinishLoading(self)
+			}
+		} else {
+			startUploadProgress()
+		}
 	}
 
 	override func stopLoading() {
 		progressTimer?.invalidate()
 		sentBytes = 0
 	}
+}
+
+extension FileUploadMockProtocol {
+	static let successUrl = "https://dummy.com"
+	static let failUrl = "https://dummy_fail.com"
 }
 
 private extension FileUploadMockProtocol {

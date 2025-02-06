@@ -17,7 +17,8 @@ struct FileUploaderServiceTests {
 	private let fileUploaderService: FileUploaderService
 	private let mockFileURL: URL?
 	private let cancellableWrapper = CancellableWrapper()
-	private let postDataResponse: NetworkPostDevicePhotosResponse = .init(url: "https://dummy.com", fields: nil)
+	private let postDataResponse: NetworkPostDevicePhotosResponse = .init(url: FileUploadMockProtocol.successUrl, fields: nil)
+	private let postDataFailResponse: NetworkPostDevicePhotosResponse = .init(url: FileUploadMockProtocol.failUrl, fields: nil)
 	private let deviceId = "123"
 
 	init() {
@@ -77,4 +78,16 @@ struct FileUploaderServiceTests {
 		}
 	}
 
+	@Test func failure() async throws {
+		try await confirmation { confim in
+			fileUploaderService.uploadErrorPublisher.sink { _, _ in
+				#expect(fileUploaderService.getUploadState(for: deviceId) == .failed)
+				#expect(fileUploaderService.getUploadInProgressDeviceId() == deviceId)
+				confim()
+			}.store(in: &cancellableWrapper.cancellableSet)
+
+			try fileUploaderService.uploadFiles(files: [self.mockFileURL!], to: [postDataFailResponse], for: deviceId)
+			try await Task.sleep(for: .seconds(2))
+		}
+	}
 }
