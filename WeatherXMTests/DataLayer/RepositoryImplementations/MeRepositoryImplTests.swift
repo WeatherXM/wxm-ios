@@ -25,6 +25,7 @@ struct MeRepositoryImplTests {
 							   userInfoService: userInfoService)
 
 		keychainService.deleteNetworkTokenResponseFromKeychain()
+		DatabaseService.shared.deleteWeatherFromDB()
 	}
 
 	@Test func getUser() async throws {

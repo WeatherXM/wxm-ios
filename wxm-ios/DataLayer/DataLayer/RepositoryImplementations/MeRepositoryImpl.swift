@@ -225,15 +225,13 @@ private extension MeRepositoryImpl {
 
         let publisher: AnyPublisher<DataResponse<[NetworkDeviceHistoryResponse], NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
 																																						   mockFileName: builder.mockFileName)
-        publisher.sink { response in
-            guard let value = response.value else {
-                return
-            }
-            // Once the reposnse is a successful we saved the retrieved data locally
-            saveHistoricalData(deviceId: deviceId, historicalData: value)
-        }
-        .store(in: &cancellableWrapper.cancellableSet)
+		return publisher.flatMap { response in
+			if let value = response.value  {
+				// Once the reposnse is a successful we saved the retrieved data locally
+				saveHistoricalData(deviceId: deviceId, historicalData: value)
+			}
 
-        return publisher
+			return Just(response)
+		}.eraseToAnyPublisher()
     }
 }
