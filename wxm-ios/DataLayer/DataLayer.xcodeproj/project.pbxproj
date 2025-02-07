@@ -292,6 +292,7 @@
 		26AB9F502A8010E300855912 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				995A0CD828C0A8AA0015DAA1 /* UserDefaultsService */,
 				B56A25E328A0EF7D00928141 /* KeychainHelperService */,
 				2612AC612AB88EB400285896 /* FiltersService.swift */,
 				26AB9F512A80112900855912 /* UserDevicesService.swift */,
@@ -462,7 +463,6 @@
 				B51243F12825509800B66A31 /* Networking */,
 				B51243F02825508D00B66A31 /* RepositoryImplementations */,
 				26AB9F502A8010E300855912 /* Services */,
-				995A0CD828C0A8AA0015DAA1 /* UserDefaultsService */,
 				B5799E7628254CC100FEBB85 /* DataLayer.h */,
 				2683A4C32ADECBA800D5C205 /* countries_information.json */,
 			);
