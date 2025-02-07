@@ -1103,6 +1103,7 @@
 		26DF1F632D56328B0001E936 /* PhotosRepositoryImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRepositoryImplTests.swift; sourceTree = "<group>"; };
 		26DF1F652D563D270001E936 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		26DF1F672D563F940001E936 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		26DF1F692D5651E30001E936 /* wxm-ios.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "wxm-ios.xctestplan"; sourceTree = "<group>"; };
 		26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerData+.swift"; sourceTree = "<group>"; };
 		26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsView.swift; sourceTree = "<group>"; };
 		26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsViewModel.swift; sourceTree = "<group>"; };
@@ -2767,6 +2768,7 @@
 		B52BCC682824FB8F00EA3DA5 = {
 			isa = PBXGroup;
 			children = (
+				26DF1F692D5651E30001E936 /* wxm-ios.xctestplan */,
 				266D17F72AC70A8C007CDB06 /* station-widgetExtension.entitlements */,
 				267E22BC2AC1B17C00B9E196 /* ci_scripts */,
 				262A4CF52A936E7A00A4BC17 /* Scripts */,

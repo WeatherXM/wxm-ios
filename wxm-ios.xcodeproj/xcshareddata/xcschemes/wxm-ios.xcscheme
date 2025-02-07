@@ -56,6 +56,12 @@
             ReferencedContainer = "container:wxm-ios/Toolkit/Toolkit.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:wxm-ios.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
             skipped = "NO"
