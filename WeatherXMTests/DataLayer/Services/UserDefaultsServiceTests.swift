@@ -8,6 +8,7 @@
 import Testing
 @testable import DataLayer
 
+@Suite(.serialized)
 struct UserDefaultsServiceTests {
 
 	private let service = UserDefaultsService()

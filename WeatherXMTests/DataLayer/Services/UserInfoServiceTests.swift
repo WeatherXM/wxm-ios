@@ -10,6 +10,7 @@ import Testing
 import DomainLayer
 import Toolkit
 
+@Suite(.serialized)
 struct UserInfoServiceTests {
 	let service = UserInfoService()
 	private let cancellableWrapper: CancellableWrapper = .init()

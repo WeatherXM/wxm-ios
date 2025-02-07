@@ -9,6 +9,7 @@ import Testing
 @testable import DataLayer
 import DomainLayer
 
+@Suite(.serialized)
 struct UserDevicesServiceTests {
 	let service: UserDevicesService
 
@@ -80,7 +81,7 @@ struct UserDevicesServiceTests {
 		let cachedDevices = service.getCachedDevices()
 		#expect(cachedDevices == nil)
 
-		let deviceId = "45ccb1e0-77df-11ed-960f-d7d4cf200cc9"
+		let deviceId = "124"
 		let state = try await service.getFollowState(deviceId: deviceId).get()
 		#expect(state?.deviceId == deviceId)
 
@@ -91,7 +92,7 @@ struct UserDevicesServiceTests {
 		let cachedDevices = service.getCachedDevices()
 		#expect(cachedDevices == nil)
 
-		let deviceId = "45ccb1e0-77df-11ed-960f-d7d4cf200cc9"
+		let deviceId = "124"
 		let states = try await service.getFollowStates().get()
 		#expect(states?.count == 2)
 		#expect(states?.first?.deviceId == deviceId)

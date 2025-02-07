@@ -10,6 +10,7 @@ import Testing
 import DomainLayer
 import Toolkit
 
+@Suite(.serialized)
 struct MeRepositoryImplTests {
 
 	private let repositoryImpl: MeRepositoryImpl

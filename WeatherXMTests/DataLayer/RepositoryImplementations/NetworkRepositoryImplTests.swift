@@ -9,6 +9,8 @@ import Testing
 @testable import DataLayer
 import DomainLayer
 
+@Suite(.serialized)
+@MainActor
 struct NetworkRepositoryImplTests {
 
 	let repositoryImpl: NetworkRepositoryImpl = .init()
@@ -30,7 +32,6 @@ struct NetworkRepositoryImplTests {
 						place: "Place",
 						center: .init(lat: 0.0, long: 0.0))
 		repositoryImpl.deleteAllRecent()
-
 	}
 
     @Test func insertSearchResult() async throws {
