@@ -12,7 +12,6 @@ import Toolkit
 
 @Suite(.serialized)
 struct FileUploaderServiceTests {
-	private class BundleAccessor {}
 
 	private let fileUploaderService: FileUploaderService
 	private let mockFileURL: URL?

@@ -516,6 +516,9 @@
 		26DF1F5C2D5502D20001E936 /* NetworkRepositoryImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F5B2D5502D20001E936 /* NetworkRepositoryImplTests.swift */; };
 		26DF1F5E2D55F0C70001E936 /* MeRepositoryImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F5D2D55F0C70001E936 /* MeRepositoryImplTests.swift */; };
 		26DF1F622D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F612D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift */; };
+		26DF1F642D56328B0001E936 /* PhotosRepositoryImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F632D56328B0001E936 /* PhotosRepositoryImplTests.swift */; };
+		26DF1F662D563D270001E936 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F652D563D270001E936 /* MockLocationManager.swift */; };
+		26DF1F682D563F940001E936 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F672D563F940001E936 /* Utils.swift */; };
 		26DF3D202C85BB86005F6FC1 /* ExplorerData+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */; };
 		26DF3D312C85FB30005F6FC1 /* RewardAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */; };
 		26DF3D332C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */; };
@@ -1097,6 +1100,9 @@
 		26DF1F5B2D5502D20001E936 /* NetworkRepositoryImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryImplTests.swift; sourceTree = "<group>"; };
 		26DF1F5D2D55F0C70001E936 /* MeRepositoryImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeRepositoryImplTests.swift; sourceTree = "<group>"; };
 		26DF1F612D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigRepositoryImplTests.swift; sourceTree = "<group>"; };
+		26DF1F632D56328B0001E936 /* PhotosRepositoryImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRepositoryImplTests.swift; sourceTree = "<group>"; };
+		26DF1F652D563D270001E936 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
+		26DF1F672D563F940001E936 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerData+.swift"; sourceTree = "<group>"; };
 		26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsView.swift; sourceTree = "<group>"; };
 		26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsViewModel.swift; sourceTree = "<group>"; };
@@ -2042,6 +2048,7 @@
 			children = (
 				26DF1F5A2D55028D0001E936 /* RepositoryImplementations */,
 				267811042D490E8B00D22B67 /* Services */,
+				26DF1F672D563F940001E936 /* Utils.swift */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -2050,12 +2057,14 @@
 			isa = PBXGroup;
 			children = (
 				267811072D49268300D22B67 /* MockCacheManager.swift */,
+				26DF1F652D563D270001E936 /* MockLocationManager.swift */,
 				267811052D490EC000D22B67 /* UserDefaultsServiceTests.swift */,
 				267811092D49279300D22B67 /* FiltersServiceTest.swift */,
 				2678114F2D4BB21700D22B67 /* UserInfoServiceTests.swift */,
 				267811572D4CD84E00D22B67 /* UserDevicesServiceTests.swift */,
 				26DF1F512D535EB10001E936 /* KeychainHelperServiceTests.swift */,
 				26DF1F552D54AC360001E936 /* FileUploaderServiceTests.swift */,
+				26DF1F632D56328B0001E936 /* PhotosRepositoryImplTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -3216,11 +3225,14 @@
 				26DF1F622D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift in Sources */,
 				267811502D4BB21700D22B67 /* UserInfoServiceTests.swift in Sources */,
 				267811582D4CD84E00D22B67 /* UserDevicesServiceTests.swift in Sources */,
+				26DF1F642D56328B0001E936 /* PhotosRepositoryImplTests.swift in Sources */,
 				26DF1F5E2D55F0C70001E936 /* MeRepositoryImplTests.swift in Sources */,
 				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
 				26DF1F5C2D5502D20001E936 /* NetworkRepositoryImplTests.swift in Sources */,
+				26DF1F662D563D270001E936 /* MockLocationManager.swift in Sources */,
 				26D32FE82C510DF000E765E0 /* DateExtensionsTests.swift in Sources */,
 				26DF1F522D535EB10001E936 /* KeychainHelperServiceTests.swift in Sources */,
+				26DF1F682D563F940001E936 /* Utils.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
