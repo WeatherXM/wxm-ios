@@ -34,6 +34,15 @@ extension DatabaseService {
         return dbEntities
     }
 
+	func deleteWeatherFromDB(predicate: NSPredicate? = nil) {
+		guard let fetchRequest = DBWeather.fetchRequest() as? NSFetchRequest<NSFetchRequestResult> else {
+			return
+		}
+		fetchRequest.predicate = predicate
+		let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+		_ = try? context.execute(deleteRequest)
+	}
+
     func fetchExplorerDeviceFromDB(predicate: NSPredicate? = nil) -> [DBExplorerDevice] {
         let fetchRequest = DBExplorerDevice.fetchRequest()
         fetchRequest.predicate = predicate

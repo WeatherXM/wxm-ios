@@ -138,7 +138,11 @@ public struct MeRepositoryImpl: MeRepository {
     }
 
 	public func getUserDevicesFollowStates() async throws -> Result<[UserDeviceFollowState]?, NetworkErrorResponse> {
-		try await userDevicesService.getFollowStates()
+		guard KeychainHelperService().isUserLoggedIn() else {
+			return .success(nil)
+		}
+
+		return try await userDevicesService.getFollowStates()
 	}
 
 	public func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never> {
@@ -149,6 +153,28 @@ public struct MeRepositoryImpl: MeRepository {
 		let builder = MeApiRequestBuilder.setFCMToken(installationId: installationId, token: token)
 		let urlRequest = try builder.asURLRequest()
 		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+	}
+
+	func getPersistedHistoricalData(deviceId: String, date: String) -> [NetworkDeviceHistoryResponse] {
+		let predicate = NSPredicate(format: "\(#keyPath(DBWeather.deviceId)) == %@ AND (\(#keyPath(DBWeather.dateString)) == %@)", deviceId, date)
+		let hourly = DatabaseService.shared.fetchWeatherFromDB(predicate: predicate)
+
+		var days: [String: [DBWeather]] = [:]
+		hourly.forEach { dbWeather in
+			guard let dateString = dbWeather.dateString else {
+				return
+			}
+
+			var hours = days[dateString] ?? []
+			hours.append(dbWeather)
+			days[dateString] = hours
+		}
+
+		let historicalData: [NetworkDeviceHistoryResponse] = days.map {
+			NetworkDeviceHistoryResponse(tz: $0.value.first?.tz ?? "", date: $0.key, hourly: $0.value.compactMap { $0.toCodable })
+		}
+
+		return historicalData
 	}
 }
 
@@ -166,28 +192,6 @@ private extension MeRepositoryImpl {
                 DatabaseService.shared.save(object: object)
             }
         }
-    }
-
-    func getPersistedHistoricalData(deviceId: String, date: String) -> [NetworkDeviceHistoryResponse] {
-        let predicate = NSPredicate(format: "\(#keyPath(DBWeather.deviceId)) == %@ AND (\(#keyPath(DBWeather.dateString)) == %@)", deviceId, date)
-        let hourly = DatabaseService.shared.fetchWeatherFromDB(predicate: predicate)
-
-        var days: [String: [DBWeather]] = [:]
-        hourly.forEach { dbWeather in
-            guard let dateString = dbWeather.dateString else {
-                return
-            }
-
-            var hours = days[dateString] ?? []
-            hours.append(dbWeather)
-            days[dateString] = hours
-        }
-
-        let historicalData: [NetworkDeviceHistoryResponse] = days.map {
-            NetworkDeviceHistoryResponse(tz: $0.value.first?.tz ?? "", date: $0.key, hourly: $0.value.compactMap { $0.toCodable })
-        }
-
-        return historicalData
     }
 
     /// Checks if the passed forecast objects contains at least 24 samples. One additional condition is the fisrt sample's timestamp  should be within 2 hours from the day start
