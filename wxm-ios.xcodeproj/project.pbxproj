@@ -515,6 +515,7 @@
 		26DF1F592D54B78A0001E936 /* dummy_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 26DF1F582D54B78A0001E936 /* dummy_image.png */; };
 		26DF1F5C2D5502D20001E936 /* NetworkRepositoryImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F5B2D5502D20001E936 /* NetworkRepositoryImplTests.swift */; };
 		26DF1F5E2D55F0C70001E936 /* MeRepositoryImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F5D2D55F0C70001E936 /* MeRepositoryImplTests.swift */; };
+		26DF1F622D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F612D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift */; };
 		26DF3D202C85BB86005F6FC1 /* ExplorerData+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */; };
 		26DF3D312C85FB30005F6FC1 /* RewardAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */; };
 		26DF3D332C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */; };
@@ -1095,6 +1096,7 @@
 		26DF1F582D54B78A0001E936 /* dummy_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dummy_image.png; sourceTree = "<group>"; };
 		26DF1F5B2D5502D20001E936 /* NetworkRepositoryImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryImplTests.swift; sourceTree = "<group>"; };
 		26DF1F5D2D55F0C70001E936 /* MeRepositoryImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeRepositoryImplTests.swift; sourceTree = "<group>"; };
+		26DF1F612D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigRepositoryImplTests.swift; sourceTree = "<group>"; };
 		26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerData+.swift"; sourceTree = "<group>"; };
 		26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsView.swift; sourceTree = "<group>"; };
 		26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsViewModel.swift; sourceTree = "<group>"; };
@@ -2582,6 +2584,7 @@
 			children = (
 				26DF1F5B2D5502D20001E936 /* NetworkRepositoryImplTests.swift */,
 				26DF1F5D2D55F0C70001E936 /* MeRepositoryImplTests.swift */,
+				26DF1F612D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift */,
 			);
 			path = RepositoryImplementations;
 			sourceTree = "<group>";
@@ -3210,6 +3213,7 @@
 				265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */,
 				26DF1F562D54AC360001E936 /* FileUploaderServiceTests.swift in Sources */,
 				265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */,
+				26DF1F622D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift in Sources */,
 				267811502D4BB21700D22B67 /* UserInfoServiceTests.swift in Sources */,
 				267811582D4CD84E00D22B67 /* UserDevicesServiceTests.swift in Sources */,
 				26DF1F5E2D55F0C70001E936 /* MeRepositoryImplTests.swift in Sources */,
