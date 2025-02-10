@@ -35,11 +35,11 @@ struct NetworkRepositoryImplTests {
 	}
 
     @Test func insertSearchResult() async throws {
-		insertInitialItems()
+		insertInitialItemsAndValidate()
     }
 
 	@Test func clearSearchResult() async throws {
-		insertInitialItems()
+		insertInitialItemsAndValidate()
 		repositoryImpl.deleteAllRecent()
 		let recent = repositoryImpl.getSearchRecent()
 		#expect(recent.isEmpty)
@@ -61,7 +61,7 @@ struct NetworkRepositoryImplTests {
 }
 
 private extension NetworkRepositoryImplTests {
-	func insertInitialItems() {
+	func insertInitialItemsAndValidate() {
 		repositoryImpl.insertDeviceInDB(device)
 		repositoryImpl.insertAddressInDB(address)
 

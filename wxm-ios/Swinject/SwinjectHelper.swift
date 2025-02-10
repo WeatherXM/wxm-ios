@@ -226,9 +226,13 @@ class SwinjectHelper: SwinjectInterface {
 		}
 		.inObjectScope(.container)
 
+		container.register(WXMLocationManager.LocationManagerProtocol.self) { _ in
+			WXMLocationManager()
+		}
+
 		container.register(PhotosRepository.self) { resolver in
 			PhotosRepositoryImpl(fileUploader: resolver.resolve(FileUploaderService.self)!,
-								 locationManager: WXMLocationManager())
+								 locationManager: resolver.resolve(WXMLocationManager.LocationManagerProtocol.self)!)
 		}
 
 		container.register(PhotoGalleryUseCase.self) { resolver in

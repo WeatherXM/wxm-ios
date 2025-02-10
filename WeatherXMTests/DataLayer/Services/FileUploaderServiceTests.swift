@@ -20,11 +20,11 @@ struct FileUploaderServiceTests {
 	private let postDataFailResponse: NetworkPostDevicePhotosResponse = .init(url: FileUploadMockProtocol.failUrl, fields: nil)
 	private let deviceId = "123"
 
-	init() {
+	init() throws {
 		let documentsDirectory = FileManager.documentsDirectory
 		if let path = Bundle(for: BundleAccessor.self).path(forResource: "dummy_image", ofType: "png"),
 		   let filePath = documentsDirectory?.appendingPathComponent("dummy_image_temp.png") {
-			try? FileManager.default.copyItem(at: URL(fileURLWithPath: path), to: filePath)
+			try FileManager.default.copyItem(at: URL(fileURLWithPath: path), to: filePath)
 			mockFileURL = filePath
 		} else {
 			mockFileURL = nil

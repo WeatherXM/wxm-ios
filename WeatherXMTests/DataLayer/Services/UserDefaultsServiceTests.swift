@@ -29,16 +29,16 @@ struct UserDefaultsServiceTests {
 		#expect(removedValue == nil)
     }
 
-	@Test func saveUserValueAndClearUserSensitiveData() {
-		let key = UserDefaults.userGeneratedKeys.first
+	@Test func saveUserValueAndClearUserSensitiveData() throws {
+		let key = try #require(UserDefaults.userGeneratedKeys.first)
 		let value = "testValue"
 
-		service.save(value: value, key: key!)
-		let storedValue: String? = service.get(key: key!)
+		service.save(value: value, key: key)
+		let storedValue: String? = service.get(key: key)
 		#expect(storedValue == value)
 
 		service.clearUserSensitiveData()
-		let removedValue: String? = service.get(key: key!)
+		let removedValue: String? = service.get(key: key)
 		#expect(removedValue == nil)
 	}
 
