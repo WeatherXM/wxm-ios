@@ -1,0 +1,72 @@
+{
+  "configurations" : [
+    {
+      "id" : "20B9F52A-8619-4B2F-BD10-91594B79C6DA",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:wxm-ios\/DomainLayer\/DomainLayer.xcodeproj",
+          "identifier" : "B5799E8C28254DCD00FEBB85",
+          "name" : "DomainLayer"
+        },
+        {
+          "containerPath" : "container:wxm-ios\/DataLayer\/DataLayer.xcodeproj",
+          "identifier" : "B5799E7228254CC100FEBB85",
+          "name" : "DataLayer"
+        },
+        {
+          "containerPath" : "container:wxm-ios\/Toolkit\/Toolkit.xcodeproj",
+          "identifier" : "26DD429A29AF4633008E277E",
+          "name" : "Toolkit"
+        },
+        {
+          "containerPath" : "container:wxm-ios.xcodeproj",
+          "identifier" : "B52BCC702824FB8F00EA3DA5",
+          "name" : "wxm-ios"
+        },
+        {
+          "containerPath" : "container:wxm-ios.xcodeproj",
+          "identifier" : "266D18082ACB0D56007CDB06",
+          "name" : "station-intent"
+        },
+        {
+          "containerPath" : "container:wxm-ios.xcodeproj",
+          "identifier" : "26B8321C2AC31E4500757A69",
+          "name" : "station-widgetExtension"
+        }
+      ]
+    },
+    "commandLineArgumentEntries" : [
+      {
+        "argument" : "-FIRDebugEnabled YES"
+      },
+      {
+        "argument" : "-WXMAnalyticsDisabled YES"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:wxm-ios.xcodeproj",
+      "identifier" : "B52BCC702824FB8F00EA3DA5",
+      "name" : "wxm-ios"
+    },
+    "uiTestingScreenshotsLifetime" : "keepNever"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:wxm-ios.xcodeproj",
+        "identifier" : "26707E9B2C3ECC0400B9305F",
+        "name" : "WeatherXMTests"
+      }
+    }
+  ],
+  "version" : 1
+}

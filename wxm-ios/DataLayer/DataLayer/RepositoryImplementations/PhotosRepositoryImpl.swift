@@ -18,7 +18,7 @@ private enum Constants: String {
 
 public struct PhotosRepositoryImpl: PhotosRepository {
 
-	nonisolated(unsafe) private let locationManager = WXMLocationManager()
+	nonisolated(unsafe) private let locationManager: WXMLocationManager.LocationManagerProtocol
 	nonisolated(unsafe) private let userDefaultsService = UserDefaultsService()
 	private let fileUploader: FileUploaderService
 	private let termsAcceptedKey = UserDefaults.GenericKey.arePhotoVerificationTermsAccepted.rawValue
@@ -44,8 +44,9 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		fileUploader.uploadStartedPublisher
 	}
 
-	public init(fileUploader: FileUploaderService) {
+	public init(fileUploader: FileUploaderService, locationManager: WXMLocationManager.LocationManagerProtocol) {
 		self.fileUploader = fileUploader
+		self.locationManager = locationManager
 	}
 
 	public func setTermsAccepted(_ termsAccepted: Bool) {

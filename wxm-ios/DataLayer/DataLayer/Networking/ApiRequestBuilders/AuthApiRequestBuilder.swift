@@ -100,3 +100,14 @@ enum AuthApiRequestBuilder: URLRequestConvertible {
 		}
 	}
 }
+
+extension AuthApiRequestBuilder: MockResponseBuilder {
+	var mockFileName: String? {
+		switch self {
+			case .login:
+				return "post_login"
+			default:
+				return nil
+		}
+	}
+}

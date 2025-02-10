@@ -12,6 +12,7 @@ import DomainLayer
 import IQKeyboardManagerSwift
 import Network
 import SwiftUI
+import Toolkit
 
 @main
 enum MainApp {
@@ -22,11 +23,16 @@ enum MainApp {
         IQKeyboardManager.shared.previousNextDisplayMode = IQPreviousNextDisplayMode.default
         IQKeyboardManager.shared.keyboardDistanceFromTextField = 20
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
-        MyNewUI.main()
+		if isRunningTests {
+			TestApp.main()
+		} else {
+			DefaultApp.main()
+
+		}
     }
 }
 
-struct MyNewUI: App {
+struct DefaultApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var mainScreen: MainScreen
 
@@ -40,4 +46,12 @@ struct MyNewUI: App {
             mainScreen
         }
     }
+}
+
+struct TestApp: App {
+	var body: some Scene {
+		WindowGroup {
+			EmptyView()
+		}
+	}
 }

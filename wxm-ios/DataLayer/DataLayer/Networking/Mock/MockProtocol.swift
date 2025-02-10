@@ -44,7 +44,7 @@ class MockProtocol: URLProtocol, @unchecked Sendable {
         }
 
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-			self?.client?.urlProtocol(self!, didLoad: data)
+			self?.client?.urlProtocol(self!, didLoad: data)		
 			self?.client?.urlProtocolDidFinishLoading(self!)
 		}
     }

@@ -205,7 +205,8 @@ extension MeApiRequestBuilder: MockResponseBuilder {
 				return "claim_device"
 			case .getDevices:
 				return "get_user_devices"
-			case .getUserDeviceById:
+			case .getUserDeviceById,
+					.setDeviceLocation:
 				return "get_user_device"
 			case .getUserDeviceHistoryById:
 				return "get_device_history"
@@ -241,6 +242,14 @@ extension MeApiRequestBuilder: MockResponseBuilder {
 				return "empty_response"
 			case .postPhotoNames:
 				return "post_device_photos"
+			case .saveUserWallet:
+				return "empty_response"
+			case .disclaimDevice:
+				return "empty_response"
+			case .follow:
+				return "empty_response"
+			case .unfollow, .setFriendlyName, .deleteFriendlyName:
+				return "empty_response"
 			default:
 				return nil
 		}

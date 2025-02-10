@@ -30,8 +30,10 @@ extension KeychainHelperService {
         delete(service: KeychainConstants.saveNetworkTokenResponse.service,
                account: KeychainConstants.saveNetworkTokenResponse.account)
 
-        NotificationCenter.default.post(name: .keychainHelperServiceUserIsLoggedChanged,
-                                        object: false)
+		DispatchQueue.main.async {
+			NotificationCenter.default.post(name: .keychainHelperServiceUserIsLoggedChanged,
+											object: false)
+		}
     }
 
     func saveNetworkTokenResponseToKeychain(item: NetworkTokenResponse) {
@@ -39,8 +41,10 @@ extension KeychainHelperService {
              service: KeychainConstants.saveNetworkTokenResponse.service,
              account: KeychainConstants.saveNetworkTokenResponse.account)
 
-        NotificationCenter.default.post(name: .keychainHelperServiceUserIsLoggedChanged,
-                                        object: true)
+		DispatchQueue.main.async {
+			NotificationCenter.default.post(name: .keychainHelperServiceUserIsLoggedChanged,
+											object: true)
+		}
     }
 
     func getNetworkTokenResponse(enabledAppGroup: Bool = true) -> NetworkTokenResponse? {

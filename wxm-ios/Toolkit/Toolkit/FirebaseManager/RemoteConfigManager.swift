@@ -158,9 +158,13 @@ private class DefaultRemoteConfigManager: RemoteConfigManagerImplementation {
 	}
 }
 
-class MockRemoteConfigManager: RemoteConfigManagerImplementation {
-	var shouldUpdateCallback: VoidCallback?
-	
+class MockRemoteConfigManager: RemoteConfigManagerImplementation, @unchecked Sendable {
+	var shouldUpdateCallback: VoidCallback? {
+		didSet {
+			callUpdateCallback()
+		}
+	}
+
 	func getConfigValue<T>(type: T.Type, key: RemoteConfigKey) -> T? {
 		switch type {
 			case is String.Type:
@@ -171,6 +175,12 @@ class MockRemoteConfigManager: RemoteConfigManagerImplementation {
 				return 10 as? T
 			default:
 				return nil
+		}
+	}
+
+	private func callUpdateCallback() {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+			self?.shouldUpdateCallback?()
 		}
 	}
 }

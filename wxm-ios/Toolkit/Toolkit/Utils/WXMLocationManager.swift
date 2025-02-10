@@ -9,7 +9,15 @@ import Foundation
 import CoreLocation
 import Combine
 
-public class WXMLocationManager: NSObject {
+extension WXMLocationManager {
+	public protocol LocationManagerProtocol {
+		var status: Status { get }
+		func requestAuthorization() async -> Status
+		func getUserLocation() async -> Result<CLLocationCoordinate2D, LocationError>
+	}
+}
+
+public class WXMLocationManager: NSObject, WXMLocationManager.LocationManagerProtocol {
     private let manager: CLLocationManager
     private var statusSubject: PassthroughSubject<Status, Never>?
     private var userLocationSubject: PassthroughSubject<CLLocationCoordinate2D, LocationError>?

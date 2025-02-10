@@ -20,15 +20,18 @@ public class UserDevicesService: @unchecked Sendable {
 
     private var cancellableSet: Set<AnyCancellable> = []
     private let cacheValidationInterval: TimeInterval = 3.0 * 60.0 // 3 minutes
-	private let followStatesCache = TimeValidationCache<[UserDeviceFollowState]>(persistCacheManager: UserDefaultsService(),
-																				 persistKey: UserDefaults.GenericKey.userDevicesFollowStates.rawValue) // Store user device follow states
-	private let userDevicesCache = TimeValidationCache<[NetworkDevicesResponse]>(persistCacheManager: UserDefaultsService(),
-																				 persistKey: UserDefaults.GenericKey.userDevices.rawValue) // Store user devices
+	private let followStatesCache: TimeValidationCache<[UserDeviceFollowState]> // Store user device follow states
+	private let userDevicesCache: TimeValidationCache<[NetworkDevicesResponse]> // Store user devices
     private let followStatesCacheKey = "userDevicesService.deviceFollowStates"
 	private let userDevicesCacheKey = "userDevicesService.devices"
     let devicesListUpdatedPublisher = NotificationCenter.default.publisher(for: .userDevicesListUpdated)
 
-    public init() {
+	public init(followStatesCacheManager: PersistCacheManager, userDevicesCacheManager: PersistCacheManager) {
+		followStatesCache = TimeValidationCache<[UserDeviceFollowState]>(persistCacheManager: followStatesCacheManager,
+																		 persistKey: UserDefaults.GenericKey.userDevicesFollowStates.rawValue)
+		userDevicesCache  = TimeValidationCache<[NetworkDevicesResponse]>(persistCacheManager: userDevicesCacheManager,
+																		  persistKey: UserDefaults.GenericKey.userDevices.rawValue)
+
         NotificationCenter.default.addObserver(forName: .keychainHelperServiceUserIsLoggedChanged,
                                                object: nil,
 											   queue: nil) { [weak self] _ in
@@ -106,8 +109,9 @@ public class UserDevicesService: @unchecked Sendable {
     }
 
 	func disclaimDevice(serialNumber: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		let urlRequest = try MeApiRequestBuilder.disclaimDevice(serialNumber: serialNumber).asURLRequest()
-		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest)
+		let builder = MeApiRequestBuilder.disclaimDevice(serialNumber: serialNumber)
+		let urlRequest = try builder.asURLRequest()
+		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
 
 		return publisher
 			.flatMap { [weak self] response in
@@ -227,8 +231,10 @@ public class UserDevicesService: @unchecked Sendable {
 	}
 
 	func setFriendlyName(deviceId: String, name: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		let urlRequest = try MeApiRequestBuilder.setFriendlyName(deviceId: deviceId, name: name).asURLRequest()
-		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest)
+		let builder = MeApiRequestBuilder.setFriendlyName(deviceId: deviceId, name: name)
+		let urlRequest = try builder.asURLRequest()
+		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest,
+																																		mockFileName: builder.mockFileName)
 		return publisher
 			.flatMap { [weak self] response in
 				if response.error == nil {
@@ -242,8 +248,9 @@ public class UserDevicesService: @unchecked Sendable {
 	}
 
 	func deleteFriendlyName(deviceId: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		let urlRequest = try MeApiRequestBuilder.deleteFriendlyName(deviceId: deviceId).asURLRequest()
-		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest)
+		let builder = MeApiRequestBuilder.deleteFriendlyName(deviceId: deviceId)
+		let urlRequest = try builder.asURLRequest()
+		let publisher: AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
 		return publisher
 			.flatMap { [weak self] response in
 				if response.error == nil {

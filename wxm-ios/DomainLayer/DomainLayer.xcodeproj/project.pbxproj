@@ -63,7 +63,6 @@
 		4D5AE32E28EA4882006F2EBA /* BluetoothDevicesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5AE32D28EA4882006F2EBA /* BluetoothDevicesRepository.swift */; };
 		4DE3A56E293EA58300BCDD8A /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3A56D293EA58300BCDD8A /* Frequency.swift */; };
 		74D6B41C28379D8A00274A90 /* NetworkDevicesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D6B41B28379D8A00274A90 /* NetworkDevicesResponse.swift */; };
-		9929BB0E28BF76EF00ED3CDE /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9929BB0D28BF76EF00ED3CDE /* Double+.swift */; };
 		992D764328B7C83F00DFE504 /* HistoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992D764228B7C83F00DFE504 /* HistoryUseCase.swift */; };
 		995A0CD728C0A4BB0015DAA1 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A0CD628C0A4BB0015DAA1 /* UserDefaultsRepository.swift */; };
 		995A0CE528C0B6D90015DAA1 /* MainUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A0CE428C0B6D90015DAA1 /* MainUseCase.swift */; };
@@ -75,7 +74,6 @@
 		9968B1B528AD0C5600320413 /* ExplorerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B1B428AD0C5600320413 /* ExplorerData.swift */; };
 		9968B1B828AD0E7400320413 /* PublicHexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B1B728AD0E7400320413 /* PublicHexError.swift */; };
 		99A31FA928D0C1F7003BE981 /* RewardsTimelineUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A31FA828D0C1F7003BE981 /* RewardsTimelineUseCase.swift */; };
-		99BA878828BCF4D9004611AC /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BA878728BCF4D9004611AC /* Collection+.swift */; };
 		B5611E7F2834D5FC0092F204 /* NetworkFirmwareResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5611E7E2834D5FC0092F204 /* NetworkFirmwareResponse.swift */; };
 		B5611E812834E0150092F204 /* NetworkDeviceForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5611E802834E0150092F204 /* NetworkDeviceForecastResponse.swift */; };
 		B5667D6B2833D37000C08B57 /* NetworkUserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5667D6A2833D37000C08B57 /* NetworkUserInfoResponse.swift */; };
@@ -149,7 +147,6 @@
 		4D5AE32D28EA4882006F2EBA /* BluetoothDevicesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevicesRepository.swift; sourceTree = "<group>"; };
 		4DE3A56D293EA58300BCDD8A /* Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
 		74D6B41B28379D8A00274A90 /* NetworkDevicesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicesResponse.swift; sourceTree = "<group>"; };
-		9929BB0D28BF76EF00ED3CDE /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		992D764228B7C83F00DFE504 /* HistoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUseCase.swift; sourceTree = "<group>"; };
 		995A0CD628C0A4BB0015DAA1 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 		995A0CE428C0B6D90015DAA1 /* MainUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUseCase.swift; sourceTree = "<group>"; };
@@ -162,7 +159,6 @@
 		9968B1B728AD0E7400320413 /* PublicHexError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHexError.swift; sourceTree = "<group>"; };
 		9968B1BD28AD19E900320413 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		99A31FA828D0C1F7003BE981 /* RewardsTimelineUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelineUseCase.swift; sourceTree = "<group>"; };
-		99BA878728BCF4D9004611AC /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
 		B5611E7E2834D5FC0092F204 /* NetworkFirmwareResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFirmwareResponse.swift; sourceTree = "<group>"; };
 		B5611E802834E0150092F204 /* NetworkDeviceForecastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceForecastResponse.swift; sourceTree = "<group>"; };
 		B5667D6A2833D37000C08B57 /* NetworkUserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUserInfoResponse.swift; sourceTree = "<group>"; };
@@ -280,8 +276,6 @@
 		99BA878628BCF4CE004611AC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				99BA878728BCF4D9004611AC /* Collection+.swift */,
-				9929BB0D28BF76EF00ED3CDE /* Double+.swift */,
 				995A0CED28C0B93C0015DAA1 /* UserDefaults+Constants.swift */,
 			);
 			path = Extensions;
@@ -550,7 +544,6 @@
 				4D5AE32E28EA4882006F2EBA /* BluetoothDevicesRepository.swift in Sources */,
 				B5667D722833DF4000C08B57 /* ClaimDeviceBody.swift in Sources */,
 				267EC3BA2CD0E85A0085B50A /* MainRepository.swift in Sources */,
-				99BA878828BCF4D9004611AC /* Collection+.swift in Sources */,
 				26C904C32A77DBA90047A388 /* DeviceDetails.swift in Sources */,
 				26C904C12A77DA5A0047A388 /* DeviceDetailsUseCase.swift in Sources */,
 				26A4117529B88A3D00A2C10B /* DeviceInfoRepository.swift in Sources */,
@@ -563,7 +556,6 @@
 				2683A4C22ADEB39800D5C205 /* CountryInfo.swift in Sources */,
 				B5E6B8872833B7360060D050 /* DevicesUseCase.swift in Sources */,
 				26DF3D2E2C85EA24005F6FC1 /* NetworkDeviceRewardsResponse.swift in Sources */,
-				9929BB0E28BF76EF00ED3CDE /* Double+.swift in Sources */,
 				B5E6B8952833C15C0060D050 /* EmptyEntity.swift in Sources */,
 				9968B1B528AD0C5600320413 /* ExplorerData.swift in Sources */,
 				9968B17B28ACFD1F00320413 /* ExplorerRepository.swift in Sources */,

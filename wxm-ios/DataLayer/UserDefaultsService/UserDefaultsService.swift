@@ -12,7 +12,7 @@ import Toolkit
 public struct UserDefaultsService: PersistCacheManager {
 	private let userDefaults: UserDefaults?
 
-	init() {
+	public init() {
 		guard let appGroup: String = Bundle.main.getConfiguration(for: .appGroup) else {
 			self.userDefaults = nil
 			return

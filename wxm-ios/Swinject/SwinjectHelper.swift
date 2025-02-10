@@ -21,13 +21,18 @@ class SwinjectHelper: SwinjectInterface {
 
         let container = Container()
 
-		container.register(UserDevicesService.self) { _ in
-			UserDevicesService()
+		container.register(UserInfoService.self) { _ in
+			UserInfoService()
 		}
 		.inObjectScope(.container)
 
-		container.register(UserInfoService.self) { _ in
-			UserInfoService()
+		container.register(UserDefaultsService.self) { _ in
+			UserDefaultsService()
+		}
+
+		container.register(UserDevicesService.self) { resolver in
+			UserDevicesService(followStatesCacheManager: resolver.resolve(UserDefaultsService.self)!,
+							   userDevicesCacheManager: resolver.resolve(UserDefaultsService.self)!)
 		}
 		.inObjectScope(.container)
 
@@ -113,8 +118,8 @@ class SwinjectHelper: SwinjectInterface {
             UserDefaultsRepositoryImp()
         }
 
-        container.register(FiltersService.self) { _ in
-            FiltersService()
+        container.register(FiltersService.self) { resolver in
+			FiltersService(cacheManager: resolver.resolve(UserDefaultsService.self)!)
         }
         .inObjectScope(.container)
 
@@ -221,8 +226,13 @@ class SwinjectHelper: SwinjectInterface {
 		}
 		.inObjectScope(.container)
 
+		container.register(WXMLocationManager.LocationManagerProtocol.self) { _ in
+			WXMLocationManager()
+		}
+
 		container.register(PhotosRepository.self) { resolver in
-			PhotosRepositoryImpl(fileUploader: resolver.resolve(FileUploaderService.self)!)
+			PhotosRepositoryImpl(fileUploader: resolver.resolve(FileUploaderService.self)!,
+								 locationManager: resolver.resolve(WXMLocationManager.LocationManagerProtocol.self)!)
 		}
 
 		container.register(PhotoGalleryUseCase.self) { resolver in

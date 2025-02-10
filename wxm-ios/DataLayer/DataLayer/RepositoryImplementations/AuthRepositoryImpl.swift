@@ -20,8 +20,9 @@ public struct AuthRepositoryImpl: AuthRepository {
     }
 
     public func login(username: String, password: String) throws -> AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> {
-        let urlRequest = try AuthApiRequestBuilder.login(username: username, password: password).asURLRequest()
-		let publisher: AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodable(urlRequest)
+		let builder = AuthApiRequestBuilder.login(username: username, password: password)
+		let urlRequest = try builder.asURLRequest()
+		let publisher: AnyPublisher<DataResponse<NetworkTokenResponse, NetworkErrorResponse>, Never> = ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
 
 		return publisher.flatMap { response in
 			if response.error == nil {

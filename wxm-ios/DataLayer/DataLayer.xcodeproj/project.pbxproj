@@ -37,6 +37,7 @@
 		267401782A376B4200E54E35 /* NetworkApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267401772A376B4200E54E35 /* NetworkApiRequestBuilder.swift */; };
 		2674017A2A386DA700E54E35 /* get_network_stats.json in Resources */ = {isa = PBXBuildFile; fileRef = 267401792A386DA700E54E35 /* get_network_stats.json */; };
 		2674EDCE2A3C4C3800616285 /* get_network_stats_alt.json in Resources */ = {isa = PBXBuildFile; fileRef = 2674EDCD2A3C4C3800616285 /* get_network_stats_alt.json */; };
+		2678114E2D4BA57C00D22B67 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678114D2D4BA57800D22B67 /* Client.swift */; };
 		267A37872AEBEBBA00469126 /* get_user_device_rewards.json in Resources */ = {isa = PBXBuildFile; fileRef = 267A37862AEBEBBA00469126 /* get_user_device_rewards.json */; };
 		267CA6EF2C1314E300ABE599 /* get_user.json in Resources */ = {isa = PBXBuildFile; fileRef = 267CA6EE2C1314E200ABE599 /* get_user.json */; };
 		267EC3BC2CD0E8BD0085B50A /* MainRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC3BB2CD0E8BD0085B50A /* MainRepositoryImpl.swift */; };
@@ -70,6 +71,8 @@
 		26D47E9E2A177AFB0078723A /* SettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */; };
 		26DD42AF29AF4765008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AE29AF4765008E277E /* Toolkit.framework */; };
 		26DD42D229AFAF26008E277E /* get_user_devices.json in Resources */ = {isa = PBXBuildFile; fileRef = 26DD42D129AFAF26008E277E /* get_user_devices.json */; };
+		26DF1F542D549A310001E936 /* FileUploadMockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */; };
+		26DF1F602D5611EA0001E936 /* post_login.json in Resources */ = {isa = PBXBuildFile; fileRef = 26DF1F5F2D5611DD0001E936 /* post_login.json */; };
 		26E2B3BC2982754D00ED9B58 /* MockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E2B3BB2982754D00ED9B58 /* MockProtocol.swift */; };
 		26E88B2F29E5717D0023BBD5 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88B2E29E5717D0023BBD5 /* DatabaseService.swift */; };
 		26E88B3429E582070023BBD5 /* DBWeather+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88B3329E582070023BBD5 /* DBWeather+CoreDataClass.swift */; };
@@ -138,6 +141,7 @@
 		267401772A376B4200E54E35 /* NetworkApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiRequestBuilder.swift; sourceTree = "<group>"; };
 		267401792A386DA700E54E35 /* get_network_stats.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_network_stats.json; sourceTree = "<group>"; };
 		2674EDCD2A3C4C3800616285 /* get_network_stats_alt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_network_stats_alt.json; sourceTree = "<group>"; };
+		2678114D2D4BA57800D22B67 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		267A37862AEBEBBA00469126 /* get_user_device_rewards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user_device_rewards.json; sourceTree = "<group>"; };
 		267CA6EE2C1314E200ABE599 /* get_user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user.json; sourceTree = "<group>"; };
 		267EC3BB2CD0E8BD0085B50A /* MainRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 		26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryImpl.swift; sourceTree = "<group>"; };
 		26DD42AE29AF4765008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DD42D129AFAF26008E277E /* get_user_devices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user_devices.json; sourceTree = "<group>"; };
+		26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadMockProtocol.swift; sourceTree = "<group>"; };
+		26DF1F5F2D5611DD0001E936 /* post_login.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = post_login.json; sourceTree = "<group>"; };
 		26E2B3BB2982754D00ED9B58 /* MockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProtocol.swift; sourceTree = "<group>"; };
 		26E88B2E29E5717D0023BBD5 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		26E88B3229E582070023BBD5 /* DBWeather+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBWeather+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -243,6 +249,7 @@
 				266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */,
 				26A3B3DF2B18E7A50002F35F /* get_user_rewards.json */,
 				26943D782B06240900EE6C7E /* get_cell_devices.json */,
+				26DF1F5F2D5611DD0001E936 /* post_login.json */,
 				267A37862AEBEBBA00469126 /* get_user_device_rewards.json */,
 				2631872B29A4E2D400FA1691 /* get_device_history.json */,
 				2618A6F02A1F61FD00983B7B /* get_device_history_24_samples.json */,
@@ -285,13 +292,22 @@
 		26AB9F502A8010E300855912 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				995A0CD828C0A8AA0015DAA1 /* UserDefaultsService */,
 				B56A25E328A0EF7D00928141 /* KeychainHelperService */,
 				2612AC612AB88EB400285896 /* FiltersService.swift */,
 				26AB9F512A80112900855912 /* UserDevicesService.swift */,
 				262B02F72B1F3B5300C31FE7 /* UserInfoService.swift */,
+				26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */,
 			);
 			name = Services;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		26DF1F272D5110DE0001E936 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		26E2B3A329816C2E00ED9B58 /* Mock */ = {
@@ -299,6 +315,7 @@
 			children = (
 				2646FCB32995018800EBB61B /* Jsons */,
 				26E2B3BB2982754D00ED9B58 /* MockProtocol.swift */,
+				26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -375,8 +392,8 @@
 				2609D3AB29FC04A400D945D9 /* Interceptors */,
 				26E2B3A329816C2E00ED9B58 /* Mock */,
 				B55668912832DE96006D0B71 /* ApiClient.swift */,
+				2678114D2D4BA57800D22B67 /* Client.swift */,
 				B54B809D2850C25900FB52B9 /* Connectivity.swift */,
-				26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -426,6 +443,7 @@
 				B5799E7528254CC100FEBB85 /* DataLayer */,
 				B5799E7428254CC100FEBB85 /* Products */,
 				B51243F3282550B100B66A31 /* Frameworks */,
+				26DF1F272D5110DE0001E936 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -445,7 +463,6 @@
 				B51243F12825509800B66A31 /* Networking */,
 				B51243F02825508D00B66A31 /* RepositoryImplementations */,
 				26AB9F502A8010E300855912 /* Services */,
-				995A0CD828C0A8AA0015DAA1 /* UserDefaultsService */,
 				B5799E7628254CC100FEBB85 /* DataLayer.h */,
 				2683A4C32ADECBA800D5C205 /* countries_information.json */,
 			);
@@ -571,6 +588,7 @@
 				2646FCBB2995018800EBB61B /* get_transactions.json in Resources */,
 				2646FCBA2995018800EBB61B /* get_transactions_empty.json in Resources */,
 				2646FCB92995018800EBB61B /* get_user_device.json in Resources */,
+				26DF1F602D5611EA0001E936 /* post_login.json in Resources */,
 				2618B1E62A84EC44003B98FB /* get_user_device_forecast.json in Resources */,
 				26FC21B82D11A46A00FC79B1 /* claim_device_helium.json in Resources */,
 				2646FCB82995018800EBB61B /* get_user_device_just_claimed.json in Resources */,
@@ -607,6 +625,7 @@
 				26E88B2F29E5717D0023BBD5 /* DatabaseService.swift in Sources */,
 				2692D88B2A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift in Sources */,
 				2692D88C2A4DB2B50060CB3C /* DBExplorerAddress+CoreDataProperties.swift in Sources */,
+				26DF1F542D549A310001E936 /* FileUploadMockProtocol.swift in Sources */,
 				2692D88F2A4DB2B50060CB3C /* DBExplorerDevice+CoreDataClass.swift in Sources */,
 				2692D8902A4DB2B50060CB3C /* DBExplorerDevice+CoreDataProperties.swift in Sources */,
 				262B02F82B1F3B5300C31FE7 /* UserInfoService.swift in Sources */,
@@ -636,6 +655,7 @@
 				26A86BC22C7C997700F1C2CF /* RemoteConfigRepositoryImpl.swift in Sources */,
 				264710A62A4EF4F700A6C1B9 /* Model.xcdatamodeld in Sources */,
 				267401782A376B4200E54E35 /* NetworkApiRequestBuilder.swift in Sources */,
+				2678114E2D4BA57C00D22B67 /* Client.swift in Sources */,
 				B5E6B85928337A820060D050 /* NetworkConstants.swift in Sources */,
 				267401762A376A1400E54E35 /* NetworkRepositoryImpl.swift in Sources */,
 				B5E6B85B283385A10060D050 /* ParameterConstants.swift in Sources */,

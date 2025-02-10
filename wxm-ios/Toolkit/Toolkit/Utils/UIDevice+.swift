@@ -81,6 +81,10 @@ public var isPreview: Bool {
 	return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
 }
 
+public var isRunningTests: Bool {
+	NSClassFromString("XCTestCase") != nil
+}
+
 public var disableAnalytics: Bool {
 	let isDisabled = UserDefaults.standard.bool(forKey: WXMAnalyticsDisabled)
 	return isPreview || isDisabled

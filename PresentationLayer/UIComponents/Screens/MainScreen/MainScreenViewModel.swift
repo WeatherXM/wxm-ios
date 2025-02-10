@@ -86,7 +86,7 @@ class MainScreenViewModel: ObservableObject {
 			WidgetCenter.shared.reloadAllTimelines()
 		}
 
-		meUseCase.userInfoPublisher.sink { [weak self] response in
+		meUseCase.userInfoPublisher.receive(on: DispatchQueue.main).sink { [weak self] response in
 			self?.userInfo = response
 		}.store(in: &cancellableSet)
 
