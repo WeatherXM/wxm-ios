@@ -153,13 +153,19 @@ private struct ContentView: View {
 					.background(Color(colorEnum: .bg))
 					.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
 			}
-		} else if devices.isEmpty, let emptyViewConfiguration = viewModel.getEmptyViewConfiguration() {
+		} else if devices.isEmpty {
 			VStack(spacing: -CGFloat(.cardCornerRadius)) {
 				infoBannerView
 
-				WXMEmptyView(configuration: emptyViewConfiguration)
-					.background(Color(colorEnum: .bg))
-					.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
+				ZStack {
+					Color(colorEnum: .bg)
+						.ignoresSafeArea()
+					WeatherStationsEmptyView()
+				}
+				.if(infoBannerIsVisible) { view in
+					view
+						.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
+				}
 			}
 		} else {
 			weatherStations(devices: devices)

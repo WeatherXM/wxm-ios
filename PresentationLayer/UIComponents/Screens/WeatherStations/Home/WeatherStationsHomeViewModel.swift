@@ -199,17 +199,6 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
         }
     }
 
-    func getEmptyViewConfiguration() -> WXMEmptyView.Configuration? {
-        let obj = WXMEmptyView.Configuration(animationEnum: .emptyDevices,
-											 backgroundColor: .noColor,
-                                             title: LocalizableString.Home.totalWeatherStationsEmptyTitle.localized,
-                                             description: LocalizableString.Home.totalWeatherStationsEmptyDescription.localized.attributedMarkdown,
-                                             buttonTitle: LocalizableString.Home.totalWeatherStationsEmptyButtonTitle.localized) { [weak self] in
-            self?.mainVM?.selectedTab = .mapTab
-        }
-        return obj
-    }
-
 	func handleRewardAnalyticsTap() {
 		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .tokensEarnedPress])
 		
