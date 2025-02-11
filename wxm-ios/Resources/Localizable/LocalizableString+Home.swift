@@ -18,6 +18,11 @@ extension LocalizableString {
         case followingWeatherStationsEmptyDescription
         case followingWeatherStationsEmptyButtonTitle
 		case noRewardsYet
+		case joinTheNetwork
+		case ownDeployEarn
+		case buyStation
+		case followAStationInExplorer
+		case claimYouStationhere
 		case dataQuality(Int)
     }
 }
@@ -58,6 +63,16 @@ extension LocalizableString.Home: WXMLocalizable {
 				return "home_no_rewards_yet"
 			case .dataQuality:
 				return "home_data_quality"
-        }
+			case .joinTheNetwork:
+				return "home_join_the_network"
+			case .ownDeployEarn:
+				return "home_own_deploy_earn"
+			case .buyStation:
+				return "home_buy_station"
+			case .followAStationInExplorer:
+				return "home_follow_a_station_in_explorer"
+			case .claimYouStationhere:
+				return "home_claim_your_station_here"
+		}
     }
 }

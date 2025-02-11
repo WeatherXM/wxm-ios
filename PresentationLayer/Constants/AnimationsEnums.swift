@@ -66,6 +66,7 @@ enum AnimationsEnums: String, CaseIterable {
 	case uploadingLight
 	case uploadingDark
 	case uploadCompleted
+	case weatherxmNetwork
 
 	var animationString: String {
 		switch self {
@@ -185,6 +186,8 @@ enum AnimationsEnums: String, CaseIterable {
 				return "uploading_dark"
 			case .uploadCompleted:
 				return "upload_completed"
+			case .weatherxmNetwork:
+				return "weatherxm_network"
 		}
 	}
 }

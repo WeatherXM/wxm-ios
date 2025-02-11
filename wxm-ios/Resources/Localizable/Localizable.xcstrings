@@ -4862,6 +4862,9 @@
         }
       }
     },
+    "Hello, World!" : {
+
+    },
     "hidden_content_description_format" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4906,6 +4909,28 @@
         }
       }
     },
+    "home_buy_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buy a station"
+          }
+        }
+      }
+    },
+    "home_claim_your_station_here" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim your station here"
+          }
+        }
+      }
+    },
     "home_data_quality" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4913,6 +4938,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data Quality %d%%"
+          }
+        }
+      }
+    },
+    "home_follow_a_station_in_explorer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow a station in Explorer Map"
           }
         }
       }
@@ -4950,6 +4986,17 @@
         }
       }
     },
+    "home_join_the_network" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join the network"
+          }
+        }
+      }
+    },
     "home_no_rewards_yet" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4957,6 +5004,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No rewards yet!"
+          }
+        }
+      }
+    },
+    "home_own_deploy_earn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Own. Deploy. Earn $WXM tokens."
           }
         }
       }
