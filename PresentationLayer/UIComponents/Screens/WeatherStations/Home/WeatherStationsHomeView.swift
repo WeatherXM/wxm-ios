@@ -160,12 +160,14 @@ private struct ContentView: View {
 				ZStack {
 					Color(colorEnum: .bg)
 						.ignoresSafeArea()
-					WeatherStationsEmptyView()
+					WeatherStationsEmptyView(buyButtonAction: { viewModel.handleBuyButtonTap() },
+											 followButtonAction: { viewModel.handleFollowInExplorerTap() })
 				}
 				.if(infoBannerIsVisible) { view in
 					view
-						.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
+						.clipShape(RoundedRectangle(cornerRadius: CGFloat(.cardCornerRadius)))
 				}
+				.padding(.bottom, tabBarItemsSize.height)
 			}
 		} else {
 			weatherStations(devices: devices)

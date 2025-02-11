@@ -250,6 +250,14 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		}
 	}
 
+	func handleBuyButtonTap() {
+		HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
+	}
+
+	func handleFollowInExplorerTap() {
+		mainVM?.selectedTab = .mapTab
+	}
+
 	func viewWillDisappear() {
 		guard uploadState == .completed else {
 			return

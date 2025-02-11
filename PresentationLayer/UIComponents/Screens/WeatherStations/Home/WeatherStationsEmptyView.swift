@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct WeatherStationsEmptyView: View {
-    var body: some View {
+	let buyButtonAction: VoidCallback
+	let followButtonAction: VoidCallback
+
+	var body: some View {
 		VStack(spacing: CGFloat(.XLSpacing)) {
 			VStack(spacing: CGFloat(.smallSpacing)) {
 				Text(LocalizableString.Home.joinTheNetwork.localized)
@@ -27,26 +31,25 @@ struct WeatherStationsEmptyView: View {
 
 			VStack(spacing: CGFloat(.mediumSpacing)) {
 				Button {
-
+					buyButtonAction()
 				} label: {
 					Text(LocalizableString.Home.buyStation.localized)
 				}
 				.buttonStyle(WXMButtonStyle.filled())
 
 				Button {
-
+					followButtonAction()
 				} label: {
 					Text(LocalizableString.Home.followAStationInExplorer.localized)
 						.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
 						.foregroundStyle(Color(colorEnum: .wxmPrimary))
 				}
 			}
-
 		}
 		.padding(.horizontal, CGFloat(.defaultSidePadding))
-    }
+	}
 }
 
 #Preview {
-    WeatherStationsEmptyView()
+	WeatherStationsEmptyView(buyButtonAction: {}, followButtonAction: {})
 }
