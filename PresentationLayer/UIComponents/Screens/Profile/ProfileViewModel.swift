@@ -246,7 +246,7 @@ private extension ProfileViewModel {
 			allocatedRewards = allocated == 0.0 ? noRewardsString : valueString
 		} else if userInfoResponse.wallet?.address == nil {
 			allocatedRewards = LocalizableString.Profile.noRewardsDescription.localized
-		}else {
+		} else {
 			allocatedRewards = LocalizableString.notAvailable.localized
 			isClaimAvailable = false
 		}
