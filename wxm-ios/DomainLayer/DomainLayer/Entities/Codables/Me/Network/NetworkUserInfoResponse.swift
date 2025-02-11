@@ -13,7 +13,7 @@ public struct NetworkUserInfoResponse: Codable, Sendable {
     public var name: String? = ""
     public var firstName: String? = ""
     public var lastName: String? = ""
-    public var wallet: Wallet? = .init()
+    public var wallet: Wallet?
 
     public init() {}
 }
