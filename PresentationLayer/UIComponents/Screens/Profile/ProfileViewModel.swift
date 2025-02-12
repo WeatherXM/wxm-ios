@@ -204,9 +204,8 @@ private extension ProfileViewModel {
 		do {
 			let userRewardsResponse = try await meUseCase.getUserRewards(wallet: address).toAsync()
 			if let error = userRewardsResponse.error {
-				if error.backendError?.code == FailAPICodeEnum.walletAddressNotFound.rawValue {
-					self.userRewardsResponse = nil
-				}
+				self.userRewardsResponse = nil
+
 				return error
 			}
 
@@ -224,6 +223,8 @@ private extension ProfileViewModel {
 	func updateRewards(additionalClaimed: String? = nil) {
 		if let cumulative = userRewardsResponse?.cumulativeAmount?.toEthDouble {
 			totalEarned = cumulative.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
+		} else if userInfoResponse.wallet?.address == nil {
+			totalEarned = 0.0.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
 		} else {
 			totalEarned = LocalizableString.notAvailable.localized
 		}
@@ -231,6 +232,8 @@ private extension ProfileViewModel {
 		if let total = userRewardsResponse?.totalClaimed?.toEthDouble {
 			let claimed = total + (additionalClaimed?.toEthDouble ?? 0.0)
 			totalClaimed = claimed.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
+		} else if userInfoResponse.wallet?.address == nil {
+			totalClaimed = 0.0.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
 		} else {
 			totalClaimed = LocalizableString.notAvailable.localized
 		}
@@ -241,6 +244,8 @@ private extension ProfileViewModel {
 			let noRewardsString = LocalizableString.Profile.noRewardsDescription.localized
 			let valueString = allocated.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency
 			allocatedRewards = allocated == 0.0 ? noRewardsString : valueString
+		} else if userInfoResponse.wallet?.address == nil {
+			allocatedRewards = LocalizableString.Profile.noRewardsDescription.localized
 		} else {
 			allocatedRewards = LocalizableString.notAvailable.localized
 			isClaimAvailable = false

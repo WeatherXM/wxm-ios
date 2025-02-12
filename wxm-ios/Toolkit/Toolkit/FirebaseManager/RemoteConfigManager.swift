@@ -168,6 +168,9 @@ class MockRemoteConfigManager: RemoteConfigManagerImplementation, @unchecked Sen
 	func getConfigValue<T>(type: T.Type, key: RemoteConfigKey) -> T? {
 		switch type {
 			case is String.Type:
+				if key == .iosAppMinimumVersion {
+					return "1.1.1" as? T
+				}
 				return "Dummy Text" as? T
 			case is Bool.Type:
 				return true as? T
