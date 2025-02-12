@@ -128,7 +128,6 @@ private extension LoginServiceImpl {
 		}.eraseToAnyPublisher()
 	}
 
-
 	func performLogout() {
 		logoutPublisher(ignoreError: true).sink { _ in
 
