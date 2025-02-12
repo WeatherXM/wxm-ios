@@ -89,7 +89,7 @@ private extension LoginServiceImpl {
 		}.store(in: &cancellableSet)
 	}
 
-	func logoutPublisher(ignoreError: Bool = false) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
+	func logoutPublisher(ignoreError: Bool = false) -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
 		getInstallationId().flatMap { [weak self] installationId in
 			guard let self else {
 				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)
@@ -130,7 +130,7 @@ private extension LoginServiceImpl {
 
 
 	func performLogout() {
-		_ = try? logoutPublisher(ignoreError: true).sink { _ in
+		logoutPublisher(ignoreError: true).sink { _ in
 
 		}.store(in: &cancellableSet)
 	}
