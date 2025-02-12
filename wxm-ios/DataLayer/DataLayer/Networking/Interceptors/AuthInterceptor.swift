@@ -32,6 +32,7 @@ class AuthInterceptor: @unchecked Sendable, RequestInterceptor {
         let networkTokenResponse = keychainHelperService.getNetworkTokenResponse()
         guard let refreshToken = networkTokenResponse?.refreshToken, let statusCode = request.response?.statusCode else {
             completion(.doNotRetry)
+			NotificationCenter.default.post(name: .AuthRefreshTokenExpired, object: nil)
             return
         }
         switch statusCode {
