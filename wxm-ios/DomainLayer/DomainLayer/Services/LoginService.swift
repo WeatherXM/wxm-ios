@@ -108,11 +108,11 @@ private extension LoginServiceImpl {
 			} catch {
 				let error = NetworkErrorResponse(initialError: AFError.explicitlyCancelled, backendError: nil)
 				let dummyResponse: DataResponse<EmptyEntity, NetworkErrorResponse> = DataResponse(request: nil,
-																						response: nil,
-																						data: nil,
-																						metrics: nil,
-																						serializationDuration: 0,
-																						result: .failure(error))
+																								  response: nil,
+																								  data: nil,
+																								  metrics: nil,
+																								  serializationDuration: 0,
+																								  result: .failure(error))
 				return Just(dummyResponse).eraseToAnyPublisher()
 			}
 		}.flatMap { [weak self] response in
