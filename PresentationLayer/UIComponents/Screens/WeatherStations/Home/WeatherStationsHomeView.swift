@@ -155,17 +155,11 @@ private struct ContentView: View {
 			}
 		} else if devices.isEmpty {
 			VStack(spacing: -CGFloat(.cardCornerRadius)) {
-				infoBannerView
-
 				ZStack {
 					Color(colorEnum: .bg)
 						.ignoresSafeArea()
 					WeatherStationsEmptyView(buyButtonAction: { viewModel.handleBuyButtonTap() },
 											 followButtonAction: { viewModel.handleFollowInExplorerTap() })
-				}
-				.if(infoBannerIsVisible) { view in
-					view
-						.clipShape(RoundedRectangle(cornerRadius: CGFloat(.cardCornerRadius)))
 				}
 				.padding(.bottom, tabBarItemsSize.height)
 			}

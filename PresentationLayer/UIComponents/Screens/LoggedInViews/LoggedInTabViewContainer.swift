@@ -180,7 +180,7 @@ private extension LoggedInTabViewContainer {
     var addStationsButton: some View {
         HStack {
             Spacer()
-            AddButton()
+			AddButton(showNotification: $homeViewModel.shouldShowAddButtonBadge)
                 .opacity(isTabBarShowing ? 1 : 0)
         }
         .padding(CGFloat(.defaultSidePadding))

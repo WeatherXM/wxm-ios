@@ -9,9 +9,12 @@ import SwiftUI
 
 struct AddButton: View {
 
+	@Binding var showNotification: Bool
+
     var body: some View {
         ZStack {
             Button {
+				showNotification = false
 				let viewModel = ViewModelsFactory.getClaimStationSelectionViewModel()
 				Router.shared.navigateTo(.claimStationSelection(viewModel))
             } label: {
@@ -23,12 +26,26 @@ struct AddButton: View {
             .background(Color(colorEnum: .wxmPrimary))
             .cornerRadius(CGFloat(.cardCornerRadius))
             .shadow(radius: ShadowEnum.addButton.radius, x: ShadowEnum.addButton.xVal, y: ShadowEnum.addButton.yVal)
+			.overlay {
+				if  showNotification {
+					VStack {
+						HStack {
+							Spacer()
+							Circle()
+								.foregroundStyle(Color(colorEnum: .error))
+								.frame(width: 12.0, height: 12.0)
+						}
+
+						Spacer()
+					}
+				}
+			}
         }
     }
 }
 
 struct Previews_AddButton_Previews: PreviewProvider {
     static var previews: some View {
-        AddButton()
+		AddButton(showNotification: .constant(true))
     }
 }

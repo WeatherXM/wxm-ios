@@ -43,6 +43,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		FilterValues.default != filters
 	}
 
+	@Published var shouldShowAddButtonBadge: Bool = true
 	@Published var uploadInProgressStationName: String?
 	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
