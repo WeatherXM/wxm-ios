@@ -43,7 +43,15 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		FilterValues.default != filters
 	}
 
-	@Published var shouldShowAddButtonBadge: Bool = true
+	@Published var shouldShowAddButtonBadge: Bool = false {
+		didSet {
+			guard shouldShowAddButtonBadge else {
+				return
+			}
+
+			meUseCase.markAddButtonIndicationAsSeen()
+		}
+	}
 	@Published var uploadInProgressStationName: String?
 	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
@@ -96,6 +104,8 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 			updateUploadInProgressDevice(deviceId: deviceId)
 			updateProgressUpload()
 		}
+
+		initializeAddButtonIndicationState()
     }
 
 	func updateProgressUpload() {
@@ -441,4 +451,11 @@ private extension WeatherStationsHomeViewModel {
 		let owndedDevices = allDevices.filter { getFollowState(for: $0)?.relation == .owned}
 		return owndedDevices
 	}
- }
+
+	func initializeAddButtonIndicationState() {
+		Task { @MainActor in
+			let shouldShowIndication = await meUseCase.shouldShowAddButtonIndication()
+			self.shouldShowAddButtonBadge = shouldShowIndication
+		}
+	}
+}
