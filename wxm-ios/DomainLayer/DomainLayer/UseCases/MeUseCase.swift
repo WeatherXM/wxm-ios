@@ -14,12 +14,14 @@ public struct MeUseCase: @unchecked Sendable {
     private let meRepository: MeRepository
 	private let networkRepository: NetworkRepository
     private let filtersRepository: FiltersRepository
+	private let userDefaultsrRepository: UserDefaultsRepository
     private let cancellables: CancellableWrapper = .init()
 
-	public init(meRepository: MeRepository, filtersRepository: FiltersRepository, networkRepository: NetworkRepository) {
+	public init(meRepository: MeRepository, filtersRepository: FiltersRepository, networkRepository: NetworkRepository, userDefaultsrRepository: UserDefaultsRepository) {
         self.meRepository = meRepository
         self.filtersRepository = filtersRepository
 		self.networkRepository = networkRepository
+		self.userDefaultsrRepository = userDefaultsrRepository
     }
 
 	public var userInfoPublisher: AnyPublisher<NetworkUserInfoResponse?, Never> {
@@ -28,6 +30,18 @@ public struct MeUseCase: @unchecked Sendable {
 
 	public var userDevicesListChangedPublisher: NotificationCenter.Publisher {
 		meRepository.userDevicesChangedNotificationPublisher
+	}
+
+	public func shouldShowAddButtonIndication() async -> Bool {
+		let isSeen: Bool = userDefaultsrRepository.getValue(for: UserDefaults.GenericKey.isAddButtonIndicationSeen.rawValue) ?? false
+		let hasOwnedDevices = await hasOwnedDevices()
+
+		return !hasOwnedDevices && !isSeen
+	}
+
+	public func markAddButtonIndicationAsSeen() {
+		userDefaultsrRepository.saveValue(key: UserDefaults.GenericKey.isAddButtonIndicationSeen.rawValue,
+										  value: true)
 	}
 
     public func getUserInfo() throws -> AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> {

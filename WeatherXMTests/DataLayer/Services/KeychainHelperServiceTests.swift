@@ -49,6 +49,7 @@ struct KeychainHelperServiceTests {
 		// Log in
 		let response = NetworkTokenResponse(token: "token", refreshToken: "refreshToken")
 		service.saveNetworkTokenResponseToKeychain(item: response)
+		try await Task.sleep(for: .seconds(1))
 
 		try await confirmation { confirm in
 			NotificationCenter.default.publisher(for: .keychainHelperServiceUserIsLoggedChanged).receive(on: DispatchQueue.main).sink { notification in

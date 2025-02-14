@@ -43,6 +43,15 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		FilterValues.default != filters
 	}
 
+	@Published var shouldShowAddButtonBadge: Bool = false {
+		didSet {
+			guard shouldShowAddButtonBadge else {
+				return
+			}
+
+			meUseCase.markAddButtonIndicationAsSeen()
+		}
+	}
 	@Published var uploadInProgressStationName: String?
 	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
@@ -95,6 +104,8 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 			updateUploadInProgressDevice(deviceId: deviceId)
 			updateProgressUpload()
 		}
+
+		initializeAddButtonIndicationState()
     }
 
 	func updateProgressUpload() {
@@ -199,17 +210,6 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
         }
     }
 
-    func getEmptyViewConfiguration() -> WXMEmptyView.Configuration? {
-        let obj = WXMEmptyView.Configuration(animationEnum: .emptyDevices,
-											 backgroundColor: .noColor,
-                                             title: LocalizableString.Home.totalWeatherStationsEmptyTitle.localized,
-                                             description: LocalizableString.Home.totalWeatherStationsEmptyDescription.localized.attributedMarkdown,
-                                             buttonTitle: LocalizableString.Home.totalWeatherStationsEmptyButtonTitle.localized) { [weak self] in
-            self?.mainVM?.selectedTab = .mapTab
-        }
-        return obj
-    }
-
 	func handleRewardAnalyticsTap() {
 		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .tokensEarnedPress])
 		
@@ -259,6 +259,14 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 			case nil:
 				break
 		}
+	}
+
+	func handleBuyButtonTap() {
+		HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
+	}
+
+	func handleFollowInExplorerTap() {
+		mainVM?.selectedTab = .mapTab
 	}
 
 	func viewWillDisappear() {
@@ -443,4 +451,11 @@ private extension WeatherStationsHomeViewModel {
 		let owndedDevices = allDevices.filter { getFollowState(for: $0)?.relation == .owned}
 		return owndedDevices
 	}
- }
+
+	func initializeAddButtonIndicationState() {
+		Task { @MainActor in
+			let shouldShowIndication = await meUseCase.shouldShowAddButtonIndication()
+			self.shouldShowAddButtonBadge = shouldShowIndication
+		}
+	}
+}
