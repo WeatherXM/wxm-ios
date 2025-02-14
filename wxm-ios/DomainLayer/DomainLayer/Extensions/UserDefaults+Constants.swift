@@ -48,7 +48,16 @@ public extension UserDefaults {
         // MARK: - UserDefaultEntry
 
         static var userKeys: [String] {
-			let keys: [GenericKey] = [.hideWalletTimestamp, .sortByDevicesOption, .filterDevicesOption, .groupByDevicesOption, .userDevicesFollowStates, .userDevices, .lastSurveyId, .lastInfoBannerId, .arePhotoVerificationTermsAccepted, .isAddButtonIndicationSeen]
+			let keys: [GenericKey] = [.hideWalletTimestamp,
+									  .sortByDevicesOption,
+									  .filterDevicesOption,
+									  .groupByDevicesOption,
+									  .userDevicesFollowStates,
+									  .userDevices,
+									  .lastSurveyId,
+									  .lastInfoBannerId,
+									  .arePhotoVerificationTermsAccepted,
+									  .isAddButtonIndicationSeen]
             return keys.map { $0.rawValue }
         }
     }
