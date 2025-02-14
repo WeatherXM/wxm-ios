@@ -129,7 +129,6 @@ extension NetworkStatsViewModel {
 		let viewModel = NetworkStatsViewModel()
 		viewModel.dataDays = NetworkStatsView.Statistics(title: LocalizableString.NetStats.weatherStationDays.localized,
 														 description: nil,
-														 showExternalLinkIcon: false,
 														 externalLinkTapAction: nil,
 														 mainText: "90,2K",
 														 accessory: .init(fontIcon: .infoCircle) {
@@ -150,7 +149,6 @@ extension NetworkStatsViewModel {
 															 .init(title: "Daily Minted", value: "20,020", analyticsItemId: nil)]
 		viewModel.rewards = NetworkStatsView.Statistics(title: LocalizableString.NetStats.wxmRewardsTitle.localized,
 														description: nil,
-														showExternalLinkIcon: false,
 														externalLinkTapAction: nil,
 														mainText: "90,2K",
 														accessory: .init(fontIcon: .infoCircle) {
