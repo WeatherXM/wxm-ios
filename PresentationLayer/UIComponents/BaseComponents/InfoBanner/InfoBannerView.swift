@@ -52,17 +52,11 @@ struct InfoBannerView: View {
 					Button {
 						tapUrlAction(url)
 					} label: {
-						HStack(spacing: CGFloat(.minimumSpacing)) {
-							Text(actionLabel)
-								.font(.system(size: CGFloat(.caption), weight: .bold))
-								.foregroundStyle(Color(colorEnum: .text))
-
-							Text(FontIcon.externalLink.rawValue)
-								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
-								.foregroundStyle(Color(colorEnum: .text))
-						}
-						.padding(.horizontal, CGFloat(.mediumSidePadding))
-						.padding(.vertical, CGFloat(.smallSidePadding))
+						Text(actionLabel)
+							.font(.system(size: CGFloat(.caption), weight: .bold))
+							.foregroundStyle(Color(colorEnum: .text))
+							.padding(.horizontal, CGFloat(.mediumSidePadding))
+							.padding(.vertical, CGFloat(.smallSidePadding))
 					}
 					.buttonStyle(WXMButtonStyle(fillColor: .top,
 												strokeColor: .noColor,
