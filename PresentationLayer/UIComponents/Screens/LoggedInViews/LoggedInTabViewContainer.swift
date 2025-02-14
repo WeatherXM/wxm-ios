@@ -186,3 +186,7 @@ private extension LoggedInTabViewContainer {
         .padding(CGFloat(.defaultSidePadding))
     }
 }
+
+#Preview {
+	LoggedInTabViewContainer(swinjectHelper: SwinjectHelper.shared)
+}
