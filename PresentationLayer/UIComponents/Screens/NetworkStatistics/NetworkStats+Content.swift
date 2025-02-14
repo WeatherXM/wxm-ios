@@ -28,7 +28,6 @@ extension NetworkStatsView {
     struct Statistics {
         let title: String
         let description: AttributedString?
-        let showExternalLinkIcon: Bool
         let externalLinkTapAction: VoidCallback?
         let mainText: String?
         let accessory: Accessory?
@@ -219,23 +218,11 @@ extension NetworkStatsView {
 					.foregroundColor(Color(colorEnum: .darkestBlue))
 
 				HStack {
-
-					if stats.showExternalLinkIcon {
-						Group {
-							mainText +
-							Text(" ") +
-							Text(FontIcon.externalLink.rawValue)
-								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
-								.foregroundColor(Color(colorEnum: .wxmPrimary))
-						}
+					mainText
 						.tint(Color(colorEnum: .wxmPrimary))
 						.simultaneousGesture(TapGesture().onEnded {
 							stats.externalLinkTapAction?()
 						})
-					} else {
-						mainText
-							.tint(Color(colorEnum: .wxmPrimary))
-					}
 
 					Spacer()
 				}

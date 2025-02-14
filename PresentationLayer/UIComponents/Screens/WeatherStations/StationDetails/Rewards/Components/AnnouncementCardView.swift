@@ -44,22 +44,14 @@ struct AnnouncementCardView: View {
 			   let action = configuration.action {
 				HStack {
 					Button(action: action) {
-						HStack(spacing: CGFloat(.minimumSpacing)) {
-							Text(actionTitle)
-								.font(.system(size: CGFloat(.caption), weight: .bold))
-								.foregroundColor(Color(colorEnum: .textWhite))
-
-							Text(FontIcon.externalLink.rawValue)
-								.font(.fontAwesome(font: .FAProSolid,
-												   size: CGFloat(.caption)))
-								.foregroundColor(Color(colorEnum: .textWhite))
-
-						}
-						.padding(.horizontal, CGFloat(.mediumSidePadding))
-						.padding(.vertical, CGFloat(.smallSidePadding))
-						.background {
-							Capsule().foregroundStyle(Color(colorEnum: .textWhite).opacity(0.2))
-						}
+						Text(actionTitle)
+							.font(.system(size: CGFloat(.caption), weight: .bold))
+							.foregroundColor(Color(colorEnum: .textWhite))
+							.padding(.horizontal, CGFloat(.mediumSidePadding))
+							.padding(.vertical, CGFloat(.smallSidePadding))
+							.background {
+								Capsule().foregroundStyle(Color(colorEnum: .textWhite).opacity(0.2))
+							}
 					}
 
 					Spacer()
