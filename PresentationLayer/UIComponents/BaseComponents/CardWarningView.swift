@@ -62,10 +62,6 @@ struct CardWarningView<Content: View>: View {
 									.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
 									.fixedSize(horizontal: false, vertical: true)
 
-								Text(FontIcon.externalLink.rawValue)
-									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
-									.foregroundColor(Color(colorEnum: .wxmPrimary))
-
 								Spacer()
 							}
 						}
