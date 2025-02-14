@@ -16,6 +16,7 @@ struct LoggedInTabViewContainer: View {
 	@StateObject var profileViewModel: ProfileViewModel
 	@StateObject var homeViewModel: WeatherStationsHomeViewModel
     @State var tabBarItemsSize: CGSize = .zero
+	@State var overlayControlsSize: CGSize = .zero
 
     public init(swinjectHelper: SwinjectInterface) {
 		_explorerViewModel = StateObject(wrappedValue: ViewModelsFactory.getExplorerViewModel())
@@ -64,6 +65,7 @@ struct LoggedInTabViewContainer: View {
 					WeatherStationsHomeView(viewModel: homeViewModel,
                                             isTabBarShowing: $isTabBarShowing,
                                             tabBarItemsSize: $tabBarItemsSize,
+											overlayControlsSize: $overlayControlsSize,
 											isWalletEmpty: $mainViewModel.isWalletMissing)
                 case .mapTab:
                     explorer
@@ -100,6 +102,7 @@ struct LoggedInTabViewContainer: View {
                     .opacity(isTabBarShowing ? 1 : 0)
 					.sizeObserver(size: $tabBarItemsSize)
             }
+			.sizeObserver(size: $overlayControlsSize)
         }
 		.animation(.easeIn, value: explorerViewModel.showTopOfMapItems)
     }
@@ -183,7 +186,7 @@ private extension LoggedInTabViewContainer {
 			AddButton(showNotification: $homeViewModel.shouldShowAddButtonBadge)
                 .opacity(isTabBarShowing ? 1 : 0)
         }
-        .padding(CGFloat(.defaultSidePadding))
+		.padding(.horizontal, CGFloat(.defaultSidePadding))
     }
 }
 
