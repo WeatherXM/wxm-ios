@@ -154,13 +154,11 @@ private struct ContentView: View {
 					.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
 			}
 		} else if devices.isEmpty {
-			VStack(spacing: -CGFloat(.cardCornerRadius)) {
-				ZStack {
-					Color(colorEnum: .bg)
-						.ignoresSafeArea()
-					WeatherStationsEmptyView(buyButtonAction: { viewModel.handleBuyButtonTap() },
-											 followButtonAction: { viewModel.handleFollowInExplorerTap() })
-				}
+			ZStack {
+				Color(colorEnum: .bg)
+					.ignoresSafeArea()
+				WeatherStationsEmptyView(buyButtonAction: { viewModel.handleBuyButtonTap() },
+										 followButtonAction: { viewModel.handleFollowInExplorerTap() })
 				.padding(.bottom, tabBarItemsSize.height)
 			}
 		} else {
