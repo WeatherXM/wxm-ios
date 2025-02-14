@@ -36,7 +36,7 @@ public class RemoteConfigManager: ObservableObject, @unchecked Sendable {
 	@Published public var infoBannerDismissable: Bool?
 
 	private init() {
-		if isRunningTests {
+		if disableAnalytics {
 			remoteConfigManagerImpl = MockRemoteConfigManager()
 		} else {
 			remoteConfigManagerImpl = DefaultRemoteConfigManager()
