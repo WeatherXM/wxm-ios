@@ -519,6 +519,8 @@
 		26DF1F642D56328B0001E936 /* PhotosRepositoryImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F632D56328B0001E936 /* PhotosRepositoryImplTests.swift */; };
 		26DF1F662D563D270001E936 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F652D563D270001E936 /* MockLocationManager.swift */; };
 		26DF1F682D563F940001E936 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F672D563F940001E936 /* Utils.swift */; };
+		26DF1F7D2D5B455B0001E936 /* WeatherStationsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F7C2D5B455B0001E936 /* WeatherStationsEmptyView.swift */; };
+		26DF1F7F2D5B69950001E936 /* weatherxm_network.json in Resources */ = {isa = PBXBuildFile; fileRef = 26DF1F7E2D5B69950001E936 /* weatherxm_network.json */; };
 		26DF3D202C85BB86005F6FC1 /* ExplorerData+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */; };
 		26DF3D312C85FB30005F6FC1 /* RewardAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */; };
 		26DF3D332C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */; };
@@ -1104,6 +1106,8 @@
 		26DF1F652D563D270001E936 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		26DF1F672D563F940001E936 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		26DF1F692D5651E30001E936 /* wxm-ios.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "wxm-ios.xctestplan"; sourceTree = "<group>"; };
+		26DF1F7C2D5B455B0001E936 /* WeatherStationsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStationsEmptyView.swift; sourceTree = "<group>"; };
+		26DF1F7E2D5B69950001E936 /* weatherxm_network.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = weatherxm_network.json; sourceTree = "<group>"; };
 		26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerData+.swift"; sourceTree = "<group>"; };
 		26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsView.swift; sourceTree = "<group>"; };
 		26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsViewModel.swift; sourceTree = "<group>"; };
@@ -1907,6 +1911,7 @@
 				260134512D15A17600AF1125 /* UploadProgressView */,
 				2612AC182AB45AFA00285896 /* Filters */,
 				2675477029A9181E008BCF40 /* WeatherStationsHomeView.swift */,
+				26DF1F7C2D5B455B0001E936 /* WeatherStationsEmptyView.swift */,
 				267546DE29A9181E008BCF40 /* WeatherStationsHomeViewModel.swift */,
 			);
 			path = Home;
@@ -2758,6 +2763,7 @@
 				7423EC08283F81E2004E9B26 /* loading.json */,
 				7423EC00283F81E2004E9B26 /* not_available.json */,
 				7423EC09283F81E2004E9B26 /* success.json */,
+				26DF1F7E2D5B69950001E936 /* weatherxm_network.json */,
 				7423EC0C283F81E2004E9B26 /* weather_fog.json */,
 				26C5D5F12CD3CD7C004940D0 /* weather_overcast.json */,
 				7423EC0A283F81E2004E9B26 /* weather_thunderstorms_rain.json */,
@@ -3142,6 +3148,7 @@
 				264CC7472B975D450060DEA4 /* rocket_dark.json in Resources */,
 				7423EC23283F81E2004E9B26 /* weather_fog.json in Resources */,
 				26AA21C02BF3694B00B91A7C /* image_m5_station_qr.gif in Resources */,
+				26DF1F7F2D5B69950001E936 /* weatherxm_network.json in Resources */,
 				7423EC21283F81E2004E9B26 /* weather_thunderstorms_rain.json in Resources */,
 				26C5D6AF2CD8BDDB004940D0 /* weather_dust_wind.json in Resources */,
 				26CD5BA52AF50FAD0097093F /* GoogleService-Info.plist in Resources */,
@@ -3531,6 +3538,7 @@
 				267548CF29A91A87008BCF40 /* ShadowEnum.swift in Sources */,
 				26F149EB2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift in Sources */,
 				267548EE29A91A87008BCF40 /* Shape+.swift in Sources */,
+				26DF1F7D2D5B455B0001E936 /* WeatherStationsEmptyView.swift in Sources */,
 				268B5C3F2BCE95DB00E63655 /* ForecastTemperatureCardView.swift in Sources */,
 				26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */,
 				26C464F82A40A0D0005E5245 /* ShimmerEffectLoaderView.swift in Sources */,

@@ -130,7 +130,8 @@ class SwinjectHelper: SwinjectInterface {
         container.register(MeUseCase.self) { resolver in
             MeUseCase(meRepository: resolver.resolve(MeRepository.self)!,
 					  filtersRepository: resolver.resolve(FiltersRepository.self)!,
-					  networkRepository: resolver.resolve(NetworkRepository.self)!)
+					  networkRepository: resolver.resolve(NetworkRepository.self)!,
+					  userDefaultsrRepository: resolver.resolve(UserDefaultsRepository.self)!)
         }
 
         container.register(RewardsTimelineUseCase.self) { resolver in

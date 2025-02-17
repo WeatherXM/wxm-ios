@@ -43,11 +43,21 @@ public extension UserDefaults {
 		case lastInfoBannerId = "com.weatherxm.app.UserDefaults.Key.LastInfoBannerId"
 		case termsOfUseAcceptedTimestamp = "com.weatherxm.app.UserDefaults.Key.TermsOfUseAcceptedTimestamp"
 		case arePhotoVerificationTermsAccepted = "com.weatherxm.app.UserDefaults.Key.ArePhotoVerificationTermsAccepted"
+		case isAddButtonIndicationSeen = "com.weatherxm.app.UserDefaults.Key.isAddButtonIndicationSeen"
 
         // MARK: - UserDefaultEntry
 
         static var userKeys: [String] {
-			let keys: [GenericKey] = [.hideWalletTimestamp, .sortByDevicesOption, .filterDevicesOption, .groupByDevicesOption, .userDevicesFollowStates, .userDevices, .lastSurveyId, .lastInfoBannerId, .arePhotoVerificationTermsAccepted]
+			let keys: [GenericKey] = [.hideWalletTimestamp,
+									  .sortByDevicesOption,
+									  .filterDevicesOption,
+									  .groupByDevicesOption,
+									  .userDevicesFollowStates,
+									  .userDevices,
+									  .lastSurveyId,
+									  .lastInfoBannerId,
+									  .arePhotoVerificationTermsAccepted,
+									  .isAddButtonIndicationSeen]
             return keys.map { $0.rawValue }
         }
     }
