@@ -120,7 +120,7 @@ class RewardDetailsViewModel: ObservableObject {
 	}
 
 	func boostsSubtitle() -> String? {
-		guard let reward = rewardDetailsResponse?.boost?.totalReward else {
+		guard let reward = rewardDetailsResponse?.boost?.totalReward, reward > 0 else {
 			return nil
 		}
 		return LocalizableString.RewardDetails.earnedBoosts(reward.toWXMTokenPrecisionString).localized
