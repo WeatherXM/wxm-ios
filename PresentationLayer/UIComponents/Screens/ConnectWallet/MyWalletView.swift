@@ -119,10 +119,6 @@ private extension MyWalletView {
                                                                                   .itemId: .custom(viewModel.wallet?.address ?? "")])
                         })
 
-					Text(FontIcon.externalLink.rawValue)
-						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
-						.foregroundColor(Color(colorEnum: .wxmPrimary))
-
                     Spacer()
                 }
             }
@@ -145,15 +141,10 @@ private extension MyWalletView {
 			Button {
 				viewModel.handleCheckCompatibilityTap()
 			} label: {
-				HStack {
-					Text(LocalizableString.Wallet.compatibilityCheck.localized)
-						.font(.system(size: CGFloat(.caption), weight: .bold))
-						.frame(maxWidth: .infinity)
-					
-					Text(FontIcon.externalLink.rawValue)
-						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
-				}
-				.padding(.horizontal, CGFloat(.defaultSidePadding))
+				Text(LocalizableString.Wallet.compatibilityCheck.localized)
+					.font(.system(size: CGFloat(.caption), weight: .bold))
+					.frame(maxWidth: .infinity)
+					.padding(.horizontal, CGFloat(.defaultSidePadding))
 			}
 			.buttonStyle(WXMButtonStyle.transparent)
 			.padding(.top, CGFloat(.smallSidePadding))
