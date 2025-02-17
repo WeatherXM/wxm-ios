@@ -33,7 +33,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	private var followStates: [String: UserDeviceFollowState] = [:] {
 		didSet {
 			updateFilteredDevices()
-			updateTotalEarned()
+			updateStationRewards()
 		}
 	}
 
@@ -435,7 +435,7 @@ private extension WeatherStationsHomeViewModel {
         }
     }
 
-	func updateTotalEarned() {
+	func updateStationRewards() {
 		let owndedDevices = getOwnedDevices()
 		let hasOwned = !owndedDevices.isEmpty
 		let totalEarned: Double = owndedDevices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }
