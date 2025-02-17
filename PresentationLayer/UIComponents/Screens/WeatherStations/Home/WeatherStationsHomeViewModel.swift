@@ -441,9 +441,9 @@ private extension WeatherStationsHomeViewModel {
 		let totalEarned: Double = owndedDevices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }
 		
 		let noRewardsText = LocalizableString.Home.noRewardsYet.localized
-		let totalEarnedText = LocalizableString.Profile.totalEarned.localized
+		let stationRewardsdText = LocalizableString.RewardAnalytics.stationRewards.localized
 		
-		self.totalEarnedTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : totalEarnedText
+		self.totalEarnedTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : stationRewardsdText
 		self.totalEarnedValueText = (totalEarned == 0 && hasOwned) ? nil : "\(totalEarned.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)" 
 	}
 
