@@ -116,7 +116,8 @@ private extension LoggedInTabViewContainer {
                 .environmentObject(explorerViewModel)
                 .navigationBarHidden(true)
                 .zIndex(0)
-                .shimmerLoader(show: $explorerViewModel.isLoading)
+                .shimmerLoader(show: $explorerViewModel.isLoading,
+							   horizontalPadding: CGFloat(.defaultSidePadding))
 
             if explorerViewModel.showTopOfMapItems {
                 SearchView(viewModel: explorerViewModel.searchViewModel)
@@ -143,11 +144,7 @@ private extension LoggedInTabViewContainer {
 					netStatsButton
 				}
 			}
-
-			//				.animation(.easeIn, value: explorerViewModel.showTopOfMapItems)
 		}
-		//			.transition(AnyTransition.move(edge: .trailing).animation(.easeIn(duration: 0.5)))
-		//			.animation(.easeOut, value: explorerViewModel.showTopOfMapItems)
     }
 
     @ViewBuilder

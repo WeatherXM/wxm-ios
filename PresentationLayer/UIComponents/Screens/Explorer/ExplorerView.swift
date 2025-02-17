@@ -35,7 +35,7 @@ struct ExplorerView: View {
             WXMAnalytics.shared.trackScreen(.explorerLanding)
             viewModel.showTopOfMapItems = true
         }
-        .shimmerLoader(show: $viewModel.isLoading)
+		.shimmerLoader(show: $viewModel.isLoading, horizontalPadding: CGFloat(.defaultSidePadding))
     }
 
     var explorerContent: some View {

@@ -22,8 +22,7 @@ struct ShimmerEffectLoaderView: View {
                                startPoint: startPoint,
                                endPoint: endPoint)
             )
-            .frame(height: 4.0)
-            .padding(.horizontal)
+            .frame(height: 4.0)            
             .safeAreaInset(edge: .top, content: {
                 Color.clear
             })
