@@ -22,6 +22,7 @@ class GalleryViewModel: ObservableObject {
 	@Published var selectedImage: GalleryView.GalleryImage?
 	@Published var isCameraDenied: Bool = false
 	@Published var showInstructions: Bool = false
+	@Published var showShimmerLoading: Bool = false
 	@Published var showLoading: Bool = false
 	let loadingTitle: String = LocalizableString.PhotoVerification.preparingUploadTitle.localized
 	let loadingSubtitle: String = LocalizableString.PhotoVerification.preparingUploadDescription.localized
@@ -96,6 +97,12 @@ class GalleryViewModel: ObservableObject {
 
 		let action: VoidCallback = { [weak self] in
 			Task { @MainActor in
+				defer {
+					self?.showShimmerLoading = false
+				}
+				
+				self?.showShimmerLoading = true
+
 				do {
 					try await self?.deleteImageImage(selectedImage)
 					self?.selectedImage = self?.images.last
