@@ -55,8 +55,8 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	@Published var uploadInProgressStationName: String?
 	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
-	@Published var totalEarnedTitle: String?
-	@Published var totalEarnedValueText: String?
+	@Published var stationRewardsTitle: String?
+	@Published var stationRewardsValueText: String?
     @Published var shouldShowFullScreenLoader = true
     @Published var devices = [DeviceDetails]()
     @Published var scrollOffsetObject: TrackableScrollOffsetObject
@@ -443,8 +443,8 @@ private extension WeatherStationsHomeViewModel {
 		let noRewardsText = LocalizableString.Home.noRewardsYet.localized
 		let stationRewardsdText = LocalizableString.RewardAnalytics.stationRewards.localized
 		
-		self.totalEarnedTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : stationRewardsdText
-		self.totalEarnedValueText = (totalEarned == 0 && hasOwned) ? nil : "\(totalEarned.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)" 
+		self.stationRewardsTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : stationRewardsdText
+		self.stationRewardsValueText = (totalEarned == 0 && hasOwned) ? nil : "\(totalEarned.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)" 
 	}
 
 	func getOwnedDevices() -> [DeviceDetails] {
