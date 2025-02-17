@@ -47,18 +47,18 @@ struct WeatherStationsHomeView: View {
 
 	@ViewBuilder
 	var navigationBarRightView: some View {
-		if let totalEarnedTitle = viewModel.totalEarnedTitle {
+		if let stationRewardsTitle = viewModel.stationRewardsTitle {
 			Button {
 				viewModel.handleRewardAnalyticsTap()
 			} label: {
 				HStack(spacing: CGFloat(.mediumSpacing)) {
 					VStack(alignment: .leading, spacing: 0.0) {
-						Text(totalEarnedTitle)
+						Text(stationRewardsTitle)
 							.font(.system(size: CGFloat(.caption)))
 							.foregroundStyle(Color(colorEnum: .text))
 
-						if let totalEarnedValueText = viewModel.totalEarnedValueText {
-							Text(totalEarnedValueText)
+						if let stationRewardsValueText = viewModel.stationRewardsValueText {
+							Text(stationRewardsValueText)
 								.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
 								.foregroundStyle(Color(colorEnum: .text))
 						}
