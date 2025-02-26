@@ -33,7 +33,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	private var followStates: [String: UserDeviceFollowState] = [:] {
 		didSet {
 			updateFilteredDevices()
-			updateTotalEarned()
+			updateStationRewards()
 		}
 	}
 
@@ -55,8 +55,8 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	@Published var uploadInProgressStationName: String?
 	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
-	@Published var totalEarnedTitle: String?
-	@Published var totalEarnedValueText: String?
+	@Published var stationRewardsTitle: String?
+	@Published var stationRewardsValueText: String?
     @Published var shouldShowFullScreenLoader = true
     @Published var devices = [DeviceDetails]()
     @Published var scrollOffsetObject: TrackableScrollOffsetObject
@@ -435,16 +435,16 @@ private extension WeatherStationsHomeViewModel {
         }
     }
 
-	func updateTotalEarned() {
+	func updateStationRewards() {
 		let owndedDevices = getOwnedDevices()
 		let hasOwned = !owndedDevices.isEmpty
 		let totalEarned: Double = owndedDevices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }
 		
 		let noRewardsText = LocalizableString.Home.noRewardsYet.localized
-		let totalEarnedText = LocalizableString.Profile.totalEarned.localized
+		let stationRewardsdText = LocalizableString.RewardAnalytics.stationRewards.localized
 		
-		self.totalEarnedTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : totalEarnedText
-		self.totalEarnedValueText = (totalEarned == 0 && hasOwned) ? nil : "\(totalEarned.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)" 
+		self.stationRewardsTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : stationRewardsdText
+		self.stationRewardsValueText = (totalEarned == 0 && hasOwned) ? nil : "\(totalEarned.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)" 
 	}
 
 	func getOwnedDevices() -> [DeviceDetails] {
