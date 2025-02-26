@@ -10,7 +10,19 @@ import DomainLayer
 
 @MainActor
 extension NetworkDeviceRewardDetailsResponse {
+	var shouldShowAnnotation: Bool {
+		guard let rewardScore = base?.rewardScore else {
+			return false
+		}
+
+		return rewardScore < 99
+	}
+
 	var mainAnnotation: RewardAnnotation? {
+		guard shouldShowAnnotation else {
+			return nil
+		}
+
 		if let annotation = annotations?.first(where: { $0.severity == .error }) {
 			return annotation
 		} else if let annotation = annotations?.first(where: { $0.severity == .warning }) {

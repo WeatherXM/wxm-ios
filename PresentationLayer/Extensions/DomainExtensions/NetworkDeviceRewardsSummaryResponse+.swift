@@ -37,12 +37,21 @@ extension NetworkDeviceRewardsSummary: @retroactive Identifiable {
 								 isOwned: isOwned)
 	}
 
+	var shouldShowIssues: Bool {
+		guard let baseRewardScore else {
+			return true
+		}
+
+		return baseRewardScore < 99
+	}
+
 	var timelineTransactionDateString: String {
 		timestamp?.transactionsDateFormat(timeZone: .UTCTimezone ?? .current) ?? ""
 	}
 
 	private var warningType: CardWarningType? {
-		guard let annotationSummary else {
+		guard shouldShowIssues,
+			  let annotationSummary else {
 			return nil
 		}
 
