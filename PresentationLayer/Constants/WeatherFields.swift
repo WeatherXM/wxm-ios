@@ -174,39 +174,6 @@ extension WeatherField: @retroactive CustomStringConvertible {
 					.sun
 		}
 	}
-
-	var icon: AssetEnum {
-		switch self {
-			case .temperature:
-				return .temperatureIcon
-			case .feelsLike:
-				return .temperatureIcon
-			case .humidity:
-				return .humidityIcon
-			case .wind:
-				return .windDirIconSmall
-			case .windDirection:
-				return .windDirIconSmall
-			case .precipitation:
-				return .precipitationIcon
-			case .windGust:
-				return .windDirIconSmall
-			case .pressure:
-				return .pressureIcon
-			case .solarRadiation:
-				return .solarIcon
-			case .illuminance:
-				return .solarIcon
-			case .dewPoint:
-				return .dewPointIcon
-			case .uv:
-				return .solarIcon
-			case .precipitationProbability:
-				return .umbrellaIcon
-			case .dailyPrecipitation:
-				return .precipitationIcon
-		}
-	}
 	
 	var shouldHaveSpaceWithUnit: Bool {
 		let fieldsWithoutSpace: Set<WeatherField> = [.temperature,
