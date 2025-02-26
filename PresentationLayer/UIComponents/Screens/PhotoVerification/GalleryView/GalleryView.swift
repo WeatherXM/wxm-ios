@@ -152,6 +152,9 @@ struct GalleryView: View {
 						text: "",
 						images: viewModel.shareImages ?? [],
 						disablePopοver: true)
+		.onAppear {
+			viewModel.handleOnAppear()
+		}
     }
 }
 

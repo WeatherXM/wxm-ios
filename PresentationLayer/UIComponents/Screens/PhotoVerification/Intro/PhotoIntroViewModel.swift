@@ -8,6 +8,7 @@
 import Foundation
 import DomainLayer
 import SwiftUI
+import Toolkit
 
 @MainActor
 class PhotoIntroViewModel: ObservableObject {
@@ -54,6 +55,10 @@ class PhotoIntroViewModel: ObservableObject {
 		dismiss()
 		let viewModel = ViewModelsFactory.getGalleryViewModel(deviceId: deviceId, images: images, isNewVerification: true)
 		Router.shared.navigateTo(.photoGallery(viewModel))
+	}
+
+	func handleOnAppear() {
+		WXMAnalytics.shared.trackScreen(.stationPhotosIntro)
 	}
 }
 
@@ -114,4 +119,8 @@ private extension PhotoIntroViewModel {
 class PhotoInstructionsViewModel: PhotoIntroViewModel {
 	override var closeButtonIcon: FontIcon { .arrowLeft }
 	override var showTerms: Bool { false }
+
+	override func handleOnAppear() {
+		WXMAnalytics.shared.trackScreen(.stationPhotosInstructions)
+	}
 }

@@ -65,6 +65,9 @@ struct PhotoIntroView: View {
 			.iPadMaxWidth()
 		}
 		.navigationBarHidden(true)
+		.onAppear {
+			viewModel.handleOnAppear()
+		}
     }
 }
 
