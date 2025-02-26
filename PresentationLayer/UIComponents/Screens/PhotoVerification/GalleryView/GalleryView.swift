@@ -16,6 +16,7 @@ struct GalleryView: View {
 		ZStack {
 			Color(colorEnum: .bg)
 				.ignoresSafeArea()
+
 			VStack(spacing: 0.0) {
 				HStack(spacing: CGFloat(.mediumSpacing)) {
 					Button {
@@ -51,6 +52,8 @@ struct GalleryView: View {
 				}
 				.padding(CGFloat(.mediumSidePadding))
 				.background(Color(colorEnum: .top))
+				.shimmerLoader(show: $viewModel.showShimmerLoading,
+							   position: .bottom)
 
 				Group {
 					GeometryReader { proxy in
