@@ -200,6 +200,10 @@ class GalleryViewModel: ObservableObject {
 		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .exitPhotoVerification])
 		dismissAction()
 	}
+
+	func handleOnAppear() {
+		WXMAnalytics.shared.trackScreen(.stationPhotosGallery)
+	}
 }
 
 extension GalleryViewModel: HashableViewModel {
