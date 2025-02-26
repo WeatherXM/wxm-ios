@@ -45,11 +45,10 @@ struct StationForecastMiniCardView: View {
 				}
 
 				HStack(spacing: CGFloat(.minimumSpacing)) {
-					if let fontIcon = WeatherField.precipitationProbability.fontIcon {
-						Text(fontIcon.rawValue)
-							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
-							.foregroundStyle(Color(colorEnum: .darkestBlue))
-					}
+					let fontIcon = WeatherField.precipitationProbability.fontIcon(from: nil).icon
+					Text(fontIcon.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
+						.foregroundStyle(Color(colorEnum: .darkestBlue))
 
 					Text(item.precipitation)
 						.foregroundColor(Color(colorEnum: .darkestBlue))

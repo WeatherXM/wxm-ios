@@ -142,39 +142,43 @@ extension WeatherField: @retroactive CustomStringConvertible {
 		}
 	}
 	
-	var fontIcon: FontIcon? {
+	func fontIcon(from weather: CurrentWeather?) -> (icon: FontIcon, rotation: Double) {
+		let rotation = iconRotation(from: weather)
 		switch self {
 			case .temperature:
-					.temperatureThreeQuarters
+				return (.temperatureThreeQuarters, rotation)
 			case .feelsLike:
-					.temperatureThreeQuarters
+				return (.temperatureThreeQuarters, rotation)
 			case .humidity:
-					.humidity
+				return (.humidity, rotation)
 			case .wind:
-					.locationArrow
+				// Angle threshold because the original location-arrow doesn't point up
+				return (.locationArrow, rotation - 45.0)
 			case .windDirection:
-					.locationArrow
+				// Angle threshold because the original location-arrow doesn't point up
+				return (.locationArrow, rotation - 45.0)
 			case .precipitation:
-					.cloudShowers
+				return (.cloudShowers, rotation)
 			case .precipitationProbability:
-					.umbrella
+				return (.umbrella, rotation)
 			case .dailyPrecipitation:
-					.cloudShowers
+				return (.cloudShowers, rotation)
 			case .windGust:
-					.locationArrow
+				// Angle threshold because the original location-arrow doesn't point up
+				return (.locationArrow, rotation - 45.0)
 			case .pressure:
-					.gauge
+				return (.gauge, rotation)
 			case .solarRadiation:
-					.sun
+				return (.sun, rotation)
 			case .illuminance:
-					.sun
+				return (.sun, rotation)
 			case .dewPoint:
-					.dropletDegree
+				return (.dropletDegree, rotation)
 			case .uv:
-					.sun
+				return (.sun, rotation)
 		}
 	}
-	
+
 	var shouldHaveSpaceWithUnit: Bool {
 		let fieldsWithoutSpace: Set<WeatherField> = [.temperature,
 													 .feelsLike,
@@ -184,40 +188,41 @@ extension WeatherField: @retroactive CustomStringConvertible {
 		return !fieldsWithoutSpace.contains(self)
 	}
 	
-	func hourlyIcon() -> AssetEnum {
+	func hourlyIcon(from weather: CurrentWeather?) -> (icon: AssetEnum, rotation: Double) {
+		let rotation = iconRotation(from: weather)
 		switch self {
 			case .temperature:
-				return .temperatureIcon
+				return (.temperatureIcon, rotation)
 			case .feelsLike:
-				return .temperatureIcon
+				return (.temperatureIcon, rotation)
 			case .humidity:
-				return .humidityIconSmall
+				return (.humidityIconSmall, rotation)
 			case .wind:
-				return .windDirIconSmall
+				return (.windDirIconSmall, rotation)
 			case .windDirection:
-				return .windDirIconSmall
+				return (.windDirIconSmall, rotation)
 			case .precipitation:
-				return .rainIconSmall
+				return (.rainIconSmall, rotation)
 			case .precipitationProbability:
-				return .umbrellaIconSmall
+				return (.umbrellaIconSmall, rotation)
 			case .dailyPrecipitation:
-				return .rainIconSmall
+				return (.rainIconSmall, rotation)
 			case .windGust:
-				return .windDirIconSmall
+				return (.windDirIconSmall, rotation)
 			case .pressure:
-				return .pressureIconSmall
+				return (.pressureIconSmall, rotation)
 			case .solarRadiation:
-				return .solarIconSmall
+				return (.solarIconSmall, rotation)
 			case .illuminance:
-				return .solarIconSmall
+				return (.solarIconSmall, rotation)
 			case .dewPoint:
-				return .humidityIconSmall
+				return (.humidityIconSmall, rotation)
 			case .uv:
-				return .solarIconSmall
+				return (.solarIconSmall, rotation)
 		}
 	}
 
-	func iconRotation(from weather: CurrentWeather?) -> Double {
+	private func iconRotation(from weather: CurrentWeather?) -> Double {
 		switch self {
 			case .wind, .windGust:
 				guard let direction = weather?.windDirection else {
