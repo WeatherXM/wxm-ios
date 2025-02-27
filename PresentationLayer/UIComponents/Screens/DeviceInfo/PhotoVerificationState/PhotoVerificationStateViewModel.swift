@@ -76,7 +76,7 @@ private extension PhotoVerificationStateViewModel {
 					allPhotos = response
 					updateState()
 				case .failure(let error):
-					updateState()
+					updateState(photosError: error)
 					return error
 			}
 		} catch {
@@ -122,7 +122,12 @@ private extension PhotoVerificationStateViewModel {
 		}
 	}
 
-	func updateState() {
+	func updateState(photosError: NetworkErrorResponse? = nil) {
+		guard photosError == nil else {
+			state = .fetchPhotosFailed
+			return
+		}
+
 		let uploadState = photoGalleryUseCase?.getUploadState(deviceId: deviceId)
 		var isFailed: Bool
 		switch uploadState {
