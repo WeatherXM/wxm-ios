@@ -154,11 +154,12 @@ extension WeatherOverviewView {
 
     @ViewBuilder
     func weatherFieldView(for field: WeatherField) -> some View {
+		let fontIcon = field.fontIcon(from: weather)
 		HStack(alignment: .center, spacing: CGFloat(.smallSpacing)) {
-			Text(field.fontIcon?.rawValue ?? "")
+			Text(fontIcon.icon.rawValue)
 				.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
 				.foregroundColor(Color(colorEnum: .darkestBlue))
-				.rotationEffect(Angle(degrees: field.iconRotation(from: weather)))
+				.rotationEffect(Angle(degrees: fontIcon.rotation))
 
             VStack(alignment: .leading, spacing: 0.0) {
                 Text(field.description)
