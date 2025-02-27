@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct ClaimDeviceProgressView: View {
 	@Binding var state: State
@@ -24,8 +25,14 @@ struct ClaimDeviceProgressView: View {
 												 progress: .constant(obj.progress))
 					case .success(let object):
 						SuccessView(obj: object)
+							.onAppear {
+								WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.success: .custom("1")])
+							}
 					case .fail(let object):
 						FailView(obj: object)
+							.onAppear {
+								WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.success: .custom("0")])
+							}
 				}
 			}
 			.padding()

@@ -72,7 +72,7 @@ extension ParameterValue: RawRepresentable {
 			case .claiming:
 				return "Claiming"
 			case .claimingResult:
-				return "Claiming Results"
+				return "Claiming Result"
 			case .searchLocation:
 				return "Search Location"
 			case .claimingAddressSearch:
