@@ -90,6 +90,8 @@ extension DeviceInfoViewModel.Field {
 						}
 
 						return LocalizableString.DeviceInfo.photoVerificationWithPhotosDescription.localized
+					case .fetchPhotosFailed:
+						return ""
 				}
 		}
 	}

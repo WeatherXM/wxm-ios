@@ -19,9 +19,9 @@ class DeviceInfoViewModel: ObservableObject {
 	var sections: [[DeviceInfoRowView.Row]] {
 		var fields: [[Field]] = []
 		if device.isHelium {
-			fields = Field.heliumSections(for: followState)
+			fields = Field.heliumSections(for: followState, photosState: photoVerificationState)
 		} else {
-			fields = Field.wifiSections(for: followState)
+			fields = Field.wifiSections(for: followState, photosState: photoVerificationState)
 		}
 
 		let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
@@ -178,7 +178,7 @@ class DeviceInfoViewModel: ObservableObject {
 			do {
 				let response = try await self?.deviceInfoUseCase?.getDeviceInfo(deviceId: deviceId).toAsync()
 				self?.isLoading = false
-				if let error = response?.error ?? photosError {
+				if let error = response?.error {
 					self?.failObj = error.uiInfo.defaultFailObject(type: .deviceInfo) {
 						self?.isFailed = false
 						self?.isLoading = true
