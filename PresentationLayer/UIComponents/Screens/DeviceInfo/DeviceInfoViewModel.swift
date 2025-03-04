@@ -19,9 +19,9 @@ class DeviceInfoViewModel: ObservableObject {
 	var sections: [[DeviceInfoRowView.Row]] {
 		var fields: [[Field]] = []
 		if device.isHelium {
-			fields = Field.heliumSections(for: followState)
+			fields = Field.heliumSections(for: followState, photosState: photoVerificationState)
 		} else {
-			fields = Field.wifiSections(for: followState)
+			fields = Field.wifiSections(for: followState, photosState: photoVerificationState)
 		}
 
 		let rows: [[DeviceInfoRowView.Row]] = fields.map { $0.map { field in
@@ -82,8 +82,6 @@ class DeviceInfoViewModel: ObservableObject {
 	@Published var showShareDialog: Bool = false
 	private(set) var shareDialogText: String = ""
     @Published var isLoading: Bool = true
-    @Published var isFailed: Bool = false
-    var failObj: FailSuccessStateObject?
     @Published private(set) var device: DeviceDetails
 	@Published private(set) var deviceInfo: NetworkDevicesInfoResponse? {
 		didSet {
@@ -178,13 +176,12 @@ class DeviceInfoViewModel: ObservableObject {
 			do {
 				let response = try await self?.deviceInfoUseCase?.getDeviceInfo(deviceId: deviceId).toAsync()
 				self?.isLoading = false
-				if let error = response?.error ?? photosError {
-					self?.failObj = error.uiInfo.defaultFailObject(type: .deviceInfo) {
-						self?.isFailed = false
-						self?.isLoading = true
-						self?.refresh()
+				if let error = response?.error {
+					let uiInfo = error.uiInfo
+					let text = uiInfo.description ?? uiInfo.title
+					if let message = text.attributedMarkdown {
+						Toast.shared.show(text: message)
 					}
-					self?.isFailed = true
 				}
 				self?.deviceInfo = response?.value
 				completion?()

@@ -36,21 +36,33 @@ extension DeviceInfoViewModel {
 		case rewardSplit
 		case photos
 
-        static func heliumSections(for followState: UserDeviceFollowState?) -> [[Field]] {
+		static func heliumSections(for followState: UserDeviceFollowState?,
+								   photosState: PhotoVerificationStateView.State?) -> [[Field]] {
             if followState?.state == .owned {
-				return [[.name, .frequency, .reboot],
-						[.photos],
-						[.stationLocation]]
+				let isPhotosFailed: Bool = photosState == .fetchPhotosFailed
+				var sections: [[Field]] = [[.name, .frequency, .reboot]]
+				if !isPhotosFailed {
+					sections.append([.photos])
+				}
+				sections.append([.stationLocation])
+
+				return sections
             }
 
             return [[.name], [.stationLocation]]
         }
 
-        static func wifiSections(for followState: UserDeviceFollowState?) -> [[Field]] {
+        static func wifiSections(for followState: UserDeviceFollowState?,
+								 photosState: PhotoVerificationStateView.State?) -> [[Field]] {
             if followState?.state == .owned {
-                return [[.name],
-						[.photos],
-						[.stationLocation]]
+				let isPhotosFailed: Bool = photosState == .fetchPhotosFailed
+				var sections: [[Field]] = [[.name]]
+				if !isPhotosFailed {
+					sections.append([.photos])
+				}
+				sections.append([.stationLocation])
+
+				return sections
             }
             
 			return [[.name], [.stationLocation]]

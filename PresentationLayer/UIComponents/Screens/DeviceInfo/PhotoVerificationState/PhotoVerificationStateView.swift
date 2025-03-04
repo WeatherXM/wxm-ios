@@ -17,14 +17,17 @@ struct PhotoVerificationStateView: View {
 				photosView(photos: photos, isFailed: isFailed)
 			case .uploading(let progress):
 				uploadingView(progress: progress)
+			case .fetchPhotosFailed:
+				EmptyView()
 		}
     }
 }
 
 extension PhotoVerificationStateView {
-	enum State {
+	enum State: Equatable {
 		case content(photos: [URL], isFailed: Bool)
 		case uploading(progress: CGFloat)
+		case fetchPhotosFailed
 	}
 
 	@ViewBuilder

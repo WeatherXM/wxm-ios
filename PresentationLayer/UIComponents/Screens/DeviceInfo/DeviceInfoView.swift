@@ -67,8 +67,7 @@ struct DeviceInfoView: View {
                     .padding(CGFloat(.defaultSidePadding))
                 }
             }
-            .spinningLoader(show: $viewModel.isLoading, hideContent: true)
-            .fail(show: $viewModel.isFailed, obj: viewModel.failObj)
+            .spinningLoader(show: $viewModel.isLoading, hideContent: true)            
         }
         .onAppear {
 			navigationObject.title = LocalizableString.DeviceInfo.title.localized
