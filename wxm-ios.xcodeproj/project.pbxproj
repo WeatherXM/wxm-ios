@@ -546,6 +546,8 @@
 		26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */; };
 		26F149E92BDFEAFA0029F981 /* ClaimDeviceContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */; };
 		26F149EB2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */; };
+		26F176972D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F176962D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift */; };
+		26F1769A2D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F176992D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift */; };
 		26F6F7392D07068C00FB256B /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F7382D07068C00FB256B /* GalleryView.swift */; };
 		26F6F73B2D07069E00FB256B /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */; };
 		26F6F73E2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */; };
@@ -1132,6 +1134,8 @@
 		26F149E62BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimStationSelectionTypes.swift; sourceTree = "<group>"; };
 		26F149E82BDFEAFA0029F981 /* ClaimDeviceContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceContainerView.swift; sourceTree = "<group>"; };
 		26F149EA2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceContainerViewModel.swift; sourceTree = "<group>"; };
+		26F176962D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRemoteConfigRepositoryImpl.swift; sourceTree = "<group>"; };
+		26F176992D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigUseCaseTests.swift; sourceTree = "<group>"; };
 		26F6F7382D07068C00FB256B /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMCapsuleButtonStyle.swift; sourceTree = "<group>"; };
@@ -1597,6 +1601,7 @@
 		26707E9D2C3ECC0400B9305F /* WeatherXMTests */ = {
 			isa = PBXGroup;
 			children = (
+				26F176942D79A905000BA381 /* DomainLayer */,
 				26DF1F572D54B6650001E936 /* Resources */,
 				267811032D490E7800D22B67 /* DataLayer */,
 				269C6E652C4A71CE00879263 /* Toolkit */,
@@ -2654,6 +2659,31 @@
 			path = ClaimStationSelection;
 			sourceTree = "<group>";
 		};
+		26F176942D79A905000BA381 /* DomainLayer */ = {
+			isa = PBXGroup;
+			children = (
+				26F176982D79AF1C000BA381 /* UseCases */,
+				26F176952D79A984000BA381 /* MockRepositories */,
+			);
+			path = DomainLayer;
+			sourceTree = "<group>";
+		};
+		26F176952D79A984000BA381 /* MockRepositories */ = {
+			isa = PBXGroup;
+			children = (
+				26F176962D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift */,
+			);
+			path = MockRepositories;
+			sourceTree = "<group>";
+		};
+		26F176982D79AF1C000BA381 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				26F176992D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 		26F6F7372D0705B200FB256B /* GalleryView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3225,6 +3255,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2678110A2D49279300D22B67 /* FiltersServiceTest.swift in Sources */,
+				26F176972D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift in Sources */,
+				26F1769A2D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift in Sources */,
 				269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */,
 				26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */,
 				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
