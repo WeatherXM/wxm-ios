@@ -166,9 +166,7 @@ class SwinjectHelper: SwinjectInterface {
         // MARK: - Rewards Use Case
 
         container.register(RewardsUseCase.self) { resolver in
-            RewardsUseCase(meRepository: resolver.resolve(MeRepository.self)!,
-                           devicesRepository: resolver.resolve(DevicesRepository.self)!,
-                           keychainRepository: resolver.resolve(KeychainRepository.self)!)
+            RewardsUseCase(devicesRepository: resolver.resolve(DevicesRepository.self)!)
         }
 
         // MARK: - Filters
