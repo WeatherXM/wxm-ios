@@ -552,6 +552,7 @@
 		26F1769E2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F1769D2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift */; };
 		26F176A02D79D271000BA381 /* MockKeychainRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F1769F2D79D271000BA381 /* MockKeychainRepositoryImpl.swift */; };
 		26F176A22D79D60E000BA381 /* MockMeRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F176A12D79D60E000BA381 /* MockMeRepositoryImpl.swift */; };
+		26F176A42D79E783000BA381 /* WidgetUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F176A32D79E783000BA381 /* WidgetUseCaseTests.swift */; };
 		26F6F7392D07068C00FB256B /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F7382D07068C00FB256B /* GalleryView.swift */; };
 		26F6F73B2D07069E00FB256B /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */; };
 		26F6F73E2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */; };
@@ -1144,6 +1145,7 @@
 		26F1769D2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhotoGalleryUseCaseTests.swift; sourceTree = "<group>"; };
 		26F1769F2D79D271000BA381 /* MockKeychainRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeychainRepositoryImpl.swift; sourceTree = "<group>"; };
 		26F176A12D79D60E000BA381 /* MockMeRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMeRepositoryImpl.swift; sourceTree = "<group>"; };
+		26F176A32D79E783000BA381 /* WidgetUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetUseCaseTests.swift; sourceTree = "<group>"; };
 		26F6F7382D07068C00FB256B /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		26F6F73D2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMCapsuleButtonStyle.swift; sourceTree = "<group>"; };
@@ -2691,6 +2693,7 @@
 			isa = PBXGroup;
 			children = (
 				26F176992D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift */,
+				26F176A32D79E783000BA381 /* WidgetUseCaseTests.swift */,
 				26F1769D2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift */,
 			);
 			path = UseCases;
@@ -3273,6 +3276,7 @@
 				269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */,
 				26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */,
 				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
+				26F176A42D79E783000BA381 /* WidgetUseCaseTests.swift in Sources */,
 				265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */,
 				26DF1F562D54AC360001E936 /* FileUploaderServiceTests.swift in Sources */,
 				265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */,

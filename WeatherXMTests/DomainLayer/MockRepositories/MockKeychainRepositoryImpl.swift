@@ -13,6 +13,7 @@ class MockKeychainRepositoryImpl {
 	private var email: String?
 	private var password: String?
 }
+
 extension MockKeychainRepositoryImpl: KeychainRepository {
 	var userLoggedInStateNotificationPublisher: NotificationCenter.Publisher {
 		NotificationCenter.default.publisher(for: Notification.Name("MockKeychainRepositoryImpl.userIsLoggedInChanged"))
