@@ -176,6 +176,9 @@
 		26710E4A2D7B1E9600878298 /* SettingsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E492D7B1E9600878298 /* SettingsUseCaseTests.swift */; };
 		26710E4C2D7B21E700878298 /* RewardsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E4B2D7B21E700878298 /* RewardsUseCaseTests.swift */; };
 		26710E4E2D7B26CC00878298 /* NetworkUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E4D2D7B26CC00878298 /* NetworkUseCaseTests.swift */; };
+		26710E502D7B2F2700878298 /* MeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E4F2D7B2F2700878298 /* MeUseCaseTests.swift */; };
+		26710E522D7B2FA500878298 /* MockFiltersRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E512D7B2FA500878298 /* MockFiltersRepositoryImpl.swift */; };
+		26710E542D7B31EF00878298 /* MockUserDefaultsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E532D7B31EF00878298 /* MockUserDefaultsRepositoryImpl.swift */; };
 		2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */; };
 		2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */; };
 		2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87B2C89F19A002266BE /* BoostCode+.swift */; };
@@ -819,6 +822,9 @@
 		26710E492D7B1E9600878298 /* SettingsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCaseTests.swift; sourceTree = "<group>"; };
 		26710E4B2D7B21E700878298 /* RewardsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsUseCaseTests.swift; sourceTree = "<group>"; };
 		26710E4D2D7B26CC00878298 /* NetworkUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUseCaseTests.swift; sourceTree = "<group>"; };
+		26710E4F2D7B2F2700878298 /* MeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeUseCaseTests.swift; sourceTree = "<group>"; };
+		26710E512D7B2FA500878298 /* MockFiltersRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFiltersRepositoryImpl.swift; sourceTree = "<group>"; };
+		26710E532D7B31EF00878298 /* MockUserDefaultsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaultsRepositoryImpl.swift; sourceTree = "<group>"; };
 		2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthView.swift; sourceTree = "<group>"; };
 		2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthInfoView.swift; sourceTree = "<group>"; };
 		2672B87B2C89F19A002266BE /* BoostCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoostCode+.swift"; sourceTree = "<group>"; };
@@ -2704,9 +2710,11 @@
 				26F176962D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift */,
 				26710E472D7B13B100878298 /* MockAuthRepositoryImpl.swift */,
 				26710E3F2D7AFED800878298 /* MockDevicesRepositoryImpl.swift */,
+				26710E532D7B31EF00878298 /* MockUserDefaultsRepositoryImpl.swift */,
 				26710E3B2D7AE86400878298 /* MockFirmwareUpdateRepositoryImpl.swift */,
 				26F176A12D79D60E000BA381 /* MockMeRepositoryImpl.swift */,
 				26F1769F2D79D271000BA381 /* MockKeychainRepositoryImpl.swift */,
+				26710E512D7B2FA500878298 /* MockFiltersRepositoryImpl.swift */,
 				26F1769B2D79B832000BA381 /* MockPhotosRepositoryImpl.swift */,
 				26710E432D7B0D9B00878298 /* MockNetworkRepositoryImpl.swift */,
 				26710E452D7B127C00878298 /* MockSettingsRepositoryImpl.swift */,
@@ -2721,6 +2729,7 @@
 				26710E4B2D7B21E700878298 /* RewardsUseCaseTests.swift */,
 				26710E4D2D7B26CC00878298 /* NetworkUseCaseTests.swift */,
 				26710E412D7B047100878298 /* RewardsTimelineUseCaseTests.swift */,
+				26710E4F2D7B2F2700878298 /* MeUseCaseTests.swift */,
 				26F176A32D79E783000BA381 /* WidgetUseCaseTests.swift */,
 				26710E3D2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift */,
 				26F1769D2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift */,
@@ -3300,12 +3309,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				26710E4A2D7B1E9600878298 /* SettingsUseCaseTests.swift in Sources */,
+				26710E522D7B2FA500878298 /* MockFiltersRepositoryImpl.swift in Sources */,
 				26F1769C2D79B832000BA381 /* MockPhotosRepositoryImpl.swift in Sources */,
 				2678110A2D49279300D22B67 /* FiltersServiceTest.swift in Sources */,
 				26F176972D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift in Sources */,
 				26F1769A2D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift in Sources */,
 				269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */,
 				26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */,
+				26710E542D7B31EF00878298 /* MockUserDefaultsRepositoryImpl.swift in Sources */,
 				26710E3E2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift in Sources */,
 				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
 				26710E4C2D7B21E700878298 /* RewardsUseCaseTests.swift in Sources */,
@@ -3323,6 +3334,7 @@
 				26710E422D7B047100878298 /* RewardsTimelineUseCaseTests.swift in Sources */,
 				26F176A22D79D60E000BA381 /* MockMeRepositoryImpl.swift in Sources */,
 				26DF1F642D56328B0001E936 /* PhotosRepositoryImplTests.swift in Sources */,
+				26710E502D7B2F2700878298 /* MeUseCaseTests.swift in Sources */,
 				26DF1F5E2D55F0C70001E936 /* MeRepositoryImplTests.swift in Sources */,
 				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
 				26710E482D7B13B100878298 /* MockAuthRepositoryImpl.swift in Sources */,
