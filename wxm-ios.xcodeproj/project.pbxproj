@@ -173,6 +173,7 @@
 		26710E442D7B0D9B00878298 /* MockNetworkRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E432D7B0D9B00878298 /* MockNetworkRepositoryImpl.swift */; };
 		26710E462D7B127C00878298 /* MockSettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E452D7B127C00878298 /* MockSettingsRepositoryImpl.swift */; };
 		26710E482D7B13B100878298 /* MockAuthRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E472D7B13B100878298 /* MockAuthRepositoryImpl.swift */; };
+		26710E4A2D7B1E9600878298 /* SettingsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E492D7B1E9600878298 /* SettingsUseCaseTests.swift */; };
 		2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */; };
 		2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */; };
 		2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87B2C89F19A002266BE /* BoostCode+.swift */; };
@@ -813,6 +814,7 @@
 		26710E432D7B0D9B00878298 /* MockNetworkRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRepositoryImpl.swift; sourceTree = "<group>"; };
 		26710E452D7B127C00878298 /* MockSettingsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSettingsRepositoryImpl.swift; sourceTree = "<group>"; };
 		26710E472D7B13B100878298 /* MockAuthRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthRepositoryImpl.swift; sourceTree = "<group>"; };
+		26710E492D7B1E9600878298 /* SettingsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCaseTests.swift; sourceTree = "<group>"; };
 		2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthView.swift; sourceTree = "<group>"; };
 		2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthInfoView.swift; sourceTree = "<group>"; };
 		2672B87B2C89F19A002266BE /* BoostCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoostCode+.swift"; sourceTree = "<group>"; };
@@ -2716,6 +2718,7 @@
 				26F176A32D79E783000BA381 /* WidgetUseCaseTests.swift */,
 				26710E3D2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift */,
 				26F1769D2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift */,
+				26710E492D7B1E9600878298 /* SettingsUseCaseTests.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -3290,6 +3293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26710E4A2D7B1E9600878298 /* SettingsUseCaseTests.swift in Sources */,
 				26F1769C2D79B832000BA381 /* MockPhotosRepositoryImpl.swift in Sources */,
 				2678110A2D49279300D22B67 /* FiltersServiceTest.swift in Sources */,
 				26F176972D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift in Sources */,

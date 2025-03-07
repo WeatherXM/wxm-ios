@@ -47,10 +47,7 @@ class SwinjectHelper: SwinjectInterface {
         }
 
         container.register(SettingsUseCase.self) { resolver in
-            SettingsUseCase(repository: resolver.resolve(SettingsRepository.self)!,
-                            authRepository: resolver.resolve(AuthRepository.self)!,
-                            keychainRepository: resolver.resolve(KeychainRepository.self)!,
-                            networkRepository: resolver.resolve(NetworkRepository.self)!)
+            SettingsUseCase(repository: resolver.resolve(SettingsRepository.self)!)
         }
 
         // MARK: - Network
