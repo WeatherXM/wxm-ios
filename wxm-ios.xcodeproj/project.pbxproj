@@ -166,6 +166,8 @@
 		266DC0132A54260900EC9E1F /* NetworkErrorResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DC0122A54260900EC9E1F /* NetworkErrorResponse+.swift */; };
 		266DC01B2A55786F00EC9E1F /* WXMPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266DC01A2A55786F00EC9E1F /* WXMPopover.swift */; };
 		26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */; };
+		26710E3C2D7AE86400878298 /* MockFirmwareUpdateRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E3B2D7AE86400878298 /* MockFirmwareUpdateRepositoryImpl.swift */; };
+		26710E3E2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E3D2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift */; };
 		2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */; };
 		2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */; };
 		2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87B2C89F19A002266BE /* BoostCode+.swift */; };
@@ -799,6 +801,8 @@
 		266DC01A2A55786F00EC9E1F /* WXMPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMPopover.swift; sourceTree = "<group>"; };
 		26707E9C2C3ECC0400B9305F /* WeatherXMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherXMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26707E9E2C3ECC0400B9305F /* WEIConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEIConverterTests.swift; sourceTree = "<group>"; };
+		26710E3B2D7AE86400878298 /* MockFirmwareUpdateRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirmwareUpdateRepositoryImpl.swift; sourceTree = "<group>"; };
+		26710E3D2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFirmwareUseCaseTests.swift; sourceTree = "<group>"; };
 		2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthView.swift; sourceTree = "<group>"; };
 		2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthInfoView.swift; sourceTree = "<group>"; };
 		2672B87B2C89F19A002266BE /* BoostCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoostCode+.swift"; sourceTree = "<group>"; };
@@ -2682,6 +2686,7 @@
 			isa = PBXGroup;
 			children = (
 				26F176962D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift */,
+				26710E3B2D7AE86400878298 /* MockFirmwareUpdateRepositoryImpl.swift */,
 				26F176A12D79D60E000BA381 /* MockMeRepositoryImpl.swift */,
 				26F1769F2D79D271000BA381 /* MockKeychainRepositoryImpl.swift */,
 				26F1769B2D79B832000BA381 /* MockPhotosRepositoryImpl.swift */,
@@ -2694,6 +2699,7 @@
 			children = (
 				26F176992D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift */,
 				26F176A32D79E783000BA381 /* WidgetUseCaseTests.swift */,
+				26710E3D2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift */,
 				26F1769D2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift */,
 			);
 			path = UseCases;
@@ -3275,8 +3281,10 @@
 				26F1769A2D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift in Sources */,
 				269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */,
 				26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */,
+				26710E3E2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift in Sources */,
 				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
 				26F176A42D79E783000BA381 /* WidgetUseCaseTests.swift in Sources */,
+				26710E3C2D7AE86400878298 /* MockFirmwareUpdateRepositoryImpl.swift in Sources */,
 				265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */,
 				26DF1F562D54AC360001E936 /* FileUploaderServiceTests.swift in Sources */,
 				265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */,
