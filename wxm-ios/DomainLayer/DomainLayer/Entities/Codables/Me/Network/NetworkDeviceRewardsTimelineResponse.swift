@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkDeviceRewardsTimelineResponse: Codable, Sendable {
+public struct NetworkDeviceRewardsTimelineResponse: Codable, Sendable, Equatable {
 	public let data: [NetworkDeviceRewardsSummary]?
 	public let totalPages: Int?
 	public let hasNextPage: Bool?
