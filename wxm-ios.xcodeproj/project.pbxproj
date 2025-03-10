@@ -187,6 +187,8 @@
 		26710E8E2D7EF73000878298 /* MockExplorerRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E8D2D7EF73000878298 /* MockExplorerRepositoryImpl.swift */; };
 		26710E902D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E8F2D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift */; };
 		26710E922D7F05DE00878298 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 26710E912D7F05DE00878298 /* MapboxMaps */; };
+		26710E942D7F0B5400878298 /* MockBluetoothDevicesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E932D7F0B5400878298 /* MockBluetoothDevicesRepositoryImpl.swift */; };
+		26710E962D7F15B000878298 /* DevicesUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E952D7F15B000878298 /* DevicesUseCaseTests.swift */; };
 		2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */; };
 		2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */; };
 		2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87B2C89F19A002266BE /* BoostCode+.swift */; };
@@ -840,6 +842,8 @@
 		26710E8B2D7EF69C00878298 /* ExplorerUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerUseCaseTests.swift; sourceTree = "<group>"; };
 		26710E8D2D7EF73000878298 /* MockExplorerRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExplorerRepositoryImpl.swift; sourceTree = "<group>"; };
 		26710E8F2D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeviceLocationRepositoryImpl.swift; sourceTree = "<group>"; };
+		26710E932D7F0B5400878298 /* MockBluetoothDevicesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBluetoothDevicesRepositoryImpl.swift; sourceTree = "<group>"; };
+		26710E952D7F15B000878298 /* DevicesUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesUseCaseTests.swift; sourceTree = "<group>"; };
 		2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthView.swift; sourceTree = "<group>"; };
 		2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthInfoView.swift; sourceTree = "<group>"; };
 		2672B87B2C89F19A002266BE /* BoostCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoostCode+.swift"; sourceTree = "<group>"; };
@@ -2737,6 +2741,7 @@
 				26710E452D7B127C00878298 /* MockSettingsRepositoryImpl.swift */,
 				26710E572D7ECD0B00878298 /* MockMainRepositoryImpl.swift */,
 				26710E8F2D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift */,
+				26710E932D7F0B5400878298 /* MockBluetoothDevicesRepositoryImpl.swift */,
 			);
 			path = MockRepositories;
 			sourceTree = "<group>";
@@ -2757,6 +2762,7 @@
 				26710E492D7B1E9600878298 /* SettingsUseCaseTests.swift */,
 				26710E552D7ECBC300878298 /* MainUseCaseTests.swift */,
 				26710E592D7EED7200878298 /* HistoryUseCaseTest.swift */,
+				26710E952D7F15B000878298 /* DevicesUseCaseTests.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -3335,6 +3341,7 @@
 				26710E4A2D7B1E9600878298 /* SettingsUseCaseTests.swift in Sources */,
 				26710E522D7B2FA500878298 /* MockFiltersRepositoryImpl.swift in Sources */,
 				26F1769C2D79B832000BA381 /* MockPhotosRepositoryImpl.swift in Sources */,
+				26710E962D7F15B000878298 /* DevicesUseCaseTests.swift in Sources */,
 				2678110A2D49279300D22B67 /* FiltersServiceTest.swift in Sources */,
 				26F176972D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift in Sources */,
 				26F1769A2D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift in Sources */,
@@ -3364,6 +3371,7 @@
 				26DF1F5E2D55F0C70001E936 /* MeRepositoryImplTests.swift in Sources */,
 				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
 				26710E8E2D7EF73000878298 /* MockExplorerRepositoryImpl.swift in Sources */,
+				26710E942D7F0B5400878298 /* MockBluetoothDevicesRepositoryImpl.swift in Sources */,
 				26710E5C2D7EF03500878298 /* FiltersUseCaseTests.swift in Sources */,
 				26710E482D7B13B100878298 /* MockAuthRepositoryImpl.swift in Sources */,
 				26710E5A2D7EED7200878298 /* HistoryUseCaseTest.swift in Sources */,
