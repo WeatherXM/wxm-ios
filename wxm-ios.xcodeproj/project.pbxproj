@@ -186,6 +186,7 @@
 		26710E8C2D7EF69C00878298 /* ExplorerUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E8B2D7EF69C00878298 /* ExplorerUseCaseTests.swift */; };
 		26710E8E2D7EF73000878298 /* MockExplorerRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E8D2D7EF73000878298 /* MockExplorerRepositoryImpl.swift */; };
 		26710E902D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E8F2D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift */; };
+		26710E922D7F05DE00878298 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 26710E912D7F05DE00878298 /* MapboxMaps */; };
 		2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */; };
 		2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */; };
 		2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87B2C89F19A002266BE /* BoostCode+.swift */; };
@@ -1241,6 +1242,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26710E922D7F05DE00878298 /* MapboxMaps in Frameworks */,
 				267811522D4BB61800D22B67 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3015,6 +3017,7 @@
 			name = WeatherXMTests;
 			packageProductDependencies = (
 				267811512D4BB61800D22B67 /* Alamofire */,
+				26710E912D7F05DE00878298 /* MapboxMaps */,
 			);
 			productName = WeatherXMTests;
 			productReference = 26707E9C2C3ECC0400B9305F /* WeatherXMTests.xctest */;
@@ -4721,6 +4724,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9EB629A92BE000E8EBA3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		26710E912D7F05DE00878298 /* MapboxMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 261E9EB329A92B9400E8EBA3 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			productName = MapboxMaps;
 		};
 		267811512D4BB61800D22B67 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
