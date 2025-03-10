@@ -18,28 +18,28 @@ public protocol DeviceInfoRepository {
 	func getDevicePhotos(deviceId: String) throws -> AnyPublisher<DataResponse<[String], NetworkErrorResponse>, Never>
 }
 
-public enum RebootStationState: Sendable {
+public enum RebootStationState: Sendable, Equatable {
     case connect
     case rebooting
     case failed(RebootError)
     case finished
 }
 
-public enum RebootError: Sendable {
+public enum RebootError: Sendable, Equatable {
     case bluetooth(BluetoothState)
     case notInRange
     case connect
     case unknown
 }
 
-public enum ChangeFrequencyState: Sendable {
+public enum ChangeFrequencyState: Sendable, Equatable {
     case connect
     case changing
     case failed(ChangeFrequencyError)
     case finished
 }
 
-public enum ChangeFrequencyError: Sendable {
+public enum ChangeFrequencyError: Sendable, Equatable {
     case bluetooth(BluetoothState)
     case notInRange
     case connect

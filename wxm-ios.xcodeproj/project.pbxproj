@@ -190,6 +190,8 @@
 		26710E942D7F0B5400878298 /* MockBluetoothDevicesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E932D7F0B5400878298 /* MockBluetoothDevicesRepositoryImpl.swift */; };
 		26710E962D7F15B000878298 /* DevicesUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E952D7F15B000878298 /* DevicesUseCaseTests.swift */; };
 		26710E982D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E972D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift */; };
+		26710E9A2D7F32E100878298 /* MockDeviceInfoRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E992D7F32E100878298 /* MockDeviceInfoRepositoryImpl.swift */; };
+		26710E9C2D7F36A700878298 /* DeviceInfoUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E9B2D7F36A700878298 /* DeviceInfoUseCaseTests.swift */; };
 		2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */; };
 		2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */; };
 		2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87B2C89F19A002266BE /* BoostCode+.swift */; };
@@ -846,6 +848,8 @@
 		26710E932D7F0B5400878298 /* MockBluetoothDevicesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBluetoothDevicesRepositoryImpl.swift; sourceTree = "<group>"; };
 		26710E952D7F15B000878298 /* DevicesUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesUseCaseTests.swift; sourceTree = "<group>"; };
 		26710E972D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationUseCaseTests.swift; sourceTree = "<group>"; };
+		26710E992D7F32E100878298 /* MockDeviceInfoRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeviceInfoRepositoryImpl.swift; sourceTree = "<group>"; };
+		26710E9B2D7F36A700878298 /* DeviceInfoUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoUseCaseTests.swift; sourceTree = "<group>"; };
 		2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthView.swift; sourceTree = "<group>"; };
 		2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthInfoView.swift; sourceTree = "<group>"; };
 		2672B87B2C89F19A002266BE /* BoostCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoostCode+.swift"; sourceTree = "<group>"; };
@@ -2730,6 +2734,7 @@
 			isa = PBXGroup;
 			children = (
 				26710E8D2D7EF73000878298 /* MockExplorerRepositoryImpl.swift */,
+				26710E992D7F32E100878298 /* MockDeviceInfoRepositoryImpl.swift */,
 				26F176962D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift */,
 				26710E472D7B13B100878298 /* MockAuthRepositoryImpl.swift */,
 				26710E3F2D7AFED800878298 /* MockDevicesRepositoryImpl.swift */,
@@ -2766,6 +2771,7 @@
 				26710E592D7EED7200878298 /* HistoryUseCaseTest.swift */,
 				26710E952D7F15B000878298 /* DevicesUseCaseTests.swift */,
 				26710E972D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift */,
+				26710E9B2D7F36A700878298 /* DeviceInfoUseCaseTests.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -3355,6 +3361,7 @@
 				26710E3E2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift in Sources */,
 				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
 				26710E4C2D7B21E700878298 /* RewardsUseCaseTests.swift in Sources */,
+				26710E9C2D7F36A700878298 /* DeviceInfoUseCaseTests.swift in Sources */,
 				26F176A42D79E783000BA381 /* WidgetUseCaseTests.swift in Sources */,
 				26710E3C2D7AE86400878298 /* MockFirmwareUpdateRepositoryImpl.swift in Sources */,
 				26710E582D7ECD0B00878298 /* MockMainRepositoryImpl.swift in Sources */,
@@ -3376,6 +3383,7 @@
 				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
 				26710E8E2D7EF73000878298 /* MockExplorerRepositoryImpl.swift in Sources */,
 				26710E942D7F0B5400878298 /* MockBluetoothDevicesRepositoryImpl.swift in Sources */,
+				26710E9A2D7F32E100878298 /* MockDeviceInfoRepositoryImpl.swift in Sources */,
 				26710E5C2D7EF03500878298 /* FiltersUseCaseTests.swift in Sources */,
 				26710E482D7B13B100878298 /* MockAuthRepositoryImpl.swift in Sources */,
 				26710E5A2D7EED7200878298 /* HistoryUseCaseTest.swift in Sources */,
