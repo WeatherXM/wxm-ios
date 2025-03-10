@@ -13,11 +13,9 @@ import Toolkit
 
 public class HistoryUseCase {
     private let meRepository: MeRepository
-    private let userDefaultsRepository: UserDefaultsRepository
 
-    public init(meRepository: MeRepository, userDefaultsRepository: UserDefaultsRepository) {
+    public init(meRepository: MeRepository) {
         self.meRepository = meRepository
-        self.userDefaultsRepository = userDefaultsRepository
     }
 
     public func getWeatherHourlyHistory(deviceId: String,

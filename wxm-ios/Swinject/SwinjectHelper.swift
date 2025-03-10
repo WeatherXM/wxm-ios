@@ -136,7 +136,7 @@ class SwinjectHelper: SwinjectInterface {
         }
 
         container.register(HistoryUseCase.self) { resolver in
-            HistoryUseCase(meRepository: resolver.resolve(MeRepository.self)!, userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!)
+            HistoryUseCase(meRepository: resolver.resolve(MeRepository.self)!)
         }
 
         // MARK: - Keychain DI
