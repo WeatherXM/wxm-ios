@@ -22,6 +22,10 @@ struct MainUseCaseTests {
 								   meRepository: meRepository)
 	}
 
+	@Test func initialized() {
+		#expect(mainRepository.initialized)
+	}
+
 	@Test func saveOrUpdateWeatherMetric() {
 		let temp = TemperatureUnitsEnum.celsius
 		useCase.saveOrUpdateWeatherMetric(unitProtocol: temp)
