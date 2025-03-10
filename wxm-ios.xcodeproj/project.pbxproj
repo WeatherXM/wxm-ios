@@ -183,6 +183,9 @@
 		26710E582D7ECD0B00878298 /* MockMainRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E572D7ECD0B00878298 /* MockMainRepositoryImpl.swift */; };
 		26710E5A2D7EED7200878298 /* HistoryUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E592D7EED7200878298 /* HistoryUseCaseTest.swift */; };
 		26710E5C2D7EF03500878298 /* FiltersUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E5B2D7EF03500878298 /* FiltersUseCaseTests.swift */; };
+		26710E8C2D7EF69C00878298 /* ExplorerUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E8B2D7EF69C00878298 /* ExplorerUseCaseTests.swift */; };
+		26710E8E2D7EF73000878298 /* MockExplorerRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E8D2D7EF73000878298 /* MockExplorerRepositoryImpl.swift */; };
+		26710E902D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E8F2D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift */; };
 		2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */; };
 		2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */; };
 		2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87B2C89F19A002266BE /* BoostCode+.swift */; };
@@ -833,6 +836,9 @@
 		26710E572D7ECD0B00878298 /* MockMainRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainRepositoryImpl.swift; sourceTree = "<group>"; };
 		26710E592D7EED7200878298 /* HistoryUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUseCaseTest.swift; sourceTree = "<group>"; };
 		26710E5B2D7EF03500878298 /* FiltersUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersUseCaseTests.swift; sourceTree = "<group>"; };
+		26710E8B2D7EF69C00878298 /* ExplorerUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerUseCaseTests.swift; sourceTree = "<group>"; };
+		26710E8D2D7EF73000878298 /* MockExplorerRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExplorerRepositoryImpl.swift; sourceTree = "<group>"; };
+		26710E8F2D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeviceLocationRepositoryImpl.swift; sourceTree = "<group>"; };
 		2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthView.swift; sourceTree = "<group>"; };
 		2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthInfoView.swift; sourceTree = "<group>"; };
 		2672B87B2C89F19A002266BE /* BoostCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoostCode+.swift"; sourceTree = "<group>"; };
@@ -2715,6 +2721,7 @@
 		26F176952D79A984000BA381 /* MockRepositories */ = {
 			isa = PBXGroup;
 			children = (
+				26710E8D2D7EF73000878298 /* MockExplorerRepositoryImpl.swift */,
 				26F176962D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift */,
 				26710E472D7B13B100878298 /* MockAuthRepositoryImpl.swift */,
 				26710E3F2D7AFED800878298 /* MockDevicesRepositoryImpl.swift */,
@@ -2727,6 +2734,7 @@
 				26710E432D7B0D9B00878298 /* MockNetworkRepositoryImpl.swift */,
 				26710E452D7B127C00878298 /* MockSettingsRepositoryImpl.swift */,
 				26710E572D7ECD0B00878298 /* MockMainRepositoryImpl.swift */,
+				26710E8F2D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift */,
 			);
 			path = MockRepositories;
 			sourceTree = "<group>";
@@ -2734,6 +2742,7 @@
 		26F176982D79AF1C000BA381 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				26710E8B2D7EF69C00878298 /* ExplorerUseCaseTests.swift */,
 				26F176992D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift */,
 				26710E4B2D7B21E700878298 /* RewardsUseCaseTests.swift */,
 				26710E5B2D7EF03500878298 /* FiltersUseCaseTests.swift */,
@@ -3351,6 +3360,7 @@
 				26710E502D7B2F2700878298 /* MeUseCaseTests.swift in Sources */,
 				26DF1F5E2D55F0C70001E936 /* MeRepositoryImplTests.swift in Sources */,
 				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
+				26710E8E2D7EF73000878298 /* MockExplorerRepositoryImpl.swift in Sources */,
 				26710E5C2D7EF03500878298 /* FiltersUseCaseTests.swift in Sources */,
 				26710E482D7B13B100878298 /* MockAuthRepositoryImpl.swift in Sources */,
 				26710E5A2D7EED7200878298 /* HistoryUseCaseTest.swift in Sources */,
@@ -3358,6 +3368,8 @@
 				26DF1F662D563D270001E936 /* MockLocationManager.swift in Sources */,
 				26D32FE82C510DF000E765E0 /* DateExtensionsTests.swift in Sources */,
 				26710E4E2D7B26CC00878298 /* NetworkUseCaseTests.swift in Sources */,
+				26710E8C2D7EF69C00878298 /* ExplorerUseCaseTests.swift in Sources */,
+				26710E902D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift in Sources */,
 				26DF1F522D535EB10001E936 /* KeychainHelperServiceTests.swift in Sources */,
 				26F1769E2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift in Sources */,
 				26DF1F682D563F940001E936 /* Utils.swift in Sources */,
