@@ -65,7 +65,7 @@ extension MockPhotosRepositoryImpl: PhotosRepository {
 	}
 
 	func getUploadInProgressDeviceId() -> String? {
-		""
+		nil
 	}
 	
 	func setTermsAccepted(_ termsAccepted: Bool) {

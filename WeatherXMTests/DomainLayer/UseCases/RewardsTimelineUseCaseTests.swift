@@ -32,7 +32,7 @@ struct RewardsTimelineUseCaseTests {
 																	  fromDate: "",
 																	  toDate: "",
 																	  timezone: nil)).sink { response in
-				let res = try! response.result.get()
+				let res = try? response.result.get()
 				#expect(timeline == res)
 				confirm()
 			}.store(in: &cancellableWrapper.cancellableSet)
@@ -50,7 +50,7 @@ struct RewardsTimelineUseCaseTests {
 
 		return try await confirmation { confirm in
 			try devicesRepository.deviceRewardsDetails(deviceId: "124", date: "").sink { response in
-				let res = try! response.result.get()
+				let res = try? response.result.get()
 				#expect(details == res)
 				confirm()
 			}.store(in: &cancellableWrapper.cancellableSet)
@@ -62,7 +62,7 @@ struct RewardsTimelineUseCaseTests {
 
 		return try await confirmation { confirm in
 			try devicesRepository.deviceRewardsBoosts(deviceId: "124", code: "").sink { response in
-				let res = try! response.result.get()
+				let res = try? response.result.get()
 				#expect(boosts == res)
 				confirm()
 			}.store(in: &cancellableWrapper.cancellableSet)

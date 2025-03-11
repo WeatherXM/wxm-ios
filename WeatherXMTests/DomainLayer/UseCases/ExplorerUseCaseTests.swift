@@ -52,10 +52,10 @@ struct ExplorerUseCaseTests {
 	@Test func getPublicHexes() async throws {
 		await confirmation { confirm in
 			useCase.getPublicHexes { result in
-				let data = try! result.get()
-				#expect(data.polygonPoints.count == 1)
-				#expect(data.totalDevices == 0)
-				#expect(data.geoJsonSource != nil)
+				let data = try? result.get()
+				#expect(data?.polygonPoints.count == 1)
+				#expect(data?.totalDevices == 0)
+				#expect(data?.geoJsonSource != nil)
 				confirm()
 			}
 		}
@@ -65,8 +65,8 @@ struct ExplorerUseCaseTests {
 		try await confirmation { confirm in
 			useCase.getPublicDevicesOfHexIndex(hexIndex: "124",
 											   hexCoordinates: .init()) { result in
-				let data = try! result.get()
-				#expect(data.count == 1)
+				let data = try? result.get()
+				#expect(data?.count == 1)
 				confirm()
 			}
 			try await Task.sleep(for: .seconds(1))
