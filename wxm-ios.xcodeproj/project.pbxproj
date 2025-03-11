@@ -196,6 +196,7 @@
 		26710EA12D802E3600878298 /* MockGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710EA02D802E3600878298 /* MockGeocoder.swift */; };
 		26710EA52D80473A00878298 /* MockLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710EA42D80473A00878298 /* MockLoginService.swift */; };
 		26710EA72D804A1800878298 /* AuthUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710EA62D804A1800878298 /* AuthUseCaseTests.swift */; };
+		26710EA92D804F6400878298 /* LoginServiceImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710EA82D804F6400878298 /* LoginServiceImplTests.swift */; };
 		2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */; };
 		2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */; };
 		2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87B2C89F19A002266BE /* BoostCode+.swift */; };
@@ -858,6 +859,7 @@
 		26710EA02D802E3600878298 /* MockGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGeocoder.swift; sourceTree = "<group>"; };
 		26710EA42D80473A00878298 /* MockLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginService.swift; sourceTree = "<group>"; };
 		26710EA62D804A1800878298 /* AuthUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCaseTests.swift; sourceTree = "<group>"; };
+		26710EA82D804F6400878298 /* LoginServiceImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServiceImplTests.swift; sourceTree = "<group>"; };
 		2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthView.swift; sourceTree = "<group>"; };
 		2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthInfoView.swift; sourceTree = "<group>"; };
 		2672B87B2C89F19A002266BE /* BoostCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoostCode+.swift"; sourceTree = "<group>"; };
@@ -2744,6 +2746,7 @@
 				26710E9F2D802E2000878298 /* Utils */,
 				26F176982D79AF1C000BA381 /* UseCases */,
 				26F176952D79A984000BA381 /* MockRepositories */,
+				26710EA82D804F6400878298 /* LoginServiceImplTests.swift */,
 			);
 			path = DomainLayer;
 			sourceTree = "<group>";
@@ -3420,6 +3423,7 @@
 				26DF1F522D535EB10001E936 /* KeychainHelperServiceTests.swift in Sources */,
 				26F1769E2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift in Sources */,
 				26DF1F682D563F940001E936 /* Utils.swift in Sources */,
+				26710EA92D804F6400878298 /* LoginServiceImplTests.swift in Sources */,
 				26F176A02D79D271000BA381 /* MockKeychainRepositoryImpl.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
 			);

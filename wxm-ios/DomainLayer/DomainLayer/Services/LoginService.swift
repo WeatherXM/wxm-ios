@@ -55,7 +55,7 @@ public class LoginServiceImpl: LoginService, @unchecked Sendable {
 	}
 
 	public func logout() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-		try logoutPublisher()
+		logoutPublisher()
 	}
 }
 

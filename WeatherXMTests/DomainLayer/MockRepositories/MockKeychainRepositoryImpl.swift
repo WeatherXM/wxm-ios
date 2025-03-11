@@ -9,7 +9,7 @@ import Foundation
 @testable import DomainLayer
 
 class MockKeychainRepositoryImpl {
-	private var tokenResponse: NetworkTokenResponse?
+	private(set) var tokenResponse: NetworkTokenResponse?
 	private var email: String?
 	private var password: String?
 }
