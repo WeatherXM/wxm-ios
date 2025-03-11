@@ -48,7 +48,7 @@ extension MockExplorerRepositoryImpl: ExplorerRepository {
 	}
 	
 	func getPublicDevice(index: String, deviceId: String) throws -> AnyPublisher<DataResponse<PublicDevice, NetworkErrorResponse>, Never> {
-		let publicDevice = PublicDevice()
+		let publicDevice = PublicDevice(cellIndex: index)
 		let response = DataResponse<PublicDevice, NetworkErrorResponse>(request: nil,
 																		response: nil,
 																		data: nil,

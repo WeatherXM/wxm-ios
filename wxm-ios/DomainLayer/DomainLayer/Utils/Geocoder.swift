@@ -9,6 +9,11 @@ import Foundation
 import CoreLocation
 import Toolkit
 
+protocol GeocoderProtocol {
+	func resolveAddressLocation(_ location: CLLocationCoordinate2D, completion: @escaping GenericCallback<String>)
+	func resolveAddressLocation(_ location: CLLocationCoordinate2D) async throws -> String
+}
+
 struct Geocoder {
     func resolveAddressLocation(_ location: CLLocationCoordinate2D, completion: @escaping GenericCallback<String>) {
         let geocoder = CLGeocoder()

@@ -15,6 +15,13 @@ class MockMeRepositoryImpl {
 
 }
 
+extension MockMeRepositoryImpl {
+	enum Constants: String {
+		case followedDeviceId
+		case ownedDeviceId
+	}
+}
+
 extension MockMeRepositoryImpl: MeRepository {
 	var userDevicesChangedNotificationPublisher: NotificationCenter.Publisher {
 		NotificationCenter.default.publisher(for: Notification.Name("MockMeRepositoryImpl.userIsLoggedInChanged"))
@@ -200,7 +207,19 @@ extension MockMeRepositoryImpl: MeRepository {
 	}
 	
 	func getDeviceFollowState(deviceId: String) async throws -> Result<UserDeviceFollowState?, NetworkErrorResponse> {
-		.success(nil)
+		let constant = Constants(rawValue: deviceId)
+		switch constant {
+			case .followedDeviceId:
+				let state = UserDeviceFollowState(deviceId: deviceId,
+												  relation: .followed)
+				return .success(state)
+			case .ownedDeviceId:
+				let state = UserDeviceFollowState(deviceId: deviceId,
+												  relation: .owned)
+				return .success(state)
+			default:
+				return .success(nil)
+		}
 	}
 	
 	func getUserDevicesFollowStates() async throws -> Result<[UserDeviceFollowState]?, NetworkErrorResponse> {
