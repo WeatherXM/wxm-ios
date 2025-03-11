@@ -30,6 +30,10 @@ class SwinjectHelper: SwinjectInterface {
 			UserDefaultsService()
 		}
 
+		container.register(GeocoderProtocol.self) { _ in
+			Geocoder()
+		}
+
 		container.register(UserDevicesService.self) { resolver in
 			UserDevicesService(followStatesCacheManager: resolver.resolve(UserDefaultsService.self)!,
 							   userDevicesCacheManager: resolver.resolve(UserDefaultsService.self)!)
@@ -100,7 +104,8 @@ class SwinjectHelper: SwinjectInterface {
             let explorerUserCase = ExplorerUseCase(explorerRepository: resolver.resolve(ExplorerRepository.self)!,
                                                    devicesRepository: resolver.resolve(DevicesRepository.self)!,
                                                    meRepository: resolver.resolve(MeRepository.self)!,
-												   deviceLocationRepository: resolver.resolve(DeviceLocationRepository.self)!)
+												   deviceLocationRepository: resolver.resolve(DeviceLocationRepository.self)!,
+												   geocoder: resolver.resolve(GeocoderProtocol.self)!)
             return explorerUserCase
         }
 
@@ -160,7 +165,8 @@ class SwinjectHelper: SwinjectInterface {
         container.register(DeviceDetailsUseCase.self) { resolver in
             DeviceDetailsUseCase(meRepository: resolver.resolve(MeRepository.self)!,
                                  explorerRepository: resolver.resolve(ExplorerRepository.self)!,
-                                 keychainRepository: resolver.resolve(KeychainRepository.self)!)
+                                 keychainRepository: resolver.resolve(KeychainRepository.self)!,
+								 geocoder: resolver.resolve(GeocoderProtocol.self)!)
         }
 
         // MARK: - Rewards Use Case

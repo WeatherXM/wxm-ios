@@ -6,4 +6,16 @@
 //
 
 import Foundation
-@test
+@testable import DomainLayer
+import Toolkit
+import CoreLocation
+
+struct MockGeocoder: GeocoderProtocol {
+	func resolveAddressLocation(_ location: CLLocationCoordinate2D, completion: @escaping GenericCallback<String>) {
+		completion("Resolved address")
+	}
+	
+	func resolveAddressLocation(_ location: CLLocationCoordinate2D) async throws -> String {
+		"Resolved address"
+	}
+}

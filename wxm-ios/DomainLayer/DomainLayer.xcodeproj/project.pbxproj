@@ -38,7 +38,6 @@
 		26A86BBE2C7C931B00F1C2CF /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BBD2C7C931B00F1C2CF /* Survey.swift */; };
 		26A86BC02C7C97F800F1C2CF /* RemoteConfigRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BBF2C7C97F800F1C2CF /* RemoteConfigRepository.swift */; };
 		26A961A02A78FFDD00A0E7B9 /* RewardsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9619F2A78FFDD00A0E7B9 /* RewardsUseCase.swift */; };
-		26AB9F452A7A8D8C00855912 /* Geocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F442A7A8D8C00855912 /* Geocoder.swift */; };
 		26ACE8ED2C8833B800EA22DD /* NetworkDevicesRewardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE8EC2C8833B800EA22DD /* NetworkDevicesRewardsResponse.swift */; };
 		26AF27782A0B8B090067A1B8 /* UnitsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF27772A0B8B090067A1B8 /* UnitsEnum.swift */; };
 		26C546062B74D7A100297A42 /* RewardAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C546052B74D7A100297A42 /* RewardAnnotation.swift */; };
@@ -124,7 +123,6 @@
 		26A86BBD2C7C931B00F1C2CF /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		26A86BBF2C7C97F800F1C2CF /* RemoteConfigRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigRepository.swift; sourceTree = "<group>"; };
 		26A9619F2A78FFDD00A0E7B9 /* RewardsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsUseCase.swift; sourceTree = "<group>"; };
-		26AB9F442A7A8D8C00855912 /* Geocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geocoder.swift; sourceTree = "<group>"; };
 		26ACE8EC2C8833B800EA22DD /* NetworkDevicesRewardsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicesRewardsResponse.swift; sourceTree = "<group>"; };
 		26AF27772A0B8B090067A1B8 /* UnitsEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsEnum.swift; sourceTree = "<group>"; };
 		26C546052B74D7A100297A42 /* RewardAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotation.swift; sourceTree = "<group>"; };
@@ -284,7 +282,6 @@
 		99DC02B228D85D5D009F53F9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				26AB9F442A7A8D8C00855912 /* Geocoder.swift */,
 				26504E3C2A7A4753008E2B59 /* NetworkResultsConverter.swift */,
 				26AF27772A0B8B090067A1B8 /* UnitsEnum.swift */,
 			);
@@ -568,7 +565,6 @@
 				2612AC262AB46AF200285896 /* FiltersUseCase.swift in Sources */,
 				264BDA0E298AC7DD005C1F82 /* FirmwareUpdateRepository.swift in Sources */,
 				4DE3A56E293EA58300BCDD8A /* Frequency.swift in Sources */,
-				26AB9F452A7A8D8C00855912 /* Geocoder.swift in Sources */,
 				4D35F7EE28F6005A009AA3CE /* HeliumDevice.swift in Sources */,
 				26A86BBE2C7C931B00F1C2CF /* Survey.swift in Sources */,
 				992D764328B7C83F00DFE504 /* HistoryUseCase.swift in Sources */,

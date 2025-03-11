@@ -22,7 +22,8 @@ struct ExplorerUseCaseTests {
 		self.useCase = ExplorerUseCase(explorerRepository: explorerRepository,
 									   devicesRepository: devicesRepository,
 									   meRepository: meRepository,
-									   deviceLocationRepository: deviceLocationRepository)
+									   deviceLocationRepository: deviceLocationRepository,
+									   geocoder: MockGeocoder())
 	}
 
     @Test func getUserLocation() async throws {

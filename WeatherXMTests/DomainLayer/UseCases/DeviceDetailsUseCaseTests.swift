@@ -12,12 +12,14 @@ struct DeviceDetailsUseCaseTests {
 	let meRepository: MockMeRepositoryImpl = .init()
 	let explorerRepository: MockExplorerRepositoryImpl = .init()
 	let keychainRepository: MockKeychainRepositoryImpl = .init()
+	let geocoder: MockGeocoder = .init()
 	let useCase: DeviceDetailsUseCase
 
 	init() {
 		self.useCase = .init(meRepository: meRepository,
 							 explorerRepository: explorerRepository,
-							 keychainRepository: keychainRepository)
+							 keychainRepository: keychainRepository,
+							 geocoder: geocoder)
 
 	}
 
@@ -46,5 +48,10 @@ struct DeviceDetailsUseCaseTests {
 	@Test func getFollowState() async throws {
 		let res = try await useCase.getDeviceFollowState(deviceId: MockMeRepositoryImpl.Constants.followedDeviceId.rawValue).get()
 		#expect(res?.relation == .followed)
+	}
+
+	@Test func resolveAddress() async throws {
+		let res = try await useCase.resolveAddress(location: .init())
+		#expect(res == "Resolved address")
 	}
 }
