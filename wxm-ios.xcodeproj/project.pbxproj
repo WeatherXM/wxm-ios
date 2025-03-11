@@ -194,6 +194,8 @@
 		26710E9C2D7F36A700878298 /* DeviceInfoUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E9B2D7F36A700878298 /* DeviceInfoUseCaseTests.swift */; };
 		26710E9E2D80206300878298 /* DeviceDetailsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710E9D2D80206300878298 /* DeviceDetailsUseCaseTests.swift */; };
 		26710EA12D802E3600878298 /* MockGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710EA02D802E3600878298 /* MockGeocoder.swift */; };
+		26710EA52D80473A00878298 /* MockLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710EA42D80473A00878298 /* MockLoginService.swift */; };
+		26710EA72D804A1800878298 /* AuthUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26710EA62D804A1800878298 /* AuthUseCaseTests.swift */; };
 		2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */; };
 		2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */; };
 		2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672B87B2C89F19A002266BE /* BoostCode+.swift */; };
@@ -854,6 +856,8 @@
 		26710E9B2D7F36A700878298 /* DeviceInfoUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoUseCaseTests.swift; sourceTree = "<group>"; };
 		26710E9D2D80206300878298 /* DeviceDetailsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsUseCaseTests.swift; sourceTree = "<group>"; };
 		26710EA02D802E3600878298 /* MockGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGeocoder.swift; sourceTree = "<group>"; };
+		26710EA42D80473A00878298 /* MockLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginService.swift; sourceTree = "<group>"; };
+		26710EA62D804A1800878298 /* AuthUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCaseTests.swift; sourceTree = "<group>"; };
 		2671E5CD2CBD3C8E00EE0FF1 /* StationHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthView.swift; sourceTree = "<group>"; };
 		2671E5CF2CBD537700EE0FF1 /* StationHealthInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationHealthInfoView.swift; sourceTree = "<group>"; };
 		2672B87B2C89F19A002266BE /* BoostCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoostCode+.swift"; sourceTree = "<group>"; };
@@ -1679,6 +1683,7 @@
 			isa = PBXGroup;
 			children = (
 				26710EA02D802E3600878298 /* MockGeocoder.swift */,
+				26710EA42D80473A00878298 /* MockLoginService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2770,6 +2775,7 @@
 			isa = PBXGroup;
 			children = (
 				26710E8B2D7EF69C00878298 /* ExplorerUseCaseTests.swift */,
+				26710EA62D804A1800878298 /* AuthUseCaseTests.swift */,
 				26710E9D2D80206300878298 /* DeviceDetailsUseCaseTests.swift */,
 				26F176992D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift */,
 				26710E4B2D7B21E700878298 /* RewardsUseCaseTests.swift */,
@@ -3380,12 +3386,14 @@
 				26710E3C2D7AE86400878298 /* MockFirmwareUpdateRepositoryImpl.swift in Sources */,
 				26710E582D7ECD0B00878298 /* MockMainRepositoryImpl.swift in Sources */,
 				265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */,
+				26710EA52D80473A00878298 /* MockLoginService.swift in Sources */,
 				26710E442D7B0D9B00878298 /* MockNetworkRepositoryImpl.swift in Sources */,
 				26710E9E2D80206300878298 /* DeviceDetailsUseCaseTests.swift in Sources */,
 				26DF1F562D54AC360001E936 /* FileUploaderServiceTests.swift in Sources */,
 				26710EA12D802E3600878298 /* MockGeocoder.swift in Sources */,
 				265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */,
 				26DF1F622D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift in Sources */,
+				26710EA72D804A1800878298 /* AuthUseCaseTests.swift in Sources */,
 				267811502D4BB21700D22B67 /* UserInfoServiceTests.swift in Sources */,
 				26710E462D7B127C00878298 /* MockSettingsRepositoryImpl.swift in Sources */,
 				267811582D4CD84E00D22B67 /* UserDevicesServiceTests.swift in Sources */,
