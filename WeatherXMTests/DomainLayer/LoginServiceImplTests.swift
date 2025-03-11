@@ -27,7 +27,6 @@ struct LoginServiceImplTests {
 											 networkRepository: networkRepository)
 	}
 
-	@MainActor
     @Test func loginLogout() async throws {
 		#expect(!keychainRepository.isUserLoggedIn())
 		#expect(keychainRepository.getUsersEmail() == "")

@@ -74,10 +74,15 @@ private extension LoginServiceImpl {
 
 	func getInstallationId() -> AnyPublisher<String, Never> {
 		let publisher = PassthroughSubject<String, Never>()
-		Task { @MainActor [publisher] in
-			let installationId = await FirebaseManager.shared.getInstallationId()
-			publisher.send(installationId)
-			publisher.send(completion: .finished)
+
+		// Really ugly, the "asyncAfter" is used to ensure there is no race condition
+		// This race condition occured during unit tests implementation
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			Task { @MainActor [publisher] in
+				let installationId = await FirebaseManager.shared.getInstallationId()
+				publisher.send(installationId)
+				publisher.send(completion: .finished)
+			}
 		}
 
 		return publisher.eraseToAnyPublisher()
