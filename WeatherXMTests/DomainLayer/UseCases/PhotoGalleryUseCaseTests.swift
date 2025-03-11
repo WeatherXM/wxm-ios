@@ -1,5 +1,5 @@
 //
-//  MockPhotoGalleryUseCaseTests.swift
+//  PhotoGalleryUseCaseTests.swift
 //  WeatherXMTests
 //
 //  Created by Pantelis Giazitsis on 6/3/25.
@@ -10,7 +10,7 @@ import Testing
 import Toolkit
 import UIKit
 
-struct MockPhotoGalleryUseCaseTests {
+struct PhotoGalleryUseCaseTests {
 	let repository: MockPhotosRepositoryImpl = .init()
 	let useCase: PhotoGalleryUseCase
 	private var cancellableWrapper: CancellableWrapper = .init()

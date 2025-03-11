@@ -580,7 +580,7 @@
 		26F176972D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F176962D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift */; };
 		26F1769A2D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F176992D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift */; };
 		26F1769C2D79B832000BA381 /* MockPhotosRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F1769B2D79B832000BA381 /* MockPhotosRepositoryImpl.swift */; };
-		26F1769E2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F1769D2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift */; };
+		26F1769E2D79BD9B000BA381 /* PhotoGalleryUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F1769D2D79BD9B000BA381 /* PhotoGalleryUseCaseTests.swift */; };
 		26F176A02D79D271000BA381 /* MockKeychainRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F1769F2D79D271000BA381 /* MockKeychainRepositoryImpl.swift */; };
 		26F176A22D79D60E000BA381 /* MockMeRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F176A12D79D60E000BA381 /* MockMeRepositoryImpl.swift */; };
 		26F176A42D79E783000BA381 /* WidgetUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F176A32D79E783000BA381 /* WidgetUseCaseTests.swift */; };
@@ -1203,7 +1203,7 @@
 		26F176962D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRemoteConfigRepositoryImpl.swift; sourceTree = "<group>"; };
 		26F176992D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigUseCaseTests.swift; sourceTree = "<group>"; };
 		26F1769B2D79B832000BA381 /* MockPhotosRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhotosRepositoryImpl.swift; sourceTree = "<group>"; };
-		26F1769D2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhotoGalleryUseCaseTests.swift; sourceTree = "<group>"; };
+		26F1769D2D79BD9B000BA381 /* PhotoGalleryUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryUseCaseTests.swift; sourceTree = "<group>"; };
 		26F1769F2D79D271000BA381 /* MockKeychainRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeychainRepositoryImpl.swift; sourceTree = "<group>"; };
 		26F176A12D79D60E000BA381 /* MockMeRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMeRepositoryImpl.swift; sourceTree = "<group>"; };
 		26F176A32D79E783000BA381 /* WidgetUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetUseCaseTests.swift; sourceTree = "<group>"; };
@@ -2788,7 +2788,7 @@
 				26710E4F2D7B2F2700878298 /* MeUseCaseTests.swift */,
 				26F176A32D79E783000BA381 /* WidgetUseCaseTests.swift */,
 				26710E3D2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift */,
-				26F1769D2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift */,
+				26F1769D2D79BD9B000BA381 /* PhotoGalleryUseCaseTests.swift */,
 				26710E492D7B1E9600878298 /* SettingsUseCaseTests.swift */,
 				26710E552D7ECBC300878298 /* MainUseCaseTests.swift */,
 				26710E592D7EED7200878298 /* HistoryUseCaseTest.swift */,
@@ -3421,7 +3421,7 @@
 				26710E8C2D7EF69C00878298 /* ExplorerUseCaseTests.swift in Sources */,
 				26710E902D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift in Sources */,
 				26DF1F522D535EB10001E936 /* KeychainHelperServiceTests.swift in Sources */,
-				26F1769E2D79BD9B000BA381 /* MockPhotoGalleryUseCaseTests.swift in Sources */,
+				26F1769E2D79BD9B000BA381 /* PhotoGalleryUseCaseTests.swift in Sources */,
 				26DF1F682D563F940001E936 /* Utils.swift in Sources */,
 				26710EA92D804F6400878298 /* LoginServiceImplTests.swift in Sources */,
 				26F176A02D79D271000BA381 /* MockKeychainRepositoryImpl.swift in Sources */,
