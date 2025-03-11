@@ -27,33 +27,28 @@ struct LoginServiceImplTests {
 											 networkRepository: networkRepository)
 	}
 
+	@MainActor
     @Test func loginLogout() async throws {
 		#expect(!keychainRepository.isUserLoggedIn())
 		#expect(keychainRepository.getUsersEmail() == "")
 		#expect(keychainRepository.tokenResponse == nil)
 		#expect(!userDefaultsRepository.userSensitiveDataCleared)
 		#expect(!networkRepository.allRecentDeleted)
-		try await confirmation { confirm in
-			try loginService.login(username: "email", password: "pass").flatMap { response in
-				print(response)
-				#expect(keychainRepository.isUserLoggedIn())
-				#expect(keychainRepository.getUsersEmail() == "email")
-				#expect(keychainRepository.tokenResponse != nil)
-				#expect(keychainRepository.tokenResponse?.token == "token")
-				#expect(keychainRepository.tokenResponse?.refreshToken == "refToken")
-				#expect(!userDefaultsRepository.userSensitiveDataCleared)
-				#expect(!networkRepository.allRecentDeleted)
-				return try! loginService.logout()
-			}.flatMap { response in
-				#expect(userDefaultsRepository.userSensitiveDataCleared)
-				#expect(networkRepository.allRecentDeleted)
-				#expect(keychainRepository.tokenResponse == nil)
-				#expect(keychainRepository.getUsersEmail() == "")
-				return Just(EmptyEntity())
-			}.sink { _ in
-				confirm()
-			} .store(in: &cancellableWrapper.cancellableSet)
-		}
+
+		let _ = try await loginService.login(username: "email", password: "pass").toAsync()
+		#expect(keychainRepository.isUserLoggedIn())
+		#expect(keychainRepository.getUsersEmail() == "email")
+		#expect(keychainRepository.tokenResponse != nil)
+		#expect(keychainRepository.tokenResponse?.token == "token")
+		#expect(keychainRepository.tokenResponse?.refreshToken == "refToken")
+		#expect(!userDefaultsRepository.userSensitiveDataCleared)
+		#expect(!networkRepository.allRecentDeleted)
+
+		let _ = try await loginService.logout().toAsync()
+		#expect(userDefaultsRepository.userSensitiveDataCleared)
+		#expect(networkRepository.allRecentDeleted)
+		#expect(keychainRepository.tokenResponse == nil)
+		#expect(keychainRepository.getUsersEmail() == "")
     }
 
 }
