@@ -62,16 +62,16 @@ struct ExplorerUseCaseTests {
 	}
 
 	@Test func getPublicDevicesOfHexIndex() async throws {
-		await confirmation { confirm in
+		try await confirmation { confirm in
 			useCase.getPublicDevicesOfHexIndex(hexIndex: "124",
 											   hexCoordinates: .init()) { result in
 				let data = try! result.get()
 				#expect(data.count == 1)
 				confirm()
 			}
+			try await Task.sleep(for: .seconds(1))
 		}
 
-		try await Task.sleep(for: .seconds(1))
 	}
 
 	@Test func getPublicDevice() async {
