@@ -25,4 +25,9 @@ public enum UnitConstants {
     public static let INCHES_PER_HOUR = LocalizableString.Units.inchesPerHourSymbol.localized
     public static let WATTS_PER_SQR = LocalizableString.Units.wattsPerSquareSymbol.localized
     public static let DBM = LocalizableString.Units.dBmSymbol.localized
+
+private extension String {
+	var fixedLinebreaks: String {
+		replacingOccurrences(of: "/", with: "\u{FEFF}/\u{FEFF}")
+	}
 }
