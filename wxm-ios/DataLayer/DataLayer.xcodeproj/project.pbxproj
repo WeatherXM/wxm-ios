@@ -295,6 +295,14 @@
 			path = FirmwareUpdate;
 			sourceTree = "<group>";
 		};
+		267AF46A2D830B2C00827E4F /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				26D6E2452D81A59E006CAAEA /* MockHeliumDevice.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		26AB9F502A8010E300855912 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,7 +361,6 @@
 				2646FCC529967D9500EBB61B /* BluetoothUtils.swift */,
 				26A4118B29BB2CAB00A2C10B /* BTActionsWrapper.swift */,
 				2646FCC72996949C00EBB61B /* BTPerformCommandDelegate.swift */,
-				26D6E2452D81A59E006CAAEA /* MockHeliumDevice.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -465,6 +472,7 @@
 		B5799E7528254CC100FEBB85 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
+				267AF46A2D830B2C00827E4F /* Mock */,
 				26E88B2A29E56B320023BBD5 /* Database */,
 				B56A25F128A0FFB800928141 /* Entities */,
 				B51243F12825509800B66A31 /* Networking */,
@@ -921,6 +929,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = "DataLayer/DataLayer/Mock/*";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -957,6 +966,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = "DataLayer/DataLayer/Mock/*";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

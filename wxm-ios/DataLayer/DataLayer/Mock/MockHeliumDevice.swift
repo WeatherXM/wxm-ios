@@ -84,8 +84,6 @@ private final class HeliumDevicePeripheralSpecDelegate: CBMPeripheralSpecDelegat
 	}
 }
 
-// MARK: - Blinky Definition
-
 let mockHelium = CBMPeripheralSpec
 	.simulatePeripheral(proximity: .immediate)
 	.advertising(

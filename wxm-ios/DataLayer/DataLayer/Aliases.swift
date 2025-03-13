@@ -6,6 +6,7 @@
 //
 
 import Foundation
+#if MOCK
 import CoreBluetoothMock
 
 // Copy this file to your project to start using CoreBluetoothMock classes
@@ -63,3 +64,4 @@ let CBAdvertisementDataSolicitedServiceUUIDsKey        = CBMAdvertisementDataSol
 let CBConnectPeripheralOptionNotifyOnConnectionKey     = CBMConnectPeripheralOptionNotifyOnConnectionKey
 let CBConnectPeripheralOptionNotifyOnDisconnectionKey  = CBMConnectPeripheralOptionNotifyOnDisconnectionKey
 let CBConnectPeripheralOptionNotifyOnNotificationKey   = CBMConnectPeripheralOptionNotifyOnNotificationKey
+#endif

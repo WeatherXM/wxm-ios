@@ -6,7 +6,11 @@
 //
 
 import Combine
+#if MOCK
 import CoreBluetoothMock
+#else
+import CoreBluetooth
+#endif
 import DomainLayer
 import Foundation
 
@@ -49,8 +53,10 @@ class BluetoothManager: NSObject {
 	override public init() {
 		state = stateSubject.eraseToAnyPublisher()
 		devices = devicesSubject.eraseToAnyPublisher()
+#if MOCK
 		CBMCentralManagerMock.simulateInitialState(.poweredOn)
 		CBMCentralManagerMock.simulatePeripherals([mockHelium])
+#endif
 		super.init()
 	}
 	
@@ -59,8 +65,11 @@ class BluetoothManager: NSObject {
 	 */
 	public func enable() {
 		if manager == nil {
+#if MOCK
 			manager = CBCentralManagerFactory.instance(delegate: self, queue: .main, forceMock: false)
-
+#else
+			manager = CBCentralManager(delegate: self, queue: .main)
+#endif
 			manager.delegate = self
 		}
 	}
