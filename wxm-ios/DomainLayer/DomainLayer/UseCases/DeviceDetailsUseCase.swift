@@ -16,12 +16,17 @@ public struct DeviceDetailsUseCase: @unchecked Sendable {
     private let meRepository: MeRepository
     private let explorerRepository: ExplorerRepository
     private let keychainRepository: KeychainRepository
+	private let geocoder: GeocoderProtocol
     private let cancellables: CancellableWrapper = .init()
 
-    public init(meRepository: MeRepository, explorerRepository: ExplorerRepository, keychainRepository: KeychainRepository) {
+	public init(meRepository: MeRepository,
+				explorerRepository: ExplorerRepository,
+				keychainRepository: KeychainRepository,
+				geocoder: GeocoderProtocol) {
         self.meRepository = meRepository
         self.explorerRepository = explorerRepository
         self.keychainRepository = keychainRepository
+		self.geocoder = geocoder
     }
 
     public func getDeviceDetailsById(deviceId: String, cellIndex: String?) async throws -> Result<DeviceDetails, NetworkErrorResponse> {
@@ -58,7 +63,6 @@ public struct DeviceDetailsUseCase: @unchecked Sendable {
     }
 
     public func resolveAddress(location: CLLocationCoordinate2D) async throws -> String {
-        let geocoder = Geocoder()
         return try await geocoder.resolveAddressLocation(location)
     }
 

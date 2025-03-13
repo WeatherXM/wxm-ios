@@ -18,7 +18,7 @@ public protocol FirmwareUpdateRepository {
     func stopFirmwareUpdate()
 }
 
-public enum FirmwareUpdateState {
+public enum FirmwareUpdateState: Equatable {
     case unknown
     case connecting
     case downloading
@@ -27,7 +27,7 @@ public enum FirmwareUpdateState {
     case error(FirmwareUpdateError)
 }
 
-public enum FirmwareUpdateError: Error {
+public enum FirmwareUpdateError: Error, Equatable {
     case downloadFile
     case connection
     case installation(String?)

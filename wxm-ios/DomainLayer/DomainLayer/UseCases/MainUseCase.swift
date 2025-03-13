@@ -59,12 +59,16 @@ public class MainUseCase: @unchecked Sendable {
         userDefaultsRepository.getValue(for: key)
     }
 
-	public func shouldShowUpdatePrompt(for version: String, minimumVersion: String?) -> Bool {
+	public func shouldShowUpdatePrompt(for version: String,
+									   minimumVersion: String?,
+									   currentVersion: String? = Bundle.main.releaseVersionNumber) -> Bool {
 		let lastAppVersionPrompt: String = userDefaultsRepository.getValue(for: UserDefaults.GenericKey.lastAppVersionPrompt.rawValue) ?? ""
 
-		let shouldUpdate = shouldUpdate(version: version)
+		let shouldUpdate = shouldUpdate(version: version,
+										currentVersion: currentVersion)
 		let seenUpdatePrompt = lastAppVersionPrompt == version
-		let shouldForceUpdate = shouldForceUpdate(minimumVersion: minimumVersion)
+		let shouldForceUpdate = shouldForceUpdate(minimumVersion: minimumVersion,
+												  currentVersion: currentVersion)
 
 		return (!seenUpdatePrompt && shouldUpdate) || shouldForceUpdate
 	}
@@ -73,9 +77,10 @@ public class MainUseCase: @unchecked Sendable {
 		userDefaultsRepository.saveValue(key: UserDefaults.GenericKey.lastAppVersionPrompt.rawValue, value: version)
 	}
 
-	public func shouldForceUpdate(minimumVersion: String?) -> Bool {
+	public func shouldForceUpdate(minimumVersion: String?,
+								  currentVersion: String? = Bundle.main.releaseVersionNumber) -> Bool {
 		guard let minimumVersion,
-			  let currentVersion = Bundle.main.releaseVersionNumber else {
+			  let currentVersion else {
 			return false
 		}
 
@@ -93,8 +98,9 @@ public class MainUseCase: @unchecked Sendable {
 }
 
 private extension MainUseCase {
-	func shouldUpdate(version: String) -> Bool {
-		guard let currentVersion = Bundle.main.releaseVersionNumber else {
+	func shouldUpdate(version: String,
+					  currentVersion: String?) -> Bool {
+		guard let currentVersion else {
 			return false
 		}
 

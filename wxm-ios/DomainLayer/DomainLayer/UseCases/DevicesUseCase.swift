@@ -52,10 +52,6 @@ public struct DevicesUseCase: @unchecked Sendable {
         return devEUI.count == Self.DEV_EUI_KEY_LENGTH && devEUI.matches(Self.DEV_EUI_REGEX)
     }
 
-    public func isHeliumDeviceKeyValid(_ key: String) -> Bool {
-        return key.count == Self.DEV_EUI_KEY_LENGTH && key.matches(Self.DEV_EUI_REGEX)
-    }
-
 	public func connect(device: BTWXMDevice) async -> BluetoothHeliumError? {
 		await bluetoothDevicesRepository.connect(device: device)
 	}

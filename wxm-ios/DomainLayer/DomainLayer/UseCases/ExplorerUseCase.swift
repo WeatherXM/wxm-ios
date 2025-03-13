@@ -21,13 +21,19 @@ public class ExplorerUseCase: @unchecked Sendable {
     private let devicesRepository: DevicesRepository
     private let meRepository: MeRepository
 	private let deviceLocationRepository: DeviceLocationRepository
+	let geocoder: GeocoderProtocol
     private var cancellableSet: Set<AnyCancellable> = []
 
-    public init(explorerRepository: ExplorerRepository, devicesRepository: DevicesRepository, meRepository: MeRepository, deviceLocationRepository: DeviceLocationRepository) {
+    public init(explorerRepository: ExplorerRepository,
+				devicesRepository: DevicesRepository,
+				meRepository: MeRepository,
+				deviceLocationRepository: DeviceLocationRepository,
+				geocoder: GeocoderProtocol) {
         self.explorerRepository = explorerRepository
         self.devicesRepository = devicesRepository
         self.meRepository = meRepository
 		self.deviceLocationRepository = deviceLocationRepository
+		self.geocoder = geocoder
     }
 
     public var userDevicesListChangedPublisher: NotificationCenter.Publisher {
@@ -199,8 +205,7 @@ public class ExplorerUseCase: @unchecked Sendable {
 		guard let location else {
 			return nil
 		}
-		
-        let geocoder = Geocoder()
+
         return try? await geocoder.resolveAddressLocation(location)
     }
 }

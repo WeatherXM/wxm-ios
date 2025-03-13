@@ -7,15 +7,17 @@
 
 import Foundation
 import CoreLocation
-import Toolkit
 
-protocol GeocoderProtocol {
+public protocol GeocoderProtocol {
 	func resolveAddressLocation(_ location: CLLocationCoordinate2D, completion: @escaping GenericCallback<String>)
 	func resolveAddressLocation(_ location: CLLocationCoordinate2D) async throws -> String
 }
 
-struct Geocoder: GeocoderProtocol {
-    func resolveAddressLocation(_ location: CLLocationCoordinate2D, completion: @escaping GenericCallback<String>) {
+public struct Geocoder: GeocoderProtocol {
+
+	public init() {}
+	
+	public func resolveAddressLocation(_ location: CLLocationCoordinate2D, completion: @escaping GenericCallback<String>) {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(CLLocation(latitude: location.latitude, longitude: location.longitude)) { placemarks, _ in
             guard let placemark = placemarks?.first else {
@@ -29,7 +31,7 @@ struct Geocoder: GeocoderProtocol {
         }
     }
 
-    func resolveAddressLocation(_ location: CLLocationCoordinate2D) async throws -> String {
+	public func resolveAddressLocation(_ location: CLLocationCoordinate2D) async throws -> String {
         let geocoder = CLGeocoder()
         guard let placemark = try await geocoder.reverseGeocodeLocation(CLLocation(latitude: location.latitude, longitude: location.longitude)).first else {
             return ""

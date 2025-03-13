@@ -12,18 +12,9 @@ import WidgetKit
 
 public struct SettingsUseCase {
     private let repository: SettingsRepository
-    private let authRepository: AuthRepository
-    private let keychainRepository: KeychainRepository
-    private let networkRepository: NetworkRepository
 
-    public init(repository: SettingsRepository,
-                authRepository: AuthRepository,
-                keychainRepository: KeychainRepository,
-                networkRepository: NetworkRepository) {
+    public init(repository: SettingsRepository) {
         self.repository = repository
-        self.authRepository = authRepository
-        self.keychainRepository = keychainRepository
-        self.networkRepository = networkRepository
     }
 
     public var isAnalyticsEnabled: Bool {

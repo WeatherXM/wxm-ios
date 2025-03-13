@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Survey {
+public struct Survey: Equatable {
 	public let id: String?
 	public let title: String?
 	public let message: String?

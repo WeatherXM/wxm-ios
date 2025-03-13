@@ -30,6 +30,18 @@ public struct NetworkDevicesInfoResponse: Codable, Sendable {
         self.weatherStation = try container.decodeIfPresent(WeatherStation.self, forKey: .weatherStation)
 		self.rewardSplit = try container.decodeIfPresent([RewardSplit].self, forKey: .rewardSplit)
     }
+
+	public init(name: String? = nil,
+				claimedAt: Date? = nil,
+				gateway: Gateway? = nil,
+				weatherStation: WeatherStation? = nil,
+				rewardSplit: [RewardSplit]? = nil) {
+		self.name = name
+		self.claimedAt = claimedAt
+		self.gateway = gateway
+		self.weatherStation = weatherStation
+		self.rewardSplit = rewardSplit
+	}
 }
 
 public extension NetworkDevicesInfoResponse {

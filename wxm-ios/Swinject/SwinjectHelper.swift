@@ -30,6 +30,10 @@ class SwinjectHelper: SwinjectInterface {
 			UserDefaultsService()
 		}
 
+		container.register(GeocoderProtocol.self) { _ in
+			Geocoder()
+		}
+
 		container.register(UserDevicesService.self) { resolver in
 			UserDevicesService(followStatesCacheManager: resolver.resolve(UserDefaultsService.self)!,
 							   userDevicesCacheManager: resolver.resolve(UserDefaultsService.self)!)
@@ -47,10 +51,7 @@ class SwinjectHelper: SwinjectInterface {
         }
 
         container.register(SettingsUseCase.self) { resolver in
-            SettingsUseCase(repository: resolver.resolve(SettingsRepository.self)!,
-                            authRepository: resolver.resolve(AuthRepository.self)!,
-                            keychainRepository: resolver.resolve(KeychainRepository.self)!,
-                            networkRepository: resolver.resolve(NetworkRepository.self)!)
+            SettingsUseCase(repository: resolver.resolve(SettingsRepository.self)!)
         }
 
         // MARK: - Network
@@ -103,7 +104,8 @@ class SwinjectHelper: SwinjectInterface {
             let explorerUserCase = ExplorerUseCase(explorerRepository: resolver.resolve(ExplorerRepository.self)!,
                                                    devicesRepository: resolver.resolve(DevicesRepository.self)!,
                                                    meRepository: resolver.resolve(MeRepository.self)!,
-												   deviceLocationRepository: resolver.resolve(DeviceLocationRepository.self)!)
+												   deviceLocationRepository: resolver.resolve(DeviceLocationRepository.self)!,
+												   geocoder: resolver.resolve(GeocoderProtocol.self)!)
             return explorerUserCase
         }
 
@@ -139,7 +141,7 @@ class SwinjectHelper: SwinjectInterface {
         }
 
         container.register(HistoryUseCase.self) { resolver in
-            HistoryUseCase(meRepository: resolver.resolve(MeRepository.self)!, userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!)
+            HistoryUseCase(meRepository: resolver.resolve(MeRepository.self)!)
         }
 
         // MARK: - Keychain DI
@@ -163,15 +165,14 @@ class SwinjectHelper: SwinjectInterface {
         container.register(DeviceDetailsUseCase.self) { resolver in
             DeviceDetailsUseCase(meRepository: resolver.resolve(MeRepository.self)!,
                                  explorerRepository: resolver.resolve(ExplorerRepository.self)!,
-                                 keychainRepository: resolver.resolve(KeychainRepository.self)!)
+                                 keychainRepository: resolver.resolve(KeychainRepository.self)!,
+								 geocoder: resolver.resolve(GeocoderProtocol.self)!)
         }
 
         // MARK: - Rewards Use Case
 
         container.register(RewardsUseCase.self) { resolver in
-            RewardsUseCase(meRepository: resolver.resolve(MeRepository.self)!,
-                           devicesRepository: resolver.resolve(DevicesRepository.self)!,
-                           keychainRepository: resolver.resolve(KeychainRepository.self)!)
+            RewardsUseCase(devicesRepository: resolver.resolve(DevicesRepository.self)!)
         }
 
         // MARK: - Filters
