@@ -11,103 +11,82 @@ import Foundation
 // MARK: - Constants
 
 extension CBMUUID {
-	nonisolated(unsafe) static let nordicBlinkyService  = CBMUUID(string: "00034729-1212-EFDE-1523-785FEABCD123")
-	nonisolated(unsafe) static let buttonCharacteristic = CBMUUID(string: "00049616-1212-EFDE-1523-785FEABCD123") // read
-	nonisolated(unsafe) static let ledCharacteristic    = CBMUUID(string: "00034729-1212-EFDE-1523-785FEABCD123") // write
+	nonisolated(unsafe) static let service  = CBMUUID(string: "00034729-1212-EFDE-1523-785FEABCD123")
+	nonisolated(unsafe) static let readCharacteristic = CBMUUID(string: "00049616-1212-EFDE-1523-785FEABCD123") // read
+	nonisolated(unsafe) static let writeCharacteristic    = CBMUUID(string: "00034729-1212-EFDE-1523-785FEABCD123") // write
 }
 
 // MARK: - Services
 
 extension CBMCharacteristicMock {
 
-	static let buttonCharacteristic = CBMCharacteristicMock(
-		type: .buttonCharacteristic,
+	static let readCharacteristic = CBMCharacteristicMock(
+		type: .readCharacteristic,
 		properties: [.notify, .read],
 		descriptors: CBMClientCharacteristicConfigurationDescriptorMock()
 	)
 
-	static let ledCharacteristic = CBMCharacteristicMock(
-		type: .ledCharacteristic,
-		properties: [.write, .read]
+	static let writeCharacteristic = CBMCharacteristicMock(
+		type: .writeCharacteristic,
+		properties: [.write, .read, .notify]
 	)
 
 }
 
 extension CBMServiceMock {
 
-	static let blinkyService = CBMServiceMock(
-		type: .nordicBlinkyService,
+	static let service = CBMServiceMock(
+		type: .service,
 		primary: true,
 		characteristics:
-			.buttonCharacteristic,
-			.ledCharacteristic
+			.readCharacteristic,
+			.writeCharacteristic
 	)
 
 }
 
-// MARK: - Blinky Implementation
+// MARK: - Mock helium Implementation
 
 /// The delegate implements the behavior of the mocked device.
-private class BlinkyCBMPeripheralSpecDelegate: CBMPeripheralSpecDelegate {
+private final class HeliumDevicePeripheralSpecDelegate: CBMPeripheralSpecDelegate, Sendable {
 
-	// MARK: States
 
-	/// State of the LED.
-	private var ledEnabled: Bool = false
-	/// State of the Button.
-	private var buttonPressed: Bool = false
-
-	// MARK: Encoders
-
-	/// LED state encoded as Data.
-	///
-	/// - 0x01 - LED is ON.
-	/// - 0x00 - LED is OFF.
-	private var ledData: Data {
-		return ledEnabled ? Data([0x01]) : Data([0x00])
-	}
-
-	/// Button state encoded as Data.
-	///
-	/// - 0x01 - Button is pressed.
-	/// - 0x00 - Button is released.
-	private var buttonData: Data {
-		return buttonPressed ? Data([0x01]) : Data([0x00])
-	}
+	nonisolated(unsafe) private var notifyingCharacteristic: CBMCharacteristicMock?
 
 	// MARK: Event handlers
 
-	func reset() {
-		ledEnabled = false
-		buttonPressed = false
+	func peripheral(_ peripheral: CBMPeripheralSpec, didReceiveSetNotifyRequest enabled: Bool, for characteristic: CBMCharacteristicMock) -> Result<Void, any Error> {
+		notifyingCharacteristic = characteristic
+		return .success(())
 	}
 
 	func peripheral(_ peripheral: CBMPeripheralSpec,
 					didReceiveReadRequestFor characteristic: CBMCharacteristicMock)
 			-> Result<Data, Error> {
-		if characteristic.uuid == .ledCharacteristic {
-			return .success(ledData)
+		if characteristic.uuid == .writeCharacteristic {
+			return .success(Data())
 		} else {
-			return .success(buttonData)
+			return .success(Data())
 		}
 	}
 
 	func peripheral(_ peripheral: CBMPeripheralSpec,
 					didReceiveWriteRequestFor characteristic: CBMCharacteristicMock,
 					data: Data) -> Result<Void, Error> {
-		if data.count > 0 {
-			ledEnabled = data[0] != 0x00
+		// Simulate value update to simulate the connection process with helium devices
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+			if let notifyingCharacteristic = self?.notifyingCharacteristic {
+				peripheral.simulateValueUpdate(Data(), for: notifyingCharacteristic)
+			}
 		}
-		peripheral.simulateValueUpdate(Data(), for: characteristic)
+
 		return .success(())
 	}
 }
 
 // MARK: - Blinky Definition
 
-/// This device will advertise with 2 different types of packets, as nRF Blinky and an iBeacon (with a name).
-/// As iOS prunes the iBeacon manufacturer data, only the name is available.
-let blinky = CBMPeripheralSpec
+let mockHelium = CBMPeripheralSpec
 	.simulatePeripheral(proximity: .immediate)
 	.advertising(
 		advertisementData: [
@@ -129,8 +108,8 @@ let blinky = CBMPeripheralSpec
 		alsoWhenConnected: false
 	)
 	.connectable(
-		name: "nRF Blinky",
-		services: [.blinkyService],
-		delegate: BlinkyCBMPeripheralSpecDelegate()
+		name: "WXMDevice",
+		services: [.service],
+		delegate: HeliumDevicePeripheralSpecDelegate()
 	)
 	.build()
