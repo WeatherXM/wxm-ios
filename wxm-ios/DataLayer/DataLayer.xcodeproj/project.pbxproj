@@ -69,6 +69,9 @@
 		26C71CD82D26D97500D2F0F3 /* post_device_photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 26C71CD72D26D95F00D2F0F3 /* post_device_photos.json */; };
 		26C71CDC2D27D89300D2F0F3 /* FileUploaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */; };
 		26D47E9E2A177AFB0078723A /* SettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */; };
+		26D6E2422D819B41006CAAEA /* CoreBluetoothMock in Frameworks */ = {isa = PBXBuildFile; productRef = 26D6E2412D819B41006CAAEA /* CoreBluetoothMock */; };
+		26D6E2442D819C39006CAAEA /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6E2432D819C39006CAAEA /* Aliases.swift */; };
+		26D6E2462D81A59E006CAAEA /* MockHeliumDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6E2452D81A59E006CAAEA /* MockHeliumDevice.swift */; };
 		26DD42AF29AF4765008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AE29AF4765008E277E /* Toolkit.framework */; };
 		26DD42D229AFAF26008E277E /* get_user_devices.json in Resources */ = {isa = PBXBuildFile; fileRef = 26DD42D129AFAF26008E277E /* get_user_devices.json */; };
 		26DF1F542D549A310001E936 /* FileUploadMockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */; };
@@ -171,6 +174,8 @@
 		26C71CD72D26D95F00D2F0F3 /* post_device_photos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = post_device_photos.json; sourceTree = "<group>"; };
 		26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploaderService.swift; sourceTree = "<group>"; };
 		26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryImpl.swift; sourceTree = "<group>"; };
+		26D6E2432D819C39006CAAEA /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
+		26D6E2452D81A59E006CAAEA /* MockHeliumDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHeliumDevice.swift; sourceTree = "<group>"; };
 		26DD42AE29AF4765008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DD42D129AFAF26008E277E /* get_user_devices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user_devices.json; sourceTree = "<group>"; };
 		26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadMockProtocol.swift; sourceTree = "<group>"; };
@@ -217,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B51244012825516A00B66A31 /* Alamofire in Frameworks */,
+				26D6E2422D819B41006CAAEA /* CoreBluetoothMock in Frameworks */,
 				B51243F5282550B100B66A31 /* DomainLayer.framework in Frameworks */,
 				4D49D910294DE53700987DE6 /* MapboxMaps in Frameworks */,
 				267EC3BF2CD0ECE60085B50A /* Pulse in Frameworks */,
@@ -287,6 +293,14 @@
 				264BDA10298BA108005C1F82 /* FirmwareUpdater.swift */,
 			);
 			path = FirmwareUpdate;
+			sourceTree = "<group>";
+		};
+		267AF46A2D830B2C00827E4F /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				26D6E2452D81A59E006CAAEA /* MockHeliumDevice.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		26AB9F502A8010E300855912 /* Services */ = {
@@ -458,6 +472,7 @@
 		B5799E7528254CC100FEBB85 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
+				267AF46A2D830B2C00827E4F /* Mock */,
 				26E88B2A29E56B320023BBD5 /* Database */,
 				B56A25F128A0FFB800928141 /* Entities */,
 				B51243F12825509800B66A31 /* Networking */,
@@ -465,6 +480,7 @@
 				26AB9F502A8010E300855912 /* Services */,
 				B5799E7628254CC100FEBB85 /* DataLayer.h */,
 				2683A4C32ADECBA800D5C205 /* countries_information.json */,
+				26D6E2432D819C39006CAAEA /* Aliases.swift */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -513,6 +529,7 @@
 				264BDA09298ABF6B005C1F82 /* NordicDFU */,
 				267EC3BE2CD0ECE60085B50A /* Pulse */,
 				267EC3C02CD0ECE60085B50A /* PulseProxy */,
+				26D6E2412D819B41006CAAEA /* CoreBluetoothMock */,
 			);
 			productName = DataLayer;
 			productReference = B5799E7328254CC100FEBB85 /* DataLayer.framework */;
@@ -548,6 +565,7 @@
 				4D49D90E294DE53700987DE6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 				264BDA08298ABF6B005C1F82 /* XCRemoteSwiftPackageReference "IOS-DFU-Library" */,
 				267EC3BD2CD0ECE60085B50A /* XCRemoteSwiftPackageReference "Pulse" */,
+				26D6E2402D819B41006CAAEA /* XCRemoteSwiftPackageReference "IOS-CoreBluetooth-Mock" */,
 			);
 			productRefGroup = B5799E7428254CC100FEBB85 /* Products */;
 			projectDirPath = "";
@@ -611,10 +629,12 @@
 			files = (
 				B55668922832DE96006D0B71 /* ApiClient.swift in Sources */,
 				B5E6B85628337A3E0060D050 /* AuthApiRequestBuilder.swift in Sources */,
+				26D6E2442D819C39006CAAEA /* Aliases.swift in Sources */,
 				B5E1FAD528A1360A002DFA24 /* AuthInterceptor.swift in Sources */,
 				B5E6B86B283391880060D050 /* AuthRepositoryImpl.swift in Sources */,
 				268ACD062C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift in Sources */,
 				4D5AE33028EA49C7006F2EBA /* BluetoothDevicesRepositoryImpl.swift in Sources */,
+				26D6E2462D81A59E006CAAEA /* MockHeliumDevice.swift in Sources */,
 				268ACD052C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift in Sources */,
 				2646FCC4299658B200EBB61B /* BluetoothManager.swift in Sources */,
 				2646FCC629967D9500EBB61B /* BluetoothUtils.swift in Sources */,
@@ -909,6 +929,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = "DataLayer/DataLayer/Mock/*";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -945,6 +966,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = "DataLayer/DataLayer/Mock/*";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1010,6 +1032,14 @@
 				minimumVersion = 5.1.2;
 			};
 		};
+		26D6E2402D819B41006CAAEA /* XCRemoteSwiftPackageReference "IOS-CoreBluetooth-Mock" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NordicSemiconductor/IOS-CoreBluetooth-Mock";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.18.0;
+			};
+		};
 		4D49D908294DE3B300987DE6 /* XCRemoteSwiftPackageReference "search-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mapbox/search-ios.git";
@@ -1051,6 +1081,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 267EC3BD2CD0ECE60085B50A /* XCRemoteSwiftPackageReference "Pulse" */;
 			productName = PulseProxy;
+		};
+		26D6E2412D819B41006CAAEA /* CoreBluetoothMock */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 26D6E2402D819B41006CAAEA /* XCRemoteSwiftPackageReference "IOS-CoreBluetooth-Mock" */;
+			productName = CoreBluetoothMock;
 		};
 		4D49D909294DE3B300987DE6 /* MapboxSearch */ = {
 			isa = XCSwiftPackageProductDependency;

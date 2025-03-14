@@ -6,7 +6,11 @@
 //
 
 import Combine
+#if MOCK
+import CoreBluetoothMock
+#else
 import CoreBluetooth
+#endif
 import DomainLayer
 import Foundation
 
@@ -49,6 +53,10 @@ class BluetoothManager: NSObject {
 	override public init() {
 		state = stateSubject.eraseToAnyPublisher()
 		devices = devicesSubject.eraseToAnyPublisher()
+#if MOCK
+		CBMCentralManagerMock.simulateInitialState(.poweredOn)
+		CBMCentralManagerMock.simulatePeripherals([mockHelium])
+#endif
 		super.init()
 	}
 	
@@ -57,13 +65,11 @@ class BluetoothManager: NSObject {
 	 */
 	public func enable() {
 		if manager == nil {
-			manager = CBCentralManager(
-				delegate: nil,
-				queue: nil,
-				options: [
-					CBCentralManagerOptionShowPowerAlertKey: false
-				]
-			)
+#if MOCK
+			manager = CBCentralManagerFactory.instance(delegate: self, queue: .main, forceMock: false)
+#else
+			manager = CBCentralManager(delegate: self, queue: .main)
+#endif
 			manager.delegate = self
 		}
 	}
@@ -136,7 +142,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
 	}
 	
 	public func centralManager(_: CBCentralManager, didConnect peripheral: CBPeripheral) {
-		guard peripheralToConnect == peripheral else {
+		guard peripheralToConnect?.identifier == peripheral.identifier else {
 			return
 		}
 		
@@ -149,7 +155,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
 	}
 	
 	func centralManager(_: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error _: Error?) {
-		guard peripheralToConnect == peripheral else {
+		guard peripheralToConnect?.identifier == peripheral.identifier else {
 			return
 		}
 		peripheralToConnect = nil
@@ -157,7 +163,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
 	}
 	
 	public func centralManager(_: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error _: Error?) {
-		guard peripheralToConnect == peripheral else {
+		guard peripheralToConnect?.identifier == peripheral.identifier else {
 			return
 		}
 		peripheralToConnect = nil
