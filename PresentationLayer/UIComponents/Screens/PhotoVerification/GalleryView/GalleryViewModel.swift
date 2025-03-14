@@ -61,7 +61,8 @@ class GalleryViewModel: ObservableObject {
 			self?.images.append(imageUrl)
 			self?.selectedImage = self?.images.last
 
-			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto])
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto,
+																	 .action: .completed])
 		}
 		return picker
 	}()
@@ -80,6 +81,9 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func handlePlusButtonTap() {
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto,
+																 .action: .started])
+
 		guard images.count < maxPhotosCount else {
 			if let text = LocalizableString.PhotoVerification.maxLimitPhotosInfo(maxPhotosCount).localized.attributedMarkdown {
 				Toast.shared.show(text: text, type: .info, visibleDuration: 5.0)
