@@ -311,5 +311,7 @@ public enum ParameterValue {
 	case startUploadingPhotos
 	case uploadingPhotosSuccess
 	case goToPhotoVerification
+	case started
+	case completed
 	case custom(String)
 }

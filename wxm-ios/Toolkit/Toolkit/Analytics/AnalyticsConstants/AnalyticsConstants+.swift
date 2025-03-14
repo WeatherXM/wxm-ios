@@ -463,6 +463,10 @@ extension ParameterValue: RawRepresentable {
 				return "Uploading Photos Success"
 			case .goToPhotoVerification:
 				return "Go To Photo Verification"
+			case .started:
+				return "started"
+			case .completed:
+				return "completed"
 		}
 	}
 }
