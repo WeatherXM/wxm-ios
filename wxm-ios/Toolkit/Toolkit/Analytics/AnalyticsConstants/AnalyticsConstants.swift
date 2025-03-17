@@ -16,7 +16,6 @@ let analyticsScreenNameKey: String = AnalyticsParameterScreenName
 
 public enum Screen: String {
 	case splash = "Splash Screen"
-	case analytics = "Analytics Opt-In Prompt"
 	case explorerLanding = "Explorer (Landing)"
 	case explorer = "Explorer"
 	case claimM5 = "Claim M5"

@@ -17,10 +17,6 @@ class AnalyticsViewModel: ObservableObject {
         self.useCase = useCase
     }
 
-	func viewAppeared() {
-		WXMAnalytics.shared.trackScreen(.analytics)
-	}
-
     func denyButtonTapped() {
         useCase.optInOutAnalytics(false)
     }
