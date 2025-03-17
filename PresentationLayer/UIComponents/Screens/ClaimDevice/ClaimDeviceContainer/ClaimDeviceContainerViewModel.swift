@@ -126,6 +126,8 @@ extension ClaimDeviceContainerViewModel {
 
 							let object = getFailObject(for: responseError)
 							self.loadingState = .fail(object)
+							WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .claimingResult,
+																					  .success: .custom("0")])
 						case .success(let deviceResponse):
 							print(deviceResponse)
 							Task { @MainActor in
@@ -136,6 +138,9 @@ extension ClaimDeviceContainerViewModel {
 
 								let object = self.getSuccessObject(for: deviceResponse, followState: followState)
 								self.loadingState = .success(object)
+								WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .claimingResult,
+																						  .success: .custom("1")])
+
 							}
 					}
 				}

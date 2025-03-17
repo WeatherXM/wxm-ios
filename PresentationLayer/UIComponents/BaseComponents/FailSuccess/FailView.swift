@@ -77,11 +77,11 @@ struct FailView: View {
                 return .systemAction
             })
         }
-        .onAppear {
-            WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
-                                                                .contentId: .failureContentId,
-                                                                .itemId: .custom(obj.type.description)])
-        }
+		.onAppear {
+			WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
+																	  .contentId: .failureContentId,
+																	  .itemId: .custom(obj.type.description)])
+		}
     }
 
 	@ViewBuilder
