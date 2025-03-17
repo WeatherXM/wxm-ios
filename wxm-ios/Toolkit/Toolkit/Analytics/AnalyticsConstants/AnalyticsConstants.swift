@@ -66,6 +66,7 @@ public enum Screen: String {
 	case cellCapacityInfo = "Cell Capacity info"
 	case rewardAnalytics = "Reward Analytics"
 	case temperatureBars = "Temperature Bars Explanation"
+	case bleConnectionPopupError = "BLE Connection Popup Error"
 }
 
 public enum Event: String {

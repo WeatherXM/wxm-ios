@@ -42,6 +42,7 @@ private extension ClaimHeliumContainerViewModel {
 				}
 				self.loadingState = .fail(object)
 				self.showLoading = true
+				WXMAnalytics.shared.trackScreen(.bleConnectionPopupError)
 			} else {
 				self.btDevice = device
 				self.moveNext()
