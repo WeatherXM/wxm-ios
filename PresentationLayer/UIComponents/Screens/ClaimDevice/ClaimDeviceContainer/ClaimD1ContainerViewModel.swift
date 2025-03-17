@@ -7,12 +7,17 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 class ClaimD1ContainerViewModel: ClaimDeviceContainerViewModel {
 	override init(useCase: MeUseCase, devicesUseCase: DevicesUseCase, deviceLocationUseCase: DeviceLocationUseCase) {
 		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
 		navigationTitle = ClaimStationType.d1.navigationTitle
 		steps = getSteps()
+	}
+
+	override func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.claimD1)
 	}
 }
 

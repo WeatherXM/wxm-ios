@@ -22,6 +22,7 @@ public enum Screen: String {
 	case claimM5 = "Claim M5"
 	case claimHelium = "Claim Helium"
 	case claimPulse = "Claim Pulse"
+	case claimD1 = "Claim D1"
 	case claimDapp = "Claim Dapp"
 	case wallet = "Wallet"
 	case deleteAccount = "Delete Account"

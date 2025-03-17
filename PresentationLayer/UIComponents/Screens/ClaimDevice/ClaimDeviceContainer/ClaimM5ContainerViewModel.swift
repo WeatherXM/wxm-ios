@@ -10,14 +10,15 @@ import DomainLayer
 import Toolkit
 
 class ClaimM5ContainerViewModel: ClaimDeviceContainerViewModel {
-	override func viewAppeared() {
-		WXMAnalytics.shared.trackScreen(.claimM5)
-	}
 	
 	override init(useCase: MeUseCase, devicesUseCase: DevicesUseCase, deviceLocationUseCase: DeviceLocationUseCase) {
 		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
 		navigationTitle = ClaimStationType.m5.navigationTitle
 		steps = getSteps()
+	}
+
+	override func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.claimM5)
 	}
 }
 
