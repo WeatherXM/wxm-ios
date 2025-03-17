@@ -333,8 +333,6 @@ extension ParameterValue: RawRepresentable {
 				return "Devices List Follow"
 			case .explorerDevicesListFollow:
 				return "Explorer Devices List Follow"
-			case .deviceDetailsSettings:
-				return "Device Details Settings"
 			case .filters:
 				return "Filters"
 			case .filtersReset:

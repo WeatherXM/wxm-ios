@@ -247,7 +247,6 @@ public enum ParameterValue {
 	case stationRegion
 	case devicesListFollow
 	case explorerDevicesListFollow
-	case deviceDetailsSettings
 	case filters
 	case filtersReset
 	case filtersCancel

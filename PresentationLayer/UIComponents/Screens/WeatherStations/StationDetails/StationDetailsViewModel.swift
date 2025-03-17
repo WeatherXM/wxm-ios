@@ -87,8 +87,6 @@ class StationDetailsViewModel: ObservableObject {
 	}
 
     func settingsButtonTapped() {
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .deviceDetailsSettings])
-
         Router.shared.navigateTo(.deviceInfo(DeviceInfoViewModel(device: device!, followState: followState)))
     }
 
