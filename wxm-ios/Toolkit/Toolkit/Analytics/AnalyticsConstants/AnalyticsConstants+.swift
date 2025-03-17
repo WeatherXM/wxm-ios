@@ -22,7 +22,7 @@ extension Event: CustomStringConvertible {
 extension Parameter: CustomStringConvertible {
 	public var description: String {
 		switch self {
-			case .action, .actionName, .contentName, .contentId, .promptName, .promptType,
+			case .action, .actionName, .contentName, .promptName, .promptType,
 					.step, .state, .date, .theme, .temperature, .wind, .windDirection, .precipitation, .pressure,
 					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn, .userState, .deviceState:
 				return rawValue
@@ -247,22 +247,8 @@ extension ParameterValue: RawRepresentable {
 				return "hpa"
 			case .inchOfMercury:
 				return "inhg"
-			case .loginContentId:
-				return "login"
-			case .signUpContentId:
-				return "signup"
-			case .forgotPasswordEmailContentId:
-				return "forgot_password_email"
 			case .failureOtaContentId:
 				return "failure_ota"
-			case .otaResultContentId:
-				return "ota_result"
-			case .failureContentId:
-				return "failure"
-			case .changeStationNameResultContentId:
-				return "change_station_name_result"
-			case .changeFrequencyResultContentId:
-				return "change_frequency_result"
 			case .emailMethod:
 				return "email"
 			case .claimingResultContentId:

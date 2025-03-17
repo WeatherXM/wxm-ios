@@ -79,7 +79,6 @@ struct FailView: View {
         }
 		.onAppear {
 			WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .failure,
-																	  .contentId: .failureContentId,
 																	  .itemId: .custom(obj.type.description)])
 		}
     }

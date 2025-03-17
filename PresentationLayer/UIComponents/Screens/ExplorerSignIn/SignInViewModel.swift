@@ -39,10 +39,9 @@ final class SignInViewModel: ObservableObject {
                     }
 
                     let isSuccessful = response.error == nil
-                    WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .login,
-                                                                        .contentId: .loginContentId,
-                                                                        .method: .emailMethod,
-                                                                        .success: .custom(isSuccessful ? "1" : "0")])
+					WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .login,
+																			  .method: .emailMethod,
+																			  .success: .custom(isSuccessful ? "1" : "0")])
 
                 }.store(in: &cancellableSet)
         } catch {}

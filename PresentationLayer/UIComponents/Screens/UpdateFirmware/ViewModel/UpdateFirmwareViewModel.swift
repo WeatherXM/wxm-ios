@@ -220,14 +220,12 @@ private extension UpdateFirmwareViewModel {
 			mainVM?.firmwareUpdated(for: deviceId, version: version)
 		}
 		WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .OTAResult,
-															.contentId: .otaResultContentId,
-															.itemId: .custom(device?.id ?? ""),
-															.success: .custom("1")])
+																  .itemId: .custom(device?.id ?? ""),
+																  .success: .custom("1")])
 	}
 
 	func trackErrorEvents(error: FirmwareUpdateError) {
 		var params: [Parameter: ParameterValue] = [.contentName: .OTAError,
-												   .contentId: .failureOtaContentId,
 												   .itemId: .custom(device?.id ?? "")]
 		if let currentStepIndex, let step = Step(rawValue: currentStepIndex) {
 			params += [.step: step.analyticsValue]
@@ -235,9 +233,8 @@ private extension UpdateFirmwareViewModel {
 		WXMAnalytics.shared.trackEvent(.viewContent, parameters: params)
 
 		WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .OTAResult,
-															.contentId: .otaResultContentId,
-															.itemId: .custom(device?.id ?? ""),
-															.success: .custom("0")])
+																  .itemId: .custom(device?.id ?? ""),
+																  .success: .custom("0")])
 	}
 
     /// Updates the UI state according to the firmware update error

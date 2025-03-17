@@ -277,7 +277,6 @@ private extension ChangeFrequencyViewModel {
 
     func trackViewContentEvent(success: Bool) {
         WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .changeFrequencyResult,
-                                                            .contentId: .changeFrequencyResultContentId,
-                                                            .success: .custom(success ? "1" : "0")])
+																  .success: .custom(success ? "1" : "0")])
     }
 }

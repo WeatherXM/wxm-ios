@@ -79,7 +79,6 @@ public enum Parameter: String {
 	case actionName = "ACTION_NAME"
 	case contentType = "CONTENT_TYPE"
 	case contentName = "CONTENT_NAME"
-	case contentId = "CONTENT_ID"
 	case itemId = "ITEM_ID"
 	case location = "LOCATION"
 	case itemListId = "ITEM_LIST_ID"
@@ -205,16 +204,9 @@ public enum ParameterValue {
 	case inches
 	case hectopascal
 	case inchOfMercury
-	case loginContentId
 	case emailMethod
-	case signUpContentId
-	case forgotPasswordEmailContentId
 	case failureOtaContentId
-	case otaResultContentId
-	case failureContentId
 	case claimingResultContentId
-	case changeStationNameResultContentId
-	case changeFrequencyResultContentId
 	case openShop
 	case openStationShop
 	case openManufacturerContact

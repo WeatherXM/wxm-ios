@@ -434,8 +434,7 @@ private extension DeviceInfoViewModel {
 
     func trackChangeNameViewContent(isSuccessful: Bool) {
         WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .changeStationNameResult,
-                                                            .contentId: .changeStationNameResultContentId,
-                                                            .success: .custom(isSuccessful ? "1" : "0")])
+																  .success: .custom(isSuccessful ? "1" : "0")])
     }
 
 	func customViewFor(field: Field) -> AnyView? {
