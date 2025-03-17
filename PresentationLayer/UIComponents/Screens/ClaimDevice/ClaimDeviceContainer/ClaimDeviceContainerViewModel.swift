@@ -155,6 +155,10 @@ extension ClaimDeviceContainerViewModel {
 											contactSupportAction: {
 			HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
 		}, cancelAction: {
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
+																	 .contentType: .claiming,
+																	 .action: .cancel])
+
 			Router.shared.popToRoot()
 		}, retryAction: { [weak self] in
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
@@ -178,6 +182,10 @@ extension ClaimDeviceContainerViewModel {
 		}
 
 		let updateFirmwareButton = Button(action: { [weak self] in
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
+																	 .contentType: .claiming,
+																	 .action: .updateStation])
+
 			self?.dismissAndNavigate(device: nil)
 			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
 				MainScreenViewModel.shared.showFirmwareUpdate(device: device)

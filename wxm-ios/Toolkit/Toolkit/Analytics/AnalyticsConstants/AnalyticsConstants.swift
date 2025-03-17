@@ -110,9 +110,10 @@ public enum Parameter: String {
 }
 
 public enum ParameterValue {
+	case appUpdatePrompt
+	case appUpdatePromptResult
 	case selectDevice
 	case userDeviceList
-	case transactionOnExplorer
 	case deviceTransactions
 	case shareStationInfo
 	case stationInfo
@@ -122,7 +123,9 @@ public enum ParameterValue {
 	case cancel
 	case retry
 	case viewStation
-	case updateFirmware
+	case discard
+	case update
+	case updateStation
 	case changeStationNameResult
 	case changeStationName
 	case edit

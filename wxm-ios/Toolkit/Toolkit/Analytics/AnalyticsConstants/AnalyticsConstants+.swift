@@ -55,12 +55,14 @@ extension ParameterValue: RawRepresentable {
 
 	public var rawValue: String {
 		switch self {
+			case .appUpdatePrompt:
+				return "App Update Prompt"
+			case .appUpdatePromptResult:
+				return "App Update Prompt Result"
 			case .selectDevice:
 				return "Select Device"
 			case .userDeviceList:
 				return "User Device List"
-			case .transactionOnExplorer:
-				return "Transaction on Explorer"
 			case .deviceTransactions:
 				return "Device Transactions"
 			case .shareStationInfo:
@@ -81,9 +83,13 @@ extension ParameterValue: RawRepresentable {
 				return "Cancel"
 			case .retry:
 				return "Retry"
+			case .discard:
+				return "Discard"
+			case .update:
+				return "Update"
 			case .viewStation:
 				return "View Station"
-			case .updateFirmware:
+			case .updateStation:
 				return "Update Station"
 			case .changeStationNameResult:
 				return "Change Station Name Result"
@@ -94,7 +100,7 @@ extension ParameterValue: RawRepresentable {
 			case .clear:
 				return "Clear"
 			case .changeFrequencyResult:
-				return "Chnage Frequency Result"
+				return "Change Frequency Result"
 			case .changeStationFrequency:
 				return "Change Station Frequency"
 			case .change:
