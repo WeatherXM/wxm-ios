@@ -82,6 +82,10 @@ class StationDetailsViewModel: ObservableObject {
 		}.store(in: &cancellables)
     }
 
+	func viewAppeared() {
+
+	}
+
     func settingsButtonTapped() {
         WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .deviceDetailsSettings])
 

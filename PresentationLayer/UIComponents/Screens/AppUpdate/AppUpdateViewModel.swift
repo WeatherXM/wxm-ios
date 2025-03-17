@@ -32,6 +32,10 @@ class AppUpdateViewModel: ObservableObject {
 			self.forceUpdate = self.useCase.shouldForceUpdate(minimumVersion: minVersion)
 		}.store(in: &cancellableSet)
 	}
+
+	func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.appUpdatePrompt)
+	}
 	
 	func handleUpdateButtonTap() {
 		if let url = URL(string: DisplayedLinks.appstore.linkURL) {

@@ -19,6 +19,10 @@ class ClaimHeliumContainerViewModel: ClaimDeviceContainerViewModel {
 		navigationTitle = ClaimStationType.helium.navigationTitle
 		steps = getSteps()
 	}
+
+	override func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.claimHelium)
+	}
 }
 
 private extension ClaimHeliumContainerViewModel {

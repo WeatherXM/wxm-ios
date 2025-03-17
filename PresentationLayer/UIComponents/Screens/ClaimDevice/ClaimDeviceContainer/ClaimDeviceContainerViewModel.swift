@@ -37,6 +37,8 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 		self.deviceLocationUseCase = deviceLocationUseCase
 	}
 
+	func viewAppeared() {}
+
 	func moveNext() {
 		isMovingNext = true
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

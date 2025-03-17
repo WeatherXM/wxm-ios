@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Toolkit
 
 @MainActor
 class ClaimStationSelectionViewModel: ObservableObject {
@@ -13,6 +14,10 @@ class ClaimStationSelectionViewModel: ObservableObject {
 	func handleTypeTap(_ type: ClaimStationType) {
 		let viewModel = ViewModelsFactory.getClaimStationContainerViewModel(type: type)
 		Router.shared.navigateTo(.claimStationContainer(viewModel))
+	}
+
+	func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.claimDeviceTypeSelection)
 	}
 }
 

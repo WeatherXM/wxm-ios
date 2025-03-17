@@ -66,6 +66,9 @@ struct AnalyticsView: View {
                     .sizeObserver(size: $bottomButtonsSize)
             }
         }
+		.onAppear {
+			viewModel.viewAppeared()
+		}
     }
 }
 

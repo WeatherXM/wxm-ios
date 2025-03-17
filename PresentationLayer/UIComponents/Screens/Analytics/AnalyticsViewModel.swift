@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 class AnalyticsViewModel: ObservableObject {
 
@@ -15,6 +16,10 @@ class AnalyticsViewModel: ObservableObject {
     init(useCase: SettingsUseCase) {
         self.useCase = useCase
     }
+
+	func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.analytics)
+	}
 
     func denyButtonTapped() {
         useCase.optInOutAnalytics(false)
