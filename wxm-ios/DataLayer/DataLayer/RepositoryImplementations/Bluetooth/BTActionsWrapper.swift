@@ -309,7 +309,7 @@ private extension BTActionWrapper {
 }
 
 extension BTActionWrapper {
-    enum ActionError: Error {
+	enum ActionError: Error, Equatable {
         case bluetoothState(BluetoothState)
         case reboot
         case notInRange

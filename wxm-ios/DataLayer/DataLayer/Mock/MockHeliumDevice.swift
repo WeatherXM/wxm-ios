@@ -112,6 +112,29 @@ let mockHelium = CBMPeripheralSpec
 	)
 	.build()
 
+let mockNotConnectableHelium = CBMPeripheralSpec
+	.simulatePeripheral(proximity: .immediate)
+	.advertising(
+		advertisementData: [
+			CBAdvertisementDataIsConnectable : true as NSNumber,
+			CBAdvertisementDataLocalNameKey : "WXMDevice"
+		],
+		withInterval: 2.0,
+		delay: 5.0,
+		alsoWhenConnected: false
+	)
+	.advertising(
+		advertisementData: [
+			CBAdvertisementDataIsConnectable : false as NSNumber,
+			CBAdvertisementDataLocalNameKey : "WXMDevice",
+			//CBAdvertisementDataManufacturerDataKey:
+		],
+		withInterval: 4.0,
+		delay: 2.0,
+		alsoWhenConnected: false
+	)
+	.build()
+
 let mockBTDevice = CBMPeripheralSpec
 	.simulatePeripheral(proximity: .immediate)
 	.advertising(
