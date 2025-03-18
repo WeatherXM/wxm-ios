@@ -129,22 +129,3 @@ struct BluetoothManagerTests {
 	}
 
 }
-
-private extension BluetoothManagerTests {
-	func simulateNormal() async  throws{
-		CBMCentralManagerMock.simulateInitialState(.poweredOn)
-		CBMCentralManagerMock.simulatePeripherals([mockHelium, mockBTDevice])
-		try await Task.sleep(for: .seconds(1))
-	}
-
-	func simulatePoweredOff() async throws {
-		CBMCentralManagerMock.simulateInitialState(.poweredOff)
-		try await Task.sleep(for: .seconds(1))
-	}
-
-	func simulateNoWXMDevice() async  throws{
-		CBMCentralManagerMock.simulateInitialState(.poweredOn)
-		CBMCentralManagerMock.simulatePeripherals([mockBTDevice])
-		try await Task.sleep(for: .seconds(1))
-	}
-}

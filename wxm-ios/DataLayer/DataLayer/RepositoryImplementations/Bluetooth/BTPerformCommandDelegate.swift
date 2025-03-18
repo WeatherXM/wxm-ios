@@ -121,6 +121,7 @@ private extension BTPerformCommandDelegate {
     }
 
     func handleError(_ error: BTCommandError) {
+		peripheral.delegate = nil
         performCommandCallback?(nil, error)
     }
 
@@ -131,6 +132,7 @@ private extension BTPerformCommandDelegate {
             return
         }
 
+		peripheral.delegate = nil
         performCommandCallback?(valueString, nil)
     }
 }

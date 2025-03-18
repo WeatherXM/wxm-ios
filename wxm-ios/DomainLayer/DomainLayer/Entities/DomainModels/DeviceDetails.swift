@@ -29,6 +29,50 @@ public struct DeviceDetails: Sendable {
 	public var qod: Int?
 	public var pol: PolStatus?
 	public var latestQodTs: Date?
+
+	public init(id: String? = nil,
+				name: String,
+				friendlyName: String? = nil,
+				label: String? = nil,
+				address: String? = nil,
+				location: LocationCoordinates? = nil,
+				batteryState: BatteryState? = nil,
+				cellIndex: String? = nil,
+				cellCenter: LocationCoordinates? = nil,
+				cellPolygon: [LocationCoordinates]? = nil,
+				isActive: Bool,
+				weather: CurrentWeather? = nil,
+				timezone: String? = nil,
+				lastActiveAt: String? = nil,
+				claimedAt: String? = nil,
+				rewards: Rewards? = nil,
+				firmware: Firmware? = nil,
+				bundle: StationBundle? = nil,
+				qod: Int? = nil,
+				pol: PolStatus? = nil,
+				latestQodTs: Date? = nil) {
+		self.id = id
+		self.name = name
+		self.friendlyName = friendlyName
+		self.label = label
+		self.address = address
+		self.location = location
+		self.batteryState = batteryState
+		self.cellIndex = cellIndex
+		self.cellCenter = cellCenter
+		self.cellPolygon = cellPolygon
+		self.isActive = isActive
+		self.weather = weather
+		self.timezone = timezone
+		self.lastActiveAt = lastActiveAt
+		self.claimedAt = claimedAt
+		self.rewards = rewards
+		self.firmware = firmware
+		self.bundle = bundle
+		self.qod = qod
+		self.pol = pol
+		self.latestQodTs = latestQodTs
+	}
 }
 
 public extension DeviceDetails {
