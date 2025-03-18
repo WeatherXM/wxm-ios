@@ -53,10 +53,6 @@ class BluetoothManager: NSObject {
 	override public init() {
 		state = stateSubject.eraseToAnyPublisher()
 		devices = devicesSubject.eraseToAnyPublisher()
-#if MOCK
-		CBMCentralManagerMock.simulateInitialState(.poweredOn)
-		CBMCentralManagerMock.simulatePeripherals([mockHelium])
-#endif
 		super.init()
 	}
 	
