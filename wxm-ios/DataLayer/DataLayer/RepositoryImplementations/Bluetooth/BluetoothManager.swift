@@ -241,7 +241,7 @@ private extension BluetoothManager {
 }
 
 extension BluetoothManager {
-	enum BTManagerEror: Error {
+	enum BTManagerEror: Error, Equatable {
 		case peripheralNotFound
 		case connectionError
 		case writeCommandError(BTPerformCommandDelegate.BTCommandError)

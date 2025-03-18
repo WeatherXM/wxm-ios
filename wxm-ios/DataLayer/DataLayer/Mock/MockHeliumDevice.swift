@@ -111,3 +111,30 @@ let mockHelium = CBMPeripheralSpec
 		delegate: HeliumDevicePeripheralSpecDelegate()
 	)
 	.build()
+
+let mockBTDevice = CBMPeripheralSpec
+	.simulatePeripheral(proximity: .immediate)
+	.advertising(
+		advertisementData: [
+			CBAdvertisementDataIsConnectable : true as NSNumber,
+			CBAdvertisementDataLocalNameKey : "BTDevice"
+		],
+		withInterval: 2.0,
+		delay: 5.0,
+		alsoWhenConnected: false
+	)
+	.advertising(
+		advertisementData: [
+			CBAdvertisementDataIsConnectable : false as NSNumber,
+			CBAdvertisementDataLocalNameKey : "BTDevice",
+		],
+		withInterval: 4.0,
+		delay: 2.0,
+		alsoWhenConnected: false
+	)
+	.connectable(
+		name: "BTDevice",
+		services: [.service],
+		delegate: HeliumDevicePeripheralSpecDelegate()
+	)
+	.build()
