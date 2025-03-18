@@ -7,29 +7,36 @@
 
 import Testing
 @testable import DataLayer
+import DomainLayer
 import Toolkit
 import Combine
 import CoreBluetoothMock
 
+@Suite(.serialized)
 struct BluetoothManagerTests {
 	let manager: BluetoothManager
 	let cancellableWrapper = CancellableWrapper()
 
 	init() {
 		self.manager = .init()
+		print("Initialized")
 	}
 
     @Test func connectDisconnect() async throws {
 		try await simulateNormal()
 		manager.enable()
-		return try await confirmation { confirm in
+		return try await confirmation { [weak manager] confirm in
+			guard let manager else {
+				fatalError("Manager is nil")
+			}
+			
 			manager.state.flatMap { state in
 				#expect(state == .poweredOn)
 				manager.startScanning()
 
 				return manager.devices
 			}.dropFirst().flatMap { devices in
-				#expect(!devices.isEmpty)
+				#expect(devices.count == 1)
 				let device = devices.first!
 				return Just(device)
 			}.sink { device in
@@ -43,20 +50,101 @@ struct BluetoothManagerTests {
 				}
 			}.store(in: &cancellableWrapper.cancellableSet)
 
-			try await Task.sleep(for: .seconds(5))
+			try await Task.sleep(for: .seconds(7))
 		}
     }
+
+	@Test func poweredOff() async throws {
+		try await simulatePoweredOff()
+		manager.enable()
+		return await confirmation { [weak manager] confirm in
+			guard let manager else {
+				fatalError("Manager is nil")
+			}
+
+			manager.state.flatMap { state in
+				#expect(state == .poweredOff)
+				manager.startScanning()
+
+				return manager.devices
+			}.sink { devices in
+				#expect(devices.isEmpty)
+				confirm()
+			}.store(in: &cancellableWrapper.cancellableSet)
+		}
+	}
+
+	@Test func connectToInvalidDevice() async throws {
+		try await simulateNormal()
+		manager.enable()
+		return try await confirmation { [weak manager] confirm in
+			guard let manager else {
+				fatalError("Manager is nil")
+			}
+
+			manager.state.flatMap { state in
+				#expect(state == .poweredOn)
+				manager.startScanning()
+
+				return manager.devices
+			}.dropFirst().flatMap { devices in
+				#expect(!devices.isEmpty)
+				return Just(true)
+			}.sink { _ in
+				let device = BTWXMDevice(identifier: .init(),
+										 state: .connected,
+										 name: "TEST",
+										 rssi: 1.2,
+										 eui: "TEST")
+				manager.connect(to: device) { error in
+					#expect(error == .peripheralNotFound)
+					confirm()
+				}
+			}.store(in: &cancellableWrapper.cancellableSet)
+
+			try await Task.sleep(for: .seconds(2))
+		}
+	}
+
+	@Test func noWXMDevice() async throws {
+		try await simulateNoWXMDevice()
+		manager.enable()
+		return await confirmation { [weak manager] confirm in
+			guard let manager else {
+				fatalError("Manager is nil")
+			}
+
+			manager.state.flatMap { state in
+				#expect(state == .poweredOn)
+				manager.startScanning()
+
+				return manager.devices
+			}.flatMap { devices in
+				#expect(devices.isEmpty)
+				return Just(true)
+			}.sink { _ in
+				confirm()
+			}.store(in: &cancellableWrapper.cancellableSet)
+		}
+	}
+
 }
 
 private extension BluetoothManagerTests {
 	func simulateNormal() async  throws{
 		CBMCentralManagerMock.simulateInitialState(.poweredOn)
-		CBMCentralManagerMock.simulatePeripherals([mockHelium])
+		CBMCentralManagerMock.simulatePeripherals([mockHelium, mockBTDevice])
 		try await Task.sleep(for: .seconds(1))
 	}
 
-	func simulatPoweredOff() async throws {
+	func simulatePoweredOff() async throws {
 		CBMCentralManagerMock.simulateInitialState(.poweredOff)
+		try await Task.sleep(for: .seconds(1))
+	}
+
+	func simulateNoWXMDevice() async  throws{
+		CBMCentralManagerMock.simulateInitialState(.poweredOn)
+		CBMCentralManagerMock.simulatePeripherals([mockBTDevice])
 		try await Task.sleep(for: .seconds(1))
 	}
 }

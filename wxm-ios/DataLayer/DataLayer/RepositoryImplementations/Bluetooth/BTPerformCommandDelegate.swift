@@ -136,7 +136,7 @@ private extension BTPerformCommandDelegate {
 }
 
 extension BTPerformCommandDelegate {
-    enum BTCommandError: Error {
+	enum BTCommandError: Error, Equatable {
         case writeToCharacteristic(String?)
         case readFromCharacteristic(String?)
         case serviceDiscovery(String?)
