@@ -83,6 +83,7 @@
 		2645823B2A41C07000195C21 /* FailSuccessViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */; };
 		2646D8F329C8BF3D0000237F /* StationRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646D8F229C8BF3D0000237F /* StationRewardsView.swift */; };
 		2646D8F529C8BFB40000237F /* StationRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646D8F429C8BFB40000237F /* StationRewardsViewModel.swift */; };
+		264813E42D88690100BCCC31 /* BluetoothManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264813E32D88690100BCCC31 /* BluetoothManagerTests.swift */; };
 		264CC7472B975D450060DEA4 /* rocket_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC7462B975D450060DEA4 /* rocket_dark.json */; };
 		264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */; };
 		264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */; };
@@ -762,6 +763,7 @@
 		2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailSuccessViewModifier.swift; sourceTree = "<group>"; };
 		2646D8F229C8BF3D0000237F /* StationRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsView.swift; sourceTree = "<group>"; };
 		2646D8F429C8BFB40000237F /* StationRewardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsViewModel.swift; sourceTree = "<group>"; };
+		264813E32D88690100BCCC31 /* BluetoothManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManagerTests.swift; sourceTree = "<group>"; };
 		264CC7462B975D450060DEA4 /* rocket_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocket_dark.json; sourceTree = "<group>"; };
 		264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsView.swift; sourceTree = "<group>"; };
 		264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsViewModel.swift; sourceTree = "<group>"; };
@@ -1538,6 +1540,14 @@
 			path = Rewards;
 			sourceTree = "<group>";
 		};
+		264813E22D885BE100BCCC31 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				264813E32D88690100BCCC31 /* BluetoothManagerTests.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
 		264AE27F29FB8F100051C101 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -2138,6 +2148,7 @@
 		267811032D490E7800D22B67 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
+				264813E22D885BE100BCCC31 /* Bluetooth */,
 				26DF1F5A2D55028D0001E936 /* RepositoryImplementations */,
 				267811042D490E8B00D22B67 /* Services */,
 				26DF1F672D563F940001E936 /* Utils.swift */,
@@ -3426,6 +3437,7 @@
 				26710EA92D804F6400878298 /* LoginServiceImplTests.swift in Sources */,
 				26F176A02D79D271000BA381 /* MockKeychainRepositoryImpl.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
+				264813E42D88690100BCCC31 /* BluetoothManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
