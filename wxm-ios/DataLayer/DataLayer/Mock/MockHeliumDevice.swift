@@ -76,7 +76,8 @@ private final class HeliumDevicePeripheralSpecDelegate: CBMPeripheralSpecDelegat
 		// Simulate value update to simulate the connection process with helium devices
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
 			if let notifyingCharacteristic = self?.notifyingCharacteristic {
-				peripheral.simulateValueUpdate(Data(), for: notifyingCharacteristic)
+				let value = BTCommands.SUCCESS_RESPONSE.data(using: .utf8) ?? Data()
+				peripheral.simulateValueUpdate(value, for: notifyingCharacteristic)
 			}
 		}
 

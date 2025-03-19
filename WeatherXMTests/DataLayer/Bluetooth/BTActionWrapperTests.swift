@@ -79,4 +79,36 @@ struct BTActionWrapperTests {
 		#expect(error == .reboot)
 	}
 
+	@Test func setFrequencyNormal() async throws {
+		try await simulateNormal()
+		let deviceDetails = DeviceDetails(name: "WXMDevice",
+										  label: "WXMDevice",
+										  isActive: true)
+
+		let error = await actionsWrapper.setFrequency(device: deviceDetails, frequency: .AS923_1B)
+		#expect(error == nil)
+	}
+
+	@Test func setFrequencyInvalid() async throws {
+		try await simulateNormal()
+		let deviceDetails = DeviceDetails(name: "NoWXM",
+										  label: "NoWXM",
+										  isActive: true)
+
+		let error = await actionsWrapper.setFrequency(device: deviceDetails, frequency: .AS923_1B)
+		#expect(error == .notInRange)
+	}
+
+	@Test func setFrequencyNotConnectable() async throws {
+		try await simulateNotConnectable()
+		let deviceDetails = DeviceDetails(name: "WXMDevice",
+										  label: "WXMDevice",
+										  isActive: true)
+
+		let error = await actionsWrapper.setFrequency(device: deviceDetails,
+													  frequency: .AS923_1B,
+													  connectRetries: 0)
+		#expect(error == .connect)
+	}
+
 }
