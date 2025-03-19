@@ -47,17 +47,21 @@ class BTActionWrapper: @unchecked Sendable {
         return .unknown
     }
 
-    /// Reboots to a the passed device. Scans to find the corresponding ΒΤ device and reboots
-    /// - Parameter device: The device to reboot
-    /// - Returns: The error of the process, nil if is successful
-    func reboot(device: DeviceDetails) async -> ActionError? {
+	/// Reboots to a the passed device. Scans to find the corresponding ΒΤ device and reboots
+	/// - Parameter device: The device to reboot
+	/// - Parameter connectRetries: The retries to reconnect in order to finish the reboot process
+	/// - Returns: The error of the process, nil if is successful
+    func reboot(device: DeviceDetails,
+				connectRetries: Int = 10) async -> ActionError? {
         if let btStateError = await observeBTState(for: device) {
             return btStateError
         }
 
         do {
             if let btDevice = try await findBTDevice(device: device) {
-                return await rebootDevice(btDevice, keepConnected: false)
+                return await rebootDevice(btDevice,
+										  connectRetries: connectRetries,
+										  keepConnected: false)
             }
         } catch let error as ActionError {
             return error
@@ -67,12 +71,20 @@ class BTActionWrapper: @unchecked Sendable {
 
         return .unknown
     }
-
-	func rebootDevice(_ device: BTWXMDevice, keepConnected: Bool) async -> ActionError? {
+	
+	/// Reboots to a the passed ΒΤ device and reboots
+	/// - Parameters:
+	///   - device: The device to reboot
+	///   - connectRetries: The retries to reconnect in order to finish the reboot process
+	///   - keepConnected: Keep connected after the reboot is finished
+	/// - Returns: The error of the process, nil if is successful
+	func rebootDevice(_ device: BTWXMDevice,
+					  connectRetries: Int = 10,
+					  keepConnected: Bool) async -> ActionError? {
 		rebootStationWorkItem?.cancel()
 		bluetoothManager.disconnect(from: device)
 		return await withCheckedContinuation { [weak self] continuation in
-			self?.connectToDevice(device, retries: 10) { error in
+			self?.connectToDevice(device, retries: connectRetries) { error in
 				if error != nil {
 					continuation.resume(returning: .reboot)
 					return
