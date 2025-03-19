@@ -99,19 +99,24 @@ class BTActionWrapper: @unchecked Sendable {
 		}
 	}
 
-    /// Changes the station's frequency. Scans to find the corresponding ΒΤ device and performs the AT command
-    /// - Parameters:
-    ///   - device: The device to set frequency
-    ///   - frequency: The new frequency
-    /// - Returns: The error of the process, nil if is successful
-    func setFrequency(device: DeviceDetails, frequency: Frequency) async -> ActionError? {
+	/// Changes the station's frequency. Scans to find the corresponding ΒΤ device and performs the AT command
+	/// - Parameters:
+	///   - device: The device to set frequency
+	///   - frequency: The new frequency
+	///   - connectRetries: The retries to reconnect in order to finish the frequncy setting
+	/// - Returns: The error of the process, nil if is successful
+    func setFrequency(device: DeviceDetails,
+					  frequency: Frequency,
+					  connectRetries: Int = 5) async -> ActionError? {
         if let btStateError = await observeBTState(for: device) {
             return btStateError
         }
 
         do {
             if let btDevice = try await findBTDevice(device: device) {
-                return await setDeviceFrequency(btDevice, frequency: frequency)
+                return await setDeviceFrequency(btDevice,
+												frequency: frequency,
+												connectRetries: connectRetries)
             }
         } catch let error as ActionError {
             return error
@@ -122,13 +127,15 @@ class BTActionWrapper: @unchecked Sendable {
         return .unknown
     }
 
-	func setDeviceFrequency(_ device: BTWXMDevice, frequency: Frequency) async -> ActionError? {
+	func setDeviceFrequency(_ device: BTWXMDevice,
+							frequency: Frequency,
+							connectRetries: Int = 5) async -> ActionError? {
 		guard let deviceWithCBPeripheral = bluetoothManager._devices.first(where: { $0.wxmDevice == device }) else {
 			return .setFrequency(nil)
 		}
 
 		return await withCheckedContinuation { continuation in
-			self.connectToDevice(device, retries: 5) { [weak self] error in
+			self.connectToDevice(device, retries: connectRetries) { [weak self] error in
 				guard error == nil else {
 					continuation.resume(returning: error)
 					return
