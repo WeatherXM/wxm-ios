@@ -143,4 +143,35 @@ struct BTActionWrapperTests {
 		#expect(value.error == .connect)
 	}
 
+	@Test func getClaimingKeyNormal() async throws {
+		try await simulateNormal()
+		let deviceDetails = DeviceDetails(name: "WXMDevice",
+										  label: "WXMDevice",
+										  isActive: true)
+
+		let value = await actionsWrapper.getClaimingKey(deviceDetails)
+		let claimingKey = try #require(value.value)
+		#expect(value.error == nil)
+		#expect(claimingKey == "123")
+	}
+
+	@Test func getClaimingKeyInvalid() async throws {
+		try await simulateNormal()
+		let deviceDetails = DeviceDetails(name: "NoWXM",
+										  label: "NoWXM",
+										  isActive: true)
+
+		let value = await actionsWrapper.getClaimingKey(deviceDetails)
+		#expect(value.error == .notInRange)
+	}
+
+	@Test func getClaimingKeyNotConnectable() async throws {
+		try await simulateNotConnectable()
+		let deviceDetails = DeviceDetails(name: "WXMDevice",
+										  label: "WXMDevice",
+										  isActive: true)
+
+		let value = await actionsWrapper.getClaimingKey(deviceDetails, connectRetries: 0)
+		#expect(value.error == .connect)
+	}
 }
