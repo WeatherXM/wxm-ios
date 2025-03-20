@@ -55,6 +55,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	@Published var uploadInProgressStationName: String?
 	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
+	@Published var announcementConfiguration: AnnouncementCardView.Configuration?
 	@Published var stationRewardsTitle: String?
 	@Published var stationRewardsValueText: String?
     @Published var shouldShowFullScreenLoader = true
@@ -79,6 +80,14 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 			self?.infoBanner = infoBanner
 		}.store(in: &cancellableSet)
 
+		remoteConfigUseCase.announcementPublisher.sink { [weak self] announcement in
+			self?.announcementConfiguration = announcement?.toAnnouncementConfiguration(buttonAction: {
+				
+			}, closeAction: {
+
+			})
+		}.store(in: &cancellableSet)
+		
 		photosUseCase.uploadProgressPublisher.sink { [weak self] progressResult in
 			let deviceId = progressResult.0
 			self?.updateUploadInProgressDevice(deviceId: deviceId)

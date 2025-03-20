@@ -13,9 +13,11 @@ import Toolkit
 public class RemoteConfigRepositoryImpl: RemoteConfigRepository {
 	public var surveyPublisher: AnyPublisher<Survey?, Never>
 	public var infoBannerPublisher: AnyPublisher<InfoBanner?, Never>
+	public var announcementPublisher: AnyPublisher<Announcement?, Never>
 
 	private let currentValueSubject: CurrentValueSubject<Survey?, Never> = .init(nil)
 	private let infoBannerCurrentValueSubject: CurrentValueSubject<InfoBanner?, Never> = .init(nil)
+	private let announcementCurrentValueSubject: CurrentValueSubject<Announcement?, Never> = .init(nil)
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	private let userDefaultsService = UserDefaultsService()
 	private let lastSurveyKey = UserDefaults.GenericKey.lastSurveyId.rawValue
@@ -24,12 +26,14 @@ public class RemoteConfigRepositoryImpl: RemoteConfigRepository {
 	public init() {
 		surveyPublisher = currentValueSubject.eraseToAnyPublisher()
 		infoBannerPublisher = infoBannerCurrentValueSubject.eraseToAnyPublisher()
+		announcementPublisher = announcementCurrentValueSubject.eraseToAnyPublisher()
 
 		RemoteConfigManager.shared.$surveyShow.sink { [weak self] show in
 			self?.handleSurveyShow(show)
 		}.store(in: &cancellableSet)
 
 		observeInfoBanner()
+		observeAnnouncement()
 	}
 
 	public func updateLastSurveyId(_ surveyId: String) {
@@ -80,6 +84,17 @@ private extension RemoteConfigRepositoryImpl {
 		}.store(in: &cancellableSet)
 	}
 
+	func observeAnnouncement() {
+		let announcementId = RemoteConfigManager.shared.$announcementId
+		let announcementShow = RemoteConfigManager.shared.$announcementShow
+		let announcementDismissable = RemoteConfigManager.shared.$announcementDismissable
+
+		let zip = Publishers.Zip3(announcementId, announcementShow, announcementDismissable)
+		zip.debounce(for: 1.0, scheduler: DispatchQueue.main).sink { [weak self] _, show, _ in
+			self?.handleSurveyShow(show)
+		}.store(in: &cancellableSet)
+	}
+
 	func handleInfoBannerUpdate(show: Bool) {
 		guard let infoBannerId = RemoteConfigManager.shared.infoBannerId,
 			  canShowInfobanner(bannerId: infoBannerId),
@@ -105,4 +120,16 @@ private extension RemoteConfigRepositoryImpl {
 		return lastInfoBannerId != bannerId
 	}
 
+	func handleAnnouncementUpdate(show: Bool) {
+		let announcement = Announcement(id: RemoteConfigManager.shared.announcementId,
+										title: RemoteConfigManager.shared.announcementTitle,
+										message: RemoteConfigManager.shared.announcementMessage,
+										actionLabel: RemoteConfigManager.shared.announcementActionLabel,
+										actionUrl: RemoteConfigManager.shared.announcementActionUrl,
+										actionShow: RemoteConfigManager.shared.announcementActionShow,
+										show: RemoteConfigManager.shared.announcementShow, // Remove??
+										dismissable: RemoteConfigManager.shared.announcementDismissable)
+
+		announcementCurrentValueSubject.send(announcement)
+	}
 }

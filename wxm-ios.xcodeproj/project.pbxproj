@@ -87,6 +87,7 @@
 		264813E62D89AF8900BCCC31 /* BTActionWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264813E52D89AF8900BCCC31 /* BTActionWrapperTests.swift */; };
 		264813E82D89B9C400BCCC31 /* BTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264813E72D89B9B900BCCC31 /* BTUtils.swift */; };
 		264813EA2D8C155800BCCC31 /* BluetoothDevicesRepositoryImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264813E92D8C155800BCCC31 /* BluetoothDevicesRepositoryImplTests.swift */; };
+		264813FA2D8C6D5F00BCCC31 /* Announcement+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264813F92D8C6D5800BCCC31 /* Announcement+.swift */; };
 		264CC7472B975D450060DEA4 /* rocket_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC7462B975D450060DEA4 /* rocket_dark.json */; };
 		264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */; };
 		264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */; };
@@ -770,6 +771,7 @@
 		264813E52D89AF8900BCCC31 /* BTActionWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTActionWrapperTests.swift; sourceTree = "<group>"; };
 		264813E72D89B9B900BCCC31 /* BTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTUtils.swift; sourceTree = "<group>"; };
 		264813E92D8C155800BCCC31 /* BluetoothDevicesRepositoryImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevicesRepositoryImplTests.swift; sourceTree = "<group>"; };
+		264813F92D8C6D5800BCCC31 /* Announcement+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Announcement+.swift"; sourceTree = "<group>"; };
 		264CC7462B975D450060DEA4 /* rocket_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocket_dark.json; sourceTree = "<group>"; };
 		264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsView.swift; sourceTree = "<group>"; };
 		264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsViewModel.swift; sourceTree = "<group>"; };
@@ -2132,6 +2134,7 @@
 			children = (
 				26CA84522AD933F1006D47D7 /* Common */,
 				26A4118D29BB8BC000A2C10B /* BluetoothState+.swift */,
+				264813F92D8C6D5800BCCC31 /* Announcement+.swift */,
 				268B5C402BCEB2CD00E63655 /* NetworkDeviceForecastResponse+.swift */,
 				267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */,
 				26C904C82A77EF980047A388 /* DeviceDetails+.swift */,
@@ -3771,6 +3774,7 @@
 				2664832B29C35C0300748F9C /* StationForecastViewModel.swift in Sources */,
 				26EAF8292D0059E5009EEB31 /* LocalizableString+PhotoVerification.swift in Sources */,
 				2643713C2CA41DA500E5F382 /* InfoBannerView.swift in Sources */,
+				264813FA2D8C6D5F00BCCC31 /* Announcement+.swift in Sources */,
 				26A4117129B78CAC00A2C10B /* StationInfoView.swift in Sources */,
 				26D5013829B209F500BC2951 /* StationLastActiveView.swift in Sources */,
 				267EC3D72CD2179C0085B50A /* FloatingLabelTextfield.swift in Sources */,
