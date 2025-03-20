@@ -168,26 +168,12 @@ class BTActionWrapper: @unchecked Sendable {
 			return (nil, .notInRange)
 		}
 
-		return await withUnsafeContinuation { [weak self] continuation in
-			self?.connectToDevice(btDevice, retries: connectRetries) { error in
-				guard error == nil else {
-					continuation.resume(returning: (nil, error))
-					return
-				}
-
-				self?.fetchDevEUI(device: btDevice) { value, error in
-					guard value?.lowercased() != BTCommands.SUCCESS_RESPONSE else {
-						return
-					}
-					continuation.resume(returning: (value, error))
-				}
-			}
-		}
+		return await getDevEUI(btDevice, connectRetries: connectRetries)
 	}
 
-	func getDevEUI(_ device: BTWXMDevice) async -> (value: String?, error: ActionError?) {
+	func getDevEUI(_ device: BTWXMDevice, connectRetries: Int = 5) async -> (value: String?, error: ActionError?) {
 		return await withUnsafeContinuation { [weak self] continuation in
-			self?.connectToDevice(device, retries: 5) { error in
+			self?.connectToDevice(device, retries: connectRetries) { error in
 				guard error == nil else {
 					continuation.resume(returning: (nil, error))
 					return
@@ -203,9 +189,20 @@ class BTActionWrapper: @unchecked Sendable {
 		}
 	}
 
-	func getClaimingKey(_ device: BTWXMDevice) async -> (value: String?, error: ActionError?) {
+	func getClaimingKey(_ device: DeviceDetails, connectRetries: Int = 5) async -> (value: String?, error: ActionError?) {
+		if let btStateError = await observeBTState(for: device) {
+			return (nil, btStateError)
+		}
+		guard let btDevice = try? await findBTDevice(device: device) else {
+			return (nil, .notInRange)
+		}
+
+		return await getClaimingKey(btDevice, connectRetries: connectRetries)
+	}
+
+	func getClaimingKey(_ device: BTWXMDevice, connectRetries: Int = 5) async -> (value: String?, error: ActionError?) {
 		return await withUnsafeContinuation { [weak self] continuation in
-			self?.connectToDevice(device, retries: 5) { error in
+			self?.connectToDevice(device, retries: connectRetries) { error in
 				guard error == nil else {
 					continuation.resume(returning: (nil, error))
 					return
@@ -231,21 +228,23 @@ private extension BTActionWrapper {
             guard let self = self else {
                 return
             }
-            self.bluetoothManager.state.sink { state in
-                switch state {
-                    case .unsupported:
-                        continuation.resume(returning: .bluetoothState(.unsupported))
-                    case .unauthorized:
-                        continuation.resume(returning: .bluetoothState(.unauthorized))
-                    case .poweredOff:
-                        continuation.resume(returning: .bluetoothState(.poweredOff))
-                    case .poweredOn, .resetting:
-                        continuation.resume(returning: nil)
-                    case .unknown:
-                        break
-                }
-            }.store(in: &self.cancellables)
-        }
+			self.bluetoothManager.state
+				.filter{ $0 != .unknown }
+				.prefix(1).sink { state in
+					switch state {
+						case .unsupported:
+							continuation.resume(returning: .bluetoothState(.unsupported))
+						case .unauthorized:
+							continuation.resume(returning: .bluetoothState(.unauthorized))
+						case .poweredOff:
+							continuation.resume(returning: .bluetoothState(.poweredOff))
+						case .poweredOn, .resetting:
+							continuation.resume(returning: nil)
+						case .unknown:
+							break
+					}
+				}.store(in: &self.cancellables)
+		}
     }
 
     func findBTDevice(device: DeviceDetails) async throws -> BTWXMDevice? {
