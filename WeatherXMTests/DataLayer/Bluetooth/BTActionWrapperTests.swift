@@ -111,4 +111,16 @@ struct BTActionWrapperTests {
 		#expect(error == .connect)
 	}
 
+	@Test func getDevEUINormal() async throws {
+		try await simulateNormal()
+		let deviceDetails = DeviceDetails(name: "WXMDevice",
+										  label: "WXMDevice",
+										  isActive: true)
+
+		let value = await actionsWrapper.getDevEUI(deviceDetails)
+		let devEui = try #require(value.value)
+		#expect(value.error == nil)
+		#expect(devEui == "123")
+	}
+
 }
