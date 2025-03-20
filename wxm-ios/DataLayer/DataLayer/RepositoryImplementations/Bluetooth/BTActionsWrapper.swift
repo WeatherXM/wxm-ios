@@ -160,7 +160,7 @@ class BTActionWrapper: @unchecked Sendable {
 		}
 	}
 
-	func getDevEUI(_ device: DeviceDetails) async -> (value: String?, error: ActionError?) {
+	func getDevEUI(_ device: DeviceDetails, connectRetries: Int = 5) async -> (value: String?, error: ActionError?) {
 		if let btStateError = await observeBTState(for: device) {
 			return (nil, btStateError)
 		}
@@ -169,7 +169,7 @@ class BTActionWrapper: @unchecked Sendable {
 		}
 
 		return await withUnsafeContinuation { [weak self] continuation in
-			self?.connectToDevice(btDevice, retries: 5) { error in
+			self?.connectToDevice(btDevice, retries: connectRetries) { error in
 				guard error == nil else {
 					continuation.resume(returning: (nil, error))
 					return
