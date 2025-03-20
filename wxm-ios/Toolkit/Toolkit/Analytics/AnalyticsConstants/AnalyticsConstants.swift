@@ -16,11 +16,12 @@ let analyticsScreenNameKey: String = AnalyticsParameterScreenName
 
 public enum Screen: String {
 	case splash = "Splash Screen"
-	case analytics = "Analytics Opt-In Prompt"
 	case explorerLanding = "Explorer (Landing)"
 	case explorer = "Explorer"
 	case claimM5 = "Claim M5"
 	case claimHelium = "Claim Helium"
+	case claimPulse = "Claim Pulse"
+	case claimD1 = "Claim D1"
 	case claimDapp = "Claim Dapp"
 	case wallet = "Wallet"
 	case deleteAccount = "Delete Account"
@@ -45,24 +46,26 @@ public enum Screen: String {
 	case appUpdatePrompt = "App Update Prompt"
 	case widgetSelectStation = "Widget Station Selection"
 	case passwordConfirm = "Password Confirm"
-	case claimDeviceTypeSelection = "Claim device type selection"
+	case claimDeviceTypeSelection = "Claim Device Type Selection"
 	case changeStationName = "Change Station Name"
-	case changeFrequency = "Change Frequency"
+	case changeStationFrequency = "Change Station Frequency"
 	case rebootStation = "Reboot Station"
-	case explorerCellScreen = "Explorer Cell Screen"
+	case explorerCell = "Explorer Cell"
+	case explorerDevice = "Explorer Device"
 	case networkStats = "Network Stats"
-	case explorerSearch = "Explorer Search"
+	case networkSearch = "Network Search"
 	case sortFilter = "Sort Filter"
 	case deviceRewardsDetails = "Device Rewards Details"
 	case dailyRewardInfo = "Daily Reward info"
 	case dataQualityInfo = "Data Quality info"
 	case locationQualityInfo = "Location Quality info"
-	case cellRankingInfo = "Cell ranking info"
+	case cellRankingInfo = "Cell Ranking Info"
 	case rewardIssues = "Reward Issues"
-	case boostDetails = "Boost Detail"
+	case boostDetail = "Boost Detail"
 	case cellCapacityInfo = "Cell Capacity info"
 	case rewardAnalytics = "Reward Analytics"
 	case temperatureBars = "Temperature Bars Explanation"
+	case bleConnectionPopupError = "BLE Connection Popup Error"
 }
 
 public enum Event: String {
@@ -77,7 +80,6 @@ public enum Parameter: String {
 	case actionName = "ACTION_NAME"
 	case contentType = "CONTENT_TYPE"
 	case contentName = "CONTENT_NAME"
-	case contentId = "CONTENT_ID"
 	case itemId = "ITEM_ID"
 	case location = "LOCATION"
 	case itemListId = "ITEM_LIST_ID"
@@ -108,9 +110,10 @@ public enum Parameter: String {
 }
 
 public enum ParameterValue {
+	case appUpdatePrompt
+	case appUpdatePromptResult
 	case selectDevice
 	case userDeviceList
-	case transactionOnExplorer
 	case deviceTransactions
 	case shareStationInfo
 	case stationInfo
@@ -120,7 +123,9 @@ public enum ParameterValue {
 	case cancel
 	case retry
 	case viewStation
-	case updateFirmware
+	case discard
+	case update
+	case updateStation
 	case changeStationNameResult
 	case changeStationName
 	case edit
@@ -200,16 +205,9 @@ public enum ParameterValue {
 	case inches
 	case hectopascal
 	case inchOfMercury
-	case loginContentId
 	case emailMethod
-	case signUpContentId
-	case forgotPasswordEmailContentId
 	case failureOtaContentId
-	case otaResultContentId
-	case failureContentId
 	case claimingResultContentId
-	case changeStationNameResultContentId
-	case changeFrequencyResultContentId
 	case openShop
 	case openStationShop
 	case openManufacturerContact
@@ -250,7 +248,6 @@ public enum ParameterValue {
 	case stationRegion
 	case devicesListFollow
 	case explorerDevicesListFollow
-	case deviceDetailsSettings
 	case filters
 	case filtersReset
 	case filtersCancel

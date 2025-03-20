@@ -63,11 +63,6 @@ struct RewardsTimelineView: View {
 							DailyRewardCardView(card: record.toDailyRewardCard(isOwned: false), buttonAction: nil)
 								.wxmShadow()
 								.onTapGesture {
-									WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .transactionOnExplorer,
-																					   .contentType: .deviceTransactions,
-																					   .itemListId: .custom(record.timelineTransactionDateString),
-																					   .itemId: .custom(viewModel.device.id ?? "")])
-
 									viewModel.handleTransactionTap(from: record)
 								}
 								.onAppear {

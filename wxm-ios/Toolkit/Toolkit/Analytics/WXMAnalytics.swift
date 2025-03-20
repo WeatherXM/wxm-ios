@@ -30,7 +30,7 @@ public extension WXMAnalytics {
 	}
 
     func trackScreen(_ screen: Screen, parameters: [Parameter: ParameterValue]? = nil) {
-		print("WXMAnalytics screen: \(screen.rawValue)") // TEMP for testing
+		print("WXMAnalytics screen: \(screen.rawValue), \(parameters)") // TEMP for testing
 		providers.forEach { $0.trackScreen(screen, parameters: parameters) }
     }
 

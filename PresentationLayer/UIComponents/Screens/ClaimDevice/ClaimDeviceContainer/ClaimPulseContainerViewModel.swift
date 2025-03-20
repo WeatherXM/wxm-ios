@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 class ClaimPulseContainerViewModel: ClaimDeviceContainerViewModel {
 
@@ -16,6 +17,10 @@ class ClaimPulseContainerViewModel: ClaimDeviceContainerViewModel {
 		steps = getSteps()
 	}
 
+	override func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.claimPulse)
+	}
+	
 	override func handleSeriaNumber(serialNumber: ClaimDeviceSerialNumberViewModel.SerialNumber?) {
 		guard let serial = serialNumber?.serialNumber else {
 			moveNext()

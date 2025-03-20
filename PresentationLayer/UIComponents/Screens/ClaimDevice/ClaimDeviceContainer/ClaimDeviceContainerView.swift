@@ -36,6 +36,7 @@ struct ClaimDeviceContainerView: View {
 		}
 		.onAppear {
 			navigationObject.title = viewModel.navigationTitle
+			viewModel.viewAppeared()
 		}
 		.fullScreenCover(isPresented: $viewModel.showLoading) {
 			ClaimDeviceProgressView(state: $viewModel.loadingState)

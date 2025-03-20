@@ -34,6 +34,7 @@ struct ClaimStationSelectionView: View {
 		}
 		.onAppear {
 			navigationObject.title = LocalizableString.ClaimDevice.selectionNavigationTitle.localized
+			viewModel.viewAppeared()
 		}
     }
 }

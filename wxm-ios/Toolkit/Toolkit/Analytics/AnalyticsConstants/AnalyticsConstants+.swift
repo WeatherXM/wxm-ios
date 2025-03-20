@@ -22,7 +22,7 @@ extension Event: CustomStringConvertible {
 extension Parameter: CustomStringConvertible {
 	public var description: String {
 		switch self {
-			case .action, .actionName, .contentName, .contentId, .promptName, .promptType,
+			case .action, .actionName, .contentName, .promptName, .promptType,
 					.step, .state, .date, .theme, .temperature, .wind, .windDirection, .precipitation, .pressure,
 					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn, .userState, .deviceState:
 				return rawValue
@@ -55,12 +55,14 @@ extension ParameterValue: RawRepresentable {
 
 	public var rawValue: String {
 		switch self {
+			case .appUpdatePrompt:
+				return "App Update Prompt"
+			case .appUpdatePromptResult:
+				return "App Update Prompt Result"
 			case .selectDevice:
 				return "Select Device"
 			case .userDeviceList:
 				return "User Device List"
-			case .transactionOnExplorer:
-				return "Transaction on Explorer"
 			case .deviceTransactions:
 				return "Device Transactions"
 			case .shareStationInfo:
@@ -81,9 +83,13 @@ extension ParameterValue: RawRepresentable {
 				return "Cancel"
 			case .retry:
 				return "Retry"
+			case .discard:
+				return "Discard"
+			case .update:
+				return "Update"
 			case .viewStation:
 				return "View Station"
-			case .updateFirmware:
+			case .updateStation:
 				return "Update Station"
 			case .changeStationNameResult:
 				return "Change Station Name Result"
@@ -94,7 +100,7 @@ extension ParameterValue: RawRepresentable {
 			case .clear:
 				return "Clear"
 			case .changeFrequencyResult:
-				return "Chnage Frequency Result"
+				return "Change Frequency Result"
 			case .changeStationFrequency:
 				return "Change Station Frequency"
 			case .change:
@@ -206,7 +212,7 @@ extension ParameterValue: RawRepresentable {
 			case .frequencyDocumentation:
 				return "Frequency Documentation"
 			case .failure:
-				return "failure"
+				return "Failure"
 			case .success:
 				return "success"
 			case .light:
@@ -241,22 +247,8 @@ extension ParameterValue: RawRepresentable {
 				return "hpa"
 			case .inchOfMercury:
 				return "inhg"
-			case .loginContentId:
-				return "login"
-			case .signUpContentId:
-				return "signup"
-			case .forgotPasswordEmailContentId:
-				return "forgot_password_email"
 			case .failureOtaContentId:
 				return "failure_ota"
-			case .otaResultContentId:
-				return "ota_result"
-			case .failureContentId:
-				return "failure"
-			case .changeStationNameResultContentId:
-				return "change_station_name_result"
-			case .changeFrequencyResultContentId:
-				return "change_frequency_result"
 			case .emailMethod:
 				return "email"
 			case .claimingResultContentId:
@@ -341,8 +333,6 @@ extension ParameterValue: RawRepresentable {
 				return "Devices List Follow"
 			case .explorerDevicesListFollow:
 				return "Explorer Devices List Follow"
-			case .deviceDetailsSettings:
-				return "Device Details Settings"
 			case .filters:
 				return "Filters"
 			case .filtersReset:

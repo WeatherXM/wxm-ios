@@ -37,6 +37,8 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 		self.deviceLocationUseCase = deviceLocationUseCase
 	}
 
+	func viewAppeared() {}
+
 	func moveNext() {
 		isMovingNext = true
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -124,6 +126,8 @@ extension ClaimDeviceContainerViewModel {
 
 							let object = getFailObject(for: responseError)
 							self.loadingState = .fail(object)
+							WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .claimingResult,
+																					  .success: .custom("0")])
 						case .success(let deviceResponse):
 							print(deviceResponse)
 							Task { @MainActor in
@@ -134,6 +138,9 @@ extension ClaimDeviceContainerViewModel {
 
 								let object = self.getSuccessObject(for: deviceResponse, followState: followState)
 								self.loadingState = .success(object)
+								WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .claimingResult,
+																						  .success: .custom("1")])
+
 							}
 					}
 				}
@@ -153,6 +160,10 @@ extension ClaimDeviceContainerViewModel {
 											contactSupportAction: {
 			HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
 		}, cancelAction: {
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
+																	 .contentType: .claiming,
+																	 .action: .cancel])
+
 			Router.shared.popToRoot()
 		}, retryAction: { [weak self] in
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
@@ -176,6 +187,10 @@ extension ClaimDeviceContainerViewModel {
 		}
 
 		let updateFirmwareButton = Button(action: { [weak self] in
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
+																	 .contentType: .claiming,
+																	 .action: .updateStation])
+
 			self?.dismissAndNavigate(device: nil)
 			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
 				MainScreenViewModel.shared.showFirmwareUpdate(device: device)

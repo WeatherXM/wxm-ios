@@ -32,6 +32,12 @@ class StationDetailsViewModel: ObservableObject {
     private let cellCenter: CLLocationCoordinate2D?
     private let useCase: DeviceDetailsUseCase?
 	private let meUseCase: MeUseCase?
+	private var isFollowStateInitialized: Bool = false {
+		willSet {
+			guard isFollowStateInitialized != newValue else { return }
+			trackExplorerDeviceEventIfNeeded(isInitialized: newValue)
+		}
+	}
     private(set) lazy var overviewVM = ViewModelsFactory.getStationOverviewViewModel(device: nil, delegate: self)
     private(set) lazy var forecastVM = ViewModelsFactory.getStationForecastViewModel(delegate: self)
     private(set) lazy var rewardsVM = ViewModelsFactory.getStationRewardsViewModel(deviceId: deviceId, delegate: self)
@@ -46,7 +52,11 @@ class StationDetailsViewModel: ObservableObject {
 		}
 	}
 	@Published private(set) var navigationTitle: NavigationObject.NavigationTitle?
-    @Published private(set) var followState: UserDeviceFollowState?
+	@Published private(set) var followState: UserDeviceFollowState? {
+		didSet {
+			isFollowStateInitialized = true
+		}
+	}
     @Published var shouldHideHeaderToggle: Bool = false
     @Published var showLoginAlert: Bool = false
 	@Published var showShareDialog: Bool = false
@@ -82,9 +92,11 @@ class StationDetailsViewModel: ObservableObject {
 		}.store(in: &cancellables)
     }
 
-    func settingsButtonTapped() {
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .deviceDetailsSettings])
+	func viewAppeared() {
+		trackExplorerDeviceEventIfNeeded(isInitialized: isFollowStateInitialized)
+	}
 
+    func settingsButtonTapped() {
         Router.shared.navigateTo(.deviceInfo(DeviceInfoViewModel(device: device!, followState: followState)))
     }
 
@@ -186,6 +198,13 @@ extension StationDetailsViewModel {
 }
 
 private extension StationDetailsViewModel {
+
+	func trackExplorerDeviceEventIfNeeded(isInitialized: Bool) {
+		if isInitialized && followState?.relation != .owned {
+			WXMAnalytics.shared.trackScreen(.explorerDevice)
+		}
+	}
+
     func performFollow() {
         let followAction = { [weak self] in
             guard let self else {

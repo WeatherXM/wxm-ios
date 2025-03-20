@@ -92,7 +92,7 @@ private struct ContentView: View {
         .onAppear {
             navigationObject.navigationBarColor = Color(colorEnum: .top)
 
-            WXMAnalytics.shared.trackScreen(.explorerCellScreen,
+            WXMAnalytics.shared.trackScreen(.explorerCell,
                                       parameters: [.itemId: .custom(viewModel.cellIndex)])
         }
 		.bottomSheet(show: $viewModel.showInfo) {

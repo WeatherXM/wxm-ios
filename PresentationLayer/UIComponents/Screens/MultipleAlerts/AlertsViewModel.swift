@@ -25,6 +25,10 @@ class AlertsViewModel: ObservableObject {
         self.followState = followState
         generateAlerts()
     }
+
+	func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.deviceAlerts)
+	}
 }
 
 extension AlertsViewModel: HashableViewModel {

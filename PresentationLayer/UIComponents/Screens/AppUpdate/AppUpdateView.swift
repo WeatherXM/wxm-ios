@@ -82,6 +82,7 @@ private struct ContentView: View {
 		.onAppear {
 			navigationObject.title = LocalizableString.AppUpdate.title.localized
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
+			viewModel.viewAppeared()
 		}
 	}
 }

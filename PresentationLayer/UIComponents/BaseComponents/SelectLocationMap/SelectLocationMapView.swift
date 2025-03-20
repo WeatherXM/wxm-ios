@@ -11,7 +11,6 @@ import DomainLayer
 struct SelectLocationMapView: View {
 	@StateObject var viewModel: SelectLocationMapViewModel
 	@State private var annotationSize: CGSize = .zero
-	@State private var showSearchResults: Bool = false
 
     var body: some View {
 		GeometryReader { proxy in
@@ -50,7 +49,7 @@ private extension SelectLocationMapView {
 
 			}
 			Spacer(minLength: 0.0)
-			if showSearchResults, !viewModel.searchResults.isEmpty {
+			if viewModel.showSearchResults, !viewModel.searchResults.isEmpty {
 				searchResults
 			}
 		}
@@ -63,7 +62,7 @@ private extension SelectLocationMapView {
 			UberTextField(
 				text: $viewModel.searchTerm,
 				hint: .constant(LocalizableString.SelectStationLocation.searchPlaceholder.localized),
-				onEditingChanged: { _, isFocused in showSearchResults = isFocused },
+				onEditingChanged: { _, isFocused in viewModel.showSearchResults = isFocused },
 				configuration: {
 					$0.font = UIFont.systemFont(ofSize: FontSizeEnum.normalFontSize.sizeValue)
 					$0.textColor = UIColor(colorEnum: .text)
@@ -94,7 +93,7 @@ private extension SelectLocationMapView {
 				Button {
 					viewModel.handleSearchResultTap(result: searchResult)
 					hideKeyboard()
-					showSearchResults = false
+					viewModel.showSearchResults = false
 				} label: {
 					AttributedLabel(attributedText: .constant(
 						searchResult.attributedDescriptionForQuery(viewModel.searchTerm)
@@ -119,7 +118,7 @@ private extension SelectLocationMapView {
 				RoundedRectangle(cornerRadius: 10)
 					.style(withStroke: Color(colorEnum: .midGrey), lineWidth: 1, fill: Color(colorEnum: .top))
 			)
-			.animation(.easeIn, value: showSearchResults)
+			.animation(.easeIn, value: viewModel.showSearchResults)
 		}
 	}
 
