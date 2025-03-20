@@ -160,6 +160,31 @@ class BTActionWrapper: @unchecked Sendable {
 		}
 	}
 
+	func getDevEUI(_ device: DeviceDetails) async -> (value: String?, error: ActionError?) {
+		if let btStateError = await observeBTState(for: device) {
+			return (nil, btStateError)
+		}
+		guard let btDevice = try? await findBTDevice(device: device) else {
+			return (nil, .notInRange)
+		}
+
+		return await withUnsafeContinuation { [weak self] continuation in
+			self?.connectToDevice(btDevice, retries: 5) { error in
+				guard error == nil else {
+					continuation.resume(returning: (nil, error))
+					return
+				}
+
+				self?.fetchDevEUI(device: btDevice) { value, error in
+					guard value?.lowercased() != BTCommands.SUCCESS_RESPONSE else {
+						return
+					}
+					continuation.resume(returning: (value, error))
+				}
+			}
+		}
+	}
+
 	func getDevEUI(_ device: BTWXMDevice) async -> (value: String?, error: ActionError?) {
 		return await withUnsafeContinuation { [weak self] continuation in
 			self?.connectToDevice(device, retries: 5) { error in
