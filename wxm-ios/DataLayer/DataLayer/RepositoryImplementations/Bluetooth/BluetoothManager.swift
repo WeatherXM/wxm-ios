@@ -53,10 +53,6 @@ class BluetoothManager: NSObject {
 	override public init() {
 		state = stateSubject.eraseToAnyPublisher()
 		devices = devicesSubject.eraseToAnyPublisher()
-#if MOCK
-		CBMCentralManagerMock.simulateInitialState(.poweredOn)
-		CBMCentralManagerMock.simulatePeripherals([mockHelium])
-#endif
 		super.init()
 	}
 	
@@ -245,7 +241,7 @@ private extension BluetoothManager {
 }
 
 extension BluetoothManager {
-	enum BTManagerEror: Error {
+	enum BTManagerEror: Error, Equatable {
 		case peripheralNotFound
 		case connectionError
 		case writeCommandError(BTPerformCommandDelegate.BTCommandError)

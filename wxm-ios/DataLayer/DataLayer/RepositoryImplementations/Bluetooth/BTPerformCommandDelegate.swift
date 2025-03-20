@@ -121,6 +121,7 @@ private extension BTPerformCommandDelegate {
     }
 
     func handleError(_ error: BTCommandError) {
+		peripheral.delegate = nil
         performCommandCallback?(nil, error)
     }
 
@@ -131,12 +132,13 @@ private extension BTPerformCommandDelegate {
             return
         }
 
+		peripheral.delegate = nil
         performCommandCallback?(valueString, nil)
     }
 }
 
 extension BTPerformCommandDelegate {
-    enum BTCommandError: Error {
+	enum BTCommandError: Error, Equatable {
         case writeToCharacteristic(String?)
         case readFromCharacteristic(String?)
         case serviceDiscovery(String?)

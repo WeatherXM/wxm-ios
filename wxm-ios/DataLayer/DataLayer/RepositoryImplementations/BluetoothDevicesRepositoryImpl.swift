@@ -21,6 +21,13 @@ public class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepositor
 
     private var prepareDeviceCallback: (() -> Void)?
 
+	init(manager: BluetoothManager) {
+		self.manager = manager
+		state = manager.state
+		devices = manager.devices
+		bluetoothWrapper = .init(bluetoothManager: manager)
+	}
+
     override public init() {
         manager = BluetoothManager()
         state = manager.state

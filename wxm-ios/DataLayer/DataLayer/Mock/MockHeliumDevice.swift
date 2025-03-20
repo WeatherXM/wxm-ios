@@ -74,13 +74,30 @@ private final class HeliumDevicePeripheralSpecDelegate: CBMPeripheralSpecDelegat
 					didReceiveWriteRequestFor characteristic: CBMCharacteristicMock,
 					data: Data) -> Result<Void, Error> {
 		// Simulate value update to simulate the connection process with helium devices
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-			if let notifyingCharacteristic = self?.notifyingCharacteristic {
-				peripheral.simulateValueUpdate(Data(), for: notifyingCharacteristic)
-			}
-		}
+		handleWriteData(data, for: peripheral)
 
 		return .success(())
+	}
+
+	private func handleWriteData(_ data: Data, for peripheral: CBMPeripheralSpec) {
+		guard let notifyingCharacteristic else {
+			return
+		}
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			guard let command = String(data: data, encoding: .utf8) else {
+				return
+			}
+			switch command {
+				case BTCommands.AT_DEV_EUI_COMMAND, BTCommands.AT_CLAIMING_KEY_COMMAND:
+					let value = "123".data(using: .utf8) ?? Data()
+					peripheral.simulateValueUpdate(value, for: notifyingCharacteristic)
+				default:
+					let value = BTCommands.SUCCESS_RESPONSE.data(using: .utf8) ?? Data()
+					peripheral.simulateValueUpdate(value, for: notifyingCharacteristic)
+			}
+
+		}
 	}
 }
 
@@ -107,6 +124,56 @@ let mockHelium = CBMPeripheralSpec
 	)
 	.connectable(
 		name: "WXMDevice",
+		services: [.service],
+		delegate: HeliumDevicePeripheralSpecDelegate()
+	)
+	.build()
+
+let mockNotConnectableHelium = CBMPeripheralSpec
+	.simulatePeripheral(proximity: .immediate)
+	.advertising(
+		advertisementData: [
+			CBAdvertisementDataIsConnectable : true as NSNumber,
+			CBAdvertisementDataLocalNameKey : "WXMDevice"
+		],
+		withInterval: 2.0,
+		delay: 5.0,
+		alsoWhenConnected: false
+	)
+	.advertising(
+		advertisementData: [
+			CBAdvertisementDataIsConnectable : false as NSNumber,
+			CBAdvertisementDataLocalNameKey : "WXMDevice",
+			//CBAdvertisementDataManufacturerDataKey:
+		],
+		withInterval: 4.0,
+		delay: 2.0,
+		alsoWhenConnected: false
+	)
+	.build()
+
+let mockBTDevice = CBMPeripheralSpec
+	.simulatePeripheral(proximity: .immediate)
+	.advertising(
+		advertisementData: [
+			CBAdvertisementDataIsConnectable : true as NSNumber,
+			CBAdvertisementDataLocalNameKey : "BTDevice"
+		],
+		withInterval: 2.0,
+		delay: 5.0,
+		alsoWhenConnected: false
+	)
+	.advertising(
+		advertisementData: [
+			CBAdvertisementDataIsConnectable : false as NSNumber,
+			CBAdvertisementDataLocalNameKey : "BTDevice",
+		],
+		withInterval: 4.0,
+		delay: 2.0,
+		alsoWhenConnected: false
+	)
+	.connectable(
+		name: "BTDevice",
 		services: [.service],
 		delegate: HeliumDevicePeripheralSpecDelegate()
 	)
