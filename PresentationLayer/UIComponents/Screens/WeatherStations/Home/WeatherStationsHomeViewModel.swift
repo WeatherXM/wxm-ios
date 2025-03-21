@@ -83,7 +83,14 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		remoteConfigUseCase.announcementPublisher.sink { [weak self] announcement in
 			self?.announcementConfiguration = announcement?.toAnnouncementConfiguration(buttonAction: {
 				// Handle url
-				let url = announcement?.actionUrl
+				guard let urlString = announcement?.actionUrl, let url = URL(string: urlString) else {
+					return
+				}
+
+				let handled = self?.mainVM?.deepLinkHandler.handleUrl(url) ?? false
+				if !handled, url.isHttp {
+					HelperFunctions().openUrl(urlString)
+				}
 			}, closeAction: {
 				guard let announcementId = announcement?.id else {
 					return
