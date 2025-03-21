@@ -29,7 +29,7 @@ struct ProBannerView: View {
 
 			Spacer()
 			Button {
-
+				Router.shared.showBottomSheet(.proPromo(ViewModelsFactory.getProPromotionalViewModel()))
 			} label: {
 				Text(LocalizableString.Promotional.getPro.localized)
 					.padding(.horizontal, CGFloat(.defaultSidePadding))
