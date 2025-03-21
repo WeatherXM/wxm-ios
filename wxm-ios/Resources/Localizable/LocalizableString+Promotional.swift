@@ -19,6 +19,12 @@ extension LocalizableString {
 		case andMore
 		case choosePlan
 		case learnMore
+		case getPro
+		case wantMoreAccurateForecast
+		case takeYourWeatherInsights
+		case getHyperlocalForecasts
+		case unlockFullWeather
+		case fineTuneForecast
 	}
 }
 
@@ -50,6 +56,18 @@ extension LocalizableString.Promotional: WXMLocalizable {
 				"promotional_choose_plan"
 			case .learnMore:
 				"promotional_learn_more"
+			case .getPro:
+				"promotional_get_pro"
+			case .wantMoreAccurateForecast:
+				"promotional_want_more_accurate_forecast"
+			case .takeYourWeatherInsights:
+				"promotional_take_your_weather_insights"
+			case .getHyperlocalForecasts:
+				"promotional_get_hyperlocal_forecasts"
+			case .unlockFullWeather:
+				"promotional_unlock_full_weather"
+			case .fineTuneForecast:
+				"promotional_fine_tune_forecast"
 		}
 	}
 }
