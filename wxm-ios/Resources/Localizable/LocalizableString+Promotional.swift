@@ -18,6 +18,7 @@ extension LocalizableString {
 		case accessApi
 		case andMore
 		case choosePlan
+		case learnMore
 	}
 }
 
@@ -47,6 +48,8 @@ extension LocalizableString.Promotional: WXMLocalizable {
 				"promotional_and_more"
 			case .choosePlan:
 				"promotional_choose_plan"
+			case .learnMore:
+				"promotional_learn_more"
 		}
 	}
 }
