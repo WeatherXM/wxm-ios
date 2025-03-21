@@ -87,11 +87,18 @@ private extension RemoteConfigRepositoryImpl {
 	func observeAnnouncement() {
 		let announcementId = RemoteConfigManager.shared.$announcementId
 		let announcementShow = RemoteConfigManager.shared.$announcementShow
+		let announcementActionLabel = RemoteConfigManager.shared.$announcementActionLabel
+		let announcementMessage = RemoteConfigManager.shared.$announcementMessage
 		let announcementDismissable = RemoteConfigManager.shared.$announcementDismissable
 
-		let zip = Publishers.Zip3(announcementId, announcementShow, announcementDismissable)
-		zip.debounce(for: 1.0, scheduler: DispatchQueue.main).sink { [weak self] _, show, _ in
-			self?.handleSurveyShow(show)
+		let zip3 = Publishers.Zip3(announcementId, announcementShow, announcementActionLabel)
+		let zip2 = Publishers.Zip(announcementMessage, announcementDismissable)
+
+		zip3.combineLatest(zip2).debounce(for: 1.0, scheduler: DispatchQueue.main).sink { [weak self] zipValues3, zipValues2 in
+			let (announcementId, show, actionLabel) = zipValues3
+			let (message, dismissable) = zipValues2
+
+			self?.handleAnnouncementUpdate(show: show ?? false)
 		}.store(in: &cancellableSet)
 	}
 
@@ -127,7 +134,6 @@ private extension RemoteConfigRepositoryImpl {
 										actionLabel: RemoteConfigManager.shared.announcementActionLabel,
 										actionUrl: RemoteConfigManager.shared.announcementActionUrl,
 										actionShow: RemoteConfigManager.shared.announcementActionShow,
-										show: RemoteConfigManager.shared.announcementShow, // Remove??
 										dismissable: RemoteConfigManager.shared.announcementDismissable)
 
 		announcementCurrentValueSubject.send(announcement)

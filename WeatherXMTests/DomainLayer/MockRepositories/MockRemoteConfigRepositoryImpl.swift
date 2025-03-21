@@ -13,15 +13,18 @@ class MockRemoteConfigRepositoryImpl: RemoteConfigRepository {
 
 	var surveyPublisher: AnyPublisher<Survey?, Never>
 	var infoBannerPublisher: AnyPublisher<InfoBanner?, Never>
+	var announcementPublisher: AnyPublisher<Announcement?, Never>
 
 	private(set) var lastSurveyId: String?
 	private(set) var lastDismissedInfoBannerId: String?
 	private let surveyValueSubject: CurrentValueSubject<Survey?, Never> = .init(nil)
 	private let infoBannerCurrentValueSubject: CurrentValueSubject<InfoBanner?, Never> = .init(nil)
+	private let announcementCurrentValueSubject: CurrentValueSubject<Announcement?, Never> = .init(nil)
 
 	init() {
 		surveyPublisher = surveyValueSubject.eraseToAnyPublisher()
 		infoBannerPublisher = infoBannerCurrentValueSubject.eraseToAnyPublisher()
+		announcementPublisher = announcementCurrentValueSubject.eraseToAnyPublisher()
 	}
 
 	func updateLastSurveyId(_ surveyId: String) {
