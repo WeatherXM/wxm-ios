@@ -17,7 +17,7 @@ class ProPromotionalViewModel: ObservableObject {
 							  LocalizableString.Promotional.andMore.localized]
 
 	func handleLearnMoreTapped() {
-		
+		HelperFunctions().openUrl(DisplayedLinks.weatherXMPro.linkURL)
 	}
 }
 
