@@ -249,7 +249,8 @@ private extension DeepLinkHandler {
 
 		switch announcement {
 			case .weatherxmPro:
-				// Show bottom sheet
+				let viewModel = ViewModelsFactory.getMyWalletViewModel()
+				Router.shared.showBottomSheet(.wallet(viewModel))
 				break
 		}
 	}

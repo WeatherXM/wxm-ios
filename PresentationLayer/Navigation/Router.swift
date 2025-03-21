@@ -280,6 +280,15 @@ class Router: ObservableObject {
 		}
 	}
 	var fullScreenRoute: Route?
+	@Published var showBottomSheet = false {
+		didSet {
+			if !showBottomSheet {
+				// Set ref to nil in order to deallocate the corresponding view model
+				bottomSheetRoute = nil
+			}
+		}
+	}
+	var bottomSheetRoute: Route?
 	let navigationHost = HostingWrapper()
 	
 	private init() {}
@@ -293,7 +302,12 @@ class Router: ObservableObject {
 			navigationHost.hostingController?.present(hostingVC, animated: true)
 		}
 	}
-	
+
+	func showBottomSheet(_ route: Route) {
+		bottomSheetRoute = route
+		showBottomSheet = true
+	}
+
 	func navigateTo(_ route: Route) {
 		guard path.last != route else {
 			return
