@@ -20,7 +20,7 @@ struct HistoryView: View {
 			} content: {
 				Group {
 					VStack(spacing: CGFloat(.mediumSpacing)) {
-						ProBannerView(description: LocalizableString.Promotional.getHyperlocalForecasts.localized)
+						ProBannerView(description: LocalizableString.Promotional.unlockFullWeather.localized)
 
 						if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
 							ChartsContainer(historyData: historyData,
