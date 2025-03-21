@@ -62,6 +62,8 @@ private extension ForecastDetailsDailyView {
 			.WXMCardStyle(insideHorizontalPadding: CGFloat(.mediumSidePadding),
 						  insideVerticalPadding: CGFloat(.mediumSidePadding))
 			.wxmShadow()
+
+			ProBannerView(description: LocalizableString.Promotional.wantMoreAccurateForecast.localized)
 		}
 	}
 

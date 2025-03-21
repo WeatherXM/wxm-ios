@@ -51,6 +51,7 @@ private extension NetworkStatsView {
                 rewardsView
                 buyStationView
                 tokenView
+				ProBannerView(description: LocalizableString.Promotional.wantMoreAccurateForecast.localized)
                 weatherStationsView
                 manufacturerView
                 lastUpdatedView
