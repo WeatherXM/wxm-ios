@@ -16,4 +16,5 @@ public protocol RemoteConfigRepository {
 
 	func updateLastSurveyId(_ surveyId: String)
 	func updateLastDismissedInfoBannerId(_ infoBannerId: String)
+	func updateLastDismissedAnnouncementId(_ announcementId: String)
 }

@@ -17,6 +17,7 @@ class MockRemoteConfigRepositoryImpl: RemoteConfigRepository {
 
 	private(set) var lastSurveyId: String?
 	private(set) var lastDismissedInfoBannerId: String?
+	private(set) var lastDismissedAnnouncementId: String?
 	private let surveyValueSubject: CurrentValueSubject<Survey?, Never> = .init(nil)
 	private let infoBannerCurrentValueSubject: CurrentValueSubject<InfoBanner?, Never> = .init(nil)
 	private let announcementCurrentValueSubject: CurrentValueSubject<Announcement?, Never> = .init(nil)
@@ -33,6 +34,10 @@ class MockRemoteConfigRepositoryImpl: RemoteConfigRepository {
 	
 	func updateLastDismissedInfoBannerId(_ infoBannerId: String) {
 		self.lastDismissedInfoBannerId = infoBannerId
+	}
+
+	func updateLastDismissedAnnouncementId(_ announcementId: String) {
+		self.lastDismissedAnnouncementId = announcementId
 	}
 }
 

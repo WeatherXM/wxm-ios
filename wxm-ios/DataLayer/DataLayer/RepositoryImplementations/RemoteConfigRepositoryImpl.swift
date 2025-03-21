@@ -22,6 +22,7 @@ public class RemoteConfigRepositoryImpl: RemoteConfigRepository {
 	private let userDefaultsService = UserDefaultsService()
 	private let lastSurveyKey = UserDefaults.GenericKey.lastSurveyId.rawValue
 	private let lastInfoBannerIdKey = UserDefaults.GenericKey.lastInfoBannerId.rawValue
+	private let lastAnnouncementIdKey = UserDefaults.GenericKey.lastAnnouncementId.rawValue
 
 	public init() {
 		surveyPublisher = currentValueSubject.eraseToAnyPublisher()
@@ -46,6 +47,12 @@ public class RemoteConfigRepositoryImpl: RemoteConfigRepository {
 		userDefaultsService.save(value: infoBannerId, key: lastInfoBannerIdKey)
 		let show = RemoteConfigManager.shared.infoBannerShow
 		handleInfoBannerUpdate(show: show ?? false)
+	}
+
+	public func updateLastDismissedAnnouncementId(_ announcementId: String) {
+		userDefaultsService.save(value: announcementId, key: lastAnnouncementIdKey)
+		let show = RemoteConfigManager.shared.announcementShow
+		handleAnnouncementUpdate(show: show ?? false)
 	}
 }
 
@@ -95,8 +102,7 @@ private extension RemoteConfigRepositoryImpl {
 		let zip2 = Publishers.Zip(announcementMessage, announcementDismissable)
 
 		zip3.combineLatest(zip2).debounce(for: 1.0, scheduler: DispatchQueue.main).sink { [weak self] zipValues3, zipValues2 in
-			let (announcementId, show, actionLabel) = zipValues3
-			let (message, dismissable) = zipValues2
+			let (_, show, _) = zipValues3
 
 			self?.handleAnnouncementUpdate(show: show ?? false)
 		}.store(in: &cancellableSet)
@@ -104,7 +110,7 @@ private extension RemoteConfigRepositoryImpl {
 
 	func handleInfoBannerUpdate(show: Bool) {
 		guard let infoBannerId = RemoteConfigManager.shared.infoBannerId,
-			  canShowInfobanner(bannerId: infoBannerId),
+			  canShowBanner(bannerId: infoBannerId, udKey: lastInfoBannerIdKey),
 			  show  else {
 			infoBannerCurrentValueSubject.send(nil)
 			return
@@ -121,13 +127,14 @@ private extension RemoteConfigRepositoryImpl {
 		infoBannerCurrentValueSubject.send(infoBanner)
 	}
 
-	func canShowInfobanner(bannerId: String) -> Bool {
-		let lastInfoBannerId: String? = userDefaultsService.get(key: lastInfoBannerIdKey)
-
-		return lastInfoBannerId != bannerId
-	}
-
 	func handleAnnouncementUpdate(show: Bool) {
+		guard let announcementId = RemoteConfigManager.shared.announcementId,
+			  canShowBanner(bannerId: announcementId, udKey: lastAnnouncementIdKey),
+			  show  else {
+			announcementCurrentValueSubject.send(nil)
+			return
+		}
+
 		let announcement = Announcement(id: RemoteConfigManager.shared.announcementId,
 										title: RemoteConfigManager.shared.announcementTitle,
 										message: RemoteConfigManager.shared.announcementMessage,
@@ -137,5 +144,11 @@ private extension RemoteConfigRepositoryImpl {
 										dismissable: RemoteConfigManager.shared.announcementDismissable)
 
 		announcementCurrentValueSubject.send(announcement)
+	}
+
+	func canShowBanner(bannerId: String, udKey: String) -> Bool {
+		let lastBannerId: String? = userDefaultsService.get(key: udKey)
+
+		return lastBannerId != bannerId
 	}
 }

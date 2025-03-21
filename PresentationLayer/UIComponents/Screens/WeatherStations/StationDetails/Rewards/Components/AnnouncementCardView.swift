@@ -77,7 +77,13 @@ struct AnnouncementCardView: View {
 }
 
 extension AnnouncementCardView {
-	struct Configuration {
+	struct Configuration: Equatable {
+		static func == (lhs: AnnouncementCardView.Configuration, rhs: AnnouncementCardView.Configuration) -> Bool {
+			lhs.title == rhs.title &&
+			lhs.description == rhs.description &&
+			lhs.actionTitle == rhs.actionTitle
+		}
+
 		let title: String
 		let description: String
 		var actionTitle: String?
