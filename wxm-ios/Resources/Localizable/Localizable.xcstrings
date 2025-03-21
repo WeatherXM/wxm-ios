@@ -7007,6 +7007,17 @@
         }
       }
     },
+    "promotional_learn_more" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Learn more"
+          }
+        }
+      }
+    },
     "promotional_pro_description" : {
       "extractionState" : "manual",
       "localizations" : {
