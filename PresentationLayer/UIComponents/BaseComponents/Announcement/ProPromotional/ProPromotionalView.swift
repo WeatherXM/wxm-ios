@@ -12,15 +12,23 @@ struct ProPromotionalView: View {
 
 	var body: some View {
 		VStack(spacing: CGFloat(.defaultSpacing)) {
-			LinearGradient(
-				stops: [
-					Gradient.Stop(color: Color(red: 0.16, green: 0.15, blue: 0.45), location: 0.00),
-					Gradient.Stop(color: Color(red: 0.47, green: 0.23, blue: 0.69), location: 0.49),
-					Gradient.Stop(color: Color(red: 0.3, green: 0.12, blue: 0.66), location: 1.00),
-				],
-				startPoint: UnitPoint(x: 0, y: 1),
-				endPoint: UnitPoint(x: 1, y: 0)
-			)
+			ZStack {
+				LinearGradient(
+					stops: [
+						Gradient.Stop(color: Color(red: 0.16, green: 0.15, blue: 0.45), location: 0.00),
+						Gradient.Stop(color: Color(red: 0.47, green: 0.23, blue: 0.69), location: 0.49),
+						Gradient.Stop(color: Color(red: 0.3, green: 0.12, blue: 0.66), location: 1.00),
+					],
+					startPoint: UnitPoint(x: 0, y: 1),
+					endPoint: UnitPoint(x: 1, y: 0)
+				)
+
+				Image(asset: .promoImage)
+					.resizable()
+					.aspectRatio(contentMode: .fit)					
+					.padding(.horizontal, CGFloat(.defaultSidePadding))
+					.padding(.bottom, CGFloat(.minimumPadding))
+			}
 			.aspectRatio(1.7, contentMode: .fit)
 
 			VStack(spacing: CGFloat(.defaultSpacing)) {
