@@ -48,12 +48,6 @@ struct AnnouncementCardView: View {
 							Text(actionTitle)
 								.font(.system(size: CGFloat(.caption), weight: .bold))
 								.foregroundColor(Color(colorEnum: .textWhite))
-
-							Text(FontIcon.externalLink.rawValue)
-								.font(.fontAwesome(font: .FAProSolid,
-												   size: CGFloat(.caption)))
-								.foregroundColor(Color(colorEnum: .textWhite))
-
 						}
 						.padding(.horizontal, CGFloat(.mediumSidePadding))
 						.padding(.vertical, CGFloat(.smallSidePadding))
