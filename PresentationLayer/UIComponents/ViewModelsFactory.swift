@@ -301,4 +301,8 @@ enum ViewModelsFactory {
 	static func getDeviceInfoViewModel(device: DeviceDetails, followState: UserDeviceFollowState?) -> DeviceInfoViewModel {
 		return DeviceInfoViewModel(device: device, followState: followState)
 	}
+
+	static func getProPromotionalViewModel() -> ProPromotionalViewModel {
+		return ProPromotionalViewModel()
+	}
 }
