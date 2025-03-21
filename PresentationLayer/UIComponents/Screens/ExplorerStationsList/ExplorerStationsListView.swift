@@ -51,18 +51,26 @@ private struct ContentView: View {
 					.wxmShadow()
 					.zIndex(1)
 
-                ScrollView {
-					AdaptiveGridContainerView {
-						ForEach(viewModel.devices) { device in
-							WeatherStationCard(device: device,
-											   followState: viewModel.getFollowState(for: device),
-											   followAction: { viewModel.followButtonTapped(device: device) })
-							.onTapGesture {
-								viewModel.navigateToDeviceDetails(device)
+
+				ScrollView {
+					VStack(spacing: 0.0) {
+						ProBannerView(description: LocalizableString.Promotional.getHyperlocalForecasts.localized)
+							.padding(.top, CGFloat(.defaultSpacing))
+							.padding(.horizontal, CGFloat(.defaultSpacing))
+
+						AdaptiveGridContainerView {
+
+							ForEach(viewModel.devices) { device in
+								WeatherStationCard(device: device,
+												   followState: viewModel.getFollowState(for: device),
+												   followAction: { viewModel.followButtonTapped(device: device) })
+								.onTapGesture {
+									viewModel.navigateToDeviceDetails(device)
+								}
 							}
 						}
+						.padding(CGFloat(.defaultSpacing))
 					}
-                    .padding(CGFloat(.defaultSpacing))
                 }
 				.scrollIndicators(.hidden)
 				.zIndex(0)
