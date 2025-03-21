@@ -6930,6 +6930,116 @@
         }
       }
     },
+    "promotional_access_api" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Access hyperlocal weather data via API"
+          }
+        }
+      }
+    },
+    "promotional_and_more" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "and more coming soon!"
+          }
+        }
+      }
+    },
+    "promotional_cell_forecast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell forecast"
+          }
+        }
+      }
+    },
+    "promotional_choose_plan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose the perfect plan for your needs and start today!"
+          }
+        }
+      }
+    },
+    "promotional_forecast_accuracy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forecast Accuracy Tracking"
+          }
+        }
+      }
+    },
+    "promotional_historical_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historical & Current Data"
+          }
+        }
+      }
+    },
+    "promotional_hyperlocal_weather_forecasts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hyperlocal Weather Forecasts"
+          }
+        }
+      }
+    },
+    "promotional_learn_more" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Learn more"
+          }
+        }
+      }
+    },
+    "promotional_pro_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gain accurate, localized weather forecasts by combining the best data from multiple models and track model performance."
+          }
+        }
+      }
+    },
+    "promotional_wxm_pro" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WeatherXM PRO "
+          }
+        }
+      }
+    },
     "rain_rate" : {
       "extractionState" : "manual",
       "localizations" : {

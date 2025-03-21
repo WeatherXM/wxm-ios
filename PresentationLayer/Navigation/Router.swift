@@ -72,6 +72,8 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .photoGallery(let vm):
 				hasher.combine(vm)
+			case .proPromo(let vm):
+				hasher.combine(vm)
 			case .safariView(let url):
 				hasher.combine(url)
 		}
@@ -133,6 +135,8 @@ enum Route: Hashable, Equatable {
 				"photoIntro"
 			case .photoGallery:
 				"photoGallery"
+			case .proPromo:
+				"proPromo"
 			case .safariView:
 				"safariView"
 		}
@@ -164,6 +168,7 @@ enum Route: Hashable, Equatable {
 	case rewardAnalytics(RewardAnalyticsViewModel)
 	case photoIntro(PhotoIntroViewModel)
 	case photoGallery(GalleryViewModel)
+	case proPromo(ProPromotionalViewModel)
 	case safariView(URL)
 }
 
@@ -255,6 +260,8 @@ extension Route {
 				PhotoIntroView(viewModel: photoIntroViewModel)
 			case .photoGallery(let galleryViewModel):
 				GalleryView(viewModel: galleryViewModel)
+			case .proPromo(let promoViewModel):
+				ProPromotionalView(viewModel: promoViewModel)
 			case .safariView(let url):
 				SafariView(url: url)
 					.ignoresSafeArea()
@@ -280,6 +287,15 @@ class Router: ObservableObject {
 		}
 	}
 	var fullScreenRoute: Route?
+	@Published var showBottomSheet = false {
+		didSet {
+			if !showBottomSheet {
+				// Set ref to nil in order to deallocate the corresponding view model
+				bottomSheetRoute = nil
+			}
+		}
+	}
+	var bottomSheetRoute: Route?
 	let navigationHost = HostingWrapper()
 	
 	private init() {}
@@ -293,7 +309,12 @@ class Router: ObservableObject {
 			navigationHost.hostingController?.present(hostingVC, animated: true)
 		}
 	}
-	
+
+	func showBottomSheet(_ route: Route) {
+		bottomSheetRoute = route
+		showBottomSheet = true
+	}
+
 	func navigateTo(_ route: Route) {
 		guard path.last != route else {
 			return

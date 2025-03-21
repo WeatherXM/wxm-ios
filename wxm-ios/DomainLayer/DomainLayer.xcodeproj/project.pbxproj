@@ -14,6 +14,7 @@
 		26348E0C2A434CCB000846C6 /* NetworkSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E0B2A434CCB000846C6 /* NetworkSearchResponse.swift */; };
 		26348E0E2A44360A000846C6 /* LocationCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E0D2A44360A000846C6 /* LocationCoordinates.swift */; };
 		264371392CA4146900E5F382 /* InfoBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264371382CA4146900E5F382 /* InfoBanner.swift */; };
+		264813F82D8C50EE00BCCC31 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264813F72D8C50EE00BCCC31 /* Announcement.swift */; };
 		264BDA0E298AC7DD005C1F82 /* FirmwareUpdateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */; };
 		264C105F2AF3D76800F6FF3E /* WeatherField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C105E2AF3D76800F6FF3E /* WeatherField.swift */; };
 		264C10612AF3DBA100F6FF3E /* DeviceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */; };
@@ -99,6 +100,7 @@
 		26348E0B2A434CCB000846C6 /* NetworkSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSearchResponse.swift; sourceTree = "<group>"; };
 		26348E0D2A44360A000846C6 /* LocationCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinates.swift; sourceTree = "<group>"; };
 		264371382CA4146900E5F382 /* InfoBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBanner.swift; sourceTree = "<group>"; };
+		264813F72D8C50EE00BCCC31 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
 		264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateRepository.swift; sourceTree = "<group>"; };
 		264C105E2AF3D76800F6FF3E /* WeatherField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherField.swift; sourceTree = "<group>"; };
 		264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAnnotation.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			children = (
 				26348E092A434C5F000846C6 /* Explorer */,
 				26C904C22A77DBA90047A388 /* DeviceDetails.swift */,
+				264813F72D8C50EE00BCCC31 /* Announcement.swift */,
 				4D1C95D428FCB248001F66C9 /* DeviceLocation.swift */,
 				2612AC1F2AB45F3C00285896 /* Filters.swift */,
 				4DE3A56D293EA58300BCDD8A /* Frequency.swift */,
@@ -590,6 +593,7 @@
 				26504E3D2A7A4753008E2B59 /* NetworkResultsConverter.swift in Sources */,
 				26348E0C2A434CCB000846C6 /* NetworkSearchResponse.swift in Sources */,
 				266D17F92AC71280007CDB06 /* WidgetUseCase.swift in Sources */,
+				264813F82D8C50EE00BCCC31 /* Announcement.swift in Sources */,
 				267401702A375D3800E54E35 /* NetworkStatsResponse.swift in Sources */,
 				B5E6B86128338CAB0060D050 /* NetworkTokenResponse.swift in Sources */,
 				267401722A37687000E54E35 /* NetworkUseCase.swift in Sources */,

@@ -34,6 +34,9 @@ struct RouterView<Content: View>: View {
 			.fullScreenCover(isPresented: $router.showFullScreen) {
 				router.fullScreenRoute?.view
 			}
+			.bottomSheet(show: $router.showBottomSheet) {
+				router.bottomSheetRoute?.view
+			}
         } else {
             // Fallback on earlier versions
             RouterViewController(host: router.navigationHost) {
