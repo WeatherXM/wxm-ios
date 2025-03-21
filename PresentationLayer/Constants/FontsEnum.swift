@@ -27,6 +27,7 @@ extension Font {
 enum FontIcon: String {
     case locationDot = "location-dot"
     case gear
+	case gem
     case threeDots = "ellipsis-vertical"
     case infoCircle = "info-circle"
     case externalLink = "arrow-up-right-from-square"
