@@ -88,8 +88,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 				guard let announcementId = announcement?.id else {
 					return
 				}
-				self?.announcementConfiguration = nil
-//				self?.remoteConfigUseCase.updateLastDismissedAnnouncementId(announcementId)
+				self?.remoteConfigUseCase.updateLastDismissedAnnouncementId(announcementId)
 			})
 		}.store(in: &cancellableSet)
 		
