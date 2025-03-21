@@ -57,4 +57,25 @@ struct RemoteConfigRepositoryImplTests {
 			try await Task.sleep(for: .seconds(1))
 		}
 	}
+
+	@Test func announcement() async throws {
+		var count = 3
+		try await confirmation(expectedCount: count) { confirm in
+			repositoryImpl.announcementPublisher.sink { announcement in
+				print(count)
+				if count == 2 {
+					#expect(announcement?.id == "Dummy Text")
+				} else {
+					#expect(announcement == nil)
+				}
+				count -= 1
+
+				confirm()
+			}.store(in: &cancellableWrapper.cancellableSet)
+			try await Task.sleep(for: .seconds(2))
+			repositoryImpl.updateLastDismissedAnnouncementId("Dummy Text")
+			try await Task.sleep(for: .seconds(1))
+		}
+	}
+
 }
