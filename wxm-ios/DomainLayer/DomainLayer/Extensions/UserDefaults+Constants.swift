@@ -41,6 +41,7 @@ public extension UserDefaults {
 		case lastAppVersionPrompt = "com.weatherxm.app.UserDefaults.Key.LastAppVersionPrompt"
 		case lastSurveyId = "com.weatherxm.app.UserDefaults.Key.LastSurveyId"
 		case lastInfoBannerId = "com.weatherxm.app.UserDefaults.Key.LastInfoBannerId"
+		case lastAnnouncementId = "com.weatherxm.app.UserDefaults.Key.LastAnnouncementId"
 		case termsOfUseAcceptedTimestamp = "com.weatherxm.app.UserDefaults.Key.TermsOfUseAcceptedTimestamp"
 		case arePhotoVerificationTermsAccepted = "com.weatherxm.app.UserDefaults.Key.ArePhotoVerificationTermsAccepted"
 		case isAddButtonIndicationSeen = "com.weatherxm.app.UserDefaults.Key.isAddButtonIndicationSeen"
@@ -56,6 +57,7 @@ public extension UserDefaults {
 									  .userDevices,
 									  .lastSurveyId,
 									  .lastInfoBannerId,
+									  .lastAnnouncementId,
 									  .arePhotoVerificationTermsAccepted,
 									  .isAddButtonIndicationSeen]
             return keys.map { $0.rawValue }

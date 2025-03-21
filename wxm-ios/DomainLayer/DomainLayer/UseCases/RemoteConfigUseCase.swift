@@ -29,4 +29,7 @@ public struct RemoteConfigUseCase {
 		repository.updateLastDismissedInfoBannerId(infoBannerId)
 	}
 
+	public func updateLastDismissedAnnouncementId(_ announcementId: String) {
+		repository.updateLastDismissedAnnouncementId(announcementId)
+	}
 }

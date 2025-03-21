@@ -14,8 +14,8 @@ extension Announcement {
 		let configuration = AnnouncementCardView.Configuration(title: title ?? "",
 															   description: message ?? "",
 															   actionTitle: actionLabel,
-															   action: buttonAction,
-															   closeAction: closeAction)
+															   action: actionShow == true ? buttonAction : nil,
+															   closeAction: dismissable == true ? closeAction : nil)
 		return configuration
 	}
 }

@@ -82,9 +82,14 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 
 		remoteConfigUseCase.announcementPublisher.sink { [weak self] announcement in
 			self?.announcementConfiguration = announcement?.toAnnouncementConfiguration(buttonAction: {
-				
+				// Handle url
+				let url = announcement?.actionUrl
 			}, closeAction: {
-
+				guard let announcementId = announcement?.id else {
+					return
+				}
+				self?.announcementConfiguration = nil
+//				self?.remoteConfigUseCase.updateLastDismissedAnnouncementId(announcementId)
 			})
 		}.store(in: &cancellableSet)
 		
