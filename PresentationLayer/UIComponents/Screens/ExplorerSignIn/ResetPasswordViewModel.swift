@@ -61,8 +61,7 @@ final class ResetPasswordViewModel: ObservableObject {
 
                     let isSuccessful = response.error == nil
                     WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .sendEmailForgotPassword,
-                                                                        .contentId: .forgotPasswordEmailContentId,
-                                                                        .success: .custom(isSuccessful ? "1" : "0")])
+																			  .success: .custom(isSuccessful ? "1" : "0")])
                 }.store(in: &cancellableSet)
         } catch {}
     }

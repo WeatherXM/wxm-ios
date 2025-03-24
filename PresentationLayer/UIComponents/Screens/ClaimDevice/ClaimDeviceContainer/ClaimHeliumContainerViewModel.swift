@@ -19,6 +19,10 @@ class ClaimHeliumContainerViewModel: ClaimDeviceContainerViewModel {
 		navigationTitle = ClaimStationType.helium.navigationTitle
 		steps = getSteps()
 	}
+
+	override func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.claimHelium)
+	}
 }
 
 private extension ClaimHeliumContainerViewModel {
@@ -38,6 +42,7 @@ private extension ClaimHeliumContainerViewModel {
 				}
 				self.loadingState = .fail(object)
 				self.showLoading = true
+				WXMAnalytics.shared.trackScreen(.bleConnectionPopupError)
 			} else {
 				self.btDevice = device
 				self.moveNext()

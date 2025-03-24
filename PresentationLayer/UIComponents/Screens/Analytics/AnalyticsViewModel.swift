@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 class AnalyticsViewModel: ObservableObject {
 

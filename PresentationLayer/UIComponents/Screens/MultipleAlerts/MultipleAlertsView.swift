@@ -57,6 +57,7 @@ struct MultipleAlertsView: View {
 			navigationObject.subtitle = viewModel.device.displayName
 			navigationObject.subtitleFont = .system(size: CGFloat(.caption))
 
+			viewModel.viewAppeared()
 		}
 	}
 }

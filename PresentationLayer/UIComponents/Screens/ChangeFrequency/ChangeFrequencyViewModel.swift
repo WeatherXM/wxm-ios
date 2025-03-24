@@ -12,7 +12,17 @@ import Toolkit
 
 @MainActor
 class ChangeFrequencyViewModel: ObservableObject {
-    @Published var state: State = .setFrequency
+	@Published var state: State = .setFrequency {
+		didSet {
+			if state.isFailed {
+				trackViewContentEvent(success: false)
+			}
+
+			if state.isSuccess {
+				trackViewContentEvent(success: true)
+			}
+		}
+	}
     @Published var selectedFrequency: Frequency?
     @Published var isFrequencyAcknowledged: Bool = false
     @Published private(set) var steps: [StepsView.Step] = Step.allCases.map { StepsView.Step(text: $0.description, isCompleted: false) }
@@ -267,7 +277,6 @@ private extension ChangeFrequencyViewModel {
 
     func trackViewContentEvent(success: Bool) {
         WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .changeFrequencyResult,
-                                                            .contentId: .changeFrequencyResultContentId,
-                                                            .success: .custom(success ? "1" : "0")])
+																  .success: .custom(success ? "1" : "0")])
     }
 }

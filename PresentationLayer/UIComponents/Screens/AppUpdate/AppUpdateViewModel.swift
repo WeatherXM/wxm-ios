@@ -32,6 +32,10 @@ class AppUpdateViewModel: ObservableObject {
 			self.forceUpdate = self.useCase.shouldForceUpdate(minimumVersion: minVersion)
 		}.store(in: &cancellableSet)
 	}
+
+	func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.appUpdatePrompt)
+	}
 	
 	func handleUpdateButtonTap() {
 		if let url = URL(string: DisplayedLinks.appstore.linkURL) {
@@ -41,11 +45,21 @@ class AppUpdateViewModel: ObservableObject {
 		if let version = RemoteConfigManager.shared.iosAppLatestVersion {
 			useCase.updateLastAppVersionPrompt(with: version)
 		}
+
+		WXMAnalytics.shared.trackEvent(.userAction,
+									   parameters: [.actionName: .appUpdatePromptResult,
+													.contentType: .appUpdatePrompt,
+													.action: .update])
 	}
 
 	func handleNoUpdateButtonTap() {
 		if let version = RemoteConfigManager.shared.iosAppLatestVersion {
 			useCase.updateLastAppVersionPrompt(with: version)
 		}
+
+		WXMAnalytics.shared.trackEvent(.userAction,
+									   parameters: [.actionName: .appUpdatePromptResult,
+													.contentType: .appUpdatePrompt,
+													.action: .discard])
 	}
 }

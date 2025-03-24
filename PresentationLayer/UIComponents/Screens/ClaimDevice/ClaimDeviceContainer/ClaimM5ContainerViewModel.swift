@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 class ClaimM5ContainerViewModel: ClaimDeviceContainerViewModel {
 	
@@ -14,6 +15,10 @@ class ClaimM5ContainerViewModel: ClaimDeviceContainerViewModel {
 		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
 		navigationTitle = ClaimStationType.m5.navigationTitle
 		steps = getSteps()
+	}
+
+	override func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.claimM5)
 	}
 }
 

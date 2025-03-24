@@ -9,6 +9,7 @@ import Foundation
 import CoreLocation
 import Combine
 import DomainLayer
+import Toolkit
 
 @MainActor
 protocol SelectLocationMapViewModelDelegate: AnyObject {
@@ -35,6 +36,12 @@ class SelectLocationMapViewModel: ObservableObject {
 		}
 	}
 	@Published var searchTerm: String = ""
+	@Published var showSearchResults: Bool = false {
+		didSet {
+			guard showSearchResults else { return }
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .searchLocation])
+		}
+	}
 	@Published private(set) var searchResults: [DeviceLocationSearchResult] = []
 	var mapControls: MapControls = .init()
 	private var cancellableSet: Set<AnyCancellable> = .init()
