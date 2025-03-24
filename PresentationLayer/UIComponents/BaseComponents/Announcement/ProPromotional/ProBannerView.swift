@@ -39,6 +39,7 @@ struct ProBannerView: View {
 
 		}
 		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint))
+		.wxmShadow()
     }
 }
 

@@ -19,7 +19,7 @@ struct HistoryView: View {
 				viewModel.refresh(completion: completion)
 			} content: {
 				Group {
-					VStack(spacing: CGFloat(.mediumSpacing)) {
+					VStack(spacing: CGFloat(.largeSpacing)) {
 						ProBannerView(description: LocalizableString.Promotional.unlockFullWeather.localized)
 
 						if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
@@ -30,7 +30,7 @@ struct HistoryView: View {
 						}
 					}
 					.padding(.horizontal, CGFloat(.defaultSidePadding))
-					.padding(.top)
+					.padding(.top, CGFloat(.defaultSidePadding))
 				}
 			}
 			.iPadMaxWidth()
@@ -39,7 +39,6 @@ struct HistoryView: View {
                       configuration: .init(animationEnum: .emptyGeneric,
                                            title: LocalizableString.StationDetails.noWeatherData.localized,
                                            description: viewModel.getNoDataDateFormat().attributedMarkdown ?? ""))
-
         .spinningLoader(show: $viewModel.loadingData, hideContent: true)
         .fail(show: $viewModel.isFailed, obj: viewModel.failObj)
         .onAppear {
