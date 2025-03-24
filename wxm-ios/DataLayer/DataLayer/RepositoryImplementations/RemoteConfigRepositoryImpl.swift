@@ -98,12 +98,9 @@ private extension RemoteConfigRepositoryImpl {
 		let announcementMessage = RemoteConfigManager.shared.$announcementMessage
 		let announcementDismissable = RemoteConfigManager.shared.$announcementDismissable
 
-		let zip3 = Publishers.Zip3(announcementId, announcementShow, announcementActionLabel)
-		let zip2 = Publishers.Zip(announcementMessage, announcementDismissable)
+		let zip = Publishers.Zip4(announcementId, announcementActionLabel, announcementMessage, announcementDismissable)
 
-		zip3.combineLatest(zip2).debounce(for: 1.0, scheduler: DispatchQueue.main).sink { [weak self] zipValues3, zipValues2 in
-			let (_, show, _) = zipValues3
-
+		zip.combineLatest(announcementShow).debounce(for: 1.0, scheduler: DispatchQueue.main).sink { [weak self] _, show in
 			self?.handleAnnouncementUpdate(show: show ?? false)
 		}.store(in: &cancellableSet)
 	}
