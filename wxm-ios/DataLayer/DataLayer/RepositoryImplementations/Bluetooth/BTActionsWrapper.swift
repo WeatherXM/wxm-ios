@@ -47,17 +47,21 @@ class BTActionWrapper: @unchecked Sendable {
         return .unknown
     }
 
-    /// Reboots to a the passed device. Scans to find the corresponding ΒΤ device and reboots
-    /// - Parameter device: The device to reboot
-    /// - Returns: The error of the process, nil if is successful
-    func reboot(device: DeviceDetails) async -> ActionError? {
+	/// Reboots to a the passed device. Scans to find the corresponding ΒΤ device and reboots
+	/// - Parameter device: The device to reboot
+	/// - Parameter connectRetries: The retries to reconnect in order to finish the reboot process
+	/// - Returns: The error of the process, nil if is successful
+    func reboot(device: DeviceDetails,
+				connectRetries: Int = 10) async -> ActionError? {
         if let btStateError = await observeBTState(for: device) {
             return btStateError
         }
 
         do {
             if let btDevice = try await findBTDevice(device: device) {
-                return await rebootDevice(btDevice, keepConnected: false)
+                return await rebootDevice(btDevice,
+										  connectRetries: connectRetries,
+										  keepConnected: false)
             }
         } catch let error as ActionError {
             return error
@@ -67,12 +71,20 @@ class BTActionWrapper: @unchecked Sendable {
 
         return .unknown
     }
-
-	func rebootDevice(_ device: BTWXMDevice, keepConnected: Bool) async -> ActionError? {
+	
+	/// Reboots to a the passed ΒΤ device and reboots
+	/// - Parameters:
+	///   - device: The device to reboot
+	///   - connectRetries: The retries to reconnect in order to finish the reboot process
+	///   - keepConnected: Keep connected after the reboot is finished
+	/// - Returns: The error of the process, nil if is successful
+	func rebootDevice(_ device: BTWXMDevice,
+					  connectRetries: Int = 10,
+					  keepConnected: Bool) async -> ActionError? {
 		rebootStationWorkItem?.cancel()
 		bluetoothManager.disconnect(from: device)
 		return await withCheckedContinuation { [weak self] continuation in
-			self?.connectToDevice(device, retries: 10) { error in
+			self?.connectToDevice(device, retries: connectRetries) { error in
 				if error != nil {
 					continuation.resume(returning: .reboot)
 					return
@@ -87,19 +99,24 @@ class BTActionWrapper: @unchecked Sendable {
 		}
 	}
 
-    /// Changes the station's frequency. Scans to find the corresponding ΒΤ device and performs the AT command
-    /// - Parameters:
-    ///   - device: The device to set frequency
-    ///   - frequency: The new frequency
-    /// - Returns: The error of the process, nil if is successful
-    func setFrequency(device: DeviceDetails, frequency: Frequency) async -> ActionError? {
+	/// Changes the station's frequency. Scans to find the corresponding ΒΤ device and performs the AT command
+	/// - Parameters:
+	///   - device: The device to set frequency
+	///   - frequency: The new frequency
+	///   - connectRetries: The retries to reconnect in order to finish the frequncy setting
+	/// - Returns: The error of the process, nil if is successful
+    func setFrequency(device: DeviceDetails,
+					  frequency: Frequency,
+					  connectRetries: Int = 5) async -> ActionError? {
         if let btStateError = await observeBTState(for: device) {
             return btStateError
         }
 
         do {
             if let btDevice = try await findBTDevice(device: device) {
-                return await setDeviceFrequency(btDevice, frequency: frequency)
+                return await setDeviceFrequency(btDevice,
+												frequency: frequency,
+												connectRetries: connectRetries)
             }
         } catch let error as ActionError {
             return error
@@ -110,13 +127,15 @@ class BTActionWrapper: @unchecked Sendable {
         return .unknown
     }
 
-	func setDeviceFrequency(_ device: BTWXMDevice, frequency: Frequency) async -> ActionError? {
+	func setDeviceFrequency(_ device: BTWXMDevice,
+							frequency: Frequency,
+							connectRetries: Int = 5) async -> ActionError? {
 		guard let deviceWithCBPeripheral = bluetoothManager._devices.first(where: { $0.wxmDevice == device }) else {
 			return .setFrequency(nil)
 		}
 
 		return await withCheckedContinuation { continuation in
-			self.connectToDevice(device, retries: 5) { [weak self] error in
+			self.connectToDevice(device, retries: connectRetries) { [weak self] error in
 				guard error == nil else {
 					continuation.resume(returning: error)
 					return
@@ -141,9 +160,20 @@ class BTActionWrapper: @unchecked Sendable {
 		}
 	}
 
-	func getDevEUI(_ device: BTWXMDevice) async -> (value: String?, error: ActionError?) {
+	func getDevEUI(_ device: DeviceDetails, connectRetries: Int = 5) async -> (value: String?, error: ActionError?) {
+		if let btStateError = await observeBTState(for: device) {
+			return (nil, btStateError)
+		}
+		guard let btDevice = try? await findBTDevice(device: device) else {
+			return (nil, .notInRange)
+		}
+
+		return await getDevEUI(btDevice, connectRetries: connectRetries)
+	}
+
+	func getDevEUI(_ device: BTWXMDevice, connectRetries: Int = 5) async -> (value: String?, error: ActionError?) {
 		return await withUnsafeContinuation { [weak self] continuation in
-			self?.connectToDevice(device, retries: 5) { error in
+			self?.connectToDevice(device, retries: connectRetries) { error in
 				guard error == nil else {
 					continuation.resume(returning: (nil, error))
 					return
@@ -159,9 +189,20 @@ class BTActionWrapper: @unchecked Sendable {
 		}
 	}
 
-	func getClaimingKey(_ device: BTWXMDevice) async -> (value: String?, error: ActionError?) {
+	func getClaimingKey(_ device: DeviceDetails, connectRetries: Int = 5) async -> (value: String?, error: ActionError?) {
+		if let btStateError = await observeBTState(for: device) {
+			return (nil, btStateError)
+		}
+		guard let btDevice = try? await findBTDevice(device: device) else {
+			return (nil, .notInRange)
+		}
+
+		return await getClaimingKey(btDevice, connectRetries: connectRetries)
+	}
+
+	func getClaimingKey(_ device: BTWXMDevice, connectRetries: Int = 5) async -> (value: String?, error: ActionError?) {
 		return await withUnsafeContinuation { [weak self] continuation in
-			self?.connectToDevice(device, retries: 5) { error in
+			self?.connectToDevice(device, retries: connectRetries) { error in
 				guard error == nil else {
 					continuation.resume(returning: (nil, error))
 					return
@@ -187,21 +228,23 @@ private extension BTActionWrapper {
             guard let self = self else {
                 return
             }
-            self.bluetoothManager.state.sink { state in
-                switch state {
-                    case .unsupported:
-                        continuation.resume(returning: .bluetoothState(.unsupported))
-                    case .unauthorized:
-                        continuation.resume(returning: .bluetoothState(.unauthorized))
-                    case .poweredOff:
-                        continuation.resume(returning: .bluetoothState(.poweredOff))
-                    case .poweredOn, .resetting:
-                        continuation.resume(returning: nil)
-                    case .unknown:
-                        break
-                }
-            }.store(in: &self.cancellables)
-        }
+			self.bluetoothManager.state
+				.filter{ $0 != .unknown }
+				.prefix(1).sink { state in
+					switch state {
+						case .unsupported:
+							continuation.resume(returning: .bluetoothState(.unsupported))
+						case .unauthorized:
+							continuation.resume(returning: .bluetoothState(.unauthorized))
+						case .poweredOff:
+							continuation.resume(returning: .bluetoothState(.poweredOff))
+						case .poweredOn, .resetting:
+							continuation.resume(returning: nil)
+						case .unknown:
+							break
+					}
+				}.store(in: &self.cancellables)
+		}
     }
 
     func findBTDevice(device: DeviceDetails) async throws -> BTWXMDevice? {
@@ -309,7 +352,7 @@ private extension BTActionWrapper {
 }
 
 extension BTActionWrapper {
-    enum ActionError: Error {
+	enum ActionError: Error, Equatable {
         case bluetoothState(BluetoothState)
         case reboot
         case notInRange

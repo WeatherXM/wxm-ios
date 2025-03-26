@@ -83,6 +83,10 @@
 		2645823B2A41C07000195C21 /* FailSuccessViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */; };
 		2646D8F329C8BF3D0000237F /* StationRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646D8F229C8BF3D0000237F /* StationRewardsView.swift */; };
 		2646D8F529C8BFB40000237F /* StationRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646D8F429C8BFB40000237F /* StationRewardsViewModel.swift */; };
+		264813E42D88690100BCCC31 /* BluetoothManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264813E32D88690100BCCC31 /* BluetoothManagerTests.swift */; };
+		264813E62D89AF8900BCCC31 /* BTActionWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264813E52D89AF8900BCCC31 /* BTActionWrapperTests.swift */; };
+		264813E82D89B9C400BCCC31 /* BTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264813E72D89B9B900BCCC31 /* BTUtils.swift */; };
+		264813EA2D8C155800BCCC31 /* BluetoothDevicesRepositoryImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264813E92D8C155800BCCC31 /* BluetoothDevicesRepositoryImplTests.swift */; };
 		264CC7472B975D450060DEA4 /* rocket_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC7462B975D450060DEA4 /* rocket_dark.json */; };
 		264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */; };
 		264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */; };
@@ -762,6 +766,10 @@
 		2645823A2A41C07000195C21 /* FailSuccessViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailSuccessViewModifier.swift; sourceTree = "<group>"; };
 		2646D8F229C8BF3D0000237F /* StationRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsView.swift; sourceTree = "<group>"; };
 		2646D8F429C8BFB40000237F /* StationRewardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsViewModel.swift; sourceTree = "<group>"; };
+		264813E32D88690100BCCC31 /* BluetoothManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManagerTests.swift; sourceTree = "<group>"; };
+		264813E52D89AF8900BCCC31 /* BTActionWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTActionWrapperTests.swift; sourceTree = "<group>"; };
+		264813E72D89B9B900BCCC31 /* BTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTUtils.swift; sourceTree = "<group>"; };
+		264813E92D8C155800BCCC31 /* BluetoothDevicesRepositoryImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevicesRepositoryImplTests.swift; sourceTree = "<group>"; };
 		264CC7462B975D450060DEA4 /* rocket_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocket_dark.json; sourceTree = "<group>"; };
 		264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsView.swift; sourceTree = "<group>"; };
 		264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsViewModel.swift; sourceTree = "<group>"; };
@@ -1538,6 +1546,16 @@
 			path = Rewards;
 			sourceTree = "<group>";
 		};
+		264813E22D885BE100BCCC31 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				264813E72D89B9B900BCCC31 /* BTUtils.swift */,
+				264813E32D88690100BCCC31 /* BluetoothManagerTests.swift */,
+				264813E52D89AF8900BCCC31 /* BTActionWrapperTests.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
 		264AE27F29FB8F100051C101 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -2138,6 +2156,7 @@
 		267811032D490E7800D22B67 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
+				264813E22D885BE100BCCC31 /* Bluetooth */,
 				26DF1F5A2D55028D0001E936 /* RepositoryImplementations */,
 				267811042D490E8B00D22B67 /* Services */,
 				26DF1F672D563F940001E936 /* Utils.swift */,
@@ -2686,6 +2705,7 @@
 				26DF1F5B2D5502D20001E936 /* NetworkRepositoryImplTests.swift */,
 				26DF1F5D2D55F0C70001E936 /* MeRepositoryImplTests.swift */,
 				26DF1F612D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift */,
+				264813E92D8C155800BCCC31 /* BluetoothDevicesRepositoryImplTests.swift */,
 			);
 			path = RepositoryImplementations;
 			sourceTree = "<group>";
@@ -3384,6 +3404,7 @@
 				26710E3E2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift in Sources */,
 				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
 				26710E4C2D7B21E700878298 /* RewardsUseCaseTests.swift in Sources */,
+				264813E82D89B9C400BCCC31 /* BTUtils.swift in Sources */,
 				26710E9C2D7F36A700878298 /* DeviceInfoUseCaseTests.swift in Sources */,
 				26F176A42D79E783000BA381 /* WidgetUseCaseTests.swift in Sources */,
 				26710E3C2D7AE86400878298 /* MockFirmwareUpdateRepositoryImpl.swift in Sources */,
@@ -3403,6 +3424,8 @@
 				26710E402D7AFED800878298 /* MockDevicesRepositoryImpl.swift in Sources */,
 				26710E422D7B047100878298 /* RewardsTimelineUseCaseTests.swift in Sources */,
 				26F176A22D79D60E000BA381 /* MockMeRepositoryImpl.swift in Sources */,
+				264813EA2D8C155800BCCC31 /* BluetoothDevicesRepositoryImplTests.swift in Sources */,
+				264813E62D89AF8900BCCC31 /* BTActionWrapperTests.swift in Sources */,
 				26DF1F642D56328B0001E936 /* PhotosRepositoryImplTests.swift in Sources */,
 				26710E562D7ECBC300878298 /* MainUseCaseTests.swift in Sources */,
 				26710E502D7B2F2700878298 /* MeUseCaseTests.swift in Sources */,
@@ -3426,6 +3449,7 @@
 				26710EA92D804F6400878298 /* LoginServiceImplTests.swift in Sources */,
 				26F176A02D79D271000BA381 /* MockKeychainRepositoryImpl.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
+				264813E42D88690100BCCC31 /* BluetoothManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
