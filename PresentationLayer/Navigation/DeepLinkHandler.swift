@@ -13,6 +13,10 @@ import Toolkit
 import UserNotifications
 import CoreLocation
 
+private enum Announcement: String {
+	case weatherxmPro = "weatherxm_pro"
+}
+
 @MainActor
 class DeepLinkHandler {
 	typealias QueryParamsCallBack = GenericCallback<[String: String]?>
@@ -22,6 +26,7 @@ class DeepLinkHandler {
 	static let stationsPath = "stations"
 	static let cellsPath = "cells"
 	static let tokenClaim = "token-claim"
+	static let announcement = "announcement"
 
     let useCase: NetworkUseCase
 	let explorerUseCase: ExplorerUseCase
@@ -172,6 +177,9 @@ private extension DeepLinkHandler {
 			case Self.tokenClaim:
 				Router.shared.pop()
 				return true
+			case Self.announcement:
+				handleAnnouncement(value)
+				return true
 			default:
 				return false
 		}
@@ -231,6 +239,19 @@ private extension DeepLinkHandler {
 
 			let route = Route.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: index, cellCenter: cellCenter))
 			Router.shared.navigateTo(route)
+		}
+	}
+
+	func handleAnnouncement(_ announcement: String) {
+		guard let announcement = Announcement(rawValue: announcement) else {
+			return
+		}
+
+		switch announcement {
+			case .weatherxmPro:
+				let viewModel = ViewModelsFactory.getProPromotionalViewModel()
+				Router.shared.showBottomSheet(.proPromo(viewModel))
+				break
 		}
 	}
 }

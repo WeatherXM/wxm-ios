@@ -8,6 +8,7 @@
 import SwiftUI
 
 public enum AssetEnum: String {
+	case promoImage
     case eye
     case email
     case errorExclamationIcon

@@ -48,12 +48,6 @@ struct AnnouncementCardView: View {
 							Text(actionTitle)
 								.font(.system(size: CGFloat(.caption), weight: .bold))
 								.foregroundColor(Color(colorEnum: .textWhite))
-
-							Text(FontIcon.externalLink.rawValue)
-								.font(.fontAwesome(font: .FAProSolid,
-												   size: CGFloat(.caption)))
-								.foregroundColor(Color(colorEnum: .textWhite))
-
 						}
 						.padding(.horizontal, CGFloat(.mediumSidePadding))
 						.padding(.vertical, CGFloat(.smallSidePadding))
@@ -77,7 +71,13 @@ struct AnnouncementCardView: View {
 }
 
 extension AnnouncementCardView {
-	struct Configuration {
+	struct Configuration: Equatable {
+		static func == (lhs: AnnouncementCardView.Configuration, rhs: AnnouncementCardView.Configuration) -> Bool {
+			lhs.title == rhs.title &&
+			lhs.description == rhs.description &&
+			lhs.actionTitle == rhs.actionTitle
+		}
+
 		let title: String
 		let description: String
 		var actionTitle: String?

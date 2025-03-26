@@ -35,6 +35,16 @@ public class RemoteConfigManager: ObservableObject, @unchecked Sendable {
 	@Published public var infoBannerShow: Bool?
 	@Published public var infoBannerDismissable: Bool?
 
+	// Anouncement
+	@Published public var announcementId: String?
+	@Published public var announcementTitle: String?
+	@Published public var announcementMessage: String?
+	@Published public var announcementActionLabel: String?
+	@Published public var announcementActionUrl: String?
+	@Published public var announcementActionShow: Bool?
+	@Published public var announcementShow: Bool?
+	@Published public var announcementDismissable: Bool?
+
 	private init() {
 		if disableAnalytics {
 			remoteConfigManagerImpl = MockRemoteConfigManager()
@@ -77,6 +87,14 @@ private extension RemoteConfigManager {
 			self.infoBannerActionUrl = self.getConfigValue(key: .infoBannerActionUrl)
 			self.infoBannerShow = self.getConfigValue(key: .infoBannerShow)
 			self.infoBannerDismissable = self.getConfigValue(key: .infoBannerDismissable)
+			self.announcementId = self.getConfigValue(key: .announcementId)
+			self.announcementTitle = self.getConfigValue(key: .announcementTitle)
+			self.announcementMessage = self.getConfigValue(key: .announcementMessage)
+			self.announcementActionLabel = self.getConfigValue(key: .announcementActionLabel)
+			self.announcementActionUrl = self.getConfigValue(key: .announcementActionUrl)
+			self.announcementActionShow = self.getConfigValue(key: .announcementActionShow)
+			self.announcementShow = self.getConfigValue(key: .announcementShow)
+			self.announcementDismissable = self.getConfigValue(key: .announcementDismissable)
 		}
 	}
 }

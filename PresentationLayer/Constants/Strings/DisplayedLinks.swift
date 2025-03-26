@@ -41,6 +41,7 @@ enum DisplayedLinks {
 	case d1Batteries
 	case m5VideoLink
 	case d1VideoLink
+	case weatherXMPro
 
 	var linkURL: String {
 		switch self {
@@ -106,6 +107,8 @@ enum DisplayedLinks {
 				return "https://www.youtube.com/watch?v=sUJEwuFq1CE"
 			case .d1VideoLink:
 				return "https://www.youtube.com/watch?v=D3rz1Y01Qhg"
+			case .weatherXMPro:
+				return "http://pro.weatherxm.com/"
 		}
 	}
 }
