@@ -310,5 +310,15 @@ public enum ParameterValue {
 	case goToPhotoVerification
 	case started
 	case completed
+	case proPromotionCTA
+	case announcementActionUrl
+	case remoteDevicesList
+	case localForecast
+	case localForecastDetails
+	case localHistory
+	case localCell
+	case localProfile
+	case localNetworkStats
+	case bottomSheet
 	case custom(String)
 }

@@ -457,6 +457,26 @@ extension ParameterValue: RawRepresentable {
 				return "started"
 			case .completed:
 				return "completed"
+			case .proPromotionCTA:
+				return "Pro Promotion CTA"
+			case .announcementActionUrl:
+				return "announcement_action_url"
+			case .remoteDevicesList:
+				return "remote_devices_list"
+			case .localForecast:
+				return "local_forecast"
+			case .localForecastDetails:
+				return "local_forecast_details"
+			case .localHistory:
+				return "local_history"
+			case .localCell:
+				return "local_cell"
+			case .localProfile:
+				return "local_profile"
+			case .localNetworkStats:
+				return "local_network_stats"
+			case .bottomSheet:
+				return "bottom_sheet"
 		}
 	}
 }
