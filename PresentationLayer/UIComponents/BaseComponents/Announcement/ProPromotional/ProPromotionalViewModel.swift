@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Toolkit
 
 @MainActor
 class ProPromotionalViewModel: ObservableObject {
@@ -18,6 +19,9 @@ class ProPromotionalViewModel: ObservableObject {
 
 	func handleLearnMoreTapped() {
 		HelperFunctions().openUrl(DisplayedLinks.weatherXMPro.linkURL)
+
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
+																	.itemId: .proPromotion])
 	}
 }
 

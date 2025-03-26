@@ -319,6 +319,6 @@ public enum ParameterValue {
 	case localCell
 	case localProfile
 	case localNetworkStats
-	case bottomSheet
+	case proPromotion
 	case custom(String)
 }

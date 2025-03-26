@@ -475,8 +475,8 @@ extension ParameterValue: RawRepresentable {
 				return "local_profile"
 			case .localNetworkStats:
 				return "local_network_stats"
-			case .bottomSheet:
-				return "bottom_sheet"
+			case .proPromotion:
+				return "pro_promotion"
 		}
 	}
 }
