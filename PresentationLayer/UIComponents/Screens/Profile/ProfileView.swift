@@ -77,7 +77,8 @@ private struct ContentView: View {
 				}
 			}
 
-			ProBannerView(description: LocalizableString.Promotional.takeYourWeatherInsights.localized)
+			ProBannerView(description: LocalizableString.Promotional.takeYourWeatherInsights.localized,
+						  analyticsSource: .localProfile)
 		}
 		.padding(CGFloat(.defaultSidePadding))
 		.animation(.easeIn, value: viewModel.surveyConfiguration != nil)

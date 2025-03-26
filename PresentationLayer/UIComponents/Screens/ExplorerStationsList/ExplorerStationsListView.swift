@@ -54,7 +54,8 @@ private struct ContentView: View {
 
 				ScrollView {
 					VStack(spacing: 0.0) {
-						ProBannerView(description: LocalizableString.Promotional.getHyperlocalForecasts.localized)
+						ProBannerView(description: LocalizableString.Promotional.getHyperlocalForecasts.localized,
+									  analyticsSource: .localCell)
 							.padding(.top, CGFloat(.defaultSpacing))
 							.padding(.horizontal, CGFloat(.defaultSpacing))
 
