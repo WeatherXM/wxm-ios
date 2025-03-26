@@ -3784,28 +3784,6 @@
         }
       }
     },
-    "error_qod_threshold_not_reached_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Station excluded from rewards because its Quality-of-Data (QoD) score was too low. This might be due to **bad deployment** or **faulty sensors**. Read more about the QoD algorithm."
-          }
-        }
-      }
-    },
-    "error_qod_threshold_not_reached_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "QoD Threshold not reached"
-          }
-        }
-      }
-    },
     "error_relocated_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4044,17 +4022,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Station excluded from rewards because its Proof-of-Location (PoL) score was too low."
-          }
-        }
-      }
-    },
-    "error_unowned_qod_threshold_not_reached_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Station excluded from rewards because its Quality-of-Data (QoD) score was too low."
           }
         }
       }
