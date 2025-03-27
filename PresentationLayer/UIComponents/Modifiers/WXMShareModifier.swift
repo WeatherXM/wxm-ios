@@ -99,9 +99,11 @@ private extension WXMShareModifier {
 
 	class ShareFileItemSource: NSObject, UIActivityItemSource {
 		let image: UIImage
+		let url: URL?
 
 		init(image: UIImage) {
 			self.image = image
+			url = image.saveWithName("share_\(UUID().uuidString)", tempDirectory: true)
 		}
 
 		func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
@@ -109,7 +111,7 @@ private extension WXMShareModifier {
 		}
 		
 		func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-			image
+			url
 		}
 
 		func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {

@@ -195,6 +195,10 @@ public extension FileManager {
 		let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 		return urls.first
 	}
+
+	static var tempDirectory: URL? {
+		FileManager.default.temporaryDirectory		
+	}
 }
 
 public extension Int {
