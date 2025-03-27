@@ -176,6 +176,10 @@ public extension URL {
 		return url.queryItems?.reduce(into: [:]) { $0[$1.name] = $1.value }
 	}
 
+	func deleteFile() {
+		try? FileManager.default.removeItem(at: self)
+	}
+
 	mutating func appendQueryItem(name: String, value: String?) {
 		guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
 			return
