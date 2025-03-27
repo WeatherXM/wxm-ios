@@ -311,7 +311,6 @@ public enum ParameterValue {
 	case started
 	case completed
 	case proPromotionCTA
-	case announcementActionUrl
 	case remoteDevicesList
 	case localForecast
 	case localForecastDetails

@@ -459,8 +459,6 @@ extension ParameterValue: RawRepresentable {
 				return "completed"
 			case .proPromotionCTA:
 				return "Pro Promotion CTA"
-			case .announcementActionUrl:
-				return "announcement_action_url"
 			case .remoteDevicesList:
 				return "remote_devices_list"
 			case .localForecast:
