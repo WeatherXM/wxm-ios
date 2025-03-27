@@ -26,6 +26,9 @@ struct StationForecastView: View {
 
 						hourlyView
 
+						ProBannerView(description: LocalizableString.Promotional.fineTuneForecast.localized)
+							.padding(.horizontal)
+
 						VStack(spacing: CGFloat(.mediumSpacing)) {
 							HStack {
 								Text(LocalizableString.Forecast.nextSevenDays.localized)

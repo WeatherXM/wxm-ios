@@ -16,6 +16,8 @@ struct ForecastDetailsDailyView: View {
 		VStack(spacing: CGFloat(.largeSpacing)) {
 			dailyConditions
 
+			ProBannerView(description: LocalizableString.Promotional.wantMoreAccurateForecast.localized)
+
 			hourlyForecast
 
 			charts

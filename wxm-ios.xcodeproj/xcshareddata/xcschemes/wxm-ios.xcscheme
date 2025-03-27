@@ -104,7 +104,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-WXMAnalyticsDisabled YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <LocationScenarioReference

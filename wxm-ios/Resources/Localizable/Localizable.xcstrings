@@ -6974,6 +6974,17 @@
         }
       }
     },
+    "promotional_fine_tune_forecast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine-tune your forecasting!"
+          }
+        }
+      }
+    },
     "promotional_forecast_accuracy" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6981,6 +6992,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Forecast Accuracy Tracking"
+          }
+        }
+      }
+    },
+    "promotional_get_hyperlocal_forecasts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Hyperlocal Forecasts"
+          }
+        }
+      }
+    },
+    "promotional_get_pro" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Pro"
           }
         }
       }
@@ -7025,6 +7058,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gain accurate, localized weather forecasts by combining the best data from multiple models and track model performance."
+          }
+        }
+      }
+    },
+    "promotional_take_your_weather_insights" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take your weather insights to the next level."
+          }
+        }
+      }
+    },
+    "promotional_unlock_full_weather" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock full weather history!"
+          }
+        }
+      }
+    },
+    "promotional_want_more_accurate_forecast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Want more accurate forecasts?"
           }
         }
       }

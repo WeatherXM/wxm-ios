@@ -91,6 +91,7 @@
 		264814212D942B2300BCCC31 /* BTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648141F2D942B2300BCCC31 /* BTUtils.swift */; };
 		264814222D942B2300BCCC31 /* BluetoothManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648141D2D942B2300BCCC31 /* BluetoothManagerTests.swift */; };
 		264814232D942B2300BCCC31 /* BTActionWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648141E2D942B2300BCCC31 /* BTActionWrapperTests.swift */; };
+		264814042D8DA68C00BCCC31 /* ProBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814032D8DA68C00BCCC31 /* ProBannerView.swift */; };
 		264CC7472B975D450060DEA4 /* rocket_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC7462B975D450060DEA4 /* rocket_dark.json */; };
 		264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */; };
 		264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */; };
@@ -778,6 +779,7 @@
 		2648141D2D942B2300BCCC31 /* BluetoothManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManagerTests.swift; sourceTree = "<group>"; };
 		2648141E2D942B2300BCCC31 /* BTActionWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTActionWrapperTests.swift; sourceTree = "<group>"; };
 		2648141F2D942B2300BCCC31 /* BTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTUtils.swift; sourceTree = "<group>"; };
+		264814032D8DA68C00BCCC31 /* ProBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProBannerView.swift; sourceTree = "<group>"; };
 		264CC7462B975D450060DEA4 /* rocket_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocket_dark.json; sourceTree = "<group>"; };
 		264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsView.swift; sourceTree = "<group>"; };
 		264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsViewModel.swift; sourceTree = "<group>"; };
@@ -1568,6 +1570,7 @@
 			children = (
 				264813FD2D8D7CF000BCCC31 /* ProPromotionalView.swift */,
 				264813FF2D8D7D2900BCCC31 /* ProPromotionalViewModel.swift */,
+				264814032D8DA68C00BCCC31 /* ProBannerView.swift */,
 			);
 			path = ProPromotional;
 			sourceTree = "<group>";
@@ -3863,6 +3866,7 @@
 				267547BA29A9181E008BCF40 /* UnitsOptionView.swift in Sources */,
 				26AF277E2A0B91200067A1B8 /* UnitsProtocol+.swift in Sources */,
 				267547D429A9181E008BCF40 /* UpdateFirmwareView+Content.swift in Sources */,
+				264814042D8DA68C00BCCC31 /* ProBannerView.swift in Sources */,
 				268B5C3C2BCE809E00E63655 /* ForecastDetailsViewModel.swift in Sources */,
 				267547D529A9181E008BCF40 /* UpdateFirmwareView.swift in Sources */,
 				267547A229A9181E008BCF40 /* UpdateFirmwareViewModel.swift in Sources */,

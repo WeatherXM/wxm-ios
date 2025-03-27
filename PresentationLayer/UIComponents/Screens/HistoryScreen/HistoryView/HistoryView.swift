@@ -14,28 +14,31 @@ struct HistoryView: View {
     @StateObject var viewModel: HistoryViewModel
 
     var body: some View {
-        ZStack {
-            TrackableScroller(showIndicators: false) { completion in
-                viewModel.refresh(completion: completion)
-            } content: {
+		ZStack {
+			TrackableScroller(showIndicators: false) { completion in
+				viewModel.refresh(completion: completion)
+			} content: {
 				Group {
-					if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
-						ChartsContainer(historyData: historyData,
-										chartTypes: ChartCardType.allCases,
-										delegate: viewModel.chartDelegate)
-						.padding(.horizontal, CGFloat(.defaultSidePadding))
-						.id(historyData.markDate)
-						.padding(.top)
+					VStack(spacing: CGFloat(.largeSpacing)) {
+						ProBannerView(description: LocalizableString.Promotional.unlockFullWeather.localized)
+
+						if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
+							ChartsContainer(historyData: historyData,
+											chartTypes: ChartCardType.allCases,
+											delegate: viewModel.chartDelegate)
+							.id(historyData.markDate)
+						}
 					}
+					.padding(.horizontal, CGFloat(.defaultSidePadding))
+					.padding(.top, CGFloat(.defaultSidePadding))
 				}
-            }
+			}
 			.iPadMaxWidth()
-        }
-        .wxmEmptyView(show: Binding(get: { viewModel.currentHistoryData?.isEmpty() ?? true }, set: { _ in }),
+		}
+		.wxmEmptyView(show: Binding(get: { viewModel.currentHistoryData?.isEmpty() ?? true }, set: { _ in }),
                       configuration: .init(animationEnum: .emptyGeneric,
                                            title: LocalizableString.StationDetails.noWeatherData.localized,
                                            description: viewModel.getNoDataDateFormat().attributedMarkdown ?? ""))
-
         .spinningLoader(show: $viewModel.loadingData, hideContent: true)
         .fail(show: $viewModel.isFailed, obj: viewModel.failObj)
         .onAppear {
