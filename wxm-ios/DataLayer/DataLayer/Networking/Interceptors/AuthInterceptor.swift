@@ -29,13 +29,19 @@ class AuthInterceptor: @unchecked Sendable, RequestInterceptor {
     }
 
     func retry(_ request: Request, for _: Session, dueTo _: Error, completion: @escaping (RetryResult) -> Void) {
-        let networkTokenResponse = keychainHelperService.getNetworkTokenResponse()
-        guard let refreshToken = networkTokenResponse?.refreshToken, let statusCode = request.response?.statusCode else {
+		guard  let statusCode = request.response?.statusCode else {
+			completion(.doNotRetry)
+			return
+		}
+
+		let networkTokenResponse = keychainHelperService.getNetworkTokenResponse()
+        guard let refreshToken = networkTokenResponse?.refreshToken else {
             completion(.doNotRetry)
 			NotificationCenter.default.post(name: .AuthRefreshTokenExpired, object: nil)
-            return
+			return
         }
-        switch statusCode {
+
+		switch statusCode {
             case 200 ... 299:
                 completion(.doNotRetry)
             case 401:
