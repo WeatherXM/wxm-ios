@@ -63,11 +63,8 @@ extension LocalizableString {
 		case unownedCellCapacityReachedDescription
 		case cellCapacityReachedDescription
 		case polThresholdNotReachedTitle
-		case qodThresholdNotReachedTitle
 		case unownedPolThresholdNotReachedDescription
 		case polThresholdNotReachedDescription
-		case unownedQodThresholdNotReachedDescription
-		case qodThresholdNotReachedDescription
 		case unknownTitle
 		case unownedUnknownDescription
 		case unknownDescription
@@ -210,16 +207,10 @@ extension LocalizableString.Error: WXMLocalizable {
 				return "error_relocated_title"
 			case .relocatedDescription:
 				return "error_relocated_description"
-			case .qodThresholdNotReachedTitle:
-				return "error_qod_threshold_not_reached_title"
 			case .unownedPolThresholdNotReachedDescription:
 				return "error_unowned_pol_threshold_not_reached_description"
 			case .polThresholdNotReachedTitle:
 				return "error_pol_threshold_not_reached_title"
-			case .unownedQodThresholdNotReachedDescription:
-				return "error_unowned_qod_threshold_not_reached_description"
-			case .qodThresholdNotReachedDescription:
-				return "error_qod_threshold_not_reached_description"
 			case .polThresholdNotReachedDescription:
 				return "error_pol_threshold_not_reached_description"
 			case .unknownTitle:

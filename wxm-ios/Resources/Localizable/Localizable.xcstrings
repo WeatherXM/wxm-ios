@@ -3784,28 +3784,6 @@
         }
       }
     },
-    "error_qod_threshold_not_reached_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Station excluded from rewards because its Quality-of-Data (QoD) score was too low. This might be due to **bad deployment** or **faulty sensors**. Read more about the QoD algorithm."
-          }
-        }
-      }
-    },
-    "error_qod_threshold_not_reached_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "QoD Threshold not reached"
-          }
-        }
-      }
-    },
     "error_relocated_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4044,17 +4022,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Station excluded from rewards because its Proof-of-Location (PoL) score was too low."
-          }
-        }
-      }
-    },
-    "error_unowned_qod_threshold_not_reached_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Station excluded from rewards because its Quality-of-Data (QoD) score was too low."
           }
         }
       }
@@ -7563,7 +7530,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The Network is as good as its data and we need our data to be meaningful and usable. The Quality-of-Data (QoD) score is the quantification of this metric. The end goal is to encourage weather station owners to do their best to comply with the Network's guidelines in order to consistently achieve the best data quality possible.\n\nA weather station's daily reward is affected by its QoD score. To calculate the QoD score, we have created an open source algorithm that evaluates the quality of the weather data using various methods. The calculated score indicates the confidence level in the quality of the weather data received from the station.\n\nRead more about how our Quality-of-Data algorithm works."
+            "value" : "The Network is as good as its data and we need our data to be meaningful and usable. The Data Quality score is the quantification of this metric. The end goal is to encourage weather station owners to do their best to comply with the Network's guidelines in order to consistently achieve the best data quality possible.\n\nA weather station's daily reward is affected by its Data Quality score. To calculate the Data Quality score, we have created an open source algorithm that evaluates the quality of the weather data using various methods. The calculated score indicates the confidence level in the quality of the weather data received from the station.\n\nRead more about how our Data Quality algorithm works."
           }
         }
       }
@@ -8905,7 +8872,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The network’s effectiveness relies on meaningful, usable data, measured by the Quality-of-Data (QoD) score, which **updates daily.** This score motivates weather station owners to follow guidelines for optimal data quality. A station’s daily reward is tied to its QoD, calculated using an open-source algorithm that assesses data quality and provides a confidence level in the data received."
+            "value" : "The network’s effectiveness relies on meaningful, usable data, measured by the Data Quality score, which **updates daily.** This score motivates weather station owners to follow guidelines for optimal data quality. A station’s daily reward is tied to its Data Quality, calculated using an open-source algorithm that assesses data quality and provides a confidence level in the data received."
           }
         }
       }
