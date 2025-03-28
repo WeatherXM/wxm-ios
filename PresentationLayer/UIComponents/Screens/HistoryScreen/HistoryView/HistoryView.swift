@@ -20,7 +20,8 @@ struct HistoryView: View {
 			} content: {
 				Group {
 					VStack(spacing: CGFloat(.largeSpacing)) {
-						ProBannerView(description: LocalizableString.Promotional.unlockFullWeather.localized)
+						ProBannerView(description: LocalizableString.Promotional.unlockFullWeather.localized,
+									  analyticsSource: .localHistory)
 
 						if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
 							ChartsContainer(historyData: historyData,

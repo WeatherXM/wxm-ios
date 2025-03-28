@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct ProBannerView: View {
 	let description: String
+	let analyticsSource: ParameterValue
 
     var body: some View {
 		HStack(spacing: CGFloat(.mediumSpacing)) {
@@ -29,6 +31,9 @@ struct ProBannerView: View {
 
 			Spacer()
 			Button {
+				WXMAnalytics.shared.trackEvent(.selectContent,
+											   parameters: [.source: analyticsSource])
+				
 				Router.shared.showBottomSheet(.proPromo(ViewModelsFactory.getProPromotionalViewModel()))
 			} label: {
 				Text(LocalizableString.Promotional.getPro.localized)
@@ -44,5 +49,6 @@ struct ProBannerView: View {
 }
 
 #Preview {
-	ProBannerView(description: LocalizableString.Promotional.wantMoreAccurateForecast.localized)
+	ProBannerView(description: LocalizableString.Promotional.wantMoreAccurateForecast.localized,
+				  analyticsSource: .localForecast)
 }
