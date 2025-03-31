@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 @preconcurrency import Combine
 
-public struct PhotoGalleryUseCase: Sendable {
+public struct PhotoGalleryUseCase: PhotoGalleryUseCaseApi {
 
 	public var areTermsAccepted: Bool { photosRepository.areTermsAccepted }
 	public var uploadProgressPublisher: AnyPublisher<(String, Double?), Never>

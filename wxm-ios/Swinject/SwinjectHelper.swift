@@ -237,7 +237,7 @@ class SwinjectHelper: SwinjectInterface {
 								 locationManager: resolver.resolve(WXMLocationManager.LocationManagerProtocol.self)!)
 		}
 
-		container.register(PhotoGalleryUseCase.self) { resolver in
+		container.register(PhotoGalleryUseCaseApi.self) { resolver in
 			PhotoGalleryUseCase(photosRepository: resolver.resolve(PhotosRepository.self)!)
 		}
 

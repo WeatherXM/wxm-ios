@@ -15,6 +15,7 @@
 		26348E0E2A44360A000846C6 /* LocationCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E0D2A44360A000846C6 /* LocationCoordinates.swift */; };
 		264371392CA4146900E5F382 /* InfoBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264371382CA4146900E5F382 /* InfoBanner.swift */; };
 		264813F82D8C50EE00BCCC31 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264813F72D8C50EE00BCCC31 /* Announcement.swift */; };
+		264814742D9A945200BCCC31 /* PhotoGalleryUseCaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814722D9A945200BCCC31 /* PhotoGalleryUseCaseApi.swift */; };
 		264BDA0E298AC7DD005C1F82 /* FirmwareUpdateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */; };
 		264C105F2AF3D76800F6FF3E /* WeatherField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C105E2AF3D76800F6FF3E /* WeatherField.swift */; };
 		264C10612AF3DBA100F6FF3E /* DeviceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */; };
@@ -101,6 +102,7 @@
 		26348E0D2A44360A000846C6 /* LocationCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinates.swift; sourceTree = "<group>"; };
 		264371382CA4146900E5F382 /* InfoBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBanner.swift; sourceTree = "<group>"; };
 		264813F72D8C50EE00BCCC31 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
+		264814722D9A945200BCCC31 /* PhotoGalleryUseCaseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryUseCaseApi.swift; sourceTree = "<group>"; };
 		264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateRepository.swift; sourceTree = "<group>"; };
 		264C105E2AF3D76800F6FF3E /* WeatherField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherField.swift; sourceTree = "<group>"; };
 		264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAnnotation.swift; sourceTree = "<group>"; };
@@ -198,6 +200,14 @@
 				9968B1B428AD0C5600320413 /* ExplorerData.swift */,
 			);
 			path = Explorer;
+			sourceTree = "<group>";
+		};
+		264814732D9A945200BCCC31 /* UseCaseApi */ = {
+			isa = PBXGroup;
+			children = (
+				264814722D9A945200BCCC31 /* PhotoGalleryUseCaseApi.swift */,
+			);
+			path = UseCaseApi;
 			sourceTree = "<group>";
 		};
 		2656675B2C47A0F400CA49A5 /* Services */ = {
@@ -327,6 +337,7 @@
 		B51243EE2825506D00B66A31 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				264814732D9A945200BCCC31 /* UseCaseApi */,
 				B5E6B85C28338BF20060D050 /* AuthUseCase.swift */,
 				26C904C02A77DA5A0047A388 /* DeviceDetailsUseCase.swift */,
 				26A4117229B887E800A2C10B /* DeviceInfoUseCase.swift */,
@@ -564,6 +575,7 @@
 				2612AC202AB45F3C00285896 /* Filters.swift in Sources */,
 				2612AC222AB4621A00285896 /* FiltersRepository.swift in Sources */,
 				26F6F7522D08559800FB256B /* PhotosRepository.swift in Sources */,
+				264814742D9A945200BCCC31 /* PhotoGalleryUseCaseApi.swift in Sources */,
 				26A3B3DE2B18E41F0002F35F /* NetworkUserRewardsResponse.swift in Sources */,
 				2612AC262AB46AF200285896 /* FiltersUseCase.swift in Sources */,
 				264BDA0E298AC7DD005C1F82 /* FirmwareUpdateRepository.swift in Sources */,

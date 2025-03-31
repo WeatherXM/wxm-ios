@@ -43,7 +43,7 @@ class MainScreenViewModel: ObservableObject {
 	private let mainUseCase: MainUseCase
 	private let meUseCase: MeUseCase
 	private let settingsUseCase: SettingsUseCase
-	private let photosUseCase: PhotoGalleryUseCase
+	private let photosUseCase: PhotoGalleryUseCaseApi
 	private var cancellableSet: Set<AnyCancellable> = []
 	let networkMonitor: NWPathMonitor
 	@Published var isUserLoggedIn: Bool = false
@@ -73,7 +73,7 @@ class MainScreenViewModel: ObservableObject {
 		self.swinjectHelper = SwinjectHelper.shared
 		mainUseCase = swinjectHelper.getContainerForSwinject().resolve(MainUseCase.self)!
 		meUseCase = swinjectHelper.getContainerForSwinject().resolve(MeUseCase.self)!
-		photosUseCase = swinjectHelper.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
+		photosUseCase = swinjectHelper.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
 
 		networkMonitor = NWPathMonitor()
 		settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCase.self)!

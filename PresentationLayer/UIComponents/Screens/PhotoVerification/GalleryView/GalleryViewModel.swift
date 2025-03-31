@@ -53,7 +53,7 @@ class GalleryViewModel: ObservableObject {
 	private let minPhotosCount = 2
 	private let maxPhotosCount = 6
 	let deviceId: String
-	private let useCase: PhotoGalleryUseCase
+	private let useCase: PhotoGalleryUseCaseApi
 	private let isNewPhotoVerification: Bool
 	private lazy var imagePickerDelegate = {
 		let picker = ImagePickerDelegate(useCase: useCase, deviceId: deviceId)
@@ -69,7 +69,7 @@ class GalleryViewModel: ObservableObject {
 
 	init(deviceId: String,
 		 images: [String],
-		 photoGalleryUseCase: PhotoGalleryUseCase,
+		 photoGalleryUseCase: PhotoGalleryUseCaseApi,
 		 isNewPhotoVerification: Bool) {
 		self.deviceId = deviceId
 		self.useCase = photoGalleryUseCase
@@ -217,10 +217,10 @@ extension GalleryViewModel: HashableViewModel {
 
 private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	var imageCallback: ((GalleryView.GalleryImage) -> Void)?
-	private let useCase: PhotoGalleryUseCase
+	private let useCase: PhotoGalleryUseCaseApi
 	private let deviceId: String
 
-	init(useCase: PhotoGalleryUseCase, deviceId: String) {
+	init(useCase: PhotoGalleryUseCaseApi, deviceId: String) {
 		self.useCase = useCase
 		self.deviceId = deviceId
 	}
