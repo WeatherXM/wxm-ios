@@ -92,6 +92,7 @@
 		264814212D942B2300BCCC31 /* BTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648141F2D942B2300BCCC31 /* BTUtils.swift */; };
 		264814222D942B2300BCCC31 /* BluetoothManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648141D2D942B2300BCCC31 /* BluetoothManagerTests.swift */; };
 		264814232D942B2300BCCC31 /* BTActionWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648141E2D942B2300BCCC31 /* BTActionWrapperTests.swift */; };
+		2648146B2D9A7AF800BCCC31 /* MockLinkNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648146A2D9A7AE900BCCC31 /* MockLinkNavigation.swift */; };
 		264CC7472B975D450060DEA4 /* rocket_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC7462B975D450060DEA4 /* rocket_dark.json */; };
 		264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */; };
 		264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */; };
@@ -780,6 +781,7 @@
 		2648141D2D942B2300BCCC31 /* BluetoothManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManagerTests.swift; sourceTree = "<group>"; };
 		2648141E2D942B2300BCCC31 /* BTActionWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTActionWrapperTests.swift; sourceTree = "<group>"; };
 		2648141F2D942B2300BCCC31 /* BTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTUtils.swift; sourceTree = "<group>"; };
+		2648146A2D9A7AE900BCCC31 /* MockLinkNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLinkNavigation.swift; sourceTree = "<group>"; };
 		264CC7462B975D450060DEA4 /* rocket_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocket_dark.json; sourceTree = "<group>"; };
 		264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsView.swift; sourceTree = "<group>"; };
 		264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsViewModel.swift; sourceTree = "<group>"; };
@@ -1585,6 +1587,30 @@
 			path = Bluetooth;
 			sourceTree = "<group>";
 		};
+		264814672D96F08A00BCCC31 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				264814692D9A7AC200BCCC31 /* MockUtils */,
+				264814682D96F09600BCCC31 /* ViewModels */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		264814682D96F09600BCCC31 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		264814692D9A7AC200BCCC31 /* MockUtils */ = {
+			isa = PBXGroup;
+			children = (
+				2648146A2D9A7AE900BCCC31 /* MockLinkNavigation.swift */,
+			);
+			path = MockUtils;
+			sourceTree = "<group>";
+		};
 		264AE27F29FB8F100051C101 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1720,6 +1746,7 @@
 		26707E9D2C3ECC0400B9305F /* WeatherXMTests */ = {
 			isa = PBXGroup;
 			children = (
+				264814672D96F08A00BCCC31 /* PresentationLayer */,
 				26F176942D79A905000BA381 /* DomainLayer */,
 				26DF1F572D54B6650001E936 /* Resources */,
 				267811032D490E7800D22B67 /* DataLayer */,
@@ -3476,6 +3503,7 @@
 				26F1769E2D79BD9B000BA381 /* PhotoGalleryUseCaseTests.swift in Sources */,
 				26DF1F682D563F940001E936 /* Utils.swift in Sources */,
 				264814212D942B2300BCCC31 /* BTUtils.swift in Sources */,
+				2648146B2D9A7AF800BCCC31 /* MockLinkNavigation.swift in Sources */,
 				264814222D942B2300BCCC31 /* BluetoothManagerTests.swift in Sources */,
 				264814232D942B2300BCCC31 /* BTActionWrapperTests.swift in Sources */,
 				26710EA92D804F6400878298 /* LoginServiceImplTests.swift in Sources */,

@@ -10,7 +10,18 @@ import SwiftUI
 import Toolkit
 
 @MainActor
-struct LinkNavigationHelper {
+protocol LinkNavigation {
+	func openUrl(_ urlString: String)
+	func openContactSupport(successFailureEnum: SuccessFailEnum,
+							email: String?,
+							serialNumber: String?,
+							errorString: String?,
+							addtionalInfo: String?,
+							trackSelectContentEvent: Bool)
+}
+
+@MainActor
+struct LinkNavigationHelper: LinkNavigation {
 
     func openUrl(_ urlString: String) {
         if let url = URL(string: urlString) {

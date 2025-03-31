@@ -16,6 +16,11 @@ class ProPromotionalViewModel: ObservableObject {
 							  LocalizableString.Promotional.cellForecast.localized,
 							  LocalizableString.Promotional.accessApi.localized,
 							  LocalizableString.Promotional.andMore.localized]
+	private let linkNavigation: LinkNavigation
+
+	init(linkNavigation: LinkNavigation = LinkNavigationHelper()) {
+		self.linkNavigation = linkNavigation
+	}
 
 	func handleLearnMoreTapped() {
 		LinkNavigationHelper().openUrl(DisplayedLinks.weatherXMPro.linkURL)
