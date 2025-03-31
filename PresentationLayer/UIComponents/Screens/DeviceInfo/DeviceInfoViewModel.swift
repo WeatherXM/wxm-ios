@@ -124,12 +124,17 @@ class DeviceInfoViewModel: ObservableObject {
 	private var cancellable: Set<AnyCancellable> = []
 	private let friendlyNameRegex = "^\\S.{0,64}$"
 	private let photoStateViewModel: PhotoVerificationStateViewModel?
-	
-	init(device: DeviceDetails, followState: UserDeviceFollowState?) {
+	private let linkNavigation: LinkNavigation
+
+	init(device: DeviceDetails,
+		 followState: UserDeviceFollowState?,
+		 useCase: DeviceInfoUseCaseApi,
+		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.device = device
 		self.followState = followState
-		self.deviceInfoUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCaseApi.self)
-		
+		self.deviceInfoUseCase = useCase
+		self.linkNavigation = linkNavigation
+
 		if let deviceId = device.id {
 			self.photoStateViewModel = ViewModelsFactory.getPhotoVerificationStateViewModel(deviceId: deviceId)
 		} else {
@@ -158,13 +163,14 @@ class DeviceInfoViewModel: ObservableObject {
 		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
 																	.source: .deviceInfoSource])
 		
-		LinkNavigationHelper().openContactSupport(successFailureEnum: .weatherStations,
-												  email: mainVM.userInfo?.email,
-												  serialNumber: device.label,
-												  addtionalInfo: InfoField.getShareText(for: device, deviceInfo: deviceInfo, mainVM: mainVM, followState: followState),
-												  trackSelectContentEvent: false)
+		linkNavigation.openContactSupport(successFailureEnum: .weatherStations,
+										  email: mainVM.userInfo?.email,
+										  serialNumber: device.label,
+										  errorString: nil,
+										  addtionalInfo: InfoField.getShareText(for: device, deviceInfo: deviceInfo, mainVM: mainVM, followState: followState),
+										  trackSelectContentEvent: false)
 	}
-	
+
 	func refresh(completion: VoidCallback? = nil) {
 		guard let deviceId = device.id else {
 			return

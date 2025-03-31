@@ -97,7 +97,8 @@ class StationDetailsViewModel: ObservableObject {
 	}
 
     func settingsButtonTapped() {
-        Router.shared.navigateTo(.deviceInfo(DeviceInfoViewModel(device: device!, followState: followState)))
+		let viewModel = ViewModelsFactory.getDeviceInfoViewModel(device: device!, followState: followState)
+		Router.shared.navigateTo(.deviceInfo(viewModel))
     }
 
 	func warningTapped() {

@@ -97,8 +97,8 @@ struct DeviceInfoView_Previews: PreviewProvider {
 		device.bundle = .mock(name: .h1)
 
         return NavigationContainerView {
-            DeviceInfoView(viewModel: DeviceInfoViewModel(device: device,
-                                                          followState: .init(deviceId: device.id!, relation: .owned)))
+            DeviceInfoView(viewModel: ViewModelsFactory.getDeviceInfoViewModel(device: device,
+																			   followState: .init(deviceId: device.id!, relation: .owned)))
         }
     }
 }

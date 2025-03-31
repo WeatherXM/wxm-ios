@@ -97,6 +97,8 @@
 		264814762D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814752D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift */; };
 		264814782D9AA30900BCCC31 /* GalleryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814772D9AA30900BCCC31 /* GalleryViewModelTests.swift */; };
 		2648147A2D9AC38E00BCCC31 /* PhotoIntroViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814792D9AC38E00BCCC31 /* PhotoIntroViewModelTests.swift */; };
+		2648147E2D9ACBCD00BCCC31 /* MockDeviceInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648147D2D9ACBCD00BCCC31 /* MockDeviceInfoUseCase.swift */; };
+		264814802D9AD10A00BCCC31 /* DeviceInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648147F2D9AD10A00BCCC31 /* DeviceInfoViewModelTests.swift */; };
 		264CC7472B975D450060DEA4 /* rocket_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC7462B975D450060DEA4 /* rocket_dark.json */; };
 		264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */; };
 		264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */; };
@@ -790,6 +792,8 @@
 		264814752D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhotoGalleryUseCase.swift; sourceTree = "<group>"; };
 		264814772D9AA30900BCCC31 /* GalleryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModelTests.swift; sourceTree = "<group>"; };
 		264814792D9AC38E00BCCC31 /* PhotoIntroViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIntroViewModelTests.swift; sourceTree = "<group>"; };
+		2648147D2D9ACBCD00BCCC31 /* MockDeviceInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeviceInfoUseCase.swift; sourceTree = "<group>"; };
+		2648147F2D9AD10A00BCCC31 /* DeviceInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoViewModelTests.swift; sourceTree = "<group>"; };
 		264CC7462B975D450060DEA4 /* rocket_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocket_dark.json; sourceTree = "<group>"; };
 		264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsView.swift; sourceTree = "<group>"; };
 		264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsViewModel.swift; sourceTree = "<group>"; };
@@ -1611,6 +1615,7 @@
 				2648146C2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift */,
 				264814772D9AA30900BCCC31 /* GalleryViewModelTests.swift */,
 				264814792D9AC38E00BCCC31 /* PhotoIntroViewModelTests.swift */,
+				2648147F2D9AD10A00BCCC31 /* DeviceInfoViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1627,6 +1632,7 @@
 			isa = PBXGroup;
 			children = (
 				264814752D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift */,
+				2648147D2D9ACBCD00BCCC31 /* MockDeviceInfoUseCase.swift */,
 			);
 			path = MockUseCases;
 			sourceTree = "<group>";
@@ -3489,10 +3495,12 @@
 				26710E582D7ECD0B00878298 /* MockMainRepositoryImpl.swift in Sources */,
 				265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */,
 				26710EA52D80473A00878298 /* MockLoginService.swift in Sources */,
+				2648147E2D9ACBCD00BCCC31 /* MockDeviceInfoUseCase.swift in Sources */,
 				26710E442D7B0D9B00878298 /* MockNetworkRepositoryImpl.swift in Sources */,
 				26710E9E2D80206300878298 /* DeviceDetailsUseCaseTests.swift in Sources */,
 				26DF1F562D54AC360001E936 /* FileUploaderServiceTests.swift in Sources */,
 				26710EA12D802E3600878298 /* MockGeocoder.swift in Sources */,
+				264814802D9AD10A00BCCC31 /* DeviceInfoViewModelTests.swift in Sources */,
 				265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */,
 				264814762D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift in Sources */,
 				26DF1F622D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift in Sources */,
