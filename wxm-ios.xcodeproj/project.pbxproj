@@ -94,6 +94,8 @@
 		264814232D942B2300BCCC31 /* BTActionWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648141E2D942B2300BCCC31 /* BTActionWrapperTests.swift */; };
 		2648146B2D9A7AF800BCCC31 /* MockLinkNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648146A2D9A7AE900BCCC31 /* MockLinkNavigation.swift */; };
 		2648146D2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648146C2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift */; };
+		264814762D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814752D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift */; };
+		264814782D9AA30900BCCC31 /* GalleryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814772D9AA30900BCCC31 /* GalleryViewModelTests.swift */; };
 		264CC7472B975D450060DEA4 /* rocket_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC7462B975D450060DEA4 /* rocket_dark.json */; };
 		264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */; };
 		264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */; };
@@ -784,6 +786,8 @@
 		2648141F2D942B2300BCCC31 /* BTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTUtils.swift; sourceTree = "<group>"; };
 		2648146A2D9A7AE900BCCC31 /* MockLinkNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLinkNavigation.swift; sourceTree = "<group>"; };
 		2648146C2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProPromotionalViewModelTests.swift; sourceTree = "<group>"; };
+		264814752D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhotoGalleryUseCase.swift; sourceTree = "<group>"; };
+		264814772D9AA30900BCCC31 /* GalleryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModelTests.swift; sourceTree = "<group>"; };
 		264CC7462B975D450060DEA4 /* rocket_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocket_dark.json; sourceTree = "<group>"; };
 		264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsView.swift; sourceTree = "<group>"; };
 		264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsViewModel.swift; sourceTree = "<group>"; };
@@ -1592,6 +1596,7 @@
 		264814672D96F08A00BCCC31 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				2648146E2D9A8F6100BCCC31 /* MockUseCases */,
 				264814692D9A7AC200BCCC31 /* MockUtils */,
 				264814682D96F09600BCCC31 /* ViewModels */,
 			);
@@ -1602,6 +1607,7 @@
 			isa = PBXGroup;
 			children = (
 				2648146C2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift */,
+				264814772D9AA30900BCCC31 /* GalleryViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1612,6 +1618,14 @@
 				2648146A2D9A7AE900BCCC31 /* MockLinkNavigation.swift */,
 			);
 			path = MockUtils;
+			sourceTree = "<group>";
+		};
+		2648146E2D9A8F6100BCCC31 /* MockUseCases */ = {
+			isa = PBXGroup;
+			children = (
+				264814752D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift */,
+			);
+			path = MockUseCases;
 			sourceTree = "<group>";
 		};
 		264AE27F29FB8F100051C101 /* Resources */ = {
@@ -3477,6 +3491,7 @@
 				26DF1F562D54AC360001E936 /* FileUploaderServiceTests.swift in Sources */,
 				26710EA12D802E3600878298 /* MockGeocoder.swift in Sources */,
 				265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */,
+				264814762D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift in Sources */,
 				26DF1F622D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift in Sources */,
 				26710EA72D804A1800878298 /* AuthUseCaseTests.swift in Sources */,
 				267811502D4BB21700D22B67 /* UserInfoServiceTests.swift in Sources */,
@@ -3487,6 +3502,7 @@
 				26F176A22D79D60E000BA381 /* MockMeRepositoryImpl.swift in Sources */,
 				264813EA2D8C155800BCCC31 /* BluetoothDevicesRepositoryImplTests.swift in Sources */,
 				26DF1F642D56328B0001E936 /* PhotosRepositoryImplTests.swift in Sources */,
+				264814782D9AA30900BCCC31 /* GalleryViewModelTests.swift in Sources */,
 				26710E562D7ECBC300878298 /* MainUseCaseTests.swift in Sources */,
 				26710E502D7B2F2700878298 /* MeUseCaseTests.swift in Sources */,
 				26DF1F5E2D55F0C70001E936 /* MeRepositoryImplTests.swift in Sources */,

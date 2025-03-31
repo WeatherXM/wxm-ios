@@ -55,6 +55,7 @@ class GalleryViewModel: ObservableObject {
 	let deviceId: String
 	private let useCase: PhotoGalleryUseCaseApi
 	private let isNewPhotoVerification: Bool
+	private let linkNavigator: LinkNavigation
 	private lazy var imagePickerDelegate = {
 		let picker = ImagePickerDelegate(useCase: useCase, deviceId: deviceId)
 		picker.imageCallback = { [weak self] imageUrl in
@@ -70,11 +71,13 @@ class GalleryViewModel: ObservableObject {
 	init(deviceId: String,
 		 images: [String],
 		 photoGalleryUseCase: PhotoGalleryUseCaseApi,
-		 isNewPhotoVerification: Bool) {
+		 isNewPhotoVerification: Bool,
+		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.deviceId = deviceId
 		self.useCase = photoGalleryUseCase
 		self.images = images.map { GalleryView.GalleryImage(remoteUrl: $0, uiImage: nil, metadata: nil) }
 		self.isNewPhotoVerification = isNewPhotoVerification
+		self.linkNavigator = linkNavigation
 		selectedImage = self.images.last
 		updateSubtitle()
 		updateCameraPermissionState()
@@ -94,7 +97,7 @@ class GalleryViewModel: ObservableObject {
 		openCamera()
 	}
 
-	func handleDeleteButtonTap() {
+	func handleDeleteButtonTap(showAlert: Bool = true) {
 		guard let selectedImage else {
 			return
 		}
@@ -122,7 +125,7 @@ class GalleryViewModel: ObservableObject {
 			}
 		}
 
-		if selectedImage.remoteUrl != nil {
+		if selectedImage.remoteUrl != nil, showAlert {
 			showDeleteAlert(dismissAction: action)
 			return
 		}
@@ -134,7 +137,7 @@ class GalleryViewModel: ObservableObject {
 		showInstructions = true
 	}
 
-	func handleUploadButtonTap(dismissAction: DismissAction) {
+	func handleUploadButtonTap(dismissAction: DismissAction?, showAlert: Bool = true) {
 		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .startUploadingPhotos])
 
 		guard let localImages = localImages else {
@@ -151,7 +154,7 @@ class GalleryViewModel: ObservableObject {
 					let fileUrls = await localImages.asyncCompactMap { try? await self.useCase.saveImage($0.uiImage!, deviceId: self.deviceId, metadata: $0.metadata)}
 					try await self.useCase.startFilesUpload(deviceId: self.deviceId, files: fileUrls.compactMap { try? $0.asURL() })
 					self.showLoading = false
-					self.showUploadStarted { dismissAction() }
+					self.showUploadStarted { dismissAction?() }
 				} catch PhotosError.networkError(let error) {
 					self.showLoading = false
 					self.showFail(error: error)
@@ -163,15 +166,16 @@ class GalleryViewModel: ObservableObject {
 			}
 		}
 
-		showUploadAlert(dismissAction: action)
-	}
-
-	func handleOpenSettingsTap() {
-		guard let url = URL(string: UIApplication.openSettingsURLString) else {
+		if showAlert {
+			showUploadAlert(dismissAction: action)
 			return
 		}
 
-		UIApplication.shared.open(url, options: [:], completionHandler: nil)
+		action()
+	}
+
+	func handleOpenSettingsTap() {
+		linkNavigator.openUrl(UIApplication.openSettingsURLString)
 	}
 
 	func viewLoaded() {
