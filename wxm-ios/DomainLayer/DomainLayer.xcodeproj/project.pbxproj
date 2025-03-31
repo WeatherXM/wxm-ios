@@ -18,6 +18,7 @@
 		264814742D9A945200BCCC31 /* PhotoGalleryUseCaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814722D9A945200BCCC31 /* PhotoGalleryUseCaseApi.swift */; };
 		2648147C2D9AC73D00BCCC31 /* DeviceInfoUseCaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648147B2D9AC73B00BCCC31 /* DeviceInfoUseCaseApi.swift */; };
 		264814822D9ADE1400BCCC31 /* AuthUseCaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814812D9ADE1000BCCC31 /* AuthUseCaseApi.swift */; };
+		264814842D9AE37C00BCCC31 /* DeviceDetailsUseCaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814832D9AE37A00BCCC31 /* DeviceDetailsUseCaseApi.swift */; };
 		264BDA0E298AC7DD005C1F82 /* FirmwareUpdateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */; };
 		264C105F2AF3D76800F6FF3E /* WeatherField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C105E2AF3D76800F6FF3E /* WeatherField.swift */; };
 		264C10612AF3DBA100F6FF3E /* DeviceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */; };
@@ -107,6 +108,7 @@
 		264814722D9A945200BCCC31 /* PhotoGalleryUseCaseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryUseCaseApi.swift; sourceTree = "<group>"; };
 		2648147B2D9AC73B00BCCC31 /* DeviceInfoUseCaseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoUseCaseApi.swift; sourceTree = "<group>"; };
 		264814812D9ADE1000BCCC31 /* AuthUseCaseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCaseApi.swift; sourceTree = "<group>"; };
+		264814832D9AE37A00BCCC31 /* DeviceDetailsUseCaseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsUseCaseApi.swift; sourceTree = "<group>"; };
 		264BDA0D298AC7DD005C1F82 /* FirmwareUpdateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateRepository.swift; sourceTree = "<group>"; };
 		264C105E2AF3D76800F6FF3E /* WeatherField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherField.swift; sourceTree = "<group>"; };
 		264C10602AF3DBA100F6FF3E /* DeviceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAnnotation.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				264814722D9A945200BCCC31 /* PhotoGalleryUseCaseApi.swift */,
 				2648147B2D9AC73B00BCCC31 /* DeviceInfoUseCaseApi.swift */,
 				264814812D9ADE1000BCCC31 /* AuthUseCaseApi.swift */,
+				264814832D9AE37A00BCCC31 /* DeviceDetailsUseCaseApi.swift */,
 			);
 			path = UseCaseApi;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				B5667D6B2833D37000C08B57 /* NetworkUserInfoResponse.swift in Sources */,
 				9968B18028ACFFDF00320413 /* PublicDevice.swift in Sources */,
 				9968B17E28ACFE6900320413 /* PublicHex.swift in Sources */,
+				264814842D9AE37C00BCCC31 /* DeviceDetailsUseCaseApi.swift in Sources */,
 				9968B1B828AD0E7400320413 /* PublicHexError.swift in Sources */,
 				26A961A02A78FFDD00A0E7B9 /* RewardsUseCase.swift in Sources */,
 				26D47E9C2A177A0F0078723A /* SettingsRepository.swift in Sources */,

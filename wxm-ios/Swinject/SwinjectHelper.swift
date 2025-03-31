@@ -162,7 +162,7 @@ class SwinjectHelper: SwinjectInterface {
 
         // MARK: - Device Details Use Case
 
-        container.register(DeviceDetailsUseCase.self) { resolver in
+		container.register(DeviceDetailsUseCaseApi.self) { resolver in
             DeviceDetailsUseCase(meRepository: resolver.resolve(MeRepository.self)!,
                                  explorerRepository: resolver.resolve(ExplorerRepository.self)!,
                                  keychainRepository: resolver.resolve(KeychainRepository.self)!,
