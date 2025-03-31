@@ -96,6 +96,7 @@
 		2648146D2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648146C2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift */; };
 		264814762D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814752D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift */; };
 		264814782D9AA30900BCCC31 /* GalleryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814772D9AA30900BCCC31 /* GalleryViewModelTests.swift */; };
+		2648147A2D9AC38E00BCCC31 /* PhotoIntroViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264814792D9AC38E00BCCC31 /* PhotoIntroViewModelTests.swift */; };
 		264CC7472B975D450060DEA4 /* rocket_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC7462B975D450060DEA4 /* rocket_dark.json */; };
 		264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */; };
 		264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */; };
@@ -788,6 +789,7 @@
 		2648146C2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProPromotionalViewModelTests.swift; sourceTree = "<group>"; };
 		264814752D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhotoGalleryUseCase.swift; sourceTree = "<group>"; };
 		264814772D9AA30900BCCC31 /* GalleryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModelTests.swift; sourceTree = "<group>"; };
+		264814792D9AC38E00BCCC31 /* PhotoIntroViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIntroViewModelTests.swift; sourceTree = "<group>"; };
 		264CC7462B975D450060DEA4 /* rocket_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocket_dark.json; sourceTree = "<group>"; };
 		264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsView.swift; sourceTree = "<group>"; };
 		264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsViewModel.swift; sourceTree = "<group>"; };
@@ -1608,6 +1610,7 @@
 			children = (
 				2648146C2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift */,
 				264814772D9AA30900BCCC31 /* GalleryViewModelTests.swift */,
+				264814792D9AC38E00BCCC31 /* PhotoIntroViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -3497,6 +3500,7 @@
 				267811502D4BB21700D22B67 /* UserInfoServiceTests.swift in Sources */,
 				26710E462D7B127C00878298 /* MockSettingsRepositoryImpl.swift in Sources */,
 				267811582D4CD84E00D22B67 /* UserDevicesServiceTests.swift in Sources */,
+				2648147A2D9AC38E00BCCC31 /* PhotoIntroViewModelTests.swift in Sources */,
 				26710E402D7AFED800878298 /* MockDevicesRepositoryImpl.swift in Sources */,
 				26710E422D7B047100878298 /* RewardsTimelineUseCaseTests.swift in Sources */,
 				26F176A22D79D60E000BA381 /* MockMeRepositoryImpl.swift in Sources */,
