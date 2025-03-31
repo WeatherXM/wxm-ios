@@ -93,6 +93,7 @@
 		264814222D942B2300BCCC31 /* BluetoothManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648141D2D942B2300BCCC31 /* BluetoothManagerTests.swift */; };
 		264814232D942B2300BCCC31 /* BTActionWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648141E2D942B2300BCCC31 /* BTActionWrapperTests.swift */; };
 		2648146B2D9A7AF800BCCC31 /* MockLinkNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648146A2D9A7AE900BCCC31 /* MockLinkNavigation.swift */; };
+		2648146D2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2648146C2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift */; };
 		264CC7472B975D450060DEA4 /* rocket_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC7462B975D450060DEA4 /* rocket_dark.json */; };
 		264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */; };
 		264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */; };
@@ -782,6 +783,7 @@
 		2648141E2D942B2300BCCC31 /* BTActionWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTActionWrapperTests.swift; sourceTree = "<group>"; };
 		2648141F2D942B2300BCCC31 /* BTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTUtils.swift; sourceTree = "<group>"; };
 		2648146A2D9A7AE900BCCC31 /* MockLinkNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLinkNavigation.swift; sourceTree = "<group>"; };
+		2648146C2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProPromotionalViewModelTests.swift; sourceTree = "<group>"; };
 		264CC7462B975D450060DEA4 /* rocket_dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocket_dark.json; sourceTree = "<group>"; };
 		264CC75F2B9872D40060DEA4 /* RewardBoostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsView.swift; sourceTree = "<group>"; };
 		264CC7612B9872E40060DEA4 /* RewardBoostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsViewModel.swift; sourceTree = "<group>"; };
@@ -1599,6 +1601,7 @@
 		264814682D96F09600BCCC31 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2648146C2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -3451,6 +3454,7 @@
 				26710E4A2D7B1E9600878298 /* SettingsUseCaseTests.swift in Sources */,
 				26710E522D7B2FA500878298 /* MockFiltersRepositoryImpl.swift in Sources */,
 				26710E982D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift in Sources */,
+				2648146D2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift in Sources */,
 				26F1769C2D79B832000BA381 /* MockPhotosRepositoryImpl.swift in Sources */,
 				26710E962D7F15B000878298 /* DevicesUseCaseTests.swift in Sources */,
 				2678110A2D49279300D22B67 /* FiltersServiceTest.swift in Sources */,

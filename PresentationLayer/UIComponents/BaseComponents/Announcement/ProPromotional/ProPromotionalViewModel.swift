@@ -23,7 +23,7 @@ class ProPromotionalViewModel: ObservableObject {
 	}
 
 	func handleLearnMoreTapped() {
-		LinkNavigationHelper().openUrl(DisplayedLinks.weatherXMPro.linkURL)
+		linkNavigation.openUrl(DisplayedLinks.weatherXMPro.linkURL)
 
 		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
 																	.itemId: .proPromotion])
