@@ -261,7 +261,7 @@ enum ViewModelsFactory {
 	}
 
 	static func getChangeFrequencyViewModel(device: DeviceDetails, frequency: Frequency? = Frequency.allCases.first) -> ChangeFrequencyViewModel {
-		let deviceInfoUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCase.self)!
+		let deviceInfoUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCaseApi.self)!
 		let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
 		return ChangeFrequencyViewModel(device: device,
 										useCase: deviceInfoUseCase,
@@ -293,7 +293,7 @@ enum ViewModelsFactory {
 	}
 
 	static func getPhotoVerificationStateViewModel(deviceId: String) -> PhotoVerificationStateViewModel {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCaseApi.self)!
 		let photoGalleryUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
 		return PhotoVerificationStateViewModel(deviceId: deviceId, deviceInfoUseCase: useCase, photoGalleryUseCase: photoGalleryUseCase)
 	}

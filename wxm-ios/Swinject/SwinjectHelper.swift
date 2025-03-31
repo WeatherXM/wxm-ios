@@ -91,7 +91,7 @@ class SwinjectHelper: SwinjectInterface {
         container.register(DeviceInfoRepository.self) { resolver in
             DeviceInfoRepositoryImpl(userDevicesService: resolver.resolve(UserDevicesService.self)!)
         }
-        container.register(DeviceInfoUseCase.self) { resolver in
+		container.register(DeviceInfoUseCaseApi.self) { resolver in
             DeviceInfoUseCase(repository: resolver.resolve(DeviceInfoRepository.self)!)
         }
         // MARK: - Cells DI

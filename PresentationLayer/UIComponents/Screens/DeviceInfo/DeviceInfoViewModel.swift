@@ -120,7 +120,7 @@ class DeviceInfoViewModel: ObservableObject {
 		return isFollowed ? LocalizableString.DeviceInfo.followedContactSupportTitle.localized : LocalizableString.contactSupport.localized
 	}
 	
-	private let deviceInfoUseCase: DeviceInfoUseCase?
+	private let deviceInfoUseCase: DeviceInfoUseCaseApi?
 	private var cancellable: Set<AnyCancellable> = []
 	private let friendlyNameRegex = "^\\S.{0,64}$"
 	private let photoStateViewModel: PhotoVerificationStateViewModel?
@@ -128,7 +128,7 @@ class DeviceInfoViewModel: ObservableObject {
 	init(device: DeviceDetails, followState: UserDeviceFollowState?) {
 		self.device = device
 		self.followState = followState
-		self.deviceInfoUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCase.self)
+		self.deviceInfoUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCaseApi.self)
 		
 		if let deviceId = device.id {
 			self.photoStateViewModel = ViewModelsFactory.getPhotoVerificationStateViewModel(deviceId: deviceId)

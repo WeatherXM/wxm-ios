@@ -16,11 +16,11 @@ class PhotoVerificationStateViewModel: ObservableObject {
 	private var allPhotos: [NetworkDevicePhotosResponse] = []
 	@Published private(set) var morePhotosCount: Int = 0
 	private var cancellables: Set<AnyCancellable> = []
-	private let deviceInfoUseCase: DeviceInfoUseCase?
+	private let deviceInfoUseCase: DeviceInfoUseCaseApi?
 	private let photoGalleryUseCase: PhotoGalleryUseCaseApi?
 	private let deviceId: String
 
-	init(deviceId: String, deviceInfoUseCase: DeviceInfoUseCase?, photoGalleryUseCase: PhotoGalleryUseCaseApi?) {
+	init(deviceId: String, deviceInfoUseCase: DeviceInfoUseCaseApi?, photoGalleryUseCase: PhotoGalleryUseCaseApi?) {
 		self.deviceId = deviceId
 		self.deviceInfoUseCase = deviceInfoUseCase
 		self.photoGalleryUseCase = photoGalleryUseCase

@@ -18,11 +18,11 @@ class RebootStationViewModel: ObservableObject {
 	
 	var mainVM: MainScreenViewModel?
 	
-	private let useCase: DeviceInfoUseCase?
+	private let useCase: DeviceInfoUseCaseApi?
 	let device: DeviceDetails
 	private var cancellables: Set<AnyCancellable> = []
 	
-	init(device: DeviceDetails, useCase: DeviceInfoUseCase?) {
+	init(device: DeviceDetails, useCase: DeviceInfoUseCaseApi?) {
 		self.device = device
 		self.useCase = useCase
 		startReboot()
