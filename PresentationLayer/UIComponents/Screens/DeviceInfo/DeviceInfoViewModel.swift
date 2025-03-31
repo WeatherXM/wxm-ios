@@ -106,7 +106,7 @@ class DeviceInfoViewModel: ObservableObject {
 	var accountConfirmationViewModel: AccountConfirmationViewModel {
 		AccountConfirmationViewModel(title: LocalizableString.confirmPasswordTitle.localized,
 									 descriptionMarkdown: LocalizableString.DeviceInfo.removeStationAccountConfirmationMarkdown.localized,
-									 useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)) { [weak self] isvalid in
+									 useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)) { [weak self] isvalid in
 			if isvalid {
 				self?.showAccountConfirmation = false
 				if let serialNumber = self?.device.convertedLabel {

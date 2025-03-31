@@ -66,7 +66,7 @@ class MyWalletViewModel: ObservableObject {
 		
 		accountConfirmationViewModel = AccountConfirmationViewModel(title: LocalizableString.confirmPasswordTitle.localized,
 																	descriptionMarkdown: LocalizableString.Wallet.myAccountConfirmationDescription.localized,
-																	useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)) { [weak self] isvalid in
+																	useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)) { [weak self] isvalid in
 			guard isvalid else {
 				return
 			}

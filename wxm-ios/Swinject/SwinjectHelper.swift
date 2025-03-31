@@ -202,7 +202,7 @@ class SwinjectHelper: SwinjectInterface {
 			AuthRepositoryImpl()
 		}
 
-		container.register(AuthUseCase.self) { resolver in
+		container.register(AuthUseCaseApi.self) { resolver in
 			AuthUseCase(authRepository: resolver.resolve(AuthRepository.self)!,
 						meRepository: resolver.resolve(MeRepository.self)!,
 						keychainRepository: resolver.resolve(KeychainRepository.self)!,

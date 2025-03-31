@@ -152,7 +152,7 @@ class MainScreenViewModel: ObservableObject {
 
 	private func checkIfUserIsLoggedIn() {
 		let container = swinjectHelper.getContainerForSwinject()
-		let authUseCase = container.resolve(AuthUseCase.self)!
+		let authUseCase = container.resolve(AuthUseCaseApi.self)!
 		isUserLoggedIn = authUseCase.isUserLoggedIn()
 		if isUserLoggedIn {
 			selectedTab = .homeTab

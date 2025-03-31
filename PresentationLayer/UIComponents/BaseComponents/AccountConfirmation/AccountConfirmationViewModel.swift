@@ -24,11 +24,11 @@ class AccountConfirmationViewModel: ObservableObject {
     let title: String
     let descriptionMarkdown: String?
 
-    private let useCase: AuthUseCase?
+	private let useCase: AuthUseCaseApi?
     private let completion: GenericCallback<Bool>?
     private var cancellables: Set<AnyCancellable> = []
 
-    init(title: String, descriptionMarkdown: String? = nil, useCase: AuthUseCase? = nil, completion: GenericCallback<Bool>? = nil) {
+	init(title: String, descriptionMarkdown: String? = nil, useCase: AuthUseCaseApi? = nil, completion: GenericCallback<Bool>? = nil) {
         self.title = title
         self.descriptionMarkdown = descriptionMarkdown
         self.useCase = useCase

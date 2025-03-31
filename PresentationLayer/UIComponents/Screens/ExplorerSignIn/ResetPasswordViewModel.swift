@@ -20,9 +20,9 @@ final class ResetPasswordViewModel: ObservableObject {
     var failSuccessObj: FailSuccessStateObject?
     private var cancellableSet: Set<AnyCancellable> = []
 
-    private final let authUseCase: AuthUseCase
+	private final let authUseCase: AuthUseCaseApi
 
-    init(authUseCase: AuthUseCase) {
+	init(authUseCase: AuthUseCaseApi) {
         self.authUseCase = authUseCase
     }
 

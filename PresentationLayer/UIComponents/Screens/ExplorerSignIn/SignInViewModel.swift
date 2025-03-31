@@ -16,9 +16,9 @@ final class SignInViewModel: ObservableObject {
     @Published var tokenResponse = NetworkTokenResponse()
     @Published var isSignInButtonAvailable: Bool = false
     private var cancellableSet: Set<AnyCancellable> = []
-    private final let authUseCase: AuthUseCase
+	private final let authUseCase: AuthUseCaseApi
 
-    public init(authUseCase: AuthUseCase) {
+	public init(authUseCase: AuthUseCaseApi) {
         self.authUseCase = authUseCase
     }
 

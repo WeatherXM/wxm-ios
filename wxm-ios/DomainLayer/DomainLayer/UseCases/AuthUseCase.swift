@@ -11,7 +11,7 @@ import Foundation
 import Toolkit
 import WidgetKit
 
-public struct AuthUseCase {
+public struct AuthUseCase: AuthUseCaseApi {
     private let authRepository: AuthRepository
 	private let meRepository: MeRepository
 	private let keychainRepository: KeychainRepository

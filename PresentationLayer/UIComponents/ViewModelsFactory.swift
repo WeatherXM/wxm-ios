@@ -90,29 +90,29 @@ enum ViewModelsFactory {
 
     static func getSettingsViewModel(userId: String) -> SettingsViewModel {
         let settingsUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(SettingsUseCase.self)
-		let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)
+		let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)
         return SettingsViewModel(userId: userId, settingsUseCase: settingsUseCase!, authUseCase: authUseCase!)
     }
 
     static func getDeleteAccountViewModel(userId: String) -> DeleteAccountViewModel {
-        let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)
+		let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)
         let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)
         return DeleteAccountViewModel(userId: userId, authUseCase: authUseCase!, meUseCase: meUseCase!)
     }
 
     static func getSignInViewModel() -> SignInViewModel {
-        let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)
+		let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)
         return SignInViewModel(authUseCase: authUseCase!)
     }
 
     static func getRegisterViewModel() -> RegisterViewModel {
-        let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)
+		let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)
 		let mainUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MainUseCase.self)
 		return RegisterViewModel(authUseCase: authUseCase!, mainUseCase: mainUseCase!)
     }
 
     static func getResetPasswordViewModel() -> ResetPasswordViewModel {
-        let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)
+		let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)
         return ResetPasswordViewModel(authUseCase: authUseCase!)
     }
 
