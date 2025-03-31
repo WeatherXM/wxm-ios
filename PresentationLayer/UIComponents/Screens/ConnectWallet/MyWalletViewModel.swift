@@ -88,7 +88,7 @@ class MyWalletViewModel: ObservableObject {
 
     func handleViewTransactionHistoryTap() {
         let url = String(format: DisplayedLinks.networkAddressWebsiteFormat.linkURL, input)
-        HelperFunctions().openUrl(url)
+        LinkNavigationHelper().openUrl(url)
 
         WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .walletTransactions,
                                                               .itemId: .custom(wallet?.address ?? "")])
@@ -99,7 +99,7 @@ class MyWalletViewModel: ObservableObject {
 															 .promptType: .info,
 															 .action: .action])
 
-		HelperFunctions().openUrl(DisplayedLinks.createWalletsLink.linkURL)
+		LinkNavigationHelper().openUrl(DisplayedLinks.createWalletsLink.linkURL)
 	}
 
     func handleQRButtonTap() {

@@ -69,7 +69,7 @@ class OverviewViewModel: ObservableObject {
 	}
 
 	func handleStationHealthBottomSheetButtonTap() {
-		HelperFunctions().openUrl(DisplayedLinks.qodAlgorithm.linkURL)
+		LinkNavigationHelper().openUrl(DisplayedLinks.qodAlgorithm.linkURL)
 	}
 
 	func handleDataQualityTap() {

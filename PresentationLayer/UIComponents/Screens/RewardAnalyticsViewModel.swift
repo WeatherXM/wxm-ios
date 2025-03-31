@@ -55,7 +55,7 @@ class RewardAnalyticsViewModel: ObservableObject {
 								   description: LocalizableString.RewardAnalytics.emptyStateDescription.localized.attributedMarkdown,
 								   buttonFontIcon: (.cart, .FAProSolid),
 								   buttonTitle: LocalizableString.Profile.noRewardsWarningButtonTitle.localized) {
-			HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
+			LinkNavigationHelper().openUrl(DisplayedLinks.shopLink.linkURL)
 		}
 	}()
 

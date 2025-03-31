@@ -96,7 +96,7 @@ final class DeleteAccountViewModel: ObservableObject {
     }
 
     public func contactSupport() {
-		HelperFunctions().openContactSupport(successFailureEnum: .deleteAccount, email: MainScreenViewModel.shared.userInfo?.email)
+		LinkNavigationHelper().openContactSupport(successFailureEnum: .deleteAccount, email: MainScreenViewModel.shared.userInfo?.email)
     }
 
     func getClientIndentifier() -> String {

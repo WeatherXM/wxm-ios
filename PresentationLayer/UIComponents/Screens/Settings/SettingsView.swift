@@ -298,10 +298,10 @@ private extension SettingsView {
                 WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
                                                                       .source: .settingsSource])
 
-				HelperFunctions().openContactSupport(successFailureEnum: .settings,
-													 email: mainScreenViewModel.userInfo?.email ?? "",
-													 serialNumber: nil,
-													 trackSelectContentEvent: false)
+				LinkNavigationHelper().openContactSupport(successFailureEnum: .settings,
+														  email: mainScreenViewModel.userInfo?.email ?? "",
+														  serialNumber: nil,
+														  trackSelectContentEvent: false)
 			}
         )
     }

@@ -18,7 +18,7 @@ class ProPromotionalViewModel: ObservableObject {
 							  LocalizableString.Promotional.andMore.localized]
 
 	func handleLearnMoreTapped() {
-		HelperFunctions().openUrl(DisplayedLinks.weatherXMPro.linkURL)
+		LinkNavigationHelper().openUrl(DisplayedLinks.weatherXMPro.linkURL)
 
 		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
 																	.itemId: .proPromotion])

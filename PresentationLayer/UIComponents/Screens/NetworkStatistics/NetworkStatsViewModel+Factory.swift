@@ -68,7 +68,7 @@ extension NetworkStatsViewModel {
 			}
 			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .lastRunHash])
 
-			HelperFunctions().openUrl(txHashUrl)
+			LinkNavigationHelper().openUrl(txHashUrl)
 		},
                                                        analyticsItemId: nil)
 

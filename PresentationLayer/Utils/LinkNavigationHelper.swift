@@ -1,5 +1,5 @@
 //
-//  HelperFunctions.swift
+//  LinkNavigationHelper.swift
 //  PresentationLayer
 //
 //  Created by Hristos Condrea on 10/6/22.
@@ -10,7 +10,7 @@ import SwiftUI
 import Toolkit
 
 @MainActor
-struct HelperFunctions {
+struct LinkNavigationHelper {
 
     func openUrl(_ urlString: String) {
         if let url = URL(string: urlString) {
@@ -111,7 +111,7 @@ struct HelperFunctions {
     }
 }
 
-private extension HelperFunctions {
+private extension LinkNavigationHelper {
     enum Constants {
         static let weatherXMSupportEmail = "support@weatherxm.com"
         static let iOSVersion = "iOS Version: "

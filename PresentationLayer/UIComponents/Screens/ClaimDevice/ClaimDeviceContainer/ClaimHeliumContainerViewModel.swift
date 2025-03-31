@@ -208,7 +208,7 @@ private extension ClaimHeliumContainerViewModel {
 											cancelTitle: LocalizableString.ClaimDevice.cancelClaimButton.localized,
 											retryTitle: LocalizableString.ClaimDevice.retryClaimButton.localized,
 											contactSupportAction: {
-			HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
+			LinkNavigationHelper().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
 		}, cancelAction: {
 			Router.shared.popToRoot()
 		}, retryAction: {

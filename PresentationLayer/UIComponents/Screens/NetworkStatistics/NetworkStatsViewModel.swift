@@ -48,13 +48,13 @@ class NetworkStatsViewModel: ObservableObject {
     }
 
     func handleBuyStationTap() {
-        HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
+        LinkNavigationHelper().openUrl(DisplayedLinks.shopLink.linkURL)
         WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .openShop])
     }
 
     func handleDetailsActionTap(statistics: NetworkStatsView.StationStatistics, details: NetworkStatsView.StationDetails) {
         if let url = details.url {
-            HelperFunctions().openUrl(url)
+            LinkNavigationHelper().openUrl(url)
         }
 
         WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .openStationShop,

@@ -107,7 +107,7 @@ class ProfileViewModel: ObservableObject {
 	}
 
 	func handleBuyStationTap() {
-		HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
+		LinkNavigationHelper().openUrl(DisplayedLinks.shopLink.linkURL)
 	}
 
 	func handleTotalEarnedInfoTap() {

@@ -316,7 +316,7 @@
 		267548EF29A91A87008BCF40 /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548B229A91A87008BCF40 /* Image+.swift */; };
 		267548F029A91A87008BCF40 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548B329A91A87008BCF40 /* View+.swift */; };
 		267548F229A91A87008BCF40 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548B529A91A87008BCF40 /* Double+.swift */; };
-		267548F329A91A87008BCF40 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548B629A91A87008BCF40 /* HelperFunctions.swift */; };
+		267548F329A91A87008BCF40 /* LinkNavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548B629A91A87008BCF40 /* LinkNavigationHelper.swift */; };
 		267548F429A91A87008BCF40 /* Text+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548B729A91A87008BCF40 /* Text+.swift */; };
 		267548F829A91A87008BCF40 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548BC29A91A87008BCF40 /* UIColor+.swift */; };
 		267548F929A91A87008BCF40 /* XAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267548BE29A91A87008BCF40 /* XAxisValueFormatter.swift */; };
@@ -988,7 +988,7 @@
 		267548B229A91A87008BCF40 /* Image+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		267548B329A91A87008BCF40 /* View+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		267548B529A91A87008BCF40 /* Double+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
-		267548B629A91A87008BCF40 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		267548B629A91A87008BCF40 /* LinkNavigationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkNavigationHelper.swift; sourceTree = "<group>"; };
 		267548B729A91A87008BCF40 /* Text+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Text+.swift"; sourceTree = "<group>"; };
 		267548BC29A91A87008BCF40 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		267548BE29A91A87008BCF40 /* XAxisValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XAxisValueFormatter.swift; sourceTree = "<group>"; };
@@ -2365,7 +2365,7 @@
 				262C7C582A97451C0042ACE6 /* UIKitUtils */,
 				26AF27722A0B86820067A1B8 /* Weather */,
 				265D7CE62AB1CA5D00782606 /* DateRange.swift */,
-				267548B629A91A87008BCF40 /* HelperFunctions.swift */,
+				267548B629A91A87008BCF40 /* LinkNavigationHelper.swift */,
 				266482FB29C0B2B000748F9C /* LoaderView.swift */,
 				267401932A3A038300E54E35 /* SwiftUIUtils.swift */,
 				2664830029C0C73E00748F9C /* Toast.swift */,
@@ -3661,7 +3661,7 @@
 				2666D50A2BBC4E80003B30C0 /* StationChipsView.swift in Sources */,
 				26CA845D2AD93C0C006D47D7 /* DeviceDetails+Common.swift in Sources */,
 				267547C729A9181E008BCF40 /* GeneralButtonStyle.swift in Sources */,
-				267548F329A91A87008BCF40 /* HelperFunctions.swift in Sources */,
+				267548F329A91A87008BCF40 /* LinkNavigationHelper.swift in Sources */,
 				26AF276F2A0B815B0067A1B8 /* WeatherChartModels.swift in Sources */,
 				264813FE2D8D7CF000BCCC31 /* ProPromotionalView.swift in Sources */,
 				26AA21E92BF4FA3B00B91A7C /* SelectLocationMapView.swift in Sources */,
