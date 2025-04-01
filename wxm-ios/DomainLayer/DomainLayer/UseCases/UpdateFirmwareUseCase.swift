@@ -8,10 +8,10 @@
 import Combine
 import Foundation
 
-public struct UpdateFirmwareUseCase {
-    private let firmwareRepository: FirmwareUpdateRepository
-    public let bluetoothState: AnyPublisher<BluetoothState, Never>
-    public let bluetoothDevices: AnyPublisher<[BTWXMDevice], Never>
+public struct UpdateFirmwareUseCase: UpdateFirmwareUseCaseApi {
+    nonisolated(unsafe) private let firmwareRepository: FirmwareUpdateRepository
+    nonisolated(unsafe) public let bluetoothState: AnyPublisher<BluetoothState, Never>
+	nonisolated(unsafe) public let bluetoothDevices: AnyPublisher<[BTWXMDevice], Never>
 
     public init(firmwareRepository: FirmwareUpdateRepository) {
         self.firmwareRepository = firmwareRepository

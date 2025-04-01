@@ -26,7 +26,7 @@ class UpdateFirmwareViewModel: ObservableObject {
 	var mainVM: MainScreenViewModel?
 	
 	private var device: DeviceDetails?
-	private let firmwareUseCase: UpdateFirmwareUseCase?
+	private let firmwareUseCase: UpdateFirmwareUseCaseApi?
 	private let successCallback: (() -> Void)?
 	private let cancelCallback: (() -> Void)?
 	private var cancellableSet: Set<AnyCancellable> = []
@@ -36,7 +36,7 @@ class UpdateFirmwareViewModel: ObservableObject {
 		currentStepIndex != nil
 	}
 	
-	init(useCase: UpdateFirmwareUseCase? = .init(firmwareRepository: FirmwareUpdateImpl()),
+	init(useCase: UpdateFirmwareUseCaseApi? = UpdateFirmwareUseCase(firmwareRepository: FirmwareUpdateImpl()),
 		 device: DeviceDetails,
 		 successCallback: (() -> Void)? = nil,
 		 cancelCallback: (() -> Void)? = nil) {
