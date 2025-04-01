@@ -183,7 +183,7 @@ class SwinjectHelper: SwinjectInterface {
 
 		// MARK: - Widget
 
-		container.register(WidgetUseCase.self) { resolver in
+		container.register(WidgetUseCaseApi.self) { resolver in
 			WidgetUseCase(meRepository: resolver.resolve(MeRepository.self)!,
 						  keychainRepository: resolver.resolve(KeychainRepository.self)!)
 		}

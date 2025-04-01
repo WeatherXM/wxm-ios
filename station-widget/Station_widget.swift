@@ -11,7 +11,7 @@ import SwiftUI
 import Toolkit
 
 struct Provider: IntentTimelineProvider, @unchecked Sendable {
-	private let useCase: WidgetUseCase
+	private let useCase: WidgetUseCaseApi
 	private let cancellableWrapper: CancellableWrapper = .init()
 	private let refreshInterval: TimeInterval = 5.0 * 60.0 // 5 mins
 
