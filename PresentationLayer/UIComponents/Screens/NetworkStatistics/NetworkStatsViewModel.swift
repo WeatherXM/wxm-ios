@@ -34,10 +34,10 @@ class NetworkStatsViewModel: ObservableObject {
         stationStats == nil
     }
 
-    private let useCase: NetworkUseCase?
+	private let useCase: NetworkUseCaseApi?
     private var cancellables: Set<AnyCancellable> = []
 
-    init(useCase: NetworkUseCase? = nil) {
+	init(useCase: NetworkUseCaseApi? = nil) {
         self.useCase = useCase
 
         refresh { }

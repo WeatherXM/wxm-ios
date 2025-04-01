@@ -60,7 +60,7 @@ class SwinjectHelper: SwinjectInterface {
             NetworkRepositoryImpl()
         }
 
-        container.register(NetworkUseCase.self) { resolver in
+		container.register(NetworkUseCaseApi.self) { resolver in
             NetworkUseCase(repository: resolver.resolve(NetworkRepository.self)!)
         }
 

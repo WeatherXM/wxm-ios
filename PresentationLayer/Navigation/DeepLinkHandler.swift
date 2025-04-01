@@ -28,12 +28,12 @@ class DeepLinkHandler {
 	static let tokenClaim = "token-claim"
 	static let announcement = "announcement"
 
-    let useCase: NetworkUseCase
+	let useCase: NetworkUseCaseApi
 	let explorerUseCase: ExplorerUseCaseApi
 
     private var searchCancellable: AnyCancellable?
 
-	init(useCase: NetworkUseCase, explorerUseCase: ExplorerUseCaseApi) {
+	init(useCase: NetworkUseCaseApi, explorerUseCase: ExplorerUseCaseApi) {
         self.useCase = useCase
 		self.explorerUseCase = explorerUseCase
     }

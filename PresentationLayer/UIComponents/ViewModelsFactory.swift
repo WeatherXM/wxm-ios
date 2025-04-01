@@ -73,12 +73,12 @@ enum ViewModelsFactory {
     }
 
     static func getNetworkStatsViewModel() -> NetworkStatsViewModel {
-        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(NetworkUseCase.self)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(NetworkUseCaseApi.self)
         return NetworkStatsViewModel(useCase: useCase)
     }
 
     static func getNetworkSearchViewModel() -> ExplorerSearchViewModel {
-        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(NetworkUseCase.self)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(NetworkUseCaseApi.self)
         return ExplorerSearchViewModel(useCase: useCase)
     }
 

@@ -37,7 +37,7 @@ class MainScreenViewModel: ObservableObject {
 	private let showWarningWalletInterval: TimeInterval = 24.0 * TimeInterval.hour // 1 day
 	@Published private(set) var showWalletWarning: Bool = false
 
-	let deepLinkHandler = DeepLinkHandler(useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(NetworkUseCase.self)!,
+	let deepLinkHandler = DeepLinkHandler(useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(NetworkUseCaseApi.self)!,
 										  explorerUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCaseApi.self)!)
 
 	private let mainUseCase: MainUseCaseApi

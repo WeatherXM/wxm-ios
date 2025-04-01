@@ -38,12 +38,12 @@ class ExplorerSearchViewModel: ObservableObject {
     }
 
     weak var delegate: ExplorerSearchViewModelDelegate?
-    private let useCase: NetworkUseCase?
+	private let useCase: NetworkUseCaseApi?
     private var searchCancellable: AnyCancellable?
     private let searchTermLimit = 2
     private var cancellables = Set<AnyCancellable>()
 
-    init(useCase: NetworkUseCase? = nil) {
+	init(useCase: NetworkUseCaseApi? = nil) {
         self.useCase = useCase
 
         $searchTerm
@@ -125,7 +125,7 @@ private extension ExplorerSearchViewModel {
         isLoading = true
 
 		do {
-			searchCancellable = try useCase?.search(term: searchTerm)
+			searchCancellable = try useCase?.search(term: searchTerm, exact: false, exclude: nil)
 				.receive(on: DispatchQueue.main)
 				.sink { [weak self] response in
 					self?.isLoading = false
