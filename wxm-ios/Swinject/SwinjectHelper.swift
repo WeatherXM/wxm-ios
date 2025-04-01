@@ -140,7 +140,7 @@ class SwinjectHelper: SwinjectInterface {
 			RewardsTimelineUseCase(repository: resolver.resolve(DevicesRepository.self)!, meRepository: resolver.resolve(MeRepository.self)!)
         }
 
-        container.register(HistoryUseCase.self) { resolver in
+		container.register(HistoryUseCaseApi.self) { resolver in
             HistoryUseCase(meRepository: resolver.resolve(MeRepository.self)!)
         }
 

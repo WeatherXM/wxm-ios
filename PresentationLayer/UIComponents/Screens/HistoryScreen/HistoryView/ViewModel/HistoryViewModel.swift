@@ -11,7 +11,7 @@ import Toolkit
 
 @MainActor
 class HistoryViewModel: ObservableObject {
-    private let historyUseCase: HistoryUseCase
+	private let historyUseCase: HistoryUseCaseApi
 
     @Published var loadingData: Bool = true
     @Published var currentHistoryData: WeatherChartModels?
@@ -24,7 +24,7 @@ class HistoryViewModel: ObservableObject {
     let device: DeviceDetails
     let currentDate: Date
 
-    init(device: DeviceDetails, historyUseCase: HistoryUseCase, date: Date) {
+	init(device: DeviceDetails, historyUseCase: HistoryUseCaseApi, date: Date) {
         self.device = device
         self.historyUseCase = historyUseCase
         self.currentDate = date

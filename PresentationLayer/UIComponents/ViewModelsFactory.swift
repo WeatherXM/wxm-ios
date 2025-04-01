@@ -48,12 +48,12 @@ enum ViewModelsFactory {
     }
 
     static func getHistoryContainerViewModel(device: DeviceDetails) -> HistoryContainerViewModel {
-        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(HistoryUseCase.self)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(HistoryUseCaseApi.self)
         return HistoryContainerViewModel(device: device, historyUseCase: useCase!)
     }
 
     static func getHistoryViewModel(device: DeviceDetails, date: Date) -> HistoryViewModel {
-        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(HistoryUseCase.self)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(HistoryUseCaseApi.self)
         return HistoryViewModel(device: device, historyUseCase: useCase!, date: date)
     }
 

@@ -12,14 +12,14 @@ import Toolkit
 
 class HistoryContainerViewModel: ObservableObject {
 
-    private let historyUseCase: HistoryUseCase
+	private let historyUseCase: HistoryUseCaseApi
     private let SEVEN_DAYS_OFFSET = 6
     let historyDates: DateRange
     let device: DeviceDetails
 
     @Published var currentDate: Date
 
-    init(device: DeviceDetails, historyUseCase: HistoryUseCase) {
+	init(device: DeviceDetails, historyUseCase: HistoryUseCaseApi) {
         self.device = device
         self.historyUseCase = historyUseCase
         let epoch = device.claimedAt?.timestampToDate() ?? .now.advancedByDays(days: -SEVEN_DAYS_OFFSET)
