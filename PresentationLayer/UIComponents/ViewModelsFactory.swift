@@ -43,7 +43,7 @@ enum ViewModelsFactory {
     }
 
 	static func getTransactionDetailsViewModel(device: DeviceDetails, followState: UserDeviceFollowState?) -> RewardsTimelineViewModel {
-        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCaseApi.self)
         return RewardsTimelineViewModel(device: device, followState: followState, useCase: useCase!)
     }
 
@@ -144,7 +144,7 @@ enum ViewModelsFactory {
 	static func getRewardDetailsViewModel(device: DeviceDetails,
 										  followState: UserDeviceFollowState?,
 										  date: Date) -> RewardDetailsViewModel {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCaseApi.self)!
 		return RewardDetailsViewModel(device: device, followState: followState, date: date, tokenUseCase: useCase)
 	}
 
@@ -169,7 +169,7 @@ enum ViewModelsFactory {
 	}
 
 	static func getRewardsBoostViewModel(boost: NetworkDeviceRewardDetailsResponse.BoostReward, device: DeviceDetails, date: Date?) -> RewardBoostsViewModel {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCaseApi.self)!
 		return RewardBoostsViewModel(boost: boost, device: device, date: date, useCase: useCase)
 	}
 

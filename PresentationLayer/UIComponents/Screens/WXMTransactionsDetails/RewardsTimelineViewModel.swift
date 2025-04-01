@@ -13,7 +13,7 @@ import Toolkit
 
 @MainActor
 final class RewardsTimelineViewModel: ObservableObject {
-    private let useCase: RewardsTimelineUseCase
+	private let useCase: RewardsTimelineUseCaseApi
 
     private var cancellableSet: Set<AnyCancellable> = []
 	private var pendingTask: Task<(), Never>? {
@@ -42,7 +42,7 @@ final class RewardsTimelineViewModel: ObservableObject {
 
 	private var pagination: RewardsTimelinePagination
 
-	init(device: DeviceDetails, followState: UserDeviceFollowState?, useCase: RewardsTimelineUseCase) {
+	init(device: DeviceDetails, followState: UserDeviceFollowState?, useCase: RewardsTimelineUseCaseApi) {
         self.device = device
 		self.followState = followState
         self.useCase = useCase
@@ -142,9 +142,10 @@ private extension RewardsTimelineViewModel {
 
 		do {
 			let result = try await self.useCase.getTimeline(deviceId: device.id ?? "",
-																	 page: page,
-																	 fromDate: fromDate,
-																	 toDate: toDate)
+															page: page,
+															fromDate: fromDate,
+															toDate: toDate,
+															timezone: .UTCTimezone)
 			switch result {
 				case .success(let transactionsObj):
 					// Once the request is successful, we update the pagination with the latest state

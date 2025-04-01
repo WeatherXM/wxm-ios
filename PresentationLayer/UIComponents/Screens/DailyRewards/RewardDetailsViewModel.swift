@@ -20,7 +20,7 @@ class RewardDetailsViewModel: ObservableObject {
 	@Published var showSplits: Bool = false
 	private(set) var splitItems: [RewardsSplitView.Item] = []
 
-	let useCase: RewardsTimelineUseCase
+	let useCase: RewardsTimelineUseCaseApi
 	var device: DeviceDetails
 	let followState: UserDeviceFollowState?
 	let date: Date
@@ -50,7 +50,7 @@ class RewardDetailsViewModel: ObservableObject {
 		rewardDetailsResponse?.cellPositionScoreObject
 	}
 
-	init(device: DeviceDetails, followState: UserDeviceFollowState?, date: Date, tokenUseCase: RewardsTimelineUseCase) {
+	init(device: DeviceDetails, followState: UserDeviceFollowState?, date: Date, tokenUseCase: RewardsTimelineUseCaseApi) {
 		self.device = device
 		self.followState = followState
 		self.date = date

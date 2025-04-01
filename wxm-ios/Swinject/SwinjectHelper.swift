@@ -136,7 +136,7 @@ class SwinjectHelper: SwinjectInterface {
 					  userDefaultsrRepository: resolver.resolve(UserDefaultsRepository.self)!)
         }
 
-        container.register(RewardsTimelineUseCase.self) { resolver in
+		container.register(RewardsTimelineUseCaseApi.self) { resolver in
 			RewardsTimelineUseCase(repository: resolver.resolve(DevicesRepository.self)!, meRepository: resolver.resolve(MeRepository.self)!)
         }
 

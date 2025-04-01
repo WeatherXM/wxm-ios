@@ -13,7 +13,7 @@ import UIKit
 @MainActor
 class RewardBoostsViewModel: ObservableObject {
 	let boost: BoostCardView.Boost
-	private var useCase: RewardsTimelineUseCase
+	private var useCase: RewardsTimelineUseCaseApi
 	private let boostReward: NetworkDeviceRewardDetailsResponse.BoostReward
 	private let device: DeviceDetails
 
@@ -21,7 +21,7 @@ class RewardBoostsViewModel: ObservableObject {
 	private(set) var failObj: FailSuccessStateObject?
 	private(set) var response: NetworkDeviceRewardBoostsResponse?
 
-	init(boost: NetworkDeviceRewardDetailsResponse.BoostReward, device: DeviceDetails, date: Date?, useCase: RewardsTimelineUseCase) {
+	init(boost: NetworkDeviceRewardDetailsResponse.BoostReward, device: DeviceDetails, date: Date?, useCase: RewardsTimelineUseCaseApi) {
 		self.boost = boost.toBoostViewObject(with: date)
 		self.boostReward = boost
 		self.device = device
