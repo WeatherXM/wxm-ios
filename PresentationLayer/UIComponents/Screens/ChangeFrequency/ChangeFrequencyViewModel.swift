@@ -32,13 +32,13 @@ class ChangeFrequencyViewModel: ObservableObject {
 	private let mainVM: MainScreenViewModel = .shared
 	
 	private let useCase: DeviceInfoUseCaseApi?
-	private let meUseCase: MeUseCase?
+	private let meUseCase: MeUseCaseApi?
 	let device: DeviceDetails
 	private var cancellables: Set<AnyCancellable> = []
 	
 	init(device: DeviceDetails,
 		 useCase: DeviceInfoUseCaseApi?,
-		 meUseCase: MeUseCase?,
+		 meUseCase: MeUseCaseApi?,
 		 frequency: Frequency? = Frequency.allCases.first) {
 		self.device = device
 		self.useCase = useCase

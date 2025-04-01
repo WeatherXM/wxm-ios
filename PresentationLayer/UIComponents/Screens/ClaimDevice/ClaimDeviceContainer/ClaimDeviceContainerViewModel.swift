@@ -20,7 +20,7 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 
 	var steps: [ClaimDeviceStep] = []
 	var navigationTitle: String = ""
-	let useCase: MeUseCase
+	let useCase: MeUseCaseApi
 	let devicesUseCase: DevicesUseCaseApi
 	let deviceLocationUseCase: DeviceLocationUseCase
 	var claimingKey: String?
@@ -31,7 +31,7 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	private let CLAIMING_RETRIES_DELAY_SECONDS: TimeInterval = 5
 	private var cancellableSet: Set<AnyCancellable> = .init()
 
-	init(useCase: MeUseCase, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCase) {
+	init(useCase: MeUseCaseApi, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCase) {
 		self.useCase = useCase
 		self.devicesUseCase = devicesUseCase
 		self.deviceLocationUseCase = deviceLocationUseCase

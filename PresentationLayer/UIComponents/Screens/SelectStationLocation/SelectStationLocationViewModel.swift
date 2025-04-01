@@ -20,7 +20,7 @@ class SelectStationLocationViewModel: ObservableObject {
 
 	let device: DeviceDetails
 	let deviceLocationUseCase: DeviceLocationUseCase
-	let meUseCase: MeUseCase
+	let meUseCase: MeUseCaseApi
 	@Published var termsAccepted: Bool = false
 	@Published private(set) var selectedCoordinate: CLLocationCoordinate2D?
 	@Published var isSuccessful: Bool = false
@@ -33,7 +33,7 @@ class SelectStationLocationViewModel: ObservableObject {
 
 	init(device: DeviceDetails,
 		 deviceLocationUseCase: DeviceLocationUseCase,
-		 meUseCase: MeUseCase,
+		 meUseCase: MeUseCaseApi,
 		 delegate: SelectStationLocationViewModelDelegate?) {
 		self.device = device
 		self.deviceLocationUseCase = deviceLocationUseCase

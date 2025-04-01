@@ -35,9 +35,9 @@ class StationForecastViewModel: ObservableObject {
     private var device: DeviceDetails?
 	private var followState: UserDeviceFollowState?
     private var cancellables: Set<AnyCancellable> = []
-    private let useCase: MeUseCase?
+	private let useCase: MeUseCaseApi?
 
-    init(containerDelegate: StationDetailsViewModelDelegate? = nil, useCase: MeUseCase?) {
+	init(containerDelegate: StationDetailsViewModelDelegate? = nil, useCase: MeUseCaseApi?) {
         self.containerDelegate = containerDelegate
         self.useCase = useCase
         observeOffset()
@@ -92,7 +92,8 @@ private extension StationForecastViewModel {
 		do {
 			let getUserDeviceForecastById = try await useCase?.getUserDeviceForecastById(deviceId: deviceId,
 																						 fromDate: getCurrentDateInStringForForecast(),
-																						 toDate: getΤοDateForWeeklyForecastCall()).toAsync()
+																						 toDate: getΤοDateForWeeklyForecastCall(),
+																						 exclude: "").toAsync()
 			return getUserDeviceForecastById?.result
 		} catch { return nil }
 	}
@@ -219,6 +220,6 @@ extension StationForecastViewModel: StationDetailsViewModelChild {
 extension StationForecastViewModel {
 
     static var mockInstance: StationForecastViewModel {
-        StationForecastViewModel(useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self))
+		StationForecastViewModel(useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self))
     }
 }

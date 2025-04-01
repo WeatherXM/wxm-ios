@@ -31,7 +31,7 @@ class StationDetailsViewModel: ObservableObject {
     private let cellIndex: String?
     private let cellCenter: CLLocationCoordinate2D?
 	private let useCase: DeviceDetailsUseCaseApi?
-	private let meUseCase: MeUseCase?
+	private let meUseCase: MeUseCaseApi?
 	private var isFollowStateInitialized: Bool = false {
 		willSet {
 			guard isFollowStateInitialized != newValue else { return }
@@ -73,7 +73,7 @@ class StationDetailsViewModel: ObservableObject {
         self.cellIndex = cellIndex
         self.cellCenter = cellCenter
 		useCase = swinjectHelper?.getContainerForSwinject().resolve(DeviceDetailsUseCaseApi.self)
-		meUseCase = swinjectHelper?.getContainerForSwinject().resolve(MeUseCase.self)
+		meUseCase = swinjectHelper?.getContainerForSwinject().resolve(MeUseCaseApi.self)
         MainScreenViewModel.shared.$isUserLoggedIn.dropFirst().sink { [weak self] _ in
             Task { @MainActor [weak self] in
                 self?.showLoadingInChildViews()

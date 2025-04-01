@@ -28,9 +28,9 @@ final class DeleteAccountViewModel: ObservableObject {
     private var cancellableSet: Set<AnyCancellable> = []
 
 	private let authUseCase: AuthUseCaseApi
-    private let meUseCase: MeUseCase
+	private let meUseCase: MeUseCaseApi
 
-	init(userId: String, authUseCase: AuthUseCaseApi, meUseCase: MeUseCase) {
+	init(userId: String, authUseCase: AuthUseCaseApi, meUseCase: MeUseCaseApi) {
         self.userID = userId
         self.authUseCase = authUseCase
         self.meUseCase = meUseCase

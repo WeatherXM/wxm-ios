@@ -31,7 +31,7 @@ enum ViewModelsFactory {
     }
 
     static func getStationForecastViewModel(delegate: StationDetailsViewModelDelegate) -> StationForecastViewModel {
-        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)
         let vm = StationForecastViewModel(useCase: useCase)
         vm.containerDelegate = delegate
         return vm
@@ -58,7 +58,7 @@ enum ViewModelsFactory {
     }
 
     static func getMyWalletViewModel() -> MyWalletViewModel {
-        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)
         return MyWalletViewModel(useCase: useCase)
     }
 
@@ -96,7 +96,7 @@ enum ViewModelsFactory {
 
     static func getDeleteAccountViewModel(userId: String) -> DeleteAccountViewModel {
 		let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)
-        let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)
+		let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)
         return DeleteAccountViewModel(userId: userId, authUseCase: authUseCase!, meUseCase: meUseCase!)
     }
 
@@ -127,13 +127,13 @@ enum ViewModelsFactory {
 	}
 
 	static func getProfileViewModel() -> ProfileViewModel {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		let remoteConfigUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RemoteConfigUseCase.self)!
 		return ProfileViewModel(meUseCase: useCase, remoteConfigUseCase: remoteConfigUseCase)
 	}
 
 	static func getWeatherStationsHomeViewModel() -> WeatherStationsHomeViewModel {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		let remoteConfigUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RemoteConfigUseCase.self)!
 		let photoGalleryUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
 		return WeatherStationsHomeViewModel(meUseCase: useCase,
@@ -152,7 +152,7 @@ enum ViewModelsFactory {
 										   followState: UserDeviceFollowState?,
 										   delegate: SelectStationLocationViewModelDelegate?) -> SelectStationLocationViewModel {
 		let deviceLocationUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
-		let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		return SelectStationLocationViewModel(device: device, deviceLocationUseCase: deviceLocationUseCase, meUseCase: meUseCase, delegate: delegate)
 	}
 
@@ -182,7 +182,7 @@ enum ViewModelsFactory {
 	}
 
 	static func getClaimStationContainerViewModel(type: ClaimStationType) -> ClaimDeviceContainerViewModel {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		let devicesUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DevicesUseCaseApi.self)!
 		let deviceLocationUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
 		
@@ -262,7 +262,7 @@ enum ViewModelsFactory {
 
 	static func getChangeFrequencyViewModel(device: DeviceDetails, frequency: Frequency? = Frequency.allCases.first) -> ChangeFrequencyViewModel {
 		let deviceInfoUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCaseApi.self)!
-		let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		return ChangeFrequencyViewModel(device: device,
 										useCase: deviceInfoUseCase,
 										meUseCase: meUseCase,
@@ -270,7 +270,7 @@ enum ViewModelsFactory {
 	}
 
 	static func getRewardAnalyticsViewModel(devices: [DeviceDetails]) -> RewardAnalyticsViewModel {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		return RewardAnalyticsViewModel(useCase: useCase, devices: devices)
 	}
 

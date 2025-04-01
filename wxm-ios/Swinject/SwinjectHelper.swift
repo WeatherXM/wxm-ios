@@ -129,7 +129,7 @@ class SwinjectHelper: SwinjectInterface {
             FiltersRepositoryImpl(filtersService: resolver.resolve(FiltersService.self)!)
         }
 
-        container.register(MeUseCase.self) { resolver in
+		container.register(MeUseCaseApi.self) { resolver in
             MeUseCase(meRepository: resolver.resolve(MeRepository.self)!,
 					  filtersRepository: resolver.resolve(FiltersRepository.self)!,
 					  networkRepository: resolver.resolve(NetworkRepository.self)!,

@@ -51,11 +51,11 @@ class MyWalletViewModel: ObservableObject {
     var accountConfirmationViewModel: AccountConfirmationViewModel?
 	private let mainVM: MainScreenViewModel = .shared
 
-    private let useCase: MeUseCase?
+	private let useCase: MeUseCaseApi?
     private(set) var wallet: Wallet?
     private var cancellableSet: Set<AnyCancellable> = []
 
-    init(useCase: MeUseCase?) {
+	init(useCase: MeUseCaseApi?) {
         self.useCase = useCase
         getUserWallet()
     }

@@ -12,7 +12,7 @@ import Toolkit
 
 @MainActor
 public final class WeatherStationsHomeViewModel: ObservableObject {
-	private let meUseCase: MeUseCase
+	private let meUseCase: MeUseCaseApi
 	private let photosUseCase: PhotoGalleryUseCaseApi
 	private let remoteConfigUseCase: RemoteConfigUseCase
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
@@ -66,7 +66,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	private(set) var failObj: FailSuccessStateObject?
 	weak var mainVM: MainScreenViewModel?
 
-	public init(meUseCase: MeUseCase, remoteConfigUseCase: RemoteConfigUseCase, photosGalleryUseCase: PhotoGalleryUseCaseApi) {
+	public init(meUseCase: MeUseCaseApi, remoteConfigUseCase: RemoteConfigUseCase, photosGalleryUseCase: PhotoGalleryUseCaseApi) {
 		self.meUseCase = meUseCase
 		self.remoteConfigUseCase = remoteConfigUseCase
 		self.photosUseCase = photosGalleryUseCase
