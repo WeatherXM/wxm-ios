@@ -42,11 +42,11 @@ class ExplorerStationsListViewModel: ObservableObject {
 	}
 	
 	let cellIndex: String
-	private let useCase: ExplorerUseCase?
+	private let useCase: ExplorerUseCaseApi?
 	private let cellCenter: CLLocationCoordinate2D?
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	
-	init(useCase: ExplorerUseCase?, cellIndex: String, cellCenter: CLLocationCoordinate2D?) {
+	init(useCase: ExplorerUseCaseApi?, cellIndex: String, cellCenter: CLLocationCoordinate2D?) {
 		self.useCase = useCase
 		self.cellIndex = cellIndex
 		self.cellCenter = cellCenter

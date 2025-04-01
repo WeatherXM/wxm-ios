@@ -100,7 +100,7 @@ class SwinjectHelper: SwinjectInterface {
             ExplorerRepositoryImpl()
         }
 
-        container.register(ExplorerUseCase.self) { resolver in
+		container.register(ExplorerUseCaseApi.self) { resolver in
             let explorerUserCase = ExplorerUseCase(explorerRepository: resolver.resolve(ExplorerRepository.self)!,
                                                    devicesRepository: resolver.resolve(DevicesRepository.self)!,
                                                    meRepository: resolver.resolve(MeRepository.self)!,

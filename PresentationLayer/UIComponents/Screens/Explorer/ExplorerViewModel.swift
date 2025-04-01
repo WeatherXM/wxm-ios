@@ -12,12 +12,12 @@ import Toolkit
 
 @MainActor
 public final class ExplorerViewModel: ObservableObject {
-    private final let explorerUseCase: ExplorerUseCase
+	private final let explorerUseCase: ExplorerUseCaseApi
     /// Keep a ref in map controller in order to persist  and show
     /// the same instance between rerenders
     var mapController: MapViewController?
 
-    public init(explorerUseCase: ExplorerUseCase) {
+	public init(explorerUseCase: ExplorerUseCaseApi) {
         self.explorerUseCase = explorerUseCase
     }
 

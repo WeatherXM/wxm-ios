@@ -38,7 +38,7 @@ class MainScreenViewModel: ObservableObject {
 	@Published private(set) var showWalletWarning: Bool = false
 
 	let deepLinkHandler = DeepLinkHandler(useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(NetworkUseCase.self)!,
-										  explorerUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCase.self)!)
+										  explorerUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCaseApi.self)!)
 
 	private let mainUseCase: MainUseCase
 	private let meUseCase: MeUseCase
