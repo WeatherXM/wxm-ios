@@ -9,7 +9,7 @@ import Alamofire
 import Combine
 import Foundation
 
-public struct DevicesUseCase: @unchecked Sendable {
+public struct DevicesUseCase: DevicesUseCaseApi, @unchecked Sendable {
     private let devicesRepository: DevicesRepository
     private let bluetoothDevicesRepository: BluetoothDevicesRepository
 

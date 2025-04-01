@@ -14,7 +14,7 @@ class ClaimHeliumContainerViewModel: ClaimDeviceContainerViewModel {
 	private var btDevice: BTWXMDevice?
 	private var heliumFrequency: Frequency?
 
-	override init(useCase: MeUseCase, devicesUseCase: DevicesUseCase, deviceLocationUseCase: DeviceLocationUseCase) {
+	override init(useCase: MeUseCase, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCase) {
 		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
 		navigationTitle = ClaimStationType.helium.navigationTitle
 		steps = getSteps()

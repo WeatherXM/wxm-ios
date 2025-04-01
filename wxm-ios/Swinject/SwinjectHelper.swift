@@ -72,7 +72,7 @@ class SwinjectHelper: SwinjectInterface {
         container.register(BluetoothDevicesRepository.self) { _ in
             BluetoothDevicesRepositoryImpl()
         }
-        container.register(DevicesUseCase.self) { resolver in
+		container.register(DevicesUseCaseApi.self) { resolver in
             let devicesUseCase = DevicesUseCase(
                 devicesRepository: resolver.resolve(DevicesRepository.self)!,
                 bluetoothDevicesRepository: resolver.resolve(BluetoothDevicesRepository.self)!
