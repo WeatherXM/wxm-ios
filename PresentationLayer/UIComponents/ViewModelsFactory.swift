@@ -117,7 +117,7 @@ enum ViewModelsFactory {
     }
 
     static func getFilterViewModel() -> FilterViewModel {
-        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(FiltersUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(FiltersUseCaseApi.self)!
         return FilterViewModel(useCase: useCase)
     }
 

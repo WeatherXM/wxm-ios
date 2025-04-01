@@ -177,7 +177,7 @@ class SwinjectHelper: SwinjectInterface {
 
         // MARK: - Filters
 
-        container.register(FiltersUseCase.self) { resolver in
+		container.register(FiltersUseCaseApi.self) { resolver in
             FiltersUseCase(repository: resolver.resolve(FiltersRepository.self)!)
         }
 

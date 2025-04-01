@@ -20,11 +20,11 @@ class FilterViewModel: ObservableObject {
         initialFilters?.groupBy != selectedGroupBy
     }
 
-    private let useCase: FiltersUseCase
+	private let useCase: FiltersUseCaseApi
     private var cancellableSet: Set<AnyCancellable> = []
     private var initialFilters: FilterValues?
 
-    init(useCase: FiltersUseCase) {
+	init(useCase: FiltersUseCaseApi) {
         self.useCase = useCase
         observeFilters()
     }
