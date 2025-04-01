@@ -14,7 +14,7 @@ import Toolkit
 public final class WeatherStationsHomeViewModel: ObservableObject {
 	private let meUseCase: MeUseCaseApi
 	private let photosUseCase: PhotoGalleryUseCaseApi
-	private let remoteConfigUseCase: RemoteConfigUseCase
+	private let remoteConfigUseCase: RemoteConfigUseCaseApi
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
 	private var cancellableSet: Set<AnyCancellable> = []
 	private var filters: FilterValues? {
@@ -66,7 +66,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	private(set) var failObj: FailSuccessStateObject?
 	weak var mainVM: MainScreenViewModel?
 
-	public init(meUseCase: MeUseCaseApi, remoteConfigUseCase: RemoteConfigUseCase, photosGalleryUseCase: PhotoGalleryUseCaseApi) {
+	public init(meUseCase: MeUseCaseApi, remoteConfigUseCase: RemoteConfigUseCaseApi, photosGalleryUseCase: PhotoGalleryUseCaseApi) {
 		self.meUseCase = meUseCase
 		self.remoteConfigUseCase = remoteConfigUseCase
 		self.photosUseCase = photosGalleryUseCase

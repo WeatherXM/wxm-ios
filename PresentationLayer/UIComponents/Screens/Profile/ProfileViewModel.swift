@@ -13,7 +13,7 @@ import Toolkit
 @MainActor
 class ProfileViewModel: ObservableObject {
 	private final let meUseCase: MeUseCaseApi
-	private let remoteConfigUseCase: RemoteConfigUseCase
+	private let remoteConfigUseCase: RemoteConfigUseCaseApi
     private var cancellableSet: Set<AnyCancellable> = []
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
 
@@ -50,7 +50,7 @@ class ProfileViewModel: ObservableObject {
 		return url?.host ?? "-"
 	}
 
-	public init(meUseCase: MeUseCaseApi, remoteConfigUseCase: RemoteConfigUseCase) {
+	public init(meUseCase: MeUseCaseApi, remoteConfigUseCase: RemoteConfigUseCaseApi) {
         self.meUseCase = meUseCase
 		self.remoteConfigUseCase = remoteConfigUseCase
 		scrollOffsetObject = .init()

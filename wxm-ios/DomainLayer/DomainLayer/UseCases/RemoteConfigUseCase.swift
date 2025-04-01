@@ -8,11 +8,11 @@
 import Foundation
 import Combine
 
-public struct RemoteConfigUseCase {
-	public var surveyPublisher: AnyPublisher<Survey?, Never>
-	public var infoBannerPublisher: AnyPublisher<InfoBanner?, Never>
-	public var announcementPublisher: AnyPublisher<Announcement?, Never>
-	private let repository: RemoteConfigRepository
+public struct RemoteConfigUseCase: RemoteConfigUseCaseApi {
+	nonisolated(unsafe) public var surveyPublisher: AnyPublisher<Survey?, Never>
+	nonisolated(unsafe) public var infoBannerPublisher: AnyPublisher<InfoBanner?, Never>
+	nonisolated(unsafe) public var announcementPublisher: AnyPublisher<Announcement?, Never>
+	nonisolated(unsafe) private let repository: RemoteConfigRepository
 
 	public init(repository: RemoteConfigRepository) {
 		self.repository = repository
