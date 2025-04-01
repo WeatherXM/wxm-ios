@@ -11,9 +11,9 @@ import Toolkit
 
 class AnalyticsViewModel: ObservableObject {
 
-    private let useCase: SettingsUseCase
+	private let useCase: SettingsUseCaseApi
 
-    init(useCase: SettingsUseCase) {
+	init(useCase: SettingsUseCaseApi) {
         self.useCase = useCase
     }
 

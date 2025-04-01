@@ -63,7 +63,7 @@ enum ViewModelsFactory {
     }
 
     static func getAnalyticsViewModel() -> AnalyticsViewModel {
-        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(SettingsUseCase.self)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(SettingsUseCaseApi.self)
         return AnalyticsViewModel(useCase: useCase!)
     }
 
@@ -89,7 +89,7 @@ enum ViewModelsFactory {
     }
 
     static func getSettingsViewModel(userId: String) -> SettingsViewModel {
-        let settingsUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(SettingsUseCase.self)
+		let settingsUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(SettingsUseCaseApi.self)
 		let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)
         return SettingsViewModel(userId: userId, settingsUseCase: settingsUseCase!, authUseCase: authUseCase!)
     }

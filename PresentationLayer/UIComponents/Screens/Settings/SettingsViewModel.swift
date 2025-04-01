@@ -29,12 +29,12 @@ final class SettingsViewModel: ObservableObject {
 
     let userID: String
 	let unitsManager: WeatherUnitsManager = .default
-    private let settingsUseCase: SettingsUseCase
+	private let settingsUseCase: SettingsUseCaseApi
 	private let authUseCase: AuthUseCaseApi
     private var cancellableSet: Set<AnyCancellable> = .init()
 	private let mainVM: MainScreenViewModel = .shared
 
-	init(userId: String, settingsUseCase: SettingsUseCase, authUseCase: AuthUseCaseApi) {
+	init(userId: String, settingsUseCase: SettingsUseCaseApi, authUseCase: AuthUseCaseApi) {
         self.userID = userId
         self.settingsUseCase = settingsUseCase
 		self.authUseCase = authUseCase

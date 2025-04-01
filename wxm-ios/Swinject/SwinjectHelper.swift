@@ -50,7 +50,7 @@ class SwinjectHelper: SwinjectInterface {
             SettingsRepositoryImpl()
         }
 
-        container.register(SettingsUseCase.self) { resolver in
+		container.register(SettingsUseCaseApi.self) { resolver in
             SettingsUseCase(repository: resolver.resolve(SettingsRepository.self)!)
         }
 

@@ -10,8 +10,8 @@ import Combine
 import Alamofire
 import WidgetKit
 
-public struct SettingsUseCase {
-    private let repository: SettingsRepository
+public struct SettingsUseCase: SettingsUseCaseApi {
+	nonisolated(unsafe) private let repository: SettingsRepository
 
     public init(repository: SettingsRepository) {
         self.repository = repository

@@ -42,7 +42,7 @@ class MainScreenViewModel: ObservableObject {
 
 	private let mainUseCase: MainUseCaseApi
 	private let meUseCase: MeUseCaseApi
-	private let settingsUseCase: SettingsUseCase
+	private let settingsUseCase: SettingsUseCaseApi
 	private let photosUseCase: PhotoGalleryUseCaseApi
 	private var cancellableSet: Set<AnyCancellable> = []
 	let networkMonitor: NWPathMonitor
@@ -76,7 +76,7 @@ class MainScreenViewModel: ObservableObject {
 		photosUseCase = swinjectHelper.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
 
 		networkMonitor = NWPathMonitor()
-		settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCase.self)!
+		settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCaseApi.self)!
 
         checkIfUserIsLoggedIn()
         settingsUseCase.initializeAnalyticsTracking()
@@ -289,7 +289,7 @@ class MainScreenViewModel: ObservableObject {
 
 	// MARK: Analytics opt in/out
 
-	private func checkIfShouldShowAnalyticsPrompt(settingsUseCase: SettingsUseCase) {
+	private func checkIfShouldShowAnalyticsPrompt(settingsUseCase: SettingsUseCaseApi) {
 		guard isUserLoggedIn else {
 			return
 		}
