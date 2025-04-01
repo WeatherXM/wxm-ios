@@ -23,12 +23,12 @@ class StationRewardsViewModel: ObservableObject {
 	}
 
 	@Published var response: NetworkDeviceRewardsSummaryResponse?
-    private var useCase: RewardsUseCase?
+	private var useCase: RewardsUseCaseApi?
     private weak var containerDelegate: StationDetailsViewModelDelegate?
     private let deviceId: String
     private var cancellables: Set<AnyCancellable> = []
 
-    init(deviceId: String, containerDelegate: StationDetailsViewModelDelegate? = nil, useCase: RewardsUseCase?) {
+	init(deviceId: String, containerDelegate: StationDetailsViewModelDelegate? = nil, useCase: RewardsUseCaseApi?) {
         self.deviceId = deviceId
         self.containerDelegate = containerDelegate
         self.useCase = useCase

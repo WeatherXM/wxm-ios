@@ -38,7 +38,7 @@ enum ViewModelsFactory {
     }
 
     static func getStationRewardsViewModel(deviceId: String, delegate: StationDetailsViewModelDelegate) -> StationRewardsViewModel {
-        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsUseCase.self)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsUseCaseApi.self)
         return StationRewardsViewModel(deviceId: deviceId, containerDelegate: delegate, useCase: useCase)
     }
 
