@@ -21,4 +21,12 @@ public struct NetworkUserRewardsResponse: Codable, Sendable {
 		case available
 		case totalClaimed = "total_claimed"
 	}
+
+	public init(proof: [String]?, cumulativeAmount: String?, cycle: Int?, available: String?, totalClaimed: String?) {
+		self.proof = proof
+		self.cumulativeAmount = cumulativeAmount
+		self.cycle = cycle
+		self.available = available
+		self.totalClaimed = totalClaimed
+	}
 }

@@ -24,6 +24,8 @@ public struct NetworkFirmwareResponse: Codable, Sendable {
     public var checksumAlgorithm: String = ""
     public var checksum: String = ""
     public var dataSize: Int = 0
+
+	public init() {}
 }
 
 public struct EntityType: Codable, Sendable {
