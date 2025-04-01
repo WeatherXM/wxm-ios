@@ -12,15 +12,15 @@ import DomainLayer
 class WeatherUnitsManager: ObservableObject {
 	
 	nonisolated(unsafe) static let `default`: WeatherUnitsManager =  {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MainUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MainUseCaseApi.self)!
 		let manager = WeatherUnitsManager(mainUseCase: useCase)
 		
 		return manager
 	}()
 
-	private let mainUseCase: MainUseCase
+	private let mainUseCase: MainUseCaseApi
 
-	init(mainUseCase: MainUseCase) {
+	init(mainUseCase: MainUseCaseApi) {
 		self.mainUseCase = mainUseCase
 		setWeatherUnitsAnalytics()
 	}

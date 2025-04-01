@@ -107,7 +107,7 @@ enum ViewModelsFactory {
 
     static func getRegisterViewModel() -> RegisterViewModel {
 		let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)
-		let mainUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MainUseCase.self)
+		let mainUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MainUseCaseApi.self)
 		return RegisterViewModel(authUseCase: authUseCase!, mainUseCase: mainUseCase!)
     }
 
@@ -157,7 +157,7 @@ enum ViewModelsFactory {
 	}
 
 	static func getAppUpdateViewModel() -> AppUpdateViewModel {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MainUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MainUseCaseApi.self)!
 		return AppUpdateViewModel(useCase: useCase)
 	}
 

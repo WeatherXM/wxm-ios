@@ -152,7 +152,7 @@ class SwinjectHelper: SwinjectInterface {
 
         // MARK: - Main Use Case
 
-        container.register(MainUseCase.self) { resolver in
+		container.register(MainUseCaseApi.self) { resolver in
 			MainUseCase(mainRepository: resolver.resolve(MainRepository.self)!,
 						userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
 						keychainRepository: resolver.resolve(KeychainRepository.self)!,

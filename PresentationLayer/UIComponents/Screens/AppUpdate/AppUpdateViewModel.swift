@@ -17,9 +17,9 @@ class AppUpdateViewModel: ObservableObject {
 	@Published var forceUpdate: Bool = false
 	
 	private var cancellableSet: Set<AnyCancellable> = .init()
-	private let useCase: MainUseCase
+	private let useCase: MainUseCaseApi
 
-	init(useCase: MainUseCase) {
+	init(useCase: MainUseCaseApi) {
 		self.useCase = useCase
 		
 		RemoteConfigManager.shared.$iosAppChangelog.assign(to: &$whatsNewText)
@@ -29,7 +29,7 @@ class AppUpdateViewModel: ObservableObject {
 				return
 			}
 			
-			self.forceUpdate = self.useCase.shouldForceUpdate(minimumVersion: minVersion)
+			self.forceUpdate = self.useCase.shouldForceUpdate(minimumVersion: minVersion, currentVersion: nil)
 		}.store(in: &cancellableSet)
 	}
 

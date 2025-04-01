@@ -32,9 +32,9 @@ final class RegisterViewModel: ObservableObject {
 	private var cancellableSet: Set<AnyCancellable> = []
 	
 	private let authUseCase: AuthUseCaseApi
-	private let mainUseCase: MainUseCase
-	
-	init(authUseCase: AuthUseCaseApi, mainUseCase: MainUseCase) {
+	private let mainUseCase: MainUseCaseApi
+
+	init(authUseCase: AuthUseCaseApi, mainUseCase: MainUseCaseApi) {
 		self.authUseCase = authUseCase
 		self.mainUseCase = mainUseCase
 	}

@@ -40,7 +40,7 @@ class MainScreenViewModel: ObservableObject {
 	let deepLinkHandler = DeepLinkHandler(useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(NetworkUseCase.self)!,
 										  explorerUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCaseApi.self)!)
 
-	private let mainUseCase: MainUseCase
+	private let mainUseCase: MainUseCaseApi
 	private let meUseCase: MeUseCase
 	private let settingsUseCase: SettingsUseCase
 	private let photosUseCase: PhotoGalleryUseCaseApi
@@ -71,7 +71,7 @@ class MainScreenViewModel: ObservableObject {
 
 	private init() {
 		self.swinjectHelper = SwinjectHelper.shared
-		mainUseCase = swinjectHelper.getContainerForSwinject().resolve(MainUseCase.self)!
+		mainUseCase = swinjectHelper.getContainerForSwinject().resolve(MainUseCaseApi.self)!
 		meUseCase = swinjectHelper.getContainerForSwinject().resolve(MeUseCase.self)!
 		photosUseCase = swinjectHelper.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
 
@@ -103,7 +103,7 @@ class MainScreenViewModel: ObservableObject {
 				return
 			}
 			let minimumVersion = RemoteConfigManager.shared.iosAppMinimumVersion
-			self?.showAppUpdatePrompt = self?.mainUseCase.shouldShowUpdatePrompt(for: latestVersion, minimumVersion: minimumVersion) ?? false
+			self?.showAppUpdatePrompt = self?.mainUseCase.shouldShowUpdatePrompt(for: latestVersion, minimumVersion: minimumVersion, currentVersion: nil) ?? false
 		}.store(in: &cancellableSet)
 
 		RemoteConfigManager.shared.$iosAppMinimumVersion.sink { [weak self] minVersion in
@@ -112,7 +112,7 @@ class MainScreenViewModel: ObservableObject {
 				return
 			}
 
-			self?.showAppUpdatePrompt = self?.mainUseCase.shouldShowUpdatePrompt(for: latestVersion, minimumVersion: minVersion) ?? false
+			self?.showAppUpdatePrompt = self?.mainUseCase.shouldShowUpdatePrompt(for: latestVersion, minimumVersion: minVersion, currentVersion: nil) ?? false
 		}.store(in: &cancellableSet)
 
 		requestNotificationAuthorizationIfNeeded()

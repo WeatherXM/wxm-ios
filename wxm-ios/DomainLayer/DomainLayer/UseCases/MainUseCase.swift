@@ -9,7 +9,7 @@ import WidgetKit
 import Toolkit
 import Combine
 
-public class MainUseCase: @unchecked Sendable {
+public class MainUseCase: @unchecked Sendable, MainUseCaseApi {
 	public var userLoggedInStateNotificationPublisher: NotificationCenter.Publisher
 
 	private let mainRepository: MainRepository
@@ -61,7 +61,8 @@ public class MainUseCase: @unchecked Sendable {
 
 	public func shouldShowUpdatePrompt(for version: String,
 									   minimumVersion: String?,
-									   currentVersion: String? = Bundle.main.releaseVersionNumber) -> Bool {
+									   currentVersion: String?) -> Bool {
+		let currentVersion = currentVersion ?? Bundle.main.releaseVersionNumber
 		let lastAppVersionPrompt: String = userDefaultsRepository.getValue(for: UserDefaults.GenericKey.lastAppVersionPrompt.rawValue) ?? ""
 
 		let shouldUpdate = shouldUpdate(version: version,
@@ -78,9 +79,9 @@ public class MainUseCase: @unchecked Sendable {
 	}
 
 	public func shouldForceUpdate(minimumVersion: String?,
-								  currentVersion: String? = Bundle.main.releaseVersionNumber) -> Bool {
+								  currentVersion: String?) -> Bool {
 		guard let minimumVersion,
-			  let currentVersion else {
+			  let currentVersion = currentVersion ?? Bundle.main.releaseVersionNumber else {
 			return false
 		}
 
