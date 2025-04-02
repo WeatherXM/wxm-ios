@@ -614,6 +614,8 @@
 		26F83C912D9C1A3600E5A8B8 /* MockMeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C902D9C1A3600E5A8B8 /* MockMeUseCase.swift */; };
 		26F83C932D9D113D00E5A8B8 /* OverviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C922D9D113D00E5A8B8 /* OverviewViewModelTests.swift */; };
 		26F83C952D9D247200E5A8B8 /* StationForecastViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C942D9D247200E5A8B8 /* StationForecastViewModelTests.swift */; };
+		26F83C992D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C982D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift */; };
+		26F83C9B2D9D281A00E5A8B8 /* MockRewardsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C9A2D9D281400E5A8B8 /* MockRewardsUseCase.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1258,6 +1260,8 @@
 		26F83C902D9C1A3600E5A8B8 /* MockMeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMeUseCase.swift; sourceTree = "<group>"; };
 		26F83C922D9D113D00E5A8B8 /* OverviewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewModelTests.swift; sourceTree = "<group>"; };
 		26F83C942D9D247200E5A8B8 /* StationForecastViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationForecastViewModelTests.swift; sourceTree = "<group>"; };
+		26F83C982D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsViewModelTests.swift; sourceTree = "<group>"; };
+		26F83C9A2D9D281400E5A8B8 /* MockRewardsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRewardsUseCase.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1636,6 +1640,7 @@
 				26F83C872D9C107000E5A8B8 /* StationDetailsViewModelTests.swift */,
 				26F83C922D9D113D00E5A8B8 /* OverviewViewModelTests.swift */,
 				26F83C942D9D247200E5A8B8 /* StationForecastViewModelTests.swift */,
+				26F83C982D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1655,6 +1660,7 @@
 				2648147D2D9ACBCD00BCCC31 /* MockDeviceInfoUseCase.swift */,
 				26F83C8E2D9C185F00E5A8B8 /* MockDeviceDetailsUseCase.swift */,
 				26F83C902D9C1A3600E5A8B8 /* MockMeUseCase.swift */,
+				26F83C9A2D9D281400E5A8B8 /* MockRewardsUseCase.swift */,
 			);
 			path = MockUseCases;
 			sourceTree = "<group>";
@@ -3503,6 +3509,7 @@
 				26710E982D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift in Sources */,
 				2648146D2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift in Sources */,
 				26F1769C2D79B832000BA381 /* MockPhotosRepositoryImpl.swift in Sources */,
+				26F83C992D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift in Sources */,
 				26710E962D7F15B000878298 /* DevicesUseCaseTests.swift in Sources */,
 				2678110A2D49279300D22B67 /* FiltersServiceTest.swift in Sources */,
 				26F83C882D9C107000E5A8B8 /* StationDetailsViewModelTests.swift in Sources */,
@@ -3535,6 +3542,7 @@
 				26F83C862D9BFAFE00E5A8B8 /* PhotoVerificationStateViewModelTests.swift in Sources */,
 				26710EA72D804A1800878298 /* AuthUseCaseTests.swift in Sources */,
 				267811502D4BB21700D22B67 /* UserInfoServiceTests.swift in Sources */,
+				26F83C9B2D9D281A00E5A8B8 /* MockRewardsUseCase.swift in Sources */,
 				26710E462D7B127C00878298 /* MockSettingsRepositoryImpl.swift in Sources */,
 				26F83C952D9D247200E5A8B8 /* StationForecastViewModelTests.swift in Sources */,
 				267811582D4CD84E00D22B67 /* UserDevicesServiceTests.swift in Sources */,

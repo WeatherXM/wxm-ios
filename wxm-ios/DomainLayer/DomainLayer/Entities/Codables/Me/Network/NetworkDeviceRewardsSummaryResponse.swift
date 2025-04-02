@@ -17,6 +17,12 @@ public struct NetworkDeviceRewardsSummaryResponse: Codable, Hashable, Sendable {
 		case latest
 		case timeline
 	}
+
+	public init(totalRewards: Double?, latest: NetworkDeviceRewardsSummary?, timeline: [NetworkDeviceRewardsSummaryTimelineEntry]?) {
+		self.totalRewards = totalRewards
+		self.latest = latest
+		self.timeline = timeline
+	}
 }
 
 public struct NetworkDeviceRewardsSummary: Codable, Hashable, Sendable {
