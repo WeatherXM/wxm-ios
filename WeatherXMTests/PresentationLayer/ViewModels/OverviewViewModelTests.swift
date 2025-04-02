@@ -10,7 +10,7 @@ import Foundation
 @testable import WeatherXM
 import DomainLayer
 
-fileprivate class ContainerDelegate: StationDetailsViewModelDelegate {
+class StationDetailsContainerDelegate: StationDetailsViewModelDelegate {
 	var shouldRefreshCalled = false
 	var didEndScrollerDraggingCalled = false
 	var shouldAskToFollowCalled = false
@@ -38,10 +38,10 @@ fileprivate class ContainerDelegate: StationDetailsViewModelDelegate {
 struct OverviewViewModelTests {
 	let viewModel: OverviewViewModel
 	let linkNavigator: MockLinkNavigation = .init()
-	private let delegate: ContainerDelegate
+	private let delegate: StationDetailsContainerDelegate
 
 	init() {
-		delegate = ContainerDelegate()
+		delegate = StationDetailsContainerDelegate()
 		viewModel = OverviewViewModel(device: DeviceDetails.mockDevice, linkNavigation: linkNavigator)
 		viewModel.containerDelegate = delegate
 	}
