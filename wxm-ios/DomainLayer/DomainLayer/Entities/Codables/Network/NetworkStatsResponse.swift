@@ -21,6 +21,14 @@ public struct NetworkStatsResponse: Codable, Sendable {
 		case contracts
         case lastUpdated = "last_updated"
     }
+
+	public init(weatherStations: NetworkWeatherStations?, dataDays: [NetworkStatsTimeSeries]?, tokens: NetworkStationsStatsTokens?, contracts: NetworkStatsContracts?, lastUpdated: Date?) {
+		self.weatherStations = weatherStations
+		self.dataDays = dataDays
+		self.tokens = tokens
+		self.contracts = contracts
+		self.lastUpdated = lastUpdated
+	}
 }
 
 public struct NetworkWeatherStations: Codable, Sendable {

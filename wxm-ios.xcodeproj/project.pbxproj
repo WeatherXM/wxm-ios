@@ -625,6 +625,8 @@
 		26F83CA92D9D510500E5A8B8 /* MockSettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CA82D9D50FA00E5A8B8 /* MockSettingsUseCase.swift */; };
 		26F83CAB2D9D530100E5A8B8 /* AnalyticsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CAA2D9D530100E5A8B8 /* AnalyticsViewModelTests.swift */; };
 		26F83CAD2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CAC2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift */; };
+		26F83CAF2D9D604D00E5A8B8 /* MockNetworkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CAE2D9D604400E5A8B8 /* MockNetworkUseCase.swift */; };
+		26F83CB12D9D672B00E5A8B8 /* NetworkStatsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CB02D9D672B00E5A8B8 /* NetworkStatsViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1280,6 +1282,8 @@
 		26F83CA82D9D50FA00E5A8B8 /* MockSettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSettingsUseCase.swift; sourceTree = "<group>"; };
 		26F83CAA2D9D530100E5A8B8 /* AnalyticsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CAC2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModelTests.swift; sourceTree = "<group>"; };
+		26F83CAE2D9D604400E5A8B8 /* MockNetworkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkUseCase.swift; sourceTree = "<group>"; };
+		26F83CB02D9D672B00E5A8B8 /* NetworkStatsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1665,6 +1669,7 @@
 				26F83CA62D9D477D00E5A8B8 /* MyWalletViewModelTests.swift */,
 				26F83CAA2D9D530100E5A8B8 /* AnalyticsViewModelTests.swift */,
 				26F83CAC2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift */,
+				26F83CB02D9D672B00E5A8B8 /* NetworkStatsViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1688,6 +1693,7 @@
 				26F83C9C2D9D2B3A00E5A8B8 /* MockRewardsTimelineUseCase.swift */,
 				26F83CA22D9D3D1100E5A8B8 /* MockHistoryUseCase.swift */,
 				26F83CA82D9D50FA00E5A8B8 /* MockSettingsUseCase.swift */,
+				26F83CAE2D9D604400E5A8B8 /* MockNetworkUseCase.swift */,
 			);
 			path = MockUseCases;
 			sourceTree = "<group>";
@@ -3593,6 +3599,7 @@
 				26710E502D7B2F2700878298 /* MeUseCaseTests.swift in Sources */,
 				26DF1F5E2D55F0C70001E936 /* MeRepositoryImplTests.swift in Sources */,
 				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
+				26F83CAF2D9D604D00E5A8B8 /* MockNetworkUseCase.swift in Sources */,
 				26710E8E2D7EF73000878298 /* MockExplorerRepositoryImpl.swift in Sources */,
 				26710E942D7F0B5400878298 /* MockBluetoothDevicesRepositoryImpl.swift in Sources */,
 				26710E9A2D7F32E100878298 /* MockDeviceInfoRepositoryImpl.swift in Sources */,
@@ -3610,6 +3617,7 @@
 				26DF1F682D563F940001E936 /* Utils.swift in Sources */,
 				264814212D942B2300BCCC31 /* BTUtils.swift in Sources */,
 				2648146B2D9A7AF800BCCC31 /* MockLinkNavigation.swift in Sources */,
+				26F83CB12D9D672B00E5A8B8 /* NetworkStatsViewModelTests.swift in Sources */,
 				264814222D942B2300BCCC31 /* BluetoothManagerTests.swift in Sources */,
 				264814232D942B2300BCCC31 /* BTActionWrapperTests.swift in Sources */,
 				26710EA92D804F6400878298 /* LoginServiceImplTests.swift in Sources */,
