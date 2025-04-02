@@ -36,9 +36,11 @@ class OverviewViewModel: ObservableObject {
     weak var containerDelegate: StationDetailsViewModelDelegate?
     private(set) var failObj: FailSuccessStateObject?
     private var cancellables: Set<AnyCancellable> = []
+	private let linkNavigation: LinkNavigation
 
-    init(device: DeviceDetails?) {
+	init(device: DeviceDetails?, linkNavigation: LinkNavigation = LinkNavigationHelper()) {
         self.device = device
+		self.linkNavigation = linkNavigation
         refresh {}
         observeOffset()
     }
@@ -69,7 +71,7 @@ class OverviewViewModel: ObservableObject {
 	}
 
 	func handleStationHealthBottomSheetButtonTap() {
-		LinkNavigationHelper().openUrl(DisplayedLinks.qodAlgorithm.linkURL)
+		linkNavigation.openUrl(DisplayedLinks.qodAlgorithm.linkURL)
 	}
 
 	func handleDataQualityTap() {
