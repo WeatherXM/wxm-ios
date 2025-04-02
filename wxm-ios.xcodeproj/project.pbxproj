@@ -627,6 +627,7 @@
 		26F83CAD2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CAC2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift */; };
 		26F83CAF2D9D604D00E5A8B8 /* MockNetworkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CAE2D9D604400E5A8B8 /* MockNetworkUseCase.swift */; };
 		26F83CB12D9D672B00E5A8B8 /* NetworkStatsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CB02D9D672B00E5A8B8 /* NetworkStatsViewModelTests.swift */; };
+		26F83CB32D9D6FC600E5A8B8 /* ExplorerSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CB22D9D6FC600E5A8B8 /* ExplorerSearchViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1284,6 +1285,7 @@
 		26F83CAC2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CAE2D9D604400E5A8B8 /* MockNetworkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkUseCase.swift; sourceTree = "<group>"; };
 		26F83CB02D9D672B00E5A8B8 /* NetworkStatsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsViewModelTests.swift; sourceTree = "<group>"; };
+		26F83CB22D9D6FC600E5A8B8 /* ExplorerSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerSearchViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1670,6 +1672,7 @@
 				26F83CAA2D9D530100E5A8B8 /* AnalyticsViewModelTests.swift */,
 				26F83CAC2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift */,
 				26F83CB02D9D672B00E5A8B8 /* NetworkStatsViewModelTests.swift */,
+				26F83CB22D9D6FC600E5A8B8 /* ExplorerSearchViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -3576,6 +3579,7 @@
 				264814802D9AD10A00BCCC31 /* DeviceInfoViewModelTests.swift in Sources */,
 				265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */,
 				264814762D9A99A400BCCC31 /* MockPhotoGalleryUseCase.swift in Sources */,
+				26F83CB32D9D6FC600E5A8B8 /* ExplorerSearchViewModelTests.swift in Sources */,
 				26DF1F622D561BA00001E936 /* RemoteConfigRepositoryImplTests.swift in Sources */,
 				26F83C862D9BFAFE00E5A8B8 /* PhotoVerificationStateViewModelTests.swift in Sources */,
 				26710EA72D804A1800878298 /* AuthUseCaseTests.swift in Sources */,

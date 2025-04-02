@@ -31,7 +31,7 @@ class ExplorerSearchViewModel: ObservableObject {
     @Published var searchResults: [SearchView.Row] = []
     @Published var isShowingRecent: Bool = true
     /// Will be assigned from the view. We do not assign directly this proprety as a binding in theTextfield
-    @Published private var searchTerm: String = "" {
+    @Published private(set) var searchTerm: String = "" {
         didSet {
             updateUIState()
         }
