@@ -54,9 +54,12 @@ class MyWalletViewModel: ObservableObject {
 	private let useCase: MeUseCaseApi?
     private(set) var wallet: Wallet?
     private var cancellableSet: Set<AnyCancellable> = []
+	private let linkNavigation: LinkNavigation
 
-	init(useCase: MeUseCaseApi?) {
+	init(useCase: MeUseCaseApi?,
+		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
         self.useCase = useCase
+		self.linkNavigation = linkNavigation
         getUserWallet()
     }
 
@@ -88,7 +91,7 @@ class MyWalletViewModel: ObservableObject {
 
     func handleViewTransactionHistoryTap() {
         let url = String(format: DisplayedLinks.networkAddressWebsiteFormat.linkURL, input)
-        LinkNavigationHelper().openUrl(url)
+		linkNavigation.openUrl(url)
 
         WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .walletTransactions,
                                                               .itemId: .custom(wallet?.address ?? "")])
@@ -99,7 +102,7 @@ class MyWalletViewModel: ObservableObject {
 															 .promptType: .info,
 															 .action: .action])
 
-		LinkNavigationHelper().openUrl(DisplayedLinks.createWalletsLink.linkURL)
+		linkNavigation.openUrl(DisplayedLinks.createWalletsLink.linkURL)
 	}
 
     func handleQRButtonTap() {

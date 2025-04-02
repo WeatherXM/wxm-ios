@@ -621,6 +621,7 @@
 		26F83CA12D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CA02D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift */; };
 		26F83CA32D9D3D1A00E5A8B8 /* MockHistoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CA22D9D3D1100E5A8B8 /* MockHistoryUseCase.swift */; };
 		26F83CA52D9D3E4200E5A8B8 /* HistoryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CA42D9D3E4200E5A8B8 /* HistoryViewModelTests.swift */; };
+		26F83CA72D9D477D00E5A8B8 /* MyWalletViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CA62D9D477D00E5A8B8 /* MyWalletViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1272,6 +1273,7 @@
 		26F83CA02D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryContainerViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CA22D9D3D1100E5A8B8 /* MockHistoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHistoryUseCase.swift; sourceTree = "<group>"; };
 		26F83CA42D9D3E4200E5A8B8 /* HistoryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelTests.swift; sourceTree = "<group>"; };
+		26F83CA62D9D477D00E5A8B8 /* MyWalletViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1654,6 +1656,7 @@
 				26F83C9E2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift */,
 				26F83CA02D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift */,
 				26F83CA42D9D3E4200E5A8B8 /* HistoryViewModelTests.swift */,
+				26F83CA62D9D477D00E5A8B8 /* MyWalletViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -3542,6 +3545,7 @@
 				26F176A42D79E783000BA381 /* WidgetUseCaseTests.swift in Sources */,
 				26F83C8F2D9C185F00E5A8B8 /* MockDeviceDetailsUseCase.swift in Sources */,
 				26710E3C2D7AE86400878298 /* MockFirmwareUpdateRepositoryImpl.swift in Sources */,
+				26F83CA72D9D477D00E5A8B8 /* MyWalletViewModelTests.swift in Sources */,
 				26710E582D7ECD0B00878298 /* MockMainRepositoryImpl.swift in Sources */,
 				26F83C932D9D113D00E5A8B8 /* OverviewViewModelTests.swift in Sources */,
 				265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */,
