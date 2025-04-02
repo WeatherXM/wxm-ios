@@ -11,6 +11,12 @@ public struct NetworkDeviceRewardBoostsResponse: Codable, Hashable, Sendable {
 	public let code: BoostCode?
 	public let metadata: Metadata?
 	public let details: Details?
+
+	public init(code: BoostCode?, metadata: Metadata?, details: Details?) {
+		self.code = code
+		self.metadata = metadata
+		self.details = details
+	}
 }
 
 public extension NetworkDeviceRewardBoostsResponse {

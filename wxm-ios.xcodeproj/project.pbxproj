@@ -616,6 +616,8 @@
 		26F83C952D9D247200E5A8B8 /* StationForecastViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C942D9D247200E5A8B8 /* StationForecastViewModelTests.swift */; };
 		26F83C992D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C982D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift */; };
 		26F83C9B2D9D281A00E5A8B8 /* MockRewardsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C9A2D9D281400E5A8B8 /* MockRewardsUseCase.swift */; };
+		26F83C9D2D9D2B4900E5A8B8 /* MockRewardsTimelineUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C9C2D9D2B3A00E5A8B8 /* MockRewardsTimelineUseCase.swift */; };
+		26F83C9F2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C9E2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1262,6 +1264,8 @@
 		26F83C942D9D247200E5A8B8 /* StationForecastViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationForecastViewModelTests.swift; sourceTree = "<group>"; };
 		26F83C982D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsViewModelTests.swift; sourceTree = "<group>"; };
 		26F83C9A2D9D281400E5A8B8 /* MockRewardsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRewardsUseCase.swift; sourceTree = "<group>"; };
+		26F83C9C2D9D2B3A00E5A8B8 /* MockRewardsTimelineUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRewardsTimelineUseCase.swift; sourceTree = "<group>"; };
+		26F83C9E2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelineViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1641,6 +1645,7 @@
 				26F83C922D9D113D00E5A8B8 /* OverviewViewModelTests.swift */,
 				26F83C942D9D247200E5A8B8 /* StationForecastViewModelTests.swift */,
 				26F83C982D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift */,
+				26F83C9E2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1661,6 +1666,7 @@
 				26F83C8E2D9C185F00E5A8B8 /* MockDeviceDetailsUseCase.swift */,
 				26F83C902D9C1A3600E5A8B8 /* MockMeUseCase.swift */,
 				26F83C9A2D9D281400E5A8B8 /* MockRewardsUseCase.swift */,
+				26F83C9C2D9D2B3A00E5A8B8 /* MockRewardsTimelineUseCase.swift */,
 			);
 			path = MockUseCases;
 			sourceTree = "<group>";
@@ -3529,6 +3535,7 @@
 				26F83C932D9D113D00E5A8B8 /* OverviewViewModelTests.swift in Sources */,
 				265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */,
 				26710EA52D80473A00878298 /* MockLoginService.swift in Sources */,
+				26F83C9D2D9D2B4900E5A8B8 /* MockRewardsTimelineUseCase.swift in Sources */,
 				2648147E2D9ACBCD00BCCC31 /* MockDeviceInfoUseCase.swift in Sources */,
 				26710E442D7B0D9B00878298 /* MockNetworkRepositoryImpl.swift in Sources */,
 				26710E9E2D80206300878298 /* DeviceDetailsUseCaseTests.swift in Sources */,
@@ -3579,6 +3586,7 @@
 				264814232D942B2300BCCC31 /* BTActionWrapperTests.swift in Sources */,
 				26710EA92D804F6400878298 /* LoginServiceImplTests.swift in Sources */,
 				26F176A02D79D271000BA381 /* MockKeychainRepositoryImpl.swift in Sources */,
+				26F83C9F2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

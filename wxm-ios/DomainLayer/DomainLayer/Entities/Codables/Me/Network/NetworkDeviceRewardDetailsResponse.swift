@@ -23,6 +23,20 @@ public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable, Sendable {
 		case boost
 		case rewardSplit = "reward_split"
 	}
+
+	public init(timestamp: Date?,
+				totalDailyReward: Double?,
+				annotations: [RewardAnnotation]?,
+				base: Base?,
+				boost: Boost?,
+				rewardSplit: [RewardSplit]?) {
+		self.timestamp = timestamp
+		self.totalDailyReward = totalDailyReward
+		self.annotations = annotations
+		self.base = base
+		self.boost = boost
+		self.rewardSplit = rewardSplit
+	}
 }
 
 public extension NetworkDeviceRewardDetailsResponse {
