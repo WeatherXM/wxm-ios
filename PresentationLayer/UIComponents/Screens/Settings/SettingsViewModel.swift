@@ -28,17 +28,21 @@ final class SettingsViewModel: ObservableObject {
     }
 
     let userID: String
-	let unitsManager: WeatherUnitsManager = .default
+	let unitsManager: WeatherUnitsManagerApi
 	private let settingsUseCase: SettingsUseCaseApi
 	private let authUseCase: AuthUseCaseApi
     private var cancellableSet: Set<AnyCancellable> = .init()
 	private let mainVM: MainScreenViewModel = .shared
 
-	init(userId: String, settingsUseCase: SettingsUseCaseApi, authUseCase: AuthUseCaseApi) {
+	init(userId: String,
+		 settingsUseCase: SettingsUseCaseApi,
+		 authUseCase: AuthUseCaseApi,
+		 unitsManager: WeatherUnitsManagerApi = WeatherUnitsManager.default) {
         self.userID = userId
         self.settingsUseCase = settingsUseCase
 		self.authUseCase = authUseCase
         self.isAnalyticsCollectionEnabled = settingsUseCase.isAnalyticsEnabled
+		self.unitsManager = unitsManager
         setInstallationId()
 		observeAuthorizationStatus()
     }
@@ -128,7 +132,7 @@ final class SettingsViewModel: ObservableObject {
 		}
 	}
 
-    func logoutUser(completion: @escaping (Bool) -> Void) {
+	func logoutUser(showAlert: Bool = true, completion: @escaping (Bool) -> Void) {
 		let logoutAction: GenericMainActorCallback<String?> = { [weak  self] _ in
             guard let self else {
                 return
@@ -156,10 +160,15 @@ final class SettingsViewModel: ObservableObject {
             }
         }
 
-        let obj = AlertHelper.AlertObject(title: LocalizableString.logoutAlertTitle.localized,
-                                          message: LocalizableString.logoutAlertText.localized,
-                                          okAction: (LocalizableString.yes.localized, logoutAction))
-        AlertHelper().showAlert(obj)
+		if showAlert {
+			let obj = AlertHelper.AlertObject(title: LocalizableString.logoutAlertTitle.localized,
+											  message: LocalizableString.logoutAlertText.localized,
+											  okAction: (LocalizableString.yes.localized, logoutAction))
+			AlertHelper().showAlert(obj)
+			return
+		}
+
+		logoutAction("")
     }
 
 	func handleNotificationSwitchTap() {

@@ -630,6 +630,8 @@
 		26F83CB32D9D6FC600E5A8B8 /* ExplorerSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CB22D9D6FC600E5A8B8 /* ExplorerSearchViewModelTests.swift */; };
 		26F83CB52D9D777300E5A8B8 /* MockExplorerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CB42D9D776A00E5A8B8 /* MockExplorerUseCase.swift */; };
 		26F83CB72D9D79BE00E5A8B8 /* ExplorerStationsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CB62D9D79BE00E5A8B8 /* ExplorerStationsListViewModelTests.swift */; };
+		26F83CB92D9D7F5F00E5A8B8 /* MockAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CB82D9D7F4F00E5A8B8 /* MockAuthUseCase.swift */; };
+		26F83CBB2D9D82A700E5A8B8 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CBA2D9D82A700E5A8B8 /* SettingsViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1290,6 +1292,8 @@
 		26F83CB22D9D6FC600E5A8B8 /* ExplorerSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerSearchViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CB42D9D776A00E5A8B8 /* MockExplorerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExplorerUseCase.swift; sourceTree = "<group>"; };
 		26F83CB62D9D79BE00E5A8B8 /* ExplorerStationsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerStationsListViewModelTests.swift; sourceTree = "<group>"; };
+		26F83CB82D9D7F4F00E5A8B8 /* MockAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthUseCase.swift; sourceTree = "<group>"; };
+		26F83CBA2D9D82A700E5A8B8 /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1678,6 +1682,7 @@
 				26F83CB02D9D672B00E5A8B8 /* NetworkStatsViewModelTests.swift */,
 				26F83CB22D9D6FC600E5A8B8 /* ExplorerSearchViewModelTests.swift */,
 				26F83CB62D9D79BE00E5A8B8 /* ExplorerStationsListViewModelTests.swift */,
+				26F83CBA2D9D82A700E5A8B8 /* SettingsViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1703,6 +1708,7 @@
 				26F83CA82D9D50FA00E5A8B8 /* MockSettingsUseCase.swift */,
 				26F83CAE2D9D604400E5A8B8 /* MockNetworkUseCase.swift */,
 				26F83CB42D9D776A00E5A8B8 /* MockExplorerUseCase.swift */,
+				26F83CB82D9D7F4F00E5A8B8 /* MockAuthUseCase.swift */,
 			);
 			path = MockUseCases;
 			sourceTree = "<group>";
@@ -3557,6 +3563,7 @@
 				26710E962D7F15B000878298 /* DevicesUseCaseTests.swift in Sources */,
 				2678110A2D49279300D22B67 /* FiltersServiceTest.swift in Sources */,
 				26F83C882D9C107000E5A8B8 /* StationDetailsViewModelTests.swift in Sources */,
+				26F83CBB2D9D82A700E5A8B8 /* SettingsViewModelTests.swift in Sources */,
 				26F176972D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift in Sources */,
 				26F83CAD2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift in Sources */,
 				26F1769A2D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift in Sources */,
@@ -3620,6 +3627,7 @@
 				26DF1F662D563D270001E936 /* MockLocationManager.swift in Sources */,
 				26F83CB72D9D79BE00E5A8B8 /* ExplorerStationsListViewModelTests.swift in Sources */,
 				26D32FE82C510DF000E765E0 /* DateExtensionsTests.swift in Sources */,
+				26F83CB92D9D7F5F00E5A8B8 /* MockAuthUseCase.swift in Sources */,
 				26710E4E2D7B26CC00878298 /* NetworkUseCaseTests.swift in Sources */,
 				26710E8C2D7EF69C00878298 /* ExplorerUseCaseTests.swift in Sources */,
 				26710E902D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift in Sources */,
