@@ -624,6 +624,7 @@
 		26F83CA72D9D477D00E5A8B8 /* MyWalletViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CA62D9D477D00E5A8B8 /* MyWalletViewModelTests.swift */; };
 		26F83CA92D9D510500E5A8B8 /* MockSettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CA82D9D50FA00E5A8B8 /* MockSettingsUseCase.swift */; };
 		26F83CAB2D9D530100E5A8B8 /* AnalyticsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CAA2D9D530100E5A8B8 /* AnalyticsViewModelTests.swift */; };
+		26F83CAD2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CAC2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1278,6 +1279,7 @@
 		26F83CA62D9D477D00E5A8B8 /* MyWalletViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CA82D9D50FA00E5A8B8 /* MockSettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSettingsUseCase.swift; sourceTree = "<group>"; };
 		26F83CAA2D9D530100E5A8B8 /* AnalyticsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModelTests.swift; sourceTree = "<group>"; };
+		26F83CAC2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1662,6 +1664,7 @@
 				26F83CA42D9D3E4200E5A8B8 /* HistoryViewModelTests.swift */,
 				26F83CA62D9D477D00E5A8B8 /* MyWalletViewModelTests.swift */,
 				26F83CAA2D9D530100E5A8B8 /* AnalyticsViewModelTests.swift */,
+				26F83CAC2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -3540,6 +3543,7 @@
 				2678110A2D49279300D22B67 /* FiltersServiceTest.swift in Sources */,
 				26F83C882D9C107000E5A8B8 /* StationDetailsViewModelTests.swift in Sources */,
 				26F176972D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift in Sources */,
+				26F83CAD2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift in Sources */,
 				26F1769A2D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift in Sources */,
 				269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */,
 				26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */,
