@@ -619,6 +619,8 @@
 		26F83C9D2D9D2B4900E5A8B8 /* MockRewardsTimelineUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C9C2D9D2B3A00E5A8B8 /* MockRewardsTimelineUseCase.swift */; };
 		26F83C9F2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83C9E2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift */; };
 		26F83CA12D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CA02D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift */; };
+		26F83CA32D9D3D1A00E5A8B8 /* MockHistoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CA22D9D3D1100E5A8B8 /* MockHistoryUseCase.swift */; };
+		26F83CA52D9D3E4200E5A8B8 /* HistoryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CA42D9D3E4200E5A8B8 /* HistoryViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1268,6 +1270,8 @@
 		26F83C9C2D9D2B3A00E5A8B8 /* MockRewardsTimelineUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRewardsTimelineUseCase.swift; sourceTree = "<group>"; };
 		26F83C9E2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelineViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CA02D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryContainerViewModelTests.swift; sourceTree = "<group>"; };
+		26F83CA22D9D3D1100E5A8B8 /* MockHistoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHistoryUseCase.swift; sourceTree = "<group>"; };
+		26F83CA42D9D3E4200E5A8B8 /* HistoryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1649,6 +1653,7 @@
 				26F83C982D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift */,
 				26F83C9E2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift */,
 				26F83CA02D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift */,
+				26F83CA42D9D3E4200E5A8B8 /* HistoryViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1670,6 +1675,7 @@
 				26F83C902D9C1A3600E5A8B8 /* MockMeUseCase.swift */,
 				26F83C9A2D9D281400E5A8B8 /* MockRewardsUseCase.swift */,
 				26F83C9C2D9D2B3A00E5A8B8 /* MockRewardsTimelineUseCase.swift */,
+				26F83CA22D9D3D1100E5A8B8 /* MockHistoryUseCase.swift */,
 			);
 			path = MockUseCases;
 			sourceTree = "<group>";
@@ -3517,6 +3523,7 @@
 				26710E522D7B2FA500878298 /* MockFiltersRepositoryImpl.swift in Sources */,
 				26F83CA12D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift in Sources */,
 				26710E982D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift in Sources */,
+				26F83CA52D9D3E4200E5A8B8 /* HistoryViewModelTests.swift in Sources */,
 				2648146D2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift in Sources */,
 				26F1769C2D79B832000BA381 /* MockPhotosRepositoryImpl.swift in Sources */,
 				26F83C992D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift in Sources */,
@@ -3553,6 +3560,7 @@
 				26F83C862D9BFAFE00E5A8B8 /* PhotoVerificationStateViewModelTests.swift in Sources */,
 				26710EA72D804A1800878298 /* AuthUseCaseTests.swift in Sources */,
 				267811502D4BB21700D22B67 /* UserInfoServiceTests.swift in Sources */,
+				26F83CA32D9D3D1A00E5A8B8 /* MockHistoryUseCase.swift in Sources */,
 				26F83C9B2D9D281A00E5A8B8 /* MockRewardsUseCase.swift in Sources */,
 				26710E462D7B127C00878298 /* MockSettingsRepositoryImpl.swift in Sources */,
 				26F83C952D9D247200E5A8B8 /* StationForecastViewModelTests.swift in Sources */,
