@@ -12,16 +12,14 @@ import Toolkit
 
 class HistoryContainerViewModel: ObservableObject {
 
-	private let historyUseCase: HistoryUseCaseApi
     private let SEVEN_DAYS_OFFSET = 6
     let historyDates: DateRange
     let device: DeviceDetails
 
     @Published var currentDate: Date
 
-	init(device: DeviceDetails, historyUseCase: HistoryUseCaseApi) {
+	init(device: DeviceDetails) {
         self.device = device
-        self.historyUseCase = historyUseCase
         let epoch = device.claimedAt?.timestampToDate() ?? .now.advancedByDays(days: -SEVEN_DAYS_OFFSET)
         let offset = Date.now.days(from: epoch)
         self.historyDates = DateRange(epoch: epoch,
@@ -33,9 +31,9 @@ class HistoryContainerViewModel: ObservableObject {
         guard let deviceId = device.id else {
             return
         }
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .historyDay,
-                                                              .itemId: .custom(deviceId),
-                                                              .date: .custom(date.getFormattedDate(format: .onlyDate))])
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .historyDay,
+																	.itemId: .custom(deviceId),
+																	.date: .custom(date.getFormattedDate(format: .onlyDate))])
 
         // Prevent unecessary UI refreshes
         guard currentDate != date else {
