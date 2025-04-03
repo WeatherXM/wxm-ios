@@ -49,10 +49,14 @@ class ProfileViewModel: ObservableObject {
 		let url = URL(string: urlString)
 		return url?.host ?? "-"
 	}
+	private let linkNavigation: LinkNavigation
 
-	public init(meUseCase: MeUseCaseApi, remoteConfigUseCase: RemoteConfigUseCaseApi) {
+	public init(meUseCase: MeUseCaseApi,
+				remoteConfigUseCase: RemoteConfigUseCaseApi,
+				linkNavigation: LinkNavigation = LinkNavigationHelper()) {
         self.meUseCase = meUseCase
 		self.remoteConfigUseCase = remoteConfigUseCase
+		self.linkNavigation = linkNavigation
 		scrollOffsetObject = .init()
 		tabBarVisibilityHandler = TabBarVisibilityHandler(scrollOffsetObject: self.scrollOffsetObject)
 		tabBarVisibilityHandler.$isTabBarShowing.assign(to: &$isTabBarVisible)
@@ -107,7 +111,7 @@ class ProfileViewModel: ObservableObject {
 	}
 
 	func handleBuyStationTap() {
-		LinkNavigationHelper().openUrl(DisplayedLinks.shopLink.linkURL)
+		linkNavigation.openUrl(DisplayedLinks.shopLink.linkURL)
 	}
 
 	func handleTotalEarnedInfoTap() {
