@@ -632,6 +632,7 @@
 		26F83CB72D9D79BE00E5A8B8 /* ExplorerStationsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CB62D9D79BE00E5A8B8 /* ExplorerStationsListViewModelTests.swift */; };
 		26F83CB92D9D7F5F00E5A8B8 /* MockAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CB82D9D7F4F00E5A8B8 /* MockAuthUseCase.swift */; };
 		26F83CBB2D9D82A700E5A8B8 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CBA2D9D82A700E5A8B8 /* SettingsViewModelTests.swift */; };
+		26F83CBD2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CBC2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1294,6 +1295,7 @@
 		26F83CB62D9D79BE00E5A8B8 /* ExplorerStationsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerStationsListViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CB82D9D7F4F00E5A8B8 /* MockAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthUseCase.swift; sourceTree = "<group>"; };
 		26F83CBA2D9D82A700E5A8B8 /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
+		26F83CBC2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1683,6 +1685,7 @@
 				26F83CB22D9D6FC600E5A8B8 /* ExplorerSearchViewModelTests.swift */,
 				26F83CB62D9D79BE00E5A8B8 /* ExplorerStationsListViewModelTests.swift */,
 				26F83CBA2D9D82A700E5A8B8 /* SettingsViewModelTests.swift */,
+				26F83CBC2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -3571,6 +3574,7 @@
 				26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */,
 				26710E542D7B31EF00878298 /* MockUserDefaultsRepositoryImpl.swift in Sources */,
 				26710E3E2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift in Sources */,
+				26F83CBD2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift in Sources */,
 				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
 				26710E4C2D7B21E700878298 /* RewardsUseCaseTests.swift in Sources */,
 				26710E9C2D7F36A700878298 /* DeviceInfoUseCaseTests.swift in Sources */,
