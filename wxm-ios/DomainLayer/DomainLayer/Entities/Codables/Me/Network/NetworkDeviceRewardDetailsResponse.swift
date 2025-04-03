@@ -56,6 +56,15 @@ public extension NetworkDeviceRewardDetailsResponse {
 			case cellCapacity = "cell_capacity"
 			case cellPosition = "cell_position"
 		}
+
+		public init(actualReward: Double?, rewardScore: Int?, maxReward: Double?, qodScore: Int?, cellCapacity: Int?, cellPosition: Int?) {
+			self.actualReward = actualReward
+			self.rewardScore = rewardScore
+			self.maxReward = maxReward
+			self.qodScore = qodScore
+			self.cellCapacity = cellCapacity
+			self.cellPosition = cellPosition
+		}
 	}
 
 	struct Boost: Codable, Hashable, Sendable {

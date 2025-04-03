@@ -30,10 +30,22 @@ struct MockRewardsTimelineUseCase: RewardsTimelineUseCaseApi {
 	}
 	
 	func getRewardDetails(deviceId: String, date: String) async throws -> Result<NetworkDeviceRewardDetailsResponse?, NetworkErrorResponse> {
+		let annotations: [RewardAnnotation] = [.init(severity: .error,
+													 group: .noLocationData,
+													 title: nil,
+													 message: nil,
+													 docUrl: nil)]
+		let base: NetworkDeviceRewardDetailsResponse.Base = .init(actualReward: 2.2,
+																  rewardScore: 45,
+																  maxReward: 4.0,
+																  qodScore: 65,
+																  cellCapacity: nil,
+																  cellPosition: nil)
+
 		let response = NetworkDeviceRewardDetailsResponse(timestamp: nil,
 														  totalDailyReward: nil,
-														  annotations: nil,
-														  base: nil,
+														  annotations: annotations,
+														  base: base,
 														  boost: nil,
 														  rewardSplit: nil)
 		return .success(response)
