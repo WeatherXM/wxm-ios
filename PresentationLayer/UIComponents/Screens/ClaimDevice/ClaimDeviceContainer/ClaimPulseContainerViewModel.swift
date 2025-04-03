@@ -11,7 +11,7 @@ import Toolkit
 
 class ClaimPulseContainerViewModel: ClaimDeviceContainerViewModel {
 
-	override init(useCase: MeUseCaseApi, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCase) {
+	override init(useCase: MeUseCaseApi, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCaseApi) {
 		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
 		navigationTitle = ClaimStationType.pulse.navigationTitle
 		steps = getSteps()

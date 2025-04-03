@@ -83,7 +83,7 @@ class SwinjectHelper: SwinjectInterface {
         container.register(DeviceLocationRepository.self) { _ in
             DeviceLocationRepositoryImpl()
         }
-        container.register(DeviceLocationUseCase.self) { resolver in
+		container.register(DeviceLocationUseCaseApi.self) { resolver in
             DeviceLocationUseCase(deviceLocationRepository: resolver.resolve(DeviceLocationRepository.self)!)
         }
 

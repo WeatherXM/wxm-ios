@@ -9,7 +9,8 @@ import Foundation
 import Combine
 import CoreLocation
 
-public protocol DeviceLocationUseCaseApi {
+public protocol DeviceLocationUseCaseApi: Sendable {
+	var searchResults: AnyPublisher<[DeviceLocationSearchResult], Never> { get }
 	func getCountryInfos() -> [CountryInfo]?
 	func searchFor(_ query: String)
 	func locationFromSearchResult(_ searchResult: DeviceLocationSearchResult) -> AnyPublisher<DeviceLocation, Never>

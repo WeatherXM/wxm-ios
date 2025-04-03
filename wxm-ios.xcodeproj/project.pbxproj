@@ -644,6 +644,8 @@
 		26F83CD12D9E9EF000E5A8B8 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CD02D9E9EF000E5A8B8 /* ProfileViewModelTests.swift */; };
 		26F83CD32D9EAD4A00E5A8B8 /* WeatherStationsHomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CD22D9EAD4A00E5A8B8 /* WeatherStationsHomeViewModelTests.swift */; };
 		26F83CD52D9EB91900E5A8B8 /* RewardDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CD42D9EB91900E5A8B8 /* RewardDetailsViewModelTests.swift */; };
+		26F83CD92D9EC99200E5A8B8 /* MockDeviceLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CD82D9EC98D00E5A8B8 /* MockDeviceLocationUseCase.swift */; };
+		26F83CDB2D9ECFCF00E5A8B8 /* SelectStationLocationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CDA2D9ECFCF00E5A8B8 /* SelectStationLocationViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1318,6 +1320,8 @@
 		26F83CD02D9E9EF000E5A8B8 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CD22D9EAD4A00E5A8B8 /* WeatherStationsHomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStationsHomeViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CD42D9EB91900E5A8B8 /* RewardDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		26F83CD82D9EC98D00E5A8B8 /* MockDeviceLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDeviceLocationUseCase.swift; sourceTree = "<group>"; };
+		26F83CDA2D9ECFCF00E5A8B8 /* SelectStationLocationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1716,6 +1720,7 @@
 				26F83CD02D9E9EF000E5A8B8 /* ProfileViewModelTests.swift */,
 				26F83CD22D9EAD4A00E5A8B8 /* WeatherStationsHomeViewModelTests.swift */,
 				26F83CD42D9EB91900E5A8B8 /* RewardDetailsViewModelTests.swift */,
+				26F83CDA2D9ECFCF00E5A8B8 /* SelectStationLocationViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1745,6 +1750,7 @@
 				26F83CC22D9E7BE500E5A8B8 /* MockMainUseCase.swift */,
 				26F83CC62D9E880C00E5A8B8 /* MockFiltersUseCase.swift */,
 				26F83CCE2D9E9B5200E5A8B8 /* MockRemoteConfigUseCase.swift */,
+				26F83CD82D9EC98D00E5A8B8 /* MockDeviceLocationUseCase.swift */,
 			);
 			path = MockUseCases;
 			sourceTree = "<group>";
@@ -3612,9 +3618,11 @@
 				26710E3E2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift in Sources */,
 				26F83CBD2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift in Sources */,
 				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
+				26F83CDB2D9ECFCF00E5A8B8 /* SelectStationLocationViewModelTests.swift in Sources */,
 				26710E4C2D7B21E700878298 /* RewardsUseCaseTests.swift in Sources */,
 				26710E9C2D7F36A700878298 /* DeviceInfoUseCaseTests.swift in Sources */,
 				26F176A42D79E783000BA381 /* WidgetUseCaseTests.swift in Sources */,
+				26F83CD92D9EC99200E5A8B8 /* MockDeviceLocationUseCase.swift in Sources */,
 				26F83C8F2D9C185F00E5A8B8 /* MockDeviceDetailsUseCase.swift in Sources */,
 				26F83CD12D9E9EF000E5A8B8 /* ProfileViewModelTests.swift in Sources */,
 				26710E3C2D7AE86400878298 /* MockFirmwareUpdateRepositoryImpl.swift in Sources */,

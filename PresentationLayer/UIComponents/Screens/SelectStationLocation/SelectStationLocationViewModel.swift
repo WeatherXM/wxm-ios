@@ -19,7 +19,7 @@ protocol SelectStationLocationViewModelDelegate: AnyObject {
 class SelectStationLocationViewModel: ObservableObject {
 
 	let device: DeviceDetails
-	let deviceLocationUseCase: DeviceLocationUseCase
+	let deviceLocationUseCase: DeviceLocationUseCaseApi
 	let meUseCase: MeUseCaseApi
 	@Published var termsAccepted: Bool = false
 	@Published private(set) var selectedCoordinate: CLLocationCoordinate2D?
@@ -32,7 +32,7 @@ class SelectStationLocationViewModel: ObservableObject {
 	private weak var delegate: SelectStationLocationViewModelDelegate?
 
 	init(device: DeviceDetails,
-		 deviceLocationUseCase: DeviceLocationUseCase,
+		 deviceLocationUseCase: DeviceLocationUseCaseApi,
 		 meUseCase: MeUseCaseApi,
 		 delegate: SelectStationLocationViewModelDelegate?) {
 		self.device = device

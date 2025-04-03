@@ -150,7 +150,7 @@ enum ViewModelsFactory {
 	static func getSelectLocationViewModel(device: DeviceDetails,
 										   followState: UserDeviceFollowState?,
 										   delegate: SelectStationLocationViewModelDelegate?) -> SelectStationLocationViewModel {
-		let deviceLocationUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
+		let deviceLocationUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCaseApi.self)!
 		let meUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		return SelectStationLocationViewModel(device: device, deviceLocationUseCase: deviceLocationUseCase, meUseCase: meUseCase, delegate: delegate)
 	}
@@ -183,8 +183,8 @@ enum ViewModelsFactory {
 	static func getClaimStationContainerViewModel(type: ClaimStationType) -> ClaimDeviceContainerViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		let devicesUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DevicesUseCaseApi.self)!
-		let deviceLocationUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
-		
+		let deviceLocationUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCaseApi.self)!
+
 		switch type {
 			case .m5:
 				return ClaimM5ContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
@@ -238,7 +238,7 @@ enum ViewModelsFactory {
 	}
 
 	static func getLocationMapViewModel(initialCoordinate: CLLocationCoordinate2D? = nil) -> SelectLocationMapViewModel {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCaseApi.self)!
 		return SelectLocationMapViewModel(useCase: useCase, initialCoordinate: initialCoordinate)
 	}
 
