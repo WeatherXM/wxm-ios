@@ -11,9 +11,9 @@ import DomainLayer
 import Toolkit
 
 class FilterViewModel: ObservableObject {
-    @Published var selectedSortBy: SortBy = .defaultValue
-    @Published var selectedFilter: Filter = .defaultValue
-    @Published var selectedGroupBy: GroupBy = .defaultValue
+    @Published private(set) var selectedSortBy: SortBy = .defaultValue
+    @Published private(set) var selectedFilter: Filter = .defaultValue
+    @Published private(set) var selectedGroupBy: GroupBy = .defaultValue
     var isSaveEnabled: Bool {
         initialFilters?.sortBy != selectedSortBy ||
         initialFilters?.filter != selectedFilter ||
