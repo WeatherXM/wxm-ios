@@ -642,6 +642,7 @@
 		26F83CCD2D9E91EA00E5A8B8 /* ExplorerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CCC2D9E91EA00E5A8B8 /* ExplorerViewModelTests.swift */; };
 		26F83CCF2D9E9B5D00E5A8B8 /* MockRemoteConfigUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CCE2D9E9B5200E5A8B8 /* MockRemoteConfigUseCase.swift */; };
 		26F83CD12D9E9EF000E5A8B8 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CD02D9E9EF000E5A8B8 /* ProfileViewModelTests.swift */; };
+		26F83CD32D9EAD4A00E5A8B8 /* WeatherStationsHomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CD22D9EAD4A00E5A8B8 /* WeatherStationsHomeViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1314,6 +1315,7 @@
 		26F83CCC2D9E91EA00E5A8B8 /* ExplorerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CCE2D9E9B5200E5A8B8 /* MockRemoteConfigUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRemoteConfigUseCase.swift; sourceTree = "<group>"; };
 		26F83CD02D9E9EF000E5A8B8 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
+		26F83CD22D9EAD4A00E5A8B8 /* WeatherStationsHomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStationsHomeViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1710,6 +1712,7 @@
 				26F83CC82D9E8ADF00E5A8B8 /* FilterViewModelTests.swift */,
 				26F83CCC2D9E91EA00E5A8B8 /* ExplorerViewModelTests.swift */,
 				26F83CD02D9E9EF000E5A8B8 /* ProfileViewModelTests.swift */,
+				26F83CD22D9EAD4A00E5A8B8 /* WeatherStationsHomeViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -3663,6 +3666,7 @@
 				26710E5A2D7EED7200878298 /* HistoryUseCaseTest.swift in Sources */,
 				26DF1F5C2D5502D20001E936 /* NetworkRepositoryImplTests.swift in Sources */,
 				26F83CCD2D9E91EA00E5A8B8 /* ExplorerViewModelTests.swift in Sources */,
+				26F83CD32D9EAD4A00E5A8B8 /* WeatherStationsHomeViewModelTests.swift in Sources */,
 				26DF1F662D563D270001E936 /* MockLocationManager.swift in Sources */,
 				26F83CB72D9D79BE00E5A8B8 /* ExplorerStationsListViewModelTests.swift in Sources */,
 				26D32FE82C510DF000E765E0 /* DateExtensionsTests.swift in Sources */,

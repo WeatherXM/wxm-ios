@@ -19,7 +19,13 @@ final class MockRemoteConfigUseCase: RemoteConfigUseCaseApi {
 	}
 
 	var infoBannerPublisher: AnyPublisher<InfoBanner?, Never> {
-		Just(nil).eraseToAnyPublisher()
+		Just(InfoBanner(id: "124",
+						title: nil,
+						message: nil,
+						buttonShow: nil,
+						actionLabel: nil,
+						url: nil,
+						dismissable: nil)).eraseToAnyPublisher()
 	}
 
 	var announcementPublisher: AnyPublisher<Announcement?, Never> {

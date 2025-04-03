@@ -38,6 +38,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 
 	private var uploadInProgressDeviceId: String?
+	private let linkNavigation: LinkNavigation
 
 	var isFiltersActive: Bool {
 		FilterValues.default != filters
@@ -66,10 +67,14 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	private(set) var failObj: FailSuccessStateObject?
 	weak var mainVM: MainScreenViewModel?
 
-	public init(meUseCase: MeUseCaseApi, remoteConfigUseCase: RemoteConfigUseCaseApi, photosGalleryUseCase: PhotoGalleryUseCaseApi) {
+	init(meUseCase: MeUseCaseApi,
+		 remoteConfigUseCase: RemoteConfigUseCaseApi,
+		 photosGalleryUseCase: PhotoGalleryUseCaseApi,
+		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.meUseCase = meUseCase
 		self.remoteConfigUseCase = remoteConfigUseCase
 		self.photosUseCase = photosGalleryUseCase
+		self.linkNavigation = linkNavigation
 		let scrollOffsetObject: TrackableScrollOffsetObject = .init()
 		self.scrollOffsetObject = scrollOffsetObject
 		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
@@ -285,7 +290,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 
 	func handleBuyButtonTap() {
-		LinkNavigationHelper().openUrl(DisplayedLinks.shopLink.linkURL)
+		linkNavigation.openUrl(DisplayedLinks.shopLink.linkURL)
 	}
 
 	func handleFollowInExplorerTap() {
