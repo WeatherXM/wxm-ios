@@ -633,6 +633,7 @@
 		26F83CB92D9D7F5F00E5A8B8 /* MockAuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CB82D9D7F4F00E5A8B8 /* MockAuthUseCase.swift */; };
 		26F83CBB2D9D82A700E5A8B8 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CBA2D9D82A700E5A8B8 /* SettingsViewModelTests.swift */; };
 		26F83CBD2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CBC2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift */; };
+		26F83CBF2D9E755300E5A8B8 /* SignInViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CBE2D9E755300E5A8B8 /* SignInViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1296,6 +1297,7 @@
 		26F83CB82D9D7F4F00E5A8B8 /* MockAuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthUseCase.swift; sourceTree = "<group>"; };
 		26F83CBA2D9D82A700E5A8B8 /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CBC2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewModelTests.swift; sourceTree = "<group>"; };
+		26F83CBE2D9E755300E5A8B8 /* SignInViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1686,6 +1688,7 @@
 				26F83CB62D9D79BE00E5A8B8 /* ExplorerStationsListViewModelTests.swift */,
 				26F83CBA2D9D82A700E5A8B8 /* SettingsViewModelTests.swift */,
 				26F83CBC2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift */,
+				26F83CBE2D9E755300E5A8B8 /* SignInViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -3561,6 +3564,7 @@
 				26710E982D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift in Sources */,
 				26F83CA52D9D3E4200E5A8B8 /* HistoryViewModelTests.swift in Sources */,
 				2648146D2D9A8A1500BCCC31 /* ProPromotionalViewModelTests.swift in Sources */,
+				26F83CBF2D9E755300E5A8B8 /* SignInViewModelTests.swift in Sources */,
 				26F1769C2D79B832000BA381 /* MockPhotosRepositoryImpl.swift in Sources */,
 				26F83C992D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift in Sources */,
 				26710E962D7F15B000878298 /* DevicesUseCaseTests.swift in Sources */,
