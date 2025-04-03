@@ -75,12 +75,20 @@ struct MockAuthUseCase: AuthUseCaseApi {
 	
 	func resetPassword(email: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
 		let emptyResponse = EmptyEntity.emptyValue()
+		let result: Result<EmptyEntity, NetworkErrorResponse>
+		if email == MockAuthUseCase.invalidEmail {
+			result = .failure(NetworkErrorResponse(initialError: .explicitlyCancelled,
+												   backendError: nil))
+		} else {
+			result = .success(emptyResponse)
+		}
+
 		let response = DataResponse<EmptyEntity, NetworkErrorResponse>(request: nil,
 																	   response: nil,
 																	   data: nil,
 																	   metrics: nil,
 																	   serializationDuration: 0,
-																	   result: .success(emptyResponse))
+																	   result: result)
 		return Just(response).eraseToAnyPublisher()
 	}
 	
