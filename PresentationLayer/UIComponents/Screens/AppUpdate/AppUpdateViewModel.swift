@@ -18,10 +18,13 @@ class AppUpdateViewModel: ObservableObject {
 	
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	private let useCase: MainUseCaseApi
+	private let linkNavigation: LinkNavigation
 
-	init(useCase: MainUseCaseApi) {
+	init(useCase: MainUseCaseApi,
+		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.useCase = useCase
-		
+		self.linkNavigation = linkNavigation
+
 		RemoteConfigManager.shared.$iosAppChangelog.assign(to: &$whatsNewText)
 
 		RemoteConfigManager.shared.$iosAppMinimumVersion.sink { [weak self] minVersion in
@@ -38,9 +41,7 @@ class AppUpdateViewModel: ObservableObject {
 	}
 	
 	func handleUpdateButtonTap() {
-		if let url = URL(string: DisplayedLinks.appstore.linkURL) {
-			UIApplication.shared.open(url)
-		}
+		linkNavigation.openUrl(DisplayedLinks.appstore.linkURL)
 
 		if let version = RemoteConfigManager.shared.iosAppLatestVersion {
 			useCase.updateLastAppVersionPrompt(with: version)
