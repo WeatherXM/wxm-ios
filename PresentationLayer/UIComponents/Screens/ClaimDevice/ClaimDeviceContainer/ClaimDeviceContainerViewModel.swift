@@ -31,7 +31,9 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	private let CLAIMING_RETRIES_DELAY_SECONDS: TimeInterval = 5
 	private var cancellableSet: Set<AnyCancellable> = .init()
 
-	init(useCase: MeUseCaseApi, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCaseApi) {
+	init(useCase: MeUseCaseApi,
+		 devicesUseCase: DevicesUseCaseApi,
+		 deviceLocationUseCase: DeviceLocationUseCaseApi) {
 		self.useCase = useCase
 		self.devicesUseCase = devicesUseCase
 		self.deviceLocationUseCase = deviceLocationUseCase

@@ -650,6 +650,8 @@
 		26F83CDF2D9FBF4400E5A8B8 /* RewardAnnotationsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CDE2D9FBF4400E5A8B8 /* RewardAnnotationsViewModelTests.swift */; };
 		26F83CE12D9FD10000E5A8B8 /* RewardBoostsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CE02D9FD10000E5A8B8 /* RewardBoostsViewModelTests.swift */; };
 		26F83CE32D9FDBD100E5A8B8 /* ForecastDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CE22D9FDBD100E5A8B8 /* ForecastDetailsViewModelTests.swift */; };
+		26F83CE52D9FE28B00E5A8B8 /* MockDevicesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CE42D9FE28100E5A8B8 /* MockDevicesUseCase.swift */; };
+		26F83CE72D9FE77300E5A8B8 /* ClaimDeviceContainerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CE62D9FE77300E5A8B8 /* ClaimDeviceContainerViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
@@ -1330,6 +1332,8 @@
 		26F83CDE2D9FBF4400E5A8B8 /* RewardAnnotationsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotationsViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CE02D9FD10000E5A8B8 /* RewardBoostsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardBoostsViewModelTests.swift; sourceTree = "<group>"; };
 		26F83CE22D9FDBD100E5A8B8 /* ForecastDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		26F83CE42D9FE28100E5A8B8 /* MockDevicesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDevicesUseCase.swift; sourceTree = "<group>"; };
+		26F83CE62D9FE77300E5A8B8 /* ClaimDeviceContainerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceContainerViewModelTests.swift; sourceTree = "<group>"; };
 		26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateView.swift; sourceTree = "<group>"; };
 		26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVerificationStateViewModel.swift; sourceTree = "<group>"; };
 		26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardFieldView.swift; sourceTree = "<group>"; };
@@ -1733,6 +1737,7 @@
 				26F83CDE2D9FBF4400E5A8B8 /* RewardAnnotationsViewModelTests.swift */,
 				26F83CE02D9FD10000E5A8B8 /* RewardBoostsViewModelTests.swift */,
 				26F83CE22D9FDBD100E5A8B8 /* ForecastDetailsViewModelTests.swift */,
+				26F83CE62D9FE77300E5A8B8 /* ClaimDeviceContainerViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1763,6 +1768,7 @@
 				26F83CC62D9E880C00E5A8B8 /* MockFiltersUseCase.swift */,
 				26F83CCE2D9E9B5200E5A8B8 /* MockRemoteConfigUseCase.swift */,
 				26F83CD82D9EC98D00E5A8B8 /* MockDeviceLocationUseCase.swift */,
+				26F83CE42D9FE28100E5A8B8 /* MockDevicesUseCase.swift */,
 			);
 			path = MockUseCases;
 			sourceTree = "<group>";
@@ -3617,6 +3623,7 @@
 				26F83CBF2D9E755300E5A8B8 /* SignInViewModelTests.swift in Sources */,
 				26F1769C2D79B832000BA381 /* MockPhotosRepositoryImpl.swift in Sources */,
 				26F83CC32D9E7BE900E5A8B8 /* MockMainUseCase.swift in Sources */,
+				26F83CE72D9FE77300E5A8B8 /* ClaimDeviceContainerViewModelTests.swift in Sources */,
 				26F83C992D9D27AF00E5A8B8 /* StationRewardsViewModelTests.swift in Sources */,
 				26710E962D7F15B000878298 /* DevicesUseCaseTests.swift in Sources */,
 				26F83CC12D9E7B8000E5A8B8 /* RegisterViewModelTests.swift in Sources */,
@@ -3684,6 +3691,7 @@
 				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
 				26F83CAF2D9D604D00E5A8B8 /* MockNetworkUseCase.swift in Sources */,
 				26710E8E2D7EF73000878298 /* MockExplorerRepositoryImpl.swift in Sources */,
+				26F83CE52D9FE28B00E5A8B8 /* MockDevicesUseCase.swift in Sources */,
 				26710E942D7F0B5400878298 /* MockBluetoothDevicesRepositoryImpl.swift in Sources */,
 				26F83CC92D9E8ADF00E5A8B8 /* FilterViewModelTests.swift in Sources */,
 				26F83CC72D9E881200E5A8B8 /* MockFiltersUseCase.swift in Sources */,
