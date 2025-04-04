@@ -34,6 +34,18 @@ public extension NetworkDeviceRewardBoostsResponse {
 			case docUrl = "doc_url"
 			case about
 		}
+
+		public init(title: String?,
+					description: String?,
+					imageUrl: String?,
+					docUrl: String?,
+					about: String?) {
+			self.title = title
+			self.description = description
+			self.imageUrl = imageUrl
+			self.docUrl = docUrl
+			self.about = about
+		}
 	}
 
 	struct Details: Codable, Hashable, Sendable {

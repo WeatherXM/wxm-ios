@@ -52,7 +52,12 @@ struct MockRewardsTimelineUseCase: RewardsTimelineUseCaseApi {
 	}
 	
 	func getRewardBoosts(deviceId: String, code: String) async throws -> Result<NetworkDeviceRewardBoostsResponse?, NetworkErrorResponse> {
-		let boosts = NetworkDeviceRewardBoostsResponse(code: nil, metadata: nil, details: nil)
+		let metadata: NetworkDeviceRewardBoostsResponse.Metadata = .init(title: nil,
+																		 description: nil,
+																		 imageUrl: nil,
+																		 docUrl: "http://example.com",
+																		 about: nil)
+		let boosts = NetworkDeviceRewardBoostsResponse(code: nil, metadata: metadata, details: nil)
 		return .success(boosts)
 	}
 }
