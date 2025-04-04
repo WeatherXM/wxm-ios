@@ -20,10 +20,23 @@ struct RewardAnalyticsView: View {
 }
 
 extension RewardAnalyticsView {
-	enum State {
+	enum State: Equatable {
 		case empty(WXMEmptyView.Configuration)
 		case noRewards
-		case content		
+		case content
+
+		static func == (lhs: RewardAnalyticsView.State, rhs: RewardAnalyticsView.State) -> Bool {
+			switch (lhs, rhs) {
+				case (.empty(let lhsConfig), .empty(let rhsConfig)):
+					return lhsConfig.title == rhsConfig.title
+				case (.noRewards, .noRewards):
+					return true
+				case (.content, .content):
+					return true
+				default:
+					return false
+			}
+		}
 	}
 }
 
