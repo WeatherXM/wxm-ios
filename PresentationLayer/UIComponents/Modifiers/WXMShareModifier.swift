@@ -44,6 +44,10 @@ private struct WXMShareModifier: ViewModifier {
 			activityController.popoverPresentationController?.permittedArrowDirections = []
 		}
 		activityController.delegate = self
+		activityController.completionWithItemsHandler = { [items] _, completed, _, _ in
+			guard completed else { return }
+			cleanup(items: items.compactMap { $0 as? ShareFileItemSource })
+		}
 		hostingWrapper.hostingController = activityController
 		UIApplication.shared.rootViewController?.present(activityController, animated: true)
 	}
@@ -60,6 +64,10 @@ extension WXMShareModifier:  WXMShareModifier.WXMActivityViewControllerDelegate 
 }
 
 private extension WXMShareModifier {
+	func cleanup(items: [ShareFileItemSource]?) {
+		items?.forEach { $0.url?.deleteFile() }
+	}
+
 	@MainActor
 	struct Store {
 		var anchorView = UIView()
@@ -99,9 +107,11 @@ private extension WXMShareModifier {
 
 	class ShareFileItemSource: NSObject, UIActivityItemSource {
 		let image: UIImage
+		let url: URL?
 
 		init(image: UIImage) {
 			self.image = image
+			url = image.saveWithName("share_\(UUID().uuidString)", tempDirectory: true)
 		}
 
 		func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
@@ -109,7 +119,7 @@ private extension WXMShareModifier {
 		}
 		
 		func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-			image
+			url
 		}
 
 		func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {

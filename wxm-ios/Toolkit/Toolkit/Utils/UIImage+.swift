@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 public extension UIImage {
-	func saveWithName(_ name: String) -> URL? {
-		guard let documentsDirectory = FileManager.documentsDirectory,
+	func saveWithName(_ name: String, tempDirectory: Bool = false) -> URL? {
+		guard let directory = tempDirectory ? FileManager.tempDirectory : FileManager.documentsDirectory,
 			  let data = self.pngData() else {
 			return nil
 		}
 
-		let filename = documentsDirectory.appendingPathComponent(name)
+		let filename = directory.appendingPathComponent(name).appendingPathExtension(for: .png)
 		try? data.write(to: filename)
 		
 		return filename

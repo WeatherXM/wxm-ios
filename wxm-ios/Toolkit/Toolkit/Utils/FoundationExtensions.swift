@@ -176,6 +176,10 @@ public extension URL {
 		return url.queryItems?.reduce(into: [:]) { $0[$1.name] = $1.value }
 	}
 
+	func deleteFile() {
+		try? FileManager.default.removeItem(at: self)
+	}
+
 	mutating func appendQueryItem(name: String, value: String?) {
 		guard var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: true) else {
 			return
@@ -194,6 +198,10 @@ public extension FileManager {
 	static var documentsDirectory: URL? {
 		let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 		return urls.first
+	}
+
+	static var tempDirectory: URL? {
+		FileManager.default.temporaryDirectory		
 	}
 }
 
