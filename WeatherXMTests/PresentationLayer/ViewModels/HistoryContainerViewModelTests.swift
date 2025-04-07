@@ -9,6 +9,7 @@ import Testing
 @testable import WeatherXM
 import DomainLayer
 
+@Suite(.serialized)
 struct HistoryContainerViewModelTests {
 
     @Test func normalState() async throws {

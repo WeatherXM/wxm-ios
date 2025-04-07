@@ -10,6 +10,7 @@ import Testing
 import DomainLayer
 import Combine
 
+@Suite(.serialized)
 @MainActor
 struct ClaimDeviceContainerViewModelTests {
 	let viewModel: ClaimDeviceContainerViewModel

@@ -10,6 +10,7 @@ import Testing
 import DomainLayer
 import Combine
 
+@Suite(.serialized)
 @MainActor
 struct RewardAnalyticsViewModelTests {
 	let viewModel: RewardAnalyticsViewModel

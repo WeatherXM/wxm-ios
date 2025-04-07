@@ -8,6 +8,7 @@
 import Testing
 @testable import WeatherXM
 
+@Suite(.serialized)
 struct AnalyticsViewModelTests {
 	let viewModel: AnalyticsViewModel
 	let useCase: MockSettingsUseCase

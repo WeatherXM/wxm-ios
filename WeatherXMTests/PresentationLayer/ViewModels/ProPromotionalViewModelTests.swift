@@ -8,6 +8,7 @@
 import Testing
 @testable import WeatherXM
 
+@Suite(.serialized)
 @MainActor
 struct ProPromotionalViewModelTests {
 	let viewModel: ProPromotionalViewModel

@@ -9,6 +9,7 @@ import Testing
 import Foundation
 @testable import WeatherXM
 
+@Suite(.serialized)
 @MainActor
 struct PhotoVerificationStateViewModelTests {
 	let viewModel: PhotoVerificationStateViewModel

@@ -45,6 +45,7 @@ private struct NetworkModel: NetworkSearchModel {
 	}
 }
 
+@Suite(.serialized)
 @MainActor
 struct ExplorerSearchViewModelTests {
 	let viewModel: ExplorerSearchViewModel

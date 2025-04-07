@@ -9,6 +9,7 @@ import Testing
 import DomainLayer
 @testable import WeatherXM
 
+@Suite(.serialized)
 @MainActor
 struct FilterViewModelTests {
 	let viewModel: FilterViewModel

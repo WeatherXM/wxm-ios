@@ -10,6 +10,7 @@ import Testing
 import DomainLayer
 import Toolkit
 
+@Suite(.serialized)
 @MainActor
 struct ExplorerViewModelTests {
 	let viewModel: ExplorerViewModel

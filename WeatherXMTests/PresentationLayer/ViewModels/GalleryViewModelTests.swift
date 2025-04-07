@@ -9,6 +9,7 @@ import Testing
 @testable import WeatherXM
 import SwiftUI
 
+@Suite(.serialized)
 @MainActor
 struct GalleryViewModelTests {
 	let viewModel: GalleryViewModel

@@ -17,6 +17,7 @@ private class WeatherManager: WeatherUnitsManagerApi {
 	var pressureUnit: PressureUnitsEnum = .hectopascal
 }
 
+@Suite(.serialized)
 @MainActor
 struct SettingsViewModelTests {
 	let viewModel: SettingsViewModel

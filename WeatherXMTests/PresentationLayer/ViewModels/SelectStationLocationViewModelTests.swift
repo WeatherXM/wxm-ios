@@ -19,6 +19,7 @@ private class LocationDelegate: SelectStationLocationViewModelDelegate {
 	}
 }
 
+@Suite(.serialized)
 @MainActor
 struct SelectStationLocationViewModelTests {
 	let viewModel: SelectStationLocationViewModel

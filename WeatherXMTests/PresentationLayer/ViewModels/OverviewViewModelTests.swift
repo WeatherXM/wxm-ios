@@ -34,6 +34,7 @@ class StationDetailsContainerDelegate: StationDetailsViewModelDelegate {
 }
 
 
+@Suite(.serialized)
 @MainActor
 struct OverviewViewModelTests {
 	let viewModel: OverviewViewModel

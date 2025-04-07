@@ -10,6 +10,7 @@ import Testing
 import Toolkit
 import DomainLayer
 
+@Suite(.serialized)
 @MainActor
 struct ProfileViewModelTests {
 	let viewModel: ProfileViewModel

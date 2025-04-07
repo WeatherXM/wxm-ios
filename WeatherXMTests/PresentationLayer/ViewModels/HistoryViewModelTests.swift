@@ -9,6 +9,7 @@ import Testing
 @testable import WeatherXM
 import Foundation
 
+@Suite(.serialized)
 @MainActor
 struct HistoryViewModelTests {
 	let useCase: MockHistoryUseCase

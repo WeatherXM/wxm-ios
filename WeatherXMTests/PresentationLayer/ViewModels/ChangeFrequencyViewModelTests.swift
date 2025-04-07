@@ -10,6 +10,7 @@ import Testing
 import DomainLayer
 import Combine
 
+@Suite(.serialized)
 @MainActor
 struct ChangeFrequencyViewModelTests {
 	let viewModel: ChangeFrequencyViewModel
