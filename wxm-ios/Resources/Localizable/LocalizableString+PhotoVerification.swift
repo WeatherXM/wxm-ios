@@ -15,6 +15,7 @@ extension LocalizableString {
 		case boostNetworkDescription
 		case howToTakePhoto
 		case rotateInstruction
+		case zoomInstruction
 		case surfaceInstruction
 		case noFacesInstruction
 		case maxPhotosInstruction
@@ -110,6 +111,8 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_how_to_take_photo"
 			case .rotateInstruction:
 				"photo_verification_rotate_instruction"
+			case .zoomInstruction:
+				"photo_verification_zoom_instruction"
 			case .surfaceInstruction:
 				"photo_verification_surface_instruction"
 			case .noFacesInstruction:

@@ -6545,6 +6545,17 @@
         }
       }
     },
+    "photo_verification_zoom_instruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If your station is in a hard-to-reach place, zoom in just enough to keep the image clear and without overly cropping the surroundings."
+          }
+        }
+      }
+    },
     "precip_probability" : {
       "extractionState" : "manual",
       "localizations" : {
