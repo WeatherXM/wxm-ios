@@ -6006,17 +6006,6 @@
         }
       }
     },
-    "photo_verification_fault_not_showing_possible_obstacles" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not showing possible obstacles"
-          }
-        }
-      }
-    },
     "photo_verification_fault_not_showing_surroundings" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6028,6 +6017,17 @@
         }
       }
     },
+    "photo_verification_fault_not_visible_obstacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not visible obstacles"
+          }
+        }
+      }
+    },
     "photo_verification_fault_subject_not_in_middle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6035,6 +6035,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Subject not in the middle"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_taken_during_nighttime" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taken during nighttime"
           }
         }
       }
@@ -6057,6 +6068,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Too close"
+          }
+        }
+      }
+    },
+    "photo_verification_fault_too_far_from_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Too far from station"
           }
         }
       }

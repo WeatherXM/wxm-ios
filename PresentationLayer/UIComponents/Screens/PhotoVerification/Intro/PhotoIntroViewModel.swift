@@ -106,8 +106,11 @@ private extension PhotoIntroViewModel {
 						 LocalizableString.PhotoVerification.faultNotShowingSurroundings.localized,
 						 LocalizableString.PhotoVerification.faultTooClose.localized]),
 		 .init(image: .wrongInstallation1,
-			   bullets: [LocalizableString.PhotoVerification.faultNotShowingPossibleObstacles.localized,
+			   bullets: [LocalizableString.PhotoVerification.faultTooFarFromStation.localized,
 						 LocalizableString.PhotoVerification.faultNoSurface.localized]),
+		 .init(image: .wrongInstallation3,
+			   bullets: [LocalizableString.PhotoVerification.faultTakenDuringNighttime.localized,
+						 LocalizableString.PhotoVerification.faultNotVisibleObstacles.localized]),
 		 .init(image: .wrongInstallation2,
 			   bullets: [LocalizableString.PhotoVerification.faultTiltedAngle.localized,
 						 LocalizableString.PhotoVerification.faultSubjectNotInMiddle.localized])]

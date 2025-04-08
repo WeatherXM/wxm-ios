@@ -35,8 +35,10 @@ extension LocalizableString {
 		case faultFacingBottomUp
 		case faultNotShowingSurroundings
 		case faultTooClose
-		case faultNotShowingPossibleObstacles
+		case faultTooFarFromStation
 		case faultNoSurface
+		case faultTakenDuringNighttime
+		case faultNotVisibleObstacles
 		case faultTiltedAngle
 		case faultSubjectNotInMiddle
 		case uploadPhotos
@@ -147,10 +149,14 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_fault_not_showing_surroundings"
 			case .faultTooClose:
 				"photo_verification_fault_too_close"
-			case .faultNotShowingPossibleObstacles:
-				"photo_verification_fault_not_showing_possible_obstacles"
+			case .faultTooFarFromStation:
+				"photo_verification_fault_too_far_from_station"
 			case .faultNoSurface:
 				"photo_verification_fault_no_surface"
+			case .faultTakenDuringNighttime:
+				"photo_verification_fault_taken_during_nighttime"
+			case .faultNotVisibleObstacles:
+				"photo_verification_fault_not_visible_obstacles"
 			case .faultTiltedAngle:
 				"photo_verification_fault_tilted_angle"
 			case .faultSubjectNotInMiddle:
