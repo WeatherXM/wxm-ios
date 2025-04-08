@@ -6133,51 +6133,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Take 2-4 photos of the station from the following angles:"
-          }
-        }
-      }
-    },
-    "photo_verification_max_photos_instruction_bullet_0" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "from the rain gauge looking towards the anemometer"
-          }
-        }
-      }
-    },
-    "photo_verification_max_photos_instruction_bullet_1" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "from the anemometer looking towards the rain gauge"
-          }
-        }
-      }
-    },
-    "photo_verification_max_photos_instruction_bullet_2" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "from the side, showing the rain gauge on the left and anemometer on the right"
-          }
-        }
-      }
-    },
-    "photo_verification_max_photos_instruction_bullet_3" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "from the other side, showing the anemometer on the left and rain gauge on the right"
+            "value" : "Take 4 photos of your station from each cardinal direction: North, East, South, and West."
           }
         }
       }

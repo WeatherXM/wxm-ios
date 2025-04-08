@@ -27,10 +27,7 @@ class PhotoIntroViewModel: ObservableObject {
 		 .init(icon: .iconNoFaces, text: LocalizableString.PhotoVerification.noFacesInstruction.localized, bullets: []),
 		 .init(icon: .iconMaxPhotos,
 			   text: LocalizableString.PhotoVerification.maxPhotosInstruction.localized,
-			   bullets: [LocalizableString.PhotoVerification.maxPhotosInstructionBullet0.localized,
-						 LocalizableString.PhotoVerification.maxPhotosInstructionBullet1.localized,
-						 LocalizableString.PhotoVerification.maxPhotosInstructionBullet2.localized,
-						 LocalizableString.PhotoVerification.maxPhotosInstructionBullet3.localized])]
+			   bullets: [])]
 	}()
 
 	lazy var recommendedExamples: (title: String, examples: [PhotoIntroExamplesView.Example]) = {

@@ -19,10 +19,6 @@ extension LocalizableString {
 		case surfaceInstruction
 		case noFacesInstruction
 		case maxPhotosInstruction
-		case maxPhotosInstructionBullet0
-		case maxPhotosInstructionBullet1
-		case maxPhotosInstructionBullet2
-		case maxPhotosInstructionBullet3
 		case photoExamples
 		case yourPhotoShouldLook
 		case checkFromTheRainGauge
@@ -119,14 +115,6 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_no_faces_instruction"
 			case .maxPhotosInstruction:
 				"photo_verification_max_photos_instruction"
-			case .maxPhotosInstructionBullet0:
-				"photo_verification_max_photos_instruction_bullet_0"
-			case .maxPhotosInstructionBullet1:
-				"photo_verification_max_photos_instruction_bullet_1"
-			case .maxPhotosInstructionBullet2:
-				"photo_verification_max_photos_instruction_bullet_2"
-			case .maxPhotosInstructionBullet3:
-				"photo_verification_max_photos_instruction_bullet_3"
 			case .photoExamples:
 				"photo_verification_photo_examples"
 			case .yourPhotoShouldLook:
