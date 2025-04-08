@@ -38,21 +38,30 @@ fi
 if ([ "$CI_WORKFLOW" = "Unit tests" ])
 then
 # Exit on any command failure
-set -e
+#set -e
 
 # Convert xcresult to JSON
+echo "Contents of derived data path:"
+ls $CI_RESULT_BUNDLE_PATH
 
-if ! xcrun xccov view --report --only-targets ${CI_RESULT_BUNDLE_PATH} > coverage_summary.txt; then
+# Assuming the .xcresult file is in the derived data path
+XCRESULT_PATH=$(find $CI_RESULT_BUNDLE_PATH -name "*.xcresult" | head -n 1)
+
+if [ -z "$XCRESULT_PATH" ]; then
+echo "No .xcresult file found."
+exit 0
+fi
+
+echo "Found .xcresult file at: $XCRESULT_PATH"
+
+if ! xcrun xccov view --report --only-targets ${XCRESULT_PATH} > coverage_summary.txt; then
 echo "Error: Failed to generate coverage report"
-exit 1
+exit 0
 fi
 
 # Create formatted coverage JSON in a more readable way
-echo '{' > coverage_summary.json
-echo '  "body": "## Code Coverage Summary\n\n| Framework | Source Files | Coverage |\n|-----------|--------------|----------|\n' >> coverage_summary.json
-awk 'NR>2 {printf "| %s | %s | %s |\\n", $2, $3, $4}' coverage_summary.txt >> coverage_summary.json
-echo '"' >> coverage_summary.json
-echo '}' >> coverage_summary.json
+awk 'NR>2 {printf "| %s | %s | %s |\\n\n", $2, $3, $4}' coverage_summary.txt | \
+awk 'BEGIN {print "{\n  \"body\": \"## Code Coverage Summary\\n\\n| Framework | Source Files | Coverage |\\n|-----------|--------------|----------|\\n"} {print $0} END {print "\"\n}"}' > coverage_summary.json
 
 # Post the comment to the PR
 if [ -z "$CI_PULL_REQUEST_NUMBER" ]; then
