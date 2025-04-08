@@ -34,3 +34,15 @@ if ([ "$CI_WORKFLOW" = "Submit to App Store" ])
 uploadDSyms Release
 then
 fi
+
+if ([ "$CI_WORKFLOW" = "Unit tests" ])
+then
+  # Convert xcresult to JSON
+  xcrun xccov view --report --only-targets ${CI_RESULT_BUNDLE_PATH} > coverage_summary.txt
+  awk 'NR>2 {printf "| %s | %s | %s |\n", $2, $3, $4}' coverage_summary.txt | awk 'BEGIN {print "{\n  \"body\": \"## Code Coverage Summary\\n\\n| Framework | Source Files | Coverage |\\n|-----------|--------------|----------|\\n"} {print} END {print "\"\\n}"}' > coverage_summary.json
+
+  # Post the comment to the PR
+  curl -X POST "https://api.github.com/repos/WeatherXM/wxm-ios/issues/$CI_PULL_REQUEST_NUMBER/comments" \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  -d @coverage_summary.json
+fi
