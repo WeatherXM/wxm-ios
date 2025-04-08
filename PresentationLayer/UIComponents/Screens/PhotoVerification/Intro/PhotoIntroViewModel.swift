@@ -22,6 +22,7 @@ class PhotoIntroViewModel: ObservableObject {
 	var showTerms: Bool { true }
 	lazy var instructions: [PhotoIntroView.Instruction] = {
 		[.init(icon: .iconRotate, text: LocalizableString.PhotoVerification.rotateInstruction.localized, bullets: []),
+		 .init(icon: .iconZoom, text: LocalizableString.PhotoVerification.zoomInstruction.localized, bullets: []),
 		 .init(icon: .iconSurface, text: LocalizableString.PhotoVerification.surfaceInstruction.localized, bullets: []),
 		 .init(icon: .iconNoFaces, text: LocalizableString.PhotoVerification.noFacesInstruction.localized, bullets: []),
 		 .init(icon: .iconMaxPhotos,
