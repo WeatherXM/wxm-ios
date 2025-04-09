@@ -81,7 +81,7 @@ class GalleryViewModel: ObservableObject {
 		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.deviceId = deviceId
 		self.useCase = photoGalleryUseCase
-		self.images = images.map { GalleryView.GalleryImage(remoteUrl: $0, uiImage: nil, metadata: nil) }
+		self.images = images.map { GalleryView.GalleryImage(remoteUrl: $0, uiImage: nil, metadata: nil, source: nil) }
 		self.isNewPhotoVerification = isNewPhotoVerification
 		self.linkNavigator = linkNavigation
 		selectedImage = self.images.last
@@ -233,7 +233,7 @@ private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UI
 		let metadata = info[.mediaMetadata] as? NSDictionary
 		Task { @MainActor in
 			if let image = info[.originalImage] as? UIImage {
-				imageCallback?([GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata)])
+				imageCallback?([GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata, source: .camera)])
 			}
 		}
 
@@ -265,7 +265,7 @@ private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UI
 				let imgSrc = CGImageSourceCreateWithData(data as CFData, options as CFDictionary)
 				let metadata = CGImageSourceCopyPropertiesAtIndex(imgSrc!, 0, options as CFDictionary)
 				if let image = UIImage(data: data) {
-					images.append(GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata))
+					images.append(GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata, source: .library))
 				}
 			}
 		}

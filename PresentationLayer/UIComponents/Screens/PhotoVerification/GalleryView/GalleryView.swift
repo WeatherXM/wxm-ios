@@ -170,10 +170,16 @@ struct GalleryView: View {
 }
 
 extension GalleryView {
+	enum ImageSource: String {
+		case camera
+		case library
+	}
+
 	struct GalleryImage: Identifiable, Equatable {
 		let remoteUrl: String?
 		let uiImage: UIImage?
 		let metadata: NSDictionary?
+		let source: ImageSource?
 
 		var id: String {
 			remoteUrl ?? "\(uiImage.hashValue)"
