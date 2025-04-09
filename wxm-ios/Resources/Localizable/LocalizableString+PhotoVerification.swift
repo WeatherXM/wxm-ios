@@ -15,13 +15,10 @@ extension LocalizableString {
 		case boostNetworkDescription
 		case howToTakePhoto
 		case rotateInstruction
+		case zoomInstruction
 		case surfaceInstruction
 		case noFacesInstruction
 		case maxPhotosInstruction
-		case maxPhotosInstructionBullet0
-		case maxPhotosInstructionBullet1
-		case maxPhotosInstructionBullet2
-		case maxPhotosInstructionBullet3
 		case photoExamples
 		case yourPhotoShouldLook
 		case checkFromTheRainGauge
@@ -38,8 +35,10 @@ extension LocalizableString {
 		case faultFacingBottomUp
 		case faultNotShowingSurroundings
 		case faultTooClose
-		case faultNotShowingPossibleObstacles
+		case faultTooFarFromStation
 		case faultNoSurface
+		case faultTakenDuringNighttime
+		case faultNotVisibleObstacles
 		case faultTiltedAngle
 		case faultSubjectNotInMiddle
 		case uploadPhotos
@@ -110,20 +109,14 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_how_to_take_photo"
 			case .rotateInstruction:
 				"photo_verification_rotate_instruction"
+			case .zoomInstruction:
+				"photo_verification_zoom_instruction"
 			case .surfaceInstruction:
 				"photo_verification_surface_instruction"
 			case .noFacesInstruction:
 				"photo_verification_no_faces_instruction"
 			case .maxPhotosInstruction:
 				"photo_verification_max_photos_instruction"
-			case .maxPhotosInstructionBullet0:
-				"photo_verification_max_photos_instruction_bullet_0"
-			case .maxPhotosInstructionBullet1:
-				"photo_verification_max_photos_instruction_bullet_1"
-			case .maxPhotosInstructionBullet2:
-				"photo_verification_max_photos_instruction_bullet_2"
-			case .maxPhotosInstructionBullet3:
-				"photo_verification_max_photos_instruction_bullet_3"
 			case .photoExamples:
 				"photo_verification_photo_examples"
 			case .yourPhotoShouldLook:
@@ -156,10 +149,14 @@ extension LocalizableString.PhotoVerification: WXMLocalizable {
 				"photo_verification_fault_not_showing_surroundings"
 			case .faultTooClose:
 				"photo_verification_fault_too_close"
-			case .faultNotShowingPossibleObstacles:
-				"photo_verification_fault_not_showing_possible_obstacles"
+			case .faultTooFarFromStation:
+				"photo_verification_fault_too_far_from_station"
 			case .faultNoSurface:
 				"photo_verification_fault_no_surface"
+			case .faultTakenDuringNighttime:
+				"photo_verification_fault_taken_during_nighttime"
+			case .faultNotVisibleObstacles:
+				"photo_verification_fault_not_visible_obstacles"
 			case .faultTiltedAngle:
 				"photo_verification_fault_tilted_angle"
 			case .faultSubjectNotInMiddle:

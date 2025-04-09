@@ -22,14 +22,12 @@ class PhotoIntroViewModel: ObservableObject {
 	var showTerms: Bool { true }
 	lazy var instructions: [PhotoIntroView.Instruction] = {
 		[.init(icon: .iconRotate, text: LocalizableString.PhotoVerification.rotateInstruction.localized, bullets: []),
+		 .init(icon: .iconZoom, text: LocalizableString.PhotoVerification.zoomInstruction.localized, bullets: []),
 		 .init(icon: .iconSurface, text: LocalizableString.PhotoVerification.surfaceInstruction.localized, bullets: []),
 		 .init(icon: .iconNoFaces, text: LocalizableString.PhotoVerification.noFacesInstruction.localized, bullets: []),
 		 .init(icon: .iconMaxPhotos,
 			   text: LocalizableString.PhotoVerification.maxPhotosInstruction.localized,
-			   bullets: [LocalizableString.PhotoVerification.maxPhotosInstructionBullet0.localized,
-						 LocalizableString.PhotoVerification.maxPhotosInstructionBullet1.localized,
-						 LocalizableString.PhotoVerification.maxPhotosInstructionBullet2.localized,
-						 LocalizableString.PhotoVerification.maxPhotosInstructionBullet3.localized])]
+			   bullets: [])]
 	}()
 
 	lazy var recommendedExamples: (title: String, examples: [PhotoIntroExamplesView.Example]) = {
@@ -108,8 +106,11 @@ private extension PhotoIntroViewModel {
 						 LocalizableString.PhotoVerification.faultNotShowingSurroundings.localized,
 						 LocalizableString.PhotoVerification.faultTooClose.localized]),
 		 .init(image: .wrongInstallation1,
-			   bullets: [LocalizableString.PhotoVerification.faultNotShowingPossibleObstacles.localized,
+			   bullets: [LocalizableString.PhotoVerification.faultTooFarFromStation.localized,
 						 LocalizableString.PhotoVerification.faultNoSurface.localized]),
+		 .init(image: .wrongInstallation3,
+			   bullets: [LocalizableString.PhotoVerification.faultTakenDuringNighttime.localized,
+						 LocalizableString.PhotoVerification.faultNotVisibleObstacles.localized]),
 		 .init(image: .wrongInstallation2,
 			   bullets: [LocalizableString.PhotoVerification.faultTiltedAngle.localized,
 						 LocalizableString.PhotoVerification.faultSubjectNotInMiddle.localized])]
