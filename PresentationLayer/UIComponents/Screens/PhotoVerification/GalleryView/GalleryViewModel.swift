@@ -154,7 +154,7 @@ class GalleryViewModel: ObservableObject {
 					let fileUrls = await localImages.asyncCompactMap { try? await self.useCase.saveImage($0.uiImage!,
 																										 deviceId: self.deviceId,
 																										 metadata: $0.metadata,
-																										 userComment: $0.source?.rawValue ?? "")}
+																										 userComment: $0.source?.sourceValue ?? "")}
 					try await self.useCase.startFilesUpload(deviceId: self.deviceId, files: fileUrls.compactMap { try? $0.asURL() })
 					self.showLoading = false
 					self.showUploadStarted { dismissAction?() }

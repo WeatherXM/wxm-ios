@@ -170,9 +170,18 @@ struct GalleryView: View {
 }
 
 extension GalleryView {
-	enum ImageSource: String {
+	enum ImageSource {
 		case camera
 		case library
+
+		var sourceValue: String {
+			switch self {
+				case .camera:
+					return "wxm-device-photo-camera"
+				case .library:
+					return "wxm-device-photo-library"
+			}
+		}
 	}
 
 	struct GalleryImage: Identifiable, Equatable {
