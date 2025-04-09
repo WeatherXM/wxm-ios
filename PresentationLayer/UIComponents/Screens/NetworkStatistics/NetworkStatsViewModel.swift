@@ -34,12 +34,14 @@ class NetworkStatsViewModel: ObservableObject {
         stationStats == nil
     }
 
-    private let useCase: NetworkUseCase?
+	private let useCase: NetworkUseCaseApi?
     private var cancellables: Set<AnyCancellable> = []
+	private let linkNavigation: LinkNavigation
 
-    init(useCase: NetworkUseCase? = nil) {
+	init(useCase: NetworkUseCaseApi? = nil,
+		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
         self.useCase = useCase
-
+		self.linkNavigation = linkNavigation
         refresh { }
     }
 
@@ -48,13 +50,13 @@ class NetworkStatsViewModel: ObservableObject {
     }
 
     func handleBuyStationTap() {
-        HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
+		linkNavigation.openUrl(DisplayedLinks.shopLink.linkURL)
         WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .openShop])
     }
 
     func handleDetailsActionTap(statistics: NetworkStatsView.StationStatistics, details: NetworkStatsView.StationDetails) {
         if let url = details.url {
-            HelperFunctions().openUrl(url)
+			linkNavigation.openUrl(url)
         }
 
         WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .openStationShop,

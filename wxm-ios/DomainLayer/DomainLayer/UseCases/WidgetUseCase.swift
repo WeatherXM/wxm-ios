@@ -9,11 +9,11 @@ import Foundation
 import Combine
 import Toolkit
 
-public struct WidgetUseCase {
-	private let meRepository: MeRepository
-	private let keychainRepository: KeychainRepository
-	private let cancellableWrapper: CancellableWrapper = .init()
-	
+public struct WidgetUseCase: WidgetUseCaseApi {
+	nonisolated(unsafe) private let meRepository: MeRepository
+	nonisolated(unsafe) private let keychainRepository: KeychainRepository
+	nonisolated(unsafe) private let cancellableWrapper: CancellableWrapper = .init()
+
 	public init(meRepository: MeRepository, keychainRepository: KeychainRepository) {
 		self.meRepository = meRepository
 		self.keychainRepository = keychainRepository

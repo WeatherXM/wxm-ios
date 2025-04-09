@@ -55,14 +55,14 @@ class RewardAnalyticsViewModel: ObservableObject {
 								   description: LocalizableString.RewardAnalytics.emptyStateDescription.localized.attributedMarkdown,
 								   buttonFontIcon: (.cart, .FAProSolid),
 								   buttonTitle: LocalizableString.Profile.noRewardsWarningButtonTitle.localized) {
-			HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
+			LinkNavigationHelper().openUrl(DisplayedLinks.shopLink.linkURL)
 		}
 	}()
 
-	private let useCase: MeUseCase
+	private let useCase: MeUseCaseApi
 	private var cancellableSet = Set<AnyCancellable>()
 
-	init(useCase: MeUseCase, devices: [DeviceDetails]) {
+	init(useCase: MeUseCaseApi, devices: [DeviceDetails]) {
 		self.useCase = useCase
 		self.devices = devices
 		self.stationItems = devices.reduce(into: [:]) { $0[$1.id ?? ""] = StationCardItem() }

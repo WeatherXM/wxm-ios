@@ -11,11 +11,11 @@ import Combine
 import Toolkit
 
 class IntentHandler: INExtension, StationWidgetConfigurationIntentHandling, @unchecked Sendable {
-	let useCase: WidgetUseCase
+	let useCase: WidgetUseCaseApi
 	var cancellables: Set<AnyCancellable> = []
 
 	override init() {
-		useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(WidgetUseCase.self)!
+		useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(WidgetUseCaseApi.self)!
 		super.init()
 		FirebaseManager.shared.launch()
 		if let mixpanelToken: String = Bundle.main.getConfiguration(for: .mixpanelToken) {
@@ -28,7 +28,7 @@ class IntentHandler: INExtension, StationWidgetConfigurationIntentHandling, @unc
 			return INObjectCollection(items: [])
 		}
 
-		let result = try await useCase.getDevices()
+		let result = try await useCase.getDevices(useCache: true)
 		switch result {
 			case .success(let devices):
 				let stations = devices.map { Station(identifier: $0.id,

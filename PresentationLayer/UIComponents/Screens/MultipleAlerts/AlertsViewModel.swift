@@ -13,19 +13,19 @@ import UIKit
 
 @MainActor
 class AlertsViewModel: ObservableObject {
-
-    @Published private(set) var alerts: [MultipleAlertsView.Alert] = []
-    let device: DeviceDetails
-    let mainVM: MainScreenViewModel
-    let followState: UserDeviceFollowState?
-
-    init(device: DeviceDetails, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) {
-        self.device = device
-        self.mainVM = mainVM
-        self.followState = followState
-        generateAlerts()
-    }
-
+	
+	@Published private(set) var alerts: [MultipleAlertsView.Alert] = []
+	let device: DeviceDetails
+	let mainVM: MainScreenViewModel
+	let followState: UserDeviceFollowState?
+	
+	init(device: DeviceDetails, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) {
+		self.device = device
+		self.mainVM = mainVM
+		self.followState = followState
+		generateAlerts()
+	}
+	
 	func viewAppeared() {
 		WXMAnalytics.shared.trackScreen(.deviceAlerts)
 	}
@@ -33,38 +33,38 @@ class AlertsViewModel: ObservableObject {
 
 extension AlertsViewModel: HashableViewModel {
 	nonisolated func hash(into hasher: inout Hasher) {
-        hasher.combine(device.id)
-    }
+		hasher.combine(device.id)
+	}
 }
 
 private extension AlertsViewModel {
-    func generateAlerts() {
-        var alerts: [MultipleAlertsView.Alert] = []
+	func generateAlerts() {
+		var alerts: [MultipleAlertsView.Alert] = []
 		let isOwned = followState?.relation == .owned
-
+		
 		if !device.isActive {
 			let description: LocalizableString = isOwned ? .alertsOwnedStationOfflineDescription : .alertsStationOfflineDescription
-            let alert = MultipleAlertsView.Alert(type: .error,
-                                                 title: LocalizableString.alertsStationOfflineTitle.localized,
-                                                 message: description.localized,
+			let alert = MultipleAlertsView.Alert(type: .error,
+												 title: LocalizableString.alertsStationOfflineTitle.localized,
+												 message: description.localized,
 												 icon: nil,
 												 buttonTitle: isOwned ? LocalizableString.contactSupport.localized : nil,
-                                                 buttonAction: handleContactSupportTap,
-                                                 appearAction: nil)
-            alerts.append(alert)
-        }
-
-        if device.needsUpdate(mainVM: mainVM, followState: followState) {
-            let alert = MultipleAlertsView.Alert(type: .warning,
-                                                 title: LocalizableString.stationWarningUpdateTitle.localized,
-                                                 message: LocalizableString.stationWarningUpdateDescription.localized,
+												 buttonAction: handleContactSupportTap,
+												 appearAction: nil)
+			alerts.append(alert)
+		}
+		
+		if device.needsUpdate(mainVM: mainVM, followState: followState) {
+			let alert = MultipleAlertsView.Alert(type: .warning,
+												 title: LocalizableString.stationWarningUpdateTitle.localized,
+												 message: LocalizableString.stationWarningUpdateDescription.localized,
 												 icon: .arrowsRotate,
-                                                 buttonTitle: LocalizableString.stationWarningUpdateButtonTitle.localized,
-                                                 buttonAction: handleFirmwareUpdateTap,
-                                                 appearAction: { [weak self] in self?.trackPromptEvent(action: .viewAction) })
-            alerts.append(alert)
-        }
-
+												 buttonTitle: LocalizableString.stationWarningUpdateButtonTitle.localized,
+												 buttonAction: handleFirmwareUpdateTap,
+												 appearAction: { [weak self] in self?.trackPromptEvent(action: .viewAction) })
+			alerts.append(alert)
+		}
+		
 		if device.isBatteryLow(followState: followState) {
 			let alert = MultipleAlertsView.Alert(type: .warning,
 												 title: LocalizableString.stationWarningLowBatteryTitle.localized,
@@ -75,25 +75,25 @@ private extension AlertsViewModel {
 												 appearAction: nil)
 			alerts.append(alert)
 		}
-
-        self.alerts = alerts
-    }
-
-    func handleContactSupportTap() {
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
-                                                              .source: .stationOffline])
-
-		HelperFunctions().openContactSupport(successFailureEnum: .stationOffline,
-											 email: mainVM.userInfo?.email,
-											 serialNumber: device.label,
-											 trackSelectContentEvent: false)
-    }
-
-    func handleFirmwareUpdateTap() {
-        trackPromptEvent(action: .action)
-        mainVM.showFirmwareUpdate(device: device)
-    }
-
+		
+		self.alerts = alerts
+	}
+	
+	func handleContactSupportTap() {
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .contactSupport,
+																	.source: .stationOffline])
+		
+		LinkNavigationHelper().openContactSupport(successFailureEnum: .stationOffline,
+												  email: mainVM.userInfo?.email,
+												  serialNumber: device.label,
+												  trackSelectContentEvent: false)
+	}
+	
+	func handleFirmwareUpdateTap() {
+		trackPromptEvent(action: .action)
+		mainVM.showFirmwareUpdate(device: device)
+	}
+	
 	func handleLowBatteryTap() {
 		guard let name = device.bundle?.name else {
 			return
@@ -112,15 +112,15 @@ private extension AlertsViewModel {
 					UIApplication.shared.open(url)
 				}
 			case .pulse:
-				#warning("Open pulse link")
+#warning("Open pulse link")
 		}
-
+		
 	}
-
-    func trackPromptEvent(action: ParameterValue) {
-        WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
-                                                       .promptType: .warnPromptType,
-                                                       .action: action])
-    }
-
+	
+	func trackPromptEvent(action: ParameterValue) {
+		WXMAnalytics.shared.trackEvent(.prompt, parameters: [.promptName: .OTAAvailable,
+															 .promptType: .warnPromptType,
+															 .action: action])
+	}
+	
 }

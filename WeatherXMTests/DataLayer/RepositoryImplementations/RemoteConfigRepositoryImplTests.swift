@@ -19,22 +19,20 @@ struct RemoteConfigRepositoryImplTests {
 	}
 
     @Test func survey() async throws {
-		var count = 3
-		try await confirmation(expectedCount: count) { confirm in
+		var surveyReceived: Bool = false
+		try await confirmation { confirm in
 			repositoryImpl.surveyPublisher.sink { survey in
-				print(count)
-				if count == 2 {
-					#expect(survey?.id == "Dummy Text")
-				} else {
+				print(surveyReceived)
+				if surveyReceived {
 					#expect(survey == nil)
+					confirm()
+				} else if let survey, !surveyReceived {
+					#expect(survey.id == "Dummy Text")
+					surveyReceived = true
+					repositoryImpl.updateLastSurveyId("Dummy Text")
 				}
-				count -= 1
-
-				confirm()
 			}.store(in: &cancellableWrapper.cancellableSet)
 			try await Task.sleep(for: .seconds(2))
-			repositoryImpl.updateLastSurveyId("Dummy Text")
-			try await Task.sleep(for: .seconds(1))
 		}
     }
 

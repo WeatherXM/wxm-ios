@@ -37,4 +37,10 @@ public struct CountryInfo: Decodable {
 			}
 		}
 	}
+
+	public init(code: String, heliumFrequency: String? = nil, mapCenter: CLLocationCoordinate2D? = nil) {
+		self.code = code
+		self.heliumFrequency = heliumFrequency
+		self.mapCenter = mapCenter
+	}
 }

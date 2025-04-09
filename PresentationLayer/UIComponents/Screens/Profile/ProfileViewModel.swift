@@ -12,8 +12,8 @@ import Toolkit
 
 @MainActor
 class ProfileViewModel: ObservableObject {
-    private final let meUseCase: MeUseCase
-	private let remoteConfigUseCase: RemoteConfigUseCase
+	private final let meUseCase: MeUseCaseApi
+	private let remoteConfigUseCase: RemoteConfigUseCaseApi
     private var cancellableSet: Set<AnyCancellable> = []
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
 
@@ -49,10 +49,14 @@ class ProfileViewModel: ObservableObject {
 		let url = URL(string: urlString)
 		return url?.host ?? "-"
 	}
+	private let linkNavigation: LinkNavigation
 
-	public init(meUseCase: MeUseCase, remoteConfigUseCase: RemoteConfigUseCase) {
+	public init(meUseCase: MeUseCaseApi,
+				remoteConfigUseCase: RemoteConfigUseCaseApi,
+				linkNavigation: LinkNavigation = LinkNavigationHelper()) {
         self.meUseCase = meUseCase
 		self.remoteConfigUseCase = remoteConfigUseCase
+		self.linkNavigation = linkNavigation
 		scrollOffsetObject = .init()
 		tabBarVisibilityHandler = TabBarVisibilityHandler(scrollOffsetObject: self.scrollOffsetObject)
 		tabBarVisibilityHandler.$isTabBarShowing.assign(to: &$isTabBarVisible)
@@ -107,7 +111,7 @@ class ProfileViewModel: ObservableObject {
 	}
 
 	func handleBuyStationTap() {
-		HelperFunctions().openUrl(DisplayedLinks.shopLink.linkURL)
+		linkNavigation.openUrl(DisplayedLinks.shopLink.linkURL)
 	}
 
 	func handleTotalEarnedInfoTap() {

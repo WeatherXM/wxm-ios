@@ -20,6 +20,11 @@ extension NetworkSearchItem {
 public struct NetworkSearchResponse: Codable, Sendable {
     public let devices: [NetworkSearchDevice]?
     public let addresses: [NetworkSearchAddress]?
+
+	public init(devices: [NetworkSearchDevice]?, addresses: [NetworkSearchAddress]?) {
+		self.devices = devices
+		self.addresses = addresses
+	}
 }
 
 public struct NetworkSearchDevice: Codable, NetworkSearchItem, Sendable {

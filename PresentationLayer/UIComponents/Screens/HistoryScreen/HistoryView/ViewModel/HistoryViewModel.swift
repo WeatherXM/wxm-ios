@@ -11,10 +11,10 @@ import Toolkit
 
 @MainActor
 class HistoryViewModel: ObservableObject {
-    private let historyUseCase: HistoryUseCase
+	private let historyUseCase: HistoryUseCaseApi
 
     @Published var loadingData: Bool = true
-    @Published var currentHistoryData: WeatherChartModels?
+	@Published var currentHistoryData: WeatherChartModels?
     @Published var noAvailableData: Bool = false
     @Published var isFailed: Bool = false
     private(set) var failObj: FailSuccessStateObject?
@@ -24,7 +24,7 @@ class HistoryViewModel: ObservableObject {
     let device: DeviceDetails
     let currentDate: Date
 
-    init(device: DeviceDetails, historyUseCase: HistoryUseCase, date: Date) {
+	init(device: DeviceDetails, historyUseCase: HistoryUseCaseApi, date: Date) {
         self.device = device
         self.historyUseCase = historyUseCase
         self.currentDate = date
@@ -67,7 +67,9 @@ private extension HistoryViewModel {
             try historyUseCase.getWeatherHourlyHistory(deviceId: deviceId,
                                                        date: date,
                                                        force: force).sink { [weak self] response in
-                completion?()
+				defer {
+					completion?()
+				}
                 self?.loadingData = false
                 
                 if let error = response.error {

@@ -46,10 +46,10 @@ class SelectLocationMapViewModel: ObservableObject {
 	var mapControls: MapControls = .init()
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	private var latestTask: Cancellable?
-	let useCase: DeviceLocationUseCase
+	let useCase: DeviceLocationUseCaseApi
 	weak var delegate: SelectLocationMapViewModelDelegate?
 
-	init(useCase: DeviceLocationUseCase, initialCoordinate: CLLocationCoordinate2D? = nil, delegate: SelectLocationMapViewModelDelegate? = nil) {
+	init(useCase: DeviceLocationUseCaseApi, initialCoordinate: CLLocationCoordinate2D? = nil, delegate: SelectLocationMapViewModelDelegate? = nil) {
 		self.useCase = useCase
 		self.delegate = delegate
 		self.selectedCoordinate = initialCoordinate ?? useCase.getSuggestedDeviceLocation() ?? .init()

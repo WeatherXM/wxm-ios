@@ -296,6 +296,6 @@ private struct ContentView: View {
 		RewardDetailsView(viewModel: .init(device: device,
 										   followState: .init(deviceId: device.id!, relation: .owned),
 										   date: .now,
-										   tokenUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCase.self)!))
+										   tokenUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsTimelineUseCaseApi.self)!))
 	}
 }

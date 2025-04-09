@@ -50,7 +50,7 @@ class SwinjectHelper: SwinjectInterface {
             SettingsRepositoryImpl()
         }
 
-        container.register(SettingsUseCase.self) { resolver in
+		container.register(SettingsUseCaseApi.self) { resolver in
             SettingsUseCase(repository: resolver.resolve(SettingsRepository.self)!)
         }
 
@@ -60,7 +60,7 @@ class SwinjectHelper: SwinjectInterface {
             NetworkRepositoryImpl()
         }
 
-        container.register(NetworkUseCase.self) { resolver in
+		container.register(NetworkUseCaseApi.self) { resolver in
             NetworkUseCase(repository: resolver.resolve(NetworkRepository.self)!)
         }
 
@@ -72,7 +72,7 @@ class SwinjectHelper: SwinjectInterface {
         container.register(BluetoothDevicesRepository.self) { _ in
             BluetoothDevicesRepositoryImpl()
         }
-        container.register(DevicesUseCase.self) { resolver in
+		container.register(DevicesUseCaseApi.self) { resolver in
             let devicesUseCase = DevicesUseCase(
                 devicesRepository: resolver.resolve(DevicesRepository.self)!,
                 bluetoothDevicesRepository: resolver.resolve(BluetoothDevicesRepository.self)!
@@ -83,7 +83,7 @@ class SwinjectHelper: SwinjectInterface {
         container.register(DeviceLocationRepository.self) { _ in
             DeviceLocationRepositoryImpl()
         }
-        container.register(DeviceLocationUseCase.self) { resolver in
+		container.register(DeviceLocationUseCaseApi.self) { resolver in
             DeviceLocationUseCase(deviceLocationRepository: resolver.resolve(DeviceLocationRepository.self)!)
         }
 
@@ -91,7 +91,7 @@ class SwinjectHelper: SwinjectInterface {
         container.register(DeviceInfoRepository.self) { resolver in
             DeviceInfoRepositoryImpl(userDevicesService: resolver.resolve(UserDevicesService.self)!)
         }
-        container.register(DeviceInfoUseCase.self) { resolver in
+		container.register(DeviceInfoUseCaseApi.self) { resolver in
             DeviceInfoUseCase(repository: resolver.resolve(DeviceInfoRepository.self)!)
         }
         // MARK: - Cells DI
@@ -100,7 +100,7 @@ class SwinjectHelper: SwinjectInterface {
             ExplorerRepositoryImpl()
         }
 
-        container.register(ExplorerUseCase.self) { resolver in
+		container.register(ExplorerUseCaseApi.self) { resolver in
             let explorerUserCase = ExplorerUseCase(explorerRepository: resolver.resolve(ExplorerRepository.self)!,
                                                    devicesRepository: resolver.resolve(DevicesRepository.self)!,
                                                    meRepository: resolver.resolve(MeRepository.self)!,
@@ -129,18 +129,18 @@ class SwinjectHelper: SwinjectInterface {
             FiltersRepositoryImpl(filtersService: resolver.resolve(FiltersService.self)!)
         }
 
-        container.register(MeUseCase.self) { resolver in
+		container.register(MeUseCaseApi.self) { resolver in
             MeUseCase(meRepository: resolver.resolve(MeRepository.self)!,
 					  filtersRepository: resolver.resolve(FiltersRepository.self)!,
 					  networkRepository: resolver.resolve(NetworkRepository.self)!,
 					  userDefaultsrRepository: resolver.resolve(UserDefaultsRepository.self)!)
         }
 
-        container.register(RewardsTimelineUseCase.self) { resolver in
+		container.register(RewardsTimelineUseCaseApi.self) { resolver in
 			RewardsTimelineUseCase(repository: resolver.resolve(DevicesRepository.self)!, meRepository: resolver.resolve(MeRepository.self)!)
         }
 
-        container.register(HistoryUseCase.self) { resolver in
+		container.register(HistoryUseCaseApi.self) { resolver in
             HistoryUseCase(meRepository: resolver.resolve(MeRepository.self)!)
         }
 
@@ -152,7 +152,7 @@ class SwinjectHelper: SwinjectInterface {
 
         // MARK: - Main Use Case
 
-        container.register(MainUseCase.self) { resolver in
+		container.register(MainUseCaseApi.self) { resolver in
 			MainUseCase(mainRepository: resolver.resolve(MainRepository.self)!,
 						userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
 						keychainRepository: resolver.resolve(KeychainRepository.self)!,
@@ -162,7 +162,7 @@ class SwinjectHelper: SwinjectInterface {
 
         // MARK: - Device Details Use Case
 
-        container.register(DeviceDetailsUseCase.self) { resolver in
+		container.register(DeviceDetailsUseCaseApi.self) { resolver in
             DeviceDetailsUseCase(meRepository: resolver.resolve(MeRepository.self)!,
                                  explorerRepository: resolver.resolve(ExplorerRepository.self)!,
                                  keychainRepository: resolver.resolve(KeychainRepository.self)!,
@@ -171,19 +171,19 @@ class SwinjectHelper: SwinjectInterface {
 
         // MARK: - Rewards Use Case
 
-        container.register(RewardsUseCase.self) { resolver in
+		container.register(RewardsUseCaseApi.self) { resolver in
             RewardsUseCase(devicesRepository: resolver.resolve(DevicesRepository.self)!)
         }
 
         // MARK: - Filters
 
-        container.register(FiltersUseCase.self) { resolver in
+		container.register(FiltersUseCaseApi.self) { resolver in
             FiltersUseCase(repository: resolver.resolve(FiltersRepository.self)!)
         }
 
 		// MARK: - Widget
 
-		container.register(WidgetUseCase.self) { resolver in
+		container.register(WidgetUseCaseApi.self) { resolver in
 			WidgetUseCase(meRepository: resolver.resolve(MeRepository.self)!,
 						  keychainRepository: resolver.resolve(KeychainRepository.self)!)
 		}
@@ -202,7 +202,7 @@ class SwinjectHelper: SwinjectInterface {
 			AuthRepositoryImpl()
 		}
 
-		container.register(AuthUseCase.self) { resolver in
+		container.register(AuthUseCaseApi.self) { resolver in
 			AuthUseCase(authRepository: resolver.resolve(AuthRepository.self)!,
 						meRepository: resolver.resolve(MeRepository.self)!,
 						keychainRepository: resolver.resolve(KeychainRepository.self)!,
@@ -217,7 +217,7 @@ class SwinjectHelper: SwinjectInterface {
 			RemoteConfigRepositoryImpl()
 		}
 
-		container.register(RemoteConfigUseCase.self) { resolver in
+		container.register(RemoteConfigUseCaseApi.self) { resolver in
 			RemoteConfigUseCase(repository: resolver.resolve(RemoteConfigRepository.self)!)
 		}
 
@@ -237,7 +237,7 @@ class SwinjectHelper: SwinjectInterface {
 								 locationManager: resolver.resolve(WXMLocationManager.LocationManagerProtocol.self)!)
 		}
 
-		container.register(PhotoGalleryUseCase.self) { resolver in
+		container.register(PhotoGalleryUseCaseApi.self) { resolver in
 			PhotoGalleryUseCase(photosRepository: resolver.resolve(PhotosRepository.self)!)
 		}
 

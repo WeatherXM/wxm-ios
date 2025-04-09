@@ -17,4 +17,10 @@ public struct NetworkDeviceRewardsTimelineResponse: Codable, Sendable, Equatable
 		case totalPages = "total_pages"
 		case hasNextPage = "has_next_page"
 	}
+
+	public init(data: [NetworkDeviceRewardsSummary]?, totalPages: Int?, hasNextPage: Bool?) {
+		self.data = data
+		self.totalPages = totalPages
+		self.hasNextPage = hasNextPage
+	}
 }

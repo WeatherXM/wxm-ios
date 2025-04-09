@@ -20,9 +20,9 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 
 	var steps: [ClaimDeviceStep] = []
 	var navigationTitle: String = ""
-	let useCase: MeUseCase
-	let devicesUseCase: DevicesUseCase
-	let deviceLocationUseCase: DeviceLocationUseCase
+	let useCase: MeUseCaseApi
+	let devicesUseCase: DevicesUseCaseApi
+	let deviceLocationUseCase: DeviceLocationUseCaseApi
 	var claimingKey: String?
 	var serialNumber: String?
 	var location: DeviceLocation?
@@ -31,7 +31,9 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	private let CLAIMING_RETRIES_DELAY_SECONDS: TimeInterval = 5
 	private var cancellableSet: Set<AnyCancellable> = .init()
 
-	init(useCase: MeUseCase, devicesUseCase: DevicesUseCase, deviceLocationUseCase: DeviceLocationUseCase) {
+	init(useCase: MeUseCaseApi,
+		 devicesUseCase: DevicesUseCaseApi,
+		 deviceLocationUseCase: DeviceLocationUseCaseApi) {
 		self.useCase = useCase
 		self.devicesUseCase = devicesUseCase
 		self.deviceLocationUseCase = deviceLocationUseCase
@@ -158,7 +160,7 @@ extension ClaimDeviceContainerViewModel {
 											cancelTitle: LocalizableString.ClaimDevice.cancelClaimButton.localized,
 											retryTitle: LocalizableString.ClaimDevice.retryClaimButton.localized,
 											contactSupportAction: {
-			HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
+			LinkNavigationHelper().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
 		}, cancelAction: {
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
 																	 .contentType: .claiming,

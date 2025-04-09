@@ -27,14 +27,14 @@ extension NetworkErrorResponse {
 											 cancelTitle: nil,
 											 retryTitle: LocalizableString.retry.localized,
 											 contactSupportAction: {
-				HelperFunctions().openContactSupport(successFailureEnum: type,
-													 email: MainScreenViewModel.shared.userInfo?.email,
-													 serialNumber: nil,
-													 errorString: description)
+				LinkNavigationHelper().openContactSupport(successFailureEnum: type,
+														  email: MainScreenViewModel.shared.userInfo?.email,
+														  serialNumber: nil,
+														  errorString: description)
 			},
 											 cancelAction: nil,
 											 retryAction: retryAction)
-
+			
 			return obj
 		}
 #endif

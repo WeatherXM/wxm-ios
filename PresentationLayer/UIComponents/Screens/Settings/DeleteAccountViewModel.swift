@@ -27,10 +27,10 @@ final class DeleteAccountViewModel: ObservableObject {
     private var tokenResponse = NetworkTokenResponse()
     private var cancellableSet: Set<AnyCancellable> = []
 
-    private let authUseCase: AuthUseCase
-    private let meUseCase: MeUseCase
+	private let authUseCase: AuthUseCaseApi
+	private let meUseCase: MeUseCaseApi
 
-	init(userId: String, authUseCase: AuthUseCase, meUseCase: MeUseCase) {
+	init(userId: String, authUseCase: AuthUseCaseApi, meUseCase: MeUseCaseApi) {
         self.userID = userId
         self.authUseCase = authUseCase
         self.meUseCase = meUseCase
@@ -96,7 +96,7 @@ final class DeleteAccountViewModel: ObservableObject {
     }
 
     public func contactSupport() {
-		HelperFunctions().openContactSupport(successFailureEnum: .deleteAccount, email: MainScreenViewModel.shared.userInfo?.email)
+		LinkNavigationHelper().openContactSupport(successFailureEnum: .deleteAccount, email: MainScreenViewModel.shared.userInfo?.email)
     }
 
     func getClientIndentifier() -> String {

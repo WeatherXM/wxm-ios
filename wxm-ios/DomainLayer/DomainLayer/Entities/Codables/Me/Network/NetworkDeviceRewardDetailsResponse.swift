@@ -23,6 +23,20 @@ public struct NetworkDeviceRewardDetailsResponse: Codable, Hashable, Sendable {
 		case boost
 		case rewardSplit = "reward_split"
 	}
+
+	public init(timestamp: Date?,
+				totalDailyReward: Double?,
+				annotations: [RewardAnnotation]?,
+				base: Base?,
+				boost: Boost?,
+				rewardSplit: [RewardSplit]?) {
+		self.timestamp = timestamp
+		self.totalDailyReward = totalDailyReward
+		self.annotations = annotations
+		self.base = base
+		self.boost = boost
+		self.rewardSplit = rewardSplit
+	}
 }
 
 public extension NetworkDeviceRewardDetailsResponse {
@@ -41,6 +55,15 @@ public extension NetworkDeviceRewardDetailsResponse {
 			case qodScore = "qod_score"
 			case cellCapacity = "cell_capacity"
 			case cellPosition = "cell_position"
+		}
+
+		public init(actualReward: Double?, rewardScore: Int?, maxReward: Double?, qodScore: Int?, cellCapacity: Int?, cellPosition: Int?) {
+			self.actualReward = actualReward
+			self.rewardScore = rewardScore
+			self.maxReward = maxReward
+			self.qodScore = qodScore
+			self.cellCapacity = cellCapacity
+			self.cellPosition = cellPosition
 		}
 	}
 

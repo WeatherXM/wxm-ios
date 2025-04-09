@@ -37,13 +37,13 @@ class MainScreenViewModel: ObservableObject {
 	private let showWarningWalletInterval: TimeInterval = 24.0 * TimeInterval.hour // 1 day
 	@Published private(set) var showWalletWarning: Bool = false
 
-	let deepLinkHandler = DeepLinkHandler(useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(NetworkUseCase.self)!,
-										  explorerUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCase.self)!)
+	let deepLinkHandler = DeepLinkHandler(useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(NetworkUseCaseApi.self)!,
+										  explorerUseCase: SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCaseApi.self)!)
 
-	private let mainUseCase: MainUseCase
-	private let meUseCase: MeUseCase
-	private let settingsUseCase: SettingsUseCase
-	private let photosUseCase: PhotoGalleryUseCase
+	private let mainUseCase: MainUseCaseApi
+	private let meUseCase: MeUseCaseApi
+	private let settingsUseCase: SettingsUseCaseApi
+	private let photosUseCase: PhotoGalleryUseCaseApi
 	private var cancellableSet: Set<AnyCancellable> = []
 	let networkMonitor: NWPathMonitor
 	@Published var isUserLoggedIn: Bool = false
@@ -71,12 +71,12 @@ class MainScreenViewModel: ObservableObject {
 
 	private init() {
 		self.swinjectHelper = SwinjectHelper.shared
-		mainUseCase = swinjectHelper.getContainerForSwinject().resolve(MainUseCase.self)!
-		meUseCase = swinjectHelper.getContainerForSwinject().resolve(MeUseCase.self)!
-		photosUseCase = swinjectHelper.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
+		mainUseCase = swinjectHelper.getContainerForSwinject().resolve(MainUseCaseApi.self)!
+		meUseCase = swinjectHelper.getContainerForSwinject().resolve(MeUseCaseApi.self)!
+		photosUseCase = swinjectHelper.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
 
 		networkMonitor = NWPathMonitor()
-		settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCase.self)!
+		settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCaseApi.self)!
 
         checkIfUserIsLoggedIn()
         settingsUseCase.initializeAnalyticsTracking()
@@ -103,7 +103,7 @@ class MainScreenViewModel: ObservableObject {
 				return
 			}
 			let minimumVersion = RemoteConfigManager.shared.iosAppMinimumVersion
-			self?.showAppUpdatePrompt = self?.mainUseCase.shouldShowUpdatePrompt(for: latestVersion, minimumVersion: minimumVersion) ?? false
+			self?.showAppUpdatePrompt = self?.mainUseCase.shouldShowUpdatePrompt(for: latestVersion, minimumVersion: minimumVersion, currentVersion: nil) ?? false
 		}.store(in: &cancellableSet)
 
 		RemoteConfigManager.shared.$iosAppMinimumVersion.sink { [weak self] minVersion in
@@ -112,7 +112,7 @@ class MainScreenViewModel: ObservableObject {
 				return
 			}
 
-			self?.showAppUpdatePrompt = self?.mainUseCase.shouldShowUpdatePrompt(for: latestVersion, minimumVersion: minVersion) ?? false
+			self?.showAppUpdatePrompt = self?.mainUseCase.shouldShowUpdatePrompt(for: latestVersion, minimumVersion: minVersion, currentVersion: nil) ?? false
 		}.store(in: &cancellableSet)
 
 		requestNotificationAuthorizationIfNeeded()
@@ -152,7 +152,7 @@ class MainScreenViewModel: ObservableObject {
 
 	private func checkIfUserIsLoggedIn() {
 		let container = swinjectHelper.getContainerForSwinject()
-		let authUseCase = container.resolve(AuthUseCase.self)!
+		let authUseCase = container.resolve(AuthUseCaseApi.self)!
 		isUserLoggedIn = authUseCase.isUserLoggedIn()
 		if isUserLoggedIn {
 			selectedTab = .homeTab
@@ -289,7 +289,7 @@ class MainScreenViewModel: ObservableObject {
 
 	// MARK: Analytics opt in/out
 
-	private func checkIfShouldShowAnalyticsPrompt(settingsUseCase: SettingsUseCase) {
+	private func checkIfShouldShowAnalyticsPrompt(settingsUseCase: SettingsUseCaseApi) {
 		guard isUserLoggedIn else {
 			return
 		}

@@ -20,10 +20,10 @@ class SelectDeviceViewModel: ObservableObject {
 	@Published var deviceToConnect: BTWXMDevice?
 	let completion: GenericCallback<(BTWXMDevice?, BluetoothHeliumError?)>
 
-	private let useCase: DevicesUseCase
+	private let useCase: DevicesUseCaseApi
 	private var cancellableSet: Set<AnyCancellable> = []
 
-	init(useCase: DevicesUseCase, completion: @escaping GenericCallback<(BTWXMDevice?, BluetoothHeliumError?)>) {
+	init(useCase: DevicesUseCaseApi, completion: @escaping GenericCallback<(BTWXMDevice?, BluetoothHeliumError?)>) {
 		self.useCase = useCase
 		self.completion = completion
 	}

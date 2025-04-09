@@ -11,8 +11,8 @@ import Alamofire
 import class UIKit.UIImage
 import Toolkit
 
-public class HistoryUseCase {
-    private let meRepository: MeRepository
+public final class HistoryUseCase: HistoryUseCaseApi {
+	nonisolated(unsafe) private let meRepository: MeRepository
 
     public init(meRepository: MeRepository) {
         self.meRepository = meRepository

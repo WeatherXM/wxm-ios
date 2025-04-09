@@ -13,19 +13,25 @@ import UIKit
 @MainActor
 class RewardBoostsViewModel: ObservableObject {
 	let boost: BoostCardView.Boost
-	private var useCase: RewardsTimelineUseCase
+	private var useCase: RewardsTimelineUseCaseApi
 	private let boostReward: NetworkDeviceRewardDetailsResponse.BoostReward
 	private let device: DeviceDetails
+	private let linkNavigator: LinkNavigation
 
 	@Published var state: ViewState = .loading
 	private(set) var failObj: FailSuccessStateObject?
 	private(set) var response: NetworkDeviceRewardBoostsResponse?
 
-	init(boost: NetworkDeviceRewardDetailsResponse.BoostReward, device: DeviceDetails, date: Date?, useCase: RewardsTimelineUseCase) {
+	init(boost: NetworkDeviceRewardDetailsResponse.BoostReward,
+		 device: DeviceDetails,
+		 date: Date?,
+		 useCase: RewardsTimelineUseCaseApi,
+		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.boost = boost.toBoostViewObject(with: date)
 		self.boostReward = boost
 		self.device = device
 		self.useCase = useCase
+		self.linkNavigator = linkNavigation
 		refresh {
 			
 		}
@@ -57,12 +63,11 @@ class RewardBoostsViewModel: ObservableObject {
 	}
 
 	func handleReadMoreTap() {
-		guard let docUrl = response?.metadata?.docUrl,
-			  let url = URL(string: docUrl) else {
+		guard let docUrl = response?.metadata?.docUrl else {
 			return
 		}
 
-		UIApplication.shared.open(url)
+		linkNavigator.openUrl(docUrl)
 
 		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .webDocumentation,
 															  .itemId: .custom(docUrl)])

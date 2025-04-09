@@ -42,13 +42,26 @@ struct ClaimDeviceProgressView: View {
 }
 
 extension ClaimDeviceProgressView {
-	enum State {
+	enum State: Equatable {
 		case loading(LoadingStateObject)
 		case success(FailSuccessStateObject)
 		case fail(FailSuccessStateObject)
+
+		static func == (lhs: ClaimDeviceProgressView.State, rhs: ClaimDeviceProgressView.State) -> Bool {
+			switch (lhs, rhs) {
+				case (.loading(let lhsObj), .loading(let rhsObj)):
+					return lhsObj == rhsObj
+				case (.success(let lhsObj), .success(let rhsObj)):
+					return lhsObj.title == rhsObj.title
+				case (.fail(let lhsObj), .fail(let rhsObj)):
+					return lhsObj.title == rhsObj.title
+				default:
+					return false
+			}
+		}
 	}
 
-	struct LoadingStateObject {
+	struct LoadingStateObject: Equatable {
 		let title: String
 		let subtitle: AttributedString?
 		var steps: [StepsView.Step] = []

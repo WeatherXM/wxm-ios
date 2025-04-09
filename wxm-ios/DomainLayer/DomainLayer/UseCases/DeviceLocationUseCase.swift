@@ -8,9 +8,10 @@
 import Combine
 import CoreLocation
 
-public struct DeviceLocationUseCase: @unchecked Sendable {
+public struct DeviceLocationUseCase: @unchecked Sendable, DeviceLocationUseCaseApi {
     let deviceLocationRepository: DeviceLocationRepository
-    public init(deviceLocationRepository: DeviceLocationRepository) {
+
+	public init(deviceLocationRepository: DeviceLocationRepository) {
         self.deviceLocationRepository = deviceLocationRepository
         searchResults = deviceLocationRepository.searchResults
         error = deviceLocationRepository.error

@@ -42,9 +42,9 @@ class PhotoIntroViewModel: ObservableObject {
 
 	private let deviceId: String
 	private let images: [String]
-	private let photoGalleryUseCase: PhotoGalleryUseCase
+	private let photoGalleryUseCase: PhotoGalleryUseCaseApi
 
-	init(deviceId: String, images: [String], photoGalleryUseCase: PhotoGalleryUseCase) {
+	init(deviceId: String, images: [String], photoGalleryUseCase: PhotoGalleryUseCaseApi) {
 		self.deviceId = deviceId
 		self.images = images
 		self.photoGalleryUseCase = photoGalleryUseCase
@@ -68,7 +68,7 @@ extension PhotoIntroViewModel: HashableViewModel {
 
 	@MainActor
 	static func startPhotoVerification(deviceId: String, images: [String], isNewPhotoVerification: Bool) {
-		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCase.self)!
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
 		let areTermsAccepted = useCase.areTermsAccepted
 
 		if areTermsAccepted {

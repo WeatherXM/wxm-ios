@@ -9,9 +9,9 @@ import Foundation
 import Combine
 import Alamofire
 
-public struct NetworkUseCase {
+public struct NetworkUseCase: NetworkUseCaseApi {
 
-    private let repository: NetworkRepository
+	nonisolated(unsafe) private let repository: NetworkRepository
     public init(repository: NetworkRepository) {
         self.repository = repository
     }

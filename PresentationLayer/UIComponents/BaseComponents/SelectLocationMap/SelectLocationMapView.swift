@@ -125,6 +125,6 @@ private extension SelectLocationMapView {
 }
 
 #Preview {
-	let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCase.self)!
+	let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCaseApi.self)!
 	return SelectLocationMapView(viewModel: .init(useCase: useCase))
 }

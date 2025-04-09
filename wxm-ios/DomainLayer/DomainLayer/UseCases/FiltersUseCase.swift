@@ -8,9 +8,9 @@
 import Foundation
 import Combine
 
-public struct FiltersUseCase {
-    
-    let repository: FiltersRepository
+public struct FiltersUseCase: FiltersUseCaseApi {
+
+	nonisolated(unsafe) private let repository: FiltersRepository
 
     public init(repository: FiltersRepository) {
         self.repository = repository

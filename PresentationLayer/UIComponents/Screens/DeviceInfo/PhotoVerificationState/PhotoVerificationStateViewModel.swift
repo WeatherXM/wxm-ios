@@ -16,11 +16,11 @@ class PhotoVerificationStateViewModel: ObservableObject {
 	private var allPhotos: [NetworkDevicePhotosResponse] = []
 	@Published private(set) var morePhotosCount: Int = 0
 	private var cancellables: Set<AnyCancellable> = []
-	private let deviceInfoUseCase: DeviceInfoUseCase?
-	private let photoGalleryUseCase: PhotoGalleryUseCase?
+	private let deviceInfoUseCase: DeviceInfoUseCaseApi?
+	private let photoGalleryUseCase: PhotoGalleryUseCaseApi?
 	private let deviceId: String
 
-	init(deviceId: String, deviceInfoUseCase: DeviceInfoUseCase?, photoGalleryUseCase: PhotoGalleryUseCase?) {
+	init(deviceId: String, deviceInfoUseCase: DeviceInfoUseCaseApi?, photoGalleryUseCase: PhotoGalleryUseCaseApi?) {
 		self.deviceId = deviceId
 		self.deviceInfoUseCase = deviceInfoUseCase
 		self.photoGalleryUseCase = photoGalleryUseCase
@@ -28,14 +28,21 @@ class PhotoVerificationStateViewModel: ObservableObject {
 		observePhotoUploadState()
 	}
 
-	func handleCancelUploadTap() {
-		let yesAction: AlertHelper.AlertObject.Action = (LocalizableString.PhotoVerification.yesCancel.localized, { [weak self] _ in
+	func handleCancelUploadTap(showAlert: Bool = true) {
+		let action = { [weak self] in
 			guard let self else {
 				return
 			}
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .cancelUploadingPhotos])
 
-			self.photoGalleryUseCase?.cancelUpload(deviceId: deviceId)
+			self.photoGalleryUseCase?.cancelUpload(deviceId: self.deviceId)
+		}
+
+		let yesAction: AlertHelper.AlertObject.Action = (LocalizableString.PhotoVerification.yesCancel.localized, { [weak self] _ in
+			guard let self else {
+				return
+			}
+			action()
 		})
 		let alertObject = AlertHelper.AlertObject(title: LocalizableString.PhotoVerification.cancelUpload.localized,
 												  message: LocalizableString.PhotoVerification.cancelUploadAlertMessage.localized,
@@ -43,7 +50,12 @@ class PhotoVerificationStateViewModel: ObservableObject {
 												  cancelAction: {},
 												  okAction: yesAction)
 
-		AlertHelper().showAlert(alertObject)
+		if showAlert {
+			AlertHelper().showAlert(alertObject)
+			return
+		}
+		
+		action()
 	}
 
 	func handleImageTap() {

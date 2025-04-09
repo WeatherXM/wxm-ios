@@ -10,6 +10,11 @@ import Foundation
 public struct NetworkDevicesRewardsResponse: Codable, Sendable {
 	public let total: Double?
 	public let data: [RewardsData]?
+
+	public init(total: Double?, data: [RewardsData]?) {
+		self.total = total
+		self.data = data
+	}
 }
 
 public extension NetworkDevicesRewardsResponse {

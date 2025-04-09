@@ -51,12 +51,15 @@ class MyWalletViewModel: ObservableObject {
     var accountConfirmationViewModel: AccountConfirmationViewModel?
 	private let mainVM: MainScreenViewModel = .shared
 
-    private let useCase: MeUseCase?
+	private let useCase: MeUseCaseApi?
     private(set) var wallet: Wallet?
     private var cancellableSet: Set<AnyCancellable> = []
+	private let linkNavigation: LinkNavigation
 
-    init(useCase: MeUseCase?) {
+	init(useCase: MeUseCaseApi?,
+		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
         self.useCase = useCase
+		self.linkNavigation = linkNavigation
         getUserWallet()
     }
 
@@ -66,7 +69,7 @@ class MyWalletViewModel: ObservableObject {
 		
 		accountConfirmationViewModel = AccountConfirmationViewModel(title: LocalizableString.confirmPasswordTitle.localized,
 																	descriptionMarkdown: LocalizableString.Wallet.myAccountConfirmationDescription.localized,
-																	useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCase.self)) { [weak self] isvalid in
+																	useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)) { [weak self] isvalid in
 			guard isvalid else {
 				return
 			}
@@ -88,7 +91,7 @@ class MyWalletViewModel: ObservableObject {
 
     func handleViewTransactionHistoryTap() {
         let url = String(format: DisplayedLinks.networkAddressWebsiteFormat.linkURL, input)
-        HelperFunctions().openUrl(url)
+		linkNavigation.openUrl(url)
 
         WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .walletTransactions,
                                                               .itemId: .custom(wallet?.address ?? "")])
@@ -99,7 +102,7 @@ class MyWalletViewModel: ObservableObject {
 															 .promptType: .info,
 															 .action: .action])
 
-		HelperFunctions().openUrl(DisplayedLinks.createWalletsLink.linkURL)
+		linkNavigation.openUrl(DisplayedLinks.createWalletsLink.linkURL)
 	}
 
     func handleQRButtonTap() {

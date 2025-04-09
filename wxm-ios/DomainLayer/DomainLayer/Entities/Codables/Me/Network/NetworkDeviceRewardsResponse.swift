@@ -11,6 +11,12 @@ public struct NetworkDeviceRewardsResponse: Codable, Sendable {
 	public let total: Double?
 	public let data: [RewardsData]?
 	public let details: [Details]?
+
+	public init(total: Double?, data: [RewardsData]?, details: [Details]?) {
+		self.total = total
+		self.data = data
+		self.details = details
+	}
 }
 
 public extension NetworkDeviceRewardsResponse {

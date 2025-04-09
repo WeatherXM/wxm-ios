@@ -10,8 +10,8 @@ import Combine
 import Alamofire
 import Toolkit
 
-public struct RewardsUseCase {
-    private let devicesRepository: DevicesRepository
+public struct RewardsUseCase: RewardsUseCaseApi {
+	nonisolated(unsafe) private let devicesRepository: DevicesRepository
 
     public init(devicesRepository: DevicesRepository) {
         self.devicesRepository = devicesRepository

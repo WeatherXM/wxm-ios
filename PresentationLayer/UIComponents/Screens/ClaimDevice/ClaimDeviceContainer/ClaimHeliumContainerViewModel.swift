@@ -14,7 +14,7 @@ class ClaimHeliumContainerViewModel: ClaimDeviceContainerViewModel {
 	private var btDevice: BTWXMDevice?
 	private var heliumFrequency: Frequency?
 
-	override init(useCase: MeUseCase, devicesUseCase: DevicesUseCase, deviceLocationUseCase: DeviceLocationUseCase) {
+	override init(useCase: MeUseCaseApi, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCaseApi) {
 		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
 		navigationTitle = ClaimStationType.helium.navigationTitle
 		steps = getSteps()
@@ -208,7 +208,7 @@ private extension ClaimHeliumContainerViewModel {
 											cancelTitle: LocalizableString.ClaimDevice.cancelClaimButton.localized,
 											retryTitle: LocalizableString.ClaimDevice.retryClaimButton.localized,
 											contactSupportAction: {
-			HelperFunctions().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
+			LinkNavigationHelper().openContactSupport(successFailureEnum: .claimDeviceFlow, email: MainScreenViewModel.shared.userInfo?.email)
 		}, cancelAction: {
 			Router.shared.popToRoot()
 		}, retryAction: {
