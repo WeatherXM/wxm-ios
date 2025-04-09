@@ -32,11 +32,13 @@ struct PhotoGalleryUseCaseTests {
 	@Test func saveImage() async throws {
 		let fileName = try await useCase.saveImage(UIImage(),
 												   deviceId: "124",
-												   metadata: nil)
+												   metadata: nil,
+												   userComment: "")
 
 		let repositoryFileName = try await repository.saveImage(UIImage(),
 																deviceId: "124",
-																metadata: nil)
+																metadata: nil,
+																userComment: "")
 		#expect(fileName == repositoryFileName)
 	}
 

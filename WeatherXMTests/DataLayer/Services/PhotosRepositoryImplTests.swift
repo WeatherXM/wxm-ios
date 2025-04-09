@@ -52,7 +52,8 @@ private extension PhotosRepositoryImplTests {
 	func savePhoto() async throws -> String {
 		let path = try await repositoryImpl.saveImage(image,
 													  deviceId: "124",
-													  metadata: nil)
+													  metadata: nil,
+													  userComment: "")
 		let filePath = try #require(path)
 		return filePath
 	}
