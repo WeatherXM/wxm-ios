@@ -64,8 +64,8 @@ class GalleryViewModel: ObservableObject {
 	private let linkNavigator: LinkNavigation
 	private lazy var imagePickerDelegate = {
 		let picker = ImagePickerDelegate(useCase: useCase, deviceId: deviceId)
-		picker.imageCallback = { [weak self] imageUrl in
-			self?.images.append(imageUrl)
+		picker.imageCallback = { [weak self] images in
+			self?.images.append(contentsOf: images)
 			self?.selectedImage = self?.images.last
 
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto,
@@ -220,7 +220,7 @@ extension GalleryViewModel: HashableViewModel {
 }
 
 private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
-	var imageCallback: ((GalleryView.GalleryImage) -> Void)?
+	var imageCallback: (([GalleryView.GalleryImage]) -> Void)?
 	private let useCase: PhotoGalleryUseCaseApi
 	private let deviceId: String
 
@@ -233,7 +233,7 @@ private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UI
 		let metadata = info[.mediaMetadata] as? NSDictionary
 		Task { @MainActor in
 			if let image = info[.originalImage] as? UIImage {
-				imageCallback?(GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata))
+				imageCallback?([GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata)])
 			}
 		}
 
@@ -242,23 +242,36 @@ private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UI
 
 	func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
 		picker.dismiss(animated: true, completion: nil)
-		guard let provider = results.first?.itemProvider else { return }
 
-		if provider.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
-			provider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { [weak self] url, error in
+		nonisolated(unsafe) var images: [GalleryView.GalleryImage] = []
+		let dispatchGroup = DispatchGroup()
+		results.forEach { result in
+			guard result.itemProvider.hasItemConformingToTypeIdentifier(UTType.image.identifier) else {
+				return
+			}
+
+			dispatchGroup.enter()
+			result.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { url, error in
+				defer {
+					dispatchGroup.leave()
+				}
+
 				guard let url,
 					  let data = try? Data(contentsOf: url) else {
 					return
 				}
+
 				let options = [kCGImageSourceShouldCache as String:  kCFBooleanFalse]
 				let imgSrc = CGImageSourceCreateWithData(data as CFData, options as CFDictionary)
 				let metadata = CGImageSourceCopyPropertiesAtIndex(imgSrc!, 0, options as CFDictionary)
 				if let image = UIImage(data: data) {
-					DispatchQueue.main.async {
-						self?.imageCallback?(GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata))
-					}
+					images.append(GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata))
 				}
 			}
+		}
+
+		dispatchGroup.notify(queue: .main) { [weak self] in
+			self?.imageCallback?(images)
 		}
 	}
 
@@ -336,7 +349,7 @@ private extension GalleryViewModel {
 	func openPhotoGallery() {
 		var configuration = PHPickerConfiguration()
 		configuration.filter = .images
-		configuration.selectionLimit = 1
+		configuration.selectionLimit = maxPhotosCount - images.count
 
 		let picker = PHPickerViewController(configuration: configuration)
 		picker.delegate = imagePickerDelegate
