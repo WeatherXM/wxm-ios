@@ -158,7 +158,12 @@ private extension PhotosRepositoryImpl {
 	}
 
 	func saveImageWithEXIF(image: UIImage, metadata: NSDictionary?, saveFilename: URL) -> Bool {
-		guard let data = image.jpegData(compressionQuality: 0.8),
+		let scaledImage = image.scaleDown(newWidth: 1920.0)
+		// Update metadata with the correct orientation
+		var metadata = metadata?.mutableCopy() as? NSMutableDictionary ?? NSMutableDictionary()
+		metadata[kCGImagePropertyOrientation] = CGImagePropertyOrientation(scaledImage.imageOrientation).rawValue
+
+		guard let data = scaledImage.jpegData(compressionQuality: 1.0),
 			  let imageRef: CGImageSource = CGImageSourceCreateWithData((data as CFData), nil),
 			  let uti: CFString = CGImageSourceGetType(imageRef),
 			  case let dataWithEXIF: NSMutableData = NSMutableData(data: data as Data),
@@ -166,7 +171,7 @@ private extension PhotosRepositoryImpl {
 			return false
 		}
 
-		CGImageDestinationAddImageFromSource(destination, imageRef, 0, (metadata ?? [:] as CFDictionary))
+		CGImageDestinationAddImageFromSource(destination, imageRef, 0, (metadata))
 		CGImageDestinationFinalize(destination)
 
 		let manager: FileManager = FileManager.default
