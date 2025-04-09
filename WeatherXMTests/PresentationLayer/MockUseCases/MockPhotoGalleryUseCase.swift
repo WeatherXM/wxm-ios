@@ -48,7 +48,7 @@ final class MockPhotoGalleryUseCase: PhotoGalleryUseCaseApi {
 		termsAcceptedValue = termsAccepted
 	}
 
-	func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String? {
+	func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?, userComment: String) async throws -> String? {
 		imageSaved = true
 		return ""
 	}

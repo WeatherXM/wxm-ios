@@ -36,8 +36,8 @@ public struct PhotoGalleryUseCase: PhotoGalleryUseCaseApi {
 		photosRepository.setTermsAccepted(termsAccepted)
 	}
 
-	public func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String? {
-		try await photosRepository.saveImage(image, deviceId: deviceId, metadata: metadata)
+	public func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?, userComment: String) async throws -> String? {
+		try await photosRepository.saveImage(image, deviceId: deviceId, metadata: metadata, userComment: userComment)
 	}
 
 	public func deleteImage(_ imageUrl: String, deviceId: String) async throws {

@@ -57,9 +57,10 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		fileUploader.getUploadInProgressDeviceId()
 	}
 
-	public func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String? {
+	public func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?, userComment: String) async throws -> String? {
 		let fileName = self.getFolderPath(for: deviceId).appendingPathComponent("\(UUID().uuidString).jpg")
-		let fixedMetadata = await injectLocationInMetadataIfNeeded(metadata ?? .init())
+		var fixedMetadata = await injectLocationInMetadataIfNeeded(metadata ?? .init()) ?? .init()
+		fixedMetadata = injectUserCommentInMetadata(fixedMetadata, comment: userComment) ?? .init()
 		guard saveImageWithEXIF(image: image, metadata: fixedMetadata, saveFilename: fileName) else {
 			return nil
 		}
