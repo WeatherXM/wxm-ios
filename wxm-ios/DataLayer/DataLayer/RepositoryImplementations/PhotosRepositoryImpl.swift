@@ -190,6 +190,15 @@ private extension PhotosRepositoryImpl {
 		}
 	}
 
+	func injectUserCommentInMetadata(_ metadata: NSDictionary, comment: String) -> NSDictionary? {
+		let mutableMetadata = metadata.mutableCopy() as? NSMutableDictionary
+		let exifDict = mutableMetadata?[kCGImagePropertyExifDictionary] as? NSMutableDictionary ?? NSMutableDictionary()
+		exifDict[kCGImagePropertyExifUserComment] = comment
+		mutableMetadata?[kCGImagePropertyExifDictionary] = exifDict
+
+		return mutableMetadata
+	}
+
 	func retrievePhotosUpload(for deviceId: String, names: [String]) async throws -> Result<[NetworkPostDevicePhotosResponse], NetworkErrorResponse> {
 		let builder = MeApiRequestBuilder.postPhotoNames(deviceId: deviceId, photos: names)
 		let urlRequest = try builder.asURLRequest()
