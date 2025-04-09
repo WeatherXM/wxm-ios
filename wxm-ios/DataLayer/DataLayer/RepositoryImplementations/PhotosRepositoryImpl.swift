@@ -59,7 +59,7 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 
 	public func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String? {
 		let fileName = self.getFolderPath(for: deviceId).appendingPathComponent("\(UUID().uuidString).jpg")
-		let fixedMetadata = await injectLocationInMetadata(metadata ?? .init())
+		let fixedMetadata = await injectLocationInMetadataIfNeeded(metadata ?? .init())
 		guard saveImageWithEXIF(image: image, metadata: fixedMetadata, saveFilename: fileName) else {
 			return nil
 		}
@@ -172,7 +172,12 @@ private extension PhotosRepositoryImpl {
 		return manager.createFile(atPath: saveFilename.path(), contents: dataWithEXIF as Data, attributes: nil)
 	}
 
-	func injectLocationInMetadata(_ metadata: NSDictionary) async -> NSDictionary? {
+	func injectLocationInMetadataIfNeeded(_ metadata: NSDictionary) async -> NSDictionary? {
+		let gpsDict = metadata[kCGImagePropertyGPSDictionary] as? NSDictionary
+		guard gpsDict?[kCGImagePropertyGPSLongitude] == nil || gpsDict?[kCGImagePropertyGPSLatitude] == nil else {
+			return metadata
+		}
+
 		let result = await locationManager.getUserLocation()
 		switch result {
 			case .success(let location):
