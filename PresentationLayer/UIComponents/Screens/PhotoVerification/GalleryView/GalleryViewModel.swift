@@ -10,6 +10,12 @@ import UIKit
 import DomainLayer
 import SwiftUI
 import Toolkit
+@preconcurrency import PhotosUI
+
+private enum PickerType {
+	case camera
+	case photoLibrary
+}
 
 @MainActor
 class GalleryViewModel: ObservableObject {
@@ -84,17 +90,7 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func handlePlusButtonTap() {
-		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto,
-																 .action: .started])
-
-		guard images.count < maxPhotosCount else {
-			if let text = LocalizableString.PhotoVerification.maxLimitPhotosInfo(maxPhotosCount).localized.attributedMarkdown {
-				Toast.shared.show(text: text, type: .info, visibleDuration: 5.0)
-			}
-			return
-		}
-
-		openCamera()
+		openPhotoPicker(type: .camera)
 	}
 
 	func handleDeleteButtonTap(showAlert: Bool = true) {
@@ -131,6 +127,10 @@ class GalleryViewModel: ObservableObject {
 		}
 
 		action()
+	}
+
+	func handleGalleryButtonTap() {
+		openPhotoPicker(type: .photoLibrary)
 	}
 
 	func handleInstructionsButtonTap() {
@@ -219,7 +219,7 @@ extension GalleryViewModel: HashableViewModel {
 	}
 }
 
-private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
 	var imageCallback: ((GalleryView.GalleryImage) -> Void)?
 	private let useCase: PhotoGalleryUseCaseApi
 	private let deviceId: String
@@ -239,9 +239,51 @@ private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UI
 
 		picker.dismiss(animated: true)
 	}
+
+	func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+		picker.dismiss(animated: true, completion: nil)
+		guard let provider = results.first?.itemProvider else { return }
+
+		if provider.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
+			provider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { [weak self] url, error in
+				guard let url,
+					  let data = try? Data(contentsOf: url) else {
+					return
+				}
+				let options = [kCGImageSourceShouldCache as String:  kCFBooleanFalse]
+				let imgSrc = CGImageSourceCreateWithData(data as CFData, options as CFDictionary)
+				let metadata = CGImageSourceCopyPropertiesAtIndex(imgSrc!, 0, options as CFDictionary)
+				if let image = UIImage(data: data) {
+					DispatchQueue.main.async {
+						self?.imageCallback?(GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata))
+					}
+				}
+			}
+		}
+	}
+
 }
 
 private extension GalleryViewModel {
+	func openPhotoPicker(type: PickerType) {
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto,
+																 .action: .started])
+
+		guard images.count < maxPhotosCount else {
+			if let text = LocalizableString.PhotoVerification.maxLimitPhotosInfo(maxPhotosCount).localized.attributedMarkdown {
+				Toast.shared.show(text: text, type: .info, visibleDuration: 5.0)
+			}
+			return
+		}
+
+		switch type {
+			case .camera:
+				openCamera()
+			case .photoLibrary:
+				openPhotoGallery()
+		}
+	}
+
 	func updateSubtitle() {
 		let remainingCount = minPhotosCount - images.count
 		if remainingCount > 0 {
@@ -289,6 +331,16 @@ private extension GalleryViewModel {
 
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: openPikerCallback)
 		}
+	}
+
+	func openPhotoGallery() {
+		var configuration = PHPickerConfiguration()
+		configuration.filter = .images
+		configuration.selectionLimit = 1
+
+		let picker = PHPickerViewController(configuration: configuration)
+		picker.delegate = imagePickerDelegate
+		UIApplication.shared.topViewController?.present(picker, animated: true)
 	}
 
 	func showExitAlert(message: String, dismissAction: @escaping VoidCallback) {
