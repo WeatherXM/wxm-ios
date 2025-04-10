@@ -59,6 +59,10 @@ extension ParameterValue: RawRepresentable {
 				return "App Update Prompt"
 			case .appUpdatePromptResult:
 				return "App Update Prompt Result"
+			case .camera:
+				return "camera"
+			case .gallery:
+				return "gallery"
 			case .selectDevice:
 				return "Select Device"
 			case .userDeviceList:
@@ -173,6 +177,8 @@ extension ParameterValue: RawRepresentable {
 				return "Rewards Card"
 			case .removeDevice:
 				return "Remove Device"
+			case .removeStationPhoto:
+				return "Remove Station Photo"
 			case .deviceAlertsSource:
 				return "device_alerts"
 			case .stationOffline:
@@ -459,8 +465,12 @@ extension ParameterValue: RawRepresentable {
 				return "completed"
 			case .proPromotionCTA:
 				return "Pro Promotion CTA"
+			case .remote:
+				return "remote"
 			case .remoteDevicesList:
 				return "remote_devices_list"
+			case .local:
+				return "local"
 			case .localForecast:
 				return "local_forecast"
 			case .localForecastDetails:

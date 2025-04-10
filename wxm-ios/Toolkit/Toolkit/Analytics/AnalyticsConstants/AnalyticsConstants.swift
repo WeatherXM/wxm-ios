@@ -15,57 +15,57 @@ let analyticsScreenView: String = AnalyticsEventScreenView
 let analyticsScreenNameKey: String = AnalyticsParameterScreenName
 
 public enum Screen: String {
-	case splash = "Splash Screen"
-	case explorerLanding = "Explorer (Landing)"
-	case explorer = "Explorer"
-	case claimM5 = "Claim M5"
-	case claimHelium = "Claim Helium"
-	case claimPulse = "Claim Pulse"
-	case claimD1 = "Claim D1"
-	case claimDapp = "Claim Dapp"
-	case wallet = "Wallet"
-	case deleteAccount = "Delete Account"
-	case deviceAlerts = "Device Alerts"
-	case heliumOTA = "OTA Update"
-	case history = "Device History"
-	case deviceList = "Device List"
-	case settings = "App Settings"
-	case login = "Login"
-	case signup = "Sign Up"
-	case passwordReset = "Password Reset"
-	case profile = "Account"
-	case currentWeather = "Device Current Weather"
-	case forecast = "Device Forecast"
-	case forecastDetails = "Device Forecast Details"
-	case stationPhotosInstructions = "Station Photos Instructions"
-	case stationPhotosIntro = "Station Photos Intro"
-	case stationPhotosGallery = "Station Photos Gallery"
-	case rewards = "Device Rewards"
-	case stationSettings = "Device Settings"
-	case rewardTransactions = "Device Reward Transactions"
 	case appUpdatePrompt = "App Update Prompt"
-	case widgetSelectStation = "Widget Station Selection"
-	case passwordConfirm = "Password Confirm"
-	case claimDeviceTypeSelection = "Claim Device Type Selection"
-	case changeStationName = "Change Station Name"
-	case changeStationFrequency = "Change Station Frequency"
-	case rebootStation = "Reboot Station"
-	case explorerCell = "Explorer Cell"
-	case explorerDevice = "Explorer Device"
-	case networkStats = "Network Stats"
-	case networkSearch = "Network Search"
-	case sortFilter = "Sort Filter"
-	case deviceRewardsDetails = "Device Rewards Details"
-	case dailyRewardInfo = "Daily Reward info"
-	case dataQualityInfo = "Data Quality info"
-	case locationQualityInfo = "Location Quality info"
-	case cellRankingInfo = "Cell Ranking Info"
-	case rewardIssues = "Reward Issues"
+	case bleConnectionPopupError = "BLE Connection Popup Error"
 	case boostDetail = "Boost Detail"
 	case cellCapacityInfo = "Cell Capacity info"
+	case cellRankingInfo = "Cell Ranking Info"
+	case changeStationFrequency = "Change Station Frequency"
+	case changeStationName = "Change Station Name"
+	case claimD1 = "Claim D1"
+	case claimDapp = "Claim Dapp"
+	case claimDeviceTypeSelection = "Claim Device Type Selection"
+	case claimHelium = "Claim Helium"
+	case claimM5 = "Claim M5"
+	case claimPulse = "Claim Pulse"
+	case currentWeather = "Device Current Weather"
+	case dailyRewardInfo = "Daily Reward info"
+	case dataQualityInfo = "Data Quality info"
+	case deleteAccount = "Delete Account"
+	case deviceAlerts = "Device Alerts"
+	case deviceList = "Device List"
+	case deviceRewardsDetails = "Device Rewards Details"
+	case explorer = "Explorer"
+	case explorerCell = "Explorer Cell"
+	case explorerDevice = "Explorer Device"
+	case explorerLanding = "Explorer (Landing)"
+	case forecast = "Device Forecast"
+	case forecastDetails = "Device Forecast Details"
+	case heliumOTA = "OTA Update"
+	case history = "Device History"
+	case locationQualityInfo = "Location Quality info"
+	case login = "Login"
+	case networkSearch = "Network Search"
+	case networkStats = "Network Stats"
+	case passwordConfirm = "Password Confirm"
+	case passwordReset = "Password Reset"
+	case profile = "Account"
+	case rebootStation = "Reboot Station"
 	case rewardAnalytics = "Reward Analytics"
+	case rewardIssues = "Reward Issues"
+	case rewardTransactions = "Device Reward Transactions"
+	case rewards = "Device Rewards"
+	case settings = "App Settings"
+	case signup = "Sign Up"
+	case sortFilter = "Sort Filter"
+	case splash = "Splash Screen"
+	case stationPhotosGallery = "Station Photos Gallery"
+	case stationPhotosInstructions = "Station Photos Instructions"
+	case stationPhotosIntro = "Station Photos Intro"
+	case stationSettings = "Device Settings"
 	case temperatureBars = "Temperature Bars Explanation"
-	case bleConnectionPopupError = "BLE Connection Popup Error"
+	case widgetSelectStation = "Widget Station Selection"
+	case wallet = "Wallet"
 }
 
 public enum Event: String {
@@ -78,40 +78,42 @@ public enum Event: String {
 public enum Parameter: String {
 	case action = "ACTION"
 	case actionName = "ACTION_NAME"
-	case contentType = "CONTENT_TYPE"
+	case appId = "APP_ID"
 	case contentName = "CONTENT_NAME"
+	case contentType = "CONTENT_TYPE"
+	case date = "DATE"
+	case deviceState = "DEVICE_STATE"
+	case filter = "FILTER"
+	case groupBy = "GROUP_BY"
+	case hasWallet = "HAS_WALLET"
+	case index = "INDEX"
 	case itemId = "ITEM_ID"
-	case location = "LOCATION"
 	case itemListId = "ITEM_LIST_ID"
+	case location = "LOCATION"
 	case method = "METHOD"
-	case success = "SUCCESS"
 	case promptName = "PROMPT_NAME"
 	case promptType = "PROMPT_TYPE"
-	case step = "STEP"
-	case state = "STATE"
-	case index = "INDEX"
+	case sortBy = "SORT_BY"
 	case source = "SOURCE"
-	case date = "DATE"
-	case theme = "THEME"
+	case state = "STATE"
+	case stationsOwn = "STATIONS_OWN"
+	case status = "STATUS"
+	case step = "STEP"
+	case success = "SUCCESS"
 	case temperature = "UNIT_TEMPERATURE"
+	case theme = "THEME"
+	case userState = "USER_STATE"
 	case wind = "UNIT_WIND"
 	case windDirection = "UNIT_WIND_DIRECTION"
 	case precipitation = "UNIT_PRECIPITATION"
 	case pressure = "UNIT_PRESSURE"
-	case sortBy = "SORT_BY"
-	case filter = "FILTER"
-	case groupBy = "GROUP_BY"
-	case status = "STATUS"
-	case appId = "APP_ID"
-	case stationsOwn = "STATIONS_OWN"
-	case hasWallet = "HAS_WALLET"
-	case deviceState = "DEVICE_STATE"
-	case userState = "USER_STATE"
 }
 
 public enum ParameterValue {
 	case appUpdatePrompt
 	case appUpdatePromptResult
+	case camera
+	case gallery
 	case selectDevice
 	case userDeviceList
 	case deviceTransactions
@@ -168,6 +170,7 @@ public enum ParameterValue {
 	case closeState
 	case rewardsCard
 	case removeDevice
+	case removeStationPhoto
 	case deviceAlertsSource
 	case stationOffline
 	case deviceInfoSource
@@ -311,7 +314,9 @@ public enum ParameterValue {
 	case started
 	case completed
 	case proPromotionCTA
+	case remote
 	case remoteDevicesList
+	case local
 	case localForecast
 	case localForecastDetails
 	case localHistory

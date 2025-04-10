@@ -7,6 +7,7 @@
 
 import SwiftUI
 import NukeUI
+import Toolkit
 
 struct GalleryView: View {
 	@Environment(\.dismiss) private var dismiss
@@ -182,6 +183,15 @@ extension GalleryView {
 					return "wxm-device-photo-library"
 			}
 		}
+
+		var parameterValue: ParameterValue {
+			switch self {
+				case .camera:
+					return .camera
+				case .library:
+					return .gallery
+			}
+		}
 	}
 
 	struct GalleryImage: Identifiable, Equatable {
@@ -197,6 +207,10 @@ extension GalleryView {
 		var image: Image? {
 			guard let uiImage else { return nil }
 			return Image(uiImage: uiImage)
+		}
+
+		var isRmemoteImage: Bool {
+			remoteUrl != nil
 		}
 	}
 }
