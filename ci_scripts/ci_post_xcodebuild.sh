@@ -37,8 +37,6 @@ fi
 
 if ([ "$CI_WORKFLOW" = "Unit tests" ])
 then
-# Exit on any command failure
-#set -e
 
 # Convert xcresult to JSON
 echo "Contents of derived data path:"
