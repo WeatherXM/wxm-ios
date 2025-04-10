@@ -9,7 +9,7 @@ import Testing
 @testable import DataLayer
 import Toolkit
 
-@Suite(.serialized)
+@Suite(.serialized, .timeLimit(.minutes(3)))
 struct BluetoothDevicesRepositoryImplTests {
 	let manager: BluetoothManager
 	let bluetoothDevicesRepositoryImpl: BluetoothDevicesRepositoryImpl

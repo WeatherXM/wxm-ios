@@ -4,7 +4,7 @@
       "id" : "20B9F52A-8619-4B2F-BD10-91594B79C6DA",
       "name" : "Configuration 1",
       "options" : {
-
+        "testTimeoutsEnabled" : true
       }
     }
   ],
