@@ -110,6 +110,9 @@ class GalleryViewModel: ObservableObject {
 			return
 		}
 
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .removeStationPhoto,
+																 .itemId: selectedImage.isRmemoteImage ? .remote : .local])
+		
 		let action: VoidCallback = { [weak self] in
 			Task { @MainActor in
 				defer {

@@ -208,6 +208,10 @@ extension GalleryView {
 			guard let uiImage else { return nil }
 			return Image(uiImage: uiImage)
 		}
+
+		var isRmemoteImage: Bool {
+			remoteUrl != nil
+		}
 	}
 }
 
