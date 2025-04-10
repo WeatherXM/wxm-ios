@@ -18,7 +18,7 @@ public protocol PhotoGalleryUseCaseApi: Sendable {
 
 	func getUploadInProgressDeviceId() -> String?
 	func setTermsAccepted(_ termsAccepted: Bool)
-	func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String?
+	func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?, userComment: String) async throws -> String?
 	func deleteImage(_ imageUrl: String, deviceId: String) async throws
 	func getCameraPermission() -> AVAuthorizationStatus
 	func requestCameraPermission() async -> AVAuthorizationStatus

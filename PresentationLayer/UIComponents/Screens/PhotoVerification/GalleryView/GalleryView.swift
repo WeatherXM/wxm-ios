@@ -102,7 +102,7 @@ struct GalleryView: View {
 					VStack(spacing: CGFloat(.largeSpacing)) {
 						galleryScroller
 
-						HStack {
+						HStack(spacing: CGFloat(.defaultSpacing)) {
 							Button {
 								viewModel.handleDeleteButtonTap()
 							} label: {
@@ -114,6 +114,17 @@ struct GalleryView: View {
 							}
 							.buttonStyle(WXMButtonOpacityStyle())
 							.disabled(viewModel.selectedImage == nil)
+
+							Button {
+								viewModel.handleGalleryButtonTap()
+							} label: {
+								Text(FontIcon.image.rawValue)
+									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+									.foregroundStyle(Color(colorEnum: .text))
+									.padding(CGFloat(.mediumSidePadding))
+									.background(Circle().fill(Color(colorEnum: .layer1)))
+							}
+							.buttonStyle(WXMButtonOpacityStyle())
 
 							Spacer()
 
@@ -159,10 +170,25 @@ struct GalleryView: View {
 }
 
 extension GalleryView {
+	enum ImageSource {
+		case camera
+		case library
+
+		var sourceValue: String {
+			switch self {
+				case .camera:
+					return "wxm-device-photo-camera"
+				case .library:
+					return "wxm-device-photo-library"
+			}
+		}
+	}
+
 	struct GalleryImage: Identifiable, Equatable {
 		let remoteUrl: String?
 		let uiImage: UIImage?
 		let metadata: NSDictionary?
+		let source: ImageSource?
 
 		var id: String {
 			remoteUrl ?? "\(uiImage.hashValue)"

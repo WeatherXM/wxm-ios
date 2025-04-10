@@ -57,9 +57,10 @@ public struct PhotosRepositoryImpl: PhotosRepository {
 		fileUploader.getUploadInProgressDeviceId()
 	}
 
-	public func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?) async throws -> String? {
+	public func saveImage(_ image: UIImage, deviceId: String, metadata: NSDictionary?, userComment: String) async throws -> String? {
 		let fileName = self.getFolderPath(for: deviceId).appendingPathComponent("\(UUID().uuidString).jpg")
-		let fixedMetadata = await injectLocationInMetadata(metadata ?? .init())
+		var fixedMetadata = await injectLocationInMetadataIfNeeded(metadata ?? .init()) ?? .init()
+		fixedMetadata = injectUserCommentInMetadata(fixedMetadata, comment: userComment) ?? .init()
 		guard saveImageWithEXIF(image: image, metadata: fixedMetadata, saveFilename: fileName) else {
 			return nil
 		}
@@ -157,7 +158,12 @@ private extension PhotosRepositoryImpl {
 	}
 
 	func saveImageWithEXIF(image: UIImage, metadata: NSDictionary?, saveFilename: URL) -> Bool {
-		guard let data = image.jpegData(compressionQuality: 0.8),
+		let scaledImage = image.scaleDown(newWidth: 1920.0)
+		// Update metadata with the correct orientation
+		var metadata = metadata?.mutableCopy() as? NSMutableDictionary ?? NSMutableDictionary()
+		metadata[kCGImagePropertyOrientation] = CGImagePropertyOrientation(scaledImage.imageOrientation).rawValue
+
+		guard let data = scaledImage.jpegData(compressionQuality: 1.0),
 			  let imageRef: CGImageSource = CGImageSourceCreateWithData((data as CFData), nil),
 			  let uti: CFString = CGImageSourceGetType(imageRef),
 			  case let dataWithEXIF: NSMutableData = NSMutableData(data: data as Data),
@@ -165,14 +171,19 @@ private extension PhotosRepositoryImpl {
 			return false
 		}
 
-		CGImageDestinationAddImageFromSource(destination, imageRef, 0, (metadata ?? [:] as CFDictionary))
+		CGImageDestinationAddImageFromSource(destination, imageRef, 0, (metadata))
 		CGImageDestinationFinalize(destination)
 
 		let manager: FileManager = FileManager.default
 		return manager.createFile(atPath: saveFilename.path(), contents: dataWithEXIF as Data, attributes: nil)
 	}
 
-	func injectLocationInMetadata(_ metadata: NSDictionary) async -> NSDictionary? {
+	func injectLocationInMetadataIfNeeded(_ metadata: NSDictionary) async -> NSDictionary? {
+		let gpsDict = metadata[kCGImagePropertyGPSDictionary] as? NSDictionary
+		guard gpsDict?[kCGImagePropertyGPSLongitude] == nil || gpsDict?[kCGImagePropertyGPSLatitude] == nil else {
+			return metadata
+		}
+
 		let result = await locationManager.getUserLocation()
 		switch result {
 			case .success(let location):
@@ -183,6 +194,15 @@ private extension PhotosRepositoryImpl {
 			case .failure(_):
 				return metadata
 		}
+	}
+
+	func injectUserCommentInMetadata(_ metadata: NSDictionary, comment: String) -> NSDictionary? {
+		let mutableMetadata = metadata.mutableCopy() as? NSMutableDictionary
+		let exifDict = mutableMetadata?[kCGImagePropertyExifDictionary] as? NSMutableDictionary ?? NSMutableDictionary()
+		exifDict[kCGImagePropertyExifUserComment] = comment
+		mutableMetadata?[kCGImagePropertyExifDictionary] = exifDict
+
+		return mutableMetadata
 	}
 
 	func retrievePhotosUpload(for deviceId: String, names: [String]) async throws -> Result<[NetworkPostDevicePhotosResponse], NetworkErrorResponse> {

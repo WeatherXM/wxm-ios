@@ -10,6 +10,12 @@ import UIKit
 import DomainLayer
 import SwiftUI
 import Toolkit
+@preconcurrency import PhotosUI
+
+private enum PickerType {
+	case camera
+	case photoLibrary
+}
 
 @MainActor
 class GalleryViewModel: ObservableObject {
@@ -58,8 +64,8 @@ class GalleryViewModel: ObservableObject {
 	private let linkNavigator: LinkNavigation
 	private lazy var imagePickerDelegate = {
 		let picker = ImagePickerDelegate(useCase: useCase, deviceId: deviceId)
-		picker.imageCallback = { [weak self] imageUrl in
-			self?.images.append(imageUrl)
+		picker.imageCallback = { [weak self] images in
+			self?.images.append(contentsOf: images)
 			self?.selectedImage = self?.images.last
 
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto,
@@ -75,7 +81,7 @@ class GalleryViewModel: ObservableObject {
 		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.deviceId = deviceId
 		self.useCase = photoGalleryUseCase
-		self.images = images.map { GalleryView.GalleryImage(remoteUrl: $0, uiImage: nil, metadata: nil) }
+		self.images = images.map { GalleryView.GalleryImage(remoteUrl: $0, uiImage: nil, metadata: nil, source: nil) }
 		self.isNewPhotoVerification = isNewPhotoVerification
 		self.linkNavigator = linkNavigation
 		selectedImage = self.images.last
@@ -84,17 +90,7 @@ class GalleryViewModel: ObservableObject {
 	}
 
 	func handlePlusButtonTap() {
-		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto,
-																 .action: .started])
-
-		guard images.count < maxPhotosCount else {
-			if let text = LocalizableString.PhotoVerification.maxLimitPhotosInfo(maxPhotosCount).localized.attributedMarkdown {
-				Toast.shared.show(text: text, type: .info, visibleDuration: 5.0)
-			}
-			return
-		}
-
-		openCamera()
+		openPhotoPicker(type: .camera)
 	}
 
 	func handleDeleteButtonTap(showAlert: Bool = true) {
@@ -133,6 +129,10 @@ class GalleryViewModel: ObservableObject {
 		action()
 	}
 
+	func handleGalleryButtonTap() {
+		openPhotoPicker(type: .photoLibrary)
+	}
+
 	func handleInstructionsButtonTap() {
 		showInstructions = true
 	}
@@ -151,7 +151,10 @@ class GalleryViewModel: ObservableObject {
 				do {
 					self.showLoading = true
 					try self.useCase.clearLocalImages(deviceId: self.deviceId)
-					let fileUrls = await localImages.asyncCompactMap { try? await self.useCase.saveImage($0.uiImage!, deviceId: self.deviceId, metadata: $0.metadata)}
+					let fileUrls = await localImages.asyncCompactMap { try? await self.useCase.saveImage($0.uiImage!,
+																										 deviceId: self.deviceId,
+																										 metadata: $0.metadata,
+																										 userComment: $0.source?.sourceValue ?? "")}
 					try await self.useCase.startFilesUpload(deviceId: self.deviceId, files: fileUrls.compactMap { try? $0.asURL() })
 					self.showLoading = false
 					self.showUploadStarted { dismissAction?() }
@@ -219,8 +222,8 @@ extension GalleryViewModel: HashableViewModel {
 	}
 }
 
-private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-	var imageCallback: ((GalleryView.GalleryImage) -> Void)?
+private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
+	var imageCallback: (([GalleryView.GalleryImage]) -> Void)?
 	private let useCase: PhotoGalleryUseCaseApi
 	private let deviceId: String
 
@@ -233,15 +236,70 @@ private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UI
 		let metadata = info[.mediaMetadata] as? NSDictionary
 		Task { @MainActor in
 			if let image = info[.originalImage] as? UIImage {
-				imageCallback?(GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata))
+				imageCallback?([GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata, source: .camera)])
 			}
 		}
 
 		picker.dismiss(animated: true)
 	}
+
+	func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+		picker.dismiss(animated: true, completion: nil)
+
+		nonisolated(unsafe) var images: [GalleryView.GalleryImage] = []
+		let dispatchGroup = DispatchGroup()
+		results.forEach { result in
+			guard result.itemProvider.hasItemConformingToTypeIdentifier(UTType.image.identifier) else {
+				return
+			}
+
+			dispatchGroup.enter()
+			result.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { url, error in
+				defer {
+					dispatchGroup.leave()
+				}
+
+				guard let url,
+					  let data = try? Data(contentsOf: url) else {
+					return
+				}
+
+				let options = [kCGImageSourceShouldCache as String:  kCFBooleanFalse]
+				let imgSrc = CGImageSourceCreateWithData(data as CFData, options as CFDictionary)
+				let metadata = CGImageSourceCopyPropertiesAtIndex(imgSrc!, 0, options as CFDictionary)
+				if let image = UIImage(data: data) {
+					images.append(GalleryView.GalleryImage(remoteUrl: nil, uiImage: image, metadata: metadata, source: .library))
+				}
+			}
+		}
+
+		dispatchGroup.notify(queue: .main) { [weak self] in
+			self?.imageCallback?(images)
+		}
+	}
+
 }
 
 private extension GalleryViewModel {
+	func openPhotoPicker(type: PickerType) {
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto,
+																 .action: .started])
+
+		guard images.count < maxPhotosCount else {
+			if let text = LocalizableString.PhotoVerification.maxLimitPhotosInfo(maxPhotosCount).localized.attributedMarkdown {
+				Toast.shared.show(text: text, type: .info, visibleDuration: 5.0)
+			}
+			return
+		}
+
+		switch type {
+			case .camera:
+				openCamera()
+			case .photoLibrary:
+				openPhotoGallery()
+		}
+	}
+
 	func updateSubtitle() {
 		let remainingCount = minPhotosCount - images.count
 		if remainingCount > 0 {
@@ -289,6 +347,16 @@ private extension GalleryViewModel {
 
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: openPikerCallback)
 		}
+	}
+
+	func openPhotoGallery() {
+		var configuration = PHPickerConfiguration()
+		configuration.filter = .images
+		configuration.selectionLimit = maxPhotosCount - images.count
+
+		let picker = PHPickerViewController(configuration: configuration)
+		picker.delegate = imagePickerDelegate
+		UIApplication.shared.topViewController?.present(picker, animated: true)
 	}
 
 	func showExitAlert(message: String, dismissAction: @escaping VoidCallback) {
