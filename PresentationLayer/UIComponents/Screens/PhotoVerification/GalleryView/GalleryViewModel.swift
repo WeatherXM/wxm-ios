@@ -15,6 +15,15 @@ import Toolkit
 private enum PickerType {
 	case camera
 	case photoLibrary
+
+	var parameterValue: ParameterValue {
+		switch self {
+			case .camera:
+				return .camera
+			case .photoLibrary:
+				return .gallery
+		}
+	}
 }
 
 @MainActor
@@ -68,8 +77,11 @@ class GalleryViewModel: ObservableObject {
 			self?.images.append(contentsOf: images)
 			self?.selectedImage = self?.images.last
 
-			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto,
-																	 .action: .completed])
+			if let firstImageSource = self?.images.first?.source {
+				WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto,
+																		 .source: firstImageSource.parameterValue,
+																		 .action: .completed])
+			}
 		}
 		return picker
 	}()
@@ -283,6 +295,7 @@ private class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UI
 private extension GalleryViewModel {
 	func openPhotoPicker(type: PickerType) {
 		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .addStationPhoto,
+																 .source: type.parameterValue,
 																 .action: .started])
 
 		guard images.count < maxPhotosCount else {

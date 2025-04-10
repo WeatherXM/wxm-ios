@@ -7,6 +7,7 @@
 
 import SwiftUI
 import NukeUI
+import Toolkit
 
 struct GalleryView: View {
 	@Environment(\.dismiss) private var dismiss
@@ -180,6 +181,15 @@ extension GalleryView {
 					return "wxm-device-photo-camera"
 				case .library:
 					return "wxm-device-photo-library"
+			}
+		}
+
+		var parameterValue: ParameterValue {
+			switch self {
+				case .camera:
+					return .camera
+				case .library:
+					return .gallery
 			}
 		}
 	}
