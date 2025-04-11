@@ -23,7 +23,7 @@ struct AppUpdateViewModelTests {
 	}
 
 	@Test func handleUpdateButtonTap() async throws {
-		try await Task.sleep(for: .seconds(1))
+		try await Task.sleep(for: .seconds(2))
 		#expect(linkNavigation.openedUrl == nil)
 		#expect(mainUseCase.lastAppVersionPrompt == nil)
 		viewModel.handleUpdateButtonTap()

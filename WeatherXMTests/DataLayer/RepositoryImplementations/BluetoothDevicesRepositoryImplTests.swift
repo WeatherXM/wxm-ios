@@ -95,7 +95,7 @@ struct BluetoothDevicesRepositoryImplTests {
 		#expect(initialDevices.isEmpty)
 
 		bluetoothDevicesRepositoryImpl.startScanning()
-		let devices = try await bluetoothDevicesRepositoryImpl.devices.dropFirst().eraseToAnyPublisher().toAsync()
+		let devices = try await bluetoothDevicesRepositoryImpl.devices.drop(while: { $0.isEmpty }).eraseToAnyPublisher().toAsync()
 
 		#expect(devices.count == 1)
 		let device = try #require(devices.first)

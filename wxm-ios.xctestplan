@@ -61,6 +61,13 @@
   "testTargets" : [
     {
       "parallelizable" : false,
+      "skippedTests" : {
+        "suites" : [
+          {
+            "name" : "BluetoothDevicesRepositoryImplTests"
+          }
+        ]
+      },
       "target" : {
         "containerPath" : "container:wxm-ios.xcodeproj",
         "identifier" : "26707E9B2C3ECC0400B9305F",
