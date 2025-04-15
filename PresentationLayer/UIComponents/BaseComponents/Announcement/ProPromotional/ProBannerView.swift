@@ -32,8 +32,9 @@ struct ProBannerView: View {
 			Spacer()
 			Button {
 				WXMAnalytics.shared.trackEvent(.selectContent,
-											   parameters: [.source: analyticsSource])
-				
+											   parameters: [.contentType: .proPromotionCTA,
+															.source: analyticsSource])
+
 				Router.shared.showBottomSheet(.proPromo(ViewModelsFactory.getProPromotionalViewModel()))
 			} label: {
 				Text(LocalizableString.Promotional.getPro.localized)

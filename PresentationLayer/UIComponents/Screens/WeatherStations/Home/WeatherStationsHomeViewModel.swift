@@ -92,7 +92,8 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 					return
 				}
 
-				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.itemId: .custom(urlString),
+				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .proPromotionCTA,
+																			.itemId: .custom(urlString),
 																			.source: .remoteDevicesList])
 
 				let handled = self?.mainVM?.deepLinkHandler.handleUrl(url) ?? false
