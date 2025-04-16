@@ -5,21 +5,21 @@
 //  Created by Manolis Katsifarakis on 27/9/22.
 //
 
-import Combine
+@preconcurrency import Combine
 import CoreBluetooth
 import DomainLayer
 
-public class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepository {
+public final class BluetoothDevicesRepositoryImpl: NSObject, BluetoothDevicesRepository, Sendable {
 
     public let state: AnyPublisher<BluetoothState, Never>
     public let devices: AnyPublisher<[BTWXMDevice], Never>
 
-    private var cancellableSet: Set<AnyCancellable> = []
+	private nonisolated(unsafe) var cancellableSet: Set<AnyCancellable> = []
 
-    private let manager: BluetoothManager
+    private nonisolated(unsafe) let manager: BluetoothManager
 	private let bluetoothWrapper: BTActionWrapper
 
-    private var prepareDeviceCallback: (() -> Void)?
+    private nonisolated(unsafe) var prepareDeviceCallback: (() -> Void)?
 
 	init(manager: BluetoothManager) {
 		self.manager = manager
