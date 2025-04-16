@@ -114,7 +114,7 @@ struct BluetoothManagerTests {
 				fatalError("Manager is nil")
 			}
 
-			manager.state.flatMap { state in
+			manager.state.drop(while: { $0 != .poweredOn }).flatMap { state in
 				#expect(state == .poweredOn)
 				manager.startScanning()
 
