@@ -271,11 +271,16 @@ private extension UserDevicesService {
 	}
 
 	func updateOwnedStationsAnalyticsProperty() {
-		guard let ownedDevicesCount = getCachedDevices()?.filter({ $0.relation == .owned }).count else {
+		guard let devices = getCachedDevices() else {
 			WXMAnalytics.shared.removeUserProperty(key: .stationsOwn)
+			WXMAnalytics.shared.removeUserProperty(key: .stationsFavorite)
 			return
 		}
 
-		WXMAnalytics.shared.setUserProperty(key: .stationsOwn, value: .custom("\(ownedDevicesCount)"))
+		let ownedDevices = devices.filter({ $0.relation == .owned })
+		let favoriteDevices = devices.filter({ $0.relation == .followed })
+
+		WXMAnalytics.shared.setUserProperty(key: .stationsOwn, value: .custom("\(ownedDevices.count)"))
+		WXMAnalytics.shared.setUserProperty(key: .stationsFavorite, value: .custom("\(favoriteDevices.count)"))
 	}
 }
