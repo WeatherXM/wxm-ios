@@ -98,6 +98,7 @@ public enum Parameter {
 	case state
 	case stationsOwn
 	case stationOwn(stationType: String)
+	case stationsFavorite
 	case status
 	case step
 	case success

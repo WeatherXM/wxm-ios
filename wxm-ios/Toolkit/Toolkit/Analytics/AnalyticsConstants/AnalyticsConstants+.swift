@@ -44,6 +44,7 @@ extension Parameter: RawRepresentable, Hashable, CustomStringConvertible {
 			case "SOURCE": self = .source
 			case "STATE": self = .state
 			case "STATIONS_OWN": self = .stationsOwn
+			case "STATIONS_FAVORITE": self = .stationsFavorite
 			case "STATUS": self = .status
 			case "STEP": self = .step
 			case "SUCCESS": self = .success
@@ -87,6 +88,8 @@ extension Parameter: RawRepresentable, Hashable, CustomStringConvertible {
 			case .source: return "SOURCE"
 			case .state: return "STATE"
 			case .stationsOwn: return "STATIONS_OWN"
+			case .stationOwn(let stationType): return "STATIONS_OWN_\(stationType.uppercased())"
+			case .stationsFavorite: return "STATIONS_FAVORITE"
 			case .status: return "STATUS"
 			case .step: return "STEP"
 			case .success: return "SUCCESS"
@@ -97,7 +100,6 @@ extension Parameter: RawRepresentable, Hashable, CustomStringConvertible {
 			case .windDirection: return "UNIT_WIND_DIRECTION"
 			case .precipitation: return "UNIT_PRECIPITATION"
 			case .pressure: return "UNIT_PRESSURE"
-			case .stationOwn(let stationType): return "STATIONS_OWN_\(stationType.uppercased())"
 		}
 	}
 
@@ -105,7 +107,7 @@ extension Parameter: RawRepresentable, Hashable, CustomStringConvertible {
 		switch self {
 			case .action, .actionName, .contentName, .promptName, .promptType,
 					.step, .state, .date, .theme, .temperature, .wind, .windDirection, .precipitation, .pressure,
-					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn, .stationOwn(_), .userState, .deviceState:
+					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn, .stationOwn(_), .stationsFavorite, .userState, .deviceState:
 				return rawValue
 			case .contentType:
 				return AnalyticsParameterContentType
