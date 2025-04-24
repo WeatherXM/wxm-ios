@@ -36,10 +36,10 @@ public class UserDevicesService: @unchecked Sendable {
                                                object: nil,
 											   queue: nil) { [weak self] _ in
 			self?.invalidateCaches()
-			self?.updateOwnedStationsAnalyticsProperty()
+			self?.updateStationsAnalyticsProperties()
 		}
 
-		updateOwnedStationsAnalyticsProperty()
+		updateStationsAnalyticsProperties()
     }
 
     deinit {
@@ -85,7 +85,7 @@ public class UserDevicesService: @unchecked Sendable {
 					WidgetCenter.shared.reloadAllTimelines()
 					
                     NotificationCenter.default.post(name: .userDevicesListUpdated, object: nil)
-					self?.updateOwnedStationsAnalyticsProperty()
+					self?.updateStationsAnalyticsProperties()
                 }
                 return Just(response)
             }
@@ -270,10 +270,13 @@ private extension UserDevicesService {
 		userDevicesCache.invalidate()
 	}
 
-	func updateOwnedStationsAnalyticsProperty() {
+	func updateStationsAnalyticsProperties() {
 		guard let devices = getCachedDevices() else {
 			WXMAnalytics.shared.removeUserProperty(key: .stationsOwn)
 			WXMAnalytics.shared.removeUserProperty(key: .stationsFavorite)
+			StationBundle.Code.allCases.forEach {
+				WXMAnalytics.shared.removeUserProperty(key: .stationsOwnCount(stationType: $0.rawValue))
+			}
 			return
 		}
 
@@ -282,5 +285,14 @@ private extension UserDevicesService {
 
 		WXMAnalytics.shared.setUserProperty(key: .stationsOwn, value: .custom("\(ownedDevices.count)"))
 		WXMAnalytics.shared.setUserProperty(key: .stationsFavorite, value: .custom("\(favoriteDevices.count)"))
+
+		let dict = Dictionary(grouping: ownedDevices, by: { $0.bundle?.name?.rawValue })
+		dict.forEach { key, value in
+			guard let key else {
+				return
+			}
+			WXMAnalytics.shared.setUserProperty(key: .stationsOwnCount(stationType: key),
+												value: .custom("\(value.count)"))
+		}
 	}
 }

@@ -50,7 +50,7 @@ public struct StationBundle: Codable, Sendable {
 		case hwClass = "hw_class"
 	}
 
-	public enum Code: String, Codable, Sendable {
+	public enum Code: String, Codable, Sendable, CaseIterable {
 		case m5
 		case h1
 		case h2
