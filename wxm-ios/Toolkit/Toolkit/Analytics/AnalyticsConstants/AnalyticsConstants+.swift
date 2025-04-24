@@ -58,7 +58,7 @@ extension Parameter: RawRepresentable, Hashable, CustomStringConvertible {
 			default:
 				if rawValue.starts(with: "STATIONS_OWN_") {
 					let stationType = rawValue.replacingOccurrences(of: "STATIONS_OWN_", with: "").lowercased()
-					self = .stationOwn(stationType: stationType)
+					self = .stationsOwnCount(stationType: stationType)
 				} else {
 					return nil
 				}
@@ -88,7 +88,7 @@ extension Parameter: RawRepresentable, Hashable, CustomStringConvertible {
 			case .source: return "SOURCE"
 			case .state: return "STATE"
 			case .stationsOwn: return "STATIONS_OWN"
-			case .stationOwn(let stationType): return "STATIONS_OWN_\(stationType.uppercased())"
+			case .stationsOwnCount(let stationType): return "STATIONS_OWN_\(stationType.uppercased())"
 			case .stationsFavorite: return "STATIONS_FAVORITE"
 			case .status: return "STATUS"
 			case .step: return "STEP"
@@ -107,7 +107,7 @@ extension Parameter: RawRepresentable, Hashable, CustomStringConvertible {
 		switch self {
 			case .action, .actionName, .contentName, .promptName, .promptType,
 					.step, .state, .date, .theme, .temperature, .wind, .windDirection, .precipitation, .pressure,
-					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn, .stationOwn(_), .stationsFavorite, .userState, .deviceState:
+					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn, .stationsOwnCount(_), .stationsFavorite, .userState, .deviceState:
 				return rawValue
 			case .contentType:
 				return AnalyticsParameterContentType

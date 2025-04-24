@@ -97,7 +97,7 @@ public enum Parameter {
 	case source
 	case state
 	case stationsOwn
-	case stationOwn(stationType: String)
+	case stationsOwnCount(stationType: String)
 	case stationsFavorite
 	case status
 	case step
