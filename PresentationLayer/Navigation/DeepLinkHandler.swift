@@ -32,14 +32,17 @@ class DeepLinkHandler {
 	let explorerUseCase: ExplorerUseCaseApi
 
 	private let linkNavigator: LinkNavigation
+	private let router: Router
     private var searchCancellable: AnyCancellable?
 
 	init(useCase: NetworkUseCaseApi,
 		 explorerUseCase: ExplorerUseCaseApi,
-		 linkNavigator: LinkNavigation = LinkNavigationHelper()) {
+		 linkNavigator: LinkNavigation = LinkNavigationHelper(),
+		 router: Router = .shared) {
         self.useCase = useCase
 		self.explorerUseCase = explorerUseCase
 		self.linkNavigator = linkNavigator
+		self.router = router
     }
 
 	@discardableResult
@@ -79,7 +82,7 @@ class DeepLinkHandler {
 		switch type {
 			case .announcement(let urlString):
 				if let url = URL(string: urlString) {
-					Router.shared.showFullScreen(.safariView(url))
+					router.showFullScreen(.safariView(url))
 					return true
 				}
 			case .device(let deviceId):
@@ -101,7 +104,7 @@ private extension DeepLinkHandler {
 	/// - Returns: True if is handled successfully
     func handleUrlScheme(url: URL) -> Bool {
         guard let path = url.host else {
-			Router.shared.pop()
+			router.pop()
             return true
         }
 
@@ -126,14 +129,14 @@ private extension DeepLinkHandler {
 					let route = Route.stationDetails(ViewModelsFactory.getStationDetailsViewModel(deviceId: deviceId,
 																								  cellIndex: nil,
 																								  cellCenter: nil))
-					Router.shared.navigateTo(route)
+					router.navigateTo(route)
 					return true
 				}
 
 				return false
 			case .loggedOut:
 				let route = Route.signIn(ViewModelsFactory.getSignInViewModel())
-				Router.shared.navigateTo(route)
+				router.navigateTo(route)
 				return true
 			case .empty:
 				return false
@@ -174,7 +177,7 @@ private extension DeepLinkHandler {
 				moveToCell(index: value)
 				return true
 			case Self.tokenClaim:
-				Router.shared.pop()
+				router.pop()
 				return true
 			case Self.announcement:
 				handleAnnouncement(value)
@@ -222,7 +225,7 @@ private extension DeepLinkHandler {
 		let route = Route.stationDetails(ViewModelsFactory.getStationDetailsViewModel(deviceId: deviceId,
 																					  cellIndex: cellIndex,
 																					  cellCenter: cellCenter))
-		Router.shared.navigateTo(route)
+		router.navigateTo(route)
 	}
 
 	func moveToCell(index: String) {
@@ -237,7 +240,7 @@ private extension DeepLinkHandler {
 			let cellCenter = CLLocationCoordinate2D(latitude: lat, longitude: lon)
 
 			let route = Route.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: index, cellCenter: cellCenter))
-			Router.shared.navigateTo(route)
+			router.navigateTo(route)
 		}
 	}
 
@@ -249,7 +252,7 @@ private extension DeepLinkHandler {
 		switch announcement {
 			case .weatherxmPro:
 				let viewModel = ViewModelsFactory.getProPromotionalViewModel()
-				Router.shared.showBottomSheet(.proPromo(viewModel))
+				router.showBottomSheet(.proPromo(viewModel))
 				break
 		}
 	}

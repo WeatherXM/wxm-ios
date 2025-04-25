@@ -553,6 +553,7 @@
 		26D6119D2A9E1CDC0099117C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */; };
 		26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D611AA2A9E21080099117C /* LocalizableConstants.swift */; };
 		26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */; };
+		26D657352DBBA60900990B80 /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657342DBBA60400990B80 /* MockRouter.swift */; };
 		26D6A6232B10F9A900425110 /* IPadConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6A6222B10F9A900425110 /* IPadConstants.swift */; };
 		26DD42CB29AF56B9008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; };
 		26DD42CC29AF56B9008E277E /* Toolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1242,6 +1243,7 @@
 		26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		26D611AA2A9E21080099117C /* LocalizableConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableConstants.swift; sourceTree = "<group>"; };
 		26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
+		26D657342DBBA60400990B80 /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
 		26D6A6222B10F9A900425110 /* IPadConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadConstants.swift; sourceTree = "<group>"; };
 		26DD42A529AF4633008E277E /* Toolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolkit.xcodeproj; path = "wxm-ios/Toolkit/Toolkit.xcodeproj"; sourceTree = "<group>"; };
 		26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsContainerView.swift; sourceTree = "<group>"; };
@@ -2901,6 +2903,7 @@
 		26D657312DBB92D800990B80 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				26D657342DBBA60400990B80 /* MockRouter.swift */,
 				26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */,
 			);
 			path = Navigation;
@@ -3695,6 +3698,7 @@
 				26710E462D7B127C00878298 /* MockSettingsRepositoryImpl.swift in Sources */,
 				26F83CA92D9D510500E5A8B8 /* MockSettingsUseCase.swift in Sources */,
 				26F83C952D9D247200E5A8B8 /* StationForecastViewModelTests.swift in Sources */,
+				26D657352DBBA60900990B80 /* MockRouter.swift in Sources */,
 				267811582D4CD84E00D22B67 /* UserDevicesServiceTests.swift in Sources */,
 				2648147A2D9AC38E00BCCC31 /* PhotoIntroViewModelTests.swift in Sources */,
 				26710E402D7AFED800878298 /* MockDevicesRepositoryImpl.swift in Sources */,

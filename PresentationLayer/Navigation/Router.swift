@@ -297,9 +297,7 @@ class Router: ObservableObject {
 	}
 	var bottomSheetRoute: Route?
 	let navigationHost = HostingWrapper()
-	
-	private init() {}
-	
+		
 	func showFullScreen(_ route: Route) {
 		if #available(iOS 16.0, *) {
 			fullScreenRoute = route
