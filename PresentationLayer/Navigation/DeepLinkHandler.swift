@@ -31,11 +31,15 @@ class DeepLinkHandler {
 	let useCase: NetworkUseCaseApi
 	let explorerUseCase: ExplorerUseCaseApi
 
+	private let linkNavigator: LinkNavigation
     private var searchCancellable: AnyCancellable?
 
-	init(useCase: NetworkUseCaseApi, explorerUseCase: ExplorerUseCaseApi) {
+	init(useCase: NetworkUseCaseApi,
+		 explorerUseCase: ExplorerUseCaseApi,
+		 linkNavigator: LinkNavigation = LinkNavigationHelper()) {
         self.useCase = useCase
 		self.explorerUseCase = explorerUseCase
+		self.linkNavigator = linkNavigator
     }
 
 	@discardableResult
@@ -61,12 +65,7 @@ class DeepLinkHandler {
 			case widgetScheme:
 				handled = handleWidgetUrlScheme(url: url)
 			default:
-				let canOpen = UIApplication.shared.canOpenURL(url)
-				if canOpen {
-					UIApplication.shared.open(url)
-				}
-
-				handled = canOpen
+				handled = linkNavigator.openUrl(url)
 		}
 
 		return handled

@@ -552,6 +552,7 @@
 		26D5013C29B2152F00BC2951 /* CustomSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5013B29B2152F00BC2951 /* CustomSegmentView.swift */; };
 		26D6119D2A9E1CDC0099117C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */; };
 		26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D611AA2A9E21080099117C /* LocalizableConstants.swift */; };
+		26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */; };
 		26D6A6232B10F9A900425110 /* IPadConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6A6222B10F9A900425110 /* IPadConstants.swift */; };
 		26DD42CB29AF56B9008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; };
 		26DD42CC29AF56B9008E277E /* Toolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1240,6 +1241,7 @@
 		26D5013B29B2152F00BC2951 /* CustomSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentView.swift; sourceTree = "<group>"; };
 		26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		26D611AA2A9E21080099117C /* LocalizableConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableConstants.swift; sourceTree = "<group>"; };
+		26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
 		26D6A6222B10F9A900425110 /* IPadConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadConstants.swift; sourceTree = "<group>"; };
 		26DD42A529AF4633008E277E /* Toolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolkit.xcodeproj; path = "wxm-ios/Toolkit/Toolkit.xcodeproj"; sourceTree = "<group>"; };
 		26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsContainerView.swift; sourceTree = "<group>"; };
@@ -1698,6 +1700,7 @@
 		264814672D96F08A00BCCC31 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				26D657312DBB92D800990B80 /* Navigation */,
 				2648146E2D9A8F6100BCCC31 /* MockUseCases */,
 				264814692D9A7AC200BCCC31 /* MockUtils */,
 				264814682D96F09600BCCC31 /* ViewModels */,
@@ -2895,6 +2898,14 @@
 			path = Analytics;
 			sourceTree = "<group>";
 		};
+		26D657312DBB92D800990B80 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		26DD42A629AF4633008E277E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -3646,6 +3657,7 @@
 				26710E542D7B31EF00878298 /* MockUserDefaultsRepositoryImpl.swift in Sources */,
 				26710E3E2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift in Sources */,
 				26F83CBD2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift in Sources */,
+				26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */,
 				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
 				26F83CDB2D9ECFCF00E5A8B8 /* SelectStationLocationViewModelTests.swift in Sources */,
 				26F83CDF2D9FBF4400E5A8B8 /* RewardAnnotationsViewModelTests.swift in Sources */,

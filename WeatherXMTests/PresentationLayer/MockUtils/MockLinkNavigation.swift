@@ -6,6 +6,7 @@
 //
 
 @testable import WeatherXM
+import Foundation
 
 class MockLinkNavigation: LinkNavigation {
 	private(set) var openedUrl: String?
@@ -14,7 +15,12 @@ class MockLinkNavigation: LinkNavigation {
 	func openUrl(_ urlString: String) {
 		openedUrl = urlString
 	}
-	
+
+	func openUrl(_ url: URL) -> Bool {
+		openedUrl = url.absoluteString
+		return true
+	}
+
 	func openContactSupport(successFailureEnum: SuccessFailEnum,
 							email: String?,
 							serialNumber: String?,
