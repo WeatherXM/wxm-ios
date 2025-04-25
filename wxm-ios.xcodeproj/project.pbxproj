@@ -554,6 +554,7 @@
 		26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D611AA2A9E21080099117C /* LocalizableConstants.swift */; };
 		26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */; };
 		26D657352DBBA60900990B80 /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657342DBBA60400990B80 /* MockRouter.swift */; };
+		26D657372DBBC5D700990B80 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657362DBBC5D700990B80 /* RouterTests.swift */; };
 		26D6A6232B10F9A900425110 /* IPadConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6A6222B10F9A900425110 /* IPadConstants.swift */; };
 		26DD42CB29AF56B9008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; };
 		26DD42CC29AF56B9008E277E /* Toolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1244,6 +1245,7 @@
 		26D611AA2A9E21080099117C /* LocalizableConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableConstants.swift; sourceTree = "<group>"; };
 		26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
 		26D657342DBBA60400990B80 /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
+		26D657362DBBC5D700990B80 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
 		26D6A6222B10F9A900425110 /* IPadConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadConstants.swift; sourceTree = "<group>"; };
 		26DD42A529AF4633008E277E /* Toolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolkit.xcodeproj; path = "wxm-ios/Toolkit/Toolkit.xcodeproj"; sourceTree = "<group>"; };
 		26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsContainerView.swift; sourceTree = "<group>"; };
@@ -2904,6 +2906,7 @@
 			isa = PBXGroup;
 			children = (
 				26D657342DBBA60400990B80 /* MockRouter.swift */,
+				26D657362DBBC5D700990B80 /* RouterTests.swift */,
 				26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */,
 			);
 			path = Navigation;
@@ -3720,6 +3723,7 @@
 				26F83CC92D9E8ADF00E5A8B8 /* FilterViewModelTests.swift in Sources */,
 				26F83CC72D9E881200E5A8B8 /* MockFiltersUseCase.swift in Sources */,
 				26710E9A2D7F32E100878298 /* MockDeviceInfoRepositoryImpl.swift in Sources */,
+				26D657372DBBC5D700990B80 /* RouterTests.swift in Sources */,
 				26F83CC52D9E839C00E5A8B8 /* ResetPasswordViewModelTests.swift in Sources */,
 				26710E5C2D7EF03500878298 /* FiltersUseCaseTests.swift in Sources */,
 				26710E482D7B13B100878298 /* MockAuthRepositoryImpl.swift in Sources */,
