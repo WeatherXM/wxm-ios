@@ -19,12 +19,95 @@ extension Event: CustomStringConvertible {
 	}
 }
 
-extension Parameter: CustomStringConvertible {
+extension Parameter: RawRepresentable, Hashable, CustomStringConvertible {
+
+	public init?(rawValue: String) {
+		switch rawValue {
+			case "ACTION": self = .action
+			case "ACTION_NAME": self = .actionName
+			case "APP_ID": self = .appId
+			case "CONTENT_NAME": self = .contentName
+			case "CONTENT_TYPE": self = .contentType
+			case "DATE": self = .date
+			case "DEVICE_STATE": self = .deviceState
+			case "FILTER": self = .filter
+			case "GROUP_BY": self = .groupBy
+			case "HAS_WALLET": self = .hasWallet
+			case "INDEX": self = .index
+			case "ITEM_ID": self = .itemId
+			case "ITEM_LIST_ID": self = .itemListId
+			case "LOCATION": self = .location
+			case "METHOD": self = .method
+			case "PROMPT_NAME": self = .promptName
+			case "PROMPT_TYPE": self = .promptType
+			case "SORT_BY": self = .sortBy
+			case "SOURCE": self = .source
+			case "STATE": self = .state
+			case "STATIONS_OWN": self = .stationsOwn
+			case "STATIONS_FAVORITE": self = .stationsFavorite
+			case "STATUS": self = .status
+			case "STEP": self = .step
+			case "SUCCESS": self = .success
+			case "UNIT_TEMPERATURE": self = .temperature
+			case "THEME": self = .theme
+			case "USER_STATE": self = .userState
+			case "UNIT_WIND": self = .wind
+			case "UNIT_WIND_DIRECTION": self = .windDirection
+			case "UNIT_PRECIPITATION": self = .precipitation
+			case "UNIT_PRESSURE": self = .pressure
+			default:
+				if rawValue.starts(with: "STATIONS_OWN_") {
+					let stationType = rawValue.replacingOccurrences(of: "STATIONS_OWN_", with: "").lowercased()
+					self = .stationsOwnCount(stationType: stationType)
+				} else {
+					return nil
+				}
+		}
+	}
+
+	public var rawValue: String {
+		switch self {
+			case .action: return "ACTION"
+			case .actionName: return "ACTION_NAME"
+			case .appId: return "APP_ID"
+			case .contentName: return "CONTENT_NAME"
+			case .contentType: return "CONTENT_TYPE"
+			case .date: return "DATE"
+			case .deviceState: return "DEVICE_STATE"
+			case .filter: return "FILTER"
+			case .groupBy: return "GROUP_BY"
+			case .hasWallet: return "HAS_WALLET"
+			case .index: return "INDEX"
+			case .itemId: return "ITEM_ID"
+			case .itemListId: return "ITEM_LIST_ID"
+			case .location: return "LOCATION"
+			case .method: return "METHOD"
+			case .promptName: return "PROMPT_NAME"
+			case .promptType: return "PROMPT_TYPE"
+			case .sortBy: return "SORT_BY"
+			case .source: return "SOURCE"
+			case .state: return "STATE"
+			case .stationsOwn: return "STATIONS_OWN"
+			case .stationsOwnCount(let stationType): return "STATIONS_OWN_\(stationType.uppercased())"
+			case .stationsFavorite: return "STATIONS_FAVORITE"
+			case .status: return "STATUS"
+			case .step: return "STEP"
+			case .success: return "SUCCESS"
+			case .temperature: return "UNIT_TEMPERATURE"
+			case .theme: return "THEME"
+			case .userState: return "USER_STATE"
+			case .wind: return "UNIT_WIND"
+			case .windDirection: return "UNIT_WIND_DIRECTION"
+			case .precipitation: return "UNIT_PRECIPITATION"
+			case .pressure: return "UNIT_PRESSURE"
+		}
+	}
+
 	public var description: String {
 		switch self {
 			case .action, .actionName, .contentName, .promptName, .promptType,
 					.step, .state, .date, .theme, .temperature, .wind, .windDirection, .precipitation, .pressure,
-					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn, .userState, .deviceState:
+					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn, .stationsOwnCount(_), .stationsFavorite, .userState, .deviceState:
 				return rawValue
 			case .contentType:
 				return AnalyticsParameterContentType

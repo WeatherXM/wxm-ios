@@ -75,38 +75,40 @@ public enum Event: String {
 	case selectContent = "SELECT_CONTENT"
 }
 
-public enum Parameter: String {
-	case action = "ACTION"
-	case actionName = "ACTION_NAME"
-	case appId = "APP_ID"
-	case contentName = "CONTENT_NAME"
-	case contentType = "CONTENT_TYPE"
-	case date = "DATE"
-	case deviceState = "DEVICE_STATE"
-	case filter = "FILTER"
-	case groupBy = "GROUP_BY"
-	case hasWallet = "HAS_WALLET"
-	case index = "INDEX"
-	case itemId = "ITEM_ID"
-	case itemListId = "ITEM_LIST_ID"
-	case location = "LOCATION"
-	case method = "METHOD"
-	case promptName = "PROMPT_NAME"
-	case promptType = "PROMPT_TYPE"
-	case sortBy = "SORT_BY"
-	case source = "SOURCE"
-	case state = "STATE"
-	case stationsOwn = "STATIONS_OWN"
-	case status = "STATUS"
-	case step = "STEP"
-	case success = "SUCCESS"
-	case temperature = "UNIT_TEMPERATURE"
-	case theme = "THEME"
-	case userState = "USER_STATE"
-	case wind = "UNIT_WIND"
-	case windDirection = "UNIT_WIND_DIRECTION"
-	case precipitation = "UNIT_PRECIPITATION"
-	case pressure = "UNIT_PRESSURE"
+public enum Parameter {
+	case action
+	case actionName
+	case appId
+	case contentName
+	case contentType
+	case date
+	case deviceState
+	case filter
+	case groupBy
+	case hasWallet
+	case index
+	case itemId
+	case itemListId
+	case location
+	case method
+	case promptName
+	case promptType
+	case sortBy
+	case source
+	case state
+	case stationsOwn
+	case stationsOwnCount(stationType: String)
+	case stationsFavorite
+	case status
+	case step
+	case success
+	case temperature
+	case theme
+	case userState
+	case wind
+	case windDirection
+	case precipitation
+	case pressure
 }
 
 public enum ParameterValue {

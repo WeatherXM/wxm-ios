@@ -44,6 +44,7 @@ public extension WXMAnalytics {
     }
 
     func setUserProperty(key: Parameter, value: ParameterValue) {
+		print("WXMAnalytics user property: \(key.rawValue), \(value)") // TEMP for testing
 		providers.forEach { $0.setUserProperty(key: key, value: value) }
     }
 
