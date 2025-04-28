@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Dimension {
+enum Dimension: CaseIterable {
 	case minimumPadding
 	case smallSidePadding
 	case smallToMediumSidePadding

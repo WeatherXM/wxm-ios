@@ -555,6 +555,7 @@
 		26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */; };
 		26D657352DBBA60900990B80 /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657342DBBA60400990B80 /* MockRouter.swift */; };
 		26D657372DBBC5D700990B80 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657362DBBC5D700990B80 /* RouterTests.swift */; };
+		26D6574C2DBFABE000990B80 /* NumericTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6574B2DBFABE000990B80 /* NumericTests.swift */; };
 		26D6A6232B10F9A900425110 /* IPadConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6A6222B10F9A900425110 /* IPadConstants.swift */; };
 		26DD42CB29AF56B9008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; };
 		26DD42CC29AF56B9008E277E /* Toolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1246,6 +1247,7 @@
 		26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
 		26D657342DBBA60400990B80 /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
 		26D657362DBBC5D700990B80 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
+		26D6574B2DBFABE000990B80 /* NumericTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTests.swift; sourceTree = "<group>"; };
 		26D6A6222B10F9A900425110 /* IPadConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadConstants.swift; sourceTree = "<group>"; };
 		26DD42A529AF4633008E277E /* Toolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolkit.xcodeproj; path = "wxm-ios/Toolkit/Toolkit.xcodeproj"; sourceTree = "<group>"; };
 		26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsContainerView.swift; sourceTree = "<group>"; };
@@ -1704,6 +1706,7 @@
 		264814672D96F08A00BCCC31 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				26D6574A2DBFAB1300990B80 /* Extensions */,
 				26D657312DBB92D800990B80 /* Navigation */,
 				2648146E2D9A8F6100BCCC31 /* MockUseCases */,
 				264814692D9A7AC200BCCC31 /* MockUtils */,
@@ -2912,6 +2915,14 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		26D6574A2DBFAB1300990B80 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				26D6574B2DBFABE000990B80 /* NumericTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		26DD42A629AF4633008E277E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -3656,6 +3667,7 @@
 				26F83C882D9C107000E5A8B8 /* StationDetailsViewModelTests.swift in Sources */,
 				26F83CBB2D9D82A700E5A8B8 /* SettingsViewModelTests.swift in Sources */,
 				26F176972D79A9E2000BA381 /* MockRemoteConfigRepositoryImpl.swift in Sources */,
+				26D6574C2DBFABE000990B80 /* NumericTests.swift in Sources */,
 				26F83CAD2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift in Sources */,
 				26F1769A2D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift in Sources */,
 				269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */,
