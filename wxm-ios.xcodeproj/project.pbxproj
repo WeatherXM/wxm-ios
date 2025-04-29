@@ -367,6 +367,7 @@
 		268BAD502DC0E45700748439 /* UnitsProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD4F2DC0E45700748439 /* UnitsProtocolTests.swift */; };
 		268BAD522DC0E5C200748439 /* NetworkDeviceRewardsSummaryResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD512DC0E5C200748439 /* NetworkDeviceRewardsSummaryResponseTests.swift */; };
 		268BAD542DC0F0DB00748439 /* NetworkDeviceRewardDetailsResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD532DC0F0DB00748439 /* NetworkDeviceRewardDetailsResponseTests.swift */; };
+		268BAD562DC0FD9A00748439 /* BoostCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD552DC0FD9A00748439 /* BoostCodeTests.swift */; };
 		268D07932B2B1B70002BD77E /* SelectStationLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */; };
 		268D07952B2B1B85002BD77E /* SelectStationLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */; };
 		268D07972B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */; };
@@ -1104,6 +1105,7 @@
 		268BAD4F2DC0E45700748439 /* UnitsProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsProtocolTests.swift; sourceTree = "<group>"; };
 		268BAD512DC0E5C200748439 /* NetworkDeviceRewardsSummaryResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardsSummaryResponseTests.swift; sourceTree = "<group>"; };
 		268BAD532DC0F0DB00748439 /* NetworkDeviceRewardDetailsResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardDetailsResponseTests.swift; sourceTree = "<group>"; };
+		268BAD552DC0FD9A00748439 /* BoostCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostCodeTests.swift; sourceTree = "<group>"; };
 		268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationView.swift; sourceTree = "<group>"; };
 		268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationViewModel.swift; sourceTree = "<group>"; };
 		268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+SelectStationLocation.swift"; sourceTree = "<group>"; };
@@ -2546,6 +2548,7 @@
 				268BAD4F2DC0E45700748439 /* UnitsProtocolTests.swift */,
 				268BAD512DC0E5C200748439 /* NetworkDeviceRewardsSummaryResponseTests.swift */,
 				268BAD532DC0F0DB00748439 /* NetworkDeviceRewardDetailsResponseTests.swift */,
+				268BAD552DC0FD9A00748439 /* BoostCodeTests.swift */,
 			);
 			path = DomainExtensions;
 			sourceTree = "<group>";
@@ -3773,6 +3776,7 @@
 				26F83CAB2D9D530100E5A8B8 /* AnalyticsViewModelTests.swift in Sources */,
 				264814782D9AA30900BCCC31 /* GalleryViewModelTests.swift in Sources */,
 				26710E562D7ECBC300878298 /* MainUseCaseTests.swift in Sources */,
+				268BAD562DC0FD9A00748439 /* BoostCodeTests.swift in Sources */,
 				26710E502D7B2F2700878298 /* MeUseCaseTests.swift in Sources */,
 				26DF1F5E2D55F0C70001E936 /* MeRepositoryImplTests.swift in Sources */,
 				267811062D490EC000D22B67 /* UserDefaultsServiceTests.swift in Sources */,
