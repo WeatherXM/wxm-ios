@@ -57,12 +57,12 @@ struct BluetoothManagerTests {
 	@Test func poweredOff() async throws {
 		try await simulatePoweredOff()
 		manager.enable()
-		return await confirmation { [weak manager] confirm in
+		try await confirmation { [weak manager] confirm in
 			guard let manager else {
 				fatalError("Manager is nil")
 			}
 
-			manager.state.flatMap { state in
+			manager.state.drop(while: { $0 != .poweredOff }).flatMap { state in
 				#expect(state == .poweredOff)
 				manager.startScanning()
 
@@ -71,6 +71,8 @@ struct BluetoothManagerTests {
 				#expect(devices.isEmpty)
 				confirm()
 			}.store(in: &cancellableWrapper.cancellableSet)
+
+			try await Task.sleep(for: .seconds(3))
 		}
 	}
 
@@ -114,7 +116,7 @@ struct BluetoothManagerTests {
 				fatalError("Manager is nil")
 			}
 
-			manager.state.flatMap { state in
+			manager.state.drop(while: { $0 != .poweredOn }).flatMap { state in
 				#expect(state == .poweredOn)
 				manager.startScanning()
 
