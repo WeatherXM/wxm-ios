@@ -366,6 +366,7 @@
 		268BAD4E2DC0DEAA00748439 /* NetworkDevicesInfoResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD4D2DC0DEAA00748439 /* NetworkDevicesInfoResponseTests.swift */; };
 		268BAD502DC0E45700748439 /* UnitsProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD4F2DC0E45700748439 /* UnitsProtocolTests.swift */; };
 		268BAD522DC0E5C200748439 /* NetworkDeviceRewardsSummaryResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD512DC0E5C200748439 /* NetworkDeviceRewardsSummaryResponseTests.swift */; };
+		268BAD542DC0F0DB00748439 /* NetworkDeviceRewardDetailsResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD532DC0F0DB00748439 /* NetworkDeviceRewardDetailsResponseTests.swift */; };
 		268D07932B2B1B70002BD77E /* SelectStationLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */; };
 		268D07952B2B1B85002BD77E /* SelectStationLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */; };
 		268D07972B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */; };
@@ -1102,6 +1103,7 @@
 		268BAD4D2DC0DEAA00748439 /* NetworkDevicesInfoResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicesInfoResponseTests.swift; sourceTree = "<group>"; };
 		268BAD4F2DC0E45700748439 /* UnitsProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsProtocolTests.swift; sourceTree = "<group>"; };
 		268BAD512DC0E5C200748439 /* NetworkDeviceRewardsSummaryResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardsSummaryResponseTests.swift; sourceTree = "<group>"; };
+		268BAD532DC0F0DB00748439 /* NetworkDeviceRewardDetailsResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardDetailsResponseTests.swift; sourceTree = "<group>"; };
 		268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationView.swift; sourceTree = "<group>"; };
 		268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationViewModel.swift; sourceTree = "<group>"; };
 		268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+SelectStationLocation.swift"; sourceTree = "<group>"; };
@@ -2543,6 +2545,7 @@
 				268BAD4D2DC0DEAA00748439 /* NetworkDevicesInfoResponseTests.swift */,
 				268BAD4F2DC0E45700748439 /* UnitsProtocolTests.swift */,
 				268BAD512DC0E5C200748439 /* NetworkDeviceRewardsSummaryResponseTests.swift */,
+				268BAD532DC0F0DB00748439 /* NetworkDeviceRewardDetailsResponseTests.swift */,
 			);
 			path = DomainExtensions;
 			sourceTree = "<group>";
@@ -3689,6 +3692,7 @@
 				26A0A98D2DC0CD0E005A6646 /* AnnouncementTests.swift in Sources */,
 				26710E522D7B2FA500878298 /* MockFiltersRepositoryImpl.swift in Sources */,
 				26F83CE92D9FF6E400E5A8B8 /* ChangeFrequencyViewModelTests.swift in Sources */,
+				268BAD542DC0F0DB00748439 /* NetworkDeviceRewardDetailsResponseTests.swift in Sources */,
 				26F83CA12D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift in Sources */,
 				26F83CE32D9FDBD100E5A8B8 /* ForecastDetailsViewModelTests.swift in Sources */,
 				26710E982D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift in Sources */,

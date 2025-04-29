@@ -42,15 +42,17 @@ extension NetworkDeviceRewardDetailsResponse {
 		return rewardSplit.count > 1
 	}
 
-	func isUserStakeholder(followState: UserDeviceFollowState?) -> Bool {
-		rewardSplit.isUserStakeholder(followState: followState)
+	func isUserStakeholder(followState: UserDeviceFollowState?,
+						   userWallet: String? = MainScreenViewModel.shared.userInfo?.wallet?.address) -> Bool {
+		rewardSplit.isUserStakeholder(followState: followState, userWallet: userWallet)
 	}
 }
 
 extension Optional where Wrapped == [RewardSplit] {
 	@MainActor
-	func isUserStakeholder(followState: UserDeviceFollowState?) -> Bool {
-		guard let userWallet = MainScreenViewModel.shared.userInfo?.wallet?.address else {
+	func isUserStakeholder(followState: UserDeviceFollowState?,
+						   userWallet: String? = MainScreenViewModel.shared.userInfo?.wallet?.address) -> Bool {
+		guard let userWallet else {
 			return false
 		}
 		let isOwed = followState?.relation == .owned
