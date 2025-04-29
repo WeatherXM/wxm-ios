@@ -376,6 +376,7 @@
 		269C809C2AB9E76F005F9BD6 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C809B2AB9E76F005F9BD6 /* Badge.swift */; };
 		269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 269C96892BDBD5660035B8F1 /* Mixpanel */; };
 		269E85712B0242C100BE774C /* WXMShareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E85702B0242C100BE774C /* WXMShareModifier.swift */; };
+		26A0A98B2DC0BCFA005A6646 /* BluetoothStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0A98A2DC0BCFA005A6646 /* BluetoothStateTests.swift */; };
 		26A308EA2C2E97B5007A029A /* ZoomControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A308E92C2E97B5007A029A /* ZoomControls.swift */; };
 		26A308F92C2EE481007A029A /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A308F82C2EE481007A029A /* ScannerView.swift */; };
 		26A3B3C52B178F630002F35F /* LocalizableString+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3C42B178F630002F35F /* LocalizableString+Profile.swift */; };
@@ -1102,6 +1103,7 @@
 		269C6E782C4A97C800879263 /* CompactNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactNumberFormatterTests.swift; sourceTree = "<group>"; };
 		269C809B2AB9E76F005F9BD6 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		269E85702B0242C100BE774C /* WXMShareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMShareModifier.swift; sourceTree = "<group>"; };
+		26A0A98A2DC0BCFA005A6646 /* BluetoothStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothStateTests.swift; sourceTree = "<group>"; };
 		26A308E92C2E97B5007A029A /* ZoomControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomControls.swift; sourceTree = "<group>"; };
 		26A308F82C2EE481007A029A /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		26A3B3C42B178F630002F35F /* LocalizableString+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Profile.swift"; sourceTree = "<group>"; };
@@ -2513,6 +2515,14 @@
 			path = Toolkit;
 			sourceTree = "<group>";
 		};
+		26A0A9892DC0BCD2005A6646 /* DomainExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				26A0A98A2DC0BCFA005A6646 /* BluetoothStateTests.swift */,
+			);
+			path = DomainExtensions;
+			sourceTree = "<group>";
+		};
 		26A308F72C2EE46A007A029A /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -2922,6 +2932,7 @@
 			children = (
 				26D6574B2DBFABE000990B80 /* NumericTests.swift */,
 				26D6574D2DBFC06400990B80 /* StringTests.swift */,
+				26A0A9892DC0BCD2005A6646 /* DomainExtensions */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3679,6 +3690,7 @@
 				26710E542D7B31EF00878298 /* MockUserDefaultsRepositoryImpl.swift in Sources */,
 				26710E3E2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift in Sources */,
 				26F83CBD2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift in Sources */,
+				26A0A98B2DC0BCFA005A6646 /* BluetoothStateTests.swift in Sources */,
 				26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */,
 				267811082D49269500D22B67 /* MockCacheManager.swift in Sources */,
 				26F83CDB2D9ECFCF00E5A8B8 /* SelectStationLocationViewModelTests.swift in Sources */,
