@@ -377,6 +377,8 @@
 		269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 269C96892BDBD5660035B8F1 /* Mixpanel */; };
 		269E85712B0242C100BE774C /* WXMShareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E85702B0242C100BE774C /* WXMShareModifier.swift */; };
 		26A0A98B2DC0BCFA005A6646 /* BluetoothStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0A98A2DC0BCFA005A6646 /* BluetoothStateTests.swift */; };
+		26A0A98D2DC0CD0E005A6646 /* AnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0A98C2DC0CD0E005A6646 /* AnnouncementTests.swift */; };
+		26A0A98F2DC0CEE9005A6646 /* NetworkDeviceForecastResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A0A98E2DC0CEE9005A6646 /* NetworkDeviceForecastResponseTests.swift */; };
 		26A308EA2C2E97B5007A029A /* ZoomControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A308E92C2E97B5007A029A /* ZoomControls.swift */; };
 		26A308F92C2EE481007A029A /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A308F82C2EE481007A029A /* ScannerView.swift */; };
 		26A3B3C52B178F630002F35F /* LocalizableString+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A3B3C42B178F630002F35F /* LocalizableString+Profile.swift */; };
@@ -1104,6 +1106,8 @@
 		269C809B2AB9E76F005F9BD6 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		269E85702B0242C100BE774C /* WXMShareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMShareModifier.swift; sourceTree = "<group>"; };
 		26A0A98A2DC0BCFA005A6646 /* BluetoothStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothStateTests.swift; sourceTree = "<group>"; };
+		26A0A98C2DC0CD0E005A6646 /* AnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTests.swift; sourceTree = "<group>"; };
+		26A0A98E2DC0CEE9005A6646 /* NetworkDeviceForecastResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceForecastResponseTests.swift; sourceTree = "<group>"; };
 		26A308E92C2E97B5007A029A /* ZoomControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomControls.swift; sourceTree = "<group>"; };
 		26A308F82C2EE481007A029A /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		26A3B3C42B178F630002F35F /* LocalizableString+Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Profile.swift"; sourceTree = "<group>"; };
@@ -2519,6 +2523,8 @@
 			isa = PBXGroup;
 			children = (
 				26A0A98A2DC0BCFA005A6646 /* BluetoothStateTests.swift */,
+				26A0A98C2DC0CD0E005A6646 /* AnnouncementTests.swift */,
+				26A0A98E2DC0CEE9005A6646 /* NetworkDeviceForecastResponseTests.swift */,
 			);
 			path = DomainExtensions;
 			sourceTree = "<group>";
@@ -3662,6 +3668,7 @@
 			files = (
 				26710E4A2D7B1E9600878298 /* SettingsUseCaseTests.swift in Sources */,
 				26F83CDD2D9FB56F00E5A8B8 /* AppUpdateViewModelTests.swift in Sources */,
+				26A0A98D2DC0CD0E005A6646 /* AnnouncementTests.swift in Sources */,
 				26710E522D7B2FA500878298 /* MockFiltersRepositoryImpl.swift in Sources */,
 				26F83CE92D9FF6E400E5A8B8 /* ChangeFrequencyViewModelTests.swift in Sources */,
 				26F83CA12D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift in Sources */,
@@ -3779,6 +3786,7 @@
 				26F176A02D79D271000BA381 /* MockKeychainRepositoryImpl.swift in Sources */,
 				26F83C9F2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
+				26A0A98F2DC0CEE9005A6646 /* NetworkDeviceForecastResponseTests.swift in Sources */,
 				26F83CCF2D9E9B5D00E5A8B8 /* MockRemoteConfigUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
