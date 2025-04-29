@@ -60,4 +60,9 @@ public struct NetworkDeviceRewardsSummaryTimelineEntry: Codable, Hashable, Senda
 		case timestamp
 		case baseRewardScore = "base_reward_score"
 	}
+
+	public init(timestamp: Date?, baseRewardScore: Int?) {
+		self.timestamp = timestamp
+		self.baseRewardScore = baseRewardScore
+	}
 }
