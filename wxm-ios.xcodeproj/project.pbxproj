@@ -556,6 +556,7 @@
 		26D657352DBBA60900990B80 /* MockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657342DBBA60400990B80 /* MockRouter.swift */; };
 		26D657372DBBC5D700990B80 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657362DBBC5D700990B80 /* RouterTests.swift */; };
 		26D6574C2DBFABE000990B80 /* NumericTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6574B2DBFABE000990B80 /* NumericTests.swift */; };
+		26D6574E2DBFC06400990B80 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6574D2DBFC06400990B80 /* StringTests.swift */; };
 		26D6A6232B10F9A900425110 /* IPadConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6A6222B10F9A900425110 /* IPadConstants.swift */; };
 		26DD42CB29AF56B9008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; };
 		26DD42CC29AF56B9008E277E /* Toolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1248,6 +1249,7 @@
 		26D657342DBBA60400990B80 /* MockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRouter.swift; sourceTree = "<group>"; };
 		26D657362DBBC5D700990B80 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
 		26D6574B2DBFABE000990B80 /* NumericTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTests.swift; sourceTree = "<group>"; };
+		26D6574D2DBFC06400990B80 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		26D6A6222B10F9A900425110 /* IPadConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadConstants.swift; sourceTree = "<group>"; };
 		26DD42A529AF4633008E277E /* Toolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolkit.xcodeproj; path = "wxm-ios/Toolkit/Toolkit.xcodeproj"; sourceTree = "<group>"; };
 		26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsContainerView.swift; sourceTree = "<group>"; };
@@ -2919,6 +2921,7 @@
 			isa = PBXGroup;
 			children = (
 				26D6574B2DBFABE000990B80 /* NumericTests.swift */,
+				26D6574D2DBFC06400990B80 /* StringTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3670,6 +3673,7 @@
 				26D6574C2DBFABE000990B80 /* NumericTests.swift in Sources */,
 				26F83CAD2D9D5A3A00E5A8B8 /* AlertsViewModelTests.swift in Sources */,
 				26F1769A2D79AF4F000BA381 /* RemoteConfigUseCaseTests.swift in Sources */,
+				26D6574E2DBFC06400990B80 /* StringTests.swift in Sources */,
 				269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */,
 				26707E9F2C3ECC0400B9305F /* WEIConverterTests.swift in Sources */,
 				26710E542D7B31EF00878298 /* MockUserDefaultsRepositoryImpl.swift in Sources */,

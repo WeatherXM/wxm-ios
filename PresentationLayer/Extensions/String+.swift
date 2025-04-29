@@ -93,17 +93,6 @@ extension String {
         return (matches(emailRegex))
     }
 
-    func dsnValidation() -> TextFieldError? {
-        let regex = "[^G-Z|^a-z]{18}"
-        if replaceColonOcurrancies().matches(regex) {
-            return nil
-        } else if isTextEmpty() {
-            return .emptyField
-        } else {
-            return .invalidSerialNumber
-        }
-    }
-
     func newAddressValidation() -> TextFieldError? {
         let regex = "^0x[a-fA-F0-9]{40}$"
         if matches(regex) {
@@ -117,23 +106,6 @@ extension String {
 
     func replaceColonOcurrancies() -> String {
         return replacingOccurrences(of: ":", with: "")
-    }
-
-    func getDateForLatestDateWeatherDetail() -> String {
-        if self == "-" {
-            return "-"
-        }
-        let relativeDateFormatter = DateFormatter()
-        relativeDateFormatter.timeStyle = .none
-        relativeDateFormatter.dateStyle = .medium
-        relativeDateFormatter.doesRelativeDateFormatting = true
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateStyle = .none
-        inputFormatter.timeStyle = .short
-        let date = timestampToDate()
-        let dateOfString = relativeDateFormatter.string(from: date)
-        let timeOfDate = inputFormatter.string(from: date)
-        return String("\(dateOfString), \(timeOfDate)")
     }
 
     func getWeekDayAndDate() -> String {
