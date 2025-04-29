@@ -12,6 +12,7 @@ import Toolkit
 @MainActor
 protocol LinkNavigation {
 	func openUrl(_ urlString: String)
+	func openUrl(_ url: URL) -> Bool
 	func openContactSupport(successFailureEnum: SuccessFailEnum,
 							email: String?,
 							serialNumber: String?,
@@ -28,7 +29,16 @@ struct LinkNavigationHelper: LinkNavigation {
             UIApplication.shared.open(url)
         }
     }
-	
+
+	func openUrl(_ url: URL) -> Bool {
+		let canOpen = UIApplication.shared.canOpenURL(url)
+		if canOpen {
+			UIApplication.shared.open(url)
+		}
+
+		return canOpen
+	}
+
 	/// Opens support url.
 	/// Currently the parameters are not submitted. We keep this functionaliy from the old flow (with the email below) for the future
 	/// - Parameters:
