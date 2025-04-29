@@ -317,10 +317,11 @@ extension DeviceDetails {
 }
 
 extension StationBundle {
-	static func mock(name: StationBundle.Code = .m5) -> StationBundle {
+	static func mock(name: StationBundle.Code = .m5,
+					 connectivity: Connectivity = .helium) -> StationBundle {
 		.init(name: name,
 			  title: "M5",
-			  connectivity: .helium,
+			  connectivity: connectivity,
 			  wsModel: "WS1000",
 			  gwModel: "WG1000",
 			  hwClass: "A")
