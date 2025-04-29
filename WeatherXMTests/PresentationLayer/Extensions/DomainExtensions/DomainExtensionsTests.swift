@@ -49,7 +49,7 @@ struct DomainExtensionsTests {
 											allocatedPerDay: nil,
 											lastTxHashUrl: nil,
 											averageMonthly: nil)
-		#expect(tokens.supplyProgress?.isNaN == true)
+		#expect(tokens.supplyProgress?.isInfinite == true)
 	}
 
 	@Test

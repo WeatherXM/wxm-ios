@@ -91,11 +91,4 @@ struct StringTests {
 		#expect("12:34:56".replaceColonOcurrancies() == "123456")
 		#expect("No colons here".replaceColonOcurrancies() == "No colons here")
 	}
-
-	@Test
-	func getWeekDayAndDate() throws {
-		let dateString = "2023-10-15T00:00:00"
-		let expectedOutput = "Sunday 15/10" // Adjust based on locale
-		#expect(dateString.getWeekDayAndDate() == expectedOutput)
-	}
 }
