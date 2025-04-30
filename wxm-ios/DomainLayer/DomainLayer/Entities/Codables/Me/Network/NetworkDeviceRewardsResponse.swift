@@ -58,5 +58,19 @@ public extension NetworkDeviceRewardsResponse {
 			case boostPeriodEnd = "boost_period_end"
 			case completedPercentage = "completed_percentage"
 		}
+
+		public init(code: BoostCode?,
+					currentRewards: Double?,
+					totalRewards: Double?,
+					boostPeriodStart: Date?,
+					boostPeriodEnd: Date?,
+					completedPercentage: Int?) {
+			self.code = code
+			self.currentRewards = currentRewards
+			self.totalRewards = totalRewards
+			self.boostPeriodStart = boostPeriodStart
+			self.boostPeriodEnd = boostPeriodEnd
+			self.completedPercentage = completedPercentage
+		}
 	}
 }

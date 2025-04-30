@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum FontSizeEnum {
+enum FontSizeEnum: CaseIterable {
 	case caption
 	case smallFontSize
 	case normalFontSize

@@ -52,6 +52,7 @@ public class CompactNumberFormatter: Formatter {
         let divider = unit?.divider ?? 1
         let conventedValue = Double(value) / Double(divider)
         numberFormatter.positiveSuffix = unit?.description
+		numberFormatter.negativeSuffix = unit?.description
         numberFormatter.minimumFractionDigits = unit?.minFractionDigits ?? 0
         numberFormatter.maximumFractionDigits = unit?.maxFractionDigits ?? 0
         return numberFormatter.string(from: NSNumber(value: conventedValue))

@@ -66,6 +66,20 @@ public struct NetworkStationsStatsTokens: Codable, Sendable {
         case allocatedPerDay = "allocated_per_day"
         case averageMonthly = "avg_monthly"
     }
+
+	public init(totalSupply: Int?,
+				circulatingSupply: Int?,
+				totalAllocated: Double?,
+				allocatedPerDay: [NetworkStatsTimeSeries]?,
+				lastTxHashUrl: String?,
+				averageMonthly: Double?) {
+		self.totalSupply = totalSupply
+		self.circulatingSupply = circulatingSupply
+		self.totalAllocated = totalAllocated
+		self.allocatedPerDay = allocatedPerDay
+		self.lastTxHashUrl = lastTxHashUrl
+		self.averageMonthly = averageMonthly
+	}
 }
 
 public struct NetworkStatsContracts: Codable, Sendable {
