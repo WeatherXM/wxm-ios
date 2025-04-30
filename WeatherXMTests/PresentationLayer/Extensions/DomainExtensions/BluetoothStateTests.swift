@@ -12,7 +12,7 @@ import DomainLayer
 struct BluetoothStateTests {
 
 	@Test
-	func testErrorDescription() {
+	func errorDescription() {
 		#expect(BluetoothState.unsupported.errorDescription == LocalizableString.Bluetooth.unsupportedTitle.localized)
 		#expect(BluetoothState.unauthorized.errorDescription == LocalizableString.Bluetooth.noAccessTitle.localized)
 		#expect(BluetoothState.poweredOff.errorDescription == LocalizableString.Bluetooth.title.localized)
@@ -22,7 +22,7 @@ struct BluetoothStateTests {
 	}
 
 	@Test
-	func testPeripheralNotFound() {
+	func peripheralNotFound() {
 		let error = BluetoothHeliumError.peripheralNotFound
 		let info = error.uiInfo
 		#expect(info.title == LocalizableString.ClaimDevice.failedTitle.localized)
@@ -30,7 +30,7 @@ struct BluetoothStateTests {
 	}
 
 	@Test
-	func testConnectionError() {
+	func connectionError() {
 		let error = BluetoothHeliumError.connectionError
 		let info = error.uiInfo
 		#expect(info.title == LocalizableString.ClaimDevice.connectionFailedTitle.localized)
@@ -39,7 +39,7 @@ struct BluetoothStateTests {
 	}
 
 	@Test
-	func testReboot() {
+	func reboot() {
 		let error = BluetoothHeliumError.reboot
 		let info = error.uiInfo
 		#expect(info.title == LocalizableString.ClaimDevice.connectionFailedTitle.localized)
@@ -48,14 +48,14 @@ struct BluetoothStateTests {
 	}
 
 	@Test
-	func testBluetoothState() {
+	func bluetoothState() {
 		let error = BluetoothHeliumError.bluetoothState(.unsupported)
 		let info = error.uiInfo
 		#expect(info.description == LocalizableString.Bluetooth.unsupportedTitle.localized)
 	}
 
 	@Test
-	func testSetFrequencyWithCode() {
+	func setFrequencyWithCode() {
 		let error = BluetoothHeliumError.setFrequency(42)
 		let info = error.uiInfo
 		#expect(info.description?.contains("**42**") == true)
@@ -63,28 +63,34 @@ struct BluetoothStateTests {
 	}
 
 	@Test
-	func testSetFrequencyNilCode() {
+	func setFrequencyNilCode() {
 		let error = BluetoothHeliumError.setFrequency(nil)
 		let info = error.uiInfo
+		#expect(info.title == LocalizableString.ClaimDevice.failedTitle.localized)
 		#expect(info.description?.contains("**-1**") == true)
+		#expect(info.description?.contains(LocalizableString.ClaimDevice.failedTextLinkTitle.localized) == true)
 	}
 
 	@Test
-	func testDevEUI() {
+	func devEUI() {
 		let error = BluetoothHeliumError.devEUI(99)
 		let info = error.uiInfo
+		#expect(info.title == LocalizableString.ClaimDevice.failedTitle.localized)
 		#expect(info.description?.contains("**99**") == true)
+		#expect(info.description?.contains(LocalizableString.ClaimDevice.failedTextLinkTitle.localized) == true)
 	}
 
 	@Test
-	func testClaimingKey() {
+	func claimingKey() {
 		let error = BluetoothHeliumError.claimingKey(7)
 		let info = error.uiInfo
+		#expect(info.title == LocalizableString.ClaimDevice.failedTitle.localized)
 		#expect(info.description?.contains("**7**") == true)
+		#expect(info.description?.contains(LocalizableString.ClaimDevice.failedTextLinkTitle.localized) == true)
 	}
 
 	@Test
-	func testUnknown() {
+	func unknown() {
 		let error = BluetoothHeliumError.unknown
 		let info = error.uiInfo
 		#expect(info.title == LocalizableString.ClaimDevice.failedTitle.localized)
