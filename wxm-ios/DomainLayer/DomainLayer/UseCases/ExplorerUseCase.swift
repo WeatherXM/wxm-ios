@@ -96,7 +96,9 @@ public class ExplorerUseCase: @unchecked Sendable, ExplorerUseCaseApi {
 				geoJsonSource.data = .featureCollection(FeatureCollection(features: featuresCollection))
 
 				var totalDevices = 0
-				let polygonPoints = hexValues.map { publicHex -> PolygonAnnotation in
+				var polygonPoints: [PolygonAnnotation] = []
+				var textPoints: [PointAnnotation] = []
+				hexValues.forEach { publicHex in
 					totalDevices += publicHex.deviceCount ?? 0
 					var ringCords = publicHex.polygon.map { point in
 						LocationCoordinate2D(latitude: point.lat, longitude: point.lon)
@@ -117,9 +119,18 @@ public class ExplorerUseCase: @unchecked Sendable, ExplorerUseCaseApi {
 					polygonAnnotation.fillOpacity = ExplorerUseCase.fillOpacity
 					polygonAnnotation.fillOutlineColor = ExplorerUseCase.fillOutlineColor
 					polygonAnnotation.userInfo = [publicHex.index: CLLocationCoordinate2D(latitude: publicHex.center.lat, longitude: publicHex.center.lon)]
-					return polygonAnnotation
+					polygonPoints.append(polygonAnnotation)
+
+					var pointAnnotation = PointAnnotation(point: .init(.init(latitude: publicHex.center.lat, longitude: publicHex.center.lon)))
+					pointAnnotation.textField = "\(publicHex.deviceCount ?? 0)"
+					textPoints.append(pointAnnotation)
 				}
-				let explorerData = ExplorerData(totalDevices: totalDevices, geoJsonSource: geoJsonSource, polygonPoints: polygonPoints)
+
+
+				let explorerData = ExplorerData(totalDevices: totalDevices,
+												geoJsonSource: geoJsonSource,
+												polygonPoints: polygonPoints,
+												textPoints: textPoints)
 				completion(.success(explorerData))
 			}).store(in: &cancellableSet)
 
