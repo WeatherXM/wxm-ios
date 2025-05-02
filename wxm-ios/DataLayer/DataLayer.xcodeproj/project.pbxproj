@@ -46,6 +46,7 @@
 		2683A4C42ADECF3100D5C205 /* countries_information.json in Resources */ = {isa = PBXBuildFile; fileRef = 2683A4C32ADECBA800D5C205 /* countries_information.json */; };
 		268ACD052C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268ACD032C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift */; };
 		268ACD062C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268ACD042C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift */; };
+		268BAD6A2DC4DB1C00748439 /* get_cells.json in Resources */ = {isa = PBXBuildFile; fileRef = 268BAD692DC4DAE900748439 /* get_cells.json */; };
 		2692D88B2A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8852A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift */; };
 		2692D88C2A4DB2B50060CB3C /* DBExplorerAddress+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8862A4DB2B50060CB3C /* DBExplorerAddress+CoreDataProperties.swift */; };
 		2692D88D2A4DB2B50060CB3C /* DBExplorerSearchEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8872A4DB2B50060CB3C /* DBExplorerSearchEntity+CoreDataClass.swift */; };
@@ -151,6 +152,7 @@
 		2683A4C32ADECBA800D5C205 /* countries_information.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_information.json; sourceTree = "<group>"; };
 		268ACD032C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBBundle+CoreDataClass.swift"; sourceTree = "<group>"; };
 		268ACD042C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBBundle+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		268BAD692DC4DAE900748439 /* get_cells.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_cells.json; sourceTree = "<group>"; };
 		2692D8852A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBExplorerAddress+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2692D8862A4DB2B50060CB3C /* DBExplorerAddress+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBExplorerAddress+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2692D8872A4DB2B50060CB3C /* DBExplorerSearchEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBExplorerSearchEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */,
 				26A3B3DF2B18E7A50002F35F /* get_user_rewards.json */,
 				26943D782B06240900EE6C7E /* get_cell_devices.json */,
+				268BAD692DC4DAE900748439 /* get_cells.json */,
 				26DF1F5F2D5611DD0001E936 /* post_login.json */,
 				267A37862AEBEBBA00469126 /* get_user_device_rewards.json */,
 				2631872B29A4E2D400FA1691 /* get_device_history.json */,
@@ -587,6 +590,7 @@
 				2683A4C42ADECF3100D5C205 /* countries_information.json in Resources */,
 				267CA6EF2C1314E300ABE599 /* get_user.json in Resources */,
 				2618A6F12A1F61FD00983B7B /* get_device_history_24_samples.json in Resources */,
+				268BAD6A2DC4DB1C00748439 /* get_cells.json in Resources */,
 				2646D8E829C8B4310000237F /* get_device_info_helium.json in Resources */,
 				266B01C52B84E7F6007AC689 /* get_device_rewards_timeline.json in Resources */,
 				26ACE8EF2C883BF400EA22DD /* get_devices_rewards_analytics.json in Resources */,
