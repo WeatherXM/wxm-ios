@@ -99,8 +99,3 @@ struct PillsView_Previews: PreviewProvider {
 		.padding()
 	}
 }
-
-extension Alignment {
-	static let myAlignment = Alignment(horizontal: .leading,
-									   vertical: .top)
-}

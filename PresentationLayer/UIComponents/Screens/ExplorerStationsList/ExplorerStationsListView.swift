@@ -37,10 +37,18 @@ struct ExplorerStationsListView: View {
 	}
 }
 
+extension ExplorerStationsListView {
+	enum Pill: Hashable {
+		case activeStations(String)
+		case stationsCount(String)
+	}
+}
+
 private struct ContentView: View {
     @StateObject var viewModel: ExplorerStationsListViewModel
     @EnvironmentObject var navigationObject: NavigationObject
-    
+	@State private var titleViewSize: CGSize = .zero
+
     var body: some View {
         ZStack {
             Color(colorEnum: .layer2)
@@ -112,33 +120,52 @@ private struct ContentView: View {
 
 private extension ContentView {
 	@ViewBuilder var titleView: some View {
-		VStack(spacing: CGFloat(.mediumSpacing)) {
-			if let address = viewModel.address {
-				HStack {
-					Text(address)
-						.foregroundColor(Color(.text))
-						.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+		ZStack {
+			// Dummy view to calculate the `containerWidth` to pass to `pillsView`
+			Color(colorEnum: .top)
+				.frame(height: 1.0)
+				.sizeObserver(size: $titleViewSize)
 
-					Spacer()
-				}
-			}
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				if let address = viewModel.address {
+					HStack {
+						Text(address)
+							.foregroundColor(Color(.text))
+							.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 
-			HStack(spacing: CGFloat(.minimumSpacing)) {
-				if let activeStationsString = viewModel.activeStationsString {
-					HStack(spacing: CGFloat(.smallSpacing)) {
-						Text(activeStationsString)
-							.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
-							.foregroundColor(Color(colorEnum: .text))
-							.lineLimit(1)
+						Spacer()
 					}
+				}
+
+				PillsView(items: viewModel.pills,
+						  containerWidth: titleViewSize.width) { pill in
+					viewFor(pill: pill)
+				}
+				.id(viewModel.pills)
+			}
+		}
+		.padding(.horizontal, CGFloat(.defaultSidePadding))
+		.padding(.bottom, CGFloat(.mediumSidePadding))
+		.background(Color(colorEnum: .top))
+		.cornerRadius(CGFloat(.cardCornerRadius),
+					  corners: [.bottomLeft, .bottomRight])
+	}
+
+	@ViewBuilder
+	func viewFor(pill: ExplorerStationsListView.Pill) -> some View {
+		switch pill {
+			case .activeStations(let text):
+				Text(text)
+					.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+					.foregroundColor(Color(colorEnum: .text))
+					.lineLimit(1)
 					.WXMCardStyle(backgroundColor: Color(colorEnum: .successTint),
 								  insideHorizontalPadding: CGFloat(.smallToMediumSidePadding),
 								  insideVerticalPadding: CGFloat(.smallSidePadding),
 								  cornerRadius: CGFloat(.buttonCornerRadius))
-				}
-
+			case .stationsCount(let text):
 				HStack(spacing: CGFloat(.smallSpacing)) {
-					Text(viewModel.stationsCountString)
+					Text(text)
 						.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
 						.foregroundColor(Color(colorEnum: .text))
 						.lineLimit(1)
@@ -150,21 +177,12 @@ private extension ContentView {
 							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
 							.foregroundColor(Color(colorEnum: .text))
 					}
-
 				}
 				.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
 							  insideHorizontalPadding: CGFloat(.smallToMediumSidePadding),
 							  insideVerticalPadding: CGFloat(.smallSidePadding),
 							  cornerRadius: CGFloat(.buttonCornerRadius))
-
-				Spacer()
-			}
 		}
-		.padding(.horizontal, CGFloat(.defaultSidePadding))
-		.padding(.bottom, CGFloat(.mediumSidePadding))
-		.background(Color(colorEnum: .top))
-		.cornerRadius(CGFloat(.cardCornerRadius),
-					  corners: [.bottomLeft, .bottomRight])
 	}
 }
 
