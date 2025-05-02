@@ -39,7 +39,7 @@ struct ExplorerStationsListView: View {
 
 extension ExplorerStationsListView {
 	enum Pill: Hashable {
-		case activeStations(String)
+		case activeStations(String, ColorEnum)
 		case stationsCount(String)
 	}
 }
@@ -154,12 +154,12 @@ private extension ContentView {
 	@ViewBuilder
 	func viewFor(pill: ExplorerStationsListView.Pill) -> some View {
 		switch pill {
-			case .activeStations(let text):
+			case .activeStations(let text, let color):
 				Text(text)
 					.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
 					.foregroundColor(Color(colorEnum: .text))
 					.lineLimit(1)
-					.WXMCardStyle(backgroundColor: Color(colorEnum: .successTint),
+					.WXMCardStyle(backgroundColor: Color(colorEnum: color),
 								  insideHorizontalPadding: CGFloat(.smallToMediumSidePadding),
 								  insideVerticalPadding: CGFloat(.smallSidePadding),
 								  cornerRadius: CGFloat(.buttonCornerRadius))
