@@ -128,3 +128,7 @@ struct ExplorerView: View {
         .wxmShadow()
     }
 }
+
+#Preview {
+	ExplorerView(viewModel: ViewModelsFactory.getExplorerViewModel())
+}
