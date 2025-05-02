@@ -5632,6 +5632,17 @@
         }
       }
     },
+    "no_active_stations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No active stations"
+          }
+        }
+      }
+    },
     "no_email" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -183,6 +183,7 @@ enum LocalizableString: WXMLocalizable {
 	case noTransactionTitle
 	case noTransactionDesc
 	case mailLeaveMessageNote
+	case noActiveStations
 	case activeStations(Int?)
 	case activeStation(Int?)
 	case presentStations(Int?)
@@ -574,6 +575,8 @@ extension LocalizableString {
 				return "no_transaction_desc"
 			case .mailLeaveMessageNote:
 				return "mail_leave_message_note"
+			case .noActiveStations:
+				return "no_active_stations"
 			case .activeStations:
 				return "active_stations_format"
 			case .activeStation:

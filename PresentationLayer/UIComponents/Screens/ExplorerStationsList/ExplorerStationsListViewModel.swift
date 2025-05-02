@@ -36,7 +36,9 @@ class ExplorerStationsListViewModel: ObservableObject {
 		var pills: [ExplorerStationsListView.Pill] = []
 
 		if let activeStationsString {
-			pills.append(.activeStations(activeStationsString))
+			pills.append(.activeStations(activeStationsString, .successTint))
+		} else {
+			pills.append(.activeStations(LocalizableString.noActiveStations.localized, .errorTint))
 		}
 
 		let count = devices.count
