@@ -100,6 +100,10 @@ extension MapBoxMap {
             viewModel.showTopOfMapItems.toggle()
         }
 
+		func didChangeVisibleBounds(_ mapViewController: MapViewController, bounds: CoordinateBounds) {
+			viewModel.didUpdateMapBounds(bounds: bounds)
+		}
+
         func configureMap(_ mapViewController: MapViewController) {
             viewModel.fetchExplorerData()
         }
@@ -155,6 +159,15 @@ class MapViewController: UIViewController {
 		mapView.mapboxMap.onMapLoaded.observeNext { [weak self] _ in
             guard let self = self else { return }
             self.cameraSetup()
+		}.store(in: &cancelablesSet)
+
+		mapView.mapboxMap.onMapIdle.observe { [weak self] _ in
+			guard let self else {
+				return
+			}
+
+			let visibleBounds = self.mapView.mapboxMap.coordinateBounds(for: self.mapView.bounds)
+			self.delegate?.didChangeVisibleBounds(self, bounds: visibleBounds)
 		}.store(in: &cancelablesSet)
     }
 
@@ -320,4 +333,5 @@ protocol MapViewControllerDelegate: AnyObject {
 	func configureMap(_ mapViewController: MapViewController)
 	func didTapAnnotation(_ mapViewController: MapViewController, _ annotations: [PolygonAnnotation])
 	func didTapMapArea(_ mapViewController: MapViewController)
+	func didChangeVisibleBounds(_ mapViewController: MapViewController, bounds: CoordinateBounds)
 }

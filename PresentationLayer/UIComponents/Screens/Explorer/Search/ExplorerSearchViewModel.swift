@@ -105,6 +105,10 @@ class ExplorerSearchViewModel: ObservableObject {
         }
         searchTerm = trimmed
     }
+
+	func updateActiveStations(count: Int) {
+		activeStationsCount = count.localizedFormatted
+	}
 }
 
 private extension ExplorerSearchViewModel {
