@@ -66,9 +66,10 @@ extension SearchView {
 			.background {
 				LinearGradient(
 					stops: [
-						Gradient.Stop(color: Color(colorEnum: .layer2), location: 0.00),
-						Gradient.Stop(color: Color(colorEnum: .layer2).opacity(0.2), location: 0.70),
-						Gradient.Stop(color: Color(colorEnum: .layer2).opacity(0), location: 1.00),
+						Gradient.Stop(color: Color(colorEnum: .layer2), location: 0.0),
+						Gradient.Stop(color: Color(colorEnum: .layer2).opacity(0.7), location: 0.5),
+						Gradient.Stop(color: Color(colorEnum: .layer2).opacity(0.4), location: 0.8),
+						Gradient.Stop(color: Color(colorEnum: .layer2).opacity(0), location: 1.0),
 					],
 					startPoint: UnitPoint(x: 0.5, y: 0),
 					endPoint: UnitPoint(x: 0.5, y: 1)
