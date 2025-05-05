@@ -72,6 +72,7 @@
 		26D6E2422D819B41006CAAEA /* CoreBluetoothMock in Frameworks */ = {isa = PBXBuildFile; productRef = 26D6E2412D819B41006CAAEA /* CoreBluetoothMock */; };
 		26D6E2442D819C39006CAAEA /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6E2432D819C39006CAAEA /* Aliases.swift */; };
 		26D6E2462D81A59E006CAAEA /* MockHeliumDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6E2452D81A59E006CAAEA /* MockHeliumDevice.swift */; };
+		26D7F9E62DC4DF1A00EDD8F8 /* get_cells.json in Resources */ = {isa = PBXBuildFile; fileRef = 26D7F9E52DC4DF1A00EDD8F8 /* get_cells.json */; };
 		26DD42AF29AF4765008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AE29AF4765008E277E /* Toolkit.framework */; };
 		26DD42D229AFAF26008E277E /* get_user_devices.json in Resources */ = {isa = PBXBuildFile; fileRef = 26DD42D129AFAF26008E277E /* get_user_devices.json */; };
 		26DF1F542D549A310001E936 /* FileUploadMockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */; };
@@ -176,6 +177,7 @@
 		26D47E9D2A177AFB0078723A /* SettingsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryImpl.swift; sourceTree = "<group>"; };
 		26D6E2432D819C39006CAAEA /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
 		26D6E2452D81A59E006CAAEA /* MockHeliumDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHeliumDevice.swift; sourceTree = "<group>"; };
+		26D7F9E52DC4DF1A00EDD8F8 /* get_cells.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_cells.json; sourceTree = "<group>"; };
 		26DD42AE29AF4765008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DD42D129AFAF26008E277E /* get_user_devices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user_devices.json; sourceTree = "<group>"; };
 		26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadMockProtocol.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				266B01CE2B861B10007AC689 /* get_device_rewards_summary_empty.json */,
 				266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */,
 				26A3B3DF2B18E7A50002F35F /* get_user_rewards.json */,
+				26D7F9E52DC4DF1A00EDD8F8 /* get_cells.json */,
 				26943D782B06240900EE6C7E /* get_cell_devices.json */,
 				26DF1F5F2D5611DD0001E936 /* post_login.json */,
 				267A37862AEBEBBA00469126 /* get_user_device_rewards.json */,
@@ -587,6 +590,7 @@
 				2683A4C42ADECF3100D5C205 /* countries_information.json in Resources */,
 				267CA6EF2C1314E300ABE599 /* get_user.json in Resources */,
 				2618A6F12A1F61FD00983B7B /* get_device_history_24_samples.json in Resources */,
+				26D7F9E62DC4DF1A00EDD8F8 /* get_cells.json in Resources */,
 				2646D8E829C8B4310000237F /* get_device_info_helium.json in Resources */,
 				266B01C52B84E7F6007AC689 /* get_device_rewards_timeline.json in Resources */,
 				26ACE8EF2C883BF400EA22DD /* get_devices_rewards_analytics.json in Resources */,

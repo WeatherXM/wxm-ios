@@ -111,7 +111,8 @@ extension MapBoxMap {
 			super.init()
 			viewModel.$explorerData.sink { [weak self] data in
 				self?.viewModel.mapController?.configureHeatMapLayer(source: data.geoJsonSource)
-				self?.viewModel.mapController?.configurePolygonLayer(polygonAnnotations: data.polygonPoints)
+				self?.viewModel.mapController?.configurePolygonLayer(polygonAnnotations: data.polygonPoints,
+																	 pointAnnotations: data.textPoints)
 				self?.viewModel.snapToInitialLocation()
 			}.store(in: &canellableSet)
         }
@@ -126,6 +127,7 @@ class MapViewController: UIViewController {
 	internal var layer = HeatmapLayer(id: MapBoxConstants.heatmapLayerId,
 									  source: MapBoxConstants.heatmapSource)
     internal weak var polygonManager: PolygonAnnotationManager?
+	internal weak var pointManager: PointAnnotationManager?
 
     weak var delegate: MapViewControllerDelegate?
     @objc func didTapMap(_ tap: UITapGestureRecognizer) {
@@ -229,10 +231,31 @@ class MapViewController: UIViewController {
         }
     }
 
-	internal func configurePolygonLayer(polygonAnnotations: [PolygonAnnotation]) {
+	internal func configurePolygonLayer(polygonAnnotations: [PolygonAnnotation],
+										pointAnnotations: [PointAnnotation]) {
 		let polygonAnnotationManager = self.polygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.polygonManagerId)
 		polygonAnnotationManager.annotations = polygonAnnotations
 		polygonManager = polygonAnnotationManager
+
+		let pointAnnotationManager = self.pointManager ?? mapView.annotations.makePointAnnotationManager(id: MapBoxConstants.pointManagerId)
+		pointAnnotationManager.annotations = pointAnnotations
+		pointManager = pointAnnotationManager
+		try? mapView.mapboxMap.updateLayer(withId: MapBoxConstants.pointManagerId, type: SymbolLayer.self) { layer in
+			layer.minZoom = 10
+
+			let stops: [Double: Double] = [
+				10: CGFloat(.mediumFontSize),
+				12: CGFloat(.XLTitleFontSize),
+				16: CGFloat(.maxFontSize)
+			]
+
+			layer.textSize = .expression(Exp(.interpolate) {
+				Exp(.exponential) { 1.75 }
+				Exp(.zoom)
+				stops
+			})
+			layer.textColor = .constant(StyleColor(UIColor(colorEnum: .textWhite)))
+		}
     }
 
     internal func cameraSetup() {
