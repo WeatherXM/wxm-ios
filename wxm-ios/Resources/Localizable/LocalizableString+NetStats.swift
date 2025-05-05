@@ -10,6 +10,7 @@ import Foundation
 extension LocalizableString {
 	enum NetStats {
 		case networkStatistics
+		case networkStatisticsDescription
 		case weatherStationDays
 		case lastDays(Int)
 		case lastRun
@@ -66,6 +67,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
 		switch self {
 			case .networkStatistics:
 				return "net_stats_network_statistics"
+			case .networkStatisticsDescription:
+				return "net_stats_network_statistics_description"
 			case .weatherStationDays:
 				return "net_stats_weather_station_days"
 			case .lastDays:

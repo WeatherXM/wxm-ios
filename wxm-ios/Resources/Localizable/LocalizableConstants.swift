@@ -13,6 +13,7 @@ protocol WXMLocalizable {
 }
 
 enum LocalizableString: WXMLocalizable {
+	case weatherXM
 	case url(String, String)
 	case completed
 	case new
@@ -223,6 +224,8 @@ enum LocalizableString: WXMLocalizable {
 extension LocalizableString {
 	var key: String {
 		switch self {
+			case .weatherXM:
+				return "weather_xm"
 			case .url:
 				return "url_format"
 			case .completed:
