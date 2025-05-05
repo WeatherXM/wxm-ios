@@ -5478,6 +5478,17 @@
         }
       }
     },
+    "net_stats_network_statistics_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View real-time network health, station activity, $WXM rewards and more."
+          }
+        }
+      }
+    },
     "net_stats_total_allocated_info_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10138,6 +10149,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "My Stations"
+          }
+        }
+      }
+    },
+    "weather_xm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WeatherXM"
           }
         }
       }

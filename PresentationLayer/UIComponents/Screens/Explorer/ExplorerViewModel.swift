@@ -157,6 +157,10 @@ extension ExplorerViewModel: ExplorerSearchViewModelDelegate {
         Router.shared.navigateTo(.settings(ViewModelsFactory.getSettingsViewModel(userId: "")))
     }
 
+	func networkStatisticsTapped() {
+		Router.shared.navigateTo(.netStats(ViewModelsFactory.getNetworkStatsViewModel()))
+	}
+
     func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?) {
 		let locationToSnap = MapBoxMapView.SnapLocation(coordinates: coordinates)
 		snapLocationSubject.send(locationToSnap)

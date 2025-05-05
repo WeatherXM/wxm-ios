@@ -16,6 +16,7 @@ protocol ExplorerSearchViewModelDelegate: AnyObject {
     func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?)
     func searchWillBecomeActive(_ active: Bool)
     func settingsButtonTapped()
+	func networkStatisticsTapped()
 }
 
 @MainActor
@@ -82,6 +83,11 @@ class ExplorerSearchViewModel: ObservableObject {
         WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .explorerSettings])
         delegate?.settingsButtonTapped()
     }
+
+	func handleNetwrorkStatsButtonTap() {
+//		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkStatsSource])
+		delegate?.networkStatisticsTapped()
+	}
 
     func handleSubmitButtonTap() {
         guard searchTerm.count < searchTermLimit else {
