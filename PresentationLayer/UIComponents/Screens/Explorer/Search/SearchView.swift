@@ -34,30 +34,18 @@ struct SearchView: View {
                     }
             }
         }
-		.overlay {
-			ZStack {
-				if showOptionsPopOver {
-					Color.black.opacity(0.4)
-						.ignoresSafeArea()
-						.transition(AnyTransition.opacity.animation(.easeOut(duration: 0.2)))
-				}
-
-				VStack {
-					if showOptionsPopOver {
-						ExplorerPopoverView(show: $showOptionsPopOver,
-											viewModel: viewModel,
-											shouldShowSettingsButton: shouldShowSettingsButton)
-						.padding(.horizontal, CGFloat(.mediumSidePadding))
-						.padding(.top, topControlsSize.height)
-						.transition(AnyTransition.scale.animation(.easeOut(duration: 0.2)))
-					}
-
-					Spacer()
-				}
-				.iPadMaxWidth()
+		.wxmAlert(show: $showOptionsPopOver) {
+			VStack {
+				ExplorerPopoverView(show: $showOptionsPopOver,
+									viewModel: viewModel,
+									shouldShowSettingsButton: shouldShowSettingsButton)
+				.padding(.horizontal, CGFloat(.mediumSidePadding))
+				.padding(.top, topControlsSize.height)
+				Spacer()
 			}
+			.iPadMaxWidth()
 		}
-        .onAppear {
+		.onAppear {
 			WXMAnalytics.shared.trackScreen(.networkSearch)
         }
     }
