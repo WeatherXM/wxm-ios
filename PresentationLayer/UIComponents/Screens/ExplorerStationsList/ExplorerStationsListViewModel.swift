@@ -24,7 +24,7 @@ class ExplorerStationsListViewModel: ObservableObject {
 	private(set) var info: BottomSheetInfo?
 	var deviceListFailObject: FailSuccessStateObject?
 	var alertConfiguration: WXMAlertConfiguration?
-	var activeStationsString: String? {
+	private var activeStationsString: String? {
 		let count = devices.filter { $0.isActive }.count
 		guard count > 0 else {
 			return nil
@@ -32,10 +32,20 @@ class ExplorerStationsListViewModel: ObservableObject {
 		
 		return count == 1 ? LocalizableString.activeStation(count).localized : LocalizableString.activeStations(count).localized
 	}
-	var stationsCountString: String {
+	var pills: [ExplorerStationsListView.Pill] {
+		var pills: [ExplorerStationsListView.Pill] = []
+
+		if let activeStationsString {
+			pills.append(.activeStations(activeStationsString, .successTint))
+		} else {
+			pills.append(.activeStations(LocalizableString.noActiveStations.localized, .errorTint))
+		}
+
 		let count = devices.count
-		
-		return LocalizableString.presentStations(count).localized
+
+		pills.append(.stationsCount(LocalizableString.presentStations(count).localized))
+
+		return pills
 	}
 	var cellShareUrl: String {
 		DisplayedLinks.shareCells.linkURL + cellIndex
