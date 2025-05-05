@@ -24,29 +24,44 @@ extension SearchView {
     @ViewBuilder
     var nonActiveView: some View {
         VStack {
-            HStack(spacing: CGFloat(.mediumSpacing)) {
-				Button {
-					WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerPopUp])
-					showOptionsPopOver = true
-				} label: {
-					Text(FontIcon.threeDots.rawValue)
-						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
-						.foregroundColor(Color(colorEnum: .textWhite))
-						.padding(.horizontal, CGFloat(.smallSidePadding))
+			HStack {
+				Spacer()
+
+				VStack(spacing: 0.0) {
+					Text(viewModel.activeStationsCount)
+						.foregroundStyle(Color(colorEnum: .textWhite))
+						.font(.system(size: CGFloat(.mediumFontSize)))
+					
+					Text(LocalizableString.Search.activeStationsInArea.localized)
+						.foregroundStyle(Color(colorEnum: .textWhite))
+						.font(.system(size: CGFloat(.normalFontSize)))
 				}
 
 				Spacer()
+			}.overlay {
+				HStack(spacing: CGFloat(.mediumSpacing)) {
+					Button {
+						WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerPopUp])
+						showOptionsPopOver = true
+					} label: {
+						Text(FontIcon.threeDots.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+							.foregroundColor(Color(colorEnum: .textWhite))
+							.padding(.horizontal, CGFloat(.smallSidePadding))
+					}
 
-				Button {
-					viewModel.isSearchActive = true
-				} label: {
-					Text(FontIcon.magnifyingGlass.rawValue)
-						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
-						.foregroundColor(Color(colorEnum: .textWhite))
-						.padding(.horizontal, CGFloat(.smallSidePadding))
+					Spacer()
 
+					Button {
+						viewModel.isSearchActive = true
+					} label: {
+						Text(FontIcon.magnifyingGlass.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+							.foregroundColor(Color(colorEnum: .textWhite))
+							.padding(.horizontal, CGFloat(.smallSidePadding))
+					}
 				}
-            }
+			}
             .padding(CGFloat(.defaultSidePadding))
 			.background {
 				LinearGradient(

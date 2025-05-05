@@ -8118,6 +8118,17 @@
         }
       }
     },
+    "search_active_stations_in_area" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active stations in this area"
+          }
+        }
+      }
+    },
     "search_field_placeholder" : {
       "extractionState" : "manual",
       "localizations" : {
