@@ -48,13 +48,26 @@ extension SearchView {
 				}
             }
             .padding(CGFloat(.defaultSidePadding))
+			.background {
+				LinearGradient(
+					stops: [
+						Gradient.Stop(color: Color(colorEnum: .layer2), location: 0.00),
+						Gradient.Stop(color: Color(colorEnum: .layer2).opacity(0.2), location: 0.70),
+						Gradient.Stop(color: Color(colorEnum: .layer2).opacity(0), location: 1.00),
+					],
+					startPoint: UnitPoint(x: 0.5, y: 0),
+					endPoint: UnitPoint(x: 0.5, y: 1)
+				)
+				.ignoresSafeArea()
+				.colorScheme(.dark)
+			}
 			.sizeObserver(size: $topControlsSize)
             .animation(.easeIn(duration: 0.2),
                        value: term)
 
             Spacer()
         }
-    }
+	}
 
     @ViewBuilder
     var activeView: some View {
