@@ -25,57 +25,42 @@ extension SearchView {
     var nonActiveView: some View {
         VStack {
             HStack(spacing: CGFloat(.mediumSpacing)) {
-                Image(asset: .xmSearchLogo)
-
-                TextField("",
-                          text: $term,
-                          prompt: Text(LocalizableString.Search.fieldPlaceholder.localized).foregroundColor(Color(colorEnum: .darkGrey)))
-                .font(.system(size: CGFloat(.mediumFontSize)))
-                .tint(Color(colorEnum: .text))
-                .foregroundColor(Color(colorEnum: .text))
-                .focused($noActiveTextfieldIsFocused)
-                .onChange(of: noActiveTextfieldIsFocused) { newValue in
-                    // This hacky way is to avoid interaction with the outer textfield
-                    noActiveTextfieldIsFocused = false
-                    if newValue {
-                        viewModel.isSearchActive = true
-                    }
-                }
-
-                Spacer()
-
-                if shouldShowSettingsButton {
-                    Button {
-                        WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerPopUp])
-                        showSettingsPopOver = true
-                    } label: {
-                        Text(FontIcon.threeDots.rawValue)
-							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
-                            .foregroundColor(Color(colorEnum: .darkGrey))
-                            .padding(.horizontal, CGFloat(.smallSidePadding))
-                    }
-                    .background(Color(colorEnum: .top))
-                    .wxmPopOver(show: $showSettingsPopOver) {
-						VStack {
-							Button {
-								showSettingsPopOver = false
-								viewModel.handleSettingsButtonTap()
-							} label: {
-								Text(LocalizableString.settings.localized)
-									.font(.system(size: CGFloat(.mediumFontSize)))
-									.foregroundColor(Color(colorEnum: .text))
-							}
+				Button {
+					WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerPopUp])
+					showSettingsPopOver = true
+				} label: {
+					Text(FontIcon.threeDots.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+						.foregroundColor(Color(colorEnum: .textWhite))
+						.padding(.horizontal, CGFloat(.smallSidePadding))
+				}
+				.wxmPopOver(show: $showSettingsPopOver) {
+					VStack {
+						Button {
+							showSettingsPopOver = false
+							viewModel.handleSettingsButtonTap()
+						} label: {
+							Text(LocalizableString.settings.localized)
+								.font(.system(size: CGFloat(.mediumFontSize)))
+								.foregroundColor(Color(colorEnum: .text))
 						}
-						.padding()
-						.background(Color(colorEnum: .top).scaleEffect(2.0).ignoresSafeArea())
-                    }
-                }
+					}
+					.padding()
+					.background(Color(colorEnum: .top).scaleEffect(2.0).ignoresSafeArea())
+				}
+
+				Spacer()
+
+				Button {
+					viewModel.isSearchActive = true
+				} label: {
+					Text(FontIcon.magnifyingGlass.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+						.foregroundColor(Color(colorEnum: .textWhite))
+						.padding(.horizontal, CGFloat(.smallSidePadding))
+
+				}
             }
-			.padding(.vertical, CGFloat(.mediumSidePadding))
-            .padding(.horizontal, CGFloat(.defaultSidePadding))
-            .background(Capsule().foregroundColor(Color(colorEnum: .top)))
-            .compositingGroup()
-            .wxmShadow()
             .padding(CGFloat(.defaultSidePadding))
             .animation(.easeIn(duration: 0.2),
                        value: term)

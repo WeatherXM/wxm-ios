@@ -12,7 +12,6 @@ struct SearchView: View {
     var shouldShowSettingsButton: Bool = false
     @StateObject var viewModel: ExplorerSearchViewModel
     @FocusState var isFocused: Bool
-    @FocusState var noActiveTextfieldIsFocused: Bool
     /// This state variable is injected in Textfields becauses assigning directy the view model's property `searchTerm`
     /// causes a bug with multiple changes callback even if the term doesn't change
     @State var term: String = ""
