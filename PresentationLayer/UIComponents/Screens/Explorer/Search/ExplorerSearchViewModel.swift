@@ -85,7 +85,6 @@ class ExplorerSearchViewModel: ObservableObject {
     }
 
 	func handleNetwrorkStatsButtonTap() {
-//		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkStatsSource])
 		delegate?.networkStatisticsTapped()
 	}
 

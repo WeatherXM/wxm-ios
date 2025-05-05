@@ -27,26 +27,12 @@ extension SearchView {
             HStack(spacing: CGFloat(.mediumSpacing)) {
 				Button {
 					WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerPopUp])
-					showSettingsPopOver = true
+					showOptionsPopOver = true
 				} label: {
 					Text(FontIcon.threeDots.rawValue)
 						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
 						.foregroundColor(Color(colorEnum: .textWhite))
 						.padding(.horizontal, CGFloat(.smallSidePadding))
-				}
-				.wxmPopOver(show: $showSettingsPopOver) {
-					VStack {
-						Button {
-							showSettingsPopOver = false
-							viewModel.handleSettingsButtonTap()
-						} label: {
-							Text(LocalizableString.settings.localized)
-								.font(.system(size: CGFloat(.mediumFontSize)))
-								.foregroundColor(Color(colorEnum: .text))
-						}
-					}
-					.padding()
-					.background(Color(colorEnum: .top).scaleEffect(2.0).ignoresSafeArea())
 				}
 
 				Spacer()
@@ -62,6 +48,7 @@ extension SearchView {
 				}
             }
             .padding(CGFloat(.defaultSidePadding))
+			.sizeObserver(size: $topControlsSize)
             .animation(.easeIn(duration: 0.2),
                        value: term)
 
