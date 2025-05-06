@@ -192,6 +192,7 @@ private extension ContentView {
 						.lineLimit(1)
 
 					Button {
+						viewModel.handleDataQualityScoreInfoTap()
 					} label: {
 						Text(FontIcon.infoCircle.rawValue)
 							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))

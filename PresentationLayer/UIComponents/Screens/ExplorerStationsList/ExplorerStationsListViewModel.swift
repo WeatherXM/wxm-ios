@@ -211,6 +211,18 @@ class ExplorerStationsListViewModel: ObservableObject {
 		
 		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.itemId: .infoDailyRewards])
 	}
+
+	func handleDataQualityScoreInfoTap() {
+		let info = BottomSheetInfo(title: LocalizableString.ExplorerList.cellDataQuality.localized,
+								   description: LocalizableString.ExplorerList.cellDataQualityDescription.localized,
+								   scrollable: true)
+		self.info = info
+		showInfo = true
+
+		// Should Add analytics?
+		//WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.itemId: ...])
+	}
+
 }
 
 private extension ExplorerStationsListViewModel {
@@ -247,9 +259,7 @@ private extension ExplorerStationsListViewModel {
 																action: { Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel())) })])
 		return conf
 	}
-}
 
-private extension ExplorerStationsListViewModel {
 	func updateDeviceListFailObj(error: PublicHexError, retryAction: @escaping VoidCallback) {
 		var description: String?
 		switch error {
