@@ -8,12 +8,16 @@
 public struct PublicHex: Codable, Sendable, Equatable {
     public var index: String = ""
     public var deviceCount: Int?
+	public var activeDeviceCount: Int?
+	public var averageDataQuality: Double?
     public var center: HexLocation = .init()
     public var polygon: [HexLocation] = []
 
     enum CodingKeys: String, CodingKey {
         case index
         case deviceCount = "device_count"
+		case activeDeviceCount = "active_device_count"
+		case averageDataQuality = "avg_data_quality"
         case center
         case polygon
     }

@@ -16,6 +16,7 @@ public struct DeviceDetails: Sendable {
 	public var location: LocationCoordinates?
 	public var batteryState: BatteryState?
     public var cellIndex: String?
+	public var cellAvgDataQuality: Double?
     public var cellCenter: LocationCoordinates?
 	public var cellPolygon: [LocationCoordinates]?
     public var isActive: Bool
@@ -38,6 +39,7 @@ public struct DeviceDetails: Sendable {
 				location: LocationCoordinates? = nil,
 				batteryState: BatteryState? = nil,
 				cellIndex: String? = nil,
+				cellAvgDataQuality: Double? = nil,
 				cellCenter: LocationCoordinates? = nil,
 				cellPolygon: [LocationCoordinates]? = nil,
 				isActive: Bool,
@@ -58,6 +60,7 @@ public struct DeviceDetails: Sendable {
 		self.address = address
 		self.location = location
 		self.batteryState = batteryState
+		self.cellAvgDataQuality = cellAvgDataQuality
 		self.cellIndex = cellIndex
 		self.cellCenter = cellCenter
 		self.cellPolygon = cellPolygon
@@ -125,6 +128,7 @@ extension PublicDevice {
                       label: nil,
                       address: address,
                       cellIndex: cellIndex,
+					  cellAvgDataQuality: cellAvgDataQuality,
                       cellCenter: cellCenter,
                       isActive: isActive ?? false,
                       weather: currentWeather,
