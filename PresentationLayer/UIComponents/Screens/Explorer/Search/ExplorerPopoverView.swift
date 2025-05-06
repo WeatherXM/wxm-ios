@@ -18,8 +18,6 @@ struct ExplorerPopoverView: View {
 				Spacer()
 
 				Image(asset: .weatherXMLogo)
-					.resizable()
-					.frame(width: 32.0, height: 32.0)
 
 				Text(LocalizableString.weatherXM.localized.uppercased())
 					.foregroundStyle(Color(.text))
@@ -93,7 +91,8 @@ struct ExplorerPopoverView: View {
 					}
 				}
 			}
-			.WXMCardStyle(backgroundColor: Color(colorEnum: .layer1))
+			.WXMCardStyle(backgroundColor: Color(colorEnum: .layer1),
+						  cornerRadius: CGFloat(.smallCornerRadius))
 		}
 		.WXMCardStyle()
 		.colorScheme(.dark)

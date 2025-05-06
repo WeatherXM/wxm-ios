@@ -34,7 +34,7 @@ struct SearchView: View {
                     }
             }
         }
-		.wxmAlert(show: $showOptionsPopOver) {
+		.wxmAlert(show: $showOptionsPopOver, shouldDismissOnTapOutside: true) {
 			VStack {
 				ExplorerPopoverView(show: $showOptionsPopOver,
 									viewModel: viewModel,
