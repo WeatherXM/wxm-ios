@@ -12,6 +12,8 @@ extension LocalizableString {
 		case cellCapacity
 		case cellCapacityDescription
 		case cellNotFoundMessage
+		case cellDataQuality
+		case cellDataQualityDescription
 	}
 }
 
@@ -29,6 +31,10 @@ extension LocalizableString.ExplorerList: WXMLocalizable {
 				return "explorer_list_cell_capacity_description"
 			case .cellNotFoundMessage:
 				return "explorer_list_cell_not_found_message"
+			case .cellDataQuality:
+				return "explorer_list_cell_data_quality"
+			case .cellDataQualityDescription:
+				return "explorer_list_cell_data_quality_description"
 		}
 	}
 }
