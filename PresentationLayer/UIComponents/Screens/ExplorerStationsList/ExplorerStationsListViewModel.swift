@@ -45,7 +45,9 @@ class ExplorerStationsListViewModel: ObservableObject {
 
 		pills.append(.stationsCount(LocalizableString.presentStations(count).localized))
 
-		pills.append(.dataQualityScore(LocalizableString.StationDetails.dataQualityScore.localized , .darkGrey))
+		if let dataQualityPill = getDataQualityPill() {
+			pills.append(dataQualityPill)
+		}
 
 		return pills
 	}
@@ -296,6 +298,24 @@ private extension ExplorerStationsListViewModel {
 				return try? await self.useCase?.getDeviceFollowState(deviceId: deviceId).get()
 			}
 		}
+	}
+
+	func getDataQualityPill() -> ExplorerStationsListView.Pill? {
+		guard !devices.isEmpty else {
+			return nil
+		}
+
+		let first = devices.first
+
+		var text = LocalizableString.ExplorerList.cellNoDataQuality.localized
+		var color: ColorEnum = .darkGrey
+		if let quality = first?.cellAvgDataQuality {
+			let percentage = LocalizableString.percentage(Float(quality)).localized
+			text = LocalizableString.ExplorerList.cellDataQualityScore(percentage).localized
+			color = Int(quality).rewardScoreColor
+		}
+
+		return .dataQualityScore(text, color)
 	}
 }
 
