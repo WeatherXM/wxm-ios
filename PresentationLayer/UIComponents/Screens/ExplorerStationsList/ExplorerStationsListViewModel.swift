@@ -45,6 +45,8 @@ class ExplorerStationsListViewModel: ObservableObject {
 
 		pills.append(.stationsCount(LocalizableString.presentStations(count).localized))
 
+		pills.append(.dataQualityScore(LocalizableString.StationDetails.dataQualityScore.localized , .darkGrey))
+
 		return pills
 	}
 	var cellShareUrl: String {
