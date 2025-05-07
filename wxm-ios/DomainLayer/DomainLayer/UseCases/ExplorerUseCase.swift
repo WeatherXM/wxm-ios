@@ -119,11 +119,13 @@ public class ExplorerUseCase: @unchecked Sendable, ExplorerUseCaseApi {
 					polygonAnnotation.fillOutlineColor = ExplorerUseCase.fillOutlineColor
 					polygonAnnotation.userInfo = [publicHex.index: CLLocationCoordinate2D(latitude: publicHex.center.lat,
 																						  longitude: publicHex.center.lon),
-										EXPLORER_DEVICE_COUNT_KEY: publicHex.deviceCount ?? 0]
+										EXPLORER_ACTIVE_DEVICE_COUNT_KEY: publicHex.activeDeviceCount ?? 0]
 					polygonPoints.append(polygonAnnotation)
 
 					var pointAnnotation = PointAnnotation(point: .init(.init(latitude: publicHex.center.lat, longitude: publicHex.center.lon)))
-					pointAnnotation.textField = "\(publicHex.deviceCount ?? 0)"
+					if let activeDeviceCount = publicHex.activeDeviceCount, activeDeviceCount > 0 {
+						pointAnnotation.textField = "\(activeDeviceCount)"
+					}
 					textPoints.append(pointAnnotation)
 				}
 
