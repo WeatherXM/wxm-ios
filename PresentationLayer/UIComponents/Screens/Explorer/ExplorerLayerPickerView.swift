@@ -44,6 +44,38 @@ extension ExplorerLayerPickerView {
 
 private extension ExplorerLayerPickerView {
 	@ViewBuilder
+	var scoresView: some View {
+		HStack {
+			VStack(spacing: CGFloat(.minimumSpacing)) {
+				Text(FontIcon.hexagon.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.largeTitleFontSize)))
+					.foregroundStyle(Color(colorEnum: .darkGrey))
+
+				Text(LocalizableString.stationNoDataTitle.localized)
+					.font(.system(size: CGFloat(.caption)))
+					.foregroundStyle(Color(colorEnum: .text))
+			}
+			.frame(maxWidth: .infinity)
+
+			ForEach([15, 60, 90], id: \.self) { score in
+				VStack(spacing: CGFloat(.minimumSpacing)) {
+					Text(FontIcon.hexagon.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.largeTitleFontSize)))
+						.foregroundStyle(Color(colorEnum: score.rewardScoreColor))
+
+					Text(score.rewardScoreRangeText)
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundStyle(Color(colorEnum: .text))
+				}
+				.frame(maxWidth: .infinity)
+			}
+		}
+		.padding(CGFloat(.smallToMediumSidePadding))
+		.background(Color(colorEnum: .top))
+		.cornerRadius(CGFloat(.lightCornerRadius))
+	}
+
+	@ViewBuilder
 	func viewFor(option: Option) -> some View {
 		Button {
 			self.selectedOption = option
@@ -52,11 +84,15 @@ private extension ExplorerLayerPickerView {
 				case .default:
 					rowView(title: LocalizableString.Explorer.mapLayersDefault.localized,
 							description: LocalizableString.Explorer.mapLayersDefaultDescription.localized,
-							isSelected: selectedOption == .default)
+							isSelected: selectedOption == .default) {
+						EmptyView()
+					}
 				case .dataQuality:
 					rowView(title: LocalizableString.Explorer.mapLayersDataQualityScore.localized,
 							description: LocalizableString.Explorer.mapLayersDataQualityScoreDescription.localized,
-							isSelected: selectedOption == .dataQuality)
+							isSelected: selectedOption == .dataQuality) {
+						scoresView
+					}
 			}
 		}
 		.buttonStyle(.plain)
@@ -71,7 +107,10 @@ private extension ExplorerLayerPickerView {
 	}
 
 	@ViewBuilder
-	func rowView(title: String, description: String, isSelected: Bool) -> some View {
+	func rowView(title: String,
+				 description: String,
+				 isSelected: Bool,
+				 @ViewBuilder bottomView: () -> some View) -> some View {
 		HStack(spacing: CGFloat(.mediumSpacing)) {
 			ZStack {
 				Circle()
@@ -86,22 +125,26 @@ private extension ExplorerLayerPickerView {
 
 			}
 
-			VStack(spacing: CGFloat(.smallSpacing)) {
-				HStack {
-					Text(title)
-						.foregroundStyle(Color(colorEnum: .text))
-						.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
-
-					Spacer()
+			VStack(spacing: CGFloat(.defaultSpacing)) {
+				VStack(spacing: CGFloat(.smallSpacing)) {
+					HStack {
+						Text(title)
+							.foregroundStyle(Color(colorEnum: .text))
+							.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+						
+						Spacer()
+					}
+					
+					HStack {
+						Text(description)
+							.foregroundStyle(Color(colorEnum: .text))
+							.font(.system(size: CGFloat(.mediumFontSize)))
+						
+						Spacer()
+					}
 				}
 
-				HStack {
-					Text(description)
-						.foregroundStyle(Color(colorEnum: .text))
-						.font(.system(size: CGFloat(.mediumFontSize)))
-
-					Spacer()
-				}
+				bottomView()
 			}
 		}
 	}
