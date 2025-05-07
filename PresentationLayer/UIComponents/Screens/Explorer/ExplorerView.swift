@@ -36,6 +36,12 @@ struct ExplorerView: View {
             viewModel.showTopOfMapItems = true
         }
 		.shimmerLoader(show: $viewModel.isLoading, horizontalPadding: CGFloat(.defaultSidePadding))
+		.bottomSheet(show: $viewModel.showLayerPicker, bgColor: .darkTop) {
+			ExplorerLayerPickerView(selectedOption: $viewModel.layerOption)
+				.padding()
+				.colorScheme(.dark)
+		}
+		.colorScheme(.dark)
     }
 
     var explorerContent: some View {
@@ -44,6 +50,11 @@ struct ExplorerView: View {
                 Spacer()
 
                 VStack(spacing: CGFloat(.defaultSpacing)) {
+					HStack {
+						Spacer()
+						layersButton
+					}
+
                     HStack {
                         Spacer()
                         userLocationButton
@@ -122,6 +133,22 @@ struct ExplorerView: View {
         }
         .wxmShadow()
     }
+
+	@ViewBuilder
+	var layersButton: some View {
+		Button {
+			viewModel.layersButtonTapped()
+		} label: {
+			Image(asset: .detectLocation)
+				.renderingMode(.template)
+				.foregroundColor(Color(colorEnum: .text))
+				.padding(CGFloat(.smallSidePadding))
+				.background(Color(colorEnum: .wxmPrimary))
+				.cornerRadius(CGFloat(.cardCornerRadius))
+		}
+		.wxmShadow()
+	}
+
 }
 
 #Preview {
