@@ -126,6 +126,12 @@ private extension LoggedInTabViewContainer {
             }
         }
         .animation(.easeIn(duration: 0.4), value: explorerViewModel.showTopOfMapItems)
+		.bottomSheet(show: $explorerViewModel.showLayerPicker, bgColor: .darkTop) {
+			ExplorerLayerPickerView(show: $explorerViewModel.showLayerPicker,
+									selectedOption: $explorerViewModel.layerOption)
+				.padding()
+				.colorScheme(.dark)
+		}
     }
 
 	@ViewBuilder
@@ -136,11 +142,30 @@ private extension LoggedInTabViewContainer {
 			VStack(spacing: CGFloat(.defaultSpacing)) {
 				HStack {
 					Spacer()
+					layersButton
+				}
+
+				HStack {
+					Spacer()
 					userLocationButton
 				}
 			}
 		}
+		.colorScheme(.dark)
     }
+
+	@ViewBuilder
+	var layersButton: some View {
+		Button {
+			explorerViewModel.layersButtonTapped()
+		} label: {
+			Image(asset: .iconLayers)
+				.frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
+				.background(Color(colorEnum: .wxmPrimary))
+				.cornerRadius(CGFloat(.cardCornerRadius))
+		}
+		.wxmShadow()
+	}
 
     @ViewBuilder
     var userLocationButton: some View {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ExplorerLayerPickerView: View {
+	@Binding var show: Bool
 	@Binding var selectedOption: ExplorerLayerPickerView.Option
 
     var body: some View {
@@ -78,6 +79,7 @@ private extension ExplorerLayerPickerView {
 	@ViewBuilder
 	func viewFor(option: Option) -> some View {
 		Button {
+			show = false
 			self.selectedOption = option
 		} label: {
 			switch option {
@@ -151,7 +153,8 @@ private extension ExplorerLayerPickerView {
 }
 
 #Preview {
-	ExplorerLayerPickerView(selectedOption: .constant(.dataQuality))
+	ExplorerLayerPickerView(show: .constant(true),
+							selectedOption: .constant(.dataQuality))
 		.colorScheme(.dark)
 		.padding()
 }
