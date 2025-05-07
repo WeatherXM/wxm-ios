@@ -211,7 +211,8 @@ class ExplorerStationsListViewModel: ObservableObject {
 		self.info = info
 		showInfo = true
 		
-		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.itemId: .infoDailyRewards])
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore
+																	,.itemId: .infoDailyRewards])
 	}
 
 	func handleDataQualityScoreInfoTap() {
@@ -222,7 +223,8 @@ class ExplorerStationsListViewModel: ObservableObject {
 		showInfo = true
 
 		// Should Add analytics?
-		//WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.itemId: ...])
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
+																	.itemId: .infoCellDataQuality])
 	}
 
 }
