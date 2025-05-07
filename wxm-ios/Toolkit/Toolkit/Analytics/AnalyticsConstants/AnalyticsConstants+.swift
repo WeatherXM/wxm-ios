@@ -568,6 +568,8 @@ extension ParameterValue: RawRepresentable {
 				return "local_network_stats"
 			case .proPromotion:
 				return "pro_promotion"
+			case .infoCellDataQuality:
+				return "info_cell_data_quality"
 		}
 	}
 }
