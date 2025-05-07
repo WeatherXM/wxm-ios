@@ -5874,6 +5874,17 @@
         }
       }
     },
+    "percentage_string_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@%%"
+          }
+        }
+      }
+    },
     "photo_verification_acceptance_use_policy" : {
       "extractionState" : "manual",
       "localizations" : {
