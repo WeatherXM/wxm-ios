@@ -37,7 +37,8 @@ struct ExplorerView: View {
         }
 		.shimmerLoader(show: $viewModel.isLoading, horizontalPadding: CGFloat(.defaultSidePadding))
 		.bottomSheet(show: $viewModel.showLayerPicker, bgColor: .darkTop) {
-			ExplorerLayerPickerView(selectedOption: $viewModel.layerOption)
+			ExplorerLayerPickerView(show: $viewModel.showLayerPicker,
+									selectedOption: $viewModel.layerOption)
 				.padding()
 				.colorScheme(.dark)
 		}
@@ -146,7 +147,6 @@ struct ExplorerView: View {
 		}
 		.wxmShadow()
 	}
-
 }
 
 #Preview {
