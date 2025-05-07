@@ -128,8 +128,8 @@ struct ExplorerView: View {
             Image(asset: .detectLocation)
                 .renderingMode(.template)
                 .foregroundColor(Color(colorEnum: .text))
-                .padding(CGFloat(.smallSidePadding))
-                .background(Circle().foregroundColor(Color(colorEnum: .top)))
+				.frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
+				.background(Circle().foregroundColor(Color(colorEnum: .top)))
         }
         .wxmShadow()
     }
@@ -139,10 +139,8 @@ struct ExplorerView: View {
 		Button {
 			viewModel.layersButtonTapped()
 		} label: {
-			Image(asset: .detectLocation)
-				.renderingMode(.template)
-				.foregroundColor(Color(colorEnum: .text))
-				.padding(CGFloat(.smallSidePadding))
+			Image(asset: .iconLayers)
+				.frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
 				.background(Color(colorEnum: .wxmPrimary))
 				.cornerRadius(CGFloat(.cardCornerRadius))
 		}
