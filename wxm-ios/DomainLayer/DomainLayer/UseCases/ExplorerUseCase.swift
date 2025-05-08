@@ -12,7 +12,6 @@ import Foundation
 import Toolkit
 
 public class ExplorerUseCase: @unchecked Sendable, ExplorerUseCaseApi {
-	private static let DEVICE_COUNT_KEY = "device_count"
 	private static let fillOpacity = 0.5
 	private static let fillColor = StyleColor(red: 51.0, green: 136.0, blue: 255.0, alpha: 1.0)
 	private static let fillOutlineColor = StyleColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -89,7 +88,7 @@ public class ExplorerUseCase: @unchecked Sendable, ExplorerUseCaseApi {
 					let geometry = Geometry.point(point)
 					var feature = Feature(geometry: geometry)
 					var jsonObjectProperty = JSONObject()
-					jsonObjectProperty[ExplorerUseCase.DEVICE_COUNT_KEY] = JSONValue(publicHex.deviceCount ?? 0)
+					jsonObjectProperty[EXPLORER_DEVICE_COUNT_KEY] = JSONValue(publicHex.deviceCount ?? 0)
 					feature.properties = jsonObjectProperty
 					return feature
 				}
@@ -118,7 +117,9 @@ public class ExplorerUseCase: @unchecked Sendable, ExplorerUseCaseApi {
 					polygonAnnotation.fillColor = ExplorerUseCase.fillColor
 					polygonAnnotation.fillOpacity = ExplorerUseCase.fillOpacity
 					polygonAnnotation.fillOutlineColor = ExplorerUseCase.fillOutlineColor
-					polygonAnnotation.userInfo = [publicHex.index: CLLocationCoordinate2D(latitude: publicHex.center.lat, longitude: publicHex.center.lon)]
+					polygonAnnotation.userInfo = [publicHex.index: CLLocationCoordinate2D(latitude: publicHex.center.lat,
+																						  longitude: publicHex.center.lon),
+										EXPLORER_DEVICE_COUNT_KEY: publicHex.deviceCount ?? 0]
 					polygonPoints.append(polygonAnnotation)
 
 					var pointAnnotation = PointAnnotation(point: .init(.init(latitude: publicHex.center.lat, longitude: publicHex.center.lon)))

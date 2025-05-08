@@ -16,11 +16,13 @@ protocol ExplorerSearchViewModelDelegate: AnyObject {
     func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?)
     func searchWillBecomeActive(_ active: Bool)
     func settingsButtonTapped()
+	func networkStatisticsTapped()
 }
 
 @MainActor
 class ExplorerSearchViewModel: ObservableObject {
 
+	@Published var activeStationsCount: String = "0"
     @Published var isSearchActive: Bool = false {
         didSet {
             delegate?.searchWillBecomeActive(isSearchActive)
@@ -83,6 +85,10 @@ class ExplorerSearchViewModel: ObservableObject {
         delegate?.settingsButtonTapped()
     }
 
+	func handleNetwrorkStatsButtonTap() {
+		delegate?.networkStatisticsTapped()
+	}
+
     func handleSubmitButtonTap() {
         guard searchTerm.count < searchTermLimit else {
             return
@@ -99,6 +105,10 @@ class ExplorerSearchViewModel: ObservableObject {
         }
         searchTerm = trimmed
     }
+
+	func updateActiveStations(count: Int) {
+		activeStationsCount = count.localizedFormatted
+	}
 }
 
 private extension ExplorerSearchViewModel {

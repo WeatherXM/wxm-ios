@@ -48,11 +48,6 @@ struct ExplorerView: View {
                         Spacer()
                         userLocationButton
                     }
-
-                    HStack {
-                        Spacer()
-                        netStatsButton
-                    }
                 }
                 .transition(AnyTransition.move(edge: .trailing))
 

@@ -9,6 +9,7 @@ import Combine
 import CoreLocation
 import DomainLayer
 import Toolkit
+import MapboxMaps
 
 @MainActor
 public final class ExplorerViewModel: ObservableObject {
@@ -110,6 +111,21 @@ public final class ExplorerViewModel: ObservableObject {
 	func handleZoomOut() {
 		mapController?.zoomOut()
 	}
+
+	func didUpdateMapBounds(bounds: CoordinateBounds) {
+		let count = explorerData.polygonPoints.reduce(0) {
+			guard let center = $1.polygon.center,
+				  case let isInBounds = bounds.containsLatitude(forLatitude: center.latitude) && bounds.containsLongitude(forLongitude: center.longitude),
+				  let count = $1.userInfo?[EXPLORER_DEVICE_COUNT_KEY] as? Int else {
+				return $0
+			}
+
+			let sum = $0 + (isInBounds ? count : 0)
+			return sum
+		}
+
+		searchViewModel.updateActiveStations(count: count)
+	}
 }
 
 private extension ExplorerViewModel {
@@ -156,6 +172,10 @@ extension ExplorerViewModel: ExplorerSearchViewModelDelegate {
     func settingsButtonTapped() {
         Router.shared.navigateTo(.settings(ViewModelsFactory.getSettingsViewModel(userId: "")))
     }
+
+	func networkStatisticsTapped() {
+		Router.shared.navigateTo(.netStats(ViewModelsFactory.getNetworkStatsViewModel()))
+	}
 
     func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?) {
 		let locationToSnap = MapBoxMapView.SnapLocation(coordinates: coordinates)

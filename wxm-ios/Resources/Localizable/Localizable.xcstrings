@@ -5478,6 +5478,17 @@
         }
       }
     },
+    "net_stats_network_statistics_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View real-time network health, station activity, $WXM rewards and more."
+          }
+        }
+      }
+    },
     "net_stats_total_allocated_info_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8107,6 +8118,17 @@
         }
       }
     },
+    "search_active_stations_in_area" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active stations in this area"
+          }
+        }
+      }
+    },
     "search_field_placeholder" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10138,6 +10160,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "My Stations"
+          }
+        }
+      }
+    },
+    "weather_xm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WeatherXM"
           }
         }
       }

@@ -10,6 +10,8 @@ import CoreLocation
 import Foundation
 import Toolkit
 
+public let EXPLORER_DEVICE_COUNT_KEY = "device_count"
+
 public protocol ExplorerUseCaseApi: Sendable {
 	var userDevicesListChangedPublisher: NotificationCenter.Publisher { get }
 	var userLocationAuthorizationStatus: WXMLocationManager.Status { get }

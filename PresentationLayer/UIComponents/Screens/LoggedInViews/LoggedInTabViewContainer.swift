@@ -138,28 +138,8 @@ private extension LoggedInTabViewContainer {
 					Spacer()
 					userLocationButton
 				}
-
-				HStack {
-					Spacer()
-					netStatsButton
-				}
 			}
 		}
-    }
-
-    @ViewBuilder
-    var netStatsButton: some View {
-        Button {
-            Router.shared.navigateTo(.netStats(ViewModelsFactory.getNetworkStatsViewModel()))
-        } label: {
-            Image(asset: .networkStatsIcon)
-                .renderingMode(.template)
-                .foregroundColor(Color(colorEnum: .netStatsFabTextColor))
-        }
-        .frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
-        .background(Color(colorEnum: .netStatsFabColor))
-        .cornerRadius(CGFloat(.cardCornerRadius))
-        .wxmShadow()
     }
 
     @ViewBuilder
