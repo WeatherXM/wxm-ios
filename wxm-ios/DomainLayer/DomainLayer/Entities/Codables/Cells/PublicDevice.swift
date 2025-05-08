@@ -13,7 +13,7 @@ public struct PublicDevice: Codable, Sendable {
     var lastWeatherStationActivity: String?
 	var address: String?
     var cellIndex: String?
-	var cellAvgDataQuality: Double?
+	var cellAvgDataQuality: Int?
 	var cellCenter: LocationCoordinates?
     var currentWeather: CurrentWeather?
 	var bundle: StationBundle?
