@@ -115,15 +115,9 @@ private extension ExplorerLayerPickerView {
 				 @ViewBuilder bottomView: () -> some View) -> some View {
 		HStack(spacing: CGFloat(.mediumSpacing)) {
 			ZStack {
-				Circle()
-					.frame(width: 20.0, height: 20.0)
-					.foregroundColor(Color(colorEnum: .bg))
-
-				if isSelected {
-					Circle()
-						.frame(width: 12.0, height: 12.0)
-						.foregroundColor(Color(colorEnum: .wxmPrimary))
-				}
+				Image(asset: isSelected ? .radioButtonActive : .radioButton)
+					.renderingMode(.template)
+					.foregroundColor(Color(colorEnum: isSelected ? .wxmPrimary : .midGrey))
 
 			}
 
