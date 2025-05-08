@@ -212,7 +212,7 @@ class ExplorerStationsListViewModel: ObservableObject {
 		showInfo = true
 		
 		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore
-																	,.itemId: .infoDailyRewards])
+																	,.itemId: .infoCellCapacity])
 	}
 
 	func handleDataQualityScoreInfoTap() {
