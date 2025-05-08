@@ -89,7 +89,7 @@ extension MapBoxMap {
 
         func didTapAnnotation(_: MapViewController, _ annotations: [PolygonAnnotation]) {
             guard let firstValidAnnotation = annotations.first,
-				  let hexIndex = firstValidAnnotation.userInfo?.keys.first else {
+				  let hexIndex = firstValidAnnotation.userInfo?[EXPLORER_CELL_INDEX_KEY] as? String else {
 				return
 			}
             

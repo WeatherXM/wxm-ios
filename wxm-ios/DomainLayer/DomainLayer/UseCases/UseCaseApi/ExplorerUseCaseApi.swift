@@ -12,6 +12,8 @@ import Toolkit
 
 public let EXPLORER_DEVICE_COUNT_KEY = "device_count"
 public let EXPLORER_ACTIVE_DEVICE_COUNT_KEY = "active_device_count"
+public let EXPLORER_CELL_INDEX_KEY = "cell_index"
+public let EXPLORER_CELL_CENTER_KEY = "cell_center"
 
 public protocol ExplorerUseCaseApi: Sendable {
 	var userDevicesListChangedPublisher: NotificationCenter.Publisher { get }
