@@ -326,5 +326,6 @@ public enum ParameterValue {
 	case localProfile
 	case localNetworkStats
 	case proPromotion
+	case infoCellDataQuality
 	case custom(String)
 }

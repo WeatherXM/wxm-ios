@@ -41,6 +41,7 @@ extension ExplorerStationsListView {
 	enum Pill: Hashable {
 		case activeStations(String, ColorEnum)
 		case stationsCount(String)
+		case dataQualityScore(String, ColorEnum)
 	}
 }
 
@@ -120,12 +121,7 @@ private struct ContentView: View {
 
 private extension ContentView {
 	@ViewBuilder var titleView: some View {
-		ZStack {
-			// Dummy view to calculate the `containerWidth` to pass to `pillsView`
-			Color(colorEnum: .top)
-				.frame(height: 1.0)
-				.sizeObserver(size: $titleViewSize)
-
+		GeometryReader { proxy in
 			VStack(spacing: CGFloat(.mediumSpacing)) {
 				if let address = viewModel.address {
 					HStack {
@@ -138,12 +134,14 @@ private extension ContentView {
 				}
 
 				PillsView(items: viewModel.pills,
-						  containerWidth: titleViewSize.width) { pill in
+						  containerWidth: proxy.size.width) { pill in
 					viewFor(pill: pill)
 				}
 				.id(viewModel.pills)
 			}
+			.sizeObserver(size: $titleViewSize)
 		}
+		.frame(height: titleViewSize.height)
 		.padding(.horizontal, CGFloat(.defaultSidePadding))
 		.padding(.bottom, CGFloat(.mediumSidePadding))
 		.background(Color(colorEnum: .top))
@@ -172,6 +170,29 @@ private extension ContentView {
 
 					Button {
 						viewModel.handleCellCapacityInfoTap()
+					} label: {
+						Text(FontIcon.infoCircle.rawValue)
+							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+							.foregroundColor(Color(colorEnum: .text))
+					}
+				}
+				.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+							  insideHorizontalPadding: CGFloat(.smallToMediumSidePadding),
+							  insideVerticalPadding: CGFloat(.smallSidePadding),
+							  cornerRadius: CGFloat(.buttonCornerRadius))
+			case .dataQualityScore(let text, let color):
+				HStack(spacing: CGFloat(.smallSpacing)) {
+					Text(FontIcon.chartSimple.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundStyle(Color(colorEnum: color))
+
+					Text(text)
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundStyle(Color(colorEnum: .text))
+						.lineLimit(1)
+
+					Button {
+						viewModel.handleDataQualityScoreInfoTap()
 					} label: {
 						Text(FontIcon.infoCircle.rawValue)
 							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))

@@ -4147,6 +4147,50 @@
         }
       }
     },
+    "explorer_list_cell_data_quality" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell Data Quality"
+          }
+        }
+      }
+    },
+    "explorer_list_cell_data_quality_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Displays the average Quality of Data  score for all stations within this cell. Offline, no data and inactive stations are excluded."
+          }
+        }
+      }
+    },
+    "explorer_list_cell_data_quality_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell Data Quality %@"
+          }
+        }
+      }
+    },
+    "explorer_list_cell_no_data_quality" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Cell Data Quality"
+          }
+        }
+      }
+    },
     "explorer_list_cell_not_found_message" : {
       "extractionState" : "manual",
       "localizations" : {
