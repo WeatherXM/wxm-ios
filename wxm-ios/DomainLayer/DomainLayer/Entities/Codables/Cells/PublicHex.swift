@@ -22,6 +22,15 @@ public struct PublicHex: Codable, Sendable, Equatable {
         case polygon
     }
 
+	init(index: String = "", deviceCount: Int? = nil, activeDeviceCount: Int? = nil, averageDataQuality: Int? = nil, center: HexLocation = .init(), polygon: [HexLocation] = []) {
+		self.index = index
+		self.deviceCount = deviceCount
+		self.activeDeviceCount = activeDeviceCount
+		self.averageDataQuality = averageDataQuality
+		self.center = center
+		self.polygon = polygon
+	}
+
 	public init(from decoder: any Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.index = try container.decode(String.self, forKey: .index)
