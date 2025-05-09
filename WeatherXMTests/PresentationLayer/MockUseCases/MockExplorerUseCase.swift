@@ -5,7 +5,7 @@
 //  Created by Pantelis Giazitsis on 2/4/25.
 //
 
-import DomainLayer
+@testable import DomainLayer
 import Combine
 import CoreLocation
 import Foundation
@@ -31,9 +31,9 @@ struct MockExplorerUseCase: ExplorerUseCaseApi {
 	func getCell(cellIndex: String) async throws -> Result<PublicHex?, NetworkErrorResponse> {
 		.success(nil)
 	}
-	
-	func getPublicHexes(completion: @escaping (Result<ExplorerData, PublicHexError>) -> Void) {
-		completion(.success(ExplorerData()))
+
+	func getPublicHexes() async throws -> Result<[PublicHex], NetworkErrorResponse> {
+		.success([PublicHex()])
 	}
 	
 	func getPublicDevicesOfHexIndex(hexIndex: String, hexCoordinates: CLLocationCoordinate2D?, completion: @escaping @Sendable (Result<[DeviceDetails], PublicHexError>) -> Void) {
