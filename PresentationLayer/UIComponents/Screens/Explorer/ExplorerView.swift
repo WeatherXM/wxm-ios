@@ -36,13 +36,12 @@ struct ExplorerView: View {
             viewModel.showTopOfMapItems = true
         }
 		.shimmerLoader(show: $viewModel.isLoading, horizontalPadding: CGFloat(.defaultSidePadding))
-		.bottomSheet(show: $viewModel.showLayerPicker, bgColor: .darkTop) {
+		.bottomSheet(show: $viewModel.showLayerPicker, bgColor: .top) {
 			ExplorerLayerPickerView(show: $viewModel.showLayerPicker,
 									selectedOption: $viewModel.layerOption)
-				.padding()
-				.colorScheme(.dark)
+			.padding(.top, CGFloat(.XLSidePadding))
+			.padding(.horizontal, CGFloat((.mediumSidePadding)))
 		}
-		.colorScheme(.dark)
     }
 
     var explorerContent: some View {
@@ -141,6 +140,8 @@ struct ExplorerView: View {
 			viewModel.layersButtonTapped()
 		} label: {
 			Image(asset: .iconLayers)
+				.renderingMode(.template)
+				.foregroundStyle(Color(colorEnum: .layer1))
 				.frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
 				.background(Color(colorEnum: .wxmPrimary))
 				.cornerRadius(CGFloat(.cardCornerRadius))

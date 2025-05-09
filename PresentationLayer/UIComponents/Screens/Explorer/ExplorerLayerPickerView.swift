@@ -149,6 +149,5 @@ private extension ExplorerLayerPickerView {
 #Preview {
 	ExplorerLayerPickerView(show: .constant(true),
 							selectedOption: .constant(.dataQuality))
-		.colorScheme(.dark)
 		.padding()
 }
