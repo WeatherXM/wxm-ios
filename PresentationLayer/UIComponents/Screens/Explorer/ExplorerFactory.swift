@@ -39,6 +39,7 @@ struct ExplorerFactory {
 
 		var totalDevices = 0
 		var polygonPoints: [PolygonAnnotation] = []
+		var coloredPolygonPoints: [PolygonAnnotation] = []
 		var textPoints: [PointAnnotation] = []
 		publicHexes.forEach { publicHex in
 			totalDevices += publicHex.deviceCount ?? 0
@@ -66,6 +67,10 @@ struct ExplorerFactory {
 								  EXPLORER_ACTIVE_DEVICE_COUNT_KEY: publicHex.activeDeviceCount ?? 0]
 			polygonPoints.append(polygonAnnotation)
 
+			var coloredAnnotation = polygonAnnotation
+			coloredAnnotation.fillColor = StyleColor(UIColor(colorEnum: publicHex.averageDataQuality?.rewardScoreColor ?? .darkGrey))
+			coloredPolygonPoints.append(coloredAnnotation)
+
 			var pointAnnotation = PointAnnotation(point: .init(.init(latitude: publicHex.center.lat, longitude: publicHex.center.lon)))
 			if let activeDeviceCount = publicHex.activeDeviceCount, activeDeviceCount > 0 {
 				pointAnnotation.textField = "\(activeDeviceCount)"
@@ -77,6 +82,7 @@ struct ExplorerFactory {
 		let explorerData = ExplorerData(totalDevices: totalDevices,
 										geoJsonSource: geoJsonSource,
 										polygonPoints: polygonPoints,
+										coloredPolygonPoints: coloredPolygonPoints,
 										textPoints: textPoints)
 
 		return explorerData
