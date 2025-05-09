@@ -117,9 +117,10 @@ public class ExplorerUseCase: @unchecked Sendable, ExplorerUseCaseApi {
 					polygonAnnotation.fillColor = ExplorerUseCase.fillColor
 					polygonAnnotation.fillOpacity = ExplorerUseCase.fillOpacity
 					polygonAnnotation.fillOutlineColor = ExplorerUseCase.fillOutlineColor
-					polygonAnnotation.userInfo = [publicHex.index: CLLocationCoordinate2D(latitude: publicHex.center.lat,
-																						  longitude: publicHex.center.lon),
-										EXPLORER_ACTIVE_DEVICE_COUNT_KEY: publicHex.activeDeviceCount ?? 0]
+					polygonAnnotation.userInfo = [EXPLORER_CELL_CENTER_KEY: CLLocationCoordinate2D(latitude: publicHex.center.lat,
+																								   longitude: publicHex.center.lon),
+												   EXPLORER_CELL_INDEX_KEY: publicHex.index,
+										  EXPLORER_ACTIVE_DEVICE_COUNT_KEY: publicHex.activeDeviceCount ?? 0]
 					polygonPoints.append(polygonAnnotation)
 
 					var pointAnnotation = PointAnnotation(point: .init(.init(latitude: publicHex.center.lat, longitude: publicHex.center.lon)))

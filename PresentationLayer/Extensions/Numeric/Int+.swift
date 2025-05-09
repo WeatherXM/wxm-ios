@@ -49,4 +49,18 @@ extension Int {
 				return nil
 		}
 	}
+
+	var rewardScoreRangeText: String {
+		switch self {
+			case _ where self < 20:
+				LocalizableString.percentageString("0-19").localized
+			case _ where self < 80:
+				LocalizableString.percentageString("20-79").localized
+			case _ where self <= 100:
+				LocalizableString.percentageString("80-100").localized
+			default:
+				""
+		}
+	}
+
 }

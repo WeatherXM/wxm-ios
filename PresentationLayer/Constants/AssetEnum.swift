@@ -16,6 +16,7 @@ public enum AssetEnum: String {
     case qrCode
     case qrCodeBlue
     case user
+	case iconLayers
     case mapStaticImage
 	case wxmNavigationLogo = "wxm_navigation_logo"
     case weatherXMLogo
