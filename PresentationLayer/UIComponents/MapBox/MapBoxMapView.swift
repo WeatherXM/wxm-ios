@@ -134,13 +134,21 @@ class MapViewController: UIViewController {
 	internal var layer = HeatmapLayer(id: MapBoxConstants.heatmapLayerId,
 									  source: MapBoxConstants.heatmapSource)
     internal weak var polygonManager: PolygonAnnotationManager?
-	internal weak var coloredOPolygonManager: PolygonAnnotationManager?
+	internal weak var coloredPolygonManager: PolygonAnnotationManager?
 	internal weak var pointManager: PointAnnotationManager?
 
     weak var delegate: MapViewControllerDelegate?
 	var visibleLayer: ExplorerLayerPickerView.Option = .default {
 		didSet {
 			updateVisbileLayer()
+		}
+	}
+	private var visiblePolygonManager: PolygonAnnotationManager? {
+		switch visibleLayer {
+			case .default:
+				polygonManager
+			case .dataQuality:
+				coloredPolygonManager
 		}
 	}
 
@@ -261,8 +269,9 @@ class MapViewController: UIViewController {
 		polygonAnnotationManager.annotations = polygonAnnotations
 		polygonManager = polygonAnnotationManager
 
-		let coloredPolygonManager = self.coloredOPolygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.coloredPolygonManagerId)
+		let coloredPolygonManager = self.coloredPolygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.coloredPolygonManagerId)
 		coloredPolygonManager.annotations = coloredPolygonAnnotations
+		self.coloredPolygonManager = coloredPolygonManager
 
 		let pointAnnotationManager = self.pointManager ?? mapView.annotations.makePointAnnotationManager(id: MapBoxConstants.pointManagerId)
 		pointAnnotationManager.annotations = pointAnnotations
@@ -313,7 +322,7 @@ class MapViewController: UIViewController {
     }
 
     private func handleMapTap(_ tap: UITapGestureRecognizer) {
-        guard let polygonManager = polygonManager else { return }
+		guard let polygonManager = visiblePolygonManager else { return }
         let layerIds = [polygonManager.layerId]
         let annotations = polygonManager.annotations
         let options = RenderedQueryOptions(layerIds: layerIds, filter: nil)
