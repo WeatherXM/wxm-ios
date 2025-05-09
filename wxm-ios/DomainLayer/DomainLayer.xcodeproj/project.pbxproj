@@ -89,7 +89,6 @@
 		9968B17E28ACFE6900320413 /* PublicHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B17D28ACFE6900320413 /* PublicHex.swift */; };
 		9968B18028ACFFDF00320413 /* PublicDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B17F28ACFFDF00320413 /* PublicDevice.swift */; };
 		9968B1B328AD0C2D00320413 /* ExplorerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B1B228AD0C2D00320413 /* ExplorerUseCase.swift */; };
-		9968B1B528AD0C5600320413 /* ExplorerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B1B428AD0C5600320413 /* ExplorerData.swift */; };
 		9968B1B828AD0E7400320413 /* PublicHexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9968B1B728AD0E7400320413 /* PublicHexError.swift */; };
 		99A31FA928D0C1F7003BE981 /* RewardsTimelineUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A31FA828D0C1F7003BE981 /* RewardsTimelineUseCase.swift */; };
 		B5611E7F2834D5FC0092F204 /* NetworkFirmwareResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5611E7E2834D5FC0092F204 /* NetworkFirmwareResponse.swift */; };
@@ -191,7 +190,6 @@
 		9968B17D28ACFE6900320413 /* PublicHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHex.swift; sourceTree = "<group>"; };
 		9968B17F28ACFFDF00320413 /* PublicDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicDevice.swift; sourceTree = "<group>"; };
 		9968B1B228AD0C2D00320413 /* ExplorerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerUseCase.swift; sourceTree = "<group>"; };
-		9968B1B428AD0C5600320413 /* ExplorerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerData.swift; sourceTree = "<group>"; };
 		9968B1B728AD0E7400320413 /* PublicHexError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHexError.swift; sourceTree = "<group>"; };
 		9968B1BD28AD19E900320413 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		99A31FA828D0C1F7003BE981 /* RewardsTimelineUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelineUseCase.swift; sourceTree = "<group>"; };
@@ -228,14 +226,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		26348E092A434C5F000846C6 /* Explorer */ = {
-			isa = PBXGroup;
-			children = (
-				9968B1B428AD0C5600320413 /* ExplorerData.swift */,
-			);
-			path = Explorer;
-			sourceTree = "<group>";
-		};
 		264814732D9A945200BCCC31 /* UseCaseApi */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +281,6 @@
 		992D763F28B7C81500DFE504 /* DomainModels */ = {
 			isa = PBXGroup;
 			children = (
-				26348E092A434C5F000846C6 /* Explorer */,
 				26C904C22A77DBA90047A388 /* DeviceDetails.swift */,
 				264813F72D8C50EE00BCCC31 /* Announcement.swift */,
 				4D1C95D428FCB248001F66C9 /* DeviceLocation.swift */,
@@ -622,7 +611,6 @@
 				264814822D9ADE1400BCCC31 /* AuthUseCaseApi.swift in Sources */,
 				26DF3D2E2C85EA24005F6FC1 /* NetworkDeviceRewardsResponse.swift in Sources */,
 				B5E6B8952833C15C0060D050 /* EmptyEntity.swift in Sources */,
-				9968B1B528AD0C5600320413 /* ExplorerData.swift in Sources */,
 				9968B17B28ACFD1F00320413 /* ExplorerRepository.swift in Sources */,
 				9968B1B328AD0C2D00320413 /* ExplorerUseCase.swift in Sources */,
 				264C105F2AF3D76800F6FF3E /* WeatherField.swift in Sources */,

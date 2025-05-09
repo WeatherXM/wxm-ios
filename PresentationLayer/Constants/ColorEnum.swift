@@ -73,4 +73,5 @@ public enum ColorEnum: String {
 	case otherRewardPrimary
 	case chartsTertiary
 	case chartsQuaternary
+	case explorerPolygon
 }

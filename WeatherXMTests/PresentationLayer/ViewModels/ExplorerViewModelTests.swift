@@ -54,4 +54,11 @@ struct ExplorerViewModelTests {
 		#expect(viewModel.showLayerPicker == true)
 	}
 
+	@Test func explorerData() {
+		let data = viewModel.explorerData
+		#expect(data.polygonPoints.isEmpty)
+		#expect(data.totalDevices == 0)
+		#expect(data.geoJsonSource != nil)
+	}
+
 }
