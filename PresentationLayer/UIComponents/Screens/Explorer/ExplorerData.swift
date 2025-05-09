@@ -7,28 +7,36 @@
 
 import MapboxMaps
 
-public struct ExplorerData: Equatable {
+struct ExplorerData: Equatable {
 	public static func == (lhs: ExplorerData, rhs: ExplorerData) -> Bool {
 		lhs.totalDevices == rhs.totalDevices &&
-		lhs.polygonPoints == rhs.polygonPoints
+		lhs.polygonPoints == rhs.polygonPoints &&
+		lhs.textPoints == rhs.textPoints
 	}
 
-    public let totalDevices: Int
-    public let geoJsonSource: GeoJSONSource
-    public let polygonPoints: [PolygonAnnotation]
-	public let textPoints: [PointAnnotation]
+    let totalDevices: Int
+    let geoJsonSource: GeoJSONSource
+    let polygonPoints: [PolygonAnnotation]
+	let coloredPolygonPoints: [PolygonAnnotation]
+	let textPoints: [PointAnnotation]
 
-    public init() {
+    init() {
         self.totalDevices = 0
         self.geoJsonSource = GeoJSONSource(id: "heatmap")
         self.polygonPoints = []
+		self.coloredPolygonPoints = []
 		self.textPoints = []
     }
 
-    public init(totalDevices: Int, geoJsonSource: GeoJSONSource, polygonPoints: [PolygonAnnotation], textPoints: [PointAnnotation]) {
+    init(totalDevices: Int,
+		 geoJsonSource: GeoJSONSource,
+		 polygonPoints: [PolygonAnnotation],
+		 coloredPolygonPoints: [PolygonAnnotation],
+		 textPoints: [PointAnnotation]) {
         self.totalDevices = totalDevices
         self.geoJsonSource = geoJsonSource
         self.polygonPoints = polygonPoints
+		self.coloredPolygonPoints = coloredPolygonPoints
 		self.textPoints = textPoints
     }
 }

@@ -42,8 +42,8 @@ public final class ExplorerViewModel: ObservableObject {
     }()
 
 	func fetchExplorerData() {
-		isLoading = true
 		Task { @MainActor in
+			isLoading = true
 			defer {
 				self.isLoading = false
 			}
