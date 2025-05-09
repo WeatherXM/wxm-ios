@@ -1,13 +1,18 @@
 //
 //  ExplorerData.swift
-//  DomainLayer
+//  wxm-ios
 //
 //  Created by Lampros Zouloumis on 17/8/22.
 //
 
 import MapboxMaps
 
-public struct ExplorerData {
+public struct ExplorerData: Equatable {
+	public static func == (lhs: ExplorerData, rhs: ExplorerData) -> Bool {
+		lhs.totalDevices == rhs.totalDevices &&
+		lhs.polygonPoints == rhs.polygonPoints
+	}
+
     public let totalDevices: Int
     public let geoJsonSource: GeoJSONSource
     public let polygonPoints: [PolygonAnnotation]
