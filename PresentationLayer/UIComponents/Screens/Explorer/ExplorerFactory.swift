@@ -19,7 +19,7 @@ let EXPLORER_CELL_CENTER_KEY = "cell_center"
 struct ExplorerFactory {
 	let publicHexes: [PublicHex]
 	private let fillOpacity = 0.5
-	private let fillColor = StyleColor(UIColor(colorEnum: .wxmPrimary))
+	private let fillColor = StyleColor(UIColor(colorEnum: .explorerPolygon))
 	private let fillOutlineColor = StyleColor(UIColor.white)
 
 
