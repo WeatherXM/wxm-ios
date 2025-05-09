@@ -42,33 +42,27 @@ public final class ExplorerViewModel: ObservableObject {
     }()
 
 	func fetchExplorerData() {
+		isLoading = true
 		Task { @MainActor in
-			isLoading = true
-			explorerUseCase.getPublicHexes { [weak self] result in
-				guard let self else {
-					return
-				}
-				
+			defer {
 				self.isLoading = false
+			}
+			
+			do {
+				let result = try await explorerUseCase.getPublicHexes()
 				switch result {
-					case let .success(explorerData):
-						guard self.explorerData != explorerData else {
-							return
+					case .success(let publicHexes):
+						let factory = ExplorerFactory(publicHexes: publicHexes)
+						self.explorerData = factory.generateExplorerData()
+					case .failure(let error):
+						if let message = error.uiInfo.description?.attributedMarkdown {
+							Toast.shared.show(text: message)
 						}
-						
-						self.explorerData = explorerData
-					case let .failure(error):
-						print(error)
-						switch error {
-							case .infrastructure, .serialization:
-								if let message = LocalizableString.Error.genericMessage.localized.attributedMarkdown {
-									Toast.shared.show(text: message)
-								}
-							case .networkRelated(let networkError):
-								if let message = networkError?.uiInfo.description?.attributedMarkdown {
-									Toast.shared.show(text: message)
-								}
-						}
+				}
+			} catch {
+				print(error)
+				if let message = LocalizableString.Error.genericMessage.localized.attributedMarkdown {
+					Toast.shared.show(text: message)
 				}
 			}
 		}

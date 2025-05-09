@@ -10,11 +10,6 @@ import CoreLocation
 import Foundation
 import Toolkit
 
-public let EXPLORER_DEVICE_COUNT_KEY = "device_count"
-public let EXPLORER_ACTIVE_DEVICE_COUNT_KEY = "active_device_count"
-public let EXPLORER_CELL_INDEX_KEY = "cell_index"
-public let EXPLORER_CELL_CENTER_KEY = "cell_center"
-
 public protocol ExplorerUseCaseApi: Sendable {
 	var userDevicesListChangedPublisher: NotificationCenter.Publisher { get }
 	var userLocationAuthorizationStatus: WXMLocationManager.Status { get }
@@ -22,7 +17,7 @@ public protocol ExplorerUseCaseApi: Sendable {
 	func getUserLocation() async -> Result<CLLocationCoordinate2D, ExplorerLocationError>
 	func getSuggestedDeviceLocation() -> CLLocationCoordinate2D?
 	func getCell(cellIndex: String) async throws -> Result<PublicHex?, NetworkErrorResponse>
-	func getPublicHexes(completion: @escaping (Result<ExplorerData, PublicHexError>) -> Void)
+	func getPublicHexes() async throws -> Result<[PublicHex], NetworkErrorResponse>
 	func getPublicDevicesOfHexIndex(hexIndex: String, hexCoordinates: CLLocationCoordinate2D?, completion: @escaping @Sendable (Result<[DeviceDetails], PublicHexError>) -> Void)
 	func getPublicDevice(hexIndex: String, deviceId: String, completion: @escaping (Result<DeviceDetails, PublicHexError>) -> Void)
 	func followStation(deviceId: String) async throws -> Result<EmptyEntity, NetworkErrorResponse>
