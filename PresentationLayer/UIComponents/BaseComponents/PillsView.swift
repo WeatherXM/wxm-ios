@@ -26,6 +26,9 @@ struct PillsView<Item: Hashable, PillContent: View>: View {
 
 	var body: some View {
 		generatePills(width: containerWidth)
+			.onChange(of: items) { _ in
+				sizes = items.map { _ in SizeWrapper() }
+			}
 	}
 }
 

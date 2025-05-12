@@ -91,7 +91,7 @@ extension MapBoxMap {
 
         func didTapAnnotation(_: MapViewController, _ annotations: [PolygonAnnotation]) {
             guard let firstValidAnnotation = annotations.first,
-				  let hexIndex = firstValidAnnotation.userInfo?[EXPLORER_CELL_INDEX_KEY] as? String else {
+				  let hexIndex = firstValidAnnotation.userInfo?[ExplorerKeys.cellIndex.rawValue] as? String else {
 				return
 			}
             
@@ -292,6 +292,8 @@ class MapViewController: UIViewController {
 			})
 			layer.textColor = .constant(StyleColor(UIColor(colorEnum: .textWhite)))
 		}
+
+		updateVisbileLayer()
     }
 
     internal func cameraSetup() {

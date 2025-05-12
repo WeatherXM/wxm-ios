@@ -10,10 +10,12 @@ import DomainLayer
 import MapboxMaps
 import UIKit
 
-let EXPLORER_DEVICE_COUNT_KEY = "device_count"
-let EXPLORER_ACTIVE_DEVICE_COUNT_KEY = "active_device_count"
-let EXPLORER_CELL_INDEX_KEY = "cell_index"
-let EXPLORER_CELL_CENTER_KEY = "cell_center"
+enum ExplorerKeys: String {
+	case deviceCount = "device_count"
+	case activeDeviceCount = "active_device_count"
+	case cellIndex = "cell_index"
+	case cellCenter = "cell_center"
+}
 
 @MainActor
 struct ExplorerFactory {
@@ -31,7 +33,7 @@ struct ExplorerFactory {
 			let geometry = Geometry.point(point)
 			var feature = Feature(geometry: geometry)
 			var jsonObjectProperty = JSONObject()
-			jsonObjectProperty[EXPLORER_DEVICE_COUNT_KEY] = JSONValue(publicHex.deviceCount ?? 0)
+			jsonObjectProperty[ExplorerKeys.deviceCount.rawValue] = JSONValue(publicHex.deviceCount ?? 0)
 			feature.properties = jsonObjectProperty
 			return feature
 		}
@@ -61,12 +63,12 @@ struct ExplorerFactory {
 			polygonAnnotation.fillColor = fillColor
 			polygonAnnotation.fillOpacity = fillOpacity
 			polygonAnnotation.fillOutlineColor = fillOutlineColor
-			polygonAnnotation.userInfo = [EXPLORER_CELL_CENTER_KEY: CLLocationCoordinate2D(latitude: publicHex.center.lat,
-																						   longitude: publicHex.center.lon),
-										   EXPLORER_CELL_INDEX_KEY: publicHex.index,
-								  EXPLORER_ACTIVE_DEVICE_COUNT_KEY: publicHex.activeDeviceCount ?? 0]
+			polygonAnnotation.userInfo = [ExplorerKeys.cellCenter.rawValue: CLLocationCoordinate2D(latitude: publicHex.center.lat,
+																								   longitude: publicHex.center.lon),
+										  ExplorerKeys.cellIndex.rawValue: publicHex.index,
+										  ExplorerKeys.activeDeviceCount.rawValue: publicHex.activeDeviceCount ?? 0]
 			polygonPoints.append(polygonAnnotation)
-
+			
 			var coloredAnnotation = polygonAnnotation
 			coloredAnnotation.fillColor = StyleColor(UIColor(colorEnum: publicHex.averageDataQuality?.rewardScoreColor ?? .darkGrey))
 			coloredPolygonPoints.append(coloredAnnotation)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExplorerPopoverView: View {
 	@Binding var show: Bool
-	@StateObject var viewModel: ExplorerSearchViewModel
+	@ObservedObject var viewModel: ExplorerSearchViewModel
 	let shouldShowSettingsButton: Bool
 
 	var body: some View {
@@ -44,7 +44,7 @@ struct ExplorerPopoverView: View {
 			Group {
 				Button {
 					show = false
-					viewModel.handleNetwrorkStatsButtonTap()
+					viewModel.handleNetworkStatsButtonTap()
 				} label: {
 					HStack(spacing: CGFloat(.minimumSpacing)) {
 						VStack(spacing: CGFloat(.smallSpacing)) {
