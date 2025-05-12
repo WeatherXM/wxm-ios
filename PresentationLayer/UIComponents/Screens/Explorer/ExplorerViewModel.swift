@@ -53,7 +53,11 @@ public final class ExplorerViewModel: ObservableObject {
 				switch result {
 					case .success(let publicHexes):
 						let factory = ExplorerFactory(publicHexes: publicHexes)
-						self.explorerData = factory.generateExplorerData()
+						let explorerData = factory.generateExplorerData()
+						guard self.explorerData != explorerData else {
+							return
+						}
+						self.explorerData = explorerData
 					case .failure(let error):
 						if let message = error.uiInfo.description?.attributedMarkdown {
 							Toast.shared.show(text: message)
