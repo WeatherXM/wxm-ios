@@ -11,7 +11,9 @@ struct ExplorerData: Equatable {
 	public static func == (lhs: ExplorerData, rhs: ExplorerData) -> Bool {
 		lhs.totalDevices == rhs.totalDevices &&
 		lhs.polygonPoints == rhs.polygonPoints &&
-		lhs.textPoints == rhs.textPoints
+		lhs.textPoints == rhs.textPoints &&
+		lhs.coloredPolygonPoints == rhs.coloredPolygonPoints &&
+		lhs.geoJsonSource.id == rhs.geoJsonSource.id
 	}
 
     let totalDevices: Int

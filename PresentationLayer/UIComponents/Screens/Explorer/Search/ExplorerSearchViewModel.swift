@@ -85,7 +85,7 @@ class ExplorerSearchViewModel: ObservableObject {
         delegate?.settingsButtonTapped()
     }
 
-	func handleNetwrorkStatsButtonTap() {
+	func handleNetworkStatsButtonTap() {
 		delegate?.networkStatisticsTapped()
 	}
 

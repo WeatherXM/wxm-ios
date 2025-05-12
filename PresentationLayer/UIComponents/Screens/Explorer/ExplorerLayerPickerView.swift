@@ -79,8 +79,8 @@ private extension ExplorerLayerPickerView {
 	@ViewBuilder
 	func viewFor(option: Option) -> some View {
 		Button {
-			show = false
 			self.selectedOption = option
+			show = false
 		} label: {
 			switch option {
 				case .default:

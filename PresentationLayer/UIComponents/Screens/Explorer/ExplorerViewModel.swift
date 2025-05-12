@@ -116,7 +116,7 @@ public final class ExplorerViewModel: ObservableObject {
 		let count = explorerData.polygonPoints.reduce(0) {
 			guard let center = $1.polygon.center,
 				  case let isInBounds = bounds.containsLatitude(forLatitude: center.latitude) && bounds.containsLongitude(forLongitude: center.longitude),
-				  let count = $1.userInfo?[EXPLORER_ACTIVE_DEVICE_COUNT_KEY] as? Int else {
+				  let count = $1.userInfo?[ExplorerKeys.activeDeviceCount.rawValue] as? Int else {
 				return $0
 			}
 

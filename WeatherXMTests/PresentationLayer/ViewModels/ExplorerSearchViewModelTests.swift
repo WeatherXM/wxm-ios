@@ -81,7 +81,7 @@ struct ExplorerSearchViewModelTests {
 
 	@Test func netStatsTap() {
 		#expect(!searchDelegate.networkStatisticsTappedCalled)
-		viewModel.handleNetwrorkStatsButtonTap()
+		viewModel.handleNetworkStatsButtonTap()
 		#expect(searchDelegate.networkStatisticsTappedCalled)
 	}
 
