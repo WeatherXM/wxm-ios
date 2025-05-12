@@ -76,6 +76,8 @@ private struct MapBoxMap: UIViewControllerRepresentable {
         if explorerViewModel.showUserLocation {
             mapViewController.showUserLocation()
         }
+
+		mapViewController.visibleLayer = explorerViewModel.layerOption
     }
 }
 
@@ -116,6 +118,7 @@ extension MapBoxMap {
 			viewModel.$explorerData.sink { [weak self] data in
 				self?.viewModel.mapController?.configureHeatMapLayer(source: data.geoJsonSource)
 				self?.viewModel.mapController?.configurePolygonLayer(polygonAnnotations: data.polygonPoints,
+																	 coloredPolygonAnnotations: data.coloredPolygonPoints,
 																	 pointAnnotations: data.textPoints)
 				self?.viewModel.snapToInitialLocation()
 			}.store(in: &canellableSet)
@@ -131,9 +134,24 @@ class MapViewController: UIViewController {
 	internal var layer = HeatmapLayer(id: MapBoxConstants.heatmapLayerId,
 									  source: MapBoxConstants.heatmapSource)
     internal weak var polygonManager: PolygonAnnotationManager?
+	internal weak var coloredPolygonManager: PolygonAnnotationManager?
 	internal weak var pointManager: PointAnnotationManager?
 
     weak var delegate: MapViewControllerDelegate?
+	var visibleLayer: ExplorerLayerPickerView.Option = .default {
+		didSet {
+			updateVisbileLayer()
+		}
+	}
+	private var visiblePolygonManager: PolygonAnnotationManager? {
+		switch visibleLayer {
+			case .default:
+				polygonManager
+			case .dataQuality:
+				coloredPolygonManager
+		}
+	}
+
     @objc func didTapMap(_ tap: UITapGestureRecognizer) {
         handleMapTap(tap)
     }
@@ -245,10 +263,15 @@ class MapViewController: UIViewController {
     }
 
 	internal func configurePolygonLayer(polygonAnnotations: [PolygonAnnotation],
+										coloredPolygonAnnotations: [PolygonAnnotation],
 										pointAnnotations: [PointAnnotation]) {
 		let polygonAnnotationManager = self.polygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.polygonManagerId)
 		polygonAnnotationManager.annotations = polygonAnnotations
 		polygonManager = polygonAnnotationManager
+
+		let coloredPolygonManager = self.coloredPolygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.coloredPolygonManagerId)
+		coloredPolygonManager.annotations = coloredPolygonAnnotations
+		self.coloredPolygonManager = coloredPolygonManager
 
 		let pointAnnotationManager = self.pointManager ?? mapView.annotations.makePointAnnotationManager(id: MapBoxConstants.pointManagerId)
 		pointAnnotationManager.annotations = pointAnnotations
@@ -299,7 +322,7 @@ class MapViewController: UIViewController {
     }
 
     private func handleMapTap(_ tap: UITapGestureRecognizer) {
-        guard let polygonManager = polygonManager else { return }
+		guard let polygonManager = visiblePolygonManager else { return }
         let layerIds = [polygonManager.layerId]
         let annotations = polygonManager.annotations
         let options = RenderedQueryOptions(layerIds: layerIds, filter: nil)
@@ -323,6 +346,26 @@ class MapViewController: UIViewController {
 					self.delegate?.didTapAnnotation(self, tappedAnnotations)
 				case .failure:
 					self.delegate?.didTapMapArea(self)
+			}
+		}
+	}
+
+	private func updateVisbileLayer() {
+		try? mapView.mapboxMap.updateLayer(withId: MapBoxConstants.polygonManagerId, type: FillLayer.self) { layer in
+			switch visibleLayer {
+				case .default:
+					layer.visibility = .constant(.visible)
+				case .dataQuality:
+					layer.visibility = .constant(.none)
+			}
+		}
+
+		try? mapView.mapboxMap.updateLayer(withId: MapBoxConstants.coloredPolygonManagerId, type: FillLayer.self) { layer in
+			switch visibleLayer {
+				case .default:
+					layer.visibility = .constant(.none)
+				case .dataQuality:
+					layer.visibility = .constant(.visible)
 			}
 		}
 	}

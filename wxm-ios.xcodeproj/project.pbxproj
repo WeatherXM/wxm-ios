@@ -491,6 +491,8 @@
 		26BA07752B7F715200F7F5A0 /* DailyRewardCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */; };
 		26BA07772B7FC2AC00F7F5A0 /* WeeklyStreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07762B7FC2AC00F7F5A0 /* WeeklyStreakView.swift */; };
 		26BE25B62C244ED200799CB3 /* ClaimPulseContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BE25B52C244ED200799CB3 /* ClaimPulseContainerViewModel.swift */; };
+		26C0330E2DCDE31800F68557 /* ExplorerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C0330D2DCDE31800F68557 /* ExplorerFactory.swift */; };
+		26C033102DCDEDB200F68557 /* ExplorerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C0330F2DCDEDB200F68557 /* ExplorerData.swift */; };
 		26C464F82A40A0D0005E5245 /* ShimmerEffectLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C464F72A40A0D0005E5245 /* ShimmerEffectLoaderView.swift */; };
 		26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C464FA2A40A2F9005E5245 /* ShimmerEffectLoader.swift */; };
 		26C5AF402BF7632700476B89 /* ClaimDeviceProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C5AF3F2BF7632700476B89 /* ClaimDeviceProgressView.swift */; };
@@ -590,7 +592,6 @@
 		26DF1F682D563F940001E936 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F672D563F940001E936 /* Utils.swift */; };
 		26DF1F7D2D5B455B0001E936 /* WeatherStationsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F7C2D5B455B0001E936 /* WeatherStationsEmptyView.swift */; };
 		26DF1F7F2D5B69950001E936 /* weatherxm_network.json in Resources */ = {isa = PBXBuildFile; fileRef = 26DF1F7E2D5B69950001E936 /* weatherxm_network.json */; };
-		26DF3D202C85BB86005F6FC1 /* ExplorerData+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */; };
 		26DF3D312C85FB30005F6FC1 /* RewardAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */; };
 		26DF3D332C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */; };
 		26E5B0C029F8078C00834899 /* WXMDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5B0BF29F8078C00834899 /* WXMDivider.swift */; };
@@ -1208,6 +1209,8 @@
 		26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRewardCardView.swift; sourceTree = "<group>"; };
 		26BA07762B7FC2AC00F7F5A0 /* WeeklyStreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStreakView.swift; sourceTree = "<group>"; };
 		26BE25B52C244ED200799CB3 /* ClaimPulseContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimPulseContainerViewModel.swift; sourceTree = "<group>"; };
+		26C0330D2DCDE31800F68557 /* ExplorerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerFactory.swift; sourceTree = "<group>"; };
+		26C0330F2DCDEDB200F68557 /* ExplorerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerData.swift; sourceTree = "<group>"; };
 		26C464F72A40A0D0005E5245 /* ShimmerEffectLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffectLoaderView.swift; sourceTree = "<group>"; };
 		26C464FA2A40A2F9005E5245 /* ShimmerEffectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffectLoader.swift; sourceTree = "<group>"; };
 		26C5AF3F2BF7632700476B89 /* ClaimDeviceProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceProgressView.swift; sourceTree = "<group>"; };
@@ -1300,7 +1303,6 @@
 		26DF1F692D5651E30001E936 /* wxm-ios.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "wxm-ios.xctestplan"; sourceTree = "<group>"; };
 		26DF1F7C2D5B455B0001E936 /* WeatherStationsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStationsEmptyView.swift; sourceTree = "<group>"; };
 		26DF1F7E2D5B69950001E936 /* weatherxm_network.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = weatherxm_network.json; sourceTree = "<group>"; };
-		26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerData+.swift"; sourceTree = "<group>"; };
 		26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsView.swift; sourceTree = "<group>"; };
 		26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsViewModel.swift; sourceTree = "<group>"; };
 		26E2B336297ACC0300ED9B58 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -1944,6 +1946,8 @@
 				2675476829A9181E008BCF40 /* ExplorerView.swift */,
 				267546E029A9181E008BCF40 /* ExplorerViewModel.swift */,
 				26CA1EC12DCB65C6008C87A2 /* ExplorerLayerPickerView.swift */,
+				26C0330D2DCDE31800F68557 /* ExplorerFactory.swift */,
+				26C0330F2DCDEDB200F68557 /* ExplorerData.swift */,
 			);
 			path = Explorer;
 			sourceTree = "<group>";
@@ -2422,7 +2426,6 @@
 				26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */,
 				264CC7682B98AA6E0060DEA4 /* NetworkDeviceRewardBoostsResponse+.swift */,
 				2608A7932C09F67A00452E40 /* DeviceLocation+.swift */,
-				26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */,
 				2672B87B2C89F19A002266BE /* BoostCode+.swift */,
 				2672B87D2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift */,
 			);
@@ -4057,7 +4060,6 @@
 				266CC4CF2AB30CD900EC794C /* LocalizableString+SelectFrequency.swift in Sources */,
 				26C624572AB09C78007A3162 /* LocalizableString+Settings.swift in Sources */,
 				26052B5C2CDA2EE7009A7D92 /* TrackableScroller.swift in Sources */,
-				26DF3D202C85BB86005F6FC1 /* ExplorerData+.swift in Sources */,
 				26A9619C2AA705FE00646A25 /* LocalizableString+StationDetails.swift in Sources */,
 				263B8B4E2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift in Sources */,
 				26A9614C2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift in Sources */,
@@ -4067,6 +4069,7 @@
 				2608A7942C09F67A00452E40 /* DeviceLocation+.swift in Sources */,
 				264371312CA1955800E5F382 /* ChartLegendView.swift in Sources */,
 				B52BCC752824FB8F00EA3DA5 /* MainApp.swift in Sources */,
+				26C033102DCDEDB200F68557 /* ExplorerData.swift in Sources */,
 				2675481929A9181E008BCF40 /* MainScreen.swift in Sources */,
 				267547A929A9181E008BCF40 /* MainScreenViewModel.swift in Sources */,
 				263B8B502B29F17E001C5060 /* MapBoxConstants.swift in Sources */,
@@ -4115,6 +4118,7 @@
 				26A4118529BA1E1E00A2C10B /* RebootStationView.swift in Sources */,
 				26A4118729BA1E7000A2C10B /* RebootStationViewModel.swift in Sources */,
 				2675481C29A9181E008BCF40 /* RegisterView.swift in Sources */,
+				26C0330E2DCDE31800F68557 /* ExplorerFactory.swift in Sources */,
 				267547B129A9181E008BCF40 /* RegisterViewModel.swift in Sources */,
 				2675481A29A9181E008BCF40 /* ResetPasswordView.swift in Sources */,
 				267547A729A9181E008BCF40 /* ResetPasswordViewModel.swift in Sources */,
