@@ -27,6 +27,8 @@ public final class ExplorerViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var isSearchActive: Bool = false
 	@Published var explorerData: ExplorerData = ExplorerData()
+	@Published var layerOption: ExplorerLayerPickerView.Option = .default
+	@Published var showLayerPicker: Bool = false
 
 	lazy var snapLocationPublisher: AnyPublisher<MapBoxMapView.SnapLocation?, Never> = snapLocationSubject.eraseToAnyPublisher()
 	private let snapLocationSubject = PassthroughSubject<MapBoxMapView.SnapLocation?, Never>()
@@ -84,6 +86,10 @@ public final class ExplorerViewModel: ObservableObject {
         handleUserLocationTap()
     }
 
+	func layersButtonTapped() {
+		showLayerPicker = true
+	}
+	
 	func snapToInitialLocation() {
 		guard !isInitialSnapped else {
 			return

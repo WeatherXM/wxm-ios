@@ -36,6 +36,12 @@ struct ExplorerView: View {
             viewModel.showTopOfMapItems = true
         }
 		.shimmerLoader(show: $viewModel.isLoading, horizontalPadding: CGFloat(.defaultSidePadding))
+		.bottomSheet(show: $viewModel.showLayerPicker, bgColor: .top) {
+			ExplorerLayerPickerView(show: $viewModel.showLayerPicker,
+									selectedOption: $viewModel.layerOption)
+			.padding(.top, CGFloat(.XLSidePadding))
+			.padding(.horizontal, CGFloat((.mediumSidePadding)))
+		}
     }
 
     var explorerContent: some View {
@@ -44,6 +50,11 @@ struct ExplorerView: View {
                 Spacer()
 
                 VStack(spacing: CGFloat(.defaultSpacing)) {
+					HStack {
+						Spacer()
+						layersButton
+					}
+
                     HStack {
                         Spacer()
                         userLocationButton
@@ -117,11 +128,26 @@ struct ExplorerView: View {
             Image(asset: .detectLocation)
                 .renderingMode(.template)
                 .foregroundColor(Color(colorEnum: .text))
-                .padding(CGFloat(.smallSidePadding))
-                .background(Circle().foregroundColor(Color(colorEnum: .top)))
+				.frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
+				.background(Circle().foregroundColor(Color(colorEnum: .top)))
         }
         .wxmShadow()
     }
+
+	@ViewBuilder
+	var layersButton: some View {
+		Button {
+			viewModel.layersButtonTapped()
+		} label: {
+			Image(asset: .iconLayers)
+				.renderingMode(.template)
+				.foregroundStyle(Color(colorEnum: .layer1))
+				.frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
+				.background(Color(colorEnum: .wxmPrimary))
+				.cornerRadius(CGFloat(.cardCornerRadius))
+		}
+		.wxmShadow()
+	}
 }
 
 #Preview {

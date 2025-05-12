@@ -4213,6 +4213,61 @@
         }
       }
     },
+    "explorer_map_layers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Map Layers"
+          }
+        }
+      }
+    },
+    "explorer_map_layers_data_quality_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality score"
+          }
+        }
+      }
+    },
+    "explorer_map_layers_data_quality_score_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Display a color-coded map indicating station data quality levels."
+          }
+        }
+      }
+    },
+    "explorer_map_layers_default" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default"
+          }
+        }
+      }
+    },
+    "explorer_map_layers_default_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Concise view showing all stations that exist in each cell."
+          }
+        }
+      }
+    },
     "explorer_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5815,6 +5870,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%.0f%%"
+          }
+        }
+      }
+    },
+    "percentage_string_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@%%"
           }
         }
       }

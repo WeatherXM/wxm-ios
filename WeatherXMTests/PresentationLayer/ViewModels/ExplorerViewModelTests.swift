@@ -47,4 +47,11 @@ struct ExplorerViewModelTests {
 		try await Task.sleep(for: .seconds(2))
 		#expect(viewModel.showUserLocation)
 	}
+
+	@Test func layersButtonTap() {
+		#expect(viewModel.showLayerPicker == false)
+		viewModel.layersButtonTapped()
+		#expect(viewModel.showLayerPicker == true)
+	}
+
 }
