@@ -37,6 +37,7 @@ extension NetworkStatsView {
         let xAxisTuple: XAxisTuple?
         var additionalStats: [AdditionalStats]?
         let analyticsItemId: ParameterValue?
+		let cardTapAction: VoidCallback?
     }
 
     struct AdditionalStats {
@@ -187,15 +188,26 @@ extension NetworkStatsView {
                       insideHorizontalPadding: 0.0,
                       insideVerticalPadding: 0.0)
         .wxmShadow()
+		.onTapGesture {
+			stats.cardTapAction?()
+		}
     }
 
 	@ViewBuilder
 	func statsTitleView(for stats: Statistics) -> some View {
-		VStack(spacing: CGFloat(.minimumSpacing)) {
+		VStack(spacing: 0.0) {
 			HStack {
-				Text(stats.title)
-					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-					.foregroundColor(Color(colorEnum: .text))
+				HStack(spacing: CGFloat(.smallSpacing)) {
+					Text(stats.title)
+						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+						.foregroundColor(Color(colorEnum: .text))
+
+					if stats.cardTapAction != nil {
+						Text(FontIcon.chevronRight.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
+							.foregroundColor(Color(colorEnum: .text))
+					}
+				}
 
 				Spacer()
 
@@ -215,7 +227,7 @@ extension NetworkStatsView {
 
 			if let description = stats.description {
 				let mainText = Text(description)
-					.font(.system(size: CGFloat(.normalFontSize)))
+					.font(.system(size: CGFloat(.caption)))
 					.foregroundColor(Color(colorEnum: .darkestBlue))
 
 				HStack {
@@ -225,7 +237,7 @@ extension NetworkStatsView {
 							mainText +
 							Text(" ") +
 							Text(FontIcon.externalLink.rawValue)
-								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
+								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
 								.foregroundColor(Color(colorEnum: .wxmPrimary))
 						}
 						.tint(Color(colorEnum: .wxmPrimary))
