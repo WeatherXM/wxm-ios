@@ -91,10 +91,12 @@ extension NetworkStatsViewModel {
 							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .rewardContract]) },
                              accessory: accessory,
                              additionalStats: [total, lastDay],
-							 analyticsItemId: .allocatedRewards) {
-			print("$WXM Rewards")
+							 analyticsItemId: .allocatedRewards) { [weak self] in
+			guard let self else {
+				return
+			}
+			self.router.navigateTo(.tokenMetrics(self))
 		}
-
     }
 
 	func getTokenStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
