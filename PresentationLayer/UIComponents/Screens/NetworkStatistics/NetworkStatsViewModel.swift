@@ -142,7 +142,8 @@ extension NetworkStatsViewModel {
 														 dateString: "Yesterday",
 														 chartModel: .mock(),
 														 xAxisTuple: nil,
-														 analyticsItemId: .dataDays)
+														 analyticsItemId: .dataDays,
+														 cardTapAction: nil)
 
 		let addtional: [NetworkStatsView.AdditionalStats] = [.init(title: "Total supply",
 																   value: "100,000,000",
@@ -164,7 +165,8 @@ extension NetworkStatsViewModel {
 														chartModel: .mock(),
 														xAxisTuple: nil,
 														additionalStats: addtional,
-														analyticsItemId: .allocatedRewards)
+														analyticsItemId: .allocatedRewards,
+														cardTapAction: nil)
 
 		let stationStats = NetworkStatsView.StationStatistics(title: "Total",
 															  total: "7,823",
