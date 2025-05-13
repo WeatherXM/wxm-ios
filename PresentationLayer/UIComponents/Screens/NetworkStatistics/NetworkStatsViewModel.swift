@@ -37,11 +37,14 @@ class NetworkStatsViewModel: ObservableObject {
 	private let useCase: NetworkUseCaseApi?
     private var cancellables: Set<AnyCancellable> = []
 	private let linkNavigation: LinkNavigation
+	let router: Router
 
 	init(useCase: NetworkUseCaseApi? = nil,
-		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
+		 linkNavigation: LinkNavigation = LinkNavigationHelper(),
+		 router: Router = .shared) {
         self.useCase = useCase
 		self.linkNavigation = linkNavigation
+		self.router = router
         refresh { }
     }
 
