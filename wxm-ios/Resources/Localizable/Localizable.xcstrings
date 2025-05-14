@@ -5423,6 +5423,17 @@
         }
       }
     },
+    "net_stats_check_the_weather" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the Weather"
+          }
+        }
+      }
+    },
     "net_stats_circulating_supply" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5489,6 +5500,28 @@
         }
       }
     },
+    "net_stats_deploy_your_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deploy your Station"
+          }
+        }
+      }
+    },
+    "net_stats_earn_wxm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earn $WXM tokens"
+          }
+        }
+      }
+    },
     "net_stats_empty_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5507,6 +5540,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Service Unavailable"
+          }
+        }
+      }
+    },
+    "net_stats_enter_web3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Weather 3.0"
           }
         }
       }
