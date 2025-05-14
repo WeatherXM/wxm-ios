@@ -328,5 +328,8 @@ public enum ParameterValue {
 	case localNetworkStats
 	case proPromotion
 	case infoCellDataQuality
+	case selectMapLayer
+	case `default`
+	case dataQuality
 	case custom(String)
 }
