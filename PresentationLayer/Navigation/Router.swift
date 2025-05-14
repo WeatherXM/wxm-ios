@@ -269,7 +269,7 @@ extension Route {
 				ProPromotionalView(viewModel: promoViewModel)
 			case .tokenMetrics(let netStatsViewModel):
 				NavigationContainerView {
-					TokenMetricsView()
+					TokenMetricsView(viewModel: netStatsViewModel)
 				}
 			case .safariView(let url):
 				SafariView(url: url)

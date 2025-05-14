@@ -6,17 +6,47 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct TokenMetricsView: View {
+	@ObservedObject var viewModel: NetworkStatsViewModel
+	@EnvironmentObject var navigationObject: NavigationObject
+
     var body: some View {
-		VStack {
-			Spacer()
-			Text(verbatim: "Token Metrics")
-			Spacer()
+		ScrollView {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				lastUpdatedView
+			}
+			.padding(CGFloat(.defaultSidePadding))
+		}
+		.onAppear {
+			navigationObject.title = LocalizableString.NetStats.tokenMetrics.localized
+			navigationObject.navigationBarColor = Color(colorEnum: .bg)
+			WXMAnalytics.shared.trackScreen(.tokenMetrics)
 		}
     }
 }
 
+private extension TokenMetricsView {
+	@ViewBuilder
+	var lastUpdatedView: some View {
+		if let lastUpdated = viewModel.lastUpdatedText {
+			HStack {
+				Spacer()
+
+				Text(lastUpdated)
+					.font(.system(size: CGFloat(.normalFontSize), weight: .thin))
+					.foregroundColor(Color(colorEnum: .text))
+
+			}
+		} else {
+			EmptyView()
+		}
+	}
+}
+
 #Preview {
-    TokenMetricsView()
+	NavigationContainerView {
+		TokenMetricsView(viewModel: ViewModelsFactory.getNetworkStatsViewModel())
+	}
 }

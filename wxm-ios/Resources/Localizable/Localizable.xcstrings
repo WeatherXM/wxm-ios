@@ -5632,6 +5632,17 @@
         }
       }
     },
+    "net_stats_token_metrics" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token metrics"
+          }
+        }
+      }
+    },
     "net_stats_total_allocated_info_text" : {
       "extractionState" : "manual",
       "localizations" : {

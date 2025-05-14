@@ -21,6 +21,7 @@ extension LocalizableString {
 		case weatherStations
 		case claimed
 		case active
+		case tokenMetrics
 		case buyStationCardTitle
 		case buyStationCardDescription(Float)
 		case buyStationCardButtonTitle
@@ -93,6 +94,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_claimed"
 			case .active:
 				return "net_stats_active"
+			case .tokenMetrics:
+				return "net_stats_token_metrics"
 			case .buyStationCardTitle:
 				return "net_stats_buy_station_card_title"
 			case .buyStationCardDescription:
