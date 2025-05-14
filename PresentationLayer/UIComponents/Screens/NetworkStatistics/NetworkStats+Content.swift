@@ -146,7 +146,7 @@ extension NetworkStatsView {
 
 					HStack {
 						Button {
-
+							viewModel.handleBuyStationTap()
 						} label: {
 							Text(LocalizableString.NetStats.buyStationCardButtonTitle.localized)
 								.padding(.horizontal, CGFloat(.defaultSidePadding))
