@@ -187,20 +187,6 @@ extension NetworkStatsViewModel {
         }
     }
 
-    func getBuyStationCTA(response: NetworkStatsResponse?) -> NetworkStatsView.StatisticsCTA? {
-		let description = LocalizableString.NetStats.buyStationCardDescription(Float(response?.tokens?.averageMonthly ?? 0.0)).localized
-        let buyStationCTA = NetworkStatsView.StatisticsCTA(title: LocalizableString.NetStats.buyStationCardTitle.localized,
-                                                           description: description,
-														   accessory: .init(fontIcon: .infoCircle) { [weak self] in
-			self?.showInfo(title: nil, description: LocalizableString.NetStats.buyStationCardInfoDescription.localized, analyticsItemId: .buyStation)
-		},
-                                                           analyticsItemId: .buyStation,
-                                                           buttonTitle: LocalizableString.NetStats.buyStationCardButtonTitle.localized,
-                                                           buttonAction: { [weak self] in self?.handleBuyStationTap() })
-
-        return buyStationCTA
-    }
-
     func getManufacturerCTA(response: NetworkStatsResponse?) -> NetworkStatsView.StatisticsCTA? {
         let manufacturerCTA = NetworkStatsView.StatisticsCTA(title: LocalizableString.NetStats.manufacturerCTATitle.localized,
                                                              description: LocalizableString.NetStats.manufacturerCTADescription.localized,

@@ -19,7 +19,6 @@ class NetworkStatsViewModel: ObservableObject {
     @Published var rewards: NetworkStatsView.Statistics?
     @Published var token: NetworkStatsView.Statistics?
     @Published var stationStats: [NetworkStatsView.StationStatistics]?
-    @Published var buyStationCTA: NetworkStatsView.StatisticsCTA?
     @Published var manufacturerCTA: NetworkStatsView.StatisticsCTA?
     @Published var lastUpdatedText: String?
     @Published var showInfo: Bool = false
@@ -118,7 +117,6 @@ private extension NetworkStatsViewModel {
         self.rewards = getRewardsStatistics(response: response)
         self.token = getTokenStatistics(response: response)
         self.stationStats = getStationStats(response: response)
-        self.buyStationCTA = getBuyStationCTA(response: response)
         self.manufacturerCTA = getManufacturerCTA(response: response)
 
         if let lastUpdated = response?.lastUpdated {
