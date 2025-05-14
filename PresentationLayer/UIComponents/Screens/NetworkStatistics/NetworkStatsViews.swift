@@ -175,7 +175,7 @@ extension View {
 					if let progress = stats.progress {
 						ProgressView(value: progress, total: 1.0)
 							.progressViewStyle(ProgressBarStyle(bgColor: Color(colorEnum: .top),
-																progressColor: Color(colorEnum: .chartSecondary)))
+																progressColor: Color(colorEnum: .chartPrimary)))
 							.frame(height: 4.0)
 					}
 				}

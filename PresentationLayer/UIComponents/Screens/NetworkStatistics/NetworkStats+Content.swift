@@ -101,15 +101,6 @@ extension NetworkStatsView {
     }
 
     @ViewBuilder
-    var tokenView: some View {
-        if let token = viewModel.token {
-            generateStatsView(stats: token)
-        } else {
-            EmptyView()
-        }
-    }
-
-    @ViewBuilder
     var buyStationView: some View {
 		PercentageGridLayoutView {
 			Group {

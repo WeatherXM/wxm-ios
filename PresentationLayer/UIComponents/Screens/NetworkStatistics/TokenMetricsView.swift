@@ -13,11 +13,17 @@ struct TokenMetricsView: View {
 	@EnvironmentObject var navigationObject: NavigationObject
 
     var body: some View {
-		ScrollView {
-			VStack(spacing: CGFloat(.mediumSpacing)) {
-				lastUpdatedView
+		ZStack {
+			Color(colorEnum: .bg)
+				.ignoresSafeArea()
+
+			ScrollView {
+				VStack(spacing: CGFloat(.mediumSpacing)) {
+					tokenView
+					lastUpdatedView
+				}
+				.padding(CGFloat(.defaultSidePadding))
 			}
-			.padding(CGFloat(.defaultSidePadding))
 		}
 		.onAppear {
 			navigationObject.title = LocalizableString.NetStats.tokenMetrics.localized
@@ -39,6 +45,15 @@ private extension TokenMetricsView {
 					.foregroundColor(Color(colorEnum: .text))
 
 			}
+		} else {
+			EmptyView()
+		}
+	}
+
+	@ViewBuilder
+	var tokenView: some View {
+		if let token = viewModel.token {
+			generateStatsView(stats: token)
 		} else {
 			EmptyView()
 		}
