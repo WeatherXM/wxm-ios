@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct ExplorerLayerPickerView: View {
 	@Binding var show: Bool
@@ -28,6 +29,9 @@ struct ExplorerLayerPickerView: View {
 					viewFor(option: option)
 				}
 			}
+		}
+		.onAppear {
+			WXMAnalytics.shared.trackScreen(.mapLayerPicker)
 		}
     }
 }
