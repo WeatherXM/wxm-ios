@@ -121,6 +121,7 @@ public enum AssetEnum: String {
 	case imageHelium = "image_helium"
 	case imageStationQR = "image_station_qr"
 	case imageD1Claim = "image_d1_claim"
+	case imageStation = "image_station"
 	case temperatureBars
 	case recommendedInstallation0 = "recommended_installation_0"
 	case recommendedInstallation1 = "recommended_installation_1"
