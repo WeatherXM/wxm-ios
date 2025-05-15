@@ -12,7 +12,10 @@ extension View {
 	func generateStatsView(stats: NetworkStatsView.Statistics) -> some View {
 		VStack(spacing: CGFloat(.smallToMediumSpacing)) {
 			statsTitleView(for: stats)
-
+			if let customView = stats.customView {
+				customView
+			}
+			
 			statsChartView(for: stats)
 
 			if let additionalStats = stats.additionalStats {

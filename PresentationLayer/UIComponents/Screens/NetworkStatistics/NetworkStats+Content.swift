@@ -38,6 +38,7 @@ extension NetworkStatsView {
         var additionalStats: [AdditionalStats]?
         let analyticsItemId: ParameterValue?
 		let cardTapAction: VoidCallback?
+		var customView: AnyView?
     }
 
     struct AdditionalStats {

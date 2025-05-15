@@ -242,6 +242,7 @@ extension NetworkStatsViewModel {
 							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkStats,
 																												  .source: .dune]) },
 							 accessory: accessory,
+							 customView: NetworkStatsDonutView(claimed: 921, reserved: 2000).toAnyView,
 							 additionalStats: [baseRewards, boostRewards],
 							 analyticsItemId: nil)
 
@@ -255,6 +256,7 @@ private extension NetworkStatsViewModel {
                        showExternalLinkIcon: Bool = false,
                        externalLinkTapAction: VoidCallback? = nil,
                        accessory: NetworkStatsView.Accessory?,
+					   customView: AnyView? = nil,
                        additionalStats: [NetworkStatsView.AdditionalStats]?,
                        analyticsItemId: ParameterValue?,
 					   cardTapAction: VoidCallback? = nil) -> NetworkStatsView.Statistics {
@@ -288,7 +290,8 @@ private extension NetworkStatsViewModel {
                                            xAxisTuple: xAxisTuple,
                                            additionalStats: additionalStats,
                                            analyticsItemId: analyticsItemId,
-										   cardTapAction: cardTapAction)
+										   cardTapAction: cardTapAction,
+										   customView: customView)
     }
 
 	func fixedTimeSeries(timeSeries: [NetworkStatsTimeSeries]?) -> [NetworkStatsTimeSeries]? {
