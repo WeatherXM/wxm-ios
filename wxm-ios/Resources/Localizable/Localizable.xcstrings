@@ -5720,6 +5720,17 @@
         }
       }
     },
+    "net_stats_total_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total\n%@"
+          }
+        }
+      }
+    },
     "net_stats_total_supply" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -11,6 +11,14 @@ struct NetworkStatsDonutView: View {
 	let claimed: Double
 	let reserved: Double
 
+	private var totalText: String? {
+		guard let total = (claimed + reserved).toCompactDecimaFormat else {
+			return nil
+		}
+
+		return LocalizableString.NetStats.total(total).localized
+	}
+
     var body: some View {
 		HStack(spacing: CGFloat(.minimumSpacing)) {
 			VStack(alignment: .trailing) {
@@ -24,7 +32,8 @@ struct NetworkStatsDonutView: View {
 			ProgressView(value: claimed, total: reserved)
 				.progressViewStyle(DonutProgressStyle(lineWidth: 26.0,
 													  color: Color(colorEnum: .chartPrimary),
-													  progressColor: Color(colorEnum: .chartSecondary)))
+													  progressColor: Color(colorEnum: .chartSecondary),
+													  innerText: totalText))
 				.frame(width: 140.0, height: 80.0)
 
 			Text(LocalizableString.NetStats.reserved(reserved.toCompactDecimaFormat ?? "").localized.uppercased())
@@ -57,13 +66,15 @@ struct DonutProgressStyle: ProgressViewStyle {
 				lineWidth: lineWidth)
 			.stroke(progressColor, lineWidth: lineWidth)
 
-			VStack {
-				Spacer()
+			if let innerText {
+				VStack {
+					Spacer()
 
-				Text(LocalizableString.NetStats.claimedAmount(1000.toCompactDecimaFormat ?? "").localized.uppercased())
-					.foregroundStyle(Color(colorEnum: .text))
-					.font(.system(size: CGFloat(.caption)))
-					.multilineTextAlignment(.center)
+					Text(innerText)
+						.foregroundStyle(Color(colorEnum: .text))
+						.font(.system(size: CGFloat(.caption)))
+						.multilineTextAlignment(.center)
+				}
 			}
 		}
 	}

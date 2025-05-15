@@ -22,6 +22,7 @@ extension LocalizableString {
 		case claimed
 		case claimedAmount(String)
 		case reserved(String)
+		case total(String)
 		case active
 		case tokenMetrics
 		case buyStationCardTitle
@@ -70,6 +71,7 @@ extension LocalizableString.NetStats: WXMLocalizable {
 			case .wxmTokenDescriptionMarkdown(let text),
 					.claimedAmount(let text),
 					.reserved(let text),
+					.total(let text),
 					.wxmRewardsDescriptionMarkdown(let text),
 					.totalWXMAllocatedDescription(let text):
 				localized = String(format: localized, text)
@@ -108,6 +110,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_claimed_amount_format"
 			case .reserved:
 				return "net_stats_reserved_format"
+			case .total:
+				return "net_stats_total_format"
 			case .active:
 				return "net_stats_active"
 			case .tokenMetrics:
