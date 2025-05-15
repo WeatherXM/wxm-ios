@@ -12,15 +12,25 @@ struct NetworkStatsDonutView: View {
 	let reserved: Double
 
     var body: some View {
-		HStack(spacing: 0.0) {
-			Text(LocalizableString.NetStats.claimed.localized)
+		HStack(spacing: CGFloat(.minimumSpacing)) {
+			VStack(alignment: .trailing) {
+				Text(LocalizableString.NetStats.claimedAmount(claimed.toCompactDecimaFormat ?? "").localized.uppercased())
+					.foregroundStyle(Color(colorEnum: .text))
+					.font(.system(size: CGFloat(.caption)))
+					.multilineTextAlignment(.trailing)
+			}
+
 
 			ProgressView(value: claimed, total: reserved)
 				.progressViewStyle(DonutProgressStyle(lineWidth: 26.0,
 													  color: Color(colorEnum: .chartPrimary),
 													  progressColor: Color(colorEnum: .chartSecondary)))
 				.frame(width: 140.0, height: 80.0)
-				.background(.red)
+
+			Text(LocalizableString.NetStats.reserved(reserved.toCompactDecimaFormat ?? "").localized.uppercased())
+				.foregroundStyle(Color(colorEnum: .text))
+				.font(.system(size: CGFloat(.caption)))
+				.multilineTextAlignment(.leading)
 		}
     }
 }

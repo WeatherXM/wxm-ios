@@ -20,6 +20,8 @@ extension LocalizableString {
 		case circulatingSupply
 		case weatherStations
 		case claimed
+		case claimedAmount(String)
+		case reserved(String)
 		case active
 		case tokenMetrics
 		case buyStationCardTitle
@@ -59,6 +61,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
 			case .buyStationCardDescription(let count):
 				localized = String(format: localized, count)
 			case .wxmTokenDescriptionMarkdown(let text),
+					.claimedAmount(let text),
+					.reserved(let text),
 					.wxmRewardsDescriptionMarkdown(let text):
 				localized = String(format: localized, text)
 			default:
@@ -92,6 +96,10 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_weather_stations"
 			case .claimed:
 				return "net_stats_claimed"
+			case .claimedAmount:
+				return "net_stats_claimed_amount_format"
+			case .reserved:
+				return "net_stats_reserved_format"
 			case .active:
 				return "net_stats_active"
 			case .tokenMetrics:

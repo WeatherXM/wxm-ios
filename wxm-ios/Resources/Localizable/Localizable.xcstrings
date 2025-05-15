@@ -5467,6 +5467,17 @@
         }
       }
     },
+    "net_stats_claimed_amount_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claimed \n%@"
+          }
+        }
+      }
+    },
     "net_stats_claimed_weather_stations_info_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5628,6 +5639,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View real-time network health, station activity, $WXM rewards and more."
+          }
+        }
+      }
+    },
+    "net_stats_reserved_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reserved\n%@"
           }
         }
       }
