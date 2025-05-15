@@ -39,6 +39,7 @@ struct DonutProgressStyle: ProgressViewStyle {
 	let lineWidth: CGFloat
 	let color: Color
 	let progressColor: Color
+	var innerText: String?
 	private let angleThreshold: CGFloat = 180.0
 
 	func makeBody(configuration: Configuration) -> some View {
@@ -55,6 +56,15 @@ struct DonutProgressStyle: ProgressViewStyle {
 				clockwise: false,
 				lineWidth: lineWidth)
 			.stroke(progressColor, lineWidth: lineWidth)
+
+			VStack {
+				Spacer()
+
+				Text(LocalizableString.NetStats.claimedAmount(1000.toCompactDecimaFormat ?? "").localized.uppercased())
+					.foregroundStyle(Color(colorEnum: .text))
+					.font(.system(size: CGFloat(.caption)))
+					.multilineTextAlignment(.center)
+			}
 		}
 	}
 

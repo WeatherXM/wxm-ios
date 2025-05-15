@@ -19,6 +19,7 @@ struct TokenMetricsView: View {
 
 			ScrollView {
 				VStack(spacing: CGFloat(.mediumSpacing)) {
+					totalAllocated
 					tokenView
 					lastUpdatedView
 				}
@@ -54,6 +55,15 @@ private extension TokenMetricsView {
 	var tokenView: some View {
 		if let token = viewModel.token {
 			generateStatsView(stats: token)
+		} else {
+			EmptyView()
+		}
+	}
+
+	@ViewBuilder
+	var totalAllocated: some View {
+		if let totalAllocated = viewModel.totalAllocated {
+			generateStatsView(stats: totalAllocated)
 		} else {
 			EmptyView()
 		}

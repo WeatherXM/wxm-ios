@@ -18,6 +18,7 @@ class NetworkStatsViewModel: ObservableObject {
     @Published var dataDays: NetworkStatsView.Statistics?
     @Published var rewards: NetworkStatsView.Statistics?
     @Published var token: NetworkStatsView.Statistics?
+	@Published var totalAllocated: NetworkStatsView.Statistics?
     @Published var stationStats: [NetworkStatsView.StationStatistics]?
     @Published var manufacturerCTA: NetworkStatsView.StatisticsCTA?
     @Published var lastUpdatedText: String?
@@ -116,6 +117,7 @@ private extension NetworkStatsViewModel {
         self.dataDays = getDataDaysStatistics(response: response)
         self.rewards = getRewardsStatistics(response: response)
         self.token = getTokenStatistics(response: response)
+		self.totalAllocated = getTotalAllocatedRewards(response: response)
         self.stationStats = getStationStats(response: response)
         self.manufacturerCTA = getManufacturerCTA(response: response)
 

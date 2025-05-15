@@ -202,6 +202,50 @@ extension NetworkStatsViewModel {
         
         return manufacturerCTA
     }
+
+	func getTotalAllocatedRewards(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
+		let url = DisplayedLinks.rewardMechanism.linkURL
+		let description = LocalizableString.NetStats.totalWXMAllocatedDescription(url).localized.attributedMarkdown
+
+		let baseRewardsAccessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.baseRewards.localized,
+						   description: LocalizableString.NetStats.baseRewardsInfo.localized,
+						   analyticsItemId: .baseRewards)
+		}
+
+		let baseRewards = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.baseRewards.localized,
+														   value: 1000.toCompactDecimaFormat ??  "?",
+														   accessory: baseRewardsAccessory,
+														   analyticsItemId: nil)
+
+		let boostRewardsAccessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.boostRewards.localized,
+						   description: LocalizableString.NetStats.boostRewardsInfo.localized,
+						   analyticsItemId: .boostRewards)
+		}
+
+		let boostRewards = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.boostRewards.localized,
+															value: 1000.toCompactDecimaFormat ??  "?",
+															accessory: boostRewardsAccessory,
+															analyticsItemId: nil)
+
+		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.totalWXMAllocated.localized,
+						   description: LocalizableString.NetStats.totalWXMAllocatedInfo.localized,
+						   analyticsItemId: .totalWXMAllocated)
+		}
+
+		return getStatistics(from: nil,
+							 title: LocalizableString.NetStats.totalWXMAllocated.localized,
+							 description: description,
+							 showExternalLinkIcon: true,
+							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkStats,
+																												  .source: .dune]) },
+							 accessory: accessory,
+							 additionalStats: [baseRewards, boostRewards],
+							 analyticsItemId: nil)
+
+	}
 }
 
 private extension NetworkStatsViewModel {

@@ -184,6 +184,8 @@ public enum ParameterValue {
 	case claimingSource
 	case errorSource
 	case networkStatsSource
+	case networkStats
+	case dune
 	case contactSupport
 	case historyDay
 	case walletTransactions
@@ -226,6 +228,9 @@ public enum ParameterValue {
 	case learnMore
 	case dataDays
 	case allocatedRewards
+	case totalWXMAllocated
+	case baseRewards
+	case boostRewards
 	case totalStations
 	case claimedStations
 	case activeStations

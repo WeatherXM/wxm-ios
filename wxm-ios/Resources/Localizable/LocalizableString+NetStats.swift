@@ -49,6 +49,13 @@ extension LocalizableString {
 		case manufacturerCTAButtonTitle
 		case wxmTokenTitle
 		case wxmTokenDescriptionMarkdown(String)
+		case totalWXMAllocated
+		case totalWXMAllocatedInfo
+		case totalWXMAllocatedDescription(String)
+		case baseRewards
+		case baseRewardsInfo
+		case boostRewards
+		case boostRewardsInfo
 	}
 }
 
@@ -63,7 +70,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
 			case .wxmTokenDescriptionMarkdown(let text),
 					.claimedAmount(let text),
 					.reserved(let text),
-					.wxmRewardsDescriptionMarkdown(let text):
+					.wxmRewardsDescriptionMarkdown(let text),
+					.totalWXMAllocatedDescription(let text):
 				localized = String(format: localized, text)
 			default:
 				break
@@ -154,6 +162,20 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_wxm_token_title"
 			case .wxmTokenDescriptionMarkdown:
 				return "net_stats_wxm_token_description_markdown"
+			case .totalWXMAllocated:
+				return "net_stats_total_wxm_allocated"
+			case .totalWXMAllocatedInfo:
+				return "net_stats_total_wxm_allocated_info"
+			case .totalWXMAllocatedDescription:
+				return "net_stats_total_wxm_allocated_description"
+			case .baseRewards:
+				return "net_stats_base_rewards"
+			case .baseRewardsInfo:
+				return "net_stats_base_rewards_info"
+			case .boostRewards:
+				return "net_stats_boost_rewards"
+			case .boostRewardsInfo:
+				return "net_stats_boost_rewards_info"
 		}
 	}
 }
