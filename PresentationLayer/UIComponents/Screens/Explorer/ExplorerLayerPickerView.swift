@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct ExplorerLayerPickerView: View {
 	@Binding var show: Bool
@@ -29,6 +30,9 @@ struct ExplorerLayerPickerView: View {
 				}
 			}
 		}
+		.onAppear {
+			WXMAnalytics.shared.trackScreen(.mapLayerPicker)
+		}
     }
 }
 
@@ -38,6 +42,12 @@ extension ExplorerLayerPickerView {
 			self.rawValue
 		}
 
+		var analyticsItemId: ParameterValue {
+			switch self {
+				case .default: .default
+				case .dataQuality: .dataQuality
+			}
+		}
 		case `default`
 		case dataQuality
 	}
@@ -81,6 +91,10 @@ private extension ExplorerLayerPickerView {
 		Button {
 			self.selectedOption = option
 			show = false
+
+			WXMAnalytics.shared.trackEvent(.selectContent,
+										   parameters: [.contentType: .selectMapLayer,
+														.itemId: option.analyticsItemId])
 		} label: {
 			switch option {
 				case .default:
