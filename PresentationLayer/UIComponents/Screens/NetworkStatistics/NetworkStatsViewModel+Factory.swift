@@ -73,10 +73,8 @@ extension NetworkStatsViewModel {
                                                        analyticsItemId: nil)
 
 		var rewardsDescription: AttributedString?
-		if let rewwardsUrl  = response?.contracts?.rewardsUrl {
-			let url = DisplayedLinks.rewardMechanism.linkURL
-			rewardsDescription = LocalizableString.NetStats.wxmRewardsDescriptionMarkdown(url).localized.attributedMarkdown
-		}
+		let url = DisplayedLinks.rewardMechanism.linkURL
+		rewardsDescription = LocalizableString.NetStats.wxmRewardsDescriptionMarkdown(url).localized.attributedMarkdown
 
 		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.wxmRewardsTitle.localized,
