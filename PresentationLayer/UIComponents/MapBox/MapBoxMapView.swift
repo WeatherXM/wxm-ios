@@ -76,6 +76,8 @@ private struct MapBoxMap: UIViewControllerRepresentable {
         if explorerViewModel.showUserLocation {
             mapViewController.showUserLocation()
         }
+
+		mapViewController.visibleLayer = explorerViewModel.layerOption
     }
 }
 
@@ -89,7 +91,7 @@ extension MapBoxMap {
 
         func didTapAnnotation(_: MapViewController, _ annotations: [PolygonAnnotation]) {
             guard let firstValidAnnotation = annotations.first,
-				  let hexIndex = firstValidAnnotation.userInfo?.keys.first else {
+				  let hexIndex = firstValidAnnotation.userInfo?[ExplorerKeys.cellIndex.rawValue] as? String else {
 				return
 			}
             
@@ -99,6 +101,10 @@ extension MapBoxMap {
         func didTapMapArea(_: MapViewController) {
             viewModel.showTopOfMapItems.toggle()
         }
+
+		func didChangeVisibleBounds(_ mapViewController: MapViewController, bounds: CoordinateBounds) {
+			viewModel.didUpdateMapBounds(bounds: bounds)
+		}
 
         func configureMap(_ mapViewController: MapViewController) {
             viewModel.fetchExplorerData()
@@ -111,7 +117,9 @@ extension MapBoxMap {
 			super.init()
 			viewModel.$explorerData.sink { [weak self] data in
 				self?.viewModel.mapController?.configureHeatMapLayer(source: data.geoJsonSource)
-				self?.viewModel.mapController?.configurePolygonLayer(polygonAnnotations: data.polygonPoints)
+				self?.viewModel.mapController?.configurePolygonLayer(polygonAnnotations: data.polygonPoints,
+																	 coloredPolygonAnnotations: data.coloredPolygonPoints,
+																	 pointAnnotations: data.textPoints)
 				self?.viewModel.snapToInitialLocation()
 			}.store(in: &canellableSet)
         }
@@ -126,8 +134,24 @@ class MapViewController: UIViewController {
 	internal var layer = HeatmapLayer(id: MapBoxConstants.heatmapLayerId,
 									  source: MapBoxConstants.heatmapSource)
     internal weak var polygonManager: PolygonAnnotationManager?
+	internal weak var coloredPolygonManager: PolygonAnnotationManager?
+	internal weak var pointManager: PointAnnotationManager?
 
     weak var delegate: MapViewControllerDelegate?
+	var visibleLayer: ExplorerLayerPickerView.Option = .default {
+		didSet {
+			updateVisbileLayer()
+		}
+	}
+	private var visiblePolygonManager: PolygonAnnotationManager? {
+		switch visibleLayer {
+			case .default:
+				polygonManager
+			case .dataQuality:
+				coloredPolygonManager
+		}
+	}
+
     @objc func didTapMap(_ tap: UITapGestureRecognizer) {
         handleMapTap(tap)
     }
@@ -153,6 +177,15 @@ class MapViewController: UIViewController {
 		mapView.mapboxMap.onMapLoaded.observeNext { [weak self] _ in
             guard let self = self else { return }
             self.cameraSetup()
+		}.store(in: &cancelablesSet)
+
+		mapView.mapboxMap.onMapIdle.observe { [weak self] _ in
+			guard let self else {
+				return
+			}
+
+			let visibleBounds = self.mapView.mapboxMap.coordinateBounds(for: self.mapView.bounds)
+			self.delegate?.didChangeVisibleBounds(self, bounds: visibleBounds)
 		}.store(in: &cancelablesSet)
     }
 
@@ -229,10 +262,38 @@ class MapViewController: UIViewController {
         }
     }
 
-	internal func configurePolygonLayer(polygonAnnotations: [PolygonAnnotation]) {
+	internal func configurePolygonLayer(polygonAnnotations: [PolygonAnnotation],
+										coloredPolygonAnnotations: [PolygonAnnotation],
+										pointAnnotations: [PointAnnotation]) {
 		let polygonAnnotationManager = self.polygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.polygonManagerId)
 		polygonAnnotationManager.annotations = polygonAnnotations
 		polygonManager = polygonAnnotationManager
+
+		let coloredPolygonManager = self.coloredPolygonManager ?? mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.coloredPolygonManagerId)
+		coloredPolygonManager.annotations = coloredPolygonAnnotations
+		self.coloredPolygonManager = coloredPolygonManager
+
+		let pointAnnotationManager = self.pointManager ?? mapView.annotations.makePointAnnotationManager(id: MapBoxConstants.pointManagerId)
+		pointAnnotationManager.annotations = pointAnnotations
+		pointManager = pointAnnotationManager
+		try? mapView.mapboxMap.updateLayer(withId: MapBoxConstants.pointManagerId, type: SymbolLayer.self) { layer in
+			layer.minZoom = 10
+
+			let stops: [Double: Double] = [
+				10: CGFloat(.mediumFontSize),
+				12: CGFloat(.XLTitleFontSize),
+				16: CGFloat(.maxFontSize)
+			]
+
+			layer.textSize = .expression(Exp(.interpolate) {
+				Exp(.exponential) { 1.75 }
+				Exp(.zoom)
+				stops
+			})
+			layer.textColor = .constant(StyleColor(UIColor(colorEnum: .textWhite)))
+		}
+
+		updateVisbileLayer()
     }
 
     internal func cameraSetup() {
@@ -263,7 +324,7 @@ class MapViewController: UIViewController {
     }
 
     private func handleMapTap(_ tap: UITapGestureRecognizer) {
-        guard let polygonManager = polygonManager else { return }
+		guard let polygonManager = visiblePolygonManager else { return }
         let layerIds = [polygonManager.layerId]
         let annotations = polygonManager.annotations
         let options = RenderedQueryOptions(layerIds: layerIds, filter: nil)
@@ -290,6 +351,26 @@ class MapViewController: UIViewController {
 			}
 		}
 	}
+
+	private func updateVisbileLayer() {
+		try? mapView.mapboxMap.updateLayer(withId: MapBoxConstants.polygonManagerId, type: FillLayer.self) { layer in
+			switch visibleLayer {
+				case .default:
+					layer.visibility = .constant(.visible)
+				case .dataQuality:
+					layer.visibility = .constant(.none)
+			}
+		}
+
+		try? mapView.mapboxMap.updateLayer(withId: MapBoxConstants.coloredPolygonManagerId, type: FillLayer.self) { layer in
+			switch visibleLayer {
+				case .default:
+					layer.visibility = .constant(.none)
+				case .dataQuality:
+					layer.visibility = .constant(.visible)
+			}
+		}
+	}
 }
 
 @MainActor
@@ -297,4 +378,5 @@ protocol MapViewControllerDelegate: AnyObject {
 	func configureMap(_ mapViewController: MapViewController)
 	func didTapAnnotation(_ mapViewController: MapViewController, _ annotations: [PolygonAnnotation])
 	func didTapMapArea(_ mapViewController: MapViewController)
+	func didChangeVisibleBounds(_ mapViewController: MapViewController, bounds: CoordinateBounds)
 }

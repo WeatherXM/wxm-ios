@@ -50,15 +50,9 @@ struct ExplorerUseCaseTests {
 	}
 
 	@Test func getPublicHexes() async throws {
-		await confirmation { confirm in
-			useCase.getPublicHexes { result in
-				let data = try? result.get()
-				#expect(data?.polygonPoints.count == 1)
-				#expect(data?.totalDevices == 0)
-				#expect(data?.geoJsonSource != nil)
-				confirm()
-			}
-		}
+		let result = try await useCase.getPublicHexes()
+		let data = try? result.get()
+		#expect(data?.count == 1)
 	}
 
 	@Test func getPublicDevicesOfHexIndex() async throws {

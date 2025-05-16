@@ -11,6 +11,7 @@ import Toolkit
 private struct WXMAlertModifier<V: View>: ViewModifier {
 
     @Binding var show: Bool
+	let shouldDismissOnTapOutside: Bool
     let content: () -> V
 
     @State private var opacity = 0.0
@@ -78,6 +79,12 @@ private extension WXMAlertModifier {
         controller.view.backgroundColor = .clear
         controller.modalPresentationStyle = .custom
         animator = OverlayAnimator()
+		if shouldDismissOnTapOutside {
+			animator?.tapOutsideCallback = {
+				self.dismiss()
+			}
+		}
+
         controller.transitioningDelegate = animator
         UIApplication.shared.topViewController?.present(controller, animated: true)
         controller.willDismissCallback = {
@@ -94,8 +101,11 @@ private extension WXMAlertModifier {
 extension View {
     @ViewBuilder
     func wxmAlert<Content: View>(show: Binding<Bool>,
+								 shouldDismissOnTapOutside: Bool = false,
                                  content: @escaping () -> Content) -> some View {
-        modifier(WXMAlertModifier(show: show, content: content))
+        modifier(WXMAlertModifier(show: show,
+								  shouldDismissOnTapOutside: shouldDismissOnTapOutside,
+								  content: content))
     }
 }
 

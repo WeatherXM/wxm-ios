@@ -370,6 +370,7 @@
 		268BAD562DC0FD9A00748439 /* BoostCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD552DC0FD9A00748439 /* BoostCodeTests.swift */; };
 		268BAD582DC0FFFB00748439 /* NetworkDeviceRewardsResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD572DC0FFFB00748439 /* NetworkDeviceRewardsResponseTests.swift */; };
 		268BAD5A2DC1023E00748439 /* DomainExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD592DC1023E00748439 /* DomainExtensionsTests.swift */; };
+		268BAD682DC2578100748439 /* PillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268BAD672DC2578100748439 /* PillsView.swift */; };
 		268D07932B2B1B70002BD77E /* SelectStationLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */; };
 		268D07952B2B1B85002BD77E /* SelectStationLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */; };
 		268D07972B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */; };
@@ -490,6 +491,8 @@
 		26BA07752B7F715200F7F5A0 /* DailyRewardCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */; };
 		26BA07772B7FC2AC00F7F5A0 /* WeeklyStreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA07762B7FC2AC00F7F5A0 /* WeeklyStreakView.swift */; };
 		26BE25B62C244ED200799CB3 /* ClaimPulseContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BE25B52C244ED200799CB3 /* ClaimPulseContainerViewModel.swift */; };
+		26C0330E2DCDE31800F68557 /* ExplorerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C0330D2DCDE31800F68557 /* ExplorerFactory.swift */; };
+		26C033102DCDEDB200F68557 /* ExplorerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C0330F2DCDEDB200F68557 /* ExplorerData.swift */; };
 		26C464F82A40A0D0005E5245 /* ShimmerEffectLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C464F72A40A0D0005E5245 /* ShimmerEffectLoaderView.swift */; };
 		26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C464FA2A40A2F9005E5245 /* ShimmerEffectLoader.swift */; };
 		26C5AF402BF7632700476B89 /* ClaimDeviceProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C5AF3F2BF7632700476B89 /* ClaimDeviceProgressView.swift */; };
@@ -544,6 +547,9 @@
 		26C801D92C2B0A1200D6AC60 /* image_pulse_claiming_key.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26C801D82C2B0A1200D6AC60 /* image_pulse_claiming_key.gif */; };
 		26C801DC2C2B162A00D6AC60 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = 26C801DB2C2B162A00D6AC60 /* FLAnimatedImage */; };
 		26C904C92A77EF980047A388 /* DeviceDetails+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C904C82A77EF980047A388 /* DeviceDetails+.swift */; };
+		26CA1EBA2DC89539008C87A2 /* ExplorerPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA1EB92DC89539008C87A2 /* ExplorerPopoverView.swift */; };
+		26CA1EC22DCB65C6008C87A2 /* ExplorerLayerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA1EC12DCB65C6008C87A2 /* ExplorerLayerPickerView.swift */; };
+		26CA1EC42DCB67E3008C87A2 /* LocalizableString+Explorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA1EC32DCB67E2008C87A2 /* LocalizableString+Explorer.swift */; };
 		26CA84552AD93646006D47D7 /* CommonAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CA84542AD93646006D47D7 /* CommonAssets.xcassets */; };
 		26CA84562AD93646006D47D7 /* CommonAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CA84542AD93646006D47D7 /* CommonAssets.xcassets */; };
 		26CA845A2AD93BB6006D47D7 /* String+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA84592AD93BB6006D47D7 /* String+Common.swift */; };
@@ -586,7 +592,6 @@
 		26DF1F682D563F940001E936 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F672D563F940001E936 /* Utils.swift */; };
 		26DF1F7D2D5B455B0001E936 /* WeatherStationsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F7C2D5B455B0001E936 /* WeatherStationsEmptyView.swift */; };
 		26DF1F7F2D5B69950001E936 /* weatherxm_network.json in Resources */ = {isa = PBXBuildFile; fileRef = 26DF1F7E2D5B69950001E936 /* weatherxm_network.json */; };
-		26DF3D202C85BB86005F6FC1 /* ExplorerData+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */; };
 		26DF3D312C85FB30005F6FC1 /* RewardAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */; };
 		26DF3D332C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */; };
 		26E5B0C029F8078C00834899 /* WXMDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5B0BF29F8078C00834899 /* WXMDivider.swift */; };
@@ -1110,6 +1115,7 @@
 		268BAD552DC0FD9A00748439 /* BoostCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostCodeTests.swift; sourceTree = "<group>"; };
 		268BAD572DC0FFFB00748439 /* NetworkDeviceRewardsResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardsResponseTests.swift; sourceTree = "<group>"; };
 		268BAD592DC1023E00748439 /* DomainExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainExtensionsTests.swift; sourceTree = "<group>"; };
+		268BAD672DC2578100748439 /* PillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsView.swift; sourceTree = "<group>"; };
 		268D07922B2B1B70002BD77E /* SelectStationLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationView.swift; sourceTree = "<group>"; };
 		268D07942B2B1B85002BD77E /* SelectStationLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStationLocationViewModel.swift; sourceTree = "<group>"; };
 		268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+SelectStationLocation.swift"; sourceTree = "<group>"; };
@@ -1203,6 +1209,8 @@
 		26BA07742B7F715200F7F5A0 /* DailyRewardCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRewardCardView.swift; sourceTree = "<group>"; };
 		26BA07762B7FC2AC00F7F5A0 /* WeeklyStreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyStreakView.swift; sourceTree = "<group>"; };
 		26BE25B52C244ED200799CB3 /* ClaimPulseContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimPulseContainerViewModel.swift; sourceTree = "<group>"; };
+		26C0330D2DCDE31800F68557 /* ExplorerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerFactory.swift; sourceTree = "<group>"; };
+		26C0330F2DCDEDB200F68557 /* ExplorerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerData.swift; sourceTree = "<group>"; };
 		26C464F72A40A0D0005E5245 /* ShimmerEffectLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffectLoaderView.swift; sourceTree = "<group>"; };
 		26C464FA2A40A2F9005E5245 /* ShimmerEffectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffectLoader.swift; sourceTree = "<group>"; };
 		26C5AF3F2BF7632700476B89 /* ClaimDeviceProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceProgressView.swift; sourceTree = "<group>"; };
@@ -1256,6 +1264,9 @@
 		26C624562AB09C78007A3162 /* LocalizableString+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Settings.swift"; sourceTree = "<group>"; };
 		26C801D82C2B0A1200D6AC60 /* image_pulse_claiming_key.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_pulse_claiming_key.gif; sourceTree = "<group>"; };
 		26C904C82A77EF980047A388 /* DeviceDetails+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceDetails+.swift"; sourceTree = "<group>"; };
+		26CA1EB92DC89539008C87A2 /* ExplorerPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerPopoverView.swift; sourceTree = "<group>"; };
+		26CA1EC12DCB65C6008C87A2 /* ExplorerLayerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerLayerPickerView.swift; sourceTree = "<group>"; };
+		26CA1EC32DCB67E2008C87A2 /* LocalizableString+Explorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Explorer.swift"; sourceTree = "<group>"; };
 		26CA84542AD93646006D47D7 /* CommonAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CommonAssets.xcassets; sourceTree = "<group>"; };
 		26CA84592AD93BB6006D47D7 /* String+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Common.swift"; sourceTree = "<group>"; };
 		26CA845C2AD93C0C006D47D7 /* DeviceDetails+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceDetails+Common.swift"; sourceTree = "<group>"; };
@@ -1292,7 +1303,6 @@
 		26DF1F692D5651E30001E936 /* wxm-ios.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "wxm-ios.xctestplan"; sourceTree = "<group>"; };
 		26DF1F7C2D5B455B0001E936 /* WeatherStationsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStationsEmptyView.swift; sourceTree = "<group>"; };
 		26DF1F7E2D5B69950001E936 /* weatherxm_network.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = weatherxm_network.json; sourceTree = "<group>"; };
-		26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExplorerData+.swift"; sourceTree = "<group>"; };
 		26DF3D302C85FB30005F6FC1 /* RewardAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsView.swift; sourceTree = "<group>"; };
 		26DF3D322C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsViewModel.swift; sourceTree = "<group>"; };
 		26E2B336297ACC0300ED9B58 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -1935,6 +1945,9 @@
 				266D6FB02A41F36100A19E8B /* Search */,
 				2675476829A9181E008BCF40 /* ExplorerView.swift */,
 				267546E029A9181E008BCF40 /* ExplorerViewModel.swift */,
+				26CA1EC12DCB65C6008C87A2 /* ExplorerLayerPickerView.swift */,
+				26C0330D2DCDE31800F68557 /* ExplorerFactory.swift */,
+				26C0330F2DCDEDB200F68557 /* ExplorerData.swift */,
 			);
 			path = Explorer;
 			sourceTree = "<group>";
@@ -1945,6 +1958,7 @@
 				26348DF92A42FB1F000846C6 /* ExplorerSearchViewModel.swift */,
 				26348DFB2A42FCB9000846C6 /* SearchView+Content.swift */,
 				266D6FAE2A41F32100A19E8B /* SearchView.swift */,
+				26CA1EB92DC89539008C87A2 /* ExplorerPopoverView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -2198,6 +2212,7 @@
 				26D5013B29B2152F00BC2951 /* CustomSegmentView.swift */,
 				26A4118129BA1A9900A2C10B /* DeviceUpdatesLoadingView.swift */,
 				261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */,
+				268BAD672DC2578100748439 /* PillsView.swift */,
 				2675474C29A9181E008BCF40 /* ProgressBarStyle.swift */,
 				2675474729A9181E008BCF40 /* StaticButtonStyle.swift */,
 				26D5013729B209F500BC2951 /* StationLastActiveView.swift */,
@@ -2411,7 +2426,6 @@
 				26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */,
 				264CC7682B98AA6E0060DEA4 /* NetworkDeviceRewardBoostsResponse+.swift */,
 				2608A7932C09F67A00452E40 /* DeviceLocation+.swift */,
-				26DF3D1F2C85BB86005F6FC1 /* ExplorerData+.swift */,
 				2672B87B2C89F19A002266BE /* BoostCode+.swift */,
 				2672B87D2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift */,
 			);
@@ -2681,6 +2695,7 @@
 				26E85B132C7753140062667E /* LocalizableString+Units.swift */,
 				268D07962B2B1E81002BD77E /* LocalizableString+SelectStationLocation.swift */,
 				264DD5072B9F3BCB002691FF /* LocalizableString+ExplorerList.swift */,
+				26CA1EC32DCB67E2008C87A2 /* LocalizableString+Explorer.swift */,
 				266BAF542AA88631004F5DE0 /* LocalizableString+Analytics.swift */,
 				262B03082B20BDB700C31FE7 /* LocalizableString+AppUpdate.swift */,
 				2623FF942AF157FE00BCDAC6 /* Localizable+RewardDetails.swift */,
@@ -3986,6 +4001,7 @@
 				26348DFA2A42FB1F000846C6 /* ExplorerSearchViewModel.swift in Sources */,
 				267547D629A9181E008BCF40 /* ExplorerStationsListView.swift in Sources */,
 				26348E292A459A45000846C6 /* ExplorerStationsListViewModel.swift in Sources */,
+				268BAD682DC2578100748439 /* PillsView.swift in Sources */,
 				2675481D29A9181E008BCF40 /* ExplorerView.swift in Sources */,
 				264CC7692B98AA6E0060DEA4 /* NetworkDeviceRewardBoostsResponse+.swift in Sources */,
 				26AA21E42BF4F60300B91A7C /* ClaimDeviceLocationView.swift in Sources */,
@@ -4023,6 +4039,7 @@
 				26A3B3C52B178F630002F35F /* LocalizableString+Profile.swift in Sources */,
 				26F149E52BDFC85F0029F981 /* ClaimStationSelectionViewModel.swift in Sources */,
 				267547A329A9181E008BCF40 /* HistoryViewModel.swift in Sources */,
+				26CA1EC22DCB65C6008C87A2 /* ExplorerLayerPickerView.swift in Sources */,
 				267548EF29A91A87008BCF40 /* Image+.swift in Sources */,
 				267548E129A91A87008BCF40 /* Int+.swift in Sources */,
 				26EAF8252D004BFE009EEB31 /* PhotoIntroView.swift in Sources */,
@@ -4043,7 +4060,6 @@
 				266CC4CF2AB30CD900EC794C /* LocalizableString+SelectFrequency.swift in Sources */,
 				26C624572AB09C78007A3162 /* LocalizableString+Settings.swift in Sources */,
 				26052B5C2CDA2EE7009A7D92 /* TrackableScroller.swift in Sources */,
-				26DF3D202C85BB86005F6FC1 /* ExplorerData+.swift in Sources */,
 				26A9619C2AA705FE00646A25 /* LocalizableString+StationDetails.swift in Sources */,
 				263B8B4E2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift in Sources */,
 				26A9614C2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift in Sources */,
@@ -4053,6 +4069,7 @@
 				2608A7942C09F67A00452E40 /* DeviceLocation+.swift in Sources */,
 				264371312CA1955800E5F382 /* ChartLegendView.swift in Sources */,
 				B52BCC752824FB8F00EA3DA5 /* MainApp.swift in Sources */,
+				26C033102DCDEDB200F68557 /* ExplorerData.swift in Sources */,
 				2675481929A9181E008BCF40 /* MainScreen.swift in Sources */,
 				267547A929A9181E008BCF40 /* MainScreenViewModel.swift in Sources */,
 				263B8B502B29F17E001C5060 /* MapBoxConstants.swift in Sources */,
@@ -4081,6 +4098,7 @@
 				2699F5652A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift in Sources */,
 				2632E6322A335EF400A5ADB3 /* NetworkStatsViewModel.swift in Sources */,
 				26BA07772B7FC2AC00F7F5A0 /* WeeklyStreakView.swift in Sources */,
+				26CA1EBA2DC89539008C87A2 /* ExplorerPopoverView.swift in Sources */,
 				2692D8722A4D8DEA0060CB3C /* Numeric+.swift in Sources */,
 				26A4115929B6078500A2C10B /* OverviewView.swift in Sources */,
 				2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */,
@@ -4100,6 +4118,7 @@
 				26A4118529BA1E1E00A2C10B /* RebootStationView.swift in Sources */,
 				26A4118729BA1E7000A2C10B /* RebootStationViewModel.swift in Sources */,
 				2675481C29A9181E008BCF40 /* RegisterView.swift in Sources */,
+				26C0330E2DCDE31800F68557 /* ExplorerFactory.swift in Sources */,
 				267547B129A9181E008BCF40 /* RegisterViewModel.swift in Sources */,
 				2675481A29A9181E008BCF40 /* ResetPasswordView.swift in Sources */,
 				267547A729A9181E008BCF40 /* ResetPasswordViewModel.swift in Sources */,
@@ -4184,6 +4203,7 @@
 				262B02F62B1DE4A600C31FE7 /* WebContainerView.swift in Sources */,
 				2675483D29A9181E008BCF40 /* TabItemView.swift in Sources */,
 				2672B8822C8AD59C002266BE /* StationRewardDetailsView.swift in Sources */,
+				26CA1EC42DCB67E3008C87A2 /* LocalizableString+Explorer.swift in Sources */,
 				267548CD29A91A87008BCF40 /* TabSelectionEnum.swift in Sources */,
 				262A4D862A94D89300A4BC17 /* TabViewWrapper.swift in Sources */,
 				268D07952B2B1B85002BD77E /* SelectStationLocationViewModel.swift in Sources */,

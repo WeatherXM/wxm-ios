@@ -13,6 +13,7 @@ protocol WXMLocalizable {
 }
 
 enum LocalizableString: WXMLocalizable {
+	case weatherXM
 	case url(String, String)
 	case completed
 	case new
@@ -137,6 +138,7 @@ enum LocalizableString: WXMLocalizable {
 	case emptyGenericTitle
 	case emptyGenericDescription
 	case percentage(Float)
+	case percentageString(String)
 	case lastUpdated(String)
 	case alerts
 	case favorite
@@ -183,6 +185,7 @@ enum LocalizableString: WXMLocalizable {
 	case noTransactionTitle
 	case noTransactionDesc
 	case mailLeaveMessageNote
+	case noActiveStations
 	case activeStations(Int?)
 	case activeStation(Int?)
 	case presentStations(Int?)
@@ -204,7 +207,8 @@ enum LocalizableString: WXMLocalizable {
 					.lastUpdated(let text),
 					.favoritesloginAlertText(let text),
 					.hiddenContentDescription(let text),
-					.timeZoneDisclaimer(let text):
+					.timeZoneDisclaimer(let text),
+					.percentageString(let text):
 				localized = String(format: localized, text)
 			case .url(let text, let link),
 					.readTermsAndPrivacyPolicy(let text, let link),
@@ -222,6 +226,8 @@ enum LocalizableString: WXMLocalizable {
 extension LocalizableString {
 	var key: String {
 		switch self {
+			case .weatherXM:
+				return "weather_xm"
 			case .url:
 				return "url_format"
 			case .completed:
@@ -482,6 +488,8 @@ extension LocalizableString {
 				return "empty_generic_description"
 			case .percentage:
 				return "percentage_format"
+			case .percentageString:
+				return "percentage_string_format"
 			case .lastUpdated:
 				return "last_updated_format"
 			case .alerts:
@@ -574,6 +582,8 @@ extension LocalizableString {
 				return "no_transaction_desc"
 			case .mailLeaveMessageNote:
 				return "mail_leave_message_note"
+			case .noActiveStations:
+				return "no_active_stations"
 			case .activeStations:
 				return "active_stations_format"
 			case .activeStation:

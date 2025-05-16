@@ -28,4 +28,16 @@ struct ExplorerStationsListViewModelTests {
 		viewModel.handleCellCapacityInfoTap()
 		#expect(viewModel.showInfo)
     }
+
+	@Test func pills() async throws {
+		#expect(viewModel.pills.count == 2)
+		let firstPill = try #require(viewModel.pills.first)
+		switch firstPill {
+			case .activeStations(let title, let color):
+				#expect(title == LocalizableString.noActiveStations.localized)
+				#expect(color == .errorTint)
+			default:
+				Issue.record()
+		}
+	}
 }
