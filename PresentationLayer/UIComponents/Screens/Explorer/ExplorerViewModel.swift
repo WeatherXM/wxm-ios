@@ -120,7 +120,7 @@ public final class ExplorerViewModel: ObservableObject {
 		let count = explorerData.polygonPoints.reduce(0) {
 			guard let center = $1.polygon.center,
 				  case let isInBounds = bounds.containsLatitude(forLatitude: center.latitude) && bounds.containsLongitude(forLongitude: center.longitude),
-				  let count = $1.userInfo?[ExplorerKeys.activeDeviceCount.rawValue] as? Int else {
+				  let count = $1.userInfo?[ExplorerKeys.deviceCount.rawValue] as? Int else {
 				return $0
 			}
 
@@ -128,7 +128,7 @@ public final class ExplorerViewModel: ObservableObject {
 			return sum
 		}
 
-		searchViewModel.updateActiveStations(count: count)
+		searchViewModel.updateStations(count: count)
 	}
 }
 

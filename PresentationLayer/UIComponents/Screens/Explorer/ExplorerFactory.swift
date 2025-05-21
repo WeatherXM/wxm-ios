@@ -12,7 +12,6 @@ import UIKit
 
 enum ExplorerKeys: String {
 	case deviceCount = "device_count"
-	case activeDeviceCount = "active_device_count"
 	case cellIndex = "cell_index"
 	case cellCenter = "cell_center"
 }
@@ -66,7 +65,7 @@ struct ExplorerFactory {
 			polygonAnnotation.userInfo = [ExplorerKeys.cellCenter.rawValue: CLLocationCoordinate2D(latitude: publicHex.center.lat,
 																								   longitude: publicHex.center.lon),
 										  ExplorerKeys.cellIndex.rawValue: publicHex.index,
-										  ExplorerKeys.activeDeviceCount.rawValue: publicHex.activeDeviceCount ?? 0]
+										  ExplorerKeys.deviceCount.rawValue: publicHex.deviceCount ?? 0]
 			polygonPoints.append(polygonAnnotation)
 			
 			var coloredAnnotation = polygonAnnotation
@@ -74,8 +73,8 @@ struct ExplorerFactory {
 			coloredPolygonPoints.append(coloredAnnotation)
 
 			var pointAnnotation = PointAnnotation(point: .init(.init(latitude: publicHex.center.lat, longitude: publicHex.center.lon)))
-			if let activeDeviceCount = publicHex.activeDeviceCount, activeDeviceCount > 0 {
-				pointAnnotation.textField = "\(activeDeviceCount)"
+			if let deviceCount = publicHex.deviceCount, deviceCount > 0 {
+				pointAnnotation.textField = "\(deviceCount)"
 			}
 			textPoints.append(pointAnnotation)
 		}

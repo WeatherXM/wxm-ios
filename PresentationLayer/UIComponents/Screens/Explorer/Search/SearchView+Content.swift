@@ -28,11 +28,11 @@ extension SearchView {
 				Spacer()
 
 				VStack(spacing: 0.0) {
-					Text(viewModel.activeStationsCount)
+					Text(viewModel.stationsCount)
 						.foregroundStyle(Color(colorEnum: .textWhite))
 						.font(.system(size: CGFloat(.mediumFontSize)))
 					
-					Text(LocalizableString.Search.activeStationsInArea.localized)
+					Text(LocalizableString.Search.stationsInArea.localized)
 						.foregroundStyle(Color(colorEnum: .textWhite))
 						.font(.system(size: CGFloat(.normalFontSize)))
 				}

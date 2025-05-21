@@ -16,7 +16,7 @@ extension LocalizableString {
         case noRecentResultsTitle
         case noRecentResultsSubtitle
         case termLimitMessage(Int)
-		case activeStationsInArea
+		case stationsInArea
     }
 }
 
@@ -48,8 +48,8 @@ extension LocalizableString.Search: WXMLocalizable {
                 return "search_no_recent_results_subtitle"
             case .termLimitMessage:
                 return "search_term_limit_message_format"
-			case .activeStationsInArea:
-				return "search_active_stations_in_area"
+			case .stationsInArea:
+				return "search_stations_in_area"
         }
     }
 }
