@@ -259,7 +259,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 			return
 		}
 
-		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .announcementButton,
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .infoBannerButton,
 																	.itemId: .custom(url)])
 		Router.shared.showFullScreen(.safariView(webUrl))
 	}
