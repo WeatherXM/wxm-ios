@@ -142,6 +142,7 @@ public enum ParameterValue {
 	case termsOfUse
 	case privacyPolicy
 	case announcementButton
+	case announcementCTA
 	case infoBannerButton
 	case heliumBLEPopupError
 	case heliumBLEPopup
