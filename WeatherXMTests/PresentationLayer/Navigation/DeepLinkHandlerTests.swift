@@ -117,6 +117,27 @@ struct DeepLinkHandlerTests {
 		#expect(router.fullScreenRoute == nil)
 		#expect(router.path.isEmpty)
 	}
+
+	@Test
+	func isProPromotionUrl() {
+		var url = "weatherxm://announcement/weatherxm_pro"
+		#expect(url.isProPromotionUrl)
+		
+		url = "weatherxm://announcement/weatherxm_pro_test"
+		#expect(!url.isProPromotionUrl)
+
+		url = "weatherxm://announce/weatherxm_pro"
+		#expect(!url.isProPromotionUrl)
+
+		url = "weatherxm://announcement/weatherxm_pro/test"
+		#expect(!url.isProPromotionUrl)
+
+		url = ""
+		#expect(!url.isProPromotionUrl)
+
+		url = "http://announcement/weatherxm_pro/test"
+		#expect(!url.isProPromotionUrl)
+	}
 }
 
 private extension DeepLinkHandlerTests {

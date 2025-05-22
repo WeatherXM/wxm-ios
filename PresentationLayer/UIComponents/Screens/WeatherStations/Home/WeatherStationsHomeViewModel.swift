@@ -92,13 +92,16 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 					return
 				}
 
-				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .proPromotionCTA,
-																			.itemId: .custom(urlString),
-																			.source: .remoteDevicesList])
+				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .announcementCTA,
+																			.itemId: .custom(urlString)])
 
 				let handled = self?.mainVM?.deepLinkHandler.handleUrl(url) ?? false
 				if !handled, url.isHttp {
 					LinkNavigationHelper().openUrl(urlString)
+				} else if handled, urlString.isProPromotionUrl {
+					WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .proPromotionCTA,
+																				.itemId: .custom(urlString),
+																				.source: .remoteDevicesList])
 				}
 			}, closeAction: {
 				guard let announcementId = announcement?.id else {
@@ -259,7 +262,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 			return
 		}
 
-		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .announcementButton,
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .infoBannerButton,
 																	.itemId: .custom(url)])
 		Router.shared.showFullScreen(.safariView(webUrl))
 	}

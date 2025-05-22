@@ -258,6 +258,20 @@ private extension DeepLinkHandler {
 	}
 }
 
+extension String {
+	@MainActor
+	var isProPromotionUrl: Bool {
+		guard let url = URL(string: self) else {
+			return false
+		}
+		let isWeatherXMScheme = url.scheme == Bundle.main.urlScheme
+		let isAnnouncement = url.host() == DeepLinkHandler.announcement
+		let isProPromo = Announcement(rawValue: url.lastPathComponent) == .weatherxmPro
+
+		return isWeatherXMScheme && isAnnouncement && isProPromo
+	}
+}
+
 private enum NotificationType {
 	case announcement(String)
 	case device(String)

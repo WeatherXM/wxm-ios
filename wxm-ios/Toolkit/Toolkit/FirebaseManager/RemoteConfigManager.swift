@@ -189,6 +189,12 @@ class MockRemoteConfigManager: RemoteConfigManagerImplementation, @unchecked Sen
 				if key == .iosAppMinimumVersion || key == .iosAppLatestVersion {
 					return "1.1.1" as? T
 				}
+
+				// For testing
+				if key == .announcementActionUrl {
+					return "weatherxm://announcement/weatherxm_pro" as? T
+				}
+
 				return "Dummy Text" as? T
 			case is Bool.Type:
 				return true as? T

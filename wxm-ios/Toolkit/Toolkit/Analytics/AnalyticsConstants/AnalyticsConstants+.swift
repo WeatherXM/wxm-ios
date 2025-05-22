@@ -202,6 +202,10 @@ extension ParameterValue: RawRepresentable {
 				return "Privacy Policy"
 			case .announcementButton:
 				return "Announcement Button"
+			case .announcementCTA:
+				return "Announcement CTA"
+			case .infoBannerButton:
+				return "Info Banner Button"
 			case .login:
 				return "Login"
 			case .email:
