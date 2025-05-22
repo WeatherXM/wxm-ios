@@ -111,11 +111,62 @@ extension NetworkStatsView {
 
     @ViewBuilder
     var buyStationView: some View {
-        if let buyStationCTA = viewModel.buyStationCTA {
-            ctaView(buyStationCTA)
-        } else {
-            EmptyView()
-        }
+		PercentageGridLayoutView {
+			Group {
+				VStack(spacing: CGFloat(.mediumSpacing)) {
+					HStack {
+						Text(LocalizableString.NetStats.enterWebThree.localized)
+							.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
+							.foregroundStyle(Color(colorEnum: .text))
+
+						Spacer()
+					}
+
+					VStack(spacing: CGFloat(.smallSpacing)) {
+						let bullets = [LocalizableString.NetStats.deployYourStation.localized,
+									   LocalizableString.NetStats.checkTheWeather.localized,
+									   LocalizableString.NetStats.earnWXM.localized]
+						ForEach(bullets, id: \.self) { bullet in
+							HStack(spacing: CGFloat(.smallSpacing)) {
+								HStack {
+									Text(FontIcon.check.rawValue)
+										.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
+										.foregroundStyle(Color(colorEnum: .success))
+
+									Text(bullet)
+										.font(.system(size: CGFloat(.normalFontSize)))
+										.foregroundStyle(Color(colorEnum: .text))
+
+									Spacer()
+								}
+
+							}
+						}
+					}
+
+					HStack {
+						Button {
+							viewModel.handleBuyStationTap()
+						} label: {
+							Text(LocalizableString.NetStats.buyStationCardButtonTitle.localized)
+								.padding(.horizontal, CGFloat(.defaultSidePadding))
+						}
+						.buttonStyle(WXMButtonStyle.filled())
+						.fixedSize()
+
+						Spacer()
+					}
+				}
+
+				Image(asset: .imageStation)
+					.resizable()
+					.aspectRatio(contentMode: .fit)
+			}
+		}
+		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+					  insideHorizontalPadding: CGFloat(.mediumSidePadding),
+					  insideVerticalPadding: CGFloat(.mediumSidePadding))
+		.wxmShadow()
     }
 
     @ViewBuilder
