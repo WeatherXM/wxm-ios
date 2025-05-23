@@ -258,7 +258,8 @@ public extension Date {
 	/// - Parameter timeZone: The needed timezone
 	/// - Returns: An array of dates with one hour diff
     func dailyHourlySamples(timeZone: TimeZone) -> [Date] {
-		guard let start = self.startOfHour, let end = self.endOfDay(timeZone: timeZone) else {
+		guard case let start = self.startOfDay(timeZone: timeZone),
+			  let end = self.endOfDay(timeZone: timeZone) else {
 			return []
 		}
 

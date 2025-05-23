@@ -53,7 +53,7 @@ struct HistoryView: View {
 struct Previews_HistoryView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationContainerView {
-            HistoryView(viewModel: ViewModelsFactory.getHistoryViewModel(device: DeviceDetails.emptyDeviceDetails, date: .now))
+			HistoryView(viewModel: ViewModelsFactory.getHistoryViewModel(device: DeviceDetails.mockDevice, date: .now))
         }
     }
 }

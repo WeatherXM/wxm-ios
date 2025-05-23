@@ -60,7 +60,7 @@ final class DateExtensionsTests: XCTestCase {
 	func testDailyHourlySamples() {
 		let date = Date().set(hour: 3)
 		let samples = date?.dailyHourlySamples(timeZone: .current)
-		XCTAssert(samples?.count == 21, "The samples count should be 21")
+		XCTAssert(samples?.count == 24, "The samples count should be 21")
 	}
 
 	func testgetFormattedDate() {
