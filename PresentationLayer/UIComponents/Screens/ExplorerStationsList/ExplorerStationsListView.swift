@@ -37,10 +37,19 @@ struct ExplorerStationsListView: View {
 	}
 }
 
+extension ExplorerStationsListView {
+	enum Pill: Hashable {
+		case activeStations(String, ColorEnum)
+		case stationsCount(String)
+		case dataQualityScore(String, ColorEnum)
+	}
+}
+
 private struct ContentView: View {
     @StateObject var viewModel: ExplorerStationsListViewModel
     @EnvironmentObject var navigationObject: NavigationObject
-    
+	@State private var titleViewSize: CGSize = .zero
+
     var body: some View {
         ZStack {
             Color(colorEnum: .layer2)
@@ -112,33 +121,49 @@ private struct ContentView: View {
 
 private extension ContentView {
 	@ViewBuilder var titleView: some View {
-		VStack(spacing: CGFloat(.mediumSpacing)) {
-			if let address = viewModel.address {
-				HStack {
-					Text(address)
-						.foregroundColor(Color(.text))
-						.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+		GeometryReader { proxy in
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				if let address = viewModel.address {
+					HStack {
+						Text(address)
+							.foregroundColor(Color(.text))
+							.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 
-					Spacer()
-				}
-			}
-
-			HStack(spacing: CGFloat(.minimumSpacing)) {
-				if let activeStationsString = viewModel.activeStationsString {
-					HStack(spacing: CGFloat(.smallSpacing)) {
-						Text(activeStationsString)
-							.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
-							.foregroundColor(Color(colorEnum: .text))
-							.lineLimit(1)
+						Spacer()
 					}
-					.WXMCardStyle(backgroundColor: Color(colorEnum: .successTint),
+				}
+
+				PillsView(items: viewModel.pills,
+						  containerWidth: proxy.size.width) { pill in
+					viewFor(pill: pill)
+				}
+				.id(viewModel.pills)
+			}
+			.sizeObserver(size: $titleViewSize)
+		}
+		.frame(height: titleViewSize.height)
+		.padding(.horizontal, CGFloat(.defaultSidePadding))
+		.padding(.bottom, CGFloat(.mediumSidePadding))
+		.background(Color(colorEnum: .top))
+		.cornerRadius(CGFloat(.cardCornerRadius),
+					  corners: [.bottomLeft, .bottomRight])
+	}
+
+	@ViewBuilder
+	func viewFor(pill: ExplorerStationsListView.Pill) -> some View {
+		switch pill {
+			case .activeStations(let text, let color):
+				Text(text)
+					.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+					.foregroundColor(Color(colorEnum: .text))
+					.lineLimit(1)
+					.WXMCardStyle(backgroundColor: Color(colorEnum: color),
 								  insideHorizontalPadding: CGFloat(.smallToMediumSidePadding),
 								  insideVerticalPadding: CGFloat(.smallSidePadding),
 								  cornerRadius: CGFloat(.buttonCornerRadius))
-				}
-
+			case .stationsCount(let text):
 				HStack(spacing: CGFloat(.smallSpacing)) {
-					Text(viewModel.stationsCountString)
+					Text(text)
 						.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
 						.foregroundColor(Color(colorEnum: .text))
 						.lineLimit(1)
@@ -150,21 +175,35 @@ private extension ContentView {
 							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
 							.foregroundColor(Color(colorEnum: .text))
 					}
-
 				}
 				.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
 							  insideHorizontalPadding: CGFloat(.smallToMediumSidePadding),
 							  insideVerticalPadding: CGFloat(.smallSidePadding),
 							  cornerRadius: CGFloat(.buttonCornerRadius))
+			case .dataQualityScore(let text, let color):
+				HStack(spacing: CGFloat(.smallSpacing)) {
+					Text(FontIcon.chartSimple.rawValue)
+						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+						.foregroundStyle(Color(colorEnum: color))
 
-				Spacer()
-			}
+					Text(text)
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundStyle(Color(colorEnum: .text))
+						.lineLimit(1)
+
+					Button {
+						viewModel.handleDataQualityScoreInfoTap()
+					} label: {
+						Text(FontIcon.infoCircle.rawValue)
+							.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+							.foregroundColor(Color(colorEnum: .text))
+					}
+				}
+				.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+							  insideHorizontalPadding: CGFloat(.smallToMediumSidePadding),
+							  insideVerticalPadding: CGFloat(.smallSidePadding),
+							  cornerRadius: CGFloat(.buttonCornerRadius))
 		}
-		.padding(.horizontal, CGFloat(.defaultSidePadding))
-		.padding(.bottom, CGFloat(.mediumSidePadding))
-		.background(Color(colorEnum: .top))
-		.cornerRadius(CGFloat(.cardCornerRadius),
-					  corners: [.bottomLeft, .bottomRight])
 	}
 }
 

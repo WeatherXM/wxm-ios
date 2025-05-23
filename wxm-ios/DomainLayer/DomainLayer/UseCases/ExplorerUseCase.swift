@@ -10,9 +10,9 @@ import CoreLocation
 import Foundation
 @preconcurrency import MapboxMaps
 import Toolkit
+import UIKit
 
 public class ExplorerUseCase: @unchecked Sendable, ExplorerUseCaseApi {
-	private static let DEVICE_COUNT_KEY = "device_count"
 	private static let fillOpacity = 0.5
 	private static let fillColor = StyleColor(red: 51.0, green: 136.0, blue: 255.0, alpha: 1.0)
 	private static let fillOutlineColor = StyleColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -73,59 +73,8 @@ public class ExplorerUseCase: @unchecked Sendable, ExplorerUseCaseApi {
 		}
 	}
 
-	public func getPublicHexes(completion: @escaping (Result<ExplorerData, PublicHexError>) -> Void) {
-		do {
-			try explorerRepository.getPublicHexes().sink(receiveValue: { response in
-
-				guard let hexValues = response.value, response.error == nil else {
-					completion(.failure(PublicHexError.networkRelated(response.error)))
-					return
-				}
-
-				var geoJsonSource = GeoJSONSource(id: "heatmap")
-				let featuresCollection = hexValues.map { publicHex -> MapboxMaps.Feature in
-					let coordinates = LocationCoordinate2D(latitude: publicHex.center.lat, longitude: publicHex.center.lon)
-					let point = Point(coordinates)
-					let geometry = Geometry.point(point)
-					var feature = Feature(geometry: geometry)
-					var jsonObjectProperty = JSONObject()
-					jsonObjectProperty[ExplorerUseCase.DEVICE_COUNT_KEY] = JSONValue(publicHex.deviceCount ?? 0)
-					feature.properties = jsonObjectProperty
-					return feature
-				}
-				geoJsonSource.data = .featureCollection(FeatureCollection(features: featuresCollection))
-
-				var totalDevices = 0
-				let polygonPoints = hexValues.map { publicHex -> PolygonAnnotation in
-					totalDevices += publicHex.deviceCount ?? 0
-					var ringCords = publicHex.polygon.map { point in
-						LocationCoordinate2D(latitude: point.lat, longitude: point.lon)
-					}
-
-					/*
-					Added an extra coordinate same as its first to fix the flickering issue while zooming
-					https://github.com/mapbox/mapbox-maps-ios/issues/1503#issuecomment-1320348728
-					 */
-					if let firstPolygonPoint = publicHex.polygon.first {
-						let coordinate = LocationCoordinate2D(latitude: firstPolygonPoint.lat, longitude: firstPolygonPoint.lon)
-						ringCords.append(coordinate)
-					}
-					let ring = Ring(coordinates: ringCords)
-					let polygon = Polygon(outerRing: ring)
-					var polygonAnnotation = PolygonAnnotation(id: publicHex.index, polygon: polygon)
-					polygonAnnotation.fillColor = ExplorerUseCase.fillColor
-					polygonAnnotation.fillOpacity = ExplorerUseCase.fillOpacity
-					polygonAnnotation.fillOutlineColor = ExplorerUseCase.fillOutlineColor
-					polygonAnnotation.userInfo = [publicHex.index: CLLocationCoordinate2D(latitude: publicHex.center.lat, longitude: publicHex.center.lon)]
-					return polygonAnnotation
-				}
-				let explorerData = ExplorerData(totalDevices: totalDevices, geoJsonSource: geoJsonSource, polygonPoints: polygonPoints)
-				completion(.success(explorerData))
-			}).store(in: &cancellableSet)
-
-		} catch {
-			completion(.failure(PublicHexError.infrastructure))
-		}
+	public func getPublicHexes() async throws -> Result<[PublicHex], NetworkErrorResponse> {
+		try await explorerRepository.getPublicHexes().toAsync().result
 	}
 
 	public func getPublicDevicesOfHexIndex(hexIndex: String, hexCoordinates: CLLocationCoordinate2D?, completion: @escaping @Sendable (Result<[DeviceDetails], PublicHexError>) -> Void) {

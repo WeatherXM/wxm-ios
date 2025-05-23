@@ -24,65 +24,66 @@ extension SearchView {
     @ViewBuilder
     var nonActiveView: some View {
         VStack {
-            HStack(spacing: CGFloat(.mediumSpacing)) {
-                Image(asset: .xmSearchLogo)
+			HStack {
+				Spacer()
 
-                TextField("",
-                          text: $term,
-                          prompt: Text(LocalizableString.Search.fieldPlaceholder.localized).foregroundColor(Color(colorEnum: .darkGrey)))
-                .font(.system(size: CGFloat(.mediumFontSize)))
-                .tint(Color(colorEnum: .text))
-                .foregroundColor(Color(colorEnum: .text))
-                .focused($noActiveTextfieldIsFocused)
-                .onChange(of: noActiveTextfieldIsFocused) { newValue in
-                    // This hacky way is to avoid interaction with the outer textfield
-                    noActiveTextfieldIsFocused = false
-                    if newValue {
-                        viewModel.isSearchActive = true
-                    }
-                }
+				VStack(spacing: 0.0) {
+					Text(viewModel.stationsCount)
+						.foregroundStyle(Color(colorEnum: .textWhite))
+						.font(.system(size: CGFloat(.mediumFontSize)))
+					
+					Text(LocalizableString.Search.stationsInArea.localized)
+						.foregroundStyle(Color(colorEnum: .textWhite))
+						.font(.system(size: CGFloat(.normalFontSize)))
+				}
 
-                Spacer()
-
-                if shouldShowSettingsButton {
-                    Button {
-                        WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerPopUp])
-                        showSettingsPopOver = true
-                    } label: {
-                        Text(FontIcon.threeDots.rawValue)
+				Spacer()
+			}.overlay {
+				HStack(spacing: CGFloat(.mediumSpacing)) {
+					Button {
+						WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerPopUp])
+						showOptionsPopOver = true
+					} label: {
+						Text(FontIcon.threeDots.rawValue)
 							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
-                            .foregroundColor(Color(colorEnum: .darkGrey))
-                            .padding(.horizontal, CGFloat(.smallSidePadding))
-                    }
-                    .background(Color(colorEnum: .top))
-                    .wxmPopOver(show: $showSettingsPopOver) {
-						VStack {
-							Button {
-								showSettingsPopOver = false
-								viewModel.handleSettingsButtonTap()
-							} label: {
-								Text(LocalizableString.settings.localized)
-									.font(.system(size: CGFloat(.mediumFontSize)))
-									.foregroundColor(Color(colorEnum: .text))
-							}
-						}
-						.padding()
-						.background(Color(colorEnum: .top).scaleEffect(2.0).ignoresSafeArea())
-                    }
-                }
-            }
-			.padding(.vertical, CGFloat(.mediumSidePadding))
-            .padding(.horizontal, CGFloat(.defaultSidePadding))
-            .background(Capsule().foregroundColor(Color(colorEnum: .top)))
-            .compositingGroup()
-            .wxmShadow()
+							.foregroundColor(Color(colorEnum: .textWhite))
+							.padding(.horizontal, CGFloat(.smallSidePadding))
+					}
+
+					Spacer()
+
+					Button {
+						viewModel.isSearchActive = true
+					} label: {
+						Text(FontIcon.magnifyingGlass.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+							.foregroundColor(Color(colorEnum: .textWhite))
+							.padding(.horizontal, CGFloat(.smallSidePadding))
+					}
+				}
+			}
             .padding(CGFloat(.defaultSidePadding))
+			.background {
+				LinearGradient(
+					stops: [
+						Gradient.Stop(color: Color(colorEnum: .layer2), location: 0.0),
+						Gradient.Stop(color: Color(colorEnum: .layer2).opacity(0.7), location: 0.5),
+						Gradient.Stop(color: Color(colorEnum: .layer2).opacity(0.4), location: 0.8),
+						Gradient.Stop(color: Color(colorEnum: .layer2).opacity(0), location: 1.0),
+					],
+					startPoint: UnitPoint(x: 0.5, y: 0),
+					endPoint: UnitPoint(x: 0.5, y: 1)
+				)
+				.ignoresSafeArea()
+				.colorScheme(.dark)
+			}
+			.sizeObserver(size: $topControlsSize)
             .animation(.easeIn(duration: 0.2),
                        value: term)
 
             Spacer()
         }
-    }
+	}
 
     @ViewBuilder
     var activeView: some View {

@@ -26,7 +26,9 @@ struct ExplorerViewModelTests {
 		viewModel.fetchExplorerData()
 		try await Task.sleep(for: .seconds(2))
 		#expect(!viewModel.isLoading)
-		#expect(viewModel.explorerData == ExplorerData())
+		#expect(viewModel.explorerData.polygonPoints.count == 1)
+		#expect(viewModel.explorerData.coloredPolygonPoints.count == 1)
+		#expect(viewModel.explorerData.textPoints.count == 1)
 	}
 
 	@Test func userLocationButtonTapped() async throws {
@@ -47,4 +49,18 @@ struct ExplorerViewModelTests {
 		try await Task.sleep(for: .seconds(2))
 		#expect(viewModel.showUserLocation)
 	}
+
+	@Test func layersButtonTap() {
+		#expect(viewModel.showLayerPicker == false)
+		viewModel.layersButtonTapped()
+		#expect(viewModel.showLayerPicker == true)
+	}
+
+	@Test func explorerData() {
+		let data = viewModel.explorerData
+		#expect(data.polygonPoints.isEmpty)
+		#expect(data.totalDevices == 0)
+		#expect(data.geoJsonSource != nil)
+	}
+
 }

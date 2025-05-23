@@ -79,6 +79,8 @@ extension CellRequestBuilder: MockResponseBuilder {
 		switch self {
 			case .getCellsDevices:
 				return "get_cell_devices"
+			case .getCells:
+				return "get_cells"
 			default:
 				return nil
 		}

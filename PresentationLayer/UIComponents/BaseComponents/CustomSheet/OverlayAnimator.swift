@@ -7,9 +7,12 @@
 
 import Foundation
 import UIKit
+import Toolkit
 
 public class OverlayAnimator: NSObject, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
 
+	var tapOutsideCallback: VoidCallback?
+	private var tapGesture: UITapGestureRecognizer?
     private var incoming = true
     private let duration = 0.15
 
@@ -49,6 +52,10 @@ public class OverlayAnimator: NSObject, UIViewControllerAnimatedTransitioning, U
 				toVC.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
 				toVC.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
 
+				let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleContainerViewTap))
+				containerView.addGestureRecognizer(tapGesture)
+				self.tapGesture = tapGesture
+
                 UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseIn) {
                     toVC.view.alpha = 1.0
                 } completion: { _ in
@@ -56,6 +63,9 @@ public class OverlayAnimator: NSObject, UIViewControllerAnimatedTransitioning, U
                 }
 
             case false:
+				if let tapGesture {
+					containerView.removeGestureRecognizer(tapGesture)
+				}
 
                 UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseIn) {
                     fromVC.view.alpha = 0.0
@@ -65,4 +75,9 @@ public class OverlayAnimator: NSObject, UIViewControllerAnimatedTransitioning, U
                 }
         }
     }
+
+	@objc
+	func handleContainerViewTap(gesture: UITapGestureRecognizer) {
+		tapOutsideCallback?()
+	}
 }

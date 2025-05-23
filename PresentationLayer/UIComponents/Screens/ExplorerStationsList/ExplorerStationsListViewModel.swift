@@ -24,7 +24,7 @@ class ExplorerStationsListViewModel: ObservableObject {
 	private(set) var info: BottomSheetInfo?
 	var deviceListFailObject: FailSuccessStateObject?
 	var alertConfiguration: WXMAlertConfiguration?
-	var activeStationsString: String? {
+	private var activeStationsString: String? {
 		let count = devices.filter { $0.isActive }.count
 		guard count > 0 else {
 			return nil
@@ -32,10 +32,24 @@ class ExplorerStationsListViewModel: ObservableObject {
 		
 		return count == 1 ? LocalizableString.activeStation(count).localized : LocalizableString.activeStations(count).localized
 	}
-	var stationsCountString: String {
+	var pills: [ExplorerStationsListView.Pill] {
+		var pills: [ExplorerStationsListView.Pill] = []
+
+		if let activeStationsString {
+			pills.append(.activeStations(activeStationsString, .successTint))
+		} else {
+			pills.append(.activeStations(LocalizableString.noActiveStations.localized, .errorTint))
+		}
+
 		let count = devices.count
-		
-		return LocalizableString.presentStations(count).localized
+
+		pills.append(.stationsCount(LocalizableString.presentStations(count).localized))
+
+		if let dataQualityPill = getDataQualityPill() {
+			pills.append(dataQualityPill)
+		}
+
+		return pills
 	}
 	var cellShareUrl: String {
 		DisplayedLinks.shareCells.linkURL + cellIndex
@@ -197,8 +211,22 @@ class ExplorerStationsListViewModel: ObservableObject {
 		self.info = info
 		showInfo = true
 		
-		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.itemId: .infoDailyRewards])
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore
+																	,.itemId: .infoCellCapacity])
 	}
+
+	func handleDataQualityScoreInfoTap() {
+		let info = BottomSheetInfo(title: LocalizableString.ExplorerList.cellDataQuality.localized,
+								   description: LocalizableString.ExplorerList.cellDataQualityDescription.localized,
+								   scrollable: true)
+		self.info = info
+		showInfo = true
+
+		// Should Add analytics?
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
+																	.itemId: .infoCellDataQuality])
+	}
+
 }
 
 private extension ExplorerStationsListViewModel {
@@ -235,9 +263,7 @@ private extension ExplorerStationsListViewModel {
 																action: { Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel())) })])
 		return conf
 	}
-}
 
-private extension ExplorerStationsListViewModel {
 	func updateDeviceListFailObj(error: PublicHexError, retryAction: @escaping VoidCallback) {
 		var description: String?
 		switch error {
@@ -274,6 +300,24 @@ private extension ExplorerStationsListViewModel {
 				return try? await self.useCase?.getDeviceFollowState(deviceId: deviceId).get()
 			}
 		}
+	}
+
+	func getDataQualityPill() -> ExplorerStationsListView.Pill? {
+		guard !devices.isEmpty else {
+			return nil
+		}
+
+		let first = devices.first
+
+		var text = LocalizableString.ExplorerList.cellNoDataQuality.localized
+		var color: ColorEnum = .darkGrey
+		if let quality = first?.cellAvgDataQuality {
+			let percentage = LocalizableString.percentage(Float(quality)).localized
+			text = LocalizableString.ExplorerList.cellDataQualityScore(percentage).localized
+			color = Int(quality).rewardScoreColor
+		}
+
+		return .dataQualityScore(text, color)
 	}
 }
 

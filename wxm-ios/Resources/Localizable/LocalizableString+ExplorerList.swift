@@ -12,12 +12,22 @@ extension LocalizableString {
 		case cellCapacity
 		case cellCapacityDescription
 		case cellNotFoundMessage
+		case cellDataQuality
+		case cellDataQualityDescription
+		case cellDataQualityScore(String)
+		case cellNoDataQuality
 	}
 }
 
 extension LocalizableString.ExplorerList: WXMLocalizable {
 	var localized: String {
-		let localized = NSLocalizedString(key, comment: "")
+		var localized = NSLocalizedString(key, comment: "")
+		switch self {
+			case .cellDataQualityScore(let text):
+				localized = String(format: localized, text)
+			default: break
+		}
+
 		return localized
 	}
 
@@ -29,6 +39,14 @@ extension LocalizableString.ExplorerList: WXMLocalizable {
 				return "explorer_list_cell_capacity_description"
 			case .cellNotFoundMessage:
 				return "explorer_list_cell_not_found_message"
+			case .cellDataQuality:
+				return "explorer_list_cell_data_quality"
+			case .cellDataQualityDescription:
+				return "explorer_list_cell_data_quality_description"
+			case .cellDataQualityScore:
+				return "explorer_list_cell_data_quality_score"
+			case .cellNoDataQuality:
+				return "explorer_list_cell_no_data_quality"
 		}
 	}
 }

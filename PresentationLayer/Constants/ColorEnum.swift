@@ -33,6 +33,7 @@ public enum ColorEnum: String {
     case text
 	case textInverse
     case top
+	case darkTop
     case lightestBlue
     case layer2
     case layer1
@@ -72,4 +73,5 @@ public enum ColorEnum: String {
 	case otherRewardPrimary
 	case chartsTertiary
 	case chartsQuaternary
+	case explorerPolygon
 }

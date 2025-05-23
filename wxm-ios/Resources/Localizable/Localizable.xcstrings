@@ -4147,6 +4147,50 @@
         }
       }
     },
+    "explorer_list_cell_data_quality" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell Data Quality"
+          }
+        }
+      }
+    },
+    "explorer_list_cell_data_quality_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Displays the average Quality of Data  score for all stations within this cell. Offline, no data and inactive stations are excluded."
+          }
+        }
+      }
+    },
+    "explorer_list_cell_data_quality_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell Data Quality %@"
+          }
+        }
+      }
+    },
+    "explorer_list_cell_no_data_quality" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Cell Data Quality"
+          }
+        }
+      }
+    },
     "explorer_list_cell_not_found_message" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4165,6 +4209,61 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Location not found"
+          }
+        }
+      }
+    },
+    "explorer_map_layers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Map Layers"
+          }
+        }
+      }
+    },
+    "explorer_map_layers_data_quality_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data quality score"
+          }
+        }
+      }
+    },
+    "explorer_map_layers_data_quality_score_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Display a color-coded map indicating station data quality levels."
+          }
+        }
+      }
+    },
+    "explorer_map_layers_default" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default"
+          }
+        }
+      }
+    },
+    "explorer_map_layers_default_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Concise view showing all stations that exist in each cell."
           }
         }
       }
@@ -5478,6 +5577,17 @@
         }
       }
     },
+    "net_stats_network_statistics_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View real-time network health, station activity, $WXM rewards and more."
+          }
+        }
+      }
+    },
     "net_stats_total_allocated_info_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5632,6 +5742,17 @@
         }
       }
     },
+    "no_active_stations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No active stations"
+          }
+        }
+      }
+    },
     "no_email" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5749,6 +5870,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%.0f%%"
+          }
+        }
+      }
+    },
+    "percentage_string_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@%%"
           }
         }
       }
@@ -8162,6 +8294,17 @@
         }
       }
     },
+    "search_stations_in_area" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stations in this area"
+          }
+        }
+      }
+    },
     "search_term_limit_message_format" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10127,6 +10270,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "My Stations"
+          }
+        }
+      }
+    },
+    "weather_xm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WeatherXM"
           }
         }
       }

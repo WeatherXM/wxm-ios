@@ -13,6 +13,7 @@ private class SearchDelegate: ExplorerSearchViewModelDelegate {
 	var rowTappedCalled = false
 	var isSearchActive = false
 	var settingsButtonTappedCalled = false
+	var networkStatisticsTappedCalled = false
 
 	func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?) {
 		rowTappedCalled = true
@@ -24,6 +25,10 @@ private class SearchDelegate: ExplorerSearchViewModelDelegate {
 	
 	func settingsButtonTapped() {
 		settingsButtonTappedCalled = true
+	}
+
+	func networkStatisticsTapped() {
+		networkStatisticsTappedCalled = true
 	}
 }
 
@@ -72,6 +77,19 @@ struct ExplorerSearchViewModelTests {
 		#expect(!searchDelegate.settingsButtonTappedCalled)
 		viewModel.handleSettingsButtonTap()
 		#expect(searchDelegate.settingsButtonTappedCalled)
+	}
+
+	@Test func netStatsTap() {
+		#expect(!searchDelegate.networkStatisticsTappedCalled)
+		viewModel.handleNetworkStatsButtonTap()
+		#expect(searchDelegate.networkStatisticsTappedCalled)
+	}
+
+	@Test func updateActiveStations() {
+		#expect(viewModel.stationsCount == "0")
+		viewModel.updateStations(count: 1000)
+		let comma = Locale.current.groupingSeparator ?? "."
+		#expect(viewModel.stationsCount == "1\(comma)000")
 	}
 
 	@Test func searchTerm() {

@@ -13,6 +13,7 @@ public struct PublicDevice: Codable, Sendable {
     var lastWeatherStationActivity: String?
 	var address: String?
     var cellIndex: String?
+	var cellAvgDataQuality: Int?
 	var cellCenter: LocationCoordinates?
     var currentWeather: CurrentWeather?
 	var bundle: StationBundle?
@@ -27,6 +28,7 @@ public struct PublicDevice: Codable, Sendable {
 		case address
         case cellIndex
 		case cellCenter
+		case cellAvgDataQuality
         case currentWeather = "current_weather"
 		case bundle
 		case metrics

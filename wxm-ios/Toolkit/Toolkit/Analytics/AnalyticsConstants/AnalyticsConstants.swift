@@ -66,6 +66,7 @@ public enum Screen: String {
 	case temperatureBars = "Temperature Bars Explanation"
 	case widgetSelectStation = "Widget Station Selection"
 	case wallet = "Wallet"
+	case mapLayerPicker = "Map Layer Picker"
 }
 
 public enum Event: String {
@@ -328,5 +329,9 @@ public enum ParameterValue {
 	case localProfile
 	case localNetworkStats
 	case proPromotion
+	case infoCellDataQuality
+	case selectMapLayer
+	case `default`
+	case dataQuality
 	case custom(String)
 }

@@ -70,6 +70,7 @@ enum FontIcon: String {
 	case locationArrow = "location-arrow"
 	case locationDot = "location-dot"
 	case lock
+	case magnifyingGlass = "magnifying-glass"
 	case plus = "plus-large"
 	case pointUp = "hand-back-point-up"
 	case qrcode

@@ -9,6 +9,7 @@ import Combine
 import CoreLocation
 import DomainLayer
 import Toolkit
+import MapboxMaps
 
 @MainActor
 public final class ExplorerViewModel: ObservableObject {
@@ -26,6 +27,8 @@ public final class ExplorerViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var isSearchActive: Bool = false
 	@Published var explorerData: ExplorerData = ExplorerData()
+	@Published var layerOption: ExplorerLayerPickerView.Option = .default
+	@Published var showLayerPicker: Bool = false
 
 	lazy var snapLocationPublisher: AnyPublisher<MapBoxMapView.SnapLocation?, Never> = snapLocationSubject.eraseToAnyPublisher()
 	private let snapLocationSubject = PassthroughSubject<MapBoxMapView.SnapLocation?, Never>()
@@ -41,31 +44,29 @@ public final class ExplorerViewModel: ObservableObject {
 	func fetchExplorerData() {
 		Task { @MainActor in
 			isLoading = true
-			explorerUseCase.getPublicHexes { [weak self] result in
-				guard let self else {
-					return
-				}
-				
+			defer {
 				self.isLoading = false
+			}
+			
+			do {
+				let result = try await explorerUseCase.getPublicHexes()
 				switch result {
-					case let .success(explorerData):
+					case .success(let publicHexes):
+						let factory = ExplorerFactory(publicHexes: publicHexes)
+						let explorerData = factory.generateExplorerData()
 						guard self.explorerData != explorerData else {
 							return
 						}
-						
 						self.explorerData = explorerData
-					case let .failure(error):
-						print(error)
-						switch error {
-							case .infrastructure, .serialization:
-								if let message = LocalizableString.Error.genericMessage.localized.attributedMarkdown {
-									Toast.shared.show(text: message)
-								}
-							case .networkRelated(let networkError):
-								if let message = networkError?.uiInfo.description?.attributedMarkdown {
-									Toast.shared.show(text: message)
-								}
+					case .failure(let error):
+						if let message = error.uiInfo.description?.attributedMarkdown {
+							Toast.shared.show(text: message)
 						}
+				}
+			} catch {
+				print(error)
+				if let message = LocalizableString.Error.genericMessage.localized.attributedMarkdown {
+					Toast.shared.show(text: message)
 				}
 			}
 		}
@@ -83,6 +84,10 @@ public final class ExplorerViewModel: ObservableObject {
         handleUserLocationTap()
     }
 
+	func layersButtonTapped() {
+		showLayerPicker = true
+	}
+	
 	func snapToInitialLocation() {
 		guard !isInitialSnapped else {
 			return
@@ -109,6 +114,21 @@ public final class ExplorerViewModel: ObservableObject {
 
 	func handleZoomOut() {
 		mapController?.zoomOut()
+	}
+
+	func didUpdateMapBounds(bounds: CoordinateBounds) {
+		let count = explorerData.polygonPoints.reduce(0) {
+			guard let center = $1.polygon.center,
+				  case let isInBounds = bounds.containsLatitude(forLatitude: center.latitude) && bounds.containsLongitude(forLongitude: center.longitude),
+				  let count = $1.userInfo?[ExplorerKeys.deviceCount.rawValue] as? Int else {
+				return $0
+			}
+
+			let sum = $0 + (isInBounds ? count : 0)
+			return sum
+		}
+
+		searchViewModel.updateStations(count: count)
 	}
 }
 
@@ -156,6 +176,10 @@ extension ExplorerViewModel: ExplorerSearchViewModelDelegate {
     func settingsButtonTapped() {
         Router.shared.navigateTo(.settings(ViewModelsFactory.getSettingsViewModel(userId: "")))
     }
+
+	func networkStatisticsTapped() {
+		Router.shared.navigateTo(.netStats(ViewModelsFactory.getNetworkStatsViewModel()))
+	}
 
     func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?) {
 		let locationToSnap = MapBoxMapView.SnapLocation(coordinates: coordinates)
