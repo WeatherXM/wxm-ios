@@ -37,11 +37,14 @@ class NetworkStatsViewModel: ObservableObject {
 	private let useCase: NetworkUseCaseApi?
     private var cancellables: Set<AnyCancellable> = []
 	private let linkNavigation: LinkNavigation
+	let router: Router
 
 	init(useCase: NetworkUseCaseApi? = nil,
-		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
+		 linkNavigation: LinkNavigation = LinkNavigationHelper(),
+		 router: Router = .shared) {
         self.useCase = useCase
 		self.linkNavigation = linkNavigation
+		self.router = router
         refresh { }
     }
 
@@ -142,7 +145,8 @@ extension NetworkStatsViewModel {
 														 dateString: "Yesterday",
 														 chartModel: .mock(),
 														 xAxisTuple: nil,
-														 analyticsItemId: .dataDays)
+														 analyticsItemId: .dataDays,
+														 cardTapAction: nil)
 
 		let addtional: [NetworkStatsView.AdditionalStats] = [.init(title: "Total supply",
 																   value: "100,000,000",
@@ -164,7 +168,8 @@ extension NetworkStatsViewModel {
 														chartModel: .mock(),
 														xAxisTuple: nil,
 														additionalStats: addtional,
-														analyticsItemId: .allocatedRewards)
+														analyticsItemId: .allocatedRewards,
+														cardTapAction: nil)
 
 		let stationStats = NetworkStatsView.StationStatistics(title: "Total",
 															  total: "7,823",
