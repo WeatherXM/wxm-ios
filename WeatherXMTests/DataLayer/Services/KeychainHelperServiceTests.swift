@@ -77,7 +77,7 @@ struct KeychainHelperServiceTests {
 		#expect(service.getUsersAccountInfo() == nil)
 		let nsError = try #require(logger.nsError)
 		#expect(nsError.domain == "keychain")
-		#expect(nsError.code == -1)
+		#expect(nsError.code == errSecItemNotFound)
 		#expect(nsError.userInfo["service"] as? String == KeychainConstants.saveAccountInfo.service)
 		service.saveEmailAndPasswordToKeychain(email: "email", password: "password")
 		let accountInfo = service.getUsersAccountInfo()
