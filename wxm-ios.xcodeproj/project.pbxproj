@@ -343,6 +343,7 @@
 		267811502D4BB21700D22B67 /* UserInfoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678114F2D4BB21700D22B67 /* UserInfoServiceTests.swift */; };
 		267811522D4BB61800D22B67 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 267811512D4BB61800D22B67 /* Alamofire */; };
 		267811582D4CD84E00D22B67 /* UserDevicesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267811572D4CD84E00D22B67 /* UserDevicesServiceTests.swift */; };
+		2678C45D2DFC3EF300523DF8 /* MockLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678C45C2DFC3EF300523DF8 /* MockLogger.swift */; };
 		2678ED8F2AFD1B1400940D59 /* RewardsTimelinePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */; };
 		267A37832AEBB4C900469126 /* StationRewardsTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */; };
 		267A378A2AEBFF2F00469126 /* DeviceRewardsOverview+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */; };
@@ -1087,6 +1088,7 @@
 		267811092D49279300D22B67 /* FiltersServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersServiceTest.swift; sourceTree = "<group>"; };
 		2678114F2D4BB21700D22B67 /* UserInfoServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoServiceTests.swift; sourceTree = "<group>"; };
 		267811572D4CD84E00D22B67 /* UserDevicesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDevicesServiceTests.swift; sourceTree = "<group>"; };
+		2678C45C2DFC3EF300523DF8 /* MockLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLogger.swift; sourceTree = "<group>"; };
 		2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelinePagination.swift; sourceTree = "<group>"; };
 		267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsTimelineView.swift; sourceTree = "<group>"; };
 		267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceRewardsOverview+.swift"; sourceTree = "<group>"; };
@@ -2455,6 +2457,7 @@
 				26DF1F512D535EB10001E936 /* KeychainHelperServiceTests.swift */,
 				26DF1F552D54AC360001E936 /* FileUploaderServiceTests.swift */,
 				26DF1F632D56328B0001E936 /* PhotosRepositoryImplTests.swift */,
+				2678C45C2DFC3EF300523DF8 /* MockLogger.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -3720,6 +3723,7 @@
 				26F83CA12D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift in Sources */,
 				26F83CE32D9FDBD100E5A8B8 /* ForecastDetailsViewModelTests.swift in Sources */,
 				26710E982D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift in Sources */,
+				2678C45D2DFC3EF300523DF8 /* MockLogger.swift in Sources */,
 				26F83CA52D9D3E4200E5A8B8 /* HistoryViewModelTests.swift in Sources */,
 				268BAD4E2DC0DEAA00748439 /* NetworkDevicesInfoResponseTests.swift in Sources */,
 				26F83CEB2D9FFAF900E5A8B8 /* RewardAnalyticsViewModelTests.swift in Sources */,

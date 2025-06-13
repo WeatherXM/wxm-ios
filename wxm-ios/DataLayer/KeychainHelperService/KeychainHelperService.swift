@@ -12,14 +12,16 @@ import Toolkit
 public final class KeychainHelperService {
 
 	private let accessGroup: String
+	private let logger: LoggerApi
 
-	public init() {
+	public init(logger: LoggerApi = Logger.shared) {
 		guard let teamId: String = Bundle.main.getConfiguration(for: .teamId),
 				let appGroup: String = Bundle.main.getConfiguration(for: .appGroup) else {
 			fatalError("Should provide teamId in configuration file")
 		}
 		
 		accessGroup = "\(teamId).\(appGroup)"
+		self.logger = logger
 	}
 
     func save<T>(_ item: T, service: String, account: String) where T: Codable {
@@ -82,7 +84,7 @@ public final class KeychainHelperService {
 			let error = NSError(domain: "keychain", code: -1, userInfo: ["service": service,
 																		 "message": message ?? "",
 																		 "osStatus": status])
-			Logger.shared.logError(error)
+			logger.logError(error)
 		}
         
 		return (result as? Data)
