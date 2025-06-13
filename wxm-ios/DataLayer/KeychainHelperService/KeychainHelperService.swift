@@ -81,9 +81,9 @@ public final class KeychainHelperService {
 		// Debug
 		if status != errSecSuccess {
 			let message = SecCopyErrorMessageString(status, nil) as? String
-			let error = NSError(domain: "keychain", code: -1, userInfo: ["service": service,
-																		 "message": message ?? "",
-																		 "osStatus": status])
+			let error = NSError(domain: "keychain", code: Int(status), userInfo: ["service": service,
+																				  "message": message ?? "",
+																				  "osStatus": status])
 			logger.logError(error)
 		}
         
