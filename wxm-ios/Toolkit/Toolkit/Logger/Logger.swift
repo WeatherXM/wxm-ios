@@ -8,7 +8,12 @@
 import Foundation
 import FirebaseCrashlytics
 
-public class Logger: @unchecked Sendable {
+public protocol LoggerApi {
+	func logNetworkError(_ networkError: any NetworkError)
+	func logError(_ nsError: NSError)
+}
+
+public class Logger: @unchecked Sendable, LoggerApi {
 	public static let shared = Logger()
 
 	private init() {}

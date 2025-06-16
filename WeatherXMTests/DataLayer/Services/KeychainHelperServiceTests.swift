@@ -12,10 +12,13 @@ import Toolkit
 
 @Suite(.serialized)
 struct KeychainHelperServiceTests {
-	let service = KeychainHelperService()
+	let logger: MockLogger
+	let service: KeychainHelperService
 	let cancellableWrapper: CancellableWrapper
 
 	init() async throws {
+		logger = .init()
+		service = .init(logger: logger)
 		cancellableWrapper  = .init()
 		service.deleteNetworkTokenResponseFromKeychain()
 		service.deleteEmailAndPassword()
@@ -69,8 +72,13 @@ struct KeychainHelperServiceTests {
 		}
 	}
 
-	@Test func storeEmail() {
+	@Test func storeEmail() throws {
+		#expect(logger.nsError == nil)
 		#expect(service.getUsersAccountInfo() == nil)
+		let nsError = try #require(logger.nsError)
+		#expect(nsError.domain == "keychain")
+		#expect(nsError.code == errSecItemNotFound)
+		#expect(nsError.userInfo["service"] as? String == KeychainConstants.saveAccountInfo.service)
 		service.saveEmailAndPasswordToKeychain(email: "email", password: "password")
 		let accountInfo = service.getUsersAccountInfo()
 		#expect(accountInfo?.email == "email")
