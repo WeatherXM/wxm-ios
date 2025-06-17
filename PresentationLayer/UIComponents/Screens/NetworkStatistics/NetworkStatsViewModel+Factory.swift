@@ -98,7 +98,7 @@ extension NetworkStatsViewModel {
     }
 
 	func getTokenStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
-		guard let tokens = response?.tokens else {
+		guard let tokens = response?.rewards?.tokenMetrics?.token else {
 			return nil
 		}
 
@@ -204,6 +204,11 @@ extension NetworkStatsViewModel {
     }
 
 	func getTotalAllocatedRewards(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
+		guard let rewards = response?.rewards,
+			  let totalAllocated = rewards.tokenMetrics?.totalAllocated else {
+			return nil
+		}
+
 		let url = DisplayedLinks.rewardMechanism.linkURL
 		let description = LocalizableString.NetStats.totalWXMAllocatedDescription(url).localized.attributedMarkdown
 
@@ -214,7 +219,7 @@ extension NetworkStatsViewModel {
 		}
 
 		let baseRewards = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.baseRewards.localized,
-														   value: 1000.toCompactDecimaFormat ??  "?",
+														   value: totalAllocated.baseRewards?.toCompactDecimaFormat ??  "?",
 														   accessory: baseRewardsAccessory,
 														   analyticsItemId: nil)
 
@@ -225,7 +230,7 @@ extension NetworkStatsViewModel {
 		}
 
 		let boostRewards = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.boostRewards.localized,
-															value: 1000.toCompactDecimaFormat ??  "?",
+															value: totalAllocated.boostRewards?.toCompactDecimaFormat ??  "?",
 															accessory: boostRewardsAccessory,
 															analyticsItemId: nil)
 
@@ -242,7 +247,8 @@ extension NetworkStatsViewModel {
 							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkStats,
 																												  .source: .dune]) },
 							 accessory: accessory,
-							 customView: NetworkStatsDonutView(claimed: 921, reserved: 2000).toAnyView,
+							 customView: NetworkStatsDonutView(claimed: Double(totalAllocated.dune?.claimed ?? 0),
+															   reserved: Double(totalAllocated.dune?.unclaimed ?? 0)).toAnyView,
 							 additionalStats: [baseRewards, boostRewards],
 							 analyticsItemId: nil)
 

@@ -29,7 +29,7 @@ struct NetworkStatsDonutView: View {
 			}
 
 
-			ProgressView(value: claimed, total: reserved)
+			ProgressView(value: claimed, total: claimed + reserved)
 				.progressViewStyle(DonutProgressStyle(lineWidth: 26.0,
 													  color: Color(colorEnum: .chartPrimary),
 													  progressColor: Color(colorEnum: .chartSecondary),
@@ -58,7 +58,7 @@ struct DonutProgressStyle: ProgressViewStyle {
 				endAngle: .degrees(180.0 + angleThreshold),
 				clockwise: false,
 				lineWidth: lineWidth)
-			.stroke(color, lineWidth: 26)
+			.stroke(color, lineWidth: lineWidth)
 
 			Arc(startAngle: .degrees(angleThreshold),
 				endAngle: .degrees(angleThreshold + angleProgress),

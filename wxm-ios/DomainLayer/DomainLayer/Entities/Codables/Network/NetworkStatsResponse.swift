@@ -12,6 +12,7 @@ public struct NetworkStatsResponse: Codable, Sendable {
     public let dataDays: [NetworkStatsTimeSeries]?
     public let tokens: NetworkStationsStatsTokens?
 	public let contracts: NetworkStatsContracts?
+	public let rewards: NetworkStatsRewards?
     public let lastUpdated: Date?
 
     enum CodingKeys: String, CodingKey {
@@ -19,14 +20,21 @@ public struct NetworkStatsResponse: Codable, Sendable {
         case dataDays = "data_days"
         case tokens
 		case contracts
+		case rewards
         case lastUpdated = "last_updated"
     }
 
-	public init(weatherStations: NetworkWeatherStations?, dataDays: [NetworkStatsTimeSeries]?, tokens: NetworkStationsStatsTokens?, contracts: NetworkStatsContracts?, lastUpdated: Date?) {
+	public init(weatherStations: NetworkWeatherStations?,
+				dataDays: [NetworkStatsTimeSeries]?,
+				tokens: NetworkStationsStatsTokens?,
+				contracts: NetworkStatsContracts?,
+				rewards: NetworkStatsRewards?,
+				lastUpdated: Date?) {
 		self.weatherStations = weatherStations
 		self.dataDays = dataDays
 		self.tokens = tokens
 		self.contracts = contracts
+		self.rewards = rewards
 		self.lastUpdated = lastUpdated
 	}
 }
