@@ -45,11 +45,11 @@ extension NetworkStatsViewModel {
     }
 
     func getRewardsStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
-        guard let tokens = response?.tokens,
-				let allocatedPerDay = fixedTimeSeries(timeSeries: tokens.allocatedPerDay) else {
+		guard let tokens = response?.rewards,
+			  let allocatedPerDay = fixedTimeSeries(timeSeries: tokens.last30DaysGraph) else {
             return nil
         }
-		let totalValue = tokens.totalAllocated
+		let totalValue = tokens.total
         let total = NetworkStatsView.AdditionalStats(title: LocalizableString.total(nil).localized,
                                                      value: totalValue?.toCompactDecimaFormat ??  "?",
                                                      accessory: nil,
