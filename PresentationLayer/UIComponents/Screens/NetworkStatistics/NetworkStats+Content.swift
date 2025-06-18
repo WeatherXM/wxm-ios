@@ -101,6 +101,15 @@ extension NetworkStatsView {
         }
     }
 
+	@ViewBuilder
+	var healthView: some View {
+		if let health = viewModel.health {
+			generateStatsView(stats: health)
+		} else {
+			EmptyView()
+		}
+	}
+
     @ViewBuilder
     var buyStationView: some View {
 		PercentageGridLayoutView {

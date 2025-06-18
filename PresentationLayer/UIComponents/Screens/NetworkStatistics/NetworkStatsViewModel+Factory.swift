@@ -97,6 +97,38 @@ extension NetworkStatsViewModel {
 		}
     }
 
+	func getHealthStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
+		guard let health = response?.health,
+			  let timeSeries = fixedTimeSeries(timeSeries: health.health30DaysGraph) else {
+			return nil
+		}
+		let qualityScore = Float(health.networkAvgQod ?? 0)
+		let qod = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.dataDaysInfoText.localized,
+												   value: LocalizableString.percentage(qualityScore).localized,
+												   accessory: nil,
+												   analyticsItemId: nil)
+
+		let value = health.activeStations ?? 0
+		let activeStations = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.activeStations.localized.uppercased(),
+															  value: value.toCompactDecimaFormat ?? "?",
+															  accessory: nil,
+															  analyticsItemId: nil)
+
+		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.wxmRewardsTitle.localized,
+						   description: LocalizableString.NetStats.totalAllocatedInfoText.localized,
+						   analyticsItemId: .allocatedRewards)
+		}
+
+		return getStatistics(from: timeSeries,
+							 title: LocalizableString.NetStats.wxmRewardsTitle.localized,
+							 description: nil,
+							 accessory: accessory,
+							 additionalStats: [qod, activeStations],
+							 analyticsItemId: .allocatedRewards)
+	}
+
+
 	func getTokenStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
 		guard let tokens = response?.rewards?.tokenMetrics?.token else {
 			return nil
