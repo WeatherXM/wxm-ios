@@ -16,9 +16,9 @@ public struct NetworkStatsRewards: Codable, Sendable {
 	public let total: Int?
 
 	enum CodingKeys: String, CodingKey {
-		case last30Days
-		case last30DaysGraph
-		case lastRun
+		case last30Days = "last_30days"
+		case last30DaysGraph = "last_30days_graph"
+		case lastRun = "last_run"
 		case lastTxHashUrl = "last_tx_hash_url"
 		case tokenMetrics = "token_metrics"
 		case total
@@ -38,6 +38,11 @@ public struct NetworkStatsTokenMetrics: Codable, Sendable {
 public struct NetworkStatsToken: Codable, Sendable {
 	public let circulatingSupply: Int?
 	public let totalSupply: Int?
+
+	enum CodingKeys: String, CodingKey {
+		case circulatingSupply = "circulating_supply"
+		case totalSupply = "total_supply"
+	}
 }
 
 public struct NetworkStatsTotalAllocated: Codable, Sendable {
@@ -46,8 +51,8 @@ public struct NetworkStatsTotalAllocated: Codable, Sendable {
 	public let dune: NetworkStatsDune?
 
 	enum CodingKeys: String, CodingKey {
-		case baseRewards
-		case boostRewards
+		case baseRewards = "base_rewards"
+		case boostRewards = "boost_rewards"
 		case dune
 	}
 }

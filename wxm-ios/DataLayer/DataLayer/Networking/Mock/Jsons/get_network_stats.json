@@ -4,17 +4,13 @@
 	"token_url": "https://etherscan.io/token/0xde654f497a563dd7a121c176a125dd2f11f13a83"
   },
   "customers": {
-	"total": 14427,
-	"with_wallet": 7376
+	"total": 14438,
+	"with_wallet": 7400
   },
-  "last_updated": "2025-06-17T06:00:27+00:00",
+  "last_updated": "2025-06-18T08:00:29+00:00",
   "netGrowth": {
-	"last30Days": 70,
-	"last30DaysGraph": [
-	  {
-		"ts": "2025-05-18T00:00:00+00:00",
-		"value": 9362
-	  },
+	"last_30days": 73,
+	"last_30days_graph": [
 	  {
 		"ts": "2025-05-19T00:00:00+00:00",
 		"value": 9362
@@ -133,18 +129,26 @@
 	  },
 	  {
 		"ts": "2025-06-17T00:00:00+00:00",
-		"value": 9432
+		"value": 9435
+	  },
+	  {
+		"ts": "2025-06-18T00:00:00+00:00",
+		"value": 9435
 	  }
 	],
-	"networkScaleUp": 74,
-	"networkSize": 9432
+	"network_scale_up": 77,
+	"network_size": 9435
   },
   "netHealth": {
-	"activeStations": 7631,
-	"health30DaysGraph": [
+	"active_stations": 7659,
+	"health_30days_graph": [
+	  {
+		"ts": "2025-06-18T00:00:00+00:00",
+		"value": 81
+	  },
 	  {
 		"ts": "2025-06-17T00:00:00+00:00",
-		"value": 80
+		"value": 82
 	  },
 	  {
 		"ts": "2025-06-16T00:00:00+00:00",
@@ -261,195 +265,191 @@
 	  {
 		"ts": "2025-05-19T00:00:00+00:00",
 		"value": 84
-	  },
-	  {
-		"ts": "2025-05-18T00:00:00+00:00",
-		"value": 84
 	  }
 	],
-	"networkAvgQod": 77,
-	"networkUptime": 38
+	"network_avg_qod": 77,
+	"network_uptime": 32
   },
   "rewards": {
-	"last30Days": 56950187,
-	"last30DaysGraph": [
-	  {
-		"ts": "2025-05-18T00:00:00+00:00",
-		"value": 741079801
-	  },
+	"last_30days": 56890433,
+	"last_30days_graph": [
 	  {
 		"ts": "2025-05-19T00:00:00+00:00",
-		"value": 743145434
+		"value": 743862177
 	  },
 	  {
 		"ts": "2025-05-20T00:00:00+00:00",
-		"value": 745199504
+		"value": 745914090
 	  },
 	  {
 		"ts": "2025-05-21T00:00:00+00:00",
-		"value": 747256917
+		"value": 747971989
 	  },
 	  {
 		"ts": "2025-05-22T00:00:00+00:00",
-		"value": 749319029
+		"value": 750033912
 	  },
 	  {
 		"ts": "2025-05-23T00:00:00+00:00",
-		"value": 751382656
+		"value": 752096226
 	  },
 	  {
 		"ts": "2025-05-24T00:00:00+00:00",
-		"value": 753445873
+		"value": 754158348
 	  },
 	  {
 		"ts": "2025-05-25T00:00:00+00:00",
-		"value": 755507952
+		"value": 756219230
 	  },
 	  {
 		"ts": "2025-05-26T00:00:00+00:00",
-		"value": 757567300
+		"value": 758275408
 	  },
 	  {
 		"ts": "2025-05-27T00:00:00+00:00",
-		"value": 759624237
+		"value": 760331215
 	  },
 	  {
 		"ts": "2025-05-28T00:00:00+00:00",
-		"value": 761681100
+		"value": 762389817
 	  },
 	  {
 		"ts": "2025-05-29T00:00:00+00:00",
-		"value": 763741068
+		"value": 764446074
 	  },
 	  {
 		"ts": "2025-05-30T00:00:00+00:00",
-		"value": 765798664
+		"value": 766486597
 	  },
 	  {
 		"ts": "2025-05-31T00:00:00+00:00",
-		"value": 767834240
+		"value": 768495467
 	  },
 	  {
 		"ts": "2025-06-01T00:00:00+00:00",
-		"value": 769843485
+		"value": 770484727
 	  },
 	  {
 		"ts": "2025-06-02T00:00:00+00:00",
-		"value": 771831786
+		"value": 772475872
 	  },
 	  {
 		"ts": "2025-06-03T00:00:00+00:00",
-		"value": 773824865
+		"value": 774479196
 	  },
 	  {
 		"ts": "2025-06-04T00:00:00+00:00",
-		"value": 775828294
+		"value": 776490473
 	  },
 	  {
 		"ts": "2025-06-05T00:00:00+00:00",
-		"value": 777813397
+		"value": 778477822
 	  },
 	  {
 		"ts": "2025-06-06T00:00:00+00:00",
-		"value": 779825229
+		"value": 780485364
 	  },
 	  {
 		"ts": "2025-06-07T00:00:00+00:00",
-		"value": 781835102
+		"value": 782510018
 	  },
 	  {
 		"ts": "2025-06-08T00:00:00+00:00",
-		"value": 783860030
+		"value": 784519755
 	  },
 	  {
 		"ts": "2025-06-09T00:00:00+00:00",
-		"value": 785818219
+		"value": 786499411
 	  },
 	  {
 		"ts": "2025-06-10T00:00:00+00:00",
-		"value": 787850654
+		"value": 788529717
 	  },
 	  {
 		"ts": "2025-06-11T00:00:00+00:00",
-		"value": 789881508
+		"value": 790565765
 	  },
 	  {
 		"ts": "2025-06-12T00:00:00+00:00",
-		"value": 791915026
+		"value": 792601288
 	  },
 	  {
 		"ts": "2025-06-13T00:00:00+00:00",
-		"value": 793952225
+		"value": 794640575
 	  },
 	  {
 		"ts": "2025-06-14T00:00:00+00:00",
-		"value": 795991782
+		"value": 796680344
 	  },
 	  {
 		"ts": "2025-06-15T00:00:00+00:00",
-		"value": 798029988
+		"value": 798717045
+	  },
+	  {
+		"ts": "2025-06-16T00:00:00+00:00",
+		"value": 800752610
 	  }
 	],
-	"lastRun": 2038206,
-	"last_tx_hash_url": "https://arbiscan.io/tx/0xd57b08be9db1103a5926b12cf76c6d58823cdbb370039ff17cb511e6b5e28c7c",
+	"last_run": 2044363,
+	"last_tx_hash_url": "https://arbiscan.io/tx/0x624853446833f2143adfff399479a8983de1ac262ec5a11a644da5af759d24ac",
 	"token_metrics": {
 	  "token": {
-		"circulatingSupply": 20149748,
-		"totalSupply": 100000000
+		"circulating_supply": 20190815,
+		"total_supply": 100000000
 	  },
 	  "total_allocated": {
-		"baseRewards": 51733438200,
-		"boostRewards": 28069560600,
+		"base_rewards": 51867674500,
+		"boost_rewards": 28207586500,
 		"dune": {
 		  "claimed": 435981004,
-		  "dunePublicUrl": "https://dune.com/weatherxm/network-stats",
+		  "dune_public_url": "https://dune.com/weatherxm/network-stats",
 		  "total": 745141474,
 		  "unclaimed": 309160469
 		}
 	  }
 	},
-	"total": 79802998800
+	"total": 80075261000
   },
   "weather_stations": {
 	"active": {
 	  "details": [
 		{
-		  "amount": 3412,
+		  "amount": 3401,
 		  "connectivity": "wifi",
 		  "model": "M5",
 		  "percentage": 0.44,
 		  "url": "https://weatherxm.com/product/wb1000-wifi/"
 		},
 		{
-		  "amount": 1942,
+		  "amount": 1957,
 		  "connectivity": "helium",
 		  "model": "H1",
 		  "percentage": 0.25,
 		  "url": "https://weatherxm.com/product/ws2000-helium-lorawan/"
 		},
 		{
-		  "amount": 1842,
+		  "amount": 1845,
 		  "connectivity": "wifi",
 		  "model": "D1",
 		  "percentage": 0.24,
 		  "url": "https://weatherxm.com/product/wb1200-wifi-d1/"
 		},
 		{
-		  "amount": 434,
+		  "amount": 431,
 		  "connectivity": "helium",
 		  "model": "H2",
 		  "percentage": 0.05,
 		  "url": "https://weatherxm.com/product/ws2001-helium-lorawan/"
 		},
 		{
-		  "amount": 25,
+		  "amount": 27,
 		  "connectivity": "cellular",
 		  "model": "PULSE",
 		  "percentage": 0.01,
 		  "url": "https://weatherxm.com/product/wb3000-4g/"
 		}
 	  ],
-	  "total": 7655
+	  "total": 7661
 	},
 	"claimed": {
 	  "details": [
@@ -461,7 +461,7 @@
 		  "url": "https://weatherxm.com/product/wb1000-wifi/"
 		},
 		{
-		  "amount": 2645,
+		  "amount": 2648,
 		  "connectivity": "wifi",
 		  "model": "D1",
 		  "percentage": 0.28,
@@ -489,7 +489,7 @@
 		  "url": "https://weatherxm.com/product/wb3000-4g/"
 		}
 	  ],
-	  "total": 9432
+	  "total": 9435
 	},
 	"onboarded": {
 	  "details": [
@@ -497,28 +497,28 @@
 		  "amount": 8665,
 		  "connectivity": "wifi",
 		  "model": "D1",
-		  "percentage": 0.44,
+		  "percentage": 0.36,
 		  "url": "https://weatherxm.com/product/wb1200-wifi-d1/"
+		},
+		{
+		  "amount": 7003,
+		  "connectivity": "helium",
+		  "model": "H2",
+		  "percentage": 0.29,
+		  "url": "https://weatherxm.com/product/ws2001-helium-lorawan/"
 		},
 		{
 		  "amount": 5061,
 		  "connectivity": "wifi",
 		  "model": "M5",
-		  "percentage": 0.25,
+		  "percentage": 0.21,
 		  "url": "https://weatherxm.com/product/wb1000-wifi/"
-		},
-		{
-		  "amount": 3004,
-		  "connectivity": "helium",
-		  "model": "H2",
-		  "percentage": 0.15,
-		  "url": "https://weatherxm.com/product/ws2001-helium-lorawan/"
 		},
 		{
 		  "amount": 2755,
 		  "connectivity": "helium",
 		  "model": "H1",
-		  "percentage": 0.13,
+		  "percentage": 0.11,
 		  "url": "https://weatherxm.com/product/ws2000-helium-lorawan/"
 		},
 		{
@@ -529,7 +529,7 @@
 		  "url": "https://weatherxm.com/product/wb3000-4g/"
 		}
 	  ],
-	  "total": 19680
+	  "total": 23679
 	}
   }
 }
