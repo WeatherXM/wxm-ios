@@ -73,9 +73,8 @@ extension NetworkStatsViewModel {
                                                        analyticsItemId: nil)
 
 		var rewardsDescription: AttributedString?
-		if let rewwardsUrl  = response?.contracts?.rewardsUrl {
-			rewardsDescription = LocalizableString.NetStats.wxmRewardsDescriptionMarkdown(rewwardsUrl).localized.attributedMarkdown
-		}
+		let url = DisplayedLinks.rewardMechanism.linkURL
+		rewardsDescription = LocalizableString.NetStats.wxmRewardsDescriptionMarkdown(url).localized.attributedMarkdown
 
 		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.wxmRewardsTitle.localized,
@@ -90,8 +89,12 @@ extension NetworkStatsViewModel {
 							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .rewardContract]) },
                              accessory: accessory,
                              additionalStats: [total, lastDay],
-                             analyticsItemId: .allocatedRewards)
-
+							 analyticsItemId: .allocatedRewards) { [weak self] in
+			guard let self else {
+				return
+			}
+			self.router.navigateTo(.tokenMetrics(self))
+		}
     }
 
 	func getTokenStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
@@ -223,7 +226,8 @@ private extension NetworkStatsViewModel {
                        externalLinkTapAction: VoidCallback? = nil,
                        accessory: NetworkStatsView.Accessory?,
                        additionalStats: [NetworkStatsView.AdditionalStats]?,
-                       analyticsItemId: ParameterValue?) -> NetworkStatsView.Statistics {
+                       analyticsItemId: ParameterValue?,
+					   cardTapAction: VoidCallback? = nil) -> NetworkStatsView.Statistics {
         var chartModel: NetStatsChartViewModel?
         var xAxisTuple: NetworkStatsView.XAxisTuple?
         var mainText: String?
@@ -253,7 +257,8 @@ private extension NetworkStatsViewModel {
                                            chartModel: chartModel,
                                            xAxisTuple: xAxisTuple,
                                            additionalStats: additionalStats,
-                                           analyticsItemId: analyticsItemId)
+                                           analyticsItemId: analyticsItemId,
+										   cardTapAction: cardTapAction)
     }
 
 	func fixedTimeSeries(timeSeries: [NetworkStatsTimeSeries]?) -> [NetworkStatsTimeSeries]? {

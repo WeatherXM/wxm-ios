@@ -5671,7 +5671,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**[View rewards contract on Arbiscan](%@)**"
+            "value" : "**[Learn more about our reward mechanism](%@)**"
           }
         }
       }
