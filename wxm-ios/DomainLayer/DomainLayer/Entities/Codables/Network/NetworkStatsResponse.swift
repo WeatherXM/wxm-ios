@@ -22,7 +22,7 @@ public struct NetworkStatsResponse: Codable, Sendable {
         case tokens
 		case contracts
 		case rewards
-		case health = "netHealth"
+		case health = "net_health"
         case lastUpdated = "last_updated"
     }
 
