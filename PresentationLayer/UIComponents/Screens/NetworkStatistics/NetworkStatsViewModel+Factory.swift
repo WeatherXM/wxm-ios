@@ -138,6 +138,33 @@ extension NetworkStatsViewModel {
 							 analyticsItemId: .allocatedRewards)
 	}
 
+	func getGrowthStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
+		guard let growth = response?.growth,
+			  let timeSeries = fixedTimeSeries(timeSeries: growth.last30DaysGraph) else {
+			return nil
+		}
+		let networkSize = growth.networkSize ?? 0
+		let netSize = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.networkSize.localized,
+													   value: networkSize.localizedFormatted,
+												   accessory: nil,
+												   analyticsItemId: nil)
+
+		let value = growth.last30Days ?? 0
+		let lastAdded = LocalizableString.NetStats.addedInLastXDays(30).localized
+		let lastAddedStations = NetworkStatsView.AdditionalStats(title: lastAdded.uppercased(),
+															  value: value.localizedFormatted,
+															  analyticsItemId: nil)
+
+		return getStatistics(from: timeSeries,
+							 title: LocalizableString.NetStats.networkGrowth.localized,
+							 chartTitle: LocalizableString.NetStats.networkScaleUp.localized,
+							 chartValueText: LocalizableString.percentage(Float(growth.networkScaleUp ?? 0)).localized,
+							 description: nil,
+							 accessory: nil,
+							 additionalStats: [netSize, lastAddedStations],
+							 analyticsItemId: .allocatedRewards)
+	}
+
 
 	func getTokenStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
 		guard let tokens = response?.rewards?.tokenMetrics?.token else {

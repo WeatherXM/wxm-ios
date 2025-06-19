@@ -110,6 +110,15 @@ extension NetworkStatsView {
 		}
 	}
 
+	@ViewBuilder
+	var growthView: some View {
+		if let growth = viewModel.growth {
+			generateStatsView(stats: growth)
+		} else {
+			EmptyView()
+		}
+	}
+
     @ViewBuilder
     var buyStationView: some View {
 		PercentageGridLayoutView {

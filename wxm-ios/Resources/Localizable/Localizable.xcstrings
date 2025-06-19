@@ -5401,6 +5401,17 @@
         }
       }
     },
+    "net_stats_added_in_last_x_days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added in last %d days"
+          }
+        }
+      }
+    },
     "net_stats_base_rewards" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5709,6 +5720,17 @@
         }
       }
     },
+    "net_stats_network_growth" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network growth"
+          }
+        }
+      }
+    },
     "net_stats_network_health" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5727,6 +5749,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reflects the overall performance and reliability of the network. It consists of data quality, network uptime and number of healthy stations (calculated monthly) to indicate how well the network is functioning and how trustworthy the collected data is."
+          }
+        }
+      }
+    },
+    "net_stats_network_scale_up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network scale up"
+          }
+        }
+      }
+    },
+    "net_stats_network_size" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network Size"
           }
         }
       }
