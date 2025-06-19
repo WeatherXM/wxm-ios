@@ -5687,6 +5687,17 @@
         }
       }
     },
+    "net_stats_network_health" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network health"
+          }
+        }
+      }
+    },
     "net_stats_network_statistics" : {
       "extractionState" : "manual",
       "localizations" : {

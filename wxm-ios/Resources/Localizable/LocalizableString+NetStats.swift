@@ -35,6 +35,7 @@ extension LocalizableString {
 		case networkUptime
 		case deployYourStation
 		case checkTheWeather
+		case networkHealth
 		case earnWXM
 		case enterWebThree
 		case totalAllocatedInfoText
@@ -137,6 +138,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_network_uptime"
 			case .deployYourStation:
 				return "net_stats_deploy_your_station"
+			case .networkHealth:
+				return "net_stats_network_health"
 			case .checkTheWeather:
 				return "net_stats_check_the_weather"
 			case .earnWXM:
