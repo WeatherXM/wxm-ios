@@ -216,7 +216,7 @@ extension NetworkStatsViewModel {
 		let manufactured = (LocalizableString.NetStats.manufactured.localized.uppercased(),
 							response?.weatherStations?.onboarded,
 							NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
-			self?.showInfo(title: LocalizableString.NetStats.totalWeatherStationsInfoTitle.localized,
+			self?.showInfo(title: LocalizableString.NetStats.manufactured.localized,
 						   description: LocalizableString.NetStats.totalWeatherStationsInfoText.localized,
 						   analyticsItemId: .total)
 		},
@@ -225,7 +225,7 @@ extension NetworkStatsViewModel {
 		let deployed = (LocalizableString.NetStats.deployed.localized.uppercased(),
 					   response?.weatherStations?.claimed,
 					   NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
-			self?.showInfo(title: LocalizableString.NetStats.claimedWeatherStationsInfoTitle.localized,
+			self?.showInfo(title: LocalizableString.NetStats.deployed.localized,
 						   description: LocalizableString.NetStats.claimedWeatherStationsInfoText.localized,
 						   analyticsItemId: .claimed)
 		},

@@ -5561,7 +5561,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The number of weather stations already claimed by users."
+            "value" : "The number of weather stations already deployed by users."
           }
         }
       }
@@ -5902,7 +5902,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The number of weather stations manufactured and registered on the network."
+            "value" : "The number of weather stations produced."
           }
         }
       }
@@ -5962,13 +5962,13 @@
         }
       }
     },
-    "net_stats_weather_stations" : {
+    "net_stats_weather_stations_breakdown" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Weather Stations"
+            "value" : "Weather stations breakdown"
           }
         }
       }

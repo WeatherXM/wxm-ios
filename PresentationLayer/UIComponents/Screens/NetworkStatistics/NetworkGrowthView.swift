@@ -37,7 +37,7 @@ extension NetworkGrowthView {
 		if let stationStats = viewModel.stationStats {
 			VStack(spacing: CGFloat(.mediumSpacing)) {
 				HStack {
-					Text(LocalizableString.NetStats.weatherStations.localized)
+					Text(LocalizableString.NetStats.weatherStationsBreakdown.localized)
 						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
 						.foregroundColor(Color(colorEnum: .text))
 					Spacer()
