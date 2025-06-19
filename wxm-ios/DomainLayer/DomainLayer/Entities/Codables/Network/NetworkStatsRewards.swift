@@ -62,4 +62,11 @@ public struct NetworkStatsDune: Codable, Sendable {
 	public let dunePublicUrl: String?
 	public let total: Int?
 	public let unclaimed: Int?
+
+	enum CodingKeys: String, CodingKey {
+		case claimed
+		case dunePublicUrl = "dune_public_url"
+		case total
+		case unclaimed
+	}
 }

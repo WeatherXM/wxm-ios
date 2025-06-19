@@ -209,7 +209,7 @@ extension NetworkStatsViewModel {
 			return nil
 		}
 
-		let url = DisplayedLinks.rewardMechanism.linkURL
+		let url = response?.rewards?.tokenMetrics?.totalAllocated?.dune?.dunePublicUrl ?? ""
 		let description = LocalizableString.NetStats.totalWXMAllocatedDescription(url).localized.attributedMarkdown
 
 		let baseRewardsAccessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in

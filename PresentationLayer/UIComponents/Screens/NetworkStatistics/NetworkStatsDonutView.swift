@@ -16,7 +16,7 @@ struct NetworkStatsDonutView: View {
 			return nil
 		}
 
-		return LocalizableString.NetStats.total(total).localized
+		return LocalizableString.NetStats.total(total).localized.uppercased()
 	}
 
     var body: some View {
