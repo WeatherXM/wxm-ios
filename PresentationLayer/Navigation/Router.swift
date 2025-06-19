@@ -76,6 +76,8 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .tokenMetrics(let vm):
 				hasher.combine(vm)
+			case .netWorkGrowth(let vm):
+				hasher.combine(vm)
 			case .safariView(let url):
 				hasher.combine(url)
 		}
@@ -141,6 +143,8 @@ enum Route: Hashable, Equatable {
 				"proPromo"
 			case .tokenMetrics:
 				"tokenMetrics"
+			case .netWorkGrowth:
+				"netWorkGrowth"
 			case .safariView:
 				"safariView"
 		}
@@ -174,6 +178,7 @@ enum Route: Hashable, Equatable {
 	case photoGallery(GalleryViewModel)
 	case proPromo(ProPromotionalViewModel)
 	case tokenMetrics(NetworkStatsViewModel)
+	case netWorkGrowth(NetworkStatsViewModel)
 	case safariView(URL)
 }
 
@@ -270,6 +275,10 @@ extension Route {
 			case .tokenMetrics(let netStatsViewModel):
 				NavigationContainerView {
 					TokenMetricsView(viewModel: netStatsViewModel)
+				}
+			case .netWorkGrowth(let netStatsViewModel):
+				NavigationContainerView {
+					NetworkGrowthView(viewModel: netStatsViewModel)
 				}
 			case .safariView(let url):
 				SafariView(url: url)

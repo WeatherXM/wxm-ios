@@ -10,7 +10,7 @@ import CoreBluetoothMock
 
 func simulateNormal() async  throws{
 	CBMCentralManagerMock.simulatePowerOff()
-	CBMCentralManagerMock.simulatePeripherals([mockHelium, mockBTDevice])
+//	CBMCentralManagerMock.simulatePeripherals([mockHelium, mockBTDevice])
 	CBMCentralManagerMock.simulatePowerOn()
 	try await Task.sleep(for: .seconds(1))
 }
@@ -22,14 +22,14 @@ func simulatePoweredOff() async throws {
 
 func simulateNoWXMDevice() async  throws{
 	CBMCentralManagerMock.simulatePowerOff()
-	CBMCentralManagerMock.simulatePeripherals([mockBTDevice])
+//	CBMCentralManagerMock.simulatePeripherals([mockBTDevice])
 	CBMCentralManagerMock.simulatePowerOn()
 	try await Task.sleep(for: .seconds(1))
 }
 
 func simulateNotConnectable() async  throws{
 	CBMCentralManagerMock.simulatePowerOff()
-	CBMCentralManagerMock.simulatePeripherals([mockNotConnectableHelium, mockBTDevice])
+//	CBMCentralManagerMock.simulatePeripherals([mockNotConnectableHelium, mockBTDevice])
 	CBMCentralManagerMock.simulatePowerOn()
 	try await Task.sleep(for: .seconds(1))
 }

@@ -162,7 +162,12 @@ extension NetworkStatsViewModel {
 							 description: nil,
 							 accessory: nil,
 							 additionalStats: [netSize, lastAddedStations],
-							 analyticsItemId: .allocatedRewards)
+							 analyticsItemId: .allocatedRewards) { [weak self] in
+			guard let self else {
+				return
+			}
+			self.router.navigateTo(.netWorkGrowth(self))
+		}
 	}
 
 
@@ -208,16 +213,16 @@ extension NetworkStatsViewModel {
 	}
 
     func getStationStats(response: NetworkStatsResponse?) -> [NetworkStatsView.StationStatistics]? {
-		let total = (LocalizableString.total(nil).localized,
-					 response?.weatherStations?.onboarded,
-					 NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+		let manufactured = (LocalizableString.NetStats.manufactured.localized.uppercased(),
+							response?.weatherStations?.onboarded,
+							NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.totalWeatherStationsInfoTitle.localized,
 						   description: LocalizableString.NetStats.totalWeatherStationsInfoText.localized,
 						   analyticsItemId: .total)
 		},
-					 ParameterValue.total)
+							ParameterValue.total)
 
-		let claimed = (LocalizableString.NetStats.claimed.localized,
+		let deployed = (LocalizableString.NetStats.deployed.localized.uppercased(),
 					   response?.weatherStations?.claimed,
 					   NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.claimedWeatherStationsInfoTitle.localized,
@@ -227,7 +232,7 @@ extension NetworkStatsViewModel {
 
 					   ParameterValue.claimed)
 
-		let active = (LocalizableString.NetStats.active.localized,
+		let active = (LocalizableString.NetStats.active.localized.uppercased(),
 					  response?.weatherStations?.active,
 					  NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.activeWeatherStationsInfoTitle.localized,
@@ -236,7 +241,7 @@ extension NetworkStatsViewModel {
 		},
 					  ParameterValue.active)
 
-        let sections = [total, claimed, active]
+		let sections = [manufactured, deployed, active]
 
         return sections.compactMap { title, stats, info, analyticsItemId in
             guard let stats else {

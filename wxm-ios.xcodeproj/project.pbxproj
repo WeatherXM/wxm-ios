@@ -112,6 +112,7 @@
 		264E2F6129DC5AEE009580A2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 264E2F6029DC5AEE009580A2 /* Settings.bundle */; };
 		2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
 		2655F1822AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
+		2656A9A12E04142A002F0294 /* NetworkGrowthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */; };
 		265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265985542C4E467000BDF225 /* UnitsConverterTests.swift */; };
 		265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265985642C4EAD9F00BDF225 /* FoundationExtensionsTests.swift */; };
 		265D2CD829D194070044D032 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D2CD729D194070044D032 /* Common.swift */; };
@@ -880,6 +881,7 @@
 		264E2F5229DC3533009580A2 /* ThemeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEnum.swift; sourceTree = "<group>"; };
 		264E2F6029DC5AEE009580A2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
+		2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGrowthView.swift; sourceTree = "<group>"; };
 		265985542C4E467000BDF225 /* UnitsConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsConverterTests.swift; sourceTree = "<group>"; };
 		265985642C4EAD9F00BDF225 /* FoundationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		265D2CD729D194070044D032 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -1666,6 +1668,7 @@
 				267401912A3A00D500E54E35 /* StationDetailsGridView.swift */,
 				2632E6332A3378BF00A5ADB3 /* StatisticsChart.swift */,
 				269AD4632DD3902F00B89078 /* TokenMetricsView.swift */,
+				2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */,
 				269AD4732DD5C0A400B89078 /* NetworkStatsDonutView.swift */,
 			);
 			path = NetworkStatistics;
@@ -3969,6 +3972,7 @@
 				26AF276E2A0B815B0067A1B8 /* ChartsFactory.swift in Sources */,
 				268E8E0D2B07A2D50025163F /* IPadMaxWidthModifier.swift in Sources */,
 				2675481229A9181E008BCF40 /* CircleRadius.swift in Sources */,
+				2656A9A12E04142A002F0294 /* NetworkGrowthView.swift in Sources */,
 				266B01CD2B84FB59007AC689 /* NetworkDeviceRewardsSummaryResponse+.swift in Sources */,
 				268E8E0A2B07A1E30025163F /* AdaptiveGridContainerView.swift in Sources */,
 				26AA21D32BF3A45E00B91A7C /* ManualSerialNumberViewModel.swift in Sources */,

@@ -5621,6 +5621,17 @@
         }
       }
     },
+    "net_stats_deployed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deployed"
+          }
+        }
+      }
+    },
     "net_stats_earn_wxm" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5683,6 +5694,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Last Run"
+          }
+        }
+      }
+    },
+    "net_stats_manufactured" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manufactured"
           }
         }
       }

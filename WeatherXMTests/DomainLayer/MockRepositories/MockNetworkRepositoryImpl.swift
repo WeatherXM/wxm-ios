@@ -22,7 +22,11 @@ extension MockNetworkRepositoryImpl: NetworkRepository {
 												 dataDays: nil,
 												 tokens: nil,
 												 contracts: nil,
+												 rewards: nil,
+												 health: nil,
+												 growth: nil,
 												 lastUpdated: nil)
+
 		let response = DataResponse<NetworkStatsResponse, NetworkErrorResponse>(request: nil,
 																				response: nil,
 																				data: nil,
