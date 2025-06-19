@@ -105,19 +105,27 @@ extension NetworkStatsViewModel {
 		let qualityScore = Float(health.networkAvgQod ?? 0)
 		let qod = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.dataQualityScore.localized,
 												   value: LocalizableString.percentage(qualityScore).localized,
-												   accessory: nil,
+												   accessory: .init(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.dataQualityScore.localized,
+						   description: LocalizableString.NetStats.dataQualityScoreInfoText.localized,
+						   analyticsItemId: .dataQuality) // Check analytics event
+		},
 												   analyticsItemId: nil)
 
 		let value = health.activeStations ?? 0
 		let activeStations = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.activeStations.localized.uppercased(),
 															  value: value.localizedFormatted,
-															  accessory: nil,
+															  accessory: .init(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.activeStations.localized,
+						   description: LocalizableString.NetStats.activeStationsInfoText.localized,
+						   analyticsItemId: .activeStations) // Check analytics event
+		},
 															  analyticsItemId: nil)
 
 		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
-			self?.showInfo(title: LocalizableString.NetStats.wxmRewardsTitle.localized,
-						   description: LocalizableString.NetStats.totalAllocatedInfoText.localized,
-						   analyticsItemId: .allocatedRewards)
+			self?.showInfo(title: LocalizableString.NetStats.networkHealth.localized,
+						   description: LocalizableString.NetStats.networkHealthInfoText.localized,
+						   analyticsItemId: .networkStats) // Check analytics event
 		}
 
 		return getStatistics(from: timeSeries,

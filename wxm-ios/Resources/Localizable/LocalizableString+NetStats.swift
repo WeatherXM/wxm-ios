@@ -31,11 +31,14 @@ extension LocalizableString {
 		case buyStationCardInfoDescription
 		case dataDaysInfoText
 		case dataQualityScore
+		case dataQualityScoreInfoText
 		case activeStations
+		case activeStationsInfoText
 		case networkUptime
 		case deployYourStation
 		case checkTheWeather
 		case networkHealth
+		case networkHealthInfoText
 		case earnWXM
 		case enterWebThree
 		case totalAllocatedInfoText
@@ -132,14 +135,20 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_data_days_info_text"
 			case .dataQualityScore:
 				return "net_stats_data_quality_score"
+			case .dataQualityScoreInfoText:
+				return "net_stats_data_quality_score_info_text"
 			case .activeStations:
 				return "net_stats_active_stations"
+			case .activeStationsInfoText:
+				return "net_stats_active_stations_info_text"
 			case .networkUptime:
 				return "net_stats_network_uptime"
 			case .deployYourStation:
 				return "net_stats_deploy_your_station"
 			case .networkHealth:
 				return "net_stats_network_health"
+			case .networkHealthInfoText:
+				return "net_stats_network_health_info_text"
 			case .checkTheWeather:
 				return "net_stats_check_the_weather"
 			case .earnWXM:
