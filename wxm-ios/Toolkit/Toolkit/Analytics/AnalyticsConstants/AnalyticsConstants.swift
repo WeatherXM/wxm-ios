@@ -68,6 +68,7 @@ public enum Screen: String {
 	case wallet = "Wallet"
 	case mapLayerPicker = "Map Layer Picker"
 	case tokenMetrics = "Token Metrics"
+	case networkGrowth = "Network Growth"
 }
 
 public enum Event: String {
