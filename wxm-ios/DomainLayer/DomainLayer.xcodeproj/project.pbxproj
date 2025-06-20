@@ -26,6 +26,7 @@
 		264CC75B2B986AC90060DEA4 /* NetworkDeviceRewardBoostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CC75A2B986AC90060DEA4 /* NetworkDeviceRewardBoostsResponse.swift */; };
 		26504E3D2A7A4753008E2B59 /* NetworkResultsConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26504E3C2A7A4753008E2B59 /* NetworkResultsConverter.swift */; };
 		2656675D2C47A12800CA49A5 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656675C2C47A12800CA49A5 /* LoginService.swift */; };
+		2656A99F2E0407CF002F0294 /* NetworkStatsGrowth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656A99E2E0407CF002F0294 /* NetworkStatsGrowth.swift */; };
 		2664830629C218D900748F9C /* NetworkDevicesInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664830529C218D900748F9C /* NetworkDevicesInfoResponse.swift */; };
 		2664830829C21A8300748F9C /* NetworkDevicesTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2664830729C21A8300748F9C /* NetworkDevicesTypes.swift */; };
 		266B01B92B84D3A7007AC689 /* NetworkDeviceRewardsSummaryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B01B82B84D3A7007AC689 /* NetworkDeviceRewardsSummaryResponse.swift */; };
@@ -131,6 +132,7 @@
 		264CC75A2B986AC90060DEA4 /* NetworkDeviceRewardBoostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardBoostsResponse.swift; sourceTree = "<group>"; };
 		26504E3C2A7A4753008E2B59 /* NetworkResultsConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResultsConverter.swift; sourceTree = "<group>"; };
 		2656675C2C47A12800CA49A5 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		2656A99E2E0407CF002F0294 /* NetworkStatsGrowth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsGrowth.swift; sourceTree = "<group>"; };
 		2664830529C218D900748F9C /* NetworkDevicesInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicesInfoResponse.swift; sourceTree = "<group>"; };
 		2664830729C21A8300748F9C /* NetworkDevicesTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicesTypes.swift; sourceTree = "<group>"; };
 		266B01B82B84D3A7007AC689 /* NetworkDeviceRewardsSummaryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardsSummaryResponse.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				2674016F2A375D3800E54E35 /* NetworkStatsResponse.swift */,
 				264420D82E016E8100BE45C5 /* NetworkStatsRewards.swift */,
 				26982E3A2E02C83900B3AAE2 /* NetworkStatsHealth.swift */,
+				2656A99E2E0407CF002F0294 /* NetworkStatsGrowth.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				26F83C7A2D9BEE7100E5A8B8 /* RewardsUseCaseApi.swift in Sources */,
 				264813F82D8C50EE00BCCC31 /* Announcement.swift in Sources */,
 				26F83C762D9BD11E00E5A8B8 /* MeUseCaseApi.swift in Sources */,
+				2656A99F2E0407CF002F0294 /* NetworkStatsGrowth.swift in Sources */,
 				267401702A375D3800E54E35 /* NetworkStatsResponse.swift in Sources */,
 				B5E6B86128338CAB0060D050 /* NetworkTokenResponse.swift in Sources */,
 				267401722A37687000E54E35 /* NetworkUseCase.swift in Sources */,

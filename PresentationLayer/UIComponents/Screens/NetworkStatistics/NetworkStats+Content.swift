@@ -84,15 +84,6 @@ extension NetworkStatsView {
 
 extension NetworkStatsView {
     @ViewBuilder
-    var dataDaysView: some View {
-        if let dataDays = viewModel.dataDays {
-            generateStatsView(stats: dataDays)
-        } else {
-            EmptyView()
-        }
-    }
-
-    @ViewBuilder
     var rewardsView: some View {
         if let rewards = viewModel.rewards {
             generateStatsView(stats: rewards)
@@ -105,6 +96,15 @@ extension NetworkStatsView {
 	var healthView: some View {
 		if let health = viewModel.health {
 			generateStatsView(stats: health)
+		} else {
+			EmptyView()
+		}
+	}
+
+	@ViewBuilder
+	var growthView: some View {
+		if let growth = viewModel.growth {
+			generateStatsView(stats: growth)
 		} else {
 			EmptyView()
 		}
@@ -194,35 +194,4 @@ extension NetworkStatsView {
             EmptyView()
         }
     }
-    @ViewBuilder
-    var weatherStationsView: some View {
-        if let stationStats = viewModel.stationStats {
-            VStack(spacing: CGFloat(.mediumSpacing)) {
-                HStack {
-                    Text(LocalizableString.NetStats.weatherStations.localized)
-                        .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-                        .foregroundColor(Color(colorEnum: .text))
-                    Spacer()
-                }
-                .padding(.horizontal, 24.0)
-
-                VStack(spacing: CGFloat(.mediumSpacing)) {
-                    ForEach(stationStats, id: \.title) { stats in
-						stationStatsView(statistics: stats) { statistics, details in
-							viewModel.handleDetailsActionTap(statistics: statistics, details: details)
-						}
-                    }
-                }
-				.padding(.horizontal, CGFloat(.smallToMediumSidePadding))
-            }
-            .WXMCardStyle(backgroundColor: Color(colorEnum: .top),
-                          insideHorizontalPadding: 0.0,
-                          insideVerticalPadding: CGFloat(.smallToMediumSidePadding))
-            .wxmShadow()
-
-        } else {
-            EmptyView()
-        }
-    }
-
 }

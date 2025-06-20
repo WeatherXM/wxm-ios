@@ -43,6 +43,11 @@ public struct NetworkStatsToken: Codable, Sendable {
 		case circulatingSupply = "circulating_supply"
 		case totalSupply = "total_supply"
 	}
+
+	public init(circulatingSupply: Int?, totalSupply: Int?) {
+		self.circulatingSupply = circulatingSupply
+		self.totalSupply = totalSupply
+	}
 }
 
 public struct NetworkStatsTotalAllocated: Codable, Sendable {

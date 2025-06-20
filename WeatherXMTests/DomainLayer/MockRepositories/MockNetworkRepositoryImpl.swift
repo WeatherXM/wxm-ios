@@ -19,10 +19,12 @@ class MockNetworkRepositoryImpl {
 extension MockNetworkRepositoryImpl: NetworkRepository {
 	func getNetworkStats() throws -> AnyPublisher<DataResponse<NetworkStatsResponse, NetworkErrorResponse>, Never> {
 		let statsResponse = NetworkStatsResponse(weatherStations: nil,
-												 dataDays: nil,
-												 tokens: nil,
 												 contracts: nil,
+												 rewards: nil,
+												 health: nil,
+												 growth: nil,
 												 lastUpdated: nil)
+
 		let response = DataResponse<NetworkStatsResponse, NetworkErrorResponse>(request: nil,
 																				response: nil,
 																				data: nil,

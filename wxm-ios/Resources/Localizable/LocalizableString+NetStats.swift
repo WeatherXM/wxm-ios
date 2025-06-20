@@ -18,8 +18,10 @@ extension LocalizableString {
 		case wxmRewardsDescriptionMarkdown(String)
 		case totalSupply
 		case circulatingSupply
-		case weatherStations
+		case weatherStationsBreakdown
+		case manufactured
 		case claimed
+		case deployed
 		case claimedAmount(String)
 		case reserved(String)
 		case total(String)
@@ -39,6 +41,10 @@ extension LocalizableString {
 		case checkTheWeather
 		case networkHealth
 		case networkHealthInfoText
+		case networkGrowth
+		case networkSize
+		case addedInLastXDays(Int)
+		case networkScaleUp
 		case earnWXM
 		case enterWebThree
 		case totalAllocatedInfoText
@@ -71,7 +77,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
 	var localized: String {
 		var localized = NSLocalizedString(self.key, comment: "")
 		switch self {
-			case .lastDays(let count):
+			case .lastDays(let count),
+					.addedInLastXDays(let count):
 				localized = String(format: localized, count)
 			case .buyStationCardDescription(let count):
 				localized = String(format: localized, count)
@@ -109,10 +116,14 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_total_supply"
 			case .circulatingSupply:
 				return "net_stats_circulating_supply"
-			case .weatherStations:
-				return "net_stats_weather_stations"
+			case .weatherStationsBreakdown:
+				return "net_stats_weather_stations_breakdown"
+			case .manufactured:
+				return "net_stats_manufactured"
 			case .claimed:
 				return "net_stats_claimed"
+			case .deployed:
+				return "net_stats_deployed"
 			case .claimedAmount:
 				return "net_stats_claimed_amount_format"
 			case .reserved:
@@ -149,6 +160,14 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_network_health"
 			case .networkHealthInfoText:
 				return "net_stats_network_health_info_text"
+			case .networkGrowth:
+				return "net_stats_network_growth"
+			case .networkSize:
+				return "net_stats_network_size"
+			case .addedInLastXDays:
+				return "net_stats_added_in_last_x_days"
+			case .networkScaleUp:
+				return "net_stats_network_scale_up"
 			case .checkTheWeather:
 				return "net_stats_check_the_weather"
 			case .earnWXM:
