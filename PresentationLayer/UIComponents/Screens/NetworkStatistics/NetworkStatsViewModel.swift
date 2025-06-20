@@ -77,10 +77,10 @@ class NetworkStatsViewModel: ObservableObject {
 		info = .init(title: title, description: description)
         showInfo = true
 
-        if let analyticsItemId {
-            WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
-                                                                  .itemId: analyticsItemId])
-        }
+		if let analyticsItemId {
+			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .learnMore,
+																		.itemId: analyticsItemId])
+		}
     }
 }
 

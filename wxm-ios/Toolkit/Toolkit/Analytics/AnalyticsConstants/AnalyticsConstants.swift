@@ -186,6 +186,7 @@ public enum ParameterValue {
 	case errorSource
 	case networkStatsSource
 	case networkStats
+	case networkHealth
 	case dune
 	case contactSupport
 	case historyDay
@@ -339,5 +340,6 @@ public enum ParameterValue {
 	case selectMapLayer
 	case `default`
 	case dataQuality
+	case dataQualityScore
 	case custom(String)
 }

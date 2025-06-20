@@ -282,6 +282,8 @@ extension ParameterValue: RawRepresentable {
 				return "network_stats"
 			case .networkStats:
 				return "Network Stats"
+			case .networkHealth:
+				return "network_health"
 			case .dune:
 				return "dune"
 			case .totalWXMAllocated:
@@ -588,6 +590,8 @@ extension ParameterValue: RawRepresentable {
 				return "default"
 			case .dataQuality:
 				return "data_quality"
+			case .dataQualityScore:
+				return "data_quality_score"
 		}
 	}
 }

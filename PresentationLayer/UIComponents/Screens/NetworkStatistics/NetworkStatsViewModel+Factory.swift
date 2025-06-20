@@ -76,7 +76,7 @@ extension NetworkStatsViewModel {
 												   accessory: .init(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.dataQualityScore.localized,
 						   description: LocalizableString.NetStats.dataQualityScoreInfoText.localized,
-						   analyticsItemId: .dataQuality) // Check analytics event
+						   analyticsItemId: .dataQualityScore)
 		},
 												   analyticsItemId: nil)
 
@@ -86,14 +86,14 @@ extension NetworkStatsViewModel {
 															  accessory: .init(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.activeStations.localized,
 						   description: LocalizableString.NetStats.activeStationsInfoText.localized,
-						   analyticsItemId: .activeStations) // Check analytics event
+						   analyticsItemId: .activeStations)
 		},
 															  analyticsItemId: nil)
 
 		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.networkHealth.localized,
 						   description: LocalizableString.NetStats.networkHealthInfoText.localized,
-						   analyticsItemId: .networkStats) // Check analytics event
+						   analyticsItemId: .networkHealth)
 		}
 
 		return getStatistics(from: timeSeries,
