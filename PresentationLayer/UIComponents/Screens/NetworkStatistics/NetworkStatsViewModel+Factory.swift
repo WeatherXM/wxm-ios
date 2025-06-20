@@ -97,6 +97,48 @@ extension NetworkStatsViewModel {
 		}
     }
 
+	func getHealthStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
+		guard let health = response?.health,
+			  let timeSeries = fixedTimeSeries(timeSeries: health.health30DaysGraph) else {
+			return nil
+		}
+		let qualityScore = Float(health.networkAvgQod ?? 0)
+		let qod = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.dataQualityScore.localized,
+												   value: LocalizableString.percentage(qualityScore).localized,
+												   accessory: .init(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.dataQualityScore.localized,
+						   description: LocalizableString.NetStats.dataQualityScoreInfoText.localized,
+						   analyticsItemId: .dataQuality) // Check analytics event
+		},
+												   analyticsItemId: nil)
+
+		let value = health.activeStations ?? 0
+		let activeStations = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.activeStations.localized.uppercased(),
+															  value: value.localizedFormatted,
+															  accessory: .init(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.activeStations.localized,
+						   description: LocalizableString.NetStats.activeStationsInfoText.localized,
+						   analyticsItemId: .activeStations) // Check analytics event
+		},
+															  analyticsItemId: nil)
+
+		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.networkHealth.localized,
+						   description: LocalizableString.NetStats.networkHealthInfoText.localized,
+						   analyticsItemId: .networkStats) // Check analytics event
+		}
+
+		return getStatistics(from: timeSeries,
+							 title: LocalizableString.NetStats.networkHealth.localized,
+							 chartTitle: LocalizableString.NetStats.networkUptime.localized,
+							 chartValueText: LocalizableString.percentage(Float(health.networkUptime ?? 0)).localized,
+							 description: nil,
+							 accessory: accessory,
+							 additionalStats: [qod, activeStations],
+							 analyticsItemId: .allocatedRewards)
+	}
+
+
 	func getTokenStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
 		guard let tokens = response?.rewards?.tokenMetrics?.token else {
 			return nil
@@ -258,6 +300,8 @@ extension NetworkStatsViewModel {
 private extension NetworkStatsViewModel {
     func getStatistics(from days: [NetworkStatsTimeSeries]?,
                        title: String,
+					   chartTitle: String? = nil,
+					   chartValueText: String? = nil,
                        description: AttributedString? = nil,
                        showExternalLinkIcon: Bool = false,
                        externalLinkTapAction: VoidCallback? = nil,
@@ -268,18 +312,18 @@ private extension NetworkStatsViewModel {
 					   cardTapAction: VoidCallback? = nil) -> NetworkStatsView.Statistics {
         var chartModel: NetStatsChartViewModel?
         var xAxisTuple: NetworkStatsView.XAxisTuple?
-        var mainText: String?
-        var dateString: String?
+		var mainText: String?
+		var dateString: String? = chartTitle
 
-        if let days {
+		if let days {
             let lastVal = days.last?.value ?? 0
             let firstVal = days.first?.value ?? 0
             let diff = lastVal - firstVal
-            mainText = diff.toCompactDecimaFormat ?? "\(diff)"
+			mainText = chartValueText ?? diff.toCompactDecimaFormat ?? "\(diff)"
             chartModel = NetStatsChartViewModel(entries: days.enumerated().map { ChartDataEntry(x: Double($0), y: Double($1.value ?? 0)) })
             xAxisTuple = (days.first?.ts?.getFormattedDate(format: .monthLiteralDay) ?? "", days.last?.ts?.getFormattedDate(format: .monthLiteralDay) ?? "")
 
-			if let firstDate = days.first?.ts {
+			if let firstDate = days.first?.ts, chartTitle == nil {
 				let daysCount = Date.now.days(from: firstDate)
 				dateString = LocalizableString.NetStats.lastDays(daysCount).localized
 			}

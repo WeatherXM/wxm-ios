@@ -13,6 +13,7 @@ public struct NetworkStatsResponse: Codable, Sendable {
     public let tokens: NetworkStationsStatsTokens?
 	public let contracts: NetworkStatsContracts?
 	public let rewards: NetworkStatsRewards?
+	public let health: NetworkStatsHealth?
     public let lastUpdated: Date?
 
     enum CodingKeys: String, CodingKey {
@@ -21,6 +22,7 @@ public struct NetworkStatsResponse: Codable, Sendable {
         case tokens
 		case contracts
 		case rewards
+		case health = "net_health"
         case lastUpdated = "last_updated"
     }
 
@@ -29,12 +31,14 @@ public struct NetworkStatsResponse: Codable, Sendable {
 				tokens: NetworkStationsStatsTokens?,
 				contracts: NetworkStatsContracts?,
 				rewards: NetworkStatsRewards?,
+				health: NetworkStatsHealth?,
 				lastUpdated: Date?) {
 		self.weatherStations = weatherStations
 		self.dataDays = dataDays
 		self.tokens = tokens
 		self.contracts = contracts
 		self.rewards = rewards
+		self.health = health
 		self.lastUpdated = lastUpdated
 	}
 }

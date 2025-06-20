@@ -5357,6 +5357,28 @@
         }
       }
     },
+    "net_stats_active_stations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active Stations"
+          }
+        }
+      }
+    },
+    "net_stats_active_stations_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The number of weather stations that were active during the last day."
+          }
+        }
+      }
+    },
     "net_stats_active_weather_stations_info_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5555,6 +5577,28 @@
         }
       }
     },
+    "net_stats_data_quality_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data Quality Score"
+          }
+        }
+      }
+    },
+    "net_stats_data_quality_score_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The network’s effectiveness relies on meaningful, usable data, measured by the Data Quality score. A station’s daily reward is tied to its Data Quality Score, calculated using an open-source algorithm that assesses data quality and provides a confidence level in the data received."
+          }
+        }
+      }
+    },
     "net_stats_deploy_your_station" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5665,6 +5709,28 @@
         }
       }
     },
+    "net_stats_network_health" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network health"
+          }
+        }
+      }
+    },
+    "net_stats_network_health_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reflects the overall performance and reliability of the network. It consists of data quality, network uptime and number of healthy stations (calculated monthly) to indicate how well the network is functioning and how trustworthy the collected data is."
+          }
+        }
+      }
+    },
     "net_stats_network_statistics" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5683,6 +5749,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View real-time network health, station activity, $WXM rewards and more."
+          }
+        }
+      }
+    },
+    "net_stats_network_uptime" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network uptime"
           }
         }
       }
