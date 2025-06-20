@@ -31,8 +31,9 @@ class NetworkStatsViewModel: ObservableObject {
 
     private var isEmpty: Bool {
         rewards == nil &&
-        stationStats == nil
-    }
+		health == nil &&
+		growth == nil
+	}
 
 	private let useCase: NetworkUseCaseApi?
     private var cancellables: Set<AnyCancellable> = []
