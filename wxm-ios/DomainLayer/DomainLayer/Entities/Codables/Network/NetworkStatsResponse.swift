@@ -25,7 +25,6 @@ public struct NetworkStatsResponse: Codable, Sendable {
     }
 
 	public init(weatherStations: NetworkWeatherStations?,
-				tokens: NetworkStationsStatsTokens?,
 				contracts: NetworkStatsContracts?,
 				rewards: NetworkStatsRewards?,
 				health: NetworkStatsHealth?,
@@ -57,38 +56,6 @@ public struct NetworkStationsStatsDetails: Codable, Sendable {
     public let amount: Int?
     public let percentage: Float?
     public let url: String?
-}
-
-public struct NetworkStationsStatsTokens: Codable, Sendable {
-    public let totalSupply: Int?
-	public let circulatingSupply: Int?
-	public let totalAllocated: Double?
-    public let allocatedPerDay: [NetworkStatsTimeSeries]?
-	public let lastTxHashUrl: String?
-    public let averageMonthly: Double?
-
-    enum CodingKeys: String, CodingKey {
-        case totalSupply = "total_supply"
-		case circulatingSupply = "circulating_supply"
-		case totalAllocated = "total_allocated"
-		case lastTxHashUrl = "last_tx_hash_url"
-        case allocatedPerDay = "allocated_per_day"
-        case averageMonthly = "avg_monthly"
-    }
-
-	public init(totalSupply: Int?,
-				circulatingSupply: Int?,
-				totalAllocated: Double?,
-				allocatedPerDay: [NetworkStatsTimeSeries]?,
-				lastTxHashUrl: String?,
-				averageMonthly: Double?) {
-		self.totalSupply = totalSupply
-		self.circulatingSupply = circulatingSupply
-		self.totalAllocated = totalAllocated
-		self.allocatedPerDay = allocatedPerDay
-		self.lastTxHashUrl = lastTxHashUrl
-		self.averageMonthly = averageMonthly
-	}
 }
 
 public struct NetworkStatsContracts: Codable, Sendable {
