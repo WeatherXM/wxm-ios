@@ -19,37 +19,17 @@ struct DomainExtensionsTests {
 
 	@Test
 	func networkStationsStatsTokensSupplyProgress() {
-		var tokens = NetworkStationsStatsTokens(totalSupply: 1000,
-												circulatingSupply: 250,
-												totalAllocated: nil,
-												allocatedPerDay: nil,
-												lastTxHashUrl: nil,
-												averageMonthly: nil)
-//		#expect(tokens.supplyProgress == 0.25)
+		var tokens = NetworkStatsToken(circulatingSupply: 250, totalSupply: 1000)
+		#expect(tokens.supplyProgress == 0.25)
 
-		tokens = NetworkStationsStatsTokens(totalSupply: nil,
-											circulatingSupply: 250,
-											totalAllocated: nil,
-											allocatedPerDay: nil,
-											lastTxHashUrl: nil,
-											averageMonthly: nil)
-//		#expect(tokens.supplyProgress == nil)
+		tokens = NetworkStatsToken(circulatingSupply: 250, totalSupply: nil)
+		#expect(tokens.supplyProgress == nil)
 
-		tokens = NetworkStationsStatsTokens(totalSupply: 1000,
-											circulatingSupply: nil,
-											totalAllocated: nil,
-											allocatedPerDay: nil,
-											lastTxHashUrl: nil,
-											averageMonthly: nil)
-//		#expect(tokens.supplyProgress == nil)
+		tokens = NetworkStatsToken(circulatingSupply: nil, totalSupply: 1000)
+		#expect(tokens.supplyProgress == nil)
 
-		tokens = NetworkStationsStatsTokens(totalSupply: 0,
-											circulatingSupply: 100,
-											totalAllocated: nil,
-											allocatedPerDay: nil,
-											lastTxHashUrl: nil,
-											averageMonthly: nil)
-//		#expect(tokens.supplyProgress?.isInfinite == true)
+		tokens = NetworkStatsToken(circulatingSupply: 100, totalSupply: 0)
+		#expect(tokens.supplyProgress?.isInfinite == true)
 	}
 
 	@Test
