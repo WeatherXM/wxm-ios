@@ -13,7 +13,7 @@ import SwiftUI
 
 extension NetworkStatsViewModel {
     func getDataDaysStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
-        guard let dataDays = fixedTimeSeries(timeSeries: response?.dataDays) else {
+        guard let dataDays = response?.dataDays else {
             return nil
         }
         let total = NetworkStatsView.AdditionalStats(title: LocalizableString.total(nil).localized,
@@ -46,7 +46,7 @@ extension NetworkStatsViewModel {
 
     func getRewardsStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
 		guard let tokens = response?.rewards,
-			  let allocatedPerDay = fixedTimeSeries(timeSeries: tokens.last30DaysGraph) else {
+			  let allocatedPerDay = tokens.last30DaysGraph else {
             return nil
         }
 		let totalValue = tokens.total
@@ -99,7 +99,7 @@ extension NetworkStatsViewModel {
 
 	func getHealthStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
 		guard let health = response?.health,
-			  let timeSeries = fixedTimeSeries(timeSeries: health.health30DaysGraph) else {
+			  let timeSeries = health.health30DaysGraph else {
 			return nil
 		}
 		let qualityScore = Float(health.networkAvgQod ?? 0)
@@ -140,7 +140,7 @@ extension NetworkStatsViewModel {
 
 	func getGrowthStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
 		guard let growth = response?.growth,
-			  let timeSeries = fixedTimeSeries(timeSeries: growth.last30DaysGraph) else {
+			  let timeSeries = growth.last30DaysGraph else {
 			return nil
 		}
 		let networkSize = growth.networkSize ?? 0
@@ -375,21 +375,4 @@ private extension NetworkStatsViewModel {
 										   cardTapAction: cardTapAction,
 										   customView: customView)
     }
-
-	func fixedTimeSeries(timeSeries: [NetworkStatsTimeSeries]?) -> [NetworkStatsTimeSeries]? {
-		guard let timeSeries, let lastItem = timeSeries.last else {
-			return nil
-		}
-
-		var dropCount = -1
-		for item in timeSeries.reversed() {
-			if lastItem.value == item.value {
-				dropCount += 1
-			} else {
-				break
-			}
-		}
-
-		return Array(timeSeries.dropLast(dropCount))
-	}
 }
