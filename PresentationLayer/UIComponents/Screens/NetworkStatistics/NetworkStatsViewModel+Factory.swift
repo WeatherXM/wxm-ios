@@ -45,11 +45,11 @@ extension NetworkStatsViewModel {
     }
 
     func getRewardsStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
-        guard let tokens = response?.tokens,
-				let allocatedPerDay = fixedTimeSeries(timeSeries: tokens.allocatedPerDay) else {
+		guard let tokens = response?.rewards,
+			  let allocatedPerDay = fixedTimeSeries(timeSeries: tokens.last30DaysGraph) else {
             return nil
         }
-		let totalValue = tokens.totalAllocated
+		let totalValue = tokens.total
         let total = NetworkStatsView.AdditionalStats(title: LocalizableString.total(nil).localized,
                                                      value: totalValue?.toCompactDecimaFormat ??  "?",
                                                      accessory: nil,
@@ -98,7 +98,7 @@ extension NetworkStatsViewModel {
     }
 
 	func getTokenStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
-		guard let tokens = response?.tokens else {
+		guard let tokens = response?.rewards?.tokenMetrics?.token else {
 			return nil
 		}
 
@@ -202,6 +202,57 @@ extension NetworkStatsViewModel {
         
         return manufacturerCTA
     }
+
+	func getTotalAllocatedRewards(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
+		guard let rewards = response?.rewards,
+			  let totalAllocated = rewards.tokenMetrics?.totalAllocated else {
+			return nil
+		}
+
+		let url = response?.rewards?.tokenMetrics?.totalAllocated?.dune?.dunePublicUrl ?? ""
+		let description = LocalizableString.NetStats.totalWXMAllocatedDescription(url).localized.attributedMarkdown
+
+		let baseRewardsAccessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.baseRewards.localized,
+						   description: LocalizableString.NetStats.baseRewardsInfo.localized,
+						   analyticsItemId: .baseRewards)
+		}
+
+		let baseRewards = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.baseRewards.localized,
+														   value: totalAllocated.baseRewards?.toCompactDecimaFormat ??  "?",
+														   accessory: baseRewardsAccessory,
+														   analyticsItemId: nil)
+
+		let boostRewardsAccessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.boostRewards.localized,
+						   description: LocalizableString.NetStats.boostRewardsInfo.localized,
+						   analyticsItemId: .boostRewards)
+		}
+
+		let boostRewards = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.boostRewards.localized,
+															value: totalAllocated.boostRewards?.toCompactDecimaFormat ??  "?",
+															accessory: boostRewardsAccessory,
+															analyticsItemId: nil)
+
+		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
+			self?.showInfo(title: LocalizableString.NetStats.totalWXMAllocated.localized,
+						   description: LocalizableString.NetStats.totalWXMAllocatedInfo.localized,
+						   analyticsItemId: .totalWXMAllocated)
+		}
+
+		return getStatistics(from: nil,
+							 title: LocalizableString.NetStats.totalWXMAllocated.localized,
+							 description: description,
+							 showExternalLinkIcon: true,
+							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkStats,
+																												  .source: .dune]) },
+							 accessory: accessory,
+							 customView: NetworkStatsDonutView(claimed: Double(totalAllocated.dune?.claimed ?? 0),
+															   reserved: Double(totalAllocated.dune?.unclaimed ?? 0)).toAnyView,
+							 additionalStats: [baseRewards, boostRewards],
+							 analyticsItemId: nil)
+
+	}
 }
 
 private extension NetworkStatsViewModel {
@@ -211,6 +262,7 @@ private extension NetworkStatsViewModel {
                        showExternalLinkIcon: Bool = false,
                        externalLinkTapAction: VoidCallback? = nil,
                        accessory: NetworkStatsView.Accessory?,
+					   customView: AnyView? = nil,
                        additionalStats: [NetworkStatsView.AdditionalStats]?,
                        analyticsItemId: ParameterValue?,
 					   cardTapAction: VoidCallback? = nil) -> NetworkStatsView.Statistics {
@@ -244,7 +296,8 @@ private extension NetworkStatsViewModel {
                                            xAxisTuple: xAxisTuple,
                                            additionalStats: additionalStats,
                                            analyticsItemId: analyticsItemId,
-										   cardTapAction: cardTapAction)
+										   cardTapAction: cardTapAction,
+										   customView: customView)
     }
 
 	func fixedTimeSeries(timeSeries: [NetworkStatsTimeSeries]?) -> [NetworkStatsTimeSeries]? {

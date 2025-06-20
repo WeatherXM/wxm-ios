@@ -5379,6 +5379,50 @@
         }
       }
     },
+    "net_stats_base_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Base Rewards"
+          }
+        }
+      }
+    },
+    "net_stats_base_rewards_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The standard $WXM tokens that weather stations earn for consistently providing reliable data. These are regular rewards received by stations on a daily basis for their normal operation."
+          }
+        }
+      }
+    },
+    "net_stats_boost_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost Rewards"
+          }
+        }
+      }
+    },
+    "net_stats_boost_rewards_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost Rewards are extra tokens awarded for special contributions or actions."
+          }
+        }
+      }
+    },
     "net_stats_buy_station_card_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5463,6 +5507,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Claimed"
+          }
+        }
+      }
+    },
+    "net_stats_claimed_amount_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claimed \n%@"
           }
         }
       }
@@ -5632,6 +5687,28 @@
         }
       }
     },
+    "net_stats_reserved_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reserved\n%@"
+          }
+        }
+      }
+    },
+    "net_stats_token_metrics" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token metrics"
+          }
+        }
+      }
+    },
     "net_stats_total_allocated_info_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5639,6 +5716,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Station owners are rewarded in $WXM for providing data to the WeatherXM Network."
+          }
+        }
+      }
+    },
+    "net_stats_total_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total\n%@"
           }
         }
       }
@@ -5683,6 +5771,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Total Weather Stations"
+          }
+        }
+      }
+    },
+    "net_stats_total_wxm_allocated" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total $WXM allocated"
+          }
+        }
+      }
+    },
+    "net_stats_total_wxm_allocated_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**[View network stats on Dune](%@)**"
+          }
+        }
+      }
+    },
+    "net_stats_total_wxm_allocated_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The total amount of $WXM tokens distributed within the network. This includes both claimed tokens (earned and withdrawn) and reserved tokens (earned but not yet withdrawn)."
           }
         }
       }

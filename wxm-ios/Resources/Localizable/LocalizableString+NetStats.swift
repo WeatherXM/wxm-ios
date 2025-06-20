@@ -20,7 +20,11 @@ extension LocalizableString {
 		case circulatingSupply
 		case weatherStations
 		case claimed
+		case claimedAmount(String)
+		case reserved(String)
+		case total(String)
 		case active
+		case tokenMetrics
 		case buyStationCardTitle
 		case buyStationCardDescription(Float)
 		case buyStationCardButtonTitle
@@ -46,6 +50,13 @@ extension LocalizableString {
 		case manufacturerCTAButtonTitle
 		case wxmTokenTitle
 		case wxmTokenDescriptionMarkdown(String)
+		case totalWXMAllocated
+		case totalWXMAllocatedInfo
+		case totalWXMAllocatedDescription(String)
+		case baseRewards
+		case baseRewardsInfo
+		case boostRewards
+		case boostRewardsInfo
 	}
 }
 
@@ -58,7 +69,11 @@ extension LocalizableString.NetStats: WXMLocalizable {
 			case .buyStationCardDescription(let count):
 				localized = String(format: localized, count)
 			case .wxmTokenDescriptionMarkdown(let text),
-					.wxmRewardsDescriptionMarkdown(let text):
+					.claimedAmount(let text),
+					.reserved(let text),
+					.total(let text),
+					.wxmRewardsDescriptionMarkdown(let text),
+					.totalWXMAllocatedDescription(let text):
 				localized = String(format: localized, text)
 			default:
 				break
@@ -91,8 +106,16 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_weather_stations"
 			case .claimed:
 				return "net_stats_claimed"
+			case .claimedAmount:
+				return "net_stats_claimed_amount_format"
+			case .reserved:
+				return "net_stats_reserved_format"
+			case .total:
+				return "net_stats_total_format"
 			case .active:
 				return "net_stats_active"
+			case .tokenMetrics:
+				return "net_stats_token_metrics"
 			case .buyStationCardTitle:
 				return "net_stats_buy_station_card_title"
 			case .buyStationCardDescription:
@@ -143,6 +166,20 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_wxm_token_title"
 			case .wxmTokenDescriptionMarkdown:
 				return "net_stats_wxm_token_description_markdown"
+			case .totalWXMAllocated:
+				return "net_stats_total_wxm_allocated"
+			case .totalWXMAllocatedInfo:
+				return "net_stats_total_wxm_allocated_info"
+			case .totalWXMAllocatedDescription:
+				return "net_stats_total_wxm_allocated_description"
+			case .baseRewards:
+				return "net_stats_base_rewards"
+			case .baseRewardsInfo:
+				return "net_stats_base_rewards_info"
+			case .boostRewards:
+				return "net_stats_boost_rewards"
+			case .boostRewardsInfo:
+				return "net_stats_boost_rewards_info"
 		}
 	}
 }

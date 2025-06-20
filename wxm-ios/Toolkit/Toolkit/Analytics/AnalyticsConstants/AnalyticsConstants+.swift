@@ -280,6 +280,16 @@ extension ParameterValue: RawRepresentable {
 				return "error"
 			case .networkStatsSource:
 				return "network_stats"
+			case .networkStats:
+				return "Network Stats"
+			case .dune:
+				return "dune"
+			case .totalWXMAllocated:
+				return "total_wxm_allocated"
+			case .baseRewards:
+				return "base_rewards"
+			case .boostRewards:
+				return "boost_rewards"
 			case .contactSupport:
 				return "Contact Support"
 			case .historyDay:

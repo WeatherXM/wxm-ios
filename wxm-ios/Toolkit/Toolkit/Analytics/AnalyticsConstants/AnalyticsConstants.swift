@@ -67,6 +67,7 @@ public enum Screen: String {
 	case widgetSelectStation = "Widget Station Selection"
 	case wallet = "Wallet"
 	case mapLayerPicker = "Map Layer Picker"
+	case tokenMetrics = "Token Metrics"
 }
 
 public enum Event: String {
@@ -183,6 +184,8 @@ public enum ParameterValue {
 	case claimingSource
 	case errorSource
 	case networkStatsSource
+	case networkStats
+	case dune
 	case contactSupport
 	case historyDay
 	case walletTransactions
@@ -225,6 +228,9 @@ public enum ParameterValue {
 	case learnMore
 	case dataDays
 	case allocatedRewards
+	case totalWXMAllocated
+	case baseRewards
+	case boostRewards
 	case totalStations
 	case claimedStations
 	case activeStations
