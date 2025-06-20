@@ -404,6 +404,8 @@ extension ParameterValue: RawRepresentable {
 				return "token_contract"
 			case .rewardContract:
 				return "reward_contract"
+			case .rewardMechanism:
+				return "reward_mechanism"
 			case .lastRunHash:
 				return "last_run_hash"
 			case .totalSupply:

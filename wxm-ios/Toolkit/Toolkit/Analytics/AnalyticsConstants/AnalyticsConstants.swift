@@ -247,6 +247,7 @@ public enum ParameterValue {
 	case tokenClaimingResult
 	case tokenContract
 	case rewardContract
+	case rewardMechanism
 	case lastRunHash
 	case totalSupply
 	case circulatingSupply
