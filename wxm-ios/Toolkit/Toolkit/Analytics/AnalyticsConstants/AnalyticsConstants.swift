@@ -227,7 +227,6 @@ public enum ParameterValue {
 	case claimed
 	case active
 	case learnMore
-	case dataDays
 	case allocatedRewards
 	case totalWXMAllocated
 	case baseRewards

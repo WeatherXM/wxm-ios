@@ -370,8 +370,6 @@ extension ParameterValue: RawRepresentable {
 				return "active"
 			case .learnMore:
 				return "Learn More"
-			case .dataDays:
-				return "data_days"
 			case .allocatedRewards:
 				return "allocated_rewards"
 			case .totalStations:
