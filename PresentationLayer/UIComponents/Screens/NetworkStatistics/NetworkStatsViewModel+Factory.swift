@@ -12,38 +12,6 @@ import Toolkit
 import SwiftUI
 
 extension NetworkStatsViewModel {
-    func getDataDaysStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
-        guard let dataDays = response?.dataDays else {
-            return nil
-        }
-        let total = NetworkStatsView.AdditionalStats(title: LocalizableString.total(nil).localized,
-                                                     value: dataDays.last?.value?.toCompactDecimaFormat ?? "?",
-                                                     color: .text,
-                                                     accessory: nil,
-                                                     analyticsItemId: nil)
-        
-        let count = dataDays.count
-        let lastDataDayValue = dataDays.last?.value ?? 0.0
-        let preLastDataDayValue = dataDays[safe: count - 2]?.value ?? 0.0
-        let value = (lastDataDayValue - preLastDataDayValue).toCompactDecimaFormat ?? "?"
-        let preLastDay = NetworkStatsView.AdditionalStats(title: LocalizableString.NetStats.lastRun.localized,
-                                                          value: "+\(value)",
-                                                          color: .reward_score_very_high,
-                                                          accessory: nil,
-                                                          analyticsItemId: nil)
-		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
-			self?.showInfo(title: LocalizableString.NetStats.weatherStationDays.localized,
-						   description: LocalizableString.NetStats.dataDaysInfoText.localized,
-						   analyticsItemId: .dataDays)
-		}
-
-        return getStatistics(from: dataDays,
-                             title: LocalizableString.NetStats.weatherStationDays.localized,
-                             accessory: accessory,
-                             additionalStats: [total, preLastDay],
-                             analyticsItemId: .dataDays)
-    }
-
     func getRewardsStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
 		guard let tokens = response?.rewards,
 			  let allocatedPerDay = tokens.last30DaysGraph else {

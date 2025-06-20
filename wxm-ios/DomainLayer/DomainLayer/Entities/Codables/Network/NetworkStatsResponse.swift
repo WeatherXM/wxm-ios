@@ -9,8 +9,6 @@ import Foundation
 
 public struct NetworkStatsResponse: Codable, Sendable {
     public let weatherStations: NetworkWeatherStations?
-    public let dataDays: [NetworkStatsTimeSeries]?
-    public let tokens: NetworkStationsStatsTokens?
 	public let contracts: NetworkStatsContracts?
 	public let rewards: NetworkStatsRewards?
 	public let health: NetworkStatsHealth?
@@ -19,8 +17,6 @@ public struct NetworkStatsResponse: Codable, Sendable {
 
     enum CodingKeys: String, CodingKey {
         case weatherStations = "weather_stations"
-        case dataDays = "data_days"
-        case tokens
 		case contracts
 		case rewards
 		case health = "net_health"
@@ -29,7 +25,6 @@ public struct NetworkStatsResponse: Codable, Sendable {
     }
 
 	public init(weatherStations: NetworkWeatherStations?,
-				dataDays: [NetworkStatsTimeSeries]?,
 				tokens: NetworkStationsStatsTokens?,
 				contracts: NetworkStatsContracts?,
 				rewards: NetworkStatsRewards?,
@@ -37,8 +32,6 @@ public struct NetworkStatsResponse: Codable, Sendable {
 				growth: NetworkStatsGrowth?,
 				lastUpdated: Date?) {
 		self.weatherStations = weatherStations
-		self.dataDays = dataDays
-		self.tokens = tokens
 		self.contracts = contracts
 		self.rewards = rewards
 		self.health = health

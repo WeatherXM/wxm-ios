@@ -84,15 +84,6 @@ extension NetworkStatsView {
 
 extension NetworkStatsView {
     @ViewBuilder
-    var dataDaysView: some View {
-        if let dataDays = viewModel.dataDays {
-            generateStatsView(stats: dataDays)
-        } else {
-            EmptyView()
-        }
-    }
-
-    @ViewBuilder
     var rewardsView: some View {
         if let rewards = viewModel.rewards {
             generateStatsView(stats: rewards)

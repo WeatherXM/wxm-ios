@@ -47,7 +47,6 @@ private extension NetworkStatsView {
             viewModel.refresh(completion: completion)
         } content: {
             VStack(spacing: CGFloat(.mediumSpacing)) {
-                dataDaysView
 				healthView
 				growthView
                 buyStationView
