@@ -189,7 +189,7 @@ extension NetworkStatsViewModel {
 							NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.manufactured.localized,
 						   description: LocalizableString.NetStats.totalWeatherStationsInfoText.localized,
-						   analyticsItemId: .total)
+						   analyticsItemId: .totalStations)
 		},
 							ParameterValue.total)
 
@@ -198,7 +198,7 @@ extension NetworkStatsViewModel {
 					   NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.deployed.localized,
 						   description: LocalizableString.NetStats.claimedWeatherStationsInfoText.localized,
-						   analyticsItemId: .claimed)
+						   analyticsItemId: .claimedStations)
 		},
 
 					   ParameterValue.claimed)
@@ -208,7 +208,7 @@ extension NetworkStatsViewModel {
 					  NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.activeWeatherStationsInfoTitle.localized,
 						   description: LocalizableString.NetStats.activeWeatherStationsInfoText.localized,
-						   analyticsItemId: .active)
+						   analyticsItemId: .activeStations)
 		},
 					  ParameterValue.active)
 
