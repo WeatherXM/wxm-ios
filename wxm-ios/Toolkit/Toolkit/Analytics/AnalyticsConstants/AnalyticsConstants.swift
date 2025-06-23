@@ -68,6 +68,7 @@ public enum Screen: String {
 	case wallet = "Wallet"
 	case mapLayerPicker = "Map Layer Picker"
 	case tokenMetrics = "Token Metrics"
+	case networkGrowth = "Network Growth"
 }
 
 public enum Event: String {
@@ -185,6 +186,7 @@ public enum ParameterValue {
 	case errorSource
 	case networkStatsSource
 	case networkStats
+	case networkHealth
 	case dune
 	case contactSupport
 	case historyDay
@@ -226,7 +228,6 @@ public enum ParameterValue {
 	case claimed
 	case active
 	case learnMore
-	case dataDays
 	case allocatedRewards
 	case totalWXMAllocated
 	case baseRewards
@@ -246,6 +247,7 @@ public enum ParameterValue {
 	case tokenClaimingResult
 	case tokenContract
 	case rewardContract
+	case rewardMechanism
 	case lastRunHash
 	case totalSupply
 	case circulatingSupply
@@ -339,5 +341,6 @@ public enum ParameterValue {
 	case selectMapLayer
 	case `default`
 	case dataQuality
+	case dataQualityScore
 	case custom(String)
 }

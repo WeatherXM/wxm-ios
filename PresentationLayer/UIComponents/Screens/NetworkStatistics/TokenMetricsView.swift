@@ -29,6 +29,7 @@ struct TokenMetricsView: View {
 		.onAppear {
 			navigationObject.title = LocalizableString.NetStats.tokenMetrics.localized
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
+
 			WXMAnalytics.shared.trackScreen(.tokenMetrics)
 		}
     }

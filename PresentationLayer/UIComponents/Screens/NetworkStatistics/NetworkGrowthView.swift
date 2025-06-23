@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct NetworkGrowthView: View {
 	@ObservedObject var viewModel: NetworkStatsViewModel
@@ -27,6 +28,8 @@ struct NetworkGrowthView: View {
 		.onAppear {
 			navigationObject.title = LocalizableString.NetStats.networkGrowth.localized
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
+
+			WXMAnalytics.shared.trackScreen(.networkGrowth)
 		}
     }
 }

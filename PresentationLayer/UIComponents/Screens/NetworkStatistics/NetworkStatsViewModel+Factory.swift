@@ -34,7 +34,8 @@ extension NetworkStatsViewModel {
 			guard let txHashUrl = tokens.lastTxHashUrl else {
 				return
 			}
-			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .lastRunHash])
+			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkStats,
+																		.source: .lastRunHash])
 
 			LinkNavigationHelper().openUrl(txHashUrl)
 		},
@@ -54,7 +55,8 @@ extension NetworkStatsViewModel {
                              title: LocalizableString.NetStats.wxmRewardsTitle.localized,
 							 description: rewardsDescription,
 							 showExternalLinkIcon: true,
-							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .rewardContract]) },
+							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkStats,
+																												  .source: .rewardMechanism]) },
                              accessory: accessory,
                              additionalStats: [total, lastDay],
 							 analyticsItemId: .allocatedRewards) { [weak self] in
@@ -76,7 +78,7 @@ extension NetworkStatsViewModel {
 												   accessory: .init(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.dataQualityScore.localized,
 						   description: LocalizableString.NetStats.dataQualityScoreInfoText.localized,
-						   analyticsItemId: .dataQuality) // Check analytics event
+						   analyticsItemId: .dataQualityScore)
 		},
 												   analyticsItemId: nil)
 
@@ -86,14 +88,14 @@ extension NetworkStatsViewModel {
 															  accessory: .init(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.activeStations.localized,
 						   description: LocalizableString.NetStats.activeStationsInfoText.localized,
-						   analyticsItemId: .activeStations) // Check analytics event
+						   analyticsItemId: .activeStations)
 		},
 															  analyticsItemId: nil)
 
 		let accessory = NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.networkHealth.localized,
 						   description: LocalizableString.NetStats.networkHealthInfoText.localized,
-						   analyticsItemId: .networkStats) // Check analytics event
+						   analyticsItemId: .networkHealth)
 		}
 
 		return getStatistics(from: timeSeries,
@@ -174,7 +176,8 @@ extension NetworkStatsViewModel {
 							 title: LocalizableString.NetStats.wxmTokenTitle.localized,
 							 description: tokenDescription,
 							 showExternalLinkIcon: true,
-							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .tokenContract]) },
+							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkStats,
+																												  .source: .tokenContract]) },
 							 accessory: nil,
 							 additionalStats: [totalSupply, circulatingSupply],
 							 analyticsItemId: nil)
@@ -186,7 +189,7 @@ extension NetworkStatsViewModel {
 							NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.manufactured.localized,
 						   description: LocalizableString.NetStats.totalWeatherStationsInfoText.localized,
-						   analyticsItemId: .total)
+						   analyticsItemId: .totalStations)
 		},
 							ParameterValue.total)
 
@@ -195,7 +198,7 @@ extension NetworkStatsViewModel {
 					   NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.deployed.localized,
 						   description: LocalizableString.NetStats.claimedWeatherStationsInfoText.localized,
-						   analyticsItemId: .claimed)
+						   analyticsItemId: .claimedStations)
 		},
 
 					   ParameterValue.claimed)
@@ -205,7 +208,7 @@ extension NetworkStatsViewModel {
 					  NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
 			self?.showInfo(title: LocalizableString.NetStats.activeWeatherStationsInfoTitle.localized,
 						   description: LocalizableString.NetStats.activeWeatherStationsInfoText.localized,
-						   analyticsItemId: .active)
+						   analyticsItemId: .activeStations)
 		},
 					  ParameterValue.active)
 
