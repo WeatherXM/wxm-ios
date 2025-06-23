@@ -49,9 +49,9 @@ private extension NetworkStatsView {
             VStack(spacing: CGFloat(.mediumSpacing)) {
 				healthView
 				growthView
-                buyStationView
 				ProBannerView(description: LocalizableString.Promotional.wantMoreAccurateForecast.localized,
 							  analyticsSource: .localNetworkStats)
+                buyStationView
 				rewardsView
                 manufacturerView
                 lastUpdatedView
