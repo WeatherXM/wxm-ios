@@ -149,7 +149,8 @@ private extension ExplorerLayerPickerView {
 						Text(description)
 							.foregroundStyle(Color(colorEnum: .text))
 							.font(.system(size: CGFloat(.mediumFontSize)))
-						
+							.fixedSize(horizontal: false, vertical: true)
+
 						Spacer()
 					}
 				}
