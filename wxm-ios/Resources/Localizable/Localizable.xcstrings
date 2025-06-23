@@ -5698,17 +5698,6 @@
         }
       }
     },
-    "net_stats_manufactured" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Manufactured"
-          }
-        }
-      }
-    },
     "net_stats_manufacturer_cta_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5892,17 +5881,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Total supply refers to the number of $WXM that have already been created and are either in circulation or locked."
-          }
-        }
-      }
-    },
-    "net_stats_total_weather_stations_info_text" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The number of weather stations produced."
           }
         }
       }

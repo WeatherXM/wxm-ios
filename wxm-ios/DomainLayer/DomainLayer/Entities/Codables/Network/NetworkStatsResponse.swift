@@ -40,7 +40,6 @@ public struct NetworkStatsResponse: Codable, Sendable {
 }
 
 public struct NetworkWeatherStations: Codable, Sendable {
-    public let onboarded: NetworkStationsStats?
     public let claimed: NetworkStationsStats?
     public let active: NetworkStationsStats?
 }

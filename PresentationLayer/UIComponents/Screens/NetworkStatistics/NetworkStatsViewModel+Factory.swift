@@ -184,15 +184,6 @@ extension NetworkStatsViewModel {
 	}
 
     func getStationStats(response: NetworkStatsResponse?) -> [NetworkStatsView.StationStatistics]? {
-		let manufactured = (LocalizableString.NetStats.manufactured.localized.uppercased(),
-							response?.weatherStations?.onboarded,
-							NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
-			self?.showInfo(title: LocalizableString.NetStats.manufactured.localized,
-						   description: LocalizableString.NetStats.totalWeatherStationsInfoText.localized,
-						   analyticsItemId: .totalStations)
-		},
-							ParameterValue.total)
-
 		let deployed = (LocalizableString.NetStats.deployed.localized.uppercased(),
 					   response?.weatherStations?.claimed,
 					   NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
@@ -212,7 +203,7 @@ extension NetworkStatsViewModel {
 		},
 					  ParameterValue.active)
 
-		let sections = [manufactured, deployed, active]
+		let sections = [deployed, active]
 
         return sections.compactMap { title, stats, info, analyticsItemId in
             guard let stats else {
