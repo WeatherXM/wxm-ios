@@ -132,11 +132,11 @@ extension NetworkStatsViewModel {
 							 description: nil,
 							 accessory: nil,
 							 additionalStats: [netSize, lastAddedStations],
-							 analyticsItemId: .allocatedRewards) { [weak self] in
+							 analyticsItemId: nil) { [weak self] in
 			guard let self else {
 				return
 			}
-			self.router.navigateTo(.netWorkGrowth(self))
+			self.router.navigateTo(.networkGrowth(self))
 		}
 	}
 
