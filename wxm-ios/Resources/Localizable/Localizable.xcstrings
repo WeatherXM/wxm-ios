@@ -5357,6 +5357,28 @@
         }
       }
     },
+    "net_stats_active_stations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active Stations"
+          }
+        }
+      }
+    },
+    "net_stats_active_stations_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The number of weather stations that were active during the last day."
+          }
+        }
+      }
+    },
     "net_stats_active_weather_stations_info_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5375,6 +5397,61 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Active Weather Stations"
+          }
+        }
+      }
+    },
+    "net_stats_added_in_last_x_days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added in last %d days"
+          }
+        }
+      }
+    },
+    "net_stats_base_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Base Rewards"
+          }
+        }
+      }
+    },
+    "net_stats_base_rewards_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The standard $WXM tokens that weather stations earn for consistently providing reliable data. These are regular rewards received by stations on a daily basis for their normal operation."
+          }
+        }
+      }
+    },
+    "net_stats_boost_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost Rewards"
+          }
+        }
+      }
+    },
+    "net_stats_boost_rewards_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boost Rewards are extra tokens awarded for special contributions or actions."
           }
         }
       }
@@ -5423,6 +5500,17 @@
         }
       }
     },
+    "net_stats_check_the_weather" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the Weather"
+          }
+        }
+      }
+    },
     "net_stats_circulating_supply" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5456,13 +5544,24 @@
         }
       }
     },
+    "net_stats_claimed_amount_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claimed \n%@"
+          }
+        }
+      }
+    },
     "net_stats_claimed_weather_stations_info_text" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The number of weather stations already claimed by users."
+            "value" : "The number of weather stations already deployed by users."
           }
         }
       }
@@ -5489,6 +5588,61 @@
         }
       }
     },
+    "net_stats_data_quality_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data Quality Score"
+          }
+        }
+      }
+    },
+    "net_stats_data_quality_score_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The network’s effectiveness relies on meaningful, usable data, measured by the Data Quality score. A station’s daily reward is tied to its Data Quality Score, calculated using an open-source algorithm that assesses data quality and provides a confidence level in the data received."
+          }
+        }
+      }
+    },
+    "net_stats_deploy_your_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deploy your Station"
+          }
+        }
+      }
+    },
+    "net_stats_deployed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deployed"
+          }
+        }
+      }
+    },
+    "net_stats_earn_wxm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Earn $WXM tokens"
+          }
+        }
+      }
+    },
     "net_stats_empty_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5507,6 +5661,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Service Unavailable"
+          }
+        }
+      }
+    },
+    "net_stats_enter_web3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Weather 3.0"
           }
         }
       }
@@ -5566,6 +5731,61 @@
         }
       }
     },
+    "net_stats_network_growth" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network growth"
+          }
+        }
+      }
+    },
+    "net_stats_network_health" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network health"
+          }
+        }
+      }
+    },
+    "net_stats_network_health_info_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reflects the overall performance and reliability of the network. It consists of data quality, network uptime and number of healthy stations (calculated monthly) to indicate how well the network is functioning and how trustworthy the collected data is."
+          }
+        }
+      }
+    },
+    "net_stats_network_scale_up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network scale up"
+          }
+        }
+      }
+    },
+    "net_stats_network_size" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network Size"
+          }
+        }
+      }
+    },
     "net_stats_network_statistics" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5588,6 +5808,39 @@
         }
       }
     },
+    "net_stats_network_uptime" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network uptime"
+          }
+        }
+      }
+    },
+    "net_stats_reserved_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reserved\n%@"
+          }
+        }
+      }
+    },
+    "net_stats_token_metrics" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token metrics"
+          }
+        }
+      }
+    },
     "net_stats_total_allocated_info_text" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5595,6 +5848,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Station owners are rewarded in $WXM for providing data to the WeatherXM Network."
+          }
+        }
+      }
+    },
+    "net_stats_total_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total\n%@"
           }
         }
       }
@@ -5621,17 +5885,6 @@
         }
       }
     },
-    "net_stats_total_weather_stations_info_text" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The number of weather stations manufactured and registered on the network."
-          }
-        }
-      }
-    },
     "net_stats_total_weather_stations_info_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5639,6 +5892,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Total Weather Stations"
+          }
+        }
+      }
+    },
+    "net_stats_total_wxm_allocated" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total $WXM allocated"
+          }
+        }
+      }
+    },
+    "net_stats_total_wxm_allocated_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**[View network stats on Dune](%@)**"
+          }
+        }
+      }
+    },
+    "net_stats_total_wxm_allocated_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The total amount of $WXM tokens distributed within the network. This includes both claimed tokens (earned and withdrawn) and reserved tokens (earned but not yet withdrawn)."
           }
         }
       }
@@ -5654,13 +5940,13 @@
         }
       }
     },
-    "net_stats_weather_stations" : {
+    "net_stats_weather_stations_breakdown" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Weather Stations"
+            "value" : "Weather stations breakdown"
           }
         }
       }
@@ -5671,7 +5957,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "**[View rewards contract on Arbiscan](%@)**"
+            "value" : "**[Learn more about our reward mechanism](%@)**"
           }
         }
       }

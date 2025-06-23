@@ -15,11 +15,13 @@ final class MockNetworkUseCase: NetworkUseCaseApi {
 	nonisolated(unsafe) var deletedSearchRecent: Bool = false
 
 	func getNetworkStats() throws -> AnyPublisher<DataResponse<NetworkStatsResponse, NetworkErrorResponse>, Never> {
-		let statsResponse = NetworkStatsResponse(weatherStations: nil,
-												 dataDays: nil,
-												 tokens: nil,
+		let statsResponse =	NetworkStatsResponse(weatherStations: nil,
 												 contracts: nil,
+												 rewards: nil,
+												 health: nil,
+												 growth: nil,
 												 lastUpdated: nil)
+
 		let response = DataResponse<NetworkStatsResponse, NetworkErrorResponse>(request: nil,
 																				response: nil,
 																				data: nil,

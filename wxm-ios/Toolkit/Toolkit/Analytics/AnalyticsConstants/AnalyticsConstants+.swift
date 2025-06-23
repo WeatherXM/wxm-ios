@@ -280,6 +280,18 @@ extension ParameterValue: RawRepresentable {
 				return "error"
 			case .networkStatsSource:
 				return "network_stats"
+			case .networkStats:
+				return "Network Stats"
+			case .networkHealth:
+				return "network_health"
+			case .dune:
+				return "dune"
+			case .totalWXMAllocated:
+				return "total_wxm_allocated"
+			case .baseRewards:
+				return "base_rewards"
+			case .boostRewards:
+				return "boost_rewards"
 			case .contactSupport:
 				return "Contact Support"
 			case .historyDay:
@@ -360,8 +372,6 @@ extension ParameterValue: RawRepresentable {
 				return "active"
 			case .learnMore:
 				return "Learn More"
-			case .dataDays:
-				return "data_days"
 			case .allocatedRewards:
 				return "allocated_rewards"
 			case .totalStations:
@@ -394,6 +404,8 @@ extension ParameterValue: RawRepresentable {
 				return "token_contract"
 			case .rewardContract:
 				return "reward_contract"
+			case .rewardMechanism:
+				return "reward_mechanism"
 			case .lastRunHash:
 				return "last_run_hash"
 			case .totalSupply:
@@ -580,6 +592,8 @@ extension ParameterValue: RawRepresentable {
 				return "density"
 			case .dataQuality:
 				return "data_quality"
+			case .dataQualityScore:
+				return "data_quality_score"
 		}
 	}
 }

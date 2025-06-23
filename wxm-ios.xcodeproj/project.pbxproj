@@ -112,6 +112,7 @@
 		264E2F6129DC5AEE009580A2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 264E2F6029DC5AEE009580A2 /* Settings.bundle */; };
 		2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
 		2655F1822AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
+		2656A9A12E04142A002F0294 /* NetworkGrowthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */; };
 		265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265985542C4E467000BDF225 /* UnitsConverterTests.swift */; };
 		265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265985642C4EAD9F00BDF225 /* FoundationExtensionsTests.swift */; };
 		265D2CD829D194070044D032 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D2CD729D194070044D032 /* Common.swift */; };
@@ -382,6 +383,9 @@
 		2698AE9C2CB6667A00DDB04D /* DeviceInfoFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698AE9B2CB6667A00DDB04D /* DeviceInfoFactory.swift */; };
 		2698AE9E2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2698AE9D2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift */; };
 		2699F5652A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2699F5642A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift */; };
+		269AD4642DD3902F00B89078 /* TokenMetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269AD4632DD3902F00B89078 /* TokenMetricsView.swift */; };
+		269AD4722DD4CB9500B89078 /* NetworkStatsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269AD4712DD4CB8C00B89078 /* NetworkStatsViews.swift */; };
+		269AD4742DD5C0A400B89078 /* NetworkStatsDonutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269AD4732DD5C0A400B89078 /* NetworkStatsDonutView.swift */; };
 		269C6E792C4A97C800879263 /* CompactNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C6E782C4A97C800879263 /* CompactNumberFormatterTests.swift */; };
 		269C809C2AB9E76F005F9BD6 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C809B2AB9E76F005F9BD6 /* Badge.swift */; };
 		269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 269C96892BDBD5660035B8F1 /* Mixpanel */; };
@@ -877,6 +881,7 @@
 		264E2F5229DC3533009580A2 /* ThemeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEnum.swift; sourceTree = "<group>"; };
 		264E2F6029DC5AEE009580A2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
+		2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGrowthView.swift; sourceTree = "<group>"; };
 		265985542C4E467000BDF225 /* UnitsConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsConverterTests.swift; sourceTree = "<group>"; };
 		265985642C4EAD9F00BDF225 /* FoundationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		265D2CD729D194070044D032 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -1128,6 +1133,9 @@
 		2698AE9B2CB6667A00DDB04D /* DeviceInfoFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoFactory.swift; sourceTree = "<group>"; };
 		2698AE9D2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+DeviceInfo.swift"; sourceTree = "<group>"; };
 		2699F5642A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkStatsViewModel+Factory.swift"; sourceTree = "<group>"; };
+		269AD4632DD3902F00B89078 /* TokenMetricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenMetricsView.swift; sourceTree = "<group>"; };
+		269AD4712DD4CB8C00B89078 /* NetworkStatsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsViews.swift; sourceTree = "<group>"; };
+		269AD4732DD5C0A400B89078 /* NetworkStatsDonutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatsDonutView.swift; sourceTree = "<group>"; };
 		269C6E782C4A97C800879263 /* CompactNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactNumberFormatterTests.swift; sourceTree = "<group>"; };
 		269C809B2AB9E76F005F9BD6 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		269E85702B0242C100BE774C /* WXMShareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXMShareModifier.swift; sourceTree = "<group>"; };
@@ -1652,12 +1660,16 @@
 		2632E62D2A335EAC00A5ADB3 /* NetworkStatistics */ = {
 			isa = PBXGroup;
 			children = (
+				269AD4712DD4CB8C00B89078 /* NetworkStatsViews.swift */,
 				2674016C2A372FC100E54E35 /* NetworkStats+Content.swift */,
 				2632E62E2A335ECD00A5ADB3 /* NetworkStatsView.swift */,
 				2699F5642A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift */,
 				2632E6312A335EF400A5ADB3 /* NetworkStatsViewModel.swift */,
 				267401912A3A00D500E54E35 /* StationDetailsGridView.swift */,
 				2632E6332A3378BF00A5ADB3 /* StatisticsChart.swift */,
+				269AD4632DD3902F00B89078 /* TokenMetricsView.swift */,
+				2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */,
+				269AD4732DD5C0A400B89078 /* NetworkStatsDonutView.swift */,
 			);
 			path = NetworkStatistics;
 			sourceTree = "<group>";
@@ -3960,6 +3972,7 @@
 				26AF276E2A0B815B0067A1B8 /* ChartsFactory.swift in Sources */,
 				268E8E0D2B07A2D50025163F /* IPadMaxWidthModifier.swift in Sources */,
 				2675481229A9181E008BCF40 /* CircleRadius.swift in Sources */,
+				2656A9A12E04142A002F0294 /* NetworkGrowthView.swift in Sources */,
 				266B01CD2B84FB59007AC689 /* NetworkDeviceRewardsSummaryResponse+.swift in Sources */,
 				268E8E0A2B07A1E30025163F /* AdaptiveGridContainerView.swift in Sources */,
 				26AA21D32BF3A45E00B91A7C /* ManualSerialNumberViewModel.swift in Sources */,
@@ -4104,6 +4117,7 @@
 				26BA07772B7FC2AC00F7F5A0 /* WeeklyStreakView.swift in Sources */,
 				26CA1EBA2DC89539008C87A2 /* ExplorerPopoverView.swift in Sources */,
 				2692D8722A4D8DEA0060CB3C /* Numeric+.swift in Sources */,
+				269AD4642DD3902F00B89078 /* TokenMetricsView.swift in Sources */,
 				26A4115929B6078500A2C10B /* OverviewView.swift in Sources */,
 				2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */,
 				266B01E52B8767E4007AC689 /* StationIndication.swift in Sources */,
@@ -4162,6 +4176,7 @@
 				26DD42E129B0F741008E277E /* StationDetailsContainerView.swift in Sources */,
 				267401922A3A00D500E54E35 /* StationDetailsGridView.swift in Sources */,
 				2698AE9E2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift in Sources */,
+				269AD4722DD4CB9500B89078 /* NetworkStatsViews.swift in Sources */,
 				2664834329C89F8A00748F9C /* StationDetailsTypes.swift in Sources */,
 				264CC7602B9872D40060DEA4 /* RewardBoostsView.swift in Sources */,
 				26FFCCDA2BD2483F00880AAD /* ForecastDetailsDailyView.swift in Sources */,
@@ -4202,6 +4217,7 @@
 				2672B87E2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift in Sources */,
 				2675484229A91930008BCF40 /* SwinjectInterface.swift in Sources */,
 				26F6F73E2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */,
+				269AD4742DD5C0A400B89078 /* NetworkStatsDonutView.swift in Sources */,
 				267547CB29A9181E008BCF40 /* TabBarModifier.swift in Sources */,
 				2675483E29A9181E008BCF40 /* TabBarView.swift in Sources */,
 				262B02F62B1DE4A600C31FE7 /* WebContainerView.swift in Sources */,

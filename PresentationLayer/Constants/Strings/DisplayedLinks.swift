@@ -76,7 +76,7 @@ enum DisplayedLinks {
 			case .heliumRegionFrequencies:
 				return "https://docs.helium.com/iot/lorawan-region-plans"
 			case .shopLink:
-				return "https://shop.weatherxm.com"
+				return "https://weatherxm.com/shop/"
 			case .shareDevice:
 				return "https://explorer.weatherxm.com/stations/"
 			case .shareCells:

@@ -8,7 +8,7 @@
 import Foundation
 import DomainLayer
 
-extension NetworkStationsStatsTokens {
+extension NetworkStatsToken {
 	var supplyProgress: CGFloat? {
 		guard let totalSupply, let circulatingSupply else {
 			return nil

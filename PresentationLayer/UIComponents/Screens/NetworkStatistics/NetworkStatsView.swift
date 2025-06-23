@@ -47,13 +47,12 @@ private extension NetworkStatsView {
             viewModel.refresh(completion: completion)
         } content: {
             VStack(spacing: CGFloat(.mediumSpacing)) {
-                dataDaysView
-                rewardsView
-                buyStationView
-                tokenView
+				healthView
+				growthView
 				ProBannerView(description: LocalizableString.Promotional.wantMoreAccurateForecast.localized,
 							  analyticsSource: .localNetworkStats)
-                weatherStationsView
+                buyStationView
+				rewardsView
                 manufacturerView
                 lastUpdatedView
             }
