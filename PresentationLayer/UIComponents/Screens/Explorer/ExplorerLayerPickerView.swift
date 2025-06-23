@@ -44,12 +44,12 @@ extension ExplorerLayerPickerView {
 
 		var analyticsItemId: ParameterValue {
 			switch self {
-				case .default: .default
+				case .density: .density
 				case .dataQuality: .dataQuality
 			}
 		}
-		case `default`
 		case dataQuality
+		case density
 	}
 }
 
@@ -97,10 +97,10 @@ private extension ExplorerLayerPickerView {
 														.itemId: option.analyticsItemId])
 		} label: {
 			switch option {
-				case .default:
-					rowView(title: LocalizableString.Explorer.mapLayersDefault.localized,
-							description: LocalizableString.Explorer.mapLayersDefaultDescription.localized,
-							isSelected: selectedOption == .default) {
+				case .density:
+					rowView(title: LocalizableString.Explorer.mapLayersDensity.localized,
+							description: LocalizableString.Explorer.mapLayersDensityDescription.localized,
+							isSelected: selectedOption == .density) {
 						EmptyView()
 					}
 				case .dataQuality:
@@ -149,7 +149,8 @@ private extension ExplorerLayerPickerView {
 						Text(description)
 							.foregroundStyle(Color(colorEnum: .text))
 							.font(.system(size: CGFloat(.mediumFontSize)))
-						
+							.fixedSize(horizontal: false, vertical: true)
+
 						Spacer()
 					}
 				}

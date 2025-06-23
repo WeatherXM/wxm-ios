@@ -331,7 +331,7 @@ public enum ParameterValue {
 	case proPromotion
 	case infoCellDataQuality
 	case selectMapLayer
-	case `default`
+	case density
 	case dataQuality
 	case custom(String)
 }

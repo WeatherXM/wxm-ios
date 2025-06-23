@@ -27,7 +27,7 @@ public final class ExplorerViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var isSearchActive: Bool = false
 	@Published var explorerData: ExplorerData = ExplorerData()
-	@Published var layerOption: ExplorerLayerPickerView.Option = .default
+	@Published var layerOption: ExplorerLayerPickerView.Option = .dataQuality
 	@Published var showLayerPicker: Bool = false
 
 	lazy var snapLocationPublisher: AnyPublisher<MapBoxMapView.SnapLocation?, Never> = snapLocationSubject.eraseToAnyPublisher()

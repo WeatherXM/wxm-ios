@@ -41,6 +41,17 @@ extension SearchView {
 			}.overlay {
 				HStack(spacing: CGFloat(.mediumSpacing)) {
 					Button {
+						viewModel.isSearchActive = true
+					} label: {
+						Text(FontIcon.magnifyingGlass.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+							.foregroundColor(Color(colorEnum: .textWhite))
+							.padding(.horizontal, CGFloat(.smallSidePadding))
+					}
+
+					Spacer()
+
+					Button {
 						WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .explorerPopUp])
 						showOptionsPopOver = true
 					} label: {
@@ -50,16 +61,6 @@ extension SearchView {
 							.padding(.horizontal, CGFloat(.smallSidePadding))
 					}
 
-					Spacer()
-
-					Button {
-						viewModel.isSearchActive = true
-					} label: {
-						Text(FontIcon.magnifyingGlass.rawValue)
-							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
-							.foregroundColor(Color(colorEnum: .textWhite))
-							.padding(.horizontal, CGFloat(.smallSidePadding))
-					}
 				}
 			}
             .padding(CGFloat(.defaultSidePadding))

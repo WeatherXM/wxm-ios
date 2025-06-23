@@ -576,8 +576,8 @@ extension ParameterValue: RawRepresentable {
 				return "info_cell_data_quality"
 			case .selectMapLayer:
 				return "Select Map Layer"
-			case .default:
-				return "default"
+			case .density:
+				return "density"
 			case .dataQuality:
 				return "data_quality"
 		}
