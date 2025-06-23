@@ -4246,18 +4246,18 @@
         }
       }
     },
-    "explorer_map_layers_default" : {
+    "explorer_map_layers_density" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Default"
+            "value" : "Density"
           }
         }
       }
     },
-    "explorer_map_layers_default_description" : {
+    "explorer_map_layers_density_description" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

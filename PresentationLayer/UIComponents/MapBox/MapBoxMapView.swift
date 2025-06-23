@@ -138,14 +138,14 @@ class MapViewController: UIViewController {
 	internal weak var pointManager: PointAnnotationManager?
 
     weak var delegate: MapViewControllerDelegate?
-	var visibleLayer: ExplorerLayerPickerView.Option = .default {
+	var visibleLayer: ExplorerLayerPickerView.Option = .density {
 		didSet {
 			updateVisbileLayer()
 		}
 	}
 	private var visiblePolygonManager: PolygonAnnotationManager? {
 		switch visibleLayer {
-			case .default:
+			case .density:
 				polygonManager
 			case .dataQuality:
 				coloredPolygonManager
@@ -355,7 +355,7 @@ class MapViewController: UIViewController {
 	private func updateVisbileLayer() {
 		try? mapView.mapboxMap.updateLayer(withId: MapBoxConstants.polygonManagerId, type: FillLayer.self) { layer in
 			switch visibleLayer {
-				case .default:
+				case .density:
 					layer.visibility = .constant(.visible)
 				case .dataQuality:
 					layer.visibility = .constant(.none)
@@ -364,7 +364,7 @@ class MapViewController: UIViewController {
 
 		try? mapView.mapboxMap.updateLayer(withId: MapBoxConstants.coloredPolygonManagerId, type: FillLayer.self) { layer in
 			switch visibleLayer {
-				case .default:
+				case .density:
 					layer.visibility = .constant(.none)
 				case .dataQuality:
 					layer.visibility = .constant(.visible)

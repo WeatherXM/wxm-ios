@@ -10,8 +10,8 @@ import Foundation
 extension LocalizableString {
 	enum Explorer {
 		case mapLayers
-		case mapLayersDefault
-		case mapLayersDefaultDescription
+		case mapLayersDensity
+		case mapLayersDensityDescription
 		case mapLayersDataQualityScore
 		case mapLayersDataQualityScoreDescription
 	}
@@ -27,10 +27,10 @@ extension LocalizableString.Explorer: WXMLocalizable {
 		switch self {
 			case .mapLayers:
 				"explorer_map_layers"
-			case .mapLayersDefault:
-				"explorer_map_layers_default"
-			case .mapLayersDefaultDescription:
-				"explorer_map_layers_default_description"
+			case .mapLayersDensity:
+				"explorer_map_layers_density"
+			case .mapLayersDensityDescription:
+				"explorer_map_layers_density_description"
 			case .mapLayersDataQualityScore:
 				"explorer_map_layers_data_quality_score"
 			case .mapLayersDataQualityScoreDescription:
