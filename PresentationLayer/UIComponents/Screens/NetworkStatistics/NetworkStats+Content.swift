@@ -36,7 +36,6 @@ extension NetworkStatsView {
         let chartModel: NetStatsChartViewModel?
         let xAxisTuple: XAxisTuple?
         var additionalStats: [AdditionalStats]?
-        let analyticsItemId: ParameterValue?
 		let cardTapAction: VoidCallback?
 		var customView: AnyView?
     }

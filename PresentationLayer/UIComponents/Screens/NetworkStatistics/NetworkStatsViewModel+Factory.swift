@@ -58,8 +58,7 @@ extension NetworkStatsViewModel {
 							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkStats,
 																												  .source: .rewardMechanism]) },
                              accessory: accessory,
-                             additionalStats: [total, lastDay],
-							 analyticsItemId: .allocatedRewards) { [weak self] in
+                             additionalStats: [total, lastDay]) { [weak self] in
 			guard let self else {
 				return
 			}
@@ -104,8 +103,7 @@ extension NetworkStatsViewModel {
 							 chartValueText: LocalizableString.percentage(Float(health.networkUptime ?? 0)).localized,
 							 description: nil,
 							 accessory: accessory,
-							 additionalStats: [qod, activeStations],
-							 analyticsItemId: .allocatedRewards)
+							 additionalStats: [qod, activeStations])
 	}
 
 	func getGrowthStatistics(response: NetworkStatsResponse?) -> NetworkStatsView.Statistics? {
@@ -131,8 +129,7 @@ extension NetworkStatsViewModel {
 							 chartValueText: LocalizableString.percentage(Float(growth.networkScaleUp ?? 0)).localized,
 							 description: nil,
 							 accessory: nil,
-							 additionalStats: [netSize, lastAddedStations],
-							 analyticsItemId: nil) { [weak self] in
+							 additionalStats: [netSize, lastAddedStations]) { [weak self] in
 			guard let self else {
 				return
 			}
@@ -179,8 +176,7 @@ extension NetworkStatsViewModel {
 							 externalLinkTapAction: { WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkStats,
 																												  .source: .tokenContract]) },
 							 accessory: nil,
-							 additionalStats: [totalSupply, circulatingSupply],
-							 analyticsItemId: nil)
+							 additionalStats: [totalSupply, circulatingSupply])
 	}
 
     func getStationStats(response: NetworkStatsResponse?) -> [NetworkStatsView.StationStatistics]? {
@@ -285,8 +281,7 @@ extension NetworkStatsViewModel {
 							 accessory: accessory,
 							 customView: NetworkStatsDonutView(claimed: Double(totalAllocated.dune?.claimed ?? 0),
 															   reserved: Double(totalAllocated.dune?.unclaimed ?? 0)).toAnyView,
-							 additionalStats: [baseRewards, boostRewards],
-							 analyticsItemId: nil)
+							 additionalStats: [baseRewards, boostRewards])
 
 	}
 }
@@ -302,7 +297,6 @@ private extension NetworkStatsViewModel {
                        accessory: NetworkStatsView.Accessory?,
 					   customView: AnyView? = nil,
                        additionalStats: [NetworkStatsView.AdditionalStats]?,
-                       analyticsItemId: ParameterValue?,
 					   cardTapAction: VoidCallback? = nil) -> NetworkStatsView.Statistics {
         var chartModel: NetStatsChartViewModel?
         var xAxisTuple: NetworkStatsView.XAxisTuple?
@@ -333,7 +327,6 @@ private extension NetworkStatsViewModel {
                                            chartModel: chartModel,
                                            xAxisTuple: xAxisTuple,
                                            additionalStats: additionalStats,
-                                           analyticsItemId: analyticsItemId,
 										   cardTapAction: cardTapAction,
 										   customView: customView)
     }
