@@ -43,11 +43,14 @@ class MockProtocol: URLProtocol, @unchecked Sendable {
             return
         }
 
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-			self?.client?.urlProtocol(self!, didLoad: data)		
-			self?.client?.urlProtocolDidFinishLoading(self!)
-		}
-    }
+		loadData(data)
+	}
 
     override func stopLoading() {}
+
+	func loadData(_ data: Data) {
+		client?.urlProtocol(self, didLoad: data)
+		client?.urlProtocolDidFinishLoading(self)
+
+	}
 }
