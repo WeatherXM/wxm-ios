@@ -19,6 +19,7 @@ extension LocalizableString {
 		case totalSupply
 		case circulatingSupply
 		case weatherStationsBreakdown
+		case manufacturedAndProvisioned
 		case claimed
 		case deployed
 		case claimedAmount(String)
@@ -52,6 +53,7 @@ extension LocalizableString {
 		case totalWeatherStationsInfoTitle
 		case claimedWeatherStationsInfoTitle
 		case activeWeatherStationsInfoTitle
+		case totalWeatherStationsInfoText
 		case claimedWeatherStationsInfoText
 		case activeWeatherStationsInfoText
 		case emptyTitle
@@ -116,6 +118,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_circulating_supply"
 			case .weatherStationsBreakdown:
 				return "net_stats_weather_stations_breakdown"
+			case .manufacturedAndProvisioned:
+				return "net_stats_manufactured_and_provisioned"
 			case .claimed:
 				return "net_stats_claimed"
 			case .deployed:
@@ -182,6 +186,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_claimed_weather_stations_info_title"
 			case .activeWeatherStationsInfoTitle:
 				return "net_stats_active_weather_stations_info_title"
+			case .totalWeatherStationsInfoText:
+				return "net_stats_total_weather_stations_info_text"
 			case .claimedWeatherStationsInfoText:
 				return "net_stats_claimed_weather_stations_info_text"
 			case .activeWeatherStationsInfoText:
