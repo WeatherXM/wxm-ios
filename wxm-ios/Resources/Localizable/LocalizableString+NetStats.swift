@@ -19,7 +19,7 @@ extension LocalizableString {
 		case totalSupply
 		case circulatingSupply
 		case weatherStationsBreakdown
-		case manufactured
+		case manufacturedAndProvisioned
 		case claimed
 		case deployed
 		case claimedAmount(String)
@@ -118,8 +118,8 @@ extension LocalizableString.NetStats: WXMLocalizable {
 				return "net_stats_circulating_supply"
 			case .weatherStationsBreakdown:
 				return "net_stats_weather_stations_breakdown"
-			case .manufactured:
-				return "net_stats_manufactured"
+			case .manufacturedAndProvisioned:
+				return "net_stats_manufactured_and_provisioned"
 			case .claimed:
 				return "net_stats_claimed"
 			case .deployed:

@@ -180,10 +180,10 @@ extension NetworkStatsViewModel {
 	}
 
     func getStationStats(response: NetworkStatsResponse?) -> [NetworkStatsView.StationStatistics]? {
-		let manufactured = (LocalizableString.NetStats.manufactured.localized.uppercased(),
+		let manufactured = (LocalizableString.NetStats.manufacturedAndProvisioned.localized.uppercased(),
 							response?.weatherStations?.onboarded,
 							NetworkStatsView.Accessory(fontIcon: .infoCircle) { [weak self] in
-			self?.showInfo(title: LocalizableString.NetStats.manufactured.localized,
+			self?.showInfo(title: LocalizableString.NetStats.manufacturedAndProvisioned.localized,
 						   description: LocalizableString.NetStats.totalWeatherStationsInfoText.localized,
 						   analyticsItemId: .totalStations)
 		},

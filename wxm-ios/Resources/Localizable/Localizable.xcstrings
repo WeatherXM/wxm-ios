@@ -5698,13 +5698,13 @@
         }
       }
     },
-    "net_stats_manufactured" : {
+    "net_stats_manufactured_and_provisioned" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Manufactured"
+            "value" : "Manufactured and provisioned"
           }
         }
       }
@@ -5902,7 +5902,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The number of weather stations produced."
+            "value" : "The number of weather stations manufactured and provisioned in the network."
           }
         }
       }
