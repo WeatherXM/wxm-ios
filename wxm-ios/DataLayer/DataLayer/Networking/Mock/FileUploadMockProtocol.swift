@@ -28,10 +28,8 @@ class FileUploadMockProtocol: URLProtocol, @unchecked Sendable {
 
 	override func startLoading() {
 		if task?.originalRequest?.url?.absoluteString == Self.failUrl {
-			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-				self.client?.urlProtocol(self, didFailWithError: NSError(domain: "\(Self.self)", code: -1))
-				self.client?.urlProtocolDidFinishLoading(self)
-			}
+			self.client?.urlProtocol(self, didFailWithError: NSError(domain: "\(Self.self)", code: -1))
+			self.client?.urlProtocolDidFinishLoading(self)
 		} else {
 			startUploadProgress()
 		}

@@ -9,9 +9,13 @@ import Combine
 import Foundation
 import Toolkit
 import UIKit
+import Network
 
 class AppDelegate: NSObject, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+		// Fixe the crash in iOS 26
+		nw_tls_create_options()
+
 		FirebaseManager.shared.launch()
 
 		if let mixpanelToken: String = Bundle.main.getConfiguration(for: .mixpanelToken) {

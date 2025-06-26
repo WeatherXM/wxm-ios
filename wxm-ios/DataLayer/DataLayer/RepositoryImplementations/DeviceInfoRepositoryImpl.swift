@@ -11,7 +11,7 @@ import DomainLayer
 import Alamofire
 
 public class DeviceInfoRepositoryImpl: @unchecked Sendable, DeviceInfoRepository {
-	nonisolated(unsafe) private lazy var bluetoothWrapper: BTActionWrapper = BTActionWrapper()
+	nonisolated(unsafe) private var bluetoothWrapper: BTActionWrapper = BTActionWrapper()
 	private var canellables: Set<AnyCancellable> = []
 	private let userDevicesService: UserDevicesService
 
