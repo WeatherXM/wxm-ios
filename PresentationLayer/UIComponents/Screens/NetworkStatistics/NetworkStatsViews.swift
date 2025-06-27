@@ -151,6 +151,7 @@ extension View {
 						Text(stats.title.uppercased())
 							.font(.system(size: CGFloat(.caption)))
 							.foregroundColor(Color(colorEnum: .text))
+							.fixedSize(horizontal: false, vertical: true)
 
 						Spacer()
 
@@ -174,6 +175,8 @@ extension View {
 
 						Spacer()
 					}
+					.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+
 
 					if let progress = stats.progress {
 						ProgressView(value: progress, total: 1.0)
