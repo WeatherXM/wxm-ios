@@ -40,7 +40,7 @@ extension DeviceInfoViewModel.Field {
 			case .rewardSplit:
 				return (LocalizableString.RewardDetails.rewardSplit.localized, nil)
 			case .photos:
-				return (LocalizableString.PhotoVerification.photoVerificationIntroTitle.localized, LocalizableString.new.localized)
+				return (LocalizableString.PhotoVerification.photoVerificationIntroTitle.localized, nil)
 		}
 	}
 
