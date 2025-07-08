@@ -27,6 +27,8 @@
 		2618A7142A20FFCA00983B7B /* MultipleAlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */; };
 		2618A7162A21014200983B7B /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7152A21014200983B7B /* AlertsViewModel.swift */; };
 		2618A7262A24F93000983B7B /* BottomSheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7252A24F93000983B7B /* BottomSheetModifier.swift */; };
+		261913F32E1D208300F7E51C /* StationNotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261913F22E1D208300F7E51C /* StationNotificationsViewModel.swift */; };
+		261913F52E1D20AE00F7E51C /* StationsNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261913F42E1D20AE00F7E51C /* StationsNotificationsView.swift */; };
 		261CD81829CB2D5B00C0CECE /* PercentageGridLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */; };
 		261E9EA729A9275C00E8EBA3 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EA629A9275C00E8EBA3 /* Swinject */; };
 		261E9EAA29A927BE00E8EBA3 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EA929A927BE00E8EBA3 /* CodeScanner */; };
@@ -808,6 +810,8 @@
 		2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleAlertsView.swift; sourceTree = "<group>"; };
 		2618A7152A21014200983B7B /* AlertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModel.swift; sourceTree = "<group>"; };
 		2618A7252A24F93000983B7B /* BottomSheetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetModifier.swift; sourceTree = "<group>"; };
+		261913F22E1D208300F7E51C /* StationNotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationNotificationsViewModel.swift; sourceTree = "<group>"; };
+		261913F42E1D20AE00F7E51C /* StationsNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsNotificationsView.swift; sourceTree = "<group>"; };
 		261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageGridLayoutView.swift; sourceTree = "<group>"; };
 		2623E2222A6FC29100E3E306 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailsView.swift; sourceTree = "<group>"; };
@@ -1526,6 +1530,15 @@
 				2618A7132A20FFCA00983B7B /* MultipleAlertsView.swift */,
 			);
 			path = MultipleAlerts;
+			sourceTree = "<group>";
+		};
+		261913F12E1D201600F7E51C /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				261913F22E1D208300F7E51C /* StationNotificationsViewModel.swift */,
+				261913F42E1D20AE00F7E51C /* StationsNotificationsView.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		2623FF8F2AF1467E00BCDAC6 /* DailyRewards */ = {
@@ -3014,6 +3027,7 @@
 		26DD42DF29B0F66A008E277E /* StationDetails */ = {
 			isa = PBXGroup;
 			children = (
+				261913F12E1D201600F7E51C /* Notifications */,
 				2664832729C35ABA00748F9C /* Forecast */,
 				26A4115729B6061900A2C10B /* Overview */,
 				2646D8F129C8BF240000237F /* Rewards */,
@@ -4010,6 +4024,7 @@
 				26A4117E29B8A17D00A2C10B /* DeviceInfoViewModel+Content.swift in Sources */,
 				26A4116D29B744FD00A2C10B /* DeviceInfoViewModel.swift in Sources */,
 				2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */,
+				261913F52E1D20AE00F7E51C /* StationsNotificationsView.swift in Sources */,
 				26A4118229BA1A9900A2C10B /* DeviceUpdatesLoadingView.swift in Sources */,
 				26E5B0C229F8152800834899 /* Dimensions.swift in Sources */,
 				267548DD29A91A87008BCF40 /* DisplayedLinks.swift in Sources */,
@@ -4152,6 +4167,7 @@
 				266B018F2B836EC6007AC689 /* NoRewardsView.swift in Sources */,
 				26A4119529BF203400A2C10B /* SelectFrequencyView.swift in Sources */,
 				268B5C432BCEB61A00E63655 /* ForecastFieldCardView.swift in Sources */,
+				261913F32E1D208300F7E51C /* StationNotificationsViewModel.swift in Sources */,
 				2672B8802C8A02D0002266BE /* BoostDetailsView.swift in Sources */,
 				267547BE29A9181E008BCF40 /* SettingsButtonView.swift in Sources */,
 				267548DF29A91A87008BCF40 /* SettingsEnum.swift in Sources */,
