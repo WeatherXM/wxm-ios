@@ -29,6 +29,7 @@
 		2618A7262A24F93000983B7B /* BottomSheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2618A7252A24F93000983B7B /* BottomSheetModifier.swift */; };
 		261913F32E1D208300F7E51C /* StationNotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261913F22E1D208300F7E51C /* StationNotificationsViewModel.swift */; };
 		261913F52E1D20AE00F7E51C /* StationsNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261913F42E1D20AE00F7E51C /* StationsNotificationsView.swift */; };
+		261913F72E1D266900F7E51C /* StationNotificationsTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261913F62E1D266900F7E51C /* StationNotificationsTypes.swift */; };
 		261CD81829CB2D5B00C0CECE /* PercentageGridLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */; };
 		261E9EA729A9275C00E8EBA3 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EA629A9275C00E8EBA3 /* Swinject */; };
 		261E9EAA29A927BE00E8EBA3 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EA929A927BE00E8EBA3 /* CodeScanner */; };
@@ -812,6 +813,7 @@
 		2618A7252A24F93000983B7B /* BottomSheetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetModifier.swift; sourceTree = "<group>"; };
 		261913F22E1D208300F7E51C /* StationNotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationNotificationsViewModel.swift; sourceTree = "<group>"; };
 		261913F42E1D20AE00F7E51C /* StationsNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsNotificationsView.swift; sourceTree = "<group>"; };
+		261913F62E1D266900F7E51C /* StationNotificationsTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationNotificationsTypes.swift; sourceTree = "<group>"; };
 		261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageGridLayoutView.swift; sourceTree = "<group>"; };
 		2623E2222A6FC29100E3E306 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailsView.swift; sourceTree = "<group>"; };
@@ -1537,6 +1539,7 @@
 			children = (
 				261913F22E1D208300F7E51C /* StationNotificationsViewModel.swift */,
 				261913F42E1D20AE00F7E51C /* StationsNotificationsView.swift */,
+				261913F62E1D266900F7E51C /* StationNotificationsTypes.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -4261,6 +4264,7 @@
 				2623FF912AF147A800BCDAC6 /* RewardDetailsView.swift in Sources */,
 				26AF27802A0B9D870067A1B8 /* UIImage+.swift in Sources */,
 				267EC4262A98C14700F2C37E /* UIKitUtils.swift in Sources */,
+				261913F72E1D266900F7E51C /* StationNotificationsTypes.swift in Sources */,
 				267547DC29A9181E008BCF40 /* UITextField+StationSerialNumber.swift in Sources */,
 				26C5AF402BF7632700476B89 /* ClaimDeviceProgressView.swift in Sources */,
 				26AF277C2A0B8F810067A1B8 /* UnitConstants.swift in Sources */,

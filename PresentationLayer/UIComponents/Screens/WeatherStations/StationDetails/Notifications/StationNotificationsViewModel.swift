@@ -6,7 +6,14 @@
 //
 
 import Foundation
+import DomainLayer
 
 class StationNotificationsViewModel: ObservableObject {
-	
+	let device: DeviceDetails
+	let followState: UserDeviceFollowState
+
+	init(device: DeviceDetails, followState: UserDeviceFollowState) {
+		self.device = device
+		self.followState = followState
+	}
 }
