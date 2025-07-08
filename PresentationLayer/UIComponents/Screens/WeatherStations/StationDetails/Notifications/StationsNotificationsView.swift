@@ -19,7 +19,7 @@ struct StationsNotificationsView: View {
 				optionView(title: LocalizableString.StationDetails.showNotifications.localized,
 						   description: nil,
 						   switchOn: Binding(get: {
-					viewModel.valueFromMasterSwitch
+					viewModel.masterSwitchValue
 				}, set: { value in
 					viewModel.setmasterSwitchValue(value)
 				}))
@@ -34,6 +34,7 @@ struct StationsNotificationsView: View {
 					}, set: { value in
 						viewModel.setValue(value, for: notificationType)
 					}))
+					.disabled(!viewModel.masterSwitchValue)
 				}
 			}
 			.padding(CGFloat(.defaultSidePadding))
