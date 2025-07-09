@@ -6,13 +6,9 @@
 //
 
 import Foundation
+import DomainLayer
 
-enum StationNotificationsTypes: CaseIterable, CustomStringConvertible {
-	case activity
-	case battery
-	case firmwareUpdate
-	case health
-
+extension StationNotificationsTypes: @retroactive CustomStringConvertible {
 	var title: String {
 		switch self {
 			case .activity:
@@ -26,7 +22,7 @@ enum StationNotificationsTypes: CaseIterable, CustomStringConvertible {
 		}
 	}
 
-	var description: String {
+	public var description: String {
 		switch self {
 			case .activity:
 				LocalizableString.StationDetails.activityDescription.localized

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DomainLayer
 
 struct StationsNotificationsView: View {
 	@StateObject var viewModel: StationNotificationsViewModel
@@ -97,8 +98,7 @@ private extension StationsNotificationsView {
 
 #Preview {
 	NavigationContainerView {
-		StationsNotificationsView(viewModel: .init(device: .mockDevice,
-												   followState: .init(deviceId: "",
-																	  relation: .owned)))
+		StationsNotificationsView(viewModel: ViewModelsFactory.getStationNotificationsViewModel(device: .mockDevice,
+																								followState: .init(deviceId: "", relation: .owned)))
 	}
 }
