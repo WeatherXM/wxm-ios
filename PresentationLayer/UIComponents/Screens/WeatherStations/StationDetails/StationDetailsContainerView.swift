@@ -61,6 +61,17 @@ struct StationDetailsContainerView: View {
 									.foregroundColor(Color(colorEnum: .text))
 							}
 						}
+
+						if viewModel.followState?.relation == .owned {
+							Button { [weak viewModel] in
+								showSettingsPopOver = false
+								viewModel?.notificationsButtonTapped()
+							} label: {
+								Text(LocalizableString.StationDetails.notifications.localized)
+									.font(.system(size: CGFloat(.mediumFontSize)))
+									.foregroundColor(Color(colorEnum: .text))
+							}
+						}
 					}
 					.padding()
 					.background(Color(colorEnum: .top).scaleEffect(2.0).ignoresSafeArea())

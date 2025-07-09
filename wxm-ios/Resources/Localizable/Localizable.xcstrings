@@ -9482,6 +9482,17 @@
         }
       }
     },
+    "station_details_notifications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        }
+      }
+    },
     "station_details_overview" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -67,6 +67,7 @@ extension LocalizableString {
 		case notVerified
 		case pendingVerification
 		case noLocationData
+		case notifications
 	}
 }
 
@@ -216,6 +217,8 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_pending_verification"
 			case .noLocationData:
 				return "station_details_no_location_data"
+			case .notifications:
+				return "station_details_notifications"
 		}
 	}
 }

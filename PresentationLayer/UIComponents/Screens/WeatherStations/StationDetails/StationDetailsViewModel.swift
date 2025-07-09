@@ -101,6 +101,10 @@ class StationDetailsViewModel: ObservableObject {
 		Router.shared.navigateTo(.deviceInfo(viewModel))
     }
 
+	func notificationsButtonTapped() {
+		// Route to notifications screen
+	}
+
 	func warningTapped() {
 		var parameters: [Parameter: ParameterValue] = [.contentName: .stationDetailsChip,
 													   .contentType: .warnings]
