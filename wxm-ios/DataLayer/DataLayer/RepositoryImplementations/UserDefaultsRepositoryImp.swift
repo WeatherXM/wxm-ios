@@ -5,8 +5,7 @@
 //  Created by Lampros Zouloumis on 1/9/22.
 //
 
-import protocol DomainLayer.UnitsProtocol
-import protocol DomainLayer.UserDefaultsRepository
+import DomainLayer
 import Foundation
 
 public struct UserDefaultsRepositoryImp: UserDefaultsRepository {

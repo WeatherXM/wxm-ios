@@ -242,6 +242,12 @@ class SwinjectHelper: SwinjectInterface {
 			PhotoGalleryUseCase(photosRepository: resolver.resolve(PhotosRepository.self)!)
 		}
 
+		// MARK: - Station notifications
+		
+		container.register(StationNotificationsUseCaseApi.self) { resolver in
+			StationNotificationsUseCase(userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!)
+		}
+
         // MARK: - Return the Container
 
         return container

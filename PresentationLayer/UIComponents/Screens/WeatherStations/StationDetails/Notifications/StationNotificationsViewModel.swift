@@ -11,18 +11,21 @@ import DomainLayer
 class StationNotificationsViewModel: ObservableObject {
 	let device: DeviceDetails
 	let followState: UserDeviceFollowState
+	let useCase: StationNotificationsUseCaseApi
 	@Published var masterSwitchValue: Bool = false
 
-	init(device: DeviceDetails, followState: UserDeviceFollowState) {
+	init(device: DeviceDetails, followState: UserDeviceFollowState, useCase: StationNotificationsUseCaseApi) {
 		self.device = device
 		self.followState = followState
+		self.useCase = useCase
 	}
 
 	func valueFor(notificationType: StationNotificationsTypes) -> Bool {
-		true
+		useCase.isNotificationEnabled(notificationType)
 	}
 
 	func setValue(_ value: Bool, for notificationType: StationNotificationsTypes) {
+		useCase.setNotificationEnabled(value, for: notificationType)
 	}
 
 	func setmasterSwitchValue(_ value: Bool) {
