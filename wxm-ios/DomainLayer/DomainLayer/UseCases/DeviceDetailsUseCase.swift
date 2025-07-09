@@ -16,18 +16,30 @@ public struct DeviceDetailsUseCase: @unchecked Sendable, DeviceDetailsUseCaseApi
     private let meRepository: MeRepository
     private let explorerRepository: ExplorerRepository
     private let keychainRepository: KeychainRepository
+	private let userDefaultsRepository: UserDefaultsRepository
 	private let geocoder: GeocoderProtocol
     private let cancellables: CancellableWrapper = .init()
+
 
 	public init(meRepository: MeRepository,
 				explorerRepository: ExplorerRepository,
 				keychainRepository: KeychainRepository,
+				userDefaultsRepository: UserDefaultsRepository,
 				geocoder: GeocoderProtocol) {
         self.meRepository = meRepository
         self.explorerRepository = explorerRepository
         self.keychainRepository = keychainRepository
+		self.userDefaultsRepository = userDefaultsRepository
 		self.geocoder = geocoder
     }
+
+	public var hasNotificationsPromptBeenShown: Bool {
+		userDefaultsRepository.getValue(for: UserDefaults.GenericKey.stationNotificationsPromptSeen.rawValue) ?? false
+	}
+
+	public func notificationsPromptShown() {
+		userDefaultsRepository.saveValue(key: UserDefaults.GenericKey.stationNotificationsPromptSeen.rawValue, value: true)
+	}
 
     public func getDeviceDetailsById(deviceId: String, cellIndex: String?) async throws -> Result<DeviceDetails, NetworkErrorResponse> {
         let followStateResult = try await meRepository.getDeviceFollowState(deviceId: deviceId)
