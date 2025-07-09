@@ -42,6 +42,7 @@ class StationDetailsViewModel: ObservableObject {
     private(set) lazy var forecastVM = ViewModelsFactory.getStationForecastViewModel(delegate: self)
     private(set) lazy var rewardsVM = ViewModelsFactory.getStationRewardsViewModel(deviceId: deviceId, delegate: self)
     private(set) var loginAlertConfiguration: WXMAlertConfiguration?
+	private(set) var notificationsAlertConfiguration: WXMAlertConfiguration?
 
     private var initialHeaderOffset: CGFloat = 0.0
 	@Published private(set) var device: DeviceDetails? {
@@ -59,6 +60,7 @@ class StationDetailsViewModel: ObservableObject {
 	}
     @Published var shouldHideHeaderToggle: Bool = false
     @Published var showLoginAlert: Bool = false
+	@Published var showNotificationsAlert: Bool = false
 	@Published var showShareDialog: Bool = false
 	private(set) var shareDialogText: String?
     private(set) var isHeaderHidden: Bool = false
@@ -94,6 +96,7 @@ class StationDetailsViewModel: ObservableObject {
 
 	func viewAppeared() {
 		trackExplorerDeviceEventIfNeeded(isInitialized: isFollowStateInitialized)
+		showStationNotificationsAlertIfNeeded()
 	}
 
     func settingsButtonTapped() {
@@ -313,6 +316,19 @@ private extension StationDetailsViewModel {
 			return
 		}
 		Router.shared.navigateTo(.viewMoreAlerts(.init(device: device, mainVM: .shared, followState: followState)))
+	}
+
+	func showStationNotificationsAlertIfNeeded() {
+		let conf = WXMAlertConfiguration(title: LocalizableString.StationDetails.notificationsAlertTitle.localized,
+										 text: LocalizableString.StationDetails.notificationsAlertMessage.localized.attributedMarkdown ?? "",
+										 canDismiss: false,
+										 buttonsLayout: .horizontal,
+										 secondaryButtons: [.init(title: LocalizableString.StationDetails.notificationsAlertCancelButtonTitle.localized,
+																  action: { self.showNotificationsAlert = false })],
+										 primaryButtons: [.init(title: LocalizableString.StationDetails.notificationsAlertButtonTitle.localized,
+																action: { self.showNotificationsAlert = false })])
+		notificationsAlertConfiguration = conf
+		showNotificationsAlert = true
 	}
 }
 

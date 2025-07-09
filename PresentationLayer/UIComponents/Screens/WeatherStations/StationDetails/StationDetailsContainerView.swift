@@ -181,6 +181,13 @@ private struct StationDetailsView: View {
                 }
             }
         }
+		.wxmAlert(show: $viewModel.showNotificationsAlert) {
+			WXMAlertView(show: $viewModel.showNotificationsAlert,
+						 configuration: viewModel.notificationsAlertConfiguration!) {
+				EmptyView()
+			}
+		}
+
         .onAppear {
             navigationObject.navigationBarColor = Color(colorEnum: .top)
 			navigationObject.titleFont = .system(size: CGFloat(.smallTitleFontSize), weight: .bold)

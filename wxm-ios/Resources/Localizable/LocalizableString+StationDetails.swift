@@ -68,6 +68,10 @@ extension LocalizableString {
 		case pendingVerification
 		case noLocationData
 		case notifications
+		case notificationsAlertTitle
+		case notificationsAlertMessage
+		case notificationsAlertButtonTitle
+		case notificationsAlertCancelButtonTitle
 	}
 }
 
@@ -219,6 +223,14 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_no_location_data"
 			case .notifications:
 				return "station_details_notifications"
+			case .notificationsAlertTitle:
+				return "station_details_notifications_alert_title"
+			case .notificationsAlertMessage:
+				return "station_details_notifications_alert_message"
+			case .notificationsAlertButtonTitle:
+				return "station_details_notifications_alert_button_title"
+			case .notificationsAlertCancelButtonTitle:
+				return "station_details_notifications_alert_cancel_button_title"
 		}
 	}
 }
