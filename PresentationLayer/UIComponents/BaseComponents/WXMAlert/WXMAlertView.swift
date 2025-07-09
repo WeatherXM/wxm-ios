@@ -123,7 +123,7 @@ private extension WXMAlertView {
                     } label: {
                         Text(button.title)
                     }
-                    .buttonStyle(WXMButtonStyle())
+					.buttonStyle(WXMButtonStyle.transparent)
                 }
 
                 ForEach(configuration.primaryButtons) { button in
