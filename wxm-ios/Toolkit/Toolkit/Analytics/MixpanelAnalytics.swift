@@ -53,10 +53,10 @@ struct MixpanelAnalytics: AnalyticsProviderImplementation {
 	}
 
 	func setAnalyticsCollectionEnabled(_ enabled: Bool) {
-		if enabled {
-			Mixpanel.mainInstance().optInTracking()
-		} else {
+		if !enabled {
 			Mixpanel.mainInstance().optOutTracking()
+		} else if enabled, Mixpanel.mainInstance().hasOptedOutTracking() {
+			Mixpanel.mainInstance().optInTracking()
 		}
 	}
 
