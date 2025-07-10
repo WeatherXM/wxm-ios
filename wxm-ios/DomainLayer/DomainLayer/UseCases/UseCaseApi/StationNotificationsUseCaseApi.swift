@@ -17,6 +17,6 @@ public enum StationNotificationsTypes: String, CaseIterable {
 public protocol StationNotificationsUseCaseApi: Sendable {
 	func areNotificationsEnalbedForDevice(_ deviceId: String) -> Bool
 	func setNotificationsForDevice(_ deviceId: String, enabled: Bool)
-	func setNotificationEnabled(_ enabled: Bool, for type: StationNotificationsTypes)
-	func isNotificationEnabled(_ type: StationNotificationsTypes) -> Bool
+	func setNotificationEnabled(_ enabled: Bool, deviceId: String, for type: StationNotificationsTypes)
+	func isNotificationEnabled(_ type: StationNotificationsTypes, deviceId: String) -> Bool
 }

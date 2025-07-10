@@ -30,7 +30,11 @@ class StationNotificationsViewModel: ObservableObject {
 	}
 
 	func setValue(_ value: Bool, for notificationType: StationNotificationsTypes) {
-		useCase.setNotificationEnabled(value, for: notificationType)
+		guard let deviceId = device.id else {
+			return
+		}
+
+		useCase.setNotificationEnabled(value, deviceId: deviceId, for: notificationType)
 		updateOptions()
 	}
 
@@ -66,7 +70,11 @@ private extension StationNotificationsViewModel {
 	}
 
 	func valueFor(notificationType: StationNotificationsTypes) -> Bool {
-		useCase.isNotificationEnabled(notificationType)
+		guard let deviceId = device.id else {
+			return false
+		}
+
+		return useCase.isNotificationEnabled(notificationType, deviceId: deviceId)
 	}
 
 	func observeAuthorizationStatus() {
