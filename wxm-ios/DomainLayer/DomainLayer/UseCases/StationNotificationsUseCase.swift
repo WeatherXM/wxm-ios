@@ -17,19 +17,43 @@ public struct StationNotificationsUseCase: StationNotificationsUseCaseApi {
 	}
 
 	public func setNotificationEnabled(_ enabled: Bool, for type: StationNotificationsTypes) {
-		guard var options: StationOptions = userDefaultsRepository.getValue(for: udKey) else {
+		guard var options = getOptions() else {
 			var options: StationOptions = [:]
 			options[type] = enabled
-			userDefaultsRepository.saveValue(key: udKey, value: options)
+			saveOptions(options)
 			return
 		}
 
 		options[type] = enabled
-		userDefaultsRepository.saveValue(key: udKey, value: options)
+		saveOptions(options)
 	}
 
 	public func isNotificationEnabled(_ type: StationNotificationsTypes) -> Bool {
-		let options: StationOptions? = userDefaultsRepository.getValue(for: udKey)
+		let options = getOptions()
 		return options?[type] ?? false
+	}
+}
+
+private extension StationNotificationsUseCase {
+	func saveOptions(_ options: StationOptions) {
+		let convertedDict = Dictionary(uniqueKeysWithValues: options.map({ key, value in
+			(key.rawValue, value)
+		}))
+
+		userDefaultsRepository.saveValue(key: udKey, value: convertedDict)
+	}
+
+	func getOptions() -> StationOptions? {
+		guard let optionsDict: [String: Bool] = userDefaultsRepository.getValue(for: udKey) else {
+			return nil
+		}
+		
+		return Dictionary(uniqueKeysWithValues: optionsDict.compactMap({ key, value in
+			guard let key = StationNotificationsTypes(rawValue: key) else {
+				return nil
+			}
+
+			return (key, value)
+		}))
 	}
 }

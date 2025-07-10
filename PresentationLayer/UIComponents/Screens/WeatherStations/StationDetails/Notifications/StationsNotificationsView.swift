@@ -31,7 +31,7 @@ struct StationsNotificationsView: View {
 					optionView(title: notificationType.title,
 							   description: notificationType.description,
 							   switchOn: .init(get: {
-						viewModel.valueFor(notificationType: notificationType)
+						viewModel.options[notificationType] ?? false
 					}, set: { value in
 						viewModel.setValue(value, for: notificationType)
 					}))
