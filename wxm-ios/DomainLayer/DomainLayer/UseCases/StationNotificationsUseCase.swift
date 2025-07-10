@@ -8,9 +8,10 @@
 import Foundation
 
 private typealias StationOptions = [StationNotificationsTypes: Bool]
+private typealias Stations = [String: StationOptions]
 public struct StationNotificationsUseCase: StationNotificationsUseCaseApi {
 	private let userDefaultsRepository: UserDefaultsRepository
-	private let udKey = UserDefaults.GenericKey.stationNotificationOptions.rawValue
+	private let stationsUDKey = UserDefaults.GenericKey.stationNotificationOptions.rawValue
 	private let notificationsEnabledUDKey = UserDefaults.GenericKey.stationNotificationEnabled.rawValue
 
 	public init(userDefaultsRepository: UserDefaultsRepository) {
@@ -35,44 +36,55 @@ public struct StationNotificationsUseCase: StationNotificationsUseCaseApi {
 		userDefaultsRepository.saveValue(key: notificationsEnabledUDKey, value: Array(deviceIds))
 	}
 
-	public func setNotificationEnabled(_ enabled: Bool, for type: StationNotificationsTypes) {
-		guard var options = getOptions() else {
+	public func setNotificationEnabled(_ enabled: Bool, deviceId: String, for type: StationNotificationsTypes) {
+		var stations = getStations() ?? [:]
+		guard var options = stations[deviceId] else {
 			var options: StationOptions = [:]
 			options[type] = enabled
-			saveOptions(options)
+			stations[deviceId] = options
+			saveStations(stations)
 			return
 		}
 
 		options[type] = enabled
-		saveOptions(options)
+		stations[deviceId] = options
+		saveStations(stations)
 	}
 
-	public func isNotificationEnabled(_ type: StationNotificationsTypes) -> Bool {
-		let options = getOptions()
+	public func isNotificationEnabled(_ type: StationNotificationsTypes, deviceId: String) -> Bool {
+		let options = getStations()?[deviceId]
 		return options?[type] ?? false
 	}
 }
 
 private extension StationNotificationsUseCase {
-	func saveOptions(_ options: StationOptions) {
-		let convertedDict = Dictionary(uniqueKeysWithValues: options.map({ key, value in
-			(key.rawValue, value)
-		}))
-
-		userDefaultsRepository.saveValue(key: udKey, value: convertedDict)
-	}
-
-	func getOptions() -> StationOptions? {
-		guard let optionsDict: [String: Bool] = userDefaultsRepository.getValue(for: udKey) else {
+	func getStations() -> Stations? {
+		guard let stationsDict: [String: [String: Bool]] = userDefaultsRepository.getValue(for: stationsUDKey) else {
 			return nil
 		}
-		
-		return Dictionary(uniqueKeysWithValues: optionsDict.compactMap({ key, value in
-			guard let key = StationNotificationsTypes(rawValue: key) else {
-				return nil
-			}
 
-			return (key, value)
+		return Dictionary(uniqueKeysWithValues: stationsDict.compactMap({ key, value in
+			let stationOptions: StationOptions = Dictionary(uniqueKeysWithValues: value.compactMap({ key, value in
+				guard let key = StationNotificationsTypes(rawValue: key) else {
+					return nil
+				}
+				
+				return (key, value)
+			}))
+
+			return (key, stationOptions)
 		}))
+	}
+
+	func saveStations(_ stations: Stations) {
+		let convertedDict: [String: [String: Bool]] = Dictionary(uniqueKeysWithValues: stations.map({ key, value in
+			let convertedOptions: [String: Bool] = Dictionary(uniqueKeysWithValues: value.map({ key, value in
+				(key.rawValue, value)
+			}))
+
+			return (key, convertedOptions)
+		}))
+
+		userDefaultsRepository.saveValue(key: stationsUDKey, value: convertedDict)
 	}
 }
