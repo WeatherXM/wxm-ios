@@ -65,7 +65,7 @@ private extension StationsNotificationsView {
 				}
 				.cornerRadius(CGFloat(.buttonCornerRadius))
 
-			Text(viewModel.device.friendlyName ?? "")
+			Text(viewModel.device.displayName)
 				.foregroundStyle(Color(colorEnum: .text))
 				.font(.system(size: CGFloat(.smallTitleFontSize)))
 
