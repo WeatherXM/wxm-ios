@@ -34,4 +34,12 @@ extension StationNotificationsTypes: @retroactive CustomStringConvertible {
 				LocalizableString.StationDetails.healthDescription.localized
 		}
 	}
+
+	static func casesForDevice(_ device: DeviceDetails) -> [StationNotificationsTypes] {
+		guard device.isHelium else {
+			return [.activity, .battery, .health]
+		}
+
+		return [.activity, .battery, .firmwareUpdate, .health]
+	}
 }

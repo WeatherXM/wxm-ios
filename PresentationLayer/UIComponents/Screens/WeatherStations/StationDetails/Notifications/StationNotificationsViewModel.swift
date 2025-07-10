@@ -17,7 +17,9 @@ class StationNotificationsViewModel: ObservableObject {
 	let useCase: StationNotificationsUseCaseApi
 	@Published private(set) var masterSwitchValue: Bool = false
 	@Published private(set) var options: [StationNotificationsTypes: Bool] = [:]
-
+	var availableNotifications: [StationNotificationsTypes] {
+		StationNotificationsTypes.casesForDevice(device)
+	}
 	private var cancellableSet: Set<AnyCancellable> = .init()
 
 	init(device: DeviceDetails, followState: UserDeviceFollowState, useCase: StationNotificationsUseCaseApi) {
@@ -64,7 +66,7 @@ class StationNotificationsViewModel: ObservableObject {
 
 private extension StationNotificationsViewModel {
 	func updateOptions() {
-		options = Dictionary(uniqueKeysWithValues: StationNotificationsTypes.allCases.map {
+		options = Dictionary(uniqueKeysWithValues: StationNotificationsTypes.casesForDevice(device).map {
 			($0, valueFor(notificationType: $0))
 		})
 	}

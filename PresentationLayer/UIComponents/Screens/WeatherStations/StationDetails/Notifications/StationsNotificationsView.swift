@@ -30,7 +30,7 @@ struct StationsNotificationsView: View {
 
 					WXMDivider()
 
-					ForEach(StationNotificationsTypes.allCases, id: \.self) { notificationType in
+					ForEach(viewModel.availableNotifications, id: \.self) { notificationType in
 						optionView(title: notificationType.title,
 								   description: notificationType.description,
 								   switchOn: .init(get: {
