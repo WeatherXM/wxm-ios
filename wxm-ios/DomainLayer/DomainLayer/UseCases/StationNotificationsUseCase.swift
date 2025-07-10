@@ -9,6 +9,8 @@ import Foundation
 
 private typealias StationOptions = [StationNotificationsTypes: Bool]
 private typealias Stations = [String: StationOptions]
+private typealias EnabledStations = [String: Bool]
+
 public struct StationNotificationsUseCase: StationNotificationsUseCaseApi {
 	private let userDefaultsRepository: UserDefaultsRepository
 	private let stationsUDKey = UserDefaults.GenericKey.stationNotificationOptions.rawValue
@@ -19,21 +21,18 @@ public struct StationNotificationsUseCase: StationNotificationsUseCaseApi {
 	}
 
 	public func areNotificationsEnalbedForDevice(_ deviceId: String) -> Bool {
-		let deviceIds: [String]? = userDefaultsRepository.getValue(for: notificationsEnabledUDKey)
-		return deviceIds?.contains(deviceId) ?? false
+		let devices: EnabledStations? = userDefaultsRepository.getValue(for: notificationsEnabledUDKey)
+		guard let isEnabled = devices?[deviceId] else {
+			return true
+		}
+
+		return isEnabled
 	}
 
 	public func setNotificationsForDevice(_ deviceId: String, enabled: Bool) {
-		let deviceIdsArray: [String] = userDefaultsRepository.getValue(for: notificationsEnabledUDKey) ?? []
-		var deviceIds: Set<String> = Set(deviceIdsArray)
-
-		if enabled {
-			deviceIds.insert(deviceId)
-		} else {
-			deviceIds.remove(deviceId)
-		}
-
-		userDefaultsRepository.saveValue(key: notificationsEnabledUDKey, value: Array(deviceIds))
+		var enabledStations: EnabledStations = userDefaultsRepository.getValue(for: notificationsEnabledUDKey) ?? [:]
+		enabledStations[deviceId] = enabled
+		userDefaultsRepository.saveValue(key: notificationsEnabledUDKey, value: enabledStations)
 	}
 
 	public func setNotificationEnabled(_ enabled: Bool, deviceId: String, for type: StationNotificationsTypes) {
@@ -53,7 +52,7 @@ public struct StationNotificationsUseCase: StationNotificationsUseCaseApi {
 
 	public func isNotificationEnabled(_ type: StationNotificationsTypes, deviceId: String) -> Bool {
 		let options = getStations()?[deviceId]
-		return options?[type] ?? false
+		return options?[type] ?? true
 	}
 }
 
