@@ -33,3 +33,9 @@ class StationNotificationsViewModel: ObservableObject {
 		masterSwitchValue = value
 	}
 }
+
+extension StationNotificationsViewModel: HashableViewModel {
+	nonisolated func hash(into hasher: inout Hasher) {
+
+	}
+}

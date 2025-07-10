@@ -106,7 +106,13 @@ class StationDetailsViewModel: ObservableObject {
     }
 
 	func notificationsButtonTapped() {
-		// Route to notifications screen
+		guard let device, let followState else {
+			return
+		}
+
+		let viewModel = ViewModelsFactory.getStationNotificationsViewModel(device: device,
+																		   followState: followState)
+		Router.shared.navigateTo(.stationNotifications(viewModel))
 	}
 
 	func warningTapped() {
