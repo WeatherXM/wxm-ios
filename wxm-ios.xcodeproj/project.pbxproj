@@ -30,6 +30,7 @@
 		261913F32E1D208300F7E51C /* StationNotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261913F22E1D208300F7E51C /* StationNotificationsViewModel.swift */; };
 		261913F52E1D20AE00F7E51C /* StationsNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261913F42E1D20AE00F7E51C /* StationsNotificationsView.swift */; };
 		261913F72E1D266900F7E51C /* StationNotificationsTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261913F62E1D266900F7E51C /* StationNotificationsTypes.swift */; };
+		261914152E1FF5AE00F7E51C /* StationNotificationsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261914142E1FF5AE00F7E51C /* StationNotificationsUseCaseTests.swift */; };
 		261CD81829CB2D5B00C0CECE /* PercentageGridLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */; };
 		261E9EA729A9275C00E8EBA3 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EA629A9275C00E8EBA3 /* Swinject */; };
 		261E9EAA29A927BE00E8EBA3 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 261E9EA929A927BE00E8EBA3 /* CodeScanner */; };
@@ -814,6 +815,7 @@
 		261913F22E1D208300F7E51C /* StationNotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationNotificationsViewModel.swift; sourceTree = "<group>"; };
 		261913F42E1D20AE00F7E51C /* StationsNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsNotificationsView.swift; sourceTree = "<group>"; };
 		261913F62E1D266900F7E51C /* StationNotificationsTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationNotificationsTypes.swift; sourceTree = "<group>"; };
+		261914142E1FF5AE00F7E51C /* StationNotificationsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationNotificationsUseCaseTests.swift; sourceTree = "<group>"; };
 		261CD81729CB2D5A00C0CECE /* PercentageGridLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageGridLayoutView.swift; sourceTree = "<group>"; };
 		2623E2222A6FC29100E3E306 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		2623FF902AF147A800BCDAC6 /* RewardDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardDetailsView.swift; sourceTree = "<group>"; };
@@ -3167,6 +3169,7 @@
 				26710E952D7F15B000878298 /* DevicesUseCaseTests.swift */,
 				26710E972D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift */,
 				26710E9B2D7F36A700878298 /* DeviceInfoUseCaseTests.swift */,
+				261914142E1FF5AE00F7E51C /* StationNotificationsUseCaseTests.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -3778,6 +3781,7 @@
 				26710E3E2D7AF73D00878298 /* UpdateFirmwareUseCaseTests.swift in Sources */,
 				26F83CBD2D9E711200E5A8B8 /* DeleteAccountViewModelTests.swift in Sources */,
 				26A0A98B2DC0BCFA005A6646 /* BluetoothStateTests.swift in Sources */,
+				261914152E1FF5AE00F7E51C /* StationNotificationsUseCaseTests.swift in Sources */,
 				268BAD4C2DC0DC4600748439 /* FiltersTest.swift in Sources */,
 				26A0A9932DC0D326005A6646 /* DeviceDetailsTests.swift in Sources */,
 				26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */,
