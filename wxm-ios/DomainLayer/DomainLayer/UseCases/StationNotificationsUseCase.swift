@@ -11,9 +11,28 @@ private typealias StationOptions = [StationNotificationsTypes: Bool]
 public struct StationNotificationsUseCase: StationNotificationsUseCaseApi {
 	private let userDefaultsRepository: UserDefaultsRepository
 	private let udKey = UserDefaults.GenericKey.stationNotificationOptions.rawValue
+	private let notificationsEnabledUDKey = UserDefaults.GenericKey.stationNotificationEnabled.rawValue
 
 	public init(userDefaultsRepository: UserDefaultsRepository) {
 		self.userDefaultsRepository = userDefaultsRepository
+	}
+
+	public func areNotificationsEnalbedForDevice(_ deviceId: String) -> Bool {
+		let deviceIds: [String]? = userDefaultsRepository.getValue(for: notificationsEnabledUDKey)
+		return deviceIds?.contains(deviceId) ?? false
+	}
+
+	public func setNotificationsForDevice(_ deviceId: String, enabled: Bool) {
+		let deviceIdsArray: [String] = userDefaultsRepository.getValue(for: notificationsEnabledUDKey) ?? []
+		var deviceIds: Set<String> = Set(deviceIdsArray)
+
+		if enabled {
+			deviceIds.insert(deviceId)
+		} else {
+			deviceIds.remove(deviceId)
+		}
+
+		userDefaultsRepository.saveValue(key: notificationsEnabledUDKey, value: Array(deviceIds))
 	}
 
 	public func setNotificationEnabled(_ enabled: Bool, for type: StationNotificationsTypes) {

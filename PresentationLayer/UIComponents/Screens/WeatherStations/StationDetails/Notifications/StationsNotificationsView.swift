@@ -22,7 +22,7 @@ struct StationsNotificationsView: View {
 						   switchOn: Binding(get: {
 					viewModel.masterSwitchValue
 				}, set: { value in
-					viewModel.setmasterSwitchValue(value)
+					viewModel.setMasterSwitchValue(value)
 				}))
 
 				WXMDivider()
