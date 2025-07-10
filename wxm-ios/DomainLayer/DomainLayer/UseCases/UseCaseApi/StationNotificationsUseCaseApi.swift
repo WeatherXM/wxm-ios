@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum StationNotificationsTypes: String, CaseIterable {
+public enum StationNotificationsTypes: String {
 	case activity
 	case battery
 	case firmwareUpdate
