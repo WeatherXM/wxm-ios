@@ -13,34 +13,38 @@ struct StationsNotificationsView: View {
 	@EnvironmentObject var navigationObject: NavigationObject
 
     var body: some View {
-		ScrollView {
-			VStack(spacing: CGFloat(.defaultSpacing)) {
-				titleView
+		ZStack {
+			Color(colorEnum: .top)
+				.ignoresSafeArea()
+			ScrollView {
+				VStack(spacing: CGFloat(.defaultSpacing)) {
+					titleView
 
-				optionView(title: LocalizableString.StationDetails.showNotifications.localized,
-						   description: nil,
-						   switchOn: Binding(get: {
-					viewModel.masterSwitchValue
-				}, set: { value in
-					viewModel.setMasterSwitchValue(value)
-				}))
-
-				WXMDivider()
-
-				ForEach(StationNotificationsTypes.allCases, id: \.self) { notificationType in
-					optionView(title: notificationType.title,
-							   description: notificationType.description,
-							   switchOn: .init(get: {
-						viewModel.options[notificationType] ?? false
+					optionView(title: LocalizableString.StationDetails.showNotifications.localized,
+							   description: nil,
+							   switchOn: Binding(get: {
+						viewModel.masterSwitchValue
 					}, set: { value in
-						viewModel.setValue(value, for: notificationType)
+						viewModel.setMasterSwitchValue(value)
 					}))
-					.disabled(!viewModel.masterSwitchValue)
+
+					WXMDivider()
+
+					ForEach(StationNotificationsTypes.allCases, id: \.self) { notificationType in
+						optionView(title: notificationType.title,
+								   description: notificationType.description,
+								   switchOn: .init(get: {
+							viewModel.options[notificationType] ?? false
+						}, set: { value in
+							viewModel.setValue(value, for: notificationType)
+						}))
+						.disabled(!viewModel.masterSwitchValue)
+					}
 				}
+				.padding(CGFloat(.defaultSidePadding))
 			}
-			.padding(CGFloat(.defaultSidePadding))
+			.scrollIndicators(.hidden)
 		}
-		.scrollIndicators(.hidden)
 		.onAppear {
 			navigationObject.title = LocalizableString.StationDetails.notifications.localized
 		}
