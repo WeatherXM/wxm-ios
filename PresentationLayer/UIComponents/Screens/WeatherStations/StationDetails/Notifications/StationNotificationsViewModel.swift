@@ -12,25 +12,35 @@ class StationNotificationsViewModel: ObservableObject {
 	let device: DeviceDetails
 	let followState: UserDeviceFollowState
 	let useCase: StationNotificationsUseCaseApi
-	@Published var masterSwitchValue: Bool = false
+	@Published private(set) var masterSwitchValue: Bool = false
+	@Published private(set) var options: [StationNotificationsTypes: Bool] = [:]
 
 	init(device: DeviceDetails, followState: UserDeviceFollowState, useCase: StationNotificationsUseCaseApi) {
 		self.device = device
 		self.followState = followState
 		self.useCase = useCase
-	}
-
-	func valueFor(notificationType: StationNotificationsTypes) -> Bool {
-		useCase.isNotificationEnabled(notificationType)
+		updateOptions()
 	}
 
 	func setValue(_ value: Bool, for notificationType: StationNotificationsTypes) {
 		useCase.setNotificationEnabled(value, for: notificationType)
+		updateOptions()
 	}
 
 	func setmasterSwitchValue(_ value: Bool) {
-		print(value)
 		masterSwitchValue = value
+	}
+}
+
+private extension StationNotificationsViewModel {
+	func updateOptions() {
+		options = Dictionary(uniqueKeysWithValues: StationNotificationsTypes.allCases.map {
+			($0, valueFor(notificationType: $0))
+		})
+	}
+
+	func valueFor(notificationType: StationNotificationsTypes) -> Bool {
+		useCase.isNotificationEnabled(notificationType)
 	}
 }
 
