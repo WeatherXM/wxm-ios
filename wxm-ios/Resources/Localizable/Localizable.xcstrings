@@ -616,6 +616,116 @@
         }
       }
     },
+    "claim_device_before_begin_bullet_five" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm the station's exact deployment location."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_bullet_four" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect the gateway and get it ready for claiming."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_bullet_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the box contents."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_bullet_seven" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Done! You can now enjoy your station and start earning rewards."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_bullet_six" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take photos of your station to ensure it meets our deployment guidelines."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_bullet_three" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install your weather station following our guidelines."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_bullet_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assemble your weather station."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make sure you’ve completed all previous steps:"
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_next_up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next up, Station Claiming steps:"
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Before you claim your station…"
+          }
+        }
+      }
+    },
     "claim_device_bluetooth_title" : {
       "extractionState" : "manual",
       "localizations" : {

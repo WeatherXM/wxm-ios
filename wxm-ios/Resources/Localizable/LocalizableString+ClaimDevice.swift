@@ -20,6 +20,16 @@ extension LocalizableString {
 		case claimD1Title
 		case claimM5Title
 		case claimPulseTitle
+		case beforeBeginTitle
+		case beforeBeginDescription
+		case beforeBeginBulletOne
+		case beforeBeginBulletTwo
+		case beforeBeginBulletThree
+		case beforeBeginBulletFour
+		case beforeBeginBulletFive
+		case beforeBeginBulletSix
+		case beforeBeginBulletSeven
+		case beforeBeginNextUp
 		case connectGatewayTitle
 		case connectD1BulletOne
 		case connectD1BulletTwo
@@ -197,6 +207,26 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_claim_m5_title"
 			case .claimPulseTitle:
 				return "claim_device_claim_pulse_title"
+			case .beforeBeginTitle:
+				return "claim_device_before_begin_title"
+			case .beforeBeginDescription:
+				return "claim_device_before_begin_description"
+			case .beforeBeginBulletOne:
+				return "claim_device_before_begin_bullet_one"
+			case .beforeBeginBulletTwo:
+				return "claim_device_before_begin_bullet_two"
+			case .beforeBeginBulletThree:
+				return "claim_device_before_begin_bullet_three"
+			case .beforeBeginBulletFour:
+				return "claim_device_before_begin_bullet_four"
+			case .beforeBeginBulletFive:
+				return "claim_device_before_begin_bullet_five"
+			case .beforeBeginBulletSix:
+				return "claim_device_before_begin_bullet_six"
+			case .beforeBeginBulletSeven:
+				return "claim_device_before_begin_bullet_seven"
+			case .beforeBeginNextUp:
+				return "claim_device_before_begin_next_up"
 			case .claimD1Title:
 				return "claim_device_claim_d1_title"
 			case .connectGatewayTitle:
