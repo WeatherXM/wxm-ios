@@ -72,6 +72,15 @@ extension LocalizableString {
 		case notificationsAlertMessage
 		case notificationsAlertButtonTitle
 		case notificationsAlertCancelButtonTitle
+		case showNotifications
+		case activity
+		case activityDescription
+		case battery
+		case batteryDescription
+		case firmwareUpdate
+		case firmwareUpdateDescription
+		case health
+		case healthDescription
 	}
 }
 
@@ -231,6 +240,24 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_notifications_alert_button_title"
 			case .notificationsAlertCancelButtonTitle:
 				return "station_details_notifications_alert_cancel_button_title"
+			case .showNotifications:
+				return "station_details_show_notifications"
+			case .activity:
+				return "station_details_activity"
+			case .activityDescription:
+				return "station_details_activity_description"
+			case .battery:
+				return "station_details_battery"
+			case .batteryDescription:
+				return "station_details_battery_description"
+			case .firmwareUpdate:
+				return "station_details_firmware_update"
+			case .firmwareUpdateDescription:
+				return "station_details_firmware_update_description"
+			case .health:
+				return "station_details_health"
+			case .healthDescription:
+				return "station_details_health_description"
 		}
 	}
 }

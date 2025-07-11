@@ -9,7 +9,7 @@ import DomainLayer
 import Foundation
 import Toolkit
 
-public struct UserDefaultsService: PersistCacheManager {
+public struct UserDefaultsService: PersistCacheManager, @unchecked Sendable {
 	private let userDefaults: UserDefaults?
 
 	public init() {

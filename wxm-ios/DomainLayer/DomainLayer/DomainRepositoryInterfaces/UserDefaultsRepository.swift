@@ -5,7 +5,7 @@
 //  Created by Lampros Zouloumis on 1/9/22.
 //
 
-public protocol UserDefaultsRepository {
+public protocol UserDefaultsRepository: Sendable {
     func readWeatherUnit(key: String) -> UnitsProtocol?
     func saveDefaultUnitForKey(key: String) -> UnitsProtocol?
     func saveWeatherUnit(unitProtocol: UnitsProtocol)

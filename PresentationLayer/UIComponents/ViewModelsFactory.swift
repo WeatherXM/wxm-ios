@@ -305,4 +305,9 @@ enum ViewModelsFactory {
 	static func getProPromotionalViewModel() -> ProPromotionalViewModel {
 		return ProPromotionalViewModel()
 	}
+
+	static func getStationNotificationsViewModel(device: DeviceDetails, followState: UserDeviceFollowState) -> StationNotificationsViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(StationNotificationsUseCaseApi.self)!
+		return StationNotificationsViewModel(device: device, followState: followState, useCase: useCase)
+	}
 }

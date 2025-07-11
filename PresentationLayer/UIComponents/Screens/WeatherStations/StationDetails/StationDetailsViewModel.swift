@@ -97,7 +97,6 @@ class StationDetailsViewModel: ObservableObject {
 
 	func viewAppeared() {
 		trackExplorerDeviceEventIfNeeded(isInitialized: isFollowStateInitialized)
-		showStationNotificationsAlertIfNeeded()
 	}
 
     func settingsButtonTapped() {
@@ -106,7 +105,7 @@ class StationDetailsViewModel: ObservableObject {
     }
 
 	func notificationsButtonTapped() {
-		// Route to notifications screen
+		navigateToNotifications()
 	}
 
 	func warningTapped() {
@@ -319,10 +318,21 @@ private extension StationDetailsViewModel {
 		Router.shared.navigateTo(.viewMoreAlerts(.init(device: device, mainVM: .shared, followState: followState)))
 	}
 
+	func navigateToNotifications() {
+		guard let device, let followState else {
+			return
+		}
+
+		let viewModel = ViewModelsFactory.getStationNotificationsViewModel(device: device,
+																		   followState: followState)
+		Router.shared.navigateTo(.stationNotifications(viewModel))
+	}
+
 	func showStationNotificationsAlertIfNeeded() {
-//		guard followState?.relation == .owned else {
-//			return
-//		}
+		guard followState?.relation == .owned,
+		useCase?.hasNotificationsPromptBeenShown == false else {
+			return
+		}
 
 		let conf = WXMAlertConfiguration(title: LocalizableString.StationDetails.notificationsAlertTitle.localized,
 										 text: LocalizableString.StationDetails.notificationsAlertMessage.localized.attributedMarkdown ?? "",
@@ -331,7 +341,10 @@ private extension StationDetailsViewModel {
 										 secondaryButtons: [.init(title: LocalizableString.StationDetails.notificationsAlertCancelButtonTitle.localized,
 																  action: { self.showNotificationsAlert = false })],
 										 primaryButtons: [.init(title: LocalizableString.StationDetails.notificationsAlertButtonTitle.localized,
-																action: { self.showNotificationsAlert = false })])
+																action: {
+			self.showNotificationsAlert = false
+			self.navigateToNotifications()
+		})])
 		notificationsAlertConfiguration = conf
 		showNotificationsAlert = true
 		useCase?.notificationsPromptShown()

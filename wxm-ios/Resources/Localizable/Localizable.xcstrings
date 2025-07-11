@@ -9251,6 +9251,28 @@
         }
       }
     },
+    "station_details_activity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activity"
+          }
+        }
+      }
+    },
+    "station_details_activity_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified when the station goes inactive."
+          }
+        }
+      }
+    },
     "station_details_base_reward" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9269,6 +9291,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Base reward scores from %@ to %@"
+          }
+        }
+      }
+    },
+    "station_details_battery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Battery"
+          }
+        }
+      }
+    },
+    "station_details_battery_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified when the outdoor unit has a low battery warning."
           }
         }
       }
@@ -9339,6 +9383,28 @@
         }
       }
     },
+    "station_details_firmware_update" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firmware Update"
+          }
+        }
+      }
+    },
+    "station_details_firmware_update_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified when the station has a new firmware update."
+          }
+        }
+      }
+    },
     "station_details_forecast" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9357,6 +9423,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Got %d%%"
+          }
+        }
+      }
+    },
+    "station_details_health" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Health"
+          }
+        }
+      }
+    },
+    "station_details_health_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified when there are issues affecting the station’s health."
           }
         }
       }
@@ -9863,6 +9951,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "7D"
+          }
+        }
+      }
+    },
+    "station_details_show_notifications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show notifications"
           }
         }
       }

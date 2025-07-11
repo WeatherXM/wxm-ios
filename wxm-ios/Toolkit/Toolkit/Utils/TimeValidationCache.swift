@@ -8,7 +8,7 @@
 import Foundation
 
 /// An object that conforms to this protocol will be responsible to save and load the cache data
-public protocol PersistCacheManager {
+public protocol PersistCacheManager: Sendable {
 	func save<T>(value: T, key: String)
 	func get<T>(key: String) -> T?
 	func remove(key: String)
