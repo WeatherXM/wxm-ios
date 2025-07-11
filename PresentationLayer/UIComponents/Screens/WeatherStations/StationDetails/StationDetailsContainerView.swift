@@ -56,7 +56,7 @@ struct StationDetailsContainerView: View {
 								showSettingsPopOver = false
 								viewModel?.settingsButtonTapped()
 							} label: {
-								Text(LocalizableString.DeviceInfo.title.localized)
+								Text(LocalizableString.settings.localized)
 									.font(.system(size: CGFloat(.mediumFontSize)))
 									.foregroundColor(Color(colorEnum: .text))
 							}

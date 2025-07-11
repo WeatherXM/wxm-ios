@@ -97,6 +97,7 @@ class StationDetailsViewModel: ObservableObject {
 
 	func viewAppeared() {
 		trackExplorerDeviceEventIfNeeded(isInitialized: isFollowStateInitialized)
+		showStationNotificationsAlertIfNeeded()
 	}
 
     func settingsButtonTapped() {
@@ -319,10 +320,9 @@ private extension StationDetailsViewModel {
 	}
 
 	func showStationNotificationsAlertIfNeeded() {
-		guard followState?.relation == .owned,
-		useCase?.hasNotificationsPromptBeenShown == false else {
-			return
-		}
+//		guard followState?.relation == .owned else {
+//			return
+//		}
 
 		let conf = WXMAlertConfiguration(title: LocalizableString.StationDetails.notificationsAlertTitle.localized,
 										 text: LocalizableString.StationDetails.notificationsAlertMessage.localized.attributedMarkdown ?? "",
