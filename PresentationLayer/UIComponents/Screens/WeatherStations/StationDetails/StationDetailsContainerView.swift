@@ -56,7 +56,18 @@ struct StationDetailsContainerView: View {
 								showSettingsPopOver = false
 								viewModel?.settingsButtonTapped()
 							} label: {
-								Text(LocalizableString.DeviceInfo.title.localized)
+								Text(LocalizableString.settings.localized)
+									.font(.system(size: CGFloat(.mediumFontSize)))
+									.foregroundColor(Color(colorEnum: .text))
+							}
+						}
+
+						if viewModel.followState?.relation == .owned {
+							Button { [weak viewModel] in
+								showSettingsPopOver = false
+								viewModel?.notificationsButtonTapped()
+							} label: {
+								Text(LocalizableString.StationDetails.notifications.localized)
 									.font(.system(size: CGFloat(.mediumFontSize)))
 									.foregroundColor(Color(colorEnum: .text))
 							}
@@ -170,6 +181,13 @@ private struct StationDetailsView: View {
                 }
             }
         }
+		.wxmAlert(show: $viewModel.showNotificationsAlert) {
+			WXMAlertView(show: $viewModel.showNotificationsAlert,
+						 configuration: viewModel.notificationsAlertConfiguration!) {
+				EmptyView()
+			}
+		}
+
         .onAppear {
             navigationObject.navigationBarColor = Color(colorEnum: .top)
 			navigationObject.titleFont = .system(size: CGFloat(.smallTitleFontSize), weight: .bold)

@@ -45,6 +45,7 @@ public extension UserDefaults {
 		case termsOfUseAcceptedTimestamp = "com.weatherxm.app.UserDefaults.Key.TermsOfUseAcceptedTimestamp"
 		case arePhotoVerificationTermsAccepted = "com.weatherxm.app.UserDefaults.Key.ArePhotoVerificationTermsAccepted"
 		case isAddButtonIndicationSeen = "com.weatherxm.app.UserDefaults.Key.isAddButtonIndicationSeen"
+		case stationNotificationsPromptSeen = "com.weatherxm.app.UserDefaults.Key.StationNotificationsPromptSeen"
 
         // MARK: - UserDefaultEntry
 

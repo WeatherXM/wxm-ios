@@ -9482,6 +9482,61 @@
         }
       }
     },
+    "station_details_notifications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        }
+      }
+    },
+    "station_details_notifications_alert_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take me there"
+          }
+        }
+      }
+    },
+    "station_details_notifications_alert_cancel_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maybe later"
+          }
+        }
+      }
+    },
+    "station_details_notifications_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’ll now receive notifications for critical issues like inactivity or low battery. This feature is enabled by default if you’ve already allowed app notifications.\n\nYou can manage these settings from the menu at the top right corner."
+          }
+        }
+      }
+    },
+    "station_details_notifications_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Notifications"
+          }
+        }
+      }
+    },
     "station_details_overview" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -166,6 +166,7 @@ class SwinjectHelper: SwinjectInterface {
             DeviceDetailsUseCase(meRepository: resolver.resolve(MeRepository.self)!,
                                  explorerRepository: resolver.resolve(ExplorerRepository.self)!,
                                  keychainRepository: resolver.resolve(KeychainRepository.self)!,
+								 userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
 								 geocoder: resolver.resolve(GeocoderProtocol.self)!)
         }
 
