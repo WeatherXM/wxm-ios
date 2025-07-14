@@ -20,7 +20,7 @@ class PhotoIntroViewModel: ObservableObject {
 
 	var closeButtonIcon: FontIcon { .xmark }
 	var showTerms: Bool { true }
-	lazy var instructions: [PhotoIntroView.Instruction] = {
+	lazy var instructions: [PhotoIntroInstructionsView.Instruction] = {
 		[.init(icon: .iconRotate, text: LocalizableString.PhotoVerification.rotateInstruction.localized, bullets: []),
 		 .init(icon: .iconZoom, text: LocalizableString.PhotoVerification.zoomInstruction.localized, bullets: []),
 		 .init(icon: .iconSurface, text: LocalizableString.PhotoVerification.surfaceInstruction.localized, bullets: []),
