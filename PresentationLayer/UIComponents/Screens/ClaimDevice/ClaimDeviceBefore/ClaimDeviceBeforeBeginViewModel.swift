@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Toolkit
 
 class ClaimDeviceBeforeBeginViewModel: ObservableObject {
+	let completion: VoidCallback
 	var fistSectionBullets: [ClaimDeviceBulletView.Bullet] {
 		[.init(fontIcon: .circleOne, text: LocalizableString.ClaimDevice.beforeBeginBulletOne.localized.attributedMarkdown ?? ""),
 		 .init(fontIcon: .circleTwo, text: LocalizableString.ClaimDevice.beforeBeginBulletTwo.localized.attributedMarkdown ?? ""),
@@ -21,4 +23,11 @@ class ClaimDeviceBeforeBeginViewModel: ObservableObject {
 		 .init(fontIcon: .circleSeven, text: LocalizableString.ClaimDevice.beforeBeginBulletSeven.localized.attributedMarkdown ?? "")]
 	}
 
+	init(completion: @escaping VoidCallback) {
+		self.completion = completion
+	}
+
+	func handleButtonTap() {
+		completion()
+	}
 }

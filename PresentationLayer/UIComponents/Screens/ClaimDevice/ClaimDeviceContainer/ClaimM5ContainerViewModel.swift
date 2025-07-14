@@ -24,6 +24,10 @@ class ClaimM5ContainerViewModel: ClaimDeviceContainerViewModel {
 
 private extension ClaimM5ContainerViewModel {
 	func getSteps() -> [ClaimDeviceStep] {
+		let beforeBeginViewModel = ViewModelsFactory.getClaimBeforeBeginViewModel { [weak self] in
+			self?.moveNext()
+		}
+
 		let beginViewModel = ViewModelsFactory.getClaimStationM5BeginViewModel { [weak self] in
 			self?.moveNext()
 		}
@@ -41,6 +45,10 @@ private extension ClaimM5ContainerViewModel {
 			self?.performClaim()
 		}
 
-		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
+		return [.beforeBegin(beforeBeginViewModel),
+				.begin(beginViewModel),
+				.serialNumber(snViewModel),
+				.manualSerialNumber(manualSNViewModel),
+				.location(locationViewModel)]
 	}
 }

@@ -36,6 +36,10 @@ class ClaimPulseContainerViewModel: ClaimDeviceContainerViewModel {
 
 private extension ClaimPulseContainerViewModel {
 	func getSteps() -> [ClaimDeviceStep] {
+		let beforeBeginViewModel = ViewModelsFactory.getClaimBeforeBeginViewModel { [weak self] in
+			self?.moveNext()
+		}
+
 		let resetViewModel = ViewModelsFactory.getResetPulseViewModel { [weak self] in
 			self?.moveNext()
 		}
@@ -57,7 +61,9 @@ private extension ClaimPulseContainerViewModel {
 			self?.performClaim()
 		}
 
-		return [.reset(resetViewModel), .serialNumber(serialNumberViewModel),
+		return [.beforeBegin(beforeBeginViewModel),
+				.reset(resetViewModel),
+				.serialNumber(serialNumberViewModel),
 				.manualSerialNumber(manualSNViewModel),
 				.manualSerialNumber(claimingKeyViewModel),
 				.location(locationViewModel)]

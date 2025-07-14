@@ -45,10 +45,11 @@ struct ClaimDeviceBeforeBeginView: View {
 						bulletsView(bullets: viewModel.secondSectionBullets)
 					}
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
+					.padding(.top, CGFloat(.mediumSidePadding))
 				}
 
 				Button {
-					//					viewModel.handleButtonTap()
+					viewModel.handleButtonTap()
 				} label: {
 					Text(LocalizableString.ClaimDevice.beginStationClaiming.localized)
 				}
@@ -73,5 +74,5 @@ private extension ClaimDeviceBeforeBeginView {
 }
 
 #Preview {
-	ClaimDeviceBeforeBeginView(viewModel: .init())
+	ClaimDeviceBeforeBeginView(viewModel: ViewModelsFactory.getClaimBeforeBeginViewModel(completion: {}))
 }
