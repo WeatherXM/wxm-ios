@@ -204,6 +204,13 @@ enum ViewModelsFactory {
 	static func getClaimHeliumBeforeBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceHeliumBeforeBeginViewModel {
 		ClaimDeviceHeliumBeforeBeginViewModel(completion: completion)
 	}
+	
+	static func getClaimDevicePhotoViewModel(completion: @escaping VoidCallback) -> ClaimDevicePhotoIntroViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
+		let viewModel = ClaimDevicePhotoIntroViewModel(deviceId: "", images: [], photoGalleryUseCase: useCase)
+		viewModel.completion = completion
+		return viewModel
+	}
 
 	static func getClaimStationBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeginViewModel {
 		ClaimDeviceBeginViewModel(completion: completion)

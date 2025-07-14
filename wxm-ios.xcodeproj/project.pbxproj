@@ -446,6 +446,8 @@
 		26ADB80F2E214FBC00C83F3E /* ClaimDeviceBeforeBeginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB80E2E214FBC00C83F3E /* ClaimDeviceBeforeBeginViewModel.swift */; };
 		26ADB8112E21515E00C83F3E /* ClaimDeviceBeforeBeginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB8102E21515E00C83F3E /* ClaimDeviceBeforeBeginView.swift */; };
 		26ADB8192E24F41900C83F3E /* PhotoIntroInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB8182E24F41900C83F3E /* PhotoIntroInstructionsView.swift */; };
+		26ADB81C2E24FB0800C83F3E /* ClaimDevicePhotoIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB81B2E24FB0800C83F3E /* ClaimDevicePhotoIntroView.swift */; };
+		26ADB81E2E24FB1F00C83F3E /* ClaimDevicePhotoIntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB81D2E24FB1F00C83F3E /* ClaimDevicePhotoIntroViewModel.swift */; };
 		26ADDF812BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF802BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift */; };
 		26ADDF8F2BE3BF8600992BEF /* ClaimDeviceBulletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF8E2BE3BF8600992BEF /* ClaimDeviceBulletView.swift */; };
 		26ADDF912BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF902BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift */; };
@@ -1197,6 +1199,8 @@
 		26ADB80E2E214FBC00C83F3E /* ClaimDeviceBeforeBeginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeforeBeginViewModel.swift; sourceTree = "<group>"; };
 		26ADB8102E21515E00C83F3E /* ClaimDeviceBeforeBeginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeforeBeginView.swift; sourceTree = "<group>"; };
 		26ADB8182E24F41900C83F3E /* PhotoIntroInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIntroInstructionsView.swift; sourceTree = "<group>"; };
+		26ADB81B2E24FB0800C83F3E /* ClaimDevicePhotoIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoIntroView.swift; sourceTree = "<group>"; };
+		26ADB81D2E24FB1F00C83F3E /* ClaimDevicePhotoIntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoIntroViewModel.swift; sourceTree = "<group>"; };
 		26ADDF802BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSerialNumberView.swift; sourceTree = "<group>"; };
 		26ADDF8E2BE3BF8600992BEF /* ClaimDeviceBulletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBulletView.swift; sourceTree = "<group>"; };
 		26ADDF902BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSerialNumberViewModel.swift; sourceTree = "<group>"; };
@@ -2155,6 +2159,7 @@
 		2675471529A9181E008BCF40 /* ClaimDevice */ = {
 			isa = PBXGroup;
 			children = (
+				26ADB81A2E24FABF00C83F3E /* ClaimDevicePhotoIntro */,
 				26ADB80D2E214EC500C83F3E /* ClaimDeviceBefore */,
 				2608A78E2C09D34B00452E40 /* SetFrequecncy */,
 				26E685AD2C06198900B972B1 /* SelectDevice */,
@@ -2786,6 +2791,15 @@
 				26ADB8102E21515E00C83F3E /* ClaimDeviceBeforeBeginView.swift */,
 			);
 			path = ClaimDeviceBefore;
+			sourceTree = "<group>";
+		};
+		26ADB81A2E24FABF00C83F3E /* ClaimDevicePhotoIntro */ = {
+			isa = PBXGroup;
+			children = (
+				26ADB81B2E24FB0800C83F3E /* ClaimDevicePhotoIntroView.swift */,
+				26ADB81D2E24FB1F00C83F3E /* ClaimDevicePhotoIntroViewModel.swift */,
+			);
+			path = ClaimDevicePhotoIntro;
 			sourceTree = "<group>";
 		};
 		26ADDF7F2BE3B1FD00992BEF /* SerialNumber */ = {
@@ -4184,11 +4198,13 @@
 				26DF1F7D2D5B455B0001E936 /* WeatherStationsEmptyView.swift in Sources */,
 				268B5C3F2BCE95DB00E63655 /* ForecastTemperatureCardView.swift in Sources */,
 				26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */,
+				26ADB81C2E24FB0800C83F3E /* ClaimDevicePhotoIntroView.swift in Sources */,
 				26C464F82A40A0D0005E5245 /* ShimmerEffectLoaderView.swift in Sources */,
 				2675481B29A9181E008BCF40 /* SignInView.swift in Sources */,
 				26F6F7422D0725FF00FB256B /* WXMButtonOpacityStyle.swift in Sources */,
 				267547AE29A9181E008BCF40 /* SignInViewModel.swift in Sources */,
 				267547D129A9181E008BCF40 /* SizeObserver.swift in Sources */,
+				26ADB81E2E24FB1F00C83F3E /* ClaimDevicePhotoIntroViewModel.swift in Sources */,
 				264582392A41A14E00195C21 /* SpinningLoader.swift in Sources */,
 				2664833F29C8953E00748F9C /* SpinningLoaderView.swift in Sources */,
 				2675480029A9181E008BCF40 /* StaticButtonStyle.swift in Sources */,
