@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ClaimDeviceBeforeBeginView: View {
+	@StateObject var viewModel: ClaimDeviceBeforeBeginViewModel
 	var body: some View {
 		ZStack {
 			Color(colorEnum: .topBG)
@@ -16,67 +17,61 @@ struct ClaimDeviceBeforeBeginView: View {
 				ScrollView(showsIndicators: false) {
 					VStack(spacing: CGFloat(.largeSpacing)) {
 						HStack {
-							Text(LocalizableString.ClaimDevice.connectGatewayTitle.localized)
+							Text(LocalizableString.ClaimDevice.beforeBeginTitle.localized)
 								.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
 								.foregroundStyle(Color(colorEnum: .darkestBlue))
-							
+
 							Spacer()
 						}
-						
-						//						bullets
-						//
-						//						if let videoLink = viewModel.videoLink {
-						//							HStack {
-						//								Text(LocalizableString.ClaimDevice.connectionText.localized)
-						//									.foregroundStyle(Color(colorEnum: .newText))
-						//									.font(.system(size: CGFloat(.normalFontSize)))
-						//
-						//								Spacer()
-						//							}
-						//
-						//							Button {
-						//								guard let url = URL(string: videoLink), UIApplication.shared.canOpenURL(url) else {
-						//									return
-						//								}
-						//
-						//								UIApplication.shared.open(url)
-						//							} label: {
-						//								Image(asset: .ytClaimVideo)
-						//									.resizable()
-						//									.aspectRatio(contentMode: .fit)
-						//							}
-						//						}
-						//					}
-						//					.padding(.horizontal, CGFloat(.mediumSidePadding))
-						//					.padding(.top, CGFloat(.mediumSidePadding))
+
+						HStack {
+							Text(LocalizableString.ClaimDevice.beforeBeginDescription.localized)
+								.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+								.foregroundStyle(Color(colorEnum: .darkGrey))
+
+							Spacer()
+						}
+
+						bulletsView(bullets: viewModel.fistSectionBullets)
+
+						HStack {
+							Text(LocalizableString.ClaimDevice.beforeBeginNextUp.localized)
+								.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+								.foregroundStyle(Color(colorEnum: .darkGrey))
+
+							Spacer()
+						}
+
+						bulletsView(bullets: viewModel.secondSectionBullets)
 					}
-					
-					Button {
-						//					viewModel.handleButtonTap()
-					} label: {
-						Text(LocalizableString.ClaimDevice.beginStationClaiming.localized)
-					}
-					.buttonStyle(WXMButtonStyle.filled())
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
-					.padding(.bottom, CGFloat(.mediumSidePadding))
 				}
+
+				Button {
+					//					viewModel.handleButtonTap()
+				} label: {
+					Text(LocalizableString.ClaimDevice.beginStationClaiming.localized)
+				}
+				.buttonStyle(WXMButtonStyle.filled())
+				.padding(.horizontal, CGFloat(.mediumSidePadding))
+				.padding(.bottom, CGFloat(.mediumSidePadding))
 			}
 		}
 	}
 }
 
-//private extension ClaimDeviceBeginView {
-//	@ViewBuilder
-//	var bullets: some View {
-//		VStack(spacing: CGFloat(.mediumSpacing)) {
-//			ForEach(0..<viewModel.bullets.count, id: \.self) { index in
-//				let bullet = viewModel.bullets[index]
-//				ClaimDeviceBulletView(bullet: bullet)
-//			}
-//		}
-//	}
-//}
+private extension ClaimDeviceBeforeBeginView {
+	@ViewBuilder
+	func bulletsView(bullets: [ClaimDeviceBulletView.Bullet]) -> some View {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			ForEach(0..<bullets.count, id: \.self) { index in
+				let bullet = bullets[index]
+				ClaimDeviceBulletView(bullet: bullet)
+			}
+		}
+	}
+}
 
 #Preview {
-    ClaimDeviceBeforeBeginView()
+	ClaimDeviceBeforeBeginView(viewModel: .init())
 }
