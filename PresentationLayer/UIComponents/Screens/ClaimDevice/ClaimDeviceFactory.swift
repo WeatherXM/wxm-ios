@@ -14,6 +14,7 @@ enum ClaimDeviceStep: Identifiable {
 	case serialNumber(ClaimDeviceSerialNumberViewModel)
 	case manualSerialNumber(ManualSerialNumberViewModel)
 	case location(ClaimDeviceLocationViewModel)
+	case photoIntro(ClaimDevicePhotoIntroViewModel)
 	case reset(ResetDeviceViewModel)
 	case selectDevice(SelectDeviceViewModel)
 	case setFrequency(ClaimDeviceSetFrequencyViewModel)
@@ -30,6 +31,8 @@ enum ClaimDeviceStep: Identifiable {
 				"manualSerialNumber-\(viewModel)"
 			case .location:
 				"location"
+			case .photoIntro(let viewModel):
+				"photoIntro-\(viewModel)"
 			case .reset:
 				"reset"
 			case .selectDevice:
@@ -56,6 +59,8 @@ extension ClaimDeviceStep {
 				ManualSerialNumberView(viewModel: viewModel)
 			case .location(let viewModel):
 				ClaimDeviceLocationView(viewModel: viewModel)
+			case .photoIntro(let viewModel):
+				ClaimDevicePhotoIntroView(viewModel: viewModel)
 			case .reset(let viewModel):
 				ResetDeviceView(viewModel: viewModel)
 			case .selectDevice(let viewModel):

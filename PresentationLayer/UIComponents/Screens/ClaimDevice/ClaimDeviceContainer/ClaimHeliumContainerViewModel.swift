@@ -66,12 +66,17 @@ private extension ClaimHeliumContainerViewModel {
 			setFrequencyViewModel?.selectedLocation = location
 			setFrequencyViewModel?.didSelectFrequencyFromLocation = true
 			self?.moveNext()
+		}		
+
+		let photoIntroViewModel = ViewModelsFactory.getClaimDevicePhotoViewModel { [weak self] in
+			self?.moveNext()
 		}
 
 		return [.beforeBegin(beforeBeginViewModel),
 				.reset(resetViewModel),
 				.selectDevice(selectDeviceViewModel),
 				.location(locationViewModel),
+				.photoIntro(photoIntroViewModel),
 				.setFrequency(setFrequencyViewModel)]
 	}
 

@@ -41,6 +41,10 @@ private extension ClaimD1ContainerViewModel {
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
 			self?.location = location
+		}
+
+		let photoIntroViewModel = ViewModelsFactory.getClaimDevicePhotoViewModel { [weak self] in
+			self?.moveNext()
 			self?.performClaim(retries: 0)
 		}
 
@@ -48,6 +52,7 @@ private extension ClaimD1ContainerViewModel {
 				.begin(beginViewModel),
 				.serialNumber(snViewModel),
 				.manualSerialNumber(manualSNViewModel),
-				.location(locationViewModel)]
+				.location(locationViewModel),
+				.photoIntro(photoIntroViewModel)]
 	}
 }

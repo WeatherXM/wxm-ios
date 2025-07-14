@@ -17,8 +17,29 @@ struct ClaimDevicePhotoIntroView: View {
 
 			GeometryReader { proxy in
 				ScrollView {
-					PhotoIntroInstructionsView(viewModel: viewModel,
-											   containerWidth: proxy.size.width)
+					VStack (spacing: CGFloat(.largeSpacing)) {
+						VStack(spacing: CGFloat(.smallSpacing)) {
+							HStack {
+								Text(LocalizableString.ClaimDevice.photoVerificationTitle.localized)
+									.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
+									.foregroundStyle(Color(colorEnum: .darkestBlue))
+
+								Spacer()
+							}
+
+							HStack {
+								Text(LocalizableString.ClaimDevice.photoVerificationText.localized)
+									.font(.system(size: CGFloat(.normalFontSize)))
+									.foregroundStyle(Color(colorEnum: .darkGrey))
+
+								Spacer()
+							}
+						}
+						.padding(.horizontal, CGFloat(.defaultSidePadding))
+
+						PhotoIntroInstructionsView(viewModel: viewModel,
+												   containerWidth: proxy.size.width)
+					}
 					.padding(.top, CGFloat(.mediumSidePadding))
 				}
 				.scrollIndicators(.hidden)
