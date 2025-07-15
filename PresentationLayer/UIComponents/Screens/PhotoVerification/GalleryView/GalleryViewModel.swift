@@ -76,7 +76,7 @@ class GalleryViewModel: ObservableObject {
 		self.useCase = photoGalleryUseCase
 		self.isNewPhotoVerification = isNewPhotoVerification
 		self.linkNavigator = linkNavigation
-		self.galleryImagesViewModel = ViewModelsFactory.getGalleryImagesViewModel(images: images)
+		self.galleryImagesViewModel = ViewModelsFactory.getGalleryImagesViewModel(images: images, linkNavigator: linkNavigator)
 		self.galleryImagesViewModel.delegate = self
 		self.galleryImagesViewModel.$images.sink { [weak self] images in
 			self?.updateSubtitle()
