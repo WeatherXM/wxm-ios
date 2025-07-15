@@ -74,5 +74,5 @@ private extension ClaimDeviceBeforeBeginView {
 }
 
 #Preview {
-	ClaimDeviceBeforeBeginView(viewModel: ViewModelsFactory.getClaimBeforeBeginViewModel(completion: {}))
+	ClaimDeviceBeforeBeginView(viewModel: ViewModelsFactory.getClaimHeliumBeforeBeginViewModel(completion: {}))
 }

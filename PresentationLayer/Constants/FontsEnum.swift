@@ -43,6 +43,7 @@ enum FontIcon: String {
 	case circleFive = "circle-5"
 	case circleSix = "circle-6"
 	case circleSeven = "circle-7"
+	case circleEight = "circle-8"
 	case circleOne = "circle-1"
 	case circleSmall = "circle-small"
 	case circleThree = "circle-3"

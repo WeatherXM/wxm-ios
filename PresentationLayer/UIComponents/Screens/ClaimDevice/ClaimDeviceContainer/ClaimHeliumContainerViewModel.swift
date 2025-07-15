@@ -27,7 +27,7 @@ class ClaimHeliumContainerViewModel: ClaimDeviceContainerViewModel {
 
 private extension ClaimHeliumContainerViewModel {
 	func getSteps() -> [ClaimDeviceStep] {
-		let beforeBeginViewModel = ViewModelsFactory.getClaimBeforeBeginViewModel { [weak self] in
+		let beforeBeginViewModel = ViewModelsFactory.getClaimHeliumBeforeBeginViewModel { [weak self] in
 			self?.moveNext()
 		}
 

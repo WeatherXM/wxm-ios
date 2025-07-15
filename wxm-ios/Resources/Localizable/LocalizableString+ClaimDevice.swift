@@ -22,13 +22,15 @@ extension LocalizableString {
 		case claimPulseTitle
 		case beforeBeginTitle
 		case beforeBeginDescription
-		case beforeBeginBulletOne
-		case beforeBeginBulletTwo
-		case beforeBeginBulletThree
-		case beforeBeginBulletFour
-		case beforeBeginBulletFive
-		case beforeBeginBulletSix
-		case beforeBeginBulletSeven
+		case beforeBeginCheckBox
+		case beforeBeginAssembleStation
+		case beforeBeginInstallStation
+		case beforeBeginConnectGateway
+		case beforeBeginConfirmLocation
+		case beforeBeginTakePhotos
+		case beforeBeginAllDone
+		case beforeBeginPairStation
+		case beforeBeginSetFrequency
 		case beforeBeginNextUp
 		case connectGatewayTitle
 		case connectD1BulletOne
@@ -211,20 +213,24 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_before_begin_title"
 			case .beforeBeginDescription:
 				return "claim_device_before_begin_description"
-			case .beforeBeginBulletOne:
-				return "claim_device_before_begin_bullet_one"
-			case .beforeBeginBulletTwo:
-				return "claim_device_before_begin_bullet_two"
-			case .beforeBeginBulletThree:
-				return "claim_device_before_begin_bullet_three"
-			case .beforeBeginBulletFour:
-				return "claim_device_before_begin_bullet_four"
-			case .beforeBeginBulletFive:
-				return "claim_device_before_begin_bullet_five"
-			case .beforeBeginBulletSix:
-				return "claim_device_before_begin_bullet_six"
-			case .beforeBeginBulletSeven:
-				return "claim_device_before_begin_bullet_seven"
+			case .beforeBeginCheckBox:
+				return "claim_device_before_begin_check_box"
+			case .beforeBeginAssembleStation:
+				return "claim_device_before_begin_assemble_station"
+			case .beforeBeginInstallStation:
+				return "claim_device_before_begin_install_station"
+			case .beforeBeginConnectGateway:
+				return "claim_device_before_begin_connect_gateway"
+			case .beforeBeginConfirmLocation:
+				return "claim_device_before_begin_confirm_location"
+			case .beforeBeginTakePhotos:
+				return "claim_device_before_begin_take_photos"
+			case .beforeBeginAllDone:
+				return "claim_device_before_begin_all_done"
+			case .beforeBeginPairStation:
+				return "claim_device_before_begin_pair_station"
+			case .beforeBeginSetFrequency:
+				return "claim_device_before_begin_set_frequency"
 			case .beforeBeginNextUp:
 				return "claim_device_before_begin_next_up"
 			case .claimD1Title:
