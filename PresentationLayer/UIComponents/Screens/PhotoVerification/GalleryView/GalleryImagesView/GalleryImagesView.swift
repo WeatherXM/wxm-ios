@@ -105,7 +105,7 @@ struct GalleryImagesView: View {
 			.iPadMaxWidth()
 		}
 		.sheet(isPresented: $viewModel.showInstructions) {
-			PhotoIntroView(viewModel: ViewModelsFactory.getPhotoInstructionsViewModel(deviceId: ""))
+			PhotoIntroView(viewModel: ViewModelsFactory.getPhotoInstructionsViewModel())
 		}
 		.task {
 			viewModel.viewLoaded()

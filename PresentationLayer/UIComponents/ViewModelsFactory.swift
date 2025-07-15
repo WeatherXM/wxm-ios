@@ -293,9 +293,9 @@ enum ViewModelsFactory {
 		return PhotoIntroViewModel(deviceId: deviceId, images: images, photoGalleryUseCase: useCase)
 	}
 
-	static func getPhotoInstructionsViewModel(deviceId: String) -> PhotoInstructionsViewModel {
+	static func getPhotoInstructionsViewModel() -> PhotoInstructionsViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
-		return PhotoInstructionsViewModel(deviceId: deviceId, images: [], photoGalleryUseCase: useCase)
+		return PhotoInstructionsViewModel(deviceId: nil, images: [], photoGalleryUseCase: useCase)
 	}
 
 	static func getGalleryViewModel(deviceId: String, images: [String], isNewVerification: Bool) -> GalleryViewModel {

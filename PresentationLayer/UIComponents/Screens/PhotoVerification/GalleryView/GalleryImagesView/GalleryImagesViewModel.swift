@@ -95,25 +95,6 @@ class GalleryImagesViewModel: ObservableObject {
 				if result == true {
 					self.selectedImage = self.images.last
 				}
-
-				defer {
-//					self?.showShimmerLoading = false
-				}
-
-//				self?.showShimmerLoading = true
-
-//				do {
-//					try await self?.deleteImageImage(selectedImage)
-//					self?.selectedImage = self?.images.last
-//				} catch PhotosError.networkError(let error) {
-//					let info = error.uiInfo
-//					if let message = info.description?.attributedMarkdown {
-//						Toast.shared.show(text: message)
-//					}
-//				}
-//				catch {
-//					Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
-//				}
 			}
 		}
 
