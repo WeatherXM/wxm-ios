@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 enum ClaimDeviceStep: Identifiable {
-
+	case beforeBegin(ClaimDeviceBeforeBeginViewModel)
 	case begin(ClaimDeviceBeginViewModel)
 	case serialNumber(ClaimDeviceSerialNumberViewModel)
 	case manualSerialNumber(ManualSerialNumberViewModel)
@@ -20,6 +20,8 @@ enum ClaimDeviceStep: Identifiable {
 
 	var id: String {
 		switch self {
+			case .beforeBegin:
+				"beforeBegin"
 			case .begin:
 				"begin"
 			case .serialNumber:
@@ -44,6 +46,8 @@ extension ClaimDeviceStep {
 	@ViewBuilder
 	var contentView: some View {
 		switch self {
+			case .beforeBegin(let viewModel):
+				ClaimDeviceBeforeBeginView(viewModel: viewModel)
 			case .begin(let viewModel):
 				ClaimDeviceBeginView(viewModel: viewModel)
 			case .serialNumber(let viewModel):

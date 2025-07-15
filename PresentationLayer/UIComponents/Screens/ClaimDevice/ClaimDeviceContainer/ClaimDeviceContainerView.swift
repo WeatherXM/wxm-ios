@@ -18,7 +18,7 @@ struct ClaimDeviceContainerView: View {
 				.ignoresSafeArea()
 
 			VStack {
-				ProgressView(value: CGFloat(viewModel.selectedIndex + 1), total: CGFloat(viewModel.steps.count))
+				ProgressView(value: CGFloat(viewModel.selectedIndex), total: CGFloat(viewModel.steps.count))
 					.tint(Color(colorEnum: .wxmPrimary))
 					.padding(.horizontal, CGFloat(.mediumSidePadding))
 					.animation(.easeOut(duration: 0.3), value: viewModel.selectedIndex)
