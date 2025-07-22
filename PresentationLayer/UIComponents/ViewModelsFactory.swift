@@ -197,6 +197,14 @@ enum ViewModelsFactory {
 		}
 	}
 
+	static func getClaimBeforeBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeforeBeginViewModel {
+		ClaimDeviceBeforeBeginViewModel(completion: completion)
+	}
+
+	static func getClaimHeliumBeforeBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceHeliumBeforeBeginViewModel {
+		ClaimDeviceHeliumBeforeBeginViewModel(completion: completion)
+	}
+
 	static func getClaimStationBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeginViewModel {
 		ClaimDeviceBeginViewModel(completion: completion)
 	}

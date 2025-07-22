@@ -27,6 +27,10 @@ class ClaimHeliumContainerViewModel: ClaimDeviceContainerViewModel {
 
 private extension ClaimHeliumContainerViewModel {
 	func getSteps() -> [ClaimDeviceStep] {
+		let beforeBeginViewModel = ViewModelsFactory.getClaimHeliumBeforeBeginViewModel { [weak self] in
+			self?.moveNext()
+		}
+
 		let resetViewModel = ViewModelsFactory.getResetDeviceViewModel { [weak self] in
 			self?.moveNext()
 		}
@@ -64,7 +68,11 @@ private extension ClaimHeliumContainerViewModel {
 			self?.moveNext()
 		}
 
-		return [.reset(resetViewModel), .selectDevice(selectDeviceViewModel), .location(locationViewModel), .setFrequency(setFrequencyViewModel)]
+		return [.beforeBegin(beforeBeginViewModel),
+				.reset(resetViewModel),
+				.selectDevice(selectDeviceViewModel),
+				.location(locationViewModel),
+				.setFrequency(setFrequencyViewModel)]
 	}
 
 	func performHeliumClaim() {
