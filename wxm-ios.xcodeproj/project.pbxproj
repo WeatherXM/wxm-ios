@@ -15,6 +15,8 @@
 		2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */; };
 		2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */; };
 		2608A7942C09F67A00452E40 /* DeviceLocation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7932C09F67A00452E40 /* DeviceLocation+.swift */; };
+		260F8E432E2678B300CBAEB2 /* ClaimDevicePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E422E2678B300CBAEB2 /* ClaimDevicePhotoView.swift */; };
+		260F8E452E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E442E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift */; };
 		2612AC1A2AB45B1700285896 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC192AB45B1700285896 /* FilterView.swift */; };
 		2612AC1C2AB45B2800285896 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC1B2AB45B2800285896 /* FilterViewModel.swift */; };
 		2612AC3A2AB47BA200285896 /* LocalizableString+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */; };
@@ -804,6 +806,8 @@
 		2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyView.swift; sourceTree = "<group>"; };
 		2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyViewModel.swift; sourceTree = "<group>"; };
 		2608A7932C09F67A00452E40 /* DeviceLocation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceLocation+.swift"; sourceTree = "<group>"; };
+		260F8E422E2678B300CBAEB2 /* ClaimDevicePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoView.swift; sourceTree = "<group>"; };
+		260F8E442E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoViewModel.swift; sourceTree = "<group>"; };
 		2612AC192AB45B1700285896 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		2612AC1B2AB45B2800285896 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Filters.swift"; sourceTree = "<group>"; };
@@ -1524,6 +1528,15 @@
 			path = SetFrequecncy;
 			sourceTree = "<group>";
 		};
+		260F8E412E2674C400CBAEB2 /* ClaimDevicePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				260F8E422E2678B300CBAEB2 /* ClaimDevicePhotoView.swift */,
+				260F8E442E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift */,
+			);
+			path = ClaimDevicePhoto;
+			sourceTree = "<group>";
+		};
 		2612AC182AB45AFA00285896 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
@@ -2163,6 +2176,7 @@
 		2675471529A9181E008BCF40 /* ClaimDevice */ = {
 			isa = PBXGroup;
 			children = (
+				260F8E412E2674C400CBAEB2 /* ClaimDevicePhoto */,
 				26ADB81A2E24FABF00C83F3E /* ClaimDevicePhotoIntro */,
 				26ADB80D2E214EC500C83F3E /* ClaimDeviceBefore */,
 				2608A78E2C09D34B00452E40 /* SetFrequecncy */,
@@ -3981,6 +3995,7 @@
 				267CA6CF2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift in Sources */,
 				26D47EA12A1783E60078723A /* AnalyticsView.swift in Sources */,
 				269E85712B0242C100BE774C /* WXMShareModifier.swift in Sources */,
+				260F8E432E2678B300CBAEB2 /* ClaimDevicePhotoView.swift in Sources */,
 				26E85B142C7753140062667E /* LocalizableString+Units.swift in Sources */,
 				26CA845A2AD93BB6006D47D7 /* String+Common.swift in Sources */,
 				26AA21D52BF4A2CC00B91A7C /* ManualSerialNumberTypes.swift in Sources */,
@@ -4118,6 +4133,7 @@
 				266BAF992AA8A22A004F5DE0 /* LocalizableString+DeleteAccount.swift in Sources */,
 				266BAFDD2AA8BAC1004F5DE0 /* LocalizableString+Errors.swift in Sources */,
 				2612AC3A2AB47BA200285896 /* LocalizableString+Filters.swift in Sources */,
+				260F8E452E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift in Sources */,
 				266BAF7F2AA89C79004F5DE0 /* LocalizableString+Home.swift in Sources */,
 				267CA6CB2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift in Sources */,
 				266BAF712AA88D39004F5DE0 /* LocalizableString+NetStats.swift in Sources */,

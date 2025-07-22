@@ -164,6 +164,7 @@ extension LocalizableString {
 		case skipPhotoVerificationAlertText
 		case photoVerificationTitle
 		case photoVerificationText
+		case uploadAndClaim
 	}
 }
 
@@ -502,6 +503,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_photo_verification_title"
 			case .photoVerificationText:
 				return "claim_device_photo_verification_text"
+			case .uploadAndClaim:
+				return "claim_device_upload_and_claim"
 		}
 	}
 }

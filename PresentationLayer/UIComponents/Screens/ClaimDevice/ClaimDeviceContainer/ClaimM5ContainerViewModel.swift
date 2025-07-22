@@ -47,6 +47,10 @@ private extension ClaimM5ContainerViewModel {
 
 		let photoIntroViewModel = ViewModelsFactory.getClaimDevicePhotoViewModel { [weak self] in
 			self?.moveNext()
+		}
+
+		let photoViewModel = ViewModelsFactory.getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] in
+			self?.moveNext()
 			self?.performClaim()
 		}
 
@@ -55,6 +59,7 @@ private extension ClaimM5ContainerViewModel {
 				.serialNumber(snViewModel),
 				.manualSerialNumber(manualSNViewModel),
 				.location(locationViewModel),
-				.photoIntro(photoIntroViewModel)]
+				.photoIntro(photoIntroViewModel),
+				.photos(photoViewModel)]
 	}
 }

@@ -56,7 +56,7 @@ struct GalleryView: View {
 				.shimmerLoader(show: $viewModel.showShimmerLoading,
 							   position: .bottom)
 
-				GalleryImagesView(viewModel: viewModel.galleryImagesViewModel)
+				GalleryImagesView<EmptyView>(viewModel: viewModel.galleryImagesViewModel)
 			}
 			.spinningLoader(show: $viewModel.showLoading,
 							title: viewModel.loadingTitle,

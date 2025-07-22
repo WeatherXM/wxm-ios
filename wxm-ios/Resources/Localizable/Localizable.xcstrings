@@ -2244,6 +2244,17 @@
         }
       }
     },
+    "claim_device_upload_and_claim" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload and Claim"
+          }
+        }
+      }
+    },
     "claim_device_verify_button" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -9,8 +9,9 @@ import SwiftUI
 import NukeUI
 import Toolkit
 
-struct GalleryImagesView: View {
+struct GalleryImagesView<Content: View>: View {
 	@StateObject var viewModel: GalleryImagesViewModel
+	var ctaContent: (() -> Content)? = nil
 
     var body: some View {
 		VStack(spacing: 0.0) {
@@ -61,7 +62,7 @@ struct GalleryImagesView: View {
 				VStack(spacing: CGFloat(.largeSpacing)) {
 					galleryScroller
 
-					HStack(spacing: CGFloat(.defaultSpacing)) {
+					HStack(spacing: CGFloat(.smallToMediumSpacing)) {
 						Button {
 							viewModel.handleDeleteButtonTap()
 						} label: {
@@ -85,18 +86,34 @@ struct GalleryImagesView: View {
 						}
 						.buttonStyle(WXMButtonOpacityStyle())
 
-						Spacer()
-
-						Button {
-							viewModel.handleInstructionsButtonTap()
-						} label: {
-							Text(LocalizableString.PhotoVerification.instructions.localized)
-								.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-								.foregroundStyle(Color(colorEnum: .text))
-								.padding(CGFloat(.mediumSidePadding))
-								.background(Capsule().fill(Color(colorEnum: .layer1)))
+						if ctaContent != nil {
+							Button {
+								viewModel.handleInstructionsButtonTap()
+							} label: {
+								Text(FontIcon.circleQuestion.rawValue)
+									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+									.foregroundStyle(Color(colorEnum: .text))
+									.padding(CGFloat(.mediumSidePadding))
+									.background(Circle().fill(Color(colorEnum: .layer1)))
+							}
 						}
-						.buttonStyle(WXMButtonOpacityStyle())
+
+						Spacer(minLength: 0)
+
+						if let ctaContent {
+							ctaContent()
+						} else {
+							Button {
+								viewModel.handleInstructionsButtonTap()
+							} label: {
+								Text(LocalizableString.PhotoVerification.instructions.localized)
+									.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+									.foregroundStyle(Color(colorEnum: .text))
+									.padding(CGFloat(.mediumSidePadding))
+									.background(Capsule().fill(Color(colorEnum: .layer1)))
+							}
+							.buttonStyle(WXMButtonOpacityStyle())
+						}
 					}
 				}
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
@@ -246,5 +263,5 @@ private extension GalleryImagesView {
 }
 
 #Preview {
-	GalleryImagesView(viewModel: ViewModelsFactory.getGalleryImagesViewModel(images: []))
+	GalleryImagesView<EmptyView>(viewModel: ViewModelsFactory.getGalleryImagesViewModel(images: []))
 }

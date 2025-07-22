@@ -212,6 +212,13 @@ enum ViewModelsFactory {
 		return viewModel
 	}
 
+	static func getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigation, completion: @escaping VoidCallback) -> ClaimDevicePhotoViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
+		let viewModel = ClaimDevicePhotoViewModel(useCase: useCase, linkNavigator: linkNavigator)
+//		viewModel.completion = completion
+		return viewModel
+	}
+
 	static func getClaimStationBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeginViewModel {
 		ClaimDeviceBeginViewModel(completion: completion)
 	}
