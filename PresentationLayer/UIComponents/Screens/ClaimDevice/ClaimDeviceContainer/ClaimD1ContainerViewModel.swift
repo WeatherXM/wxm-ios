@@ -10,8 +10,14 @@ import DomainLayer
 import Toolkit
 
 class ClaimD1ContainerViewModel: ClaimDeviceContainerViewModel {
-	override init(useCase: MeUseCaseApi, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCaseApi) {
-		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+	override init(useCase: MeUseCaseApi,
+				  devicesUseCase: DevicesUseCaseApi,
+				  deviceLocationUseCase: DeviceLocationUseCaseApi,
+				  photoGalleryUseCase: PhotoGalleryUseCaseApi) {
+		super.init(useCase: useCase,
+				   devicesUseCase: devicesUseCase,
+				   deviceLocationUseCase: deviceLocationUseCase,
+				   photoGalleryUseCase: photoGalleryUseCase)
 		navigationTitle = ClaimStationType.d1.navigationTitle
 		steps = getSteps()
 	}

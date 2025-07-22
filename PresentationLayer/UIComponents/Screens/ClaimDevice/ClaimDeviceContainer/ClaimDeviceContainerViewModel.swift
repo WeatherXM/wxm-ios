@@ -23,6 +23,7 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	let useCase: MeUseCaseApi
 	let devicesUseCase: DevicesUseCaseApi
 	let deviceLocationUseCase: DeviceLocationUseCaseApi
+	let photoGalleryUseCase: PhotoGalleryUseCaseApi
 	var claimingKey: String?
 	var serialNumber: String?
 	var location: DeviceLocation?
@@ -34,10 +35,12 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 
 	init(useCase: MeUseCaseApi,
 		 devicesUseCase: DevicesUseCaseApi,
-		 deviceLocationUseCase: DeviceLocationUseCaseApi) {
+		 deviceLocationUseCase: DeviceLocationUseCaseApi,
+		 photoGalleryUseCase: PhotoGalleryUseCaseApi) {
 		self.useCase = useCase
 		self.devicesUseCase = devicesUseCase
 		self.deviceLocationUseCase = deviceLocationUseCase
+		self.photoGalleryUseCase = photoGalleryUseCase
 	}
 
 	func viewAppeared() {}
@@ -137,19 +140,36 @@ extension ClaimDeviceContainerViewModel {
 								var followState: UserDeviceFollowState?
 								if let deviceId = deviceResponse.id {
 									followState = try? await self.useCase.getDeviceFollowState(deviceId: deviceId).get()
+									await self.startPhotoUpload(deviceId: deviceId)
 								}
 
 								let object = self.getSuccessObject(for: deviceResponse, followState: followState)
 								self.loadingState = .success(object)
 								WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .claimingResult,
 																						  .success: .custom("1")])
-
 							}
 					}
 				}
 				.store(in: &cancellableSet)
 		} catch {
 			print(error)
+		}
+	}
+
+	func startPhotoUpload(deviceId: String) async {
+		guard let photos else {
+			return
+		}
+
+		do {
+			try self.photoGalleryUseCase.clearLocalImages(deviceId: deviceId)
+			let fileUrls = await photos.asyncCompactMap { try? await photoGalleryUseCase.saveImage($0.uiImage!,
+																								 deviceId: deviceId,
+																								 metadata: $0.metadata,
+																								 userComment: $0.source?.sourceValue ?? "")}
+			try await self.photoGalleryUseCase.startFilesUpload(deviceId: deviceId, files: fileUrls.compactMap { try? $0.asURL() })
+		} catch {
+			Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
 		}
 	}
 
