@@ -54,7 +54,10 @@ private extension ClaimD1ContainerViewModel {
 		}
 
 		let photoViewModel = ViewModelsFactory.getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] photos in
-			self?.photos = photos
+			guard let serialNumber = self?.serialNumber else {
+				return
+			}
+			self?.photosManager.setPhotos(photos, for: serialNumber)
 			self?.performClaim(retries: 0)
 		}
 

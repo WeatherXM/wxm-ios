@@ -27,8 +27,15 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	var claimingKey: String?
 	var serialNumber: String?
 	var location: DeviceLocation?
-	var photos: [GalleryView.GalleryImage]?
-	
+	let photosManager: ClaimDevicePhotosManager = .shared
+	var photos: [GalleryView.GalleryImage]? {
+		guard let serialNumber else {
+			return nil
+		}
+
+		return photosManager.getPhotos(for: serialNumber)
+	}
+
 	private let CLAIMING_RETRIES_MAX = 25 // For 2 minutes timeout
 	private let CLAIMING_RETRIES_DELAY_SECONDS: TimeInterval = 5
 	private var cancellableSet: Set<AnyCancellable> = .init()
@@ -164,16 +171,16 @@ extension ClaimDeviceContainerViewModel {
 	}
 
 	func startPhotoUpload(deviceId: String) async {
-		guard let photos else {
+		guard let photos = photos else {
 			return
 		}
 
 		do {
 			try self.photoGalleryUseCase.clearLocalImages(deviceId: deviceId)
-			let fileUrls = await photos.asyncCompactMap { try? await photoGalleryUseCase.saveImage($0.uiImage!,
-																								 deviceId: deviceId,
-																								 metadata: $0.metadata,
-																								 userComment: $0.source?.sourceValue ?? "")}
+			let fileUrls = await photos.asyncMainActorCompactMap { try? await photoGalleryUseCase.saveImage($0.uiImage!,
+																											deviceId: deviceId,
+																											metadata: $0.metadata,
+																											userComment: $0.source?.sourceValue ?? "")}
 			try await self.photoGalleryUseCase.startFilesUpload(deviceId: deviceId, files: fileUrls.compactMap { try? $0.asURL() })
 		} catch {
 			Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")

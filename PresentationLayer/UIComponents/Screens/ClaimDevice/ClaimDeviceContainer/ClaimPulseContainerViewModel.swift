@@ -70,8 +70,11 @@ private extension ClaimPulseContainerViewModel {
 			self?.moveNext()
 		}
 
-		let photoViewModel = ViewModelsFactory.getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] photos in
-			self?.photos = photos
+		let photoViewModel = ViewModelsFactory.getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigationHelper(), images: p) { [weak self] photos in
+			guard let serialNumber = self?.serialNumber else {
+				return
+			}
+			self?.photosManager.setPhotos(photos, for: serialNumber)
 			self?.performClaim()
 		}
 
