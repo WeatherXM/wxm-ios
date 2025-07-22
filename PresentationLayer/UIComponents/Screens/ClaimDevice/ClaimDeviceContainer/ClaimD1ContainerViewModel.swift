@@ -60,6 +60,7 @@ private extension ClaimD1ContainerViewModel {
 			self?.photosManager.setPhotos(photos, for: serialNumber)
 			self?.performClaim(retries: 0)
 		}
+		self.photosViewModel = photoViewModel
 
 		return [.beforeBegin(beforeBeginViewModel),
 				.begin(beginViewModel),

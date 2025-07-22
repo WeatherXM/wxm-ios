@@ -29,6 +29,11 @@ class ClaimDevicePhotoViewModel: ObservableObject {
 		photosViewModel.images.count >= minPhotosCount
 	}
 
+	func updateImages(_ images: [GalleryView.GalleryImage]) {
+		photosViewModel.images = images
+		photosViewModel.selectedImage = images.last
+	}
+
 	func handleCtaButtonTap() {
 		completion?(photosViewModel.images)
 	}

@@ -62,6 +62,7 @@ private extension ClaimM5ContainerViewModel {
 			self?.photosManager.setPhotos(photos, for: serialNumber)
 			self?.performClaim()
 		}
+		self.photosViewModel = photoViewModel
 
 		return [.beforeBegin(beforeBeginViewModel),
 				.begin(beginViewModel),

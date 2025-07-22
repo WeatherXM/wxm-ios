@@ -35,6 +35,7 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 
 		return photosManager.getPhotos(for: serialNumber)
 	}
+	weak var photosViewModel: ClaimDevicePhotoViewModel?
 
 	private let CLAIMING_RETRIES_MAX = 25 // For 2 minutes timeout
 	private let CLAIMING_RETRIES_DELAY_SECONDS: TimeInterval = 5
@@ -105,6 +106,11 @@ extension ClaimDeviceContainerViewModel {
 		}
 
 		moveNext()
+
+		if let serialNumber,
+		   let images = photosManager.getPhotos(for: serialNumber) {
+			photosViewModel?.updateImages(images)
+		}
 	}
 
 	func performClaim(retries: Int? = nil) {

@@ -87,7 +87,8 @@ private extension ClaimHeliumContainerViewModel {
 			self?.photosManager.setPhotos(photos, for: ClaimDevicePhotosManager.tempHeliumSerialNumber)
 			self?.moveNext()
 		}
-
+		self.photosViewModel = photoViewModel
+		
 		return [.beforeBegin(beforeBeginViewModel),
 				.reset(resetViewModel),
 				.selectDevice(selectDeviceViewModel),
