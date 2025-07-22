@@ -40,6 +40,9 @@ class GalleryImagesViewModel: ObservableObject {
 	var isPlusButtonEnabled: Bool {
 		useCase.getCameraPermission() != .denied
 	}
+	var buttonsTintColor: ColorEnum {
+		.text
+	}
 	weak var delegate: GalleryImagesViewModelDelegate?
 
 	private let useCase: PhotoGalleryUseCaseApi

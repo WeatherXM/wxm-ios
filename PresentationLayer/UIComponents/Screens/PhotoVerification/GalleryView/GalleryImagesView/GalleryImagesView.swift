@@ -80,7 +80,7 @@ struct GalleryImagesView<Content: View>: View {
 						} label: {
 							Text(FontIcon.image.rawValue)
 								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
-								.foregroundStyle(Color(colorEnum: .text))
+								.foregroundStyle(Color(colorEnum: viewModel.buttonsTintColor))
 								.padding(CGFloat(.mediumSidePadding))
 								.background(Circle().fill(Color(colorEnum: .layer1)))
 						}
@@ -92,7 +92,7 @@ struct GalleryImagesView<Content: View>: View {
 							} label: {
 								Text(FontIcon.circleQuestion.rawValue)
 									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
-									.foregroundStyle(Color(colorEnum: .text))
+									.foregroundStyle(Color(colorEnum: viewModel.buttonsTintColor))
 									.padding(CGFloat(.mediumSidePadding))
 									.background(Circle().fill(Color(colorEnum: .layer1)))
 							}
@@ -108,7 +108,7 @@ struct GalleryImagesView<Content: View>: View {
 							} label: {
 								Text(LocalizableString.PhotoVerification.instructions.localized)
 									.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-									.foregroundStyle(Color(colorEnum: .text))
+									.foregroundStyle(Color(colorEnum: viewModel.buttonsTintColor))
 									.padding(CGFloat(.mediumSidePadding))
 									.background(Capsule().fill(Color(colorEnum: .layer1)))
 							}

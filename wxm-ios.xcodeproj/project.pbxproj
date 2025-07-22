@@ -17,6 +17,7 @@
 		2608A7942C09F67A00452E40 /* DeviceLocation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7932C09F67A00452E40 /* DeviceLocation+.swift */; };
 		260F8E432E2678B300CBAEB2 /* ClaimDevicePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E422E2678B300CBAEB2 /* ClaimDevicePhotoView.swift */; };
 		260F8E452E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E442E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift */; };
+		260F8E4D2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E4C2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift */; };
 		2612AC1A2AB45B1700285896 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC192AB45B1700285896 /* FilterView.swift */; };
 		2612AC1C2AB45B2800285896 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC1B2AB45B2800285896 /* FilterViewModel.swift */; };
 		2612AC3A2AB47BA200285896 /* LocalizableString+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */; };
@@ -808,6 +809,7 @@
 		2608A7932C09F67A00452E40 /* DeviceLocation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceLocation+.swift"; sourceTree = "<group>"; };
 		260F8E422E2678B300CBAEB2 /* ClaimDevicePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoView.swift; sourceTree = "<group>"; };
 		260F8E442E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoViewModel.swift; sourceTree = "<group>"; };
+		260F8E4C2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimGalleryImagesViewModel.swift; sourceTree = "<group>"; };
 		2612AC192AB45B1700285896 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		2612AC1B2AB45B2800285896 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Filters.swift"; sourceTree = "<group>"; };
@@ -1533,6 +1535,7 @@
 			children = (
 				260F8E422E2678B300CBAEB2 /* ClaimDevicePhotoView.swift */,
 				260F8E442E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift */,
+				260F8E4C2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift */,
 			);
 			path = ClaimDevicePhoto;
 			sourceTree = "<group>";
@@ -4039,6 +4042,7 @@
 				2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */,
 				267548ED29A91A87008BCF40 /* Color+.swift in Sources */,
 				267548D429A91A87008BCF40 /* ColorEnum.swift in Sources */,
+				260F8E4D2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift in Sources */,
 				26ADDF8F2BE3BF8600992BEF /* ClaimDeviceBulletView.swift in Sources */,
 				265D2CD829D194070044D032 /* Common.swift in Sources */,
 				26325B012BE1139000182C59 /* ClaimDeviceBeginView.swift in Sources */,

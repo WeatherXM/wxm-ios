@@ -334,6 +334,12 @@ enum ViewModelsFactory {
 		return GalleryImagesViewModel(useCase: useCase, images: images, linkNavigator: linkNavigator)
 	}
 
+	static func getClaimGalleryImagesViewModel(images: [String], linkNavigator: LinkNavigation = LinkNavigationHelper()) -> ClaimGalleryImagesViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
+
+		return ClaimGalleryImagesViewModel(useCase: useCase, images: images, linkNavigator: linkNavigator)
+	}
+
 	static func getDeviceInfoViewModel(device: DeviceDetails, followState: UserDeviceFollowState?) -> DeviceInfoViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCaseApi.self)!
 		return DeviceInfoViewModel(device: device, followState: followState, useCase: useCase)

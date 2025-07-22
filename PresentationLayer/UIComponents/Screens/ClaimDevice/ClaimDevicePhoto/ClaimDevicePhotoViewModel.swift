@@ -17,7 +17,7 @@ class ClaimDevicePhotoViewModel: ObservableObject {
 	private let minPhotosCount = 2
 
 	init(useCase: PhotoGalleryUseCaseApi, linkNavigator: LinkNavigation) {
-		photosViewModel = ViewModelsFactory.getGalleryImagesViewModel(images: [], linkNavigator: linkNavigator)
+		photosViewModel = ViewModelsFactory.getClaimGalleryImagesViewModel(images: [], linkNavigator: linkNavigator)
 		photosViewModel.delegate = self
 	}
 
