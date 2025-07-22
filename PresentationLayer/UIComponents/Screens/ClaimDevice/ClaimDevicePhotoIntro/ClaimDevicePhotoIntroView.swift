@@ -12,9 +12,6 @@ struct ClaimDevicePhotoIntroView: View {
 
 	var body: some View {
 		ZStack {
-			Color(colorEnum: .bg)
-				.ignoresSafeArea()
-
 			GeometryReader { proxy in
 				ScrollView {
 					VStack (spacing: CGFloat(.largeSpacing)) {
