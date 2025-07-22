@@ -134,6 +134,13 @@ extension ClaimDeviceContainerViewModel {
 							self.loadingState = .fail(object)
 							WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .claimingResult,
 																					  .success: .custom("0")])
+
+							// Uncomment the following for testing
+							/*
+							Task { @MainActor in
+								await startPhotoUpload(deviceId: "{station-device-id}")
+							}
+							 */
 						case .success(let deviceResponse):
 							print(deviceResponse)
 							Task { @MainActor in
