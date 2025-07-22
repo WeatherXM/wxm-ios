@@ -15,6 +15,9 @@
 		2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */; };
 		2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */; };
 		2608A7942C09F67A00452E40 /* DeviceLocation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7932C09F67A00452E40 /* DeviceLocation+.swift */; };
+		260F8E432E2678B300CBAEB2 /* ClaimDevicePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E422E2678B300CBAEB2 /* ClaimDevicePhotoView.swift */; };
+		260F8E452E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E442E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift */; };
+		260F8E4D2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E4C2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift */; };
 		2612AC1A2AB45B1700285896 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC192AB45B1700285896 /* FilterView.swift */; };
 		2612AC1C2AB45B2800285896 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC1B2AB45B2800285896 /* FilterViewModel.swift */; };
 		2612AC3A2AB47BA200285896 /* LocalizableString+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */; };
@@ -445,6 +448,11 @@
 		26ACE9062C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE9052C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift */; };
 		26ADB80F2E214FBC00C83F3E /* ClaimDeviceBeforeBeginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB80E2E214FBC00C83F3E /* ClaimDeviceBeforeBeginViewModel.swift */; };
 		26ADB8112E21515E00C83F3E /* ClaimDeviceBeforeBeginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB8102E21515E00C83F3E /* ClaimDeviceBeforeBeginView.swift */; };
+		26ADB8192E24F41900C83F3E /* PhotoIntroInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB8182E24F41900C83F3E /* PhotoIntroInstructionsView.swift */; };
+		26ADB81C2E24FB0800C83F3E /* ClaimDevicePhotoIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB81B2E24FB0800C83F3E /* ClaimDevicePhotoIntroView.swift */; };
+		26ADB81E2E24FB1F00C83F3E /* ClaimDevicePhotoIntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB81D2E24FB1F00C83F3E /* ClaimDevicePhotoIntroViewModel.swift */; };
+		26ADB8212E251FAF00C83F3E /* GalleryImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB8202E251FAF00C83F3E /* GalleryImagesView.swift */; };
+		26ADB8232E251FC500C83F3E /* GalleryImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADB8222E251FC500C83F3E /* GalleryImagesViewModel.swift */; };
 		26ADDF812BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF802BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift */; };
 		26ADDF8F2BE3BF8600992BEF /* ClaimDeviceBulletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF8E2BE3BF8600992BEF /* ClaimDeviceBulletView.swift */; };
 		26ADDF912BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ADDF902BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift */; };
@@ -799,6 +807,9 @@
 		2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyView.swift; sourceTree = "<group>"; };
 		2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyViewModel.swift; sourceTree = "<group>"; };
 		2608A7932C09F67A00452E40 /* DeviceLocation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceLocation+.swift"; sourceTree = "<group>"; };
+		260F8E422E2678B300CBAEB2 /* ClaimDevicePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoView.swift; sourceTree = "<group>"; };
+		260F8E442E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoViewModel.swift; sourceTree = "<group>"; };
+		260F8E4C2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimGalleryImagesViewModel.swift; sourceTree = "<group>"; };
 		2612AC192AB45B1700285896 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		2612AC1B2AB45B2800285896 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Filters.swift"; sourceTree = "<group>"; };
@@ -1195,6 +1206,11 @@
 		26ACE9052C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsChartFactory.swift; sourceTree = "<group>"; };
 		26ADB80E2E214FBC00C83F3E /* ClaimDeviceBeforeBeginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeforeBeginViewModel.swift; sourceTree = "<group>"; };
 		26ADB8102E21515E00C83F3E /* ClaimDeviceBeforeBeginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBeforeBeginView.swift; sourceTree = "<group>"; };
+		26ADB8182E24F41900C83F3E /* PhotoIntroInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoIntroInstructionsView.swift; sourceTree = "<group>"; };
+		26ADB81B2E24FB0800C83F3E /* ClaimDevicePhotoIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoIntroView.swift; sourceTree = "<group>"; };
+		26ADB81D2E24FB1F00C83F3E /* ClaimDevicePhotoIntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoIntroViewModel.swift; sourceTree = "<group>"; };
+		26ADB8202E251FAF00C83F3E /* GalleryImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImagesView.swift; sourceTree = "<group>"; };
+		26ADB8222E251FC500C83F3E /* GalleryImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImagesViewModel.swift; sourceTree = "<group>"; };
 		26ADDF802BE3B27D00992BEF /* ClaimDeviceSerialNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSerialNumberView.swift; sourceTree = "<group>"; };
 		26ADDF8E2BE3BF8600992BEF /* ClaimDeviceBulletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceBulletView.swift; sourceTree = "<group>"; };
 		26ADDF902BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSerialNumberViewModel.swift; sourceTree = "<group>"; };
@@ -1512,6 +1528,16 @@
 				2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */,
 			);
 			path = SetFrequecncy;
+			sourceTree = "<group>";
+		};
+		260F8E412E2674C400CBAEB2 /* ClaimDevicePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				260F8E422E2678B300CBAEB2 /* ClaimDevicePhotoView.swift */,
+				260F8E442E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift */,
+				260F8E4C2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift */,
+			);
+			path = ClaimDevicePhoto;
 			sourceTree = "<group>";
 		};
 		2612AC182AB45AFA00285896 /* Filters */ = {
@@ -2153,6 +2179,8 @@
 		2675471529A9181E008BCF40 /* ClaimDevice */ = {
 			isa = PBXGroup;
 			children = (
+				260F8E412E2674C400CBAEB2 /* ClaimDevicePhoto */,
+				26ADB81A2E24FABF00C83F3E /* ClaimDevicePhotoIntro */,
 				26ADB80D2E214EC500C83F3E /* ClaimDeviceBefore */,
 				2608A78E2C09D34B00452E40 /* SetFrequecncy */,
 				26E685AD2C06198900B972B1 /* SelectDevice */,
@@ -2786,6 +2814,24 @@
 			path = ClaimDeviceBefore;
 			sourceTree = "<group>";
 		};
+		26ADB81A2E24FABF00C83F3E /* ClaimDevicePhotoIntro */ = {
+			isa = PBXGroup;
+			children = (
+				26ADB81B2E24FB0800C83F3E /* ClaimDevicePhotoIntroView.swift */,
+				26ADB81D2E24FB1F00C83F3E /* ClaimDevicePhotoIntroViewModel.swift */,
+			);
+			path = ClaimDevicePhotoIntro;
+			sourceTree = "<group>";
+		};
+		26ADB81F2E251F7100C83F3E /* GalleryImagesView */ = {
+			isa = PBXGroup;
+			children = (
+				26ADB8202E251FAF00C83F3E /* GalleryImagesView.swift */,
+				26ADB8222E251FC500C83F3E /* GalleryImagesViewModel.swift */,
+			);
+			path = GalleryImagesView;
+			sourceTree = "<group>";
+		};
 		26ADDF7F2BE3B1FD00992BEF /* SerialNumber */ = {
 			isa = PBXGroup;
 			children = (
@@ -3093,6 +3139,7 @@
 			isa = PBXGroup;
 			children = (
 				26EAF8242D004BFE009EEB31 /* PhotoIntroView.swift */,
+				26ADB8182E24F41900C83F3E /* PhotoIntroInstructionsView.swift */,
 				26EAF8262D004C13009EEB31 /* PhotoIntroViewModel.swift */,
 				26EAF82A2D008DB6009EEB31 /* PhotoIntroExamplesView.swift */,
 			);
@@ -3173,6 +3220,7 @@
 			children = (
 				26F6F7382D07068C00FB256B /* GalleryView.swift */,
 				26F6F73A2D07069E00FB256B /* GalleryViewModel.swift */,
+				26ADB81F2E251F7100C83F3E /* GalleryImagesView */,
 			);
 			path = GalleryView;
 			sourceTree = "<group>";
@@ -3950,6 +3998,7 @@
 				267CA6CF2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift in Sources */,
 				26D47EA12A1783E60078723A /* AnalyticsView.swift in Sources */,
 				269E85712B0242C100BE774C /* WXMShareModifier.swift in Sources */,
+				260F8E432E2678B300CBAEB2 /* ClaimDevicePhotoView.swift in Sources */,
 				26E85B142C7753140062667E /* LocalizableString+Units.swift in Sources */,
 				26CA845A2AD93BB6006D47D7 /* String+Common.swift in Sources */,
 				26AA21D52BF4A2CC00B91A7C /* ManualSerialNumberTypes.swift in Sources */,
@@ -3993,6 +4042,7 @@
 				2671E5CE2CBD3C8E00EE0FF1 /* StationHealthView.swift in Sources */,
 				267548ED29A91A87008BCF40 /* Color+.swift in Sources */,
 				267548D429A91A87008BCF40 /* ColorEnum.swift in Sources */,
+				260F8E4D2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift in Sources */,
 				26ADDF8F2BE3BF8600992BEF /* ClaimDeviceBulletView.swift in Sources */,
 				265D2CD829D194070044D032 /* Common.swift in Sources */,
 				26325B012BE1139000182C59 /* ClaimDeviceBeginView.swift in Sources */,
@@ -4023,6 +4073,7 @@
 				268B5C412BCEB2CD00E63655 /* NetworkDeviceForecastResponse+.swift in Sources */,
 				262B03072B20BC7B00C31FE7 /* AppUpdateView.swift in Sources */,
 				26A4117E29B8A17D00A2C10B /* DeviceInfoViewModel+Content.swift in Sources */,
+				26ADB8212E251FAF00C83F3E /* GalleryImagesView.swift in Sources */,
 				26A4116D29B744FD00A2C10B /* DeviceInfoViewModel.swift in Sources */,
 				2672B87C2C89F19A002266BE /* BoostCode+.swift in Sources */,
 				26A4118229BA1A9900A2C10B /* DeviceUpdatesLoadingView.swift in Sources */,
@@ -4086,6 +4137,7 @@
 				266BAF992AA8A22A004F5DE0 /* LocalizableString+DeleteAccount.swift in Sources */,
 				266BAFDD2AA8BAC1004F5DE0 /* LocalizableString+Errors.swift in Sources */,
 				2612AC3A2AB47BA200285896 /* LocalizableString+Filters.swift in Sources */,
+				260F8E452E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift in Sources */,
 				266BAF7F2AA89C79004F5DE0 /* LocalizableString+Home.swift in Sources */,
 				267CA6CB2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift in Sources */,
 				266BAF712AA88D39004F5DE0 /* LocalizableString+NetStats.swift in Sources */,
@@ -4181,11 +4233,13 @@
 				26DF1F7D2D5B455B0001E936 /* WeatherStationsEmptyView.swift in Sources */,
 				268B5C3F2BCE95DB00E63655 /* ForecastTemperatureCardView.swift in Sources */,
 				26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */,
+				26ADB81C2E24FB0800C83F3E /* ClaimDevicePhotoIntroView.swift in Sources */,
 				26C464F82A40A0D0005E5245 /* ShimmerEffectLoaderView.swift in Sources */,
 				2675481B29A9181E008BCF40 /* SignInView.swift in Sources */,
 				26F6F7422D0725FF00FB256B /* WXMButtonOpacityStyle.swift in Sources */,
 				267547AE29A9181E008BCF40 /* SignInViewModel.swift in Sources */,
 				267547D129A9181E008BCF40 /* SizeObserver.swift in Sources */,
+				26ADB81E2E24FB1F00C83F3E /* ClaimDevicePhotoIntroViewModel.swift in Sources */,
 				264582392A41A14E00195C21 /* SpinningLoader.swift in Sources */,
 				2664833F29C8953E00748F9C /* SpinningLoaderView.swift in Sources */,
 				2675480029A9181E008BCF40 /* StaticButtonStyle.swift in Sources */,
@@ -4220,6 +4274,7 @@
 				26DF3D332C85FC5B005F6FC1 /* RewardAnalyticsViewModel.swift in Sources */,
 				267547D229A9181E008BCF40 /* StrokeBorderModifier.swift in Sources */,
 				26A5451B2BFF2C1C0098FE52 /* NetworkStatsResponse+.swift in Sources */,
+				26ADB8192E24F41900C83F3E /* PhotoIntroInstructionsView.swift in Sources */,
 				26ADDF912BE3C14600992BEF /* ClaimDeviceSerialNumberViewModel.swift in Sources */,
 				264814002D8D7D2900BCCC31 /* ProPromotionalViewModel.swift in Sources */,
 				267548D829A91A87008BCF40 /* SuccessFailEnum.swift in Sources */,
@@ -4231,6 +4286,7 @@
 				267A37832AEBB4C900469126 /* StationRewardsTimelineView.swift in Sources */,
 				B557E20328251EF700E0BDCB /* SwinjectHelper.swift in Sources */,
 				2672B87E2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift in Sources */,
+				26ADB8232E251FC500C83F3E /* GalleryImagesViewModel.swift in Sources */,
 				2675484229A91930008BCF40 /* SwinjectInterface.swift in Sources */,
 				26F6F73E2D070E3A00FB256B /* WXMCapsuleButtonStyle.swift in Sources */,
 				269AD4742DD5C0A400B89078 /* NetworkStatsDonutView.swift in Sources */,

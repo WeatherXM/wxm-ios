@@ -1683,6 +1683,28 @@
         }
       }
     },
+    "claim_device_photo_verification_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo verification ensures your station meets deployment guidelines and can start transmitting valid data."
+          }
+        }
+      }
+    },
+    "claim_device_photo_verification_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo Verification"
+          }
+        }
+      }
+    },
     "claim_device_prepare_gateway_d1_bullet_one" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2218,6 +2240,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "**We strongly recommend you to update for a better station experience!**\nYou will be able to photo verify your station after the update."
+          }
+        }
+      }
+    },
+    "claim_device_upload_and_claim" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload and Claim"
+          }
+        }
+      }
+    },
+    "claim_device_upload_and_proceed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload and Proceed"
           }
         }
       }

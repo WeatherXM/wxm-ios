@@ -28,9 +28,9 @@ struct GalleryViewModelTests {
 
 	@Test func initialState() async throws {
 		#expect(viewModel.subtitle == LocalizableString.PhotoVerification.morePhotosToUpload(1).localized)
-		#expect(viewModel.images.count == 1)
-		#expect(viewModel.selectedImage == viewModel.images.first)
-		#expect(viewModel.isCameraDenied == false)
+		#expect(viewModel.galleryImagesViewModel.images.count == 1)
+		#expect(viewModel.galleryImagesViewModel.selectedImage == viewModel.galleryImagesViewModel.images.first)
+		#expect(viewModel.galleryImagesViewModel.isCameraDenied == false)
 		#expect(viewModel.shareImages?.isEmpty == true)
 		#expect(viewModel.localImages?.isEmpty == true)
 		#expect(viewModel.isPlusButtonEnabled)
@@ -40,33 +40,33 @@ struct GalleryViewModelTests {
 
 	@Test func delete() async throws {
 		#expect(!useCase.imageDeleted)
-		#expect(viewModel.selectedImage == viewModel.images.first)
+		#expect(viewModel.galleryImagesViewModel.selectedImage == viewModel.galleryImagesViewModel.images.first)
 
-		viewModel.handleDeleteButtonTap(showAlert: false)
+		viewModel.galleryImagesViewModel.handleDeleteButtonTap(showAlert: false)
 
 		try await Task.sleep(for: .seconds(1))
 
 		#expect(useCase.imageDeleted)
-		#expect(viewModel.images.isEmpty)
-		#expect(viewModel.selectedImage == nil)
+		#expect(viewModel.galleryImagesViewModel.images.isEmpty)
+		#expect(viewModel.galleryImagesViewModel.selectedImage == nil)
 	}
 
 	@Test func upload() async throws {
 		#expect(!useCase.fileUploadStarted)
-		#expect(viewModel.selectedImage == viewModel.images.first)
+		#expect(viewModel.galleryImagesViewModel.selectedImage == viewModel.galleryImagesViewModel.images.first)
 
 		viewModel.handleUploadButtonTap(dismissAction: nil, showAlert: false)
 
 		try await Task.sleep(for: .seconds(1))
 
 		#expect(useCase.fileUploadStarted)
-		#expect(!viewModel.images.isEmpty)
-		#expect(viewModel.selectedImage == viewModel.images.first)
+		#expect(!viewModel.galleryImagesViewModel.images.isEmpty)
+		#expect(viewModel.galleryImagesViewModel.selectedImage == viewModel.galleryImagesViewModel.images.first)
 	}
 
 	@Test func openSettings() {
 		#expect(linkNavigator.openedUrl == nil)
-		viewModel.handleOpenSettingsTap()
+		viewModel.galleryImagesViewModel.handleOpenSettingsTap()
 		#expect(linkNavigator.openedUrl == UIApplication.openSettingsURLString)
 	}
 }

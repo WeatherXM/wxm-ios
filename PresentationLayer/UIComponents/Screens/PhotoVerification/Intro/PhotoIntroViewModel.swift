@@ -20,7 +20,7 @@ class PhotoIntroViewModel: ObservableObject {
 
 	var closeButtonIcon: FontIcon { .xmark }
 	var showTerms: Bool { true }
-	lazy var instructions: [PhotoIntroView.Instruction] = {
+	lazy var instructions: [PhotoIntroInstructionsView.Instruction] = {
 		[.init(icon: .iconRotate, text: LocalizableString.PhotoVerification.rotateInstruction.localized, bullets: []),
 		 .init(icon: .iconZoom, text: LocalizableString.PhotoVerification.zoomInstruction.localized, bullets: []),
 		 .init(icon: .iconSurface, text: LocalizableString.PhotoVerification.surfaceInstruction.localized, bullets: []),
@@ -38,11 +38,11 @@ class PhotoIntroViewModel: ObservableObject {
 		(LocalizableString.PhotoVerification.notLikeThis.localized, Self.getFaultExamples())
 	}()
 
-	private let deviceId: String
+	private let deviceId: String?
 	private let images: [String]
 	private let photoGalleryUseCase: PhotoGalleryUseCaseApi
 
-	init(deviceId: String, images: [String], photoGalleryUseCase: PhotoGalleryUseCaseApi) {
+	init(deviceId: String?, images: [String], photoGalleryUseCase: PhotoGalleryUseCaseApi) {
 		self.deviceId = deviceId
 		self.images = images
 		self.photoGalleryUseCase = photoGalleryUseCase
@@ -51,6 +51,9 @@ class PhotoIntroViewModel: ObservableObject {
 
 	func handleBeginButtonTap(dismiss: DismissAction) {
 		dismiss()
+		guard let deviceId else {
+			return
+		}
 		let viewModel = ViewModelsFactory.getGalleryViewModel(deviceId: deviceId, images: images, isNewVerification: true)
 		Router.shared.navigateTo(.photoGallery(viewModel))
 	}

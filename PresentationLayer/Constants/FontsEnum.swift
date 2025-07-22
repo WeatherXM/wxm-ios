@@ -39,6 +39,7 @@ enum FontIcon: String {
 	case chevronRight = "chevron-right"
 	case chevronUp = "chevron-up"
 	case circleCheck = "circle-check"
+	case circleQuestion = "circle-question"
 	case circleFour = "circle-4"
 	case circleFive = "circle-5"
 	case circleSix = "circle-6"

@@ -66,12 +66,23 @@ private extension ClaimHeliumContainerViewModel {
 			setFrequencyViewModel?.selectedLocation = location
 			setFrequencyViewModel?.didSelectFrequencyFromLocation = true
 			self?.moveNext()
+		}		
+
+		let photoIntroViewModel = ViewModelsFactory.getClaimDevicePhotoViewModel { [weak self] in
+			self?.moveNext()
+		}
+
+		let photoViewModel = ViewModelsFactory.getClaimHeliumPhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] photos in
+			self?.photos = photos
+			self?.moveNext()
 		}
 
 		return [.beforeBegin(beforeBeginViewModel),
 				.reset(resetViewModel),
 				.selectDevice(selectDeviceViewModel),
 				.location(locationViewModel),
+				.photoIntro(photoIntroViewModel),
+				.photos(photoViewModel),
 				.setFrequency(setFrequencyViewModel)]
 	}
 

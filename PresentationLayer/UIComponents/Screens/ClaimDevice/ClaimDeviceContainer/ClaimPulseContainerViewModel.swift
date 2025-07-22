@@ -58,6 +58,14 @@ private extension ClaimPulseContainerViewModel {
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
 			self?.location = location
+		}
+
+		let photoIntroViewModel = ViewModelsFactory.getClaimDevicePhotoViewModel { [weak self] in
+			self?.moveNext()
+		}
+
+		let photoViewModel = ViewModelsFactory.getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] photos in
+			self?.photos = photos
 			self?.performClaim()
 		}
 
@@ -66,6 +74,8 @@ private extension ClaimPulseContainerViewModel {
 				.serialNumber(serialNumberViewModel),
 				.manualSerialNumber(manualSNViewModel),
 				.manualSerialNumber(claimingKeyViewModel),
-				.location(locationViewModel)]
+				.location(locationViewModel),
+				.photoIntro(photoIntroViewModel),
+				.photos(photoViewModel)]
 	}
 }
