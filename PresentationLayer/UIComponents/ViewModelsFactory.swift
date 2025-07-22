@@ -212,10 +212,19 @@ enum ViewModelsFactory {
 		return viewModel
 	}
 
-	static func getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigation, completion: @escaping VoidCallback) -> ClaimDevicePhotoViewModel {
+	static func getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigation,
+													completion: @escaping GenericCallback<[GalleryView.GalleryImage]>) -> ClaimDevicePhotoViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
 		let viewModel = ClaimDevicePhotoViewModel(useCase: useCase, linkNavigator: linkNavigator)
-//		viewModel.completion = completion
+		viewModel.completion = completion
+		return viewModel
+	}
+
+	static func getClaimHeliumPhotoGalleryViewModel(linkNavigator: LinkNavigation,
+													completion: @escaping GenericCallback<[GalleryView.GalleryImage]>) -> ClaimHeliumPhotoViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
+		let viewModel = ClaimHeliumPhotoViewModel(useCase: useCase, linkNavigator: linkNavigator)
+		viewModel.completion = completion
 		return viewModel
 	}
 

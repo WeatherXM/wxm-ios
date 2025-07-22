@@ -13,19 +13,20 @@ struct ClaimDevicePhotoView: View {
     var body: some View {
 		GalleryImagesView(viewModel: viewModel.photosViewModel) {
 			Button {
-//				viewModel.handleButtonTap()
+				viewModel.handleCtaButtonTap()
 			} label: {
-				Text(LocalizableString.ClaimDevice.uploadAndClaim.localized)
+				Text(viewModel.ctaButtonText)
 					.padding(.horizontal, CGFloat(.defaultSidePadding))
 					.padding(.vertical, CGFloat(.mediumSidePadding))
 
 			}
 			.buttonStyle(WXMButtonStyle.filled(fixedSize: true))
+			.disabled(!viewModel.isCtaButtonEnabled)
 		}
     }
 }
 
 #Preview {
 	ClaimDevicePhotoView(viewModel: ViewModelsFactory.getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigationHelper(),
-																						  completion: {}))
+																						  completion: { _ in }))
 }

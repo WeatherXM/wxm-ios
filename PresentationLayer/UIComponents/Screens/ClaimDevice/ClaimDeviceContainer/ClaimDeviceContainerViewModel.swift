@@ -26,7 +26,8 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	var claimingKey: String?
 	var serialNumber: String?
 	var location: DeviceLocation?
-
+	var photos: [GalleryView.GalleryImage]?
+	
 	private let CLAIMING_RETRIES_MAX = 25 // For 2 minutes timeout
 	private let CLAIMING_RETRIES_DELAY_SECONDS: TimeInterval = 5
 	private var cancellableSet: Set<AnyCancellable> = .init()

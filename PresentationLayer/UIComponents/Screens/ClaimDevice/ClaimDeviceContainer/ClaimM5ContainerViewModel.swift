@@ -49,8 +49,8 @@ private extension ClaimM5ContainerViewModel {
 			self?.moveNext()
 		}
 
-		let photoViewModel = ViewModelsFactory.getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] in
-			self?.moveNext()
+		let photoViewModel = ViewModelsFactory.getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] photos in
+			self?.photos = photos
 			self?.performClaim()
 		}
 

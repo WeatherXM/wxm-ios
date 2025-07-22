@@ -72,10 +72,10 @@ private extension ClaimHeliumContainerViewModel {
 			self?.moveNext()
 		}
 
-		let photoViewModel = ViewModelsFactory.getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] in
+		let photoViewModel = ViewModelsFactory.getClaimHeliumPhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] photos in
+			self?.photos = photos
 			self?.moveNext()
 		}
-
 
 		return [.beforeBegin(beforeBeginViewModel),
 				.reset(resetViewModel),
