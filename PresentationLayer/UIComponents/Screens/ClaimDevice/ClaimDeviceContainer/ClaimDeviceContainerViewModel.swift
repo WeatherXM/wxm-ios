@@ -220,13 +220,12 @@ extension ClaimDeviceContainerViewModel {
 
 	func getSuccessObject(for device: DeviceDetails, followState: UserDeviceFollowState?) -> FailSuccessStateObject {
 		let needsUpdate = device.needsUpdate(mainVM: MainScreenViewModel.shared, followState: followState) == true
-		let cancelTitle: String? = LocalizableString.ClaimDevice.skipPhotoVerificationForNow.localized
-		let retryTitle: String? = LocalizableString.ClaimDevice.continueToPhotoVerification.localized
+		let retryTitle: String? = LocalizableString.ClaimDevice.viewStationButton.localized
 		let goToStationAction: VoidCallback = { [weak self] in
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
 																	 .contentType: .claiming,
 																	 .action: .viewStation])
-			self?.showSkipPhotoAlert(device: device)
+			self?.dismissAndNavigate(device: device)
 		}
 
 		let updateFirmwareButton = Button(action: { [weak self] in
@@ -252,20 +251,6 @@ extension ClaimDeviceContainerViewModel {
 			.padding(.horizontal, CGFloat(.defaultSidePadding))
 		}).buttonStyle(WXMButtonStyle.filled()).toAnyView
 
-		let continueToPhotoVerificationAction: VoidCallback = { [weak self] in
-			self?.dismissAndNavigate(device: nil)
-			guard let deviceId = device.id else {
-				return
-			}
-
-			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
-				PhotoIntroViewModel.startPhotoVerification(deviceId: deviceId, images: [], isNewPhotoVerification: true)
-			}
-
-			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .goToPhotoVerification,
-																		.source: .claimingSource])
-		}
-
 		let info: CardWarningConfiguration =  .init(type: .info,
 													message: LocalizableString.ClaimDevice.updateFirmwareInfoMarkdown.localized,
 													showBorder: true,
@@ -282,12 +267,12 @@ extension ClaimDeviceContainerViewModel {
 											info: needsUpdate ? info : nil,
 											infoCustomView: needsUpdate ? updateFirmwareButton : nil,
 											infoOnAppearAction: needsUpdate ? infoAppearAction : nil,											
-											cancelTitle: cancelTitle,
+											cancelTitle: nil,
 											retryTitle: retryTitle,
 											actionButtonsLayout: .vertical,
 											contactSupportAction: nil,
-											cancelAction: goToStationAction,
-											retryAction: continueToPhotoVerificationAction)
+											cancelAction: nil,
+											retryAction: goToStationAction)
 
 		return object
 	}
@@ -310,19 +295,6 @@ extension ClaimDeviceContainerViewModel {
 																						  cellCenter: device.cellCenter?.toCLLocationCoordinate2D()))
 			Router.shared.navigateTo(route)
 		}
-	}
-
-	func showSkipPhotoAlert(device: DeviceDetails) {
-		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.skip.localized, { [weak self] _ in
-			self?.dismissAndNavigate(device: device)
-		})
-		let alertObject = AlertHelper.AlertObject(title: LocalizableString.ClaimDevice.skipPhotoVerificationAlertTitle.localized,
-												  message: LocalizableString.ClaimDevice.skipPhotoVerificationAlertText.localized,
-												  cancelActionTitle: LocalizableString.back.localized,
-												  cancelAction: {},
-												  okAction: exitAction)
-
-		AlertHelper().showAlert(alertObject)
 	}
 }
 
