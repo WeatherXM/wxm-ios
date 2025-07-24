@@ -103,7 +103,7 @@ extension GalleryView {
 	struct GalleryImage: Identifiable, Equatable {
 		let remoteUrl: String?
 		let uiImage: UIImage?
-		let metadata: NSDictionary?
+		nonisolated(unsafe) let metadata: NSDictionary?
 		let source: ImageSource?
 
 		var id: String {

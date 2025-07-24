@@ -10,8 +10,14 @@ import DomainLayer
 import Toolkit
 
 class ClaimD1ContainerViewModel: ClaimDeviceContainerViewModel {
-	override init(useCase: MeUseCaseApi, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCaseApi) {
-		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+	override init(useCase: MeUseCaseApi,
+				  devicesUseCase: DevicesUseCaseApi,
+				  deviceLocationUseCase: DeviceLocationUseCaseApi,
+				  photoGalleryUseCase: PhotoGalleryUseCaseApi) {
+		super.init(useCase: useCase,
+				   devicesUseCase: devicesUseCase,
+				   deviceLocationUseCase: deviceLocationUseCase,
+				   photoGalleryUseCase: photoGalleryUseCase)
 		navigationTitle = ClaimStationType.d1.navigationTitle
 		steps = getSteps()
 	}
@@ -41,6 +47,7 @@ private extension ClaimD1ContainerViewModel {
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
 			self?.location = location
+			self?.moveNext()
 		}
 
 		let photoIntroViewModel = ViewModelsFactory.getClaimDevicePhotoViewModel { [weak self] in
@@ -48,9 +55,13 @@ private extension ClaimD1ContainerViewModel {
 		}
 
 		let photoViewModel = ViewModelsFactory.getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] photos in
-			self?.photos = photos
+			guard let serialNumber = self?.serialNumber else {
+				return
+			}
+			self?.photosManager.setPhotos(photos, for: serialNumber)
 			self?.performClaim(retries: 0)
 		}
+		self.photosViewModel = photoViewModel
 
 		return [.beforeBegin(beforeBeginViewModel),
 				.begin(beginViewModel),

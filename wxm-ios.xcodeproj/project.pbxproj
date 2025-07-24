@@ -18,6 +18,7 @@
 		260F8E432E2678B300CBAEB2 /* ClaimDevicePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E422E2678B300CBAEB2 /* ClaimDevicePhotoView.swift */; };
 		260F8E452E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E442E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift */; };
 		260F8E4D2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E4C2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift */; };
+		260F8E552E2FC06700CBAEB2 /* ClaimDevicePhotosManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260F8E542E2FC06700CBAEB2 /* ClaimDevicePhotosManager.swift */; };
 		2612AC1A2AB45B1700285896 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC192AB45B1700285896 /* FilterView.swift */; };
 		2612AC1C2AB45B2800285896 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC1B2AB45B2800285896 /* FilterViewModel.swift */; };
 		2612AC3A2AB47BA200285896 /* LocalizableString+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */; };
@@ -810,6 +811,7 @@
 		260F8E422E2678B300CBAEB2 /* ClaimDevicePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoView.swift; sourceTree = "<group>"; };
 		260F8E442E2678CE00CBAEB2 /* ClaimDevicePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotoViewModel.swift; sourceTree = "<group>"; };
 		260F8E4C2E2F882900CBAEB2 /* ClaimGalleryImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimGalleryImagesViewModel.swift; sourceTree = "<group>"; };
+		260F8E542E2FC06700CBAEB2 /* ClaimDevicePhotosManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDevicePhotosManager.swift; sourceTree = "<group>"; };
 		2612AC192AB45B1700285896 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		2612AC1B2AB45B2800285896 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		2612AC392AB47BA200285896 /* LocalizableString+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Filters.swift"; sourceTree = "<group>"; };
@@ -2195,6 +2197,7 @@
 				26AA21C12BF36B0100B91A7C /* SNValidator.swift */,
 				26C5AF3F2BF7632700476B89 /* ClaimDeviceProgressView.swift */,
 				2675471B29A9181E008BCF40 /* UITextField+StationSerialNumber.swift */,
+				260F8E542E2FC06700CBAEB2 /* ClaimDevicePhotosManager.swift */,
 			);
 			path = ClaimDevice;
 			sourceTree = "<group>";
@@ -4093,6 +4096,7 @@
 				267548DE29A91A87008BCF40 /* FailAPICodeEnum.swift in Sources */,
 				267547BF29A9181E008BCF40 /* FailedDeleteView.swift in Sources */,
 				26ACE8C72C86015300EA22DD /* LocalizableString+RewardAnalytics.swift in Sources */,
+				260F8E552E2FC06700CBAEB2 /* ClaimDevicePhotosManager.swift in Sources */,
 				26A4118A29BA21E600A2C10B /* FailSuccessStateObject.swift in Sources */,
 				2645823B2A41C07000195C21 /* FailSuccessViewModifier.swift in Sources */,
 				267547F729A9181E008BCF40 /* FailView.swift in Sources */,

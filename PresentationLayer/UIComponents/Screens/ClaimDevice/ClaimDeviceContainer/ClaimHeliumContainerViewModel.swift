@@ -14,8 +14,18 @@ class ClaimHeliumContainerViewModel: ClaimDeviceContainerViewModel {
 	private var btDevice: BTWXMDevice?
 	private var heliumFrequency: Frequency?
 
-	override init(useCase: MeUseCaseApi, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCaseApi) {
-		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+	override var photos: [GalleryView.GalleryImage]? {
+		photosManager.getPhotos(for: ClaimDevicePhotosManager.tempHeliumSerialNumber)
+	}
+
+	override init(useCase: MeUseCaseApi,
+				  devicesUseCase: DevicesUseCaseApi,
+				  deviceLocationUseCase: DeviceLocationUseCaseApi,
+				  photoGalleryUseCase: PhotoGalleryUseCaseApi) {
+		super.init(useCase: useCase,
+				   devicesUseCase: devicesUseCase,
+				   deviceLocationUseCase: deviceLocationUseCase,
+				   photoGalleryUseCase: photoGalleryUseCase)
 		navigationTitle = ClaimStationType.helium.navigationTitle
 		steps = getSteps()
 	}
@@ -73,10 +83,12 @@ private extension ClaimHeliumContainerViewModel {
 		}
 
 		let photoViewModel = ViewModelsFactory.getClaimHeliumPhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] photos in
-			self?.photos = photos
+			// Since serial number is not available in this step we assign a dummy key only for the helium
+			self?.photosManager.setPhotos(photos, for: ClaimDevicePhotosManager.tempHeliumSerialNumber)
 			self?.moveNext()
 		}
-
+		self.photosViewModel = photoViewModel
+		
 		return [.beforeBegin(beforeBeginViewModel),
 				.reset(resetViewModel),
 				.selectDevice(selectDeviceViewModel),

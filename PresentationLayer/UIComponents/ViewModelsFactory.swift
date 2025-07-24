@@ -184,16 +184,29 @@ enum ViewModelsFactory {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		let devicesUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DevicesUseCaseApi.self)!
 		let deviceLocationUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCaseApi.self)!
+		let photoGalleryUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
 
 		switch type {
 			case .m5:
-				return ClaimM5ContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+				return ClaimM5ContainerViewModel(useCase: useCase,
+												 devicesUseCase: devicesUseCase,
+												 deviceLocationUseCase: deviceLocationUseCase,
+												 photoGalleryUseCase: photoGalleryUseCase)
 			case .d1:
-				return ClaimD1ContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+				return ClaimD1ContainerViewModel(useCase: useCase,
+												 devicesUseCase: devicesUseCase,
+												 deviceLocationUseCase: deviceLocationUseCase,
+												 photoGalleryUseCase: photoGalleryUseCase)
 			case .helium:
-				return ClaimHeliumContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+				return ClaimHeliumContainerViewModel(useCase: useCase,
+													 devicesUseCase: devicesUseCase,
+													 deviceLocationUseCase: deviceLocationUseCase,
+													 photoGalleryUseCase: photoGalleryUseCase)
 			case .pulse:
-				return ClaimPulseContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+				return ClaimPulseContainerViewModel(useCase: useCase,
+													devicesUseCase: devicesUseCase,
+													deviceLocationUseCase: deviceLocationUseCase,
+													photoGalleryUseCase: photoGalleryUseCase)
 		}
 	}
 
