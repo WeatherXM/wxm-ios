@@ -10,6 +10,10 @@
 	<string>$(AppGroup)</string>
 	<key>AppStoreUrl</key>
 	<string>$(AppStoreUrl)</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.weatherxm.app.fetch</string>
+	</array>
 	<key>BranchName</key>
 	<string>$(BranchName)</string>
 	<key>CFBundleURLTypes</key>
@@ -79,6 +83,7 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
+		<string>fetch</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
 	<true/>
