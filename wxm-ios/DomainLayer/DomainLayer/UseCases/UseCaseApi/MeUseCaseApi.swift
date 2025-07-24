@@ -20,6 +20,7 @@ public protocol MeUseCaseApi: Sendable {
 	func getUserWallet() throws -> AnyPublisher<DataResponse<Wallet, NetworkErrorResponse>, Never>
 	func saveUserWallet(address: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
 	func getDevices() throws -> AnyPublisher<Result<[DeviceDetails], NetworkErrorResponse>, Never>
+	func getOwnedDevices() throws -> AnyPublisher<Result<[DeviceDetails], NetworkErrorResponse>, Never>
 	func claimDevice(claimDeviceBody: ClaimDeviceBody) throws -> AnyPublisher<Result<DeviceDetails, NetworkErrorResponse>, Never>
 	func setFrequency(_ serialNumber: String, frequency: Frequency) async throws -> NetworkErrorResponse?
 	func getFirmwares(testSearch: String) throws -> AnyPublisher<DataResponse<[NetworkFirmwareResponse], NetworkErrorResponse>, Never>
@@ -35,4 +36,13 @@ public protocol MeUseCaseApi: Sendable {
 	func hasOwnedDevices() async -> Bool
 	func getUserRewards(wallet: String) throws -> AnyPublisher<DataResponse<NetworkUserRewardsResponse, NetworkErrorResponse>, Never>
 	func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<Result<DeviceDetails, NetworkErrorResponse>, Never>
+	func shouldSendNotificationAlert(for deviceId: String, alert: StationAlert) -> Bool
+	func notificationAlertSent(for deviceId: String, alert: StationAlert)
+}
+
+public enum StationAlert: CaseIterable {
+	case inactive
+	case firmware
+	case battery
+	case health
 }

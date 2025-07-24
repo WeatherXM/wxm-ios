@@ -63,7 +63,18 @@ extension MockMeRepositoryImpl: MeRepository {
 																	   result: .success(emptyEntity))
 		return Just(response).eraseToAnyPublisher()
 	}
-	
+
+	func getOwnedDevices() throws -> AnyPublisher<DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>, Never> {
+		let device = NetworkDevicesResponse()
+		let response = DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>(request: nil,
+																					response: nil,
+																					data: nil,
+																					metrics: nil,
+																					serializationDuration: 0,
+																					result: .success([device]))
+		return Just(response).eraseToAnyPublisher()
+	}
+
 	func getDevices(useCache: Bool) throws -> AnyPublisher<DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>, Never> {
 		let device = NetworkDevicesResponse()
 		let response = DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>(request: nil,

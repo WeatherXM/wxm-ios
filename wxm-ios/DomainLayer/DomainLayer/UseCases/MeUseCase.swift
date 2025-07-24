@@ -59,6 +59,10 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
         return saveUserWallet
     }
 
+	public func getOwnedDevices() throws -> AnyPublisher<Result<[DeviceDetails], NetworkErrorResponse>, Never> {
+		try meRepository.getOwnedDevices().convertedToDeviceDetailsResultPublisher
+	}
+
     public func getDevices() throws -> AnyPublisher<Result<[DeviceDetails], NetworkErrorResponse>, Never> {
         let userDevices = try meRepository.getDevices(useCache: false)
         return userDevices.convertedToDeviceDetailsResultPublisher
@@ -147,5 +151,13 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 	public func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<Result<DeviceDetails, NetworkErrorResponse>, Never> {
 		let publisher = try meRepository.setDeviceLocationById(deviceId: deviceId, lat: lat, lon: lon)
 		return publisher.convertedToDeviceDetailsResultPublisher
+	}
+
+	public func shouldSendNotificationAlert(for deviceId: String, alert: StationAlert) -> Bool {
+		true
+	}
+
+	public func notificationAlertSent(for deviceId: String, alert: StationAlert) {
+		
 	}
 }

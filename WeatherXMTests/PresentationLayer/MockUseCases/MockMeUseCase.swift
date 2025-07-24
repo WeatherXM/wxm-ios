@@ -179,5 +179,11 @@ final class MockMeUseCase: MeUseCaseApi {
 		return Just(.success(device)).eraseToAnyPublisher()
 	}
 
+	func shouldSendNotificationAlert(for deviceId: String, alert: StationAlert) -> Bool {
+		true
+	}
 
+	func notificationAlertSent(for deviceId: String, alert: StationAlert) {
+		
+	}
 }
