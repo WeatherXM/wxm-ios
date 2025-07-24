@@ -56,7 +56,7 @@ struct ClaimDeviceBeginView: View {
 				Button {
 					viewModel.handleButtonTap()
 				} label: {
-					Text(LocalizableString.ClaimDevice.beginStationClaiming.localized)
+					Text(LocalizableString.ClaimDevice.enterGatewayProceedButtonTitle.localized)
 				}
 				.buttonStyle(WXMButtonStyle.filled())
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
