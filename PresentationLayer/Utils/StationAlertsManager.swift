@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 struct StationAlertsManager {
 	let meUseCase: MeUseCaseApi
@@ -46,6 +47,11 @@ private extension StationAlertsManager {
 	}
 
 	func handleAlerts(for device: DeviceDetails, alerts: [StationAlert]) {
-
+		let notificationsScheduler = LocalNotificationScheduler()
+		alerts.forEach {
+			notificationsScheduler.postNotification(id: "\(String(describing: device.id))_\($0)",
+													title: $0.notificationTitle,
+													body: $0.notificationDescription(for: device.displayName))
+		}
 	}
 }

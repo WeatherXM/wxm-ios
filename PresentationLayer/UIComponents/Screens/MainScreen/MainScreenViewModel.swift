@@ -44,6 +44,15 @@ class MainScreenViewModel: ObservableObject {
 	private let meUseCase: MeUseCaseApi
 	private let settingsUseCase: SettingsUseCaseApi
 	private let photosUseCase: PhotoGalleryUseCaseApi
+	private lazy var backgroundScheduler: BackgroundScheduler = {
+		let scheduler = BackgroundScheduler { [weak self] in
+			Task { @MainActor in
+				self?.performBackgroundProcess()
+			}
+		}
+
+		return scheduler
+	}()
 	private var cancellableSet: Set<AnyCancellable> = []
 	let networkMonitor: NWPathMonitor
 	@Published var isUserLoggedIn: Bool = false
@@ -77,6 +86,8 @@ class MainScreenViewModel: ObservableObject {
 
 		networkMonitor = NWPathMonitor()
 		settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCaseApi.self)!
+
+		let _ = backgroundScheduler
 
         checkIfUserIsLoggedIn()
         settingsUseCase.initializeAnalyticsTracking()
@@ -374,5 +385,14 @@ class MainScreenViewModel: ObservableObject {
 															  body: LocalizableString.PhotoVerification.uploadFailedNotificationFailedDescription.localized)
 			}
 		}.store(in: &cancellableSet)
+	}
+
+	// MARK: - Background tasks
+
+	func performBackgroundProcess() {
+		let alertsManager = StationAlertsManager(meUseCase: meUseCase)
+		Task {
+			await alertsManager.checkForStationIssues()
+		}
 	}
 }

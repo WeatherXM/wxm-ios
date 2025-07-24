@@ -8,13 +8,16 @@
 import Foundation
 import BackgroundTasks
 import UIKit
+import Toolkit
 
 private let taskIdentifier = "com.weatherxm.app.fetch"
 private let interval: TimeInterval = 60 * 60 * 2 // 2 hours
 
 final class BackgroundScheduler: Sendable {
+	private let callback: VoidSendableCallback
 
-	init() {
+	init(callback: @escaping VoidSendableCallback) {
+		self.callback = callback
 		registerBackgroundTask()
 	}
 }
@@ -30,7 +33,9 @@ private extension BackgroundScheduler {
 
 	func handleAppRefresh(_ task: BGTask) {
 		scheduleAppRefresh()
-		print("Refresh handled")
+
+		callback()
+		
 		task.setTaskCompleted(success: true)
 	}
 
