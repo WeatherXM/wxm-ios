@@ -8,6 +8,7 @@
 import Foundation
 import DomainLayer
 import Toolkit
+import UserNotifications
 
 struct StationAlertsManager {
 	let meUseCase: MeUseCaseApi
@@ -53,9 +54,12 @@ private extension StationAlertsManager {
 
 		let notificationsScheduler = LocalNotificationScheduler()
 		alerts.forEach {
+			let userInfo = [UNNotificationResponse.typeKey: UNNotificationResponse.stationVal,
+							UNNotificationResponse.deviceIdKey: deviceId]
 			notificationsScheduler.postNotification(id: "\(String(describing: device.id))_\($0)",
 													title: $0.notificationTitle,
-													body: $0.notificationDescription(for: device.displayName))
+													body: $0.notificationDescription(for: device.displayName),
+													userInfo: userInfo)
 			meUseCase.notificationAlertSent(for: deviceId, alert: $0)
 		}
 	}

@@ -277,14 +277,14 @@ private enum NotificationType {
 	case device(String)
 }
 
-private extension UNNotificationResponse {
+extension UNNotificationResponse {
 	static let typeKey = "type"
 	static let announcementVal = "announcement"
 	static let stationVal = "station"
 	static let urlKey = "url"
 	static let deviceIdKey = "device_id"
 
-	var toNotificationType: NotificationType? {
+	fileprivate var toNotificationType: NotificationType? {
 		let userInfo = notification.request.content.userInfo
 		guard let type = userInfo[Self.typeKey] as? String else {
 			return nil
