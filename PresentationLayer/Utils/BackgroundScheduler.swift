@@ -19,6 +19,7 @@ final class BackgroundScheduler: Sendable {
 	init(callback: @escaping VoidSendableCallback) {
 		self.callback = callback
 		registerBackgroundTask()
+		scheduleAppRefresh()
 	}
 }
 
