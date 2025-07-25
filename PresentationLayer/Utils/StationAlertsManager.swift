@@ -12,6 +12,7 @@ import UserNotifications
 
 struct StationAlertsManager {
 	let meUseCase: MeUseCaseApi
+	let stationNotificationsUseCase: StationNotificationsUseCaseApi
 
 	func checkForStationIssues() async {
 		let devices = try? await meUseCase.getOwnedDevices().toAsync().get()
@@ -23,10 +24,15 @@ struct StationAlertsManager {
 
 private extension StationAlertsManager {
 	func checkStation(_ device: DeviceDetails) {
-		var alerts: [StationAlert] = []
+		guard let deviceId = device.id,
+			  stationNotificationsUseCase.areNotificationsEnalbedForDevice(deviceId) else {
+			return
+		}
+
+		var alerts: [StationNotificationsTypes] = []
 		// Is active
 		if shouldSendInactiveNotification(for: device) {
-			alerts.append(.inactive)
+			alerts.append(.activity)
 		}
 
 		// Low battery
@@ -36,7 +42,7 @@ private extension StationAlertsManager {
 		
 		// Firmware
 		if shouldSendFirmwareNotification(for: device) {
-			alerts.append(.firmware)
+			alerts.append(.firmwareUpdate)
 		}
 
 		// Health
@@ -47,7 +53,7 @@ private extension StationAlertsManager {
 		handleAlerts(for: device, alerts: alerts)
 	}
 
-	func handleAlerts(for device: DeviceDetails, alerts: [StationAlert]) {
+	func handleAlerts(for device: DeviceDetails, alerts: [StationNotificationsTypes]) {
 		guard let deviceId = device.id else {
 			return
 		}
@@ -67,12 +73,13 @@ private extension StationAlertsManager {
 
 	func shouldSendInactiveNotification(for device: DeviceDetails) -> Bool {
 		guard let deviceId = device.id,
+			  stationNotificationsUseCase.isNotificationEnabled(.activity, deviceId: deviceId),
 			  let lastActiveAt = device.lastActiveAt?.timestampToDate() else {
 			return false
 		}
 
 		var shouldSend: Bool = false
-		if let lastNotificationSent = meUseCase.lastNotificationAlertSent(for: deviceId, alert: .inactive) {
+		if let lastNotificationSent = meUseCase.lastNotificationAlertSent(for: deviceId, alert: .activity) {
 			if lastActiveAt > lastNotificationSent {
 				shouldSend = true
 			} else if lastNotificationSent.isToday {
@@ -84,7 +91,8 @@ private extension StationAlertsManager {
 	}
 
 	func shouldSendLowBatteryNotification(for device: DeviceDetails) -> Bool {
-		guard let deviceId = device.id else {
+		guard let deviceId = device.id,
+			  stationNotificationsUseCase.isNotificationEnabled(.battery, deviceId: deviceId) else {
 			return false
 		}
 
@@ -97,11 +105,12 @@ private extension StationAlertsManager {
 	}
 
 	func shouldSendFirmwareNotification(for device: DeviceDetails) -> Bool {
-		guard let deviceId = device.id else {
+		guard let deviceId = device.id,
+			  stationNotificationsUseCase.isNotificationEnabled(.firmwareUpdate, deviceId: deviceId) else {
 			return false
 		}
 
-		let lastNotificationSent = meUseCase.lastNotificationAlertSent(for: deviceId, alert: .firmware)
+		let lastNotificationSent = meUseCase.lastNotificationAlertSent(for: deviceId, alert: .firmwareUpdate)
 		if lastNotificationSent?.isToday == true {
 			return false
 		}
@@ -111,6 +120,7 @@ private extension StationAlertsManager {
 
 	func shouldSendHealthNotification(for device: DeviceDetails) -> Bool {
 		guard let deviceId = device.id,
+			  stationNotificationsUseCase.isNotificationEnabled(.health, deviceId: deviceId),
 			  let qod = device.qod,
 			  let pol = device.pol,
 			  let qodTs = device.latestQodTs,

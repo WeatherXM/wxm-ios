@@ -153,14 +153,14 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		return publisher.convertedToDeviceDetailsResultPublisher
 	}
 
-	public func lastNotificationAlertSent(for deviceId: String, alert: StationAlert) -> Date? {
+	public func lastNotificationAlertSent(for deviceId: String, alert: StationNotificationsTypes) -> Date? {
 		let timestamps: [String: Date]? = userDefaultsrRepository.getValue(for: UserDefaults.GenericKey.stationAlertNotificationsTimestamps.rawValue)
 		let key = "\(deviceId)-\(alert)"
 
 		return timestamps?[key]
 	}
 
-	public func notificationAlertSent(for deviceId: String, alert: StationAlert) {
+	public func notificationAlertSent(for deviceId: String, alert: StationNotificationsTypes) {
 		var timestamps: [String: Date] = userDefaultsrRepository.getValue(for: UserDefaults.GenericKey.stationAlertNotificationsTimestamps.rawValue) ?? [:]
 		let key = "\(deviceId)-\(alert)"
 		timestamps[key] = Date()

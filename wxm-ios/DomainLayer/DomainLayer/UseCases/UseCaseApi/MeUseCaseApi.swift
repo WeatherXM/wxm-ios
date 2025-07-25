@@ -36,13 +36,6 @@ public protocol MeUseCaseApi: Sendable {
 	func hasOwnedDevices() async -> Bool
 	func getUserRewards(wallet: String) throws -> AnyPublisher<DataResponse<NetworkUserRewardsResponse, NetworkErrorResponse>, Never>
 	func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<Result<DeviceDetails, NetworkErrorResponse>, Never>
-	func lastNotificationAlertSent(for deviceId: String, alert: StationAlert) -> Date?
-	func notificationAlertSent(for deviceId: String, alert: StationAlert)
-}
-
-public enum StationAlert: String, CaseIterable {
-	case inactive
-	case firmware
-	case battery
-	case health
+	func lastNotificationAlertSent(for deviceId: String, alert: StationNotificationsTypes) -> Date?
+	func notificationAlertSent(for deviceId: String, alert: StationNotificationsTypes)
 }

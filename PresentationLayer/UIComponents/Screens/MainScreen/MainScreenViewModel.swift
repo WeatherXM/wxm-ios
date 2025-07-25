@@ -44,6 +44,7 @@ class MainScreenViewModel: ObservableObject {
 	private let meUseCase: MeUseCaseApi
 	private let settingsUseCase: SettingsUseCaseApi
 	private let photosUseCase: PhotoGalleryUseCaseApi
+	private let stationNotificationsUseCase: StationNotificationsUseCaseApi
 	private lazy var backgroundScheduler: BackgroundScheduler = {
 		let scheduler = BackgroundScheduler { [weak self] in
 			Task { @MainActor in
@@ -83,6 +84,7 @@ class MainScreenViewModel: ObservableObject {
 		mainUseCase = swinjectHelper.getContainerForSwinject().resolve(MainUseCaseApi.self)!
 		meUseCase = swinjectHelper.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		photosUseCase = swinjectHelper.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
+		stationNotificationsUseCase = swinjectHelper.getContainerForSwinject().resolve(StationNotificationsUseCaseApi.self)!
 
 		networkMonitor = NWPathMonitor()
 		settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCaseApi.self)!
@@ -392,7 +394,8 @@ class MainScreenViewModel: ObservableObject {
 	// MARK: - Background tasks
 
 	func performBackgroundProcess() {
-		let alertsManager = StationAlertsManager(meUseCase: meUseCase)
+		let alertsManager = StationAlertsManager(meUseCase: meUseCase,
+												 stationNotificationsUseCase: stationNotificationsUseCase)
 		Task {
 			await alertsManager.checkForStationIssues()
 		}

@@ -9,12 +9,12 @@ import Foundation
 import DomainLayer
 import Toolkit
 
-extension StationAlert {
+extension StationNotificationsTypes {
 	var notificationTitle: String {
 		switch self {
-			case .inactive:
+			case .activity:
 				LocalizableString.Error.notificationInactiveTitle.localized
-			case .firmware:
+			case .firmwareUpdate:
 				LocalizableString.Error.notificationFirmwareTitle.localized
 			case .battery:
 				LocalizableString.Error.notificationBatteryTitle.localized
@@ -25,9 +25,9 @@ extension StationAlert {
 
 	func notificationDescription(for stationName: String) -> String {
 		switch self {
-			case .inactive:
+			case .activity:
 				LocalizableString.Error.notificationInactiveDescription(stationName).localized
-			case .firmware:
+			case .firmwareUpdate:
 				LocalizableString.Error.notificationFirmwareDescription(stationName).localized
 			case .battery:
 				LocalizableString.Error.notificationBatteryDescription(stationName).localized
@@ -35,9 +35,7 @@ extension StationAlert {
 				LocalizableString.Error.notificationHealthDescription(stationName).localized
 		}
 	}
-}
 
-extension StationNotificationsTypes {
 	var analyticsValue: ParameterValue {
 		switch self {
 			case .activity:

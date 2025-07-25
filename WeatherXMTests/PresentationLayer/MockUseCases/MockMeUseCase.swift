@@ -184,11 +184,11 @@ final class MockMeUseCase: MeUseCaseApi {
 		return Just(.success(device)).eraseToAnyPublisher()
 	}
 
-	func lastNotificationAlertSent(for deviceId: String, alert: StationAlert) -> Date? {
+	func lastNotificationAlertSent(for deviceId: String, alert: StationNotificationsTypes) -> Date? {
 		nil
 	}
 	
-	func notificationAlertSent(for deviceId: String, alert: StationAlert) {
+	func notificationAlertSent(for deviceId: String, alert: StationNotificationsTypes) {
 
 	}
 }
