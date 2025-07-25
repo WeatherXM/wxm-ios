@@ -6105,6 +6105,94 @@
         }
       }
     },
+    "notification_battery_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To avoid data interruptions, please replace the batteries of %@."
+          }
+        }
+      }
+    },
+    "notification_battery_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Low Battery"
+          }
+        }
+      }
+    },
+    "notification_firmware_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A new version is available for %@. Upgrade to enjoy the latest improvements."
+          }
+        }
+      }
+    },
+    "notification_firmware_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firmware Update"
+          }
+        }
+      }
+    },
+    "notification_health_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station %@ has some health issues. Tap to view its status."
+          }
+        }
+      }
+    },
+    "notification_health_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Health Issues"
+          }
+        }
+      }
+    },
+    "notification_inactive_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station %@ appears inactive. Please check its status."
+          }
+        }
+      }
+    },
+    "notification_inactive_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Inactive"
+          }
+        }
+      }
+    },
     "offline_station" : {
       "extractionState" : "manual",
       "localizations" : {

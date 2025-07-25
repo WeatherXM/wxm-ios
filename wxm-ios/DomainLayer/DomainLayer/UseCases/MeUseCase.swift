@@ -59,6 +59,10 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
         return saveUserWallet
     }
 
+	public func getOwnedDevices() throws -> AnyPublisher<Result<[DeviceDetails], NetworkErrorResponse>, Never> {
+		try meRepository.getOwnedDevices().convertedToDeviceDetailsResultPublisher
+	}
+
     public func getDevices() throws -> AnyPublisher<Result<[DeviceDetails], NetworkErrorResponse>, Never> {
         let userDevices = try meRepository.getDevices(useCache: false)
         return userDevices.convertedToDeviceDetailsResultPublisher
@@ -147,5 +151,20 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 	public func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<Result<DeviceDetails, NetworkErrorResponse>, Never> {
 		let publisher = try meRepository.setDeviceLocationById(deviceId: deviceId, lat: lat, lon: lon)
 		return publisher.convertedToDeviceDetailsResultPublisher
+	}
+
+	public func lastNotificationAlertSent(for deviceId: String, alert: StationNotificationsTypes) -> Date? {
+		let timestamps: [String: Date]? = userDefaultsrRepository.getValue(for: UserDefaults.GenericKey.stationAlertNotificationsTimestamps.rawValue)
+		let key = "\(deviceId)-\(alert)"
+
+		return timestamps?[key]
+	}
+
+	public func notificationAlertSent(for deviceId: String, alert: StationNotificationsTypes) {
+		var timestamps: [String: Date] = userDefaultsrRepository.getValue(for: UserDefaults.GenericKey.stationAlertNotificationsTimestamps.rawValue) ?? [:]
+		let key = "\(deviceId)-\(alert)"
+		timestamps[key] = Date()
+
+		userDefaultsrRepository.saveValue(key: UserDefaults.GenericKey.stationAlertNotificationsTimestamps.rawValue, value: timestamps)
 	}
 }

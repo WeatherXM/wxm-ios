@@ -69,6 +69,7 @@ public enum Screen: String {
 	case mapLayerPicker = "Map Layer Picker"
 	case tokenMetrics = "Token Metrics"
 	case networkGrowth = "Network Growth"
+	case stationNotifications = "Station Notifications"
 }
 
 public enum Event: String {
@@ -342,5 +343,12 @@ public enum ParameterValue {
 	case density
 	case dataQuality
 	case dataQualityScore
+	case toggleStationNotifications
+	case toggleStationNotificationType
+	case activity
+	case stationHealth
+	case enable
+	case disable
+	case openStationFromNotification
 	case custom(String)
 }

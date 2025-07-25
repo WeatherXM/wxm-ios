@@ -32,6 +32,10 @@ class StationNotificationsViewModel: ObservableObject {
 	}
 
 	func setValue(_ value: Bool, for notificationType: StationNotificationsTypes) {
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .toggleStationNotificationType,
+																 .action: value ? .enable : .disable,
+																 .source: notificationType.analyticsValue])
+
 		guard let deviceId = device.id else {
 			return
 		}
@@ -41,6 +45,9 @@ class StationNotificationsViewModel: ObservableObject {
 	}
 
 	func setMasterSwitchValue(_ value: Bool) {
+		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .toggleStationNotifications,
+																 .action: value ? .enable : .disable])
+
 		Task { @MainActor in
 			let status = await FirebaseManager.shared.gatAuthorizationStatus()
 			switch status {

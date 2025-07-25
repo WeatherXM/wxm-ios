@@ -15,7 +15,7 @@ final class NotificationsHandler: NSObject, Sendable {
 	let authorizationStatusPublisher: AnyPublisher<UNAuthorizationStatus?, Never>
 	let fcmTokenPublisher: AnyPublisher<String?, Never>
 
-	private let latestNotificationSubject: PassthroughSubject<UNNotificationResponse?, Never> = .init()
+	private let latestNotificationSubject: CurrentValueSubject<UNNotificationResponse?, Never> = .init(nil)
 	private let authorizationStatusSubject: CurrentValueSubject<UNAuthorizationStatus?, Never> = .init(nil)
 	private let fcmTokenSubject: PassthroughSubject<String?, Never> = .init()
 

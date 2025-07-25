@@ -199,17 +199,7 @@ extension DeviceDetails {
 		
 		return checkFirmwareIfNeedsUpdate()
 	}
-	
-	func checkFirmwareIfNeedsUpdate() -> Bool {
-		guard isHelium,
-			  let current = firmware?.current,
-			  let assigned = firmware?.assigned else {
-			return false
-		}
-		
-		return assigned != current
-	}
-	
+
 	/// True if the stations current version is different from the assigned
 	func needsUpdate(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> Bool {
 		guard isHelium, followState?.state == .owned else {
@@ -242,6 +232,18 @@ extension DeviceDetails {
 		}
 		
 		return issues
+	}
+}
+
+extension DeviceDetails {
+	func checkFirmwareIfNeedsUpdate() -> Bool {
+		guard isHelium,
+			  let current = firmware?.current,
+			  let assigned = firmware?.assigned else {
+			return false
+		}
+
+		return assigned != current
 	}
 }
 
