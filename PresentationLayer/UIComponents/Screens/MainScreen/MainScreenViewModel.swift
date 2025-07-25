@@ -87,7 +87,9 @@ class MainScreenViewModel: ObservableObject {
 		networkMonitor = NWPathMonitor()
 		settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCaseApi.self)!
 
-		let _ = backgroundScheduler
+		if !isRunningTests {
+			let _ = backgroundScheduler
+		}
 
         checkIfUserIsLoggedIn()
         settingsUseCase.initializeAnalyticsTracking()

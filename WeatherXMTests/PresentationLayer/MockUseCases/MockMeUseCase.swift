@@ -12,6 +12,7 @@ import Combine
 import Alamofire
 
 final class MockMeUseCase: MeUseCaseApi {
+
 	nonisolated(unsafe) var addButtonIndicationSeen: Bool = false
 
 	var userInfoPublisher: AnyPublisher<NetworkUserInfoResponse?, Never> {
@@ -61,6 +62,10 @@ final class MockMeUseCase: MeUseCaseApi {
 																	   serializationDuration: 0,
 																	   result: .success(emptyEntity))
 		return Just(response).eraseToAnyPublisher()
+	}
+
+	func getOwnedDevices() throws -> AnyPublisher<Result<[DomainLayer.DeviceDetails], DomainLayer.NetworkErrorResponse>, Never> {
+		try getDevices()
 	}
 
 	func getDevices() throws -> AnyPublisher<Result<[DeviceDetails], NetworkErrorResponse>, Never> {
@@ -179,11 +184,11 @@ final class MockMeUseCase: MeUseCaseApi {
 		return Just(.success(device)).eraseToAnyPublisher()
 	}
 
-	func shouldSendNotificationAlert(for deviceId: String, alert: StationAlert) -> Bool {
-		true
+	func lastNotificationAlertSent(for deviceId: String, alert: StationAlert) -> Date? {
+		nil
 	}
-
+	
 	func notificationAlertSent(for deviceId: String, alert: StationAlert) {
-		
+
 	}
 }
