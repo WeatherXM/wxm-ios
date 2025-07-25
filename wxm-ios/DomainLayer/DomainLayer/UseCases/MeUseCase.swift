@@ -153,11 +153,18 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		return publisher.convertedToDeviceDetailsResultPublisher
 	}
 
-	public func shouldSendNotificationAlert(for deviceId: String, alert: StationAlert) -> Bool {
-		true
+	public func lastNotificationAlertSent(for deviceId: String, alert: StationAlert) -> Date? {
+		let timestamps: [String: Date]? = userDefaultsrRepository.getValue(for: UserDefaults.GenericKey.stationAlertNotificationsTimestamps.rawValue)
+		let key = "\(deviceId)-\(alert)"
+
+		return timestamps?[key]
 	}
 
 	public func notificationAlertSent(for deviceId: String, alert: StationAlert) {
-		
+		var timestamps: [String: Date] = userDefaultsrRepository.getValue(for: UserDefaults.GenericKey.stationAlertNotificationsTimestamps.rawValue) ?? [:]
+		let key = "\(deviceId)-\(alert)"
+		timestamps[key] = Date()
+
+		userDefaultsrRepository.saveValue(key: UserDefaults.GenericKey.stationAlertNotificationsTimestamps.rawValue, value: timestamps)
 	}
 }
