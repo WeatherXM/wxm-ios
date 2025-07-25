@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DomainLayer
+import Toolkit
 
 struct StationsNotificationsView: View {
 	@StateObject var viewModel: StationNotificationsViewModel
@@ -47,6 +48,7 @@ struct StationsNotificationsView: View {
 		}
 		.onAppear {
 			navigationObject.title = LocalizableString.StationDetails.notifications.localized
+			WXMAnalytics.shared.trackScreen(.stationNotifications)
 		}
 	}
 }

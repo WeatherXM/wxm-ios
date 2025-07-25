@@ -87,6 +87,7 @@ class DeepLinkHandler {
 				}
 			case .device(let deviceId):
 				moveToStation(deviceId: deviceId, cellIndex: nil, cellCenter: nil)
+				WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .openStationFromNotification])
 				return true
 		}
 

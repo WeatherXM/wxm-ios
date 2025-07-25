@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 extension StationAlert {
 	var notificationTitle: String {
@@ -32,6 +33,21 @@ extension StationAlert {
 				LocalizableString.Error.notificationBatteryDescription(stationName).localized
 			case .health:
 				LocalizableString.Error.notificationHealthDescription(stationName).localized
+		}
+	}
+}
+
+extension StationNotificationsTypes {
+	var analyticsValue: ParameterValue {
+		switch self {
+			case .activity:
+					.activity
+			case .battery:
+					.lowBattery
+			case .firmwareUpdate:
+					.otaUpdate
+			case .health:
+					.stationHealth
 		}
 	}
 }

@@ -594,6 +594,20 @@ extension ParameterValue: RawRepresentable {
 				return "data_quality"
 			case .dataQualityScore:
 				return "data_quality_score"
+			case .toggleStationNotifications:
+				return "Toggle Station Notifications"
+			case .toggleStationNotificationType:
+				return "Toggle Station Notification Type"
+			case .activity:
+				return "activity"
+			case .stationHealth:
+				return "station_health"
+			case .enable:
+				return "enable"
+			case .disable:
+				return "disable"
+			case .openStationFromNotification:
+				return "Open Station from Notification"
 		}
 	}
 }
