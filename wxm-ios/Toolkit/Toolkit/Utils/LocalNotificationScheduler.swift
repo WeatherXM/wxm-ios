@@ -11,10 +11,19 @@ import UserNotifications
 public struct LocalNotificationScheduler {
 	public init() {}
 
-	public func postNotification(id: String, title: String, body: String?, userInfo: [AnyHashable: Any]? = nil) {
+	public func postNotification(id: String,
+								 title: String,
+								 body: String?,
+								 threadId: String? = nil,
+								 userInfo: [AnyHashable: Any]? = nil) {
 		let content = UNMutableNotificationContent()
 		content.title = title
 		content.userInfo = userInfo ?? [:]
+
+		if let threadId {
+			content.threadIdentifier = threadId
+		}
+
 		if let body {
 			content.body = body
 		}

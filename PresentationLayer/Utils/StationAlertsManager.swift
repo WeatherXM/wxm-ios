@@ -59,6 +59,7 @@ private extension StationAlertsManager {
 			notificationsScheduler.postNotification(id: "\(String(describing: device.id))_\($0)",
 													title: $0.notificationTitle,
 													body: $0.notificationDescription(for: device.displayName),
+													threadId: deviceId,
 													userInfo: userInfo)
 			meUseCase.notificationAlertSent(for: deviceId, alert: $0)
 		}
