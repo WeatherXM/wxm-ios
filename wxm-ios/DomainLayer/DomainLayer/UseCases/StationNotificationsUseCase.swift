@@ -20,7 +20,7 @@ public struct StationNotificationsUseCase: StationNotificationsUseCaseApi {
 		self.userDefaultsRepository = userDefaultsRepository
 	}
 
-	public func areNotificationsEnalbedForDevice(_ deviceId: String) -> Bool {
+	public func areNotificationsEnabledForDevice(_ deviceId: String) -> Bool {
 		let devices: EnabledStations? = userDefaultsRepository.getValue(for: notificationsEnabledUDKey)
 		guard let isEnabled = devices?[deviceId] else {
 			return true

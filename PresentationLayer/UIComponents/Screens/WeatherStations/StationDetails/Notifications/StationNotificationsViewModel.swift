@@ -100,7 +100,7 @@ private extension StationNotificationsViewModel {
 			switch status {
 				case .authorized:
 					if let deviceId = device.id {
-						masterSwitchValue = useCase.areNotificationsEnalbedForDevice(deviceId)
+						masterSwitchValue = useCase.areNotificationsEnabledForDevice(deviceId)
 					}
 					break
 				default:
@@ -112,6 +112,6 @@ private extension StationNotificationsViewModel {
 
 extension StationNotificationsViewModel: HashableViewModel {
 	nonisolated func hash(into hasher: inout Hasher) {
-
+		hasher.combine(device.id)
 	}
 }

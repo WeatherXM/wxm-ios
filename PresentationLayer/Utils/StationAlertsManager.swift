@@ -25,7 +25,7 @@ struct StationAlertsManager {
 private extension StationAlertsManager {
 	func checkStation(_ device: DeviceDetails) {
 		guard let deviceId = device.id,
-			  stationNotificationsUseCase.areNotificationsEnalbedForDevice(deviceId) else {
+			  stationNotificationsUseCase.areNotificationsEnabledForDevice(deviceId) else {
 			return
 		}
 

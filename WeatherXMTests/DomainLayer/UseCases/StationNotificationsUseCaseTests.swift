@@ -18,14 +18,14 @@ struct StationNotificationsUseCaseTests {
 
 	@Test func notificationsEnabledDefaultTrue() {
 		// No value set, should default to true
-		#expect(useCase.areNotificationsEnalbedForDevice("device1") == true)
+		#expect(useCase.areNotificationsEnabledForDevice("device1") == true)
 	}
 
 	@Test func setNotificationsForDevice() {
 		useCase.setNotificationsForDevice("device1", enabled: false)
-		#expect(useCase.areNotificationsEnalbedForDevice("device1") == false)
+		#expect(useCase.areNotificationsEnabledForDevice("device1") == false)
 		useCase.setNotificationsForDevice("device1", enabled: true)
-		#expect(useCase.areNotificationsEnalbedForDevice("device1") == true)
+		#expect(useCase.areNotificationsEnabledForDevice("device1") == true)
 	}
 
 	@Test func setAndGetNotificationTypeEnabled() {

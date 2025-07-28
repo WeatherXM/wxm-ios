@@ -339,11 +339,11 @@ private extension StationDetailsViewModel {
 										 canDismiss: false,
 										 buttonsLayout: .horizontal,
 										 secondaryButtons: [.init(title: LocalizableString.StationDetails.notificationsAlertCancelButtonTitle.localized,
-																  action: { self.showNotificationsAlert = false })],
+																  action: { [weak self] in self?.showNotificationsAlert = false })],
 										 primaryButtons: [.init(title: LocalizableString.StationDetails.notificationsAlertButtonTitle.localized,
-																action: {
-			self.showNotificationsAlert = false
-			self.navigateToNotifications()
+																action: { [weak self] in
+			self?.showNotificationsAlert = false
+			self?.navigateToNotifications()
 		})])
 		notificationsAlertConfiguration = conf
 		showNotificationsAlert = true
