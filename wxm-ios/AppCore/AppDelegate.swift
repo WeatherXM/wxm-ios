@@ -23,6 +23,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 			WXMAnalytics.shared.launch(with: [.firebase, .mixpanel(mixpanelToken)])
 		}
 
+		// Fix crashes for Mac versions
+		MainScreenViewModel.shared.setupBackgroundSchedulerIfNeeded()
+		
 		return true
     }
 
