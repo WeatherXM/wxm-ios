@@ -12,6 +12,7 @@ import UIKit
 import Network
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
 		// Fixe the crash in iOS 26
 		nw_tls_create_options()
@@ -21,7 +22,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 		if let mixpanelToken: String = Bundle.main.getConfiguration(for: .mixpanelToken) {
 			WXMAnalytics.shared.launch(with: [.firebase, .mixpanel(mixpanelToken)])
 		}
-        
+
 		return true
     }
 

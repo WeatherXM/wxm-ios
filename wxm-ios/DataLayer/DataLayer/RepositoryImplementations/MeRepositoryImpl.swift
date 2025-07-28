@@ -54,7 +54,24 @@ public struct MeRepositoryImpl: MeRepository {
 	public func getCachedDevices() -> [NetworkDevicesResponse]? {
 		userDevicesService.getCachedDevices()
 	}
-	
+
+	public func getOwnedDevices() throws -> AnyPublisher<DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>, Never> {
+		try userDevicesService.getDevices(useCache: false).flatMap { response in
+			switch response.result {
+					case .success(let devices):
+					let ownedDevices = devices.filter { $0.relation == .owned }
+					return Just(DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>(request: nil,
+																							 response: nil,
+																							 data: nil,
+																							 metrics: nil,
+																							 serializationDuration: 0,
+																							 result: .success(ownedDevices)))
+				case .failure(let error):
+					return Just(response)
+			}
+		}.eraseToAnyPublisher()
+	}
+
 	public func getDevices(useCache: Bool) throws -> AnyPublisher<DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>, Never> {
         try userDevicesService.getDevices(useCache: useCache)
     }
