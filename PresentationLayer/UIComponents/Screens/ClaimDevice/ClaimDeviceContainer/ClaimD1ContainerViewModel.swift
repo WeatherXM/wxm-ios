@@ -10,8 +10,14 @@ import DomainLayer
 import Toolkit
 
 class ClaimD1ContainerViewModel: ClaimDeviceContainerViewModel {
-	override init(useCase: MeUseCaseApi, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCaseApi) {
-		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+	override init(useCase: MeUseCaseApi,
+				  devicesUseCase: DevicesUseCaseApi,
+				  deviceLocationUseCase: DeviceLocationUseCaseApi,
+				  photoGalleryUseCase: PhotoGalleryUseCaseApi) {
+		super.init(useCase: useCase,
+				   devicesUseCase: devicesUseCase,
+				   deviceLocationUseCase: deviceLocationUseCase,
+				   photoGalleryUseCase: photoGalleryUseCase)
 		navigationTitle = ClaimStationType.d1.navigationTitle
 		steps = getSteps()
 	}
@@ -23,6 +29,10 @@ class ClaimD1ContainerViewModel: ClaimDeviceContainerViewModel {
 
 private extension ClaimD1ContainerViewModel {
 	func getSteps() -> [ClaimDeviceStep] {
+		let beforeBeginViewModel = ViewModelsFactory.getClaimBeforeBeginViewModel { [weak self] in
+			self?.moveNext()
+		}
+
 		let beginViewModel = ViewModelsFactory.getClaimStationBeginViewModel { [weak self] in
 			self?.moveNext()
 		}
@@ -37,9 +47,28 @@ private extension ClaimD1ContainerViewModel {
 
 		let locationViewModel = ViewModelsFactory.getClaimDeviceLocationViewModel { [weak self] location in
 			self?.location = location
-			self?.performClaim(retries: 0)
+			self?.moveNext()
 		}
 
-		return [.begin(beginViewModel), .serialNumber(snViewModel), .manualSerialNumber(manualSNViewModel), .location(locationViewModel)]
+		let photoIntroViewModel = ViewModelsFactory.getClaimDevicePhotoViewModel { [weak self] in
+			self?.moveNext()
+		}
+
+		let photoViewModel = ViewModelsFactory.getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] photos in
+			guard let serialNumber = self?.serialNumber else {
+				return
+			}
+			self?.photosManager.setPhotos(photos, for: serialNumber)
+			self?.performClaim(retries: 0)
+		}
+		self.photosViewModel = photoViewModel
+
+		return [.beforeBegin(beforeBeginViewModel),
+				.begin(beginViewModel),
+				.serialNumber(snViewModel),
+				.manualSerialNumber(manualSNViewModel),
+				.location(locationViewModel),
+				.photoIntro(photoIntroViewModel),
+				.photos(photoViewModel)]
 	}
 }

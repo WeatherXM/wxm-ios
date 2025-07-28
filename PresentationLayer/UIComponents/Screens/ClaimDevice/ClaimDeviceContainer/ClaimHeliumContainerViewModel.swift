@@ -14,8 +14,18 @@ class ClaimHeliumContainerViewModel: ClaimDeviceContainerViewModel {
 	private var btDevice: BTWXMDevice?
 	private var heliumFrequency: Frequency?
 
-	override init(useCase: MeUseCaseApi, devicesUseCase: DevicesUseCaseApi, deviceLocationUseCase: DeviceLocationUseCaseApi) {
-		super.init(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+	override var photos: [GalleryView.GalleryImage]? {
+		photosManager.getPhotos(for: ClaimDevicePhotosManager.tempHeliumSerialNumber)
+	}
+
+	override init(useCase: MeUseCaseApi,
+				  devicesUseCase: DevicesUseCaseApi,
+				  deviceLocationUseCase: DeviceLocationUseCaseApi,
+				  photoGalleryUseCase: PhotoGalleryUseCaseApi) {
+		super.init(useCase: useCase,
+				   devicesUseCase: devicesUseCase,
+				   deviceLocationUseCase: deviceLocationUseCase,
+				   photoGalleryUseCase: photoGalleryUseCase)
 		navigationTitle = ClaimStationType.helium.navigationTitle
 		steps = getSteps()
 	}
@@ -27,6 +37,10 @@ class ClaimHeliumContainerViewModel: ClaimDeviceContainerViewModel {
 
 private extension ClaimHeliumContainerViewModel {
 	func getSteps() -> [ClaimDeviceStep] {
+		let beforeBeginViewModel = ViewModelsFactory.getClaimHeliumBeforeBeginViewModel { [weak self] in
+			self?.moveNext()
+		}
+
 		let resetViewModel = ViewModelsFactory.getResetDeviceViewModel { [weak self] in
 			self?.moveNext()
 		}
@@ -62,9 +76,26 @@ private extension ClaimHeliumContainerViewModel {
 			setFrequencyViewModel?.selectedLocation = location
 			setFrequencyViewModel?.didSelectFrequencyFromLocation = true
 			self?.moveNext()
+		}		
+
+		let photoIntroViewModel = ViewModelsFactory.getClaimDevicePhotoViewModel { [weak self] in
+			self?.moveNext()
 		}
 
-		return [.reset(resetViewModel), .selectDevice(selectDeviceViewModel), .location(locationViewModel), .setFrequency(setFrequencyViewModel)]
+		let photoViewModel = ViewModelsFactory.getClaimHeliumPhotoGalleryViewModel(linkNavigator: LinkNavigationHelper()) { [weak self] photos in
+			// Since serial number is not available in this step we assign a dummy key only for the helium
+			self?.photosManager.setPhotos(photos, for: ClaimDevicePhotosManager.tempHeliumSerialNumber)
+			self?.moveNext()
+		}
+		self.photosViewModel = photoViewModel
+		
+		return [.beforeBegin(beforeBeginViewModel),
+				.reset(resetViewModel),
+				.selectDevice(selectDeviceViewModel),
+				.location(locationViewModel),
+				.photoIntro(photoIntroViewModel),
+				.photos(photoViewModel),
+				.setFrequency(setFrequencyViewModel)]
 	}
 
 	func performHeliumClaim() {

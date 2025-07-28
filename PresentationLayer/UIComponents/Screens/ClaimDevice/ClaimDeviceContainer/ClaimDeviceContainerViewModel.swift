@@ -23,9 +23,19 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 	let useCase: MeUseCaseApi
 	let devicesUseCase: DevicesUseCaseApi
 	let deviceLocationUseCase: DeviceLocationUseCaseApi
+	let photoGalleryUseCase: PhotoGalleryUseCaseApi
 	var claimingKey: String?
 	var serialNumber: String?
 	var location: DeviceLocation?
+	let photosManager: ClaimDevicePhotosManager = .shared
+	var photos: [GalleryView.GalleryImage]? {
+		guard let serialNumber else {
+			return nil
+		}
+
+		return photosManager.getPhotos(for: serialNumber)
+	}
+	weak var photosViewModel: ClaimDevicePhotoViewModel?
 
 	private let CLAIMING_RETRIES_MAX = 25 // For 2 minutes timeout
 	private let CLAIMING_RETRIES_DELAY_SECONDS: TimeInterval = 5
@@ -33,10 +43,12 @@ class ClaimDeviceContainerViewModel: ObservableObject {
 
 	init(useCase: MeUseCaseApi,
 		 devicesUseCase: DevicesUseCaseApi,
-		 deviceLocationUseCase: DeviceLocationUseCaseApi) {
+		 deviceLocationUseCase: DeviceLocationUseCaseApi,
+		 photoGalleryUseCase: PhotoGalleryUseCaseApi) {
 		self.useCase = useCase
 		self.devicesUseCase = devicesUseCase
 		self.deviceLocationUseCase = deviceLocationUseCase
+		self.photoGalleryUseCase = photoGalleryUseCase
 	}
 
 	func viewAppeared() {}
@@ -94,6 +106,11 @@ extension ClaimDeviceContainerViewModel {
 		}
 
 		moveNext()
+
+		if let serialNumber,
+		   let images = photosManager.getPhotos(for: serialNumber) {
+			photosViewModel?.updateImages(images)
+		}
 	}
 
 	func performClaim(retries: Int? = nil) {
@@ -130,25 +147,49 @@ extension ClaimDeviceContainerViewModel {
 							self.loadingState = .fail(object)
 							WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .claimingResult,
 																					  .success: .custom("0")])
+
+							// Uncomment the following for testing
+							/*
+							Task { @MainActor in
+								await startPhotoUpload(deviceId: "{station-device-id}")
+							}
+							 */
 						case .success(let deviceResponse):
 							print(deviceResponse)
 							Task { @MainActor in
 								var followState: UserDeviceFollowState?
 								if let deviceId = deviceResponse.id {
 									followState = try? await self.useCase.getDeviceFollowState(deviceId: deviceId).get()
+									await self.startPhotoUpload(deviceId: deviceId)
 								}
 
 								let object = self.getSuccessObject(for: deviceResponse, followState: followState)
 								self.loadingState = .success(object)
 								WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .claimingResult,
 																						  .success: .custom("1")])
-
 							}
 					}
 				}
 				.store(in: &cancellableSet)
 		} catch {
 			print(error)
+		}
+	}
+
+	func startPhotoUpload(deviceId: String) async {
+		guard let photos = photos else {
+			return
+		}
+
+		do {
+			try self.photoGalleryUseCase.clearLocalImages(deviceId: deviceId)
+			let fileUrls = await photos.asyncMainActorCompactMap { try? await photoGalleryUseCase.saveImage($0.uiImage!,
+																											deviceId: deviceId,
+																											metadata: $0.metadata,
+																											userComment: $0.source?.sourceValue ?? "")}
+			try await self.photoGalleryUseCase.startFilesUpload(deviceId: deviceId, files: fileUrls.compactMap { try? $0.asURL() })
+		} catch {
+			Toast.shared.show(text: error.localizedDescription.attributedMarkdown ?? "")
 		}
 	}
 
@@ -179,13 +220,12 @@ extension ClaimDeviceContainerViewModel {
 
 	func getSuccessObject(for device: DeviceDetails, followState: UserDeviceFollowState?) -> FailSuccessStateObject {
 		let needsUpdate = device.needsUpdate(mainVM: MainScreenViewModel.shared, followState: followState) == true
-		let cancelTitle: String? = LocalizableString.ClaimDevice.skipPhotoVerificationForNow.localized
-		let retryTitle: String? = LocalizableString.ClaimDevice.continueToPhotoVerification.localized
+		let retryTitle: String? = LocalizableString.ClaimDevice.viewStationButton.localized
 		let goToStationAction: VoidCallback = { [weak self] in
 			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .claimingResult,
 																	 .contentType: .claiming,
 																	 .action: .viewStation])
-			self?.showSkipPhotoAlert(device: device)
+			self?.dismissAndNavigate(device: device)
 		}
 
 		let updateFirmwareButton = Button(action: { [weak self] in
@@ -211,20 +251,6 @@ extension ClaimDeviceContainerViewModel {
 			.padding(.horizontal, CGFloat(.defaultSidePadding))
 		}).buttonStyle(WXMButtonStyle.filled()).toAnyView
 
-		let continueToPhotoVerificationAction: VoidCallback = { [weak self] in
-			self?.dismissAndNavigate(device: nil)
-			guard let deviceId = device.id else {
-				return
-			}
-
-			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
-				PhotoIntroViewModel.startPhotoVerification(deviceId: deviceId, images: [], isNewPhotoVerification: true)
-			}
-
-			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .goToPhotoVerification,
-																		.source: .claimingSource])
-		}
-
 		let info: CardWarningConfiguration =  .init(type: .info,
 													message: LocalizableString.ClaimDevice.updateFirmwareInfoMarkdown.localized,
 													showBorder: true,
@@ -241,12 +267,12 @@ extension ClaimDeviceContainerViewModel {
 											info: needsUpdate ? info : nil,
 											infoCustomView: needsUpdate ? updateFirmwareButton : nil,
 											infoOnAppearAction: needsUpdate ? infoAppearAction : nil,											
-											cancelTitle: cancelTitle,
+											cancelTitle: nil,
 											retryTitle: retryTitle,
 											actionButtonsLayout: .vertical,
 											contactSupportAction: nil,
-											cancelAction: goToStationAction,
-											retryAction: continueToPhotoVerificationAction)
+											cancelAction: nil,
+											retryAction: goToStationAction)
 
 		return object
 	}
@@ -269,19 +295,6 @@ extension ClaimDeviceContainerViewModel {
 																						  cellCenter: device.cellCenter?.toCLLocationCoordinate2D()))
 			Router.shared.navigateTo(route)
 		}
-	}
-
-	func showSkipPhotoAlert(device: DeviceDetails) {
-		let exitAction: AlertHelper.AlertObject.Action = (LocalizableString.skip.localized, { [weak self] _ in
-			self?.dismissAndNavigate(device: device)
-		})
-		let alertObject = AlertHelper.AlertObject(title: LocalizableString.ClaimDevice.skipPhotoVerificationAlertTitle.localized,
-												  message: LocalizableString.ClaimDevice.skipPhotoVerificationAlertText.localized,
-												  cancelActionTitle: LocalizableString.back.localized,
-												  cancelAction: {},
-												  okAction: exitAction)
-
-		AlertHelper().showAlert(alertObject)
 	}
 }
 

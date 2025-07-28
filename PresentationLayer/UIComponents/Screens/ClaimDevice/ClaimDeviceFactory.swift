@@ -9,17 +9,21 @@ import Foundation
 import SwiftUI
 
 enum ClaimDeviceStep: Identifiable {
-
+	case beforeBegin(ClaimDeviceBeforeBeginViewModel)
 	case begin(ClaimDeviceBeginViewModel)
 	case serialNumber(ClaimDeviceSerialNumberViewModel)
 	case manualSerialNumber(ManualSerialNumberViewModel)
 	case location(ClaimDeviceLocationViewModel)
+	case photoIntro(ClaimDevicePhotoIntroViewModel)
+	case photos(ClaimDevicePhotoViewModel)
 	case reset(ResetDeviceViewModel)
 	case selectDevice(SelectDeviceViewModel)
 	case setFrequency(ClaimDeviceSetFrequencyViewModel)
 
 	var id: String {
 		switch self {
+			case .beforeBegin:
+				"beforeBegin"
 			case .begin:
 				"begin"
 			case .serialNumber:
@@ -28,6 +32,10 @@ enum ClaimDeviceStep: Identifiable {
 				"manualSerialNumber-\(viewModel)"
 			case .location:
 				"location"
+			case .photoIntro(let viewModel):
+				"photoIntro-\(viewModel)"
+			case .photos(let viewModel):
+				"photos-\(viewModel)"
 			case .reset:
 				"reset"
 			case .selectDevice:
@@ -44,6 +52,8 @@ extension ClaimDeviceStep {
 	@ViewBuilder
 	var contentView: some View {
 		switch self {
+			case .beforeBegin(let viewModel):
+				ClaimDeviceBeforeBeginView(viewModel: viewModel)
 			case .begin(let viewModel):
 				ClaimDeviceBeginView(viewModel: viewModel)
 			case .serialNumber(let viewModel):
@@ -52,6 +62,10 @@ extension ClaimDeviceStep {
 				ManualSerialNumberView(viewModel: viewModel)
 			case .location(let viewModel):
 				ClaimDeviceLocationView(viewModel: viewModel)
+			case .photoIntro(let viewModel):
+				ClaimDevicePhotoIntroView(viewModel: viewModel)
+			case .photos(let viewModel):
+				ClaimDevicePhotoView(viewModel: viewModel)
 			case .reset(let viewModel):
 				ResetDeviceView(viewModel: viewModel)
 			case .selectDevice(let viewModel):

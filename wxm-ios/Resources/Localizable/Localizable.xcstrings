@@ -616,6 +616,138 @@
         }
       }
     },
+    "claim_device_before_begin_all_done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Done! You can now enjoy your station and start earning rewards."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_assemble_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assemble your weather station."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_check_box" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the box contents."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_confirm_location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm the station's exact deployment location."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_connect_gateway" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect the gateway and get it ready for claiming."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make sure you’ve completed all previous steps:"
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_install_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install your weather station following our guidelines."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_next_up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next up, Station Claiming steps:"
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_pair_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pair your station via Bluetooth"
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_set_frequency" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set your station’s frequency"
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_take_photos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take photos of your station to ensure it meets our deployment guidelines."
+          }
+        }
+      }
+    },
+    "claim_device_before_begin_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Before you claim your station…"
+          }
+        }
+      }
+    },
     "claim_device_bluetooth_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1551,6 +1683,28 @@
         }
       }
     },
+    "claim_device_photo_verification_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo verification ensures your station meets deployment guidelines and can start transmitting valid data."
+          }
+        }
+      }
+    },
+    "claim_device_photo_verification_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photo Verification"
+          }
+        }
+      }
+    },
     "claim_device_prepare_gateway_d1_bullet_one" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2086,6 +2240,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "**We strongly recommend you to update for a better station experience!**\nYou will be able to photo verify your station after the update."
+          }
+        }
+      }
+    },
+    "claim_device_upload_and_claim" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload and Claim"
+          }
+        }
+      }
+    },
+    "claim_device_upload_and_proceed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload and Proceed"
           }
         }
       }

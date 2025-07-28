@@ -9,41 +9,59 @@ import Foundation
 
 public extension Sequence {
 
-    /// Iterates the sequence with async operations. Similar functionality to `ForEach`
-    /// - Parameter operation: The async operation to be performed for each element
+	/// Iterates the sequence with async operations. Similar functionality to `ForEach`
+	/// - Parameter operation: The async operation to be performed for each element
 	nonisolated func asyncForEach(_ operation: @Sendable (Element) async throws -> Void) async rethrows {
-        for element in self {
-            try await operation(element)
-        }
-    }
+		for element in self {
+			try await operation(element)
+		}
+	}
 
-    /// Returns an array containing the results of mapping the given async operation, similar to `map`
-    /// - Parameter transform: The async operation to be performed for each element
-    /// - Returns: The array with the mapped elements
+	/// Returns an array containing the results of mapping the given async operation, similar to `map`
+	/// - Parameter transform: The async operation to be performed for each element
+	/// - Returns: The array with the mapped elements
 	nonisolated func asyncMap<T>(_ transform: (Element) async throws -> T) async rethrows -> [T] {
-        var values = [T]()
+		var values = [T]()
 
-        for element in self {
-            try await values.append(transform(element))
-        }
+		for element in self {
+			try await values.append(transform(element))
+		}
 
-        return values
-    }
+		return values
+	}
 
-    /// Returns an array containing the non-nil results of mapping the given async operation, similar to `map`
-    /// - Parameter transform: The async operation to be performed for each element
-    /// - Returns: The array with the mapped elements
+	/// Returns an array containing the non-nil results of mapping the given async operation, similar to `map`
+	/// - Parameter transform: The async operation to be performed for each element
+	/// - Returns: The array with the mapped elements
 	nonisolated func asyncCompactMap<T>(_ transform: @Sendable (Element) async throws -> T?) async rethrows -> [T] {
-        var values = [T]()
+		var values = [T]()
 
-        for element in self {
-            guard let value = try await transform(element) else {
-                continue
-            }
+		for element in self {
+			guard let value = try await transform(element) else {
+				continue
+			}
 
-            values.append(value)
-        }
+			values.append(value)
+		}
 
-        return values
-    }
+		return values
+	}
+}
+
+public extension Sequence where Element: Sendable {
+	@MainActor
+	func asyncMainActorCompactMap<T: Sendable>(_ transform: @Sendable (Element) async throws -> T?) async rethrows -> [T] {
+		var values = [T]()
+
+		for element in self {
+			guard let value = try await transform(element) else {
+				continue
+			}
+
+			values.append(value)
+		}
+
+		return values
+	}
+
 }

@@ -184,17 +184,61 @@ enum ViewModelsFactory {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		let devicesUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DevicesUseCaseApi.self)!
 		let deviceLocationUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCaseApi.self)!
+		let photoGalleryUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
 
 		switch type {
 			case .m5:
-				return ClaimM5ContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+				return ClaimM5ContainerViewModel(useCase: useCase,
+												 devicesUseCase: devicesUseCase,
+												 deviceLocationUseCase: deviceLocationUseCase,
+												 photoGalleryUseCase: photoGalleryUseCase)
 			case .d1:
-				return ClaimD1ContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+				return ClaimD1ContainerViewModel(useCase: useCase,
+												 devicesUseCase: devicesUseCase,
+												 deviceLocationUseCase: deviceLocationUseCase,
+												 photoGalleryUseCase: photoGalleryUseCase)
 			case .helium:
-				return ClaimHeliumContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+				return ClaimHeliumContainerViewModel(useCase: useCase,
+													 devicesUseCase: devicesUseCase,
+													 deviceLocationUseCase: deviceLocationUseCase,
+													 photoGalleryUseCase: photoGalleryUseCase)
 			case .pulse:
-				return ClaimPulseContainerViewModel(useCase: useCase, devicesUseCase: devicesUseCase, deviceLocationUseCase: deviceLocationUseCase)
+				return ClaimPulseContainerViewModel(useCase: useCase,
+													devicesUseCase: devicesUseCase,
+													deviceLocationUseCase: deviceLocationUseCase,
+													photoGalleryUseCase: photoGalleryUseCase)
 		}
+	}
+
+	static func getClaimBeforeBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeforeBeginViewModel {
+		ClaimDeviceBeforeBeginViewModel(completion: completion)
+	}
+
+	static func getClaimHeliumBeforeBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceHeliumBeforeBeginViewModel {
+		ClaimDeviceHeliumBeforeBeginViewModel(completion: completion)
+	}
+	
+	static func getClaimDevicePhotoViewModel(completion: @escaping VoidCallback) -> ClaimDevicePhotoIntroViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
+		let viewModel = ClaimDevicePhotoIntroViewModel(deviceId: "", images: [], photoGalleryUseCase: useCase)
+		viewModel.completion = completion
+		return viewModel
+	}
+
+	static func getClaimDevicePhotoGalleryViewModel(linkNavigator: LinkNavigation,
+													completion: @escaping GenericCallback<[GalleryView.GalleryImage]>) -> ClaimDevicePhotoViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
+		let viewModel = ClaimDevicePhotoViewModel(useCase: useCase, linkNavigator: linkNavigator)
+		viewModel.completion = completion
+		return viewModel
+	}
+
+	static func getClaimHeliumPhotoGalleryViewModel(linkNavigator: LinkNavigation,
+													completion: @escaping GenericCallback<[GalleryView.GalleryImage]>) -> ClaimHeliumPhotoViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
+		let viewModel = ClaimHeliumPhotoViewModel(useCase: useCase, linkNavigator: linkNavigator)
+		viewModel.completion = completion
+		return viewModel
 	}
 
 	static func getClaimStationBeginViewModel(completion: @escaping VoidCallback) -> ClaimDeviceBeginViewModel {
@@ -278,9 +322,9 @@ enum ViewModelsFactory {
 		return PhotoIntroViewModel(deviceId: deviceId, images: images, photoGalleryUseCase: useCase)
 	}
 
-	static func getPhotoInstructionsViewModel(deviceId: String) -> PhotoInstructionsViewModel {
+	static func getPhotoInstructionsViewModel() -> PhotoInstructionsViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
-		return PhotoInstructionsViewModel(deviceId: deviceId, images: [], photoGalleryUseCase: useCase)
+		return PhotoInstructionsViewModel(deviceId: nil, images: [], photoGalleryUseCase: useCase)
 	}
 
 	static func getGalleryViewModel(deviceId: String, images: [String], isNewVerification: Bool) -> GalleryViewModel {
@@ -295,6 +339,18 @@ enum ViewModelsFactory {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceInfoUseCaseApi.self)!
 		let photoGalleryUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
 		return PhotoVerificationStateViewModel(deviceId: deviceId, deviceInfoUseCase: useCase, photoGalleryUseCase: photoGalleryUseCase)
+	}
+
+	static func getGalleryImagesViewModel(images: [String], linkNavigator: LinkNavigation = LinkNavigationHelper()) -> GalleryImagesViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
+
+		return GalleryImagesViewModel(useCase: useCase, images: images, linkNavigator: linkNavigator)
+	}
+
+	static func getClaimGalleryImagesViewModel(images: [String], linkNavigator: LinkNavigation = LinkNavigationHelper()) -> ClaimGalleryImagesViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
+
+		return ClaimGalleryImagesViewModel(useCase: useCase, images: images, linkNavigator: linkNavigator)
 	}
 
 	static func getDeviceInfoViewModel(device: DeviceDetails, followState: UserDeviceFollowState?) -> DeviceInfoViewModel {

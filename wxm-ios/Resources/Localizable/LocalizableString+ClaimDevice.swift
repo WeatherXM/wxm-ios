@@ -20,6 +20,18 @@ extension LocalizableString {
 		case claimD1Title
 		case claimM5Title
 		case claimPulseTitle
+		case beforeBeginTitle
+		case beforeBeginDescription
+		case beforeBeginCheckBox
+		case beforeBeginAssembleStation
+		case beforeBeginInstallStation
+		case beforeBeginConnectGateway
+		case beforeBeginConfirmLocation
+		case beforeBeginTakePhotos
+		case beforeBeginAllDone
+		case beforeBeginPairStation
+		case beforeBeginSetFrequency
+		case beforeBeginNextUp
 		case connectGatewayTitle
 		case connectD1BulletOne
 		case connectD1BulletTwo
@@ -150,6 +162,10 @@ extension LocalizableString {
 		case skipPhotoVerificationForNow
 		case skipPhotoVerificationAlertTitle
 		case skipPhotoVerificationAlertText
+		case photoVerificationTitle
+		case photoVerificationText
+		case uploadAndClaim
+		case uploadAndProceed
 	}
 }
 
@@ -197,6 +213,30 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_claim_m5_title"
 			case .claimPulseTitle:
 				return "claim_device_claim_pulse_title"
+			case .beforeBeginTitle:
+				return "claim_device_before_begin_title"
+			case .beforeBeginDescription:
+				return "claim_device_before_begin_description"
+			case .beforeBeginCheckBox:
+				return "claim_device_before_begin_check_box"
+			case .beforeBeginAssembleStation:
+				return "claim_device_before_begin_assemble_station"
+			case .beforeBeginInstallStation:
+				return "claim_device_before_begin_install_station"
+			case .beforeBeginConnectGateway:
+				return "claim_device_before_begin_connect_gateway"
+			case .beforeBeginConfirmLocation:
+				return "claim_device_before_begin_confirm_location"
+			case .beforeBeginTakePhotos:
+				return "claim_device_before_begin_take_photos"
+			case .beforeBeginAllDone:
+				return "claim_device_before_begin_all_done"
+			case .beforeBeginPairStation:
+				return "claim_device_before_begin_pair_station"
+			case .beforeBeginSetFrequency:
+				return "claim_device_before_begin_set_frequency"
+			case .beforeBeginNextUp:
+				return "claim_device_before_begin_next_up"
 			case .claimD1Title:
 				return "claim_device_claim_d1_title"
 			case .connectGatewayTitle:
@@ -460,6 +500,14 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_skip_photo_verification_alert_title"
 			case .skipPhotoVerificationAlertText:
 				return "claim_device_skip_photo_verification_alert_text"
+			case .photoVerificationTitle:
+				return "claim_device_photo_verification_title"
+			case .photoVerificationText:
+				return "claim_device_photo_verification_text"
+			case .uploadAndClaim:
+				return "claim_device_upload_and_claim"
+			case .uploadAndProceed:
+				return "claim_device_upload_and_proceed"
 		}
 	}
 }

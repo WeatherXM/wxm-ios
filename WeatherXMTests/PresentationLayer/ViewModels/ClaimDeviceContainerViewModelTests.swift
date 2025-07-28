@@ -17,14 +17,17 @@ struct ClaimDeviceContainerViewModelTests {
 	let useCase: MockMeUseCase
 	let devicesUseCase: MockDevicesUseCase
 	let deviceLocationUseCase: MockDeviceLocationUseCase
+	let photogalleryUseCase: MockPhotoGalleryUseCase
 
 	init() {
 		useCase = .init()
 		devicesUseCase = .init()
 		deviceLocationUseCase = .init()
+		photogalleryUseCase = .init()
 		viewModel = .init(useCase: useCase,
 						  devicesUseCase: devicesUseCase,
-						  deviceLocationUseCase: deviceLocationUseCase)
+						  deviceLocationUseCase: deviceLocationUseCase,
+						  photoGalleryUseCase: photogalleryUseCase)
 	}
 
 	@Test func testInitialization() {
