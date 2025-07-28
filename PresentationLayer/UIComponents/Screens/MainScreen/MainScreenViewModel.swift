@@ -44,6 +44,8 @@ class MainScreenViewModel: ObservableObject {
 	private let meUseCase: MeUseCaseApi
 	private let settingsUseCase: SettingsUseCaseApi
 	private let photosUseCase: PhotoGalleryUseCaseApi
+	private let stationNotificationsUseCase: StationNotificationsUseCaseApi
+	private var backgroundScheduler: BackgroundScheduler?
 	private var cancellableSet: Set<AnyCancellable> = []
 	let networkMonitor: NWPathMonitor
 	@Published var isUserLoggedIn: Bool = false
@@ -74,6 +76,7 @@ class MainScreenViewModel: ObservableObject {
 		mainUseCase = swinjectHelper.getContainerForSwinject().resolve(MainUseCaseApi.self)!
 		meUseCase = swinjectHelper.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		photosUseCase = swinjectHelper.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
+		stationNotificationsUseCase = swinjectHelper.getContainerForSwinject().resolve(StationNotificationsUseCaseApi.self)!
 
 		networkMonitor = NWPathMonitor()
 		settingsUseCase = swinjectHelper.getContainerForSwinject().resolve(SettingsUseCaseApi.self)!
@@ -374,5 +377,29 @@ class MainScreenViewModel: ObservableObject {
 															  body: LocalizableString.PhotoVerification.uploadFailedNotificationFailedDescription.localized)
 			}
 		}.store(in: &cancellableSet)
+	}
+
+	// MARK: - Background tasks
+
+	func setupBackgroundSchedulerIfNeeded() {
+		guard !isRunningTests, backgroundScheduler == nil else {
+			return
+		}
+
+		let scheduler = BackgroundScheduler { [weak self] in
+			Task { @MainActor in
+				self?.performBackgroundProcess()
+			}
+		}
+
+		backgroundScheduler = scheduler
+	}
+
+	func performBackgroundProcess() {
+		let alertsManager = StationAlertsManager(meUseCase: meUseCase,
+												 stationNotificationsUseCase: stationNotificationsUseCase)
+		Task {
+			await alertsManager.checkForStationIssues()
+		}
 	}
 }

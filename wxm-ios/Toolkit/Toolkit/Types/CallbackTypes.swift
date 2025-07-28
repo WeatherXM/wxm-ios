@@ -8,6 +8,7 @@
 import Foundation
 
 public typealias VoidCallback = () -> Void
+public typealias VoidSendableCallback = @Sendable () -> Void
 public typealias GenericCallback<T> = (T) -> Void
 public typealias GenericSendableCallback<T> = @Sendable (T) -> Void
 public typealias GenericMainActorCallback<T> = @MainActor (T) -> Void

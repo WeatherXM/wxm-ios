@@ -6281,6 +6281,94 @@
         }
       }
     },
+    "notification_battery_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To avoid data interruptions, please replace the batteries of %@."
+          }
+        }
+      }
+    },
+    "notification_battery_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Low Battery"
+          }
+        }
+      }
+    },
+    "notification_firmware_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A new version is available for %@. Upgrade to enjoy the latest improvements."
+          }
+        }
+      }
+    },
+    "notification_firmware_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firmware Update"
+          }
+        }
+      }
+    },
+    "notification_health_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station %@ has some health issues. Tap to view its status."
+          }
+        }
+      }
+    },
+    "notification_health_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Health Issues"
+          }
+        }
+      }
+    },
+    "notification_inactive_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your station %@ appears inactive. Please check its status."
+          }
+        }
+      }
+    },
+    "notification_inactive_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Inactive"
+          }
+        }
+      }
+    },
     "offline_station" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9427,6 +9515,28 @@
         }
       }
     },
+    "station_details_activity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activity"
+          }
+        }
+      }
+    },
+    "station_details_activity_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified when the station goes inactive."
+          }
+        }
+      }
+    },
     "station_details_base_reward" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9445,6 +9555,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Base reward scores from %@ to %@"
+          }
+        }
+      }
+    },
+    "station_details_battery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Battery"
+          }
+        }
+      }
+    },
+    "station_details_battery_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified when the outdoor unit has a low battery warning."
           }
         }
       }
@@ -9515,6 +9647,28 @@
         }
       }
     },
+    "station_details_firmware_update" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Firmware Update"
+          }
+        }
+      }
+    },
+    "station_details_firmware_update_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified when the station has a new firmware update."
+          }
+        }
+      }
+    },
     "station_details_forecast" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9533,6 +9687,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Got %d%%"
+          }
+        }
+      }
+    },
+    "station_details_health" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Health"
+          }
+        }
+      }
+    },
+    "station_details_health_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get notified when there are issues affecting the station’s health."
           }
         }
       }
@@ -9654,6 +9830,61 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Not Verified"
+          }
+        }
+      }
+    },
+    "station_details_notifications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        }
+      }
+    },
+    "station_details_notifications_alert_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take me there"
+          }
+        }
+      }
+    },
+    "station_details_notifications_alert_cancel_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maybe later"
+          }
+        }
+      }
+    },
+    "station_details_notifications_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’ll now receive notifications for critical issues like inactivity or low battery. This feature is enabled by default if you’ve already allowed app notifications.\n\nYou can manage these settings from the menu at the top right corner."
+          }
+        }
+      }
+    },
+    "station_details_notifications_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Station Notifications"
           }
         }
       }
@@ -9984,6 +10215,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "7D"
+          }
+        }
+      }
+    },
+    "station_details_show_notifications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show notifications"
           }
         }
       }

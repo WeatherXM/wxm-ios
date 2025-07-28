@@ -11,6 +11,14 @@ import DomainLayer
 import CoreLocation
 
 struct MockDeviceDetailsUseCase: DeviceDetailsUseCaseApi {
+	var hasNotificationsPromptBeenShown: Bool {
+		true
+	}
+
+	func notificationsPromptShown() {
+
+	}
+	
 	func getDeviceDetailsById(deviceId: String, cellIndex: String?) async throws -> Result<DeviceDetails, NetworkErrorResponse> {
 		.success(DeviceDetails.mockDevice)
 	}

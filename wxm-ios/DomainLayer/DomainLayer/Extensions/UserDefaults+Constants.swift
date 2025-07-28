@@ -45,6 +45,10 @@ public extension UserDefaults {
 		case termsOfUseAcceptedTimestamp = "com.weatherxm.app.UserDefaults.Key.TermsOfUseAcceptedTimestamp"
 		case arePhotoVerificationTermsAccepted = "com.weatherxm.app.UserDefaults.Key.ArePhotoVerificationTermsAccepted"
 		case isAddButtonIndicationSeen = "com.weatherxm.app.UserDefaults.Key.isAddButtonIndicationSeen"
+		case stationNotificationsPromptSeen = "com.weatherxm.app.UserDefaults.Key.StationNotificationsPromptSeen"
+		case stationNotificationOptions = "com.weatherxm.app.UserDefaults.Key.StationNotificationOptions"
+		case stationNotificationEnabled = "com.weatherxm.app.UserDefaults.Key.StationNotificationEnabled"
+		case stationAlertNotificationsTimestamps = "com.weatherxm.app.UserDefaults.Key.StationAlertNotificationsTimestamps"
 
         // MARK: - UserDefaultEntry
 
@@ -59,7 +63,10 @@ public extension UserDefaults {
 									  .lastInfoBannerId,
 									  .lastAnnouncementId,
 									  .arePhotoVerificationTermsAccepted,
-									  .isAddButtonIndicationSeen]
+									  .isAddButtonIndicationSeen,
+									  .stationNotificationOptions,
+									  .stationNotificationEnabled,
+									  .stationAlertNotificationsTimestamps]
             return keys.map { $0.rawValue }
         }
     }

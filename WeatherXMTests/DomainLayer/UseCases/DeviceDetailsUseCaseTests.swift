@@ -12,6 +12,7 @@ struct DeviceDetailsUseCaseTests {
 	let meRepository: MockMeRepositoryImpl = .init()
 	let explorerRepository: MockExplorerRepositoryImpl = .init()
 	let keychainRepository: MockKeychainRepositoryImpl = .init()
+	let userDefaultsRepository: MockUserDefaultsRepositoryImpl = .init()
 	let geocoder: MockGeocoder = .init()
 	let useCase: DeviceDetailsUseCase
 
@@ -19,6 +20,7 @@ struct DeviceDetailsUseCaseTests {
 		self.useCase = .init(meRepository: meRepository,
 							 explorerRepository: explorerRepository,
 							 keychainRepository: keychainRepository,
+							 userDefaultsRepository: userDefaultsRepository,
 							 geocoder: geocoder)
 
 	}
@@ -53,5 +55,11 @@ struct DeviceDetailsUseCaseTests {
 	@Test func resolveAddress() async throws {
 		let res = try await useCase.resolveAddress(location: .init())
 		#expect(res == "Resolved address")
+	}
+
+	@Test func notificationShown() {
+		#expect(userDefaultsRepository.getValue(for: UserDefaults.GenericKey.stationNotificationsPromptSeen.rawValue) == nil)
+		useCase.notificationsPromptShown()
+		#expect(userDefaultsRepository.getValue(for: UserDefaults.GenericKey.stationNotificationsPromptSeen.rawValue) == true)
 	}
 }

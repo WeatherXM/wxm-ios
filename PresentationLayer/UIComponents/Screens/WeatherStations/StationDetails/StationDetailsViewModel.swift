@@ -42,6 +42,7 @@ class StationDetailsViewModel: ObservableObject {
     private(set) lazy var forecastVM = ViewModelsFactory.getStationForecastViewModel(delegate: self)
     private(set) lazy var rewardsVM = ViewModelsFactory.getStationRewardsViewModel(deviceId: deviceId, delegate: self)
     private(set) var loginAlertConfiguration: WXMAlertConfiguration?
+	private(set) var notificationsAlertConfiguration: WXMAlertConfiguration?
 
     private var initialHeaderOffset: CGFloat = 0.0
 	@Published private(set) var device: DeviceDetails? {
@@ -55,10 +56,12 @@ class StationDetailsViewModel: ObservableObject {
 	@Published private(set) var followState: UserDeviceFollowState? {
 		didSet {
 			isFollowStateInitialized = true
+			showStationNotificationsAlertIfNeeded()
 		}
 	}
     @Published var shouldHideHeaderToggle: Bool = false
     @Published var showLoginAlert: Bool = false
+	@Published var showNotificationsAlert: Bool = false
 	@Published var showShareDialog: Bool = false
 	private(set) var shareDialogText: String?
     private(set) var isHeaderHidden: Bool = false
@@ -100,6 +103,10 @@ class StationDetailsViewModel: ObservableObject {
 		let viewModel = ViewModelsFactory.getDeviceInfoViewModel(device: device!, followState: followState)
 		Router.shared.navigateTo(.deviceInfo(viewModel))
     }
+
+	func notificationsButtonTapped() {
+		navigateToNotifications()
+	}
 
 	func warningTapped() {
 		var parameters: [Parameter: ParameterValue] = [.contentName: .stationDetailsChip,
@@ -309,6 +316,38 @@ private extension StationDetailsViewModel {
 			return
 		}
 		Router.shared.navigateTo(.viewMoreAlerts(.init(device: device, mainVM: .shared, followState: followState)))
+	}
+
+	func navigateToNotifications() {
+		guard let device, let followState else {
+			return
+		}
+
+		let viewModel = ViewModelsFactory.getStationNotificationsViewModel(device: device,
+																		   followState: followState)
+		Router.shared.navigateTo(.stationNotifications(viewModel))
+	}
+
+	func showStationNotificationsAlertIfNeeded() {
+		guard followState?.relation == .owned,
+		useCase?.hasNotificationsPromptBeenShown == false else {
+			return
+		}
+
+		let conf = WXMAlertConfiguration(title: LocalizableString.StationDetails.notificationsAlertTitle.localized,
+										 text: LocalizableString.StationDetails.notificationsAlertMessage.localized.attributedMarkdown ?? "",
+										 canDismiss: false,
+										 buttonsLayout: .horizontal,
+										 secondaryButtons: [.init(title: LocalizableString.StationDetails.notificationsAlertCancelButtonTitle.localized,
+																  action: { [weak self] in self?.showNotificationsAlert = false })],
+										 primaryButtons: [.init(title: LocalizableString.StationDetails.notificationsAlertButtonTitle.localized,
+																action: { [weak self] in
+			self?.showNotificationsAlert = false
+			self?.navigateToNotifications()
+		})])
+		notificationsAlertConfiguration = conf
+		showNotificationsAlert = true
+		useCase?.notificationsPromptShown()
 	}
 }
 

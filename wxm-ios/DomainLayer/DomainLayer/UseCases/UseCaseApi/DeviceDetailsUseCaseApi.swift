@@ -8,6 +8,8 @@
 import CoreLocation
 
 public protocol DeviceDetailsUseCaseApi: Sendable {
+	var hasNotificationsPromptBeenShown: Bool { get }
+	func notificationsPromptShown()
 	func getDeviceDetailsById(deviceId: String, cellIndex: String?) async throws -> Result<DeviceDetails, NetworkErrorResponse>
 	func followStation(deviceId: String) async throws ->  Result<EmptyEntity, NetworkErrorResponse>
 	func unfollowStation(deviceId: String) async throws ->  Result<EmptyEntity, NetworkErrorResponse>

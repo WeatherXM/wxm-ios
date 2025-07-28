@@ -166,6 +166,7 @@ class SwinjectHelper: SwinjectInterface {
             DeviceDetailsUseCase(meRepository: resolver.resolve(MeRepository.self)!,
                                  explorerRepository: resolver.resolve(ExplorerRepository.self)!,
                                  keychainRepository: resolver.resolve(KeychainRepository.self)!,
+								 userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
 								 geocoder: resolver.resolve(GeocoderProtocol.self)!)
         }
 
@@ -239,6 +240,12 @@ class SwinjectHelper: SwinjectInterface {
 
 		container.register(PhotoGalleryUseCaseApi.self) { resolver in
 			PhotoGalleryUseCase(photosRepository: resolver.resolve(PhotosRepository.self)!)
+		}
+
+		// MARK: - Station notifications
+		
+		container.register(StationNotificationsUseCaseApi.self) { resolver in
+			StationNotificationsUseCase(userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!)
 		}
 
         // MARK: - Return the Container

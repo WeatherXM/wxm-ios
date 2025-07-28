@@ -72,6 +72,14 @@ extension LocalizableString {
 		case invalidSerialNumber
 		case invalidWXMAddress
 		case invalidPassword
+		case notificationInactiveTitle
+		case notificationInactiveDescription(String)
+		case notificationBatteryTitle
+		case notificationBatteryDescription(String)
+		case notificationFirmwareTitle
+		case notificationFirmwareDescription(String)
+		case notificationHealthTitle
+		case notificationHealthDescription(String)
     }
 }
 
@@ -91,7 +99,11 @@ extension LocalizableString.Error: WXMLocalizable {
 					.unidentifiedSpikeDescription(let text),
 					.unownedUnidentifiedSpikeDescription(let text),
 					.unidentifiedAnomalousChangeDescription(let text),
-					.unownedUnidentifiedAnomalousDescription(let text):
+					.unownedUnidentifiedAnomalousDescription(let text),
+					.notificationInactiveDescription(let text),
+					.notificationBatteryDescription(let text),
+					.notificationHealthDescription(let text),
+					.notificationFirmwareDescription(let text):
 				localized = String(format: localized, text)
 			default:
 				break
@@ -227,6 +239,22 @@ extension LocalizableString.Error: WXMLocalizable {
 				return "error_invalid_wxm_address"
 			case .invalidPassword:
 				return "error_invalid_password"
+			case .notificationInactiveTitle:
+				return "notification_inactive_title"
+			case .notificationInactiveDescription:
+				return "notification_inactive_description"
+			case .notificationBatteryTitle:
+				return "notification_battery_title"
+			case .notificationBatteryDescription:
+				return "notification_battery_description"
+			case .notificationFirmwareTitle:
+				return "notification_firmware_title"
+			case .notificationFirmwareDescription:
+				return "notification_firmware_description"
+			case .notificationHealthTitle:
+				return "notification_health_title"
+			case .notificationHealthDescription:
+				return "notification_health_description"
 		}
 	}
 }
