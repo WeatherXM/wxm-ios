@@ -55,6 +55,7 @@ enum FontIcon: String {
 	case coins
 	case cloudShowers = "cloud-showers"
 	case dropletDegree = "droplet-degree"
+	case earth = "earth-americas"
 	case envelope
 	case externalLink = "arrow-up-right-from-square"
 	case eye
@@ -69,6 +70,7 @@ enum FontIcon: String {
 	case hexagonExclamation = "hexagon-exclamation"
 	case hexagonXmark = "hexagon-xmark"
 	case home
+	case house
 	case humidity
 	case image
 	case infoCircle = "info-circle"

@@ -13,17 +13,28 @@ enum TabSelectionEnum: CaseIterable, Hashable {
 	case mapTab
 	case profileTab
 	
-	var tabIcon: Image {
+	var tabIcon: FontIcon {
 		switch self {
 			case .homeTab:
-				return Image(asset: .home)
+				return .house
 			case .mapTab:
-				return Image(asset: .globe)
+				return .earth
 			case .profileTab:
-				return Image(asset: .user)
+				return .user
 		}
 	}
-	
+
+	var tabTitle: String {
+		switch self {
+			case .homeTab:
+				LocalizableString.home.localized
+			case .mapTab:
+				LocalizableString.explorer.localized
+			case .profileTab:
+				LocalizableString.profile.localized
+		}
+	}
+
 	var tabSelected: Color {
 		switch self {
 			case .homeTab, .mapTab, .profileTab:

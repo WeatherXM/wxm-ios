@@ -4301,6 +4301,17 @@
         }
       }
     },
+    "explorer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explorer"
+          }
+        }
+      }
+    },
     "explorer_list_cell_capacity" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5148,6 +5159,17 @@
         }
       }
     },
+    "home" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        }
+      }
+    },
     "home_buy_station" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5518,6 +5540,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Moderate"
+          }
+        }
+      }
+    },
+    "my_stations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Stations"
           }
         }
       }
@@ -7333,6 +7366,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Probability"
+          }
+        }
+      }
+    },
+    "profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
           }
         }
       }

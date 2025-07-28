@@ -22,28 +22,36 @@ struct TabBarView: View {
     }
 
     var tabBar: some View {
-        HStack(spacing: itemsSpacing) {
+		LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3)) {
             ForEach(TabSelectionEnum.allCases, id: \.self) { tab in
                 tabIcon(tab: tab)
             }
-        }
+	    }
     }
 
     func tabIcon(tab: TabSelectionEnum) -> some View {
         ZStack {
             TabItemView(tab: tab, selectedTab: $selectedTab)
-            if tab == TabSelectionEnum.profileTab {
-                Image(asset: .badge)
-                    .padding(.leading, CGFloat(.defaultSidePadding))
-                    .padding(.bottom, CGFloat(.defaultSidePadding))
-                    .opacity(isProfileTabNotificationIconShowing ? 1 : 0)
-            }
+				.overlay {
+					if tab == TabSelectionEnum.profileTab {
+						VStack {
+							Image(asset: .badge)
+								.padding(.leading, CGFloat(.defaultSidePadding))
+								.opacity(isProfileTabNotificationIconShowing ? 1 : 0)
+
+							Spacer()
+						}
+					}
+				}
         }
     }
 }
 
 struct Previews_TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarView(.constant(.homeTab), true)
+		ZStack {
+			Color(colorEnum: .blueTint)
+			TabBarView(.constant(.homeTab), true)
+		}
     }
 }
