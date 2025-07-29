@@ -15,7 +15,7 @@ struct ExplorerView: View {
 
     var body: some View {
         ZStack {
-			MapBoxMapView(controlsBottomOffset: .constant(0.0))
+			MapBoxMapView()
                 .environmentObject(viewModel)
                 .edgesIgnoringSafeArea(.all)
             explorerContent

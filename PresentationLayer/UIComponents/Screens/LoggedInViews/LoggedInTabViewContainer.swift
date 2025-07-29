@@ -11,11 +11,9 @@ import Toolkit
 
 struct LoggedInTabViewContainer: View {
 	@StateObject var mainViewModel: MainScreenViewModel = .shared
-    @State var isTabBarShowing: Bool = true
     @StateObject var explorerViewModel: ExplorerViewModel
 	@StateObject var profileViewModel: ProfileViewModel
 	@StateObject var homeViewModel: WeatherStationsHomeViewModel
-    @State var tabBarItemsSize: CGSize = .zero
 	@State var overlayControlsSize: CGSize = .zero
 
     public init(swinjectHelper: SwinjectInterface) {
@@ -25,7 +23,7 @@ struct LoggedInTabViewContainer: View {
     }
 
     var body: some View {
-        ZStack {
+		VStack(spacing: 0.0) {
             selectedTabView
                 .animation(.easeIn(duration: 0.3), value: mainViewModel.selectedTab)
 
@@ -63,8 +61,6 @@ struct LoggedInTabViewContainer: View {
             switch mainViewModel.selectedTab {
                 case .homeTab:
 					WeatherStationsHomeView(viewModel: homeViewModel,
-                                            isTabBarShowing: $isTabBarShowing,
-                                            tabBarItemsSize: $tabBarItemsSize,
 											overlayControlsSize: $overlayControlsSize,
 											isWalletEmpty: $mainViewModel.isWalletMissing)
                 case .mapTab:
@@ -74,9 +70,7 @@ struct LoggedInTabViewContainer: View {
                             explorerViewModel.showTopOfMapItems = true
                         }
                 case .profileTab:
-                    ProfileView(viewModel: profileViewModel,
-								isTabBarShowing: $isTabBarShowing,
-								tabBarItemsSize: $tabBarItemsSize)
+                    ProfileView(viewModel: profileViewModel)
                         .onAppear {
                             WXMAnalytics.shared.trackScreen(.profile)
                         }
@@ -99,8 +93,6 @@ struct LoggedInTabViewContainer: View {
                 }
 
 				TabBarView($mainViewModel.selectedTab, mainViewModel.isWalletMissing)
-                    .opacity(isTabBarShowing ? 1 : 0)
-					.sizeObserver(size: $tabBarItemsSize)
             }
 			.sizeObserver(size: $overlayControlsSize)
         }
@@ -112,7 +104,7 @@ private extension LoggedInTabViewContainer {
     @ViewBuilder
     var explorer: some View {
         ZStack {
-			MapBoxMapView(controlsBottomOffset: $tabBarItemsSize.height)
+			MapBoxMapView()
                 .environmentObject(explorerViewModel)
                 .navigationBarHidden(true)
                 .zIndex(0)
@@ -187,7 +179,6 @@ private extension LoggedInTabViewContainer {
         HStack {
             Spacer()
 			AddButton(showNotification: $homeViewModel.shouldShowAddButtonBadge)
-                .opacity(isTabBarShowing ? 1 : 0)
         }
 		.padding(.horizontal, CGFloat(.defaultSidePadding))
     }

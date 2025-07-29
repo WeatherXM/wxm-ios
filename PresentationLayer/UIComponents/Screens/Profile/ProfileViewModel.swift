@@ -15,7 +15,6 @@ class ProfileViewModel: ObservableObject {
 	private final let meUseCase: MeUseCaseApi
 	private let remoteConfigUseCase: RemoteConfigUseCaseApi
     private var cancellableSet: Set<AnyCancellable> = []
-	private let tabBarVisibilityHandler: TabBarVisibilityHandler
 
 	let scrollOffsetObject: TrackableScrollOffsetObject
 	private var userRewardsResponse: NetworkUserRewardsResponse? {
@@ -34,7 +33,6 @@ class ProfileViewModel: ObservableObject {
 	@Published var showRewardsIndication: Bool = true
 	var rewardsIndicationType: RewardsIndication = .claimWeb
 	@Published var showMissingWalletError: Bool = false
-	@Published var isTabBarVisible: Bool = true
 	@Published var totalEarned: String = 0.0.toWXMTokenPrecisionString
 	@Published var totalClaimed: String = 0.0.toWXMTokenPrecisionString
 	@Published var allocatedRewards: String = LocalizableString.Profile.noRewardsDescription.localized
@@ -58,8 +56,6 @@ class ProfileViewModel: ObservableObject {
 		self.remoteConfigUseCase = remoteConfigUseCase
 		self.linkNavigation = linkNavigation
 		scrollOffsetObject = .init()
-		tabBarVisibilityHandler = TabBarVisibilityHandler(scrollOffsetObject: self.scrollOffsetObject)
-		tabBarVisibilityHandler.$isTabBarShowing.assign(to: &$isTabBarVisible)
 		MainScreenViewModel.shared.$userInfo.sink { [weak self] response in
 			guard let response else {
 				return

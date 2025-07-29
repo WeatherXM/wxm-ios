@@ -53,7 +53,7 @@ struct MapBoxClaimDeviceView: View {
 				.position(locationPoint)
 
 			if isRunningOnMac {
-				ZoomControls(controlsBottomOffset: .constant(0.0), zoomOutAction: { controls.zoomOutAction?() }, zoomInAction: { controls.zoomInAction?() })
+				ZoomControls(zoomOutAction: { controls.zoomOutAction?() }, zoomInAction: { controls.zoomInAction?() })
 			}
 		}
 	}

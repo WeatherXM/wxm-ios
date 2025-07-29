@@ -16,7 +16,6 @@ import Toolkit
 import Combine
 
 struct MapBoxMapView: View {
-	@Binding var controlsBottomOffset: CGFloat
 	@EnvironmentObject var explorerViewModel: ExplorerViewModel
 
 	var body: some View {
@@ -25,14 +24,10 @@ struct MapBoxMapView: View {
 				.ignoresSafeArea()
 
 			if isRunningOnMac {
-				ZoomControls(controlsBottomOffset: $controlsBottomOffset,
-							 zoomOutAction: { explorerViewModel.handleZoomOut() },
+				ZoomControls(zoomOutAction: { explorerViewModel.handleZoomOut() },
 							 zoomInAction: { explorerViewModel.handleZoomIn() })
 			}
 		}
-		.onChange(of: controlsBottomOffset, perform: { value in
-			print(value)
-		})
 	}
 }
 
@@ -46,7 +41,7 @@ extension MapBoxMapView {
 }
 
 #Preview {
-	MapBoxMapView(controlsBottomOffset: .constant(0.0))
+	MapBoxMapView()
 		.environmentObject(ViewModelsFactory.getExplorerViewModel())
 }
 
