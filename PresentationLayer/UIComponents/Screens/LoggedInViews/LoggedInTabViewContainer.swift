@@ -55,46 +55,32 @@ struct LoggedInTabViewContainer: View {
 		}
     }
 
-    @ViewBuilder
-    private var selectedTabView: some View {
-        ZStack {
-            switch mainViewModel.selectedTab {
-                case .homeTab:
-					WeatherStationsHomeView(viewModel: homeViewModel,
-											overlayControlsSize: $overlayControlsSize,
-											isWalletEmpty: $mainViewModel.isWalletMissing)
-                case .mapTab:
-                    explorer
-                        .onAppear {
-                            WXMAnalytics.shared.trackScreen(.explorer)
-                            explorerViewModel.showTopOfMapItems = true
-                        }
-                case .profileTab:
-                    ProfileView(viewModel: profileViewModel)
-                        .onAppear {
-                            WXMAnalytics.shared.trackScreen(.profile)
-                        }
-            }
-        }
-    }
+	@ViewBuilder
+	private var selectedTabView: some View {
+		switch mainViewModel.selectedTab {
+			case .homeTab:
+				WeatherStationsHomeView(viewModel: homeViewModel,
+										overlayControlsSize: $overlayControlsSize,
+										isWalletEmpty: $mainViewModel.isWalletMissing)
+			case .mapTab:
+				explorer
+					.onAppear {
+						WXMAnalytics.shared.trackScreen(.explorer)
+						explorerViewModel.showTopOfMapItems = true
+					}
+			case .profileTab:
+				ProfileView(viewModel: profileViewModel)
+					.onAppear {
+						WXMAnalytics.shared.trackScreen(.profile)
+					}
+		}
+	}
 
     private var tabBar: some View {
         VStack(spacing: CGFloat(.defaultSpacing)) {
-            Spacer()
             VStack(spacing: CGFloat(.defaultSpacing)) {
-                if mainViewModel.selectedTab == .mapTab, explorerViewModel.showTopOfMapItems {
-                    fabButtons
-						.padding(.trailing, CGFloat(.defaultSidePadding))
-						.transition(AnyTransition.move(edge: .trailing))
-                }
-
-                if mainViewModel.selectedTab == .homeTab {
-                    addStationsButton
-                }
-
 				TabBarView($mainViewModel.selectedTab, mainViewModel.isWalletMissing)
             }
-			.sizeObserver(size: $overlayControlsSize)
         }
 		.animation(.easeIn, value: explorerViewModel.showTopOfMapItems)
     }
