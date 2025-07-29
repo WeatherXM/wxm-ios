@@ -159,15 +159,6 @@ private extension LoggedInTabViewContainer {
         .background(Circle().foregroundColor(Color(colorEnum: .top)))
         .wxmShadow()
     }
-
-    @ViewBuilder
-    var addStationsButton: some View {
-        HStack {
-            Spacer()
-			AddButton(showNotification: $homeViewModel.shouldShowAddButtonBadge)
-        }
-		.padding(.horizontal, CGFloat(.defaultSidePadding))
-    }
 }
 
 #Preview {

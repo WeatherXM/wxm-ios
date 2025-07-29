@@ -157,6 +157,9 @@ private struct ContentView: View {
 			}
 		} else {
 			weatherStations(devices: devices)
+				.overlay {
+					addStationsButton
+				}
 		}
 	}
 
@@ -265,6 +268,21 @@ private struct ContentView: View {
         }
         .padding(.bottom)
     }
+
+	@ViewBuilder
+	var addStationsButton: some View {
+		VStack {
+			Spacer()
+
+			HStack {
+				Spacer()
+				AddButton(showNotification: $viewModel.shouldShowAddButtonBadge)
+			}
+		}
+		.padding(CGFloat(.defaultSidePadding))
+		.opacity(viewModel.isAddButtonVisible ? 1.0 : 0.0)
+		.animation(.easeIn(duration: 0.2), value: viewModel.isAddButtonVisible)
+	}
 }
 
 #Preview {

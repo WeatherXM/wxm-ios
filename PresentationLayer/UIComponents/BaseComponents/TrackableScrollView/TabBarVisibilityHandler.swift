@@ -12,7 +12,7 @@ import Combine
 class TabBarVisibilityHandler {
 
 	let scrollOffsetObject: TrackableScrollOffsetObject
-	@Published var isTabBarShowing: Bool = true
+	@Published var areElementsVisible: Bool = true
 	private var cancellableSet: Set<AnyCancellable> = []
 
 	init(scrollOffsetObject: TrackableScrollOffsetObject) {
@@ -25,15 +25,15 @@ private extension TabBarVisibilityHandler {
 	func observeContentOffset() {
 		scrollOffsetObject.$contentOffset.sink { [weak self] value in
 			guard let self = self,
-				  case let isTabBarShowing = self.isTabBarVisible(newContentOffset: value),
+				  case let areElementsVisible = self.areElementsVisible(newContentOffset: value),
 				  /// The following check is required to prevent unnecessary renders from SwiftUI.
 				  /// For some reason this happens on every assignment regardless the value is the same 🤷‍♂️
-				  self.isTabBarShowing != isTabBarShowing
+				  self.areElementsVisible != areElementsVisible
 			else {
 				return
 			}
 
-			self.isTabBarShowing = isTabBarShowing
+			self.areElementsVisible = areElementsVisible
 		}
 		.store(in: &cancellableSet)
 	}
@@ -41,7 +41,7 @@ private extension TabBarVisibilityHandler {
 	/// Calculates the condition to show or hide tab bar
 	/// - Parameter newContentOffset: The new scrolling offset
 	/// - Returns: If should show or hide tab bar
-	func isTabBarVisible(newContentOffset: CGFloat) -> Bool {
+	func areElementsVisible(newContentOffset: CGFloat) -> Bool {
 		if scrollOffsetObject.hasReachedBottom {
 			return false
 		}

@@ -15,6 +15,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	private let meUseCase: MeUseCaseApi
 	private let photosUseCase: PhotoGalleryUseCaseApi
 	private let remoteConfigUseCase: RemoteConfigUseCaseApi
+	private let tabBarVisibilityHandler: TabBarVisibilityHandler
 	private var cancellableSet: Set<AnyCancellable> = []
 	private var filters: FilterValues? {
 		didSet {
@@ -61,6 +62,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	@Published var shouldShowFullScreenLoader = true
 	@Published var devices = [DeviceDetails]()
 	@Published var scrollOffsetObject: TrackableScrollOffsetObject
+	@Published var isAddButtonVisible: Bool = true
 	@Published var isFailed = false
 	private(set) var failObj: FailSuccessStateObject?
 	weak var mainVM: MainScreenViewModel?
@@ -75,6 +77,8 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		self.linkNavigation = linkNavigation
 		let scrollOffsetObject: TrackableScrollOffsetObject = .init()
 		self.scrollOffsetObject = scrollOffsetObject
+		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
+		self.tabBarVisibilityHandler.$areElementsVisible.assign(to: &$isAddButtonVisible)
 		observeFilters()
 
 		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
