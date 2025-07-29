@@ -58,17 +58,21 @@ struct LoggedInTabViewContainer: View {
 	@ViewBuilder
 	private var selectedTabView: some View {
 		switch mainViewModel.selectedTab {
-			case .homeTab:
+			case .home:
+				ScrollView {
+					Text(verbatim: "home")
+				}
+			case .myStations:
 				WeatherStationsHomeView(viewModel: homeViewModel,
 										overlayControlsSize: $overlayControlsSize,
 										isWalletEmpty: $mainViewModel.isWalletMissing)
-			case .mapTab:
+			case .explorer:
 				ExplorerView(viewModel: explorerViewModel)
 					.onAppear {
 						WXMAnalytics.shared.trackScreen(.explorer)
 						explorerViewModel.showTopOfMapItems = true
 					}
-			case .profileTab:
+			case .profile:
 				ProfileView(viewModel: profileViewModel)
 					.onAppear {
 						WXMAnalytics.shared.trackScreen(.profile)

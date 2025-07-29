@@ -22,7 +22,8 @@ struct TabBarView: View {
     }
 
     var tabBar: some View {
-		LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3)) {
+		LazyVGrid(columns: Array(repeating: GridItem(.flexible()),
+								 count: TabSelectionEnum.allCases.count)) {
             ForEach(TabSelectionEnum.allCases, id: \.self) { tab in
                 tabIcon(tab: tab)
             }
@@ -33,7 +34,7 @@ struct TabBarView: View {
         ZStack {
             TabItemView(tab: tab, selectedTab: $selectedTab)
 				.overlay {
-					if tab == TabSelectionEnum.profileTab {
+					if tab == TabSelectionEnum.profile {
 						VStack {
 							Image(asset: .badge)
 								.padding(.leading, CGFloat(.defaultSidePadding))
@@ -51,7 +52,7 @@ struct Previews_TabBarView_Previews: PreviewProvider {
     static var previews: some View {
 		ZStack {
 			Color(colorEnum: .blueTint)
-			TabBarView(.constant(.homeTab), true)
+			TabBarView(.constant(.home), true)
 		}
     }
 }

@@ -298,7 +298,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 
 	func handleFollowInExplorerTap() {
-		mainVM?.selectedTab = .mapTab
+		mainVM?.selectedTab = .explorer
 	}
 
 	func viewWillDisappear() {

@@ -81,6 +81,7 @@ enum FontIcon: String {
 	case plus = "plus-large"
 	case pointUp = "hand-back-point-up"
 	case qrcode
+	case rectangleHistory = "rectangle-history"
 	case rotateRight = "rotate-right"
 	case share = "share-nodes"
 	case sliders
