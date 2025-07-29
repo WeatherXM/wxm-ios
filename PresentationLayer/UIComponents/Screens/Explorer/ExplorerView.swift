@@ -22,7 +22,7 @@ struct ExplorerView: View {
                 .zIndex(1)
 
             if viewModel.showTopOfMapItems {
-                SearchView(shouldShowSettingsButton: true,
+				SearchView(shouldShowSettingsButton: !MainScreenViewModel.shared.isUserLoggedIn,
                            viewModel: viewModel.searchViewModel)
                 .transition(AnyTransition.opacity.animation(.easeIn))
                 .zIndex(2)
@@ -62,7 +62,9 @@ struct ExplorerView: View {
                 }
                 .transition(AnyTransition.move(edge: .trailing))
 
-                signInContainer
+				if !MainScreenViewModel.shared.isUserLoggedIn {
+					signInContainer
+				}
             }
         }
         .padding(CGFloat(.defaultSidePadding))

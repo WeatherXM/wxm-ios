@@ -63,7 +63,7 @@ struct LoggedInTabViewContainer: View {
 										overlayControlsSize: $overlayControlsSize,
 										isWalletEmpty: $mainViewModel.isWalletMissing)
 			case .mapTab:
-				explorer
+				ExplorerView(viewModel: explorerViewModel)
 					.onAppear {
 						WXMAnalytics.shared.trackScreen(.explorer)
 						explorerViewModel.showTopOfMapItems = true
@@ -83,81 +83,6 @@ struct LoggedInTabViewContainer: View {
             }
         }
 		.animation(.easeIn, value: explorerViewModel.showTopOfMapItems)
-    }
-}
-
-private extension LoggedInTabViewContainer {
-    @ViewBuilder
-    var explorer: some View {
-        ZStack {
-			MapBoxMapView()
-                .environmentObject(explorerViewModel)
-                .navigationBarHidden(true)
-                .zIndex(0)
-                .shimmerLoader(show: $explorerViewModel.isLoading,
-							   horizontalPadding: CGFloat(.defaultSidePadding))
-
-            if explorerViewModel.showTopOfMapItems {
-                SearchView(viewModel: explorerViewModel.searchViewModel)
-                    .transition(.move(edge: .top).animation(.easeIn(duration: 0.5)))
-                    .zIndex(1)
-            }
-        }
-		.animation(.easeIn(duration: 0.4), value: explorerViewModel.showTopOfMapItems)
-		.bottomSheet(show: $explorerViewModel.showLayerPicker, bgColor: .top) {
-			ExplorerLayerPickerView(show: $explorerViewModel.showLayerPicker,
-									selectedOption: $explorerViewModel.layerOption)
-			.padding(.top, CGFloat(.XLSidePadding))
-			.padding(.horizontal, CGFloat((.mediumSidePadding)))
-		}
-    }
-
-	@ViewBuilder
-	var fabButtons: some View {
-		VStack(spacing: CGFloat(.defaultSidePadding)) {
-			Spacer()
-
-			VStack(spacing: CGFloat(.defaultSpacing)) {
-				HStack {
-					Spacer()
-					layersButton
-				}
-
-				HStack {
-					Spacer()
-					userLocationButton
-				}
-			}
-		}
-    }
-
-	@ViewBuilder
-	var layersButton: some View {
-		Button {
-			explorerViewModel.layersButtonTapped()
-		} label: {
-			Image(asset: .iconLayers)
-				.renderingMode(.template)
-				.foregroundStyle(Color(colorEnum: .layer1))
-				.frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
-				.background(Color(colorEnum: .wxmPrimary))
-				.cornerRadius(CGFloat(.cardCornerRadius))
-		}
-		.wxmShadow()
-	}
-
-    @ViewBuilder
-    var userLocationButton: some View {
-        Button {
-            explorerViewModel.userLocationButtonTapped()
-        } label: {
-            Image(asset: .detectLocation)
-                .renderingMode(.template)
-                .foregroundColor(Color(colorEnum: .text))
-        }
-        .frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
-        .background(Circle().foregroundColor(Color(colorEnum: .top)))
-        .wxmShadow()
     }
 }
 
