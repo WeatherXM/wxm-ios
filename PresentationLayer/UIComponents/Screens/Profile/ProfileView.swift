@@ -258,8 +258,8 @@ private struct ContentView: View {
 				.padding(.bottom, CGFloat(.defaultSidePadding))
 				.background {
 					Color(colorEnum: .top)
+						.wxmShadow()
 				}
-				.wxmShadow()
 				.animation(.easeIn, value: viewModel.totalEarned)
 			}
 		}
