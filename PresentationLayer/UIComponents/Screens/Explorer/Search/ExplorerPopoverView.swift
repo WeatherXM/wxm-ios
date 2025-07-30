@@ -10,7 +10,6 @@ import SwiftUI
 struct ExplorerPopoverView: View {
 	@Binding var show: Bool
 	@ObservedObject var viewModel: ExplorerSearchViewModel
-	let shouldShowSettingsButton: Bool
 
 	var body: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -73,25 +72,6 @@ struct ExplorerPopoverView: View {
 							.foregroundColor(Color(colorEnum: .text))
 					}
 				}
-
-				if shouldShowSettingsButton {
-					Button {
-						show = false
-						viewModel.handleSettingsButtonTap()
-					} label: {
-						HStack(spacing: CGFloat(.minimumSpacing)) {
-							Text(LocalizableString.settings.localized)
-								.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
-								.foregroundStyle(Color(colorEnum: .text))
-
-							Spacer()
-
-							Text(FontIcon.chevronRight.rawValue)
-								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
-								.foregroundColor(Color(colorEnum: .text))
-						}
-					}
-				}
 			}
 			.WXMCardStyle(backgroundColor: Color(colorEnum: .layer1),
 						  cornerRadius: CGFloat(.smallCornerRadius))
@@ -102,7 +82,6 @@ struct ExplorerPopoverView: View {
 
 #Preview {
 	ExplorerPopoverView(show: .constant(true),
-						viewModel: ViewModelsFactory.getNetworkSearchViewModel(),
-						shouldShowSettingsButton: true)
+						viewModel: ViewModelsFactory.getNetworkSearchViewModel())
 		.padding()
 }

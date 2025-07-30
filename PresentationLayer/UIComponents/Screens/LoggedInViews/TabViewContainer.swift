@@ -27,9 +27,7 @@ struct TabViewContainer: View {
             selectedTabView
                 .animation(.easeIn(duration: 0.3), value: mainViewModel.selectedTab)
 
-            if !explorerViewModel.isSearchActive {
-                tabBar
-            }
+			tabBar
         }
         .fullScreenCover(isPresented: $mainViewModel.showFirmwareUpdate) {
             NavigationContainerView {

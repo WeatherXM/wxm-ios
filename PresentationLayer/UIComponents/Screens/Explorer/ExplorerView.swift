@@ -21,11 +21,10 @@ struct ExplorerView: View {
             explorerContent
                 .zIndex(1)
 
-            if viewModel.showTopOfMapItems {
-				SearchView(shouldShowSettingsButton: !MainScreenViewModel.shared.isUserLoggedIn,
-                           viewModel: viewModel.searchViewModel)
-                .transition(AnyTransition.opacity.animation(.easeIn))
-                .zIndex(2)
+			if viewModel.showTopOfMapItems {
+				SearchView(viewModel: viewModel.searchViewModel)
+					.transition(AnyTransition.opacity.animation(.easeIn))
+					.zIndex(2)
             }
 
         }

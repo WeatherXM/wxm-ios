@@ -9,7 +9,6 @@ import SwiftUI
 import Toolkit
 
 struct SearchView: View {
-    var shouldShowSettingsButton: Bool = false
     @StateObject var viewModel: ExplorerSearchViewModel
     @FocusState var isFocused: Bool
     /// This state variable is injected in Textfields becauses assigning directy the view model's property `searchTerm`
@@ -37,8 +36,7 @@ struct SearchView: View {
 		.wxmAlert(show: $showOptionsPopOver, shouldDismissOnTapOutside: true) {
 			VStack {
 				ExplorerPopoverView(show: $showOptionsPopOver,
-									viewModel: viewModel,
-									shouldShowSettingsButton: shouldShowSettingsButton)
+									viewModel: viewModel)
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 				.padding(.top, topControlsSize.height)
 				Spacer()
