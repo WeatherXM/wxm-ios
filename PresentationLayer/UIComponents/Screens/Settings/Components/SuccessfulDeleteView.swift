@@ -68,7 +68,7 @@ struct SuccessfulDeleteView: View {
 
     var goToSignInButton: some View {
 		Button {
-			mainScreenViewModel.selectedTab = .homeTab
+			mainScreenViewModel.selectedTab = .home
 			mainScreenViewModel.isUserLoggedIn = false
 			Router.shared.popToRoot()
 		} label: {

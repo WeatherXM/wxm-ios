@@ -73,8 +73,8 @@ struct WeatherStationsHomeViewModelTests {
 
 	@Test func handleFollowInExplorerTap() {
 		self.viewModel.mainVM = .shared
-		#expect(viewModel.mainVM?.selectedTab == .homeTab)
+		#expect(viewModel.mainVM?.selectedTab == .home)
 		viewModel.handleFollowInExplorerTap()
-		#expect(viewModel.mainVM?.selectedTab == .mapTab)
+		#expect(viewModel.mainVM?.selectedTab == .explorer)
 	}
 }

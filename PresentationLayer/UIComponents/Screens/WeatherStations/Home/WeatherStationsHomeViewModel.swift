@@ -62,7 +62,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	@Published var shouldShowFullScreenLoader = true
 	@Published var devices = [DeviceDetails]()
 	@Published var scrollOffsetObject: TrackableScrollOffsetObject
-	@Published var isTabBarShowing: Bool = true
+	@Published var isAddButtonVisible: Bool = true
 	@Published var isFailed = false
 	private(set) var failObj: FailSuccessStateObject?
 	weak var mainVM: MainScreenViewModel?
@@ -78,7 +78,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		let scrollOffsetObject: TrackableScrollOffsetObject = .init()
 		self.scrollOffsetObject = scrollOffsetObject
 		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
-		self.tabBarVisibilityHandler.$isTabBarShowing.assign(to: &$isTabBarShowing)
+		self.tabBarVisibilityHandler.$areElementsVisible.assign(to: &$isAddButtonVisible)
 		observeFilters()
 
 		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
@@ -298,7 +298,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 
 	func handleFollowInExplorerTap() {
-		mainVM?.selectedTab = .mapTab
+		mainVM?.selectedTab = .explorer
 	}
 
 	func viewWillDisappear() {

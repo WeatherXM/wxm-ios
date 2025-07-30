@@ -9,7 +9,6 @@ import SwiftUI
 import Toolkit
 
 struct ZoomControls: View {
-	@Binding var controlsBottomOffset: CGFloat
 	let zoomOutAction: VoidCallback
 	let zoomInAction: VoidCallback
 
@@ -47,10 +46,9 @@ struct ZoomControls: View {
 			}
 		}
 		.padding(CGFloat(.defaultSidePadding))
-		.padding(.bottom, controlsBottomOffset)
     }
 }
 
 #Preview {
-    ZoomControls(controlsBottomOffset: .constant(0.0), zoomOutAction: {}, zoomInAction: {})
+    ZoomControls(zoomOutAction: {}, zoomInAction: {})
 }

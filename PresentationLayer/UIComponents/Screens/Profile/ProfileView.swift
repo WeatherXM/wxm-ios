@@ -11,20 +11,16 @@ import Toolkit
 
 struct ProfileView: View {
     @StateObject var viewModel: ProfileViewModel
-	@Binding var isTabBarShowing: Bool
-	@Binding var tabBarItemsSize: CGSize
 
     var body: some View {
 		NavigationContainerView(showBackButton: false) {
-			ContentView(viewModel: viewModel, tabBarItemsSize: $tabBarItemsSize, isTabBarShowing: $isTabBarShowing)
+			ContentView(viewModel: viewModel)
 		}
     }
 }
 
 private struct ContentView: View {
 	@StateObject var viewModel: ProfileViewModel
-	@Binding var tabBarItemsSize: CGSize
-	@Binding var isTabBarShowing: Bool
 	@EnvironmentObject var navigationObject: NavigationObject
 
 	var body: some View {
@@ -37,7 +33,6 @@ private struct ContentView: View {
 			} content: {
 				fieldsView
 					.iPadMaxWidth()
-					.padding(.bottom, tabBarItemsSize.height)
 					.fail(show: $viewModel.isFailed, obj: viewModel.failObj)
 			}
 			.zIndex(0)
@@ -52,11 +47,6 @@ private struct ContentView: View {
 		}
 		.onChange(of: viewModel.userInfoResponse.email) { _ in
 			navigationObject.subtitle = viewModel.userInfoResponse.email ?? LocalizableString.noEmail.localized
-		}
-		.onChange(of: viewModel.isTabBarVisible) { isVisible in
-			withAnimation {
-				isTabBarShowing = isVisible
-			}
 		}
 	}
 
@@ -299,6 +289,6 @@ private struct ContentView: View {
 
 struct Previews_ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-		ProfileView(viewModel: ViewModelsFactory.getProfileViewModel(), isTabBarShowing: .constant(true), tabBarItemsSize: .constant(.zero))
+		ProfileView(viewModel: ViewModelsFactory.getProfileViewModel())
     }
 }

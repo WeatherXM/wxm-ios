@@ -50,7 +50,7 @@ class MainScreenViewModel: ObservableObject {
 	let networkMonitor: NWPathMonitor
 	@Published var isUserLoggedIn: Bool = false
 	@Published var isInternetAvailable: Bool = false
-	@Published var selectedTab: TabSelectionEnum = .homeTab
+	@Published var selectedTab: TabSelectionEnum = .home
 	@Published var showAnalyticsPrompt: Bool = false
 	@Published var showTermsPrompt: Bool = false {
 		didSet {
@@ -158,7 +158,7 @@ class MainScreenViewModel: ObservableObject {
 		let authUseCase = container.resolve(AuthUseCaseApi.self)!
 		isUserLoggedIn = authUseCase.isUserLoggedIn()
 		if isUserLoggedIn {
-			selectedTab = .homeTab
+			selectedTab = .home
 		}
 	}
 

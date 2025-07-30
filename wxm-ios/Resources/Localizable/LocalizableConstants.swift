@@ -190,6 +190,10 @@ enum LocalizableString: WXMLocalizable {
 	case activeStation(Int?)
 	case presentStations(Int?)
 	case stationInactive
+	case home
+	case myStations
+	case explorer
+	case profile
 
 	var localized: String {
 		var localized = NSLocalizedString(self.key, comment: "")
@@ -592,6 +596,14 @@ extension LocalizableString {
 				return "present_stations_format"
 			case .stationInactive:
 				return "station_inactive"
+			case .home:
+				return "home"
+			case .myStations:
+				return "my_stations"
+			case .explorer:
+				return "explorer"
+			case .profile:
+				return "profile"
 		}
 	}
 }

@@ -9,31 +9,47 @@ import Foundation
 import SwiftUI
 
 enum TabSelectionEnum: CaseIterable, Hashable {
-	case homeTab
-	case mapTab
-	case profileTab
+	case home
+	case myStations
+	case explorer
+	case profile
 	
-	var tabIcon: Image {
+	var tabIcon: FontIcon {
 		switch self {
-			case .homeTab:
-				return Image(asset: .home)
-			case .mapTab:
-				return Image(asset: .globe)
-			case .profileTab:
-				return Image(asset: .user)
+			case .home:
+				return .house
+			case .myStations:
+				return .rectangleHistory
+			case .explorer:
+				return .earth
+			case .profile:
+				return .user
 		}
 	}
-	
+
+	var tabTitle: String {
+		switch self {
+			case .home:
+				LocalizableString.home.localized
+			case .myStations:
+				LocalizableString.myStations.localized
+			case .explorer:
+				LocalizableString.explorer.localized
+			case .profile:
+				LocalizableString.profile.localized
+		}
+	}
+
 	var tabSelected: Color {
 		switch self {
-			case .homeTab, .mapTab, .profileTab:
+			case .home, .myStations, .explorer, .profile:
 				return Color(colorEnum: .wxmPrimary)
 		}
 	}
 	
 	var tabNotSelected: Color {
 		switch self {
-			case .homeTab, .mapTab, .profileTab:
+			case .home, .myStations, .explorer, .profile:
 				return Color(colorEnum: .darkGrey)
 		}
 	}

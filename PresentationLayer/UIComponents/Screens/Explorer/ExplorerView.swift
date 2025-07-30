@@ -15,14 +15,14 @@ struct ExplorerView: View {
 
     var body: some View {
         ZStack {
-			MapBoxMapView(controlsBottomOffset: .constant(0.0))
+			MapBoxMapView()
                 .environmentObject(viewModel)
                 .edgesIgnoringSafeArea(.all)
             explorerContent
                 .zIndex(1)
 
             if viewModel.showTopOfMapItems {
-                SearchView(shouldShowSettingsButton: true,
+				SearchView(shouldShowSettingsButton: !MainScreenViewModel.shared.isUserLoggedIn,
                            viewModel: viewModel.searchViewModel)
                 .transition(AnyTransition.opacity.animation(.easeIn))
                 .zIndex(2)
@@ -62,7 +62,9 @@ struct ExplorerView: View {
                 }
                 .transition(AnyTransition.move(edge: .trailing))
 
-                signInContainer
+				if !MainScreenViewModel.shared.isUserLoggedIn {
+					signInContainer
+				}
             }
         }
         .padding(CGFloat(.defaultSidePadding))

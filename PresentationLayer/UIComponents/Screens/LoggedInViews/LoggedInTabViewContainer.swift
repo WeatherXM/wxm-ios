@@ -11,11 +11,9 @@ import Toolkit
 
 struct LoggedInTabViewContainer: View {
 	@StateObject var mainViewModel: MainScreenViewModel = .shared
-    @State var isTabBarShowing: Bool = true
     @StateObject var explorerViewModel: ExplorerViewModel
 	@StateObject var profileViewModel: ProfileViewModel
 	@StateObject var homeViewModel: WeatherStationsHomeViewModel
-    @State var tabBarItemsSize: CGSize = .zero
 	@State var overlayControlsSize: CGSize = .zero
 
     public init(swinjectHelper: SwinjectInterface) {
@@ -25,7 +23,7 @@ struct LoggedInTabViewContainer: View {
     }
 
     var body: some View {
-        ZStack {
+		VStack(spacing: 0.0) {
             selectedTabView
                 .animation(.easeIn(duration: 0.3), value: mainViewModel.selectedTab)
 
@@ -57,139 +55,38 @@ struct LoggedInTabViewContainer: View {
 		}
     }
 
-    @ViewBuilder
-    private var selectedTabView: some View {
-        ZStack {
-            switch mainViewModel.selectedTab {
-                case .homeTab:
-					WeatherStationsHomeView(viewModel: homeViewModel,
-                                            isTabBarShowing: $isTabBarShowing,
-                                            tabBarItemsSize: $tabBarItemsSize,
-											overlayControlsSize: $overlayControlsSize,
-											isWalletEmpty: $mainViewModel.isWalletMissing)
-                case .mapTab:
-                    explorer
-                        .onAppear {
-                            WXMAnalytics.shared.trackScreen(.explorer)
-                            explorerViewModel.showTopOfMapItems = true
-                        }
-                case .profileTab:
-                    ProfileView(viewModel: profileViewModel,
-								isTabBarShowing: $isTabBarShowing,
-								tabBarItemsSize: $tabBarItemsSize)
-                        .onAppear {
-                            WXMAnalytics.shared.trackScreen(.profile)
-                        }
-            }
-        }
-    }
+	@ViewBuilder
+	private var selectedTabView: some View {
+		switch mainViewModel.selectedTab {
+			case .home:
+				ScrollView {
+					Text(verbatim: "home")
+				}
+			case .myStations:
+				WeatherStationsHomeView(viewModel: homeViewModel,
+										overlayControlsSize: $overlayControlsSize,
+										isWalletEmpty: $mainViewModel.isWalletMissing)
+			case .explorer:
+				ExplorerView(viewModel: explorerViewModel)
+					.onAppear {
+						WXMAnalytics.shared.trackScreen(.explorer)
+						explorerViewModel.showTopOfMapItems = true
+					}
+			case .profile:
+				ProfileView(viewModel: profileViewModel)
+					.onAppear {
+						WXMAnalytics.shared.trackScreen(.profile)
+					}
+		}
+	}
 
     private var tabBar: some View {
         VStack(spacing: CGFloat(.defaultSpacing)) {
-            Spacer()
             VStack(spacing: CGFloat(.defaultSpacing)) {
-                if mainViewModel.selectedTab == .mapTab, explorerViewModel.showTopOfMapItems {
-                    fabButtons
-						.padding(.trailing, CGFloat(.defaultSidePadding))
-						.transition(AnyTransition.move(edge: .trailing))
-                }
-
-                if mainViewModel.selectedTab == .homeTab {
-                    addStationsButton
-                }
-
 				TabBarView($mainViewModel.selectedTab, mainViewModel.isWalletMissing)
-                    .opacity(isTabBarShowing ? 1 : 0)
-					.sizeObserver(size: $tabBarItemsSize)
             }
-			.sizeObserver(size: $overlayControlsSize)
         }
 		.animation(.easeIn, value: explorerViewModel.showTopOfMapItems)
-    }
-}
-
-private extension LoggedInTabViewContainer {
-    @ViewBuilder
-    var explorer: some View {
-        ZStack {
-			MapBoxMapView(controlsBottomOffset: $tabBarItemsSize.height)
-                .environmentObject(explorerViewModel)
-                .navigationBarHidden(true)
-                .zIndex(0)
-                .shimmerLoader(show: $explorerViewModel.isLoading,
-							   horizontalPadding: CGFloat(.defaultSidePadding))
-
-            if explorerViewModel.showTopOfMapItems {
-                SearchView(viewModel: explorerViewModel.searchViewModel)
-                    .transition(.move(edge: .top).animation(.easeIn(duration: 0.5)))
-                    .zIndex(1)
-            }
-        }
-		.animation(.easeIn(duration: 0.4), value: explorerViewModel.showTopOfMapItems)
-		.bottomSheet(show: $explorerViewModel.showLayerPicker, bgColor: .top) {
-			ExplorerLayerPickerView(show: $explorerViewModel.showLayerPicker,
-									selectedOption: $explorerViewModel.layerOption)
-			.padding(.top, CGFloat(.XLSidePadding))
-			.padding(.horizontal, CGFloat((.mediumSidePadding)))
-		}
-    }
-
-	@ViewBuilder
-	var fabButtons: some View {
-		VStack(spacing: CGFloat(.defaultSidePadding)) {
-			Spacer()
-
-			VStack(spacing: CGFloat(.defaultSpacing)) {
-				HStack {
-					Spacer()
-					layersButton
-				}
-
-				HStack {
-					Spacer()
-					userLocationButton
-				}
-			}
-		}
-    }
-
-	@ViewBuilder
-	var layersButton: some View {
-		Button {
-			explorerViewModel.layersButtonTapped()
-		} label: {
-			Image(asset: .iconLayers)
-				.renderingMode(.template)
-				.foregroundStyle(Color(colorEnum: .layer1))
-				.frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
-				.background(Color(colorEnum: .wxmPrimary))
-				.cornerRadius(CGFloat(.cardCornerRadius))
-		}
-		.wxmShadow()
-	}
-
-    @ViewBuilder
-    var userLocationButton: some View {
-        Button {
-            explorerViewModel.userLocationButtonTapped()
-        } label: {
-            Image(asset: .detectLocation)
-                .renderingMode(.template)
-                .foregroundColor(Color(colorEnum: .text))
-        }
-        .frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
-        .background(Circle().foregroundColor(Color(colorEnum: .top)))
-        .wxmShadow()
-    }
-
-    @ViewBuilder
-    var addStationsButton: some View {
-        HStack {
-            Spacer()
-			AddButton(showNotification: $homeViewModel.shouldShowAddButtonBadge)
-                .opacity(isTabBarShowing ? 1 : 0)
-        }
-		.padding(.horizontal, CGFloat(.defaultSidePadding))
     }
 }
 

@@ -12,20 +12,14 @@ import Toolkit
 
 struct WeatherStationsHomeView: View {
 
-    @Binding private var isTabBarShowing: Bool
-    @Binding private var tabBarItemsSize: CGSize
 	@Binding private var overlayControlsSize: CGSize
     @Binding private var isWalletEmpty: Bool
     @StateObject private var viewModel: WeatherStationsHomeViewModel
 
 	init(viewModel: WeatherStationsHomeViewModel,
-		 isTabBarShowing: Binding<Bool>,
-		 tabBarItemsSize: Binding<CGSize>,
 		 overlayControlsSize: Binding<CGSize>,
 		 isWalletEmpty: Binding<Bool>) {
 		_viewModel = StateObject(wrappedValue: viewModel)
-        _isTabBarShowing = isTabBarShowing
-        _tabBarItemsSize = tabBarItemsSize
 		_overlayControlsSize = overlayControlsSize
         _isWalletEmpty = isWalletEmpty
     }
@@ -35,8 +29,6 @@ struct WeatherStationsHomeView: View {
             navigationBarRightView
         } content: {
             ContentView(vieModel: viewModel,
-                        isTabBarShowing: $isTabBarShowing,
-                        tabBarItemsSize: $tabBarItemsSize,
 						overlayControlsSize: $overlayControlsSize,
                         isWalletEmpty: $isWalletEmpty)
         }
@@ -85,20 +77,14 @@ private struct ContentView: View {
 
 	@State private var showFilters: Bool = false
     @StateObject private var viewModel: WeatherStationsHomeViewModel
-    @Binding private var isTabBarShowing: Bool
-    @Binding private var tabBarItemsSize: CGSize
 	@Binding private var overlayControlsSize: CGSize
     @Binding private var isWalletEmpty: Bool
 	@StateObject var mainVM: MainScreenViewModel = .shared
 
     init(vieModel: WeatherStationsHomeViewModel,
-		 isTabBarShowing: Binding<Bool>,
-		 tabBarItemsSize: Binding<CGSize>,
 		 overlayControlsSize: Binding<CGSize>,
 		 isWalletEmpty: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: vieModel)
-        _isTabBarShowing = isTabBarShowing
-        _tabBarItemsSize = tabBarItemsSize
 		_overlayControlsSize = overlayControlsSize
         _isWalletEmpty = isWalletEmpty
     }
@@ -113,11 +99,6 @@ private struct ContentView: View {
                     WXMAnalytics.shared.trackScreen(.deviceList)
                 }
                 .zIndex(0)
-                .onChange(of: viewModel.isTabBarShowing) { newValue in
-                    withAnimation {
-                        self.isTabBarShowing = newValue
-                    }
-                }
         }.onAppear {
             viewModel.mainVM = mainVM
 			viewModel.getDevices()
@@ -176,6 +157,9 @@ private struct ContentView: View {
 			}
 		} else {
 			weatherStations(devices: devices)
+				.overlay {
+					addStationsButton
+				}
 		}
 	}
 
@@ -253,7 +237,6 @@ private struct ContentView: View {
 				}
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
 				.padding(.top)
-				.padding(.bottom, tabBarItemsSize.height)
 				.background(Color(colorEnum: .bg))
 				.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
 			}
@@ -285,12 +268,25 @@ private struct ContentView: View {
         }
         .padding(.bottom)
     }
+
+	@ViewBuilder
+	var addStationsButton: some View {
+		VStack {
+			Spacer()
+
+			HStack {
+				Spacer()
+				AddButton(showNotification: $viewModel.shouldShowAddButtonBadge)
+			}
+		}
+		.padding(CGFloat(.defaultSidePadding))
+		.opacity(viewModel.isAddButtonVisible ? 1.0 : 0.0)
+		.animation(.easeIn(duration: 0.2), value: viewModel.isAddButtonVisible)
+	}
 }
 
 #Preview {
 	WeatherStationsHomeView(viewModel: ViewModelsFactory.getWeatherStationsHomeViewModel(),
-							isTabBarShowing: .constant(false),
-							tabBarItemsSize: .constant(.zero),
 							overlayControlsSize: .constant(.zero),
 							isWalletEmpty: .constant(false))
 }
