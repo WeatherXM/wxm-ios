@@ -5445,6 +5445,17 @@
         }
       }
     },
+    "login" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login"
+          }
+        }
+      }
+    },
     "logout" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9478,17 +9489,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Share"
-          }
-        }
-      }
-    },
-    "sign_in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sign In"
           }
         }
       }

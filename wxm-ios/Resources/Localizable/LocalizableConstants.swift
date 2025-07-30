@@ -31,7 +31,7 @@ enum LocalizableString: WXMLocalizable {
 	case firstName
 	case lastName
 	case password
-	case signIn
+	case login
 	case signUp
 	case dontHaveAccount
 	case forgotPassword
@@ -266,8 +266,8 @@ extension LocalizableString {
 				return "last_name"
 			case .password:
 				return "password"
-			case .signIn:
-				return "sign_in"
+			case .login:
+				return "login"
 			case .signUp:
 				return "sign_up"
 			case .dontHaveAccount:

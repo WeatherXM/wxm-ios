@@ -310,7 +310,7 @@ private struct ContentView: View {
 		Button {
 			Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel()))
 		} label: {
-			Text(LocalizableString.signIn.localized)
+			Text(LocalizableString.login.localized)
 		}
 		.buttonStyle(WXMButtonStyle.filled())
 	}

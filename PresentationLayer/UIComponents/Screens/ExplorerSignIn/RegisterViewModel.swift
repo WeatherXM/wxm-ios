@@ -99,7 +99,7 @@ final class RegisterViewModel: ObservableObject {
 												title: LocalizableString.success.localized,
 												subtitle: description.attributedMarkdown,
 												cancelTitle: nil,
-												retryTitle: LocalizableString.signIn.localized,
+												retryTitle: LocalizableString.login.localized,
 												contactSupportAction: nil,
 												cancelAction: nil,
 												retryAction: {
