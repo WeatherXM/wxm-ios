@@ -9,7 +9,7 @@ import DomainLayer
 import SwiftUI
 import Toolkit
 
-struct LoggedInTabViewContainer: View {
+struct TabViewContainer: View {
 	@StateObject var mainViewModel: MainScreenViewModel = .shared
     @StateObject var explorerViewModel: ExplorerViewModel
 	@StateObject var profileViewModel: ProfileViewModel
@@ -91,5 +91,5 @@ struct LoggedInTabViewContainer: View {
 }
 
 #Preview {
-	LoggedInTabViewContainer(swinjectHelper: SwinjectHelper.shared)
+	TabViewContainer(swinjectHelper: SwinjectHelper.shared)
 }

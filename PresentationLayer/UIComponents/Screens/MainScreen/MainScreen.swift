@@ -23,7 +23,7 @@ public struct MainScreen: View {
 
     public var body: some View {
         RouterView {
-            mainScreenSwitch
+			mainScreenView
 				.fullScreenCover(isPresented: $viewModel.showAppUpdatePrompt) {
 					AppUpdateView(show: $viewModel.showAppUpdatePrompt,
 								  viewModel: ViewModelsFactory.getAppUpdateViewModel())
@@ -63,16 +63,13 @@ public struct MainScreen: View {
 		#endif
     }
 
-    public var mainScreenSwitch: some View {
+	@ViewBuilder
+    var mainScreenView: some View {
         ZStack {
             Color(colorEnum: .bg).edgesIgnoringSafeArea(.all)
-			loggedInUser.environmentObject(viewModel)
-        }
-    }
 
-    @ViewBuilder
-    public var loggedInUser: some View {
-        LoggedInTabViewContainer(swinjectHelper: viewModel.swinjectHelper)
-            .environmentObject(viewModel)
+			TabViewContainer(swinjectHelper: viewModel.swinjectHelper)
+				.environmentObject(viewModel)
+        }
     }
 }
