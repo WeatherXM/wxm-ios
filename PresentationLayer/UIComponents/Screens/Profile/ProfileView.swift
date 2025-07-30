@@ -47,12 +47,13 @@ private struct ContentView: View {
 		}
 		.onAppear {
 			navigationObject.title = LocalizableString.Profile.title.localized
-
-			let email = viewModel.userInfoResponse.email ?? LocalizableString.noEmail.localized
-			navigationObject.subtitle = viewModel.isLoggedIn ? email : LocalizableString.Profile.loginToSee.localized
+			updateNavigationSubtitle()
 		}
 		.onChange(of: viewModel.userInfoResponse.email) { _ in
-			navigationObject.subtitle = viewModel.userInfoResponse.email ?? LocalizableString.noEmail.localized
+			updateNavigationSubtitle()
+		}
+		.onChange(of: viewModel.isLoggedIn) { _ in
+			updateNavigationSubtitle()
 		}
 	}
 
@@ -331,6 +332,10 @@ private struct ContentView: View {
 		}
 	}
 
+	func updateNavigationSubtitle() {
+		let email = viewModel.userInfoResponse.email ?? LocalizableString.noEmail.localized
+		navigationObject.subtitle = viewModel.isLoggedIn ? email : LocalizableString.Profile.loginToSee.localized
+	}
 }
 
 struct Previews_ProfileView_Previews: PreviewProvider {

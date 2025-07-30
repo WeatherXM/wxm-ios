@@ -90,7 +90,10 @@ class ProfileViewModel: ObservableObject {
 			self?.surveyConfiguration = self?.getConfigurationForSurvey(survey)
 		}.store(in: &cancellableSet)
 
-		MainScreenViewModel.shared.$isUserLoggedIn.assign(to: &$isLoggedIn)
+		MainScreenViewModel.shared.$isUserLoggedIn.sink { [weak self] isLoggedIn in
+			self?.isLoggedIn = isLoggedIn
+		}.store(in: &cancellableSet)
+
 		isLoggedIn = MainScreenViewModel.shared.isUserLoggedIn
     }
 
