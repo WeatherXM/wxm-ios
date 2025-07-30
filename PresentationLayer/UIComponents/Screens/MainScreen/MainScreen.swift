@@ -66,18 +66,7 @@ public struct MainScreen: View {
     public var mainScreenSwitch: some View {
         ZStack {
             Color(colorEnum: .bg).edgesIgnoringSafeArea(.all)
-            switch viewModel.isUserLoggedIn {
-                case false:
-                    loggedOutUser.environmentObject(viewModel)
-                case true:
-                    loggedInUser.environmentObject(viewModel)
-            }
-        }
-    }
-
-    public var loggedOutUser: some View {
-        ZStack {
-			ExplorerView(viewModel: ViewModelsFactory.getExplorerViewModel())
+			loggedInUser.environmentObject(viewModel)
         }
     }
 
