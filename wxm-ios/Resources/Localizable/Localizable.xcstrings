@@ -7436,6 +7436,17 @@
         }
       }
     },
+    "profile_login_to_see" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log in to see your rewards"
+          }
+        }
+      }
+    },
     "profile_my_wallet" : {
       "extractionState" : "manual",
       "localizations" : {

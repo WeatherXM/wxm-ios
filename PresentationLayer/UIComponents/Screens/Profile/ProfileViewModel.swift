@@ -37,15 +37,32 @@ class ProfileViewModel: ObservableObject {
 	@Published var totalClaimed: String = 0.0.toWXMTokenPrecisionString
 	@Published var allocatedRewards: String = LocalizableString.Profile.noRewardsDescription.localized
 	@Published var isClaimAvailable: Bool = false
-	@Published var isLoading: Bool = true
+	@Published var isLoading: Bool = false
 	@Published var isFailed: Bool = false
 	var failObj: FailSuccessStateObject?
 	@Published var surveyConfiguration: AnnouncementCardView.Configuration?
+	@Published var isLoggedIn: Bool = false {
+		didSet {
+			guard isLoggedIn else {
+				return
+			}
+			isLoading = true
+			updateRewards()
+			refresh { }
+		}
+	}
 
 	var claimWebAppUrl: String {
 		let urlString = DisplayedLinks.claimToken.linkURL
 		let url = URL(string: urlString)
 		return url?.host ?? "-"
+	}
+	var profileFields: [ProfileField] {
+		if isLoggedIn {
+			return ProfileField.allCases
+		}
+
+		return [.settings]
 	}
 	private let linkNavigation: LinkNavigation
 
@@ -66,7 +83,6 @@ class ProfileViewModel: ObservableObject {
 			}
 		}.store(in: &cancellableSet)
 
-		updateRewards()
 
 		MainScreenViewModel.shared.$isWalletMissing.assign(to: &$showMissingWalletError)
 
@@ -74,10 +90,16 @@ class ProfileViewModel: ObservableObject {
 			self?.surveyConfiguration = self?.getConfigurationForSurvey(survey)
 		}.store(in: &cancellableSet)
 
-		self.refresh { }
+		MainScreenViewModel.shared.$isUserLoggedIn.assign(to: &$isLoggedIn)
+		isLoggedIn = MainScreenViewModel.shared.isUserLoggedIn
     }
 
 	func refresh(completion: @escaping VoidCallback) {
+		guard isLoggedIn else {
+			completion()
+			return
+		}
+
 		Task { @MainActor [weak self] in
 			defer {
 				self?.isLoading = false
