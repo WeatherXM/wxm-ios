@@ -31,7 +31,7 @@ struct LoggedOutView: View {
 			} label: {
 				HStack {
 					Spacer()
-					Text(LocalizableString.signIn.localized)
+					Text(LocalizableString.login.localized)
 					Spacer()
 				}
 				.padding(.vertical, CGFloat(.smallToMediumSpacing))

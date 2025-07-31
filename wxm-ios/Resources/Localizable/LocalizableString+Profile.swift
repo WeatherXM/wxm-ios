@@ -10,6 +10,7 @@ import Foundation
 extension LocalizableString {
 	enum Profile {
 		case title
+		case loginToSee
 		case allocatedRewards
 		case noRewardsDescription
 		case noRewardsWarningTitle
@@ -51,6 +52,8 @@ extension LocalizableString.Profile: WXMLocalizable {
 		switch self {
 			case .title:
 				return "profile_title"
+			case .loginToSee:
+				return "profile_login_to_see"
 			case .allocatedRewards:
 				return "profile_allocated_rewards"
 			case .noRewardsDescription:

@@ -5445,6 +5445,17 @@
         }
       }
     },
+    "login" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login"
+          }
+        }
+      }
+    },
     "logout" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7432,6 +7443,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You can also claim your allocated rewards by visiting **%@** from a desktop web browser."
+          }
+        }
+      }
+    },
+    "profile_login_to_see" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log in to see your rewards"
           }
         }
       }
@@ -9467,17 +9489,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Share"
-          }
-        }
-      }
-    },
-    "sign_in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sign In"
           }
         }
       }

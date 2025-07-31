@@ -309,7 +309,7 @@
 		2675483629A9181E008BCF40 /* CustomRangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675479029A9181E008BCF40 /* CustomRangeSlider.swift */; };
 		2675483D29A9181E008BCF40 /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675479C29A9181E008BCF40 /* TabItemView.swift */; };
 		2675483E29A9181E008BCF40 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675479D29A9181E008BCF40 /* TabBarView.swift */; };
-		2675483F29A9181E008BCF40 /* LoggedInTabViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675479E29A9181E008BCF40 /* LoggedInTabViewContainer.swift */; };
+		2675483F29A9181E008BCF40 /* TabViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675479E29A9181E008BCF40 /* TabViewContainer.swift */; };
 		2675484229A91930008BCF40 /* SwinjectInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675484029A91928008BCF40 /* SwinjectInterface.swift */; };
 		267548C829A91A87008BCF40 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675488929A91A87008BCF40 /* StringConstants.swift */; };
 		267548CD29A91A87008BCF40 /* TabSelectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675488F29A91A87008BCF40 /* TabSelectionEnum.swift */; };
@@ -1082,7 +1082,7 @@
 		2675479029A9181E008BCF40 /* CustomRangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRangeSlider.swift; sourceTree = "<group>"; };
 		2675479C29A9181E008BCF40 /* TabItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
 		2675479D29A9181E008BCF40 /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
-		2675479E29A9181E008BCF40 /* LoggedInTabViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInTabViewContainer.swift; sourceTree = "<group>"; };
+		2675479E29A9181E008BCF40 /* TabViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewContainer.swift; sourceTree = "<group>"; };
 		2675484029A91928008BCF40 /* SwinjectInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectInterface.swift; sourceTree = "<group>"; };
 		2675488929A91A87008BCF40 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		2675488F29A91A87008BCF40 /* TabSelectionEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSelectionEnum.swift; sourceTree = "<group>"; };
@@ -2398,7 +2398,7 @@
 			isa = PBXGroup;
 			children = (
 				2675479B29A9181E008BCF40 /* TabBar */,
-				2675479E29A9181E008BCF40 /* LoggedInTabViewContainer.swift */,
+				2675479E29A9181E008BCF40 /* TabViewContainer.swift */,
 			);
 			path = LoggedInViews;
 			sourceTree = "<group>";
@@ -4185,7 +4185,7 @@
 				263B8B4E2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift in Sources */,
 				26A9614C2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift in Sources */,
 				26A961B02AA7181300646A25 /* LocalizableString+Wallet.swift in Sources */,
-				2675483F29A9181E008BCF40 /* LoggedInTabViewContainer.swift in Sources */,
+				2675483F29A9181E008BCF40 /* TabViewContainer.swift in Sources */,
 				2675481E29A9181E008BCF40 /* LottieView.swift in Sources */,
 				2608A7942C09F67A00452E40 /* DeviceLocation+.swift in Sources */,
 				264371312CA1955800E5F382 /* ChartLegendView.swift in Sources */,

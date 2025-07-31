@@ -182,11 +182,6 @@ private extension SettingsView {
             action: {
                 WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .logout])
                 settingsViewModel.logoutUser { completed in
-					guard completed else {
-						return
-					}
-
-					Router.shared.popToRoot()
 				}
             }
         )
