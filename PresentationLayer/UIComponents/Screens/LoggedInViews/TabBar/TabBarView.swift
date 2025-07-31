@@ -18,7 +18,8 @@ struct TabBarView: View {
     }
 
     var body: some View {
-        tabBar.tabBarStyle()
+        tabBar
+			.tabBarStyle()
     }
 
     var tabBar: some View {
