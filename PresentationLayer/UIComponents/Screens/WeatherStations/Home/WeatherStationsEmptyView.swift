@@ -19,7 +19,7 @@ struct WeatherStationsEmptyView: View {
 					.foregroundStyle(Color(colorEnum: .text))
 					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 
-				Text(LocalizableString.Home.ownDeployEarn.localized)
+				Text(LocalizableString.Home.ownDeployEarnWXM.localized)
 					.foregroundStyle(Color(colorEnum: .text))
 					.font(.system(size: CGFloat(.normalFontSize)))
 			}

@@ -44,7 +44,11 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		FilterValues.default != filters
 	}
 
-	@Published var isLoggedIn: Bool = false
+	@Published var isLoggedIn: Bool = false {
+		didSet {
+			updateStationRewards()
+		}
+	}
 	@Published var shouldShowAddButtonBadge: Bool = false {
 		didSet {
 			guard shouldShowAddButtonBadge else {
@@ -81,7 +85,9 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
 		self.tabBarVisibilityHandler.$areElementsVisible.assign(to: &$isAddButtonVisible)
 
-		mainVM?.$isUserLoggedIn.assign(to: &$isLoggedIn)
+		mainVM?.$isUserLoggedIn.sink { [weak self] value in
+			self?.isLoggedIn = value
+		}.store(in: &cancellableSet)
 
 		observeFilters()
 
@@ -479,6 +485,13 @@ private extension WeatherStationsHomeViewModel {
 	}
 
 	func updateStationRewards() {
+		guard isLoggedIn else {
+			self.stationRewardsTitle = LocalizableString.Home.ownDeployEarn.localized
+			self.stationRewardsValueText = nil
+
+			return
+		}
+
 		let owndedDevices = getOwnedDevices()
 		let hasOwned = !owndedDevices.isEmpty
 		let totalEarned: Double = owndedDevices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }

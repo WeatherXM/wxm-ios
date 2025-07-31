@@ -5275,6 +5275,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Own. Deploy. Earn."
+          }
+        }
+      }
+    },
+    "home_own_deploy_earn_wxm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Own. Deploy. Earn $WXM tokens."
           }
         }
