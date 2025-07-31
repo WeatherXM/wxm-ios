@@ -33,7 +33,12 @@ struct WeatherStationsEmptyView: View {
 				Button {
 					buyButtonAction()
 				} label: {
-					Text(LocalizableString.Home.buyStation.localized)
+					HStack(spacing: CGFloat(.smallSpacing)) {
+						Text(FontIcon.cart.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+
+						Text(LocalizableString.Home.buyStation.localized)
+					}
 				}
 				.buttonStyle(WXMButtonStyle.filled())
 
