@@ -173,10 +173,6 @@ private extension ExplorerViewModel {
 }
 
 extension ExplorerViewModel: ExplorerSearchViewModelDelegate {
-    func settingsButtonTapped() {
-        Router.shared.navigateTo(.settings(ViewModelsFactory.getSettingsViewModel(userId: "")))
-    }
-
 	func networkStatisticsTapped() {
 		Router.shared.navigateTo(.netStats(ViewModelsFactory.getNetworkStatsViewModel()))
 	}

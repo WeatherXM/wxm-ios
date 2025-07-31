@@ -24,7 +24,7 @@ struct TabBarModifier: ViewModifier {
 
 extension View {
     func tabBarStyle(
-        insideHorizontalTabBarPadding: CGFloat = CGFloat(.largeSidePadding),
+		insideHorizontalTabBarPadding: CGFloat = 0.0,
 		insideTopTabBarPadding: CGFloat = CGFloat(.smallToMediumSidePadding),
 		insideBottomTabBarPadding: CGFloat = CGFloat(.defaultSidePadding),
         backgroundColor: Color = Color(colorEnum: .top)

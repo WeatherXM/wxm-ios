@@ -10,3 +10,4 @@ import SwiftUI
 class SizeWrapper: ObservableObject {
     @Published var size: CGSize = .zero
 }
+

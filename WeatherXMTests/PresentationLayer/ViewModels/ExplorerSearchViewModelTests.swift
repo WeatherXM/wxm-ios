@@ -22,10 +22,6 @@ private class SearchDelegate: ExplorerSearchViewModelDelegate {
 	func searchWillBecomeActive(_ active: Bool) {
 		isSearchActive = active
 	}
-	
-	func settingsButtonTapped() {
-		settingsButtonTappedCalled = true
-	}
 
 	func networkStatisticsTapped() {
 		networkStatisticsTappedCalled = true
@@ -72,12 +68,6 @@ struct ExplorerSearchViewModelTests {
 		viewModel.handleTapOnResult(row)
 		#expect(searchDelegate.rowTappedCalled)
     }
-
-	@Test func settingsTap() async throws {
-		#expect(!searchDelegate.settingsButtonTappedCalled)
-		viewModel.handleSettingsButtonTap()
-		#expect(searchDelegate.settingsButtonTappedCalled)
-	}
 
 	@Test func netStatsTap() {
 		#expect(!searchDelegate.networkStatisticsTappedCalled)

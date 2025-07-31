@@ -569,6 +569,7 @@
 		26C624572AB09C78007A3162 /* LocalizableString+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C624562AB09C78007A3162 /* LocalizableString+Settings.swift */; };
 		26C801D92C2B0A1200D6AC60 /* image_pulse_claiming_key.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26C801D82C2B0A1200D6AC60 /* image_pulse_claiming_key.gif */; };
 		26C801DC2C2B162A00D6AC60 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = 26C801DB2C2B162A00D6AC60 /* FLAnimatedImage */; };
+		26C8EFF22E3B7437005DC9DD /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8EFF12E3B7437005DC9DD /* KeyboardObserver.swift */; };
 		26C904C92A77EF980047A388 /* DeviceDetails+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C904C82A77EF980047A388 /* DeviceDetails+.swift */; };
 		26CA1EBA2DC89539008C87A2 /* ExplorerPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA1EB92DC89539008C87A2 /* ExplorerPopoverView.swift */; };
 		26CA1EC22DCB65C6008C87A2 /* ExplorerLayerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA1EC12DCB65C6008C87A2 /* ExplorerLayerPickerView.swift */; };
@@ -1309,6 +1310,7 @@
 		26C5D6962CD8BDDB004940D0 /* weather_extreme_night_light_snow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weather_extreme_night_light_snow.json; sourceTree = "<group>"; };
 		26C624562AB09C78007A3162 /* LocalizableString+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Settings.swift"; sourceTree = "<group>"; };
 		26C801D82C2B0A1200D6AC60 /* image_pulse_claiming_key.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_pulse_claiming_key.gif; sourceTree = "<group>"; };
+		26C8EFF12E3B7437005DC9DD /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		26C904C82A77EF980047A388 /* DeviceDetails+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceDetails+.swift"; sourceTree = "<group>"; };
 		26CA1EB92DC89539008C87A2 /* ExplorerPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerPopoverView.swift; sourceTree = "<group>"; };
 		26CA1EC12DCB65C6008C87A2 /* ExplorerLayerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerLayerPickerView.swift; sourceTree = "<group>"; };
@@ -2167,6 +2169,7 @@
 				2675470829A9181E008BCF40 /* CustomColorButtonStyle.swift */,
 				2675470129A9181E008BCF40 /* GeneralButtonStyle.swift */,
 				2675470B29A9181E008BCF40 /* SizeObserver.swift */,
+				26C8EFF12E3B7437005DC9DD /* KeyboardObserver.swift */,
 				2675470C29A9181E008BCF40 /* StrokeBorderModifier.swift */,
 				2675470529A9181E008BCF40 /* TabBarModifier.swift */,
 				26348DF72A42F430000846C6 /* TextfieldClearButton.swift */,
@@ -2711,7 +2714,7 @@
 				265D7CE62AB1CA5D00782606 /* DateRange.swift */,
 				267548B629A91A87008BCF40 /* LinkNavigationHelper.swift */,
 				266482FB29C0B2B000748F9C /* LoaderView.swift */,
-				267401932A3A038300E54E35 /* SwiftUIUtils.swift */,
+				26C8EFF02E3B741D005DC9DD /* SwiftUIUtils */,
 				2664830029C0C73E00748F9C /* Toast.swift */,
 				261729CC2C32CF7700A1CEFA /* Haptics.swift */,
 				269EC14C2E324ED90099DB78 /* BackgroundScheduler.swift */,
@@ -2970,6 +2973,14 @@
 				26C464F72A40A0D0005E5245 /* ShimmerEffectLoaderView.swift */,
 			);
 			path = ShimmerEffectLoader;
+			sourceTree = "<group>";
+		};
+		26C8EFF02E3B741D005DC9DD /* SwiftUIUtils */ = {
+			isa = PBXGroup;
+			children = (
+				267401932A3A038300E54E35 /* SwiftUIUtils.swift */,
+			);
+			path = SwiftUIUtils;
 			sourceTree = "<group>";
 		};
 		26CA84522AD933F1006D47D7 /* Common */ = {
@@ -4149,6 +4160,7 @@
 				264813FE2D8D7CF000BCCC31 /* ProPromotionalView.swift in Sources */,
 				26AA21E92BF4FA3B00B91A7C /* SelectLocationMapView.swift in Sources */,
 				26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */,
+				26C8EFF22E3B7437005DC9DD /* KeyboardObserver.swift in Sources */,
 				26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */,
 				2672C77A2AA9BBEB00E1FDCC /* HistoryContainerView.swift in Sources */,
 				26A308F92C2EE481007A029A /* ScannerView.swift in Sources */,
