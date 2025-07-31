@@ -15,6 +15,8 @@ struct TabViewContainer: View {
 	@StateObject var profileViewModel: ProfileViewModel
 	@StateObject var homeViewModel: WeatherStationsHomeViewModel
 	@State var overlayControlsSize: CGSize = .zero
+	@State private var tabBarSize: CGSize = .zero
+	@State private var isKeyboardVisible: Bool = false
 
     public init(swinjectHelper: SwinjectInterface) {
 		_explorerViewModel = StateObject(wrappedValue: ViewModelsFactory.getExplorerViewModel())
@@ -23,12 +25,19 @@ struct TabViewContainer: View {
     }
 
     var body: some View {
-		VStack(spacing: 0.0) {
+		ZStack {
             selectedTabView
+				.padding(.bottom, isKeyboardVisible ? 0.0 : tabBarSize.height)
                 .animation(.easeIn(duration: 0.3), value: mainViewModel.selectedTab)
 
-			tabBar
+			VStack {
+				Spacer()
+				tabBar
+					.sizeObserver(size: $tabBarSize)
+			}
+			.ignoresSafeArea(.keyboard, edges: .bottom)
         }
+		.keyboardObserver($isKeyboardVisible)
         .fullScreenCover(isPresented: $mainViewModel.showFirmwareUpdate) {
             NavigationContainerView {
                 UpdateFirmwareView(viewModel: UpdateFirmwareViewModel(device: mainViewModel.deviceToUpdate ?? DeviceDetails.emptyDeviceDetails) {
