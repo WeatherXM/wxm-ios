@@ -59,7 +59,8 @@ private struct ContentView: View {
 
 	var fieldsView: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
-			if let surveyConf = viewModel.surveyConfiguration {
+			if let surveyConf = viewModel.surveyConfiguration,
+			   viewModel.isLoggedIn {
 				AnnouncementCardView(configuration: surveyConf)
 			}
 
@@ -74,8 +75,10 @@ private struct ContentView: View {
 				}
 			}
 
-			ProBannerView(description: LocalizableString.Promotional.takeYourWeatherInsights.localized,
-						  analyticsSource: .localProfile)
+			if viewModel.isLoading {
+				ProBannerView(description: LocalizableString.Promotional.takeYourWeatherInsights.localized,
+							  analyticsSource: .localProfile)
+			}
 		}
 		.padding(CGFloat(.defaultSidePadding))
 		.animation(.easeIn, value: viewModel.surveyConfiguration != nil)
