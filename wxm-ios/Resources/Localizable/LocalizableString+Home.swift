@@ -20,6 +20,7 @@ extension LocalizableString {
 		case noRewardsYet
 		case joinTheNetwork
 		case ownDeployEarn
+		case ownDeployEarnWXM
 		case buyStation
 		case followAStationInExplorer
 		case claimYouStationhere
@@ -67,6 +68,8 @@ extension LocalizableString.Home: WXMLocalizable {
 				return "home_join_the_network"
 			case .ownDeployEarn:
 				return "home_own_deploy_earn"
+			case .ownDeployEarnWXM:
+				return "home_own_deploy_earn_wxm"
 			case .buyStation:
 				return "home_buy_station"
 			case .followAStationInExplorer:

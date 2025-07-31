@@ -100,7 +100,6 @@ private struct ContentView: View {
                 }
                 .zIndex(0)
         }.onAppear {
-            viewModel.mainVM = mainVM
 			viewModel.getDevices()
         }
 		.bottomSheet(show: $showFilters, fitContent: false) {
@@ -147,7 +146,7 @@ private struct ContentView: View {
 					.background(Color(colorEnum: .bg))
 					.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
 			}
-		} else if devices.isEmpty {
+		} else if devices.isEmpty || !viewModel.isLoggedIn {
 			ZStack {
 				Color(colorEnum: .bg)
 					.ignoresSafeArea()
