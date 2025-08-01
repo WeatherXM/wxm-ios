@@ -5170,182 +5170,6 @@
         }
       }
     },
-    "home_buy_station" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buy a station"
-          }
-        }
-      }
-    },
-    "home_claim_your_station_here" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claim your station here"
-          }
-        }
-      }
-    },
-    "home_data_quality" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Data Quality %d%%"
-          }
-        }
-      }
-    },
-    "home_follow_a_station_in_explorer" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Follow a station in Explorer Map"
-          }
-        }
-      }
-    },
-    "home_following_weather_stations_empty_button_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Follow WXM Devices"
-          }
-        }
-      }
-    },
-    "home_following_weather_stations_empty_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Browse the explorer map and add stations to your favorites. They will show up here."
-          }
-        }
-      }
-    },
-    "home_following_weather_stations_empty_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No favorites yet?"
-          }
-        }
-      }
-    },
-    "home_join_the_network" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Join the network"
-          }
-        }
-      }
-    },
-    "home_no_rewards_yet" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No rewards yet!"
-          }
-        }
-      }
-    },
-    "home_own_deploy_earn" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Own. Deploy. Earn."
-          }
-        }
-      }
-    },
-    "home_own_deploy_earn_wxm" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Own. Deploy. Earn $WXM tokens."
-          }
-        }
-      }
-    },
-    "home_owned_weather_stations_empty_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claim your WXM device by clicking the **+ button.**"
-          }
-        }
-      }
-    },
-    "home_owned_weather_stations_empty_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No stations yet?"
-          }
-        }
-      }
-    },
-    "home_total_weather_stations_empty_button_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "View Explorer Map"
-          }
-        }
-      }
-    },
-    "home_total_weather_stations_empty_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claim your WXM device by clicking the **+ button** or browse the map and add stations to your favorites."
-          }
-        }
-      }
-    },
-    "home_total_weather_stations_empty_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No stations yet?"
-          }
-        }
-      }
-    },
     "humidity" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5573,6 +5397,182 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "My Stations"
+          }
+        }
+      }
+    },
+    "my_stations_buy_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buy a station"
+          }
+        }
+      }
+    },
+    "my_stations_claim_your_station_here" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim your station here"
+          }
+        }
+      }
+    },
+    "my_stations_data_quality" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data Quality %d%%"
+          }
+        }
+      }
+    },
+    "my_stations_follow_a_station_in_explorer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow a station in Explorer Map"
+          }
+        }
+      }
+    },
+    "my_stations_following_weather_stations_empty_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow WXM Devices"
+          }
+        }
+      }
+    },
+    "my_stations_following_weather_stations_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browse the explorer map and add stations to your favorites. They will show up here."
+          }
+        }
+      }
+    },
+    "my_stations_following_weather_stations_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No favorites yet?"
+          }
+        }
+      }
+    },
+    "my_stations_join_the_network" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join the network"
+          }
+        }
+      }
+    },
+    "my_stations_no_rewards_yet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No rewards yet!"
+          }
+        }
+      }
+    },
+    "my_stations_own_deploy_earn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Own. Deploy. Earn."
+          }
+        }
+      }
+    },
+    "my_stations_own_deploy_earn_wxm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Own. Deploy. Earn $WXM tokens."
+          }
+        }
+      }
+    },
+    "my_stations_owned_weather_stations_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim your WXM device by clicking the **+ button.**"
+          }
+        }
+      }
+    },
+    "my_stations_owned_weather_stations_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No stations yet?"
+          }
+        }
+      }
+    },
+    "my_stations_total_weather_stations_empty_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Explorer Map"
+          }
+        }
+      }
+    },
+    "my_stations_total_weather_stations_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim your WXM device by clicking the **+ button** or browse the map and add stations to your favorites."
+          }
+        }
+      }
+    },
+    "my_stations_total_weather_stations_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No stations yet?"
           }
         }
       }

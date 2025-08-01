@@ -1,5 +1,5 @@
 //
-//  WeatherStationsHomeViewModel.swift
+//  MyStationsViewModel.swift
 //  PresentationLayer
 //
 //  Created by Danae Kikue Dimou on 25/5/22.
@@ -11,7 +11,7 @@ import SwiftUI
 import Toolkit
 
 @MainActor
-public final class WeatherStationsHomeViewModel: ObservableObject {
+public final class MyStationsViewModel: ObservableObject {
 	private let meUseCase: MeUseCaseApi
 	private let photosUseCase: PhotoGalleryUseCaseApi
 	private let remoteConfigUseCase: RemoteConfigUseCaseApi
@@ -327,7 +327,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 }
 
-private extension WeatherStationsHomeViewModel {
+private extension MyStationsViewModel {
 	func updateUploadInProgressDevice(deviceId: String) {
 		self.uploadInProgressDeviceId = deviceId
 		self.uploadInProgressStationName = devices.first(where: { $0.id == deviceId })?.displayName
@@ -486,7 +486,7 @@ private extension WeatherStationsHomeViewModel {
 
 	func updateStationRewards() {
 		guard isLoggedIn else {
-			self.stationRewardsTitle = LocalizableString.Home.ownDeployEarn.localized
+			self.stationRewardsTitle = LocalizableString.MyStations.ownDeployEarn.localized
 			self.stationRewardsValueText = nil
 
 			return
@@ -496,7 +496,7 @@ private extension WeatherStationsHomeViewModel {
 		let hasOwned = !owndedDevices.isEmpty
 		let totalEarned: Double = owndedDevices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }
 
-		let noRewardsText = LocalizableString.Home.noRewardsYet.localized
+		let noRewardsText = LocalizableString.MyStations.noRewardsYet.localized
 		let stationRewardsdText = LocalizableString.RewardAnalytics.stationRewards.localized
 
 		self.stationRewardsTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : stationRewardsdText

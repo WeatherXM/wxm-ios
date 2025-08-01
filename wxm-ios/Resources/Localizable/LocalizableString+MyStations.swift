@@ -1,5 +1,5 @@
 //
-//  LocalizableString+Home.swift
+//  LocalizableString+MyStations.swift
 //  wxm-ios
 //
 //  Created by Pantelis Giazitsis on 6/9/23.
@@ -8,7 +8,7 @@
 import Foundation
 
 extension LocalizableString {
-	enum Home {
+	enum MyStations {
 		case totalWeatherStationsEmptyTitle
 		case totalWeatherStationsEmptyDescription
 		case totalWeatherStationsEmptyButtonTitle
@@ -28,7 +28,7 @@ extension LocalizableString {
 	}
 }
 
-extension LocalizableString.Home: WXMLocalizable {
+extension LocalizableString.MyStations: WXMLocalizable {
 	var localized: String {
 		var localized = NSLocalizedString(self.key, comment: "")
 		switch self {
@@ -45,37 +45,37 @@ extension LocalizableString.Home: WXMLocalizable {
 	var key: String {
 		switch self {
 			case .totalWeatherStationsEmptyTitle:
-				return "home_total_weather_stations_empty_title"
+				return "my_stations_total_weather_stations_empty_title"
 			case .totalWeatherStationsEmptyDescription:
-				return "home_total_weather_stations_empty_description"
+				return "my_stations_total_weather_stations_empty_description"
 			case .totalWeatherStationsEmptyButtonTitle:
-				return "home_total_weather_stations_empty_button_title"
+				return "my_stations_total_weather_stations_empty_button_title"
 			case .ownedWeatherStationsEmptyTitle:
-				return "home_owned_weather_stations_empty_title"
+				return "my_stations_owned_weather_stations_empty_title"
 			case .ownedWeatherStationsEmptyDescription:
-				return "home_owned_weather_stations_empty_description"
+				return "my_stations_owned_weather_stations_empty_description"
 			case .followingWeatherStationsEmptyTitle:
-				return "home_following_weather_stations_empty_title"
+				return "my_stations_following_weather_stations_empty_title"
 			case .followingWeatherStationsEmptyDescription:
-				return "home_following_weather_stations_empty_description"
+				return "my_stations_following_weather_stations_empty_description"
 			case .followingWeatherStationsEmptyButtonTitle:
-				return "home_following_weather_stations_empty_button_title"
+				return "my_stations_following_weather_stations_empty_button_title"
 			case .noRewardsYet:
-				return "home_no_rewards_yet"
+				return "my_stations_no_rewards_yet"
 			case .dataQuality:
-				return "home_data_quality"
+				return "my_stations_data_quality"
 			case .joinTheNetwork:
-				return "home_join_the_network"
+				return "my_stations_join_the_network"
 			case .ownDeployEarn:
-				return "home_own_deploy_earn"
+				return "my_stations_own_deploy_earn"
 			case .ownDeployEarnWXM:
-				return "home_own_deploy_earn_wxm"
+				return "my_stations_own_deploy_earn_wxm"
 			case .buyStation:
-				return "home_buy_station"
+				return "my_stations_buy_station"
 			case .followAStationInExplorer:
-				return "home_follow_a_station_in_explorer"
+				return "my_stations_follow_a_station_in_explorer"
 			case .claimYouStationhere:
-				return "home_claim_your_station_here"
+				return "my_stations_claim_your_station_here"
 		}
 	}
 }

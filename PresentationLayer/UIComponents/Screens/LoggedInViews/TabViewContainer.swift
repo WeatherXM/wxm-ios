@@ -13,7 +13,7 @@ struct TabViewContainer: View {
 	@StateObject var mainViewModel: MainScreenViewModel = .shared
     @StateObject var explorerViewModel: ExplorerViewModel
 	@StateObject var profileViewModel: ProfileViewModel
-	@StateObject var homeViewModel: WeatherStationsHomeViewModel
+	@StateObject var homeViewModel: MyStationsViewModel
 	@State var overlayControlsSize: CGSize = .zero
 	@State private var tabBarSize: CGSize = .zero
 	@State private var isKeyboardVisible: Bool = false
@@ -21,7 +21,7 @@ struct TabViewContainer: View {
     public init(swinjectHelper: SwinjectInterface) {
 		_explorerViewModel = StateObject(wrappedValue: ViewModelsFactory.getExplorerViewModel())
 		_profileViewModel = StateObject(wrappedValue: ViewModelsFactory.getProfileViewModel())
-		_homeViewModel = StateObject(wrappedValue: ViewModelsFactory.getWeatherStationsHomeViewModel())
+		_homeViewModel = StateObject(wrappedValue: ViewModelsFactory.getMyStationsViewModel())
     }
 
     var body: some View {
@@ -70,7 +70,7 @@ struct TabViewContainer: View {
 					Text(verbatim: "home")
 				}
 			case .myStations:
-				WeatherStationsHomeView(viewModel: homeViewModel,
+				MyStationsView(viewModel: homeViewModel,
 										overlayControlsSize: $overlayControlsSize,
 										isWalletEmpty: $mainViewModel.isWalletMissing)
 			case .explorer:

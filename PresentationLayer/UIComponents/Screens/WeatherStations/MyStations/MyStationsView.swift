@@ -1,5 +1,5 @@
 //
-//  WeatherStationsHomeView.swift
+//  MyStationsView.swift
 //  PresentationLayer
 //
 //  Created by Danae Kikue Dimou on 18/5/22.
@@ -10,13 +10,13 @@ import MapKit
 import SwiftUI
 import Toolkit
 
-struct WeatherStationsHomeView: View {
+struct MyStationsView: View {
 
 	@Binding private var overlayControlsSize: CGSize
     @Binding private var isWalletEmpty: Bool
-    @StateObject private var viewModel: WeatherStationsHomeViewModel
+    @StateObject private var viewModel: MyStationsViewModel
 
-	init(viewModel: WeatherStationsHomeViewModel,
+	init(viewModel: MyStationsViewModel,
 		 overlayControlsSize: Binding<CGSize>,
 		 isWalletEmpty: Binding<Bool>) {
 		_viewModel = StateObject(wrappedValue: viewModel)
@@ -76,12 +76,12 @@ private struct ContentView: View {
     @EnvironmentObject var navigationObject: NavigationObject
 
 	@State private var showFilters: Bool = false
-    @StateObject private var viewModel: WeatherStationsHomeViewModel
+    @StateObject private var viewModel: MyStationsViewModel
 	@Binding private var overlayControlsSize: CGSize
     @Binding private var isWalletEmpty: Bool
 	@StateObject var mainVM: MainScreenViewModel = .shared
 
-    init(vieModel: WeatherStationsHomeViewModel,
+    init(vieModel: MyStationsViewModel,
 		 overlayControlsSize: Binding<CGSize>,
 		 isWalletEmpty: Binding<Bool>) {
         _viewModel = StateObject(wrappedValue: vieModel)
@@ -150,7 +150,7 @@ private struct ContentView: View {
 			ZStack {
 				Color(colorEnum: .bg)
 					.ignoresSafeArea()
-				WeatherStationsEmptyView(buyButtonAction: { viewModel.handleBuyButtonTap() },
+				MyStationsEmptyView(buyButtonAction: { viewModel.handleBuyButtonTap() },
 										 followButtonAction: { viewModel.handleFollowInExplorerTap() })
 				.padding(.bottom, overlayControlsSize.height)
 			}
@@ -285,7 +285,7 @@ private struct ContentView: View {
 }
 
 #Preview {
-	WeatherStationsHomeView(viewModel: ViewModelsFactory.getWeatherStationsHomeViewModel(),
+	MyStationsView(viewModel: ViewModelsFactory.getMyStationsViewModel(),
 							overlayControlsSize: .constant(.zero),
 							isWalletEmpty: .constant(false))
 }
