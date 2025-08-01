@@ -595,6 +595,7 @@
 		26D5013829B209F500BC2951 /* StationLastActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5013729B209F500BC2951 /* StationLastActiveView.swift */; };
 		26D5013A29B20F5200BC2951 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5013929B20F5200BC2951 /* CornerRadius.swift */; };
 		26D5013C29B2152F00BC2951 /* CustomSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5013B29B2152F00BC2951 /* CustomSegmentView.swift */; };
+		26D5C0352E3CB0080040CDAF /* LocalizableString+Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C0342E3CAFF70040CDAF /* LocalizableString+Home.swift */; };
 		26D6119D2A9E1CDC0099117C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */; };
 		26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D611AA2A9E21080099117C /* LocalizableConstants.swift */; };
 		26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */; };
@@ -1332,6 +1333,7 @@
 		26D5013729B209F500BC2951 /* StationLastActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationLastActiveView.swift; sourceTree = "<group>"; };
 		26D5013929B20F5200BC2951 /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
 		26D5013B29B2152F00BC2951 /* CustomSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentView.swift; sourceTree = "<group>"; };
+		26D5C0342E3CAFF70040CDAF /* LocalizableString+Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Home.swift"; sourceTree = "<group>"; };
 		26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		26D611AA2A9E21080099117C /* LocalizableConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableConstants.swift; sourceTree = "<group>"; };
 		26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
@@ -2773,6 +2775,7 @@
 				26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */,
 				26E85B102C7752A70062667E /* LocalizableUnits.xcstrings */,
 				26D611AA2A9E21080099117C /* LocalizableConstants.swift */,
+				26D5C0342E3CAFF70040CDAF /* LocalizableString+Home.swift */,
 				2698AE9D2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift */,
 				264814012D8D7F6500BCCC31 /* LocalizableString+Promotional.swift */,
 				2666D57C2BC96077003B30C0 /* LocalizableString+Forecast.swift */,
@@ -4168,6 +4171,7 @@
 				267548D729A91A87008BCF40 /* FontSizeEnum.swift in Sources */,
 				26ADB80F2E214FBC00C83F3E /* ClaimDeviceBeforeBeginViewModel.swift in Sources */,
 				2666D50A2BBC4E80003B30C0 /* StationChipsView.swift in Sources */,
+				26D5C0352E3CB0080040CDAF /* LocalizableString+Home.swift in Sources */,
 				26CA845D2AD93C0C006D47D7 /* DeviceDetails+Common.swift in Sources */,
 				267547C729A9181E008BCF40 /* GeneralButtonStyle.swift in Sources */,
 				267548F329A91A87008BCF40 /* LinkNavigationHelper.swift in Sources */,

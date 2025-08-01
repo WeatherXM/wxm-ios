@@ -6,7 +6,12 @@
 //
 
 import Foundation
+import DomainLayer
 
 class HomeViewModel: ObservableObject {
+	private let useCase: LocationForecastsUseCaseApi
 
+	init(useCase: LocationForecastsUseCaseApi) {
+		self.useCase = useCase
+	}
 }

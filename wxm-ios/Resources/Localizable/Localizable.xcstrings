@@ -5170,6 +5170,72 @@
         }
       }
     },
+    "home_allow_location_permission" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow location permission to show your current location forecast."
+          }
+        }
+      }
+    },
+    "home_current_location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current location"
+          }
+        }
+      }
+    },
+    "home_save_locations_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add the places you care about and see their weather at a glance!"
+          }
+        }
+      }
+    },
+    "home_saved_locations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved locations"
+          }
+        }
+      }
+    },
+    "home_saved_locations_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing saved, yet!"
+          }
+        }
+      }
+    },
+    "home_search_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search cities and places of interest "
+          }
+        }
+      }
+    },
     "humidity" : {
       "extractionState" : "manual",
       "localizations" : {

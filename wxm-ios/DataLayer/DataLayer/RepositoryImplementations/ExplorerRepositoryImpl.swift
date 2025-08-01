@@ -47,4 +47,10 @@ public struct ExplorerRepositoryImpl: ExplorerRepository {
         let urlRequest = try CellRequestBuilder.getCellsDevicesDetails(index: index, deviceId: deviceId).asURLRequest()
         return ApiClient.shared.requestCodable(urlRequest)
     }
+
+	public func getCellForecast(for coordinates: CLLocationCoordinate2D) throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never> {
+		let builder = CellRequestBuilder.getCellForecast(lat: coordinates.latitude, lon: coordinates.longitude)
+		let urlRequest = try builder.asURLRequest()
+		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
+	}
 }

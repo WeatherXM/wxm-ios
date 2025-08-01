@@ -8,11 +8,57 @@
 import SwiftUI
 
 struct HomeView: View {
+	@StateObject var viewModel: HomeViewModel
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		ScrollView {
+			VStack(spacing: CGFloat(.mediumSpacing)) {
+				currentLocation
+
+				savedLocations
+			}
+			.padding(CGFloat(.mediumSidePadding))
+		}
+		.scrollIndicators(.hidden)
     }
 }
 
+private extension HomeView {
+	@ViewBuilder
+	var currentLocation: some View {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				Text(FontIcon.locationCrosshairs.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.largeFontSize)))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Text(LocalizableString.Home.currentLocation.localized)
+					.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Spacer()
+			}
+		}
+	}
+
+	@ViewBuilder
+	var savedLocations: some View {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			HStack(spacing: CGFloat(.smallSpacing)) {
+				Text(FontIcon.locationDot.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.largeFontSize)))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Text(LocalizableString.Home.savedLocations.localized)
+					.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Spacer()
+			}
+		}
+	}
+}
+
 #Preview {
-    HomeView()
+	HomeView(viewModel: ViewModelsFactory.getHomeViewModel())
 }
