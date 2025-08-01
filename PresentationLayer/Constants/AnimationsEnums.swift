@@ -190,4 +190,35 @@ enum AnimationsEnums: String, CaseIterable {
 				return "weatherxm_network"
 		}
 	}
+
+	var weatherDescription: String {
+		switch self {
+			case .clearDay:
+				return LocalizableString.Weather.clear.localized
+			case .partlyCloudyDay:
+				return LocalizableString.Weather.partlyCloudy.localized
+			case .overcast:
+				return LocalizableString.Weather.overcast.localized
+			case .overcastRain:
+				return LocalizableString.Weather.overcastRain.localized
+			case .overcastSnow:
+				return LocalizableString.Weather.overcastSnow.localized
+//			case .overcastHeavyRain:
+//				return LocalizableString.Weather.overcastHeavyRain.localized
+//			case .overcastHeavySnow:
+//				return LocalizableString.Weather.overcastHeavySnow.localized
+			case .rain:
+				return LocalizableString.Weather.rainThunderstormsLikely.localized
+			case .thunderstormsRain:
+				return LocalizableString.Weather.rainThunderstormsLikely.localized
+//			case .overcastLightRain:
+//				return LocalizableString.Weather.overcastLightRain.localized
+			case .overcastLightSnow:
+				return LocalizableString.Weather.overcastLightSnow.localized
+			case .fog:
+				return LocalizableString.Weather.foggy.localized
+			default:
+				return ""
+		}
+	}
 }

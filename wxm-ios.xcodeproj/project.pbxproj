@@ -599,6 +599,7 @@
 		26D5C03B2E3CD8AC0040CDAF /* HomeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C03A2E3CD8A20040CDAF /* HomeTypes.swift */; };
 		26D5C03D2E3CDA4E0040CDAF /* HomeLocationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C03C2E3CDA4E0040CDAF /* HomeLocationPermissionView.swift */; };
 		26D5C03F2E3CE3850040CDAF /* HomeForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C03E2E3CE3850040CDAF /* HomeForecastView.swift */; };
+		26D5C0432E3D095C0040CDAF /* LocalizableString+Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C0422E3D094E0040CDAF /* LocalizableString+Weather.swift */; };
 		26D6119D2A9E1CDC0099117C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */; };
 		26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D611AA2A9E21080099117C /* LocalizableConstants.swift */; };
 		26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */; };
@@ -1340,6 +1341,7 @@
 		26D5C03A2E3CD8A20040CDAF /* HomeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTypes.swift; sourceTree = "<group>"; };
 		26D5C03C2E3CDA4E0040CDAF /* HomeLocationPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLocationPermissionView.swift; sourceTree = "<group>"; };
 		26D5C03E2E3CE3850040CDAF /* HomeForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeForecastView.swift; sourceTree = "<group>"; };
+		26D5C0422E3D094E0040CDAF /* LocalizableString+Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Weather.swift"; sourceTree = "<group>"; };
 		26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		26D611AA2A9E21080099117C /* LocalizableConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableConstants.swift; sourceTree = "<group>"; };
 		26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
@@ -2809,6 +2811,7 @@
 				26A9619B2AA705FE00646A25 /* LocalizableString+StationDetails.swift */,
 				26A9614B2AA5FAFF00646A25 /* LocalizableString+UpdateFirmware.swift */,
 				26A961AF2AA7181300646A25 /* LocalizableString+Wallet.swift */,
+				26D5C0422E3D094E0040CDAF /* LocalizableString+Weather.swift */,
 				26A3B3C42B178F630002F35F /* LocalizableString+Profile.swift */,
 			);
 			path = Localizable;
@@ -4306,6 +4309,7 @@
 				267547BE29A9181E008BCF40 /* SettingsButtonView.swift in Sources */,
 				267548DF29A91A87008BCF40 /* SettingsEnum.swift in Sources */,
 				267547B929A9181E008BCF40 /* SettingsSectionTitle.swift in Sources */,
+				26D5C0432E3D095C0040CDAF /* LocalizableString+Weather.swift in Sources */,
 				267547B529A9181E008BCF40 /* SettingsView.swift in Sources */,
 				26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */,
 				267547A429A9181E008BCF40 /* SettingsViewModel.swift in Sources */,

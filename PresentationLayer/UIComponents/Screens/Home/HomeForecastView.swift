@@ -19,10 +19,24 @@ struct HomeForecastView: View {
 				   height: CGFloat(.weatherIconDefaultDimension))
 
 			VStack(spacing: CGFloat(.smallSpacing)) {
-				Text(forecast.address)
-					.font(.system(size: CGFloat(.largeFontSize),
-								  weight: .bold))
-					.foregroundStyle(Color(colorEnum: .text))
+				HStack {
+					Text(forecast.address)
+						.multilineTextAlignment(.leading)
+						.font(.system(size: CGFloat(.largeFontSize),
+									  weight: .bold))
+						.foregroundStyle(Color(colorEnum: .text))
+
+					Spacer()
+				}
+
+				HStack {
+					Text(forecast.icon.getWeatherDescription())
+						.multilineTextAlignment(.leading)
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundStyle(Color(colorEnum: .darkGrey))
+
+					Spacer()
+				}
 			}
 
 			Spacer()

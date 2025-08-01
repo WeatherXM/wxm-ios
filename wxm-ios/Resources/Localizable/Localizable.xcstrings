@@ -11121,6 +11121,215 @@
         }
       }
     },
+    "weather_clear" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear"
+          }
+        }
+      }
+    },
+    "weather_clear_but_hazy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear but hazy"
+          }
+        }
+      }
+    },
+    "weather_clear_few_low_clouds" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear with few low clouds"
+          }
+        }
+      }
+    },
+    "weather_foggy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foggy"
+          }
+        }
+      }
+    },
+    "weather_heavy_rain_thunderstorms_likely" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heavy rain, thunderstorms likely"
+          }
+        }
+      }
+    },
+    "weather_light_rain_thunderstorms_likely" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light rain, thunderstorms likely"
+          }
+        }
+      }
+    },
+    "weather_mixed_with_showers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mixed with showers"
+          }
+        }
+      }
+    },
+    "weather_mixed_with_snow_showers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mixed with snow showers"
+          }
+        }
+      }
+    },
+    "weather_mostly_cloudy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostly cloudy"
+          }
+        }
+      }
+    },
+    "weather_overcast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast"
+          }
+        }
+      }
+    },
+    "weather_overcast_heavy_rain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with heavy rain"
+          }
+        }
+      }
+    },
+    "weather_overcast_heavy_snow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with heavy snow"
+          }
+        }
+      }
+    },
+    "weather_overcast_light_rain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with light rain"
+          }
+        }
+      }
+    },
+    "weather_overcast_light_snow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with light snow"
+          }
+        }
+      }
+    },
+    "weather_overcast_mixture_snow_rain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with mixture of snow and rain"
+          }
+        }
+      }
+    },
+    "weather_overcast_rain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with rain"
+          }
+        }
+      }
+    },
+    "weather_overcast_snow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with snow"
+          }
+        }
+      }
+    },
+    "weather_partly_cloudy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partly cloudy"
+          }
+        }
+      }
+    },
+    "weather_rain_thunderstorms_likely" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rain, thunderstorms likely"
+          }
+        }
+      }
+    },
     "weather_stations_home_title" : {
       "extractionState" : "manual",
       "localizations" : {
