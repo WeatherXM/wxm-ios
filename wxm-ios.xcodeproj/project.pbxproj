@@ -570,6 +570,8 @@
 		26C801D92C2B0A1200D6AC60 /* image_pulse_claiming_key.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26C801D82C2B0A1200D6AC60 /* image_pulse_claiming_key.gif */; };
 		26C801DC2C2B162A00D6AC60 /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = 26C801DB2C2B162A00D6AC60 /* FLAnimatedImage */; };
 		26C8EFF22E3B7437005DC9DD /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8EFF12E3B7437005DC9DD /* KeyboardObserver.swift */; };
+		26C8F0072E3C9923005DC9DD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8F0062E3C9923005DC9DD /* HomeView.swift */; };
+		26C8F0092E3C993D005DC9DD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8F0082E3C993D005DC9DD /* HomeViewModel.swift */; };
 		26C904C92A77EF980047A388 /* DeviceDetails+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C904C82A77EF980047A388 /* DeviceDetails+.swift */; };
 		26CA1EBA2DC89539008C87A2 /* ExplorerPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA1EB92DC89539008C87A2 /* ExplorerPopoverView.swift */; };
 		26CA1EC22DCB65C6008C87A2 /* ExplorerLayerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CA1EC12DCB65C6008C87A2 /* ExplorerLayerPickerView.swift */; };
@@ -1311,6 +1313,8 @@
 		26C624562AB09C78007A3162 /* LocalizableString+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Settings.swift"; sourceTree = "<group>"; };
 		26C801D82C2B0A1200D6AC60 /* image_pulse_claiming_key.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_pulse_claiming_key.gif; sourceTree = "<group>"; };
 		26C8EFF12E3B7437005DC9DD /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		26C8F0062E3C9923005DC9DD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		26C8F0082E3C993D005DC9DD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		26C904C82A77EF980047A388 /* DeviceDetails+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceDetails+.swift"; sourceTree = "<group>"; };
 		26CA1EB92DC89539008C87A2 /* ExplorerPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerPopoverView.swift; sourceTree = "<group>"; };
 		26CA1EC12DCB65C6008C87A2 /* ExplorerLayerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerLayerPickerView.swift; sourceTree = "<group>"; };
@@ -1608,6 +1612,7 @@
 		262A4CEB2A93517300A4BC17 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				26C8F0052E3C9908005DC9DD /* Home */,
 				26EAF8222D004BC8009EEB31 /* PhotoVerification */,
 				26DF3D2F2C85FB16005F6FC1 /* RewardAnalytics */,
 				264CC75E2B98729E0060DEA4 /* RewardBoosts */,
@@ -2983,6 +2988,15 @@
 			path = SwiftUIUtils;
 			sourceTree = "<group>";
 		};
+		26C8F0052E3C9908005DC9DD /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				26C8F0062E3C9923005DC9DD /* HomeView.swift */,
+				26C8F0082E3C993D005DC9DD /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		26CA84522AD933F1006D47D7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -4149,6 +4163,7 @@
 				2612AC1C2AB45B2800285896 /* FilterViewModel.swift in Sources */,
 				267547A129A9181E008BCF40 /* FirmwareUpdateUtils.swift in Sources */,
 				26348E252A444BEE000846C6 /* FontsEnum.swift in Sources */,
+				26C8F0092E3C993D005DC9DD /* HomeViewModel.swift in Sources */,
 				2678ED8F2AFD1B1400940D59 /* RewardsTimelinePagination.swift in Sources */,
 				267548D729A91A87008BCF40 /* FontSizeEnum.swift in Sources */,
 				26ADB80F2E214FBC00C83F3E /* ClaimDeviceBeforeBeginViewModel.swift in Sources */,
@@ -4255,6 +4270,7 @@
 				26C0330E2DCDE31800F68557 /* ExplorerFactory.swift in Sources */,
 				267547B129A9181E008BCF40 /* RegisterViewModel.swift in Sources */,
 				2675481A29A9181E008BCF40 /* ResetPasswordView.swift in Sources */,
+				26C8F0072E3C9923005DC9DD /* HomeView.swift in Sources */,
 				267547A729A9181E008BCF40 /* ResetPasswordViewModel.swift in Sources */,
 				2643715C2CA6E73900E5F382 /* TemperatureExplanationView.swift in Sources */,
 				2675482D29A9181E008BCF40 /* RewardDatePoint.swift in Sources */,
