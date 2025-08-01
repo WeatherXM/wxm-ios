@@ -38,6 +38,19 @@ private extension HomeView {
 
 				Spacer()
 			}
+
+			Button {
+				viewModel.handleCurrentLocationTap()
+			} label: {
+				switch viewModel.currentLocationState {
+					case .allowLocation:
+						HomeLocationPermissionView()
+					case .forecast(let forecast):
+						HomeForecastView(forecast: forecast)
+					case .empty:
+						EmptyView()
+				}
+			}
 		}
 	}
 
@@ -60,5 +73,8 @@ private extension HomeView {
 }
 
 #Preview {
-	HomeView(viewModel: ViewModelsFactory.getHomeViewModel())
+	ZStack {
+		Color(colorEnum: .bg)
+		HomeView(viewModel: ViewModelsFactory.getHomeViewModel())
+	}
 }

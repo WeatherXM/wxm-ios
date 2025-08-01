@@ -66,9 +66,7 @@ struct TabViewContainer: View {
 	private var selectedTabView: some View {
 		switch mainViewModel.selectedTab {
 			case .home:
-				ScrollView {
-					Text(verbatim: "home")
-				}
+				HomeView(viewModel: ViewModelsFactory.getHomeViewModel())
 			case .myStations:
 				MyStationsView(viewModel: homeViewModel,
 										overlayControlsSize: $overlayControlsSize,

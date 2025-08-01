@@ -16,6 +16,18 @@ extension NetworkDeviceForecastResponse {
 		}
 		return daily?.toForecastTemperatureItem(with: timezone, scrollGraphType: scrollGraphType)
 	}
+
+	func homeLocationForecast() -> HomeForecastView.LocationForecast? {
+		guard let daily = daily else {
+			return nil
+		}
+
+		return .init(address: "Address here",
+					 icon: daily.icon ?? "",
+					 temperature: hourly?.first?.temperature?.toTemeratureString(for:  WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
+					 highTemperature: daily.temperatureMax?.toTemeratureString(for:  WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
+					 lowTemperature: daily.temperatureMin?.toTemeratureString(for:  WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "")
+	}
 }
 
 extension CurrentWeather {
