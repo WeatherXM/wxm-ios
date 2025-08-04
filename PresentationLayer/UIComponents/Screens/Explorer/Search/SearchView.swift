@@ -10,6 +10,7 @@ import Toolkit
 
 struct SearchView: View {
     @StateObject var viewModel: ExplorerSearchViewModel
+	var showNoActiveView: Bool = true
     @FocusState var isFocused: Bool
     /// This state variable is injected in Textfields becauses assigning directy the view model's property `searchTerm`
     /// causes a bug with multiple changes callback even if the term doesn't change
@@ -19,7 +20,9 @@ struct SearchView: View {
 
     var body: some View {
         ZStack {
-            nonActiveView
+			if showNoActiveView {
+				nonActiveView
+			}
 
             if viewModel.isSearchActive {
                 activeView

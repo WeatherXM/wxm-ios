@@ -602,6 +602,7 @@
 		26D5C0432E3D095C0040CDAF /* LocalizableString+Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C0422E3D094E0040CDAF /* LocalizableString+Weather.swift */; };
 		26D5C0462E40D2D60040CDAF /* StationRewardsChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C0452E40D2D60040CDAF /* StationRewardsChipView.swift */; };
 		26D5C0482E40D2EB0040CDAF /* StationRewardsChipViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C0472E40D2EB0040CDAF /* StationRewardsChipViewModel.swift */; };
+		26D5C04A2E40FF820040CDAF /* HomeSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C0492E40FF820040CDAF /* HomeSearchViewModel.swift */; };
 		26D6119D2A9E1CDC0099117C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */; };
 		26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D611AA2A9E21080099117C /* LocalizableConstants.swift */; };
 		26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */; };
@@ -1346,6 +1347,7 @@
 		26D5C0422E3D094E0040CDAF /* LocalizableString+Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Weather.swift"; sourceTree = "<group>"; };
 		26D5C0452E40D2D60040CDAF /* StationRewardsChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsChipView.swift; sourceTree = "<group>"; };
 		26D5C0472E40D2EB0040CDAF /* StationRewardsChipViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsChipViewModel.swift; sourceTree = "<group>"; };
+		26D5C0492E40FF820040CDAF /* HomeSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchViewModel.swift; sourceTree = "<group>"; };
 		26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		26D611AA2A9E21080099117C /* LocalizableConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableConstants.swift; sourceTree = "<group>"; };
 		26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
@@ -3013,6 +3015,7 @@
 				26C8F0082E3C993D005DC9DD /* HomeViewModel.swift */,
 				26D5C03C2E3CDA4E0040CDAF /* HomeLocationPermissionView.swift */,
 				26D5C03E2E3CE3850040CDAF /* HomeForecastView.swift */,
+				26D5C0492E40FF820040CDAF /* HomeSearchViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -4211,6 +4214,7 @@
 				26A308F92C2EE481007A029A /* ScannerView.swift in Sources */,
 				2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */,
 				26FFADA72B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift in Sources */,
+				26D5C04A2E40FF820040CDAF /* HomeSearchViewModel.swift in Sources */,
 				2672C77E2AA9BCFE00E1FDCC /* HistoryContainerViewModel.swift in Sources */,
 				267547C229A9181E008BCF40 /* HistoryView.swift in Sources */,
 				26A3B3C52B178F630002F35F /* LocalizableString+Profile.swift in Sources */,

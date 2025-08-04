@@ -38,6 +38,9 @@ class ExplorerSearchViewModel: ObservableObject {
         }
     }
 
+	internal var searhExclude: SearchExclude? {
+		nil
+	}
     weak var delegate: ExplorerSearchViewModelDelegate?
 	private let useCase: NetworkUseCaseApi?
     private var searchCancellable: AnyCancellable?
@@ -129,7 +132,9 @@ private extension ExplorerSearchViewModel {
         isLoading = true
 
 		do {
-			searchCancellable = try useCase?.search(term: searchTerm, exact: false, exclude: nil)
+			searchCancellable = try useCase?.search(term: searchTerm,
+													exact: false,
+													exclude: searhExclude)
 				.receive(on: DispatchQueue.main)
 				.sink { [weak self] response in
 					self?.isLoading = false

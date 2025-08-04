@@ -8,18 +8,21 @@
 import Foundation
 import DomainLayer
 import Toolkit
+import CoreLocation
 
 @MainActor
 class HomeViewModel: ObservableObject {
-	@Published var currentLocationState: CurrentLocationViewState = .allowLocation
+	@Published var currentLocationState: CurrentLocationViewState = .empty
 
 	let stationChipsViewModel: StationRewardsChipViewModel = ViewModelsFactory.getStationRewardsChipViewModel()
+	let searchViewModel: HomeSearchViewModel = ViewModelsFactory.getHomeSearchViewModel()
 	private let useCase: LocationForecastsUseCaseApi
 
 	init(useCase: LocationForecastsUseCaseApi) {
 		self.useCase = useCase
 
 		updateCurrentLocationState()
+		searchViewModel.delegate = self
 	}
 
 	func handleCurrentLocationTap() {
@@ -55,6 +58,23 @@ class HomeViewModel: ObservableObject {
 
 	func refresh(completion: @escaping VoidCallback) {
 		updateCurrentLocationState(completion: completion)
+	}
+
+	func handleSearchBarTap() {
+		searchViewModel.isSearchActive = true
+	}
+}
+
+extension HomeViewModel: ExplorerSearchViewModelDelegate {
+	func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?) {
+
+	}
+	
+	func searchWillBecomeActive(_ active: Bool) {
+
+	}
+	
+	func networkStatisticsTapped() {
 	}
 }
 

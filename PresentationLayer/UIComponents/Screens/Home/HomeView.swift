@@ -11,20 +11,26 @@ struct HomeView: View {
 	@StateObject var viewModel: HomeViewModel
 
     var body: some View {
-		NavigationContainerView(showBackButton: false, titleImage: .wxmNavigationLogo) {
-			navigationBarRightView
-		} content: {
-			TrackableScroller { completion in
-				viewModel.refresh(completion: completion)
+		ZStack {
+			NavigationContainerView(showBackButton: false, titleImage: .wxmNavigationLogo) {
+				navigationBarRightView
 			} content: {
-				VStack(spacing: CGFloat(.mediumSpacing)) {
-					currentLocation
+				TrackableScroller { completion in
+					viewModel.refresh(completion: completion)
+				} content: {
+					VStack(spacing: CGFloat(.mediumSpacing)) {
+						searchBar
 
-					savedLocations
+						currentLocation
+
+						savedLocations
+					}
+					.padding(CGFloat(.mediumSidePadding))
 				}
-				.padding(CGFloat(.mediumSidePadding))
+				.scrollIndicators(.hidden)
 			}
-			.scrollIndicators(.hidden)
+
+			SearchView(viewModel: viewModel.searchViewModel, showNoActiveView: false)
 		}
     }
 
@@ -35,6 +41,34 @@ struct HomeView: View {
 }
 
 private extension HomeView {
+	@ViewBuilder
+	var searchBar: some View {
+		Button {
+			viewModel.handleSearchBarTap()
+		} label: {
+			HStack(spacing: CGFloat(.minimumSpacing)) {
+				Text(FontIcon.magnifyingGlass.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+					.foregroundStyle(Color(colorEnum: .darkGrey))
+
+				Text(LocalizableString.Home.searchPlaceholder.localized)
+					.font(.system(size: CGFloat(.normalFontSize)))
+
+				Spacer()
+			}
+			.padding(CGFloat(.smallToMediumSidePadding))
+			.background {
+				Capsule()
+					.fill(Color(colorEnum: .top))
+			}
+			.overlay {
+				Capsule()
+					.stroke(Color(colorEnum: .darkGrey), lineWidth: 1.0)
+			}
+		}
+		.buttonStyle(.plain)
+	}
+
 	@ViewBuilder
 	var currentLocation: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
