@@ -20,6 +20,7 @@ public protocol MeUseCaseApi: Sendable {
 	func getUserWallet() throws -> AnyPublisher<DataResponse<Wallet, NetworkErrorResponse>, Never>
 	func saveUserWallet(address: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
 	func getDevices() throws -> AnyPublisher<Result<[DeviceDetails], NetworkErrorResponse>, Never>
+	func getCachedOwnedDevices() -> [DeviceDetails]?
 	func getOwnedDevices() throws -> AnyPublisher<Result<[DeviceDetails], NetworkErrorResponse>, Never>
 	func claimDevice(claimDeviceBody: ClaimDeviceBody) throws -> AnyPublisher<Result<DeviceDetails, NetworkErrorResponse>, Never>
 	func setFrequency(_ serialNumber: String, frequency: Frequency) async throws -> NetworkErrorResponse?

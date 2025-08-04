@@ -63,6 +63,10 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		try meRepository.getOwnedDevices().convertedToDeviceDetailsResultPublisher
 	}
 
+	public func getCachedOwnedDevices() -> [DeviceDetails]? {
+		meRepository.getCachedDevices()?.filter { $0.relation == .owned }.map { $0.toDeviceDetails }
+	}
+
     public func getDevices() throws -> AnyPublisher<Result<[DeviceDetails], NetworkErrorResponse>, Never> {
         let userDevices = try meRepository.getDevices(useCache: false)
         return userDevices.convertedToDeviceDetailsResultPublisher

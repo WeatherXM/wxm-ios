@@ -33,22 +33,18 @@ public final class MyStationsViewModel: ObservableObject {
 	private var followStates: [String: UserDeviceFollowState] = [:] {
 		didSet {
 			updateFilteredDevices()
-			updateStationRewards()
 		}
 	}
 
 	private var uploadInProgressDeviceId: String?
 	private let linkNavigation: LinkNavigation
+	let stationRewardsChipViewModel: StationRewardsChipViewModel
 
 	var isFiltersActive: Bool {
 		FilterValues.default != filters
 	}
 
-	@Published var isLoggedIn: Bool = false {
-		didSet {
-			updateStationRewards()
-		}
-	}
+	@Published var isLoggedIn: Bool = false
 	@Published var shouldShowAddButtonBadge: Bool = false {
 		didSet {
 			guard shouldShowAddButtonBadge else {
@@ -62,8 +58,6 @@ public final class MyStationsViewModel: ObservableObject {
 	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
 	@Published var announcementConfiguration: AnnouncementCardView.Configuration?
-	@Published var stationRewardsTitle: String?
-	@Published var stationRewardsValueText: String?
 	@Published var shouldShowFullScreenLoader = false
 	@Published var devices = [DeviceDetails]()
 	@Published var scrollOffsetObject: TrackableScrollOffsetObject
@@ -80,6 +74,7 @@ public final class MyStationsViewModel: ObservableObject {
 		self.remoteConfigUseCase = remoteConfigUseCase
 		self.photosUseCase = photosGalleryUseCase
 		self.linkNavigation = linkNavigation
+		self.stationRewardsChipViewModel = ViewModelsFactory.getStationRewardsChipViewModel()
 		let scrollOffsetObject: TrackableScrollOffsetObject = .init()
 		self.scrollOffsetObject = scrollOffsetObject
 		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
@@ -257,13 +252,6 @@ public final class MyStationsViewModel: ObservableObject {
 																	 .contentType: .follow])
 			performFollow(device: device)
 		}
-	}
-
-	func handleRewardAnalyticsTap() {
-		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .tokensEarnedPress])
-
-		let viewModel = ViewModelsFactory.getRewardAnalyticsViewModel(devices: getOwnedDevices())
-		Router.shared.navigateTo(.rewardAnalytics(viewModel))
 	}
 
 	func handleInfoBannerDismissTap() {
@@ -482,25 +470,6 @@ private extension MyStationsViewModel {
 				let dict = Dictionary(grouping: devices, by: { $0.isActive })
 				return [dict[true], dict[false]].flatMap { $0 ?? [] }
 		}
-	}
-
-	func updateStationRewards() {
-		guard isLoggedIn else {
-			self.stationRewardsTitle = LocalizableString.MyStations.ownDeployEarn.localized
-			self.stationRewardsValueText = nil
-
-			return
-		}
-
-		let owndedDevices = getOwnedDevices()
-		let hasOwned = !owndedDevices.isEmpty
-		let totalEarned: Double = owndedDevices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }
-
-		let noRewardsText = LocalizableString.MyStations.noRewardsYet.localized
-		let stationRewardsdText = LocalizableString.RewardAnalytics.stationRewards.localized
-
-		self.stationRewardsTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : stationRewardsdText
-		self.stationRewardsValueText = (totalEarned == 0 && hasOwned) ? nil : "\(totalEarned.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
 
 	func getOwnedDevices() -> [DeviceDetails] {

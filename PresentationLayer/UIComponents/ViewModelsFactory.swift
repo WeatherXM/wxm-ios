@@ -136,6 +136,11 @@ enum ViewModelsFactory {
 		return HomeViewModel(useCase: useCase)
 	}
 
+	static func getStationRewardsChipViewModel() -> StationRewardsChipViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
+		return StationRewardsChipViewModel(useCase: useCase)
+	}
+
 	static func getMyStationsViewModel() -> MyStationsViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		let remoteConfigUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RemoteConfigUseCaseApi.self)!
