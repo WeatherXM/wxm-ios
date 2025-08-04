@@ -11,7 +11,9 @@ struct HomeView: View {
 	@StateObject var viewModel: HomeViewModel
 
     var body: some View {
-		ScrollView {
+		TrackableScroller { completion in
+			viewModel.refresh(completion: completion)
+		} content: {
 			VStack(spacing: CGFloat(.mediumSpacing)) {
 				currentLocation
 

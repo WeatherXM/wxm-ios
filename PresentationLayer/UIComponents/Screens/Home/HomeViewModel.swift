@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 @MainActor
 class HomeViewModel: ObservableObject {
@@ -50,16 +51,25 @@ class HomeViewModel: ObservableObject {
 				break
 		}
 	}
+
+	func refresh(completion: @escaping VoidCallback) {
+		updateCurrentLocationState(completion: completion)
+	}
 }
 
 private extension HomeViewModel {
-	func updateCurrentLocationState() {
+	func updateCurrentLocationState(completion: VoidCallback? = nil) {
 		guard useCase.locationAuthorization == .authorized else {
 			currentLocationState = .allowLocation
+			completion?()
 			return
 		}
 
 		Task { @MainActor in
+			defer {
+				completion?()
+			}
+			
 			do {
 				let userLocation = try await useCase.getUserLocation().get()
 				let result = try await useCase.getForecast(for: userLocation).toAsync().result
