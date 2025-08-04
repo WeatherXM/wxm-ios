@@ -13,6 +13,7 @@ import Toolkit
 class HomeViewModel: ObservableObject {
 	@Published var currentLocationState: CurrentLocationViewState = .allowLocation
 
+	let stationChipsViewModel: StationRewardsChipViewModel = ViewModelsFactory.getStationRewardsChipViewModel()
 	private let useCase: LocationForecastsUseCaseApi
 
 	init(useCase: LocationForecastsUseCaseApi) {

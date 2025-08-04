@@ -11,18 +11,27 @@ struct HomeView: View {
 	@StateObject var viewModel: HomeViewModel
 
     var body: some View {
-		TrackableScroller { completion in
-			viewModel.refresh(completion: completion)
+		NavigationContainerView(showBackButton: false, titleImage: .wxmNavigationLogo) {
+			navigationBarRightView
 		} content: {
-			VStack(spacing: CGFloat(.mediumSpacing)) {
-				currentLocation
+			TrackableScroller { completion in
+				viewModel.refresh(completion: completion)
+			} content: {
+				VStack(spacing: CGFloat(.mediumSpacing)) {
+					currentLocation
 
-				savedLocations
+					savedLocations
+				}
+				.padding(CGFloat(.mediumSidePadding))
 			}
-			.padding(CGFloat(.mediumSidePadding))
+			.scrollIndicators(.hidden)
 		}
-		.scrollIndicators(.hidden)
     }
+
+	@ViewBuilder
+	var navigationBarRightView: some View {
+		StationRewardsChipView(viewModel: viewModel.stationChipsViewModel)
+	}
 }
 
 private extension HomeView {
