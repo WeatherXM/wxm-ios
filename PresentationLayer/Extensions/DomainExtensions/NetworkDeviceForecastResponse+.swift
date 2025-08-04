@@ -18,15 +18,15 @@ extension NetworkDeviceForecastResponse {
 	}
 
 	func homeLocationForecast() -> HomeForecastView.LocationForecast? {
-		guard let daily = daily,
+		guard let daily,
 			  let hourly = hourly,
-			  let temperature = hourly.first(where: { ($0.timestamp?.timestampToDate() ?? .distantPast) >= Date() })?.temperature else {
+			  let currentWeather = hourly.first(where: { ($0.timestamp?.timestampToDate() ?? .distantPast) >= Date() }),
+			  let temperature = currentWeather.temperature else {
 			return nil
 		}
 
-
 		return .init(address: address ?? "",
-					 icon: daily.icon ?? "",
+					 icon: currentWeather.icon ?? "",
 					 temperature: temperature.toTemeratureString(for:  WeatherUnitsManager.default.temperatureUnit, decimals: 0),
 					 highTemperature: daily.temperatureMax?.toTemeratureString(for:  WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
 					 lowTemperature: daily.temperatureMin?.toTemeratureString(for:  WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "")
