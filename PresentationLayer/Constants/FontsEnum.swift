@@ -88,6 +88,7 @@ enum FontIcon: String {
 	case sliders
 	case sparkles
 	case split
+	case star
 	case sun
 	case temperatureThreeQuarters = "temperature-three-quarters"
 	case threeDots = "ellipsis-vertical"

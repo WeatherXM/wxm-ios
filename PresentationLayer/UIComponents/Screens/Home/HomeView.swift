@@ -113,6 +113,38 @@ private extension HomeView {
 
 				Spacer()
 			}
+
+			savedLocationsEmpty
+		}
+	}
+
+	@ViewBuilder
+	var savedLocationsEmpty: some View {
+		HStack {
+			Spacer()
+
+			VStack(spacing: CGFloat(.smallSpacing)) {
+				Text(FontIcon.star.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+					.foregroundStyle(Color(colorEnum: .wxmPrimary))
+
+				Text(LocalizableString.Home.savedLocationsEmptyTitle.localized)
+					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Text(LocalizableString.Home.savedLocationsEmptyDescription.localized)
+					.font(.system(size: CGFloat(.caption)))
+					.foregroundStyle(Color(colorEnum: .darkGrey))
+					.multilineTextAlignment(.center)
+			}
+
+			Spacer()
+		}
+		.padding(.vertical, CGFloat(.mediumSidePadding))
+		.padding(.horizontal, CGFloat(.largeSidePadding))
+		.overlay {
+			RoundedRectangle(cornerRadius: CGFloat(.cardCornerRadius))
+				.stroke(Color(colorEnum: .top), style: StrokeStyle(lineWidth: 2, dash: [4, 4]))
 		}
 	}
 }
