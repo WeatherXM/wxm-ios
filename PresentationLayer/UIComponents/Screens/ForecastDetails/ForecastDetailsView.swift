@@ -25,7 +25,7 @@ struct ForecastDetailsView: View {
 						NavigationTitleView(title: .constant(viewModel.navigationTitle),
 											subtitle: .constant(viewModel.navigationSubtitle)) {
 							Group {
-								if let faIcon = viewModel.followState?.state.FAIcon {
+								if let faIcon = viewModel.fontIconState {
 									Text(faIcon.icon.rawValue)
 										.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
 										.foregroundColor(Color(colorEnum: faIcon.color))

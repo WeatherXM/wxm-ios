@@ -13,8 +13,7 @@ import Toolkit
 @MainActor
 class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
-	let device: DeviceDetails
-	let followState: UserDeviceFollowState?
+	let fontIconState: StateFontAwesome?
 	let navigationTitle: String
 	let navigationSubtitle: String?
 	@Published private(set) var isTransitioning: Bool = false
@@ -39,10 +38,9 @@ class ForecastDetailsViewModel: ObservableObject {
 
 	init(configuration: Configuration) {
 		self.forecasts = configuration.forecasts
-		self.device = configuration.device
-		self.followState = configuration.followState
-		self.navigationTitle = device.displayName
-		self.navigationSubtitle = device.friendlyName.isNilOrEmpty ? nil : device.name
+		self.fontIconState = configuration.fontAwesomeState
+		self.navigationTitle = configuration.navigationTitle
+		self.navigationSubtitle = configuration.navigationSubtitle
 		if !forecasts.isEmpty {
 			self.selectedForecastIndex = configuration.selectedforecastIndex
 		}
@@ -178,7 +176,7 @@ private extension ForecastDetailsViewModel {
 
 extension ForecastDetailsViewModel: HashableViewModel {
 	nonisolated func hash(into hasher: inout Hasher) {
-		hasher.combine(device.id)
+		hasher.combine(navigationTitle)
 	}
 }
 
@@ -187,7 +185,21 @@ extension ForecastDetailsViewModel {
 		let forecasts: [NetworkDeviceForecastResponse]
 		let selectedforecastIndex: Int
 		let selectedHour: Int?
-		let device: DeviceDetails
-		let followState: UserDeviceFollowState?
+		let navigationTitle: String
+		let navigationSubtitle: String?
+		var fontAwesomeState: StateFontAwesome?
+
+		init(forecasts: [NetworkDeviceForecastResponse],
+			 selectedforecastIndex: Int,
+			 selectedHour: Int?,
+			 device: DeviceDetails,
+			 followState: UserDeviceFollowState?) {
+			self.forecasts = forecasts
+			self.selectedforecastIndex = selectedforecastIndex
+			self.selectedHour = selectedHour
+			self.navigationTitle = device.displayName
+			self.navigationSubtitle = device.friendlyName.isNilOrEmpty ? nil : device.name
+			self.fontAwesomeState = followState?.state.FAIcon
+		}
 	}
 }
