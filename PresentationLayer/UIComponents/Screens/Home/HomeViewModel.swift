@@ -17,6 +17,7 @@ class HomeViewModel: ObservableObject {
 	let stationChipsViewModel: StationRewardsChipViewModel = ViewModelsFactory.getStationRewardsChipViewModel()
 	let searchViewModel: HomeSearchViewModel = ViewModelsFactory.getHomeSearchViewModel()
 	private let useCase: LocationForecastsUseCaseApi
+	private var currentForecast: [NetworkDeviceForecastResponse]?
 
 	init(useCase: LocationForecastsUseCaseApi) {
 		self.useCase = useCase
@@ -49,8 +50,10 @@ class HomeViewModel: ObservableObject {
 						break
 				}
 			case .forecast(let locationForecast):
-				// navigate to forecast details
-				break
+				guard let currentForecast, let location = locationForecast.location else {
+					return
+				}
+				navigateToForecast(currentForecast, title: LocalizableString.Home.currentLocation.localized, location: location)
 			case .empty:
 				break
 		}
@@ -97,10 +100,12 @@ private extension HomeViewModel {
 				switch result {
 					case .success(let forecasts):
 						guard let forecast = forecasts.first,
-							  let locationForecast = forecast.homeLocationForecast() else {
+							  var locationForecast = forecast.homeLocationForecast() else {
 							currentLocationState = .empty
 							return
 						}
+						locationForecast.location = userLocation
+						currentForecast = forecasts
 						currentLocationState = .forecast(locationForecast)
 					case .failure(let error):
 						let uiInfo = error.uiInfo
@@ -112,6 +117,21 @@ private extension HomeViewModel {
 				print(error)
 			}
 		}
+	}
 
+	func navigateToForecast(_ forecasts: [NetworkDeviceForecastResponse], title: String?, location: CLLocationCoordinate2D) {
+		guard let timezone = forecasts.first?.tz.toTimezone else {
+			return
+		}
+
+		let selectedHour = Date().getHour(with: timezone)
+		let conf = ForecastDetailsViewModel.Configuration(forecasts: forecasts,
+														  selectedforecastIndex: 0,
+														  selectedHour: selectedHour,
+														  navigationTitle: title ?? forecasts.first?.address ?? "",
+														  navigationSubtitle: title == nil ? nil : forecasts.first?.address)
+
+		let viewModel = ViewModelsFactory.getLocationForecastDetailsViewModel(configuration: conf, location: location)
+		Router.shared.navigateTo(.forecastDetails(viewModel))
 	}
 }

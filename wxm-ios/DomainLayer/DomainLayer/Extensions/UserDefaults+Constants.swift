@@ -49,6 +49,7 @@ public extension UserDefaults {
 		case stationNotificationOptions = "com.weatherxm.app.UserDefaults.Key.StationNotificationOptions"
 		case stationNotificationEnabled = "com.weatherxm.app.UserDefaults.Key.StationNotificationEnabled"
 		case stationAlertNotificationsTimestamps = "com.weatherxm.app.UserDefaults.Key.StationAlertNotificationsTimestamps"
+		case savedLocations = "com.weatherxm.app.UserDefaults.Key.SavedLocations"
 
         // MARK: - UserDefaultEntry
 
@@ -66,7 +67,8 @@ public extension UserDefaults {
 									  .isAddButtonIndicationSeen,
 									  .stationNotificationOptions,
 									  .stationNotificationEnabled,
-									  .stationAlertNotificationsTimestamps]
+									  .stationAlertNotificationsTimestamps,
+									  .savedLocations]
             return keys.map { $0.rawValue }
         }
     }

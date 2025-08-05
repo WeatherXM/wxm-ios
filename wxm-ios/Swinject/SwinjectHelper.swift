@@ -251,7 +251,8 @@ class SwinjectHelper: SwinjectInterface {
 		// MARK: - Location Forecast
 
 		container.register(LocationForecastsUseCaseApi.self) { resolver in
-			LocationForecastsUseCase(explorerRepository: resolver.resolve(ExplorerRepository.self)!)
+			LocationForecastsUseCase(explorerRepository: resolver.resolve(ExplorerRepository.self)!,
+									 userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!)
 		}
 
         // MARK: - Return the Container

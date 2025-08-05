@@ -13,9 +13,9 @@ import Toolkit
 @MainActor
 class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
-	let fontIconState: StateFontAwesome?
 	let navigationTitle: String
 	let navigationSubtitle: String?
+	@Published var fontIconState: StateFontAwesome?
 	@Published private(set) var isTransitioning: Bool = false
 	@Published private(set) var chartDelegate: ChartDelegate = ChartDelegate()
 	@Published var selectedForecastIndex: Int? {
@@ -35,6 +35,9 @@ class ForecastDetailsViewModel: ObservableObject {
 	lazy var dailyItems: [StationForecastMiniCardView.Item] = {
 		getDailyItems()
 	}()
+	var isTopButtonEnabled: Bool {
+		false
+	}
 
 	init(configuration: Configuration) {
 		self.forecasts = configuration.forecasts
@@ -44,6 +47,10 @@ class ForecastDetailsViewModel: ObservableObject {
 		if !forecasts.isEmpty {
 			self.selectedForecastIndex = configuration.selectedforecastIndex
 		}
+	}
+
+	func handleTopButtonTap() {
+		
 	}
 }
 
@@ -187,7 +194,7 @@ extension ForecastDetailsViewModel {
 		let selectedHour: Int?
 		let navigationTitle: String
 		let navigationSubtitle: String?
-		var fontAwesomeState: StateFontAwesome?
+		var fontAwesomeState: StateFontAwesome? = nil
 
 		init(forecasts: [NetworkDeviceForecastResponse],
 			 selectedforecastIndex: Int,
@@ -200,6 +207,20 @@ extension ForecastDetailsViewModel {
 			self.navigationTitle = device.displayName
 			self.navigationSubtitle = device.friendlyName.isNilOrEmpty ? nil : device.name
 			self.fontAwesomeState = followState?.state.FAIcon
+		}
+
+		init(forecasts: [NetworkDeviceForecastResponse],
+			 selectedforecastIndex: Int,
+			 selectedHour: Int?,
+			 navigationTitle: String,
+			 navigationSubtitle: String? = nil,
+			 fontAwesomeState: StateFontAwesome? = nil) {
+			self.forecasts = forecasts
+			self.selectedforecastIndex = selectedforecastIndex
+			self.selectedHour = selectedHour
+			self.navigationTitle = navigationTitle
+			self.navigationSubtitle = navigationSubtitle
+			self.fontAwesomeState = fontAwesomeState
 		}
 	}
 }

@@ -191,6 +191,14 @@ enum ViewModelsFactory {
 		ForecastDetailsViewModel(configuration: configuration)
 	}
 
+	static func getLocationForecastDetailsViewModel(configuration: ForecastDetailsViewModel.Configuration,
+													location: CLLocationCoordinate2D) -> LocationForecastViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(LocationForecastsUseCaseApi.self)!
+		return LocationForecastViewModel(configuration: configuration,
+										 location: location,
+										 useCase: useCase)
+	}
+
 	static func getClaimStationSelectionViewModel() -> ClaimStationSelectionViewModel {
 		ClaimStationSelectionViewModel()
 	}

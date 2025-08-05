@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DomainLayer
+import CoreLocation
 
 struct HomeForecastView: View {
 	let forecast: LocationForecast
@@ -71,6 +72,7 @@ extension HomeForecastView {
 		let temperature: String
 		let highTemperature: String
 		let lowTemperature: String
+		var location: CLLocationCoordinate2D?
 	}
 }
 

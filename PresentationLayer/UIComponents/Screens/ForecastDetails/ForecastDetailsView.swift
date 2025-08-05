@@ -26,9 +26,14 @@ struct ForecastDetailsView: View {
 											subtitle: .constant(viewModel.navigationSubtitle)) {
 							Group {
 								if let faIcon = viewModel.fontIconState {
-									Text(faIcon.icon.rawValue)
-										.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
-										.foregroundColor(Color(colorEnum: faIcon.color))
+									Button {
+										viewModel.handleTopButtonTap()
+									} label: {
+										Text(faIcon.icon.rawValue)
+											.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
+											.foregroundColor(Color(colorEnum: faIcon.color))
+									}
+									.disabled(!viewModel.isTopButtonEnabled)
 								} else {
 									EmptyView()
 								}
