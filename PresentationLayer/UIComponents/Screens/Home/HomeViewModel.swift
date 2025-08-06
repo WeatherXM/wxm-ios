@@ -9,6 +9,7 @@ import Foundation
 import DomainLayer
 import Toolkit
 import CoreLocation
+import Combine
 
 @MainActor
 class HomeViewModel: ObservableObject {
@@ -24,6 +25,7 @@ class HomeViewModel: ObservableObject {
 	let searchViewModel: HomeSearchViewModel = ViewModelsFactory.getHomeSearchViewModel()
 	private let useCase: LocationForecastsUseCaseApi
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
+	private var cancellableSet: Set<AnyCancellable> = []
 
 	init(useCase: LocationForecastsUseCaseApi) {
 		self.useCase = useCase
@@ -34,6 +36,11 @@ class HomeViewModel: ObservableObject {
 
 		refresh(completion: nil)
 		searchViewModel.delegate = self
+
+		let publisher = self.useCase.savedLocationsPublisher
+		publisher.sink { [weak self] locations in
+			self?.refresh(completion: nil)
+		}.store(in: &cancellableSet)
 	}
 
 	func handleCurrentLocationTap() {

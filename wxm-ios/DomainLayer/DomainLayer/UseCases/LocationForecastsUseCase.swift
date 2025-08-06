@@ -9,20 +9,20 @@ import Foundation
 import Toolkit
 import CoreLocation
 import Alamofire
-import Combine
+@preconcurrency import Combine
 
 public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 
 	nonisolated(unsafe) private let explorerRepository: ExplorerRepository
 	private let userDefaultsRepository: UserDefaultsRepository
 	private let savedLocationsUDKey = UserDefaults.GenericKey.savedLocations.rawValue
-
+	nonisolated(unsafe) private let notificationsPublisher: NotificationCenter.Publisher = NotificationCenter.default.publisher(for: .savedLocationsUpdated)
 	public var locationAuthorization: WXMLocationManager.Status {
 		explorerRepository.locationAuthorization
 	}
 
-	public var savedLocationsPublisher: AnyPublisher<[CLLocationCoordinate2D], Never> {
-		Just([]).eraseToAnyPublisher()
+	public var savedLocationsPublisher: NotificationCenter.Publisher {
+		notificationsPublisher
 	}
 
 	public init(explorerRepository: ExplorerRepository, userDefaultsRepository: UserDefaultsRepository) {
@@ -56,12 +56,19 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 		if let data = try? JSONEncoder().encode(locations.map(CodableCoordinate.init)) {
 			userDefaultsRepository.saveValue(key: savedLocationsUDKey, value: data)
 		}
+
+		NotificationCenter.default.post(name: .savedLocationsUpdated, object: nil)
 	}
 
 	public func removeLocation(_ location: CLLocationCoordinate2D) {
 		var locations = getSavedLocations()
 		locations.removeAll(where: { $0 ~== location})
-		userDefaultsRepository.saveValue(key: savedLocationsUDKey, value: locations)
+
+		if let data = try? JSONEncoder().encode(locations.map(CodableCoordinate.init)) {
+			userDefaultsRepository.saveValue(key: savedLocationsUDKey, value: data)
+		}
+
+		NotificationCenter.default.post(name: .savedLocationsUpdated, object: nil)
 	}
 }
 
