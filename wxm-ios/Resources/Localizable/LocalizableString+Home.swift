@@ -12,6 +12,7 @@ extension LocalizableString {
 		case searchPlaceholder
 		case currentLocation
 		case allowLocationPermission
+		case locations
 		case savedLocations
 		case savedLocationsEmptyTitle
 		case savedLocationsEmptyDescription
@@ -32,6 +33,8 @@ extension LocalizableString.Home: WXMLocalizable {
 				"home_current_location"
 			case .allowLocationPermission:
 				"home_allow_location_permission"
+			case .locations:
+				"home_locations"
 			case .savedLocations:
 				"home_saved_locations"
 			case .savedLocationsEmptyTitle:

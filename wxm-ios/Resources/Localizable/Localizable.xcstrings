@@ -5192,6 +5192,17 @@
         }
       }
     },
+    "home_locations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Locations"
+          }
+        }
+      }
+    },
     "home_save_locations_empty_description" : {
       "extractionState" : "manual",
       "localizations" : {

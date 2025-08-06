@@ -108,15 +108,27 @@ class HomeViewModel: ObservableObject {
 
 extension HomeViewModel: ExplorerSearchViewModelDelegate {
 	func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?) {
+		LoaderView.shared.show()
 
-	}
-	
-	func searchWillBecomeActive(_ active: Bool) {
+		Task { @MainActor in
+			let result = try await useCase.getForecast(for: coordinates).toAsync().result
 
+			LoaderView.shared.dismiss()
+
+			switch result {
+				case .success(let forecasts):
+					navigateToForecast(forecasts, title: nil, location: coordinates)
+				case .failure(let error):
+					if let message = error.uiInfo.description?.attributedMarkdown {
+						Toast.shared.show(text: message)
+					}
+			}
+		}
 	}
-	
-	func networkStatisticsTapped() {
-	}
+
+	func searchWillBecomeActive(_ active: Bool) { }
+
+	func networkStatisticsTapped() { }
 }
 
 private extension HomeViewModel {
