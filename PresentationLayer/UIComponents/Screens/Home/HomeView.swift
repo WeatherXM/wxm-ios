@@ -15,19 +15,21 @@ struct HomeView: View {
 			NavigationContainerView(showBackButton: false, titleImage: .wxmNavigationLogo) {
 				navigationBarRightView
 			} content: {
-				TrackableScroller { completion in
-					viewModel.refresh(completion: completion)
-				} content: {
-					VStack(spacing: CGFloat(.mediumSpacing)) {
-						searchBar
+				ZStack {
+					TrackableScroller(offsetObject: viewModel.scrollOffsetObject) { completion in
+						viewModel.refresh(completion: completion)
+					} content: {
+						VStack(spacing: CGFloat(.mediumSpacing)) {
+							currentLocation
 
-						currentLocation
-
-						savedLocations
+							savedLocations
+						}
+						.padding(CGFloat(.mediumSidePadding))
 					}
-					.padding(CGFloat(.mediumSidePadding))
+					.scrollIndicators(.hidden)
+
+					searchButton
 				}
-				.scrollIndicators(.hidden)
 				.spinningLoader(show: $viewModel.isLoading, hideContent: true)
 				.fail(show: $viewModel.isFailed, obj: viewModel.failObj)
 			}
@@ -43,34 +45,6 @@ struct HomeView: View {
 }
 
 private extension HomeView {
-	@ViewBuilder
-	var searchBar: some View {
-		Button {
-			viewModel.handleSearchBarTap()
-		} label: {
-			HStack(spacing: CGFloat(.minimumSpacing)) {
-				Text(FontIcon.magnifyingGlass.rawValue)
-					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-					.foregroundStyle(Color(colorEnum: .darkGrey))
-
-				Text(LocalizableString.Home.searchPlaceholder.localized)
-					.font(.system(size: CGFloat(.normalFontSize)))
-
-				Spacer()
-			}
-			.padding(CGFloat(.smallToMediumSidePadding))
-			.background {
-				Capsule()
-					.fill(Color(colorEnum: .top))
-			}
-			.overlay {
-				Capsule()
-					.stroke(Color(colorEnum: .darkGrey), lineWidth: 1.0)
-			}
-		}
-		.buttonStyle(.plain)
-	}
-
 	@ViewBuilder
 	var currentLocation: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -167,6 +141,32 @@ private extension HomeView {
 			}
 		}
 	}
+
+	@ViewBuilder
+	var searchButton: some View {
+		VStack {
+			Spacer()
+
+			HStack {
+				Spacer()
+				Button {
+					viewModel.handleSearchButtonTap()
+				} label: {
+					Text(FontIcon.magnifyingGlass.rawValue)
+						.font(.fontAwesome(font: .FAPro, size: CGFloat(.largeTitleFontSize)))
+						.foregroundStyle(Color(colorEnum: .top))
+				}
+				.frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
+				.background(Color(colorEnum: .wxmPrimary))
+				.cornerRadius(CGFloat(.cardCornerRadius))
+				.shadow(radius: ShadowEnum.addButton.radius, x: ShadowEnum.addButton.xVal, y: ShadowEnum.addButton.yVal)
+			}
+		}
+		.padding(CGFloat(.defaultSidePadding))
+		.opacity(viewModel.isSearchButtonVisible ? 1.0 : 0.0)
+		.animation(.easeIn(duration: 0.2), value: viewModel.isSearchButtonVisible)
+	}
+
 }
 
 #Preview {

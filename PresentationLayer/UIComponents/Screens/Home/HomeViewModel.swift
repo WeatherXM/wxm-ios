@@ -14,6 +14,8 @@ import CoreLocation
 class HomeViewModel: ObservableObject {
 	@Published var currentLocationState: CurrentLocationViewState = .empty
 	@Published var savedLocationsState: SavedLocationsViewState = .empty
+	@Published var scrollOffsetObject: TrackableScrollOffsetObject
+	@Published var isSearchButtonVisible: Bool = true
 	@Published var isLoading: Bool = false
 	@Published var isFailed = false
 	private(set) var failObj: FailSuccessStateObject?
@@ -21,9 +23,14 @@ class HomeViewModel: ObservableObject {
 	let stationChipsViewModel: StationRewardsChipViewModel = ViewModelsFactory.getStationRewardsChipViewModel()
 	let searchViewModel: HomeSearchViewModel = ViewModelsFactory.getHomeSearchViewModel()
 	private let useCase: LocationForecastsUseCaseApi
+	private let tabBarVisibilityHandler: TabBarVisibilityHandler
 
 	init(useCase: LocationForecastsUseCaseApi) {
 		self.useCase = useCase
+		let scrollOffsetObject: TrackableScrollOffsetObject = .init()
+		self.scrollOffsetObject = scrollOffsetObject
+		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
+		self.tabBarVisibilityHandler.$areElementsVisible.assign(to: &$isSearchButtonVisible)
 
 		refresh(completion: nil)
 		searchViewModel.delegate = self
@@ -69,8 +76,6 @@ class HomeViewModel: ObservableObject {
 				self.currentLocationState = try await getCurrentLocationState()
 			} catch let error as NetworkErrorResponse {
 				let info = error.uiInfo
-				let title = info.title
-				let description = info.description
 				let obj = info.defaultFailObject(type: .home) {  [weak self] in
 					self?.isFailed = false
 					self?.failObj = nil
@@ -89,7 +94,7 @@ class HomeViewModel: ObservableObject {
 		}
 	}
 
-	func handleSearchBarTap() {
+	func handleSearchButtonTap() {
 		searchViewModel.isSearchActive = true
 	}
 
