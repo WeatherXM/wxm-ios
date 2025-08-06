@@ -10,6 +10,7 @@ import Foundation
 enum SuccessFailEnum: CustomStringConvertible {
 	case settings
 	case register
+	case home
 	case weatherStations
 	case claimDeviceFlow
 	case otaFlow
@@ -42,6 +43,8 @@ enum SuccessFailEnum: CustomStringConvertible {
 				return ""
 			case .register:
 				return Constants.noActivationEmailTitle
+			case .home:
+				return Constants.home
 			case .weatherStations:
 				return ""
 			case .claimDeviceFlow:
@@ -98,6 +101,7 @@ enum SuccessFailEnum: CustomStringConvertible {
 
 private extension SuccessFailEnum {
 	enum Constants {
+		static let home = "Home"
 		static let weatherStationOffline = "Weather Station Offline"
 		static let cannotClaimDeviceTitleEmail = "Cannot claim device"
 		static let cannotCompleteOTATitleEmail = "Cannot complete OTA update"

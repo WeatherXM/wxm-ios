@@ -17,7 +17,7 @@ extension NetworkDeviceForecastResponse {
 		return daily?.toForecastTemperatureItem(with: timezone, scrollGraphType: scrollGraphType)
 	}
 
-	func homeLocationForecast() -> HomeForecastView.LocationForecast? {
+	func homeLocationForecast() -> LocationForecast? {
 		guard let daily,
 			  let hourly = hourly,
 			  let currentWeather = hourly.first(where: { ($0.timestamp?.timestampToDate() ?? .distantPast) >= Date() }),

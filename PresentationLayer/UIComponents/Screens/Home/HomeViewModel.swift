@@ -13,16 +13,19 @@ import CoreLocation
 @MainActor
 class HomeViewModel: ObservableObject {
 	@Published var currentLocationState: CurrentLocationViewState = .empty
+	@Published var savedLocationsState: SavedLocationsViewState = .empty
+	@Published var isLoading: Bool = false
+	@Published var isFailed = false
+	private(set) var failObj: FailSuccessStateObject?
 
 	let stationChipsViewModel: StationRewardsChipViewModel = ViewModelsFactory.getStationRewardsChipViewModel()
 	let searchViewModel: HomeSearchViewModel = ViewModelsFactory.getHomeSearchViewModel()
 	private let useCase: LocationForecastsUseCaseApi
-	private var currentForecast: [NetworkDeviceForecastResponse]?
 
 	init(useCase: LocationForecastsUseCaseApi) {
 		self.useCase = useCase
 
-		updateCurrentLocationState()
+		refresh(completion: nil)
 		searchViewModel.delegate = self
 	}
 
@@ -44,27 +47,57 @@ class HomeViewModel: ObservableObject {
 					case .notDetermined:
 						Task { @MainActor in
 							let _ = await useCase.getUserLocation()
-							updateCurrentLocationState()
+							refresh(completion: nil)
 						}
 					case .unknown:
 						break
 				}
 			case .forecast(let locationForecast):
-				guard let currentForecast, let location = locationForecast.location else {
-					return
-				}
-				navigateToForecast(currentForecast, title: LocalizableString.Home.currentLocation.localized, location: location)
+				handleTapOn(locationForecast: locationForecast, title: LocalizableString.Home.currentLocation.localized)
 			case .empty:
 				break
 		}
 	}
 
-	func refresh(completion: @escaping VoidCallback) {
-		updateCurrentLocationState(completion: completion)
+	func refresh(completion: VoidCallback?) {
+		isLoading = (completion == nil)
+
+		Task { @MainActor in
+			do {
+				let forecasts = try await fetchForecasts()
+				self.savedLocationsState = forecasts.isEmpty ? .empty : .forecasts(forecasts)
+				self.currentLocationState = try await getCurrentLocationState()
+			} catch let error as NetworkErrorResponse {
+				let info = error.uiInfo
+				let title = info.title
+				let description = info.description
+				let obj = info.defaultFailObject(type: .home) {  [weak self] in
+					self?.isFailed = false
+					self?.failObj = nil
+					self?.refresh(completion: nil)
+				}
+
+				self.failObj = obj
+				self.isFailed = true
+
+			} catch {
+				print(error)
+			}
+
+			self.isLoading = false
+			completion?()
+		}
 	}
 
 	func handleSearchBarTap() {
 		searchViewModel.isSearchActive = true
+	}
+
+	func handleTapOn(locationForecast: LocationForecast, title: String? = nil) {
+		guard let currentForecast = locationForecast.forecasts, let location = locationForecast.location else {
+			return
+		}
+		navigateToForecast(currentForecast, title: title, location: location)
 	}
 }
 
@@ -82,40 +115,60 @@ extension HomeViewModel: ExplorerSearchViewModelDelegate {
 }
 
 private extension HomeViewModel {
-	func updateCurrentLocationState(completion: VoidCallback? = nil) {
+	func getCurrentLocationState() async throws -> CurrentLocationViewState {
 		guard useCase.locationAuthorization == .authorized else {
-			currentLocationState = .allowLocation
-			completion?()
-			return
+			return .allowLocation
 		}
 
-		Task { @MainActor in
-			defer {
-				completion?()
-			}
-			
-			do {
-				let userLocation = try await useCase.getUserLocation().get()
-				let result = try await useCase.getForecast(for: userLocation).toAsync().result
-				switch result {
-					case .success(let forecasts):
-						guard let forecast = forecasts.first,
-							  var locationForecast = forecast.homeLocationForecast() else {
-							currentLocationState = .empty
-							return
-						}
-						locationForecast.location = userLocation
-						currentForecast = forecasts
-						currentLocationState = .forecast(locationForecast)
-					case .failure(let error):
-						let uiInfo = error.uiInfo
-						Toast.shared.show(text: uiInfo.description?.attributedMarkdown ?? "")
-						currentLocationState = .empty
+		let userLocation = try await useCase.getUserLocation().get()
+		let result = try await useCase.getForecast(for: userLocation).toAsync().result
+		switch result {
+			case .success(let forecasts):
+				guard let forecast = forecasts.first,
+					  var locationForecast = forecast.homeLocationForecast() else {
+					return .empty
 				}
+				locationForecast.location = userLocation
+				locationForecast.forecasts = forecasts
+				return .forecast(locationForecast)
+			case .failure(let error):
+				throw error
+		}
+	}
 
-			} catch {
-				print(error)
+	func fetchForecasts() async throws -> [LocationForecast] {
+		let savedLocations = useCase.getSavedLocations()
+		return try await withThrowingTaskGroup(of: LocationForecast.self, returning: [LocationForecast].self) { group in
+			for location in savedLocations {
+				group.addTask { [weak self] in
+					guard let self else {
+						fatalError("Self is nil")
+					}
+
+					let res = try await self.useCase.getForecast(for: location).toAsync().result
+					switch res {
+						case .success(let forecasts):
+							guard var locationForecast = forecasts.first?.homeLocationForecast() else {
+								throw NSError(domain: "", code: 0, userInfo: nil)
+							}
+
+							locationForecast.forecasts = forecasts
+							locationForecast.location = location
+
+							return locationForecast
+						case .failure(let error):
+							throw error
+
+					}
+				}
 			}
+
+			var locationForecasts: [LocationForecast] = []
+			while let locationForecast = try await group.next() {
+				locationForecasts.append(locationForecast)
+			}
+
+			return locationForecasts
 		}
 	}
 

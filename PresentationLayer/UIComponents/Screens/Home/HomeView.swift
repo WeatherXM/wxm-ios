@@ -28,6 +28,8 @@ struct HomeView: View {
 					.padding(CGFloat(.mediumSidePadding))
 				}
 				.scrollIndicators(.hidden)
+				.spinningLoader(show: $viewModel.isLoading, hideContent: true)
+				.fail(show: $viewModel.isFailed, obj: viewModel.failObj)
 			}
 
 			SearchView(viewModel: viewModel.searchViewModel, showNoActiveView: false)
@@ -114,7 +116,12 @@ private extension HomeView {
 				Spacer()
 			}
 
-			savedLocationsEmpty
+			switch viewModel.savedLocationsState {
+				case .empty:
+					savedLocationsEmpty
+				case .forecasts(let forecasts):
+					savedLocationsList(forecasts)
+			}
 		}
 	}
 
@@ -145,6 +152,19 @@ private extension HomeView {
 		.overlay {
 			RoundedRectangle(cornerRadius: CGFloat(.cardCornerRadius))
 				.stroke(Color(colorEnum: .top), style: StrokeStyle(lineWidth: 2, dash: [4, 4]))
+		}
+	}
+
+	@ViewBuilder
+	func savedLocationsList(_ forecasts: [LocationForecast]) -> some View {
+		VStack(spacing: CGFloat(.mediumSpacing)) {
+			ForEach(forecasts) { forecast in
+				Button {
+					viewModel.handleTapOn(locationForecast: forecast)
+				} label: {
+					HomeForecastView(forecast: forecast)
+				}
+			}
 		}
 	}
 }

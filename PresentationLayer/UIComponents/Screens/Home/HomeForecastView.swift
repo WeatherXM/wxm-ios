@@ -65,17 +65,6 @@ struct HomeForecastView: View {
     }
 }
 
-extension HomeForecastView {
-	struct LocationForecast {
-		let address: String
-		let icon: String
-		let temperature: String
-		let highTemperature: String
-		let lowTemperature: String
-		var location: CLLocationCoordinate2D?
-	}
-}
-
 #Preview {
 	ZStack {
 		Color(colorEnum: .bg)
