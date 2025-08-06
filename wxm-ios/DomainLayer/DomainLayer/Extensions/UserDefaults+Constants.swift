@@ -50,6 +50,7 @@ public extension UserDefaults {
 		case stationNotificationEnabled = "com.weatherxm.app.UserDefaults.Key.StationNotificationEnabled"
 		case stationAlertNotificationsTimestamps = "com.weatherxm.app.UserDefaults.Key.StationAlertNotificationsTimestamps"
 		case savedLocations = "com.weatherxm.app.UserDefaults.Key.SavedLocations"
+		case savedForecasts = "com.weatherxm.app.UserDefaults.Key.SavedForecasts"
 
         // MARK: - UserDefaultEntry
 
