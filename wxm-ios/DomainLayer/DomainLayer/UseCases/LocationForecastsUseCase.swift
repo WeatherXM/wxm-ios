@@ -15,8 +15,9 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 
 	nonisolated(unsafe) private let explorerRepository: ExplorerRepository
 	private let userDefaultsRepository: UserDefaultsRepository
+	nonisolated(unsafe) private let keychainRepository: KeychainRepository
 	private let savedLocationsUDKey = UserDefaults.GenericKey.savedLocations.rawValue
-	private let forecastsCacheKey = UserDefaults.GenericKey.savedLocations.rawValue
+	private let forecastsCacheKey = UserDefaults.GenericKey.savedForecasts.rawValue
 	private let cacheInterval: TimeInterval = 15 * 60 * 60
 	nonisolated(unsafe) private let notificationsPublisher: NotificationCenter.Publisher = NotificationCenter.default.publisher(for: .savedLocationsUpdated)
 	nonisolated(unsafe) private let cache: TimeValidationCache<[NetworkDeviceForecastResponse]>
@@ -28,11 +29,17 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 		notificationsPublisher
 	}
 
+	public var maxSavedLocations: Int {
+		keychainRepository.isUserLoggedIn() ? 9 : 1
+	}
+
 	public init(explorerRepository: ExplorerRepository,
 				userDefaultsRepository: UserDefaultsRepository,
+				keychainRepository: KeychainRepository,
 				cacheManager: PersistCacheManager) {
 		self.explorerRepository = explorerRepository
 		self.userDefaultsRepository = userDefaultsRepository
+		self.keychainRepository = keychainRepository
 		self.cache = .init(persistCacheManager: cacheManager, persistKey: forecastsCacheKey)
 	}
 
@@ -75,7 +82,7 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 			locations.append(location)
 		}
 
-		if let data = try? JSONEncoder().encode(locations.map(CodableCoordinate.init)) {
+		if let data = try? JSONEncoder().encode(locations.map { CodableCoordinate($0) }) {
 			userDefaultsRepository.saveValue(key: savedLocationsUDKey, value: data)
 		}
 
@@ -86,7 +93,8 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 		var locations = getSavedLocations()
 		locations.removeAll(where: { $0 ~== location})
 
-		if let data = try? JSONEncoder().encode(locations.map(CodableCoordinate.init)) {
+
+		if let data = try? JSONEncoder().encode(locations.map { CodableCoordinate($0) }) {
 			userDefaultsRepository.saveValue(key: savedLocationsUDKey, value: data)
 		}
 

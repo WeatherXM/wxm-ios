@@ -11,6 +11,7 @@ import CoreLocation
 import Toolkit
 
 class LocationForecastViewModel: ForecastDetailsViewModel {
+
 	private let location: CLLocationCoordinate2D
 	private let useCase: LocationForecastsUseCaseApi
 	override var isTopButtonEnabled: Bool {
@@ -33,12 +34,16 @@ class LocationForecastViewModel: ForecastDetailsViewModel {
 		}
 
 		guard isLocationSaved() else {
-			useCase.saveLocation(location)
+			saveLocation()
 
 			return
 		}
 
 		useCase.removeLocation(location)
+	}
+
+	override func signupButtonTapped() {
+		Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel()))
 	}
 }
 
@@ -51,5 +56,31 @@ private extension LocationForecastViewModel {
 	func updateTopButton() {
 		let font: FontAwesome = isLocationSaved() ? .FAProSolid : .FAPro
 		fontIconState = (FontIcon.star, ColorEnum.warning, font)
+	}
+
+	func saveLocation() {
+		let savedLocationsCount = useCase.getSavedLocations().count
+		let maxSaved = useCase.maxSavedLocations
+
+		guard savedLocationsCount < maxSaved else {
+			showMaxSavedAlert()
+			return
+		}
+
+		useCase.saveLocation(location)
+	}
+
+	func showMaxSavedAlert() {
+		guard !MainScreenViewModel.shared.isUserLoggedIn else {
+			Toast.shared.show(text: LocalizableString.Home.saveMoreLocationsMaxMessage.localized.attributedMarkdown ?? "", type: .info)
+			return
+		}
+
+		let conf = WXMAlertConfiguration(title: LocalizableString.Home.saveMoreLocationsAlertTitle.localized,
+										 text: LocalizableString.Home.saveMoreLocationAlertMessage.localized.attributedMarkdown ?? "",
+										 primaryButtons: [.init(title: LocalizableString.login.localized,
+																action: { Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel())) })])
+		alertConfiguration = conf
+		showLoginAlert = true
 	}
 }

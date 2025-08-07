@@ -71,6 +71,24 @@ struct ForecastDetailsView: View {
 
 			WXMAnalytics.shared.trackScreen(.forecastDetails)
 		}
+		.wxmAlert(show: $viewModel.showLoginAlert) {
+			WXMAlertView(show: $viewModel.showLoginAlert,
+						 configuration: viewModel.alertConfiguration!) {
+				Button {
+					viewModel.signupButtonTapped()
+				} label: {
+					HStack {
+						Text(LocalizableString.dontHaveAccount.localized)
+							.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+							.foregroundColor(Color(colorEnum: .text))
+
+						Text(LocalizableString.signUp.localized.uppercased())
+							.font(.system(size: CGFloat(.normalFontSize)))
+							.foregroundColor(Color(colorEnum: .wxmPrimary))
+					}
+				}
+			}
+		}
 	}
 }
 

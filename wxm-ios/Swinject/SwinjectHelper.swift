@@ -253,6 +253,7 @@ class SwinjectHelper: SwinjectInterface {
 		container.register(LocationForecastsUseCaseApi.self) { resolver in
 			LocationForecastsUseCase(explorerRepository: resolver.resolve(ExplorerRepository.self)!,
 									 userDefaultsRepository: resolver.resolve(UserDefaultsRepository.self)!,
+									 keychainRepository: resolver.resolve(KeychainRepository.self)!,
 									 cacheManager: resolver.resolve(UserDefaultsService.self)!)
 		}
 

@@ -15,6 +15,8 @@ class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
 	let navigationTitle: String
 	let navigationSubtitle: String?
+	@Published var showLoginAlert: Bool = false
+	var alertConfiguration: WXMAlertConfiguration?
 	@Published var fontIconState: StateFontAwesome?
 	@Published private(set) var isTransitioning: Bool = false
 	@Published private(set) var chartDelegate: ChartDelegate = ChartDelegate()
@@ -50,6 +52,10 @@ class ForecastDetailsViewModel: ObservableObject {
 	}
 
 	func handleTopButtonTap() {
+		
+	}
+
+	func signupButtonTapped() {
 		
 	}
 }

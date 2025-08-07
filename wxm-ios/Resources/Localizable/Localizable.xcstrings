@@ -5214,6 +5214,39 @@
         }
       }
     },
+    "home_save_more_locations_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’ve maxed out the saved locations allowed without logging in. Sign in to save more."
+          }
+        }
+      }
+    },
+    "home_save_more_locations_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save more locations?"
+          }
+        }
+      }
+    },
+    "home_save_more_locations_max_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’ve maxed out the saved locations allowed."
+          }
+        }
+      }
+    },
     "home_saved_locations" : {
       "extractionState" : "manual",
       "localizations" : {

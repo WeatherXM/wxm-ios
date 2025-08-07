@@ -16,12 +16,15 @@ extension LocalizableString {
 		case savedLocations
 		case savedLocationsEmptyTitle
 		case savedLocationsEmptyDescription
+		case saveMoreLocationsAlertTitle
+		case saveMoreLocationAlertMessage
+		case saveMoreLocationsMaxMessage
 	}
 }
 
 extension LocalizableString.Home: WXMLocalizable {
 	var localized: String {
-		var localized = NSLocalizedString(key, comment: "")
+		let localized = NSLocalizedString(key, comment: "")
 		return localized
 	}
 
@@ -41,6 +44,12 @@ extension LocalizableString.Home: WXMLocalizable {
 				"home_saved_locations_empty_title"
 			case .savedLocationsEmptyDescription:
 				"home_save_locations_empty_description"
+			case .saveMoreLocationsAlertTitle:
+				"home_save_more_locations_alert_title"
+			case .saveMoreLocationAlertMessage:
+				"home_save_more_locations_alert_message"
+			case .saveMoreLocationsMaxMessage:
+				"home_save_more_locations_max_message"
 		}
 	}
 }

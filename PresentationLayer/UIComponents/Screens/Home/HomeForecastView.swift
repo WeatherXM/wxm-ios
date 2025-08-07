@@ -22,6 +22,7 @@ struct HomeForecastView: View {
 			VStack(spacing: CGFloat(.smallSpacing)) {
 				HStack {
 					Text(forecast.address)
+						.fixedSize(horizontal: false, vertical: true)
 						.multilineTextAlignment(.leading)
 						.font(.system(size: CGFloat(.largeFontSize),
 									  weight: .bold))
@@ -35,6 +36,7 @@ struct HomeForecastView: View {
 						.multilineTextAlignment(.leading)
 						.font(.system(size: CGFloat(.caption)))
 						.foregroundStyle(Color(colorEnum: .darkGrey))
+						.fixedSize(horizontal: false, vertical: true)
 
 					Spacer()
 				}
