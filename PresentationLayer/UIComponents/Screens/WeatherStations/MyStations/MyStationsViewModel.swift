@@ -56,7 +56,6 @@ public final class MyStationsViewModel: ObservableObject {
 	}
 	@Published var uploadInProgressStationName: String?
 	@Published var uploadState: UploadProgressView.UploadState?
-	@Published var infoBanner: InfoBanner?
 	@Published var shouldShowFullScreenLoader = false
 	@Published var devices = [DeviceDetails]()
 	@Published var scrollOffsetObject: TrackableScrollOffsetObject
@@ -84,10 +83,6 @@ public final class MyStationsViewModel: ObservableObject {
 		}.store(in: &cancellableSet)
 
 		observeFilters()
-
-		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
-			self?.infoBanner = infoBanner
-		}.store(in: &cancellableSet)
 
 		photosUseCase.uploadProgressPublisher.sink { [weak self] progressResult in
 			let deviceId = progressResult.0
@@ -225,24 +220,6 @@ public final class MyStationsViewModel: ObservableObject {
 																	 .contentType: .follow])
 			performFollow(device: device)
 		}
-	}
-
-	func handleInfoBannerDismissTap() {
-		guard let bannerId = infoBanner?.id else {
-			return
-		}
-
-		remoteConfigUseCase.updateLastDismissedInfoBannerId(bannerId)
-	}
-
-	func handleInfoBannerActionTap(url: String) {
-		guard let webUrl = URL(string: url) else {
-			return
-		}
-
-		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .infoBannerButton,
-																	.itemId: .custom(url)])
-		Router.shared.showFullScreen(.safariView(webUrl))
 	}
 
 	func handleUploadBannerTap() {

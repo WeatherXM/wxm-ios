@@ -15,27 +15,37 @@ struct HomeView: View {
 			NavigationContainerView(showBackButton: false, titleImage: .wxmNavigationLogo) {
 				navigationBarRightView
 			} content: {
-				ZStack {
-					TrackableScroller(offsetObject: viewModel.scrollOffsetObject) { completion in
-						viewModel.refresh(completion: completion)
-					} content: {
-						VStack(spacing: CGFloat(.mediumSpacing)) {
-							if let announcement = viewModel.announcementConfiguration {
-								AnnouncementCardView(configuration: announcement)
-							}
-
-							currentLocation
-
-							savedLocations
-						}
-						.padding(CGFloat(.mediumSidePadding))
+				VStack(spacing: 0.0) {
+					if viewModel.isFailed {
+						infoBannerView
 					}
-					.scrollIndicators(.hidden)
+					
+					ZStack {
+						TrackableScroller(offsetObject: viewModel.scrollOffsetObject) { completion in
+							viewModel.refresh(completion: completion)
+						} content: {
+							VStack(spacing: 0.0) {
+								infoBannerView
 
-					searchButton
+								VStack(spacing: CGFloat(.mediumSpacing)) {
+									if let announcement = viewModel.announcementConfiguration {
+										AnnouncementCardView(configuration: announcement)
+									}
+
+									currentLocation
+
+									savedLocations
+								}
+								.padding(CGFloat(.mediumSidePadding))
+							}
+						}
+						.scrollIndicators(.hidden)
+
+						searchButton
+					}
+					.spinningLoader(show: $viewModel.isLoading, hideContent: true)
+					.fail(show: $viewModel.isFailed, obj: viewModel.failObj)
 				}
-				.spinningLoader(show: $viewModel.isLoading, hideContent: true)
-				.fail(show: $viewModel.isFailed, obj: viewModel.failObj)
 			}
 
 			SearchView(viewModel: viewModel.searchViewModel, showNoActiveView: false)
@@ -171,6 +181,26 @@ private extension HomeView {
 		.animation(.easeIn(duration: 0.2), value: viewModel.isSearchButtonVisible)
 	}
 
+	@ViewBuilder
+	var infoBannerView: some View {
+		if let infoBanner = viewModel.infoBanner {
+			VStack(spacing: 0.0) {
+				InfoBannerView(infoBanner: infoBanner) {
+					viewModel.handleInfoBannerDismissTap()
+				} tapUrlAction: { url in
+					viewModel.handleInfoBannerActionTap(url: url)
+				}
+				.padding(CGFloat(.defaultSidePadding))
+
+				Color(colorEnum: .bg)
+					.frame(height: CGFloat(.cardCornerRadius))
+					.cornerRadius(CGFloat(.cardCornerRadius),
+								  corners: [.topLeft, .topRight])
+
+			}
+			.background(Color(colorEnum: .layer1))
+		}
+	}
 }
 
 #Preview {

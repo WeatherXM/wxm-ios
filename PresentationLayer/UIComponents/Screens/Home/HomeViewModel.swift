@@ -13,6 +13,7 @@ import Combine
 
 @MainActor
 class HomeViewModel: ObservableObject {
+	@Published var infoBanner: InfoBanner?
 	@Published var announcementConfiguration: AnnouncementCardView.Configuration?
 	@Published var currentLocationState: CurrentLocationViewState = .empty
 	@Published var savedLocationsState: SavedLocationsViewState = .empty
@@ -46,7 +47,7 @@ class HomeViewModel: ObservableObject {
 		}.store(in: &cancellableSet)
 
 		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
-//			self?.infoBanner = infoBanner
+			self?.infoBanner = infoBanner
 		}.store(in: &cancellableSet)
 
 		remoteConfigUseCase.announcementPublisher.sink { [weak self] announcement in
@@ -144,6 +145,24 @@ class HomeViewModel: ObservableObject {
 			return
 		}
 		navigateToForecast(currentForecast, title: title, location: location)
+	}
+
+	func handleInfoBannerDismissTap() {
+		guard let bannerId = infoBanner?.id else {
+			return
+		}
+
+		remoteConfigUseCase.updateLastDismissedInfoBannerId(bannerId)
+	}
+
+	func handleInfoBannerActionTap(url: String) {
+		guard let webUrl = URL(string: url) else {
+			return
+		}
+
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .infoBannerButton,
+																	.itemId: .custom(url)])
+		Router.shared.showFullScreen(.safariView(webUrl))
 	}
 }
 

@@ -65,7 +65,6 @@ private struct ContentView: View {
         VStack(spacing: 0.0) {
             weatherStationsFlow(for: viewModel.devices)
 				.spinningLoader(show: $viewModel.shouldShowFullScreenLoader, hideContent: true)
-				.animation(.easeIn, value: viewModel.infoBanner)
 				.animation(.easeIn, value: viewModel.uploadState)
                 .onAppear {
                     WXMAnalytics.shared.trackScreen(.deviceList)
@@ -90,33 +89,14 @@ private struct ContentView: View {
 		}
 	}
 
-	@ViewBuilder
-	var infoBannerView: some View {
-		if let infoBanner = viewModel.infoBanner {
-			InfoBannerView(infoBanner: infoBanner) {
-				viewModel.handleInfoBannerDismissTap()
-			} tapUrlAction: { url in
-				viewModel.handleInfoBannerActionTap(url: url)
-			}
-			.padding(CGFloat(.defaultSidePadding))
-			.padding(.bottom, CGFloat(.cardCornerRadius))
-			.background(Color(colorEnum: .layer1))
-		}
-	}
-
     @ViewBuilder
 	func weatherStationsFlow(for devices: [DeviceDetails]) -> some View {
-		let infoBannerIsVisible = viewModel.infoBanner != nil
-
 		if viewModel.isFailed, let failObj = viewModel.failObj {
-			VStack(spacing: -CGFloat(.cardCornerRadius)) {
-				infoBannerView
-
+			VStack {
 				FailView(obj: failObj)
 					.padding(.horizontal, CGFloat(.defaultSidePadding))
 
 					.background(Color(colorEnum: .bg))
-					.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
 			}
 		} else if devices.isEmpty || !viewModel.isLoggedIn {
 			ZStack {
@@ -136,14 +116,11 @@ private struct ContentView: View {
 
 	@ViewBuilder
 	func weatherStations(devices: [DeviceDetails]) -> some View {
-		let infoBannerIsVisible = viewModel.infoBanner != nil
 		TrackableScroller(showIndicators: false,
 						  offsetObject: viewModel.scrollOffsetObject) {  completion in
 			viewModel.getDevices(refreshMode: true, completion: completion)
 		} content: {
-			VStack(spacing: -CGFloat(.cardCornerRadius)) {
-				infoBannerView
-				
+			VStack {
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					if let uploadState = viewModel.uploadState {
 						UploadProgressView(state: uploadState,
@@ -205,7 +182,6 @@ private struct ContentView: View {
 				.padding(.horizontal, CGFloat(.defaultSidePadding))
 				.padding(.top)
 				.background(Color(colorEnum: .bg))
-				.clipShape(RoundedRectangle(cornerRadius: infoBannerIsVisible ? CGFloat(.cardCornerRadius) : 0.0))
 			}
 		}
 	}
