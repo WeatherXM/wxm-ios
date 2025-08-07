@@ -13,6 +13,7 @@ import Combine
 
 @MainActor
 class HomeViewModel: ObservableObject {
+	@Published var announcementConfiguration: AnnouncementCardView.Configuration?
 	@Published var currentLocationState: CurrentLocationViewState = .empty
 	@Published var savedLocationsState: SavedLocationsViewState = .empty
 	@Published var scrollOffsetObject: TrackableScrollOffsetObject
@@ -24,11 +25,13 @@ class HomeViewModel: ObservableObject {
 	let stationChipsViewModel: StationRewardsChipViewModel = ViewModelsFactory.getStationRewardsChipViewModel()
 	let searchViewModel: HomeSearchViewModel = ViewModelsFactory.getHomeSearchViewModel()
 	private let useCase: LocationForecastsUseCaseApi
+	private let remoteConfigUseCase: RemoteConfigUseCaseApi
 	private let tabBarVisibilityHandler: TabBarVisibilityHandler
 	private var cancellableSet: Set<AnyCancellable> = []
 
-	init(useCase: LocationForecastsUseCaseApi) {
+	init(useCase: LocationForecastsUseCaseApi, remoteConfigUseCase: RemoteConfigUseCaseApi) {
 		self.useCase = useCase
+		self.remoteConfigUseCase = remoteConfigUseCase
 		let scrollOffsetObject: TrackableScrollOffsetObject = .init()
 		self.scrollOffsetObject = scrollOffsetObject
 		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
@@ -41,6 +44,37 @@ class HomeViewModel: ObservableObject {
 		publisher.sink { [weak self] locations in
 			self?.refresh(completion: nil)
 		}.store(in: &cancellableSet)
+
+		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
+//			self?.infoBanner = infoBanner
+		}.store(in: &cancellableSet)
+
+		remoteConfigUseCase.announcementPublisher.sink { [weak self] announcement in
+			self?.announcementConfiguration = announcement?.toAnnouncementConfiguration(buttonAction: {
+				// Handle url
+				guard let urlString = announcement?.actionUrl, let url = URL(string: urlString) else {
+					return
+				}
+
+				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .announcementCTA,
+																			.itemId: .custom(urlString)])
+
+				let handled = MainScreenViewModel.shared.deepLinkHandler.handleUrl(url)
+				if !handled, url.isHttp {
+					LinkNavigationHelper().openUrl(urlString)
+				} else if handled, urlString.isProPromotionUrl {
+					WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .proPromotionCTA,
+																				.itemId: .custom(urlString),
+																				.source: .remoteDevicesList])
+				}
+			}, closeAction: {
+				guard let announcementId = announcement?.id else {
+					return
+				}
+				self?.remoteConfigUseCase.updateLastDismissedAnnouncementId(announcementId)
+			})
+		}.store(in: &cancellableSet)
+
 	}
 
 	func handleCurrentLocationTap() {

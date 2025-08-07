@@ -57,7 +57,6 @@ public final class MyStationsViewModel: ObservableObject {
 	@Published var uploadInProgressStationName: String?
 	@Published var uploadState: UploadProgressView.UploadState?
 	@Published var infoBanner: InfoBanner?
-	@Published var announcementConfiguration: AnnouncementCardView.Configuration?
 	@Published var shouldShowFullScreenLoader = false
 	@Published var devices = [DeviceDetails]()
 	@Published var scrollOffsetObject: TrackableScrollOffsetObject
@@ -88,32 +87,6 @@ public final class MyStationsViewModel: ObservableObject {
 
 		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
 			self?.infoBanner = infoBanner
-		}.store(in: &cancellableSet)
-
-		remoteConfigUseCase.announcementPublisher.sink { [weak self] announcement in
-			self?.announcementConfiguration = announcement?.toAnnouncementConfiguration(buttonAction: {
-				// Handle url
-				guard let urlString = announcement?.actionUrl, let url = URL(string: urlString) else {
-					return
-				}
-
-				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .announcementCTA,
-																			.itemId: .custom(urlString)])
-
-				let handled = self?.mainVM?.deepLinkHandler.handleUrl(url) ?? false
-				if !handled, url.isHttp {
-					LinkNavigationHelper().openUrl(urlString)
-				} else if handled, urlString.isProPromotionUrl {
-					WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .proPromotionCTA,
-																				.itemId: .custom(urlString),
-																				.source: .remoteDevicesList])
-				}
-			}, closeAction: {
-				guard let announcementId = announcement?.id else {
-					return
-				}
-				self?.remoteConfigUseCase.updateLastDismissedAnnouncementId(announcementId)
-			})
 		}.store(in: &cancellableSet)
 
 		photosUseCase.uploadProgressPublisher.sink { [weak self] progressResult in

@@ -20,6 +20,10 @@ struct HomeView: View {
 						viewModel.refresh(completion: completion)
 					} content: {
 						VStack(spacing: CGFloat(.mediumSpacing)) {
+							if let announcement = viewModel.announcementConfiguration {
+								AnnouncementCardView(configuration: announcement)
+							}
+
 							currentLocation
 
 							savedLocations

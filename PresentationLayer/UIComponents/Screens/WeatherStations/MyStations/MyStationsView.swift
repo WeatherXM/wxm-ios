@@ -157,10 +157,6 @@ private struct ContentView: View {
 						}
 					}
 
-					if let announcement = viewModel.announcementConfiguration {
-						AnnouncementCardView(configuration: announcement)
-					}
-
 					if mainVM.showWalletWarning && isWalletEmpty {
 						CardWarningView(configuration: .init(title: LocalizableString.walletAddressMissingTitle.localized,
 															 message: LocalizableString.walletAddressMissingText.localized) {
