@@ -5016,6 +5016,28 @@
         }
       }
     },
+    "forecast_join_the_network" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join the network!"
+          }
+        }
+      }
+    },
+    "forecast_join_the_network_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get a station and contribute real data to WeatherXM while earning rewards."
+          }
+        }
+      }
+    },
     "forecast_next_seven_days" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5034,6 +5056,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next 24 hours"
+          }
+        }
+      }
+    },
+    "forecast_shop_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shop now"
           }
         }
       }

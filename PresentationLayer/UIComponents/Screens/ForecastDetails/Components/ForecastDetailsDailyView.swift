@@ -9,6 +9,7 @@ import SwiftUI
 import DomainLayer
 
 struct ForecastDetailsDailyView: View {
+	@ObservedObject var viewModel: ForecastDetailsViewModel
 	let item: Item
 	let scrollProxy: ScrollViewProxy?
 
@@ -16,8 +17,12 @@ struct ForecastDetailsDailyView: View {
 		VStack(spacing: CGFloat(.largeSpacing)) {
 			dailyConditions
 
-			ProBannerView(description: LocalizableString.Promotional.wantMoreAccurateForecast.localized,
-						  analyticsSource: .localForecastDetails)
+			if viewModel.isLoggedIn {
+				ProBannerView(description: LocalizableString.Promotional.wantMoreAccurateForecast.localized,
+							  analyticsSource: .localForecastDetails)
+			} else {
+				joinNetworkView
+			}
 
 			hourlyForecast
 
@@ -134,6 +139,36 @@ private extension ForecastDetailsDailyView {
 			EmptyView()
 		}
 	}
+
+	@ViewBuilder
+	var joinNetworkView: some View {
+		HStack(spacing: CGFloat(.mediumSpacing)) {
+			VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
+				Text(LocalizableString.Forecast.joinTheNetwork.localized)
+					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .wxmPrimary))
+
+				Text(LocalizableString.Forecast.joinTheNetworkDescription.localized)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundStyle(Color(colorEnum: .text))
+					.multilineTextAlignment(.leading)
+			}
+
+			Spacer()
+
+			Button {
+				viewModel.handleShopNowButtonTap()
+			} label: {
+				Text(LocalizableString.Forecast.shopNow.localized)
+					.padding(.horizontal, CGFloat(.defaultSidePadding))
+					.padding(.vertical, CGFloat(.smallToMediumSidePadding))
+			}
+			.buttonStyle(WXMButtonStyle.filled(fixedSize: true))
+
+		}
+		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint))
+		.wxmShadow()
+	}
 }
 
 #Preview {
@@ -142,10 +177,15 @@ private extension ForecastDetailsDailyView {
 														 hourly: (0..<24).map {_ in .mockInstance },
 														 daily: .mockInstance)
 	
-	return ForecastDetailsDailyView(item: .init(temperatureItem: forecast.dailyForecastTemperatureItem(),
-												fieldItems: [],
-												hourlyItems: nil,
-												chartModels: nil,
-												chartDelegate: nil),
-									scrollProxy: nil)
+	ForecastDetailsDailyView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(configuration: .init(forecasts: [forecast],
+																										   selectedforecastIndex: 0,
+																										   selectedHour: nil,
+																										   device: .mockDevice,
+																										   followState: .init(deviceId: "", relation: .owned))),
+							 item: .init(temperatureItem: forecast.dailyForecastTemperatureItem(),
+										 fieldItems: [],
+										 hourlyItems: nil,
+										 chartModels: nil,
+										 chartDelegate: nil),
+							 scrollProxy: nil)
 }

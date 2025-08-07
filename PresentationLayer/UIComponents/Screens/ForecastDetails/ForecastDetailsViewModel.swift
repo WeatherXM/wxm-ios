@@ -9,12 +9,15 @@ import Foundation
 import DomainLayer
 import SwiftUI
 import Toolkit
+import Combine
 
 @MainActor
 class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
 	let navigationTitle: String
 	let navigationSubtitle: String?
+	let linkNavigation: LinkNavigation
+	@Published var isLoggedIn: Bool = false
 	@Published var showLoginAlert: Bool = false
 	var alertConfiguration: WXMAlertConfiguration?
 	@Published var fontIconState: StateFontAwesome?
@@ -40,15 +43,21 @@ class ForecastDetailsViewModel: ObservableObject {
 	var isTopButtonEnabled: Bool {
 		false
 	}
+	private var cancellableSet: Set<AnyCancellable> = []
 
-	init(configuration: Configuration) {
+	init(configuration: Configuration, linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.forecasts = configuration.forecasts
 		self.fontIconState = configuration.fontAwesomeState
 		self.navigationTitle = configuration.navigationTitle
 		self.navigationSubtitle = configuration.navigationSubtitle
+		self.linkNavigation = linkNavigation
 		if !forecasts.isEmpty {
 			self.selectedForecastIndex = configuration.selectedforecastIndex
 		}
+
+		MainScreenViewModel.shared.$isUserLoggedIn.sink { [weak self] isLoggedIn in
+			self?.isLoggedIn = isLoggedIn
+		}.store(in: &cancellableSet)
 	}
 
 	func handleTopButtonTap() {
@@ -57,6 +66,10 @@ class ForecastDetailsViewModel: ObservableObject {
 
 	func signupButtonTapped() {
 		
+	}
+
+	func handleShopNowButtonTap() {
+		linkNavigation.openUrl(DisplayedLinks.shopLink.linkURL)
 	}
 }
 
