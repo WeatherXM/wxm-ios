@@ -97,6 +97,7 @@ public enum Parameter {
 	case method
 	case promptName
 	case promptType
+	case savedLocations
 	case sortBy
 	case source
 	case state
