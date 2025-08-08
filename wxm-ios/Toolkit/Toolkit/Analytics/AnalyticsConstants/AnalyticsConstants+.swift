@@ -147,6 +147,8 @@ extension ParameterValue: RawRepresentable {
 				return "App Update Prompt"
 			case .appUpdatePromptResult:
 				return "App Update Prompt Result"
+			case .clickOnLocationSearchResult:
+				return "Click on Location Search Result"
 			case .camera:
 				return "camera"
 			case .gallery:

@@ -124,6 +124,7 @@ public enum ParameterValue {
 	case appUpdatePromptResult
 	case authenticated
 	case unauthenticated
+	case clickOnLocationSearchResult
 	case camera
 	case gallery
 	case selectDevice

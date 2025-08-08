@@ -50,4 +50,8 @@ class HomeSearchViewModel: ExplorerSearchViewModel {
 			return
 		}
 	}
+
+	override func trackResultTapEvent(for result: SearchView.Row) {
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .clickOnLocationSearchResult])
+	}
 }
