@@ -153,8 +153,10 @@ class MainScreenViewModel: ObservableObject {
 		requestPermissionsInProgress = true
 		checkIfShouldShowAnalyticsPrompt(settingsUseCase: settingsUseCase) { [weak self] in
 			self?.requestNotificationAuthorizationIfNeeded {
-				self?.checkIfShouldShowTerms()
-				self?.requestPermissionsInProgress = false
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+					self?.checkIfShouldShowTerms()
+					self?.requestPermissionsInProgress = false
+				}
 			}
 		}
 	}
@@ -327,9 +329,7 @@ class MainScreenViewModel: ObservableObject {
 			return
 		}
 
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-			self.showTermsPrompt = true
-		}
+		self.showTermsPrompt = true
 	}
 
 	private func getTermsAlertConfiguration() -> WXMAlertConfiguration {
