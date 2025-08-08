@@ -63,6 +63,10 @@ class ExplorerSearchViewModel: ObservableObject {
 		updateUIState()
     }
 
+	func activeViewAppeared() {
+		WXMAnalytics.shared.trackScreen(.networkSearch)
+	}
+
     func handleTapOnResult(_ result: SearchView.Row) {
         guard let lat = result.networkModel?.lat, let lon = result.networkModel?.lon else {
             return

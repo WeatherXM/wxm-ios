@@ -8,6 +8,7 @@
 import Foundation
 import DomainLayer
 import CoreLocation
+import Toolkit
 
 class HomeSearchViewModel: ExplorerSearchViewModel {
 
@@ -22,6 +23,10 @@ class HomeSearchViewModel: ExplorerSearchViewModel {
 	override init(useCase: (any NetworkUseCaseApi)? = nil) {
 		super.init(useCase: useCase)
 		isShowingRecent = false
+	}
+
+	override func activeViewAppeared() {
+		WXMAnalytics.shared.trackScreen(.locationSearch)
 	}
 
 	override func handleTapOnResult(_ result: SearchView.Row) {

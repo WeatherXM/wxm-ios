@@ -44,6 +44,7 @@ public enum Screen: String {
 	case heliumOTA = "OTA Update"
 	case history = "Device History"
 	case locationForecastDetails = "Location Forecast Details"
+	case locationSearch = "Location Search"
 	case locationsInHome = "Locations in Home"
 	case locationQualityInfo = "Location Quality info"
 	case login = "Login"

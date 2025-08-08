@@ -29,6 +29,7 @@ struct SearchView: View {
                     .transition(AnyTransition.opacity.animation(.easeIn(duration: 0.2)))
                     .onAppear {
                         isFocused = true
+						viewModel.activeViewAppeared()
                     }
                     .onChange(of: term) { newValue in
                         // Assign the updated term to perform the search request
@@ -46,9 +47,6 @@ struct SearchView: View {
 			}
 			.iPadMaxWidth()
 		}
-		.onAppear {
-			WXMAnalytics.shared.trackScreen(.networkSearch)
-        }
     }
 }
 
