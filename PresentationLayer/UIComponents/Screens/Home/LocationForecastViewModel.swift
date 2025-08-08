@@ -34,6 +34,10 @@ class LocationForecastViewModel: ForecastDetailsViewModel {
 		}
 
 		guard isLocationSaved() else {
+			let isLoggedIn: Bool = MainScreenViewModel.shared.isUserLoggedIn
+			let state: ParameterValue = isLoggedIn ? .authenticated : .unauthenticated
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .savedLocation,
+																	 .state: state])
 			saveLocation()
 
 			return

@@ -120,6 +120,8 @@ public enum Parameter {
 public enum ParameterValue {
 	case appUpdatePrompt
 	case appUpdatePromptResult
+	case authenticated
+	case unauthenticated
 	case camera
 	case gallery
 	case selectDevice
@@ -352,5 +354,6 @@ public enum ParameterValue {
 	case enable
 	case disable
 	case openStationFromNotification
+	case savedLocation
 	case custom(String)
 }

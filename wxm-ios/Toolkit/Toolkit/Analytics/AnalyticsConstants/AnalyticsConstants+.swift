@@ -139,6 +139,10 @@ extension ParameterValue: RawRepresentable {
 
 	public var rawValue: String {
 		switch self {
+			case .authenticated:
+				return "authenticated"
+			case .unauthenticated:
+				return "unauthenticated"
 			case .appUpdatePrompt:
 				return "App Update Prompt"
 			case .appUpdatePromptResult:
@@ -609,6 +613,8 @@ extension ParameterValue: RawRepresentable {
 				return "disable"
 			case .openStationFromNotification:
 				return "Open Station from Notification"
+			case .savedLocation:
+				return "Saved a location"
 		}
 	}
 }
