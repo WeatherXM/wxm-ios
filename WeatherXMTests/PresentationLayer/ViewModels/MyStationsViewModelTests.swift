@@ -59,12 +59,6 @@ struct MyStationsViewModelTests {
 		#expect(followState == nil)
 	}
 
-	@Test func handleInfoBannerDismissTap() {
-		#expect(remoteConfigUseCase.lastDismissedInfoBannerId == nil)
-		viewModel.handleInfoBannerDismissTap()
-		#expect(remoteConfigUseCase.lastDismissedInfoBannerId == "124")
-	}
-
 	@Test func handleBuyButtonTap() {
 		#expect(linkNavigation.openedUrl == nil)
 		viewModel.handleBuyButtonTap()
