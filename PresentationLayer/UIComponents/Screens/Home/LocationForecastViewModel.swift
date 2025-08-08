@@ -80,6 +80,12 @@ private extension LocationForecastViewModel {
 	}
 
 	func showMaxSavedAlert() {
+		defer {
+			let isLoggedIn: Bool = MainScreenViewModel.shared.isUserLoggedIn
+			let state: ParameterValue = isLoggedIn ? .authenticated : .unauthenticated
+			WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .maxLocationsSavedError,
+																	  .state: state])
+		}
 		guard !MainScreenViewModel.shared.isUserLoggedIn else {
 			Toast.shared.show(text: LocalizableString.Home.saveMoreLocationsMaxMessage.localized.attributedMarkdown ?? "", type: .info)
 			return

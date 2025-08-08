@@ -621,6 +621,9 @@ extension ParameterValue: RawRepresentable {
 				return "saved_location"
 			case .unsavedLocation:
 				return "unsaved_location"
+			case .maxLocationsSavedError:
+				return "Max Locations Saved Error"
+			
 		}
 	}
 }

@@ -360,5 +360,6 @@ public enum ParameterValue {
 	case savedALocation
 	case savedLocation
 	case unsavedLocation
+	case maxLocationsSavedError
 	case custom(String)
 }
