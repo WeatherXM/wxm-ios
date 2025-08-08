@@ -44,6 +44,11 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		FilterValues.default != filters
 	}
 
+	@Published var isLoggedIn: Bool = false {
+		didSet {
+			updateStationRewards()
+		}
+	}
 	@Published var shouldShowAddButtonBadge: Bool = false {
 		didSet {
 			guard shouldShowAddButtonBadge else {
@@ -59,13 +64,13 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	@Published var announcementConfiguration: AnnouncementCardView.Configuration?
 	@Published var stationRewardsTitle: String?
 	@Published var stationRewardsValueText: String?
-	@Published var shouldShowFullScreenLoader = true
+	@Published var shouldShowFullScreenLoader = false
 	@Published var devices = [DeviceDetails]()
 	@Published var scrollOffsetObject: TrackableScrollOffsetObject
 	@Published var isAddButtonVisible: Bool = true
 	@Published var isFailed = false
 	private(set) var failObj: FailSuccessStateObject?
-	weak var mainVM: MainScreenViewModel?
+	weak private(set) var mainVM: MainScreenViewModel? = MainScreenViewModel.shared
 
 	init(meUseCase: MeUseCaseApi,
 		 remoteConfigUseCase: RemoteConfigUseCaseApi,
@@ -79,6 +84,11 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		self.scrollOffsetObject = scrollOffsetObject
 		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
 		self.tabBarVisibilityHandler.$areElementsVisible.assign(to: &$isAddButtonVisible)
+
+		mainVM?.$isUserLoggedIn.sink { [weak self] value in
+			self?.isLoggedIn = value
+		}.store(in: &cancellableSet)
+
 		observeFilters()
 
 		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
@@ -162,6 +172,13 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	///   - refreshMode: Set true if coming from pull to refresh to prevent showing full screen loader
 	///   - completion: Called once the request is finished
 	func getDevices(refreshMode: Bool = false, completion: (() -> Void)? = nil) {
+		guard isLoggedIn else {
+			completion?()
+			return
+		}
+		
+		shouldShowFullScreenLoader = !refreshMode
+
 		if refreshMode {
 			updateProgressUpload()
 		}
@@ -468,6 +485,13 @@ private extension WeatherStationsHomeViewModel {
 	}
 
 	func updateStationRewards() {
+		guard isLoggedIn else {
+			self.stationRewardsTitle = LocalizableString.Home.ownDeployEarn.localized
+			self.stationRewardsValueText = nil
+
+			return
+		}
+
 		let owndedDevices = getOwnedDevices()
 		let hasOwned = !owndedDevices.isEmpty
 		let totalEarned: Double = owndedDevices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }

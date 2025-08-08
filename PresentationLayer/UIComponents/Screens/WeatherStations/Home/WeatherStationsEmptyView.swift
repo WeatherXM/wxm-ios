@@ -19,7 +19,7 @@ struct WeatherStationsEmptyView: View {
 					.foregroundStyle(Color(colorEnum: .text))
 					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 
-				Text(LocalizableString.Home.ownDeployEarn.localized)
+				Text(LocalizableString.Home.ownDeployEarnWXM.localized)
 					.foregroundStyle(Color(colorEnum: .text))
 					.font(.system(size: CGFloat(.normalFontSize)))
 			}
@@ -33,7 +33,12 @@ struct WeatherStationsEmptyView: View {
 				Button {
 					buyButtonAction()
 				} label: {
-					Text(LocalizableString.Home.buyStation.localized)
+					HStack(spacing: CGFloat(.smallSpacing)) {
+						Text(FontIcon.cart.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+
+						Text(LocalizableString.Home.buyStation.localized)
+					}
 				}
 				.buttonStyle(WXMButtonStyle.filled())
 
