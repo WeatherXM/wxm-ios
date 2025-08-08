@@ -15,7 +15,6 @@ import SwiftUI
 protocol ExplorerSearchViewModelDelegate: AnyObject {
     func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?)
     func searchWillBecomeActive(_ active: Bool)
-    func settingsButtonTapped()
 	func networkStatisticsTapped()
 }
 
@@ -78,11 +77,6 @@ class ExplorerSearchViewModel: ObservableObject {
         WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkSearch,
                                                               .itemId: isShowingRecent ? .recent : .search,
                                                               .itemListId: isStation ? .station : .location])
-    }
-
-    func handleSettingsButtonTap() {
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .explorerSettings])
-        delegate?.settingsButtonTapped()
     }
 
 	func handleNetworkStatsButtonTap() {
