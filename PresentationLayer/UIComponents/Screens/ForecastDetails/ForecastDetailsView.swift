@@ -71,7 +71,7 @@ struct ForecastDetailsView: View {
 		}.onAppear {
 			navigationObject.navigationBarColor = Color(.topBG)
 
-			WXMAnalytics.shared.trackScreen(.forecastDetails)
+			viewModel.viewAppeared()		
 		}
 		.wxmAlert(show: $viewModel.showLoginAlert) {
 			WXMAlertView(show: $viewModel.showLoginAlert,

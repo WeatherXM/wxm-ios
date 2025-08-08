@@ -613,8 +613,12 @@ extension ParameterValue: RawRepresentable {
 				return "disable"
 			case .openStationFromNotification:
 				return "Open Station from Notification"
-			case .savedLocation:
+			case .savedALocation:
 				return "Saved a location"
+			case .savedLocation:
+				return "saved_location"
+			case .unsavedLocation:
+				return "unsaved_location"
 		}
 	}
 }

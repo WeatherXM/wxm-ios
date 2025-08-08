@@ -28,6 +28,11 @@ class LocationForecastViewModel: ForecastDetailsViewModel {
 		updateTopButton()
 	}
 
+	override func viewAppeared() {
+		let itemId: ParameterValue = isLocationSaved() ? .savedLocation : .unsavedLocation
+		WXMAnalytics.shared.trackScreen(.locationQualityInfo, parameters: [.itemId: itemId])
+	}
+
 	override func handleTopButtonTap() {
 		defer {
 			updateTopButton()
@@ -36,7 +41,7 @@ class LocationForecastViewModel: ForecastDetailsViewModel {
 		guard isLocationSaved() else {
 			let isLoggedIn: Bool = MainScreenViewModel.shared.isUserLoggedIn
 			let state: ParameterValue = isLoggedIn ? .authenticated : .unauthenticated
-			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .savedLocation,
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .savedALocation,
 																	 .state: state])
 			saveLocation()
 

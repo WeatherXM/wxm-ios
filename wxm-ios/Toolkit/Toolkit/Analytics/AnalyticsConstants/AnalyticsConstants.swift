@@ -43,6 +43,7 @@ public enum Screen: String {
 	case forecastDetails = "Device Forecast Details"
 	case heliumOTA = "OTA Update"
 	case history = "Device History"
+	case locationForecastDetails = "Location Forecast Details"
 	case locationsInHome = "Locations in Home"
 	case locationQualityInfo = "Location Quality info"
 	case login = "Login"
@@ -354,6 +355,8 @@ public enum ParameterValue {
 	case enable
 	case disable
 	case openStationFromNotification
+	case savedALocation
 	case savedLocation
+	case unsavedLocation
 	case custom(String)
 }
