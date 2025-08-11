@@ -58,6 +58,8 @@
 		26D47E882A1633E10078723A /* NetworkDeviceHistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E872A1633E10078723A /* NetworkDeviceHistoryResponse.swift */; };
 		26D47E9A2A1779310078723A /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E992A1779310078723A /* SettingsUseCase.swift */; };
 		26D47E9C2A177A0F0078723A /* SettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D47E9B2A177A0F0078723A /* SettingsRepository.swift */; };
+		26D5C0372E3CBF960040CDAF /* LocationForecastsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C0362E3CBF960040CDAF /* LocationForecastsUseCase.swift */; };
+		26D5C0392E3CBFAE0040CDAF /* LocationForecastsUseCaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C0382E3CBFAE0040CDAF /* LocationForecastsUseCaseApi.swift */; };
 		26DD42C829AF5547008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42C729AF5547008E277E /* Toolkit.framework */; };
 		26DF3D2E2C85EA24005F6FC1 /* NetworkDeviceRewardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF3D2D2C85EA24005F6FC1 /* NetworkDeviceRewardsResponse.swift */; };
 		26F6F7502D08540900FB256B /* PhotoGalleryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F74F2D08540900FB256B /* PhotoGalleryUseCase.swift */; };
@@ -166,6 +168,8 @@
 		26D47E872A1633E10078723A /* NetworkDeviceHistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceHistoryResponse.swift; sourceTree = "<group>"; };
 		26D47E992A1779310078723A /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
 		26D47E9B2A177A0F0078723A /* SettingsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepository.swift; sourceTree = "<group>"; };
+		26D5C0362E3CBF960040CDAF /* LocationForecastsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationForecastsUseCase.swift; sourceTree = "<group>"; };
+		26D5C0382E3CBFAE0040CDAF /* LocationForecastsUseCaseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationForecastsUseCaseApi.swift; sourceTree = "<group>"; };
 		26DD42C729AF5547008E277E /* Toolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DF3D2D2C85EA24005F6FC1 /* NetworkDeviceRewardsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeviceRewardsResponse.swift; sourceTree = "<group>"; };
 		26F6F74F2D08540900FB256B /* PhotoGalleryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryUseCase.swift; sourceTree = "<group>"; };
@@ -248,6 +252,7 @@
 				26F83C6D2D9BC40300E5A8B8 /* ExplorerUseCaseApi.swift */,
 				26F83C6F2D9BC60700E5A8B8 /* FiltersUseCaseApi.swift */,
 				26F83C712D9BC9E800E5A8B8 /* HistoryUseCaseApi.swift */,
+				26D5C0382E3CBFAE0040CDAF /* LocationForecastsUseCaseApi.swift */,
 				26F83C732D9BCB2500E5A8B8 /* MainUseCaseApi.swift */,
 				26F83C752D9BD11B00E5A8B8 /* MeUseCaseApi.swift */,
 				261914042E1E5FA100F7E51C /* StationNotificationsUseCaseApi.swift */,
@@ -400,6 +405,7 @@
 				9968B1B228AD0C2D00320413 /* ExplorerUseCase.swift */,
 				2612AC252AB46AF200285896 /* FiltersUseCase.swift */,
 				992D764228B7C83F00DFE504 /* HistoryUseCase.swift */,
+				26D5C0362E3CBF960040CDAF /* LocationForecastsUseCase.swift */,
 				995A0CE428C0B6D90015DAA1 /* MainUseCase.swift */,
 				B5E6B8882833B75D0060D050 /* MeUseCase.swift */,
 				267401712A37687000E54E35 /* NetworkUseCase.swift */,
@@ -639,7 +645,9 @@
 				264BDA0E298AC7DD005C1F82 /* FirmwareUpdateRepository.swift in Sources */,
 				4DE3A56E293EA58300BCDD8A /* Frequency.swift in Sources */,
 				4D35F7EE28F6005A009AA3CE /* HeliumDevice.swift in Sources */,
+				26D5C0372E3CBF960040CDAF /* LocationForecastsUseCase.swift in Sources */,
 				26F83C6C2D9BC05400E5A8B8 /* DevicesUseCaseApi.swift in Sources */,
+				26D5C0392E3CBFAE0040CDAF /* LocationForecastsUseCaseApi.swift in Sources */,
 				26A86BBE2C7C931B00F1C2CF /* Survey.swift in Sources */,
 				992D764328B7C83F00DFE504 /* HistoryUseCase.swift in Sources */,
 				26FFAD762B8E08CB00BF0A6B /* NetworkDeviceRewardDetailsResponse.swift in Sources */,

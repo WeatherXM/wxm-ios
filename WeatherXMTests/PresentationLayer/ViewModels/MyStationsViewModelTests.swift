@@ -1,5 +1,5 @@
 //
-//  WeatherStationsHomeViewModelTests.swift
+//  MyStationsViewModelTests.swift
 //  WeatherXMTests
 //
 //  Created by Pantelis Giazitsis on 3/4/25.
@@ -11,8 +11,8 @@ import DomainLayer
 
 @Suite(.serialized)
 @MainActor
-struct WeatherStationsHomeViewModelTests {
-	let viewModel: WeatherStationsHomeViewModel
+struct MyStationsViewModelTests {
+	let viewModel: MyStationsViewModel
 	let meUseCase: MockMeUseCase
 	let remoteConfigUseCase: MockRemoteConfigUseCase
 	let photoGalleryUseCase: MockPhotoGalleryUseCase
@@ -59,12 +59,6 @@ struct WeatherStationsHomeViewModelTests {
 		#expect(followState == nil)
 	}
 
-	@Test func handleInfoBannerDismissTap() {
-		#expect(remoteConfigUseCase.lastDismissedInfoBannerId == nil)
-		viewModel.handleInfoBannerDismissTap()
-		#expect(remoteConfigUseCase.lastDismissedInfoBannerId == "124")
-	}
-
 	@Test func handleBuyButtonTap() {
 		#expect(linkNavigation.openedUrl == nil)
 		viewModel.handleBuyButtonTap()
@@ -72,7 +66,6 @@ struct WeatherStationsHomeViewModelTests {
 	}
 
 	@Test func handleFollowInExplorerTap() {
-		self.viewModel.mainVM = .shared
 		#expect(viewModel.mainVM?.selectedTab == .home)
 		viewModel.handleFollowInExplorerTap()
 		#expect(viewModel.mainVM?.selectedTab == .explorer)

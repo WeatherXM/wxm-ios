@@ -13,15 +13,17 @@ struct TabViewContainer: View {
 	@StateObject var mainViewModel: MainScreenViewModel = .shared
     @StateObject var explorerViewModel: ExplorerViewModel
 	@StateObject var profileViewModel: ProfileViewModel
-	@StateObject var homeViewModel: WeatherStationsHomeViewModel
+	@StateObject var homeViewModel: HomeViewModel
+	@StateObject var myStationsViewModel: MyStationsViewModel
 	@State var overlayControlsSize: CGSize = .zero
 	@State private var tabBarSize: CGSize = .zero
 	@State private var isKeyboardVisible: Bool = false
 
     public init(swinjectHelper: SwinjectInterface) {
+		_homeViewModel = StateObject(wrappedValue: ViewModelsFactory.getHomeViewModel())
 		_explorerViewModel = StateObject(wrappedValue: ViewModelsFactory.getExplorerViewModel())
 		_profileViewModel = StateObject(wrappedValue: ViewModelsFactory.getProfileViewModel())
-		_homeViewModel = StateObject(wrappedValue: ViewModelsFactory.getWeatherStationsHomeViewModel())
+		_myStationsViewModel = StateObject(wrappedValue: ViewModelsFactory.getMyStationsViewModel())
     }
 
     var body: some View {
@@ -66,18 +68,15 @@ struct TabViewContainer: View {
 	private var selectedTabView: some View {
 		switch mainViewModel.selectedTab {
 			case .home:
-				ScrollView {
-					Text(verbatim: "home")
-				}
+				HomeView(viewModel: homeViewModel)
 			case .myStations:
-				WeatherStationsHomeView(viewModel: homeViewModel,
-										overlayControlsSize: $overlayControlsSize,
-										isWalletEmpty: $mainViewModel.isWalletMissing)
+				MyStationsView(viewModel: myStationsViewModel,
+							   overlayControlsSize: $overlayControlsSize,
+							   isWalletEmpty: $mainViewModel.isWalletMissing)
 			case .explorer:
 				ExplorerView(viewModel: explorerViewModel)
 					.onAppear {
 						WXMAnalytics.shared.trackScreen(.explorer)
-						explorerViewModel.showTopOfMapItems = true
 					}
 			case .profile:
 				ProfileView(viewModel: profileViewModel)
@@ -93,7 +92,6 @@ struct TabViewContainer: View {
 				TabBarView($mainViewModel.selectedTab, mainViewModel.isWalletMissing)
             }
         }
-		.animation(.easeIn, value: explorerViewModel.showTopOfMapItems)
     }
 }
 

@@ -27,7 +27,7 @@ struct ForecastDetailsViewModelTests {
 	}
 
 	@Test func testInitialization() {
-		#expect(viewModel.device.id == device.id)
+		#expect(viewModel.navigationTitle == device.displayName)
 		#expect(viewModel.forecasts.count == forecasts.count)
 		#expect(viewModel.navigationTitle == device.displayName)
 		#expect(viewModel.navigationSubtitle == (device.friendlyName.isNilOrEmpty ? nil : device.name))

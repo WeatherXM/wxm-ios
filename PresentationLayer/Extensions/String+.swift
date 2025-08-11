@@ -68,6 +68,10 @@ extension String {
         return AnimationsEnums(rawValue: self)?.animationString ?? AnimationsEnums.notAvailable.animationString
     }
 
+	func getWeatherDescription() -> String {
+		return AnimationsEnums(rawValue: self)?.weatherDescription ?? AnimationsEnums.notAvailable.weatherDescription
+	}
+
     func isTextEmpty() -> Bool {
         if trimWhiteSpaces().isEmpty {
             return true

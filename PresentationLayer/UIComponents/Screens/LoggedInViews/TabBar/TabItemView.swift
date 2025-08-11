@@ -19,7 +19,7 @@ struct TabItemView: View {
         Button {
             selectedTab = tab
         } label: {
-			VStack(spacing: 0.0) {
+			VStack(spacing: CGFloat(.minimumSpacing)) {
 				tabIcon
 				tabText
 			}

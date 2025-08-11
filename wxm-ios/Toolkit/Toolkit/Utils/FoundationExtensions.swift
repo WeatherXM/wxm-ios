@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public extension Comparable {
     func clamped(to limits: ClosedRange<Self>) -> Self {
@@ -215,5 +216,11 @@ infix operator ~==
 public extension CGSize {
 	static func ~== (lhs: Self, rhs: Self) -> Bool {
 		(lhs.width ~== rhs.width) && (lhs.height ~== rhs.height)
+	}
+}
+
+public extension CLLocationCoordinate2D {
+	static func ~== (lhs: Self, rhs: Self) -> Bool {
+		(lhs.latitude ~== rhs.latitude) && (lhs.longitude ~== rhs.longitude)
 	}
 }

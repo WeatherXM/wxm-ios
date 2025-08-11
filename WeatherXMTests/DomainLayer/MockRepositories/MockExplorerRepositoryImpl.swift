@@ -57,4 +57,15 @@ extension MockExplorerRepositoryImpl: ExplorerRepository {
 																		result: .success(publicDevice))
 		return Just(response).eraseToAnyPublisher()
 	}
+
+	func getCellForecast(for coordinates: CLLocationCoordinate2D) throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never> {
+		let forecast = [NetworkDeviceForecastResponse]()
+		let response = DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>(request: nil,
+																						   response: nil,
+																						   data: nil,
+																						   metrics: nil,
+																						   serializationDuration: 0,
+																						   result: .success(forecast))
+		return Just(response).eraseToAnyPublisher()
+	}
 }

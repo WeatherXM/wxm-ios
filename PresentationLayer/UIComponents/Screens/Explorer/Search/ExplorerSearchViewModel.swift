@@ -32,16 +32,22 @@ class ExplorerSearchViewModel: ObservableObject {
     @Published var searchResults: [SearchView.Row] = []
     @Published var isShowingRecent: Bool = true
     /// Will be assigned from the view. We do not assign directly this proprety as a binding in theTextfield
-    @Published private(set) var searchTerm: String = "" {
+    @Published var searchTerm: String = "" {
         didSet {
             updateUIState()
         }
     }
 
+	internal var resultsTitle: String? {
+		nil
+	}
+	internal var searhExclude: SearchExclude? {
+		nil
+	}
     weak var delegate: ExplorerSearchViewModelDelegate?
+	let searchTermLimit = 2
 	private let useCase: NetworkUseCaseApi?
     private var searchCancellable: AnyCancellable?
-    private let searchTermLimit = 2
     private var cancellables = Set<AnyCancellable>()
 
 	init(useCase: NetworkUseCaseApi? = nil) {
@@ -103,20 +109,28 @@ class ExplorerSearchViewModel: ObservableObject {
 	func updateStations(count: Int) {
 		stationsCount = count.localizedFormatted
 	}
+
+	func updateUIState() {
+		guard searchTerm.count >= searchTermLimit else {
+			if searchTerm.isEmpty {
+
+				loadRecent()
+				isShowingRecent = true
+			}
+			return
+		}
+	}
+
+	func updateSearchResults(response: NetworkSearchResponse?) {
+		let devices: [any NetworkSearchItem] = response?.devices ?? []
+		let addresses: [any NetworkSearchItem] = response?.addresses ?? []
+		let items: [any NetworkSearchItem] = [devices, addresses].flatMap { $0 }
+
+		updateSearchResults(data: items)
+	}
 }
 
 private extension ExplorerSearchViewModel {
-
-    func updateUIState() {
-        guard searchTerm.count >= searchTermLimit else {
-            if searchTerm.isEmpty {
-
-                loadRecent()
-                isShowingRecent = true
-            }
-            return
-        }
-    }
 
     func performSearch(searchTerm: String) {
         searchCancellable?.cancel()
@@ -129,7 +143,9 @@ private extension ExplorerSearchViewModel {
         isLoading = true
 
 		do {
-			searchCancellable = try useCase?.search(term: searchTerm, exact: false, exclude: nil)
+			searchCancellable = try useCase?.search(term: searchTerm,
+													exact: false,
+													exclude: searhExclude)
 				.receive(on: DispatchQueue.main)
 				.sink { [weak self] response in
 					self?.isLoading = false
@@ -148,13 +164,6 @@ private extension ExplorerSearchViewModel {
 		}
 	}
 
-    func updateSearchResults(response: NetworkSearchResponse?) {
-        let devices: [any NetworkSearchItem] = response?.devices ?? []
-        let addresses: [any NetworkSearchItem] = response?.addresses ?? []
-        let items: [any NetworkSearchItem] = [devices, addresses].flatMap { $0 }
-
-        updateSearchResults(data: items)
-    }
 
     func updateSearchResults(data: [any NetworkSearchItem]) {
         self.searchResults = data.compactMap { item in
@@ -185,7 +194,7 @@ private extension ExplorerSearchViewModel {
 
             return nil
         }
-        self.showNoResults = searchResults.isEmpty
+        self.showNoResults = searchResults.isEmpty && !searchTerm.isEmpty
     }
 
     func loadRecent() {

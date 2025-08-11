@@ -81,6 +81,11 @@ enum ViewModelsFactory {
         return ExplorerSearchViewModel(useCase: useCase)
     }
 
+	static func getHomeSearchViewModel() -> HomeSearchViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(NetworkUseCaseApi.self)
+		return HomeSearchViewModel(useCase: useCase)
+	}
+
     static func getExplorerStationsListViewModel(cellIndex: String, cellCenter: CLLocationCoordinate2D?) -> ExplorerStationsListViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCaseApi.self)
         let vm = ExplorerStationsListViewModel(useCase: useCase, cellIndex: cellIndex, cellCenter: cellCenter)
@@ -131,13 +136,24 @@ enum ViewModelsFactory {
 		return ProfileViewModel(meUseCase: useCase, remoteConfigUseCase: remoteConfigUseCase)
 	}
 
-	static func getWeatherStationsHomeViewModel() -> WeatherStationsHomeViewModel {
+	static func getHomeViewModel() -> HomeViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(LocationForecastsUseCaseApi.self)!
+		let remoteConfigUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RemoteConfigUseCaseApi.self)!
+		return HomeViewModel(useCase: useCase, remoteConfigUseCase: remoteConfigUseCase)
+	}
+
+	static func getStationRewardsChipViewModel() -> StationRewardsChipViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
+		return StationRewardsChipViewModel(useCase: useCase)
+	}
+
+	static func getMyStationsViewModel() -> MyStationsViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		let remoteConfigUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RemoteConfigUseCaseApi.self)!
 		let photoGalleryUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(PhotoGalleryUseCaseApi.self)!
-		return WeatherStationsHomeViewModel(meUseCase: useCase,
-											remoteConfigUseCase: remoteConfigUseCase,
-											photosGalleryUseCase: photoGalleryUseCase)
+		return MyStationsViewModel(meUseCase: useCase,
+								   remoteConfigUseCase: remoteConfigUseCase,
+								   photosGalleryUseCase: photoGalleryUseCase)
 	}
 
 	static func getRewardDetailsViewModel(device: DeviceDetails,
@@ -174,6 +190,14 @@ enum ViewModelsFactory {
 
 	static func getForecastDetailsViewModel(configuration: ForecastDetailsViewModel.Configuration) -> ForecastDetailsViewModel {
 		ForecastDetailsViewModel(configuration: configuration)
+	}
+
+	static func getLocationForecastDetailsViewModel(configuration: ForecastDetailsViewModel.Configuration,
+													location: CLLocationCoordinate2D) -> LocationForecastViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(LocationForecastsUseCaseApi.self)!
+		return LocationForecastViewModel(configuration: configuration,
+										 location: location,
+										 useCase: useCase)
 	}
 
 	static func getClaimStationSelectionViewModel() -> ClaimStationSelectionViewModel {

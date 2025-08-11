@@ -2,80 +2,54 @@
 //  LocalizableString+Home.swift
 //  wxm-ios
 //
-//  Created by Pantelis Giazitsis on 6/9/23.
+//  Created by Pantelis Giazitsis on 1/8/25.
 //
 
 import Foundation
 
 extension LocalizableString {
 	enum Home {
-		case totalWeatherStationsEmptyTitle
-		case totalWeatherStationsEmptyDescription
-		case totalWeatherStationsEmptyButtonTitle
-		case ownedWeatherStationsEmptyTitle
-		case ownedWeatherStationsEmptyDescription
-		case followingWeatherStationsEmptyTitle
-		case followingWeatherStationsEmptyDescription
-		case followingWeatherStationsEmptyButtonTitle
-		case noRewardsYet
-		case joinTheNetwork
-		case ownDeployEarn
-		case ownDeployEarnWXM
-		case buyStation
-		case followAStationInExplorer
-		case claimYouStationhere
-		case dataQuality(Int)
+		case searchPlaceholder
+		case currentLocation
+		case allowLocationPermission
+		case locations
+		case savedLocations
+		case savedLocationsEmptyTitle
+		case savedLocationsEmptyDescription
+		case saveMoreLocationsAlertTitle
+		case saveMoreLocationAlertMessage
+		case saveMoreLocationsMaxMessage
 	}
 }
 
 extension LocalizableString.Home: WXMLocalizable {
 	var localized: String {
-		var localized = NSLocalizedString(self.key, comment: "")
-		switch self {
-			case .dataQuality(let num):
-				localized = String(format: localized, num)
-			default:
-				break
-		}
-		
+		let localized = NSLocalizedString(key, comment: "")
 		return localized
-		
 	}
-	
+
 	var key: String {
 		switch self {
-			case .totalWeatherStationsEmptyTitle:
-				return "home_total_weather_stations_empty_title"
-			case .totalWeatherStationsEmptyDescription:
-				return "home_total_weather_stations_empty_description"
-			case .totalWeatherStationsEmptyButtonTitle:
-				return "home_total_weather_stations_empty_button_title"
-			case .ownedWeatherStationsEmptyTitle:
-				return "home_owned_weather_stations_empty_title"
-			case .ownedWeatherStationsEmptyDescription:
-				return "home_owned_weather_stations_empty_description"
-			case .followingWeatherStationsEmptyTitle:
-				return "home_following_weather_stations_empty_title"
-			case .followingWeatherStationsEmptyDescription:
-				return "home_following_weather_stations_empty_description"
-			case .followingWeatherStationsEmptyButtonTitle:
-				return "home_following_weather_stations_empty_button_title"
-			case .noRewardsYet:
-				return "home_no_rewards_yet"
-			case .dataQuality:
-				return "home_data_quality"
-			case .joinTheNetwork:
-				return "home_join_the_network"
-			case .ownDeployEarn:
-				return "home_own_deploy_earn"
-			case .ownDeployEarnWXM:
-				return "home_own_deploy_earn_wxm"
-			case .buyStation:
-				return "home_buy_station"
-			case .followAStationInExplorer:
-				return "home_follow_a_station_in_explorer"
-			case .claimYouStationhere:
-				return "home_claim_your_station_here"
+			case .searchPlaceholder:
+				"home_search_placeholder"
+			case .currentLocation:
+				"home_current_location"
+			case .allowLocationPermission:
+				"home_allow_location_permission"
+			case .locations:
+				"home_locations"
+			case .savedLocations:
+				"home_saved_locations"
+			case .savedLocationsEmptyTitle:
+				"home_saved_locations_empty_title"
+			case .savedLocationsEmptyDescription:
+				"home_save_locations_empty_description"
+			case .saveMoreLocationsAlertTitle:
+				"home_save_more_locations_alert_title"
+			case .saveMoreLocationAlertMessage:
+				"home_save_more_locations_alert_message"
+			case .saveMoreLocationsMaxMessage:
+				"home_save_more_locations_max_message"
 		}
 	}
 }

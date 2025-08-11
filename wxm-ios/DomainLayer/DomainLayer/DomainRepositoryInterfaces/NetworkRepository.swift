@@ -21,4 +21,5 @@ public protocol NetworkRepository {
 
 public enum SearchExclude: String, Sendable {
     case places
+	case stations
 }

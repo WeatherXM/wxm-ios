@@ -130,15 +130,23 @@ extension SearchView {
 
                 ScrollView {
 					VStack(spacing: CGFloat(.largeSpacing)) {
-                        if viewModel.isShowingRecent {
-                            HStack {
-                                Text(LocalizableString.Search.resultsRecent.localized)
-                                    .font(.system(size: CGFloat(.largeFontSize), weight: .bold))
-                                    .foregroundColor(Color(colorEnum: .text))
+						Group {
+							if viewModel.isShowingRecent {
+								HStack {
+									Text(LocalizableString.Search.resultsRecent.localized)
 
-                                Spacer()
-                            }
-                        }
+									Spacer()
+								}
+							} else if let title = viewModel.resultsTitle {
+								HStack {
+									Text(title)
+
+									Spacer()
+								}
+							}
+						}
+						.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+						.foregroundColor(Color(colorEnum: .text))
 
                         if viewModel.showNoResults {
                             noResultsView
