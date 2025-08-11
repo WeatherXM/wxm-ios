@@ -28,12 +28,21 @@ class LocationForecastViewModel: ForecastDetailsViewModel {
 		updateTopButton()
 	}
 
+	override func viewAppeared() {
+		let itemId: ParameterValue = isLocationSaved() ? .savedLocation : .unsavedLocation
+		WXMAnalytics.shared.trackScreen(.locationQualityInfo, parameters: [.itemId: itemId])
+	}
+
 	override func handleTopButtonTap() {
 		defer {
 			updateTopButton()
 		}
 
 		guard isLocationSaved() else {
+			let isLoggedIn: Bool = MainScreenViewModel.shared.isUserLoggedIn
+			let state: ParameterValue = isLoggedIn ? .authenticated : .unauthenticated
+			WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .savedALocation,
+																	 .state: state])
 			saveLocation()
 
 			return
@@ -71,6 +80,12 @@ private extension LocationForecastViewModel {
 	}
 
 	func showMaxSavedAlert() {
+		defer {
+			let isLoggedIn: Bool = MainScreenViewModel.shared.isUserLoggedIn
+			let state: ParameterValue = isLoggedIn ? .authenticated : .unauthenticated
+			WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .maxLocationsSavedError,
+																	  .state: state])
+		}
 		guard !MainScreenViewModel.shared.isUserLoggedIn else {
 			Toast.shared.show(text: LocalizableString.Home.saveMoreLocationsMaxMessage.localized.attributedMarkdown ?? "", type: .info)
 			return

@@ -60,6 +60,10 @@ class ForecastDetailsViewModel: ObservableObject {
 		}.store(in: &cancellableSet)
 	}
 
+	func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.forecastDetails)
+	}
+	
 	func handleTopButtonTap() {
 		
 	}

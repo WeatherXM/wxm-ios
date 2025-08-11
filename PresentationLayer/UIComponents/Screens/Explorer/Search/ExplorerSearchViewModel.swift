@@ -63,6 +63,10 @@ class ExplorerSearchViewModel: ObservableObject {
 		updateUIState()
     }
 
+	func activeViewAppeared() {
+		WXMAnalytics.shared.trackScreen(.networkSearch)
+	}
+
     func handleTapOnResult(_ result: SearchView.Row) {
         guard let lat = result.networkModel?.lat, let lon = result.networkModel?.lon else {
             return
@@ -79,10 +83,7 @@ class ExplorerSearchViewModel: ObservableObject {
 
         searchTerm.removeAll()
 
-        let isStation = result.networkModel?.deviceId != nil
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkSearch,
-                                                              .itemId: isShowingRecent ? .recent : .search,
-                                                              .itemListId: isStation ? .station : .location])
+		trackResultTapEvent(for: result)
     }
 
 	func handleNetworkStatsButtonTap() {
@@ -127,6 +128,14 @@ class ExplorerSearchViewModel: ObservableObject {
 		let items: [any NetworkSearchItem] = [devices, addresses].flatMap { $0 }
 
 		updateSearchResults(data: items)
+	}
+
+	func trackResultTapEvent(for result: SearchView.Row) {
+		let isStation = result.networkModel?.deviceId != nil
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkSearch,
+																	.itemId: isShowingRecent ? .recent : .search,
+																	.itemListId: isStation ? .station : .location])
+
 	}
 }
 

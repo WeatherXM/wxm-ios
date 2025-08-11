@@ -87,6 +87,8 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 		}
 
 		NotificationCenter.default.post(name: .savedLocationsUpdated, object: nil)
+
+		WXMAnalytics.shared.setUserProperty(key: .savedLocations, value: .custom("\(locations.count)"))
 	}
 
 	public func removeLocation(_ location: CLLocationCoordinate2D) {
@@ -99,6 +101,8 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 		}
 
 		NotificationCenter.default.post(name: .savedLocationsUpdated, object: nil)
+
+		WXMAnalytics.shared.setUserProperty(key: .savedLocations, value: .custom("\(locations.count)"))
 	}
 }
 

@@ -69,6 +69,9 @@ struct TabViewContainer: View {
 		switch mainViewModel.selectedTab {
 			case .home:
 				HomeView(viewModel: homeViewModel)
+					.onAppear {
+						WXMAnalytics.shared.trackScreen(.locationsInHome)
+					}
 			case .myStations:
 				MyStationsView(viewModel: myStationsViewModel,
 							   overlayControlsSize: $overlayControlsSize,
