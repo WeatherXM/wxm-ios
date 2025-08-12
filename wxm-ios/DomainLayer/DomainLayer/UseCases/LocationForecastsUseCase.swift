@@ -20,7 +20,7 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 	private let forecastsCacheKey = UserDefaults.GenericKey.savedForecasts.rawValue
 	private let cacheInterval: TimeInterval = 15 * 60 * 60
 	nonisolated(unsafe) private let notificationsPublisher: NotificationCenter.Publisher = NotificationCenter.default.publisher(for: .savedLocationsUpdated)
-	nonisolated(unsafe) private let cache: TimeValidationCache<[NetworkDeviceForecastResponse]>
+	nonisolated(unsafe) let cache: TimeValidationCache<[NetworkDeviceForecastResponse]>
 	public var locationAuthorization: WXMLocationManager.Status {
 		explorerRepository.locationAuthorization
 	}
@@ -120,7 +120,7 @@ private struct CodableCoordinate: Codable {
 	}
 }
 
-private extension CLLocationCoordinate2D {
+internal extension CLLocationCoordinate2D {
 	var cacheKey: String {
 		"\(latitude),\(longitude)"
 	}
