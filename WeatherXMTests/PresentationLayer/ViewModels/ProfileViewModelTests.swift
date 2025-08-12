@@ -30,8 +30,8 @@ struct ProfileViewModelTests {
 
 	@Test func userRewards() async throws {
 		try await Task.sleep(for: .seconds(1))
-		#expect(viewModel.totalEarned == 0.0.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
-		#expect(viewModel.totalClaimed == 0.0.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency)
+		#expect(viewModel.totalEarned == 0.0.toWXMTokenPrecisionString)
+		#expect(viewModel.totalClaimed == 0.0.toWXMTokenPrecisionString)
 		#expect(viewModel.allocatedRewards == LocalizableString.Profile.noRewardsDescription.localized )
 	}
 

@@ -34,7 +34,8 @@ struct MyStationsViewModelTests {
 		#expect(viewModel.uploadState == nil)
 	}
 
-	@Test func getDevices() async throws {
+	@Test func getDevicesLoggedIn() async throws {
+		viewModel.isLoggedIn = true
 		try await confirmation { confirm in
 			viewModel.getDevices() {
 				#expect(!viewModel.devices.isEmpty)
@@ -44,8 +45,19 @@ struct MyStationsViewModelTests {
 		}
 	}
 
+	@Test func getDevicesLoggedOut() async throws {
+		try await confirmation { confirm in
+			viewModel.getDevices() {
+				#expect(viewModel.devices.isEmpty)
+				confirm()
+			}
+			try await Task.sleep(for: .seconds(1))
+		}
+	}
+
 	@Test func getFollowState() async throws {
 		#expect(viewModel.devices.isEmpty)
+		viewModel.isLoggedIn = true
 		viewModel.getDevices()
 		try await Task.sleep(for: .seconds(1))
 		let device = try #require(viewModel.devices.first)
