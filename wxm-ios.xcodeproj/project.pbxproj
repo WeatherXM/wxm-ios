@@ -605,6 +605,8 @@
 		26D5C04A2E40FF820040CDAF /* HomeSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C0492E40FF820040CDAF /* HomeSearchViewModel.swift */; };
 		26D5C04C2E423B650040CDAF /* LocationForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C04B2E423B650040CDAF /* LocationForecastViewModel.swift */; };
 		26D5C05A2E4B1CA30040CDAF /* LocationForecastsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C0592E4B1CA30040CDAF /* LocationForecastsUseCaseTests.swift */; };
+		26D5C05C2E4B36470040CDAF /* LocationForecastViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C05B2E4B36470040CDAF /* LocationForecastViewModelTests.swift */; };
+		26D5C05E2E4B37650040CDAF /* MockLocationForecastsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C05D2E4B37650040CDAF /* MockLocationForecastsUseCase.swift */; };
 		26D6119D2A9E1CDC0099117C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */; };
 		26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D611AA2A9E21080099117C /* LocalizableConstants.swift */; };
 		26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */; };
@@ -1352,6 +1354,8 @@
 		26D5C0492E40FF820040CDAF /* HomeSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchViewModel.swift; sourceTree = "<group>"; };
 		26D5C04B2E423B650040CDAF /* LocationForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationForecastViewModel.swift; sourceTree = "<group>"; };
 		26D5C0592E4B1CA30040CDAF /* LocationForecastsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationForecastsUseCaseTests.swift; sourceTree = "<group>"; };
+		26D5C05B2E4B36470040CDAF /* LocationForecastViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationForecastViewModelTests.swift; sourceTree = "<group>"; };
+		26D5C05D2E4B37650040CDAF /* MockLocationForecastsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationForecastsUseCase.swift; sourceTree = "<group>"; };
 		26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		26D611AA2A9E21080099117C /* LocalizableConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableConstants.swift; sourceTree = "<group>"; };
 		26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
@@ -1889,6 +1893,7 @@
 				26F83CE62D9FE77300E5A8B8 /* ClaimDeviceContainerViewModelTests.swift */,
 				26F83CE82D9FF6E400E5A8B8 /* ChangeFrequencyViewModelTests.swift */,
 				26F83CEA2D9FFAF400E5A8B8 /* RewardAnalyticsViewModelTests.swift */,
+				26D5C05B2E4B36470040CDAF /* LocationForecastViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1920,6 +1925,7 @@
 				26F83CCE2D9E9B5200E5A8B8 /* MockRemoteConfigUseCase.swift */,
 				26F83CD82D9EC98D00E5A8B8 /* MockDeviceLocationUseCase.swift */,
 				26F83CE42D9FE28100E5A8B8 /* MockDevicesUseCase.swift */,
+				26D5C05D2E4B37650040CDAF /* MockLocationForecastsUseCase.swift */,
 			);
 			path = MockUseCases;
 			sourceTree = "<group>";
@@ -3889,6 +3895,7 @@
 				26710E522D7B2FA500878298 /* MockFiltersRepositoryImpl.swift in Sources */,
 				26F83CE92D9FF6E400E5A8B8 /* ChangeFrequencyViewModelTests.swift in Sources */,
 				268BAD542DC0F0DB00748439 /* NetworkDeviceRewardDetailsResponseTests.swift in Sources */,
+				26D5C05C2E4B36470040CDAF /* LocationForecastViewModelTests.swift in Sources */,
 				26F83CA12D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift in Sources */,
 				26F83CE32D9FDBD100E5A8B8 /* ForecastDetailsViewModelTests.swift in Sources */,
 				26710E982D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift in Sources */,
@@ -4000,6 +4007,7 @@
 				268BAD522DC0E5C200748439 /* NetworkDeviceRewardsSummaryResponseTests.swift in Sources */,
 				26F83CB92D9D7F5F00E5A8B8 /* MockAuthUseCase.swift in Sources */,
 				26710E4E2D7B26CC00878298 /* NetworkUseCaseTests.swift in Sources */,
+				26D5C05E2E4B37650040CDAF /* MockLocationForecastsUseCase.swift in Sources */,
 				26710E8C2D7EF69C00878298 /* ExplorerUseCaseTests.swift in Sources */,
 				26710E902D7EF77D00878298 /* MockDeviceLocationRepositoryImpl.swift in Sources */,
 				26DF1F522D535EB10001E936 /* KeychainHelperServiceTests.swift in Sources */,
