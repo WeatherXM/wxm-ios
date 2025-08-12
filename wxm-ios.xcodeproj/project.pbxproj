@@ -607,6 +607,7 @@
 		26D5C05A2E4B1CA30040CDAF /* LocationForecastsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C0592E4B1CA30040CDAF /* LocationForecastsUseCaseTests.swift */; };
 		26D5C05C2E4B36470040CDAF /* LocationForecastViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C05B2E4B36470040CDAF /* LocationForecastViewModelTests.swift */; };
 		26D5C05E2E4B37650040CDAF /* MockLocationForecastsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C05D2E4B37650040CDAF /* MockLocationForecastsUseCase.swift */; };
+		26D5C0602E4B46EC0040CDAF /* HomeSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D5C05F2E4B46EC0040CDAF /* HomeSearchViewModelTests.swift */; };
 		26D6119D2A9E1CDC0099117C /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */; };
 		26D611AB2A9E21080099117C /* LocalizableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D611AA2A9E21080099117C /* LocalizableConstants.swift */; };
 		26D657332DBB942900990B80 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */; };
@@ -1356,6 +1357,7 @@
 		26D5C0592E4B1CA30040CDAF /* LocationForecastsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationForecastsUseCaseTests.swift; sourceTree = "<group>"; };
 		26D5C05B2E4B36470040CDAF /* LocationForecastViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationForecastViewModelTests.swift; sourceTree = "<group>"; };
 		26D5C05D2E4B37650040CDAF /* MockLocationForecastsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationForecastsUseCase.swift; sourceTree = "<group>"; };
+		26D5C05F2E4B46EC0040CDAF /* HomeSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchViewModelTests.swift; sourceTree = "<group>"; };
 		26D6119C2A9E1CDC0099117C /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		26D611AA2A9E21080099117C /* LocalizableConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableConstants.swift; sourceTree = "<group>"; };
 		26D657322DBB942900990B80 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
@@ -1894,6 +1896,7 @@
 				26F83CE82D9FF6E400E5A8B8 /* ChangeFrequencyViewModelTests.swift */,
 				26F83CEA2D9FFAF400E5A8B8 /* RewardAnalyticsViewModelTests.swift */,
 				26D5C05B2E4B36470040CDAF /* LocationForecastViewModelTests.swift */,
+				26D5C05F2E4B46EC0040CDAF /* HomeSearchViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -3898,6 +3901,7 @@
 				26D5C05C2E4B36470040CDAF /* LocationForecastViewModelTests.swift in Sources */,
 				26F83CA12D9D357200E5A8B8 /* HistoryContainerViewModelTests.swift in Sources */,
 				26F83CE32D9FDBD100E5A8B8 /* ForecastDetailsViewModelTests.swift in Sources */,
+				26D5C0602E4B46EC0040CDAF /* HomeSearchViewModelTests.swift in Sources */,
 				26710E982D7F2B2C00878298 /* DeviceLocationUseCaseTests.swift in Sources */,
 				2678C45D2DFC3EF300523DF8 /* MockLogger.swift in Sources */,
 				26F83CA52D9D3E4200E5A8B8 /* HistoryViewModelTests.swift in Sources */,
