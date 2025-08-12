@@ -37,6 +37,7 @@ struct HomeView: View {
 									savedLocations
 								}
 								.padding(CGFloat(.mediumSidePadding))
+								.iPadMaxWidth()
 							}
 						}
 						.scrollIndicators(.hidden)
