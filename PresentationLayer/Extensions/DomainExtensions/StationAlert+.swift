@@ -41,7 +41,7 @@ extension StationNotificationsTypes {
 			case .activity:
 					.activity
 			case .battery:
-					.lowBattery
+					.lowBatteryItem
 			case .firmwareUpdate:
 					.otaUpdate
 			case .health:
