@@ -170,10 +170,10 @@ private extension HomeView {
 					Text(FontIcon.magnifyingGlass.rawValue)
 						.font(.fontAwesome(font: .FAPro, size: CGFloat(.largeTitleFontSize)))
 						.foregroundStyle(Color(colorEnum: .top))
+						.frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
+						.background(Color(colorEnum: .wxmPrimary))
+						.cornerRadius(CGFloat(.cardCornerRadius))
 				}
-				.frame(width: CGFloat(.fabButtonsDimension), height: CGFloat(.fabButtonsDimension))
-				.background(Color(colorEnum: .wxmPrimary))
-				.cornerRadius(CGFloat(.cardCornerRadius))
 				.shadow(radius: ShadowEnum.addButton.radius, x: ShadowEnum.addButton.xVal, y: ShadowEnum.addButton.yVal)
 			}
 		}
