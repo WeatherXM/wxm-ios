@@ -163,7 +163,11 @@ class MainScreenViewModel: ObservableObject {
 
 	private func requestNotificationAuthorizationIfNeeded(completion: @escaping VoidCallback) {
 		Task { @MainActor in
-			try await FirebaseManager.shared.requestNotificationAuthorization()
+			do {
+				try await FirebaseManager.shared.requestNotificationAuthorization()
+			} catch {
+				print(error.localizedDescription)
+			}
 			completion()
 		}
 	}

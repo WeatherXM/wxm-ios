@@ -5236,17 +5236,6 @@
         }
       }
     },
-    "home_save_locations_empty_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add the places you care about and see their weather at a glance!"
-          }
-        }
-      }
-    },
     "home_save_more_locations_alert_message" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5287,6 +5276,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saved locations"
+          }
+        }
+      }
+    },
+    "home_saved_locations_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add the places you care about and see their weather at a glance!"
           }
         }
       }

@@ -43,7 +43,7 @@ extension LocalizableString.Home: WXMLocalizable {
 			case .savedLocationsEmptyTitle:
 				"home_saved_locations_empty_title"
 			case .savedLocationsEmptyDescription:
-				"home_save_locations_empty_description"
+				"home_saved_locations_empty_description"
 			case .saveMoreLocationsAlertTitle:
 				"home_save_more_locations_alert_title"
 			case .saveMoreLocationAlertMessage:

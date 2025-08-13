@@ -42,15 +42,15 @@ class HomeViewModel: ObservableObject {
 		searchViewModel.delegate = self
 
 		let publisher = self.useCase.savedLocationsPublisher
-		publisher.sink { [weak self] locations in
+		publisher.receive(on: DispatchQueue.main).sink { [weak self] locations in
 			self?.refresh(completion: nil)
 		}.store(in: &cancellableSet)
 
-		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
+		remoteConfigUseCase.infoBannerPublisher.receive(on: DispatchQueue.main).sink { [weak self] infoBanner in
 			self?.infoBanner = infoBanner
 		}.store(in: &cancellableSet)
 
-		remoteConfigUseCase.announcementPublisher.sink { [weak self] announcement in
+		remoteConfigUseCase.announcementPublisher.receive(on: DispatchQueue.main).sink { [weak self] announcement in
 			self?.announcementConfiguration = announcement?.toAnnouncementConfiguration(buttonAction: {
 				// Handle url
 				guard let urlString = announcement?.actionUrl, let url = URL(string: urlString) else {
@@ -84,7 +84,7 @@ class HomeViewModel: ObservableObject {
 				let status = useCase.locationAuthorization
 				switch status {
 					case .authorized:
-						break
+						refresh(completion: nil)
 					case .denied:
 						// Move to settings
 						let title = LocalizableString.ClaimDevice.confirmLocationNoAccessToServicesTitle.localized

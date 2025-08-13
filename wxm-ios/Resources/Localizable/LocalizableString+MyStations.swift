@@ -23,7 +23,7 @@ extension LocalizableString {
 		case ownDeployEarnWXM
 		case buyStation
 		case followAStationInExplorer
-		case claimYouStationhere
+		case claimYourStationhere
 		case dataQuality(Int)
 	}
 }
@@ -74,7 +74,7 @@ extension LocalizableString.MyStations: WXMLocalizable {
 				return "my_stations_buy_station"
 			case .followAStationInExplorer:
 				return "my_stations_follow_a_station_in_explorer"
-			case .claimYouStationhere:
+			case .claimYourStationhere:
 				return "my_stations_claim_your_station_here"
 		}
 	}
