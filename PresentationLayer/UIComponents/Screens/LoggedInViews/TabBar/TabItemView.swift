@@ -19,13 +19,23 @@ struct TabItemView: View {
         Button {
             selectedTab = tab
         } label: {
-            tabIcon
+			VStack(spacing: CGFloat(.minimumSpacing)) {
+				tabIcon
+				tabText
+			}
         }
     }
 
     var tabIcon: some View {
-        tab.tabIcon
-            .renderingMode(.template)
-            .foregroundColor(tab == selectedTab ? tab.tabSelected : tab.tabNotSelected)
+		Text(tab.tabIcon.rawValue)
+			.font(.fontAwesome(font: .FAProSolid,
+							   size: CGFloat(.smallTitleFontSize)))
+			.foregroundColor(tab == selectedTab ? tab.tabSelected : tab.tabNotSelected)
     }
+
+	var tabText: some View {
+		Text(tab.tabTitle)
+			.font(.system(size: CGFloat(.caption)))
+			.foregroundColor(tab == selectedTab ? tab.tabSelected : tab.tabNotSelected)
+	}
 }

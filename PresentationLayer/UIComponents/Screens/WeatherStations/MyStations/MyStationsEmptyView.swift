@@ -1,5 +1,5 @@
 //
-//  WeatherStationsEmptyView.swift
+//  MyStationsEmptyView.swift
 //  wxm-ios
 //
 //  Created by Pantelis Giazitsis on 11/2/25.
@@ -8,18 +8,18 @@
 import SwiftUI
 import Toolkit
 
-struct WeatherStationsEmptyView: View {
+struct MyStationsEmptyView: View {
 	let buyButtonAction: VoidCallback
 	let followButtonAction: VoidCallback
 
 	var body: some View {
 		VStack(spacing: CGFloat(.XLSpacing)) {
 			VStack(spacing: CGFloat(.smallSpacing)) {
-				Text(LocalizableString.Home.joinTheNetwork.localized)
+				Text(LocalizableString.MyStations.joinTheNetwork.localized)
 					.foregroundStyle(Color(colorEnum: .text))
 					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 
-				Text(LocalizableString.Home.ownDeployEarn.localized)
+				Text(LocalizableString.MyStations.ownDeployEarnWXM.localized)
 					.foregroundStyle(Color(colorEnum: .text))
 					.font(.system(size: CGFloat(.normalFontSize)))
 			}
@@ -33,14 +33,19 @@ struct WeatherStationsEmptyView: View {
 				Button {
 					buyButtonAction()
 				} label: {
-					Text(LocalizableString.Home.buyStation.localized)
+					HStack(spacing: CGFloat(.smallSpacing)) {
+						Text(FontIcon.cart.rawValue)
+							.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+
+						Text(LocalizableString.MyStations.buyStation.localized)
+					}
 				}
 				.buttonStyle(WXMButtonStyle.filled())
 
 				Button {
 					followButtonAction()
 				} label: {
-					Text(LocalizableString.Home.followAStationInExplorer.localized)
+					Text(LocalizableString.MyStations.followAStationInExplorer.localized)
 						.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
 						.foregroundStyle(Color(colorEnum: .wxmPrimary))
 				}
@@ -51,5 +56,5 @@ struct WeatherStationsEmptyView: View {
 }
 
 #Preview {
-	WeatherStationsEmptyView(buyButtonAction: {}, followButtonAction: {})
+	MyStationsEmptyView(buyButtonAction: {}, followButtonAction: {})
 }

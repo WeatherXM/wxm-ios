@@ -12,7 +12,8 @@ enum CellRequestBuilder: URLRequestConvertible {
 	case getCells
 	case getCellsDevices(index: String)
 	case getCellsDevicesDetails(index: String, deviceId: String)
-	
+	case getCellForecast(lat: Double, lon: Double)
+
 	// MARK: - URLRequestConvertible
 	
 	func asURLRequest() throws -> URLRequest {
@@ -45,7 +46,7 @@ enum CellRequestBuilder: URLRequestConvertible {
 	// This returns the HttpMethod type. It's used to determine the type if several endpoints are peresent
 	private var method: HTTPMethod {
 		switch self {
-			case .getCells, .getCellsDevices, .getCellsDevicesDetails:
+			case .getCells, .getCellsDevices, .getCellsDevicesDetails, .getCellForecast:
 				return .get
 		}
 	}
@@ -61,6 +62,8 @@ enum CellRequestBuilder: URLRequestConvertible {
 				return "cells/\(index)/devices"
 			case let .getCellsDevicesDetails(index, deviceId):
 				return "cells/\(index)/devices/\(deviceId)"
+			case .getCellForecast:
+				return "cells/forecast"
 		}
 	}
 	
@@ -69,6 +72,9 @@ enum CellRequestBuilder: URLRequestConvertible {
 	// This is the queries part, it's optional because an endpoint can be without parameters
 	private var parameters: Parameters? {
 		switch self {
+			case let .getCellForecast(lat, lon):
+				return [ParameterConstants.Cells.lat: lat,
+						ParameterConstants.Cells.lon: lon]
 			default: return nil
 		}
 	}

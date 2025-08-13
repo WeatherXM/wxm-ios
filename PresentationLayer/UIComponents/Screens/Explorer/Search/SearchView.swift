@@ -9,8 +9,8 @@ import SwiftUI
 import Toolkit
 
 struct SearchView: View {
-    var shouldShowSettingsButton: Bool = false
     @StateObject var viewModel: ExplorerSearchViewModel
+	var showNoActiveView: Bool = true
     @FocusState var isFocused: Bool
     /// This state variable is injected in Textfields becauses assigning directy the view model's property `searchTerm`
     /// causes a bug with multiple changes callback even if the term doesn't change
@@ -20,13 +20,16 @@ struct SearchView: View {
 
     var body: some View {
         ZStack {
-            nonActiveView
+			if showNoActiveView {
+				nonActiveView
+			}
 
             if viewModel.isSearchActive {
                 activeView
                     .transition(AnyTransition.opacity.animation(.easeIn(duration: 0.2)))
                     .onAppear {
                         isFocused = true
+						viewModel.activeViewAppeared()
                     }
                     .onChange(of: term) { newValue in
                         // Assign the updated term to perform the search request
@@ -37,17 +40,13 @@ struct SearchView: View {
 		.wxmAlert(show: $showOptionsPopOver, shouldDismissOnTapOutside: true) {
 			VStack {
 				ExplorerPopoverView(show: $showOptionsPopOver,
-									viewModel: viewModel,
-									shouldShowSettingsButton: shouldShowSettingsButton)
+									viewModel: viewModel)
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 				.padding(.top, topControlsSize.height)
 				Spacer()
 			}
 			.iPadMaxWidth()
 		}
-		.onAppear {
-			WXMAnalytics.shared.trackScreen(.networkSearch)
-        }
     }
 }
 

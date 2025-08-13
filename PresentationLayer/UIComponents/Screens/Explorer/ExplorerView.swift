@@ -15,17 +15,16 @@ struct ExplorerView: View {
 
     var body: some View {
         ZStack {
-			MapBoxMapView(controlsBottomOffset: .constant(0.0))
+			MapBoxMapView()
                 .environmentObject(viewModel)
                 .edgesIgnoringSafeArea(.all)
             explorerContent
                 .zIndex(1)
 
-            if viewModel.showTopOfMapItems {
-                SearchView(shouldShowSettingsButton: true,
-                           viewModel: viewModel.searchViewModel)
-                .transition(AnyTransition.opacity.animation(.easeIn))
-                .zIndex(2)
+			if viewModel.showTopOfMapItems {
+				SearchView(viewModel: viewModel.searchViewModel)
+					.transition(AnyTransition.opacity.animation(.easeIn))
+					.zIndex(2)
             }
 
         }
@@ -61,48 +60,10 @@ struct ExplorerView: View {
                     }
                 }
                 .transition(AnyTransition.move(edge: .trailing))
-
-                signInContainer
             }
         }
         .padding(CGFloat(.defaultSidePadding))
 		.animation(.easeIn, value: viewModel.showTopOfMapItems)
-    }
-
-    var signInContainer: some View {
-        VStack(spacing: CGFloat(.defaultSpacing)) {
-            signInButton
-            signUpTextButton
-        }
-        .WXMCardStyle()
-		.iPadMaxWidth()
-        .padding(.bottom, CGFloat(.mediumSidePadding))
-        .transition(.move(edge: .bottom))
-    }
-
-    var signInButton: some View {
-        Button {
-            Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel()))
-        } label: {
-            Text(LocalizableString.signIn.localized)
-        }
-        .buttonStyle(WXMButtonStyle.filled())
-    }
-
-    var signUpTextButton: some View {
-        Button {
-            Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel()))
-        } label: {
-            HStack {
-                Text(LocalizableString.dontHaveAccount.localized)
-                    .font(.system(size: CGFloat(.normalFontSize), weight: .bold))
-                    .foregroundColor(Color(colorEnum: .text))
-
-                Text(LocalizableString.signUp.localized.uppercased())
-                    .font(.system(size: CGFloat(.normalFontSize)))
-                    .foregroundColor(Color(colorEnum: .wxmPrimary))
-            }
-        }
     }
 
     @ViewBuilder

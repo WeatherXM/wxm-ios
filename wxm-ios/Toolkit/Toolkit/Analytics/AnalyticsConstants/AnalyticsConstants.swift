@@ -43,6 +43,9 @@ public enum Screen: String {
 	case forecastDetails = "Device Forecast Details"
 	case heliumOTA = "OTA Update"
 	case history = "Device History"
+	case locationForecastDetails = "Location Forecast Details"
+	case locationSearch = "Location Search"
+	case locationsInHome = "Locations in Home"
 	case locationQualityInfo = "Location Quality info"
 	case login = "Login"
 	case networkSearch = "Network Search"
@@ -97,6 +100,7 @@ public enum Parameter {
 	case method
 	case promptName
 	case promptType
+	case savedLocations
 	case sortBy
 	case source
 	case state
@@ -118,6 +122,9 @@ public enum Parameter {
 public enum ParameterValue {
 	case appUpdatePrompt
 	case appUpdatePromptResult
+	case authenticated
+	case unauthenticated
+	case clickOnLocationSearchResult
 	case camera
 	case gallery
 	case selectDevice
@@ -350,5 +357,9 @@ public enum ParameterValue {
 	case enable
 	case disable
 	case openStationFromNotification
+	case savedALocation
+	case savedLocation
+	case unsavedLocation
+	case maxLocationsSavedError
 	case custom(String)
 }

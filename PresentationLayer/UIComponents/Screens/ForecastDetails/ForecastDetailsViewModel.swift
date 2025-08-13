@@ -9,14 +9,18 @@ import Foundation
 import DomainLayer
 import SwiftUI
 import Toolkit
+import Combine
 
 @MainActor
 class ForecastDetailsViewModel: ObservableObject {
 	let forecasts: [NetworkDeviceForecastResponse]
-	let device: DeviceDetails
-	let followState: UserDeviceFollowState?
 	let navigationTitle: String
 	let navigationSubtitle: String?
+	let linkNavigation: LinkNavigation
+	@Published var isLoggedIn: Bool = false
+	@Published var showLoginAlert: Bool = false
+	var alertConfiguration: WXMAlertConfiguration?
+	@Published var fontIconState: StateFontAwesome?
 	@Published private(set) var isTransitioning: Bool = false
 	@Published private(set) var chartDelegate: ChartDelegate = ChartDelegate()
 	@Published var selectedForecastIndex: Int? {
@@ -36,16 +40,40 @@ class ForecastDetailsViewModel: ObservableObject {
 	lazy var dailyItems: [StationForecastMiniCardView.Item] = {
 		getDailyItems()
 	}()
+	var isTopButtonEnabled: Bool {
+		false
+	}
+	private var cancellableSet: Set<AnyCancellable> = []
 
-	init(configuration: Configuration) {
+	init(configuration: Configuration, linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.forecasts = configuration.forecasts
-		self.device = configuration.device
-		self.followState = configuration.followState
-		self.navigationTitle = device.displayName
-		self.navigationSubtitle = device.friendlyName.isNilOrEmpty ? nil : device.name
+		self.fontIconState = configuration.fontAwesomeState
+		self.navigationTitle = configuration.navigationTitle
+		self.navigationSubtitle = configuration.navigationSubtitle
+		self.linkNavigation = linkNavigation
 		if !forecasts.isEmpty {
 			self.selectedForecastIndex = configuration.selectedforecastIndex
 		}
+
+		MainScreenViewModel.shared.$isUserLoggedIn.sink { [weak self] isLoggedIn in
+			self?.isLoggedIn = isLoggedIn
+		}.store(in: &cancellableSet)
+	}
+
+	func viewAppeared() {
+		WXMAnalytics.shared.trackScreen(.forecastDetails)
+	}
+	
+	func handleTopButtonTap() {
+		
+	}
+
+	func signupButtonTapped() {
+		
+	}
+
+	func handleShopNowButtonTap() {
+		linkNavigation.openUrl(DisplayedLinks.shopLink.linkURL)
 	}
 }
 
@@ -178,7 +206,7 @@ private extension ForecastDetailsViewModel {
 
 extension ForecastDetailsViewModel: HashableViewModel {
 	nonisolated func hash(into hasher: inout Hasher) {
-		hasher.combine(device.id)
+		hasher.combine(navigationTitle)
 	}
 }
 
@@ -187,7 +215,35 @@ extension ForecastDetailsViewModel {
 		let forecasts: [NetworkDeviceForecastResponse]
 		let selectedforecastIndex: Int
 		let selectedHour: Int?
-		let device: DeviceDetails
-		let followState: UserDeviceFollowState?
+		let navigationTitle: String
+		let navigationSubtitle: String?
+		var fontAwesomeState: StateFontAwesome? = nil
+
+		init(forecasts: [NetworkDeviceForecastResponse],
+			 selectedforecastIndex: Int,
+			 selectedHour: Int?,
+			 device: DeviceDetails,
+			 followState: UserDeviceFollowState?) {
+			self.forecasts = forecasts
+			self.selectedforecastIndex = selectedforecastIndex
+			self.selectedHour = selectedHour
+			self.navigationTitle = device.displayName
+			self.navigationSubtitle = device.friendlyName.isNilOrEmpty ? nil : device.name
+			self.fontAwesomeState = followState?.state.FAIcon
+		}
+
+		init(forecasts: [NetworkDeviceForecastResponse],
+			 selectedforecastIndex: Int,
+			 selectedHour: Int?,
+			 navigationTitle: String,
+			 navigationSubtitle: String? = nil,
+			 fontAwesomeState: StateFontAwesome? = nil) {
+			self.forecasts = forecasts
+			self.selectedforecastIndex = selectedforecastIndex
+			self.selectedHour = selectedHour
+			self.navigationTitle = navigationTitle
+			self.navigationSubtitle = navigationSubtitle
+			self.fontAwesomeState = fontAwesomeState
+		}
 	}
 }

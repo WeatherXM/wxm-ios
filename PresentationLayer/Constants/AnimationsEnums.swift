@@ -190,4 +190,63 @@ enum AnimationsEnums: String, CaseIterable {
 				return "weatherxm_network"
 		}
 	}
+
+	var weatherDescription: String {
+		switch self {
+			case .clearDay:
+				return LocalizableString.Weather.clear.localized
+			case .clearNight:
+				return LocalizableString.Weather.clear.localized
+			case .partlyCloudyDay:
+				return LocalizableString.Weather.clearFewLowClouds.localized
+			case .partlyCloudyNight:
+				return LocalizableString.Weather.clearFewLowClouds.localized
+			case .overcastDay:
+				return LocalizableString.Weather.partlyCloudy.localized
+			case .overcastNight:
+				return LocalizableString.Weather.partlyCloudy.localized
+			case .hazeDay:
+				return LocalizableString.Weather.clearButHazy.localized
+			case .hazeNight:
+				return LocalizableString.Weather.clearButHazy.localized
+			case .fog:
+				return LocalizableString.Weather.foggy.localized
+			case .extremeDay:
+				return LocalizableString.Weather.mostlyCloudy.localized
+			case .extremeNight:
+				return LocalizableString.Weather.mostlyCloudy.localized
+			case .overcast:
+				return LocalizableString.Weather.overcast.localized
+			case .overcastRain:
+				return LocalizableString.Weather.overcastRain.localized
+			case .overcastSnow:
+				return LocalizableString.Weather.overcastSnow.localized
+			case .extremeRain:
+				return LocalizableString.Weather.overcastHeavyRain.localized
+			case .extremeSnow:
+				return LocalizableString.Weather.overcastHeavySnow.localized
+			case .thunderstormsOvercastRain:
+				return LocalizableString.Weather.rainThunderstormsLikely.localized
+			case .thunderstormsLightRain:
+				return LocalizableString.Weather.lightRainThunderstormsLikely.localized
+			case .thunderstormsExtremeRain:
+				return LocalizableString.Weather.heavyRainThunderstormsLikely.localized
+			case .partlyCloudyDayDrizzle:
+				return LocalizableString.Weather.mixedWithShowers.localized
+			case .partlyCloudyNightDrizzle:
+				return LocalizableString.Weather.mixedWithShowers.localized
+			case .partlyCloudyDaySnow:
+				return LocalizableString.Weather.mixedWithSnowShowers.localized
+			case .partlyCloudyNightSnow:
+				return LocalizableString.Weather.mixedWithSnowShowers.localized
+			case .overcastDrizzle:
+				return LocalizableString.Weather.overcastLightRain.localized
+			case .overcastLightSnow:
+				return LocalizableString.Weather.overcastLightSnow.localized
+			case .overcastSleet:
+				return LocalizableString.Weather.overcastMixtureSnowRain.localized
+			default:
+				return ""
+		}
+	}
 }

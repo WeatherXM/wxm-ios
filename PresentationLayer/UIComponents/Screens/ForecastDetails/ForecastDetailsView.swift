@@ -25,10 +25,15 @@ struct ForecastDetailsView: View {
 						NavigationTitleView(title: .constant(viewModel.navigationTitle),
 											subtitle: .constant(viewModel.navigationSubtitle)) {
 							Group {
-								if let faIcon = viewModel.followState?.state.FAIcon {
-									Text(faIcon.icon.rawValue)
-										.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
-										.foregroundColor(Color(colorEnum: faIcon.color))
+								if let faIcon = viewModel.fontIconState {
+									Button {
+										viewModel.handleTopButtonTap()
+									} label: {
+										Text(faIcon.icon.rawValue)
+											.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
+											.foregroundColor(Color(colorEnum: faIcon.color))
+									}
+									.disabled(!viewModel.isTopButtonEnabled)
 								} else {
 									EmptyView()
 								}
@@ -41,7 +46,9 @@ struct ForecastDetailsView: View {
 							
 							ZStack {
 								if let item = viewModel.detailsDailyItem {
-									ForecastDetailsDailyView(item: item, scrollProxy: proxy)
+									ForecastDetailsDailyView(viewModel: viewModel,
+															 item: item,
+															 scrollProxy: proxy)
 										.padding(.horizontal, CGFloat(.mediumSidePadding))
 								}
 							}
@@ -64,7 +71,25 @@ struct ForecastDetailsView: View {
 		}.onAppear {
 			navigationObject.navigationBarColor = Color(.topBG)
 
-			WXMAnalytics.shared.trackScreen(.forecastDetails)
+			viewModel.viewAppeared()		
+		}
+		.wxmAlert(show: $viewModel.showLoginAlert) {
+			WXMAlertView(show: $viewModel.showLoginAlert,
+						 configuration: viewModel.alertConfiguration!) {
+				Button {
+					viewModel.signupButtonTapped()
+				} label: {
+					HStack {
+						Text(LocalizableString.dontHaveAccount.localized)
+							.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+							.foregroundColor(Color(colorEnum: .text))
+
+						Text(LocalizableString.signUp.localized.uppercased())
+							.font(.system(size: CGFloat(.normalFontSize)))
+							.foregroundColor(Color(colorEnum: .wxmPrimary))
+					}
+				}
+			}
 		}
 	}
 }

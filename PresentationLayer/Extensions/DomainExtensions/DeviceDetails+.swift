@@ -96,7 +96,7 @@ extension DeviceDetails {
 			return LocalizableString.Error.noDataTitle.localized
 		}
 
-		return LocalizableString.Home.dataQuality(qod).localized
+		return LocalizableString.MyStations.dataQuality(qod).localized
 	}
 
 	var locationText: String {

@@ -34,7 +34,7 @@ struct SignInView: View {
         })
         .onAppear {
             WXMAnalytics.shared.trackScreen(.login)
-			navigationObject.title = LocalizableString.signIn.localized
+			navigationObject.title = LocalizableString.login.localized
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
         }
     }
@@ -104,7 +104,7 @@ struct SignInView: View {
                 }
             }
         } label: {
-            Text(LocalizableString.signIn.localized)
+			Text(LocalizableString.login.localized)
         }
         .buttonStyle(WXMButtonStyle.filled())
         .disabled(!viewModel.isSignInButtonAvailable)

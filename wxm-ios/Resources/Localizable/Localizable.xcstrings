@@ -4301,6 +4301,17 @@
         }
       }
     },
+    "explorer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explorer"
+          }
+        }
+      }
+    },
     "explorer_list_cell_capacity" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5005,6 +5016,28 @@
         }
       }
     },
+    "forecast_join_the_network" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join the network!"
+          }
+        }
+      }
+    },
+    "forecast_join_the_network_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get a station and contribute real data to WeatherXM while earning rewards."
+          }
+        }
+      }
+    },
     "forecast_next_seven_days" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5023,6 +5056,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next 24 hours"
+          }
+        }
+      }
+    },
+    "forecast_shop_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shop now"
           }
         }
       }
@@ -5148,167 +5192,123 @@
         }
       }
     },
-    "home_buy_station" : {
+    "home" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buy a station"
+            "value" : "Home"
           }
         }
       }
     },
-    "home_claim_your_station_here" : {
+    "home_allow_location_permission" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Claim your station here"
+            "value" : "Allow location permission to show your current location forecast."
           }
         }
       }
     },
-    "home_data_quality" : {
+    "home_current_location" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Data Quality %d%%"
+            "value" : "Current location"
           }
         }
       }
     },
-    "home_follow_a_station_in_explorer" : {
+    "home_locations" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Follow a station in Explorer Map"
+            "value" : "Locations"
           }
         }
       }
     },
-    "home_following_weather_stations_empty_button_title" : {
+    "home_save_more_locations_alert_message" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Follow WXM Devices"
+            "value" : "You’ve maxed out the saved locations allowed without logging in. Sign in to save more."
           }
         }
       }
     },
-    "home_following_weather_stations_empty_description" : {
+    "home_save_more_locations_alert_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Browse the explorer map and add stations to your favorites. They will show up here."
+            "value" : "Save more locations?"
           }
         }
       }
     },
-    "home_following_weather_stations_empty_title" : {
+    "home_save_more_locations_max_message" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No favorites yet?"
+            "value" : "You’ve maxed out the saved locations allowed."
           }
         }
       }
     },
-    "home_join_the_network" : {
+    "home_saved_locations" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Join the network"
+            "value" : "Saved locations"
           }
         }
       }
     },
-    "home_no_rewards_yet" : {
+    "home_saved_locations_empty_description" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No rewards yet!"
+            "value" : "Add the places you care about and see their weather at a glance!"
           }
         }
       }
     },
-    "home_own_deploy_earn" : {
+    "home_saved_locations_empty_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Own. Deploy. Earn $WXM tokens."
+            "value" : "Nothing saved, yet!"
           }
         }
       }
     },
-    "home_owned_weather_stations_empty_description" : {
+    "home_search_placeholder" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Claim your WXM device by clicking the **+ button.**"
-          }
-        }
-      }
-    },
-    "home_owned_weather_stations_empty_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No stations yet?"
-          }
-        }
-      }
-    },
-    "home_total_weather_stations_empty_button_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "View Explorer Map"
-          }
-        }
-      }
-    },
-    "home_total_weather_stations_empty_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Claim your WXM device by clicking the **+ button** or browse the map and add stations to your favorites."
-          }
-        }
-      }
-    },
-    "home_total_weather_stations_empty_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No stations yet?"
+            "value" : "Search cities and places of interest "
           }
         }
       }
@@ -5423,6 +5423,17 @@
         }
       }
     },
+    "login" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login"
+          }
+        }
+      }
+    },
     "logout" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5518,6 +5529,193 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Moderate"
+          }
+        }
+      }
+    },
+    "my_stations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Stations"
+          }
+        }
+      }
+    },
+    "my_stations_buy_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buy a station"
+          }
+        }
+      }
+    },
+    "my_stations_claim_your_station_here" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim your station here"
+          }
+        }
+      }
+    },
+    "my_stations_data_quality" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data Quality %d%%"
+          }
+        }
+      }
+    },
+    "my_stations_follow_a_station_in_explorer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow a station in Explorer Map"
+          }
+        }
+      }
+    },
+    "my_stations_following_weather_stations_empty_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow WXM Devices"
+          }
+        }
+      }
+    },
+    "my_stations_following_weather_stations_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browse the explorer map and add stations to your favorites. They will show up here."
+          }
+        }
+      }
+    },
+    "my_stations_following_weather_stations_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No favorites yet?"
+          }
+        }
+      }
+    },
+    "my_stations_join_the_network" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join the network"
+          }
+        }
+      }
+    },
+    "my_stations_no_rewards_yet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No rewards yet!"
+          }
+        }
+      }
+    },
+    "my_stations_own_deploy_earn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Own. Deploy. Earn."
+          }
+        }
+      }
+    },
+    "my_stations_own_deploy_earn_wxm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Own. Deploy. Earn $WXM tokens."
+          }
+        }
+      }
+    },
+    "my_stations_owned_weather_stations_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim your WXM device by clicking the **+ button.**"
+          }
+        }
+      }
+    },
+    "my_stations_owned_weather_stations_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No stations yet?"
+          }
+        }
+      }
+    },
+    "my_stations_total_weather_stations_empty_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Explorer Map"
+          }
+        }
+      }
+    },
+    "my_stations_total_weather_stations_empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim your WXM device by clicking the **+ button** or browse the map and add stations to your favorites."
+          }
+        }
+      }
+    },
+    "my_stations_total_weather_stations_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No stations yet?"
           }
         }
       }
@@ -7337,6 +7535,17 @@
         }
       }
     },
+    "profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
+          }
+        }
+      }
+    },
     "profile_allocated_rewards" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7388,6 +7597,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You can also claim your allocated rewards by visiting **%@** from a desktop web browser."
+          }
+        }
+      }
+    },
+    "profile_login_to_see" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log in to see your rewards"
           }
         }
       }
@@ -9427,17 +9647,6 @@
         }
       }
     },
-    "sign_in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sign In"
-          }
-        }
-      }
-    },
     "sign_in_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10985,6 +11194,215 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View Transaction History"
+          }
+        }
+      }
+    },
+    "weather_clear" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear"
+          }
+        }
+      }
+    },
+    "weather_clear_but_hazy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear but hazy"
+          }
+        }
+      }
+    },
+    "weather_clear_few_low_clouds" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear with few low clouds"
+          }
+        }
+      }
+    },
+    "weather_foggy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foggy"
+          }
+        }
+      }
+    },
+    "weather_heavy_rain_thunderstorms_likely" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heavy rain, thunderstorms likely"
+          }
+        }
+      }
+    },
+    "weather_light_rain_thunderstorms_likely" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light rain, thunderstorms likely"
+          }
+        }
+      }
+    },
+    "weather_mixed_with_showers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mixed with showers"
+          }
+        }
+      }
+    },
+    "weather_mixed_with_snow_showers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mixed with snow showers"
+          }
+        }
+      }
+    },
+    "weather_mostly_cloudy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostly cloudy"
+          }
+        }
+      }
+    },
+    "weather_overcast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast"
+          }
+        }
+      }
+    },
+    "weather_overcast_heavy_rain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with heavy rain"
+          }
+        }
+      }
+    },
+    "weather_overcast_heavy_snow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with heavy snow"
+          }
+        }
+      }
+    },
+    "weather_overcast_light_rain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with light rain"
+          }
+        }
+      }
+    },
+    "weather_overcast_light_snow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with light snow"
+          }
+        }
+      }
+    },
+    "weather_overcast_mixture_snow_rain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with mixture of snow and rain"
+          }
+        }
+      }
+    },
+    "weather_overcast_rain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with rain"
+          }
+        }
+      }
+    },
+    "weather_overcast_snow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcast with snow"
+          }
+        }
+      }
+    },
+    "weather_partly_cloudy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partly cloudy"
+          }
+        }
+      }
+    },
+    "weather_rain_thunderstorms_likely" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rain, thunderstorms likely"
           }
         }
       }

@@ -1,5 +1,5 @@
 //
-//  WeatherStationsHomeViewModel.swift
+//  MyStationsViewModel.swift
 //  PresentationLayer
 //
 //  Created by Danae Kikue Dimou on 25/5/22.
@@ -11,7 +11,7 @@ import SwiftUI
 import Toolkit
 
 @MainActor
-public final class WeatherStationsHomeViewModel: ObservableObject {
+public final class MyStationsViewModel: ObservableObject {
 	private let meUseCase: MeUseCaseApi
 	private let photosUseCase: PhotoGalleryUseCaseApi
 	private let remoteConfigUseCase: RemoteConfigUseCaseApi
@@ -33,17 +33,18 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	private var followStates: [String: UserDeviceFollowState] = [:] {
 		didSet {
 			updateFilteredDevices()
-			updateStationRewards()
 		}
 	}
 
 	private var uploadInProgressDeviceId: String?
 	private let linkNavigation: LinkNavigation
+	let stationRewardsChipViewModel: StationRewardsChipViewModel
 
 	var isFiltersActive: Bool {
 		FilterValues.default != filters
 	}
 
+	@Published var isLoggedIn: Bool = false
 	@Published var shouldShowAddButtonBadge: Bool = false {
 		didSet {
 			guard shouldShowAddButtonBadge else {
@@ -55,17 +56,13 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 	@Published var uploadInProgressStationName: String?
 	@Published var uploadState: UploadProgressView.UploadState?
-	@Published var infoBanner: InfoBanner?
-	@Published var announcementConfiguration: AnnouncementCardView.Configuration?
-	@Published var stationRewardsTitle: String?
-	@Published var stationRewardsValueText: String?
-	@Published var shouldShowFullScreenLoader = true
+	@Published var shouldShowFullScreenLoader = false
 	@Published var devices = [DeviceDetails]()
 	@Published var scrollOffsetObject: TrackableScrollOffsetObject
-	@Published var isTabBarShowing: Bool = true
+	@Published var isAddButtonVisible: Bool = true
 	@Published var isFailed = false
 	private(set) var failObj: FailSuccessStateObject?
-	weak var mainVM: MainScreenViewModel?
+	weak private(set) var mainVM: MainScreenViewModel? = MainScreenViewModel.shared
 
 	init(meUseCase: MeUseCaseApi,
 		 remoteConfigUseCase: RemoteConfigUseCaseApi,
@@ -75,41 +72,17 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		self.remoteConfigUseCase = remoteConfigUseCase
 		self.photosUseCase = photosGalleryUseCase
 		self.linkNavigation = linkNavigation
+		self.stationRewardsChipViewModel = ViewModelsFactory.getStationRewardsChipViewModel()
 		let scrollOffsetObject: TrackableScrollOffsetObject = .init()
 		self.scrollOffsetObject = scrollOffsetObject
 		self.tabBarVisibilityHandler = .init(scrollOffsetObject: scrollOffsetObject)
-		self.tabBarVisibilityHandler.$isTabBarShowing.assign(to: &$isTabBarShowing)
+		self.tabBarVisibilityHandler.$areElementsVisible.assign(to: &$isAddButtonVisible)
+
+		mainVM?.$isUserLoggedIn.sink { [weak self] value in
+			self?.isLoggedIn = value
+		}.store(in: &cancellableSet)
+
 		observeFilters()
-
-		remoteConfigUseCase.infoBannerPublisher.sink { [weak self] infoBanner in
-			self?.infoBanner = infoBanner
-		}.store(in: &cancellableSet)
-
-		remoteConfigUseCase.announcementPublisher.sink { [weak self] announcement in
-			self?.announcementConfiguration = announcement?.toAnnouncementConfiguration(buttonAction: {
-				// Handle url
-				guard let urlString = announcement?.actionUrl, let url = URL(string: urlString) else {
-					return
-				}
-
-				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .announcementCTA,
-																			.itemId: .custom(urlString)])
-
-				let handled = self?.mainVM?.deepLinkHandler.handleUrl(url) ?? false
-				if !handled, url.isHttp {
-					LinkNavigationHelper().openUrl(urlString)
-				} else if handled, urlString.isProPromotionUrl {
-					WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .proPromotionCTA,
-																				.itemId: .custom(urlString),
-																				.source: .remoteDevicesList])
-				}
-			}, closeAction: {
-				guard let announcementId = announcement?.id else {
-					return
-				}
-				self?.remoteConfigUseCase.updateLastDismissedAnnouncementId(announcementId)
-			})
-		}.store(in: &cancellableSet)
 
 		photosUseCase.uploadProgressPublisher.sink { [weak self] progressResult in
 			let deviceId = progressResult.0
@@ -162,6 +135,13 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	///   - refreshMode: Set true if coming from pull to refresh to prevent showing full screen loader
 	///   - completion: Called once the request is finished
 	func getDevices(refreshMode: Bool = false, completion: (() -> Void)? = nil) {
+		guard isLoggedIn else {
+			completion?()
+			return
+		}
+		
+		shouldShowFullScreenLoader = !refreshMode
+
 		if refreshMode {
 			updateProgressUpload()
 		}
@@ -242,31 +222,6 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 		}
 	}
 
-	func handleRewardAnalyticsTap() {
-		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .tokensEarnedPress])
-
-		let viewModel = ViewModelsFactory.getRewardAnalyticsViewModel(devices: getOwnedDevices())
-		Router.shared.navigateTo(.rewardAnalytics(viewModel))
-	}
-
-	func handleInfoBannerDismissTap() {
-		guard let bannerId = infoBanner?.id else {
-			return
-		}
-
-		remoteConfigUseCase.updateLastDismissedInfoBannerId(bannerId)
-	}
-
-	func handleInfoBannerActionTap(url: String) {
-		guard let webUrl = URL(string: url) else {
-			return
-		}
-
-		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .infoBannerButton,
-																	.itemId: .custom(url)])
-		Router.shared.showFullScreen(.safariView(webUrl))
-	}
-
 	func handleUploadBannerTap() {
 		switch uploadState {
 			case .uploading, .completed:
@@ -298,7 +253,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 
 	func handleFollowInExplorerTap() {
-		mainVM?.selectedTab = .mapTab
+		mainVM?.selectedTab = .explorer
 	}
 
 	func viewWillDisappear() {
@@ -310,7 +265,7 @@ public final class WeatherStationsHomeViewModel: ObservableObject {
 	}
 }
 
-private extension WeatherStationsHomeViewModel {
+private extension MyStationsViewModel {
 	func updateUploadInProgressDevice(deviceId: String) {
 		self.uploadInProgressDeviceId = deviceId
 		self.uploadInProgressStationName = devices.first(where: { $0.id == deviceId })?.displayName
@@ -465,18 +420,6 @@ private extension WeatherStationsHomeViewModel {
 				let dict = Dictionary(grouping: devices, by: { $0.isActive })
 				return [dict[true], dict[false]].flatMap { $0 ?? [] }
 		}
-	}
-
-	func updateStationRewards() {
-		let owndedDevices = getOwnedDevices()
-		let hasOwned = !owndedDevices.isEmpty
-		let totalEarned: Double = owndedDevices.reduce(0.0) { $0 + ($1.rewards?.totalRewards ?? 0.0) }
-
-		let noRewardsText = LocalizableString.Home.noRewardsYet.localized
-		let stationRewardsdText = LocalizableString.RewardAnalytics.stationRewards.localized
-
-		self.stationRewardsTitle = (totalEarned == 0 && hasOwned) ? noRewardsText : stationRewardsdText
-		self.stationRewardsValueText = (totalEarned == 0 && hasOwned) ? nil : "\(totalEarned.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"
 	}
 
 	func getOwnedDevices() -> [DeviceDetails] {

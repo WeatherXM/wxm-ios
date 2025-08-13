@@ -31,7 +31,7 @@ enum LocalizableString: WXMLocalizable {
 	case firstName
 	case lastName
 	case password
-	case signIn
+	case login
 	case signUp
 	case dontHaveAccount
 	case forgotPassword
@@ -190,6 +190,10 @@ enum LocalizableString: WXMLocalizable {
 	case activeStation(Int?)
 	case presentStations(Int?)
 	case stationInactive
+	case home
+	case myStations
+	case explorer
+	case profile
 
 	var localized: String {
 		var localized = NSLocalizedString(self.key, comment: "")
@@ -262,8 +266,8 @@ extension LocalizableString {
 				return "last_name"
 			case .password:
 				return "password"
-			case .signIn:
-				return "sign_in"
+			case .login:
+				return "login"
 			case .signUp:
 				return "sign_up"
 			case .dontHaveAccount:
@@ -592,6 +596,14 @@ extension LocalizableString {
 				return "present_stations_format"
 			case .stationInactive:
 				return "station_inactive"
+			case .home:
+				return "home"
+			case .myStations:
+				return "my_stations"
+			case .explorer:
+				return "explorer"
+			case .profile:
+				return "profile"
 		}
 	}
 }

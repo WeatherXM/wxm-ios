@@ -36,6 +36,11 @@ struct ParameterConstants {
 		static let names = "names"
     }
 
+	enum Cells {
+		static let lat = "lat"
+		static let lon = "lon"
+	}
+	
 	enum Devices {
 		static let date = "date"
 		static let timezone = "timezone"

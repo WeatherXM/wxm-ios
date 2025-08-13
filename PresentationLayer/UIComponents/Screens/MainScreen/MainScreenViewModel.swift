@@ -45,12 +45,13 @@ class MainScreenViewModel: ObservableObject {
 	private let settingsUseCase: SettingsUseCaseApi
 	private let photosUseCase: PhotoGalleryUseCaseApi
 	private let stationNotificationsUseCase: StationNotificationsUseCaseApi
+	private var requestPermissionsInProgress: Bool = false
 	private var backgroundScheduler: BackgroundScheduler?
 	private var cancellableSet: Set<AnyCancellable> = []
 	let networkMonitor: NWPathMonitor
 	@Published var isUserLoggedIn: Bool = false
 	@Published var isInternetAvailable: Bool = false
-	@Published var selectedTab: TabSelectionEnum = .homeTab
+	@Published var selectedTab: TabSelectionEnum = .home
 	@Published var showAnalyticsPrompt: Bool = false
 	@Published var showTermsPrompt: Bool = false {
 		didSet {
@@ -118,8 +119,6 @@ class MainScreenViewModel: ObservableObject {
 			self?.showAppUpdatePrompt = self?.mainUseCase.shouldShowUpdatePrompt(for: latestVersion, minimumVersion: minVersion, currentVersion: nil) ?? false
 		}.store(in: &cancellableSet)
 
-		requestNotificationAuthorizationIfNeeded()
-
 		NotificationCenter.default.addObserver(forName: .deviceDidShake,
 											   object: nil,
 											   queue: .main) { [weak self] _ in
@@ -142,14 +141,34 @@ class MainScreenViewModel: ObservableObject {
 		theme = getThemeOption()
 		updateShowWalletWarning()
 		startMonitoring()
-		checkIfShouldShowAnalyticsPrompt(settingsUseCase: settingsUseCase)
 		cleanupAnalyticsUserIdIfNeeded()
-		checkIfShouldShowTerms()
+		requestNeededPermissions()
 	}
 
-	private func requestNotificationAuthorizationIfNeeded() {
+	private func requestNeededPermissions() {
+		guard !requestPermissionsInProgress else {
+			return
+		}
+
+		requestPermissionsInProgress = true
+		checkIfShouldShowAnalyticsPrompt(settingsUseCase: settingsUseCase) { [weak self] in
+			self?.requestNotificationAuthorizationIfNeeded {
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+					self?.checkIfShouldShowTerms()
+					self?.requestPermissionsInProgress = false
+				}
+			}
+		}
+	}
+
+	private func requestNotificationAuthorizationIfNeeded(completion: @escaping VoidCallback) {
 		Task { @MainActor in
-			try await FirebaseManager.shared.requestNotificationAuthorization()
+			do {
+				try await FirebaseManager.shared.requestNotificationAuthorization()
+			} catch {
+				print(error.localizedDescription)
+			}
+			completion()
 		}
 	}
 
@@ -157,9 +176,6 @@ class MainScreenViewModel: ObservableObject {
 		let container = swinjectHelper.getContainerForSwinject()
 		let authUseCase = container.resolve(AuthUseCaseApi.self)!
 		isUserLoggedIn = authUseCase.isUserLoggedIn()
-		if isUserLoggedIn {
-			selectedTab = .homeTab
-		}
 	}
 
 	private func startMonitoring() {
@@ -292,12 +308,16 @@ class MainScreenViewModel: ObservableObject {
 
 	// MARK: Analytics opt in/out
 
-	private func checkIfShouldShowAnalyticsPrompt(settingsUseCase: SettingsUseCaseApi) {
-		guard isUserLoggedIn else {
+	private func checkIfShouldShowAnalyticsPrompt(settingsUseCase: SettingsUseCaseApi, completion: @escaping VoidCallback) {
+		showAnalyticsPrompt = !settingsUseCase.isAnalyticsOptSet
+		guard showAnalyticsPrompt else {
+			completion()
 			return
 		}
 
-		showAnalyticsPrompt = !settingsUseCase.isAnalyticsOptSet
+		$showAnalyticsPrompt.dropFirst().first().sink { _ in
+			completion()
+		}.store(in: &cancellableSet)
 	}
 
 	private func cleanupAnalyticsUserIdIfNeeded() {
@@ -313,9 +333,7 @@ class MainScreenViewModel: ObservableObject {
 			return
 		}
 
-		DispatchQueue.main.async {
-			self.showTermsPrompt = true
-		}
+		self.showTermsPrompt = true
 	}
 
 	private func getTermsAlertConfiguration() -> WXMAlertConfiguration {

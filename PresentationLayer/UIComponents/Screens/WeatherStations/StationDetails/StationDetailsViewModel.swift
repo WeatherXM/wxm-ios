@@ -305,7 +305,7 @@ private extension StationDetailsViewModel {
     func showLogin() {
         let conf = WXMAlertConfiguration(title: LocalizableString.favoritesloginAlertTitle.localized,
                                          text: LocalizableString.favoritesloginAlertText(device?.name ?? "").localized.attributedMarkdown ?? "",
-                                         primaryButtons: [.init(title: LocalizableString.signIn.localized,
+										 primaryButtons: [.init(title: LocalizableString.login.localized,
 																action: { Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel())) })])
         loginAlertConfiguration = conf
         showLoginAlert = true

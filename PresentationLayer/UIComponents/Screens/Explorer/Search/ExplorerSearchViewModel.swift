@@ -15,7 +15,6 @@ import SwiftUI
 protocol ExplorerSearchViewModelDelegate: AnyObject {
     func rowTapped(coordinates: CLLocationCoordinate2D, deviceId: String?, cellIndex: String?)
     func searchWillBecomeActive(_ active: Bool)
-    func settingsButtonTapped()
 	func networkStatisticsTapped()
 }
 
@@ -33,16 +32,22 @@ class ExplorerSearchViewModel: ObservableObject {
     @Published var searchResults: [SearchView.Row] = []
     @Published var isShowingRecent: Bool = true
     /// Will be assigned from the view. We do not assign directly this proprety as a binding in theTextfield
-    @Published private(set) var searchTerm: String = "" {
+    @Published var searchTerm: String = "" {
         didSet {
             updateUIState()
         }
     }
 
+	internal var resultsTitle: String? {
+		nil
+	}
+	internal var searhExclude: SearchExclude? {
+		nil
+	}
     weak var delegate: ExplorerSearchViewModelDelegate?
+	let searchTermLimit = 2
 	private let useCase: NetworkUseCaseApi?
     private var searchCancellable: AnyCancellable?
-    private let searchTermLimit = 2
     private var cancellables = Set<AnyCancellable>()
 
 	init(useCase: NetworkUseCaseApi? = nil) {
@@ -57,6 +62,10 @@ class ExplorerSearchViewModel: ObservableObject {
 
 		updateUIState()
     }
+
+	func activeViewAppeared() {
+		WXMAnalytics.shared.trackScreen(.networkSearch)
+	}
 
     func handleTapOnResult(_ result: SearchView.Row) {
         guard let lat = result.networkModel?.lat, let lon = result.networkModel?.lon else {
@@ -74,15 +83,7 @@ class ExplorerSearchViewModel: ObservableObject {
 
         searchTerm.removeAll()
 
-        let isStation = result.networkModel?.deviceId != nil
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkSearch,
-                                                              .itemId: isShowingRecent ? .recent : .search,
-                                                              .itemListId: isStation ? .station : .location])
-    }
-
-    func handleSettingsButtonTap() {
-        WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .explorerSettings])
-        delegate?.settingsButtonTapped()
+		trackResultTapEvent(for: result)
     }
 
 	func handleNetworkStatsButtonTap() {
@@ -109,20 +110,36 @@ class ExplorerSearchViewModel: ObservableObject {
 	func updateStations(count: Int) {
 		stationsCount = count.localizedFormatted
 	}
+
+	func updateUIState() {
+		guard searchTerm.count >= searchTermLimit else {
+			if searchTerm.isEmpty {
+
+				loadRecent()
+				isShowingRecent = true
+			}
+			return
+		}
+	}
+
+	func updateSearchResults(response: NetworkSearchResponse?) {
+		let devices: [any NetworkSearchItem] = response?.devices ?? []
+		let addresses: [any NetworkSearchItem] = response?.addresses ?? []
+		let items: [any NetworkSearchItem] = [devices, addresses].flatMap { $0 }
+
+		updateSearchResults(data: items)
+	}
+
+	func trackResultTapEvent(for result: SearchView.Row) {
+		let isStation = result.networkModel?.deviceId != nil
+		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .networkSearch,
+																	.itemId: isShowingRecent ? .recent : .search,
+																	.itemListId: isStation ? .station : .location])
+
+	}
 }
 
 private extension ExplorerSearchViewModel {
-
-    func updateUIState() {
-        guard searchTerm.count >= searchTermLimit else {
-            if searchTerm.isEmpty {
-
-                loadRecent()
-                isShowingRecent = true
-            }
-            return
-        }
-    }
 
     func performSearch(searchTerm: String) {
         searchCancellable?.cancel()
@@ -135,7 +152,9 @@ private extension ExplorerSearchViewModel {
         isLoading = true
 
 		do {
-			searchCancellable = try useCase?.search(term: searchTerm, exact: false, exclude: nil)
+			searchCancellable = try useCase?.search(term: searchTerm,
+													exact: false,
+													exclude: searhExclude)
 				.receive(on: DispatchQueue.main)
 				.sink { [weak self] response in
 					self?.isLoading = false
@@ -154,13 +173,6 @@ private extension ExplorerSearchViewModel {
 		}
 	}
 
-    func updateSearchResults(response: NetworkSearchResponse?) {
-        let devices: [any NetworkSearchItem] = response?.devices ?? []
-        let addresses: [any NetworkSearchItem] = response?.addresses ?? []
-        let items: [any NetworkSearchItem] = [devices, addresses].flatMap { $0 }
-
-        updateSearchResults(data: items)
-    }
 
     func updateSearchResults(data: [any NetworkSearchItem]) {
         self.searchResults = data.compactMap { item in
@@ -191,7 +203,7 @@ private extension ExplorerSearchViewModel {
 
             return nil
         }
-        self.showNoResults = searchResults.isEmpty
+        self.showNoResults = searchResults.isEmpty && !searchTerm.isEmpty
     }
 
     func loadRecent() {

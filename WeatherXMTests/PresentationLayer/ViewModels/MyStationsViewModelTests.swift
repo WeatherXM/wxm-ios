@@ -1,5 +1,5 @@
 //
-//  WeatherStationsHomeViewModelTests.swift
+//  MyStationsViewModelTests.swift
 //  WeatherXMTests
 //
 //  Created by Pantelis Giazitsis on 3/4/25.
@@ -11,8 +11,8 @@ import DomainLayer
 
 @Suite(.serialized)
 @MainActor
-struct WeatherStationsHomeViewModelTests {
-	let viewModel: WeatherStationsHomeViewModel
+struct MyStationsViewModelTests {
+	let viewModel: MyStationsViewModel
 	let meUseCase: MockMeUseCase
 	let remoteConfigUseCase: MockRemoteConfigUseCase
 	let photoGalleryUseCase: MockPhotoGalleryUseCase
@@ -34,7 +34,8 @@ struct WeatherStationsHomeViewModelTests {
 		#expect(viewModel.uploadState == nil)
 	}
 
-	@Test func getDevices() async throws {
+	@Test func getDevicesLoggedIn() async throws {
+		viewModel.isLoggedIn = true
 		try await confirmation { confirm in
 			viewModel.getDevices() {
 				#expect(!viewModel.devices.isEmpty)
@@ -44,8 +45,19 @@ struct WeatherStationsHomeViewModelTests {
 		}
 	}
 
+	@Test func getDevicesLoggedOut() async throws {
+		try await confirmation { confirm in
+			viewModel.getDevices() {
+				#expect(viewModel.devices.isEmpty)
+				confirm()
+			}
+			try await Task.sleep(for: .seconds(1))
+		}
+	}
+
 	@Test func getFollowState() async throws {
 		#expect(viewModel.devices.isEmpty)
+		viewModel.isLoggedIn = true
 		viewModel.getDevices()
 		try await Task.sleep(for: .seconds(1))
 		let device = try #require(viewModel.devices.first)
@@ -59,12 +71,6 @@ struct WeatherStationsHomeViewModelTests {
 		#expect(followState == nil)
 	}
 
-	@Test func handleInfoBannerDismissTap() {
-		#expect(remoteConfigUseCase.lastDismissedInfoBannerId == nil)
-		viewModel.handleInfoBannerDismissTap()
-		#expect(remoteConfigUseCase.lastDismissedInfoBannerId == "124")
-	}
-
 	@Test func handleBuyButtonTap() {
 		#expect(linkNavigation.openedUrl == nil)
 		viewModel.handleBuyButtonTap()
@@ -72,9 +78,8 @@ struct WeatherStationsHomeViewModelTests {
 	}
 
 	@Test func handleFollowInExplorerTap() {
-		self.viewModel.mainVM = .shared
-		#expect(viewModel.mainVM?.selectedTab == .homeTab)
+		#expect(viewModel.mainVM?.selectedTab == .home)
 		viewModel.handleFollowInExplorerTap()
-		#expect(viewModel.mainVM?.selectedTab == .mapTab)
+		#expect(viewModel.mainVM?.selectedTab == .explorer)
 	}
 }

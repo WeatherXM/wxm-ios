@@ -68,6 +68,11 @@ final class MockMeUseCase: MeUseCaseApi {
 		try getDevices()
 	}
 
+	func getCachedOwnedDevices() -> [DeviceDetails]? {
+		let device = DeviceDetails.mockDevice
+		return [device]
+	}
+
 	func getDevices() throws -> AnyPublisher<Result<[DeviceDetails], NetworkErrorResponse>, Never> {
 		let device = DeviceDetails.mockDevice
 		return Just(.success([device])).eraseToAnyPublisher()

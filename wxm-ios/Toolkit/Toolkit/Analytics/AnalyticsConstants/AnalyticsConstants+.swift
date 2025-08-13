@@ -84,6 +84,7 @@ extension Parameter: RawRepresentable, Hashable, CustomStringConvertible {
 			case .method: return "METHOD"
 			case .promptName: return "PROMPT_NAME"
 			case .promptType: return "PROMPT_TYPE"
+			case .savedLocations: return "SAVED_LOCATIONS"
 			case .sortBy: return "SORT_BY"
 			case .source: return "SOURCE"
 			case .state: return "STATE"
@@ -107,7 +108,7 @@ extension Parameter: RawRepresentable, Hashable, CustomStringConvertible {
 		switch self {
 			case .action, .actionName, .contentName, .promptName, .promptType,
 					.step, .state, .date, .theme, .temperature, .wind, .windDirection, .precipitation, .pressure,
-					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .stationsOwn, .stationsOwnCount(_), .stationsFavorite, .userState, .deviceState:
+					.sortBy, .filter, .groupBy, .status, .appId, .hasWallet, .savedLocations, .stationsOwn, .stationsOwnCount(_), .stationsFavorite, .userState, .deviceState:
 				return rawValue
 			case .contentType:
 				return AnalyticsParameterContentType
@@ -138,10 +139,16 @@ extension ParameterValue: RawRepresentable {
 
 	public var rawValue: String {
 		switch self {
+			case .authenticated:
+				return "authenticated"
+			case .unauthenticated:
+				return "unauthenticated"
 			case .appUpdatePrompt:
 				return "App Update Prompt"
 			case .appUpdatePromptResult:
 				return "App Update Prompt Result"
+			case .clickOnLocationSearchResult:
+				return "Click on Location Search Result"
 			case .camera:
 				return "camera"
 			case .gallery:
@@ -608,6 +615,15 @@ extension ParameterValue: RawRepresentable {
 				return "disable"
 			case .openStationFromNotification:
 				return "Open Station from Notification"
+			case .savedALocation:
+				return "Saved a location"
+			case .savedLocation:
+				return "saved_location"
+			case .unsavedLocation:
+				return "unsaved_location"
+			case .maxLocationsSavedError:
+				return "Max Locations Saved Error"
+			
 		}
 	}
 }

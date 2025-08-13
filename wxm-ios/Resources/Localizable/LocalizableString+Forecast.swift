@@ -18,6 +18,9 @@ extension LocalizableString {
 		case weeklyRangeDescription
 		case dailyRangeBar
 		case dailyRangeDescription
+		case joinTheNetwork
+		case joinTheNetworkDescription
+		case shopNow
 	}
 }
 
@@ -47,6 +50,12 @@ extension LocalizableString.Forecast: WXMLocalizable {
 				return "forecast_daily_range_bar"
 			case .dailyRangeDescription:
 				return "forecast_daily_range_description"
+			case .joinTheNetwork:
+				return "forecast_join_the_network"
+			case .joinTheNetworkDescription:
+				return "forecast_join_the_network_description"
+			case .shopNow:
+				return "forecast_shop_now"
 		}
 	}
 }

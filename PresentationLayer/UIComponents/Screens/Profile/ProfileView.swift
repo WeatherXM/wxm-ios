@@ -11,20 +11,16 @@ import Toolkit
 
 struct ProfileView: View {
     @StateObject var viewModel: ProfileViewModel
-	@Binding var isTabBarShowing: Bool
-	@Binding var tabBarItemsSize: CGSize
 
     var body: some View {
 		NavigationContainerView(showBackButton: false) {
-			ContentView(viewModel: viewModel, tabBarItemsSize: $tabBarItemsSize, isTabBarShowing: $isTabBarShowing)
+			ContentView(viewModel: viewModel)
 		}
     }
 }
 
 private struct ContentView: View {
 	@StateObject var viewModel: ProfileViewModel
-	@Binding var tabBarItemsSize: CGSize
-	@Binding var isTabBarShowing: Bool
 	@EnvironmentObject var navigationObject: NavigationObject
 
 	var body: some View {
@@ -37,10 +33,13 @@ private struct ContentView: View {
 			} content: {
 				fieldsView
 					.iPadMaxWidth()
-					.padding(.bottom, tabBarItemsSize.height)
 					.fail(show: $viewModel.isFailed, obj: viewModel.failObj)
 			}
 			.zIndex(0)
+
+			if !MainScreenViewModel.shared.isUserLoggedIn {
+				signInContainer
+			}
 		}
 		.spinningLoader(show: $viewModel.isLoading, hideContent: true)
 		.bottomSheet(show: $viewModel.showInfo) {
@@ -48,25 +47,24 @@ private struct ContentView: View {
 		}
 		.onAppear {
 			navigationObject.title = LocalizableString.Profile.title.localized
-			navigationObject.subtitle = viewModel.userInfoResponse.email ?? LocalizableString.noEmail.localized
+			updateNavigationSubtitle()
 		}
 		.onChange(of: viewModel.userInfoResponse.email) { _ in
-			navigationObject.subtitle = viewModel.userInfoResponse.email ?? LocalizableString.noEmail.localized
+			updateNavigationSubtitle()
 		}
-		.onChange(of: viewModel.isTabBarVisible) { isVisible in
-			withAnimation {
-				isTabBarShowing = isVisible
-			}
+		.onChange(of: viewModel.isLoggedIn) { _ in
+			updateNavigationSubtitle()
 		}
 	}
 
 	var fieldsView: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
-			if let surveyConf = viewModel.surveyConfiguration {
+			if let surveyConf = viewModel.surveyConfiguration,
+			   viewModel.isLoggedIn {
 				AnnouncementCardView(configuration: surveyConf)
 			}
 
-			ForEach(ProfileField.allCases, id: \.self) { field in
+			ForEach(viewModel.profileFields, id: \.self) { field in
 				switch field {
 					case .rewards:
 						rewardsView
@@ -77,8 +75,10 @@ private struct ContentView: View {
 				}
 			}
 
-			ProBannerView(description: LocalizableString.Promotional.takeYourWeatherInsights.localized,
-						  analyticsSource: .localProfile)
+			if viewModel.isLoading {
+				ProBannerView(description: LocalizableString.Promotional.takeYourWeatherInsights.localized,
+							  analyticsSource: .localProfile)
+			}
 		}
 		.padding(CGFloat(.defaultSidePadding))
 		.animation(.easeIn, value: viewModel.surveyConfiguration != nil)
@@ -239,32 +239,33 @@ private struct ContentView: View {
 		.buttonStyle(.plain)
 	}
 
+	@ViewBuilder
 	var titleView: some View {
-		VStack {
-			PercentageGridLayoutView(firstColumnPercentage: 0.5) {
-				Group {
-					tokenView(title: LocalizableString.Profile.totalEarned.localized,
-							  value: viewModel.totalEarned) {
-						viewModel.handleTotalEarnedInfoTap()
+		if viewModel.isLoggedIn {
+			VStack {
+				PercentageGridLayoutView(firstColumnPercentage: 0.5) {
+					Group {
+						tokenView(title: LocalizableString.Profile.totalEarned.localized,
+								  value: viewModel.totalEarned) {
+							viewModel.handleTotalEarnedInfoTap()
+						}
+								  .padding(.trailing, CGFloat(.smallToMediumSpacing)/2.0)
+
+						tokenView(title: LocalizableString.Profile.totalClaimed.localized,
+								  value: viewModel.totalClaimed) {
+							viewModel.handleTotalClaimedInfoTap()
+						}
+								  .padding(.leading, CGFloat(.smallToMediumSpacing)/2.0)
 					}
-							  .padding(.trailing, CGFloat(.smallToMediumSpacing)/2.0)
-					
-					tokenView(title: LocalizableString.Profile.totalClaimed.localized,
-							  value: viewModel.totalClaimed) {
-						viewModel.handleTotalClaimedInfoTap()
-					}
-							  .padding(.leading, CGFloat(.smallToMediumSpacing)/2.0)
 				}
+				.padding(.horizontal, CGFloat(.defaultSidePadding))
+				.padding(.bottom, CGFloat(.defaultSidePadding))
+				.background {
+					Color(colorEnum: .top)
+						.wxmShadow()
+				}
+				.animation(.easeIn, value: viewModel.totalEarned)
 			}
-			.padding(.horizontal, CGFloat(.defaultSidePadding))
-			.padding(.bottom, CGFloat(.defaultSidePadding))
-			.background {
-				Color(colorEnum: .top)
-			}
-			.cornerRadius(CGFloat(.cardCornerRadius),
-						  corners: [.bottomLeft, .bottomRight])
-			.wxmShadow()
-			.animation(.easeIn, value: viewModel.totalEarned)
 		}
 	}
 
@@ -295,10 +296,57 @@ private struct ContentView: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint))
 	}
+
+	@ViewBuilder
+	var signInContainer: some View {
+		VStack(spacing: CGFloat(.defaultSpacing)) {
+			signInButton
+			signUpTextButton
+		}
+		.WXMCardStyle()
+		.iPadMaxWidth()
+		.padding(CGFloat(.defaultSidePadding))
+	}
+
+	@ViewBuilder
+	var signInButton: some View {
+		Button {
+			Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel()))
+		} label: {
+			Text(LocalizableString.login.localized)
+		}
+		.buttonStyle(WXMButtonStyle.filled())
+	}
+
+	@ViewBuilder
+	var signUpTextButton: some View {
+		Button {
+			Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel()))
+		} label: {
+			HStack {
+				Text(LocalizableString.dontHaveAccount.localized)
+					.font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+					.foregroundColor(Color(colorEnum: .text))
+
+				Text(LocalizableString.signUp.localized.uppercased())
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundColor(Color(colorEnum: .wxmPrimary))
+			}
+		}
+	}
+
+	func updateNavigationSubtitle() {
+		let email = viewModel.userInfoResponse.email ?? LocalizableString.noEmail.localized
+		navigationObject.subtitle = viewModel.isLoggedIn ? email : LocalizableString.Profile.loginToSee.localized
+	}
 }
 
 struct Previews_ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-		ProfileView(viewModel: ViewModelsFactory.getProfileViewModel(), isTabBarShowing: .constant(true), tabBarItemsSize: .constant(.zero))
+		ZStack {
+			Color(colorEnum: .bg)
+
+			ProfileView(viewModel: ViewModelsFactory.getProfileViewModel())
+		}
     }
 }

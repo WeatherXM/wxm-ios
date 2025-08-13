@@ -99,10 +99,15 @@ final class RegisterViewModel: ObservableObject {
 												title: LocalizableString.success.localized,
 												subtitle: description.attributedMarkdown,
 												cancelTitle: nil,
-												retryTitle: nil,
+												retryTitle: LocalizableString.login.localized,
 												contactSupportAction: nil,
 												cancelAction: nil,
-												retryAction: nil)
+												retryAction: {
+			Router.shared.pop()
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
+				Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel()))
+			}
+		})
 		failSuccessObj = successObj
 		isFail = false
 		isSuccess = true
