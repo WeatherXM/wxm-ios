@@ -7,8 +7,8 @@
 
 import Toolkit
 
-class MockCacheManager: PersistCacheManager {
-	private var cache: [String: Any] = [:]
+final class MockCacheManager: PersistCacheManager {
+	nonisolated(unsafe) private var cache: [String: Any] = [:]
 
 	func save<T>(value: T, key: String) {
 		cache[key] = value
