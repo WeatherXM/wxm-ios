@@ -6600,6 +6600,94 @@
         }
       }
     },
+    "onboarding_community_powered" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Community-Powered\nWeather"
+          }
+        }
+      }
+    },
+    "onboarding_contribute_and_earn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Community-Powered\nWeather"
+          }
+        }
+      }
+    },
+    "onboarding_explore_the_app_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explore the app"
+          }
+        }
+      }
+    },
+    "onboarding_forecast_for_every_corner" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forecasts for every \ncorner on earth"
+          }
+        }
+      }
+    },
+    "onboarding_live_transparent_network" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A live, transparent network"
+          }
+        }
+      }
+    },
+    "onboarding_local_weather_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Local weather data, \nglobal impact"
+          }
+        }
+      }
+    },
+    "onboarding_sign_up_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign up now"
+          }
+        }
+      }
+    },
+    "onboarding_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Real weather, real rewards."
+          }
+        }
+      }
+    },
     "owned" : {
       "extractionState" : "manual",
       "localizations" : {
