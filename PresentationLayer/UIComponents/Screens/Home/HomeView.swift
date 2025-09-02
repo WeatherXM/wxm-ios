@@ -142,6 +142,9 @@ private extension HomeView {
 			RoundedRectangle(cornerRadius: CGFloat(.cardCornerRadius))
 				.stroke(Color(colorEnum: .top), style: StrokeStyle(lineWidth: 2, dash: [4, 4]))
 		}
+		.onTapGesture {
+			viewModel.handleSearchButtonTap()
+		}
 	}
 
 	@ViewBuilder
