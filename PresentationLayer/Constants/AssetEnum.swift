@@ -40,6 +40,10 @@ public enum AssetEnum: String {
     case bluetoothGray
     case check
     case checkBoxOutlined
+	case onboardingImage0 = "onboarding_image_0"
+	case onboardingImage1 = "onboarding_image_1"
+	case onboardingImage2 = "onboarding_image_2"
+	case onboardingImage3 = "onboarding_image_3"
     case sunnyDay
     case snowyDay
     case rainyDay

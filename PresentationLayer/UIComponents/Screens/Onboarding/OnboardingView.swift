@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct OnboardingView: View {
+	let slides: [Slide] = [Slide(image: .onboardingImage0,
+								 title: LocalizableString.Onboarding.forecastForEveryCorner.localized),
+						   Slide(image: .onboardingImage1,
+								 title: LocalizableString.Onboarding.liveTransparentNetwork.localized),
+						   Slide(image: .onboardingImage2,
+								 title: LocalizableString.Onboarding.contributeAndEarn.localized)]
     var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
 			Image(asset: .weatherXMLogoText)
@@ -17,8 +23,13 @@ struct OnboardingView: View {
 
 			GeometryReader { _ in
 				ScrollView(.horizontal) {
-					Text(verbatim: "TEST")
+					HStack {
+						ForEach(slides) { slide in
+							cardView(slide: slide)
+						}
+					}
 				}
+				.background(Color(colorEnum: .blueTint))
 			}
 
 			VStack(spacing: CGFloat(.defaultSpacing)) {
@@ -44,9 +55,55 @@ struct OnboardingView: View {
 				}
 				.buttonStyle(.plain)
 			}
+			.padding(.horizontal, CGFloat(.largeSidePadding))
 		}
-		.padding(CGFloat(.largeSidePadding))
+		.padding(.vertical, CGFloat(.largeSidePadding))
     }
+}
+
+extension OnboardingView {
+	struct Slide: Identifiable {
+		var id: String {
+			title + image.rawValue
+		}
+
+		let image: AssetEnum
+		let title: String
+	}
+}
+
+private extension OnboardingView {
+	@ViewBuilder
+	func cardView(slide: Slide) -> some View {
+		Image(asset: slide.image)
+			.resizable()
+			.aspectRatio(0.54, contentMode: .fill)
+			.background(Color(colorEnum: .error))
+			.overlay {
+				VStack {
+					Spacer()
+
+					HStack {
+						Spacer()
+
+						Text(slide.title)
+							.multilineTextAlignment(.center)
+							.font(.system(size: CGFloat(.largeTitleFontSize),
+										  weight: .bold))
+							.foregroundStyle(Color(colorEnum: .textWhite))
+							.padding(CGFloat(.largeSidePadding))
+
+						Spacer()
+					}
+					.background {
+						BackdropBlurView(radius: 15.0)
+					}
+
+				}
+			}
+			.clipShape(.rect(cornerRadius: CGFloat(.cardCornerRadius)))
+			.wxmShadow()
+	}
 }
 
 #Preview {

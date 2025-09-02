@@ -355,6 +355,7 @@
 		2678ED8F2AFD1B1400940D59 /* RewardsTimelinePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */; };
 		2678FB102E671378000F3EBA /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678FB0F2E671378000F3EBA /* OnboardingView.swift */; };
 		2678FB122E671867000F3EBA /* LocalizableString+Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678FB112E671865000F3EBA /* LocalizableString+Onboarding.swift */; };
+		2678FB142E672FBF000F3EBA /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678FB132E672FBF000F3EBA /* BlurView.swift */; };
 		267A37832AEBB4C900469126 /* StationRewardsTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */; };
 		267A378A2AEBFF2F00469126 /* DeviceRewardsOverview+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */; };
 		267CA6CB2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */; };
@@ -1140,6 +1141,7 @@
 		2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelinePagination.swift; sourceTree = "<group>"; };
 		2678FB0F2E671378000F3EBA /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2678FB112E671865000F3EBA /* LocalizableString+Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Onboarding.swift"; sourceTree = "<group>"; };
+		2678FB132E672FBF000F3EBA /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsTimelineView.swift; sourceTree = "<group>"; };
 		267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceRewardsOverview+.swift"; sourceTree = "<group>"; };
 		267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimM5ContainerViewModel.swift; sourceTree = "<group>"; };
@@ -2321,6 +2323,7 @@
 				2675475129A9181E008BCF40 /* AttributedTextView.swift */,
 				26325B542BE3AB4300182C59 /* GifImageView.swift */,
 				269C809B2AB9E76F005F9BD6 /* Badge.swift */,
+				2678FB132E672FBF000F3EBA /* BlurView.swift */,
 				2675474429A9181E008BCF40 /* CardWarningView.swift */,
 				2675475929A9181E008BCF40 /* CircleRadius.swift */,
 				26AB9F462A7BEA0700855912 /* CTAView.swift */,
@@ -4286,6 +4289,7 @@
 				264371312CA1955800E5F382 /* ChartLegendView.swift in Sources */,
 				B52BCC752824FB8F00EA3DA5 /* MainApp.swift in Sources */,
 				26C033102DCDEDB200F68557 /* ExplorerData.swift in Sources */,
+				2678FB142E672FBF000F3EBA /* BlurView.swift in Sources */,
 				2675481929A9181E008BCF40 /* MainScreen.swift in Sources */,
 				267547A929A9181E008BCF40 /* MainScreenViewModel.swift in Sources */,
 				263B8B502B29F17E001C5060 /* MapBoxConstants.swift in Sources */,
