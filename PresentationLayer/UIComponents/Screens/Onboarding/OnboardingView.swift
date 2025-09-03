@@ -17,45 +17,66 @@ struct OnboardingView: View {
 								 title: LocalizableString.Onboarding.contributeAndEarn.localized),
 						   Slide(image: .onboardingImage3,
 								 title: LocalizableString.Onboarding.communityPowered.localized)]
-    var body: some View {
-		VStack(spacing: CGFloat(.smallSpacing)) {
-			Image(asset: .weatherXMLogoText)
-			Text(LocalizableString.Onboarding.title.localized)
-				.foregroundStyle(Color(colorEnum: .textDarkStable))
-				.font(.system(size: CGFloat(.smallTitleFontSize)))
 
-			GeometryReader { proxy in
-				slidesScroller(containerSize: proxy.size)
+	@State private var currentSlideId: String?
+
+	var body: some View {
+		ZStack {
+			if let currentSlide = slides.first(where: { $0.id == currentSlideId}) {
+				Color.clear.overlay {
+					Image(asset: currentSlide.image)
+						.resizable()
+						.interpolation(.none)
+						.aspectRatio(contentMode: .fill)
+						.blur(radius: 100)
+						.clipped()
+						.ignoresSafeArea()
+						.animation(.easeIn, value: currentSlideId)
+				}
 			}
 
-			VStack(spacing: CGFloat(.defaultSpacing)) {
-				Button {
+			VStack(spacing: CGFloat(.largeSpacing)) {
+				Image(asset: .weatherXMLogoText)
+				Text(LocalizableString.Onboarding.title.localized)
+					.foregroundStyle(Color(colorEnum: .textDarkStable))
+					.font(.system(size: CGFloat(.smallTitleFontSize)))
 
-				} label: {
-					Text(LocalizableString.Onboarding.signUpButtonTitle.localized)
-						.foregroundStyle(Color(colorEnum: .darkBg))
-						.font(.system(size: CGFloat(.mediumFontSize),
-									  weight: .bold))
+				GeometryReader { proxy in
+					slidesScroller(containerSize: proxy.size)
 				}
-				.buttonStyle(WXMButtonStyle(fillColor: .textWhite,
-											strokeColor: .textWhite,
-											cornerRadius: 25.0))
 
-				Button {
+				VStack(spacing: CGFloat(.defaultSpacing)) {
+					Button {
 
-				} label: {
-					Text(LocalizableString.Onboarding.exploreTheAppButtonTitle.localized)
-						.foregroundStyle(Color(colorEnum: .textWhite))
-						.font(.system(size: CGFloat(.mediumFontSize),
-									  weight: .bold))
+					} label: {
+						Text(LocalizableString.Onboarding.signUpButtonTitle.localized)
+							.foregroundStyle(Color(colorEnum: .darkBg))
+							.font(.system(size: CGFloat(.mediumFontSize),
+										  weight: .bold))
+					}
+					.buttonStyle(WXMButtonStyle(fillColor: .textWhite,
+												strokeColor: .textWhite,
+												cornerRadius: 25.0))
+
+					Button {
+
+					} label: {
+						Text(LocalizableString.Onboarding.exploreTheAppButtonTitle.localized)
+							.foregroundStyle(Color(colorEnum: .textWhite))
+							.font(.system(size: CGFloat(.mediumFontSize),
+										  weight: .bold))
+					}
+					.buttonStyle(.plain)
 				}
-				.buttonStyle(.plain)
+				.padding(.horizontal, CGFloat(.largeSidePadding))
 			}
-			.padding(.horizontal, CGFloat(.largeSidePadding))
+			.padding(.top, CGFloat(.defaultSidePadding))
+			.padding(.bottom, CGFloat(.largeSidePadding))
 		}
-		.padding(.top, CGFloat(.defaultSidePadding))
-		.padding(.bottom, CGFloat(.largeSidePadding))
-    }
+		.task {
+			currentSlideId = slides.first?.id
+		}
+	}
 }
 
 extension OnboardingView {
@@ -79,14 +100,15 @@ private extension OnboardingView {
 						cardView(slide: slide,
 								 height: containerSize.height)
 							.frame(width: 0.8 * containerSize.width)
+							.id(slide.id)
 					}
 				}
 				.padding(.horizontal, 0.1 * containerSize.width)
 				.scrollTargetLayout()
 			}
 			.scrollTargetBehavior(.viewAligned)
+			.scrollPosition(id: $currentSlideId)
 			.scrollIndicators(.hidden)
-			.background(Color(colorEnum: .error))
 		} else {
 			ScrollView(.horizontal) {
 				LazyHStack(spacing: CGFloat(.defaultSpacing)) {
@@ -107,7 +129,6 @@ private extension OnboardingView {
 	@ViewBuilder
 	func cardView(slide: Slide, height: CGFloat) -> some View {
 		ZStack {
-			Color.black
 			Image(asset: slide.image)
 				.resizable()
 				.aspectRatio(contentMode: .fill)
