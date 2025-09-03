@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import SwiftUIIntrospect
 
 struct OnboardingView: View {
-	let slides: [Slide] = [Slide(image: .onboardingImage0,
+	let slides: [Slide] = [Slide(image: .onboardingImage3,
 								 title: LocalizableString.Onboarding.forecastForEveryCorner.localized),
 						   Slide(image: .onboardingImage1,
 								 title: LocalizableString.Onboarding.liveTransparentNetwork.localized),
 						   Slide(image: .onboardingImage2,
-								 title: LocalizableString.Onboarding.contributeAndEarn.localized)]
+								 title: LocalizableString.Onboarding.contributeAndEarn.localized),
+						   Slide(image: .onboardingImage3,
+								 title: LocalizableString.Onboarding.communityPowered.localized)]
     var body: some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
 			Image(asset: .weatherXMLogoText)
@@ -21,15 +24,8 @@ struct OnboardingView: View {
 				.foregroundStyle(Color(colorEnum: .textDarkStable))
 				.font(.system(size: CGFloat(.smallTitleFontSize)))
 
-			GeometryReader { _ in
-				ScrollView(.horizontal) {
-					HStack {
-						ForEach(slides) { slide in
-							cardView(slide: slide)
-						}
-					}
-				}
-				.background(Color(colorEnum: .blueTint))
+			GeometryReader { proxy in
+				slidesScroller(containerWidth: proxy.size.width)
 			}
 
 			VStack(spacing: CGFloat(.defaultSpacing)) {
@@ -74,35 +70,75 @@ extension OnboardingView {
 
 private extension OnboardingView {
 	@ViewBuilder
+	func slidesScroller(containerWidth: CGFloat) -> some View {
+		ScrollView(.horizontal) {
+			LazyHStack(spacing: CGFloat(.defaultSpacing)) {
+				ForEach(slides) { slide in
+					cardView(slide: slide)
+						.frame(width: 0.8 * containerWidth)
+				}
+			}
+			.padding(.horizontal, 0.1 * containerWidth)
+			.modify { view in
+				if #available(iOS 17.0, *) {
+					view.scrollTargetLayout()
+				} else {
+					view
+				}
+			}
+		}
+		.modify { view in
+			if #available(iOS 17.0, *) {
+				view.scrollTargetBehavior(.viewAligned)
+			} else {
+				view
+					.pagingEnabled(true)
+			}
+		}
+		.scrollIndicators(.hidden)
+		.background(Color(colorEnum: .blueTint))
+	}
+
+	@ViewBuilder
 	func cardView(slide: Slide) -> some View {
 		Image(asset: slide.image)
 			.resizable()
-			.aspectRatio(0.54, contentMode: .fill)
-			.background(Color(colorEnum: .error))
+			.aspectRatio(contentMode: .fill)
 			.overlay {
 				VStack {
 					Spacer()
 
-					HStack {
-						Spacer()
+					ZStack {
+						HStack {
+							Spacer()
 
-						Text(slide.title)
-							.multilineTextAlignment(.center)
-							.font(.system(size: CGFloat(.largeTitleFontSize),
-										  weight: .bold))
-							.foregroundStyle(Color(colorEnum: .textWhite))
-							.padding(CGFloat(.largeSidePadding))
+							Text(slide.title)
+								.multilineTextAlignment(.center)
+								.font(.system(size: CGFloat(.largeTitleFontSize),
+											  weight: .bold))
+								.foregroundStyle(Color(colorEnum: .textWhite))
+								.padding(CGFloat(.largeSidePadding))
 
-						Spacer()
+							Spacer()
+						}
 					}
 					.background {
 						BackdropBlurView(radius: 15.0)
+							.padding(.horizontal, -20)
+							.padding(.bottom, -20)
 					}
-
 				}
 			}
 			.clipShape(.rect(cornerRadius: CGFloat(.cardCornerRadius)))
 			.wxmShadow()
+	}
+}
+
+extension View {
+	func pagingEnabled(_ isPagingEnabled: Bool) -> some View {
+		self.introspect(.scrollView, on: .iOS(.v16)) { view in
+			view.isPagingEnabled = isPagingEnabled
+		}
 	}
 }
 

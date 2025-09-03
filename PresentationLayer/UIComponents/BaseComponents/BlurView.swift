@@ -19,6 +19,8 @@ private struct BlurView: UIViewRepresentable {
 	}
 
 	func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
+		let blur = UIBlurEffect()
+		uiView.effect = blur
 	}
 }
 
@@ -27,7 +29,8 @@ struct BackdropBlurView: View {
 
 	@ViewBuilder
 	var body: some View {
-		BlurView().blur(radius: radius)
+		BlurView()
+			.blur(radius: radius)
 	}
 }
 
