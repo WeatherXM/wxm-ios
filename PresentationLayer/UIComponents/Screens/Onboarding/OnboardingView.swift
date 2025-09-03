@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftUIIntrospect
 
 struct OnboardingView: View {
+
 	let slides: [Slide] = [Slide(image: .onboardingImage0,
 								 title: LocalizableString.Onboarding.forecastForEveryCorner.localized),
 						   Slide(image: .onboardingImage1,
@@ -18,6 +19,7 @@ struct OnboardingView: View {
 						   Slide(image: .onboardingImage3,
 								 title: LocalizableString.Onboarding.communityPowered.localized)]
 
+	@StateObject var viewModel: OnboardingViewModel
 	@State private var currentSlideId: String?
 
 	var body: some View {
@@ -47,7 +49,7 @@ struct OnboardingView: View {
 
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					Button {
-
+						viewModel.handleSignUpButtonTap()
 					} label: {
 						Text(LocalizableString.Onboarding.signUpButtonTitle.localized)
 							.foregroundStyle(Color(colorEnum: .darkBg))
@@ -59,7 +61,7 @@ struct OnboardingView: View {
 												cornerRadius: 25.0))
 
 					Button {
-
+						viewModel.handleExploreAppButtonTap()
 					} label: {
 						Text(LocalizableString.Onboarding.exploreTheAppButtonTitle.localized)
 							.foregroundStyle(Color(colorEnum: .textWhite))
@@ -176,6 +178,6 @@ extension View {
 	ZStack {
 		Color(colorEnum: .bg)
 			.ignoresSafeArea()
-		OnboardingView()
+		OnboardingView(viewModel: ViewModelsFactory.getOnboardingViewModel())
 	}
 }

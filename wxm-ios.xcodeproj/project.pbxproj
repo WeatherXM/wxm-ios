@@ -356,6 +356,7 @@
 		2678FB102E671378000F3EBA /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678FB0F2E671378000F3EBA /* OnboardingView.swift */; };
 		2678FB122E671867000F3EBA /* LocalizableString+Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678FB112E671865000F3EBA /* LocalizableString+Onboarding.swift */; };
 		2678FB142E672FBF000F3EBA /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678FB132E672FBF000F3EBA /* BlurView.swift */; };
+		2678FB162E68839E000F3EBA /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678FB152E68839E000F3EBA /* OnboardingViewModel.swift */; };
 		267A37832AEBB4C900469126 /* StationRewardsTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */; };
 		267A378A2AEBFF2F00469126 /* DeviceRewardsOverview+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */; };
 		267CA6CB2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */; };
@@ -1142,6 +1143,7 @@
 		2678FB0F2E671378000F3EBA /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2678FB112E671865000F3EBA /* LocalizableString+Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Onboarding.swift"; sourceTree = "<group>"; };
 		2678FB132E672FBF000F3EBA /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		2678FB152E68839E000F3EBA /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsTimelineView.swift; sourceTree = "<group>"; };
 		267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceRewardsOverview+.swift"; sourceTree = "<group>"; };
 		267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimM5ContainerViewModel.swift; sourceTree = "<group>"; };
@@ -2585,6 +2587,7 @@
 			isa = PBXGroup;
 			children = (
 				2678FB0F2E671378000F3EBA /* OnboardingView.swift */,
+				2678FB152E68839E000F3EBA /* OnboardingViewModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -4177,6 +4180,7 @@
 				267548D229A91A87008BCF40 /* CoordinatesEnum.swift in Sources */,
 				26D5013A29B20F5200BC2951 /* CornerRadius.swift in Sources */,
 				26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */,
+				2678FB162E68839E000F3EBA /* OnboardingViewModel.swift in Sources */,
 				2664833429C3777600748F9C /* CurrentWeather+.swift in Sources */,
 				264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */,
 				26ADB8112E21515E00C83F3E /* ClaimDeviceBeforeBeginView.swift in Sources */,

@@ -390,4 +390,8 @@ enum ViewModelsFactory {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(StationNotificationsUseCaseApi.self)!
 		return StationNotificationsViewModel(device: device, followState: followState, useCase: useCase)
 	}
+
+	static func getOnboardingViewModel() -> OnboardingViewModel {
+		return OnboardingViewModel()
+	}
 }
