@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftUIIntrospect
 
 struct OnboardingView: View {
-	let slides: [Slide] = [Slide(image: .onboardingImage3,
+	let slides: [Slide] = [Slide(image: .onboardingImage0,
 								 title: LocalizableString.Onboarding.forecastForEveryCorner.localized),
 						   Slide(image: .onboardingImage1,
 								 title: LocalizableString.Onboarding.liveTransparentNetwork.localized),
