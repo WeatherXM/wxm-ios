@@ -25,7 +25,7 @@ struct OnboardingView: View {
 				.font(.system(size: CGFloat(.smallTitleFontSize)))
 
 			GeometryReader { proxy in
-				slidesScroller(containerWidth: proxy.size.width)
+				slidesScroller(containerSize: proxy.size)
 			}
 
 			VStack(spacing: CGFloat(.defaultSpacing)) {
@@ -53,7 +53,8 @@ struct OnboardingView: View {
 			}
 			.padding(.horizontal, CGFloat(.largeSidePadding))
 		}
-		.padding(.vertical, CGFloat(.largeSidePadding))
+		.padding(.top, CGFloat(.defaultSidePadding))
+		.padding(.bottom, CGFloat(.largeSidePadding))
     }
 }
 
@@ -70,67 +71,75 @@ extension OnboardingView {
 
 private extension OnboardingView {
 	@ViewBuilder
-	func slidesScroller(containerWidth: CGFloat) -> some View {
-		ScrollView(.horizontal) {
-			LazyHStack(spacing: CGFloat(.defaultSpacing)) {
-				ForEach(slides) { slide in
-					cardView(slide: slide)
-						.frame(width: 0.8 * containerWidth)
+	func slidesScroller(containerSize: CGSize) -> some View {
+		if #available(iOS 17.0, *) {
+			ScrollView(.horizontal) {
+				LazyHStack(spacing: 0.05 * containerSize.width) {
+					ForEach(slides) { slide in
+						cardView(slide: slide,
+								 height: containerSize.height)
+							.frame(width: 0.8 * containerSize.width)
+					}
 				}
+				.padding(.horizontal, 0.1 * containerSize.width)
+				.scrollTargetLayout()
 			}
-			.padding(.horizontal, 0.1 * containerWidth)
-			.modify { view in
-				if #available(iOS 17.0, *) {
-					view.scrollTargetLayout()
-				} else {
-					view
+			.scrollTargetBehavior(.viewAligned)
+			.scrollIndicators(.hidden)
+			.background(Color(colorEnum: .error))
+		} else {
+			ScrollView(.horizontal) {
+				LazyHStack(spacing: CGFloat(.defaultSpacing)) {
+					ForEach(slides) { slide in
+						cardView(slide: slide,
+								 height: containerSize.height)
+							.frame(width: 0.8 * containerSize.width,
+								   height: containerSize.height)
+					}
 				}
+				.padding(.horizontal, 0.1 * containerSize.width)
 			}
+			.scrollIndicators(.hidden)
+			.background(Color(colorEnum: .error))
 		}
-		.modify { view in
-			if #available(iOS 17.0, *) {
-				view.scrollTargetBehavior(.viewAligned)
-			} else {
-				view
-					.pagingEnabled(true)
-			}
-		}
-		.scrollIndicators(.hidden)
-		.background(Color(colorEnum: .blueTint))
 	}
 
 	@ViewBuilder
-	func cardView(slide: Slide) -> some View {
-		Image(asset: slide.image)
-			.resizable()
-			.aspectRatio(contentMode: .fill)
-			.overlay {
-				VStack {
-					Spacer()
+	func cardView(slide: Slide, height: CGFloat) -> some View {
+		ZStack {
+			Color.black
+			Image(asset: slide.image)
+				.resizable()
+				.aspectRatio(contentMode: .fill)
+				.frame(height: height)
+				.overlay {
+					VStack {
+						Spacer()
 
-					ZStack {
-						HStack {
-							Spacer()
+						ZStack {
+							HStack {
+								Spacer()
 
-							Text(slide.title)
-								.multilineTextAlignment(.center)
-								.font(.system(size: CGFloat(.largeTitleFontSize),
-											  weight: .bold))
-								.foregroundStyle(Color(colorEnum: .textWhite))
-								.padding(CGFloat(.largeSidePadding))
+								Text(slide.title)
+									.multilineTextAlignment(.center)
+									.font(.system(size: CGFloat(.largeTitleFontSize),
+												  weight: .bold))
+									.foregroundStyle(Color(colorEnum: .textWhite))
+									.padding(CGFloat(.largeSidePadding))
 
-							Spacer()
+								Spacer()
+							}
+						}
+						.background {
+							BackdropBlurView(radius: 15.0)
+								.padding(.horizontal, -20)
+								.padding(.bottom, -20)
 						}
 					}
-					.background {
-						BackdropBlurView(radius: 15.0)
-							.padding(.horizontal, -20)
-							.padding(.bottom, -20)
-					}
 				}
-			}
-			.clipShape(.rect(cornerRadius: CGFloat(.cardCornerRadius)))
-			.wxmShadow()
+				.clipShape(.rect(cornerRadius: CGFloat(.cardCornerRadius)))
+				.wxmShadow()
+		}
 	}
 }
 
