@@ -121,4 +121,10 @@ struct MainUseCaseTests {
 		useCase.setTermsOfUseAccepted()
 		#expect(useCase.areTermsOfUseAccepted())
 	}
+
+	@Test func showOnboarding() {
+		#expect(useCase.shouldShowOnboarding())
+		useCase.marκOnboardingAsShown()
+		#expect(!useCase.shouldShowOnboarding())
+	}
 }
