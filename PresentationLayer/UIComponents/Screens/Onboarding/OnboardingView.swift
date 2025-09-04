@@ -39,10 +39,13 @@ struct OnboardingView: View {
 			}
 
 			VStack(spacing: CGFloat(.largeSpacing)) {
-				Image(asset: .weatherXMLogoText)
-				Text(LocalizableString.Onboarding.title.localized)
-					.foregroundStyle(Color(colorEnum: .textDarkStable))
-					.font(.system(size: CGFloat(.smallTitleFontSize)))
+				VStack(spacing: CGFloat(.smallSpacing)) {
+					Image(asset: .weatherXMLogoText)
+
+					Text(LocalizableString.Onboarding.title.localized)
+						.foregroundStyle(Color(colorEnum: .textDarkStable))
+						.font(.system(size: CGFloat(.smallTitleFontSize)))
+				}
 
 				GeometryReader { proxy in
 					slidesScroller(containerSize: proxy.size)
