@@ -44,6 +44,7 @@ public enum AssetEnum: String {
 	case onboardingImage1 = "onboarding_image_1"
 	case onboardingImage2 = "onboarding_image_2"
 	case onboardingImage3 = "onboarding_image_3"
+	case onboardingImage4 = "onboarding_image_4"
     case sunnyDay
     case snowyDay
     case rainyDay

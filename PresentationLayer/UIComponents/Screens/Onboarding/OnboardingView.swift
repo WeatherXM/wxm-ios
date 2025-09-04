@@ -17,7 +17,9 @@ struct OnboardingView: View {
 						   Slide(image: .onboardingImage2,
 								 title: LocalizableString.Onboarding.contributeAndEarn.localized),
 						   Slide(image: .onboardingImage3,
-								 title: LocalizableString.Onboarding.communityPowered.localized)]
+								 title: LocalizableString.Onboarding.communityPowered.localized),
+						   Slide(image: .onboardingImage4,
+								 title: LocalizableString.Onboarding.localWeatherData.localized)]
 
 	@Binding var show: Bool
 	@StateObject var viewModel: OnboardingViewModel
