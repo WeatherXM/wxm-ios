@@ -18,7 +18,7 @@ struct RegisterViewModelTests {
 	init() {
 		authUseCase = .init()
 		mainUseCase = .init()
-		viewModel = .init(authUseCase: authUseCase, mainUseCase: mainUseCase)
+		viewModel = .init(authUseCase: authUseCase, mainUseCase: mainUseCase, signUpCompletion: nil)
 	}
 
 	@Test func registerWithValidData() async throws {

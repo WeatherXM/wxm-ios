@@ -11,6 +11,7 @@ final class MockMainUseCase: MainUseCaseApi {
 	nonisolated(unsafe) private var dictionary: [String: Any] = [:]
 	nonisolated(unsafe) var lastAppVersionPrompt: String?
 	nonisolated(unsafe) var termsAccepted: Bool = false
+	nonisolated(unsafe) var showOnboarding: Bool = false
 
 	var userLoggedInStateNotificationPublisher: NotificationCenter.Publisher {
 		NotificationCenter.default.publisher(for: Notification.Name("MockMainUseCase.userLoggedInStateNotificationPublisher"))
@@ -56,5 +57,13 @@ final class MockMainUseCase: MainUseCaseApi {
 	
 	func areTermsOfUseAccepted() -> Bool {
 		termsAccepted
+	}
+
+	func shouldShowOnboarding() -> Bool {
+		showOnboarding
+	}
+
+	func marκOnboardingAsShown() {
+		showOnboarding = false
 	}
 }
