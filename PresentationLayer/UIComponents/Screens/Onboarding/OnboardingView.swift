@@ -180,7 +180,6 @@ private extension OnboardingView {
 		let spacing = 0.05 * containerWidth
 		let itemWidth = slideWidth + spacing
 		var index = Int(round(offset / itemWidth))
-		print("index: \(index)")
 
 		DispatchQueue.main.async {
 			index = index.clamped(to: 0...slides.count)
