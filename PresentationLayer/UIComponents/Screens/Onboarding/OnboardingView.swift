@@ -47,9 +47,7 @@ struct OnboardingView: View {
 						.font(.system(size: CGFloat(.smallTitleFontSize)))
 				}
 
-				GeometryReader { proxy in
-					slidesScroller(containerSize: proxy.size)
-				}
+				slidesScroller()
 
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					Button {
@@ -99,37 +97,44 @@ extension OnboardingView {
 
 private extension OnboardingView {
 	@ViewBuilder
-	func slidesScroller(containerSize: CGSize) -> some View {
-		if #available(iOS 17.0, *) {
+	func slidesScroller() -> some View {
+		GeometryReader { proxy in
 			ScrollView(.horizontal) {
-				LazyHStack(spacing: 0.05 * containerSize.width) {
+				LazyHStack(spacing: 0.05 * proxy.size.width) {
 					ForEach(slides) { slide in
 						cardView(slide: slide,
-								 height: containerSize.height)
-							.frame(width: 0.8 * containerSize.width)
-							.id(slide.id)
+								 height: proxy.size.height)
+						.frame(width: 0.8 * proxy.size.width)
+						.id(slide.id)
 					}
 				}
-				.padding(.horizontal, 0.1 * containerSize.width)
-				.scrollTargetLayout()
-			}
-			.scrollTargetBehavior(.viewAligned)
-			.scrollPosition(id: $currentSlideId)
-			.scrollIndicators(.hidden)
-		} else {
-			ScrollView(.horizontal) {
-				LazyHStack(spacing: CGFloat(.defaultSpacing)) {
-					ForEach(slides) { slide in
-						cardView(slide: slide,
-								 height: containerSize.height)
-							.frame(width: 0.8 * containerSize.width,
-								   height: containerSize.height)
+				.padding(.horizontal, 0.1 * proxy.size.width)
+				.modify { view in
+					if #available(iOS 17.0, *) {
+						view.scrollTargetLayout()
+					} else {
+						view
+							.background {
+								GeometryReader { localProxy in
+									let _ = updateCurrentSlideId(containerWidth: proxy.size.width,
+																 offset: -localProxy.frame(in: .named("scroller")).origin.x)
+									Color.clear
+								}
+							}
 					}
 				}
-				.padding(.horizontal, 0.1 * containerSize.width)
+			}
+			.modify { view in
+				if #available(iOS 17.0, *) {
+					view
+						.scrollTargetBehavior(.viewAligned)
+						.scrollPosition(id: $currentSlideId)
+				} else {
+					view
+						.coordinateSpace(name: "scroller")
+				}
 			}
 			.scrollIndicators(.hidden)
-			.background(Color(colorEnum: .error))
 		}
 	}
 
@@ -167,6 +172,19 @@ private extension OnboardingView {
 				}
 				.clipShape(.rect(cornerRadius: CGFloat(.cardCornerRadius)))
 				.wxmShadow()
+		}
+	}
+
+	func updateCurrentSlideId(containerWidth: CGFloat, offset: CGFloat) {
+		let slideWidth = 0.8 * containerWidth
+		let spacing = 0.05 * containerWidth
+		let itemWidth = slideWidth + spacing
+		var index = Int(round(offset / itemWidth))
+		print("index: \(index)")
+
+		DispatchQueue.main.async {
+			index = index.clamped(to: 0...slides.count)
+			currentSlideId = slides[index].id
 		}
 	}
 }
