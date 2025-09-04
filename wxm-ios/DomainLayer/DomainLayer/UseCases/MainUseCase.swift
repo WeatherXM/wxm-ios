@@ -98,7 +98,10 @@ public class MainUseCase: @unchecked Sendable, MainUseCaseApi {
 	}
 
 	public func shouldShowOnboarding() -> Bool {
-		userDefaultsRepository.getValue(for: UserDefaults.GenericKey.onboardingIsShown.rawValue) ?? false
+		let isShown = userDefaultsRepository.getValue(for: UserDefaults.GenericKey.onboardingIsShown.rawValue) ?? false
+		let isLoggedIn = keychainRepository.isUserLoggedIn()
+
+		return !isShown && !isLoggedIn
 	}
 
 	public func marκOnboardingAsShown() {
