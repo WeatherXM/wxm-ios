@@ -53,7 +53,7 @@ class MainScreenViewModel: ObservableObject {
 	@Published var isInternetAvailable: Bool = false
 	@Published var selectedTab: TabSelectionEnum = .home
 	@Published var showAnalyticsPrompt: Bool = false
-	@Published var showOnboarding: Bool = true
+	@Published var showOnboarding: Bool = false
 	@Published var showTermsPrompt: Bool = false {
 		didSet {
 			print("showTermsPrompt \(showTermsPrompt)")
@@ -158,6 +158,7 @@ class MainScreenViewModel: ObservableObject {
 			guard !show else {
 				return
 			}
+			self.mainUseCase.marκOnboardingAsShown()
 			self.initializeConfigurations()
 		}.store(in: &cancellableSet)
 	}

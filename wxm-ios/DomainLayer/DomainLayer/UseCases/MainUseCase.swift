@@ -98,7 +98,7 @@ public class MainUseCase: @unchecked Sendable, MainUseCaseApi {
 	}
 
 	public func shouldShowOnboarding() -> Bool {
-		true
+		userDefaultsRepository.getValue(for: UserDefaults.GenericKey.onboardingIsShown.rawValue) ?? false
 	}
 
 	public func marκOnboardingAsShown() {
