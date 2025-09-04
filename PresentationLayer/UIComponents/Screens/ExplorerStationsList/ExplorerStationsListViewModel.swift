@@ -82,7 +82,7 @@ class ExplorerStationsListViewModel: ObservableObject {
 	
 	func signupButtonTapped() {
 		showLoginAlert = false
-		Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel()))
+		Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel(completion: nil)))
 	}
 	
 	func followButtonTapped(device: DeviceDetails) {

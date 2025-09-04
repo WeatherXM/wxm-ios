@@ -141,7 +141,7 @@ struct RegisterView: View {
 struct Previews_RegisterView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationContainerView {
-            RegisterView(viewModel: ViewModelsFactory.getRegisterViewModel())
+			RegisterView(viewModel: ViewModelsFactory.getRegisterViewModel(completion: nil))
         }
     }
 }

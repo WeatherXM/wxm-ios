@@ -109,10 +109,10 @@ enum ViewModelsFactory {
         return SignInViewModel(authUseCase: authUseCase!)
     }
 
-    static func getRegisterViewModel() -> RegisterViewModel {
+	static func getRegisterViewModel(completion: VoidCallback?) -> RegisterViewModel {
 		let authUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(AuthUseCaseApi.self)
 		let mainUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MainUseCaseApi.self)
-		return RegisterViewModel(authUseCase: authUseCase!, mainUseCase: mainUseCase!)
+		return RegisterViewModel(authUseCase: authUseCase!, mainUseCase: mainUseCase!, signUpCompletion: completion)
     }
 
     static func getResetPasswordViewModel() -> ResetPasswordViewModel {

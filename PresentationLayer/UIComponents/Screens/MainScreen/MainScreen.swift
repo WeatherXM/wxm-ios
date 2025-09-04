@@ -23,19 +23,27 @@ public struct MainScreen: View {
 
     public var body: some View {
         RouterView {
-			mainScreenView
-				.fullScreenCover(isPresented: $viewModel.showAppUpdatePrompt) {
-					AppUpdateView(show: $viewModel.showAppUpdatePrompt,
-								  viewModel: ViewModelsFactory.getAppUpdateViewModel())
+			Group {
+				if viewModel.showOnboarding {
+					OnboardingView(show: $viewModel.showOnboarding,
+								   viewModel: ViewModelsFactory.getOnboardingViewModel())
+				} else {
+					mainScreenView
+						.fullScreenCover(isPresented: $viewModel.showAppUpdatePrompt) {
+							AppUpdateView(show: $viewModel.showAppUpdatePrompt,
+										  viewModel: ViewModelsFactory.getAppUpdateViewModel())
+						}
+						.onChange(of: scenePhase) { phase in
+							if phase == .active {
+								viewModel.initializeConfigurations()
+							}
+						}
+						.onChange(of: viewModel.isUserLoggedIn) { _ in
+							viewModel.initializeConfigurations()
+						}
 				}
-                .onChange(of: scenePhase) { phase in
-                    if phase == .active {
-                        viewModel.initializeConfigurations()
-                    }
-                }
-                .onChange(of: viewModel.isUserLoggedIn) { _ in
-                    viewModel.initializeConfigurations()
-                }
+			}
+			.animation(.easeIn, value: viewModel.showOnboarding)
         }
         .preferredColorScheme(viewModel.theme.colorScheme)
         .onOpenURL {

@@ -19,6 +19,7 @@ struct OnboardingView: View {
 						   Slide(image: .onboardingImage3,
 								 title: LocalizableString.Onboarding.communityPowered.localized)]
 
+	@Binding var show: Bool
 	@StateObject var viewModel: OnboardingViewModel
 	@State private var currentSlideId: String?
 
@@ -49,7 +50,7 @@ struct OnboardingView: View {
 
 				VStack(spacing: CGFloat(.defaultSpacing)) {
 					Button {
-						viewModel.handleSignUpButtonTap()
+						viewModel.handleSignUpButtonTap(show: $show)
 					} label: {
 						Text(LocalizableString.Onboarding.signUpButtonTitle.localized)
 							.foregroundStyle(Color(colorEnum: .darkBg))
@@ -61,6 +62,7 @@ struct OnboardingView: View {
 												cornerRadius: 25.0))
 
 					Button {
+						show.toggle()
 						viewModel.handleExploreAppButtonTap()
 					} label: {
 						Text(LocalizableString.Onboarding.exploreTheAppButtonTitle.localized)
@@ -178,6 +180,7 @@ extension View {
 	ZStack {
 		Color(colorEnum: .bg)
 			.ignoresSafeArea()
-		OnboardingView(viewModel: ViewModelsFactory.getOnboardingViewModel())
+		OnboardingView(show: .constant(true),
+					   viewModel: ViewModelsFactory.getOnboardingViewModel())
 	}
 }

@@ -157,7 +157,7 @@ class StationDetailsViewModel: ObservableObject {
 
     func signupButtonTapped() {
         showLoginAlert = false
-        Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel()))
+		Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel(completion: nil)))
     }
 
 	func trackScreenViewEvent(for index: Int) {

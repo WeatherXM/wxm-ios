@@ -33,10 +33,12 @@ final class RegisterViewModel: ObservableObject {
 	
 	private let authUseCase: AuthUseCaseApi
 	private let mainUseCase: MainUseCaseApi
+	private let signUpCompletion: VoidCallback?
 
-	init(authUseCase: AuthUseCaseApi, mainUseCase: MainUseCaseApi) {
+	init(authUseCase: AuthUseCaseApi, mainUseCase: MainUseCaseApi, signUpCompletion: VoidCallback?) {
 		self.authUseCase = authUseCase
 		self.mainUseCase = mainUseCase
+		self.signUpCompletion = signUpCompletion
 	}
 	
 	func register() {
@@ -104,6 +106,9 @@ final class RegisterViewModel: ObservableObject {
 												cancelAction: nil,
 												retryAction: {
 			Router.shared.pop()
+
+			self.signUpCompletion?()
+
 			DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // The only way found to avoid errors with navigation stack
 				Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel()))
 			}
