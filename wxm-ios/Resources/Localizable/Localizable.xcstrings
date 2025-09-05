@@ -6606,7 +6606,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Community-Powered\nWeather"
+            "value" : "Community-Powered Weather"
           }
         }
       }
@@ -6617,7 +6617,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Community-Powered\nWeather"
+            "value" : "Contribute and earn rewards"
           }
         }
       }
@@ -6639,7 +6639,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Forecasts for every \ncorner on earth"
+            "value" : "Forecasts for every corner on earth"
           }
         }
       }
@@ -6661,7 +6661,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Local weather data, \nglobal impact"
+            "value" : "Local weather data, global impact"
           }
         }
       }

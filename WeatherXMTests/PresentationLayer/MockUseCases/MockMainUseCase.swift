@@ -63,7 +63,7 @@ final class MockMainUseCase: MainUseCaseApi {
 		showOnboarding
 	}
 
-	func marκOnboardingAsShown() {
+	func markOnboardingAsShown() {
 		showOnboarding = false
 	}
 }

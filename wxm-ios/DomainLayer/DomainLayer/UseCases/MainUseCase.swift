@@ -104,7 +104,7 @@ public class MainUseCase: @unchecked Sendable, MainUseCaseApi {
 		return !isShown && !isLoggedIn
 	}
 
-	public func marκOnboardingAsShown() {
+	public func markOnboardingAsShown() {
 		userDefaultsRepository.saveValue(key: UserDefaults.GenericKey.onboardingIsShown.rawValue, value: true)
 	}
 }

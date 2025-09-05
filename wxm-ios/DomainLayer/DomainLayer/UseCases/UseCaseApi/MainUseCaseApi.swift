@@ -21,5 +21,5 @@ public protocol MainUseCaseApi: Sendable {
 	func setTermsOfUseAccepted()
 	func areTermsOfUseAccepted() -> Bool
 	func shouldShowOnboarding() -> Bool
-	func marκOnboardingAsShown()
+	func markOnboardingAsShown()
 }

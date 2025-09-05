@@ -126,6 +126,7 @@ private extension OnboardingView {
 					}
 				}
 			}
+			.disableScrollClip()
 			.modify { view in
 				if #available(iOS 17.0, *) {
 					view

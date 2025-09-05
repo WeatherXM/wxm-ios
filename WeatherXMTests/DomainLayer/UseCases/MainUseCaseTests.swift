@@ -124,7 +124,7 @@ struct MainUseCaseTests {
 
 	@Test func showOnboarding() {
 		#expect(useCase.shouldShowOnboarding())
-		useCase.marκOnboardingAsShown()
+		useCase.markOnboardingAsShown()
 		#expect(!useCase.shouldShowOnboarding())
 	}
 }

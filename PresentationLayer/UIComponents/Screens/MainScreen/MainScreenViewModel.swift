@@ -158,7 +158,7 @@ class MainScreenViewModel: ObservableObject {
 			guard !show else {
 				return
 			}
-			self.mainUseCase.marκOnboardingAsShown()
+			self.mainUseCase.markOnboardingAsShown()
 			self.initializeConfigurations()
 		}.store(in: &cancellableSet)
 	}
