@@ -10,6 +10,7 @@ import Toolkit
 
 class NavigationObject: ObservableObject {
     @Published var title = ""
+	var isCopyableTitle: Bool = false
     @Published var subtitle: String?
     @Published var titleColor = Color(colorEnum: .text)
 	@Published var titleFont = Font.system(size: CGFloat(.largeTitleFontSize))
@@ -92,6 +93,11 @@ private extension NavigationContainerView {
                                 .lineLimit(1)
                                 .truncationMode(.middle)
                                 .foregroundColor(navigationObject.titleColor)
+								.if(navigationObject.isCopyableTitle) { view in
+									view
+										.textSelection(.enabled)
+										.allowsHitTesting(true)
+								}
 
                             Spacer()
                         }

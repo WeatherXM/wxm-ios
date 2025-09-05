@@ -39,6 +39,10 @@ struct DeviceInfoRowView: View {
                         .foregroundColor(Color(colorEnum: .darkestBlue))
                         .font(.system(size: CGFloat(.normalFontSize)))
                         .tint(Color(colorEnum: .wxmPrimary))
+						.if(row.isDescriptionCopyable) { view in
+							view
+								.textSelection(.enabled)
+						}
                     Spacer()
                 }
             }
@@ -103,6 +107,7 @@ extension DeviceInfoRowView {
         let title: String
 		var badge: String?
         let description: AttributedString
+		var isDescriptionCopyable: Bool = false
 		let imageUrl: URL?
         let buttonInfo: DeviceInfoButtonInfo?
         var warning: Warning?
