@@ -44,6 +44,15 @@ extension DeviceInfoViewModel.Field {
 		}
 	}
 
+	func isDescriptionCopyable() -> Bool {
+		switch self {
+			case .name:
+				true
+			default:
+				false
+		}
+	}
+	
 	func descriptionFor(device: DeviceDetails,
 						for followState: UserDeviceFollowState?,
 						deviceInfo: NetworkDevicesInfoResponse?,
