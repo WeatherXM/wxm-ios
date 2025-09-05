@@ -130,6 +130,8 @@ class MainScreenViewModel: ObservableObject {
 
 		observePhotoUploads()
 
+		observeNotifications()
+		
 		setShowOnboardingState()
     }
 
@@ -437,5 +439,19 @@ class MainScreenViewModel: ObservableObject {
 		Task {
 			await alertsManager.checkForStationIssues()
 		}
+	}
+
+	// MARK: - Notifications Observation
+
+	func observeNotifications() {
+		let notificationPublisher = FirebaseManager.shared.latestReceivedNotificationPublisher
+		notificationPublisher?.receive(on: DispatchQueue.main).sink { [weak self] response in
+			guard let response else {
+				return
+			}
+
+			let _ = self?.deepLinkHandler.handleNotificationReceive(response)
+		}
+		.store(in: &cancellableSet)
 	}
 }

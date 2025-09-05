@@ -49,9 +49,6 @@ public struct MainScreen: View {
         .onOpenURL {
             viewModel.deepLinkHandler.handleUrl($0)
         }
-		.onNotificationReceive { notificationResponse in
-			_ = viewModel.deepLinkHandler.handleNotificationReceive(notificationResponse)
-		}
 		.modify { view in
 			if isRunningOnMac {
 				view
