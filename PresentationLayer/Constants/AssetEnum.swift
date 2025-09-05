@@ -21,6 +21,7 @@ public enum AssetEnum: String {
 	case wxmNavigationLogo = "wxm_navigation_logo"
     case weatherXMLogo
     case weatherXMLogoSmall
+	case weatherXMLogoText
     case settings
     case globe
     case home
@@ -39,6 +40,11 @@ public enum AssetEnum: String {
     case bluetoothGray
     case check
     case checkBoxOutlined
+	case onboardingImage0 = "onboarding_image_0"
+	case onboardingImage1 = "onboarding_image_1"
+	case onboardingImage2 = "onboarding_image_2"
+	case onboardingImage3 = "onboarding_image_3"
+	case onboardingImage4 = "onboarding_image_4"
     case sunnyDay
     case snowyDay
     case rainyDay

@@ -96,6 +96,17 @@ public class MainUseCase: @unchecked Sendable, MainUseCaseApi {
 		let timestamp: Date? = userDefaultsRepository.getValue(for: UserDefaults.GenericKey.termsOfUseAcceptedTimestamp.rawValue)
 		return timestamp != nil
 	}
+
+	public func shouldShowOnboarding() -> Bool {
+		let isShown = userDefaultsRepository.getValue(for: UserDefaults.GenericKey.onboardingIsShown.rawValue) ?? false
+		let isLoggedIn = keychainRepository.isUserLoggedIn()
+
+		return !isShown && !isLoggedIn
+	}
+
+	public func markOnboardingAsShown() {
+		userDefaultsRepository.saveValue(key: UserDefaults.GenericKey.onboardingIsShown.rawValue, value: true)
+	}
 }
 
 private extension MainUseCase {

@@ -52,7 +52,7 @@ class LocationForecastViewModel: ForecastDetailsViewModel {
 	}
 
 	override func signupButtonTapped() {
-		Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel()))
+		Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel(completion: nil)))
 	}
 }
 

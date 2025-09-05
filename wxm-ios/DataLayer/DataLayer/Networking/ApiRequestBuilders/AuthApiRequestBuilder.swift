@@ -106,6 +106,8 @@ extension AuthApiRequestBuilder: MockResponseBuilder {
 		switch self {
 			case .login:
 				return "post_login"
+			case .register:
+				return "empty_response"
 			default:
 				return nil
 		}

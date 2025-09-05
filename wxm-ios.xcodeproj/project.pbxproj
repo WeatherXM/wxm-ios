@@ -353,6 +353,10 @@
 		267811582D4CD84E00D22B67 /* UserDevicesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267811572D4CD84E00D22B67 /* UserDevicesServiceTests.swift */; };
 		2678C45D2DFC3EF300523DF8 /* MockLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678C45C2DFC3EF300523DF8 /* MockLogger.swift */; };
 		2678ED8F2AFD1B1400940D59 /* RewardsTimelinePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */; };
+		2678FB102E671378000F3EBA /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678FB0F2E671378000F3EBA /* OnboardingView.swift */; };
+		2678FB122E671867000F3EBA /* LocalizableString+Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678FB112E671865000F3EBA /* LocalizableString+Onboarding.swift */; };
+		2678FB142E672FBF000F3EBA /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678FB132E672FBF000F3EBA /* BlurView.swift */; };
+		2678FB162E68839E000F3EBA /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678FB152E68839E000F3EBA /* OnboardingViewModel.swift */; };
 		267A37832AEBB4C900469126 /* StationRewardsTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */; };
 		267A378A2AEBFF2F00469126 /* DeviceRewardsOverview+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */; };
 		267CA6CB2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */; };
@@ -1136,6 +1140,10 @@
 		267811572D4CD84E00D22B67 /* UserDevicesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDevicesServiceTests.swift; sourceTree = "<group>"; };
 		2678C45C2DFC3EF300523DF8 /* MockLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLogger.swift; sourceTree = "<group>"; };
 		2678ED8E2AFD1B1400940D59 /* RewardsTimelinePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsTimelinePagination.swift; sourceTree = "<group>"; };
+		2678FB0F2E671378000F3EBA /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		2678FB112E671865000F3EBA /* LocalizableString+Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Onboarding.swift"; sourceTree = "<group>"; };
+		2678FB132E672FBF000F3EBA /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		2678FB152E68839E000F3EBA /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		267A37822AEBB4C900469126 /* StationRewardsTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRewardsTimelineView.swift; sourceTree = "<group>"; };
 		267A37892AEBFF2F00469126 /* DeviceRewardsOverview+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceRewardsOverview+.swift"; sourceTree = "<group>"; };
 		267CA6CA2C11C13000ABE599 /* ClaimM5ContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimM5ContainerViewModel.swift; sourceTree = "<group>"; };
@@ -1638,6 +1646,7 @@
 		262A4CEB2A93517300A4BC17 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				2678FB0E2E671357000F3EBA /* Onboarding */,
 				26C8F0052E3C9908005DC9DD /* Home */,
 				26EAF8222D004BC8009EEB31 /* PhotoVerification */,
 				26DF3D2F2C85FB16005F6FC1 /* RewardAnalytics */,
@@ -2316,6 +2325,7 @@
 				2675475129A9181E008BCF40 /* AttributedTextView.swift */,
 				26325B542BE3AB4300182C59 /* GifImageView.swift */,
 				269C809B2AB9E76F005F9BD6 /* Badge.swift */,
+				2678FB132E672FBF000F3EBA /* BlurView.swift */,
 				2675474429A9181E008BCF40 /* CardWarningView.swift */,
 				2675475929A9181E008BCF40 /* CircleRadius.swift */,
 				26AB9F462A7BEA0700855912 /* CTAView.swift */,
@@ -2573,6 +2583,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		2678FB0E2E671357000F3EBA /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2678FB0F2E671378000F3EBA /* OnboardingView.swift */,
+				2678FB152E68839E000F3EBA /* OnboardingViewModel.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		267CA6C92C11C0DC00ABE599 /* ClaimDeviceContainer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2804,6 +2823,7 @@
 				26E85B102C7752A70062667E /* LocalizableUnits.xcstrings */,
 				26D611AA2A9E21080099117C /* LocalizableConstants.swift */,
 				26D5C0342E3CAFF70040CDAF /* LocalizableString+Home.swift */,
+				2678FB112E671865000F3EBA /* LocalizableString+Onboarding.swift */,
 				2698AE9D2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift */,
 				264814012D8D7F6500BCCC31 /* LocalizableString+Promotional.swift */,
 				2666D57C2BC96077003B30C0 /* LocalizableString+Forecast.swift */,
@@ -4160,6 +4180,7 @@
 				267548D229A91A87008BCF40 /* CoordinatesEnum.swift in Sources */,
 				26D5013A29B20F5200BC2951 /* CornerRadius.swift in Sources */,
 				26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */,
+				2678FB162E68839E000F3EBA /* OnboardingViewModel.swift in Sources */,
 				2664833429C3777600748F9C /* CurrentWeather+.swift in Sources */,
 				264CC7622B9872E40060DEA4 /* RewardBoostsViewModel.swift in Sources */,
 				26ADB8112E21515E00C83F3E /* ClaimDeviceBeforeBeginView.swift in Sources */,
@@ -4272,6 +4293,7 @@
 				264371312CA1955800E5F382 /* ChartLegendView.swift in Sources */,
 				B52BCC752824FB8F00EA3DA5 /* MainApp.swift in Sources */,
 				26C033102DCDEDB200F68557 /* ExplorerData.swift in Sources */,
+				2678FB142E672FBF000F3EBA /* BlurView.swift in Sources */,
 				2675481929A9181E008BCF40 /* MainScreen.swift in Sources */,
 				267547A929A9181E008BCF40 /* MainScreenViewModel.swift in Sources */,
 				263B8B502B29F17E001C5060 /* MapBoxConstants.swift in Sources */,
@@ -4380,6 +4402,7 @@
 				26DD42E429B0FA9B008E277E /* StationDetailsViewModel.swift in Sources */,
 				26F6F73B2D07069E00FB256B /* GalleryViewModel.swift in Sources */,
 				2664833029C36B0900748F9C /* StationForeCastCardView+Content.swift in Sources */,
+				2678FB102E671378000F3EBA /* OnboardingView.swift in Sources */,
 				2664832E29C364FE00748F9C /* StationForecastCardView.swift in Sources */,
 				2664832929C35AF400748F9C /* StationForecastView.swift in Sources */,
 				2664832B29C35C0300748F9C /* StationForecastViewModel.swift in Sources */,
@@ -4496,6 +4519,7 @@
 				26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */,
 				2674017E2A38C2AE00E54E35 /* WXMEmptyView.swift in Sources */,
 				266DC01B2A55786F00EC9E1F /* WXMPopover.swift in Sources */,
+				2678FB122E671867000F3EBA /* LocalizableString+Onboarding.swift in Sources */,
 				2671E5D02CBD537700EE0FF1 /* StationHealthInfoView.swift in Sources */,
 				26E88AF529DD69930023BBD5 /* WXMShadow.swift in Sources */,
 				267547CA29A9181E008BCF40 /* WXMToggleStyle.swift in Sources */,

@@ -153,7 +153,7 @@ enum Route: Hashable, Equatable {
 				"safariView"
 		}
 	}
-	
+
 	case stationDetails(StationDetailsViewModel)
 	case deviceInfo(DeviceInfoViewModel)
 	case viewMoreAlerts(AlertsViewModel)

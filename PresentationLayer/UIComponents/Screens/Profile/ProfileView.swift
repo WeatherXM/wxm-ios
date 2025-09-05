@@ -321,7 +321,7 @@ private struct ContentView: View {
 	@ViewBuilder
 	var signUpTextButton: some View {
 		Button {
-			Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel()))
+			Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel(completion: nil)))
 		} label: {
 			HStack {
 				Text(LocalizableString.dontHaveAccount.localized)

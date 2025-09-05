@@ -33,8 +33,9 @@ public struct AuthRepositoryImpl: AuthRepository {
     }
 
     public func register(email: String, firstName: String, lastName: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
-        let urlRequest = try AuthApiRequestBuilder.register(email: email, firstName: firstName, lastName: lastName).asURLRequest()
-        return ApiClient.shared.requestCodable(urlRequest)
+		let builder = AuthApiRequestBuilder.register(email: email, firstName: firstName, lastName: lastName)
+		let urlRequest = try builder.asURLRequest()
+		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
     }
 
 	public func logout(installationId: String?) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {

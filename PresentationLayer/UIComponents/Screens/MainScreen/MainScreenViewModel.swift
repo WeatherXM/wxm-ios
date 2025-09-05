@@ -53,6 +53,7 @@ class MainScreenViewModel: ObservableObject {
 	@Published var isInternetAvailable: Bool = false
 	@Published var selectedTab: TabSelectionEnum = .home
 	@Published var showAnalyticsPrompt: Bool = false
+	@Published var showOnboarding: Bool = false
 	@Published var showTermsPrompt: Bool = false {
 		didSet {
 			print("showTermsPrompt \(showTermsPrompt)")
@@ -128,6 +129,8 @@ class MainScreenViewModel: ObservableObject {
 		}
 
 		observePhotoUploads()
+
+		setShowOnboardingState()
     }
 
 	@Published var showFirmwareUpdate = false
@@ -143,6 +146,21 @@ class MainScreenViewModel: ObservableObject {
 		startMonitoring()
 		cleanupAnalyticsUserIdIfNeeded()
 		requestNeededPermissions()
+	}
+
+	private func setShowOnboardingState() {
+		guard mainUseCase.shouldShowOnboarding() else {
+			return
+		}
+
+		showOnboarding = true
+		$showOnboarding.dropFirst().first().sink { show in
+			guard !show else {
+				return
+			}
+			self.mainUseCase.markOnboardingAsShown()
+			self.initializeConfigurations()
+		}.store(in: &cancellableSet)
 	}
 
 	private func requestNeededPermissions() {

@@ -20,4 +20,6 @@ public protocol MainUseCaseApi: Sendable {
 	func shouldForceUpdate(minimumVersion: String?, currentVersion: String?) -> Bool
 	func setTermsOfUseAccepted()
 	func areTermsOfUseAccepted() -> Bool
+	func shouldShowOnboarding() -> Bool
+	func markOnboardingAsShown()
 }
