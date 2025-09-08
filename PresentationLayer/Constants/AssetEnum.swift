@@ -12,34 +12,20 @@ public enum AssetEnum: String {
     case eye
     case email
     case errorExclamationIcon
-    case lock
-    case qrCode
     case qrCodeBlue
-    case user
 	case iconLayers
-    case mapStaticImage
 	case wxmNavigationLogo = "wxm_navigation_logo"
     case weatherXMLogo
-    case weatherXMLogoSmall
 	case weatherXMLogoText
     case settings
     case globe
     case home
     case badge
     case backArrow
-    case wxmDevice
-    case keyboardArrowLeft
-    case keyboardArrowRight
-    case panoramaFishEye
-    case panoramaFishEyeFilled
-    case locationMap
-    case claimDeviceFailure
-    case claimWiFi
     case claimHelium
     case claimBluetoothButton
     case bluetoothGray
     case check
-    case checkBoxOutlined
 	case onboardingImage0 = "onboarding_image_0"
 	case onboardingImage1 = "onboarding_image_1"
 	case onboardingImage2 = "onboarding_image_2"
@@ -48,19 +34,12 @@ public enum AssetEnum: String {
     case sunnyDay
     case snowyDay
     case rainyDay
-    case partlyCloudyDay
     case rainyThunderDay
     case plus
-    case hexagon
-    case hexagonBigger
-    case accountBalanceWallet
-    case settingsGear
-    case redAlert
     case markerDefault
     case info
     case infoIcon
     case share
-    case weatherXMLogoLaunchScreen
     case temperature
     case precipitation
     case wind
@@ -94,7 +73,6 @@ public enum AssetEnum: String {
     case helium
 	case signal
     case updateFirmwareIcon = "update_firmware_icon"
-    case pin
     case shareIcon = "share_icon"
     case dewPointIcon = "dew_point_icon"
     case solarIcon = "solar_icon"
