@@ -99,6 +99,7 @@ extension DeviceInfoRowView {
             lhs.title == rhs.title &&
 			lhs.badge == rhs.badge &&
             lhs.description == rhs.description &&
+			lhs.isDescriptionCopyable == rhs.isDescriptionCopyable &&
 			lhs.imageUrl == rhs.imageUrl &&
             lhs.buttonInfo == rhs.buttonInfo &&
             lhs.warning == rhs.warning

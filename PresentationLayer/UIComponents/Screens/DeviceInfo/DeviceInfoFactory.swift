@@ -289,6 +289,16 @@ extension DeviceInfoViewModel.InfoField {
 		}
 	}
 
+	var isSubtitleCopyable: Bool {
+		switch self {
+			case .name, .devEUI, .serialNumber:
+				return true
+			default:
+				return false
+
+		}
+	}
+	
 	func value(for device: DeviceDetails,
 			   deviceInfo: NetworkDevicesInfoResponse? = nil,
 			   mainVM: MainScreenViewModel,
