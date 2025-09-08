@@ -32,6 +32,7 @@ class DeviceInfoViewModel: ObservableObject {
 																		   for: followState,
 																		   deviceInfo: deviceInfo,
 																		   photoVerificationState: photoVerificationState).attributedMarkdown ?? "",
+										 isDescriptionCopyable: field.isDescriptionCopyable(),
 										 imageUrl: field.imageUrlFor(device: device, followState: followState),
 										 buttonInfo: field.buttonInfoFor(devie: device,
 																		 followState: followState,
@@ -55,6 +56,7 @@ class DeviceInfoViewModel: ObservableObject {
 																		   for: followState,
 																		   deviceInfo: deviceInfo,
 																		   photoVerificationState: photoVerificationState).attributedMarkdown ?? "",
+										 isDescriptionCopyable: field.isDescriptionCopyable(),
 										 imageUrl: field.imageUrlFor(device: device, followState: followState),
 										 buttonInfo: field.buttonInfoFor(devie: device,
 																		 followState: followState,
@@ -230,6 +232,7 @@ private extension DeviceInfoViewModel {
 			
 			let row = StationInfoView.Row(tile: field.title,
 										  subtitle: value,
+										  isSubtitleCopyable: field.isSubtitleCopyable,
 										  warning: warning,
 										  buttonIcon: buttonInfo?.icon,
 										  buttonTitle: buttonInfo?.title,

@@ -44,6 +44,15 @@ extension DeviceInfoViewModel.Field {
 		}
 	}
 
+	func isDescriptionCopyable() -> Bool {
+		switch self {
+			case .name:
+				true
+			default:
+				false
+		}
+	}
+	
 	func descriptionFor(device: DeviceDetails,
 						for followState: UserDeviceFollowState?,
 						deviceInfo: NetworkDevicesInfoResponse?,
@@ -280,6 +289,16 @@ extension DeviceInfoViewModel.InfoField {
 		}
 	}
 
+	var isSubtitleCopyable: Bool {
+		switch self {
+			case .name, .devEUI, .serialNumber:
+				return true
+			default:
+				return false
+
+		}
+	}
+	
 	func value(for device: DeviceDetails,
 			   deviceInfo: NetworkDevicesInfoResponse? = nil,
 			   mainVM: MainScreenViewModel,

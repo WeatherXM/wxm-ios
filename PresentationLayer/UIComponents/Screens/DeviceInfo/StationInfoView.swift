@@ -75,6 +75,7 @@ extension StationInfoView {
         static func == (lhs: StationInfoView.Row, rhs: StationInfoView.Row) -> Bool {
             lhs.tile == rhs.tile &&
             lhs.subtitle == rhs.subtitle &&
+			lhs.isSubtitleCopyable == rhs.isSubtitleCopyable &&
 			lhs.warning?.configuration == rhs.warning?.configuration &&
             lhs.buttonIcon == rhs.buttonIcon &&
             lhs.buttonTitle == rhs.buttonTitle
@@ -82,6 +83,7 @@ extension StationInfoView {
 
         let tile: String
         let subtitle: String
+		var isSubtitleCopyable: Bool = false
 		var warning: (configuration: CardWarningConfiguration, appearAction: VoidCallback?)?
         let buttonIcon: AssetEnum?
         let buttonTitle: String?
@@ -110,6 +112,9 @@ private extension StationInfoView {
                     Text(row.subtitle)
                         .font(.system(size: CGFloat(.normalFontSize), weight: .bold))
 						.fixedSize(horizontal: false, vertical: true)
+						.if(row.isSubtitleCopyable) { view in
+							view.textSelection(.enabled)
+						}
                 }
                 Spacer()
             }
