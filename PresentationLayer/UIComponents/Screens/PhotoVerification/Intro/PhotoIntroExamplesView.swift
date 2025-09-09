@@ -87,14 +87,10 @@ private extension PhotoIntroExamplesView {
 		VStack(spacing: CGFloat(.smallSpacing)) {
 			Image(asset: example.image)
 				.resizable()
-				.aspectRatio(contentMode: .fill)
-				.frame(minWidth: 0,
-					   maxWidth: .infinity,
-					   minHeight: 0,
-					   maxHeight: .infinity)
-				.aspectRatio(imageRatio, contentMode: .fit)
+				.aspectRatio(imageRatio, contentMode: .fill)
+				.frame(height: 0.6 * containerWidth)
 				.cornerRadius(CGFloat(.smallCornerRadius))
-
+			
 			ForEach(example.bullets, id: \.self) { text in
 				HStack(alignment: .top, spacing: CGFloat(.smallSpacing)) {
 					Text(bulletIcon.rawValue)
@@ -112,6 +108,7 @@ private extension PhotoIntroExamplesView {
 			}
 		}
 		.frame(width: scaleFactor * containerWidth)
+		.clipped()
 	}
 }
 
