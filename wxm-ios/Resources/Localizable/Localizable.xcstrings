@@ -4048,6 +4048,17 @@
         }
       }
     },
+    "error_too_many_requests" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You've refreshed a bit too quickly. Please wait a moment and try again."
+          }
+        }
+      }
+    },
     "error_unidentified_anomalous_change_description" : {
       "extractionState" : "manual",
       "localizations" : {

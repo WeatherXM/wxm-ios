@@ -113,6 +113,8 @@ private extension FailAPICodeEnum {
 				return nil
 			case .unsupportedApplicationVersion:
 				return LocalizableString.Error.unsupportedApplicationVersion.localized
+			case .tooManyRequests:
+				return LocalizableString.Error.tooManyRequests.localized
 		}
 	}
 }

@@ -30,4 +30,5 @@ enum FailAPICodeEnum: String {
     case notFound = "NotFound"
 	case walletAddressNotFound = "WalletAddressNotFound"
 	case unsupportedApplicationVersion = "UnsupportedApplicationVersion"
+	case tooManyRequests = "TooManyRequests"
 }

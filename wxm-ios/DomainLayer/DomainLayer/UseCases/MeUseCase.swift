@@ -150,6 +150,20 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 
 	public func getUserRewards(wallet: String) throws -> AnyPublisher<DataResponse<NetworkUserRewardsResponse, NetworkErrorResponse>, Never> {
 		try networkRepository.getRewardsWithdraw(wallet: wallet)
+			.flatMap { response in
+				guard response.response?.statusCode != 429 else {
+					let backendError = BackendError(code: "TooManyRequests", message: "", id: "", path: "")
+					let networkError = NetworkErrorResponse(initialError: response.error!.initialError, backendError: backendError)
+					let dataResponse: DataResponse<NetworkUserRewardsResponse, NetworkErrorResponse> = DataResponse(request: nil,
+																													response: nil,
+																													data: nil,
+																													metrics: nil,
+																													serializationDuration: 0,
+																													result: .failure(networkError))
+					return Just(dataResponse)
+				}
+				return Just(response)
+			}.eraseToAnyPublisher()
 	}
 
 	public func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<Result<DeviceDetails, NetworkErrorResponse>, Never> {
