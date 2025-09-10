@@ -105,7 +105,7 @@ private extension OnboardingView {
 				LazyHStack(spacing: 0.05 * proxy.size.width) {
 					ForEach(slides) { slide in
 						cardView(slide: slide,
-								 height: proxy.size.height)
+								 size: proxy.size)
 						.frame(width: 0.8 * proxy.size.width)
 						.id(slide.id)
 					}
@@ -142,12 +142,12 @@ private extension OnboardingView {
 	}
 
 	@ViewBuilder
-	func cardView(slide: Slide, height: CGFloat) -> some View {
+	func cardView(slide: Slide, size: CGSize) -> some View {
 		ZStack {
 			Image(asset: slide.image)
 				.resizable()
 				.aspectRatio(contentMode: .fill)
-				.frame(height: height)
+				.frame(width: 0.8 * size.width, height: size.height)
 				.overlay {
 					VStack {
 						Spacer()
