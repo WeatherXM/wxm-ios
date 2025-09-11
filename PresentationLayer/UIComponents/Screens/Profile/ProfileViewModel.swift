@@ -97,7 +97,7 @@ class ProfileViewModel: ObservableObject {
 		isLoggedIn = MainScreenViewModel.shared.isUserLoggedIn
     }
 
-	func refresh(completion: @escaping VoidCallback) {
+	func refresh(pullToRefresh: Bool = false, completion: @escaping VoidCallback) {
 		guard isLoggedIn else {
 			completion()
 			return
@@ -121,6 +121,7 @@ class ProfileViewModel: ObservableObject {
 			}
 
 			if let rewardsError = await self?.fetchUserRewards(),
+			   pullToRefresh,
 			   rewardsError.backendError?.code != FailAPICodeEnum.walletAddressNotFound.rawValue,
 			   case let info = rewardsError.uiInfo,
 			   let message = info.description?.attributedMarkdown {
@@ -230,7 +231,8 @@ private extension ProfileViewModel {
 		do {
 			let userRewardsResponse = try await meUseCase.getUserRewards(wallet: address).toAsync()
 			if let error = userRewardsResponse.error {
-				self.userRewardsResponse = nil
+				let isTooManyRequestsError = error.backendError?.code == FailAPICodeEnum.tooManyRequests.rawValue
+				self.userRewardsResponse = isTooManyRequestsError ? self.userRewardsResponse : nil
 
 				return error
 			}

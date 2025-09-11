@@ -29,7 +29,7 @@ private struct ContentView: View {
 				.zIndex(1)
 
 			TrackableScroller(offsetObject: viewModel.scrollOffsetObject) { completion in
-				viewModel.refresh(completion: completion)
+				viewModel.refresh(pullToRefresh: true, completion: completion)
 			} content: {
 				fieldsView
 					.iPadMaxWidth()

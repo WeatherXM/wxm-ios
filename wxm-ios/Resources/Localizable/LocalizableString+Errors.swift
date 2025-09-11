@@ -20,6 +20,7 @@ extension LocalizableString {
         case deepLinkInvalidUrl
         case noInternetAccess
 		case unsupportedApplicationVersion
+		case tooManyRequests
 		case obcTitle
 		case obcDescription(String)
 		case spikesTitle
@@ -135,6 +136,8 @@ extension LocalizableString.Error: WXMLocalizable {
 				return "error_no_internet_access"
 			case .unsupportedApplicationVersion:
 				return "error_unsupported_application_version"
+			case .tooManyRequests:
+				return "error_too_many_requests"
 			case .obcTitle:
 				return "error_obc_title"
 			case .obcDescription:

@@ -77,6 +77,6 @@ public struct NetworkRepositoryImpl: NetworkRepository {
 	public func getRewardsWithdraw(wallet: String) throws -> AnyPublisher<DataResponse<NetworkUserRewardsResponse, NetworkErrorResponse>, Never> {
 		let builder = NetworkApiRequestBuilder.rewardsWithdraw(wallet: wallet)
 		let urlRequest = try builder.asURLRequest()
-		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
 	}
 }
