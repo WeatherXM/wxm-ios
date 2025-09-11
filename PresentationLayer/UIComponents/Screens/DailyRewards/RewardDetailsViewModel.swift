@@ -224,7 +224,7 @@ class RewardDetailsViewModel: ObservableObject {
 
 	func handleBoostTap(boost: NetworkDeviceRewardDetailsResponse.BoostReward) {
 		switch boost.code {
-			case .betaReward:
+			case .betaReward, .correction:
 				let viewModel = ViewModelsFactory.getRewardsBoostViewModel(boost: boost, device: device, date: rewardDetailsResponse?.timestamp)
 				Router.shared.navigateTo(.rewardBoosts(viewModel))
 			default:

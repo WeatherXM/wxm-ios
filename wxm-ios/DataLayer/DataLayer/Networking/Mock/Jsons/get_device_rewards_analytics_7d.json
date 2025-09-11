@@ -73,6 +73,11 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "correction",
+					"value": 1.4353223
 				}
 			]
 		},
@@ -115,6 +120,14 @@
 			"boost_period_start":  "2023-06-06T00:00:00+00:00",
 			"boost_period_end": "2023-06-14T00:00:00+00:00",
 			"completed_percentage": 62
+		},
+		{
+			"code": "correction",
+			"current_rewards": 2.3325,
+			"total_rewards": 2.3325,
+			"boost_period_start":  "2023-06-06T00:00:00+00:00",
+			"boost_period_end": "2023-06-06T00:00:00+00:00",
+			"completed_percentage": 100
 		}
 	]
 }
