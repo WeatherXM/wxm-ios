@@ -223,6 +223,7 @@ private extension ProfileViewModel {
 	@MainActor
 	func fetchUserRewards() async -> NetworkErrorResponse? {
 		guard let address = userInfoResponse.wallet?.address else {
+			self.userRewardsResponse = nil
 			return nil
 		}
 
