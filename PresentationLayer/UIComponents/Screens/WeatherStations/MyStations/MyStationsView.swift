@@ -106,6 +106,11 @@ private struct ContentView: View {
 										 followButtonAction: { viewModel.handleFollowInExplorerTap() })
 				.padding(.bottom, overlayControlsSize.height)
 			}
+			.overlay {
+				if viewModel.isLoggedIn {
+					addStationsButton
+				}
+			}
 		} else {
 			weatherStations(devices: devices)
 				.overlay {
