@@ -14,7 +14,7 @@ extension BoostCode {
 			case .betaReward:
 				return LocalizableString.RewardAnalytics.beta.localized
 			case .correction:
-				return "Correction"
+				return LocalizableString.RewardAnalytics.compensation.localized
 			case .unknown:
 				return LocalizableString.RewardAnalytics.otherBoost.localized
 		}
@@ -58,7 +58,7 @@ extension BoostCode {
 			case .betaReward:
 				return LocalizableString.RewardAnalytics.betaRewards.localized
 			case .correction:
-				return "Correction"
+				return LocalizableString.RewardAnalytics.compensationRewards.localized
 			case .unknown:
 				return LocalizableString.RewardAnalytics.otherRewards.localized
 		}

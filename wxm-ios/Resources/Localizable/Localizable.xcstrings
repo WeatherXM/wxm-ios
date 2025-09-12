@@ -8228,13 +8228,35 @@
         }
       }
     },
+    "reward_analytics_compensation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compensation"
+          }
+        }
+      }
+    },
+    "reward_analytics_compensation_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compensation Rewards"
+          }
+        }
+      }
+    },
     "reward_analytics_details" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ details"
+            "value" : "%@ reward details"
           }
         }
       }
