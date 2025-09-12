@@ -78,24 +78,25 @@ private struct ChartAreaView: View {
 
 	var body: some View {
 		Chart(data, id: \.id) { item in
-			if shouldShowDots(for: item.group) {
-				PointMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
-					.foregroundStyle(Color(colorEnum: item.color))
-					.interpolationMethod(.linear)
-					.foregroundStyle(by: .value("group", item.group))
-			} else {
-				switch mode {
-					case .line:
+			switch mode {
+				case .line:
+					if shouldShowDots(for: item.group) {
+						PointMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
+							.foregroundStyle(Color(colorEnum: item.color))
+							.interpolationMethod(.linear)
+							.foregroundStyle(by: .value("group", item.group))
+
+					} else {
 						LineMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
 							.foregroundStyle(Color(colorEnum: item.color))
 							.interpolationMethod(.linear)
 							.foregroundStyle(by: .value("group", item.group))
-					case .area:
-						AreaMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
-							.interpolationMethod(.linear)
-							.foregroundStyle(Color(colorEnum: item.color))
-							.foregroundStyle(by: .value("group", item.group))
-				}
+					}
+				case .area:
+					AreaMark(x: .value("x_val", item.xVal), y: .value("value", item.yVal))
+						.interpolationMethod(.linear)
+						.foregroundStyle(Color(colorEnum: item.color))
+						.foregroundStyle(by: .value("group", item.group))
 			}
 		}
 		.chartLegend(.hidden)

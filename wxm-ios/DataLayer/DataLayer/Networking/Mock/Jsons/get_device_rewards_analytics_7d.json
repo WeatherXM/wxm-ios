@@ -122,11 +122,21 @@
 			"completed_percentage": 62
 		},
 		{
-			"code": "correction",
-			"current_rewards": 2.3325,
-			"total_rewards": 2.3325,
-			"boost_period_start":  "2023-06-06T00:00:00+00:00",
-			"boost_period_end": "2023-06-06T00:00:00+00:00",
+			"code": "correction-2025-05-01",
+			"type": "Correction",
+			"current_rewards": 0.491901,
+			"total_rewards": 0.491901,
+			"boost_period_start": "2025-09-10T00:00:00.000Z",
+			"boost_period_end": "2025-09-11T00:00:00.000Z",
+			"completed_percentage": 100
+		},
+		{
+			"code": "correction-2025-03-09",
+			"type": "Correction",
+			"current_rewards": 2.017276,
+			"total_rewards": 2.017276,
+			"boost_period_start": "2025-09-10T00:00:00.000Z",
+			"boost_period_end": "2025-09-11T00:00:00.000Z",
 			"completed_percentage": 100
 		}
 	]

@@ -103,8 +103,9 @@ private extension RewardAnalyticsChartFactory {
 		var chartDataItems: [ChartDataItem] = []
 		let legendItems: [ChartLegendView.Item] = deviceResponse.data?.legendItems ?? []
 
+		let data = deviceResponse.data?.withAllMissingCodes()
 		var counter = -1
-		deviceResponse.data?.forEach { datum in
+		data?.forEach { datum in
 			counter += 1
 
 			guard let ts = datum.ts, let rewards = datum.rewards else {
@@ -162,9 +163,48 @@ private extension NetworkDeviceRewardsResponse.RewardItem {
 }
 
 private extension Array where Element ==  NetworkDeviceRewardsResponse.RewardsData {
+	struct BoostTypeCouple: Hashable {
+		let type: NetworkDeviceRewardsResponse.RewardType
+		let code: BoostCode
+	}
+
 	var legendItems: [ChartLegendView.Item] {
 		let items: [NetworkDeviceRewardsResponse.RewardItem]? = self.compactMap { $0.rewards }.flatMap { $0 }.sortedByCriteria(criterias:  [{ ($0.type?.index ?? 0) < ($1.type?.index ?? 0) },
 																																	{ ($0.code ?? .unknown("")) < ($1.code ?? .unknown("")) }])
 		return items?.map { ChartLegendView.Item(color: $0.chartColor ?? .chartPrimary, title: $0.legendTitle ?? "")}.withNoDuplicates ?? []
+	}
+
+	func withAllMissingCodes() -> Self {
+		let allRewards = map { $0.rewards }.compactMap { $0 }.flatMap { $0 }
+		var concreteCodes: [BoostTypeCouple] = allRewards.compactMap { reward in
+			guard let type = reward.type, let code = reward.code else {
+				return nil
+			}
+
+			return BoostTypeCouple(type: type, code: code)
+		}
+
+		concreteCodes = Array<BoostTypeCouple>(Set(concreteCodes))
+
+
+		return self.map { data in
+			var missingCodes = concreteCodes
+			var items = data.rewards ?? []
+
+			missingCodes.removeAll { typeCouple in
+				items.contains { item in
+					item.type == typeCouple.type && item.code == typeCouple.code
+				}
+			}
+
+			let missingItems = missingCodes.map {
+				NetworkDeviceRewardsResponse.RewardItem(type: $0.type, code: $0.code, value: 0.0)
+			}
+
+			items.append(contentsOf: missingItems)
+
+			return NetworkDeviceRewardsResponse.RewardsData(ts: data.ts,
+															rewards: items)
+		}
 	}
 }

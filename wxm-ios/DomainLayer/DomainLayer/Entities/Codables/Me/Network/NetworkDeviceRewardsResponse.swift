@@ -23,11 +23,17 @@ public extension NetworkDeviceRewardsResponse {
 	enum RewardType: String, Codable, CaseIterable, Sendable {
 		case base
 		case boost
+		case correction
 	}
 
 	struct RewardsData: Codable, Sendable {
 		public let ts: Date?
 		public let rewards: [RewardItem]?
+
+		public init(ts: Date?, rewards: [RewardItem]?) {
+			self.ts = ts
+			self.rewards = rewards
+		}
 	}
 
 	struct RewardItem: Codable, Sendable {
