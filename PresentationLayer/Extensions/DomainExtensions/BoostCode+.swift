@@ -25,7 +25,7 @@ extension BoostCode {
 			case .betaReward:
 				return .betaRewardsPrimary
 			case .correction:
-				return .blueTint
+				return .correctionRewardsPrimary
 			case .unknown:
 				return .otherRewardPrimary
 		}
@@ -36,7 +36,7 @@ extension BoostCode {
 			case .betaReward:
 				return .betaRewardsFill
 			case .correction:
-				return .darkestBlue
+				return .correctionRewardsFill
 			case .unknown:
 				return .otherRewardFill
 		}
@@ -47,7 +47,7 @@ extension BoostCode {
 			case .betaReward:
 				return .betaRewardsPrimary
 			case .correction:
-				return .blueTint
+				return .correctionRewardsFill
 			case .unknown:
 				return .otherRewardChart
 		}
