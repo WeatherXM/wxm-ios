@@ -172,15 +172,17 @@ private extension Array where Element ==  NetworkDeviceRewardsResponse.RewardsDa
 	}
 
 	var legendItems: [ChartLegendView.Item] {
-		let items: [NetworkDeviceRewardsResponse.RewardItem]? = self.compactMap { $0.rewards }.flatMap { $0 }.sortedByCriteria(criterias:  [{ ($0.type?.index ?? 0) < ($1.type?.index ?? 0) },
-																																	{ ($0.code ?? .unknown("")) < ($1.code ?? .unknown("")) }])
+		let items: [NetworkDeviceRewardsResponse.RewardItem]? = self.compactMap { $0.rewards }.flatMap { $0 }
+			.sortedByCriteria(criterias: [{ ($0.type?.index ?? 0) < ($1.type?.index ?? 0) },
+										  { ($0.code ?? .unknown("")) < ($1.code ?? .unknown("")) }])
+
 		return items?.map { ChartLegendView.Item(color: $0.chartColor ?? .chartPrimary, title: $0.legendTitle ?? "")}.withNoDuplicates ?? []
 	}
 	
 	/// Fills the `RewardsData` array of each element with the missing types and nil value
 	var withAllMissingCodes: Self {
 		let allRewards = map { $0.rewards }.compactMap { $0 }.flatMap { $0 }
-		var concreteCodes: [BoostTypeCouple] = allRewards.compactMap { reward in
+		var uniqueCodes: [BoostTypeCouple] = allRewards.compactMap { reward in
 			guard let type = reward.type, let code = reward.code else {
 				return nil
 			}
@@ -188,10 +190,10 @@ private extension Array where Element ==  NetworkDeviceRewardsResponse.RewardsDa
 			return BoostTypeCouple(type: type, code: code)
 		}
 
-		concreteCodes = Array<BoostTypeCouple>(Set(concreteCodes))
+		uniqueCodes = Array<BoostTypeCouple>(Set(uniqueCodes))
 
 		return self.map { data in
-			var missingCodes = concreteCodes
+			var missingCodes = uniqueCodes
 			var items = data.rewards ?? []
 
 			missingCodes.removeAll { typeCouple in

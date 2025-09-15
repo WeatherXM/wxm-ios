@@ -39,7 +39,6 @@ struct ChartView: View {
 	}
 }
 
-
 private struct ChartAreaView: View {
 	let mode: ChartMode
 	let data: [ChartDataItem]
@@ -104,7 +103,7 @@ private struct ChartAreaView: View {
 		.modify { view in
 			if let max = data.max(by: { $0.yVal < $1.yVal })?.yVal, max == 0 {
 				view.chartYScale(domain: 0...1)
-			} else{
+			} else {
 				view
 			}
 		}
