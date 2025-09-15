@@ -121,7 +121,8 @@ private extension RewardAnalyticsChartFactory {
 											 xAxisDisplayLabel: xLabels.1,
 											 group: item.displayName ?? "",
 											 color: item.chartColor ?? .chartPrimary,
-											 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString)
+											 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString,
+											 isPlaceholder: item.value == nil)
 				chartDataItems.append(dataItem)
 			}
 		}
@@ -135,7 +136,8 @@ private extension Array where Element == NetworkDeviceRewardsResponse.RewardItem
 		let dict = Dictionary(grouping: self) { $0.sortIdentifier }
 
 		return dict.values.map { elements in
-			let sum = elements.reduce(0) { $0 + ($1.value ?? 0.0) }
+			let wrappedValues = elements.compactMap { $0.value }
+			let sum = wrappedValues.isEmpty ? nil : wrappedValues.reduce(0) { $0 + $1 }
 			let firstItem = elements.first
 			let mergedItem = NetworkDeviceRewardsResponse.RewardItem(type: firstItem?.type,
 																	 code: firstItem?.code,
@@ -186,7 +188,6 @@ private extension Array where Element ==  NetworkDeviceRewardsResponse.RewardsDa
 
 		concreteCodes = Array<BoostTypeCouple>(Set(concreteCodes))
 
-
 		return self.map { data in
 			var missingCodes = concreteCodes
 			var items = data.rewards ?? []
@@ -198,7 +199,7 @@ private extension Array where Element ==  NetworkDeviceRewardsResponse.RewardsDa
 			}
 
 			let missingItems = missingCodes.map {
-				NetworkDeviceRewardsResponse.RewardItem(type: $0.type, code: $0.code, value: 0.0)
+				NetworkDeviceRewardsResponse.RewardItem(type: $0.type, code: $0.code, value: nil)
 			}
 
 			items.append(contentsOf: missingItems)

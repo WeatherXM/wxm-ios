@@ -21,6 +21,7 @@ struct ChartDataItem: Identifiable {
 	let group: String
 	var color: ColorEnum = .chartPrimary
 	let displayValue: String
+	var isPlaceholder: Bool = false
 }
 
 enum ChartMode {
@@ -166,7 +167,7 @@ private extension ChartAreaView {
 		   !selectedItems.isEmpty {
 			VStack(alignment: .trailing) {
 				ChartOverlayDetailsView(title: selectedItems.first?.xAxisDisplayLabel ?? "",
-										valueItems: selectedItems.filter { $0.yVal != 0.0 }.map { ($0.group, $0.displayValue, $0.yVal) },
+										valueItems: selectedItems.filter { !$0.isPlaceholder }.map { ($0.group, $0.displayValue, $0.yVal) },
 										totalDisplayValue: totalDisplayValue)
 				.sizeObserver(size: $popupDetailsSize)
 
