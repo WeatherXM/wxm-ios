@@ -103,7 +103,7 @@ private extension RewardAnalyticsChartFactory {
 		var chartDataItems: [ChartDataItem] = []
 		let legendItems: [ChartLegendView.Item] = deviceResponse.data?.legendItems ?? []
 
-		let data = deviceResponse.data?.withAllMissingCodes()
+		let data = deviceResponse.data?.withAllMissingCodes
 		var counter = -1
 		data?.forEach { datum in
 			counter += 1
@@ -132,6 +132,7 @@ private extension RewardAnalyticsChartFactory {
 }
 
 private extension Array where Element == NetworkDeviceRewardsResponse.RewardItem {
+	/// Returns an array with merged `RewardItem`s of the same type in one with summarized `value`
 	var withMergedDuplicates: Self {
 		let dict = Dictionary(grouping: self) { $0.sortIdentifier }
 
@@ -175,8 +176,9 @@ private extension Array where Element ==  NetworkDeviceRewardsResponse.RewardsDa
 																																	{ ($0.code ?? .unknown("")) < ($1.code ?? .unknown("")) }])
 		return items?.map { ChartLegendView.Item(color: $0.chartColor ?? .chartPrimary, title: $0.legendTitle ?? "")}.withNoDuplicates ?? []
 	}
-
-	func withAllMissingCodes() -> Self {
+	
+	/// Fills the `RewardsData` array of each element with the missing types and nil value
+	var withAllMissingCodes: Self {
 		let allRewards = map { $0.rewards }.compactMap { $0 }.flatMap { $0 }
 		var concreteCodes: [BoostTypeCouple] = allRewards.compactMap { reward in
 			guard let type = reward.type, let code = reward.code else {
