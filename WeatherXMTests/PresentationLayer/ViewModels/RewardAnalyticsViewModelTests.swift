@@ -23,10 +23,19 @@ struct RewardAnalyticsViewModelTests {
 		viewModel = RewardAnalyticsViewModel(useCase: useCase, devices: devices)
 	}
 
-	@Test func initialization() {
+	@Test func initialization() async throws {
 		#expect(viewModel.devices.count == devices.count)
 		#expect(viewModel.state == .content)
 		#expect(viewModel.summaryMode == .week)
+		#expect(viewModel.totalEearnedText == "\(53.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
+
+		let actualReward = try #require(DeviceDetails.mockDevice.rewards?.actualReward)
+		#expect(viewModel.lastRunValueText == "+\(actualReward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
+
+		try await Task.sleep(for: .seconds(1))
+		#expect(!viewModel.suammaryRewardsIsLoading)
+		#expect(viewModel.summaryEarnedValueText == "\(0.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
+		#expect(viewModel.summaryChartDataItems?.isEmpty == true)
 	}
 
 	@Test func handleDeviceTap() async throws {
