@@ -103,8 +103,9 @@ private extension RewardAnalyticsChartFactory {
 		var chartDataItems: [ChartDataItem] = []
 		let legendItems: [ChartLegendView.Item] = deviceResponse.data?.legendItems ?? []
 
+		let data = deviceResponse.data?.withAllMissingCodes
 		var counter = -1
-		deviceResponse.data?.forEach { datum in
+		data?.forEach { datum in
 			counter += 1
 
 			guard let ts = datum.ts, let rewards = datum.rewards else {
@@ -120,7 +121,8 @@ private extension RewardAnalyticsChartFactory {
 											 xAxisDisplayLabel: xLabels.1,
 											 group: item.displayName ?? "",
 											 color: item.chartColor ?? .chartPrimary,
-											 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString)
+											 displayValue: (item.value ?? 0.0).toWXMTokenPrecisionString,
+											 isPlaceholder: item.value == nil)
 				chartDataItems.append(dataItem)
 			}
 		}
@@ -130,11 +132,13 @@ private extension RewardAnalyticsChartFactory {
 }
 
 private extension Array where Element == NetworkDeviceRewardsResponse.RewardItem {
+	/// Returns an array with merged `RewardItem`s of the same type in one with summarized `value`
 	var withMergedDuplicates: Self {
 		let dict = Dictionary(grouping: self) { $0.sortIdentifier }
 
 		return dict.values.map { elements in
-			let sum = elements.reduce(0) { $0 + ($1.value ?? 0.0) }
+			let wrappedValues = elements.compactMap { $0.value }
+			let sum = wrappedValues.isEmpty ? nil : wrappedValues.reduce(0) { $0 + $1 }
 			let firstItem = elements.first
 			let mergedItem = NetworkDeviceRewardsResponse.RewardItem(type: firstItem?.type,
 																	 code: firstItem?.code,
@@ -162,9 +166,50 @@ private extension NetworkDeviceRewardsResponse.RewardItem {
 }
 
 private extension Array where Element ==  NetworkDeviceRewardsResponse.RewardsData {
+	struct BoostTypeCouple: Hashable {
+		let type: NetworkDeviceRewardsResponse.RewardType
+		let code: BoostCode
+	}
+
 	var legendItems: [ChartLegendView.Item] {
-		let items: [NetworkDeviceRewardsResponse.RewardItem]? = self.compactMap { $0.rewards }.flatMap { $0 }.sortedByCriteria(criterias:  [{ ($0.type?.index ?? 0) < ($1.type?.index ?? 0) },
-																																	{ ($0.code ?? .unknown("")) < ($1.code ?? .unknown("")) }])
+		let items: [NetworkDeviceRewardsResponse.RewardItem]? = self.compactMap { $0.rewards }.flatMap { $0 }
+			.sortedByCriteria(criterias: [{ ($0.type?.index ?? 0) < ($1.type?.index ?? 0) },
+										  { ($0.code ?? .unknown("")) < ($1.code ?? .unknown("")) }])
+
 		return items?.map { ChartLegendView.Item(color: $0.chartColor ?? .chartPrimary, title: $0.legendTitle ?? "")}.withNoDuplicates ?? []
+	}
+	
+	/// Fills the `RewardsData` array of each element with the missing types and nil value
+	var withAllMissingCodes: Self {
+		let allRewards = map { $0.rewards }.compactMap { $0 }.flatMap { $0 }
+		var uniqueCodes: [BoostTypeCouple] = allRewards.compactMap { reward in
+			guard let type = reward.type, let code = reward.code else {
+				return nil
+			}
+
+			return BoostTypeCouple(type: type, code: code)
+		}
+
+		uniqueCodes = Array<BoostTypeCouple>(Set(uniqueCodes))
+
+		return self.map { data in
+			var missingCodes = uniqueCodes
+			var items = data.rewards ?? []
+
+			missingCodes.removeAll { typeCouple in
+				items.contains { item in
+					item.type == typeCouple.type && item.code == typeCouple.code
+				}
+			}
+
+			let missingItems = missingCodes.map {
+				NetworkDeviceRewardsResponse.RewardItem(type: $0.type, code: $0.code, value: nil)
+			}
+
+			items.append(contentsOf: missingItems)
+
+			return NetworkDeviceRewardsResponse.RewardsData(ts: data.ts,
+															rewards: items)
+		}
 	}
 }

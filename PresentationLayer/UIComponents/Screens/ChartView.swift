@@ -21,6 +21,7 @@ struct ChartDataItem: Identifiable {
 	let group: String
 	var color: ColorEnum = .chartPrimary
 	let displayValue: String
+	var isPlaceholder: Bool = false
 }
 
 enum ChartMode {
@@ -37,7 +38,6 @@ struct ChartView: View {
 		ChartAreaView(mode: mode, data: data, totalDisplayValue: totalDisplayValue)
 	}
 }
-
 
 private struct ChartAreaView: View {
 	let mode: ChartMode
@@ -83,6 +83,7 @@ private struct ChartAreaView: View {
 					.foregroundStyle(Color(colorEnum: item.color))
 					.interpolationMethod(.linear)
 					.foregroundStyle(by: .value("group", item.group))
+
 			} else {
 				switch mode {
 					case .line:
@@ -102,7 +103,7 @@ private struct ChartAreaView: View {
 		.modify { view in
 			if let max = data.max(by: { $0.yVal < $1.yVal })?.yVal, max == 0 {
 				view.chartYScale(domain: 0...1)
-			} else{
+			} else {
 				view
 			}
 		}
@@ -165,7 +166,7 @@ private extension ChartAreaView {
 		   !selectedItems.isEmpty {
 			VStack(alignment: .trailing) {
 				ChartOverlayDetailsView(title: selectedItems.first?.xAxisDisplayLabel ?? "",
-										valueItems: selectedItems.map { ($0.group, $0.displayValue, $0.yVal) },
+										valueItems: selectedItems.filter { !$0.isPlaceholder }.map { ($0.group, $0.displayValue, $0.yVal) },
 										totalDisplayValue: totalDisplayValue)
 				.sizeObserver(size: $popupDetailsSize)
 

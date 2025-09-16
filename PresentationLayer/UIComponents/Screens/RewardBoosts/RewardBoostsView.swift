@@ -56,7 +56,7 @@ private extension RewardBoostsView {
 					Spacer()
 				}
 
-				if let details = viewModel.response?.details {
+				if let details = viewModel.response?.details, viewModel.shouldShowDetailsDescription {
 					HStack {
 						Text(LocalizableString.Boosts.boostDetailsDescription(details.participationStartDateString, details.participationStopDateString).localized)
 							.font(.system(size: CGFloat(.normalFontSize)))
@@ -69,8 +69,10 @@ private extension RewardBoostsView {
 
 			if let details = viewModel.response?.details {
 				VStack(spacing: CGFloat(.smallSpacing)) {
-					Divider()
-						.overlay(Color(colorEnum: .layer2))
+					if viewModel.shouldShowDetailsDescription {
+						Divider()
+							.overlay(Color(colorEnum: .layer2))
+					}
 
 					BoostDetailsView(items: [.init(title: LocalizableString.Boosts.rewardableStationHours.localized,
 												   value: (details.stationHours ?? 0).localizedFormatted),

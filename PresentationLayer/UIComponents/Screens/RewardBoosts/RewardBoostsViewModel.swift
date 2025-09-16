@@ -13,6 +13,9 @@ import UIKit
 @MainActor
 class RewardBoostsViewModel: ObservableObject {
 	let boost: BoostCardView.Boost
+	var shouldShowDetailsDescription: Bool {
+		response?.code == .betaReward
+	}
 	private var useCase: RewardsTimelineUseCaseApi
 	private let boostReward: NetworkDeviceRewardDetailsResponse.BoostReward
 	private let device: DeviceDetails

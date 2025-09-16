@@ -338,7 +338,7 @@
 			"completed_percentage": 62
 		},
 		{
-			"code": "custom_reward",
+			"code": "correction",
 			"current_rewards": 12.3325,
 			"total_rewards": 132.38432,
 			"boost_period_start":  "2023-06-06T00:00:00+00:00",

@@ -20,6 +20,8 @@ extension LocalizableString {
 		case details(String)
 		case betaRewards
 		case beta
+		case compensation
+		case compensationRewards
 		case totalTokensEarnedSoFar
 		case weekAbbrevation
 		case monthAbbrevation
@@ -72,6 +74,10 @@ extension LocalizableString.RewardAnalytics: WXMLocalizable {
 				return "reward_analytics_beta_rewards"
 			case .beta:
 				return "reward_analytics_beta"
+			case .compensation:
+				return "reward_analytics_compensation"
+			case .compensationRewards:
+				return "reward_analytics_compensation_rewards"
 			case .totalTokensEarnedSoFar:
 				return "reward_analytics_total_tokens_earned_so_far"
 			case .weekAbbrevation:
