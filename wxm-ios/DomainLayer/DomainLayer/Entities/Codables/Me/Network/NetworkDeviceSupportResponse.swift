@@ -8,10 +8,10 @@
 import Foundation
 
 public struct NetworkDeviceSupportResponse: Sendable, Codable {
-	let status: Status?
-	let error: String?
-	let stationName: String?
-	let outputs: Outputs?
+	public let status: Status?
+	public let error: String?
+	public let stationName: String?
+	public let outputs: Outputs?
 
 	enum CodingKeys: String, CodingKey {
 		case status
@@ -29,6 +29,6 @@ extension NetworkDeviceSupportResponse {
 	}
 
 	public struct Outputs: Sendable, Codable {
-		let result: String?
+		public let result: String?
 	}
 }

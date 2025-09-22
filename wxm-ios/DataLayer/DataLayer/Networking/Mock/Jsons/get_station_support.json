@@ -1,0 +1,12 @@
+{
+	"workflow_run_id": "3990fe70-5554-4e34-ba6e-50c95adf7968",
+	"task_id": "30b54200-dbac-46f9-912f-0fdb5256d029",
+	"status": "succeeded",
+	"outputs": {
+		"result": "OK. Here's an analysis of your WeatherXM station, **Atomic Pineapple Heat**:\n\nThe station is **active** and located in Covas e Vila Nova de Oliveirinha, PT. The **Quality of Data (QoD) score is 100**, which is excellent! The weather data is being reported correctly.\n\nHowever, there's an important issue:\n\n*   **No location data:** The station is not reporting GPS location, and has been suspended from rewards.\n\nTo resolve this:\n\n1.  Ensure your **WG3000 Gateway** is placed on a sunny surface, facing south, and with no obstacles in front of it.\n2.  Follow the troubleshooting steps in the [No Location Data documentation](https://docs.weatherxm.com/rewards/rewards-troubleshooting#no-location-data).\n\nIf the issue persists, please submit a support ticket at [WeatherXM Support](https://help.weatherxm.com)."
+	},
+	"error": null,
+	"elapsed_time": 10.000239,
+	"total_tokens": 13672,
+	"station_name": "Atomic Pineapple Heat"
+}

@@ -396,4 +396,9 @@ enum ViewModelsFactory {
 	static func getOnboardingViewModel() -> OnboardingViewModel {
 		return OnboardingViewModel()
 	}
+
+	static func getStationSupportViewModel(deviceName: String) -> StationSupportViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
+		return StationSupportViewModel(stationName: deviceName, useCase: useCase)
+	}
 }

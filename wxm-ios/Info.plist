@@ -31,11 +31,11 @@
 	</array>
 	<key>ClaimTokenUrl</key>
 	<string>$(ClaimTokenUrl)</string>
+	<key>DeviceSupportUrl</key>
+	<string>$(DeviceSupportUrl)</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<string>NO</string>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
-	<false/>
-	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>

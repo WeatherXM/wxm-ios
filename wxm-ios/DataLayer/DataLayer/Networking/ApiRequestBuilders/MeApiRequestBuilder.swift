@@ -259,6 +259,8 @@ extension MeApiRequestBuilder: MockResponseBuilder {
 				return "empty_response"
 			case .unfollow, .setFriendlyName, .deleteFriendlyName:
 				return "empty_response"
+			case .deviceSupport:
+				return "get_station_support"
 			default:
 				return nil
 		}
