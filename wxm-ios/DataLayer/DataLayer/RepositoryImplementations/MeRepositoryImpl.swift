@@ -193,6 +193,13 @@ public struct MeRepositoryImpl: MeRepository {
 
 		return historicalData
 	}
+
+	public func getDeviceSupport(deviceName: String) throws -> AnyPublisher<DataResponse<NetworkDeviceSupportResponse, NetworkErrorResponse>, Never> {
+		let builder = MeApiRequestBuilder.deviceSupport(deviceName: deviceName)
+		let request = try builder.asURLRequest()
+
+		return ApiClient.shared.requestCodable(request, mockFileName: builder.mockFileName).eraseToAnyPublisher()
+	}
 }
 
 private extension MeRepositoryImpl {

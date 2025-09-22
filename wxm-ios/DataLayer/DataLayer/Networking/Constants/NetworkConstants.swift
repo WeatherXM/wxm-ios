@@ -17,6 +17,14 @@ struct NetworkConstants {
 		return url
 	}
 
+	static var deviceSupportUrl: String {
+		guard let url: String = Bundle.main.getConfiguration(for: .deviceSupportUrl) else {
+			fatalError("Could not retrieve API url from Configuration file")
+		}
+
+		return url
+	}
+
     enum ContentType: String {
         case json = "application/json"
         case octetStream = "application/octet-stream"

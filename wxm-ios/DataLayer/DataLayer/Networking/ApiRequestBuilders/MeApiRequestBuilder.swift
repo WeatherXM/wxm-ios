@@ -13,7 +13,11 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	// MARK: - URLRequestConvertible
 
 	func asURLRequest() throws -> URLRequest {
-		let url = try NetworkConstants.baseUrl.asURL()
+		var url = try NetworkConstants.baseUrl.asURL()
+
+		if case .deviceSupport(_) = self {
+			url = try NetworkConstants.deviceSupportUrl.asURL()
+		}
 
 		var urlRequest = URLRequest(url: url.appendingPathComponent(path))
 		// Http method
@@ -60,6 +64,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	case setDeviceLocation(deviceId: String, lat: Double, lon: Double)
 	case setFCMToken(installationId: String, token: String)
 	case postPhotoNames(deviceId: String, photos: [String])
+	case deviceSupport(deviceName: String)
 
 	// MARK: - HttpMethod
 
@@ -68,7 +73,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 		switch self {
 			case .getUser, .getUserWallet, .getDevices, .getFirmwares, .getUserDeviceById,
 					.getUserDeviceHistoryById, .getUserDeviceForecastById, .getUserDeviceRewards, 
-					.getUserDevicesRewards, .getUserDevicePhotos, .getDeviceFirmwareById, .getUserDeviceInfoById:
+					.getUserDevicesRewards, .getUserDevicePhotos, .getDeviceFirmwareById, .getUserDeviceInfoById, .deviceSupport:
 				return .get
 			case .saveUserWallet, .claimDevice, .setDeviceFrequency, .setFriendlyName, .disclaimDevice,
 					.follow, .setDeviceLocation, .setFCMToken, .postPhotoNames:
@@ -142,6 +147,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/notifications/fcm/installations/\(installationId)/tokens/\(token)"
 			case let .postPhotoNames(deviceId, photos):
 				return "me/devices/\(deviceId)/photos"
+			case .deviceSupport:
+				return "station-summary"
 		}
 	}
 
@@ -189,6 +196,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 						ParameterConstants.Me.lon: lon]
 			case let .postPhotoNames(_, photos):
 				return [ParameterConstants.Me.names: photos]
+			case let .deviceSupport(deviceName):
+				return [ParameterConstants.Me.stationName: deviceName]
 			default:
 				return nil
 		}
