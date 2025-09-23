@@ -79,6 +79,7 @@
 		26348E232A444AF1000846C6 /* Font Awesome 6 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26348E1B2A444AF1000846C6 /* Font Awesome 6 Pro-Solid-900.otf */; };
 		26348E252A444BEE000846C6 /* FontsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E242A444BEE000846C6 /* FontsEnum.swift */; };
 		26348E292A459A45000846C6 /* ExplorerStationsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E282A459A45000846C6 /* ExplorerStationsListViewModel.swift */; };
+		2637F9AC2E8191A70096250F /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2637F9AB2E8191A70096250F /* MarkdownUI */; };
 		263AAF2B2C6CD3CC00BA2902 /* RewardsSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AAF2A2C6CD3CC00BA2902 /* RewardsSplitView.swift */; };
 		263B8B4E2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B8B4D2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift */; };
 		263B8B502B29F17E001C5060 /* MapBoxConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B8B4F2B29F17E001C5060 /* MapBoxConstants.swift */; };
@@ -1552,6 +1553,7 @@
 				B5799E9F28254E3300FEBB85 /* DataLayer.framework in Frameworks */,
 				B5799E9D28254E3000FEBB85 /* DomainLayer.framework in Frameworks */,
 				267EC3B62CCBDF2C0085B50A /* PulseUI in Frameworks */,
+				2637F9AC2E8191A70096250F /* MarkdownUI in Frameworks */,
 				263B8B552B29FE34001C5060 /* MapboxStatic in Frameworks */,
 				269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */,
 				26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */,
@@ -3657,6 +3659,7 @@
 				26A86BFA2C7F68C400F1C2CF /* DGCharts */,
 				267EC3B52CCBDF2C0085B50A /* PulseUI */,
 				262B97472D393FC0002EFC6B /* Turf */,
+				2637F9AB2E8191A70096250F /* MarkdownUI */,
 			);
 			productName = "wxm-ios";
 			productReference = B52BCC712824FB8F00EA3DA5 /* WeatherXM.app */;
@@ -3711,6 +3714,7 @@
 				26A86BF92C7F68C400F1C2CF /* XCRemoteSwiftPackageReference "Charts" */,
 				267EC3B42CCBDF2C0085B50A /* XCRemoteSwiftPackageReference "Pulse" */,
 				262B97462D393FC0002EFC6B /* XCRemoteSwiftPackageReference "turf-swift" */,
+				2637F9AA2E8191A70096250F /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = B52BCC722824FB8F00EA3DA5 /* Products */;
 			projectDirPath = "";
@@ -5315,6 +5319,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		2637F9AA2E8191A70096250F /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
 		263B8B4B2B29EA64001C5060 /* XCRemoteSwiftPackageReference "MapboxStatic" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mapbox/MapboxStatic.swift";
@@ -5421,6 +5433,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 262B97462D393FC0002EFC6B /* XCRemoteSwiftPackageReference "turf-swift" */;
 			productName = Turf;
+		};
+		2637F9AB2E8191A70096250F /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2637F9AA2E8191A70096250F /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
 		};
 		263B8B542B29FE34001C5060 /* MapboxStatic */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -8,6 +8,7 @@
 import SwiftUI
 import DomainLayer
 import Toolkit
+import MarkdownUI
 
 struct InfoBannerView: View {
 	let infoBanner: InfoBanner
@@ -37,9 +38,11 @@ struct InfoBannerView: View {
 				}
 
 				HStack {
-					Text(infoBanner.message ?? "")
-						.font(.system(size: CGFloat(.normalFontSize)))
-						.foregroundStyle(Color(colorEnum: .text))
+					Markdown(infoBanner.message ?? "")
+						.markdownTextStyle {
+							FontSize(CGFloat(.normalFontSize))
+							FontFamily(.system(.default))
+						}
 
 					Spacer()
 				}
@@ -79,7 +82,7 @@ struct InfoBannerView: View {
 #Preview {
 	InfoBannerView(infoBanner: .init(id: "",
 									 title: "Title",
-									 message: "Message",
+									 message: "OK. Here's an analysis of your WeatherXM station, **Atomic Pine Yard**:\n\nThe station is **active** and located in Covas e Vila de Oliveira, PT.",
 									 buttonShow: true,
 									 actionLabel: "Action",
 									 url: "url",

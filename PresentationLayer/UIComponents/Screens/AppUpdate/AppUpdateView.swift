@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MarkdownUI
 
 struct AppUpdateView: View {
 	@Binding var show: Bool
@@ -46,12 +47,17 @@ private struct ContentView: View {
 						}
 
 						HStack {
-							Text(viewModel.whatsNewText ?? "-")
-								.font(.system(size: CGFloat(.mediumFontSize)))
+							Markdown(viewModel.whatsNewText ?? "-")
+								.markdownTextStyle {
+									FontSize(CGFloat(.mediumFontSize))
+									FontFamily(.system(.default))
+									ForegroundColor(Color(colorEnum: .text))
+								}
 
 							Spacer()
 						}
 					}
+					.foregroundStyle(Color(colorEnum: .text))
 				}
 				.scrollIndicators(.hidden)
 

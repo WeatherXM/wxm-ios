@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Toolkit
+import MarkdownUI
 
 struct AnnouncementCardView: View {
 	let configuration: Configuration
@@ -33,10 +34,12 @@ struct AnnouncementCardView: View {
 			.minimumScaleFactor(0.8)
 
 			HStack {
-				Text(configuration.description)
-					.font(.system(size: CGFloat(.normalFontSize)))
-					.foregroundColor(Color(colorEnum: .textWhite))
-
+				Markdown(configuration.description)
+					.markdownTextStyle {
+						ForegroundColor(Color(colorEnum: .textWhite))
+						FontFamily(.system(.default))
+						FontSize(CGFloat(.normalFontSize))
+					}
 				Spacer()
 			}
 
@@ -88,7 +91,7 @@ extension AnnouncementCardView {
 
 #Preview {
 	AnnouncementCardView(configuration: .init(title: "Welcome to Mainnet!",
-											  description: "Starting the Χth of Υ all station rewards are distributed on Abritrum Mainnet!\n\nThank you for the support!",
+											  description: "OK. Here's an analysis of your WeatherXM station, **Atomic Pine Yard**:\n\nThe station is **active** and located in Covas e Vila de Oliveira, PT.",
 											  actionTitle: "Action title",
 											  action: {},
 											  closeAction: {}))
