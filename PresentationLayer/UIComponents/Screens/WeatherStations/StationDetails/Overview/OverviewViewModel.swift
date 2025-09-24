@@ -21,7 +21,8 @@ class OverviewViewModel: ObservableObject {
 		followState.weatherNoDataText
 	}
 	var shouldShowAIAssistantButton: Bool {
-		guard let qod = device?.qod else {
+		guard let qod = device?.qod,
+			  followState?.relation == .owned else {
 			return false
 		}
 
