@@ -295,9 +295,7 @@ extension Route {
 					StationsNotificationsView(viewModel: notificationsViewModel)
 				}
 			case .stationSupport(let supportViewModel):
-				NavigationContainerView {
-					StationSupportView(viewModel: supportViewModel)
-				}
+				StationSupportView(viewModel: supportViewModel)
 			case .safariView(let url):
 				SafariView(url: url)
 					.ignoresSafeArea()

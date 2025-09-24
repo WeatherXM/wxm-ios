@@ -12,19 +12,82 @@ struct StationSupportView: View {
 	@StateObject var viewModel: StationSupportViewModel
 
 	var body: some View {
-		ScrollView {
-			Group {
-				if let markdownString = viewModel.markdownString {
-					Markdown(markdownString)
-				} else {
-					Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		ZStack {
+			Color(colorEnum: .top)
+				.ignoresSafeArea()
+
+			ScrollView {
+				Group {
+					switch viewModel.mode {
+						case .content(let markdown):
+							markDownView(markdownString: markdown)
+								.transition(AnyTransition.opacity.animation(.easeIn))
+						case .loading:
+							loadingView
+						case .error:
+							EmptyView()
+					}
 				}
+				.padding()
 			}
-			.padding()
 		}
 		.task {
 			viewModel.refresh()
 		}
+	}
+}
+
+extension StationSupportView {
+	enum Mode {
+		case content(markdownString: String)
+		case loading
+		case error
+	}
+}
+
+private extension StationSupportView {
+	@ViewBuilder
+	func markDownView(markdownString: String) -> some View {
+		VStack(spacing: CGFloat(.defaultSpacing)) {
+			HStack {
+				Text(LocalizableString.StationDetails.aiHealthCheck.localized)
+					.font(.system(size: CGFloat(.smallTitleFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Spacer()
+			}
+
+			Markdown(markdownString)
+				.markdownTextStyle {
+					FontFamily(.system(.default))
+					FontSize(CGFloat(.normalFontSize))
+					ForegroundColor(Color(colorEnum: .text))
+				}
+		}
+		.padding(.top, CGFloat(.defaultSidePadding))
+	}
+
+	@ViewBuilder
+	var loadingView: some View {
+		VStack(spacing: CGFloat(.defaultSpacing)) {
+			SpinningLoaderView()
+				.background {
+					Circle().foregroundStyle(Color(colorEnum: .bg))
+				}
+				.wxmShadow()
+
+			VStack(spacing: CGFloat(.largeSpacing)) {
+				Text(LocalizableString.StationDetails.analyzingYourStation.localized)
+					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Text(LocalizableString.StationDetails.analyzingYourStationDescription.localized)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundStyle(Color(colorEnum: .text))
+			}
+			.multilineTextAlignment(.center)
+		}
+		.padding(.top, CGFloat(.defaultSidePadding))
 	}
 }
 

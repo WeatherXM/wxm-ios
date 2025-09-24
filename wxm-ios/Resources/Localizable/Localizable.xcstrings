@@ -10164,6 +10164,28 @@
         }
       }
     },
+    "station_details_analyzing_your_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analyzing your station..."
+          }
+        }
+      }
+    },
+    "station_details_analyzing_your_station_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Our AI is checking every sensor for you.\nYour station’s story is loading, give it some time!"
+          }
+        }
+      }
+    },
     "station_details_base_reward" : {
       "extractionState" : "manual",
       "localizations" : {

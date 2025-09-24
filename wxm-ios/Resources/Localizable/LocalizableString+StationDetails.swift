@@ -82,6 +82,9 @@ extension LocalizableString {
 		case firmwareUpdateDescription
 		case health
 		case healthDescription
+		case analyzingYourStation
+		case analyzingYourStationDescription
+
 	}
 }
 
@@ -261,6 +264,10 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_health"
 			case .healthDescription:
 				return "station_details_health_description"
+			case .analyzingYourStation:
+				return "station_details_analyzing_your_station"
+			case .analyzingYourStationDescription:
+				return "station_details_analyzing_your_station_description"
 		}
 	}
 }
