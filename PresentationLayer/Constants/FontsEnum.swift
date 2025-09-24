@@ -96,6 +96,7 @@ enum FontIcon: String {
 	case triangleExclamation = "triangle-exclamation"
 	case umbrella
 	case user
+	case userRobotXmarks = "user-robot-xmarks"
 	case wallet
 	case xmark
 }

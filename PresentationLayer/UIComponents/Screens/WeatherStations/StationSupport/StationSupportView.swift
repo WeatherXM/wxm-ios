@@ -25,7 +25,8 @@ struct StationSupportView: View {
 						case .loading:
 							loadingView
 						case .error:
-							EmptyView()
+							errorView
+								.transition(AnyTransition.opacity.animation(.easeIn))
 					}
 				}
 				.padding()
@@ -74,7 +75,6 @@ private extension StationSupportView {
 				.background {
 					Circle().foregroundStyle(Color(colorEnum: .bg))
 				}
-				.wxmShadow()
 
 			VStack(spacing: CGFloat(.largeSpacing)) {
 				Text(LocalizableString.StationDetails.analyzingYourStation.localized)
@@ -82,6 +82,31 @@ private extension StationSupportView {
 					.foregroundStyle(Color(colorEnum: .text))
 
 				Text(LocalizableString.StationDetails.analyzingYourStationDescription.localized)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundStyle(Color(colorEnum: .text))
+			}
+			.multilineTextAlignment(.center)
+		}
+		.padding(.top, CGFloat(.defaultSidePadding))
+	}
+
+	@ViewBuilder
+	var errorView: some View {
+		VStack(spacing: CGFloat(.defaultSpacing)) {
+			Text(FontIcon.userRobotXmarks.rawValue)
+				.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.hugeFontSize)))
+				.foregroundStyle(Color(colorEnum: .textDarkStable))
+				.frame(width: 150.0, height: 150.0)
+				.background {
+					Circle().foregroundStyle(Color(colorEnum: .errorTint))
+				}
+
+			VStack(spacing: CGFloat(.largeSpacing)) {
+				Text(LocalizableString.StationDetails.stormInSystem.localized)
+					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Text(LocalizableString.StationDetails.stormInSystemDescription.localized)
 					.font(.system(size: CGFloat(.normalFontSize)))
 					.foregroundStyle(Color(colorEnum: .text))
 			}

@@ -84,7 +84,8 @@ extension LocalizableString {
 		case healthDescription
 		case analyzingYourStation
 		case analyzingYourStationDescription
-
+		case stormInSystem
+		case stormInSystemDescription
 	}
 }
 
@@ -268,6 +269,10 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_analyzing_your_station"
 			case .analyzingYourStationDescription:
 				return "station_details_analyzing_your_station_description"
+			case .stormInSystem:
+				return "station_details_storm_in_system"
+			case .stormInSystemDescription:
+				return "station_details_storm_in_system_description"
 		}
 	}
 }

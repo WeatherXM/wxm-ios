@@ -10890,6 +10890,28 @@
         }
       }
     },
+    "station_details_storm_in_system" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, storm in the system!"
+          }
+        }
+      }
+    },
+    "station_details_storm_in_system_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong while checking your station.\nTry again in a moment."
+          }
+        }
+      }
+    },
     "station_details_thirty_days_abbreviation" : {
       "extractionState" : "manual",
       "localizations" : {
