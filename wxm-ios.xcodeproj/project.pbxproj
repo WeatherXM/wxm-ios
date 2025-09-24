@@ -79,9 +79,9 @@
 		26348E232A444AF1000846C6 /* Font Awesome 6 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26348E1B2A444AF1000846C6 /* Font Awesome 6 Pro-Solid-900.otf */; };
 		26348E252A444BEE000846C6 /* FontsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E242A444BEE000846C6 /* FontsEnum.swift */; };
 		26348E292A459A45000846C6 /* ExplorerStationsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E282A459A45000846C6 /* ExplorerStationsListViewModel.swift */; };
-		2637F9AC2E8191A70096250F /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2637F9AB2E8191A70096250F /* MarkdownUI */; };
 		2637F99F2E8167270096250F /* StationSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2637F99E2E8167270096250F /* StationSupportView.swift */; };
 		2637F9A12E8167DC0096250F /* StationSupportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2637F9A02E8167DC0096250F /* StationSupportViewModel.swift */; };
+		2637F9AC2E8191A70096250F /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2637F9AB2E8191A70096250F /* MarkdownUI */; };
 		263AAF2B2C6CD3CC00BA2902 /* RewardsSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AAF2A2C6CD3CC00BA2902 /* RewardsSplitView.swift */; };
 		263B8B4E2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B8B4D2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift */; };
 		263B8B502B29F17E001C5060 /* MapBoxConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B8B4F2B29F17E001C5060 /* MapBoxConstants.swift */; };
@@ -726,7 +726,6 @@
 		26F83CEB2D9FFAF900E5A8B8 /* RewardAnalyticsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F83CEA2D9FFAF400E5A8B8 /* RewardAnalyticsViewModelTests.swift */; };
 		26FC21C52D12F7DC00FC79B1 /* PhotoVerificationStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C42D12F7DC00FC79B1 /* PhotoVerificationStateView.swift */; };
 		26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC21C62D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift */; };
-		26FC32782E81584800AF560C /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 26FC32772E81584800AF560C /* MarkdownUI */; };
 		26FFAD682B8DF9C200BF0A6B /* LazyLoadingPager in Frameworks */ = {isa = PBXBuildFile; productRef = 26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */; };
 		26FFAD792B8E12DC00BF0A6B /* RewardFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFAD782B8E12DC00BF0A6B /* RewardFieldView.swift */; };
 		26FFADA72B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FFADA62B8F3D2700BF0A6B /* NetworkDeviceRewardDetailsResponse+.swift */; };
@@ -5407,14 +5406,6 @@
 				minimumVersion = 2.0.8;
 			};
 		};
-		26FC32762E81583300AF560C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.4.1;
-			};
-		};
 		26FFAD662B8DF9C200BF0A6B /* XCRemoteSwiftPackageReference "LazyLoadingPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WeatherXM/LazyLoadingPager";
@@ -5540,11 +5531,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 261E9EA529A9275C00E8EBA3 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
-		};
-		26FC32772E81584800AF560C /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 26FC32762E81583300AF560C /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
 		};
 		26FFAD672B8DF9C200BF0A6B /* LazyLoadingPager */ = {
 			isa = XCSwiftPackageProductDependency;
