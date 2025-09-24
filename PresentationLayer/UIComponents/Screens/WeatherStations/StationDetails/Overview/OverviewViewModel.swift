@@ -20,6 +20,13 @@ class OverviewViewModel: ObservableObject {
 	var weatherNoDataText: LocalizableString {
 		followState.weatherNoDataText
 	}
+	var shouldShowAIAssistantButton: Bool {
+		guard let qod = device?.qod else {
+			return false
+		}
+
+		return qod < 80
+	}
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
 	@Published private(set) var device: DeviceDetails? {
 		didSet {
@@ -82,6 +89,14 @@ class OverviewViewModel: ObservableObject {
 
 	func handleLocationQualityTap() {
 		navigateToCell()
+	}
+
+	func handleAISupportTap() {
+		guard let name = device?.name else {
+			return
+		}
+		let vm = ViewModelsFactory.getStationSupportViewModel(deviceName: name)
+		Router.shared.showBottomSheet(.stationSupport(vm))
 	}
 }
 
