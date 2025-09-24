@@ -20,6 +20,12 @@ public struct NetworkDeviceSupportResponse: Sendable, Codable {
 		case outputs
 	}
 
+	public init(status: Status?, error: String?, stationName: String?, outputs: Outputs?) {
+		self.status = status
+		self.error = error
+		self.stationName = stationName
+		self.outputs = outputs
+	}
 }
 
 extension NetworkDeviceSupportResponse {
@@ -30,5 +36,9 @@ extension NetworkDeviceSupportResponse {
 
 	public struct Outputs: Sendable, Codable {
 		public let result: String?
+
+		public init(result: String?) {
+			self.result = result
+		}
 	}
 }
