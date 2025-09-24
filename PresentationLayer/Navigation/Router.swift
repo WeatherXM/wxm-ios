@@ -326,10 +326,12 @@ class Router: ObservableObject {
 			if !showBottomSheet {
 				// Set ref to nil in order to deallocate the corresponding view model
 				bottomSheetRoute = nil
+				bottomSheetBgColor = .bottomSheetBg
 			}
 		}
 	}
 	var bottomSheetRoute: Route?
+	var bottomSheetBgColor: ColorEnum = .bottomSheetBg
 	let navigationHost = HostingWrapper()
 		
 	func showFullScreen(_ route: Route) {
@@ -342,8 +344,9 @@ class Router: ObservableObject {
 		}
 	}
 
-	func showBottomSheet(_ route: Route) {
+	func showBottomSheet(_ route: Route, bgColor: ColorEnum = .bottomSheetBg) {
 		bottomSheetRoute = route
+		bottomSheetBgColor = bgColor
 		showBottomSheet = true
 	}
 

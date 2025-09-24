@@ -97,7 +97,7 @@ class OverviewViewModel: ObservableObject {
 			return
 		}
 		let vm = ViewModelsFactory.getStationSupportViewModel(deviceName: name)
-		Router.shared.showBottomSheet(.stationSupport(vm))
+		Router.shared.showBottomSheet(.stationSupport(vm), bgColor: .top)
 	}
 }
 
