@@ -121,4 +121,11 @@ struct MeRepositoryImplTests {
 		#expect(cachedDevices == nil)
 	}
 
+	@Test func getDeviceSupport() async throws {
+		let response = try await repositoryImpl.getDeviceSupport(deviceName: "Station").toAsync().result.get()
+		#expect(response.status == .succeeded)
+		let output = try #require(response.outputs?.result)
+		#expect(!output.isEmpty)
+	}
+
 }

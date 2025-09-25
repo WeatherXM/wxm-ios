@@ -39,10 +39,23 @@ struct StationSupportView: View {
 }
 
 extension StationSupportView {
-	enum Mode {
+	enum Mode: Equatable {
 		case content(markdownString: String)
 		case loading
 		case error
+
+		static func == (lhs: Mode, rhs: Mode) -> Bool {
+			switch (lhs, rhs) {
+				case (.loading, .loading):
+					return true
+				case (.error, .error):
+					return true
+				case (.content, .content):
+					return true
+				default:
+					return false
+			}
+		}
 	}
 }
 

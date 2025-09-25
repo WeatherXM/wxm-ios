@@ -124,6 +124,7 @@
 		2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
 		2655F1822AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
 		2656A9A12E04142A002F0294 /* NetworkGrowthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */; };
+		2657424A2E8562AA0070E1B3 /* StationSupportViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265742492E8562A90070E1B3 /* StationSupportViewModelTests.swift */; };
 		265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265985542C4E467000BDF225 /* UnitsConverterTests.swift */; };
 		265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265985642C4EAD9F00BDF225 /* FoundationExtensionsTests.swift */; };
 		265D2CD829D194070044D032 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D2CD729D194070044D032 /* Common.swift */; };
@@ -934,6 +935,7 @@
 		264E2F6029DC5AEE009580A2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
 		2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGrowthView.swift; sourceTree = "<group>"; };
+		265742492E8562A90070E1B3 /* StationSupportViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSupportViewModelTests.swift; sourceTree = "<group>"; };
 		265985542C4E467000BDF225 /* UnitsConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsConverterTests.swift; sourceTree = "<group>"; };
 		265985642C4EAD9F00BDF225 /* FoundationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		265D2CD729D194070044D032 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -1923,6 +1925,7 @@
 				26F83CEA2D9FFAF400E5A8B8 /* RewardAnalyticsViewModelTests.swift */,
 				26D5C05B2E4B36470040CDAF /* LocationForecastViewModelTests.swift */,
 				26D5C05F2E4B46EC0040CDAF /* HomeSearchViewModelTests.swift */,
+				265742492E8562A90070E1B3 /* StationSupportViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -4070,6 +4073,7 @@
 				26F83C9F2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
 				26A0A98F2DC0CEE9005A6646 /* NetworkDeviceForecastResponseTests.swift in Sources */,
+				2657424A2E8562AA0070E1B3 /* StationSupportViewModelTests.swift in Sources */,
 				26F83CCF2D9E9B5D00E5A8B8 /* MockRemoteConfigUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
