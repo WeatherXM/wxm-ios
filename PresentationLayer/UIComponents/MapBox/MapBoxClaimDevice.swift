@@ -17,6 +17,7 @@ struct MapBoxClaimDeviceView: View {
 	@Binding var location: CLLocationCoordinate2D
 	@Binding var annotationTitle: String?
 	let geometryProxyForFrameOfMapView: CGRect
+	let polygonPoints: [PolygonAnnotation]?
 
 	private let markerSize: CGSize = CGSize(width: 44.0, height: 44.0)
 	@State private var locationPoint: CGPoint = .zero
@@ -26,10 +27,12 @@ struct MapBoxClaimDeviceView: View {
 	init(location: Binding<CLLocationCoordinate2D>,
 		 annotationTitle: Binding<String?>,
 		 geometryProxyForFrameOfMapView: CGRect,
+		 polygonPoints: [PolygonAnnotation]?,
 		 mapControls: MapControls) {
 		_location = location
 		_annotationTitle = annotationTitle
 		self.geometryProxyForFrameOfMapView = geometryProxyForFrameOfMapView
+		self.polygonPoints = polygonPoints
 		_controls = StateObject(wrappedValue: mapControls)
 	}
 
@@ -38,6 +41,7 @@ struct MapBoxClaimDeviceView: View {
 			MapBoxClaimDevice(location: $location,
 							  locationPoint: $locationPoint,
 							  geometryProxyForFrameOfMapView: geometryProxyForFrameOfMapView,
+							  polygonPoints: polygonPoints,
 							  controls: controls)
 
 			markerAnnotation
@@ -90,6 +94,8 @@ private struct MapBoxClaimDevice: UIViewControllerRepresentable {
     @Binding var location: CLLocationCoordinate2D
 	@Binding var locationPoint: CGPoint
     let geometryProxyForFrameOfMapView: CGRect
+	let polygonPoints: [PolygonAnnotation]?
+
 	@StateObject var controls: MapControls
 
     func makeUIViewController(context _: Context) -> MapViewLocationController {
@@ -113,6 +119,7 @@ private struct MapBoxClaimDevice: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ controller: MapViewLocationController, context _: Context) {
+		controller.polygonManager?.annotations = polygonPoints ?? []
     }
 }
 
@@ -126,13 +133,19 @@ class MapViewLocationController: UIViewController {
     private static let ZOOM_LEVEL: CGFloat = 15
 
     let frame: CGRect
+	let polygonPoints: [PolygonAnnotation]?
     @Binding var location: CLLocationCoordinate2D
 	@Binding var locationPoint: CGPoint
     internal var mapView: MapView!
+	internal weak var polygonManager: PolygonAnnotationManager?
 	private var cancelablesSet = Set<AnyCancelable>()
 
-    init(frame: CGRect, location: Binding<CLLocationCoordinate2D>, locationPoint: Binding<CGPoint>) {
+    init(frame: CGRect,
+		 polygonPoints: [PolygonAnnotation]? = nil,
+		 location: Binding<CLLocationCoordinate2D>,
+		 locationPoint: Binding<CGPoint>) {
         self.frame = frame
+		self.polygonPoints = polygonPoints
         _location = location
 		_locationPoint = locationPoint
         super.init(nibName: nil, bundle: nil)
@@ -186,6 +199,7 @@ class MapViewLocationController: UIViewController {
 			}
 		}.store(in: &cancelablesSet)
 
+		self.polygonManager = mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.cellCapacityPolygonManagerId)
 		setCenter(location)
     }
 
