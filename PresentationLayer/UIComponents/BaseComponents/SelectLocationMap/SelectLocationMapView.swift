@@ -19,6 +19,7 @@ struct SelectLocationMapView: View {
 									  annotationTitle: Binding(get: { viewModel.selectedDeviceLocation?.name },
 															   set: { _ in }),
 									  geometryProxyForFrameOfMapView: proxy.frame(in: .local),
+									  polygonPoints: viewModel.explorerData?.cellCapacityPoints,
 									  mapControls: viewModel.mapControls)
 
 				searchArea
@@ -126,5 +127,6 @@ private extension SelectLocationMapView {
 
 #Preview {
 	let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCaseApi.self)!
-	return SelectLocationMapView(viewModel: .init(useCase: useCase))
+	let explorerUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCaseApi.self)!
+	return SelectLocationMapView(viewModel: .init(useCase: useCase, explorerUseCase: explorerUseCase))
 }
