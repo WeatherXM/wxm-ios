@@ -7,6 +7,7 @@
 
 public struct PublicHex: Codable, Sendable, Equatable {
     public var index: String = ""
+	public var capacity: Int?
     public var deviceCount: Int?
 	public var activeDeviceCount: Int?
 	public var averageDataQuality: Int?
@@ -15,6 +16,7 @@ public struct PublicHex: Codable, Sendable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case index
+		case capacity
         case deviceCount = "device_count"
 		case activeDeviceCount = "active_device_count"
 		case averageDataQuality = "avg_data_quality"
@@ -22,8 +24,15 @@ public struct PublicHex: Codable, Sendable, Equatable {
         case polygon
     }
 
-	init(index: String = "", deviceCount: Int? = nil, activeDeviceCount: Int? = nil, averageDataQuality: Int? = nil, center: HexLocation = .init(), polygon: [HexLocation] = []) {
+	init(index: String = "",
+		 capacity: Int? = nil,
+		 deviceCount: Int? = nil,
+		 activeDeviceCount: Int? = nil,
+		 averageDataQuality: Int? = nil,
+		 center: HexLocation = .init(),
+		 polygon: [HexLocation] = []) {
 		self.index = index
+		self.capacity = capacity
 		self.deviceCount = deviceCount
 		self.activeDeviceCount = activeDeviceCount
 		self.averageDataQuality = averageDataQuality
@@ -34,6 +43,7 @@ public struct PublicHex: Codable, Sendable, Equatable {
 	public init(from decoder: any Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.index = try container.decode(String.self, forKey: .index)
+		self.capacity = try container.decodeIfPresent(Int.self, forKey: .capacity)
 		self.deviceCount = try container.decodeIfPresent(Int.self, forKey: .deviceCount)
 		self.activeDeviceCount = try container.decodeIfPresent(Int.self, forKey: .activeDeviceCount)
 		self.averageDataQuality = try? container.decodeIfPresent(Int.self, forKey: .averageDataQuality)
