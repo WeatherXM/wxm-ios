@@ -43,14 +43,20 @@ class SelectLocationMapViewModel: ObservableObject {
 		}
 	}
 	@Published private(set) var searchResults: [DeviceLocationSearchResult] = []
+	@Published private(set) var explorerData: ExplorerData?
 	var mapControls: MapControls = .init()
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	private var latestTask: Cancellable?
 	let useCase: DeviceLocationUseCaseApi
+	let explorerUseCase: ExplorerUseCaseApi
 	weak var delegate: SelectLocationMapViewModelDelegate?
 
-	init(useCase: DeviceLocationUseCaseApi, initialCoordinate: CLLocationCoordinate2D? = nil, delegate: SelectLocationMapViewModelDelegate? = nil) {
+	init(useCase: DeviceLocationUseCaseApi,
+		 explorerUseCase: ExplorerUseCaseApi,
+		 initialCoordinate: CLLocationCoordinate2D? = nil,
+		 delegate: SelectLocationMapViewModelDelegate? = nil) {
 		self.useCase = useCase
+		self.explorerUseCase = explorerUseCase
 		self.delegate = delegate
 		self.selectedCoordinate = initialCoordinate ?? useCase.getSuggestedDeviceLocation() ?? .init()
 		$selectedCoordinate
@@ -70,6 +76,10 @@ class SelectLocationMapViewModel: ObservableObject {
 		useCase.searchResults.sink { [weak self] results in
 			self?.searchResults = results
 		}.store(in: &cancellableSet)
+
+		Task { @MainActor in
+			await getExplorerData()
+		}
 	}
 
 	func handleSearchResultTap(result: DeviceLocationSearchResult) {
@@ -114,6 +124,20 @@ private extension SelectLocationMapViewModel {
 		latestTask = useCase.locationFromCoordinates(LocationCoordinates.fromCLLocationCoordinate2D(selectedCoordinate)).sink { [weak self] location in
 			print("selectedDeviceLocation: \(String(describing: location?.coordinates))" )
 			self?.selectedDeviceLocation = location
+		}
+	}
+
+	func getExplorerData() async {
+		do {
+			let result = try await explorerUseCase.getPublicHexes()
+			switch result {
+				case .success(let hexes):
+					self.explorerData = ExplorerFactory(publicHexes: hexes).generateExplorerData()
+				case .failure(let error):
+					print(error)
+			}
+		} catch {
+			print(error)
 		}
 	}
 }

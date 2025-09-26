@@ -307,7 +307,8 @@ enum ViewModelsFactory {
 
 	static func getLocationMapViewModel(initialCoordinate: CLLocationCoordinate2D? = nil) -> SelectLocationMapViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCaseApi.self)!
-		return SelectLocationMapViewModel(useCase: useCase, initialCoordinate: initialCoordinate)
+		let exlporerUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCaseApi.self)!
+		return SelectLocationMapViewModel(useCase: useCase, explorerUseCase: exlporerUseCase, initialCoordinate: initialCoordinate)
 	}
 
 	static func getClaimDeviceLocationViewModel(completion: @escaping GenericCallback<DeviceLocation>) -> ClaimDeviceLocationViewModel {
