@@ -22,7 +22,11 @@ struct ExplorerFactory {
 	private let fillOpacity = 0.5
 	private let fillColor = StyleColor(UIColor(colorEnum: .explorerPolygon))
 	private let fillOutlineColor = StyleColor(UIColor.white)
-
+	private let cellCapacityFillOpacity = 0.2
+	private let cellCapacityFillColor = StyleColor(UIColor(colorEnum: .wxmPrimary))
+	private let cellCapacityFillOutlineColor = StyleColor(UIColor(colorEnum: .wxmPrimary))
+	private let cellCapacityReachedFillColor = StyleColor(UIColor(colorEnum: .error))
+	private let cellCapacityReachedFillOutlineColor = StyleColor(UIColor(colorEnum: .error))
 
 	func generateExplorerData() -> ExplorerData {
 		var geoJsonSource = GeoJSONSource(id: "heatmap")
@@ -41,6 +45,7 @@ struct ExplorerFactory {
 		var totalDevices = 0
 		var polygonPoints: [PolygonAnnotation] = []
 		var coloredPolygonPoints: [PolygonAnnotation] = []
+		var cellCapacityPolygonPoints: [PolygonAnnotation] = []
 		var textPoints: [PointAnnotation] = []
 		publicHexes.forEach { publicHex in
 			totalDevices += publicHex.deviceCount ?? 0
@@ -72,6 +77,13 @@ struct ExplorerFactory {
 			coloredAnnotation.fillColor = StyleColor(UIColor(colorEnum: publicHex.averageDataQuality?.rewardScoreColor ?? .darkGrey))
 			coloredPolygonPoints.append(coloredAnnotation)
 
+			var cellCapacityAnnotation = polygonAnnotation
+			let capacityReached = publicHex.cellCapacityReached
+			cellCapacityAnnotation.fillColor = capacityReached ? cellCapacityReachedFillColor : cellCapacityFillColor
+			cellCapacityAnnotation.fillOpacity = cellCapacityFillOpacity
+			cellCapacityAnnotation.fillOutlineColor = capacityReached ? cellCapacityReachedFillOutlineColor : cellCapacityFillOutlineColor
+			cellCapacityPolygonPoints.append(cellCapacityAnnotation)
+
 			var pointAnnotation = PointAnnotation(point: .init(.init(latitude: publicHex.center.lat, longitude: publicHex.center.lon)))
 			if let deviceCount = publicHex.deviceCount, deviceCount > 0 {
 				pointAnnotation.textField = "\(deviceCount)"
@@ -84,7 +96,8 @@ struct ExplorerFactory {
 										geoJsonSource: geoJsonSource,
 										polygonPoints: polygonPoints,
 										coloredPolygonPoints: coloredPolygonPoints,
-										textPoints: textPoints)
+										textPoints: textPoints,
+										cellCapacityPoints: cellCapacityPolygonPoints)
 
 		return explorerData
 	}
