@@ -50,6 +50,19 @@ class SelectStationLocationViewModel: ObservableObject {
 			return
 		}
 
+		if locationViewModel.isPointedCellCapaictyReached() {
+			let okAction: AlertHelper.AlertObject.Action = (LocalizableString.ClaimDevice.relocate.localized, { _ in })
+			let obj: AlertHelper.AlertObject = .init(title: LocalizableString.ClaimDevice.cellCapacityReachedAlertTitle.localized,
+													 message: LocalizableString.ClaimDevice.cellCapacityReachedMessage.localized,
+													 cancelActionTitle: LocalizableString.ClaimDevice.proceedAnyway.localized,
+													 cancelAction: { [weak self] in self?.setLocation() },
+													 okAction: okAction)
+
+			AlertHelper().showAlert(obj)
+
+			return
+		}
+
 		setLocation()
 	}
 }
