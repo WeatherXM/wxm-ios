@@ -792,6 +792,28 @@
         }
       }
     },
+    "claim_device_cell_capacity_reached_alert_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This cell has already reached its station limit based on its geospatial capacity. Only the top-ranked stations in this cell, determined by reward score and seniority, are eligible for rewards.\nIf you deploy here and your station ranks below the capacity threshold, it won’t receive any rewards.\nFor example, in a cell with a capacity of 5 stations, only the top 5 ranked devices are rewarded.\nTo maximize your earnings, consider deploying in a cell with available capacity."
+          }
+        }
+      }
+    },
+    "claim_device_cell_capacity_reached_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Watch out!"
+          }
+        }
+      }
+    },
     "claim_device_cell_capacity_reached_message" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1804,6 +1826,17 @@
         }
       }
     },
+    "claim_device_proceed_anyway" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proceed anyway"
+          }
+        }
+      }
+    },
     "claim_device_pulse_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1811,6 +1844,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pulse | 4G"
+          }
+        }
+      }
+    },
+    "claim_device_relocate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relocate"
           }
         }
       }
