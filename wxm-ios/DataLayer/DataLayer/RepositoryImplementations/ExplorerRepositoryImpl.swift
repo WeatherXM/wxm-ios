@@ -13,8 +13,11 @@ import Toolkit
 
 public struct ExplorerRepositoryImpl: ExplorerRepository {
     private let locationManager = WXMLocationManager()
+	private let service: ExplorerService
 
-    public init() {}
+	public init(service: ExplorerService) {
+		self.service = service
+	}
 
     public func getUserLocation() async -> Result<CLLocationCoordinate2D, ExplorerLocationError> {
         let res = await locationManager.getUserLocation()
@@ -32,9 +35,7 @@ public struct ExplorerRepositoryImpl: ExplorerRepository {
 	}
 	
     public func getPublicHexes() throws -> AnyPublisher<DataResponse<[PublicHex], NetworkErrorResponse>, Never> {
-		let builder = CellRequestBuilder.getCells
-		let urlRequest = try builder.asURLRequest()
-		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
+		try service.getPublicHexes()
     }
 
     public func getPublicDevicesOfHex(index: String) throws -> AnyPublisher<DataResponse<[PublicDevice], NetworkErrorResponse>, Never> {

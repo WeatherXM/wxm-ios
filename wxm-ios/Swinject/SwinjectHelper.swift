@@ -40,6 +40,11 @@ class SwinjectHelper: SwinjectInterface {
 		}
 		.inObjectScope(.container)
 
+		container.register(ExplorerService.self) { resolver in
+			ExplorerService(cacheManager: resolver.resolve(UserDefaultsService.self)!)
+		}
+		.inObjectScope(.container)
+
 		container.register(MainRepository.self) { _ in
 			MainRepositoryImpl()
 		}
@@ -96,8 +101,8 @@ class SwinjectHelper: SwinjectInterface {
         }
         // MARK: - Cells DI
 
-        container.register(ExplorerRepository.self) { _ in
-            ExplorerRepositoryImpl()
+        container.register(ExplorerRepository.self) { resolver in
+			ExplorerRepositoryImpl(service: resolver.resolve(ExplorerService.self)!)
         }
 
 		container.register(ExplorerUseCaseApi.self) { resolver in
