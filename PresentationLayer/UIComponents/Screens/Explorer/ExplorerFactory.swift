@@ -14,6 +14,7 @@ enum ExplorerKeys: String {
 	case deviceCount = "device_count"
 	case cellIndex = "cell_index"
 	case cellCenter = "cell_center"
+	case cellCapacity = "cell_capacity"
 }
 
 @MainActor
@@ -70,7 +71,8 @@ struct ExplorerFactory {
 			polygonAnnotation.userInfo = [ExplorerKeys.cellCenter.rawValue: CLLocationCoordinate2D(latitude: publicHex.center.lat,
 																								   longitude: publicHex.center.lon),
 										  ExplorerKeys.cellIndex.rawValue: publicHex.index,
-										  ExplorerKeys.deviceCount.rawValue: publicHex.deviceCount ?? 0]
+										  ExplorerKeys.deviceCount.rawValue: publicHex.deviceCount ?? 0,
+										  ExplorerKeys.cellCapacity.rawValue: publicHex.capacity as Any]
 			polygonPoints.append(polygonAnnotation)
 			
 			var coloredAnnotation = polygonAnnotation
