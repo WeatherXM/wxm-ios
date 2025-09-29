@@ -194,6 +194,7 @@ enum LocalizableString: WXMLocalizable {
 	case myStations
 	case explorer
 	case profile
+	case readMore
 
 	var localized: String {
 		var localized = NSLocalizedString(self.key, comment: "")
@@ -604,6 +605,8 @@ extension LocalizableString {
 				return "explorer"
 			case .profile:
 				return "profile"
+			case .readMore:
+				return "read_more"
 		}
 	}
 }
