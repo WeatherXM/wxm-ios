@@ -44,6 +44,7 @@
 		267EC3BF2CD0ECE60085B50A /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = 267EC3BE2CD0ECE60085B50A /* Pulse */; };
 		267EC3C12CD0ECE60085B50A /* PulseProxy in Frameworks */ = {isa = PBXBuildFile; productRef = 267EC3C02CD0ECE60085B50A /* PulseProxy */; };
 		2683A4C42ADECF3100D5C205 /* countries_information.json in Resources */ = {isa = PBXBuildFile; fileRef = 2683A4C32ADECBA800D5C205 /* countries_information.json */; };
+		26862DD42E8ACCC300B56C21 /* ExplorerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26862DD32E8ACCBB00B56C21 /* ExplorerService.swift */; };
 		268ACD052C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268ACD032C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift */; };
 		268ACD062C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268ACD042C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift */; };
 		2692D88B2A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2692D8852A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift */; };
@@ -151,6 +152,7 @@
 		267CA6EE2C1314E200ABE599 /* get_user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_user.json; sourceTree = "<group>"; };
 		267EC3BB2CD0E8BD0085B50A /* MainRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepositoryImpl.swift; sourceTree = "<group>"; };
 		2683A4C32ADECBA800D5C205 /* countries_information.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_information.json; sourceTree = "<group>"; };
+		26862DD32E8ACCBB00B56C21 /* ExplorerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerService.swift; sourceTree = "<group>"; };
 		268ACD032C1B2A3500B30F83 /* DBBundle+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBBundle+CoreDataClass.swift"; sourceTree = "<group>"; };
 		268ACD042C1B2A3500B30F83 /* DBBundle+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBBundle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2692D8852A4DB2B50060CB3C /* DBExplorerAddress+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBExplorerAddress+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				26AB9F512A80112900855912 /* UserDevicesService.swift */,
 				262B02F72B1F3B5300C31FE7 /* UserInfoService.swift */,
 				26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */,
+				26862DD32E8ACCBB00B56C21 /* ExplorerService.swift */,
 			);
 			name = Services;
 			path = ..;
@@ -661,6 +664,7 @@
 				2692D88E2A4DB2B50060CB3C /* DBExplorerSearchEntity+CoreDataProperties.swift in Sources */,
 				26E88B3729E586B00023BBD5 /* DBProtocols.swift in Sources */,
 				26E88B3429E582070023BBD5 /* DBWeather+CoreDataClass.swift in Sources */,
+				26862DD42E8ACCC300B56C21 /* ExplorerService.swift in Sources */,
 				26E88B3529E582070023BBD5 /* DBWeather+CoreDataProperties.swift in Sources */,
 				26A4117829B8973E00A2C10B /* DeviceInfoRepositoryImpl.swift in Sources */,
 				7480AF562835098A002758C3 /* DevicesApiRequestBuilder.swift in Sources */,
