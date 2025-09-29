@@ -52,6 +52,7 @@ public extension UserDefaults {
 		case savedLocations = "com.weatherxm.app.UserDefaults.Key.SavedLocations"
 		case savedForecasts = "com.weatherxm.app.UserDefaults.Key.SavedForecasts"
 		case onboardingIsShown = "com.weatherxm.app.UserDefaults.Key.OnboardingIsShown"
+		case explorerHexes = "com.weatherxm.app.UserDefaults.Key.ExplorerHexes"
 
         // MARK: - UserDefaultEntry
 
