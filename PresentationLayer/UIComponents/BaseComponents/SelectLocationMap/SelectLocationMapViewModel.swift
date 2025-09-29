@@ -48,6 +48,7 @@ class SelectLocationMapViewModel: ObservableObject {
 	var mapControls: MapControls = .init()
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	private var latestTask: Cancellable?
+	private var latestPointedAnnotations: [PolygonAnnotation]?
 	let useCase: DeviceLocationUseCaseApi
 	let explorerUseCase: ExplorerUseCaseApi
 	weak var delegate: SelectLocationMapViewModelDelegate?
@@ -121,14 +122,9 @@ class SelectLocationMapViewModel: ObservableObject {
 	}
 
 	func handlePointedAnnotationsChange(annotations: [PolygonAnnotation]) {
-		guard let annotation = annotations.first,
-			let count = annotation.userInfo?[ExplorerKeys.deviceCount.rawValue] as? Int,
-			let capacity = annotation.userInfo?[ExplorerKeys.cellCapacity.rawValue] as? Int else {
-				return
-			}
-
-		print("\(annotation.id) has \(count ?? 0) devices and can hold \(capacity ?? 0)")
-		let capacityReached = count >= capacity
+		latestPointedAnnotations = annotations
+		let capacityReached = isPointedCellCapaictyReached()
+		
 		if capacityReached {
 			Toast.shared.show(text: LocalizableString.ClaimDevice.cellCapacityReachedMessage.localized.attributedMarkdown ?? "",
 							  type: .info,
@@ -136,6 +132,15 @@ class SelectLocationMapViewModel: ObservableObject {
 				self?.linkNavigation.openUrl(DisplayedLinks.cellCapacity.linkURL)
 			}
 		}
+	}
+
+	func isPointedCellCapaictyReached() -> Bool {
+		guard let annotation = latestPointedAnnotations?.first,
+			  let count = annotation.userInfo?[ExplorerKeys.deviceCount.rawValue] as? Int,
+			  let capacity = annotation.userInfo?[ExplorerKeys.cellCapacity.rawValue] as? Int else {
+			return false
+		}
+		return count >= capacity
 	}
 }
 
