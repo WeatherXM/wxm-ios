@@ -29,6 +29,20 @@ class ClaimDeviceLocationViewModel: ObservableObject {
 		guard let selectedLocation else {
 			return
 		}
+
+		if locationViewModel.isPointedCellCapaictyReached() {
+			let okAction: AlertHelper.AlertObject.Action = (LocalizableString.ClaimDevice.relocate.localized, { _ in })
+			let obj: AlertHelper.AlertObject = .init(title: LocalizableString.ClaimDevice.cellCapacityReachedAlertTitle.localized,
+													 message: LocalizableString.ClaimDevice.cellCapacityReachedMessage.localized,
+													 cancelActionTitle: LocalizableString.ClaimDevice.proceedAnyway.localized,
+													 cancelAction: { [weak self] in self?.completion(selectedLocation) },
+													 okAction: okAction)
+
+			AlertHelper().showAlert(obj)
+
+			return
+		}
+
 		completion(selectedLocation)
 	}
 }
