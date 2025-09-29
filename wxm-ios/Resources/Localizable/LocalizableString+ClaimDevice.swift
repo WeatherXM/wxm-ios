@@ -166,6 +166,7 @@ extension LocalizableString {
 		case photoVerificationText
 		case uploadAndClaim
 		case uploadAndProceed
+		case cellCapacityReachedMessage
 	}
 }
 
@@ -508,6 +509,8 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_upload_and_claim"
 			case .uploadAndProceed:
 				return "claim_device_upload_and_proceed"
+			case .cellCapacityReachedMessage:
+				return "claim_device_cell_capacity_reached_message"
 		}
 	}
 }

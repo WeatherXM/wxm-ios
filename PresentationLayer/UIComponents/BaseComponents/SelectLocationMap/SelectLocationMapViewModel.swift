@@ -10,6 +10,7 @@ import CoreLocation
 import Combine
 import DomainLayer
 import Toolkit
+import MapboxMaps
 
 @MainActor
 protocol SelectLocationMapViewModelDelegate: AnyObject {
@@ -50,15 +51,18 @@ class SelectLocationMapViewModel: ObservableObject {
 	let useCase: DeviceLocationUseCaseApi
 	let explorerUseCase: ExplorerUseCaseApi
 	weak var delegate: SelectLocationMapViewModelDelegate?
+	let linkNavigation: LinkNavigation
 
 	init(useCase: DeviceLocationUseCaseApi,
 		 explorerUseCase: ExplorerUseCaseApi,
 		 initialCoordinate: CLLocationCoordinate2D? = nil,
-		 delegate: SelectLocationMapViewModelDelegate? = nil) {
+		 delegate: SelectLocationMapViewModelDelegate? = nil,
+		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.useCase = useCase
 		self.explorerUseCase = explorerUseCase
 		self.delegate = delegate
 		self.selectedCoordinate = initialCoordinate ?? useCase.getSuggestedDeviceLocation() ?? .init()
+		self.linkNavigation = linkNavigation
 		$selectedCoordinate
 			.debounce(for: 1.0, scheduler: DispatchQueue.main)
 			.sink { [weak self] _ in
@@ -112,6 +116,24 @@ class SelectLocationMapViewModel: ObservableObject {
 								AlertHelper().showAlert(alertObj)
 						}
 				}
+			}
+		}
+	}
+
+	func handlePointedAnnotationsChange(annotations: [PolygonAnnotation]) {
+		guard let annotation = annotations.first,
+			let count = annotation.userInfo?[ExplorerKeys.deviceCount.rawValue] as? Int,
+			let capacity = annotation.userInfo?[ExplorerKeys.cellCapacity.rawValue] as? Int else {
+				return
+			}
+
+		print("\(annotation.id) has \(count ?? 0) devices and can hold \(capacity ?? 0)")
+		let capacityReached = count >= capacity
+		if capacityReached {
+			Toast.shared.show(text: LocalizableString.ClaimDevice.cellCapacityReachedMessage.localized.attributedMarkdown ?? "",
+							  type: .info,
+							  retryButtonTitle: LocalizableString.readMore.localized) { [weak self] in
+				self?.linkNavigation.openUrl(DisplayedLinks.cellCapacity.linkURL)
 			}
 		}
 	}

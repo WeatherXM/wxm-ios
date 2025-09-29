@@ -792,6 +792,17 @@
         }
       }
     },
+    "claim_device_cell_capacity_reached_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell already at max capacity. New stations may not be eligible for rewards."
+          }
+        }
+      }
+    },
     "claim_device_claim_d1_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8257,6 +8268,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rate"
+          }
+        }
+      }
+    },
+    "read_more" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read More"
           }
         }
       }
