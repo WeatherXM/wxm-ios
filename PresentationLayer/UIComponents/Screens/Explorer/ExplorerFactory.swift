@@ -49,6 +49,7 @@ struct ExplorerFactory {
 		var coloredPolygonPoints: [PolygonAnnotation] = []
 		var cellCapacityPolygonPoints: [PolygonAnnotation] = []
 		var textPoints: [PointAnnotation] = []
+		var cellCapacityPolylinePoints: [PolylineAnnotation] = []
 		var cellCapacityTextPoints: [PointAnnotation] = []
 		publicHexes.forEach { publicHex in
 			totalDevices += publicHex.deviceCount ?? 0
@@ -101,6 +102,11 @@ struct ExplorerFactory {
 				pointAnnotation.textField = "\(deviceCount)/\(capacity)"
 				cellCapacityTextPoints.append(pointAnnotation)
 			}
+
+			var polylineAnnotation = PolylineAnnotation(id: publicHex.index, lineCoordinates: ringCords)
+			polylineAnnotation.lineWidth = 2.0
+			polylineAnnotation.lineColor = capacityReached ? cellCapacityReachedFillOutlineColor : cellCapacityFillOutlineColor
+			cellCapacityPolylinePoints.append(polylineAnnotation)
 		}
 
 
@@ -110,6 +116,7 @@ struct ExplorerFactory {
 										coloredPolygonPoints: coloredPolygonPoints,
 										textPoints: textPoints,
 										cellCapacityPoints: cellCapacityPolygonPoints,
+										cellBorderPoints: cellCapacityPolylinePoints,
 										cellCapacityTextPoints: cellCapacityTextPoints)
 
 		return explorerData
