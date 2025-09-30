@@ -123,7 +123,7 @@ class SelectLocationMapViewModel: ObservableObject {
 
 	func handlePointedAnnotationsChange(annotations: [PolygonAnnotation]) {
 		latestPointedAnnotations = annotations
-		let capacityReached = isPointedCellCapaictyReached()
+		let capacityReached = isPointedCellCapacityReached()
 		
 		if capacityReached {
 			Toast.shared.show(text: LocalizableString.ClaimDevice.cellCapacityReachedMessage.localized.attributedMarkdown ?? "",
@@ -134,7 +134,7 @@ class SelectLocationMapViewModel: ObservableObject {
 		}
 	}
 
-	func isPointedCellCapaictyReached() -> Bool {
+	func isPointedCellCapacityReached() -> Bool {
 		guard let annotation = latestPointedAnnotations?.first,
 			  let count = annotation.userInfo?[ExplorerKeys.deviceCount.rawValue] as? Int,
 			  let capacity = annotation.userInfo?[ExplorerKeys.cellCapacity.rawValue] as? Int else {
