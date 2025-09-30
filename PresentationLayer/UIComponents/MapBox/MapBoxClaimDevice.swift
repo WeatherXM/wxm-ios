@@ -216,7 +216,7 @@ class MapViewLocationController: UIViewController {
 			}
 
 			self.locationPoint = self.mapView.mapboxMap.point(for: self.location)
-			self.upldateLocationPointedAnnotations(self.locationPoint)
+			self.updateLocationPointedAnnotations(self.locationPoint)
 		}.store(in: &cancelablesSet)
 
 		self.mapView.mapboxMap.onMapIdle.observe { [weak self] _ in
@@ -226,7 +226,7 @@ class MapViewLocationController: UIViewController {
 				if let self = self {
 					self.location = pointAnnotation.point.coordinates
 					self.locationPoint = mapView.mapboxMap.point(for: self.location)
-					self.upldateLocationPointedAnnotations(self.locationPoint)
+					self.updateLocationPointedAnnotations(self.locationPoint)
 				}
 			}
 		}.store(in: &cancelablesSet)
@@ -257,7 +257,7 @@ class MapViewLocationController: UIViewController {
         return CameraOptions(center: CLLocationCoordinate2D())
     }
 
-	func upldateLocationPointedAnnotations(_ point: CGPoint) {
+	func updateLocationPointedAnnotations(_ point: CGPoint) {
 		guard let polygonManager else {
 			return
 		}
