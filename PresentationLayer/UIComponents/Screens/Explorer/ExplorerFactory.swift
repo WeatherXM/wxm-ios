@@ -48,6 +48,7 @@ struct ExplorerFactory {
 		var coloredPolygonPoints: [PolygonAnnotation] = []
 		var cellCapacityPolygonPoints: [PolygonAnnotation] = []
 		var textPoints: [PointAnnotation] = []
+		var cellCapacityTextPoints: [PointAnnotation] = []
 		publicHexes.forEach { publicHex in
 			totalDevices += publicHex.deviceCount ?? 0
 			var ringCords = publicHex.polygon.map { point in
@@ -91,6 +92,11 @@ struct ExplorerFactory {
 				pointAnnotation.textField = "\(deviceCount)"
 			}
 			textPoints.append(pointAnnotation)
+
+			if let deviceCount = publicHex.deviceCount, let capacity = publicHex.capacity {
+				pointAnnotation.textField = "\(deviceCount)/\(capacity)"
+				cellCapacityTextPoints.append(pointAnnotation)
+			}
 		}
 
 
@@ -99,7 +105,8 @@ struct ExplorerFactory {
 										polygonPoints: polygonPoints,
 										coloredPolygonPoints: coloredPolygonPoints,
 										textPoints: textPoints,
-										cellCapacityPoints: cellCapacityPolygonPoints)
+										cellCapacityPoints: cellCapacityPolygonPoints,
+										cellCapacityTextPoints: cellCapacityTextPoints)
 
 		return explorerData
 	}

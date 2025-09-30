@@ -21,6 +21,7 @@ struct ExplorerData: Equatable {
 	let coloredPolygonPoints: [PolygonAnnotation]
 	let textPoints: [PointAnnotation]
 	let cellCapacityPoints: [PolygonAnnotation]
+	let	cellCapacityTextPoints: [PointAnnotation]
 
     init() {
         self.totalDevices = 0
@@ -29,6 +30,7 @@ struct ExplorerData: Equatable {
 		self.coloredPolygonPoints = []
 		self.textPoints = []
 		self.cellCapacityPoints = []
+		self.cellCapacityTextPoints = []
     }
 
     init(totalDevices: Int,
@@ -36,7 +38,8 @@ struct ExplorerData: Equatable {
 		 polygonPoints: [PolygonAnnotation],
 		 coloredPolygonPoints: [PolygonAnnotation],
 		 textPoints: [PointAnnotation],
-		 cellCapacityPoints: [PolygonAnnotation]
+		 cellCapacityPoints: [PolygonAnnotation],
+		 cellCapacityTextPoints: [PointAnnotation]
 	) {
         self.totalDevices = totalDevices
         self.geoJsonSource = geoJsonSource
@@ -44,5 +47,6 @@ struct ExplorerData: Equatable {
 		self.coloredPolygonPoints = coloredPolygonPoints
 		self.textPoints = textPoints
 		self.cellCapacityPoints = cellCapacityPoints
+		self.cellCapacityTextPoints = cellCapacityTextPoints
     }
 }
