@@ -20,6 +20,7 @@ struct SelectLocationMapView: View {
 															   set: { _ in }),
 									  geometryProxyForFrameOfMapView: proxy.frame(in: .local),
 									  polygonPoints: viewModel.explorerData?.cellCapacityPoints,
+									  polylinePoints: viewModel.explorerData?.cellBorderPoints,
 									  textPoints: viewModel.explorerData?.cellCapacityTextPoints,
 									  mapControls: viewModel.mapControls) { annotations in
 					viewModel.handlePointedAnnotationsChange(annotations: annotations)
