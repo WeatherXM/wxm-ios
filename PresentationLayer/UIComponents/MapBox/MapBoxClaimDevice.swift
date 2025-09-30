@@ -18,6 +18,7 @@ struct MapBoxClaimDeviceView: View {
 	@Binding var annotationTitle: String?
 	let geometryProxyForFrameOfMapView: CGRect
 	let polygonPoints: [PolygonAnnotation]?
+	let polylinePoints: [PolylineAnnotation]?
 	let textPoints: [PointAnnotation]?
 	let annotationPointCallback: GenericMainActorCallback<[PolygonAnnotation]>
 
@@ -30,6 +31,7 @@ struct MapBoxClaimDeviceView: View {
 		 annotationTitle: Binding<String?>,
 		 geometryProxyForFrameOfMapView: CGRect,
 		 polygonPoints: [PolygonAnnotation]?,
+		 polylinePoints: [PolylineAnnotation]?,
 		 textPoints: [PointAnnotation]?,
 		 mapControls: MapControls,
 		 annotationPointCallback: @escaping GenericMainActorCallback<[PolygonAnnotation]>) {
@@ -37,6 +39,7 @@ struct MapBoxClaimDeviceView: View {
 		_annotationTitle = annotationTitle
 		self.geometryProxyForFrameOfMapView = geometryProxyForFrameOfMapView
 		self.polygonPoints = polygonPoints
+		self.polylinePoints = polylinePoints
 		self.textPoints = textPoints
 		_controls = StateObject(wrappedValue: mapControls)
 		self.annotationPointCallback = annotationPointCallback
@@ -48,6 +51,7 @@ struct MapBoxClaimDeviceView: View {
 							  locationPoint: $locationPoint,
 							  geometryProxyForFrameOfMapView: geometryProxyForFrameOfMapView,
 							  polygonPoints: polygonPoints,
+							  polylinePoints: polylinePoints,
 							  textPoints: textPoints,
 							  controls: controls,
 							  annotationPointCallback: annotationPointCallback)
@@ -103,6 +107,7 @@ private struct MapBoxClaimDevice: UIViewControllerRepresentable {
 	@Binding var locationPoint: CGPoint
     let geometryProxyForFrameOfMapView: CGRect
 	let polygonPoints: [PolygonAnnotation]?
+	let polylinePoints: [PolylineAnnotation]?
 	let textPoints: [PointAnnotation]?
 	@StateObject var controls: MapControls
 	let annotationPointCallback: GenericMainActorCallback<[PolygonAnnotation]>
@@ -136,6 +141,7 @@ private struct MapBoxClaimDevice: UIViewControllerRepresentable {
     func updateUIViewController(_ controller: MapViewLocationController, context _: Context) {
 		controller.polygonManager?.annotations = polygonPoints ?? []
 		controller.pointManager?.annotations = textPoints ?? []
+		controller.polylineManager?.annotations = polylinePoints ?? []
     }
 
 	class Coordinator: MapViewLocationControllerDelegate {
@@ -172,6 +178,7 @@ class MapViewLocationController: UIViewController {
     internal var mapView: MapView!
 	internal weak var polygonManager: PolygonAnnotationManager?
 	internal weak var pointManager: PointAnnotationManager?
+	internal weak var polylineManager: PolylineAnnotationManager?
 	fileprivate weak var delegate: MapViewLocationControllerDelegate?
 	private var cancelablesSet = Set<AnyCancelable>()
 
@@ -303,9 +310,11 @@ extension MapViewLocationController {
 
 	func setPolygonManagers() {
 		self.polygonManager = mapView.annotations.makePolygonAnnotationManager(id: MapBoxConstants.cellCapacityPolygonManagerId)
+		self.polylineManager = mapView.annotations.makePolylineAnnotationManager(id: MapBoxConstants.bordersManagerId)
 
 		let pointAnnotationManager = mapView.annotations.makePointAnnotationManager(id: MapBoxConstants.pointManagerId)
 		pointManager = pointAnnotationManager
+
 		try? mapView.mapboxMap.updateLayer(withId: MapBoxConstants.pointManagerId, type: SymbolLayer.self) { layer in
 			layer.minZoom = 10
 
@@ -322,6 +331,5 @@ extension MapViewLocationController {
 			})
 			layer.textColor = .constant(StyleColor(UIColor(colorEnum: .textWhite)))
 		}
-
 	}
 }

@@ -21,6 +21,7 @@ struct ExplorerData: Equatable {
 	let coloredPolygonPoints: [PolygonAnnotation]
 	let textPoints: [PointAnnotation]
 	let cellCapacityPoints: [PolygonAnnotation]
+	let cellBorderPoints: [PolylineAnnotation]
 	let	cellCapacityTextPoints: [PointAnnotation]
 
     init() {
@@ -30,6 +31,7 @@ struct ExplorerData: Equatable {
 		self.coloredPolygonPoints = []
 		self.textPoints = []
 		self.cellCapacityPoints = []
+		self.cellBorderPoints = []
 		self.cellCapacityTextPoints = []
     }
 
@@ -39,6 +41,7 @@ struct ExplorerData: Equatable {
 		 coloredPolygonPoints: [PolygonAnnotation],
 		 textPoints: [PointAnnotation],
 		 cellCapacityPoints: [PolygonAnnotation],
+		 cellBorderPoints: [PolylineAnnotation],
 		 cellCapacityTextPoints: [PointAnnotation]
 	) {
         self.totalDevices = totalDevices
@@ -47,6 +50,7 @@ struct ExplorerData: Equatable {
 		self.coloredPolygonPoints = coloredPolygonPoints
 		self.textPoints = textPoints
 		self.cellCapacityPoints = cellCapacityPoints
+		self.cellBorderPoints = cellBorderPoints
 		self.cellCapacityTextPoints = cellCapacityTextPoints
     }
 }

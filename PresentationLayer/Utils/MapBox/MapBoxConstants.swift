@@ -21,6 +21,7 @@ enum MapBoxConstants {
 	static let initialLon = 23.710478235562956
 	static let heatmapLayerId = "wtxm-heatmap-layer"
 	static let pointManagerId = "wtxm-point-annotation-manager"
+	static let bordersManagerId = "wtxm-borders-annotation-manager"
 	static let heatmapSource = "heatmap"
 
 	static var styleURI: StyleURI {
