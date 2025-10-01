@@ -1,238 +1,351 @@
 [
-  {
-    "id": "124",
-    "name": "Staion Name A",
-    "label": "2C:F7:F1:C0:42:40:00:0D",
-    "location": {
-      "lat": 37.97282058661004,
-      "lon": 23.651339117978722
-    },
-    "timezone": "Europe/Athens",
-    "relation": "owned",
-    "address": "Somewhere in the world",
-	"bundle": {
-		"name": "h1",
-		"title": "H1",
-		"connectivity": "helium",
-		"ws_model": "WS1000",
-		"gw_model": "WG1000"
-	},
-	"bat_state": "low",
-    "attributes": {
-      "claimedAt": "2023-03-01T17:21:23+02:00",
-      "firmware": {
-        "current": "2.3.0",
-        "assigned": "2.3.0-internal"
-      },
-      "hex3": {
-        "index": "831edafffffffff",
-        "polygon": [
-          {
-            "lat": 38.644236094151005,
-            "lon": 22.784148869958848
-          },
-          {
-            "lat": 37.983542598121375,
-            "lon": 22.754162161175188
-          },
-          {
-            "lat": 37.6303425743379,
-            "lon": 23.47478087300285
-          },
-          {
-            "lat": 37.93511272705379,
-            "lon": 24.22974113863726
-          },
-          {
-            "lat": 38.5954640496184,
-            "lon": 24.270130249021037
-          },
-          {
-            "lat": 38.951438520683396,
-            "lon": 23.545178032093393
-          }
-        ],
-        "center": {
-          "lat": 38.29225710202074,
-          "lon": 23.50973159680952
-        }
-      },
-      "hex7": {
-        "index": "871eda750ffffff",
-        "polygon": [
-          {
-            "lat": 37.97061313218039,
-            "lon": 23.628439025654682
-          },
-          {
-            "lat": 37.95710575635591,
-            "lon": 23.62770629174598
-          },
-          {
-            "lat": 37.94983924168456,
-            "lon": 23.642394668336376
-          },
-          {
-            "lat": 37.95607893564099,
-            "lon": 23.65781754795612
-          },
-          {
-            "lat": 37.96958615439062,
-            "lon": 23.65855458239535
-          },
-          {
-            "lat": 37.97685383669051,
-            "lon": 23.64386443687226
-          }
-        ],
-        "center": {
-          "lat": 37.96334709215799,
-          "lon": 23.643129447388414
-        }
-      },
-      "isActive": false,
-      "lastWeatherStationActivity": "2023-03-01T18:11:56+02:00",
-      "lastActiveAt": "2023-03-01T18:11:56+02:00"
-    },
-    "current_weather": {
-      "timestamp": "2023-03-01T18:11:56+02:00",
-      "temperature": 20.7,
-      "humidity": 54,
-      "wind_speed": 0,
-      "wind_gust": 0,
-      "wind_direction": 258,
-      "uv_index": 0,
-      "precipitation": 0,
-      "pressure": 1010.1,
-      "feels_like": 20.7,
-      "icon": "partly-cloudy-day"
-    },
-    "rewards": {
-      "actual_reward": 10.165180164109882,
-      "total_rewards": 323.64723442479493
-    },
-	"metrics" : {
-	  "pol_reason" : "NO_LOCATION_DATA",
-	  "ts" : "2024-10-14T00:00:00+00:00",
-	  "qod_score" : 99
-	}
-  },
-  {
-	"id": "cb29a150-c0a6-11dc-a75c-a97bf0032a08",
-	"name": "TEST",
-	"label": "AE:66:F7:21:1F:21:75:11:EC",
-	"location": {
-	  "lat": -41.230659,
-	  "lon": -93.907064
-	},
-	"timezone": "Etc/GMT+6",
-	"relation": "owned",
-	"address": "-",
-	"bundle": {
-		"name": "h1",
-		"title": "H1",
-		"connectivity": "helium",
-		"ws_model": "WS1000",
-		"gw_model": "WG1000"
-	},
-	"metrics" : {
-	  "pol_reason" : null,
-	  "ts" : null,
-	  "qod_score" : null
-	},
-	"bat_state": "low",
-	"attributes": {
-	  "friendlyName": "Home",
-	  "hex3": {
-		"index": "83d29afffffffff",
-		"polygon": [
-		  {
-			"lat": -41.4475445082976,
-			"lon": -93.498892302025
-		  },
-		  {
-			"lat": -40.93069934671397,
-			"lon": -92.96459836815616
-		  },
-		  {
-			"lat": -40.31276675619656,
-			"lon": -93.29179018952695
-		  },
-		  {
-			"lat": -40.205086498865846,
-			"lon": -94.14315830838207
-		  },
-		  {
-			"lat": -40.71554434460866,
-			"lon": -94.68411404702701
-		  },
-		  {
-			"lat": -41.340059468705434,
-			"lon": -94.36729932775174
-		  }
-		],
-		"center": {
-		  "lat": -40.82651031739257,
-		  "lon": -93.82417433697604
+	{
+		"id": "124",
+		"name": "Staion Name A",
+		"label": "2C:F7:F1:C0:42:40:00:0D",
+		"location": {
+			"lat": 37.97282058661004,
+			"lon": 23.651339117978722
+		},
+		"timezone": "Europe/Athens",
+		"relation": "owned",
+		"address": "Somewhere in the world",
+		"bundle": {
+			"name": "h1",
+			"title": "H1",
+			"connectivity": "helium",
+			"ws_model": "WS1000",
+			"gw_model": "WG1000"
+		},
+		"bat_state": "low",
+		"attributes": {
+			"claimedAt": "2023-03-01T17:21:23+02:00",
+			"firmware": {
+				"current": "2.3.0",
+				"assigned": "2.3.0-internal"
+			},
+			"hex3": {
+				"index": "831edafffffffff",
+				"polygon": [
+					{
+						"lat": 38.644236094151005,
+						"lon": 22.784148869958848
+					},
+					{
+						"lat": 37.983542598121375,
+						"lon": 22.754162161175188
+					},
+					{
+						"lat": 37.6303425743379,
+						"lon": 23.47478087300285
+					},
+					{
+						"lat": 37.93511272705379,
+						"lon": 24.22974113863726
+					},
+					{
+						"lat": 38.5954640496184,
+						"lon": 24.270130249021037
+					},
+					{
+						"lat": 38.951438520683396,
+						"lon": 23.545178032093393
+					}
+				],
+				"center": {
+					"lat": 38.29225710202074,
+					"lon": 23.50973159680952
+				}
+			},
+			"hex7": {
+				"index": "871eda750ffffff",
+				"polygon": [
+					{
+						"lat": 37.97061313218039,
+						"lon": 23.628439025654682
+					},
+					{
+						"lat": 37.95710575635591,
+						"lon": 23.62770629174598
+					},
+					{
+						"lat": 37.94983924168456,
+						"lon": 23.642394668336376
+					},
+					{
+						"lat": 37.95607893564099,
+						"lon": 23.65781754795612
+					},
+					{
+						"lat": 37.96958615439062,
+						"lon": 23.65855458239535
+					},
+					{
+						"lat": 37.97685383669051,
+						"lon": 23.64386443687226
+					}
+				],
+				"center": {
+					"lat": 37.96334709215799,
+					"lon": 23.643129447388414
+				}
+			},
+			"isActive": false,
+			"lastWeatherStationActivity": "2023-03-01T18:11:56+02:00",
+			"lastActiveAt": "2023-03-01T18:11:56+02:00"
+		},
+		"current_weather": {
+			"timestamp": "2023-03-01T18:11:56+02:00",
+			"temperature": 20.7,
+			"humidity": 54,
+			"wind_speed": 0,
+			"wind_gust": 0,
+			"wind_direction": 258,
+			"uv_index": 0,
+			"precipitation": 0,
+			"pressure": 1010.1,
+			"feels_like": 20.7,
+			"icon": "partly-cloudy-day"
+		},
+		"rewards": {
+			"actual_reward": 10.165180164109882,
+			"total_rewards": 323.64723442479493
+		},
+		"metrics" : {
+			"pol_reason" : "NO_LOCATION_DATA",
+			"ts" : "2024-10-14T00:00:00+00:00",
+			"qod_score" : 99
 		}
-	  },
-	  "hex7": {
-		"index": "87d29a8a6ffffff",
-		"polygon": [
-		  {
-			"lat": -41.23329701378177,
-			"lon": -93.89288943514127
-		  },
-		  {
-			"lat": -41.222792321685105,
-			"lon": -93.88182582123082
-		  },
-		  {
-			"lat": -41.21009620192915,
-			"lon": -93.88843184426945
-		  },
-		  {
-			"lat": -41.20790203591807,
-			"lon": -93.90609708663857
-		  },
-		  {
-			"lat": -41.21840406520972,
-			"lon": -93.91716349504759
-		  },
-		  {
-			"lat": -41.231102923224086,
-			"lon": -93.9105618688385
-		  }
-		],
-		"center": {
-		  "lat": -41.22059962604695,
-		  "lon": -93.89949458848605
+	},
+	{
+		"id": "cb29a150-c0a6-11dc-a75c-a97bf0032a08",
+		"name": "TEST",
+		"label": "AE:66:F7:21:1F:21:75:11:EC",
+		"location": {
+			"lat": -41.230659,
+			"lon": -93.907064
+		},
+		"timezone": "Etc/GMT+6",
+		"relation": "owned",
+		"address": "-",
+		"bundle": {
+			"name": "h1",
+			"title": "H1",
+			"connectivity": "helium",
+			"ws_model": "WS1000",
+			"gw_model": "WG1000"
+		},
+		"metrics" : {
+			"pol_reason" : null,
+			"ts" : null,
+			"qod_score" : null
+		},
+		"bat_state": "low",
+		"attributes": {
+			"friendlyName": "Home",
+			"hex3": {
+				"index": "83d29afffffffff",
+				"polygon": [
+					{
+						"lat": -41.4475445082976,
+						"lon": -93.498892302025
+					},
+					{
+						"lat": -40.93069934671397,
+						"lon": -92.96459836815616
+					},
+					{
+						"lat": -40.31276675619656,
+						"lon": -93.29179018952695
+					},
+					{
+						"lat": -40.205086498865846,
+						"lon": -94.14315830838207
+					},
+					{
+						"lat": -40.71554434460866,
+						"lon": -94.68411404702701
+					},
+					{
+						"lat": -41.340059468705434,
+						"lon": -94.36729932775174
+					}
+				],
+				"center": {
+					"lat": -40.82651031739257,
+					"lon": -93.82417433697604
+				}
+			},
+			"hex7": {
+				"index": "87d29a8a6ffffff",
+				"polygon": [
+					{
+						"lat": -41.23329701378177,
+						"lon": -93.89288943514127
+					},
+					{
+						"lat": -41.222792321685105,
+						"lon": -93.88182582123082
+					},
+					{
+						"lat": -41.21009620192915,
+						"lon": -93.88843184426945
+					},
+					{
+						"lat": -41.20790203591807,
+						"lon": -93.90609708663857
+					},
+					{
+						"lat": -41.21840406520972,
+						"lon": -93.91716349504759
+					},
+					{
+						"lat": -41.231102923224086,
+						"lon": -93.9105618688385
+					}
+				],
+				"center": {
+					"lat": -41.22059962604695,
+					"lon": -93.89949458848605
+				}
+			},
+			"isActive": true,
+			"lastWeatherStationActivity": "2023-01-25T10:20:08-06:00",
+			"lastActiveAt": "2023-01-25T10:20:08-06:00",
+			"firmware": {
+				"current": "2.3.0",
+				"assigned": "2.3.0-internal"
+			}
+		},
+		"current_weather": {
+			"timestamp": "2023-01-25T10:20:08-06:00",
+			"temperature": 20.338020711659738,
+			"humidity": 59,
+			"wind_speed": 47.62365157837036,
+			"wind_gust": 25.762633951364656,
+			"wind_direction": 130,
+			"uv_index": 7,
+			"precipitation": 1.0720520490349283,
+			"pressure": 603.776966380233,
+			"feels_like": 20.338020711659738,
+			"icon": "drizzle"
+		},
+		"rewards": {
+			"actual_reward": null,
+			"total_rewards": null
 		}
-	  },
-	  "isActive": true,
-	  "lastWeatherStationActivity": "2023-01-25T10:20:08-06:00",
-	  "lastActiveAt": "2023-01-25T10:20:08-06:00",
-	  "firmware": {
-		"current": "2.3.0",
-		"assigned": "2.3.0-internal"
-	  }
 	},
-	"current_weather": {
-	  "timestamp": "2023-01-25T10:20:08-06:00",
-	  "temperature": 20.338020711659738,
-	  "humidity": 59,
-	  "wind_speed": 47.62365157837036,
-	  "wind_gust": 25.762633951364656,
-	  "wind_direction": 130,
-	  "uv_index": 7,
-	  "precipitation": 1.0720520490349283,
-	  "pressure": 603.776966380233,
-	  "feels_like": 20.338020711659738,
-	  "icon": "drizzle"
-	},
-	"rewards": {
-	  "actual_reward": null,
-	  "total_rewards": null
+	{
+		"id": "76d13810-absd-11ec-812e-6312632e9ec",
+		"name": "Big Blue Cloud",
+		"timezone": "Europe/Athens",
+		"bundle": {
+			"name": "pulse",
+			"title": "Pulse",
+			"connectivity": "cellular",
+			"ws_model": "WS1001",
+			"gw_model": "WG3000",
+			"hw_class": "CONSUMER"
+		},
+		"label": null,
+		"relation": "owned",
+		"bat_state": "ok",
+		"gateway_bat_state": "low",
+		"location": {
+			"lat": 37.981262,
+			"lon": 23.730503
+		},
+		"attributes": {
+			"isActive": true,
+			"lastWeatherStationActivity": "2024-10-08T17:30:00+03:00",
+			"hex3": {
+				"index": "833f72fffffffff",
+				"polygon": [
+					{
+						"lat": 35.62983463943738,
+						"lon": 23.372801364962505
+					},
+					{
+						"lat": 34.958641140481404,
+						"lon": 23.339733257269025
+					},
+					{
+						"lat": 34.59685782123658,
+						"lon": 24.035997744251496
+					},
+					{
+						"lat": 34.903320885355384,
+						"lon": 24.76919455347358
+					},
+					{
+						"lat": 35.574007582813174,
+						"lon": 24.81200499077942
+					},
+					{
+						"lat": 35.938786456658356,
+						"lon": 24.11189955457401
+					}
+				],
+				"center": {
+					"lat": 37.981262,
+					"lon": 23.730503
+				}
+			},
+			"hex7": {
+				"index": "873f728d0ffffff",
+				"polygon": [
+					{
+						"lat": 37.52482636074315,
+						"lon": 23.014679947948405
+					},
+					{
+						"lat": 37.51114716956354,
+						"lon": 23.01391178034676
+					},
+					{
+						"lat": 37.50374631403231,
+						"lon": 23.02820018964633
+					},
+					{
+						"lat": 37.51002341064811,
+						"lon": 23.043258382501087
+					},
+					{
+						"lat": 37.52370239640629,
+						"lon": 23.044030629840638
+					},
+					{
+						"lat": 37.53110449138368,
+						"lon": 23.02974060478422
+					}
+				],
+				"center": {
+					"lat": 37.981262,
+					"lon": 23.730503
+				}
+			}
+		},
+		"current_weather": {
+			"timestamp": "2022-01-13T22:00:00+02:00",
+			"precipitation": 0,
+			"precipitation_accumulated": 14.10000022,
+			"temperature": -38.8,
+			"feels_like": 16.0,
+			"wind_direction": 321,
+			"humidity": 55,
+			"wind_speed": 3.1,
+			"icon": "partly-cloudy-night",
+			"precipitation_probability": 15,
+			"uv_index": 0,
+			"pressure": 1019.6,
+			"cloud_cover": 89,
+			"wind_gust": 5.4,
+			"precipitation_type": "rain"
+		},
+		"address": "Athens, GR",
+		"rewards": {
+			"total_rewards": 3523.65,
+			"actual_reward": 156.6
+		}
 	}
-  }
 ]

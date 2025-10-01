@@ -25,10 +25,10 @@ struct UserDevicesServiceTests {
 
 	@Test func initialFetch() async throws {
 		let devices = try await service.getDevices(useCache: true).toAsync().result.get()
-		#expect(devices.count == 2)
+		#expect(devices.count == 3)
 
 		let cachedDevices = service.getCachedDevices()
-		#expect(cachedDevices?.count == 2)
+		#expect(cachedDevices?.count == 3)
 		#expect(cachedDevices?.first?.id == devices.first?.id)
 	}
 
@@ -94,7 +94,7 @@ struct UserDevicesServiceTests {
 
 		let deviceId = "124"
 		let states = try await service.getFollowStates().get()
-		#expect(states?.count == 2)
+		#expect(states?.count == 3)
 		#expect(states?.first?.deviceId == deviceId)
 
 		try await validateInitialState()
@@ -134,9 +134,9 @@ struct UserDevicesServiceTests {
 private extension UserDevicesServiceTests {
 	func validateInitialState() async throws {
 		let devices = try await service.getDevices(useCache: true).toAsync().result.get()
-		#expect(devices.count == 2)
+		#expect(devices.count == 3)
 
 		let cachedDevices = service.getCachedDevices()
-		#expect(cachedDevices?.count == 2)
+		#expect(cachedDevices?.count == 3)
 	}
 }
