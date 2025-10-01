@@ -12,9 +12,13 @@ import SwiftUI
 
 struct TabViewWrapper<Content: View, Selection: Hashable>: View {
     @Binding var selection: Selection
-    @ViewBuilder let content: () -> Content
+	@ViewBuilder let content: () -> Content
+	/// Observe the color scheme in order to solve a bug while switching themes.
+	/// For some reason, the content of the tab view doesn't propagate the theme changes to its children	
+	@Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         TabView(selection: $selection, content: content)
+			.id(colorScheme)
     }
 }
