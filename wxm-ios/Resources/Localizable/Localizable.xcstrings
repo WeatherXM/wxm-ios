@@ -5159,6 +5159,17 @@
         }
       }
     },
+    "gw_low_battery_warning_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low GW battery"
+          }
+        }
+      }
+    },
     "hidden_content_description_format" : {
       "extractionState" : "manual",
       "localizations" : {

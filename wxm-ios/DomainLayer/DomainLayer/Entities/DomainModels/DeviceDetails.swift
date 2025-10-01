@@ -15,6 +15,7 @@ public struct DeviceDetails: Sendable {
     public var address: String?
 	public var location: LocationCoordinates?
 	public var batteryState: BatteryState?
+	public var gatewayBatteryState: BatteryState?
     public var cellIndex: String?
 	public var cellAvgDataQuality: Int?
     public var cellCenter: LocationCoordinates?
@@ -38,6 +39,7 @@ public struct DeviceDetails: Sendable {
 				address: String? = nil,
 				location: LocationCoordinates? = nil,
 				batteryState: BatteryState? = nil,
+				gatewayBatteryState: BatteryState? = nil,
 				cellIndex: String? = nil,
 				cellAvgDataQuality: Int? = nil,
 				cellCenter: LocationCoordinates? = nil,
@@ -60,6 +62,7 @@ public struct DeviceDetails: Sendable {
 		self.address = address
 		self.location = location
 		self.batteryState = batteryState
+		self.gatewayBatteryState = gatewayBatteryState
 		self.cellAvgDataQuality = cellAvgDataQuality
 		self.cellIndex = cellIndex
 		self.cellCenter = cellCenter
@@ -103,6 +106,7 @@ extension NetworkDevicesResponse {
                       address: address,
 					  location: location,
 					  batteryState: batteryState,
+					  gatewayBatteryState: gatewayBatteryState,
                       cellIndex: attributes.hex7?.index,
                       cellCenter: attributes.hex7?.center,
 					  cellPolygon: attributes.hex7?.polygon,
