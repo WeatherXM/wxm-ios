@@ -166,6 +166,11 @@ extension LocalizableString {
 		case photoVerificationText
 		case uploadAndClaim
 		case uploadAndProceed
+		case cellCapacityReachedMessage
+		case cellCapacityReachedAlertTitle
+		case cellCapacityReachedAlertText
+		case proceedAnyway
+		case relocate
 	}
 }
 
@@ -508,6 +513,16 @@ extension LocalizableString.ClaimDevice: WXMLocalizable {
 				return "claim_device_upload_and_claim"
 			case .uploadAndProceed:
 				return "claim_device_upload_and_proceed"
+			case .cellCapacityReachedMessage:
+				return "claim_device_cell_capacity_reached_message"
+			case .cellCapacityReachedAlertTitle:
+				return "claim_device_cell_capacity_reached_alert_title"
+			case .cellCapacityReachedAlertText:
+				return "claim_device_cell_capacity_reached_alert_text"
+			case .proceedAnyway:
+				return "claim_device_proceed_anyway"
+			case .relocate:
+				return "claim_device_relocate"
 		}
 	}
 }

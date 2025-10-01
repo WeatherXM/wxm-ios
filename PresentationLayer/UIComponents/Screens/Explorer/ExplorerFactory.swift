@@ -14,6 +14,7 @@ enum ExplorerKeys: String {
 	case deviceCount = "device_count"
 	case cellIndex = "cell_index"
 	case cellCenter = "cell_center"
+	case cellCapacity = "cell_capacity"
 }
 
 @MainActor
@@ -22,7 +23,11 @@ struct ExplorerFactory {
 	private let fillOpacity = 0.5
 	private let fillColor = StyleColor(UIColor(colorEnum: .explorerPolygon))
 	private let fillOutlineColor = StyleColor(UIColor.white)
-
+	private let cellCapacityFillOpacity = 0.2
+	private let cellCapacityFillColor = StyleColor(UIColor(colorEnum: .wxmPrimary))
+	private let cellCapacityFillOutlineColor = StyleColor(UIColor(colorEnum: .wxmPrimary))
+	private let cellCapacityReachedFillColor = StyleColor(UIColor(colorEnum: .error))
+	private let cellCapacityReachedFillOutlineColor = StyleColor(UIColor(colorEnum: .error))
 
 	func generateExplorerData() -> ExplorerData {
 		var geoJsonSource = GeoJSONSource(id: "heatmap")
@@ -41,7 +46,10 @@ struct ExplorerFactory {
 		var totalDevices = 0
 		var polygonPoints: [PolygonAnnotation] = []
 		var coloredPolygonPoints: [PolygonAnnotation] = []
+		var cellCapacityPolygonPoints: [PolygonAnnotation] = []
 		var textPoints: [PointAnnotation] = []
+		var cellCapacityPolylinePoints: [PolylineAnnotation] = []
+		var cellCapacityTextPoints: [PointAnnotation] = []
 		publicHexes.forEach { publicHex in
 			totalDevices += publicHex.deviceCount ?? 0
 			var ringCords = publicHex.polygon.map { point in
@@ -65,18 +73,36 @@ struct ExplorerFactory {
 			polygonAnnotation.userInfo = [ExplorerKeys.cellCenter.rawValue: CLLocationCoordinate2D(latitude: publicHex.center.lat,
 																								   longitude: publicHex.center.lon),
 										  ExplorerKeys.cellIndex.rawValue: publicHex.index,
-										  ExplorerKeys.deviceCount.rawValue: publicHex.deviceCount ?? 0]
+										  ExplorerKeys.deviceCount.rawValue: publicHex.deviceCount ?? 0,
+										  ExplorerKeys.cellCapacity.rawValue: publicHex.capacity as Any]
 			polygonPoints.append(polygonAnnotation)
 			
 			var coloredAnnotation = polygonAnnotation
 			coloredAnnotation.fillColor = StyleColor(UIColor(colorEnum: publicHex.averageDataQuality?.rewardScoreColor ?? .darkGrey))
 			coloredPolygonPoints.append(coloredAnnotation)
 
+			var cellCapacityAnnotation = polygonAnnotation
+			let capacityReached = publicHex.cellCapacityReached
+			cellCapacityAnnotation.fillColor = capacityReached ? cellCapacityReachedFillColor : cellCapacityFillColor
+			cellCapacityAnnotation.fillOpacity = cellCapacityFillOpacity
+			cellCapacityAnnotation.fillOutlineColor = capacityReached ? cellCapacityReachedFillOutlineColor : cellCapacityFillOutlineColor
+			cellCapacityPolygonPoints.append(cellCapacityAnnotation)
+
 			var pointAnnotation = PointAnnotation(point: .init(.init(latitude: publicHex.center.lat, longitude: publicHex.center.lon)))
 			if let deviceCount = publicHex.deviceCount, deviceCount > 0 {
 				pointAnnotation.textField = "\(deviceCount)"
 			}
 			textPoints.append(pointAnnotation)
+
+			if let deviceCount = publicHex.deviceCount, let capacity = publicHex.capacity {
+				pointAnnotation.textField = "\(deviceCount)/\(capacity)"
+				cellCapacityTextPoints.append(pointAnnotation)
+			}
+
+			var polylineAnnotation = PolylineAnnotation(id: publicHex.index, lineCoordinates: ringCords)
+			polylineAnnotation.lineWidth = 2.0
+			polylineAnnotation.lineColor = capacityReached ? cellCapacityReachedFillOutlineColor : cellCapacityFillOutlineColor
+			cellCapacityPolylinePoints.append(polylineAnnotation)
 		}
 
 
@@ -84,7 +110,10 @@ struct ExplorerFactory {
 										geoJsonSource: geoJsonSource,
 										polygonPoints: polygonPoints,
 										coloredPolygonPoints: coloredPolygonPoints,
-										textPoints: textPoints)
+										textPoints: textPoints,
+										cellCapacityPoints: cellCapacityPolygonPoints,
+										cellBorderPoints: cellCapacityPolylinePoints,
+										cellCapacityTextPoints: cellCapacityTextPoints)
 
 		return explorerData
 	}
