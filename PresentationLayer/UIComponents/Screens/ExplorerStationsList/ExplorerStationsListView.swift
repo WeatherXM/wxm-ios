@@ -208,6 +208,6 @@ private extension ContentView {
 }
 
 #Preview {
-	let vm = ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: "", cellCenter: CLLocationCoordinate2D())
+	let vm = ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: "", cellCenter: CLLocationCoordinate2D(), cellCapacity: 0)
 	return ExplorerStationsListView(viewModel: vm)
 }

@@ -72,9 +72,9 @@ public final class ExplorerViewModel: ObservableObject {
 		}
 	}
 
-    func routeToDeviceListFor(_ hexIndex: String, _ coordinates: CLLocationCoordinate2D?) {
+	func routeToDeviceListFor(_ hexIndex: String, _ coordinates: CLLocationCoordinate2D?, capacity: Int) {
         if let coordinates {
-            let route = Route.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: hexIndex, cellCenter: coordinates))
+            let route = Route.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: hexIndex, cellCenter: coordinates, cellCapacity: capacity))
             Router.shared.navigateTo(route)
         }
     }

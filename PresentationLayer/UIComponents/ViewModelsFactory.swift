@@ -24,8 +24,9 @@ enum ViewModelsFactory {
         StationDetailsViewModel(deviceId: deviceId, cellIndex: cellIndex, cellCenter: cellCenter, swinjectHelper: SwinjectHelper.shared)
     }
 
-    static func getStationOverviewViewModel(device: DeviceDetails?, delegate: StationDetailsViewModelDelegate) -> OverviewViewModel {
-        let vm = OverviewViewModel(device: device)
+    static func getStationOverviewViewModel(device: DeviceDetails?, delegate: StationDetailsViewModelDelegate?) -> OverviewViewModel {
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCaseApi.self)!
+        let vm = OverviewViewModel(device: device, explorerUseCase: useCase)
         vm.containerDelegate = delegate
         return vm
     }
@@ -86,9 +87,9 @@ enum ViewModelsFactory {
 		return HomeSearchViewModel(useCase: useCase)
 	}
 
-    static func getExplorerStationsListViewModel(cellIndex: String, cellCenter: CLLocationCoordinate2D?) -> ExplorerStationsListViewModel {
+	static func getExplorerStationsListViewModel(cellIndex: String, cellCenter: CLLocationCoordinate2D?, cellCapacity: Int) -> ExplorerStationsListViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCaseApi.self)
-        let vm = ExplorerStationsListViewModel(useCase: useCase, cellIndex: cellIndex, cellCenter: cellCenter)
+        let vm = ExplorerStationsListViewModel(useCase: useCase, cellIndex: cellIndex, cellCenter: cellCenter, cellCapacity: cellCapacity)
         return vm
     }
 
