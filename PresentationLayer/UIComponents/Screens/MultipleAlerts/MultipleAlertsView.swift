@@ -35,7 +35,7 @@ struct MultipleAlertsView: View {
 										Button(action: buttonAction) {
 											Text(buttonTitle)
 										}
-										.buttonStyle(WXMButtonStyle.transparent)
+										.buttonStyle(WXMButtonStyle.transparent(fillColor: .textDarkStable))
 										.padding(.top, CGFloat(.smallSidePadding))
 									} else {
 										EmptyView()

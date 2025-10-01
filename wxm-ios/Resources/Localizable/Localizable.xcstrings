@@ -10725,6 +10725,28 @@
         }
       }
     },
+    "station_warning_gw_low_battery_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your gateway is reporting low battery. This will lead to data gaps and eventually loss of rewards. Read more on how to replace your station batteries."
+          }
+        }
+      }
+    },
+    "station_warning_gw_low_battery_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low GW Battery"
+          }
+        }
+      }
+    },
     "station_warning_low_battery_button_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10753,7 +10775,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Low Battery"
+            "value" : "Low WS Battery"
           }
         }
       }

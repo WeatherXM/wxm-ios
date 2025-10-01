@@ -97,6 +97,8 @@ enum LocalizableString: WXMLocalizable {
 	case stationWarningLowBatteryTitle
 	case stationWarningLowBatteryDescription
 	case stationWarningLowBatteryButtonTitle
+	case stationWarningGWLowBatteryTitle
+	case stationWarningGWLowBatteryDescription
 	case troubleshootInstructionsHere
 	case changingFrequency
 	case invalidLocationErrorText
@@ -411,6 +413,10 @@ extension LocalizableString {
 				return "station_warning_low_battery_description"
 			case .stationWarningLowBatteryButtonTitle:
 				return "station_warning_low_battery_button_title"
+			case .stationWarningGWLowBatteryTitle:
+				return "station_warning_gw_low_battery_title"
+			case .stationWarningGWLowBatteryDescription:
+				return "station_warning_gw_low_battery_description"
 			case .troubleshootInstructionsHere:
 				return "troubleshoot_instructions_here"
 			case .changingFrequency:

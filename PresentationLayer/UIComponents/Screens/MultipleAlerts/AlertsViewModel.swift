@@ -18,11 +18,13 @@ class AlertsViewModel: ObservableObject {
 	let device: DeviceDetails
 	let mainVM: MainScreenViewModel
 	let followState: UserDeviceFollowState?
-	
-	init(device: DeviceDetails, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) {
+	let linkNavigation: LinkNavigation
+
+	init(device: DeviceDetails, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?, linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.device = device
 		self.mainVM = mainVM
 		self.followState = followState
+		self.linkNavigation = linkNavigation
 		generateAlerts()
 	}
 	
@@ -75,7 +77,18 @@ private extension AlertsViewModel {
 												 appearAction: nil)
 			alerts.append(alert)
 		}
-		
+
+		if device.isGWBatteryLow(followState: followState) {
+			let alert = MultipleAlertsView.Alert(type: .warning,
+												 title: LocalizableString.stationWarningGWLowBatteryTitle.localized,
+												 message: LocalizableString.stationWarningGWLowBatteryDescription.localized,
+												 icon: .batteryLow,
+												 buttonTitle: LocalizableString.stationWarningLowBatteryButtonTitle.localized,
+												 buttonAction: handleLowBatteryTap,
+												 appearAction: nil)
+			alerts.append(alert)
+		}
+
 		self.alerts = alerts
 	}
 	
@@ -100,19 +113,13 @@ private extension AlertsViewModel {
 		}
 		switch name {
 			case .m5:
-				if let url = URL(string: DisplayedLinks.m5Batteries.linkURL) {
-					UIApplication.shared.open(url)
-				}
+				linkNavigation.openUrl(DisplayedLinks.m5Batteries.linkURL)
 			case .h1, .h2:
-				if let url = URL(string: DisplayedLinks.heliumBatteries.linkURL) {
-					UIApplication.shared.open(url)
-				}
+				linkNavigation.openUrl(DisplayedLinks.heliumBatteries.linkURL)
 			case .d1:
-				if let url = URL(string: DisplayedLinks.heliumBatteries.linkURL) {
-					UIApplication.shared.open(url)
-				}
+				linkNavigation.openUrl(DisplayedLinks.d1Batteries.linkURL)
 			case .pulse:
-#warning("Open pulse link")
+				linkNavigation.openUrl(DisplayedLinks.pulseBatteries.linkURL)
 		}
 		
 	}
