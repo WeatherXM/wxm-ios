@@ -119,6 +119,6 @@ private extension OverviewView {
 
 struct OverviewView_Previews: PreviewProvider {
     static var previews: some View {
-        OverviewView(viewModel: OverviewViewModel.mockInstance)
+		OverviewView(viewModel: ViewModelsFactory.getStationOverviewViewModel(device: .mockDevice, delegate: nil))
     }
 }

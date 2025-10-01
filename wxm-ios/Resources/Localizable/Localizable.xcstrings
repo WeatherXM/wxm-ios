@@ -7805,7 +7805,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%d/10 stations present"
+            "value" : "%d/%d stations present"
           }
         }
       }
