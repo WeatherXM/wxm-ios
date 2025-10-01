@@ -239,8 +239,9 @@ private extension DeepLinkHandler {
 			let lon = cell.center.lon
 			let lat = cell.center.lat
 			let cellCenter = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+			let cellCapacity = cell.capacity ?? 0
 
-			let route = Route.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: index, cellCenter: cellCenter))
+			let route = Route.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: index, cellCenter: cellCenter, cellCapacity: cellCapacity))
 			router.navigateTo(route)
 		}
 	}

@@ -43,7 +43,7 @@ class ExplorerStationsListViewModel: ObservableObject {
 
 		let count = devices.count
 
-		pills.append(.stationsCount(LocalizableString.presentStations(count).localized))
+		pills.append(.stationsCount(LocalizableString.presentStations(count, cellCapacity).localized))
 
 		if let dataQualityPill = getDataQualityPill() {
 			pills.append(dataQualityPill)
@@ -56,14 +56,16 @@ class ExplorerStationsListViewModel: ObservableObject {
 	}
 	
 	let cellIndex: String
+	let cellCapacity: Int
 	private let useCase: ExplorerUseCaseApi?
 	private let cellCenter: CLLocationCoordinate2D?
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	
-	init(useCase: ExplorerUseCaseApi?, cellIndex: String, cellCenter: CLLocationCoordinate2D?) {
+	init(useCase: ExplorerUseCaseApi?, cellIndex: String, cellCenter: CLLocationCoordinate2D?, cellCapacity: Int) {
 		self.useCase = useCase
 		self.cellIndex = cellIndex
 		self.cellCenter = cellCenter
+		self.cellCapacity = cellCapacity
 		fetchDeviceList()
 		
 		useCase?.userDevicesListChangedPublisher.sink { [weak self] _ in
