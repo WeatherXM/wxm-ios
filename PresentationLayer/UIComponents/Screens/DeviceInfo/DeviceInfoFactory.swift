@@ -451,7 +451,7 @@ extension DeviceInfoViewModel.InfoField {
 			case .lastStationActivity:
 				return nil
 			case .stationRssi:
-				return warningForStationRssi(for: deviceInfo?.weatherStation?.stationRssi)
+				return warningForStationRssi(for: deviceInfo?.weatherStation?.stationRssi, device: device)
 			case .gsmSignal:
 				return nil
 			case .gwFrequency:
@@ -471,7 +471,7 @@ extension DeviceInfoViewModel.InfoField {
 			case .stationId:
 				return nil
 			case .signalStationGw:
-				return nil
+				return warningForStationRssi(for: deviceInfo?.weatherStation?.stationRssi, device: device)
 		}
 	}
 
@@ -497,7 +497,7 @@ extension DeviceInfoViewModel.InfoField {
 		}
 	}
 
-	func warningForStationRssi(for rssi: Int?) -> (CardWarningConfiguration, VoidCallback)? {
+	func warningForStationRssi(for rssi: Int?, device: DeviceDetails) -> (CardWarningConfiguration, VoidCallback)? {
 		guard let rssi else {
 			return nil
 		}
@@ -509,12 +509,12 @@ extension DeviceInfoViewModel.InfoField {
 			case _ where rssi >= -95:
 				return (CardWarningConfiguration(type: .warning,
 												 message: LocalizableString.DeviceInfo.stationRssiWarning.localized,
-												 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
+												 linkText: LocalizableString.url(urlText, device.troubleShootingUrl ?? "").localized,
 												 closeAction: nil), {})
 			default:
 				return (CardWarningConfiguration(type: .error,
 												 message: LocalizableString.DeviceInfo.stationRssiError.localized,
-												 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
+												 linkText: LocalizableString.url(urlText, device.troubleShootingUrl ?? "").localized,
 												 closeAction: nil), {})
 		}
 	}

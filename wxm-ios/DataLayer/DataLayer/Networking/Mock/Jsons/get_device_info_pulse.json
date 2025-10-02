@@ -34,7 +34,7 @@
 		"model": "WS1001",
 		"id": "00002E17",
 		"bat_state": "ok",
-		"station_rssi": -56,
+		"station_rssi": -90,
 		"station_rssi_last_activity": "2025-10-01T14:25:44+03:00",
 		"last_activity": "2025-10-01T12:56:13+03:00"
 	}
