@@ -112,4 +112,5 @@ public struct Metrics: Codable, Sendable {
 public struct Sim: Codable, Sendable {
 	public let mcc: String?
 	public let mnc: String?
+	public let iccid: String?
 }

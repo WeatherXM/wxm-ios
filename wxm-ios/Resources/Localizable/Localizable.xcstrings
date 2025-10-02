@@ -2970,6 +2970,17 @@
         }
       }
     },
+    "device_info_is_in_use" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Is in use"
+          }
+        }
+      }
+    },
     "device_info_last_gateway_activity" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -86,6 +86,7 @@ extension LocalizableString {
 		case stationId
 		case signalStationGw
 		case mobileCountryNetworkCode(String, String)
+		case isInUse
 	}
 }
 
@@ -268,6 +269,8 @@ extension LocalizableString.DeviceInfo: WXMLocalizable {
 				return "device_info_signal_station_gw"
 			case .mobileCountryNetworkCode:
 				return "device_info_mobile_country_network_code"
+			case .isInUse:
+				return "device_info_is_in_use"
 		}
 	}
 }

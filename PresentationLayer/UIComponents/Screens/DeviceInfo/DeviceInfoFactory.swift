@@ -383,9 +383,13 @@ extension DeviceInfoViewModel.InfoField {
 				}
 				return "\(frequency) \(LocalizableString.Units.mhz.localized)"
 			case .externalSim:
-				return "TEMP"
+				guard deviceInfo?.gateway?.sim?.iccid != nil else {
+					return nil
+				}
+
+				return LocalizableString.DeviceInfo.isInUse.localized
 			case .iccid:
-				return "TEMP"
+				return deviceInfo?.gateway?.sim?.iccid
 			case .mobileCountryCode:
 				guard let mcc = deviceInfo?.gateway?.sim?.mcc, let mnc = deviceInfo?.gateway?.sim?.mnc else {
 					return nil
