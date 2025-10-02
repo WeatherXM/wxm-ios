@@ -118,6 +118,7 @@ extension DeviceDetails {
 		case needsUpdate
 		case lowBattery
 		case gwLowBattery
+		case wsLowBattery
 
 		var description: String {
 			switch self {
@@ -126,6 +127,8 @@ extension DeviceDetails {
 				case .needsUpdate:
 					return LocalizableString.updateRequiredTitle.localized
 				case .lowBattery:
+					return LocalizableString.lowBatteryWarningTitle.localized
+				case .wsLowBattery:
 					return LocalizableString.wsLowBatteryWarningTitle.localized
 				case .gwLowBattery:
 					return LocalizableString.gwLowBatteryWarningTitle.localized
@@ -138,7 +141,7 @@ extension DeviceDetails {
 						.hexagonXmark
 				case .needsUpdate:
 						.arrowsRotate
-				case .lowBattery, .gwLowBattery:
+				case .lowBattery, .gwLowBattery, .wsLowBattery:
 						.batteryLow
 			}
 		}
@@ -153,7 +156,7 @@ extension DeviceDetails {
 					return nil
 				case .needsUpdate:
 					return .otaUpdate
-				case .lowBattery:
+				case .lowBattery, .wsLowBattery:
 					return .lowBatteryItem
 				case .gwLowBattery:
 					// Temp, declare the analytics value
@@ -237,7 +240,11 @@ extension DeviceDetails {
 		}
 		
 		if isBatteryLow(followState: followState) {
-			issues.append(.init(type: .lowBattery, warningType: .warning))
+			if bundle?.connectivity == .cellular {
+				issues.append(.init(type: .wsLowBattery, warningType: .warning))
+			} else {
+				issues.append(.init(type: .lowBattery, warningType: .warning))
+			}
 		}
 
 		if isGWBatteryLow(followState: followState) {
