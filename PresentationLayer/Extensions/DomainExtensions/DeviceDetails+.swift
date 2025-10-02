@@ -126,7 +126,7 @@ extension DeviceDetails {
 				case .needsUpdate:
 					return LocalizableString.updateRequiredTitle.localized
 				case .lowBattery:
-					return LocalizableString.lowBatteryWarningTitle.localized
+					return LocalizableString.wsLowBatteryWarningTitle.localized
 				case .gwLowBattery:
 					return LocalizableString.gwLowBatteryWarningTitle.localized
 			}

@@ -5500,17 +5500,6 @@
         }
       }
     },
-    "low_battery_warning_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Low Battery"
-          }
-        }
-      }
-    },
     "mail_leave_message_note" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11722,6 +11711,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wind Speed"
+          }
+        }
+      }
+    },
+    "ws_low_battery_warning_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low WS Battery"
           }
         }
       }
