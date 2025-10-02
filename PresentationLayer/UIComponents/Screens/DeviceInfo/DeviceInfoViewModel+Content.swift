@@ -89,6 +89,14 @@ extension DeviceInfoViewModel {
 	enum InfoField {
 		case name
 		case bundleName
+		case gsmSignal
+		case gwFrequency
+		case externalSim
+		case iccid
+		case mobileCountryCode
+		case gwBatteryState
+		case signalGwStation
+		case nextServerCommunication
 		case devEUI
 		case gatewayModel
 		case hardwareVersion
@@ -105,6 +113,8 @@ extension DeviceInfoViewModel {
 		case stationModel
 		case lastStationActivity
 		case stationRssi
+		case stationId
+		case signalStationGw
 
 		static var heliumFields: [InfoField] {
 			[.name, .bundleName, .stationModel, .claimedAt, .devEUI, .firmwareVersion, .hardwareVersion, .batteryState, .lastHotspot, .lastRSSI, .lastStationActivity]
@@ -127,5 +137,24 @@ extension DeviceInfoViewModel {
 		static var wifiStationDetailsInfoFields: [InfoField] {
 			[.stationModel, .hardwareVersion, .stationRssi, .batteryState, .lastStationActivity]
 		}
+
+		static var pulseFields: [InfoField] {
+			[pulseInfoFields,
+			 pulseGatewayDetailsInfoFields,
+			 pulseStationDetailsInfoFields].flatMap { $0 }
+		}
+
+		static var pulseInfoFields: [InfoField] {
+			[.name, .bundleName, .claimedAt]
+		}
+
+		static var pulseGatewayDetailsInfoFields: [InfoField] {
+			[.gatewayModel, .serialNumber, .gsmSignal, .gwFrequency, .externalSim, .iccid, .mobileCountryCode, .firmwareVersion, .gwBatteryState, .lastGatewayActivity, .signalGwStation, .nextServerCommunication]
+		}
+
+		static var pulseStationDetailsInfoFields: [InfoField] {
+			[.stationModel, .stationId, .batteryState, .hardwareVersion, .signalStationGw, .lastStationActivity]
+		}
+
 	}
 }

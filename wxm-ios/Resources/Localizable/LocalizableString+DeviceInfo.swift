@@ -74,6 +74,16 @@ extension LocalizableString {
 		case photoVerificationStartButtonTitle
 		case photoVerificationUploadingDescription
 		case photoVerificationWithPhotosDescription
+		case gsmSignal
+		case gwFrequency
+		case externalSim
+		case iccid
+		case mobileCountryCode
+		case gwBatteryState
+		case signalGwStation
+		case nextServerCommunication
+		case stationId
+		case signalStationGw
 	}
 }
 
@@ -230,6 +240,26 @@ extension LocalizableString.DeviceInfo: WXMLocalizable {
 				return "device_info_photo_verification_uploading_description"
 			case .photoVerificationWithPhotosDescription:
 				return "device_info_photo_verification_with_photos_description"
+			case .gsmSignal:
+				return "device_info_gsm_signal"
+			case .gwFrequency:
+				return "device_info_gw_frequency"
+			case .externalSim:
+				return "device_info_external_sim"
+			case .iccid:
+				return "device_info_iccid"
+			case .mobileCountryCode:
+				return "device_info_mobile_country_code"
+			case .gwBatteryState:
+				return "device_info_gw_battery_state"
+			case .signalGwStation:
+				return "device_info_signal_gw_station"
+			case .nextServerCommunication:
+				return "device_info_next_server_communication"
+			case .stationId:
+				return "device_info_station_id"
+			case .signalStationGw:
+				return "device_info_signal_station_gw"
 		}
 	}
 }

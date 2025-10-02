@@ -2871,6 +2871,17 @@
         }
       }
     },
+    "device_info_external_sim" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "External SIM"
+          }
+        }
+      }
+    },
     "device_info_followed_contact_support_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2889,6 +2900,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gateway Details"
+          }
+        }
+      }
+    },
+    "device_info_gsm_signal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GSM Signal"
+          }
+        }
+      }
+    },
+    "device_info_gw_battery_state" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gateway Battery Level"
+          }
+        }
+      }
+    },
+    "device_info_gw_frequency" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gateway frequency"
+          }
+        }
+      }
+    },
+    "device_info_iccid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ICCID of external SIM"
           }
         }
       }
@@ -2933,6 +2988,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "We’ve detected that your station’s battery level is **Low**.\nPlease replace the batteries as soon as possible, as **this may affect your WXM rewards and data**."
+          }
+        }
+      }
+    },
+    "device_info_mobile_country_code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mobile country and network code"
+          }
+        }
+      }
+    },
+    "device_info_next_server_communication" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next server communication "
           }
         }
       }
@@ -3010,6 +3087,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ Satellites"
+          }
+        }
+      }
+    },
+    "device_info_signal_gw_station" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signal between Gateway & Station (RSSI)"
+          }
+        }
+      }
+    },
+    "device_info_signal_station_gw" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signal between Station & Gateway (RSSI)"
           }
         }
       }
@@ -3098,6 +3197,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Change the frequency this station operates. To do this, make sure you’re close to your station, and that you’ve selected the appropriate frequency for your country.   A list of the countries and their respective frequencies can be **[found here](%@)**"
+          }
+        }
+      }
+    },
+    "device_info_station_id" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID"
           }
         }
       }

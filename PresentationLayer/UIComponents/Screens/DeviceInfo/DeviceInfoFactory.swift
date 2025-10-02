@@ -286,6 +286,26 @@ extension DeviceInfoViewModel.InfoField {
 				return LocalizableString.DeviceInfo.lastStationActivity.localized
 			case .stationRssi:
 				return LocalizableString.DeviceInfo.stationRssi.localized
+			case .gsmSignal:
+				return LocalizableString.DeviceInfo.gsmSignal.localized
+			case .gwFrequency:
+				return LocalizableString.DeviceInfo.gwFrequency.localized
+			case .externalSim:
+				return LocalizableString.DeviceInfo.externalSim.localized
+			case .iccid:
+				return LocalizableString.DeviceInfo.iccid.localized
+			case .mobileCountryCode:
+				return LocalizableString.DeviceInfo.mobileCountryCode.localized
+			case .gwBatteryState:
+				return LocalizableString.DeviceInfo.gwBatteryState.localized
+			case .signalGwStation:
+				return LocalizableString.DeviceInfo.signalGwStation.localized
+			case .nextServerCommunication:
+				return LocalizableString.DeviceInfo.nextServerCommunication.localized
+			case .stationId:
+				return LocalizableString.DeviceInfo.stationId.localized
+			case .signalStationGw:
+				return LocalizableString.DeviceInfo.signalStationGw.localized
 		}
 	}
 

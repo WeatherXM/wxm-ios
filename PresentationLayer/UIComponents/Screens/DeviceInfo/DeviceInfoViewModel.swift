@@ -316,6 +316,26 @@ private extension DeviceInfoViewModel {
 				break
 			case .stationRssi:
 				break
+			case .gsmSignal:
+				break
+			case .gwFrequency:
+				break
+			case .externalSim:
+				break
+			case .iccid:
+				break
+			case .mobileCountryCode:
+				break
+			case .gwBatteryState:
+				break
+			case .signalGwStation:
+				break
+			case .nextServerCommunication:
+				break
+			case .stationId:
+				break
+			case .signalStationGw:
+				break
 		}
 	}
 	
