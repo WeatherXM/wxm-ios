@@ -2904,6 +2904,17 @@
         }
       }
     },
+    "device_info_gateway_low_battery_warning_markdown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please replace the gateway’s batteries as soon as possible, as **this may affect your WXM rewards and data**."
+          }
+        }
+      }
+    },
     "device_info_gsm_signal" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2999,6 +3010,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mobile country and network code"
+          }
+        }
+      }
+    },
+    "device_info_mobile_country_network_code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MCC: %@ - MNC: %@"
           }
         }
       }

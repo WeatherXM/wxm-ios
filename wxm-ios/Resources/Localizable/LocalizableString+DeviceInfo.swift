@@ -64,6 +64,7 @@ extension LocalizableString {
 		case stationFrequencyChangeFailed
 		case stationFrequencyChangeFailureDescription(String)
 		case lowBatteryWarningMarkdown
+		case gatewayLowBatteryWarningMarkdown
 		case removeStationAccountConfirmationMarkdown
 		case gatewayDetails
 		case stationDetails
@@ -84,6 +85,7 @@ extension LocalizableString {
 		case nextServerCommunication
 		case stationId
 		case signalStationGw
+		case mobileCountryNetworkCode(String, String)
 	}
 }
 
@@ -102,6 +104,8 @@ extension LocalizableString.DeviceInfo: WXMLocalizable {
 					.stationFrequencyChangeFailureDescription(let text),
 					.satellites(let text):
 				localized = String(format: localized, text)
+			case .mobileCountryNetworkCode(let text0, let text1):
+				localized = String(format: localized, text0, text1)
 			default: break
 		}
 
@@ -220,6 +224,8 @@ extension LocalizableString.DeviceInfo: WXMLocalizable {
 				return "device_info_station_frequency_change_failure_description_format"
 			case .lowBatteryWarningMarkdown:
 				return "device_info_low_battery_warning_markdown"
+			case .gatewayLowBatteryWarningMarkdown:
+				return "device_info_gateway_low_battery_warning_markdown"
 			case .removeStationAccountConfirmationMarkdown:
 				return "device_info_remove_station_account_confirmation_markdown"
 			case .gatewayDetails:
@@ -260,6 +266,8 @@ extension LocalizableString.DeviceInfo: WXMLocalizable {
 				return "device_info_station_id"
 			case .signalStationGw:
 				return "device_info_signal_station_gw"
+			case .mobileCountryNetworkCode:
+				return "device_info_mobile_country_network_code"
 		}
 	}
 }

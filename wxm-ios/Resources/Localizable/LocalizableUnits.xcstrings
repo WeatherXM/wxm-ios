@@ -265,6 +265,17 @@
         }
       }
     },
+    "units_mhz" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MHz"
+          }
+        }
+      }
+    },
     "units_miles_per_hour_friendly_name" : {
       "extractionState" : "manual",
       "localizations" : {

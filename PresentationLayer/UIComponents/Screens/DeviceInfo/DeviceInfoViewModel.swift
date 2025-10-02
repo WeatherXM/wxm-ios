@@ -71,13 +71,21 @@ class DeviceInfoViewModel: ObservableObject {
 	}
 	
 	var infoSections: [StationInfoView.Section] {
-		if device.isHelium {
-			return [getInfoSection(title: nil, fields: InfoField.heliumFields)]
-		} else {
-			let sections: [StationInfoView.Section] = [getInfoSection(title: nil, fields: InfoField.wifiInfoFields),
-													   getInfoSection(title: LocalizableString.DeviceInfo.gatewayDetails.localized, fields: InfoField.wifiGatewayDetailsInfoFields),
-													   getInfoSection(title: LocalizableString.DeviceInfo.stationDetails.localized, fields: InfoField.wifiStationDetailsInfoFields)]
-			return sections
+		switch device.bundle?.connectivity {
+			case .wifi:
+				let sections: [StationInfoView.Section] = [getInfoSection(title: nil, fields: InfoField.wifiInfoFields),
+														   getInfoSection(title: LocalizableString.DeviceInfo.gatewayDetails.localized, fields: InfoField.wifiGatewayDetailsInfoFields),
+														   getInfoSection(title: LocalizableString.DeviceInfo.stationDetails.localized, fields: InfoField.wifiStationDetailsInfoFields)]
+				return sections
+			case .helium:
+				return [getInfoSection(title: nil, fields: InfoField.heliumFields)]
+			case .cellular:
+				let sections: [StationInfoView.Section] = [getInfoSection(title: nil, fields: InfoField.pulseInfoFields),
+														   getInfoSection(title: LocalizableString.DeviceInfo.gatewayDetails.localized, fields: InfoField.pulseGatewayDetailsInfoFields),
+														   getInfoSection(title: LocalizableString.DeviceInfo.stationDetails.localized, fields: InfoField.pulseStationDetailsInfoFields)]
+				return sections
+			case nil:
+				return []
 		}
 	}
 	

@@ -25,7 +25,7 @@
 			"mcc": "202",
 			"mnc": "5"
 		},
-		"bat_state": "ok",
+		"bat_state": "low",
 		"frequency": "868",
 		"next_communication": "2025-10-01T14:25:44+03:00"
 	},
