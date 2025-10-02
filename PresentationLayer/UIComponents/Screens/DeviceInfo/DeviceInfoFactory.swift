@@ -194,10 +194,15 @@ extension DeviceInfoViewModel.Field {
 extension DeviceInfoViewModel.InfoField {
 	static func getShareText(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String {
 		var fields: [Self] = []
-		if device.isHelium {
-			fields = heliumFields
-		} else {
-			fields = wifiFields
+		switch device.bundle?.connectivity {
+			case .wifi:
+				fields = wifiFields
+			case .helium:
+				fields = heliumFields
+			case .cellular:
+				fields = pulseFields
+			case nil:
+				break
 		}
 
 		let textComps: [String] = fields.compactMap { field in
