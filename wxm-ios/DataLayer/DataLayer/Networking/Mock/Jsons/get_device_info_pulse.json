@@ -1,0 +1,40 @@
+{
+	"name": "PCDFC94E2DAD11223",
+	"claimed_at": "2025-05-05T14:54:42+03:00",
+	"reward_split": [
+		{
+			"wallet": "0xb4D149f047AE10f1c1D7DC9D4D0729C13A5848dd",
+			"stake": 100,
+			"reward": 0
+		}
+	],
+	"gateway": {
+		"model": "WG3000",
+		"serial_number": "CD:FC:94:E2:DA:D1:12:23",
+		"firmware": {
+			"assigned": "5.57"
+		},
+		"gps_sats_last_activity": "2025-10-01T14:25:44+03:00",
+		"wifi_rssi_last_activity": "2025-10-01T14:25:44+03:00",
+		"network_rssi": -71,
+		"network_rssi_last_activity": "2025-10-01T14:25:44+03:00",
+		"gateway_rssi": -82,
+		"gateway_rssi_last_activity": "2025-10-01T14:25:44+03:00",
+		"last_activity": "2025-10-01T14:25:44+03:00",
+		"sim": {
+			"mcc": "202",
+			"mnc": "5"
+		},
+		"bat_state": "ok",
+		"frequency": "868",
+		"next_communication": "2025-10-01T14:25:44+03:00"
+	},
+	"weather_station": {
+		"model": "WS1001",
+		"id": "00002E17",
+		"bat_state": "ok",
+		"station_rssi": -56,
+		"station_rssi_last_activity": "2025-10-01T14:25:44+03:00",
+		"last_activity": "2025-10-01T12:56:13+03:00"
+	}
+}

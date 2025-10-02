@@ -108,3 +108,8 @@ public struct Metrics: Codable, Sendable {
 		self.polReason = try? container.decodeIfPresent(PolStatus.self, forKey: .polReason) ?? .verified
 	}
 }
+
+public struct Sim: Codable, Sendable {
+	public let mcc: String?
+	public let mnc: String?
+}

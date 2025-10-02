@@ -211,7 +211,7 @@ extension MeApiRequestBuilder: MockResponseBuilder {
 			case .getUserDeviceHistoryById:
 				return "get_device_history"
 			case .getUserDeviceInfoById:
-				return "get_device_info_m5"
+				return "get_device_info_pulse"
 			case .getUserWallet:
 				return "get_user_wallet"
 			case .getUserDeviceForecastById:
