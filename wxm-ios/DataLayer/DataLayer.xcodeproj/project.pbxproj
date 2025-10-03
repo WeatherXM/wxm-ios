@@ -78,6 +78,7 @@
 		26DF1F542D549A310001E936 /* FileUploadMockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */; };
 		26DF1F602D5611EA0001E936 /* post_login.json in Resources */ = {isa = PBXBuildFile; fileRef = 26DF1F5F2D5611DD0001E936 /* post_login.json */; };
 		26E2B3BC2982754D00ED9B58 /* MockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E2B3BB2982754D00ED9B58 /* MockProtocol.swift */; };
+		26E558432E8E8A9D00E834CC /* get_device_info_pulse.json in Resources */ = {isa = PBXBuildFile; fileRef = 26E558422E8E8A8D00E834CC /* get_device_info_pulse.json */; };
 		26E88B2F29E5717D0023BBD5 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88B2E29E5717D0023BBD5 /* DatabaseService.swift */; };
 		26E88B3429E582070023BBD5 /* DBWeather+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88B3329E582070023BBD5 /* DBWeather+CoreDataClass.swift */; };
 		26E88B3529E582070023BBD5 /* DBWeather+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E88B3229E582070023BBD5 /* DBWeather+CoreDataProperties.swift */; };
@@ -183,6 +184,7 @@
 		26DF1F532D549A310001E936 /* FileUploadMockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadMockProtocol.swift; sourceTree = "<group>"; };
 		26DF1F5F2D5611DD0001E936 /* post_login.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = post_login.json; sourceTree = "<group>"; };
 		26E2B3BB2982754D00ED9B58 /* MockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProtocol.swift; sourceTree = "<group>"; };
+		26E558422E8E8A8D00E834CC /* get_device_info_pulse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_device_info_pulse.json; sourceTree = "<group>"; };
 		26E88B2E29E5717D0023BBD5 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		26E88B3229E582070023BBD5 /* DBWeather+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBWeather+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		26E88B3329E582070023BBD5 /* DBWeather+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBWeather+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				2618A6F02A1F61FD00983B7B /* get_device_history_24_samples.json */,
 				2646D8E729C8B4310000237F /* get_device_info_helium.json */,
 				2646D8E929C8B8CA0000237F /* get_device_info_m5.json */,
+				26E558422E8E8A8D00E834CC /* get_device_info_pulse.json */,
 				26348E262A4456DD000846C6 /* get_network_search.json */,
 				26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */,
 				26AD3EA52C90748C0040AB09 /* get_devices_rewards_analytics_7d.json */,
@@ -598,6 +601,7 @@
 				2646D8EA29C8B8CA0000237F /* get_device_info_m5.json in Resources */,
 				26348E272A4456DD000846C6 /* get_network_search.json in Resources */,
 				2674017A2A386DA700E54E35 /* get_network_stats.json in Resources */,
+				26E558432E8E8A9D00E834CC /* get_device_info_pulse.json in Resources */,
 				2674EDCE2A3C4C3800616285 /* get_network_stats_alt.json in Resources */,
 				264CC75D2B986F310060DEA4 /* get_reward_boosts.json in Resources */,
 				26AD3E9C2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json in Resources */,

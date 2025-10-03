@@ -64,6 +64,7 @@ extension LocalizableString {
 		case stationFrequencyChangeFailed
 		case stationFrequencyChangeFailureDescription(String)
 		case lowBatteryWarningMarkdown
+		case gatewayLowBatteryWarningMarkdown
 		case removeStationAccountConfirmationMarkdown
 		case gatewayDetails
 		case stationDetails
@@ -74,6 +75,18 @@ extension LocalizableString {
 		case photoVerificationStartButtonTitle
 		case photoVerificationUploadingDescription
 		case photoVerificationWithPhotosDescription
+		case gsmSignal
+		case gwFrequency
+		case externalSim
+		case iccid
+		case mobileCountryCode
+		case gwBatteryState
+		case signalGwStation
+		case nextServerCommunication
+		case stationId
+		case signalStationGw
+		case mobileCountryNetworkCode(String, String)
+		case isInUse
 	}
 }
 
@@ -92,6 +105,8 @@ extension LocalizableString.DeviceInfo: WXMLocalizable {
 					.stationFrequencyChangeFailureDescription(let text),
 					.satellites(let text):
 				localized = String(format: localized, text)
+			case .mobileCountryNetworkCode(let text0, let text1):
+				localized = String(format: localized, text0, text1)
 			default: break
 		}
 
@@ -210,6 +225,8 @@ extension LocalizableString.DeviceInfo: WXMLocalizable {
 				return "device_info_station_frequency_change_failure_description_format"
 			case .lowBatteryWarningMarkdown:
 				return "device_info_low_battery_warning_markdown"
+			case .gatewayLowBatteryWarningMarkdown:
+				return "device_info_gateway_low_battery_warning_markdown"
 			case .removeStationAccountConfirmationMarkdown:
 				return "device_info_remove_station_account_confirmation_markdown"
 			case .gatewayDetails:
@@ -230,6 +247,30 @@ extension LocalizableString.DeviceInfo: WXMLocalizable {
 				return "device_info_photo_verification_uploading_description"
 			case .photoVerificationWithPhotosDescription:
 				return "device_info_photo_verification_with_photos_description"
+			case .gsmSignal:
+				return "device_info_gsm_signal"
+			case .gwFrequency:
+				return "device_info_gw_frequency"
+			case .externalSim:
+				return "device_info_external_sim"
+			case .iccid:
+				return "device_info_iccid"
+			case .mobileCountryCode:
+				return "device_info_mobile_country_code"
+			case .gwBatteryState:
+				return "device_info_gw_battery_state"
+			case .signalGwStation:
+				return "device_info_signal_gw_station"
+			case .nextServerCommunication:
+				return "device_info_next_server_communication"
+			case .stationId:
+				return "device_info_station_id"
+			case .signalStationGw:
+				return "device_info_signal_station_gw"
+			case .mobileCountryNetworkCode:
+				return "device_info_mobile_country_network_code"
+			case .isInUse:
+				return "device_info_is_in_use"
 		}
 	}
 }

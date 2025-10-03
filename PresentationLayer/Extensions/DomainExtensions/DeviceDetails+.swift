@@ -52,7 +52,7 @@ extension DeviceDetails {
 			case .d1:
 				return DisplayedLinks.d1Troubleshooting.linkURL
 			case .pulse:
-				return nil
+				return DisplayedLinks.pulseTroubleshooting.linkURL
 		}
 	}
 	

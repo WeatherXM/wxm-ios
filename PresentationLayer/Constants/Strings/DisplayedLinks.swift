@@ -24,6 +24,7 @@ enum DisplayedLinks {
 	case m5Troubleshooting
 	case heliumTroubleshooting
 	case d1Troubleshooting
+	case pulseTroubleshooting
 	case heliumRegionFrequencies
 	case shopLink
 	case shareDevice
@@ -74,6 +75,8 @@ enum DisplayedLinks {
 				return "https://docs.weatherxm.com/wxm-devices/helium/troubleshooting"
 			case .d1Troubleshooting:
 				return "https://docs.weatherxm.com/wxm-devices/d1/troubleshooting"
+			case .pulseTroubleshooting:
+				return "https://docs.weatherxm.com/wxm-devices/pulse/troubleshooting"
 			case .heliumRegionFrequencies:
 				return "https://docs.helium.com/iot/lorawan-region-plans"
 			case .shopLink:

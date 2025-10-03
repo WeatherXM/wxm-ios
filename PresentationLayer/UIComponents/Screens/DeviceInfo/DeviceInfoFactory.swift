@@ -194,10 +194,15 @@ extension DeviceInfoViewModel.Field {
 extension DeviceInfoViewModel.InfoField {
 	static func getShareText(for device: DeviceDetails, deviceInfo: NetworkDevicesInfoResponse?, mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> String {
 		var fields: [Self] = []
-		if device.isHelium {
-			fields = heliumFields
-		} else {
-			fields = wifiFields
+		switch device.bundle?.connectivity {
+			case .wifi:
+				fields = wifiFields
+			case .helium:
+				fields = heliumFields
+			case .cellular:
+				fields = pulseFields
+			case nil:
+				break
 		}
 
 		let textComps: [String] = fields.compactMap { field in
@@ -286,6 +291,26 @@ extension DeviceInfoViewModel.InfoField {
 				return LocalizableString.DeviceInfo.lastStationActivity.localized
 			case .stationRssi:
 				return LocalizableString.DeviceInfo.stationRssi.localized
+			case .gsmSignal:
+				return LocalizableString.DeviceInfo.gsmSignal.localized
+			case .gwFrequency:
+				return LocalizableString.DeviceInfo.gwFrequency.localized
+			case .externalSim:
+				return LocalizableString.DeviceInfo.externalSim.localized
+			case .iccid:
+				return LocalizableString.DeviceInfo.iccid.localized
+			case .mobileCountryCode:
+				return LocalizableString.DeviceInfo.mobileCountryCode.localized
+			case .gwBatteryState:
+				return LocalizableString.DeviceInfo.gwBatteryState.localized
+			case .signalGwStation:
+				return LocalizableString.DeviceInfo.signalGwStation.localized
+			case .nextServerCommunication:
+				return LocalizableString.DeviceInfo.nextServerCommunication.localized
+			case .stationId:
+				return LocalizableString.DeviceInfo.stationId.localized
+			case .signalStationGw:
+				return LocalizableString.DeviceInfo.signalStationGw.localized
 		}
 	}
 
@@ -349,10 +374,43 @@ extension DeviceInfoViewModel.InfoField {
 			case .lastStationActivity:
 				return deviceInfo?.weatherStation?.lastActivity?.getFormattedDate(format: .monthLiteralYearDayTime,
 																				  timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
-			case .stationRssi:
+			case .stationRssi, .signalStationGw:
 				return Self.getRssiText(rssi: deviceInfo?.weatherStation?.stationRssi?.formatted(),
 										lastActivityDate: deviceInfo?.weatherStation?.stationRssiLastActivity,
 										timezone: device.timezone)
+			case .gsmSignal:
+				return Self.getRssiText(rssi: deviceInfo?.gateway?.networkRssi?.formatted(),
+										lastActivityDate: deviceInfo?.gateway?.networkRssiLastActivity,
+										timezone: device.timezone)
+			case .gwFrequency:
+				guard let frequency = deviceInfo?.gateway?.frequency else {
+					return nil
+				}
+				return "\(frequency) \(LocalizableString.Units.mhz.localized)"
+			case .externalSim:
+				guard deviceInfo?.gateway?.sim?.iccid != nil else {
+					return nil
+				}
+
+				return LocalizableString.DeviceInfo.isInUse.localized
+			case .iccid:
+				return deviceInfo?.gateway?.sim?.iccid
+			case .mobileCountryCode:
+				guard let mcc = deviceInfo?.gateway?.sim?.mcc, let mnc = deviceInfo?.gateway?.sim?.mnc else {
+					return nil
+				}
+				return LocalizableString.DeviceInfo.mobileCountryNetworkCode(mcc, mnc).localized
+			case .gwBatteryState:
+				return deviceInfo?.gateway?.batState?.description
+			case .signalGwStation:
+				return Self.getRssiText(rssi: deviceInfo?.gateway?.gatewayRssi?.formatted(),
+										lastActivityDate: deviceInfo?.gateway?.gatewayRssiLastActivity,
+										timezone: device.timezone)
+			case .nextServerCommunication:
+				return deviceInfo?.gateway?.nextCommunication?.getFormattedDate(format: .monthLiteralYearDayTime,
+																				timezone: device.timezone?.toTimezone ?? .current).capitalizedSentence
+			case .stationId:
+				return deviceInfo?.weatherStation?.stationId
 		}
 	}
 
@@ -383,7 +441,7 @@ extension DeviceInfoViewModel.InfoField {
 			case .wifiSignal:
 				return nil
 			case .batteryState:
-				return warningForBatteryState(deviceInfo?.weatherStation?.batState, deviceId: device.id ?? "")
+				return warningForBatteryState(deviceInfo?.weatherStation?.batState, deviceId: device.id ?? "", isGateway: false)
 			case .claimedAt:
 				return nil
 			case .lastGatewayActivity:
@@ -393,11 +451,31 @@ extension DeviceInfoViewModel.InfoField {
 			case .lastStationActivity:
 				return nil
 			case .stationRssi:
-				return warningForStationRssi(for: deviceInfo?.weatherStation?.stationRssi)
+				return warningForStationRssi(for: deviceInfo?.weatherStation?.stationRssi, device: device)
+			case .gsmSignal:
+				return nil
+			case .gwFrequency:
+				return nil
+			case .externalSim:
+				return nil
+			case .iccid:
+				return nil
+			case .mobileCountryCode:
+				return nil
+			case .gwBatteryState:
+				return warningForBatteryState(deviceInfo?.gateway?.batState, deviceId: device.id ?? "", isGateway: true)
+			case .signalGwStation:
+				return nil
+			case .nextServerCommunication:
+				return nil
+			case .stationId:
+				return nil
+			case .signalStationGw:
+				return warningForStationRssi(for: deviceInfo?.weatherStation?.stationRssi, device: device)
 		}
 	}
 
-	func warningForBatteryState(_ state: BatteryState?, deviceId: String) -> (CardWarningConfiguration, VoidCallback)? {
+	func warningForBatteryState(_ state: BatteryState?, deviceId: String, isGateway: Bool) -> (CardWarningConfiguration, VoidCallback)? {
 		guard let state else {
 			return nil
 		}
@@ -409,8 +487,9 @@ extension DeviceInfoViewModel.InfoField {
 																		 .action: .viewAction,
 																		 .itemId: .custom(deviceId)])
 				}
+				let message = isGateway ? LocalizableString.DeviceInfo.gatewayLowBatteryWarningMarkdown : LocalizableString.DeviceInfo.lowBatteryWarningMarkdown
 				return (CardWarningConfiguration(type: .warning,
-												 message: LocalizableString.DeviceInfo.lowBatteryWarningMarkdown.localized,
+												 message: message.localized,
 												 closeAction: nil),
 						callback)
 			case .ok:
@@ -418,7 +497,7 @@ extension DeviceInfoViewModel.InfoField {
 		}
 	}
 
-	func warningForStationRssi(for rssi: Int?) -> (CardWarningConfiguration, VoidCallback)? {
+	func warningForStationRssi(for rssi: Int?, device: DeviceDetails) -> (CardWarningConfiguration, VoidCallback)? {
 		guard let rssi else {
 			return nil
 		}
@@ -430,12 +509,12 @@ extension DeviceInfoViewModel.InfoField {
 			case _ where rssi >= -95:
 				return (CardWarningConfiguration(type: .warning,
 												 message: LocalizableString.DeviceInfo.stationRssiWarning.localized,
-												 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
+												 linkText: LocalizableString.url(urlText, device.troubleShootingUrl ?? "").localized,
 												 closeAction: nil), {})
 			default:
 				return (CardWarningConfiguration(type: .error,
 												 message: LocalizableString.DeviceInfo.stationRssiError.localized,
-												 linkText: LocalizableString.url(urlText, DisplayedLinks.troubleshooting.linkURL).localized,
+												 linkText: LocalizableString.url(urlText, device.troubleShootingUrl ?? "").localized,
 												 closeAction: nil), {})
 		}
 	}
@@ -481,6 +560,26 @@ extension DeviceInfoViewModel.InfoField {
 			case .lastStationActivity:
 				return nil
 			case .stationRssi:
+				return nil
+			case .gsmSignal:
+				return nil
+			case .gwFrequency:
+				return nil
+			case .externalSim:
+				return nil
+			case .iccid:
+				return nil
+			case .mobileCountryCode:
+				return nil
+			case .gwBatteryState:
+				return nil
+			case .signalGwStation:
+				return nil
+			case .nextServerCommunication:
+				return nil
+			case .stationId:
+				return nil
+			case .signalStationGw:
 				return nil
 		}
 	}

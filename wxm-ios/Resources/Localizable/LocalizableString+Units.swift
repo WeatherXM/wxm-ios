@@ -40,7 +40,7 @@ extension LocalizableString {
 		case inchesPerHourSymbol
 		case wattsPerSquareSymbol
 		case dBmSymbol
-
+		case mhz
 	}
 }
 
@@ -114,6 +114,8 @@ extension LocalizableString.Units: WXMLocalizable {
 				"units_watts_per_square_symbol"
 			case .dBmSymbol:
 				"units_dbm_symbol"
+			case .mhz:
+				"units_mhz"
 		}
 	}
 }
