@@ -39,6 +39,7 @@ enum DisplayedLinks {
 	case m5Batteries
 	case heliumBatteries
 	case d1Batteries
+	case pulseBatteries
 	case m5VideoLink
 	case d1VideoLink
 	case weatherXMPro
@@ -103,6 +104,8 @@ enum DisplayedLinks {
 				return "https://docs.weatherxm.com/wxm-devices/helium/assemble#battery-installation-diagram-external-box"
 			case .d1Batteries:
 				return "https://docs.weatherxm.com/wxm-devices/d1/assemble#installing-batteries"
+			case .pulseBatteries:
+				return "https://docs.weatherxm.com/wxm-devices/pulse/assemble#installing-batteries"
 			case .m5VideoLink:
 				return "https://www.youtube.com/watch?v=sUJEwuFq1CE"
 			case .d1VideoLink:

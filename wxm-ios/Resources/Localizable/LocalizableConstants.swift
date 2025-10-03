@@ -97,6 +97,8 @@ enum LocalizableString: WXMLocalizable {
 	case stationWarningLowBatteryTitle
 	case stationWarningLowBatteryDescription
 	case stationWarningLowBatteryButtonTitle
+	case stationWarningGWLowBatteryTitle
+	case stationWarningGWLowBatteryDescription
 	case troubleshootInstructionsHere
 	case changingFrequency
 	case invalidLocationErrorText
@@ -150,6 +152,8 @@ enum LocalizableString: WXMLocalizable {
 	case alertsOwnedStationOfflineDescription
 	case alertsStationOfflineDescription
 	case lowBatteryWarningTitle
+	case wsLowBatteryWarningTitle
+	case gwLowBatteryWarningTitle
 	case updateRequiredTitle
 	case profileTitleText
 	case settings
@@ -410,6 +414,10 @@ extension LocalizableString {
 				return "station_warning_low_battery_description"
 			case .stationWarningLowBatteryButtonTitle:
 				return "station_warning_low_battery_button_title"
+			case .stationWarningGWLowBatteryTitle:
+				return "station_warning_gw_low_battery_title"
+			case .stationWarningGWLowBatteryDescription:
+				return "station_warning_gw_low_battery_description"
 			case .troubleshootInstructionsHere:
 				return "troubleshoot_instructions_here"
 			case .changingFrequency:
@@ -516,6 +524,10 @@ extension LocalizableString {
 				return "alerts_station_offline_description"
 			case .lowBatteryWarningTitle:
 				return "low_battery_warning_title"
+			case .wsLowBatteryWarningTitle:
+				return "ws_low_battery_warning_title"
+			case .gwLowBatteryWarningTitle:
+				return "gw_low_battery_warning_title"
 			case .updateRequiredTitle:
 				return "update_required_warning_title"
 			case .profileTitleText:

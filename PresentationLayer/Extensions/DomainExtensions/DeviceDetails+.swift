@@ -117,7 +117,9 @@ extension DeviceDetails {
 		case offline
 		case needsUpdate
 		case lowBattery
-		
+		case gwLowBattery
+		case wsLowBattery
+
 		var description: String {
 			switch self {
 				case .offline:
@@ -126,6 +128,10 @@ extension DeviceDetails {
 					return LocalizableString.updateRequiredTitle.localized
 				case .lowBattery:
 					return LocalizableString.lowBatteryWarningTitle.localized
+				case .wsLowBattery:
+					return LocalizableString.wsLowBatteryWarningTitle.localized
+				case .gwLowBattery:
+					return LocalizableString.gwLowBatteryWarningTitle.localized
 			}
 		}
 
@@ -135,7 +141,7 @@ extension DeviceDetails {
 						.hexagonXmark
 				case .needsUpdate:
 						.arrowsRotate
-				case .lowBattery:
+				case .lowBattery, .gwLowBattery, .wsLowBattery:
 						.batteryLow
 			}
 		}
@@ -150,7 +156,10 @@ extension DeviceDetails {
 					return nil
 				case .needsUpdate:
 					return .otaUpdate
-				case .lowBattery:
+				case .lowBattery, .wsLowBattery:
+					return .lowBatteryItem
+				case .gwLowBattery:
+					// Temp, declare the analytics value
 					return .lowBatteryItem
 			}
 		}
@@ -180,7 +189,14 @@ extension DeviceDetails {
 		}
 		return batteryState == .low
 	}
-	
+
+	func isGWBatteryLow(followState: UserDeviceFollowState?) -> Bool {
+		guard followState?.relation == .owned else {
+			return false
+		}
+		return gatewayBatteryState == .low
+	}
+
 	func overallWarningType(mainVM: MainScreenViewModel, followState: UserDeviceFollowState?) -> CardWarningType? {
 		let issuesChipType = getIssuesChip(followState: followState)?.type
 		return [qodWarningType, pol?.warningType, issuesChipType].compactMap { $0 }.sorted(by: { $0 > $1}).first
@@ -224,9 +240,17 @@ extension DeviceDetails {
 		}
 		
 		if isBatteryLow(followState: followState) {
-			issues.append(.init(type: .lowBattery, warningType: .warning))
+			if bundle?.connectivity == .cellular {
+				issues.append(.init(type: .wsLowBattery, warningType: .warning))
+			} else {
+				issues.append(.init(type: .lowBattery, warningType: .warning))
+			}
 		}
-		
+
+		if isGWBatteryLow(followState: followState) {
+			issues.append(.init(type: .gwLowBattery, warningType: .warning))
+		}
+
 		if needsUpdate(mainVM: mainVM, followState: followState) {
 			issues.append(.init(type: .needsUpdate, warningType: .warning))
 		}

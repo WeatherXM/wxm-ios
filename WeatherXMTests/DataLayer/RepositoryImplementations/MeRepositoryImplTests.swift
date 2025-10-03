@@ -61,7 +61,7 @@ struct MeRepositoryImplTests {
 		#expect(cachedDevices == nil)
 
 		let devices = try await repositoryImpl.getDevices(useCache: false).toAsync().result.get()
-		#expect(devices.count == 2)
+		#expect(devices.count == 3)
 
 		cachedDevices = repositoryImpl.getCachedDevices()
 		#expect(cachedDevices?.count == devices.count)
@@ -113,7 +113,7 @@ struct MeRepositoryImplTests {
 
 	@Test func setLocation() async throws {
 		let devices = try await repositoryImpl.getDevices(useCache: false).toAsync().result.get()
-		#expect(devices.count == 2)
+		#expect(devices.count == 3)
 
 		let _ = try await repositoryImpl.setDeviceLocationById(deviceId: "124", lat: 0.0, lon: 0.0).toAsync().result
 
