@@ -43,7 +43,7 @@ struct DeviceDetailsTests {
 		device.bundle = .mock(name: .d1)
 		#expect(device.troubleShootingUrl == DisplayedLinks.d1Troubleshooting.linkURL)
 		device.bundle = .mock(name: .pulse)
-		#expect(device.troubleShootingUrl == nil)
+		#expect(device.troubleShootingUrl == DisplayedLinks.pulseTroubleshooting.linkURL)
 		device.bundle = nil
 		#expect(device.troubleShootingUrl == nil)
 	}
