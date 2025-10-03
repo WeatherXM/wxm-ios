@@ -2910,7 +2910,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please replace the gateway’s batteries as soon as possible, as **this may affect your WXM rewards and data**."
+            "value" : "We’ve detected that your gateways’s battery level is **Low**.\nPlease replace the batteries as soon as possible, as **this may affect your WXM rewards and data**."
           }
         }
       }
