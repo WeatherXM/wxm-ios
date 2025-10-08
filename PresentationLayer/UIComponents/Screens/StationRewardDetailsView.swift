@@ -31,12 +31,27 @@ struct StationRewardDetailsView: View {
 					.frame(height: 24)
 			}
 
-			BoostDetailsView(items: [.init(title: LocalizableString.RewardAnalytics.totalTokensEarnedSoFar.localized,
-										   value: (details.currentRewards ?? 0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency),
-									 .init(title: LocalizableString.Boosts.totalTokensToBeRewarded.localized,
-										   value: (details.totalRewards ?? 0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency),
-									 .init(title: LocalizableString.Boosts.boostPeriod.localized,
-										   value: "\(details.boostStartDateString) - \(details.boostStopDateString)")])
+			BoostDetailsView(items: boostDetailsItems)
 		}
     }
+}
+
+private extension StationRewardDetailsView {
+	var boostDetailsItems: [BoostDetailsView.Item] {
+		var items = [BoostDetailsView.Item]()
+		if let currentRewards = details.currentRewards {
+			items.append(.init(title: LocalizableString.RewardAnalytics.totalTokensEarnedSoFar.localized,
+							   value: currentRewards.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency))
+		}
+
+		if let totalRewards = details.totalRewards {
+			items.append(.init(title: LocalizableString.Boosts.totalTokensToBeRewarded.localized,
+							   value: totalRewards.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency))
+		}
+
+		items.append(.init(title: LocalizableString.Boosts.boostPeriod.localized,
+						   value: "\(details.boostStartDateString) - \(details.boostStopDateString)"))
+
+		return items
+	}
 }
