@@ -31,6 +31,14 @@
 				"actual_reward": 1.23,
 				"reward_score": 50,
 				"max_reward": 2.46
+			},
+			{
+				"code": "tro",
+				"title": "Rollout",
+				"description": "Targeted rollout",
+				"img_url": "https://i0.wp.com/weatherxm.com/wp-content/uploads/2023/12/Home-header-image-1200-x-1200-px-2.png",
+				"doc_url": "https://docs.weatherxm.com",
+				"actual_reward": 1.23,
 			}
 		]
 	},
