@@ -22,14 +22,27 @@ struct BoostsView: View {
 					.foregroundColor(Color(colorEnum: .textWhite))
 				Spacer()
 
-				Text("+ \(rewards.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
-					.font(.system(size: CGFloat(.caption), weight: .medium))
-					.foregroundColor(Color(colorEnum: .textWhite))
+				HStack(spacing: CGFloat(.minimumSpacing)) {
+					Text(LocalizableString.RewardDetails.boostSeeDetails.localized)
+						.font(.system(size: CGFloat(.caption)))
+
+					Text(FontIcon.chevronRight.rawValue)
+						.font(.fontAwesome(font: .FAPro, size: CGFloat(.caption)))
+				}
+				.foregroundStyle(Color(colorEnum: .textWhite))
 			}
 
 			HStack {
 				Text(description)
 					.font(.system(size: CGFloat(.caption)))
+					.foregroundColor(Color(colorEnum: .textWhite))
+
+				Spacer()
+			}
+
+			HStack {
+				Text("+ \(rewards.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)")
+					.font(.system(size: CGFloat(.caption), weight: .medium))
 					.foregroundColor(Color(colorEnum: .textWhite))
 
 				Spacer()

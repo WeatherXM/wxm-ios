@@ -8679,6 +8679,17 @@
         }
       }
     },
+    "reward_details_boost_see_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See details"
+          }
+        }
+      }
+    },
     "reward_details_cell_position" : {
       "extractionState" : "manual",
       "localizations" : {
