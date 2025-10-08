@@ -58,6 +58,11 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "tro",
+					"value": 1.4353223
 				}
 			]
 		},
@@ -78,6 +83,11 @@
 					"type": "boost",
 					"code": "correction",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "tro",
+					"value": 0.4353223
 				}
 			]
 		},
@@ -93,6 +103,11 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "tro",
+					"value": 1.2
 				}
 			]
 		},
@@ -108,6 +123,11 @@
 					"type": "boost",
 					"code": "beta_rewards",
 					"value": 1.4353223
+				},
+				{
+					"type": "boost",
+					"code": "tro",
+					"value": 0.6353223
 				}
 			]
 		}
@@ -138,6 +158,14 @@
 			"boost_period_start": "2025-09-10T00:00:00.000Z",
 			"boost_period_end": "2025-09-11T00:00:00.000Z",
 			"completed_percentage": 100
+		},
+		{
+			"code": "tro",
+			"type": "tro",
+			"current_rewards": 2.017276,
+			"boost_period_start": "2025-09-10T00:00:00.000Z",
+			"boost_period_end": "2025-09-11T00:00:00.000Z",
+			"completed_percentage": 47
 		}
 	]
 }
