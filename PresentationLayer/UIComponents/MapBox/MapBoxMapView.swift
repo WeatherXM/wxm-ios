@@ -155,7 +155,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
 
 		let myMapInitOptions = MapInitOptions(styleURI: MapBoxConstants.styleURI)
-
+	
 		mapView = MapView(frame: .zero, mapInitOptions: myMapInitOptions)
         mapView.ornaments.options.scaleBar.visibility = .hidden
         mapView.gestures.options.rotateEnabled = false
@@ -179,7 +179,8 @@ class MapViewController: UIViewController {
 				return
 			}
 
-			let visibleBounds = self.mapView.mapboxMap.coordinateBounds(for: self.mapView.bounds)
+			let cameraOptions = CameraOptions(cameraState: self.mapView.mapboxMap.cameraState)
+			let visibleBounds = self.mapView.mapboxMap.coordinateBoundsUnwrapped(for: cameraOptions)
 			self.delegate?.didChangeVisibleBounds(self, bounds: visibleBounds)
 		}.store(in: &cancelablesSet)
     }
