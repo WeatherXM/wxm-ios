@@ -22,6 +22,7 @@ protocol ExplorerSearchViewModelDelegate: AnyObject {
 class ExplorerSearchViewModel: ObservableObject {
 
 	@Published var stationsCount: String?
+	@Published var stationsCountDescription: String?
     @Published var isSearchActive: Bool = false {
         didSet {
             delegate?.searchWillBecomeActive(isSearchActive)
@@ -108,7 +109,8 @@ class ExplorerSearchViewModel: ObservableObject {
     }
 
 	func updateStations(count: Int) {
-		stationsCount = count.localizedFormatted
+		stationsCount = count == 0 ? nil : count.localizedFormatted
+		stationsCountDescription = count == 0 ? LocalizableString.Search.noStationsInArea.localized : LocalizableString.Search.stationsInArea.localized
 	}
 
 	func updateUIState() {
