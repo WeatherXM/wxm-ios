@@ -22,13 +22,14 @@ struct StationRewardDetailsView: View {
 					Spacer()
 				}
 
-				let progress = details.completedPercentage ?? 0
-				ProgressView(value: Float(progress), total: 100)
-					.progressViewStyle(ProgressBarStyle(text: "\(progress)%",
-														textColor: Color(colorEnum: .textDarkStable),
-														bgColor: Color(colorEnum: code.primaryColor),
-														progressColor: Color(colorEnum: code.fillColor)))
-					.frame(height: 24)
+				if let progress = details.completedPercentage {
+					ProgressView(value: Float(progress), total: 100)
+						.progressViewStyle(ProgressBarStyle(text: "\(progress)%",
+															textColor: Color(colorEnum: .textDarkStable),
+															bgColor: Color(colorEnum: code.primaryColor),
+															progressColor: Color(colorEnum: code.fillColor)))
+						.frame(height: 24)
+				}
 			}
 
 			BoostDetailsView(items: boostDetailsItems)

@@ -13,8 +13,8 @@ extension BoostCode {
 		switch self {
 			case .betaReward:
 				return LocalizableString.RewardAnalytics.beta.localized
-			case .tro:
-				return "Rollouts"
+			case .trov2:
+				return LocalizableString.RewardAnalytics.rollouts.localized
 			case .correction:
 				return LocalizableString.RewardAnalytics.compensation.localized
 			case .unknown:
@@ -26,7 +26,7 @@ extension BoostCode {
 		switch self {
 			case .betaReward:
 				return .betaRewardsPrimary
-			case .tro:
+			case .trov2:
 				return .troRewardsPrimary
 			case .correction:
 				return .correctionRewardsPrimary
@@ -39,7 +39,7 @@ extension BoostCode {
 		switch self {
 			case .betaReward:
 				return .betaRewardsFill
-			case .tro:
+			case .trov2:
 				return .troRewardsFill
 			case .correction:
 				return .correctionRewardsFill
@@ -52,7 +52,7 @@ extension BoostCode {
 		switch self {
 			case .betaReward:
 				return .betaRewardsPrimary
-			case .tro:
+			case .trov2:
 				return .troRewardsPrimary
 			case .correction:
 				return .correctionRewardsFill
@@ -65,8 +65,8 @@ extension BoostCode {
 		switch self {
 			case .betaReward:
 				return LocalizableString.RewardAnalytics.betaRewards.localized
-			case .tro:
-				return "Rollouts"
+			case .trov2:
+				return LocalizableString.RewardAnalytics.rolloutsRewards.localized
 			case .correction:
 				return LocalizableString.RewardAnalytics.compensationRewards.localized
 			case .unknown:

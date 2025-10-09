@@ -8580,6 +8580,28 @@
         }
       }
     },
+    "reward_analytics_rollouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rollouts"
+          }
+        }
+      }
+    },
+    "reward_analytics_rollouts_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rollouts Rewards"
+          }
+        }
+      }
+    },
     "reward_analytics_station_rewards" : {
       "extractionState" : "manual",
       "localizations" : {

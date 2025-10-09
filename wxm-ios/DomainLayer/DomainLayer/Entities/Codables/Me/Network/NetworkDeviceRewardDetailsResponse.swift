@@ -114,15 +114,15 @@ public extension NetworkDeviceRewardDetailsResponse {
 public enum BoostCode: Codable, RawRepresentable, Hashable, Comparable, Sendable {
 	case betaReward
 	case correction(String)
-	case tro
+	case trov2
 	case unknown(String)
 
 	public init?(rawValue: String) {
 		switch rawValue {
 			case "beta_rewards":
 				self = .betaReward
-			case "tro":
-				self = .tro
+			case "trov2":
+				self = .trov2
 			case let str where str.hasPrefix("correction"):
 				self = .correction(rawValue)
 			default:
@@ -134,8 +134,8 @@ public enum BoostCode: Codable, RawRepresentable, Hashable, Comparable, Sendable
 		switch self {
 			case .betaReward:
 				return "beta_rewards"
-			case .tro:
-				return "tro"
+			case .trov2:
+				return "trov2"
 			case .correction(let raw):
 				return raw
 			case .unknown(let raw):
