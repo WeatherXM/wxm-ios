@@ -21,7 +21,7 @@ protocol ExplorerSearchViewModelDelegate: AnyObject {
 @MainActor
 class ExplorerSearchViewModel: ObservableObject {
 
-	@Published var stationsCount: String = "0"
+	@Published var stationsCount: String?
     @Published var isSearchActive: Bool = false {
         didSet {
             delegate?.searchWillBecomeActive(isSearchActive)

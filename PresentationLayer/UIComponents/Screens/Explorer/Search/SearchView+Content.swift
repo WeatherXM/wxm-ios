@@ -27,14 +27,17 @@ extension SearchView {
 			HStack {
 				Spacer()
 
-				VStack(spacing: 0.0) {
-					Text(viewModel.stationsCount)
-						.foregroundStyle(Color(colorEnum: .textWhite))
-						.font(.system(size: CGFloat(.mediumFontSize)))
-					
-					Text(LocalizableString.Search.stationsInArea.localized)
-						.foregroundStyle(Color(colorEnum: .textWhite))
-						.font(.system(size: CGFloat(.normalFontSize)))
+				if let stationsCount = viewModel.stationsCount {
+					VStack(spacing: 0.0) {
+						Text(stationsCount)
+							.foregroundStyle(Color(colorEnum: .textWhite))
+							.font(.system(size: CGFloat(.mediumFontSize)))
+
+						Text(LocalizableString.Search.stationsInArea.localized)
+							.foregroundStyle(Color(colorEnum: .textWhite))
+							.font(.system(size: CGFloat(.normalFontSize)))
+					}
+					.transition(.opacity.animation(.easeIn))
 				}
 
 				Spacer()
