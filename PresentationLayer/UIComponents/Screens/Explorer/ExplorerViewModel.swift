@@ -128,7 +128,7 @@ public final class ExplorerViewModel: ObservableObject {
 			return sum
 		}
 
-		if explorerData.totalDevices > 0  {
+		if explorerData.totalDevices > 0 {
 			searchViewModel.updateStations(count: count)
 		}
 	}
