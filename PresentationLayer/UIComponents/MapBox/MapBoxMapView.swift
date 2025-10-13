@@ -101,6 +101,10 @@ extension MapBoxMap {
 			viewModel.didUpdateMapBounds(bounds: bounds)
 		}
 
+		func didChangeVisibleStationsCount(_ mapViewController: MapViewController, count: Int) {
+			viewModel.didUpdateStationsCount(count)
+		}
+
         func configureMap(_ mapViewController: MapViewController) {
             viewModel.fetchExplorerData()
         }
@@ -179,6 +183,30 @@ class MapViewController: UIViewController {
 				return
 			}
 
+			self.mapView.mapboxMap.queryRenderedFeatures(with: self.mapView.bounds,
+														 options: .init(layerIds: [MapBoxConstants.heatmapLayerId,
+																				   MapBoxConstants.polygonManagerId,
+																				   MapBoxConstants.coloredPolygonManagerId,
+																				   MapBoxConstants.pointManagerId],
+																		filter: nil)) { result in
+				switch result {
+					case .success(let features):
+						let queriedFeatureCounts: [String: Int] = features.reduce(into: [:]) {
+							guard case let .string(featureId) = $1.queriedFeature.feature.identifier,
+								  case let .object(customData) = $1.queriedFeature.feature.properties?[MapBoxConstants.customData],
+								  case let .number(count) = customData[ExplorerKeys.deviceCount.rawValue] else {
+								return
+							}
+							$0[featureId] = Int(count)
+						}
+
+						let sum = queriedFeatureCounts.values.reduce(0) { $0 + $1 }
+						self.delegate?.didChangeVisibleStationsCount(self, count: sum)
+					case .failure(let error):
+						print(error)
+				}
+			}
+			
 			let cameraOptions = CameraOptions(cameraState: self.mapView.mapboxMap.cameraState)
 			let visibleBounds = self.mapView.mapboxMap.coordinateBounds(for: cameraOptions)
 			self.delegate?.didChangeVisibleBounds(self, bounds: visibleBounds)
@@ -375,4 +403,5 @@ protocol MapViewControllerDelegate: AnyObject {
 	func didTapAnnotation(_ mapViewController: MapViewController, _ annotations: [PolygonAnnotation])
 	func didTapMapArea(_ mapViewController: MapViewController)
 	func didChangeVisibleBounds(_ mapViewController: MapViewController, bounds: CoordinateBounds)
+	func didChangeVisibleStationsCount(_ mapViewController: MapViewController, count: Int)
 }
