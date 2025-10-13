@@ -158,7 +158,6 @@ class MapViewController: UIViewController {
 	
 		mapView = MapView(frame: .zero, mapInitOptions: myMapInitOptions)
         mapView.ornaments.options.scaleBar.visibility = .hidden
-		mapView.mapboxMap.setConstrainMode(.widthAndHeight)
         mapView.gestures.options.rotateEnabled = false
         mapView.gestures.options.pitchEnabled = false
         mapView.gestures.singleTapGestureRecognizer.addTarget(self, action: #selector(didTapMap(_:)))
