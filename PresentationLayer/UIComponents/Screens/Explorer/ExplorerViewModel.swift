@@ -116,23 +116,6 @@ public final class ExplorerViewModel: ObservableObject {
 		mapController?.zoomOut()
 	}
 
-	func didUpdateMapBounds(bounds: CoordinateBounds) {
-//		let count = explorerData.polygonPoints.reduce(0) {
-//			guard let center = $1.polygon.center,
-//				  case let isInBounds = bounds.containsLatitude(forLatitude: center.latitude) && bounds.containsLongitude(forLongitude: center.longitude),
-//				  let count = $1.userInfo?[ExplorerKeys.deviceCount.rawValue] as? Int else {
-//				return $0
-//			}
-//
-//			let sum = $0 + (isInBounds ? count : 0)
-//			return sum
-//		}
-//
-//		if explorerData.totalDevices > 0 {
-//			searchViewModel.updateStations(count: count)
-//		}
-	}
-
 	func didUpdateStationsCount(_ count: Int) {
 		if explorerData.totalDevices > 0 {
 			searchViewModel.updateStations(count: count)

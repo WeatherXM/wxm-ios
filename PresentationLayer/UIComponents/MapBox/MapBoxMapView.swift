@@ -97,10 +97,6 @@ extension MapBoxMap {
             viewModel.showTopOfMapItems.toggle()
         }
 
-		func didChangeVisibleBounds(_ mapViewController: MapViewController, bounds: CoordinateBounds) {
-			viewModel.didUpdateMapBounds(bounds: bounds)
-		}
-
 		func didChangeVisibleStationsCount(_ mapViewController: MapViewController, count: Int) {
 			viewModel.didUpdateStationsCount(count)
 		}
@@ -205,11 +201,7 @@ class MapViewController: UIViewController {
 					case .failure(let error):
 						print(error)
 				}
-			}
-			
-			let cameraOptions = CameraOptions(cameraState: self.mapView.mapboxMap.cameraState)
-			let visibleBounds = self.mapView.mapboxMap.coordinateBounds(for: cameraOptions)
-			self.delegate?.didChangeVisibleBounds(self, bounds: visibleBounds)
+			}			
 		}.store(in: &cancelablesSet)
     }
 
@@ -402,6 +394,5 @@ protocol MapViewControllerDelegate: AnyObject {
 	func configureMap(_ mapViewController: MapViewController)
 	func didTapAnnotation(_ mapViewController: MapViewController, _ annotations: [PolygonAnnotation])
 	func didTapMapArea(_ mapViewController: MapViewController)
-	func didChangeVisibleBounds(_ mapViewController: MapViewController, bounds: CoordinateBounds)
 	func didChangeVisibleStationsCount(_ mapViewController: MapViewController, count: Int)
 }
