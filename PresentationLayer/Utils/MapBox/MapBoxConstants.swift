@@ -21,6 +21,7 @@ enum MapBoxConstants {
 	static let heatmapLayerId = "wtxm-heatmap-layer"
 	static let pointManagerId = "wtxm-point-annotation-manager"
 	static let heatmapSource = "heatmap"
+	static let customData = "custom_data"
 
 	static var styleURI: StyleURI {
 		guard let style: String = Bundle.main.getConfiguration(for: .mapBoxStyle) else {

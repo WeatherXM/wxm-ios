@@ -273,9 +273,9 @@ class MapViewController: UIViewController {
 		pointAnnotationManager.annotations = pointAnnotations
 		pointManager = pointAnnotationManager
 		try? mapView.mapboxMap.updateLayer(withId: MapBoxConstants.pointManagerId, type: SymbolLayer.self) { layer in
-			layer.minZoom = 10
 
 			let stops: [Double: Double] = [
+				8: 0.1,
 				10: CGFloat(.mediumFontSize),
 				12: CGFloat(.XLTitleFontSize),
 				16: CGFloat(.maxFontSize)
