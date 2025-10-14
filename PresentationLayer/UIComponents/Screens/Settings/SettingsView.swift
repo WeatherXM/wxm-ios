@@ -120,10 +120,13 @@ private extension SettingsView {
 	var notificationsSwitch: some View {
 		SettingsButtonView(settingsCase: .notifications,
 						   settingCaption: SettingsEnum.notifications.settingsDescription,
-						   isToggleInteractionEnabled: false,
-						   switchValue: $settingsViewModel.areNotificationsEnabled) {
+						   isToggleInteractionEnabled: true,
+						   switchValue: Binding(get: {
+			settingsViewModel.areNotificationsEnabled
+		},
+												set: { _ in
 			settingsViewModel.handleNotificationSwitchTap()
-		}
+		}))
 	}
 
 	@ViewBuilder
