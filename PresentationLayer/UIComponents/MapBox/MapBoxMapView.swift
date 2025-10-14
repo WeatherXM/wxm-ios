@@ -97,8 +97,8 @@ extension MapBoxMap {
             viewModel.showTopOfMapItems.toggle()
         }
 
-		func didChangeVisibleBounds(_ mapViewController: MapViewController, bounds: CoordinateBounds) {
-			viewModel.didUpdateMapBounds(bounds: bounds)
+		func didChangeVisibleStationsCount(_ mapViewController: MapViewController, count: Int) {
+			viewModel.didUpdateStationsCount(count)
 		}
 
         func configureMap(_ mapViewController: MapViewController) {
@@ -155,7 +155,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
 
 		let myMapInitOptions = MapInitOptions(styleURI: MapBoxConstants.styleURI)
-
+	
 		mapView = MapView(frame: .zero, mapInitOptions: myMapInitOptions)
         mapView.ornaments.options.scaleBar.visibility = .hidden
         mapView.gestures.options.rotateEnabled = false
@@ -179,8 +179,29 @@ class MapViewController: UIViewController {
 				return
 			}
 
-			let visibleBounds = self.mapView.mapboxMap.coordinateBounds(for: self.mapView.bounds)
-			self.delegate?.didChangeVisibleBounds(self, bounds: visibleBounds)
+			self.mapView.mapboxMap.queryRenderedFeatures(with: self.mapView.bounds,
+														 options: .init(layerIds: [MapBoxConstants.heatmapLayerId,
+																				   MapBoxConstants.polygonManagerId,
+																				   MapBoxConstants.coloredPolygonManagerId,
+																				   MapBoxConstants.pointManagerId],
+																		filter: nil)) { result in
+				switch result {
+					case .success(let features):
+						let queriedFeatureCounts: [String: Int] = features.reduce(into: [:]) {
+							guard case let .string(featureId) = $1.queriedFeature.feature.identifier,
+								  case let .object(customData) = $1.queriedFeature.feature.properties?[MapBoxConstants.customData],
+								  case let .number(count) = customData[ExplorerKeys.deviceCount.rawValue] else {
+								return
+							}
+							$0[featureId] = Int(count)
+						}
+
+						let sum = queriedFeatureCounts.values.reduce(0) { $0 + $1 }
+						self.delegate?.didChangeVisibleStationsCount(self, count: sum)
+					case .failure(let error):
+						print(error)
+				}
+			}			
 		}.store(in: &cancelablesSet)
     }
 
@@ -272,9 +293,9 @@ class MapViewController: UIViewController {
 		pointAnnotationManager.annotations = pointAnnotations
 		pointManager = pointAnnotationManager
 		try? mapView.mapboxMap.updateLayer(withId: MapBoxConstants.pointManagerId, type: SymbolLayer.self) { layer in
-			layer.minZoom = 10
 
 			let stops: [Double: Double] = [
+				8: 0.1,
 				10: CGFloat(.mediumFontSize),
 				12: CGFloat(.XLTitleFontSize),
 				16: CGFloat(.maxFontSize)
@@ -373,5 +394,5 @@ protocol MapViewControllerDelegate: AnyObject {
 	func configureMap(_ mapViewController: MapViewController)
 	func didTapAnnotation(_ mapViewController: MapViewController, _ annotations: [PolygonAnnotation])
 	func didTapMapArea(_ mapViewController: MapViewController)
-	func didChangeVisibleBounds(_ mapViewController: MapViewController, bounds: CoordinateBounds)
+	func didChangeVisibleStationsCount(_ mapViewController: MapViewController, count: Int)
 }

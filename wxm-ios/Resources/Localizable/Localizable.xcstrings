@@ -9350,6 +9350,17 @@
         }
       }
     },
+    "search_no_stations_in_area" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No stations in this area"
+          }
+        }
+      }
+    },
     "search_result_recent" : {
       "extractionState" : "manual",
       "localizations" : {

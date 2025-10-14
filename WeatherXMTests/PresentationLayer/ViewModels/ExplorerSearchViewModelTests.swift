@@ -76,7 +76,7 @@ struct ExplorerSearchViewModelTests {
 	}
 
 	@Test func updateActiveStations() {
-		#expect(viewModel.stationsCount == "0")
+		#expect(viewModel.stationsCount == nil)
 		viewModel.updateStations(count: 1000)
 		let comma = Locale.current.groupingSeparator ?? "."
 		#expect(viewModel.stationsCount == "1\(comma)000")

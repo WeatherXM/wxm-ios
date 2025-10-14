@@ -21,24 +21,32 @@ extension SearchView {
         let networkModel: NetworkSearchModel?
     }
 
-    @ViewBuilder
-    var nonActiveView: some View {
-        VStack {
-			HStack {
-				Spacer()
+	@ViewBuilder
+	var nonActiveView: some View {
+		VStack {
+			ZStack {
+				HStack {
+					Spacer()
 
-				VStack(spacing: 0.0) {
-					Text(viewModel.stationsCount)
-						.foregroundStyle(Color(colorEnum: .textWhite))
-						.font(.system(size: CGFloat(.mediumFontSize)))
-					
-					Text(LocalizableString.Search.stationsInArea.localized)
-						.foregroundStyle(Color(colorEnum: .textWhite))
-						.font(.system(size: CGFloat(.normalFontSize)))
+					VStack(spacing: 0.0) {
+						if let stationsCount = viewModel.stationsCount {
+							Text(stationsCount)
+								.foregroundStyle(Color(colorEnum: .textWhite))
+								.font(.system(size: CGFloat(.mediumFontSize)))
+								.transition(.opacity.animation(.easeIn))
+						}
+
+						if let stationsCountDescription = viewModel.stationsCountDescription {
+							Text(stationsCountDescription)
+								.foregroundStyle(Color(colorEnum: .textWhite))
+								.font(.system(size: CGFloat(.normalFontSize)))
+								.transition(.opacity.animation(.easeIn))
+						}
+					}
+
+					Spacer()
 				}
 
-				Spacer()
-			}.overlay {
 				HStack(spacing: CGFloat(.mediumSpacing)) {
 					Button {
 						viewModel.isSearchActive = true
@@ -63,7 +71,7 @@ extension SearchView {
 
 				}
 			}
-            .padding(CGFloat(.defaultSidePadding))
+			.padding(CGFloat(.defaultSidePadding))
 			.background {
 				LinearGradient(
 					stops: [
@@ -79,11 +87,13 @@ extension SearchView {
 				.colorScheme(.dark)
 			}
 			.sizeObserver(size: $topControlsSize)
-            .animation(.easeIn(duration: 0.2),
-                       value: term)
+			.animation(.easeIn(duration: 0.2),
+					   value: term)
+			.animation(.easeIn,
+					   value: viewModel.stationsCount)
 
-            Spacer()
-        }
+			Spacer()
+		}
 	}
 
     @ViewBuilder

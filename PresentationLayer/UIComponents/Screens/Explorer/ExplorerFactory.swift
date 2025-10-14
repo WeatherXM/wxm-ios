@@ -33,6 +33,7 @@ struct ExplorerFactory {
 			var feature = Feature(geometry: geometry)
 			var jsonObjectProperty = JSONObject()
 			jsonObjectProperty[ExplorerKeys.deviceCount.rawValue] = JSONValue(publicHex.deviceCount ?? 0)
+			jsonObjectProperty[ExplorerKeys.cellIndex.rawValue] = JSONValue(publicHex.index)
 			feature.properties = jsonObjectProperty
 			return feature
 		}
@@ -66,13 +67,15 @@ struct ExplorerFactory {
 																								   longitude: publicHex.center.lon),
 										  ExplorerKeys.cellIndex.rawValue: publicHex.index,
 										  ExplorerKeys.deviceCount.rawValue: publicHex.deviceCount ?? 0]
+			polygonAnnotation.customData[ExplorerKeys.deviceCount.rawValue] = JSONValue(publicHex.deviceCount ?? 0)
 			polygonPoints.append(polygonAnnotation)
 			
 			var coloredAnnotation = polygonAnnotation
 			coloredAnnotation.fillColor = StyleColor(UIColor(colorEnum: publicHex.averageDataQuality?.rewardScoreColor ?? .darkGrey))
 			coloredPolygonPoints.append(coloredAnnotation)
 
-			var pointAnnotation = PointAnnotation(point: .init(.init(latitude: publicHex.center.lat, longitude: publicHex.center.lon)))
+			var pointAnnotation = PointAnnotation(id: publicHex.index, point: .init(.init(latitude: publicHex.center.lat, longitude: publicHex.center.lon)))
+			pointAnnotation.customData[ExplorerKeys.deviceCount.rawValue] = JSONValue(publicHex.deviceCount ?? 0)
 			if let deviceCount = publicHex.deviceCount, deviceCount > 0 {
 				pointAnnotation.textField = "\(deviceCount)"
 			}
