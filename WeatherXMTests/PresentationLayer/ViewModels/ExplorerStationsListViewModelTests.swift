@@ -20,7 +20,8 @@ struct ExplorerStationsListViewModelTests {
 		useCase = MockExplorerUseCase()
 		viewModel = ExplorerStationsListViewModel(useCase: useCase,
 												  cellIndex: "",
-												  cellCenter: nil)
+												  cellCenter: nil,
+												  cellCapacity: 2)
 	}
 
     @Test func cellInfo() async throws {

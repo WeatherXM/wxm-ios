@@ -16,10 +16,12 @@ enum MapBoxConstants {
 	static let snapshotMarkerName = "marker"
 	static let polygonManagerId = "wtxm-polygon-annotation-manager"
 	static let coloredPolygonManagerId = "wtxm-colored-polygon-annotation-manager"
+	static let cellCapacityPolygonManagerId = "wtxm-cell-capacity-polygon-annotation-manager"
 	static let initialLat = 37.98075475244475
 	static let initialLon = 23.710478235562956
 	static let heatmapLayerId = "wtxm-heatmap-layer"
 	static let pointManagerId = "wtxm-point-annotation-manager"
+	static let bordersManagerId = "wtxm-borders-annotation-manager"
 	static let heatmapSource = "heatmap"
 	static let customData = "custom_data"
 

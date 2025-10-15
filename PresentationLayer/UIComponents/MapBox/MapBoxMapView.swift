@@ -86,11 +86,12 @@ extension MapBoxMap {
 
         func didTapAnnotation(_: MapViewController, _ annotations: [PolygonAnnotation]) {
             guard let firstValidAnnotation = annotations.first,
-				  let hexIndex = firstValidAnnotation.userInfo?[ExplorerKeys.cellIndex.rawValue] as? String else {
+				  let hexIndex = firstValidAnnotation.userInfo?[ExplorerKeys.cellIndex.rawValue] as? String,
+				  let cellCapacity = firstValidAnnotation.userInfo?[ExplorerKeys.cellCapacity.rawValue] as? Int else {
 				return
 			}
             
-			viewModel.routeToDeviceListFor(hexIndex, firstValidAnnotation.polygon.center)
+			viewModel.routeToDeviceListFor(hexIndex, firstValidAnnotation.polygon.center, capacity: cellCapacity)
         }
 
         func didTapMapArea(_: MapViewController) {

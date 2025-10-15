@@ -43,7 +43,7 @@ struct OverviewViewModelTests {
 
 	init() {
 		delegate = StationDetailsContainerDelegate()
-		viewModel = OverviewViewModel(device: DeviceDetails.mockDevice, linkNavigation: linkNavigator)
+		viewModel = OverviewViewModel(device: DeviceDetails.mockDevice, linkNavigation: linkNavigator, explorerUseCase: MockExplorerUseCase())
 		viewModel.containerDelegate = delegate
 	}
 

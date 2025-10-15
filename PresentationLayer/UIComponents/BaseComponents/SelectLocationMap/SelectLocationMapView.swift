@@ -19,7 +19,12 @@ struct SelectLocationMapView: View {
 									  annotationTitle: Binding(get: { viewModel.selectedDeviceLocation?.name },
 															   set: { _ in }),
 									  geometryProxyForFrameOfMapView: proxy.frame(in: .local),
-									  mapControls: viewModel.mapControls)
+									  polygonPoints: viewModel.explorerData?.cellCapacityPoints,
+									  polylinePoints: viewModel.explorerData?.cellBorderPoints,
+									  textPoints: viewModel.explorerData?.cellCapacityTextPoints,
+									  mapControls: viewModel.mapControls) { annotations in
+					viewModel.handlePointedAnnotationsChange(annotations: annotations)
+				}
 
 				searchArea
 			}
@@ -126,5 +131,6 @@ private extension SelectLocationMapView {
 
 #Preview {
 	let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(DeviceLocationUseCaseApi.self)!
-	return SelectLocationMapView(viewModel: .init(useCase: useCase))
+	let explorerUseCase = SwinjectHelper.shared.getContainerForSwinject().resolve(ExplorerUseCaseApi.self)!
+	return SelectLocationMapView(viewModel: .init(useCase: useCase, explorerUseCase: explorerUseCase))
 }

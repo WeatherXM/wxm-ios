@@ -192,12 +192,13 @@ enum LocalizableString: WXMLocalizable {
 	case noActiveStations
 	case activeStations(Int?)
 	case activeStation(Int?)
-	case presentStations(Int?)
+	case presentStations(Int?,Int?)
 	case stationInactive
 	case home
 	case myStations
 	case explorer
 	case profile
+	case readMore
 
 	var localized: String {
 		var localized = NSLocalizedString(self.key, comment: "")
@@ -207,8 +208,7 @@ enum LocalizableString: WXMLocalizable {
 					.following(let count),
 					.issues(let count),
 					.activeStations(let count),
-					.activeStation(let count),
-					.presentStations(let count):
+					.activeStation(let count):
 				localized = String(format: localized, count ?? 0)
 			case .unfollowAlertDescription(let text),
 					.followAlertDescription(let text),
@@ -224,6 +224,8 @@ enum LocalizableString: WXMLocalizable {
 				localized = String(format: localized, text, link)
 			case .percentage(let count):
 				localized = String(format: localized, count)
+			case .presentStations(let count0, let count1):
+				localized = String(format: localized, count0 ?? 0, count1 ?? 0)
 			default: break
 		}
 
@@ -616,6 +618,8 @@ extension LocalizableString {
 				return "explorer"
 			case .profile:
 				return "profile"
+			case .readMore:
+				return "read_more"
 		}
 	}
 }

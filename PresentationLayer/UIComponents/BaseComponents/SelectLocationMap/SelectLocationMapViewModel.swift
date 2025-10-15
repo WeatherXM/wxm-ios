@@ -10,6 +10,7 @@ import CoreLocation
 import Combine
 import DomainLayer
 import Toolkit
+import MapboxMaps
 
 @MainActor
 protocol SelectLocationMapViewModelDelegate: AnyObject {
@@ -43,16 +44,26 @@ class SelectLocationMapViewModel: ObservableObject {
 		}
 	}
 	@Published private(set) var searchResults: [DeviceLocationSearchResult] = []
+	@Published private(set) var explorerData: ExplorerData?
 	var mapControls: MapControls = .init()
 	private var cancellableSet: Set<AnyCancellable> = .init()
 	private var latestTask: Cancellable?
+	private var latestPointedAnnotations: [PolygonAnnotation]?
 	let useCase: DeviceLocationUseCaseApi
+	let explorerUseCase: ExplorerUseCaseApi
 	weak var delegate: SelectLocationMapViewModelDelegate?
+	let linkNavigation: LinkNavigation
 
-	init(useCase: DeviceLocationUseCaseApi, initialCoordinate: CLLocationCoordinate2D? = nil, delegate: SelectLocationMapViewModelDelegate? = nil) {
+	init(useCase: DeviceLocationUseCaseApi,
+		 explorerUseCase: ExplorerUseCaseApi,
+		 initialCoordinate: CLLocationCoordinate2D? = nil,
+		 delegate: SelectLocationMapViewModelDelegate? = nil,
+		 linkNavigation: LinkNavigation = LinkNavigationHelper()) {
 		self.useCase = useCase
+		self.explorerUseCase = explorerUseCase
 		self.delegate = delegate
 		self.selectedCoordinate = initialCoordinate ?? useCase.getSuggestedDeviceLocation() ?? .init()
+		self.linkNavigation = linkNavigation
 		$selectedCoordinate
 			.debounce(for: 1.0, scheduler: DispatchQueue.main)
 			.sink { [weak self] _ in
@@ -70,6 +81,10 @@ class SelectLocationMapViewModel: ObservableObject {
 		useCase.searchResults.sink { [weak self] results in
 			self?.searchResults = results
 		}.store(in: &cancellableSet)
+
+		Task { @MainActor in
+			await getExplorerData()
+		}
 	}
 
 	func handleSearchResultTap(result: DeviceLocationSearchResult) {
@@ -105,6 +120,28 @@ class SelectLocationMapViewModel: ObservableObject {
 			}
 		}
 	}
+
+	func handlePointedAnnotationsChange(annotations: [PolygonAnnotation]) {
+		latestPointedAnnotations = annotations
+		let capacityReached = isPointedCellCapacityReached()
+		
+		if capacityReached {
+			Toast.shared.show(text: LocalizableString.ClaimDevice.cellCapacityReachedMessage.localized.attributedMarkdown ?? "",
+							  type: .info,
+							  retryButtonTitle: LocalizableString.readMore.localized) { [weak self] in
+				self?.linkNavigation.openUrl(DisplayedLinks.cellCapacity.linkURL)
+			}
+		}
+	}
+
+	func isPointedCellCapacityReached() -> Bool {
+		guard let annotation = latestPointedAnnotations?.first,
+			  let count = annotation.userInfo?[ExplorerKeys.deviceCount.rawValue] as? Int,
+			  let capacity = annotation.userInfo?[ExplorerKeys.cellCapacity.rawValue] as? Int else {
+			return false
+		}
+		return count >= capacity
+	}
 }
 
 private extension SelectLocationMapViewModel {
@@ -114,6 +151,20 @@ private extension SelectLocationMapViewModel {
 		latestTask = useCase.locationFromCoordinates(LocationCoordinates.fromCLLocationCoordinate2D(selectedCoordinate)).sink { [weak self] location in
 			print("selectedDeviceLocation: \(String(describing: location?.coordinates))" )
 			self?.selectedDeviceLocation = location
+		}
+	}
+
+	func getExplorerData() async {
+		do {
+			let result = try await explorerUseCase.getPublicHexes()
+			switch result {
+				case .success(let hexes):
+					self.explorerData = ExplorerFactory(publicHexes: hexes).generateExplorerData()
+				case .failure(let error):
+					print(error)
+			}
+		} catch {
+			print(error)
 		}
 	}
 }

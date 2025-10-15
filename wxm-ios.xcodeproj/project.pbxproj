@@ -369,6 +369,7 @@
 		267EC4292A98C3D300F2C37E /* WXMAlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4272A98C3D300F2C37E /* WXMAlertModifier.swift */; };
 		267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4282A98C3D300F2C37E /* WXMAlertView.swift */; };
 		268028AA2AF298290031379C /* Indication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268028A92AF298290031379C /* Indication.swift */; };
+		26862DD22E86CBD000B56C21 /* PublicHex+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26862DCE2E86CBBF00B56C21 /* PublicHex+.swift */; };
 		268645982A6FA7C100EB85B1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268645972A6FA7C100EB85B1 /* Router.swift */; };
 		268B5C372BCE7CF900E63655 /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C362BCE7CF900E63655 /* NavigationTitleView.swift */; };
 		268B5C3A2BCE808200E63655 /* ForecastDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C392BCE808200E63655 /* ForecastDetailsView.swift */; };
@@ -1157,6 +1158,7 @@
 		267EC4282A98C3D300F2C37E /* WXMAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMAlertView.swift; sourceTree = "<group>"; };
 		267EDF5F2B67B5AC00C221B1 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
 		268028A92AF298290031379C /* Indication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indication.swift; sourceTree = "<group>"; };
+		26862DCE2E86CBBF00B56C21 /* PublicHex+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicHex+.swift"; sourceTree = "<group>"; };
 		268645972A6FA7C100EB85B1 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		268B5C362BCE7CF900E63655 /* NavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitleView.swift; sourceTree = "<group>"; };
 		268B5C392BCE808200E63655 /* ForecastDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsView.swift; sourceTree = "<group>"; };
@@ -2553,6 +2555,7 @@
 				2672B87B2C89F19A002266BE /* BoostCode+.swift */,
 				2672B87D2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift */,
 				269EC1682E327EE60099DB78 /* StationAlert+.swift */,
+				26862DCE2E86CBBF00B56C21 /* PublicHex+.swift */,
 			);
 			path = DomainExtensions;
 			sourceTree = "<group>";
@@ -4229,6 +4232,7 @@
 				267548DE29A91A87008BCF40 /* FailAPICodeEnum.swift in Sources */,
 				267547BF29A9181E008BCF40 /* FailedDeleteView.swift in Sources */,
 				26ACE8C72C86015300EA22DD /* LocalizableString+RewardAnalytics.swift in Sources */,
+				26862DD22E86CBD000B56C21 /* PublicHex+.swift in Sources */,
 				260F8E552E2FC06700CBAEB2 /* ClaimDevicePhotosManager.swift in Sources */,
 				26A4118A29BA21E600A2C10B /* FailSuccessStateObject.swift in Sources */,
 				2645823B2A41C07000195C21 /* FailSuccessViewModifier.swift in Sources */,

@@ -792,6 +792,39 @@
         }
       }
     },
+    "claim_device_cell_capacity_reached_alert_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This cell has already reached its station limit based on its geospatial capacity. Only the top-ranked stations in this cell, determined by reward score and seniority, are eligible for rewards.\nIf you deploy here and your station ranks below the capacity threshold, it won’t receive any rewards.\nFor example, in a cell with a capacity of 5 stations, only the top 5 ranked devices are rewarded.\nTo maximize your earnings, consider deploying in a cell with available capacity."
+          }
+        }
+      }
+    },
+    "claim_device_cell_capacity_reached_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Watch out!"
+          }
+        }
+      }
+    },
+    "claim_device_cell_capacity_reached_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell already at max capacity. New stations may not be eligible for rewards."
+          }
+        }
+      }
+    },
     "claim_device_claim_d1_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1793,6 +1826,17 @@
         }
       }
     },
+    "claim_device_proceed_anyway" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proceed anyway"
+          }
+        }
+      }
+    },
     "claim_device_pulse_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1800,6 +1844,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pulse | 4G"
+          }
+        }
+      }
+    },
+    "claim_device_relocate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relocate"
           }
         }
       }
@@ -4483,7 +4538,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cell capacity is a parameter that is used to define the maximum number of stations that are eligible for rewards in a specific cell. Every cell has a predefined capacity that depends on its geospatial characteristics*.\n\nEvery station is ranked in its cell daily, based on its reward score and its seniority. As long as the station's ranking is above the capacity threshold, it will be rewarded, whereas getting below it will lead to zero rewards. For example, in a cell with a max capacity of 5 stations, if a station is ranked 3rd it will get rewarded, but if it is ranked 7th, it won’t receive any rewards.\n\nRead more about how our Cell Capacity algorithm works.\n\n* The cell capacity is currently set to the fixed value of 10 rewardable stations, for every cell."
+            "value" : "Cell capacity is a parameter that is used to define the maximum number of stations that are eligible for rewards in a specific cell. Every cell has a predefined capacity that depends on its geospatial characteristics*.\n\nEvery station is ranked in its cell daily, based on its reward score and its seniority. As long as the station's ranking is above the capacity threshold, it will be rewarded, whereas getting below it will lead to zero rewards. For example, in a cell with a max capacity of 5 stations, if a station is ranked 3rd it will get rewarded, but if it is ranked 7th, it won’t receive any rewards.\n\nRead more about how our Cell Capacity algorithm works."
           }
         }
       }
@@ -7750,7 +7805,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%d/10 stations present"
+            "value" : "%d/%d stations present"
           }
         }
       }
@@ -8261,6 +8316,17 @@
         }
       }
     },
+    "read_more" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read More"
+          }
+        }
+      }
+    },
     "read_terms_and_privacy_policy" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8641,7 +8707,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cell ranking is a measure of a station's performance relative to others within the same cell - a hexagonal area, covering approximately 5 square kilometers (2 square miles) on the planet.\n\nCell capacity is a parameter that is used to define the maximum number of stations that are eligible for rewards in a specific cell. Every cell has a predefined capacity that depends on its geospatial characteristics*.\n\nEvery station is ranked in its cell daily, based on its reward score and its seniority. As long as the station's ranking is above the capacity threshold, it will be rewarded, whereas getting below it will lead to zero rewards. For example, in a cell with a max capacity of 5 stations, if a station is ranked 3rd it will get rewarded, but if it is ranked 7th, it won’t receive any rewards.\n\nRead more about how our Cell Capacity algorithm works.  * The cell capacity is currently set to the fixed value of 10 rewardable stations, for every cell."
+            "value" : "Cell ranking is a measure of a station's performance relative to others within the same cell - a hexagonal area, covering approximately 5 square kilometers (2 square miles) on the planet.\n\nCell capacity is a parameter that is used to define the maximum number of stations that are eligible for rewards in a specific cell. Every cell has a predefined capacity that depends on its geospatial characteristics*.\n\nEvery station is ranked in its cell daily, based on its reward score and its seniority. As long as the station's ranking is above the capacity threshold, it will be rewarded, whereas getting below it will lead to zero rewards. For example, in a cell with a max capacity of 5 stations, if a station is ranked 3rd it will get rewarded, but if it is ranked 7th, it won’t receive any rewards.\n\nRead more about how our Cell Capacity algorithm works."
           }
         }
       }

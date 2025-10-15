@@ -37,10 +37,12 @@ class OverviewViewModel: ObservableObject {
     private(set) var failObj: FailSuccessStateObject?
     private var cancellables: Set<AnyCancellable> = []
 	private let linkNavigation: LinkNavigation
+	private let explorerUseCase: ExplorerUseCaseApi
 
-	init(device: DeviceDetails?, linkNavigation: LinkNavigation = LinkNavigationHelper()) {
+	init(device: DeviceDetails?, linkNavigation: LinkNavigation = LinkNavigationHelper(), explorerUseCase: ExplorerUseCaseApi) {
         self.device = device
 		self.linkNavigation = linkNavigation
+		self.explorerUseCase = explorerUseCase
         refresh {}
         observeOffset()
     }
@@ -125,16 +127,24 @@ private extension OverviewViewModel {
 	}
 
 	func navigateToCell() {
-		guard let cellIndex = device?.cellIndex,
-			  let center = device?.cellCenter?.toCLLocationCoordinate2D() else {
-			return
+		LoaderView.shared.show()
+		Task { @MainActor in
+			defer {
+				LoaderView.shared.dismiss()
+			}
+
+			guard let cellIndex = device?.cellIndex,
+				  let center = device?.cellCenter?.toCLLocationCoordinate2D(),
+				  let capacity = try? await explorerUseCase.getCell(cellIndex: cellIndex).get()?.capacity else {
+				return
+			}
+
+			WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentName: .stationDetailsChip,
+																		.contentType: .region,
+																		.itemId: .stationRegion])
+
+			Router.shared.navigateTo(.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: cellIndex, cellCenter: center, cellCapacity: capacity)))
 		}
-
-		WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentName: .stationDetailsChip,
-																	.contentType: .region,
-																	.itemId: .stationRegion])
-
-		Router.shared.navigateTo(.explorerList(ViewModelsFactory.getExplorerStationsListViewModel(cellIndex: cellIndex, cellCenter: center)))
 	}
 }
 
@@ -158,22 +168,5 @@ extension OverviewViewModel: StationDetailsViewModelChild {
 
     func showLoading() {
         viewState = .loading
-    }
-}
-
-// MARK: - Mock
-
-extension OverviewViewModel {
-    private convenience init() {
-        var device = NetworkDevicesResponse()
-        device.address = "WetherXM HQ"
-        device.name = "A nice station"
-        device.attributes.isActive = true
-        device.attributes.lastActiveAt = Date().ISO8601Format()
-        self.init(device: nil)
-    }
-
-    static var mockInstance: OverviewViewModel {
-        OverviewViewModel()
     }
 }
