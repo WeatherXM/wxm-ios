@@ -21,7 +21,7 @@ public class ExplorerService {
 	}
 
 	func getPublicHexes() throws -> AnyPublisher<DataResponse<[PublicHex], NetworkErrorResponse>, Never> {
-		if let cachedValue: [PublicHex] = cache.getCachedValue(for: cacheKey) {
+		if let cachedValue: [PublicHex] = cache.getValue(for: cacheKey) {
 			let response: DataResponse<[PublicHex], NetworkErrorResponse> = .init(request: nil,
 																				  response: nil,
 																				  data: nil,
