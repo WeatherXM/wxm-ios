@@ -68,6 +68,7 @@ extension LocalizableString {
 		case contactSupportButtonTitle
 		case unhandledBoostMessage
 		case rewardsBoostFailedTitle
+		case boostSeeDetails
 	}
 }
 
@@ -229,6 +230,8 @@ extension LocalizableString.RewardDetails: WXMLocalizable {
 				return "reward_details_unhandled_boost_message"
 			case .rewardsBoostFailedTitle:
 				return "reward_details_rewards_boost_failed_title"
+			case .boostSeeDetails:
+				return "reward_details_boost_see_details"
 		}
 	}
 }

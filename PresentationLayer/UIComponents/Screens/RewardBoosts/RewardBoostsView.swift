@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Toolkit
+import DomainLayer
 
 struct RewardBoostsView: View {
 	@StateObject var viewModel: RewardBoostsViewModel
@@ -74,14 +75,7 @@ private extension RewardBoostsView {
 							.overlay(Color(colorEnum: .layer2))
 					}
 
-					BoostDetailsView(items: [.init(title: LocalizableString.Boosts.rewardableStationHours.localized,
-												   value: (details.stationHours ?? 0).localizedFormatted),
-											 .init(title: LocalizableString.Boosts.dailyTokensToBeRewarded.localized,
-												   value: "\((details.maxDailyReward ?? 0.0).toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"),
-											 .init(title: LocalizableString.Boosts.totalTokensToBeRewarded.localized,
-												   value: "\((details.maxTotalReward ?? 0.0).toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"),
-											 .init(title: LocalizableString.Boosts.boostPeriod.localized,
-															  value: "\(details.boostStartDateString) -  \(details.boostStopDateString)")])
+					BoostDetailsView(items: getDetailsItems(details: details))
 				}
 			}
 		}
@@ -131,6 +125,30 @@ private extension RewardBoostsView {
 			.buttonStyle(WXMButtonStyle(fillColor: .layer1, strokeColor: .noColor))
 		}
 		.WXMCardStyle()
+	}
+
+	func getDetailsItems(details: NetworkDeviceRewardBoostsResponse.Details) -> [BoostDetailsView.Item] {
+		var items = [BoostDetailsView.Item]()
+
+		if let stationHours = details.stationHours {
+			items.append(.init(title: LocalizableString.Boosts.rewardableStationHours.localized,
+							   value: stationHours.localizedFormatted))
+		}
+
+		if let maxDailyReward = details.maxDailyReward {
+			items.append(.init(title: LocalizableString.Boosts.dailyTokensToBeRewarded.localized,
+							   value: "\(maxDailyReward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"))
+		}
+
+		if let maxTotalReward = details.maxTotalReward {
+			items.append(.init(title: LocalizableString.Boosts.totalTokensToBeRewarded.localized,
+							   value: "\(maxTotalReward.toWXMTokenPrecisionString) \(StringConstants.wxmCurrency)"))
+		}
+
+		items.append(.init(title: LocalizableString.Boosts.boostPeriod.localized,
+						   value: "\(details.boostStartDateString) -  \(details.boostStopDateString)"))
+
+		return items
 	}
 }
 

@@ -22,21 +22,37 @@ struct StationRewardDetailsView: View {
 					Spacer()
 				}
 
-				let progress = details.completedPercentage ?? 0
-				ProgressView(value: Float(progress), total: 100)
-					.progressViewStyle(ProgressBarStyle(text: "\(progress)%",
-														textColor: Color(colorEnum: .textDarkStable),
-														bgColor: Color(colorEnum: code.primaryColor),
-														progressColor: Color(colorEnum: code.fillColor)))
-					.frame(height: 24)
+				if let progress = details.completedPercentage {
+					ProgressView(value: Float(progress), total: 100)
+						.progressViewStyle(ProgressBarStyle(text: "\(progress)%",
+															textColor: Color(colorEnum: .textDarkStable),
+															bgColor: Color(colorEnum: code.primaryColor),
+															progressColor: Color(colorEnum: code.fillColor)))
+						.frame(height: 24)
+				}
 			}
 
-			BoostDetailsView(items: [.init(title: LocalizableString.RewardAnalytics.totalTokensEarnedSoFar.localized,
-										   value: (details.currentRewards ?? 0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency),
-									 .init(title: LocalizableString.Boosts.totalTokensToBeRewarded.localized,
-										   value: (details.totalRewards ?? 0).toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency),
-									 .init(title: LocalizableString.Boosts.boostPeriod.localized,
-										   value: "\(details.boostStartDateString) - \(details.boostStopDateString)")])
+			BoostDetailsView(items: boostDetailsItems)
 		}
     }
+}
+
+private extension StationRewardDetailsView {
+	var boostDetailsItems: [BoostDetailsView.Item] {
+		var items = [BoostDetailsView.Item]()
+		if let currentRewards = details.currentRewards {
+			items.append(.init(title: LocalizableString.RewardAnalytics.totalTokensEarnedSoFar.localized,
+							   value: currentRewards.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency))
+		}
+
+		if let totalRewards = details.totalRewards {
+			items.append(.init(title: LocalizableString.Boosts.totalTokensToBeRewarded.localized,
+							   value: totalRewards.toWXMTokenPrecisionString + " " + StringConstants.wxmCurrency))
+		}
+
+		items.append(.init(title: LocalizableString.Boosts.boostPeriod.localized,
+						   value: "\(details.boostStartDateString) - \(details.boostStopDateString)"))
+
+		return items
+	}
 }
