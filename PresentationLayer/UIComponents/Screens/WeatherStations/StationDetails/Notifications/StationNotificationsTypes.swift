@@ -8,7 +8,7 @@
 import Foundation
 import DomainLayer
 
-extension StationNotificationsTypes: @retroactive CustomStringConvertible {
+extension StationNotificationsSwitchOptions: @retroactive CustomStringConvertible {
 	var title: String {
 		switch self {
 			case .activity:
@@ -35,7 +35,7 @@ extension StationNotificationsTypes: @retroactive CustomStringConvertible {
 		}
 	}
 
-	static func casesForDevice(_ device: DeviceDetails) -> [StationNotificationsTypes] {
+	static func casesForDevice(_ device: DeviceDetails) -> [Self] {
 		guard device.isHelium else {
 			return [.activity, .battery, .health]
 		}
