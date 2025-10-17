@@ -16,9 +16,9 @@ class StationNotificationsViewModel: ObservableObject {
 	let followState: UserDeviceFollowState
 	let useCase: StationNotificationsUseCaseApi
 	@Published private(set) var masterSwitchValue: Bool = false
-	@Published private(set) var options: [StationNotificationsTypes: Bool] = [:]
-	var availableNotifications: [StationNotificationsTypes] {
-		StationNotificationsTypes.casesForDevice(device)
+	@Published private(set) var options: [StationNotificationsSwitchOptions: Bool] = [:]
+	var availableNotifications: [StationNotificationsSwitchOptions] {
+		StationNotificationsSwitchOptions.casesForDevice(device)
 	}
 	private var cancellableSet: Set<AnyCancellable> = .init()
 
@@ -31,7 +31,7 @@ class StationNotificationsViewModel: ObservableObject {
 		observeAuthorizationStatus()
 	}
 
-	func setValue(_ value: Bool, for notificationType: StationNotificationsTypes) {
+	func setValue(_ value: Bool, for notificationType: StationNotificationsSwitchOptions) {
 		WXMAnalytics.shared.trackEvent(.userAction, parameters: [.actionName: .toggleStationNotificationType,
 																 .action: value ? .enable : .disable,
 																 .source: notificationType.analyticsValue])
@@ -73,12 +73,12 @@ class StationNotificationsViewModel: ObservableObject {
 
 private extension StationNotificationsViewModel {
 	func updateOptions() {
-		options = Dictionary(uniqueKeysWithValues: StationNotificationsTypes.casesForDevice(device).map {
+		options = Dictionary(uniqueKeysWithValues: StationNotificationsSwitchOptions.casesForDevice(device).map {
 			($0, valueFor(notificationType: $0))
 		})
 	}
 
-	func valueFor(notificationType: StationNotificationsTypes) -> Bool {
+	func valueFor(notificationType: StationNotificationsSwitchOptions) -> Bool {
 		guard let deviceId = device.id else {
 			return false
 		}

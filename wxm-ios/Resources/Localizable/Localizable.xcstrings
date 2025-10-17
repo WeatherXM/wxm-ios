@@ -5363,7 +5363,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Low GW battery"
+            "value" : "Low Gateway battery"
           }
         }
       }
@@ -6716,7 +6716,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Station Low Battery"
+            "value" : "Low Weather Station Battery"
           }
         }
       }
@@ -6739,6 +6739,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Firmware Update"
+          }
+        }
+      }
+    },
+    "notification_gw_battery_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To avoid data interruptions, please make sure the Gateway of %@ is properly exposed to sunlight."
+          }
+        }
+      }
+    },
+    "notification_gw_battery_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low Gateway Battery"
           }
         }
       }
@@ -10984,7 +11006,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Your gateway is reporting low battery. This will lead to data gaps and eventually loss of rewards. Read more on how to replace your station batteries."
+            "value" : "Your gateway’s solar charge is running low. This can cause data gaps and reward loss. Make sure your gateway is properly exposed to sunlight to keep it powered."
           }
         }
       }
@@ -10995,7 +11017,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Low GW Battery"
+            "value" : "Low Gateway Battery"
           }
         }
       }
@@ -11028,7 +11050,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Low WS Battery"
+            "value" : "Low Weather Station Battery"
           }
         }
       }
@@ -11985,7 +12007,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Low WS Battery"
+            "value" : "Low Weather Station Battery"
           }
         }
       }

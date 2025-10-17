@@ -7,7 +7,7 @@
 
 import Foundation
 
-private typealias StationOptions = [StationNotificationsTypes: Bool]
+private typealias StationOptions = [StationNotificationsSwitchOptions: Bool]
 private typealias Stations = [String: StationOptions]
 private typealias EnabledStations = [String: Bool]
 
@@ -35,7 +35,7 @@ public struct StationNotificationsUseCase: StationNotificationsUseCaseApi {
 		userDefaultsRepository.saveValue(key: notificationsEnabledUDKey, value: enabledStations)
 	}
 
-	public func setNotificationEnabled(_ enabled: Bool, deviceId: String, for type: StationNotificationsTypes) {
+	public func setNotificationEnabled(_ enabled: Bool, deviceId: String, for type: StationNotificationsSwitchOptions) {
 		var stations = getStations() ?? [:]
 		guard var options = stations[deviceId] else {
 			var options: StationOptions = [:]
@@ -50,7 +50,7 @@ public struct StationNotificationsUseCase: StationNotificationsUseCaseApi {
 		saveStations(stations)
 	}
 
-	public func isNotificationEnabled(_ type: StationNotificationsTypes, deviceId: String) -> Bool {
+	public func isNotificationEnabled(_ type: StationNotificationsSwitchOptions, deviceId: String) -> Bool {
 		let options = getStations()?[deviceId]
 		return options?[type] ?? true
 	}
@@ -64,7 +64,7 @@ private extension StationNotificationsUseCase {
 
 		return Dictionary(uniqueKeysWithValues: stationsDict.compactMap({ key, value in
 			let stationOptions: StationOptions = Dictionary(uniqueKeysWithValues: value.compactMap({ key, value in
-				guard let key = StationNotificationsTypes(rawValue: key) else {
+				guard let key = StationNotificationsSwitchOptions(rawValue: key) else {
 					return nil
 				}
 				

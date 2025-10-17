@@ -18,6 +18,8 @@ extension StationNotificationsTypes {
 				LocalizableString.Error.notificationFirmwareTitle.localized
 			case .battery:
 				LocalizableString.Error.notificationBatteryTitle.localized
+			case .gwBattery:
+				LocalizableString.Error.notificationGwBatteryTitle.localized
 			case .health:
 				LocalizableString.Error.notificationHealthTitle.localized
 		}
@@ -31,11 +33,15 @@ extension StationNotificationsTypes {
 				LocalizableString.Error.notificationFirmwareDescription(stationName).localized
 			case .battery:
 				LocalizableString.Error.notificationBatteryDescription(stationName).localized
+			case .gwBattery:
+				LocalizableString.Error.notificationGwBatteryDescription(stationName).localized
 			case .health:
 				LocalizableString.Error.notificationHealthDescription(stationName).localized
 		}
 	}
+}
 
+extension StationNotificationsSwitchOptions {
 	var analyticsValue: ParameterValue {
 		switch self {
 			case .activity:

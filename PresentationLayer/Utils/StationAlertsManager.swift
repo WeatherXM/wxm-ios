@@ -39,7 +39,12 @@ private extension StationAlertsManager {
 		if shouldSendLowBatteryNotification(for: device) {
 			alerts.append(.battery)
 		}
-		
+
+		// GW Low battery
+		if shouldSendGWLowBatteryNotification(for: device) {
+			alerts.append(.gwBattery)
+		}
+
 		// Firmware
 		if shouldSendFirmwareNotification(for: device) {
 			alerts.append(.firmwareUpdate)
@@ -102,6 +107,20 @@ private extension StationAlertsManager {
 		}
 
 		return device.batteryState == .low
+	}
+
+	func shouldSendGWLowBatteryNotification(for device: DeviceDetails) -> Bool {
+		guard let deviceId = device.id,
+			  stationNotificationsUseCase.isNotificationEnabled(.battery, deviceId: deviceId) else {
+			return false
+		}
+
+		let lastNotificationSent = meUseCase.lastNotificationAlertSent(for: deviceId, alert: .gwBattery)
+		if lastNotificationSent?.isToday == true {
+			return false
+		}
+
+		return device.gatewayBatteryState == .low
 	}
 
 	func shouldSendFirmwareNotification(for device: DeviceDetails) -> Bool {

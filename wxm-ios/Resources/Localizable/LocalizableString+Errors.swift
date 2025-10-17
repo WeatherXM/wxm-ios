@@ -77,6 +77,8 @@ extension LocalizableString {
 		case notificationInactiveDescription(String)
 		case notificationBatteryTitle
 		case notificationBatteryDescription(String)
+		case notificationGwBatteryTitle
+		case notificationGwBatteryDescription(String)
 		case notificationFirmwareTitle
 		case notificationFirmwareDescription(String)
 		case notificationHealthTitle
@@ -103,6 +105,7 @@ extension LocalizableString.Error: WXMLocalizable {
 					.unownedUnidentifiedAnomalousDescription(let text),
 					.notificationInactiveDescription(let text),
 					.notificationBatteryDescription(let text),
+					.notificationGwBatteryDescription(let text),
 					.notificationHealthDescription(let text),
 					.notificationFirmwareDescription(let text):
 				localized = String(format: localized, text)
@@ -250,6 +253,10 @@ extension LocalizableString.Error: WXMLocalizable {
 				return "notification_battery_title"
 			case .notificationBatteryDescription:
 				return "notification_battery_description"
+			case .notificationGwBatteryTitle:
+				return "notification_gw_battery_title"
+			case .notificationGwBatteryDescription:
+				return "notification_gw_battery_description"
 			case .notificationFirmwareTitle:
 				return "notification_firmware_title"
 			case .notificationFirmwareDescription:
