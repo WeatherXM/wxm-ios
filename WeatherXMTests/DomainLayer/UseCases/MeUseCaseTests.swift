@@ -181,4 +181,13 @@ struct MeUseCaseTests {
 			}.store(in: &cancellableWrapper.cancellableSet)
 		}
 	}
+
+	@Test func getDeviceSupport() async throws {
+		let response = try await useCase.getDeviceSupport(deviceName: "Station").toAsync().result.get()
+		#expect(response.status == .succeeded)
+		let output = try #require(response.outputs?.result)
+		#expect(!output.isEmpty)
+		#expect(output.starts(with: "This is") )
+	}
+
 }

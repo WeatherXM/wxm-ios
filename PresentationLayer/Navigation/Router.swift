@@ -80,6 +80,8 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .stationNotifications(let vm):
 				hasher.combine(vm)
+			case .stationSupport(let vm):
+				hasher.combine(vm)
 			case .safariView(let url):
 				hasher.combine(url)
 		}
@@ -149,6 +151,8 @@ enum Route: Hashable, Equatable {
 				"netWorkGrowth"
 			case .stationNotifications:
 				"stationNotifications"
+			case .stationSupport:
+				"stationSupport"
 			case .safariView:
 				"safariView"
 		}
@@ -184,6 +188,7 @@ enum Route: Hashable, Equatable {
 	case tokenMetrics(NetworkStatsViewModel)
 	case networkGrowth(NetworkStatsViewModel)
 	case stationNotifications(StationNotificationsViewModel)
+	case stationSupport(StationSupportViewModel)
 	case safariView(URL)
 }
 
@@ -289,6 +294,8 @@ extension Route {
 				NavigationContainerView {
 					StationsNotificationsView(viewModel: notificationsViewModel)
 				}
+			case .stationSupport(let supportViewModel):
+				StationSupportView(viewModel: supportViewModel)
 			case .safariView(let url):
 				SafariView(url: url)
 					.ignoresSafeArea()
@@ -319,10 +326,12 @@ class Router: ObservableObject {
 			if !showBottomSheet {
 				// Set ref to nil in order to deallocate the corresponding view model
 				bottomSheetRoute = nil
+				bottomSheetBgColor = .bottomSheetBg
 			}
 		}
 	}
 	var bottomSheetRoute: Route?
+	var bottomSheetBgColor: ColorEnum = .bottomSheetBg
 	let navigationHost = HostingWrapper()
 		
 	func showFullScreen(_ route: Route) {
@@ -335,8 +344,9 @@ class Router: ObservableObject {
 		}
 	}
 
-	func showBottomSheet(_ route: Route) {
+	func showBottomSheet(_ route: Route, bgColor: ColorEnum = .bottomSheetBg) {
 		bottomSheetRoute = route
+		bottomSheetBgColor = bgColor
 		showBottomSheet = true
 	}
 

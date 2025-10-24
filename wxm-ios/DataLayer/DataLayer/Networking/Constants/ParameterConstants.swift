@@ -34,6 +34,7 @@ struct ParameterConstants {
 		static let lon = "lon"
 		static let mode = "mode"
 		static let names = "names"
+		static let stationName = "station_name"
     }
 
 	enum Cells {

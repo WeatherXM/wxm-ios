@@ -64,4 +64,6 @@ public protocol MeRepository {
 	func getUserDevicesFollowStates() async throws -> Result<[UserDeviceFollowState]?, NetworkErrorResponse>
 	func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never>
 	func setNotificationsFcmToken(installationId: String, token: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
+	func getDeviceSupport(deviceName: String) throws -> AnyPublisher<DataResponse<NetworkDeviceSupportResponse, NetworkErrorResponse>, Never>
+
 }

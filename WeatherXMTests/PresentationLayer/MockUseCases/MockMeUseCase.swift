@@ -196,4 +196,20 @@ final class MockMeUseCase: MeUseCaseApi {
 	func notificationAlertSent(for deviceId: String, alert: StationNotificationsTypes) {
 
 	}
+
+	func getDeviceSupport(deviceName: String) throws -> AnyPublisher<DataResponse<NetworkDeviceSupportResponse, NetworkErrorResponse>, Never> {
+		let supportResponse = NetworkDeviceSupportResponse(status: .succeeded,
+														   error: nil,
+														   stationName: deviceName,
+														   outputs: .init(result: "This is the result"))
+
+		let response = DataResponse<NetworkDeviceSupportResponse, NetworkErrorResponse>(request: nil,
+																						response: nil,
+																						data: nil,
+																						metrics: nil,
+																						serializationDuration: 0,
+																						result: .success(supportResponse))
+
+		return Just(response).eraseToAnyPublisher()
+	}
 }
