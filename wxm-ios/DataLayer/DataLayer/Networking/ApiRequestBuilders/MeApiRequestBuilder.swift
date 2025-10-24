@@ -15,10 +15,6 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	func asURLRequest() throws -> URLRequest {
 		var url = try NetworkConstants.baseUrl.asURL()
 
-		if case .deviceSupport(_) = self {
-			url = try NetworkConstants.deviceSupportUrl.asURL()
-		}
-
 		var urlRequest = URLRequest(url: url.appendingPathComponent(path))
 		// Http method
 		urlRequest.httpMethod = method.rawValue
