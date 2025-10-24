@@ -21,12 +21,7 @@ class OverviewViewModel: ObservableObject {
 		followState.weatherNoDataText
 	}
 	var shouldShowAIAssistantButton: Bool {
-		guard let qod = device?.qod,
-			  followState?.relation == .owned else {
-			return false
-		}
-
-		return qod < 80
+		followState?.relation == .owned
 	}
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
 	@Published private(set) var device: DeviceDetails? {
