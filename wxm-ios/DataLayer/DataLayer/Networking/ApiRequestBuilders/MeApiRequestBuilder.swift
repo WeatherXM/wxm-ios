@@ -141,10 +141,10 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/devices/\(deviceId)/location"
 			case let .setFCMToken(installationId, token):
 				return "me/notifications/fcm/installations/\(installationId)/tokens/\(token)"
-			case let .postPhotoNames(deviceId, photos):
+			case let .postPhotoNames(deviceId, _):
 				return "me/devices/\(deviceId)/photos"
-			case .deviceSupport:
-				return "station-summary"
+			case let .deviceSupport(deviceName):
+				return "me/devices/\(deviceName)/support"
 		}
 	}
 
@@ -192,8 +192,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 						ParameterConstants.Me.lon: lon]
 			case let .postPhotoNames(_, photos):
 				return [ParameterConstants.Me.names: photos]
-			case let .deviceSupport(deviceName):
-				return [ParameterConstants.Me.stationName: deviceName]
+//			case let .deviceSupport(deviceName):
+//				return [ParameterConstants.Me.stationName: deviceName]
 			default:
 				return nil
 		}

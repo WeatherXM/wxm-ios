@@ -198,7 +198,7 @@ public struct MeRepositoryImpl: MeRepository {
 		let builder = MeApiRequestBuilder.deviceSupport(deviceName: deviceName)
 		let request = try builder.asURLRequest()
 
-		return ApiClient.shared.requestCodable(request, mockFileName: builder.mockFileName).eraseToAnyPublisher()
+		return ApiClient.shared.requestCodableAuthorized(request, mockFileName: builder.mockFileName).eraseToAnyPublisher()
 	}
 }
 
