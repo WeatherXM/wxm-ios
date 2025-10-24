@@ -75,7 +75,6 @@ private extension StationSupportView {
 				.markdownTextStyle {
 					FontFamily(.system(.default))
 					FontSize(CGFloat(.normalFontSize))
-					ForegroundColor(Color(colorEnum: .text))
 				}
 		}
 		.padding(.top, CGFloat(.defaultSidePadding))
