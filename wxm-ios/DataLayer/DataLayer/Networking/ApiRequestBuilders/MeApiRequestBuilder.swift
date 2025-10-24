@@ -13,7 +13,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	// MARK: - URLRequestConvertible
 
 	func asURLRequest() throws -> URLRequest {
-		var url = try NetworkConstants.baseUrl.asURL()
+		let url = try NetworkConstants.baseUrl.asURL()
 
 		var urlRequest = URLRequest(url: url.appendingPathComponent(path))
 		// Http method
