@@ -25,7 +25,9 @@ class StationSupportViewModel: ObservableObject {
 	func refresh() {
 		mode = .loading
 		do {
-			try useCase.getDeviceSupport(deviceName: stationName).receive(on: DispatchQueue.main).sink { [weak self] response in
+			try useCase.getDeviceSupport(deviceName: stationName)
+				.receive(on: DispatchQueue.main)
+				.sink { [weak self] response in
 				switch response.result {
 					case .success(let support):
 						if let markdownString = support.outputs?.result {
@@ -39,6 +41,7 @@ class StationSupportViewModel: ObservableObject {
 			}.store(in: &cancellables)
 		} catch {
 			print(error)
+			mode = .error
 		}
 	}
 }
