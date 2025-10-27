@@ -39,4 +39,5 @@ public protocol MeUseCaseApi: Sendable {
 	func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<Result<DeviceDetails, NetworkErrorResponse>, Never>
 	func lastNotificationAlertSent(for deviceId: String, alert: StationNotificationsTypes) -> Date?
 	func notificationAlertSent(for deviceId: String, alert: StationNotificationsTypes)
+	func getDeviceSupport(deviceName: String) throws -> AnyPublisher<DataResponse<NetworkDeviceSupportResponse, NetworkErrorResponse>, Never>
 }

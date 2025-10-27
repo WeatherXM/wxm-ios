@@ -185,4 +185,8 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 
 		userDefaultsrRepository.saveValue(key: UserDefaults.GenericKey.stationAlertNotificationsTimestamps.rawValue, value: timestamps)
 	}
+
+	public func getDeviceSupport(deviceName: String) throws -> AnyPublisher<DataResponse<NetworkDeviceSupportResponse, NetworkErrorResponse>, Never> {
+		try meRepository.getDeviceSupport(deviceName: deviceName)
+	}
 }

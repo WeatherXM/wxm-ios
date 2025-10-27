@@ -60,6 +60,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	case setDeviceLocation(deviceId: String, lat: Double, lon: Double)
 	case setFCMToken(installationId: String, token: String)
 	case postPhotoNames(deviceId: String, photos: [String])
+	case deviceSupport(deviceName: String)
 
 	// MARK: - HttpMethod
 
@@ -68,7 +69,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 		switch self {
 			case .getUser, .getUserWallet, .getDevices, .getFirmwares, .getUserDeviceById,
 					.getUserDeviceHistoryById, .getUserDeviceForecastById, .getUserDeviceRewards, 
-					.getUserDevicesRewards, .getUserDevicePhotos, .getDeviceFirmwareById, .getUserDeviceInfoById:
+					.getUserDevicesRewards, .getUserDevicePhotos, .getDeviceFirmwareById, .getUserDeviceInfoById, .deviceSupport:
 				return .get
 			case .saveUserWallet, .claimDevice, .setDeviceFrequency, .setFriendlyName, .disclaimDevice,
 					.follow, .setDeviceLocation, .setFCMToken, .postPhotoNames:
@@ -140,8 +141,10 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/devices/\(deviceId)/location"
 			case let .setFCMToken(installationId, token):
 				return "me/notifications/fcm/installations/\(installationId)/tokens/\(token)"
-			case let .postPhotoNames(deviceId, photos):
+			case let .postPhotoNames(deviceId, _):
 				return "me/devices/\(deviceId)/photos"
+			case let .deviceSupport(deviceName):
+				return "me/devices/\(deviceName)/support"
 		}
 	}
 
@@ -189,6 +192,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 						ParameterConstants.Me.lon: lon]
 			case let .postPhotoNames(_, photos):
 				return [ParameterConstants.Me.names: photos]
+//			case let .deviceSupport(deviceName):
+//				return [ParameterConstants.Me.stationName: deviceName]
 			default:
 				return nil
 		}
@@ -250,6 +255,8 @@ extension MeApiRequestBuilder: MockResponseBuilder {
 				return "empty_response"
 			case .unfollow, .setFriendlyName, .deleteFriendlyName:
 				return "empty_response"
+			case .deviceSupport:
+				return "get_station_support"
 			default:
 				return nil
 		}

@@ -59,6 +59,7 @@ extension LocalizableString {
 		case ownedStationSnackBarMessage
 		case ownedStationNoDataSnackBarMessage
 		case stationHealth
+		case aiHealthCheck
 		case latestWeather
 		case dataQualityDescription
 		case locationQualityDescription
@@ -81,6 +82,10 @@ extension LocalizableString {
 		case firmwareUpdateDescription
 		case health
 		case healthDescription
+		case analyzingYourStation
+		case analyzingYourStationDescription
+		case stormInSystem
+		case stormInSystemDescription
 	}
 }
 
@@ -216,6 +221,8 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_latest_weather"
 			case .stationHealth:
 				return "station_details_station_health"
+			case .aiHealthCheck:
+				return "station_details_ai_health_check"
 			case .dataQualityDescription:
 				return "station_details_data_quality_description"
 			case .locationQualityDescription:
@@ -258,6 +265,14 @@ extension LocalizableString.StationDetails: WXMLocalizable {
 				return "station_details_health"
 			case .healthDescription:
 				return "station_details_health_description"
+			case .analyzingYourStation:
+				return "station_details_analyzing_your_station"
+			case .analyzingYourStationDescription:
+				return "station_details_analyzing_your_station_description"
+			case .stormInSystem:
+				return "station_details_storm_in_system"
+			case .stormInSystemDescription:
+				return "station_details_storm_in_system_description"
 		}
 	}
 }

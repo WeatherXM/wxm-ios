@@ -79,6 +79,8 @@
 		26348E232A444AF1000846C6 /* Font Awesome 6 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26348E1B2A444AF1000846C6 /* Font Awesome 6 Pro-Solid-900.otf */; };
 		26348E252A444BEE000846C6 /* FontsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E242A444BEE000846C6 /* FontsEnum.swift */; };
 		26348E292A459A45000846C6 /* ExplorerStationsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26348E282A459A45000846C6 /* ExplorerStationsListViewModel.swift */; };
+		2637F99F2E8167270096250F /* StationSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2637F99E2E8167270096250F /* StationSupportView.swift */; };
+		2637F9A12E8167DC0096250F /* StationSupportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2637F9A02E8167DC0096250F /* StationSupportViewModel.swift */; };
 		2637F9AC2E8191A70096250F /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2637F9AB2E8191A70096250F /* MarkdownUI */; };
 		263AAF2B2C6CD3CC00BA2902 /* RewardsSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263AAF2A2C6CD3CC00BA2902 /* RewardsSplitView.swift */; };
 		263B8B4E2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263B8B4D2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift */; };
@@ -122,6 +124,7 @@
 		2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
 		2655F1822AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
 		2656A9A12E04142A002F0294 /* NetworkGrowthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */; };
+		2657424A2E8562AA0070E1B3 /* StationSupportViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265742492E8562A90070E1B3 /* StationSupportViewModelTests.swift */; };
 		265985552C4E467000BDF225 /* UnitsConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265985542C4E467000BDF225 /* UnitsConverterTests.swift */; };
 		265985652C4EAD9F00BDF225 /* FoundationExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265985642C4EAD9F00BDF225 /* FoundationExtensionsTests.swift */; };
 		265D2CD829D194070044D032 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D2CD729D194070044D032 /* Common.swift */; };
@@ -892,6 +895,8 @@
 		26348E1B2A444AF1000846C6 /* Font Awesome 6 Pro-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 6 Pro-Solid-900.otf"; sourceTree = "<group>"; };
 		26348E242A444BEE000846C6 /* FontsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsEnum.swift; sourceTree = "<group>"; };
 		26348E282A459A45000846C6 /* ExplorerStationsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerStationsListViewModel.swift; sourceTree = "<group>"; };
+		2637F99E2E8167270096250F /* StationSupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSupportView.swift; sourceTree = "<group>"; };
+		2637F9A02E8167DC0096250F /* StationSupportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSupportViewModel.swift; sourceTree = "<group>"; };
 		263AAF2A2C6CD3CC00BA2902 /* RewardsSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsSplitView.swift; sourceTree = "<group>"; };
 		263B8B4D2B29EAF9001C5060 /* MapBoxSnapshotUrlGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxSnapshotUrlGenerator.swift; sourceTree = "<group>"; };
 		263B8B4F2B29F17E001C5060 /* MapBoxConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxConstants.swift; sourceTree = "<group>"; };
@@ -930,6 +935,7 @@
 		264E2F6029DC5AEE009580A2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
 		2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGrowthView.swift; sourceTree = "<group>"; };
+		265742492E8562A90070E1B3 /* StationSupportViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSupportViewModelTests.swift; sourceTree = "<group>"; };
 		265985542C4E467000BDF225 /* UnitsConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsConverterTests.swift; sourceTree = "<group>"; };
 		265985642C4EAD9F00BDF225 /* FoundationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensionsTests.swift; sourceTree = "<group>"; };
 		265D2CD729D194070044D032 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -1791,6 +1797,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		2637F99A2E8166FE0096250F /* StationSupport */ = {
+			isa = PBXGroup;
+			children = (
+				2637F99E2E8167270096250F /* StationSupportView.swift */,
+				2637F9A02E8167DC0096250F /* StationSupportViewModel.swift */,
+			);
+			path = StationSupport;
+			sourceTree = "<group>";
+		};
 		263B8B4C2B29EADC001C5060 /* MapBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -1910,6 +1925,7 @@
 				26F83CEA2D9FFAF400E5A8B8 /* RewardAnalyticsViewModelTests.swift */,
 				26D5C05B2E4B36470040CDAF /* LocationForecastViewModelTests.swift */,
 				26D5C05F2E4B46EC0040CDAF /* HomeSearchViewModelTests.swift */,
+				265742492E8562A90070E1B3 /* StationSupportViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -2407,6 +2423,7 @@
 		2675476E29A9181E008BCF40 /* WeatherStations */ = {
 			isa = PBXGroup;
 			children = (
+				2637F99A2E8166FE0096250F /* StationSupport */,
 				2675476F29A9181E008BCF40 /* MyStations */,
 				26DD42DF29B0F66A008E277E /* StationDetails */,
 			);
@@ -4056,6 +4073,7 @@
 				26F83C9F2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
 				26A0A98F2DC0CEE9005A6646 /* NetworkDeviceForecastResponseTests.swift in Sources */,
+				2657424A2E8562AA0070E1B3 /* StationSupportViewModelTests.swift in Sources */,
 				26F83CCF2D9E9B5D00E5A8B8 /* MockRemoteConfigUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4254,6 +4272,7 @@
 				267548F329A91A87008BCF40 /* LinkNavigationHelper.swift in Sources */,
 				26AF276F2A0B815B0067A1B8 /* WeatherChartModels.swift in Sources */,
 				264813FE2D8D7CF000BCCC31 /* ProPromotionalView.swift in Sources */,
+				2637F9A12E8167DC0096250F /* StationSupportViewModel.swift in Sources */,
 				26AA21E92BF4FA3B00B91A7C /* SelectLocationMapView.swift in Sources */,
 				26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */,
 				26C8EFF22E3B7437005DC9DD /* KeyboardObserver.swift in Sources */,
@@ -4458,6 +4477,7 @@
 				262A4D862A94D89300A4BC17 /* TabViewWrapper.swift in Sources */,
 				268D07952B2B1B85002BD77E /* SelectStationLocationViewModel.swift in Sources */,
 				261672472BB310D9009C3DB1 /* WXMRemoteImageView.swift in Sources */,
+				2637F99F2E8167270096250F /* StationSupportView.swift in Sources */,
 				26FFADD42B8F684C00BF0A6B /* RewardAnnotaionsView.swift in Sources */,
 				267548F429A91A87008BCF40 /* Text+.swift in Sources */,
 				26348DF82A42F430000846C6 /* TextfieldClearButton.swift in Sources */,
@@ -4945,7 +4965,8 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WXM Mock";
+				INFOPLIST_KEY_CFBundleDisplayName = "WXM Dev";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
@@ -5119,6 +5140,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "WXM Dev";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";
@@ -5170,7 +5192,8 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = WeatherXM;
+				INFOPLIST_KEY_CFBundleDisplayName = "WXM Dev";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "WeatherXM uses Bluetooth to connect to your Helium device and allow you to claim it automatically.";

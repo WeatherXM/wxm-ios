@@ -12,6 +12,7 @@ struct SpinningLoaderModifier: ViewModifier {
 	let title: String?
 	let subtitle: String?
 	let lottieLoader: Bool
+	let showLoaderBg: Bool
     let hideContent: Bool
 
 	func body(content: Content) -> some View {
@@ -19,12 +20,17 @@ struct SpinningLoaderModifier: ViewModifier {
 			.opacity((hideContent && show) ? 0.0 : 1.0)
 			.overlay {
 				if show {
-					VStack(spacing: CGFloat(.smallSpacing)) {
+					VStack(spacing: CGFloat(.defaultSpacing)) {
 						Group {
 							if lottieLoader {
 								SpinningLoaderView()
 							} else {
 								ProgressView()
+							}
+						}
+						.background {
+							if showLoaderBg {
+								Circle().foregroundStyle(Color(colorEnum: .bg))
 							}
 						}
 						.if(!hideContent) { view in
@@ -57,11 +63,13 @@ extension View {
 						title: String? = nil,
 						subtitle: String? = nil,
 						lottieLoader: Bool = true,
+						showLoaderBg: Bool = false,
 						hideContent: Bool = false) -> some View {
         modifier(SpinningLoaderModifier(show: show,
 										title: title,
 										subtitle: subtitle,
 										lottieLoader: lottieLoader,
+										showLoaderBg: showLoaderBg,
 										hideContent: hideContent))
     }
 }
@@ -76,6 +84,7 @@ struct Previews_SpinningLoader_Previews: PreviewProvider {
 						title: "title",
 						subtitle: "subtitle",
 						lottieLoader: true,
+						showLoaderBg: true,
 						hideContent: true)
     }
 }

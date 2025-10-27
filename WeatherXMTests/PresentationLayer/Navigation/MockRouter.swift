@@ -12,7 +12,7 @@ class MockRouter: Router {
 		showFullScreen = true
 	}
 
-	override func showBottomSheet(_ route: Route) {
+	override func showBottomSheet(_ route: Route, bgColor: ColorEnum = .bottomSheetBg) {
 		bottomSheetRoute = route
 		showBottomSheet = true
 	}

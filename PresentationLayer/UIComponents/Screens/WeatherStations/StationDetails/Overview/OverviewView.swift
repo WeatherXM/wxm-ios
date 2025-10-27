@@ -75,12 +75,10 @@ private extension OverviewView {
 		if let device = viewModel.device {
 			VStack(spacing: CGFloat(.defaultSpacing)) {
 				VStack(spacing: CGFloat(.mediumSpacing)) {
-					HStack {
+					HStack(spacing: CGFloat(.smallSpacing)) {
 						Text(LocalizableString.StationDetails.stationHealth.localized)
 							.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
 							.foregroundStyle(Color(colorEnum: .darkestBlue))
-
-						Spacer()
 
 						Button {
 							viewModel.handleStationHealthInfoTap()
@@ -88,6 +86,12 @@ private extension OverviewView {
 							Text(FontIcon.infoCircle.rawValue)
 								.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
 								.foregroundColor(Color(colorEnum: .wxmPrimary))
+						}
+
+						Spacer()
+
+						if viewModel.shouldShowAIAssistantButton {
+							aiSupportView
 						}
 					}
 
@@ -113,6 +117,35 @@ private extension OverviewView {
 					.wxmShadow()
 				}
 			}
+		}
+	}
+
+	@ViewBuilder
+	var aiSupportView: some View {
+		Button {
+			viewModel.handleAISupportTap()
+		} label: {
+			HStack(spacing: CGFloat(.minimumSpacing)) {
+				Text(FontIcon.sparkles.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+
+				Text(LocalizableString.StationDetails.aiHealthCheck.localized)
+					.font(.system(size: CGFloat(.caption), weight: .bold))
+			}
+			.foregroundStyle(Color(colorEnum: .textDarkStable))
+			.padding(CGFloat(.smallSidePadding))
+			.background {
+				LinearGradient(
+					stops: [
+						Gradient.Stop(color: Color(red: 0.91, green: 0.59, blue: 0.69), location: 0.00),
+						Gradient.Stop(color: Color(red: 0.73, green: 0.53, blue: 0.89), location: 0.25),
+						Gradient.Stop(color: Color(red: 0.51, green: 0.71, blue: 0.86), location: 0.63),
+						Gradient.Stop(color: Color(red: 0.41, green: 0.46, blue: 0.84), location: 1.00),
+					],
+					startPoint: UnitPoint(x: 0, y: 0.5),
+					endPoint: UnitPoint(x: 1, y: 0.5))
+			}
+			.cornerRadius(CGFloat(.cardCornerRadius))
 		}
 	}
 }
