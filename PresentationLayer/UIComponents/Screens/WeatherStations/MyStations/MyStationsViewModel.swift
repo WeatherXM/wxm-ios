@@ -80,6 +80,8 @@ public final class MyStationsViewModel: ObservableObject {
 
 		mainVM?.$isUserLoggedIn.sink { [weak self] value in
 			self?.isLoggedIn = value
+			self?.isFailed = false
+			self?.failObj = nil
 		}.store(in: &cancellableSet)
 
 		observeFilters()

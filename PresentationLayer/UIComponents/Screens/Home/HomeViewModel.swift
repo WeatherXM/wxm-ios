@@ -115,7 +115,6 @@ class HomeViewModel: ObservableObject {
 			do {
 				let forecasts = try await fetchForecasts()
 				self.savedLocationsState = forecasts.isEmpty ? .empty : .forecasts(forecasts)
-				self.currentLocationState = try await getCurrentLocationState()
 			} catch let error as NetworkErrorResponse {
 				let info = error.uiInfo
 				let obj = info.defaultFailObject(type: .home) {  [weak self] in
@@ -126,9 +125,15 @@ class HomeViewModel: ObservableObject {
 
 				self.failObj = obj
 				self.isFailed = true
-
 			} catch {
 				print(error)
+			}
+
+			do {
+				self.currentLocationState = try await getCurrentLocationState()
+			} catch {
+				print(error)
+				self.currentLocationState = .empty
 			}
 
 			self.isLoading = false

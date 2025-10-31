@@ -87,6 +87,8 @@ class AuthInterceptor: @unchecked Sendable, RequestInterceptor {
                         }
                     }.store(in: &cancellableSet)
             } catch {}
-        }
+		} else {
+			completion(nil)
+		}
     }
 }

@@ -49,12 +49,19 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 
 	public func getForecast(for location: CLLocationCoordinate2D) throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never> {
 		if let cachedForecasts: [NetworkDeviceForecastResponse] = cache.getValue(for: location.cacheKey) {
+			let forecasts = cachedForecasts.filter { forecast in
+				guard let date = forecast.date.onlyDateStringToDate() else {
+					return false
+				}
+				// Ensure that we return only forecasts later than today
+				return date.days(from: Date.now) >= 0
+			}
 			let response = DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>(request: nil,
 																							   response: nil,
 																							   data: nil,
 																							   metrics: nil,
 																							   serializationDuration: 0,
-																							   result: .success(cachedForecasts))
+																							   result: .success(forecasts))
 			return Just(response).eraseToAnyPublisher()
 		}
 
