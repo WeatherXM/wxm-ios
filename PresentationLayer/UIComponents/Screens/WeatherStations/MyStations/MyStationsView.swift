@@ -98,6 +98,7 @@ private struct ContentView: View {
 
 					.background(Color(colorEnum: .bg))
 			}
+			.iPadMaxWidth()
 		} else if devices.isEmpty || !viewModel.isLoggedIn {
 			ZStack {
 				Color(colorEnum: .bg)
@@ -111,6 +112,7 @@ private struct ContentView: View {
 					addStationsButton
 				}
 			}
+			.iPadMaxWidth()
 		} else {
 			weatherStations(devices: devices)
 				.overlay {

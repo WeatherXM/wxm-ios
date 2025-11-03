@@ -18,7 +18,7 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 	nonisolated(unsafe) private let keychainRepository: KeychainRepository
 	private let savedLocationsUDKey = UserDefaults.GenericKey.savedLocations.rawValue
 	private let forecastsCacheKey = UserDefaults.GenericKey.savedForecasts.rawValue
-	private let cacheInterval: TimeInterval = 15 * 60 * 60
+	private let cacheInterval: TimeInterval = 15 * 60 // 15 mins
 	nonisolated(unsafe) private let notificationsPublisher: NotificationCenter.Publisher = NotificationCenter.default.publisher(for: .savedLocationsUpdated)
 	nonisolated(unsafe) let cache: TimeValidationCache<[NetworkDeviceForecastResponse]>
 	public var locationAuthorization: WXMLocationManager.Status {
@@ -49,12 +49,19 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 
 	public func getForecast(for location: CLLocationCoordinate2D) throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never> {
 		if let cachedForecasts: [NetworkDeviceForecastResponse] = cache.getValue(for: location.cacheKey) {
+			let forecasts = cachedForecasts.filter { forecast in
+				guard let date = forecast.date.onlyDateStringToDate() else {
+					return false
+				}
+				// Ensure that we return only forecasts later than today
+				return date.days(from: Date.now) >= 0
+			}
 			let response = DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>(request: nil,
 																							   response: nil,
 																							   data: nil,
 																							   metrics: nil,
 																							   serializationDuration: 0,
-																							   result: .success(cachedForecasts))
+																							   result: .success(forecasts))
 			return Just(response).eraseToAnyPublisher()
 		}
 

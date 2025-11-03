@@ -42,7 +42,7 @@ struct LocationForecastsUseCaseTests {
 	@Test
 	func getCachedForecast() async throws {
 		let cachedforecast = NetworkDeviceForecastResponse(tz: "123",
-														   date: "",
+														   date: Date.now.getFormattedDate(format: .onlyDate),
 														   hourly: [],
 														   address: "Address")
 		let location = CLLocationCoordinate2D()
