@@ -18,7 +18,7 @@ public struct LocationForecastsUseCase: LocationForecastsUseCaseApi {
 	nonisolated(unsafe) private let keychainRepository: KeychainRepository
 	private let savedLocationsUDKey = UserDefaults.GenericKey.savedLocations.rawValue
 	private let forecastsCacheKey = UserDefaults.GenericKey.savedForecasts.rawValue
-	private let cacheInterval: TimeInterval = 15 * 60 * 60
+	private let cacheInterval: TimeInterval = 15 * 60 // 15 mins
 	nonisolated(unsafe) private let notificationsPublisher: NotificationCenter.Publisher = NotificationCenter.default.publisher(for: .savedLocationsUpdated)
 	nonisolated(unsafe) let cache: TimeValidationCache<[NetworkDeviceForecastResponse]>
 	public var locationAuthorization: WXMLocationManager.Status {
