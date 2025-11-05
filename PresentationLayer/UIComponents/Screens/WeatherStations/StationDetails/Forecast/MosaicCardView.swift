@@ -63,7 +63,8 @@ struct MosaicCardView: View {
 				}
 			}
 		}
-		.WXMCardStyle()
+		.WXMCardStyle(insideHorizontalPadding: CGFloat(.defaultSidePadding),
+					  insideVerticalPadding: CGFloat(.defaultSidePadding))
     }
 }
 
