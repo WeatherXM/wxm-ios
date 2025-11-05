@@ -61,6 +61,14 @@ struct StationForecastView: View {
 							}
 							.padding(.horizontal)
 						}
+
+						MosaicCardView(plansAction: {
+
+						}, freeSubscriptionAction: {
+
+						})
+						.wxmShadow()
+						.padding(.horizontal)
 						.padding(.bottom)
 					}
 					.iPadMaxWidth()
