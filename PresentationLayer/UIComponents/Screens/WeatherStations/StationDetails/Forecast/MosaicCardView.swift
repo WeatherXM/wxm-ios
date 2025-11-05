@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct MosaicCardView: View {
+	let plansAction: VoidCallback
+	let freeSubscriptionAction: VoidCallback?
+
     var body: some View {
 		VStack(spacing: CGFloat(.largeSpacing)) {
 			VStack(spacing: CGFloat(.smallSpacing)) {
@@ -28,7 +32,7 @@ struct MosaicCardView: View {
 
 			VStack(spacing: CGFloat(.smallSpacing)) {
 				Button {
-					
+					plansAction()
 				} label: {
 					HStack {
 						Spacer()
@@ -47,14 +51,15 @@ struct MosaicCardView: View {
 						.fill(Color(.wxmPrimary))
 				}
 
-
-				Button {
-
-				} label: {
-					Text(LocalizableString.Forecast.freeSubscriptionText.localized)
-						.font(.system(size: CGFloat(.caption)))
-						.foregroundStyle(Color(colorEnum: .chartsTertiary))
-						.multilineTextAlignment(.center)
+				if let freeSubscriptionAction {
+					Button {
+						freeSubscriptionAction()
+					} label: {
+						Text(LocalizableString.Forecast.freeSubscriptionText.localized)
+							.font(.system(size: CGFloat(.caption)))
+							.foregroundStyle(Color(colorEnum: .chartsTertiary))
+							.multilineTextAlignment(.center)
+					}
 				}
 			}
 		}
@@ -63,5 +68,5 @@ struct MosaicCardView: View {
 }
 
 #Preview {
-    MosaicCardView()
+    MosaicCardView(plansAction: { }, freeSubscriptionAction: nil)
 }
