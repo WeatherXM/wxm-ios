@@ -45,6 +45,7 @@ class StationDetailsViewModel: ObservableObject {
 	private(set) var notificationsAlertConfiguration: WXMAlertConfiguration?
 
     private var initialHeaderOffset: CGFloat = 0.0
+	@Published private(set) var tabs: [StationDetailsViewModel.Tab] = [.overview(nil), .forecast(nil), .rewards(nil)]
 	@Published private(set) var device: DeviceDetails? {
 		didSet {
 			shareDialogText = device?.explorerUrl
@@ -92,6 +93,10 @@ class StationDetailsViewModel: ObservableObject {
 			Task { @MainActor [weak self] in
 				await self?.fetchDevice()
 			}
+		}.store(in: &cancellables)
+
+		forecastVM.$isSubscribed.receive(on: DispatchQueue.main).sink { [weak self] isSubscribed in
+			self?.tabs = [.overview(nil), .forecast(isSubscribed ? .bolt : nil), .rewards(nil)]
 		}.store(in: &cancellables)
     }
 
@@ -161,7 +166,7 @@ class StationDetailsViewModel: ObservableObject {
     }
 
 	func trackScreenViewEvent(for index: Int) {
-		guard let tab = StationDetailsViewModel.Tab.allCases[safe: index] else {
+		guard let tab = tabs[safe: index] else {
 			return
 		}
 
@@ -176,10 +181,10 @@ extension StationDetailsViewModel: HashableViewModel {
 }
 
 extension StationDetailsViewModel {
-    enum Tab: CaseIterable, CustomStringConvertible {
-        case overview
-        case forecast
-        case rewards
+    enum Tab: CustomStringConvertible {
+        case overview(FontIcon?)
+        case forecast(FontIcon?)
+        case rewards(FontIcon?)
 
         var description: String {
             switch self {

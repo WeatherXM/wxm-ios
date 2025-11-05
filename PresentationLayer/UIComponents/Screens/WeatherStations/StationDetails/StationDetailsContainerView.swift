@@ -135,8 +135,8 @@ private struct StationDetailsView: View {
 						.sizeObserver(size: $titleViewSize)
 
 					TabViewWrapper(selection: $selectedIndex) { [unowned viewModel] in
-						ForEach(0..<StationDetailsViewModel.Tab.allCases.count, id: \.self) { [unowned viewModel] index in
-							let tab = StationDetailsViewModel.Tab.allCases[index]
+						ForEach(0..<viewModel.tabs.count, id: \.self) { [unowned viewModel] index in
+							let tab = viewModel.tabs[index]
 							switch tab {
 								case .overview:
 									OverviewView(viewModel: viewModel.overviewVM)
@@ -187,7 +187,6 @@ private struct StationDetailsView: View {
 				EmptyView()
 			}
 		}
-
         .onAppear {
             navigationObject.navigationBarColor = Color(colorEnum: .top)
 			navigationObject.titleFont = .system(size: CGFloat(.smallTitleFontSize), weight: .bold)
@@ -227,7 +226,16 @@ private struct StationDetailsView: View {
 								 warningAction: { viewModel.warningTapped() })
                 .sizeObserver(size: $titleViewAddressSize)
 
-                CustomSegmentView(options: StationDetailsViewModel.Tab.allCases.map { $0.description },
+				CustomSegmentView(options: viewModel.tabs.map { tab in
+					switch tab {
+						case .overview(let fontIcon):
+							return .init(fontIcon: fontIcon, title: tab.description)
+						case .forecast(let fontIcon):
+							return .init(fontIcon: fontIcon, title: tab.description)
+						case .rewards(let fontIcon):
+							return .init(fontIcon: fontIcon, title: tab.description)
+					}
+				},
                                   selectedIndex: $selectedIndex,
                                   style: .plain)
 				.iPadMaxWidth()
