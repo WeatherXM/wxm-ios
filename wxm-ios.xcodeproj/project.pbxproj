@@ -11,6 +11,7 @@
 		260134562D15A8A700AF1125 /* uploading_dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 260134542D15A8A700AF1125 /* uploading_dark.json */; };
 		260134572D15A8A700AF1125 /* uploading_light.json in Resources */ = {isa = PBXBuildFile; fileRef = 260134552D15A8A700AF1125 /* uploading_light.json */; };
 		260134592D15AC5500AF1125 /* upload_completed.json in Resources */ = {isa = PBXBuildFile; fileRef = 260134582D15AC5500AF1125 /* upload_completed.json */; };
+		26036C642EBA5179009ED53B /* MosaicCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26036C632EBA5179009ED53B /* MosaicCardView.swift */; };
 		26052B5C2CDA2EE7009A7D92 /* TrackableScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26052B5B2CDA2EE7009A7D92 /* TrackableScroller.swift */; };
 		2608A7902C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */; };
 		2608A7922C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */; };
@@ -836,6 +837,7 @@
 		260134542D15A8A700AF1125 /* uploading_dark.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = uploading_dark.json; sourceTree = "<group>"; };
 		260134552D15A8A700AF1125 /* uploading_light.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = uploading_light.json; sourceTree = "<group>"; };
 		260134582D15AC5500AF1125 /* upload_completed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = upload_completed.json; sourceTree = "<group>"; };
+		26036C632EBA5179009ED53B /* MosaicCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicCardView.swift; sourceTree = "<group>"; };
 		26052B5B2CDA2EE7009A7D92 /* TrackableScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScroller.swift; sourceTree = "<group>"; };
 		2608A78F2C09D3AC00452E40 /* ClaimDeviceSetFrequencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyView.swift; sourceTree = "<group>"; };
 		2608A7912C09D3BC00452E40 /* ClaimDeviceSetFrequencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaimDeviceSetFrequencyViewModel.swift; sourceTree = "<group>"; };
@@ -2049,6 +2051,7 @@
 				2664832829C35AF400748F9C /* StationForecastView.swift */,
 				2664832A29C35C0300748F9C /* StationForecastViewModel.swift */,
 				2643715B2CA6E73900E5F382 /* TemperatureExplanationView.swift */,
+				26036C632EBA5179009ED53B /* MosaicCardView.swift */,
 			);
 			path = Forecast;
 			sourceTree = "<group>";
@@ -4348,6 +4351,7 @@
 				26325B552BE3AB4300182C59 /* GifImageView.swift in Sources */,
 				26D5C04C2E423B650040CDAF /* LocationForecastViewModel.swift in Sources */,
 				26D6A6232B10F9A900425110 /* IPadConstants.swift in Sources */,
+				26036C642EBA5179009ED53B /* MosaicCardView.swift in Sources */,
 				2699F5652A5C083D007DBA6F /* NetworkStatsViewModel+Factory.swift in Sources */,
 				2632E6322A335EF400A5ADB3 /* NetworkStatsViewModel.swift in Sources */,
 				26BA07772B7FC2AC00F7F5A0 /* WeeklyStreakView.swift in Sources */,

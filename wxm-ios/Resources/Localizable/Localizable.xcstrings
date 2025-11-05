@@ -5214,6 +5214,17 @@
         }
       }
     },
+    "forecast_free_subscription_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have a free subscription. Claim now!"
+          }
+        }
+      }
+    },
     "forecast_hourly_forecast" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5247,6 +5258,28 @@
         }
       }
     },
+    "forecast_mosaic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MOSAIC"
+          }
+        }
+      }
+    },
+    "forecast_mosaic_card_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We’ve picked the top performed models in your area to give you the most accurate forecast possible."
+          }
+        }
+      }
+    },
     "forecast_next_seven_days" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5269,6 +5302,17 @@
         }
       }
     },
+    "forecast_see_the_plans" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See the plans"
+          }
+        }
+      }
+    },
     "forecast_shop_now" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5276,6 +5320,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shop now"
+          }
+        }
+      }
+    },
+    "forecast_smarter_sharper" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smarter. Sharper. Sunnier."
           }
         }
       }
