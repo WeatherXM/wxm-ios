@@ -11,6 +11,7 @@ struct CustomSegmentView: View {
     private let segments: [Segment]
     @Binding private var selectedIndex: Int
     private let style: Style
+	private let tintColor: ColorEnum?
     private let cornerRadius: CGFloat = 60.0
     @State private var sizes: [SizeWrapper]
     @State private var containerSize: CGSize = .zero
@@ -28,17 +29,21 @@ struct CustomSegmentView: View {
 	private var selectedTextColor: ColorEnum {
 		switch style {
 			case .normal:
-					.wxmPrimary
+				tintColor ?? .wxmPrimary
 			case .plain:
-					.wxmPrimary
+				tintColor ?? .wxmPrimary
 			case .compact:
 					.darkGrey
 		}
 	}
 
-    init(options: [Segment], selectedIndex: Binding<Int>, style: Style = .normal) {
+	init(options: [Segment],
+		 selectedIndex: Binding<Int>,
+		 style: Style = .normal,
+		 tintColor: ColorEnum? = nil) {
         self.style = style
         self.segments = options
+		self.tintColor = tintColor
         self._selectedIndex = selectedIndex
         self.sizes = (0..<segments.count).map { _ in SizeWrapper() }
     }
@@ -125,7 +130,7 @@ private extension CustomSegmentView {
             HStack {
                 let size = selectorSizeForIndex(selectedIndex)
                 Capsule()
-                    .foregroundColor(Color(colorEnum: .wxmPrimary))
+                    .foregroundColor(Color(colorEnum: selectedTextColor))
                     .frame(width: size.width,
                            height: 2.0)
                     .offset(x: selectorOffsetForIndex(selectedIndex))
@@ -220,7 +225,7 @@ private extension CustomSegmentView {
 
             let size = selectorSizeForIndex(selectedIndex)
             HStack {
-                Color(colorEnum: .wxmPrimary)
+                Color(colorEnum: selectedTextColor)
                     .cornerRadius(cornerRadius)
                     .frame(width: size.width, height: size.height)
                     .offset(x: selectorOffsetForIndex(selectedIndex))
