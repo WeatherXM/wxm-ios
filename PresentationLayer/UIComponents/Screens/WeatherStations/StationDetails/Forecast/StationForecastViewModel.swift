@@ -22,6 +22,7 @@ class StationForecastViewModel: ObservableObject {
     @Published private(set) var viewState: ViewState = .loading
 	@Published private(set) var hourlyItems: [StationForecastMiniCardView.Item] = []
 	@Published var showTemperatureBarsInfo: Bool = false
+	@Published var isSubscribed: Bool = false
 
     var overallMinTemperature: Double? {
         forecasts.min { ($0.daily?.temperatureMin ?? 0.0) < ($1.daily?.temperatureMin ?? 0.0) }?.daily?.temperatureMin

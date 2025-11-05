@@ -31,6 +31,7 @@ enum FontIcon: String {
 	case barcode
 	case barsFilter = "bars-filter"
 	case batteryLow = "battery-low"
+	case bolt
 	case calendar
 	case cart = "cart-shopping"
 	case chartSimple = "chart-simple"
