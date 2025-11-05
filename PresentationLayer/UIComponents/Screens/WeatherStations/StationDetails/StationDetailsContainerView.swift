@@ -236,10 +236,11 @@ private struct StationDetailsView: View {
 							return .init(fontIcon: fontIcon, title: tab.description)
 					}
 				},
-                                  selectedIndex: $selectedIndex,
-                                  style: .plain)
+								  selectedIndex: $selectedIndex,
+								  style: .plain,
+								  tintColor: viewModel.isSubscribed ? .accent : nil)
 				.iPadMaxWidth()
-            }
+			}
         } else {
             EmptyView()
         }

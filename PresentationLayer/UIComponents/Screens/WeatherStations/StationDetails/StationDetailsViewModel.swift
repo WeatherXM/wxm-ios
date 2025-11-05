@@ -46,6 +46,7 @@ class StationDetailsViewModel: ObservableObject {
 
     private var initialHeaderOffset: CGFloat = 0.0
 	@Published private(set) var tabs: [StationDetailsViewModel.Tab] = [.overview(nil), .forecast(nil), .rewards(nil)]
+	@Published private(set) var isSubscribed: Bool = false
 	@Published private(set) var device: DeviceDetails? {
 		didSet {
 			shareDialogText = device?.explorerUrl
@@ -97,6 +98,7 @@ class StationDetailsViewModel: ObservableObject {
 
 		forecastVM.$isSubscribed.receive(on: DispatchQueue.main).sink { [weak self] isSubscribed in
 			self?.tabs = [.overview(nil), .forecast(isSubscribed ? .bolt : nil), .rewards(nil)]
+			self?.isSubscribed = isSubscribed
 		}.store(in: &cancellables)
     }
 
