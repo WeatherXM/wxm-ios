@@ -104,7 +104,7 @@ private struct ContentView: View {
 			}
 			.scrollIndicators(.hidden)
 			.animation(.easeIn(duration: animationDuration),
-					   value: viewModel.stationItems.values.reduce(into: 0) { $0 = $0 + ($1.isExpanded ? 1 : 0) })
+					   value: viewModel.stationItems.values.reduce(into: 0) { $0 += ($1.isExpanded ? 1 : 0) })
 		}
 	}
 
@@ -235,7 +235,7 @@ private struct ContentView: View {
 			}
 
 			if isExpanded, let stationItem {
-				expandedView(for: deviceId , stationItem: stationItem)
+				expandedView(for: deviceId, stationItem: stationItem)
 			}
 		}
 		.WXMCardStyle()

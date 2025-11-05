@@ -21,7 +21,7 @@ class StationSupportViewModel: ObservableObject {
 		self.stationName = stationName
 		self.useCase = useCase
 
-		refresh()      
+		refresh()
 	}
 
 	private func refresh() {
