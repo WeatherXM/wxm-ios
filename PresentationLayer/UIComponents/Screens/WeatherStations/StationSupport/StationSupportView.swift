@@ -32,9 +32,6 @@ struct StationSupportView: View {
 				.padding()
 			}
 		}
-		.task {
-			viewModel.refresh()
-		}
 	}
 }
 

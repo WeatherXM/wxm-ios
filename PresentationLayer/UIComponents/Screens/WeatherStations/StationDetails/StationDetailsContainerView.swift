@@ -41,7 +41,7 @@ struct StationDetailsContainerView: View {
 						.frame(width: 30.0, height: 30.0)
 				}
 				.wxmPopOver(show: $showSettingsPopOver) {
-					VStack(alignment:.leading, spacing: CGFloat(.mediumSpacing)) {
+					VStack(alignment: .leading, spacing: CGFloat(.mediumSpacing)) {
 						Button { [weak viewModel] in
 							showSettingsPopOver = false
 							viewModel?.handleShareButtonTap()

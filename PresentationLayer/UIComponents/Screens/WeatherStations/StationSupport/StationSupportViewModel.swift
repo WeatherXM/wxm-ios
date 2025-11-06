@@ -20,6 +20,8 @@ class StationSupportViewModel: ObservableObject {
 	init(stationName: String, useCase: MeUseCaseApi) {
 		self.stationName = stationName
 		self.useCase = useCase
+
+		refresh()
 	}
 
 	func refresh() {

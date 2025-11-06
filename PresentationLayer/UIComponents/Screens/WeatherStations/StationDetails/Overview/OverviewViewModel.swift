@@ -16,6 +16,9 @@ class OverviewViewModel: ObservableObject {
     @Published private(set) var ctaObject: CTAContainerView.CTAObject?
 	@Published private(set) var showNoDataInfo: Bool = false
 	@Published var showStationHealthInfo: Bool = false
+	// Keep a ref on the created view model in order to keep it in memory as long as the screen is visible.
+	// We do this for caching purposes.
+	private var stationSupportViewModel: StationSupportViewModel?
 
 	var weatherNoDataText: LocalizableString {
 		followState.weatherNoDataText
@@ -91,8 +94,9 @@ class OverviewViewModel: ObservableObject {
 		guard let name = device?.name else {
 			return
 		}
-		let vm = ViewModelsFactory.getStationSupportViewModel(deviceName: name)
+		let vm = stationSupportViewModel ?? ViewModelsFactory.getStationSupportViewModel(deviceName: name)
 		Router.shared.showBottomSheet(.stationSupport(vm), bgColor: .top)
+		stationSupportViewModel = vm
 	}
 }
 

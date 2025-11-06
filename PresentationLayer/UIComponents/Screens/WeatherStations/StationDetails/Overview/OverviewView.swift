@@ -147,6 +147,7 @@ private extension OverviewView {
 			}
 			.cornerRadius(CGFloat(.cardCornerRadius))
 		}
+		.wxmShadow()
 	}
 }
 

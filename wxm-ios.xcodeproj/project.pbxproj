@@ -4965,7 +4965,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WXM Dev";
+				INFOPLIST_KEY_CFBundleDisplayName = "WXM Mock";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
@@ -5192,7 +5192,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "wxm-ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WXM Dev";
+				INFOPLIST_KEY_CFBundleDisplayName = WeatherXM;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
