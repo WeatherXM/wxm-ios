@@ -24,7 +24,7 @@ class StationSupportViewModel: ObservableObject {
 		refresh()
 	}
 
-	private func refresh() {
+	func refresh() {
 		mode = .loading
 		do {
 			try useCase.getDeviceSupport(deviceName: stationName)
