@@ -10,8 +10,13 @@ import Foundation
 import DomainLayer
 import Combine
 import Alamofire
+import StoreKit
 
 final class MockMeUseCase: MeUseCaseApi {
+	func getSubscriptionProducts() async throws -> [Product] {
+		[]
+	}
+	
 
 	nonisolated(unsafe) var addButtonIndicationSeen: Bool = false
 

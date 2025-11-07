@@ -8,6 +8,7 @@
 import Alamofire
 import Combine
 import Foundation
+import StoreKit
 
 public enum HistoryExclude: String {
     case hourly
@@ -65,5 +66,5 @@ public protocol MeRepository {
 	func setDeviceLocationById(deviceId: String, lat: Double, lon: Double) throws -> AnyPublisher<DataResponse<NetworkDevicesResponse, NetworkErrorResponse>, Never>
 	func setNotificationsFcmToken(installationId: String, token: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
 	func getDeviceSupport(deviceName: String) throws -> AnyPublisher<DataResponse<NetworkDeviceSupportResponse, NetworkErrorResponse>, Never>
-
+	func getSubscriptionProducts(identifiers: [String]) async throws -> [Product]
 }

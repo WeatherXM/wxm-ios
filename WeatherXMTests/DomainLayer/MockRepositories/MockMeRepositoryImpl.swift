@@ -9,6 +9,7 @@ import Foundation
 @testable import DomainLayer
 import Combine
 import Alamofire
+import StoreKit
 
 class MockMeRepositoryImpl {
 	private var userInfoSubject = CurrentValueSubject<NetworkUserInfoResponse?, Never>(nil)
@@ -23,6 +24,10 @@ extension MockMeRepositoryImpl {
 }
 
 extension MockMeRepositoryImpl: MeRepository {
+	func getSubscriptionProducts(identifiers: [String]) async throws -> [Product] {
+		[]
+	}
+	
 	var userDevicesChangedNotificationPublisher: NotificationCenter.Publisher {
 		NotificationCenter.default.publisher(for: Notification.Name("MockMeRepositoryImpl.userIsLoggedInChanged"))
 	}
