@@ -6,10 +6,21 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct SubscriptionsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+		ZStack {
+			Color(colorEnum: .bg)
+				.ignoresSafeArea()
+
+			if #available(iOS 17.0, *) {
+				SubscriptionStoreView(groupID: "21826160")
+					
+			} else {
+				// Fallback on earlier versions
+			}
+		}
     }
 }
 

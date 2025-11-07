@@ -463,6 +463,9 @@
 		26ACC5F72EC1E9F700BCECD9 /* ManageSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5F62EC1E9F700BCECD9 /* ManageSubscriptionsView.swift */; };
 		26ACC5F92EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */; };
 		26ACC5FB2EC1EC0800BCECD9 /* LocalizableString+Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5FA2EC1EBFB00BCECD9 /* LocalizableString+Subscription.swift */; };
+		26ACC5DD2EBD006600BCECD9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26ACC5DC2EBD006600BCECD9 /* StoreKit.framework */; };
+		26ACC5E22EBDE28500BCECD9 /* WeatherXM.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 26ACC5E12EBDE28500BCECD9 /* WeatherXM.storekit */; };
+		26ACC5E52EBDF9A100BCECD9 /* SubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5E42EBDF9A100BCECD9 /* SubscriptionsView.swift */; };
 		26ACE8C72C86015300EA22DD /* LocalizableString+RewardAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */; };
 		26ACE8F22C88474B00EA22DD /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE8F12C88474B00EA22DD /* ChartView.swift */; };
 		26ACE9062C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE9052C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift */; };
@@ -1257,6 +1260,9 @@
 		26ACC5F62EC1E9F700BCECD9 /* ManageSubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsView.swift; sourceTree = "<group>"; };
 		26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsViewModel.swift; sourceTree = "<group>"; };
 		26ACC5FA2EC1EBFB00BCECD9 /* LocalizableString+Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Subscription.swift"; sourceTree = "<group>"; };
+		26ACC5DC2EBD006600BCECD9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		26ACC5E12EBDE28500BCECD9 /* WeatherXM.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = WeatherXM.storekit; sourceTree = "<group>"; };
+		26ACC5E42EBDF9A100BCECD9 /* SubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsView.swift; sourceTree = "<group>"; };
 		26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+RewardAnalytics.swift"; sourceTree = "<group>"; };
 		26ACE8F12C88474B00EA22DD /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		26ACE9052C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsChartFactory.swift; sourceTree = "<group>"; };
@@ -1569,6 +1575,7 @@
 				B5799E9F28254E3300FEBB85 /* DataLayer.framework in Frameworks */,
 				B5799E9D28254E3000FEBB85 /* DomainLayer.framework in Frameworks */,
 				267EC3B62CCBDF2C0085B50A /* PulseUI in Frameworks */,
+				26ACC5DD2EBD006600BCECD9 /* StoreKit.framework in Frameworks */,
 				2637F9AC2E8191A70096250F /* MarkdownUI in Frameworks */,
 				263B8B552B29FE34001C5060 /* MapboxStatic in Frameworks */,
 				269C968A2BDBD5660035B8F1 /* Mixpanel in Frameworks */,
@@ -1665,6 +1672,7 @@
 			isa = PBXGroup;
 			children = (
 				26ACC5F22EC1E9D000BCECD9 /* ManageSubscriptions */,
+				26ACC5E32EBDF97900BCECD9 /* Subscriptions */,
 				2678FB0E2E671357000F3EBA /* Onboarding */,
 				26C8F0052E3C9908005DC9DD /* Home */,
 				26EAF8222D004BC8009EEB31 /* PhotoVerification */,
@@ -2927,6 +2935,14 @@
 			path = ManageSubscriptions;
 			sourceTree = "<group>";
 		};
+		26ACC5E32EBDF97900BCECD9 /* Subscriptions */ = {
+			isa = PBXGroup;
+			children = (
+				26ACC5E42EBDF9A100BCECD9 /* SubscriptionsView.swift */,
+			);
+			path = Subscriptions;
+			sourceTree = "<group>";
+		};
 		26ACE8F02C88470E00EA22DD /* Charts */ = {
 			isa = PBXGroup;
 			children = (
@@ -3502,6 +3518,7 @@
 		B52BCC682824FB8F00EA3DA5 = {
 			isa = PBXGroup;
 			children = (
+				26ACC5E12EBDE28500BCECD9 /* WeatherXM.storekit */,
 				26DF1F692D5651E30001E936 /* wxm-ios.xctestplan */,
 				266D17F72AC70A8C007CDB06 /* station-widgetExtension.entitlements */,
 				267E22BC2AC1B17C00B9E196 /* ci_scripts */,
@@ -3557,6 +3574,7 @@
 		B557E1F128251D6600E0BDCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26ACC5DC2EBD006600BCECD9 /* StoreKit.framework */,
 				26B832202AC31E4500757A69 /* SwiftUI.framework */,
 				26B8321E2AC31E4500757A69 /* WidgetKit.framework */,
 				266D180A2ACB0D56007CDB06 /* Intents.framework */,
@@ -3886,6 +3904,7 @@
 				26CD5BA52AF50FAD0097093F /* GoogleService-Info.plist in Resources */,
 				26C5D6A72CD8BDDB004940D0 /* weather_overcast_night.json in Resources */,
 				26C5D6BB2CD8BDDB004940D0 /* deprecated_weather_wind.json in Resources */,
+				26ACC5E22EBDE28500BCECD9 /* WeatherXM.storekit in Resources */,
 				26C5D6BF2CD8BDDB004940D0 /* weather_extreme_night_rain.json in Resources */,
 				26C5D6A42CD8BDDB004940D0 /* partly_cloudy_day.json in Resources */,
 				26C5D6992CD8BDDB004940D0 /* weather_overcast_drizzle.json in Resources */,
@@ -4168,6 +4187,7 @@
 				262B030B2B20CB7200C31FE7 /* AppUpdateViewModel.swift in Sources */,
 				262C7C5A2A9745350042ACE6 /* AlertHelper.swift in Sources */,
 				2618A7162A21014200983B7B /* AlertsViewModel.swift in Sources */,
+				26ACC5E52EBDF9A100BCECD9 /* SubscriptionsView.swift in Sources */,
 				266B01932B8380FA007AC689 /* AnnouncementCardView.swift in Sources */,
 				267CA6CF2C11C67800ABE599 /* ClaimHeliumContainerViewModel.swift in Sources */,
 				26D47EA12A1783E60078723A /* AnalyticsView.swift in Sources */,
