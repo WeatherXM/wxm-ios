@@ -61,6 +61,7 @@
 		26A86BC22C7C997700F1C2CF /* RemoteConfigRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BC12C7C997700F1C2CF /* RemoteConfigRepositoryImpl.swift */; };
 		26AB9F522A80112900855912 /* UserDevicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F512A80112900855912 /* UserDevicesService.swift */; };
 		26AB9F562A80C50200855912 /* KeychainHelperService+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F552A80C50200855912 /* KeychainHelperService+User.swift */; };
+		26ACC5D82EBCEF5300BCECD9 /* IAPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5D72EBCEF5300BCECD9 /* IAPService.swift */; };
 		26ACE8EF2C883BF400EA22DD /* get_devices_rewards_analytics.json in Resources */ = {isa = PBXBuildFile; fileRef = 26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */; };
 		26AD3E9C2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AD3E9A2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json */; };
 		26AD3E9D2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AD3E9B2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json */; };
@@ -170,6 +171,7 @@
 		26A86BC12C7C997700F1C2CF /* RemoteConfigRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigRepositoryImpl.swift; sourceTree = "<group>"; };
 		26AB9F512A80112900855912 /* UserDevicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDevicesService.swift; sourceTree = "<group>"; };
 		26AB9F552A80C50200855912 /* KeychainHelperService+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeychainHelperService+User.swift"; sourceTree = "<group>"; };
+		26ACC5D72EBCEF5300BCECD9 /* IAPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPService.swift; sourceTree = "<group>"; };
 		26ACE8EE2C883BF400EA22DD /* get_devices_rewards_analytics.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_devices_rewards_analytics.json; sourceTree = "<group>"; };
 		26AD3E9A2C8F3F4C0040AB09 /* get_device_rewards_analytics_year.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_analytics_year.json; sourceTree = "<group>"; };
 		26AD3E9B2C8F3F4C0040AB09 /* get_device_rewards_analytics_7d.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_analytics_7d.json; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				262B02F72B1F3B5300C31FE7 /* UserInfoService.swift */,
 				26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */,
 				26862DD32E8ACCBB00B56C21 /* ExplorerService.swift */,
+				26ACC5D72EBCEF5300BCECD9 /* IAPService.swift */,
 			);
 			name = Services;
 			path = ..;
@@ -665,6 +668,7 @@
 				2692D8902A4DB2B50060CB3C /* DBExplorerDevice+CoreDataProperties.swift in Sources */,
 				262B02F82B1F3B5300C31FE7 /* UserInfoService.swift in Sources */,
 				2692D88D2A4DB2B50060CB3C /* DBExplorerSearchEntity+CoreDataClass.swift in Sources */,
+				26ACC5D82EBCEF5300BCECD9 /* IAPService.swift in Sources */,
 				2692D88E2A4DB2B50060CB3C /* DBExplorerSearchEntity+CoreDataProperties.swift in Sources */,
 				26E88B3729E586B00023BBD5 /* DBProtocols.swift in Sources */,
 				26E88B3429E582070023BBD5 /* DBWeather+CoreDataClass.swift in Sources */,

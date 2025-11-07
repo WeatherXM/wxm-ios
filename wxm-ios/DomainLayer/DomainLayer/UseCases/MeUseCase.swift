@@ -9,6 +9,7 @@ import Alamofire
 import Combine
 import Foundation
 import Toolkit
+import StoreKit
 
 public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
     private let meRepository: MeRepository
@@ -188,5 +189,9 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 
 	public func getDeviceSupport(deviceName: String) throws -> AnyPublisher<DataResponse<NetworkDeviceSupportResponse, NetworkErrorResponse>, Never> {
 		try meRepository.getDeviceSupport(deviceName: deviceName)
+	}
+
+	public func getSubscriptionProducts() async throws -> [Product] {
+		try await meRepository.getSubscriptionProducts(identifiers: ["com.weatherxm.app.monthly"])
 	}
 }

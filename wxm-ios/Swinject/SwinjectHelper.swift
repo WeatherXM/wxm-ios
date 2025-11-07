@@ -30,6 +30,11 @@ class SwinjectHelper: SwinjectInterface {
 			UserDefaultsService()
 		}
 
+		container.register(IAPService.self) { _ in
+			IAPService()
+		}
+		.inObjectScope(.container)
+
 		container.register(GeocoderProtocol.self) { _ in
 			Geocoder()
 		}
@@ -118,7 +123,8 @@ class SwinjectHelper: SwinjectInterface {
 
         container.register(MeRepository.self) { resolver in
 			MeRepositoryImpl(userDevicesService: resolver.resolve(UserDevicesService.self)!,
-							 userInfoService: resolver.resolve(UserInfoService.self)!)
+							 userInfoService: resolver.resolve(UserInfoService.self)!,
+							 iAPService: resolver.resolve(IAPService.self))
         }
 
         container.register(UserDefaultsRepository.self) { _ in
