@@ -22,7 +22,8 @@ struct MeRepositoryImplTests {
 												   userDevicesCacheManager: MockCacheManager())
 		let userInfoService = UserInfoService()
 		repositoryImpl = .init(userDevicesService: userDeviceService,
-							   userInfoService: userInfoService)
+							   userInfoService: userInfoService,
+							   iAPService: nil)
 
 		keychainService.deleteNetworkTokenResponseFromKeychain()
 		DatabaseService.shared.deleteWeatherFromDB()

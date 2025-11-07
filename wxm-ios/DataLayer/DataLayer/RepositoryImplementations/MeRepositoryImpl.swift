@@ -10,16 +10,19 @@ import Combine
 @preconcurrency import DomainLayer
 import Foundation
 import Toolkit
+import StoreKit
 
 public struct MeRepositoryImpl: MeRepository {
 
 	private let cancellableWrapper = CancellableWrapper()
 	private let userDevicesService: UserDevicesService
 	private let userInfoService: UserInfoService
+	private let iAPService: IAPService?
 
-	public init(userDevicesService: UserDevicesService, userInfoService: UserInfoService) {
+	public init(userDevicesService: UserDevicesService, userInfoService: UserInfoService, iAPService: IAPService?) {
 		self.userDevicesService = userDevicesService
 		self.userInfoService = userInfoService
+		self.iAPService = iAPService
 	}
 
 	public var userDevicesChangedNotificationPublisher: NotificationCenter.Publisher {
@@ -199,6 +202,10 @@ public struct MeRepositoryImpl: MeRepository {
 		let request = try builder.asURLRequest()
 
 		return ApiClient.shared.requestCodableAuthorized(request, mockFileName: builder.mockFileName).eraseToAnyPublisher()
+	}
+
+	public func getSubscriptionProducts(identifiers: [String]) async throws -> [Product] {
+		try await iAPService?.fetchAvailableProducts(for: identifiers) ?? []
 	}
 }
 
