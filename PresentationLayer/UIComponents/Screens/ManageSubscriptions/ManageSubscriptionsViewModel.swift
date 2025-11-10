@@ -8,9 +8,14 @@
 import Foundation
 
 @MainActor
-class ManageSubscriptionsViewModel {
-
-	func handleGetpremiumTap() {
+class ManageSubscriptionsViewModel: ObservableObject {
+	@Published var isSubscribed: Bool = false
+	
+	func handleGetPremiumTap() {
 		
 	}
+}
+
+extension ManageSubscriptionsViewModel: HashableViewModel {
+	nonisolated func hash(into hasher: inout Hasher) { }
 }

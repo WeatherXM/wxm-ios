@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ManageSubscriptionsView: View {
+	@StateObject var viewModel: ManageSubscriptionsViewModel
 
 	private let premiumFeaturesBullets: [(String, String)] = [(LocalizableString.Subscriptions.mosaicForecast.localized, LocalizableString.Subscriptions.mosaicForecastDescription.localized),
 															 (LocalizableString.Subscriptions.hourlyForecast.localized, LocalizableString.Subscriptions.hourlyForecastDescription.localized)
 	]
+	
     var body: some View {
 		ZStack {
 			Color(colorEnum: .bg)
@@ -27,7 +29,11 @@ struct ManageSubscriptionsView: View {
 						Spacer()
 					}
 
-					premiumFeatrues
+					currentPlan
+
+					if !viewModel.isSubscribed {
+						premiumFeatrues
+					}
 				}
 				.padding(CGFloat(.mediumSidePadding))
 			}.scrollIndicators(.hidden)
@@ -36,6 +42,40 @@ struct ManageSubscriptionsView: View {
 }
 
 extension ManageSubscriptionsView {
+	@ViewBuilder
+	var currentPlan: some View {
+		VStack(spacing: CGFloat(.smallSpacing)) {
+			HStack {
+				let localizable: LocalizableString.Subscriptions = viewModel.isSubscribed ? .premium : .standard
+				Text(localizable.localized)
+					.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Spacer()
+
+				Text(LocalizableString.Subscriptions.active.localized)
+					.font(.system(size: CGFloat(.caption)))
+					.foregroundStyle(Color(colorEnum: .bg))
+					.padding(.horizontal, CGFloat(.smallToMediumSidePadding))
+					.padding(.vertical, CGFloat(.smallSidePadding))
+					.background {
+						Capsule().fill(Color(colorEnum: .wxmPrimary))
+					}
+			}
+
+			if !viewModel.isSubscribed {
+				HStack {
+					Text(LocalizableString.Subscriptions.standardDescription.localized)
+						.font(.system(size: CGFloat(.normalFontSize)))
+						.foregroundStyle(Color(colorEnum: .darkGrey))
+
+					Spacer()
+				}
+			}
+		}
+		.WXMCardStyle()
+	}
+
 	@ViewBuilder
 	var premiumFeatrues: some View {
 		VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -80,7 +120,7 @@ extension ManageSubscriptionsView {
 				}
 
 				Button {
-					
+					viewModel.handleGetPremiumTap()
 				} label: {
 					Text(LocalizableString.Subscriptions.getPremium.localized)
 				}
@@ -92,5 +132,5 @@ extension ManageSubscriptionsView {
 }
 
 #Preview {
-    ManageSubscriptionsView()
+	ManageSubscriptionsView(viewModel: ViewModelsFactory.getManageSubsriptionViewModel())
 }
