@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 
-enum ProfileField: CaseIterable {
+enum ProfileField: CaseIterable, Equatable {
 	case rewards
 	case wallet
+	case subscription
 	case settings
 
 	var icon: FontIcon {
@@ -21,6 +22,8 @@ enum ProfileField: CaseIterable {
 					.wallet
 			case .settings:
 					.cog
+			case .subscription:
+					.creditCard
 		}
 	}
 
@@ -32,6 +35,8 @@ enum ProfileField: CaseIterable {
 				return LocalizableString.Profile.myWallet.localized
 			case .settings:
 				return LocalizableString.Profile.prefsSettings.localized
+			case .subscription:
+				return LocalizableString.Profile.premiumSubscription.localized
 		}
 	}
 }

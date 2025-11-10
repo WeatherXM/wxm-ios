@@ -52,9 +52,11 @@ enum FontIcon: String {
 	case circleTwo = "circle-2"
 	case circleXmark = "circle-xmark"
 	case close
+	case crown
 	case cog
 	case coins
 	case cloudShowers = "cloud-showers"
+	case creditCard = "credit-card"
 	case dropletDegree = "droplet-degree"
 	case earth = "earth-americas"
 	case envelope
