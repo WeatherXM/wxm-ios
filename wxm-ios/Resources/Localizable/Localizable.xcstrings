@@ -7964,6 +7964,50 @@
         }
       }
     },
+    "profile_claim_free_trial" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim your free trial!"
+          }
+        }
+      }
+    },
+    "profile_claim_free_trial_locked" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Free trial locked"
+          }
+        }
+      }
+    },
+    "profile_claim_free_trial_locked_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are %.2f $WXM away to unlock a free trial. Keep up!"
+          }
+        }
+      }
+    },
+    "profile_claim_free_trial_unlocked_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’ve earned over 100 $WXM and kept at least 20% unclaimed."
+          }
+        }
+      }
+    },
     "profile_claim_from_web_alert_message" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8103,6 +8147,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Set your preferences and app settings"
+          }
+        }
+      }
+    },
+    "profile_premium_subscription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium subscription"
+          }
+        }
+      }
+    },
+    "profile_premium_subscription_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See and manage your subscription"
           }
         }
       }

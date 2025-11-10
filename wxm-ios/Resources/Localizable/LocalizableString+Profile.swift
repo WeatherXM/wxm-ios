@@ -28,6 +28,12 @@ extension LocalizableString {
 		case totalEarned
 		case totalClaimed
 		case claimFlowTitle
+		case premiumSubscription
+		case premiumSubscriptionDescription
+		case claimFreeTrial
+		case claimFreeTrialUnlockedDescription
+		case claimFreeTrialLocked
+		case claimFreeTrialLockedDescription(Double)
 		case totalClaimedInfoTitle
 		case totalClaimedInfoDescription
 		case totalEarnedInfoTitle
@@ -41,6 +47,8 @@ extension LocalizableString.Profile: WXMLocalizable {
 		switch self {
 			case .claimFromWebDescription(let text), .claimFromWebAlertMessage(let text):
 				localized = String(format: localized, text)
+			case .claimFreeTrialLockedDescription(let count):
+				localized = String(format: localized, count)
 			default:
 				break
 		}
@@ -88,6 +96,18 @@ extension LocalizableString.Profile: WXMLocalizable {
 				return "profile_total_claimed"
 			case .claimFlowTitle:
 				return "profile_claim_flow_title"
+			case .premiumSubscription:
+				return "profile_premium_subscription"
+			case .premiumSubscriptionDescription:
+				return "profile_premium_subscription_description"
+			case .claimFreeTrial:
+				return "profile_claim_free_trial"
+			case .claimFreeTrialUnlockedDescription:
+				return "profile_claim_free_trial_unlocked_description"
+			case .claimFreeTrialLocked:
+				return "profile_claim_free_trial_locked"
+			case .claimFreeTrialLockedDescription:
+				return "profile_claim_free_trial_locked_description"
 			case .totalClaimedInfoTitle:
 				return "profile_total_claimed_info_title"
 			case .totalClaimedInfoDescription:
