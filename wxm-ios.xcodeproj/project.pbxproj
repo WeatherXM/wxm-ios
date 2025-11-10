@@ -460,6 +460,9 @@
 		26AA21EB2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21EA2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift */; };
 		26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F462A7BEA0700855912 /* CTAView.swift */; };
 		26AB9F582A822DB500855912 /* UserDeviceFollowState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */; };
+		26ACC5F72EC1E9F700BCECD9 /* ManageSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5F62EC1E9F700BCECD9 /* ManageSubscriptionsView.swift */; };
+		26ACC5F92EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */; };
+		26ACC5FB2EC1EC0800BCECD9 /* LocalizableString+Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5FA2EC1EBFB00BCECD9 /* LocalizableString+Subscription.swift */; };
 		26ACE8C72C86015300EA22DD /* LocalizableString+RewardAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */; };
 		26ACE8F22C88474B00EA22DD /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE8F12C88474B00EA22DD /* ChartView.swift */; };
 		26ACE9062C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE9052C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift */; };
@@ -1251,6 +1254,9 @@
 		26AA21EA2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationMapViewModel.swift; sourceTree = "<group>"; };
 		26AB9F462A7BEA0700855912 /* CTAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAView.swift; sourceTree = "<group>"; };
 		26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDeviceFollowState+.swift"; sourceTree = "<group>"; };
+		26ACC5F62EC1E9F700BCECD9 /* ManageSubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsView.swift; sourceTree = "<group>"; };
+		26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsViewModel.swift; sourceTree = "<group>"; };
+		26ACC5FA2EC1EBFB00BCECD9 /* LocalizableString+Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Subscription.swift"; sourceTree = "<group>"; };
 		26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+RewardAnalytics.swift"; sourceTree = "<group>"; };
 		26ACE8F12C88474B00EA22DD /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		26ACE9052C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsChartFactory.swift; sourceTree = "<group>"; };
@@ -1658,6 +1664,7 @@
 		262A4CEB2A93517300A4BC17 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				26ACC5F22EC1E9D000BCECD9 /* ManageSubscriptions */,
 				2678FB0E2E671357000F3EBA /* Onboarding */,
 				26C8F0052E3C9908005DC9DD /* Home */,
 				26EAF8222D004BC8009EEB31 /* PhotoVerification */,
@@ -2848,6 +2855,7 @@
 				26E85B102C7752A70062667E /* LocalizableUnits.xcstrings */,
 				26D611AA2A9E21080099117C /* LocalizableConstants.swift */,
 				26D5C0342E3CAFF70040CDAF /* LocalizableString+Home.swift */,
+				26ACC5FA2EC1EBFB00BCECD9 /* LocalizableString+Subscription.swift */,
 				2678FB112E671865000F3EBA /* LocalizableString+Onboarding.swift */,
 				2698AE9D2CB6794F00DDB04D /* LocalizableString+DeviceInfo.swift */,
 				264814012D8D7F6500BCCC31 /* LocalizableString+Promotional.swift */,
@@ -2908,6 +2916,15 @@
 				26AA21EA2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift */,
 			);
 			path = SelectLocationMap;
+			sourceTree = "<group>";
+		};
+		26ACC5F22EC1E9D000BCECD9 /* ManageSubscriptions */ = {
+			isa = PBXGroup;
+			children = (
+				26ACC5F62EC1E9F700BCECD9 /* ManageSubscriptionsView.swift */,
+				26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */,
+			);
+			path = ManageSubscriptions;
 			sourceTree = "<group>";
 		};
 		26ACE8F02C88470E00EA22DD /* Charts */ = {
@@ -4257,6 +4274,7 @@
 				260F8E552E2FC06700CBAEB2 /* ClaimDevicePhotosManager.swift in Sources */,
 				26A4118A29BA21E600A2C10B /* FailSuccessStateObject.swift in Sources */,
 				2645823B2A41C07000195C21 /* FailSuccessViewModifier.swift in Sources */,
+				26ACC5F92EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift in Sources */,
 				267547F729A9181E008BCF40 /* FailView.swift in Sources */,
 				2612AC482AB49E4000285896 /* Filters+.swift in Sources */,
 				2612AC1A2AB45B1700285896 /* FilterView.swift in Sources */,
@@ -4269,6 +4287,7 @@
 				267548D729A91A87008BCF40 /* FontSizeEnum.swift in Sources */,
 				26ADB80F2E214FBC00C83F3E /* ClaimDeviceBeforeBeginViewModel.swift in Sources */,
 				2666D50A2BBC4E80003B30C0 /* StationChipsView.swift in Sources */,
+				26ACC5F72EC1E9F700BCECD9 /* ManageSubscriptionsView.swift in Sources */,
 				26D5C0352E3CB0080040CDAF /* LocalizableString+Home.swift in Sources */,
 				26CA845D2AD93C0C006D47D7 /* DeviceDetails+Common.swift in Sources */,
 				267547C729A9181E008BCF40 /* GeneralButtonStyle.swift in Sources */,
@@ -4421,6 +4440,7 @@
 				26ADB81E2E24FB1F00C83F3E /* ClaimDevicePhotoIntroViewModel.swift in Sources */,
 				264582392A41A14E00195C21 /* SpinningLoader.swift in Sources */,
 				2664833F29C8953E00748F9C /* SpinningLoaderView.swift in Sources */,
+				26ACC5FB2EC1EC0800BCECD9 /* LocalizableString+Subscription.swift in Sources */,
 				2675480029A9181E008BCF40 /* StaticButtonStyle.swift in Sources */,
 				26DD42E129B0F741008E277E /* StationDetailsContainerView.swift in Sources */,
 				267401922A3A00D500E54E35 /* StationDetailsGridView.swift in Sources */,
