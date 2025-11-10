@@ -9,5 +9,8 @@ import Foundation
 
 @MainActor
 class ManageSubscriptionsViewModel {
-	
+
+	func handleGetpremiumTap() {
+		
+	}
 }
