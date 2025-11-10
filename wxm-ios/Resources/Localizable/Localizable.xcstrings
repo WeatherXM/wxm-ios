@@ -11319,6 +11319,17 @@
         }
       }
     },
+    "subscriptions_manage_subscription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage subscription"
+          }
+        }
+      }
+    },
     "subscriptions_mosaic_forecast" : {
       "extractionState" : "manual",
       "localizations" : {
