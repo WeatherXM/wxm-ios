@@ -51,6 +51,8 @@ class ProfileViewModel: ObservableObject {
 			refresh { }
 		}
 	}
+	@Published var isSubscribed = false
+	@Published var claimTrialText: (title: String, description: String)?
 
 	var claimWebAppUrl: String {
 		let urlString = DisplayedLinks.claimToken.linkURL
@@ -59,7 +61,12 @@ class ProfileViewModel: ObservableObject {
 	}
 	var profileFields: [ProfileField] {
 		if isLoggedIn {
-			return ProfileField.allCases
+			var allCases = ProfileField.allCases
+			if !shouldShowSubscribeButton(),
+			   let index = ProfileField.subscription.index {
+				allCases.remove(at: index)
+			}
+			return allCases
 		}
 
 		return [.settings]
@@ -106,6 +113,7 @@ class ProfileViewModel: ObservableObject {
 		Task { @MainActor [weak self] in
 			defer {
 				self?.isLoading = false
+				self?.updateClaimTrialText()
 				completion()
 			}
 
@@ -221,6 +229,34 @@ class ProfileViewModel: ObservableObject {
 }
 
 private extension ProfileViewModel {
+	func shouldShowSubscribeButton() -> Bool {
+		return isLoggedIn
+	}
+
+	func updateClaimTrialText() {
+		guard isLoggedIn,
+			  let cumulative = userRewardsResponse?.cumulativeAmount?.toEthDouble,
+			  let totalClaimed = userRewardsResponse?.totalClaimed?.toEthDouble else {
+			claimTrialText = nil
+			return
+		}
+
+		let hasFreeTrial = totalClaimed / cumulative <= 0.8
+		if hasFreeTrial && !isSubscribed {
+			claimTrialText = (LocalizableString.Profile.claimFreeTrial.localized, LocalizableString.Profile.claimFreeTrialUnlockedDescription.localized)
+			return
+		}
+
+		if !isSubscribed {
+			let neededCumulative: Double = 1.25 * totalClaimed
+			let diff = neededCumulative - cumulative
+			claimTrialText = (LocalizableString.Profile.claimFreeTrialLocked.localized, LocalizableString.Profile.claimFreeTrialLockedDescription(diff).localized)
+			return
+		}
+
+		claimTrialText = nil
+	}
+
 	@MainActor
 	func fetchUserRewards() async -> NetworkErrorResponse? {
 		guard let address = userInfoResponse.wallet?.address else {
