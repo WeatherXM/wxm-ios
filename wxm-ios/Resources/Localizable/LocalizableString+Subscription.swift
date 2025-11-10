@@ -9,6 +9,7 @@ import Foundation
 
 extension LocalizableString {
 	enum Subscriptions {
+		case manageSubscription
 		case currentPlan
 		case standard
 		case standardDescription
@@ -31,6 +32,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 
 	var key: String {
 		switch self {
+			case .manageSubscription:
+				"subscriptions_manage_subscription"
 			case .currentPlan:
 				"subscriptions_current_plan"
 			case .standard:
