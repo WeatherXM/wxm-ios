@@ -11286,6 +11286,127 @@
         }
       }
     },
+    "subscriptions_active" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active"
+          }
+        }
+      }
+    },
+    "subscriptions_current_plan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current plan"
+          }
+        }
+      }
+    },
+    "subscriptions_get_premium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get premium"
+          }
+        }
+      }
+    },
+    "subscriptions_hourly_forecast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hourly forecast"
+          }
+        }
+      }
+    },
+    "subscriptions_hourly_forecast_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Just the basics. Premium features are locked.\nUpgrade your subscription to unlock them!"
+          }
+        }
+      }
+    },
+    "subscriptions_mosaic_forecast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MOSAIC forecast"
+          }
+        }
+      }
+    },
+    "subscriptions_mosaic_forecast_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We tested 30 forecast models to see which ones match real weather the best. The best model today might not be the best for the next few days! We pick the top models in your area each day to give you the most reliable forecast."
+          }
+        }
+      }
+    },
+    "subscriptions_premium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium"
+          }
+        }
+      }
+    },
+    "subscriptions_premium_features" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium features"
+          }
+        }
+      }
+    },
+    "subscriptions_standard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard"
+          }
+        }
+      }
+    },
+    "subscriptions_standard_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Just the basics. Premium features are locked.\nUpgrade your subscription to unlock them!"
+          }
+        }
+      }
+    },
     "success" : {
       "extractionState" : "manual",
       "localizations" : {
