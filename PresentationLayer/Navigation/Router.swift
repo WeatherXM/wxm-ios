@@ -82,6 +82,8 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .stationSupport(let vm):
 				hasher.combine(vm)
+			case .manageSubscription(let vm):
+				hasher.combine(vm)
 			case .safariView(let url):
 				hasher.combine(url)
 		}
@@ -153,6 +155,8 @@ enum Route: Hashable, Equatable {
 				"stationNotifications"
 			case .stationSupport:
 				"stationSupport"
+			case .manageSubscription:
+				"manageSubscription"
 			case .safariView:
 				"safariView"
 		}
@@ -189,6 +193,7 @@ enum Route: Hashable, Equatable {
 	case networkGrowth(NetworkStatsViewModel)
 	case stationNotifications(StationNotificationsViewModel)
 	case stationSupport(StationSupportViewModel)
+	case manageSubscription(ManageSubscriptionsViewModel)
 	case safariView(URL)
 }
 
@@ -296,6 +301,10 @@ extension Route {
 				}
 			case .stationSupport(let supportViewModel):
 				StationSupportView(viewModel: supportViewModel)
+			case .manageSubscription(let manageSubscriptionViewModel):
+				NavigationContainerView {
+					ManageSubscriptionsView(viewModel: manageSubscriptionViewModel)
+				}
 			case .safariView(let url):
 				SafariView(url: url)
 					.ignoresSafeArea()
