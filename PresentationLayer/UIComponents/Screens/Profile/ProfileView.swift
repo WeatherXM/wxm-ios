@@ -72,6 +72,8 @@ private struct ContentView: View {
 						walletAddressView
 					case .settings:
 						settingsView
+					case .subscription:
+						subscriptionView
 				}
 			}
 
@@ -237,6 +239,62 @@ private struct ContentView: View {
 			.wxmShadow()
 		}
 		.buttonStyle(.plain)
+	}
+
+	@ViewBuilder
+	var subscriptionView: some View {
+		Button {
+
+		} label: {
+			HStack(spacing: CGFloat(.smallToMediumSpacing)) {
+				Text(ProfileField.subscription.icon.rawValue)
+					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+					.foregroundColor(Color(colorEnum: .text))
+
+				VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
+					Text(ProfileField.subscription.title)
+						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+						.foregroundColor(Color(colorEnum: .wxmPrimary))
+
+					Text(LocalizableString.Profile.premiumSubscriptionDescription.localized)
+						.font(.system(size: CGFloat(.normalFontSize)))
+						.foregroundColor(Color(colorEnum: .text))
+				}
+
+				Spacer()
+			}
+			.WXMCardStyle()
+			.indication(show: .constant(true),
+						borderColor: Color(colorEnum: .wxmPrimary),
+						bgColor: Color(colorEnum: .blueTint)) {
+				claimTrialView
+					.padding(.vertical, CGFloat(.smallToMediumSpacing))
+					.padding(.horizontal, CGFloat(.defaultSidePadding))
+			}
+			.wxmShadow()
+		}
+		.buttonStyle(.plain)
+	}
+
+	@ViewBuilder
+	var claimTrialView: some View {
+		HStack(spacing: CGFloat(.smallToMediumSpacing)) {
+			Text(FontIcon.crown.rawValue)
+				.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+				.foregroundColor(Color(colorEnum: .wxmPrimary))
+
+			VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
+				Text(LocalizableString.Profile.claimFreeTrial.localized)
+					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+					.foregroundColor(Color(colorEnum: .text))
+
+				Text(LocalizableString.Profile.claimFreeTrialLockedDescription(26.4526).localized)
+					.font(.system(size: CGFloat(.normalFontSize)))
+					.foregroundColor(Color(colorEnum: .text))
+			}
+
+			Spacer()
+		}
 	}
 
 	@ViewBuilder
