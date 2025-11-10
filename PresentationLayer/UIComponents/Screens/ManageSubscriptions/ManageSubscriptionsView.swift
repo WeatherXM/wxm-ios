@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ManageSubscriptionsView: View {
 	@StateObject var viewModel: ManageSubscriptionsViewModel
+	@EnvironmentObject var navigationObject: NavigationObject
 
 	private let premiumFeaturesBullets: [(String, String)] = [(LocalizableString.Subscriptions.mosaicForecast.localized, LocalizableString.Subscriptions.mosaicForecastDescription.localized),
 															 (LocalizableString.Subscriptions.hourlyForecast.localized, LocalizableString.Subscriptions.hourlyForecastDescription.localized)
@@ -37,6 +38,10 @@ struct ManageSubscriptionsView: View {
 				}
 				.padding(CGFloat(.mediumSidePadding))
 			}.scrollIndicators(.hidden)
+		}
+		.onAppear {
+			navigationObject.navigationBarColor = Color(colorEnum: .bg)
+			navigationObject.title = LocalizableString.Subscriptions.manageSubscription.localized
 		}
     }
 }
@@ -132,5 +137,7 @@ extension ManageSubscriptionsView {
 }
 
 #Preview {
-	ManageSubscriptionsView(viewModel: ViewModelsFactory.getManageSubsriptionViewModel())
+	NavigationContainerView {
+		ManageSubscriptionsView(viewModel: ViewModelsFactory.getManageSubsriptionViewModel())
+	}
 }
