@@ -23,6 +23,7 @@ class SubscriptionsViewModel: ObservableObject {
 
 	private let useCase: MeUseCaseApi
 	private var subscribedProduct: StoreProduct?
+	private var products: [StoreProduct] = []
 
 	init(useCase: MeUseCaseApi) {
 		self.useCase = useCase
@@ -35,7 +36,7 @@ class SubscriptionsViewModel: ObservableObject {
 
 		do {
 			let products: [StoreProduct] = try await useCase.getSubscriptionProducts()
-			print(products)
+			self.products = products
 			self.subscribedProduct = products.first(where: { $0.isSubscribed })
 			self.cards = products.map { $0.toSubcriptionViewCard }
 			self.selectedCard = self.subscribedProduct?.toSubcriptionViewCard ?? cards.first
@@ -45,6 +46,18 @@ class SubscriptionsViewModel: ObservableObject {
 	}
 
 	func continueButtonTapped() {
+		guard let selectedCard, let index = cards.firstIndex(of: selectedCard) else {
+			return
+		}
 
+		let prodcut = products[index]
+		Task { @MainActor in
+			do {
+				try await useCase.subscribeToProduct(prodcut)
+				await refresh()
+			} catch {
+				print(error)
+			}
+		}
 	}
 }
