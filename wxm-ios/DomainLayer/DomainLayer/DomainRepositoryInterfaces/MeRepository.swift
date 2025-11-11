@@ -68,5 +68,5 @@ public protocol MeRepository {
 	func getDeviceSupport(deviceName: String) throws -> AnyPublisher<DataResponse<NetworkDeviceSupportResponse, NetworkErrorResponse>, Never>
 	func getSubscriptionProducts(identifiers: [String]) async throws -> [Product]
 	func getSubscribedProductIds() async -> Set<String>
-
+	func subscribeToProduct(productId: String) async throws
 }
