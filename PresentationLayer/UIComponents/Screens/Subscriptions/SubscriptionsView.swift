@@ -9,21 +9,35 @@ import SwiftUI
 import StoreKit
 
 struct SubscriptionsView: View {
+	@StateObject var viewModel: SubscriptionsViewModel
+
     var body: some View {
 		ZStack {
 			Color(colorEnum: .bg)
 				.ignoresSafeArea()
 
-			if #available(iOS 17.0, *) {
-				SubscriptionStoreView(groupID: "21826160")
+			ScrollView {
+				VStack(spacing: CGFloat(.mediumSpacing)) {
+					HStack {
+						Text(LocalizableString.Subscriptions.selectPlan.localized)
+							.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+							.foregroundStyle(Color(colorEnum: .text))
+
+						Spacer()
+					}
 					
-			} else {
-				// Fallback on earlier versions
+				}
+				.padding(CGFloat(.mediumSidePadding))
 			}
+			.scrollIndicators(.hidden)
+			.refreshable {
+				await viewModel.refresh()
+			}
+			.spinningLoader(show: $viewModel.isLoading)
 		}
     }
 }
 
 #Preview {
-    SubscriptionsView()
+	SubscriptionsView(viewModel: ViewModelsFactory.getSubscriptionsViewModel())
 }

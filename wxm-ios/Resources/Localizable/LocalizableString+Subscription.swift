@@ -21,6 +21,7 @@ extension LocalizableString {
 		case hourlyForecast
 		case hourlyForecastDescription
 		case getPremium
+		case selectPlan
 	}
 }
 
@@ -56,6 +57,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_hourly_forecast_description"
 			case .getPremium:
 				"subscriptions_get_premium"
+			case .selectPlan:
+				"subscriptions_select_plan"
 		}
 	}
 }

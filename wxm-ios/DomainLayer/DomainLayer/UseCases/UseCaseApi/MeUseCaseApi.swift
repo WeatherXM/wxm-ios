@@ -41,5 +41,5 @@ public protocol MeUseCaseApi: Sendable {
 	func lastNotificationAlertSent(for deviceId: String, alert: StationNotificationsTypes) -> Date?
 	func notificationAlertSent(for deviceId: String, alert: StationNotificationsTypes)
 	func getDeviceSupport(deviceName: String) throws -> AnyPublisher<DataResponse<NetworkDeviceSupportResponse, NetworkErrorResponse>, Never>
-	func getSubscriptionProducts() async throws -> [Product]
+	func getSubscriptionProducts() async throws -> [StoreProduct]
 }

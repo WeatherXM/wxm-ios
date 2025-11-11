@@ -460,12 +460,14 @@
 		26AA21EB2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA21EA2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift */; };
 		26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F462A7BEA0700855912 /* CTAView.swift */; };
 		26AB9F582A822DB500855912 /* UserDeviceFollowState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */; };
-		26ACC5F72EC1E9F700BCECD9 /* ManageSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5F62EC1E9F700BCECD9 /* ManageSubscriptionsView.swift */; };
-		26ACC5F92EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */; };
-		26ACC5FB2EC1EC0800BCECD9 /* LocalizableString+Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5FA2EC1EBFB00BCECD9 /* LocalizableString+Subscription.swift */; };
 		26ACC5DD2EBD006600BCECD9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26ACC5DC2EBD006600BCECD9 /* StoreKit.framework */; };
 		26ACC5E22EBDE28500BCECD9 /* WeatherXM.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 26ACC5E12EBDE28500BCECD9 /* WeatherXM.storekit */; };
 		26ACC5E52EBDF9A100BCECD9 /* SubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5E42EBDF9A100BCECD9 /* SubscriptionsView.swift */; };
+		26ACC5F72EC1E9F700BCECD9 /* ManageSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5F62EC1E9F700BCECD9 /* ManageSubscriptionsView.swift */; };
+		26ACC5F92EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */; };
+		26ACC5FB2EC1EC0800BCECD9 /* LocalizableString+Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5FA2EC1EBFB00BCECD9 /* LocalizableString+Subscription.swift */; };
+		26ACC6032EC33D0600BCECD9 /* SubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC6022EC33D0600BCECD9 /* SubscriptionsViewModel.swift */; };
+		26ACC6082EC3424700BCECD9 /* SubscriptionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC6072EC3424700BCECD9 /* SubscriptionCardView.swift */; };
 		26ACE8C72C86015300EA22DD /* LocalizableString+RewardAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */; };
 		26ACE8F22C88474B00EA22DD /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE8F12C88474B00EA22DD /* ChartView.swift */; };
 		26ACE9062C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE9052C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift */; };
@@ -1257,12 +1259,14 @@
 		26AA21EA2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationMapViewModel.swift; sourceTree = "<group>"; };
 		26AB9F462A7BEA0700855912 /* CTAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAView.swift; sourceTree = "<group>"; };
 		26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDeviceFollowState+.swift"; sourceTree = "<group>"; };
-		26ACC5F62EC1E9F700BCECD9 /* ManageSubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsView.swift; sourceTree = "<group>"; };
-		26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsViewModel.swift; sourceTree = "<group>"; };
-		26ACC5FA2EC1EBFB00BCECD9 /* LocalizableString+Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Subscription.swift"; sourceTree = "<group>"; };
 		26ACC5DC2EBD006600BCECD9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		26ACC5E12EBDE28500BCECD9 /* WeatherXM.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = WeatherXM.storekit; sourceTree = "<group>"; };
 		26ACC5E42EBDF9A100BCECD9 /* SubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsView.swift; sourceTree = "<group>"; };
+		26ACC5F62EC1E9F700BCECD9 /* ManageSubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsView.swift; sourceTree = "<group>"; };
+		26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsViewModel.swift; sourceTree = "<group>"; };
+		26ACC5FA2EC1EBFB00BCECD9 /* LocalizableString+Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Subscription.swift"; sourceTree = "<group>"; };
+		26ACC6022EC33D0600BCECD9 /* SubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewModel.swift; sourceTree = "<group>"; };
+		26ACC6072EC3424700BCECD9 /* SubscriptionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCardView.swift; sourceTree = "<group>"; };
 		26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+RewardAnalytics.swift"; sourceTree = "<group>"; };
 		26ACE8F12C88474B00EA22DD /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		26ACE9052C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsChartFactory.swift; sourceTree = "<group>"; };
@@ -2926,6 +2930,16 @@
 			path = SelectLocationMap;
 			sourceTree = "<group>";
 		};
+		26ACC5E32EBDF97900BCECD9 /* Subscriptions */ = {
+			isa = PBXGroup;
+			children = (
+				26ACC5E42EBDF9A100BCECD9 /* SubscriptionsView.swift */,
+				26ACC6022EC33D0600BCECD9 /* SubscriptionsViewModel.swift */,
+				26ACC6072EC3424700BCECD9 /* SubscriptionCardView.swift */,
+			);
+			path = Subscriptions;
+			sourceTree = "<group>";
+		};
 		26ACC5F22EC1E9D000BCECD9 /* ManageSubscriptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2933,14 +2947,6 @@
 				26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */,
 			);
 			path = ManageSubscriptions;
-			sourceTree = "<group>";
-		};
-		26ACC5E32EBDF97900BCECD9 /* Subscriptions */ = {
-			isa = PBXGroup;
-			children = (
-				26ACC5E42EBDF9A100BCECD9 /* SubscriptionsView.swift */,
-			);
-			path = Subscriptions;
 			sourceTree = "<group>";
 		};
 		26ACE8F02C88470E00EA22DD /* Charts */ = {
@@ -4206,6 +4212,7 @@
 				264CC7672B987AF60060DEA4 /* Localizable+Boosts.swift in Sources */,
 				2675480829A9181E008BCF40 /* AttributedLabel.swift in Sources */,
 				2675480A29A9181E008BCF40 /* AttributedTextView.swift in Sources */,
+				26ACC6082EC3424700BCECD9 /* SubscriptionCardView.swift in Sources */,
 				269C809C2AB9E76F005F9BD6 /* Badge.swift in Sources */,
 				267CA6CD2C11C4FD00ABE599 /* ClaimD1ContainerViewModel.swift in Sources */,
 				261729CD2C32CF7700A1CEFA /* Haptics.swift in Sources */,
@@ -4564,6 +4571,7 @@
 				26AA21E62BF4F61B00B91A7C /* ClaimDeviceLocationViewModel.swift in Sources */,
 				26AF27922A0CD6F60067A1B8 /* WeatherLineChart.swift in Sources */,
 				26A4116029B618CA00A2C10B /* WeatherOverviewView+Content.swift in Sources */,
+				26ACC6032EC33D0600BCECD9 /* SubscriptionsViewModel.swift in Sources */,
 				26A4115D29B6160600A2C10B /* WeatherOverviewView.swift in Sources */,
 				26FFAE1C2B920A7300BF0A6B /* BoostsView.swift in Sources */,
 				26AA21EB2BF4FA5400B91A7C /* SelectLocationMapViewModel.swift in Sources */,

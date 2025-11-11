@@ -50,6 +50,7 @@
 		26A86BBE2C7C931B00F1C2CF /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BBD2C7C931B00F1C2CF /* Survey.swift */; };
 		26A86BC02C7C97F800F1C2CF /* RemoteConfigRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A86BBF2C7C97F800F1C2CF /* RemoteConfigRepository.swift */; };
 		26A961A02A78FFDD00A0E7B9 /* RewardsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9619F2A78FFDD00A0E7B9 /* RewardsUseCase.swift */; };
+		26ACC60A2EC3500700BCECD9 /* StoreProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC6092EC3500700BCECD9 /* StoreProduct.swift */; };
 		26ACE8ED2C8833B800EA22DD /* NetworkDevicesRewardsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE8EC2C8833B800EA22DD /* NetworkDevicesRewardsResponse.swift */; };
 		26AF27782A0B8B090067A1B8 /* UnitsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AF27772A0B8B090067A1B8 /* UnitsEnum.swift */; };
 		26C546062B74D7A100297A42 /* RewardAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C546052B74D7A100297A42 /* RewardAnnotation.swift */; };
@@ -161,6 +162,7 @@
 		26A86BBD2C7C931B00F1C2CF /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		26A86BBF2C7C97F800F1C2CF /* RemoteConfigRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigRepository.swift; sourceTree = "<group>"; };
 		26A9619F2A78FFDD00A0E7B9 /* RewardsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsUseCase.swift; sourceTree = "<group>"; };
+		26ACC6092EC3500700BCECD9 /* StoreProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProduct.swift; sourceTree = "<group>"; };
 		26ACE8EC2C8833B800EA22DD /* NetworkDevicesRewardsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDevicesRewardsResponse.swift; sourceTree = "<group>"; };
 		26AF27772A0B8B090067A1B8 /* UnitsEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsEnum.swift; sourceTree = "<group>"; };
 		26C546052B74D7A100297A42 /* RewardAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnnotation.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				26A86BBD2C7C931B00F1C2CF /* Survey.swift */,
 				264371382CA4146900E5F382 /* InfoBanner.swift */,
 				26C546052B74D7A100297A42 /* RewardAnnotation.swift */,
+				26ACC6092EC3500700BCECD9 /* StoreProduct.swift */,
 			);
 			path = DomainModels;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				B5E6B86128338CAB0060D050 /* NetworkTokenResponse.swift in Sources */,
 				267401722A37687000E54E35 /* NetworkUseCase.swift in Sources */,
 				264420D92E016E8100BE45C5 /* NetworkStatsRewards.swift in Sources */,
+				26ACC60A2EC3500700BCECD9 /* StoreProduct.swift in Sources */,
 				264371392CA4146900E5F382 /* InfoBanner.swift in Sources */,
 				B5667D6B2833D37000C08B57 /* NetworkUserInfoResponse.swift in Sources */,
 				9968B18028ACFFDF00320413 /* PublicDevice.swift in Sources */,

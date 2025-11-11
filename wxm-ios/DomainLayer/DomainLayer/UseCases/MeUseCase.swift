@@ -191,7 +191,8 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		try meRepository.getDeviceSupport(deviceName: deviceName)
 	}
 
-	public func getSubscriptionProducts() async throws -> [Product] {
-		try await meRepository.getSubscriptionProducts(identifiers: ["com.weatherxm.app.monthly"])
+	public func getSubscriptionProducts() async throws -> [StoreProduct] {
+		let products = try await meRepository.getSubscriptionProducts(identifiers: ["com.weatherxm.app.monthly", "com.weatherxm.year"])
+		return products.map { StoreProduct(product: $0) }
 	}
 }

@@ -17,7 +17,7 @@ struct CircleRadius: View {
         ZStack {
             Circle()
                 .inset(by: 1)
-                .stroke(Color(colorEnum: isOptionActive ? .wxmPrimary : .text), lineWidth: borderWidth)
+                .stroke(Color(colorEnum: .wxmPrimary), lineWidth: borderWidth)
                 .frame(width: outerCircleWidth, height: outerCircleWidth)
             if isOptionActive {
                 Circle()
