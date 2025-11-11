@@ -207,6 +207,10 @@ public struct MeRepositoryImpl: MeRepository {
 	public func getSubscriptionProducts(identifiers: [String]) async throws -> [Product] {
 		try await iAPService?.fetchAvailableProducts(for: identifiers) ?? []
 	}
+
+	public func getSubscribedProductIds() async -> Set<String> {
+		await iAPService?.getEntitledProductIds() ?? []
+	}
 }
 
 private extension MeRepositoryImpl {

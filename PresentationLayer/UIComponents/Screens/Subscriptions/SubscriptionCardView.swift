@@ -9,10 +9,11 @@ import SwiftUI
 
 struct SubscriptionCardView: View {
 	let card: Card
+	let isSelected: Bool
 
     var body: some View {
 		HStack(spacing: CGFloat(.mediumSpacing)) {
-			CircleRadius(isOptionActive: card.isSelected)
+			CircleRadius(isOptionActive: isSelected)
 
 			VStack(spacing: CGFloat(.smallSpacing)) {
 				HStack {
@@ -41,25 +42,29 @@ struct SubscriptionCardView: View {
 			}
 		}
 		.WXMCardStyle()
+		.indication(show: .constant(isSelected),
+					borderColor: Color(colorEnum: .wxmPrimary),
+					bgColor: Color(colorEnum: .wxmPrimary)) {
+			EmptyView()
+		}
     }
 }
 
 extension SubscriptionCardView {
-	struct Card {
+	struct Card: Identifiable, Equatable {
+		var id: String {
+			title
+		}
+		
 		let title: String
 		let price: String
 		let description: String
-		var isSelected: Bool = false
-
-		mutating func setSelected(_ isSelected: Bool) {
-			self.isSelected = isSelected
-		}
 	}
 }
 
 #Preview {
 	SubscriptionCardView(card: .init(title: "MONTHLY",
 									 price: "$3.99/month",
-									 description: "then $3.99 per month. Cancel anytime.",
-									 isSelected: true))
+									 description: "then $3.99 per month. Cancel anytime."),
+						 isSelected: true)
 }
