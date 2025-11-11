@@ -35,4 +35,31 @@ public class IAPService: NSObject {
 
 		return set
 	}
+
+	public func purchase(productId: String) async throws {
+		guard let product = try await fetchAvailableProducts(for: [productId]).first else {
+			throw IAPEerror.noProductWithId(productId)
+		}
+
+		let result = try await product.purchase()
+		switch result {
+			case .success(let verificationResult):
+				break
+			case .userCancelled:
+				throw IAPEerror.purchaseCancelled
+			case .pending:
+				throw IAPEerror.purchaseIsPending
+			@unknown default:
+				throw IAPEerror.purchaseFailed
+		}
+	}
+}
+
+public extension IAPService {
+	enum IAPEerror: Error {
+		case noProductWithId(String)
+		case purchaseCancelled
+		case purchaseIsPending
+		case purchaseFailed
+	}
 }

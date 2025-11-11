@@ -196,4 +196,8 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		let subscribedProductIds = await meRepository.getSubscribedProductIds()
 		return products.map { StoreProduct(product: $0, isSubscribed: subscribedProductIds.contains($0.id)) }
 	}
+
+	public func subscribeToProduct(_ product: StoreProduct) async throws {
+		try await meRepository.subscribeToProduct(productId: product.identifier)
+	}
 }
