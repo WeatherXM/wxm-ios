@@ -61,3 +61,7 @@ class SubscriptionsViewModel: ObservableObject {
 		}
 	}
 }
+
+extension SubscriptionsViewModel: HashableViewModel {
+	nonisolated func hash(into hasher: inout Hasher) {}
+}

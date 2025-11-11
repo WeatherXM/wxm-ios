@@ -12,7 +12,8 @@ class ManageSubscriptionsViewModel: ObservableObject {
 	@Published var isSubscribed: Bool = false
 	
 	func handleGetPremiumTap() {
-		
+		let viewModel = ViewModelsFactory.getSubscriptionsViewModel()
+		Router.shared.navigateTo(.subscriptions(viewModel))
 	}
 }
 
