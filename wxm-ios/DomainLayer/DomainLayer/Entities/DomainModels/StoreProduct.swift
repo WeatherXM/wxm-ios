@@ -13,11 +13,13 @@ public struct StoreProduct {
 	public let name: String
 	public let description: String
 	public let displayPrice: String
+	public let isSubscribed: Bool
 
-	init(product: Product) {
+	init(product: Product, isSubscribed: Bool) {
 		self.identifier = product.id
 		self.name = product.displayName
 		self.description = product.description
 		self.displayPrice = product.displayPrice
+		self.isSubscribed = isSubscribed
 	}
 }
