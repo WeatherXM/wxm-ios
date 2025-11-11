@@ -11374,6 +11374,17 @@
         }
       }
     },
+    "subscriptions_select_plan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a plan"
+          }
+        }
+      }
+    },
     "subscriptions_standard" : {
       "extractionState" : "manual",
       "localizations" : {
