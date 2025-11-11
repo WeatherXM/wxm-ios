@@ -468,6 +468,7 @@
 		26ACC5FB2EC1EC0800BCECD9 /* LocalizableString+Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5FA2EC1EBFB00BCECD9 /* LocalizableString+Subscription.swift */; };
 		26ACC6032EC33D0600BCECD9 /* SubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC6022EC33D0600BCECD9 /* SubscriptionsViewModel.swift */; };
 		26ACC6082EC3424700BCECD9 /* SubscriptionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC6072EC3424700BCECD9 /* SubscriptionCardView.swift */; };
+		26ACC60C2EC3602200BCECD9 /* StoreProduct+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC60B2EC3601800BCECD9 /* StoreProduct+.swift */; };
 		26ACE8C72C86015300EA22DD /* LocalizableString+RewardAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */; };
 		26ACE8F22C88474B00EA22DD /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE8F12C88474B00EA22DD /* ChartView.swift */; };
 		26ACE9062C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACE9052C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift */; };
@@ -1267,6 +1268,7 @@
 		26ACC5FA2EC1EBFB00BCECD9 /* LocalizableString+Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Subscription.swift"; sourceTree = "<group>"; };
 		26ACC6022EC33D0600BCECD9 /* SubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewModel.swift; sourceTree = "<group>"; };
 		26ACC6072EC3424700BCECD9 /* SubscriptionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionCardView.swift; sourceTree = "<group>"; };
+		26ACC60B2EC3601800BCECD9 /* StoreProduct+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreProduct+.swift"; sourceTree = "<group>"; };
 		26ACE8C62C86015300EA22DD /* LocalizableString+RewardAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+RewardAnalytics.swift"; sourceTree = "<group>"; };
 		26ACE8F12C88474B00EA22DD /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		26ACE9052C89AD2500EA22DD /* RewardAnalyticsChartFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAnalyticsChartFactory.swift; sourceTree = "<group>"; };
@@ -2595,6 +2597,7 @@
 				2672B87D2C8A0155002266BE /* NetworkDeviceRewardsResponse+.swift */,
 				269EC1682E327EE60099DB78 /* StationAlert+.swift */,
 				26862DCE2E86CBBF00B56C21 /* PublicHex+.swift */,
+				26ACC60B2EC3601800BCECD9 /* StoreProduct+.swift */,
 			);
 			path = DomainExtensions;
 			sourceTree = "<group>";
@@ -4459,6 +4462,7 @@
 				268B5C3F2BCE95DB00E63655 /* ForecastTemperatureCardView.swift in Sources */,
 				26C464FB2A40A2F9005E5245 /* ShimmerEffectLoader.swift in Sources */,
 				26ADB81C2E24FB0800C83F3E /* ClaimDevicePhotoIntroView.swift in Sources */,
+				26ACC60C2EC3602200BCECD9 /* StoreProduct+.swift in Sources */,
 				26C464F82A40A0D0005E5245 /* ShimmerEffectLoaderView.swift in Sources */,
 				2675481B29A9181E008BCF40 /* SignInView.swift in Sources */,
 				26F6F7422D0725FF00FB256B /* WXMButtonOpacityStyle.swift in Sources */,
