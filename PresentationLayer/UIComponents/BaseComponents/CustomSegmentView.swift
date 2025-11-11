@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct CustomSegmentView: View {
-    private let segments: [String]
+    private let segments: [Segment]
     @Binding private var selectedIndex: Int
     private let style: Style
+	private let tintColor: ColorEnum?
     private let cornerRadius: CGFloat = 60.0
     @State private var sizes: [SizeWrapper]
     @State private var containerSize: CGSize = .zero
@@ -28,17 +29,21 @@ struct CustomSegmentView: View {
 	private var selectedTextColor: ColorEnum {
 		switch style {
 			case .normal:
-					.wxmPrimary
+				tintColor ?? .wxmPrimary
 			case .plain:
-					.wxmPrimary
+				tintColor ?? .wxmPrimary
 			case .compact:
 					.darkGrey
 		}
 	}
 
-    init(options: [String], selectedIndex: Binding<Int>, style: Style = .normal) {
+	init(options: [Segment],
+		 selectedIndex: Binding<Int>,
+		 style: Style = .normal,
+		 tintColor: ColorEnum? = nil) {
         self.style = style
         self.segments = options
+		self.tintColor = tintColor
         self._selectedIndex = selectedIndex
         self.sizes = (0..<segments.count).map { _ in SizeWrapper() }
     }
@@ -61,6 +66,11 @@ extension CustomSegmentView {
         case plain
 		case compact
     }
+
+	struct Segment: Equatable {
+		var fontIcon: FontIcon? = nil
+		let title: String
+	}
 }
 
 // MARK: - Viewbuilders
@@ -120,7 +130,7 @@ private extension CustomSegmentView {
             HStack {
                 let size = selectorSizeForIndex(selectedIndex)
                 Capsule()
-                    .foregroundColor(Color(colorEnum: .wxmPrimary))
+                    .foregroundColor(Color(colorEnum: selectedTextColor))
                     .frame(width: size.width,
                            height: 2.0)
                     .offset(x: selectorOffsetForIndex(selectedIndex))
@@ -141,10 +151,17 @@ private extension CustomSegmentView {
 					Button {
 						selectedIndex = index
 					} label: {
-						Text(segment)
-							.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
-							.padding(CGFloat(.smallSidePadding))
-							.sizeObserver(size: $sizes[index].size)
+						HStack(spacing: CGFloat(.minimumSpacing)) {
+							if let fontIcon = segment.fontIcon {
+								Text(fontIcon.rawValue)
+									.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
+							}
+
+							Text(segment.title)
+								.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+						}
+						.padding(CGFloat(.smallSidePadding))
+						.sizeObserver(size: $sizes[index].size)
 					}
 				}
 			}
@@ -176,13 +193,20 @@ private extension CustomSegmentView {
                 Button {
                     selectedIndex = index
                 } label: {
-                    Text(segment)
-                        .font(.system(size: CGFloat(.normalFontSize), weight: .medium))
-                        .if(selectedIndex == index, transform: { view in
-                            view.foregroundColor(Color(colorEnum: selectedTextColor))
-                        })
-						.padding(.vertical, CGFloat(.smallSidePadding))
-                        .sizeObserver(size: $sizes[index].size)
+					HStack(spacing: CGFloat(.minimumSpacing)) {
+						if let fontIcon = segment.fontIcon {
+							Text(fontIcon.rawValue)
+								.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.normalFontSize)))
+						}
+
+						Text(segment.title)
+							.font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+					}
+					.if(selectedIndex == index, transform: { view in
+						view.foregroundColor(Color(colorEnum: selectedTextColor))
+					})
+					.padding(.vertical, CGFloat(.smallSidePadding))
+					.sizeObserver(size: $sizes[index].size)
                 }
 
                 let islast = segments.last == segment
@@ -201,7 +225,7 @@ private extension CustomSegmentView {
 
             let size = selectorSizeForIndex(selectedIndex)
             HStack {
-                Color(colorEnum: .wxmPrimary)
+                Color(colorEnum: selectedTextColor)
                     .cornerRadius(cornerRadius)
                     .frame(width: size.width, height: size.height)
                     .offset(x: selectorOffsetForIndex(selectedIndex))
@@ -247,25 +271,32 @@ private extension CustomSegmentView {
 
 struct CustomSegmentView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomSegmentView(options: ["Measurements", "Forecast", "Rewards"], selectedIndex: .constant(1))
+		CustomSegmentView(options: [.init(title: "Measurements"),
+									.init(title: "Forecast"),
+									.init(title: "Rewards")], selectedIndex: .constant(1))
     }
 }
 
 struct CustomSegmentView_Four_Elements_Previews: PreviewProvider {
     static var previews: some View {
-        CustomSegmentView(options: ["Measurements", "Forecast", "Rewards", "Device"], selectedIndex: .constant(3))
+        CustomSegmentView(options: [.init(title: "Measurements"),
+									.init(title: "Forecast"),
+									.init(title: "Rewards"),
+									.init(title: "Device")], selectedIndex: .constant(3))
     }
 }
 
 struct CustomSegmentView_One_Element_Previews: PreviewProvider {
     static var previews: some View {
-        CustomSegmentView(options: ["Measurements"], selectedIndex: .constant(0))
+        CustomSegmentView(options: [.init(title: "Measurements")], selectedIndex: .constant(0))
     }
 }
 
 struct CustomSegmentView_Plain_Previews: PreviewProvider {
     static var previews: some View {
-        CustomSegmentView(options: ["Measurements", "Forecast", "Rewards"],
+        CustomSegmentView(options: [.init(title: "Measurements"),
+									.init(fontIcon: .bolt, title: "Forecast"),
+									.init(title: "Rewards")],
                           selectedIndex: .constant(0),
                           style: .plain)
     }
@@ -273,8 +304,10 @@ struct CustomSegmentView_Plain_Previews: PreviewProvider {
 
 struct CustomSegmentView_Compact_Previews: PreviewProvider {
 	static var previews: some View {
-		CustomSegmentView(options: ["7D", "1M", "1Y"],
-						  selectedIndex: .constant(2),
+		CustomSegmentView(options: [.init(title: "7D"),
+									.init(fontIcon: .bolt, title: "1M"),
+									.init(title: "1Y")],
+						  selectedIndex: .constant(1),
 						  style: .compact)
 	}
 }

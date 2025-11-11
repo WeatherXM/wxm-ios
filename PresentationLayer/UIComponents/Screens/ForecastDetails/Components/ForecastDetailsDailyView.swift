@@ -17,10 +17,7 @@ struct ForecastDetailsDailyView: View {
 		VStack(spacing: CGFloat(.largeSpacing)) {
 			dailyConditions
 
-			if viewModel.isLoggedIn {
-				ProBannerView(description: LocalizableString.Promotional.wantMoreAccurateForecast.localized,
-							  analyticsSource: .localForecastDetails)
-			} else {
+			if !viewModel.isLoggedIn {
 				joinNetworkView
 			}
 

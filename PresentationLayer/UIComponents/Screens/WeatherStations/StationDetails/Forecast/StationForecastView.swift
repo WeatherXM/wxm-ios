@@ -26,10 +26,6 @@ struct StationForecastView: View {
 
 						hourlyView
 
-						ProBannerView(description: LocalizableString.Promotional.fineTuneForecast.localized,
-									  analyticsSource: .localForecast)
-							.padding(.horizontal)
-
 						VStack(spacing: CGFloat(.mediumSpacing)) {
 							HStack {
 								Text(LocalizableString.Forecast.nextSevenDays.localized)
@@ -61,7 +57,17 @@ struct StationForecastView: View {
 							}
 							.padding(.horizontal)
 						}
-						.padding(.bottom)
+
+						if !viewModel.isSubscribed {
+							MosaicCardView(plansAction: {
+
+							}, freeSubscriptionAction: {
+
+							})
+							.wxmShadow()
+							.padding(.horizontal)
+							.padding(.bottom)
+						}
 					}
 					.iPadMaxWidth()
 					.padding(.vertical)

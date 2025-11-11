@@ -152,7 +152,7 @@ private struct ContentView: View {
 
 				Spacer()
 
-				CustomSegmentView(options: DeviceRewardsMode.allCases.map { $0.description },
+				CustomSegmentView(options: DeviceRewardsMode.allCases.map { .init(title: $0.description) },
 								  selectedIndex: Binding(get: { viewModel.summaryMode.index ?? 0 },
 														 set: { index in
 					viewModel.summaryMode = DeviceRewardsMode.value(for: index)
@@ -312,7 +312,7 @@ private extension ContentView {
 
 			Spacer()
 
-			CustomSegmentView(options: DeviceRewardsMode.allCases.map { $0.description },
+			CustomSegmentView(options: DeviceRewardsMode.allCases.map { .init(title: $0.description) },
 							  selectedIndex: Binding(get: { stationItem.mode.index ?? 0 },
 													 set: { index in
 				viewModel.setMode(DeviceRewardsMode.value(for: index), for: deviceId)
