@@ -14,6 +14,7 @@ import StoreKit
 public protocol MeUseCaseApi: Sendable {
 	var userInfoPublisher: AnyPublisher<NetworkUserInfoResponse?, Never> { get }
 	var userDevicesListChangedPublisher: NotificationCenter.Publisher { get }
+	var transactionProductsPublisher: AnyPublisher<String, Never>? { get }
 
 	func shouldShowAddButtonIndication() async -> Bool
 	func markAddButtonIndicationAsSeen()
