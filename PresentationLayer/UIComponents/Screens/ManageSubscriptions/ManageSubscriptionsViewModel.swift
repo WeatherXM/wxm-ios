@@ -42,6 +42,10 @@ class ManageSubscriptionsViewModel: ObservableObject {
 		let viewModel = ViewModelsFactory.getSubscriptionsViewModel()
 		Router.shared.navigateTo(.subscriptions(viewModel))
 	}
+
+	func handleCancelSubscriptionTap() {
+		LinkNavigationHelper().openUrl(DisplayedLinks.appStoreSubscriptions.linkURL)
+	}
 }
 
 private extension ManageSubscriptionsViewModel {
