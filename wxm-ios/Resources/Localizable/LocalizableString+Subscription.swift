@@ -24,12 +24,20 @@ extension LocalizableString {
 		case selectPlan
 		case premiumSubscriptionUlocked
 		case premiumFeaturesUnlocked
+		case purchaseFailed
+		case purchaseFailedDescription(String)
 	}
 }
 
 extension LocalizableString.Subscriptions: WXMLocalizable {
 	var localized: String {
-		let localized = NSLocalizedString(key, comment: "")
+		var localized = NSLocalizedString(key, comment: "")
+		switch self {
+			case .purchaseFailedDescription(let text):
+				localized = String(format: localized, text)
+			default: break
+		}
+
 		return localized
 	}
 
@@ -65,6 +73,10 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_premium_subscription_unlocked"
 			case .premiumFeaturesUnlocked:
 				"subscriptions_premium_features_unlocked"
+			case .purchaseFailed:
+				"subscriptions_purchase_failed"
+			case .purchaseFailedDescription:
+				"subscriptions_purchase_failed_description"
 		}
 	}
 }

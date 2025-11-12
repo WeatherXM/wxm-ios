@@ -10,6 +10,7 @@ import StoreKit
 
 struct SubscriptionsView: View {
 	@StateObject var viewModel: SubscriptionsViewModel
+	@EnvironmentObject var navigationObject: NavigationObject
 
     var body: some View {
 		ZStack {
@@ -52,13 +53,19 @@ struct SubscriptionsView: View {
 			}
 			.spinningLoader(show: $viewModel.isLoading)
 			.success(show: $viewModel.isSuccess, obj: viewModel.failSuccessObject)
+			.fail(show: $viewModel.isFailed, obj: viewModel.failSuccessObject)
 		}
 		.task {
 			await viewModel.refresh()
+		}
+		.onAppear {
+			navigationObject.title = LocalizableString.Subscriptions.manageSubscription.localized
 		}
     }
 }
 
 #Preview {
-	SubscriptionsView(viewModel: ViewModelsFactory.getSubscriptionsViewModel())
+	NavigationContainerView {
+		SubscriptionsView(viewModel: ViewModelsFactory.getSubscriptionsViewModel())
+	}
 }

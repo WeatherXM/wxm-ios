@@ -90,5 +90,18 @@ public extension IAPService {
 		case purchaseCancelled
 		case purchaseIsPending
 		case purchaseFailed
+
+		var localiizedDescription: String {
+			switch self {
+				case .noProductWithId(let string):
+					"No product with id: \(string)"
+				case .purchaseCancelled:
+					"Purchase cancelled"
+				case .purchaseIsPending:
+					"Purchase is pending"
+				case .purchaseFailed:
+					"Purchase failed"
+			}
+		}
 	}
 }
