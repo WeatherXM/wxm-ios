@@ -51,6 +51,7 @@ struct SubscriptionsView: View {
 				.disabled(!viewModel.canContinue)
 			}
 			.spinningLoader(show: $viewModel.isLoading)
+			.success(show: $viewModel.isSuccess, obj: viewModel.failSuccessObject)
 		}
 		.task {
 			await viewModel.refresh()

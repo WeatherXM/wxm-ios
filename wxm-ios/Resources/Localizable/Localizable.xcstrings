@@ -11374,6 +11374,28 @@
         }
       }
     },
+    "subscriptions_premium_features_unlocked" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium subscription unlocked"
+          }
+        }
+      }
+    },
+    "subscriptions_premium_subscription_unlocked" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium features unlocked!"
+          }
+        }
+      }
+    },
     "subscriptions_select_plan" : {
       "extractionState" : "manual",
       "localizations" : {
