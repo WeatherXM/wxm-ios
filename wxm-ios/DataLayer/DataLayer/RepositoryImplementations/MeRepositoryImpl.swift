@@ -208,12 +208,16 @@ public struct MeRepositoryImpl: MeRepository {
 		return ApiClient.shared.requestCodableAuthorized(request, mockFileName: builder.mockFileName).eraseToAnyPublisher()
 	}
 
-	public func getSubscriptionProducts(identifiers: [String]) async throws -> [Product] {
+	public func getAvailableSubscriptionProducts(identifiers: [String]) async throws -> [Product] {
 		try await iAPService?.fetchAvailableProducts(for: identifiers) ?? []
 	}
 
 	public func getSubscribedProductIds() async -> Set<String> {
 		await iAPService?.getEntitledProductIds() ?? []
+	}
+
+	public func getSubscribedProducts() async throws -> [Product] {
+		try await iAPService?.getEntitledProducts() ?? []
 	}
 
 	public func subscribeToProduct(productId: String) async throws {

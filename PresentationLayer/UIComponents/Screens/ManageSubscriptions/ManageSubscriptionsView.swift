@@ -37,7 +37,15 @@ struct ManageSubscriptionsView: View {
 					}
 				}
 				.padding(CGFloat(.mediumSidePadding))
-			}.scrollIndicators(.hidden)
+			}
+			.scrollIndicators(.hidden)
+			.refreshable {
+				await viewModel.refresh()
+			}
+			.task {
+				await viewModel.refresh()
+			}
+			.spinningLoader(show: $viewModel.isLoading)
 		}
 		.onAppear {
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
@@ -49,36 +57,17 @@ struct ManageSubscriptionsView: View {
 extension ManageSubscriptionsView {
 	@ViewBuilder
 	var currentPlan: some View {
-		VStack(spacing: CGFloat(.smallSpacing)) {
-			HStack {
-				let localizable: LocalizableString.Subscriptions = viewModel.isSubscribed ? .premium : .standard
-				Text(localizable.localized)
-					.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
-					.foregroundStyle(Color(colorEnum: .text))
-
-				Spacer()
-
-				Text(LocalizableString.Subscriptions.active.localized)
-					.font(.system(size: CGFloat(.caption)))
-					.foregroundStyle(Color(colorEnum: .bg))
-					.padding(.horizontal, CGFloat(.smallToMediumSidePadding))
-					.padding(.vertical, CGFloat(.smallSidePadding))
-					.background {
-						Capsule().fill(Color(colorEnum: .wxmPrimary))
-					}
+		if viewModel.isSubscribed {
+			ForEach(viewModel.products, id: \.identifier) { product in
+				planCardView(title: product.name,
+							 subtitle: product.displayPrice,
+							 description: product.description)
 			}
-
-			if !viewModel.isSubscribed {
-				HStack {
-					Text(LocalizableString.Subscriptions.standardDescription.localized)
-						.font(.system(size: CGFloat(.normalFontSize)))
-						.foregroundStyle(Color(colorEnum: .darkGrey))
-
-					Spacer()
-				}
-			}
+		} else {
+			planCardView(title: LocalizableString.Subscriptions.standard.localized,
+						 subtitle: nil,
+						 description: LocalizableString.Subscriptions.standardDescription.localized)
 		}
-		.WXMCardStyle()
 	}
 
 	@ViewBuilder
@@ -133,6 +122,49 @@ extension ManageSubscriptionsView {
 			}
 			.WXMCardStyle()
 		}
+	}
+
+	@ViewBuilder
+	func planCardView(title: String, subtitle: String?, description: String?) -> some View {
+		VStack(spacing: CGFloat(.smallSpacing)) {
+			HStack {
+				Text(title)
+					.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+					.foregroundStyle(Color(colorEnum: .text))
+
+				Spacer()
+
+				Text(LocalizableString.Subscriptions.active.localized)
+					.font(.system(size: CGFloat(.caption)))
+					.foregroundStyle(Color(colorEnum: .bg))
+					.padding(.horizontal, CGFloat(.smallToMediumSidePadding))
+					.padding(.vertical, CGFloat(.smallSidePadding))
+					.background {
+						Capsule().fill(Color(colorEnum: .wxmPrimary))
+					}
+			}
+
+			if let subtitle {
+				HStack {
+					Text(subtitle)
+						.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+						.foregroundStyle(Color(colorEnum: .text))
+
+					Spacer()
+				}
+			}
+
+			if let description {
+				HStack {
+					Text(description)
+						.font(.system(size: CGFloat(.normalFontSize)))
+						.foregroundStyle(Color(colorEnum: .darkGrey))
+
+					Spacer()
+				}
+			}
+		}
+		.WXMCardStyle()
 	}
 }
 
