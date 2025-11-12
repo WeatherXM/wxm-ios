@@ -11297,6 +11297,17 @@
         }
       }
     },
+    "subscriptions_cancel_subscription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel Subscription"
+          }
+        }
+      }
+    },
     "subscriptions_current_plan" : {
       "extractionState" : "manual",
       "localizations" : {
