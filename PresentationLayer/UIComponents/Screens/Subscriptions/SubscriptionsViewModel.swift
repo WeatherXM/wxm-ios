@@ -12,6 +12,7 @@ import DomainLayer
 class SubscriptionsViewModel: ObservableObject {
 	@Published var cards: [SubscriptionCardView.Card] = []
 	@Published var isLoading: Bool = true
+	@Published var isSuccess: Bool = false
 	@Published var selectedCard: SubscriptionCardView.Card?
 	var canContinue: Bool {
 		guard let subscribedProduct else {
@@ -20,6 +21,7 @@ class SubscriptionsViewModel: ObservableObject {
 
 		return subscribedProduct.toSubcriptionViewCard != selectedCard
 	}
+	var failSuccessObject: FailSuccessStateObject?
 
 	private let useCase: MeUseCaseApi
 	private var subscribedProduct: StoreProduct?
@@ -54,11 +56,26 @@ class SubscriptionsViewModel: ObservableObject {
 		Task { @MainActor in
 			do {
 				try await useCase.subscribeToProduct(prodcut)
-				await refresh()
+				showSuccess()
 			} catch {
 				print(error)
 			}
 		}
+	}
+}
+
+private extension SubscriptionsViewModel {
+	func showSuccess() {
+		let object = FailSuccessStateObject(type: .subscription,
+											title: LocalizableString.Subscriptions.premiumSubscriptionUlocked.localized,
+											subtitle: LocalizableString.Subscriptions.premiumFeaturesUnlocked.localized.attributedMarkdown,
+											cancelTitle: nil,
+											retryTitle: LocalizableString.continue.localized,
+											contactSupportAction: nil,
+											cancelAction: nil,
+											retryAction: { Router.shared.pop() })
+		failSuccessObject = object
+		isSuccess = true
 	}
 }
 
