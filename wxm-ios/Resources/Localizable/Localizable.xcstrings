@@ -11396,6 +11396,28 @@
         }
       }
     },
+    "subscriptions_purchase_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase Failed"
+          }
+        }
+      }
+    },
+    "subscriptions_purchase_failed_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase process failed, please try again!\nIf the problem persists, please contact our support team.\n\nPlease make sure to mention that you’re facing an Error “**%@**” for faster resolution"
+          }
+        }
+      }
+    },
     "subscriptions_select_plan" : {
       "extractionState" : "manual",
       "localizations" : {

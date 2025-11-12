@@ -13,6 +13,7 @@ class SubscriptionsViewModel: ObservableObject {
 	@Published var cards: [SubscriptionCardView.Card] = []
 	@Published var isLoading: Bool = true
 	@Published var isSuccess: Bool = false
+	@Published var isFailed: Bool = false
 	@Published var selectedCard: SubscriptionCardView.Card?
 	var canContinue: Bool {
 		guard let subscribedProduct else {
@@ -58,7 +59,7 @@ class SubscriptionsViewModel: ObservableObject {
 				try await useCase.subscribeToProduct(prodcut)
 				showSuccess()
 			} catch {
-				print(error)
+				showFail(errorDescription: error.localizedDescription)
 			}
 		}
 	}
@@ -76,6 +77,21 @@ private extension SubscriptionsViewModel {
 											retryAction: { Router.shared.pop() })
 		failSuccessObject = object
 		isSuccess = true
+	}
+
+	func showFail(errorDescription: String) {
+		let object = FailSuccessStateObject(type: .subscription,
+											title: LocalizableString.Subscriptions.purchaseFailed.localized,
+											subtitle: LocalizableString.Subscriptions.purchaseFailedDescription(errorDescription).localized.attributedMarkdown,
+											cancelTitle: LocalizableString.back.localized,
+											retryTitle: LocalizableString.retry.localized,
+											contactSupportAction: {
+			LinkNavigationHelper().openContactSupport(successFailureEnum: .subscription, email: MainScreenViewModel.shared.userInfo?.email)
+		},
+											cancelAction: { Router.shared.pop() },
+											retryAction: { [weak self] in self?.continueButtonTapped() })
+		failSuccessObject = object
+		isFailed = true
 	}
 }
 
