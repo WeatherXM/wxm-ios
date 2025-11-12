@@ -403,7 +403,8 @@ enum ViewModelsFactory {
 	}
 
 	static func getManageSubsriptionViewModel() -> ManageSubscriptionsViewModel {
-		return ManageSubscriptionsViewModel()
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
+		return ManageSubscriptionsViewModel(useCase: useCase)
 	}
 
 	static func getSubscriptionsViewModel() -> SubscriptionsViewModel {

@@ -38,7 +38,7 @@ class SubscriptionsViewModel: ObservableObject {
 		}
 
 		do {
-			let products: [StoreProduct] = try await useCase.getSubscriptionProducts()
+			let products: [StoreProduct] = try await useCase.getAvailableSubscriptionProducts()
 			self.products = products
 			self.subscribedProduct = products.first(where: { $0.isSubscribed })
 			self.cards = products.map { $0.toSubcriptionViewCard }

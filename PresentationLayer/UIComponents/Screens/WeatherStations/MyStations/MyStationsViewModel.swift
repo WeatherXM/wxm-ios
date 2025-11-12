@@ -116,7 +116,7 @@ public final class MyStationsViewModel: ObservableObject {
 
 		Task { @MainActor in
 			do {
-				let products = try await meUseCase.getSubscriptionProducts()
+				let products = try await meUseCase.getAvailableSubscriptionProducts()
 				print(products)
 			} catch {
 				print(error)
