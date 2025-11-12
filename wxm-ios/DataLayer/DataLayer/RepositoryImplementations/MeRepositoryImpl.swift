@@ -33,6 +33,10 @@ public struct MeRepositoryImpl: MeRepository {
 		userInfoService.getLatestUserInfoPublisher()
 	}
 
+	public var transactionsPublisher: AnyPublisher<Transaction, Never>? {
+		iAPService?.transactionsPublisher
+	}
+
     public func deleteAccount() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
 		let builder = MeApiRequestBuilder.deleteAccount
         let urlRequest = try builder.asURLRequest()
