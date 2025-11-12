@@ -20,27 +20,41 @@ struct ManageSubscriptionsView: View {
 			Color(colorEnum: .bg)
 				.ignoresSafeArea()
 
-			ScrollView {
-				VStack(spacing: CGFloat(.mediumSpacing)) {
-					HStack {
-						Text(LocalizableString.Subscriptions.currentPlan.localized)
-							.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
-							.foregroundStyle(Color(colorEnum: .text))
+			VStack {
+				ScrollView {
+					VStack(spacing: CGFloat(.mediumSpacing)) {
+						HStack {
+							Text(LocalizableString.Subscriptions.currentPlan.localized)
+								.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+								.foregroundStyle(Color(colorEnum: .text))
 
-						Spacer()
+							Spacer()
+						}
+
+						currentPlan
+
+						if !viewModel.isSubscribed {
+							premiumFeatrues
+						}
 					}
-
-					currentPlan
-
-					if !viewModel.isSubscribed {
-						premiumFeatrues
-					}
+					.padding(CGFloat(.mediumSidePadding))
 				}
-				.padding(CGFloat(.mediumSidePadding))
-			}
-			.scrollIndicators(.hidden)
-			.refreshable {
-				await viewModel.refresh()
+				.scrollIndicators(.hidden)
+				.refreshable {
+					await viewModel.refresh()
+				}
+
+				if viewModel.isSubscribed {
+					Button {
+						viewModel.handleCancelSubscriptionTap()
+					} label: {
+						Text(LocalizableString.Subscriptions.cancelSubscription.localized)
+					}
+					.buttonStyle(WXMButtonStyle(textColor: .text,
+												fillColor: .errorTint,
+												strokeColor: .errorTint))
+					.padding(CGFloat(.mediumSidePadding))
+				}
 			}
 			.task {
 				await viewModel.refresh()

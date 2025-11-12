@@ -26,6 +26,7 @@ extension LocalizableString {
 		case premiumFeaturesUnlocked
 		case purchaseFailed
 		case purchaseFailedDescription(String)
+		case cancelSubscription
 	}
 }
 
@@ -77,6 +78,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_purchase_failed"
 			case .purchaseFailedDescription:
 				"subscriptions_purchase_failed_description"
+			case .cancelSubscription:
+				"subscriptions_cancel_subscription"
 		}
 	}
 }

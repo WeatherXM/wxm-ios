@@ -36,6 +36,7 @@ enum DisplayedLinks {
 	case cellCapacity
 	case claimToken
 	case appstore
+	case appStoreSubscriptions
 	case announcements
 	case m5Batteries
 	case heliumBatteries
@@ -99,6 +100,8 @@ enum DisplayedLinks {
 				return Bundle.main.getConfiguration(for: .claimTokenUrl) ?? ""
 			case .appstore:
 				return Bundle.main.getConfiguration(for: .appStoreUrl) ?? ""
+			case .appStoreSubscriptions:
+				return "https://apps.apple.com/account/subscriptions"
 			case .announcements:
 				return "https://announcements.weatherxm.com"
 			case .m5Batteries:
