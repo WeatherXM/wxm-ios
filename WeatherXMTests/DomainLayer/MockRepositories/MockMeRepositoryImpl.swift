@@ -24,7 +24,7 @@ extension MockMeRepositoryImpl {
 }
 
 extension MockMeRepositoryImpl: MeRepository {
-	func getSubscriptionProducts(identifiers: [String]) async throws -> [Product] {
+	func getAvailableSubscriptionProducts(identifiers: [String]) async throws -> [Product] {
 		[]
 	}
 	

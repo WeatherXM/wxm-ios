@@ -46,6 +46,15 @@ public class IAPService: @unchecked Sendable {
 		return set
 	}
 
+	public func getEntitledProducts() async throws -> [Product] {
+		let entitledIDs = await getEntitledProductIds()
+		guard !entitledIDs.isEmpty else {
+			return []
+		}
+
+		return try await Product.products(for: Array(entitledIDs))
+	}
+
 	public func purchase(productId: String) async throws {
 		guard let product = try await fetchAvailableProducts(for: [productId]).first else {
 			throw IAPEerror.noProductWithId(productId)
