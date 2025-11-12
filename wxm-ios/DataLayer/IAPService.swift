@@ -9,7 +9,17 @@ import Foundation
 import StoreKit
 import Combine
 
-public class IAPService: NSObject {
+public class IAPService: @unchecked Sendable {
+	public let transactionsPublisher: AnyPublisher<Transaction, Never>
+	private var updates: Task<Void, Never>?
+	private let transactionsPassthroughSubject: PassthroughSubject<Transaction, Never>
+
+
+	public init() {
+		transactionsPassthroughSubject = .init()
+		transactionsPublisher = transactionsPassthroughSubject.eraseToAnyPublisher()
+		updates = observeUpdates()
+	}
 
 	public func fetchAvailableProducts(for identifiers: [String]) async throws -> [Product] {
 		try await Product.products(for: identifiers)
@@ -44,7 +54,9 @@ public class IAPService: NSObject {
 		let result = try await product.purchase()
 		switch result {
 			case .success(let verificationResult):
-				break
+				if case .verified(let transaction) = verificationResult {
+					await transaction.finish()
+				}
 			case .userCancelled:
 				throw IAPEerror.purchaseCancelled
 			case .pending:
@@ -52,6 +64,23 @@ public class IAPService: NSObject {
 			@unknown default:
 				throw IAPEerror.purchaseFailed
 		}
+	}
+}
+
+private extension IAPService {
+	func observeUpdates() -> Task<Void, Never> {
+		Task(priority: .background) { [weak self] in
+			for await result in Transaction.updates {
+				self?.handleTransactionResult(result)
+			}
+		}
+	}
+
+	func handleTransactionResult(_ result: VerificationResult<Transaction>) {
+		guard case .verified(let transaction) = result else {
+			return
+		}
+		transactionsPassthroughSubject.send(transaction)
 	}
 }
 

@@ -33,6 +33,10 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		meRepository.userDevicesChangedNotificationPublisher
 	}
 
+	public var transactionProductsPublisher: AnyPublisher<String, Never>? {
+		meRepository.transactionsPublisher?.flatMap { Just($0.productID) }.eraseToAnyPublisher()
+	}
+
 	public func shouldShowAddButtonIndication() async -> Bool {
 		let isSeen: Bool = userDefaultsrRepository.getValue(for: UserDefaults.GenericKey.isAddButtonIndicationSeen.rawValue) ?? false
 		let hasOwnedDevices = await hasOwnedDevices()
