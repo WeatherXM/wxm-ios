@@ -40,4 +40,23 @@ extension Product {
 
 		return false
 	}
+
+	func expirationDate(productId: String) async -> Date? {
+		let statuses = try? await subscription?.status
+		let status = statuses?.first { status in
+			if case .verified(let transaction) = status.transaction {
+				return transaction.productID == productId
+			}
+			return false
+		}
+
+		if case .subscribed = status?.state,
+			case .verified(let renewalInfo) = status?.renewalInfo,
+		   !renewalInfo.willAutoRenew,
+		   case .verified(let transaction) = status?.transaction {
+			return transaction.expirationDate
+		}
+
+		return nil
+	}
 }

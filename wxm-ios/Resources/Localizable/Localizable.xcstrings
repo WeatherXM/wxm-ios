@@ -11429,6 +11429,17 @@
         }
       }
     },
+    "subscriptions_premium_available_until" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium features available until %@.\nSelect a plan to extend your subscription."
+          }
+        }
+      }
+    },
     "subscriptions_premium_features" : {
       "extractionState" : "manual",
       "localizations" : {
