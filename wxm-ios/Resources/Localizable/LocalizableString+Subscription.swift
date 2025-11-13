@@ -12,6 +12,7 @@ extension LocalizableString {
 		case manageSubscription
 		case currentPlan
 		case standard
+		case canceled
 		case standardDescription
 		case premium
 		case active
@@ -52,6 +53,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_current_plan"
 			case .standard:
 				"subscriptions_standard"
+			case .canceled:
+				"subscriptions_canceled"
 			case .standardDescription:
 				"subscriptions_standard_description"
 			case .premium:
