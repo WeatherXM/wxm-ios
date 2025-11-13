@@ -168,7 +168,7 @@ extension ManageSubscriptionsView {
 				let pillText: LocalizableString.Subscriptions = isCanceled ? .canceled : .active
 				Text(pillText.localized)
 					.font(.system(size: CGFloat(.caption)))
-					.foregroundStyle(Color(colorEnum: .text))
+					.foregroundStyle(Color(colorEnum: isCanceled ? .textWhite : .top))
 					.padding(.horizontal, CGFloat(.smallToMediumSidePadding))
 					.padding(.vertical, CGFloat(.smallSidePadding))
 					.background {
