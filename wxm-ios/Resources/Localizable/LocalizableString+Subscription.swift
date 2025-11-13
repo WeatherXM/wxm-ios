@@ -29,6 +29,7 @@ extension LocalizableString {
 		case purchaseFailedDescription(String)
 		case cancelSubscription
 		case nextBillingDate(String)
+		case premiumAvailableUntil(String)
 	}
 }
 
@@ -37,7 +38,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 		var localized = NSLocalizedString(key, comment: "")
 		switch self {
 			case .purchaseFailedDescription(let text),
-					.nextBillingDate(let text):
+				 .nextBillingDate(let text),
+				 .premiumAvailableUntil(let text):
 				localized = String(format: localized, text)
 			default: break
 		}
@@ -87,6 +89,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_cancel_subscription"
 			case .nextBillingDate:
 				"subscriptions_next_billing_date"
+			case .premiumAvailableUntil:
+				"subscriptions_premium_available_until"
 		}
 	}
 }

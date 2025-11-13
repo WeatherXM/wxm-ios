@@ -30,6 +30,14 @@ extension StoreProduct {
 
 		return LocalizableString.Subscriptions.nextBillingDate(renewalDate.getFormattedDate(format: .monthLiteralDayYear).capitalized).localized
 	}
+
+	var expirationDateString: String? {
+		guard let expirationDate else {
+			return nil
+		}
+		
+		return LocalizableString.Subscriptions.premiumAvailableUntil(expirationDate.getFormattedDate(format: .monthLiteralDayYear).capitalized).localized
+	}
 }
 
 extension StoreProduct.Period {
