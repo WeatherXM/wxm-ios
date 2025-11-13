@@ -14,9 +14,10 @@ public struct StoreProduct {
 	public let description: String
 	public let displayPrice: String
 	public let isSubscribed: Bool
+	public let renewalDate: Date?
 	public let period: Period?
 
-	init(product: Product, isSubscribed: Bool) {
+	init(product: Product, isSubscribed: Bool, renewalDate: Date?) {
 		self.identifier = product.id
 		self.name = product.displayName
 		self.description = product.description
@@ -27,6 +28,8 @@ public struct StoreProduct {
 		} else {
 			self.period = nil
 		}
+
+		self.renewalDate = renewalDate
 	}
 }
 

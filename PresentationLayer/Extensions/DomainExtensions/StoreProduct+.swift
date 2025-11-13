@@ -6,6 +6,7 @@
 //
 
 import DomainLayer
+import Toolkit
 
 extension StoreProduct {
 	var toSubcriptionViewCard: SubscriptionCardView.Card {
@@ -20,6 +21,14 @@ extension StoreProduct {
 		}
 
 		return "\(displayPrice)/\(perUnit)"
+	}
+
+	var nextBillingDateString: String? {
+		guard let renewalDate else {
+			return nil
+		}
+
+		return LocalizableString.Subscriptions.nextBillingDate(renewalDate.getFormattedDate(format: .monthLiteralDayYear).capitalized).localized
 	}
 }
 
