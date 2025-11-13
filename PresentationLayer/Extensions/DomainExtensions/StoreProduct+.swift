@@ -13,4 +13,36 @@ extension StoreProduct {
 			  price: self.displayPrice,
 			  description: self.description)
 	}
+
+	var pricePeriodString: String {
+		guard let perUnit = period?.perUnit else {
+			return ""
+		}
+
+		return "\(displayPrice)/\(perUnit)"
+	}
+}
+
+extension StoreProduct.Period {
+	var perUnit: String? {
+		guard let unit else {
+			return nil
+		}
+
+		var unitString: LocalizableString?
+		let isPlural = value > 1
+		switch unit {
+			case .day:
+				unitString = isPlural ? .days : .day
+			case .week:
+				unitString = isPlural ? .weeks : .week
+			case .month:
+				unitString = isPlural ? .months : .month
+			case .year:
+				unitString = isPlural ? .years : .year
+		}
+
+		let valueString = value > 1 ? "\(value) " : ""
+		return "\(valueString)\(unitString?.localized.lowercased() ?? "")"
+	}
 }
