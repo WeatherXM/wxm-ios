@@ -78,7 +78,7 @@ public class IAPService: @unchecked Sendable {
 
 private extension IAPService {
 	func observeUpdates() -> Task<Void, Never> {
-		Task(priority: .background) { [weak self] in
+		Task { [weak self] in
 			for await result in Transaction.updates {
 				self?.handleTransactionResult(result)
 			}
