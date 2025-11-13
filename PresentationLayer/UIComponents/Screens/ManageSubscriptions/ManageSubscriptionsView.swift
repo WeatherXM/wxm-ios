@@ -75,7 +75,7 @@ extension ManageSubscriptionsView {
 			ForEach(viewModel.products, id: \.identifier) { product in
 				planCardView(title: product.name,
 							 subtitle: product.pricePeriodString,
-							 description: product.description)
+							 description: product.nextBillingDateString)
 			}
 		} else {
 			planCardView(title: LocalizableString.Subscriptions.standard.localized,

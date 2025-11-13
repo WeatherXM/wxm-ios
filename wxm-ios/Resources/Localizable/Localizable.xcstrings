@@ -11396,6 +11396,17 @@
         }
       }
     },
+    "subscriptions_next_billing_date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next billing date %@"
+          }
+        }
+      }
+    },
     "subscriptions_premium" : {
       "extractionState" : "manual",
       "localizations" : {
