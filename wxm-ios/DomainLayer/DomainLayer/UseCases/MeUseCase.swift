@@ -201,10 +201,13 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		return await products.asyncMap { product in
 			let renewalDate = await product.getRenewalDate(productId: product.id)
 			let isCanceled = await product.isCanceled(productId: product.id)
+			let expirationDate = await product.expirationDate(productId: product.id)
+
 			return StoreProduct(product: product,
 								isSubscribed: subscribedProductIds.contains(product.id),
 								renewalDate: renewalDate,
-								isCanceled: isCanceled)
+								isCanceled: isCanceled,
+								expirationDate: expirationDate)
 		}
 	}
 
@@ -213,10 +216,13 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		return await products.asyncMap { product in
 			let renewalDate = await product.getRenewalDate(productId: product.id)
 			let isCanceled = await product.isCanceled(productId: product.id)
+			let expirationDate = await product.expirationDate(productId: product.id)
+
 			return StoreProduct(product: product,
 								isSubscribed: true,
 								renewalDate: renewalDate,
-								isCanceled: isCanceled)
+								isCanceled: isCanceled,
+								expirationDate: expirationDate)
 		}
 	}
 

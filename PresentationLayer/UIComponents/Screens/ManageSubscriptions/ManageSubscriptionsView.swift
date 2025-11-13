@@ -81,11 +81,18 @@ extension ManageSubscriptionsView {
 							 subtitle: nil,
 							 description: LocalizableString.Subscriptions.standardDescription.localized,
 							 isCanceled: false)
-			case .subscribed, .canceled:
+			case .subscribed:
 				ForEach(viewModel.products, id: \.identifier) { product in
 					planCardView(title: product.name,
 								 subtitle: product.pricePeriodString,
 								 description: product.nextBillingDateString,
+								 isCanceled: product.isCanceled)
+				}
+			case .canceled:
+				ForEach(viewModel.products, id: \.identifier) { product in
+					planCardView(title: product.name,
+								 subtitle: nil,
+								 description: product.expirationDateString,
 								 isCanceled: product.isCanceled)
 				}
 		}
@@ -134,14 +141,12 @@ extension ManageSubscriptionsView {
 					}
 				}
 
-				if viewModel.state == .standard {
-					Button {
-						viewModel.handleGetPremiumTap()
-					} label: {
-						Text(LocalizableString.Subscriptions.getPremium.localized)
-					}
-					.buttonStyle(WXMButtonStyle.filled())
+				Button {
+					viewModel.handleGetPremiumTap()
+				} label: {
+					Text(LocalizableString.Subscriptions.getPremium.localized)
 				}
+				.buttonStyle(WXMButtonStyle.filled())
 			}
 			.WXMCardStyle()
 		}
