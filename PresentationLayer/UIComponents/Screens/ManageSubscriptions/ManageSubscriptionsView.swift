@@ -74,7 +74,7 @@ extension ManageSubscriptionsView {
 		if viewModel.isSubscribed {
 			ForEach(viewModel.products, id: \.identifier) { product in
 				planCardView(title: product.name,
-							 subtitle: product.displayPrice,
+							 subtitle: product.pricePeriodString,
 							 description: product.description)
 			}
 		} else {

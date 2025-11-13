@@ -117,7 +117,14 @@ enum LocalizableString: WXMLocalizable {
 	case clear
 	case cancel
 	case change
+	case day
 	case days
+	case week
+	case weeks
+	case month
+	case months
+	case year
+	case years
 	case connectToStation
 	case yes
 	case no
@@ -456,8 +463,22 @@ extension LocalizableString {
 				return "cancel"
 			case .change:
 				return "change"
+			case .day:
+				return "day"
 			case .days:
 				return "days"
+			case .week:
+				return "week"
+			case .weeks:
+				return "weeks"
+			case .month:
+				return "month"
+			case .months:
+				return "months"
+			case .year:
+				return "year"
+			case .years:
+				return "years"
 			case .connectToStation:
 				return "connect_to_station"
 			case .yes:
