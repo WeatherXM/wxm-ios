@@ -7,19 +7,30 @@
 
 import Foundation
 import DomainLayer
+import Combine
 
 @MainActor
 class ManageSubscriptionsViewModel: ObservableObject {
 	@Published var isLoading: Bool = false
 	@Published var products: [StoreProduct] = []
-	var isSubscribed: Bool {
-		!products.isEmpty
+	var state: ManageSubscriptionsView.State {
+		if products.isEmpty {
+			return .standard
+		}
+
+		if products.contains(where: { $0.isCanceled }) {
+			return .canceled
+		}
+
+		return .subscribed
 	}
 
 	private let useCase: MeUseCaseApi
+	private var cacncellables: Set<AnyCancellable> = .init()
 
 	init(useCase: MeUseCaseApi) {
 		self.useCase = useCase
+		observeTransactionChanges()
 	}
 
 	func refresh() async {
@@ -49,6 +60,13 @@ class ManageSubscriptionsViewModel: ObservableObject {
 }
 
 private extension ManageSubscriptionsViewModel {
+	func observeTransactionChanges() {
+		useCase.transactionProductsPublisher?.receive(on: DispatchQueue.main).sink { [weak self] _ in
+			Task { @MainActor in
+				await self?.refresh()
+			}
+		}.store(in: &cacncellables)
+	}
 }
 
 extension ManageSubscriptionsViewModel: HashableViewModel {

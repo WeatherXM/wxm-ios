@@ -33,9 +33,13 @@ struct ManageSubscriptionsView: View {
 
 						currentPlan
 
-						if !viewModel.isSubscribed {
-							premiumFeatrues
+						switch viewModel.state {
+							case .standard, .canceled:
+								premiumFeatrues
+							case .subscribed:
+								EmptyView()
 						}
+
 					}
 					.padding(CGFloat(.mediumSidePadding))
 				}
@@ -44,7 +48,7 @@ struct ManageSubscriptionsView: View {
 					await viewModel.refresh()
 				}
 
-				if viewModel.isSubscribed {
+				if viewModel.state == .subscribed {
 					Button {
 						viewModel.handleCancelSubscriptionTap()
 					} label: {
@@ -71,16 +75,19 @@ struct ManageSubscriptionsView: View {
 extension ManageSubscriptionsView {
 	@ViewBuilder
 	var currentPlan: some View {
-		if viewModel.isSubscribed {
-			ForEach(viewModel.products, id: \.identifier) { product in
-				planCardView(title: product.name,
-							 subtitle: product.pricePeriodString,
-							 description: product.nextBillingDateString)
-			}
-		} else {
-			planCardView(title: LocalizableString.Subscriptions.standard.localized,
-						 subtitle: nil,
-						 description: LocalizableString.Subscriptions.standardDescription.localized)
+		switch viewModel.state {
+			case .standard:
+				planCardView(title: LocalizableString.Subscriptions.standard.localized,
+							 subtitle: nil,
+							 description: LocalizableString.Subscriptions.standardDescription.localized,
+							 isCanceled: false)
+			case .subscribed, .canceled:
+				ForEach(viewModel.products, id: \.identifier) { product in
+					planCardView(title: product.name,
+								 subtitle: product.pricePeriodString,
+								 description: product.nextBillingDateString,
+								 isCanceled: product.isCanceled)
+				}
 		}
 	}
 
@@ -127,19 +134,24 @@ extension ManageSubscriptionsView {
 					}
 				}
 
-				Button {
-					viewModel.handleGetPremiumTap()
-				} label: {
-					Text(LocalizableString.Subscriptions.getPremium.localized)
+				if viewModel.state == .standard {
+					Button {
+						viewModel.handleGetPremiumTap()
+					} label: {
+						Text(LocalizableString.Subscriptions.getPremium.localized)
+					}
+					.buttonStyle(WXMButtonStyle.filled())
 				}
-				.buttonStyle(WXMButtonStyle.filled())
 			}
 			.WXMCardStyle()
 		}
 	}
 
 	@ViewBuilder
-	func planCardView(title: String, subtitle: String?, description: String?) -> some View {
+	func planCardView(title: String,
+					  subtitle: String?,
+					  description: String?,
+					  isCanceled: Bool) -> some View {
 		VStack(spacing: CGFloat(.smallSpacing)) {
 			HStack {
 				Text(title)
@@ -148,13 +160,14 @@ extension ManageSubscriptionsView {
 
 				Spacer()
 
-				Text(LocalizableString.Subscriptions.active.localized)
+				let pillText: LocalizableString.Subscriptions = isCanceled ? .canceled : .active
+				Text(pillText.localized)
 					.font(.system(size: CGFloat(.caption)))
-					.foregroundStyle(Color(colorEnum: .bg))
+					.foregroundStyle(Color(colorEnum: .text))
 					.padding(.horizontal, CGFloat(.smallToMediumSidePadding))
 					.padding(.vertical, CGFloat(.smallSidePadding))
 					.background {
-						Capsule().fill(Color(colorEnum: .wxmPrimary))
+						Capsule().fill(Color(colorEnum: isCanceled ? .error : .wxmPrimary))
 					}
 			}
 
@@ -178,7 +191,15 @@ extension ManageSubscriptionsView {
 				}
 			}
 		}
-		.WXMCardStyle()
+		.WXMCardStyle(backgroundColor: isCanceled ? .errorTint : .top)
+	}
+}
+
+extension ManageSubscriptionsView {
+	enum State {
+		case standard
+		case subscribed
+		case canceled
 	}
 }
 

@@ -24,4 +24,20 @@ extension Product {
 
 		return renewalDate
 	}
+
+	func isCanceled(productId: String) async -> Bool {
+		let statuses = try? await subscription?.status
+		let status = statuses?.first { status in
+			if case .verified(let transaction) = status.transaction {
+				return transaction.productID == productId
+			}
+			return false
+		}
+
+		if case .subscribed = status?.state, case .verified(let renewalInfo) = status?.renewalInfo {
+			return !renewalInfo.willAutoRenew
+		}
+
+		return false
+	}
 }
