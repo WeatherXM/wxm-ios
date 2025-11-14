@@ -10,10 +10,12 @@ import Toolkit
 
 extension StoreProduct {
 	var toSubcriptionViewCard: SubscriptionCardView.Card {
-		.init(title: self.name.uppercased(),
-			  price: self.displayPrice,
-			  description: self.description,
-			  trial: self.trialPeriodString)
+		let hasTrial = self.trialPeriod != nil
+		let desc = hasTrial ? LocalizableString.Subscriptions.afterTrialCharge(pricePeriodLiteralString).localized : self.description
+		return .init(title: self.name.uppercased(),
+					 price: self.pricePeriodString,
+					 description: desc,
+					 trial: self.trialPeriodString)
 	}
 
 	var pricePeriodString: String {
@@ -22,6 +24,14 @@ extension StoreProduct {
 		}
 
 		return "\(displayPrice)/\(perUnit)"
+	}
+
+	var pricePeriodLiteralString: String {
+		guard let perUnit = period?.perUnit else {
+			return ""
+		}
+
+		return LocalizableString.Subscriptions.perUnitPrice(displayPrice, perUnit).localized
 	}
 
 	var nextBillingDateString: String? {

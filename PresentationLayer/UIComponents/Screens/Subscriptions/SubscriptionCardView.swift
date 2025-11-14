@@ -26,7 +26,7 @@ struct SubscriptionCardView: View {
 
 				HStack {
 					Text(card.price)
-						.font(.system(size: CGFloat(.largeFontSize)))
+						.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
 						.foregroundStyle(Color(colorEnum: .text))
 
 					Spacer()
