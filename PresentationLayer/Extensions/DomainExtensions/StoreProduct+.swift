@@ -12,7 +12,8 @@ extension StoreProduct {
 	var toSubcriptionViewCard: SubscriptionCardView.Card {
 		.init(title: self.name.uppercased(),
 			  price: self.displayPrice,
-			  description: self.description)
+			  description: self.description,
+			  trial: self.trialPeriodString)
 	}
 
 	var pricePeriodString: String {
@@ -38,10 +39,27 @@ extension StoreProduct {
 		
 		return LocalizableString.Subscriptions.premiumAvailableUntil(expirationDate.getFormattedDate(format: .monthLiteralDayYear).capitalized).localized
 	}
+
+	var trialPeriodString: String? {
+		guard let trialPeriod else {
+			return nil
+		}
+		
+		return LocalizableString.Subscriptions.freeTrial(trialPeriod.value, trialPeriod.unitString?.localized ?? "").localized
+	}
 }
 
 extension StoreProduct.Period {
 	var perUnit: String? {
+		guard let unitString else {
+			return nil
+		}
+
+		let valueString = value > 1 ? "\(value) " : ""
+		return "\(valueString)\(unitString.localized.lowercased())"
+	}
+
+	var unitString: LocalizableString? {
 		guard let unit else {
 			return nil
 		}
@@ -59,7 +77,6 @@ extension StoreProduct.Period {
 				unitString = isPlural ? .years : .year
 		}
 
-		let valueString = value > 1 ? "\(value) " : ""
-		return "\(valueString)\(unitString?.localized.lowercased() ?? "")"
+		return unitString
 	}
 }

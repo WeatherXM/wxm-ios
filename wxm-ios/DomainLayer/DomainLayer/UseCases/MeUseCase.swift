@@ -202,12 +202,14 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 			let renewalDate = await product.getRenewalDate(productId: product.id)
 			let isCanceled = await product.isCanceled(productId: product.id)
 			let expirationDate = await product.expirationDate(productId: product.id)
+			let isEligibleForIntro = await product.isUserEligibleForIntroductoryOffer()
 
 			return StoreProduct(product: product,
 								isSubscribed: subscribedProductIds.contains(product.id),
 								renewalDate: renewalDate,
 								isCanceled: isCanceled,
-								expirationDate: expirationDate)
+								expirationDate: expirationDate,
+								hasFreeTrial: isEligibleForIntro)
 		}
 	}
 
@@ -217,12 +219,14 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 			let renewalDate = await product.getRenewalDate(productId: product.id)
 			let isCanceled = await product.isCanceled(productId: product.id)
 			let expirationDate = await product.expirationDate(productId: product.id)
+			let isEligibleForIntro = await product.isUserEligibleForIntroductoryOffer()
 
 			return StoreProduct(product: product,
 								isSubscribed: true,
 								renewalDate: renewalDate,
 								isCanceled: isCanceled,
-								expirationDate: expirationDate)
+								expirationDate: expirationDate,
+								hasFreeTrial: isEligibleForIntro)
 		}
 	}
 

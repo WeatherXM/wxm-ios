@@ -32,6 +32,19 @@ struct SubscriptionCardView: View {
 					Spacer()
 				}
 
+				if let trial = card.trial {
+					HStack {
+						Text(trial)
+							.font(.system(size: CGFloat(.caption)))
+							.foregroundStyle(Color(colorEnum: .success))
+							.padding(.horizontal, CGFloat(.smallToMediumSidePadding))
+							.padding(.vertical, CGFloat(.smallSidePadding))
+							.background(Color(colorEnum: .successTint).cornerRadius(CGFloat(.smallCornerRadius)))
+
+						Spacer()
+					}
+				}
+
 				HStack {
 					Text(card.description)
 						.font(.system(size: CGFloat(.normalFontSize)))
@@ -59,12 +72,14 @@ extension SubscriptionCardView {
 		let title: String
 		let price: String
 		let description: String
+		let trial: String?
 	}
 }
 
 #Preview {
 	SubscriptionCardView(card: .init(title: "MONTHLY",
 									 price: "$3.99/month",
-									 description: "then $3.99 per month. Cancel anytime."),
+									 description: "then $3.99 per month. Cancel anytime.",
+									 trial: LocalizableString.Subscriptions.freeTrial(1, "Week").localized),
 						 isSelected: true)
 }
