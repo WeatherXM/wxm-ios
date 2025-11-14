@@ -11308,6 +11308,17 @@
         }
       }
     },
+    "subscriptions_after_trial_charge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "then %@. Cancel anytime."
+          }
+        }
+      }
+    },
     "subscriptions_cancel_subscription" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11425,6 +11436,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next billing date %@"
+          }
+        }
+      }
+    },
+    "subscriptions_per_unit_price" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ per %@"
           }
         }
       }
