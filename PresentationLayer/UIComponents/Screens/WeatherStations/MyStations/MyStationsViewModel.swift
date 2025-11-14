@@ -113,15 +113,6 @@ public final class MyStationsViewModel: ObservableObject {
 		}
 
 		initializeAddButtonIndicationState()
-
-		Task { @MainActor in
-			do {
-				let products = try await meUseCase.getAvailableSubscriptionProducts()
-				print(products)
-			} catch {
-				print(error)
-			}
-		}
 	}
 
 	func updateProgressUpload() {
