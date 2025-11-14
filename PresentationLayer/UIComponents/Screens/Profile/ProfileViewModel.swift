@@ -137,6 +137,8 @@ class ProfileViewModel: ObservableObject {
 
 				return
 			}
+
+			await self?.checkIfIsSubscribed()
 		}
 	}
 
@@ -231,6 +233,12 @@ class ProfileViewModel: ObservableObject {
 private extension ProfileViewModel {
 	func shouldShowSubscribeButton() -> Bool {
 		return isLoggedIn
+	}
+
+	@MainActor
+	func checkIfIsSubscribed() async {
+		let subscribedProducts = try? await meUseCase.getSubscribedProducts()
+		isSubscribed = subscribedProducts?.isEmpty	== false
 	}
 
 	func updateClaimTrialText() {
