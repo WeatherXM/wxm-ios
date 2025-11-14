@@ -18,8 +18,15 @@ public struct StoreProduct {
 	public let period: Period?
 	public let isCanceled: Bool
 	public let expirationDate: Date?
+	public let hasFreeTrial: Bool
+	public let trialPeriod: Period?
 
-	init(product: Product, isSubscribed: Bool, renewalDate: Date?, isCanceled: Bool, expirationDate: Date?) {
+	init(product: Product,
+		 isSubscribed: Bool,
+		 renewalDate: Date?,
+		 isCanceled: Bool,
+		 expirationDate: Date?,
+		 hasFreeTrial: Bool) {
 		self.identifier = product.id
 		self.name = product.displayName
 		self.description = product.description
@@ -34,6 +41,12 @@ public struct StoreProduct {
 		self.renewalDate = renewalDate
 		self.isCanceled = isCanceled
 		self.expirationDate = expirationDate
+		self.hasFreeTrial = hasFreeTrial
+		if let introductoryOfferPeriod = product.subscription?.introductoryOffer?.period {
+			self.trialPeriod = .init(value: introductoryOfferPeriod.value, unit: PeriodUnit(unit: introductoryOfferPeriod.unit))
+		} else {
+			self.trialPeriod = nil
+		}
 	}
 }
 

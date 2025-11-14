@@ -59,4 +59,16 @@ extension Product {
 
 		return nil
 	}
+
+	func introductoryOffer() -> SubscriptionOffer? {
+		subscription?.introductoryOffer
+	}
+
+	func isUserEligibleForIntroductoryOffer() async -> Bool {
+		guard let subscription, subscription.introductoryOffer != nil else {
+			return false
+		}
+
+		return await subscription.isEligibleForIntroOffer
+	}
 }
