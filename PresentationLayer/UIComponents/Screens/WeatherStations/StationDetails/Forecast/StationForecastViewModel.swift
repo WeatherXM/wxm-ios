@@ -42,6 +42,7 @@ class StationForecastViewModel: ObservableObject {
         self.containerDelegate = containerDelegate
         self.useCase = useCase
         observeOffset()
+		observeTransactionChanges()
     }
 
     func refresh(completion: @escaping VoidCallback) {
@@ -113,6 +114,14 @@ private extension StationForecastViewModel {
 			self.containerDelegate?.didEndScrollerDragging()
 		}
     }
+
+	func observeTransactionChanges() {
+		useCase?.transactionProductsPublisher?.sink { [weak self] _ in
+			Task {
+				await self?.containerDelegate?.shouldRefresh()
+			}
+		}.store(in: &cancellables)
+	}
 
     func generateHiddenViewConfiguration() -> WXMEmptyView.Configuration {
         let description: String = LocalizableString.hiddenContentDescription( device?.name ?? "").localized
@@ -204,6 +213,9 @@ extension StationForecastViewModel: StationDetailsViewModelChild {
 			return
 		}
 
+		let subscribedProducts = try? await useCase?.getSubscribedProducts()
+		self.isSubscribed = subscribedProducts?.isEmpty == false
+		
         guard let res = await getDeviceForecastDaily(deviceId: device?.id) else {
             return
         }
