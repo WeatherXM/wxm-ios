@@ -31,6 +31,8 @@ extension LocalizableString {
 		case nextBillingDate(String)
 		case premiumAvailableUntil(String)
 		case freeTrial(Int, String)
+		case perUnitPrice(String, String)
+		case afterTrialCharge(String)
 	}
 }
 
@@ -40,10 +42,13 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 		switch self {
 			case .purchaseFailedDescription(let text),
 				 .nextBillingDate(let text),
-				 .premiumAvailableUntil(let text):
+				 .premiumAvailableUntil(let text),
+				 .afterTrialCharge(let text):
 				localized = String(format: localized, text)
 			case .freeTrial(let count, let text):
 				localized = String(format: localized, count, text)
+			case .perUnitPrice(let text0, let text1):
+				localized = String(format: localized, text0, text1)
 			default: break
 		}
 
@@ -96,6 +101,10 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_premium_available_until"
 			case .freeTrial:
 				"subscriptions_free_trial"
+			case .perUnitPrice:
+				"subscriptions_per_unit_price"
+			case .afterTrialCharge:
+				"subscriptions_after_trial_charge"
 		}
 	}
 }
