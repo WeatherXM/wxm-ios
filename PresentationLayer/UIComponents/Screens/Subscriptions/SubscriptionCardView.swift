@@ -64,9 +64,9 @@ struct SubscriptionCardView: View {
 }
 
 extension SubscriptionCardView {
-	struct Card: Identifiable, Equatable {
+	struct Card: Identifiable, Equatable, Hashable {
 		var id: String {
-			title
+			hashValue.description
 		}
 		
 		let title: String

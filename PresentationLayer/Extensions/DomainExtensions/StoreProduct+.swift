@@ -51,7 +51,7 @@ extension StoreProduct {
 	}
 
 	var trialPeriodString: String? {
-		guard let trialPeriod else {
+		guard hasFreeTrial, let trialPeriod else {
 			return nil
 		}
 		

@@ -196,11 +196,18 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 	}
 
 	public func getAvailableSubscriptionProducts() async throws -> [StoreProduct] {
-		let products = try await meRepository.getAvailableSubscriptionProducts(identifiers: ["com.weatherxm.app.monthly", "com.weatherxm.year"])
+		let products = try await meRepository.getAvailableSubscriptionProducts(identifiers: ["com.weatherxm.app.monthly",
+																							 "com.weatherxm.year",
+																							 "com.weatherxm.app.month.trial",
+																							 "com.weatherxm.app.year.trial"])
 		let subscribedProductIds = await meRepository.getSubscribedProductIds()
 		let isUserEligbleForIntroOffer = await isUserEligbleForIntroOffer()
 		return await products.asyncCompactMap { product in
 			if !isUserEligbleForIntroOffer && product.introductoryOffer() != nil {
+				return nil
+			}
+
+			if isUserEligbleForIntroOffer && product.introductoryOffer() == nil {
 				return nil
 			}
 
