@@ -225,6 +225,20 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		}
 	}
 
+	public func getRequiredTokensForTrial() async -> Double? {
+		let userInfo = try? await getUserInfo().toAsync().result.get()
+		guard let address = userInfo?.wallet?.address,
+			  let rewards = try? await networkRepository.getRewardsWithdraw(wallet: address).toAsync().result.get(),
+			  let cumulative = rewards.cumulativeAmount?.toEthDouble,
+			  let totalClaimed = rewards.totalClaimed?.toEthDouble else {
+			return nil
+		}
+
+		let neededCumulative: Double = 1.25 * totalClaimed
+		let diff = neededCumulative - cumulative
+		return diff
+	}
+
 	public func getSubscribedProducts() async throws -> [StoreProduct] {
 		let products = try await meRepository.getSubscribedProducts()
 		return await products.asyncCompactMap { product in
