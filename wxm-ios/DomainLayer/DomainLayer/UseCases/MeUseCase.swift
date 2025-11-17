@@ -198,11 +198,16 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 	public func getAvailableSubscriptionProducts() async throws -> [StoreProduct] {
 		let products = try await meRepository.getAvailableSubscriptionProducts(identifiers: ["com.weatherxm.app.monthly", "com.weatherxm.year"])
 		let subscribedProductIds = await meRepository.getSubscribedProductIds()
-		return await products.asyncMap { product in
+		let isUserEligbleForIntroOffer = await isUserEligbleForIntroOffer()
+		return await products.asyncCompactMap { product in
+			if !isUserEligbleForIntroOffer && product.introductoryOffer() != nil {
+				return nil
+			}
+
+			let isEligibleForIntro = await product.isUserEligibleForIntroductoryOffer()
 			let renewalDate = await product.getRenewalDate(productId: product.id)
 			let isCanceled = await product.isCanceled(productId: product.id)
 			let expirationDate = await product.expirationDate(productId: product.id)
-			let isEligibleForIntro = await product.isUserEligibleForIntroductoryOffer()
 
 			return StoreProduct(product: product,
 								isSubscribed: subscribedProductIds.contains(product.id),
@@ -215,11 +220,11 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 
 	public func getSubscribedProducts() async throws -> [StoreProduct] {
 		let products = try await meRepository.getSubscribedProducts()
-		return await products.asyncMap { product in
+		return await products.asyncCompactMap { product in
+			let isEligibleForIntro = await product.isUserEligibleForIntroductoryOffer()
 			let renewalDate = await product.getRenewalDate(productId: product.id)
 			let isCanceled = await product.isCanceled(productId: product.id)
 			let expirationDate = await product.expirationDate(productId: product.id)
-			let isEligibleForIntro = await product.isUserEligibleForIntroductoryOffer()
 
 			return StoreProduct(product: product,
 								isSubscribed: true,
@@ -232,5 +237,20 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 
 	public func subscribeToProduct(_ product: StoreProduct) async throws {
 		try await meRepository.subscribeToProduct(productId: product.identifier)
+	}
+}
+
+private extension MeUseCase {
+	func isUserEligbleForIntroOffer() async -> Bool {
+		let userInfo = try? await getUserInfo().toAsync().result.get()
+		guard let address = userInfo?.wallet?.address,
+			  let rewards = try? await networkRepository.getRewardsWithdraw(wallet: address).toAsync().result.get(),
+			  let cumulative = rewards.cumulativeAmount?.toEthDouble,
+			  let totalClaimed = rewards.totalClaimed?.toEthDouble else {
+			return false
+		}
+
+		let isEligibleForIntroOffer = totalClaimed / cumulative <= 0.8
+		return isEligibleForIntroOffer
 	}
 }
