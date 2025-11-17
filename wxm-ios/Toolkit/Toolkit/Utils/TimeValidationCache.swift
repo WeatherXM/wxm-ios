@@ -14,6 +14,24 @@ public protocol PersistCacheManager: Sendable {
 	func remove(key: String)
 }
 
+public final class MemoryCacheManager: PersistCacheManager {
+	nonisolated(unsafe) private var cache: [String: Any] = [:]
+
+	public init() {}
+
+	public func save<T>(value: T, key: String) {
+		cache[key] = value
+	}
+
+	public func get<T>(key: String) -> T? {
+		cache[key] as? T
+	}
+
+	public func remove(key: String) {
+		cache.removeValue(forKey: key)
+	}
+}
+
 public class TimeValidationCache<T: Codable> {
 	private var cache: [String: Object<T>] {
 		get {

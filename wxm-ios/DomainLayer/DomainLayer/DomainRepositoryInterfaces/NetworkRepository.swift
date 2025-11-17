@@ -17,6 +17,7 @@ public protocol NetworkRepository {
     func getSearchRecent() -> [any NetworkSearchItem]
     func deleteAllRecent()
 	func getRewardsWithdraw(wallet: String) throws -> AnyPublisher<DataResponse<NetworkUserRewardsResponse, NetworkErrorResponse>, Never>
+	func getCachedRewardsWithdraw(wallet: String) -> NetworkUserRewardsResponse?
 }
 
 public enum SearchExclude: String, Sendable {
