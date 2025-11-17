@@ -113,7 +113,6 @@ class ProfileViewModel: ObservableObject {
 		Task { @MainActor [weak self] in
 			defer {
 				self?.isLoading = false
-				self?.updateClaimTrialText()
 				completion()
 			}
 
@@ -139,6 +138,7 @@ class ProfileViewModel: ObservableObject {
 			}
 
 			await self?.checkIfIsSubscribed()
+			await self?.updateClaimTrialText()
 		}
 	}
 
@@ -241,24 +241,23 @@ private extension ProfileViewModel {
 		isSubscribed = subscribedProducts?.isEmpty	== false
 	}
 
-	func updateClaimTrialText() {
+	@MainActor
+	func updateClaimTrialText() async {
 		guard isLoggedIn,
-			  let cumulative = userRewardsResponse?.cumulativeAmount?.toEthDouble,
-			  let totalClaimed = userRewardsResponse?.totalClaimed?.toEthDouble else {
+			  !isSubscribed else {
 			claimTrialText = nil
 			return
 		}
 
-		let hasFreeTrial = totalClaimed / cumulative <= 0.8
-		if hasFreeTrial && !isSubscribed {
+		let availableProducts = try? await meUseCase.getAvailableSubscriptionProducts()
+		let hasFreeTrial = availableProducts?.contains(where: { $0.hasFreeTrial }) ?? false
+		if hasFreeTrial {
 			claimTrialText = (LocalizableString.Profile.claimFreeTrial.localized, LocalizableString.Profile.claimFreeTrialUnlockedDescription.localized)
 			return
 		}
 
-		if !isSubscribed {
-			let neededCumulative: Double = 1.25 * totalClaimed
-			let diff = neededCumulative - cumulative
-			claimTrialText = (LocalizableString.Profile.claimFreeTrialLocked.localized, LocalizableString.Profile.claimFreeTrialLockedDescription(diff).localized)
+		if let requiredTokensForTrial = await meUseCase.getRequiredTokensForTrial() {
+			claimTrialText = (LocalizableString.Profile.claimFreeTrialLocked.localized, LocalizableString.Profile.claimFreeTrialLockedDescription(requiredTokensForTrial).localized)
 			return
 		}
 
