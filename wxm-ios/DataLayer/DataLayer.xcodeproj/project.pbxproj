@@ -30,6 +30,7 @@
 		264BDA0C298AC792005C1F82 /* FirmwareUpdateImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264BDA0B298AC792005C1F82 /* FirmwareUpdateImpl.swift */; };
 		264BDA11298BA108005C1F82 /* FirmwareUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264BDA10298BA108005C1F82 /* FirmwareUpdater.swift */; };
 		264CC75D2B986F310060DEA4 /* get_reward_boosts.json in Resources */ = {isa = PBXBuildFile; fileRef = 264CC75C2B986F310060DEA4 /* get_reward_boosts.json */; };
+		266351482EC788730070CD26 /* WalletRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266351472EC7885B0070CD26 /* WalletRewardsService.swift */; };
 		266B01C12B84DED4007AC689 /* get_device_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */; };
 		266B01C52B84E7F6007AC689 /* get_device_rewards_timeline.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01C42B84E7F6007AC689 /* get_device_rewards_timeline.json */; };
 		266B01CF2B861B10007AC689 /* get_device_rewards_summary_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01CE2B861B10007AC689 /* get_device_rewards_summary_empty.json */; };
@@ -142,6 +143,7 @@
 		264BDA0B298AC792005C1F82 /* FirmwareUpdateImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateImpl.swift; sourceTree = "<group>"; };
 		264BDA10298BA108005C1F82 /* FirmwareUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirmwareUpdater.swift; sourceTree = "<group>"; };
 		264CC75C2B986F310060DEA4 /* get_reward_boosts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_reward_boosts.json; sourceTree = "<group>"; };
+		266351472EC7885B0070CD26 /* WalletRewardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRewardsService.swift; sourceTree = "<group>"; };
 		266B01C02B84DED4007AC689 /* get_device_rewards_summary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_summary.json; sourceTree = "<group>"; };
 		266B01C42B84E7F6007AC689 /* get_device_rewards_timeline.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_timeline.json; sourceTree = "<group>"; };
 		266B01CE2B861B10007AC689 /* get_device_rewards_summary_empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get_device_rewards_summary_empty.json; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				262B02F72B1F3B5300C31FE7 /* UserInfoService.swift */,
 				26C71CDB2D27D89300D2F0F3 /* FileUploaderService.swift */,
 				26862DD32E8ACCBB00B56C21 /* ExplorerService.swift */,
+				266351472EC7885B0070CD26 /* WalletRewardsService.swift */,
 				26ACC5D72EBCEF5300BCECD9 /* IAPService.swift */,
 			);
 			name = Services;
@@ -706,6 +709,7 @@
 				995A0CDC28C0A9830015DAA1 /* UserDefaultsService.swift in Sources */,
 				26AB9F522A80112900855912 /* UserDevicesService.swift in Sources */,
 				267EC3BC2CD0E8BD0085B50A /* MainRepositoryImpl.swift in Sources */,
+				266351482EC788730070CD26 /* WalletRewardsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

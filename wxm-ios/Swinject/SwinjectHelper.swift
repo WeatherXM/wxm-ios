@@ -30,6 +30,10 @@ class SwinjectHelper: SwinjectInterface {
 			UserDefaultsService()
 		}
 
+		container.register(MemoryCacheManager.self) { _ in
+			MemoryCacheManager()
+		}
+
 		container.register(IAPService.self) { _ in
 			IAPService()
 		}
@@ -50,6 +54,11 @@ class SwinjectHelper: SwinjectInterface {
 		}
 		.inObjectScope(.container)
 
+		container.register(WalletRewardsService.self) { reolver in
+			WalletRewardsService(cacheManager: reolver.resolve(MemoryCacheManager.self)!)
+		}
+		.inObjectScope(.container)
+
 		container.register(MainRepository.self) { _ in
 			MainRepositoryImpl()
 		}
@@ -66,8 +75,8 @@ class SwinjectHelper: SwinjectInterface {
 
         // MARK: - Network
 
-        container.register(NetworkRepository.self) { _ in
-            NetworkRepositoryImpl()
+        container.register(NetworkRepository.self) { resolver in
+			NetworkRepositoryImpl(rewardsService: resolver.resolve(WalletRewardsService.self)!)
         }
 
 		container.register(NetworkUseCaseApi.self) { resolver in

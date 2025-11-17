@@ -13,9 +13,12 @@ public struct NetworkRepositoryImpl: NetworkRepository {
 
     /// The maximum recent results to keep in memory. The purge will ber performed, if needed, on every DB query (`getSearchRecent`)
     private let maxRecentCount = 10
+	private let rewardsService: WalletRewardsService
 
-    public init() {}
-    
+	public init(rewardsService: WalletRewardsService) {
+		self.rewardsService = rewardsService
+	}
+
     public func getNetworkStats() throws -> AnyPublisher<DataResponse<DomainLayer.NetworkStatsResponse, DomainLayer.NetworkErrorResponse>, Never> {
         let builder = NetworkApiRequestBuilder.stats
         let request = try builder.asURLRequest()
@@ -75,8 +78,10 @@ public struct NetworkRepositoryImpl: NetworkRepository {
     }
 
 	public func getRewardsWithdraw(wallet: String) throws -> AnyPublisher<DataResponse<NetworkUserRewardsResponse, NetworkErrorResponse>, Never> {
-		let builder = NetworkApiRequestBuilder.rewardsWithdraw(wallet: wallet)
-		let urlRequest = try builder.asURLRequest()
-		return ApiClient.shared.requestCodable(urlRequest, mockFileName: builder.mockFileName)
+		try rewardsService.getRewardsWithdraw(wallet: wallet)
+	}
+
+	public func getCachedRewardsWithdraw(wallet: String) -> NetworkUserRewardsResponse? {
+		rewardsService.getCachedRewardsWithdraw(wallet: wallet)
 	}
 }
