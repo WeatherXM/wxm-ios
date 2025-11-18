@@ -36,6 +36,13 @@ public struct UserDeviceFollowState: Hashable, Codable, Sendable {
     }
 }
 
+public enum StoreProductError: Error, Equatable {
+	case noProductWithID(String)
+	case purchaseCancelled
+	case purchaseIsPending
+	case purchaseFailed
+}
+
 public protocol MeRepository {
     var userDevicesChangedNotificationPublisher: NotificationCenter.Publisher { get }
 	var userInfoPublisher: AnyPublisher<NetworkUserInfoResponse?, Never> { get }

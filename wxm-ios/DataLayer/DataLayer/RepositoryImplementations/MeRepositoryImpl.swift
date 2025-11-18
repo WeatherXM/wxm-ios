@@ -221,7 +221,15 @@ public struct MeRepositoryImpl: MeRepository {
 	}
 
 	public func subscribeToProduct(productId: String) async throws {
-		try await iAPService?.purchase(productId: productId)
+		do {
+			try await iAPService?.purchase(productId: productId)
+		} catch {
+			if let iAPServiceError = error as? IAPService.IAPEerror {
+				throw iAPServiceError.toStoreProdcutError
+			}
+
+			throw error
+		}
 	}
 }
 
@@ -281,4 +289,19 @@ private extension MeRepositoryImpl {
 			return Just(response)
 		}.eraseToAnyPublisher()
     }
+}
+
+extension IAPService.IAPEerror {
+	var toStoreProdcutError: StoreProductError {
+		switch self {
+			case .noProductWithId(let productId):
+				return .noProductWithID(productId)
+			case .purchaseCancelled:
+				return .purchaseCancelled
+			case .purchaseIsPending:
+				return .purchaseIsPending
+			case .purchaseFailed:
+				return .purchaseFailed
+		}
+	}
 }

@@ -58,6 +58,11 @@ class SubscriptionsViewModel: ObservableObject {
 			do {
 				try await useCase.subscribeToProduct(prodcut)
 				showSuccess()
+			} catch let productError as StoreProductError {
+				guard productError != .purchaseCancelled else {
+					return
+				}
+				showFail(errorDescription: productError.localizedDescription)
 			} catch {
 				showFail(errorDescription: error.localizedDescription)
 			}

@@ -33,6 +33,10 @@ extension LocalizableString {
 		case freeTrial(Int, String)
 		case perUnitPrice(String, String)
 		case afterTrialCharge(String)
+		case noProductError(String)
+		case purchaseCancelledError
+		case purchaseIsPendingError
+		case purchaseFailedError
 	}
 }
 
@@ -43,7 +47,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 			case .purchaseFailedDescription(let text),
 				 .nextBillingDate(let text),
 				 .premiumAvailableUntil(let text),
-				 .afterTrialCharge(let text):
+				 .afterTrialCharge(let text),
+				 .noProductError(let text):
 				localized = String(format: localized, text)
 			case .freeTrial(let count, let text):
 				localized = String(format: localized, count, text)
@@ -105,6 +110,14 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_per_unit_price"
 			case .afterTrialCharge:
 				"subscriptions_after_trial_charge"
+			case .noProductError:
+				"subsriptions_no_product_error"
+			case .purchaseCancelledError:
+				"subscriptions_purchase_cancelled_error"
+			case .purchaseIsPendingError:
+				"subscriptions_purchase_is_pending_error"
+			case .purchaseFailedError:
+				"subscriptions_purchase_failed_error"
 		}
 	}
 }
