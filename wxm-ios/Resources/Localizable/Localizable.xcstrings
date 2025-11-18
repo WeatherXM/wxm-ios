@@ -11506,6 +11506,17 @@
         }
       }
     },
+    "subscriptions_purchase_cancelled_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase cancelled"
+          }
+        }
+      }
+    },
     "subscriptions_purchase_failed" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11524,6 +11535,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Purchase process failed, please try again!\nIf the problem persists, please contact our support team.\n\nPlease make sure to mention that you’re facing an Error “**%@**” for faster resolution"
+          }
+        }
+      }
+    },
+    "subscriptions_purchase_failed_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase failed"
+          }
+        }
+      }
+    },
+    "subscriptions_purchase_is_pending_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase is pending"
           }
         }
       }
@@ -11557,6 +11590,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Just the basics. Premium features are locked.\nUpgrade your subscription to unlock them!"
+          }
+        }
+      }
+    },
+    "subsriptions_no_product_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No product with id: %@"
           }
         }
       }
