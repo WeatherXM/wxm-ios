@@ -43,11 +43,7 @@ extension StoreProduct {
 	}
 
 	var expirationDateString: String? {
-		guard let expirationDate else {
-			return nil
-		}
-		
-		return LocalizableString.Subscriptions.premiumAvailableUntil(expirationDate.getFormattedDate(format: .monthLiteralDayYear).capitalized).localized
+		return LocalizableString.Subscriptions.premiumAvailableUntil.localized
 	}
 
 	var trialPeriodString: String? {
