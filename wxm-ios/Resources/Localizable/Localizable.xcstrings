@@ -11468,7 +11468,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Premium features available until %@.\nSelect a plan to extend your subscription."
+            "value" : "Premium features are available until your subscription expires.\nSelect a plan to extend your subscription."
           }
         }
       }
@@ -11491,6 +11491,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Premium subscription unlocked"
+          }
+        }
+      }
+    },
+    "subscriptions_premium_forecast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium Forecast"
           }
         }
       }

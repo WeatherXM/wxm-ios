@@ -17,6 +17,7 @@ extension LocalizableString {
 		case premium
 		case active
 		case premiumFeatures
+		case premiumForecast
 		case mosaicForecast
 		case mosaicForecastDescription
 		case hourlyForecast
@@ -29,7 +30,7 @@ extension LocalizableString {
 		case purchaseFailedDescription(String)
 		case cancelSubscription
 		case nextBillingDate(String)
-		case premiumAvailableUntil(String)
+		case premiumAvailableUntil
 		case freeTrial(Int, String)
 		case perUnitPrice(String, String)
 		case afterTrialCharge(String)
@@ -46,7 +47,6 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 		switch self {
 			case .purchaseFailedDescription(let text),
 				 .nextBillingDate(let text),
-				 .premiumAvailableUntil(let text),
 				 .afterTrialCharge(let text),
 				 .noProductError(let text):
 				localized = String(format: localized, text)
@@ -78,6 +78,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_active"
 			case .premiumFeatures:
 				"subscriptions_premium_features"
+			case .premiumForecast:
+				"subscriptions_premium_forecast"
 			case .mosaicForecast:
 				"subscriptions_mosaic_forecast"
 			case .mosaicForecastDescription:
