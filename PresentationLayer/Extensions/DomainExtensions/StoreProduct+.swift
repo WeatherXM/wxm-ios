@@ -90,3 +90,19 @@ extension StoreProduct.Period {
 		return unitString
 	}
 }
+
+extension StoreProductError {
+	var localiizedDescription: String {
+		switch self {
+			case .noProductWithID(let productId):
+				LocalizableString.Subscriptions.noProductError(productId).localized
+			case .purchaseCancelled:
+				LocalizableString.Subscriptions.purchaseCancelledError.localized
+			case .purchaseIsPending:
+				LocalizableString.Subscriptions.purchaseIsPendingError.localized
+			case .purchaseFailed:
+				LocalizableString.Subscriptions.purchaseFailedError.localized
+		}
+	}
+
+}
