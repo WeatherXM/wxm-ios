@@ -8,6 +8,8 @@
 	<string>$(ApiUrl)</string>
 	<key>AppGroup</key>
 	<string>$(AppGroup)</string>
+	<key>AppStoreProducts</key>
+	<string>$(AppStoreProducts)</string>
 	<key>AppStoreUrl</key>
 	<string>$(AppStoreUrl)</string>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>

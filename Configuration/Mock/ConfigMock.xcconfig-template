@@ -30,3 +30,5 @@ SupportUrl = {The support site url};
 BranchName = branch;
 
 MixpanelToken = {The application token from mixpanel};
+
+AppStoreProducts = {The App Store product ids with a comma separated string}
