@@ -9,8 +9,8 @@ import SwiftUI
 import Toolkit
 
 struct MosaicCardView: View {
+	let isFreeTrialAvailable: Bool
 	let plansAction: VoidCallback
-	let freeSubscriptionAction: VoidCallback?
 
     var body: some View {
 		VStack(spacing: CGFloat(.largeSpacing)) {
@@ -22,7 +22,6 @@ struct MosaicCardView: View {
 				Text(LocalizableString.Forecast.smarterSharper.localized)
 					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
 					.foregroundStyle(Color(colorEnum: .text))
-
 			}
 
 			Text(LocalizableString.Forecast.mosaicCardDescription.localized)
@@ -51,15 +50,11 @@ struct MosaicCardView: View {
 						.fill(Color(.wxmPrimary))
 				}
 
-				if let freeSubscriptionAction {
-					Button {
-						freeSubscriptionAction()
-					} label: {
-						Text(LocalizableString.Forecast.freeSubscriptionText.localized)
-							.font(.system(size: CGFloat(.caption)))
-							.foregroundStyle(Color(colorEnum: .chartsTertiary))
-							.multilineTextAlignment(.center)
-					}
+				if isFreeTrialAvailable {
+					Text(LocalizableString.Forecast.freeSubscriptionText.localized)
+						.font(.system(size: CGFloat(.caption)))
+						.foregroundStyle(Color(colorEnum: .chartsTertiary))
+						.multilineTextAlignment(.center)
 				}
 			}
 		}
@@ -69,5 +64,5 @@ struct MosaicCardView: View {
 }
 
 #Preview {
-    MosaicCardView(plansAction: { }, freeSubscriptionAction: nil)
+	MosaicCardView(isFreeTrialAvailable: true) {}
 }
