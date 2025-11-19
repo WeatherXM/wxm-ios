@@ -56,7 +56,7 @@ public extension StoreProduct {
 		public let unit: PeriodUnit?
 	}
 
-	enum PeriodUnit {
+	enum PeriodUnit: Comparable {
 		case day
 		case week
 		case month
