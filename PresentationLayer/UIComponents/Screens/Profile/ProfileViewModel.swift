@@ -102,6 +102,8 @@ class ProfileViewModel: ObservableObject {
 		}.store(in: &cancellableSet)
 
 		isLoggedIn = MainScreenViewModel.shared.isUserLoggedIn
+
+		observeTransactionChanges()
     }
 
 	func refresh(pullToRefresh: Bool = false, completion: @escaping VoidCallback) {
@@ -233,6 +235,12 @@ class ProfileViewModel: ObservableObject {
 private extension ProfileViewModel {
 	func shouldShowSubscribeButton() -> Bool {
 		return isLoggedIn
+	}
+
+	func observeTransactionChanges() {
+		meUseCase.transactionProductsPublisher?.receive(on: DispatchQueue.main).sink { [weak self] _ in
+			self?.refresh(pullToRefresh: false) { }
+		}.store(in: &cancellableSet)
 	}
 
 	@MainActor
