@@ -222,7 +222,7 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 								isCanceled: isCanceled,
 								expirationDate: expirationDate,
 								hasFreeTrial: isEligibleForIntro)
-		}
+		}.sorted(by: { $0.period?.unit ?? .day < $1.period?.unit ?? .day})
 	}
 
 	public func getRequiredTokensForTrial() async -> Double? {
