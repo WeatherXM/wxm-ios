@@ -47,7 +47,7 @@ public protocol MeRepository {
     var userDevicesChangedNotificationPublisher: NotificationCenter.Publisher { get }
 	var userInfoPublisher: AnyPublisher<NetworkUserInfoResponse?, Never> { get }
 	var transactionsPublisher: AnyPublisher<Transaction, Never>? { get }
-    func getUser() throws -> AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never>
+	func getUser(useCache: Bool) throws -> AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never>
     func getUserWallet() throws -> AnyPublisher<DataResponse<Wallet, NetworkErrorResponse>, Never>
     func saveUserWallet(address: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>
 	func getOwnedDevices() throws -> AnyPublisher<DataResponse<[NetworkDevicesResponse], NetworkErrorResponse>, Never>

@@ -50,7 +50,7 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 	}
 
     public func getUserInfo() throws -> AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> {
-        let userInfo = try meRepository.getUser()
+        let userInfo = try meRepository.getUser(useCache: false)
         return userInfo
     }
 
@@ -226,7 +226,7 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 	}
 
 	public func getRequiredTokensForTrial() async -> Double? {
-		let userInfo = try? await getUserInfo().toAsync().result.get()
+		let userInfo = try? await meRepository.getUser(useCache: true).toAsync().result.get()
 		guard let address = userInfo?.wallet?.address,
 			  let rewards = try? await networkRepository.getRewardsWithdraw(wallet: address).toAsync().result.get(),
 			  let cumulative = rewards.cumulativeAmount?.toEthDouble,
@@ -263,9 +263,9 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 
 private extension MeUseCase {
 	func isUserEligbleForIntroOffer() async -> Bool {
-		let userInfo = try? await getUserInfo().toAsync().result.get()
+		let userInfo = try? await meRepository.getUser(useCache: true).toAsync().result.get()
 		guard let address = userInfo?.wallet?.address,
-			  let rewards = try? await networkRepository.getRewardsWithdraw(wallet: address).toAsync().result.get(),
+			  let rewards = await getRewardsWithdraw(wallet: address),
 			  let cumulative = rewards.cumulativeAmount?.toEthDouble,
 			  let totalClaimed = rewards.totalClaimed?.toEthDouble else {
 			return false
@@ -273,5 +273,13 @@ private extension MeUseCase {
 
 		let isEligibleForIntroOffer = totalClaimed / cumulative <= 0.8
 		return isEligibleForIntroOffer
+	}
+
+	func getRewardsWithdraw(wallet: String) async -> NetworkUserRewardsResponse? {
+		if let cached = networkRepository.getCachedRewardsWithdraw(wallet: wallet) {
+			return cached
+		}
+
+		return try? await networkRepository.getRewardsWithdraw(wallet: wallet).toAsync().result.get()
 	}
 }
