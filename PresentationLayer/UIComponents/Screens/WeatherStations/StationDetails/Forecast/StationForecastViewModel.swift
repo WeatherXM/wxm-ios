@@ -23,6 +23,7 @@ class StationForecastViewModel: ObservableObject {
 	@Published private(set) var hourlyItems: [StationForecastMiniCardView.Item] = []
 	@Published var showTemperatureBarsInfo: Bool = false
 	@Published var isSubscribed: Bool = false
+	@Published var isFreeTrialAvailable: Bool = false
 
     var overallMinTemperature: Double? {
         forecasts.min { ($0.daily?.temperatureMin ?? 0.0) < ($1.daily?.temperatureMin ?? 0.0) }?.daily?.temperatureMin
@@ -46,7 +47,6 @@ class StationForecastViewModel: ObservableObject {
     }
 
     func refresh(completion: @escaping VoidCallback) {
-
         Task { @MainActor in
             await containerDelegate?.shouldRefresh()
             completion()
@@ -82,6 +82,10 @@ class StationForecastViewModel: ObservableObject {
 																	.itemId: .forecastNextSevenDays])
 	}
 
+	func handleViewPlansTap() {
+		let viewModel = ViewModelsFactory.getSubscriptionsViewModel()
+		Router.shared.navigateTo(.subscriptions(viewModel))
+	}
 }
 
 private extension StationForecastViewModel {
@@ -215,7 +219,8 @@ extension StationForecastViewModel: StationDetailsViewModelChild {
 
 		let subscribedProducts = try? await useCase?.getSubscribedProducts()
 		self.isSubscribed = subscribedProducts?.isEmpty == false
-		
+		self.isFreeTrialAvailable = subscribedProducts?.contains(where: { $0.hasFreeTrial }) == true
+
         guard let res = await getDeviceForecastDaily(deviceId: device?.id) else {
             return
         }

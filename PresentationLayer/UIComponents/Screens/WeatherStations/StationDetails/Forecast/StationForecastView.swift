@@ -59,11 +59,9 @@ struct StationForecastView: View {
 						}
 
 						if !viewModel.isSubscribed {
-							MosaicCardView(plansAction: {
-
-							}, freeSubscriptionAction: {
-
-							})
+							MosaicCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
+								viewModel.handleViewPlansTap()
+							}
 							.wxmShadow()
 							.padding(.horizontal)
 							.padding(.bottom)
