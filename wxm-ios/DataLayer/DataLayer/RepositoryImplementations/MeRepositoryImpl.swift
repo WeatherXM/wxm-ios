@@ -44,8 +44,18 @@ public struct MeRepositoryImpl: MeRepository {
 		return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
     }
 
-    public func getUser() throws -> AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> {
-		try userInfoService.getUser()
+	public func getUser(useCache: Bool) throws -> AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> {
+		if useCache, let cachedUser = userInfoService.getCachedUser() {
+			let response: DataResponse<NetworkUserInfoResponse, NetworkErrorResponse> = .init(request: nil,
+																							  response: nil,
+																							  data: nil,
+																							  metrics: nil,
+																							  serializationDuration: 0.0,
+																							  result: .success(cachedUser))
+			return Just(response).eraseToAnyPublisher()
+		}
+
+		return try userInfoService.getUser()
     }
 
     public func getUserWallet() throws -> AnyPublisher<DataResponse<Wallet, NetworkErrorResponse>, Never> {

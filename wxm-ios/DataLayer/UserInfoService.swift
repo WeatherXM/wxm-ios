@@ -51,6 +51,10 @@ public class UserInfoService: @unchecked Sendable {
 		}.eraseToAnyPublisher()
 	}
 
+	public func getCachedUser() -> NetworkUserInfoResponse? {
+		userInfoSubject.value
+	}
+
 	public func saveUserWallet(address: String) throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never> {
 		let builder = MeApiRequestBuilder.saveUserWallet(address: address)
 		let urlRequest = try builder.asURLRequest()
