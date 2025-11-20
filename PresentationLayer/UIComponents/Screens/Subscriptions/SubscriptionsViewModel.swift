@@ -45,6 +45,7 @@ class SubscriptionsViewModel: ObservableObject {
 			self.selectedCard = self.subscribedProduct?.toSubcriptionViewCard ?? cards.first
 		} catch {
 			print(error)
+			showFail(errorDescription: error.localizedDescription)
 		}
 	}
 

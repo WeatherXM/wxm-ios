@@ -42,6 +42,7 @@ struct ManageSubscriptionsView: View {
 
 					}
 					.padding(CGFloat(.mediumSidePadding))
+					.iPadMaxWidth()
 				}
 				.scrollIndicators(.hidden)
 				.refreshable {
