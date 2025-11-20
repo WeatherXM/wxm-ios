@@ -26,7 +26,8 @@ struct ForecastDetailsViewModelTests {
 		followState = nil
 		linkNavigation = .init()
 		viewModel = .init(configuration: .init(forecasts: forecasts, selectedforecastIndex: 0, selectedHour: nil, device: device, followState: followState),
-		linkNavigation: linkNavigation)
+						  meUseCase: MockMeUseCase(),
+						  linkNavigation: linkNavigation)
 	}
 
 	@Test func testInitialization() {
