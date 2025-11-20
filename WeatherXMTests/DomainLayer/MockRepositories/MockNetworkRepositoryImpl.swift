@@ -75,4 +75,8 @@ extension MockNetworkRepositoryImpl: NetworkRepository {
 																					  result: .success(rewardsResponse))
 		return Just(response).eraseToAnyPublisher()		
 	}
+
+	func getCachedRewardsWithdraw(wallet: String) -> NetworkUserRewardsResponse? {
+		nil
+	}
 }

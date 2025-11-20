@@ -11,7 +11,12 @@ import Combine
 import Alamofire
 import Toolkit
 
-public class WalletRewardsService {
+public protocol WalletRewardsService {
+	func getCachedRewardsWithdraw(wallet: String) -> NetworkUserRewardsResponse?
+	func getRewardsWithdraw(wallet: String) throws -> AnyPublisher<DataResponse<NetworkUserRewardsResponse, NetworkErrorResponse>, Never>
+}
+
+public class WalletRewardsServiceImpl: WalletRewardsService {
 	private let cache: TimeValidationCache<NetworkUserRewardsResponse>
 	private let cacheValidationInterval: TimeInterval = 3.0 * 60.0 // 3 minutes
 

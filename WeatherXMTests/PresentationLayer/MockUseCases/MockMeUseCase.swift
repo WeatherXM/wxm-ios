@@ -13,10 +13,7 @@ import Alamofire
 import StoreKit
 
 final class MockMeUseCase: MeUseCaseApi {
-	func getSubscriptionProducts() async throws -> [Product] {
-		[]
-	}
-	
+	var transactionProductsPublisher: AnyPublisher<String, Never>? { nil}
 
 	nonisolated(unsafe) var addButtonIndicationSeen: Bool = false
 
@@ -217,4 +214,25 @@ final class MockMeUseCase: MeUseCaseApi {
 
 		return Just(response).eraseToAnyPublisher()
 	}
+
+	func getAvailableSubscriptionProducts() async throws -> [StoreProduct] {
+		[]
+	}
+
+	func getRequiredTokensForTrial() async -> Double? {
+		nil
+	}
+
+	func getSubscribedProducts() async throws -> [StoreProduct] {
+		[]
+	}
+
+	func subscribeToProduct(_ product: StoreProduct) async throws {
+
+	}
+
+	func getSubscriptionProducts() async throws -> [Product] {
+		[]
+	}
+
 }
