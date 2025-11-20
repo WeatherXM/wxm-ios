@@ -11451,6 +11451,17 @@
         }
       }
     },
+    "subscriptions_powered_by_mosaic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "powered by MOSAIC"
+          }
+        }
+      }
+    },
     "subscriptions_premium" : {
       "extractionState" : "manual",
       "localizations" : {

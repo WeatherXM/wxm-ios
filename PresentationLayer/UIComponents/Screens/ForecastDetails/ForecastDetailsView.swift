@@ -22,24 +22,30 @@ struct ForecastDetailsView: View {
 			ScrollViewReader { proxy in
 				ScrollView(showsIndicators: false) {
 					VStack(spacing: CGFloat(.largeSpacing)) {
-						NavigationTitleView(title: .constant(viewModel.navigationTitle),
-											subtitle: .constant(viewModel.navigationSubtitle)) {
-							Group {
-								if let faIcon = viewModel.fontIconState {
-									Button {
-										viewModel.handleTopButtonTap()
-									} label: {
-										Text(faIcon.icon.rawValue)
-											.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
-											.foregroundColor(Color(colorEnum: faIcon.color))
+						VStack(spacing: CGFloat(.smallSpacing)) {
+							NavigationTitleView(title: .constant(viewModel.navigationTitle),
+												subtitle: .constant(viewModel.navigationSubtitle)) {
+								Group {
+									if let faIcon = viewModel.fontIconState {
+										Button {
+											viewModel.handleTopButtonTap()
+										} label: {
+											Text(faIcon.icon.rawValue)
+												.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
+												.foregroundColor(Color(colorEnum: faIcon.color))
+										}
+										.disabled(!viewModel.isTopButtonEnabled)
+									} else {
+										EmptyView()
 									}
-									.disabled(!viewModel.isTopButtonEnabled)
-								} else {
-									EmptyView()
 								}
 							}
+
+							if viewModel.canShowPremium, viewModel.isSubscribed {
+								poweredBy
+							}
 						}.padding(.horizontal, CGFloat(.mediumSidePadding))
-						
+
 						VStack(spacing: CGFloat(.largeSpacing)) {
 							dailyForecast
 								.padding(.horizontal, CGFloat(.mediumSidePadding))
@@ -61,6 +67,15 @@ struct ForecastDetailsView: View {
 								withAnimation {
 									isTransitioning = newValue
 								}
+							}
+
+							if viewModel.canShowPremium, !viewModel.isSubscribed {
+								MosaicCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
+									viewModel.handleSeePlansTap()
+								}
+								.wxmShadow()
+								.padding(.horizontal)
+								.padding(.bottom)
 							}
 						}
 						.clipped()
@@ -127,6 +142,26 @@ private extension ForecastDetailsView {
 		} else {
 			EmptyView()
 		}
+	}
+
+	@ViewBuilder
+	var poweredBy: some View {
+		HStack(spacing: CGFloat(.smallSpacing)) {
+			Spacer()
+
+			Text(FontIcon.bolt.rawValue)
+				.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
+				.foregroundStyle(Color(colorEnum: .accent))
+
+			Text(LocalizableString.Subscriptions.poweredByMosaic.localized)
+				.font(.system(size: CGFloat(.caption)))
+				.foregroundStyle(Color(colorEnum: .text))
+
+			Spacer()
+		}
+		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
+					  insideVerticalPadding: CGFloat(.smallSidePadding),
+					  cornerRadius: CGFloat(.smallCornerRadius))
 	}
 }
 
