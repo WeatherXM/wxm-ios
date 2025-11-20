@@ -36,6 +36,7 @@ struct SubscriptionsView: View {
 						}
 					}
 					.padding(CGFloat(.mediumSidePadding))
+					.iPadMaxWidth()
 				}
 				.scrollIndicators(.hidden)
 				.refreshable {
@@ -50,6 +51,7 @@ struct SubscriptionsView: View {
 				.buttonStyle(WXMButtonStyle.filled())
 				.padding(CGFloat(.mediumSidePadding))
 				.disabled(!viewModel.canContinue)
+				.iPadMaxWidth()
 			}
 			.spinningLoader(show: $viewModel.isLoading)
 			.success(show: $viewModel.isSuccess, obj: viewModel.failSuccessObject)
