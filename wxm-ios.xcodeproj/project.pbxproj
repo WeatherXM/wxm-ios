@@ -133,6 +133,7 @@
 		265D7CE72AB1CA5D00782606 /* DateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265D7CE62AB1CA5D00782606 /* DateRange.swift */; };
 		2661059E2AE006A9000E4712 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2661059D2AE006A9000E4712 /* Launch Screen.storyboard */; };
 		266105A72AE023CC000E4712 /* DeviceDetails+Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266105A62AE023CC000E4712 /* DeviceDetails+Widget.swift */; };
+		266351532ECF0C5D0070CD26 /* MockWalletRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2663514F2ECF0C480070CD26 /* MockWalletRewardsService.swift */; };
 		266482F529C0740B00748F9C /* AccountConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266482F429C0740B00748F9C /* AccountConfirmationView.swift */; };
 		266482F729C075B900748F9C /* AccountConfirmationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266482F629C075B900748F9C /* AccountConfirmationViewModel.swift */; };
 		266482FC29C0B2B000748F9C /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266482FB29C0B2B000748F9C /* LoaderView.swift */; };
@@ -955,6 +956,7 @@
 		2660FF762AB9CD2500AB4F59 /* sort_all_projects.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = sort_all_projects.sh; sourceTree = "<group>"; };
 		2661059D2AE006A9000E4712 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		266105A62AE023CC000E4712 /* DeviceDetails+Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeviceDetails+Widget.swift"; sourceTree = "<group>"; };
+		2663514F2ECF0C480070CD26 /* MockWalletRewardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWalletRewardsService.swift; sourceTree = "<group>"; };
 		266482F429C0740B00748F9C /* AccountConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfirmationView.swift; sourceTree = "<group>"; };
 		266482F629C075B900748F9C /* AccountConfirmationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfirmationViewModel.swift; sourceTree = "<group>"; };
 		266482FB29C0B2B000748F9C /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
@@ -2626,6 +2628,7 @@
 				26DF1F552D54AC360001E936 /* FileUploaderServiceTests.swift */,
 				26DF1F632D56328B0001E936 /* PhotosRepositoryImplTests.swift */,
 				2678C45C2DFC3EF300523DF8 /* MockLogger.swift */,
+				2663514F2ECF0C480070CD26 /* MockWalletRewardsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -4117,6 +4120,7 @@
 				264814232D942B2300BCCC31 /* BTActionWrapperTests.swift in Sources */,
 				26F83CB52D9D777300E5A8B8 /* MockExplorerUseCase.swift in Sources */,
 				26710EA92D804F6400878298 /* LoginServiceImplTests.swift in Sources */,
+				266351532ECF0C5D0070CD26 /* MockWalletRewardsService.swift in Sources */,
 				26F176A02D79D271000BA381 /* MockKeychainRepositoryImpl.swift in Sources */,
 				26F83C9F2D9D2E0D00E5A8B8 /* RewardsTimelineViewModelTests.swift in Sources */,
 				262B975C2D3E5B5A002EFC6B /* NumbersTesting.swift in Sources */,
