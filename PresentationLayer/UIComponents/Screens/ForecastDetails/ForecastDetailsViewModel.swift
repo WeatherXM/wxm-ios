@@ -20,6 +20,8 @@ class ForecastDetailsViewModel: ObservableObject {
 	@Published var isLoggedIn: Bool = false
 	@Published var showLoginAlert: Bool = false
 	var alertConfiguration: WXMAlertConfiguration?
+	@Published var isSubscribed: Bool = false
+	@Published var isFreeTrialAvailable: Bool = false
 	@Published var fontIconState: StateFontAwesome?
 	@Published private(set) var isTransitioning: Bool = false
 	@Published private(set) var chartDelegate: ChartDelegate = ChartDelegate()
@@ -43,9 +45,14 @@ class ForecastDetailsViewModel: ObservableObject {
 	var isTopButtonEnabled: Bool {
 		false
 	}
+	var canShowPremium: Bool {
+		true
+	}
+	private let useCase: MeUseCaseApi?
 	private var cancellableSet: Set<AnyCancellable> = []
 
-	init(configuration: Configuration, linkNavigation: LinkNavigation = LinkNavigationHelper()) {
+	init(configuration: Configuration, meUseCase: MeUseCaseApi?, linkNavigation: LinkNavigation = LinkNavigationHelper()) {
+		self.useCase = meUseCase
 		self.forecasts = configuration.forecasts
 		self.fontIconState = configuration.fontAwesomeState
 		self.navigationTitle = configuration.navigationTitle
@@ -58,6 +65,12 @@ class ForecastDetailsViewModel: ObservableObject {
 		MainScreenViewModel.shared.$isUserLoggedIn.sink { [weak self] isLoggedIn in
 			self?.isLoggedIn = isLoggedIn
 		}.store(in: &cancellableSet)
+
+		useCase?.transactionProductsPublisher?.receive(on: DispatchQueue.main).sink { [weak self] _ in
+			self?.updateSubsriptionState()
+		}.store(in: &cancellableSet)
+
+		updateSubsriptionState()
 	}
 
 	func viewAppeared() {
@@ -75,9 +88,24 @@ class ForecastDetailsViewModel: ObservableObject {
 	func handleShopNowButtonTap() {
 		linkNavigation.openUrl(DisplayedLinks.shopLink.linkURL)
 	}
+
+	func handleSeePlansTap() {
+		let viewModel = ViewModelsFactory.getSubscriptionsViewModel()
+		Router.shared.navigateTo(.subscriptions(viewModel))
+	}
 }
 
 private extension ForecastDetailsViewModel {
+
+	@MainActor
+	func updateSubsriptionState() {
+		Task { @MainActor in
+			let subscribedProducts = try? await useCase?.getSubscribedProducts()
+			self.isSubscribed = subscribedProducts?.isEmpty == false
+			self.isFreeTrialAvailable = subscribedProducts?.contains(where: { $0.hasFreeTrial }) == true
+		}
+	}
+
 	func getFieldItems() -> [ForecastFieldCardView.Item] {
 		guard let currentForecast else {
 

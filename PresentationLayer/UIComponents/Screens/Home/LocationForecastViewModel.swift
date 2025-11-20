@@ -17,13 +17,16 @@ class LocationForecastViewModel: ForecastDetailsViewModel {
 	override var isTopButtonEnabled: Bool {
 		return true
 	}
+	override var canShowPremium: Bool {
+		false
+	}
 
 	init(configuration: ForecastDetailsViewModel.Configuration,
 		 location: CLLocationCoordinate2D,
 		 useCase: LocationForecastsUseCaseApi) {
 		self.location = location
 		self.useCase = useCase
-		super.init(configuration: configuration)
+		super.init(configuration: configuration, meUseCase: nil)
 
 		updateTopButton()
 	}

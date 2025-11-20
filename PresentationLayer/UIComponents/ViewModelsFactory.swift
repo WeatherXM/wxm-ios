@@ -190,7 +190,8 @@ enum ViewModelsFactory {
 	}
 
 	static func getForecastDetailsViewModel(configuration: ForecastDetailsViewModel.Configuration) -> ForecastDetailsViewModel {
-		ForecastDetailsViewModel(configuration: configuration)
+		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
+		return ForecastDetailsViewModel(configuration: configuration, meUseCase: useCase)
 	}
 
 	static func getLocationForecastDetailsViewModel(configuration: ForecastDetailsViewModel.Configuration,
