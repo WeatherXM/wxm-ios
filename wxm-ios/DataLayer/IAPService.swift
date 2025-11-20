@@ -64,8 +64,10 @@ public class IAPService: @unchecked Sendable {
 		switch result {
 			case .success(let verificationResult):
 				if case .verified(let transaction) = verificationResult {
-					transactionsPassthroughSubject.send(transaction)
 					await transaction.finish()
+					Task { @MainActor in
+						transactionsPassthroughSubject.send(transaction)
+					}
 				}
 			case .userCancelled:
 				throw IAPEerror.purchaseCancelled
