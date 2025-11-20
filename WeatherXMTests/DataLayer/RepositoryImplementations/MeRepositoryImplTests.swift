@@ -37,7 +37,7 @@ struct MeRepositoryImplTests {
 				confirm()
 			}.store(in: &cancellableWrapper.cancellableSet)
 
-			let user = try await repositoryImpl.getUser().toAsync().result.get()
+			let user = try await repositoryImpl.getUser(useCache: false).toAsync().result.get()
 			#expect(user.email == "user@example.com")
 			#expect(user.name == "TestUser")
 			try await Task.sleep(for: .seconds(1))

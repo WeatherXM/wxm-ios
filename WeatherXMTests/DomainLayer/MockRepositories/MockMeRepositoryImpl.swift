@@ -24,8 +24,8 @@ extension MockMeRepositoryImpl {
 }
 
 extension MockMeRepositoryImpl: MeRepository {
-	func getAvailableSubscriptionProducts(identifiers: [String]) async throws -> [Product] {
-		[]
+	var transactionsPublisher: AnyPublisher<Transaction, Never>? {
+		nil
 	}
 	
 	var userDevicesChangedNotificationPublisher: NotificationCenter.Publisher {
@@ -278,5 +278,32 @@ extension MockMeRepositoryImpl: MeRepository {
 																						result: .success(supportResponse))
 
 		return Just(response).eraseToAnyPublisher()
+	}
+
+	func getUser(useCache: Bool) throws -> AnyPublisher<DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>, Never> {
+		let user = NetworkUserInfoResponse()
+		let response = DataResponse<NetworkUserInfoResponse, NetworkErrorResponse>(request: nil,
+																				   response: nil,
+																				   data: nil,
+																				   metrics: nil,
+																				   serializationDuration: 0,
+																				   result: .success(user))
+		return Just(response).eraseToAnyPublisher()
+	}
+
+	func getSubscribedProductIds() async -> Set<String> {
+		[]
+	}
+
+	func getSubscribedProducts() async throws -> [Product] {
+		[]
+	}
+
+	func subscribeToProduct(productId: String) async throws {
+
+	}
+
+	func getAvailableSubscriptionProducts(identifiers: [String]) async throws -> [Product] {
+		[]
 	}
 }

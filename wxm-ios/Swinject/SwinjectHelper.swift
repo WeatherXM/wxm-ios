@@ -55,7 +55,7 @@ class SwinjectHelper: SwinjectInterface {
 		.inObjectScope(.container)
 
 		container.register(WalletRewardsService.self) { reolver in
-			WalletRewardsService(cacheManager: reolver.resolve(MemoryCacheManager.self)!)
+			WalletRewardsServiceImpl(cacheManager: reolver.resolve(MemoryCacheManager.self)!)
 		}
 		.inObjectScope(.container)
 
