@@ -13,7 +13,7 @@ import DomainLayer
 @MainActor
 struct NetworkRepositoryImplTests {
 
-	let repositoryImpl: NetworkRepositoryImpl = .init()
+	let repositoryImpl: NetworkRepositoryImpl = .init(rewardsService: MockWalletRewardsService())
 	private let device: NetworkSearchDevice
 	private let address: NetworkSearchAddress
 
