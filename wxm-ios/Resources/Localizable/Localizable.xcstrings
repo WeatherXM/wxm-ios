@@ -5247,6 +5247,28 @@
         }
       }
     },
+    "forecast_hyper_local" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hyper Local"
+          }
+        }
+      }
+    },
+    "forecast_hyper_local_card_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We’ve picked the top performed models in your area to give you the most accurate forecast possible."
+          }
+        }
+      }
+    },
     "forecast_join_the_network" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5265,28 +5287,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Get a station and contribute real data to WeatherXM while earning rewards."
-          }
-        }
-      }
-    },
-    "forecast_mosaic" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "MOSAIC"
-          }
-        }
-      }
-    },
-    "forecast_mosaic_card_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "We’ve picked the top performed models in your area to give you the most accurate forecast possible."
           }
         }
       }
@@ -11451,13 +11451,24 @@
         }
       }
     },
-    "subscriptions_powered_by_mosaic" : {
+    "subscriptions_powered_by_meteo_blue" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "powered by MOSAIC"
+            "value" : "powered by Meteoblue"
+          }
+        }
+      }
+    },
+    "subscriptions_powered_by_weatherxm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "powered by WeatherXM"
           }
         }
       }

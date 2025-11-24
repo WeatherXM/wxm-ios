@@ -38,7 +38,8 @@ extension LocalizableString {
 		case purchaseCancelledError
 		case purchaseIsPendingError
 		case purchaseFailedError
-		case poweredByMosaic
+		case poweredByWeatherXM
+		case poweredByMeteoBlue
 	}
 }
 
@@ -121,8 +122,10 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_purchase_is_pending_error"
 			case .purchaseFailedError:
 				"subscriptions_purchase_failed_error"
-			case .poweredByMosaic:
-				"subscriptions_powered_by_mosaic"
+			case .poweredByWeatherXM:
+				"subscriptions_powered_by_weatherxm"
+			case .poweredByMeteoBlue:
+				"subscriptions_powered_by_meteo_blue"
 		}
 	}
 }

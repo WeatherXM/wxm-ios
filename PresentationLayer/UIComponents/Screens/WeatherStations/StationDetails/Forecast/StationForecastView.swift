@@ -24,6 +24,9 @@ struct StationForecastView: View {
                 } content: {
                     VStack(spacing: CGFloat(.largeSpacing)) {
 
+						ForecastPoweredByView(isPremium: viewModel.isSubscribed)
+							.padding(.horizontal)
+
 						hourlyView
 
 						VStack(spacing: CGFloat(.mediumSpacing)) {
@@ -59,7 +62,7 @@ struct StationForecastView: View {
 						}
 
 						if !viewModel.isSubscribed {
-							MosaicCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
+							HyperLocalCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
 								viewModel.handleViewPlansTap()
 							}
 							.wxmShadow()
