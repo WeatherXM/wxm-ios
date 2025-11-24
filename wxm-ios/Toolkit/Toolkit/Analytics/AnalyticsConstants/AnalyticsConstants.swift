@@ -73,6 +73,7 @@ public enum Screen: String {
 	case tokenMetrics = "Token Metrics"
 	case networkGrowth = "Network Growth"
 	case stationNotifications = "Station Notifications"
+	case manageSubscription = "Manage Subscription"
 }
 
 public enum Event: String {
@@ -361,5 +362,6 @@ public enum ParameterValue {
 	case savedLocation
 	case unsavedLocation
 	case maxLocationsSavedError
+	case billingFlowResult
 	case custom(String)
 }

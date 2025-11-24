@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Toolkit
 
 struct ManageSubscriptionsView: View {
 	@StateObject var viewModel: ManageSubscriptionsViewModel
@@ -57,6 +58,8 @@ struct ManageSubscriptionsView: View {
 		.onAppear {
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
 			navigationObject.title = LocalizableString.Subscriptions.manageSubscription.localized
+
+			WXMAnalytics.shared.trackScreen(.manageSubscription)
 		}
     }
 }
