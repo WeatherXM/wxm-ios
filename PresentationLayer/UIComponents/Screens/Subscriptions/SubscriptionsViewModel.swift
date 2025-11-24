@@ -7,6 +7,7 @@
 
 import Foundation
 import DomainLayer
+import Toolkit
 
 @MainActor
 class SubscriptionsViewModel: ObservableObject {
@@ -58,12 +59,19 @@ class SubscriptionsViewModel: ObservableObject {
 		Task { @MainActor in
 			do {
 				try await useCase.subscribeToProduct(prodcut)
+
 				showSuccess()
+
+				WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .billingFlowResult,
+																		  .success: .custom("\(0)")])
 			} catch let productError as StoreProductError {
-				guard productError != .purchaseCancelled else {
-					return
+				let successState: Int = productError == .purchaseCancelled ? 0 : -1
+				WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .billingFlowResult,
+																		  .success: .custom("\(successState)")])
+
+				if productError != .purchaseCancelled {
+					showFail(errorDescription: productError.localizedDescription)
 				}
-				showFail(errorDescription: productError.localizedDescription)
 			} catch {
 				showFail(errorDescription: error.localizedDescription)
 			}
