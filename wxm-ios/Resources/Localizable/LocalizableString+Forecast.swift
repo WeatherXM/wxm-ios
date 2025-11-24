@@ -21,9 +21,9 @@ extension LocalizableString {
 		case joinTheNetwork
 		case joinTheNetworkDescription
 		case shopNow
-		case mosaic
+		case hyperLocal
 		case smarterSharper
-		case mosaicCardDescription
+		case hyperLocalCardDescription
 		case seeThePlans
 		case freeSubscriptionText
 	}
@@ -61,12 +61,12 @@ extension LocalizableString.Forecast: WXMLocalizable {
 				return "forecast_join_the_network_description"
 			case .shopNow:
 				return "forecast_shop_now"
-			case .mosaic:
-				return "forecast_mosaic"
+			case .hyperLocal:
+				return "forecast_hyper_local"
 			case .smarterSharper:
 				return "forecast_smarter_sharper"
-			case .mosaicCardDescription:
-				return "forecast_mosaic_card_description"
+			case .hyperLocalCardDescription:
+				return "forecast_hyper_local_card_description"
 			case .seeThePlans:
 				return "forecast_see_the_plans"
 			case .freeSubscriptionText:

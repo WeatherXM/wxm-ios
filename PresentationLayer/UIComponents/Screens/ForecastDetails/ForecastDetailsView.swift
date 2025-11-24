@@ -41,9 +41,7 @@ struct ForecastDetailsView: View {
 								}
 							}
 
-							if viewModel.canShowPremium, viewModel.isSubscribed {
-								poweredBy
-							}
+							poweredBy
 						}.padding(.horizontal, CGFloat(.mediumSidePadding))
 
 						VStack(spacing: CGFloat(.largeSpacing)) {
@@ -70,7 +68,7 @@ struct ForecastDetailsView: View {
 							}
 
 							if viewModel.canShowPremium, !viewModel.isSubscribed {
-								MosaicCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
+								HyperLocalCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
 									viewModel.handleSeePlansTap()
 								}
 								.wxmShadow()
@@ -146,22 +144,8 @@ private extension ForecastDetailsView {
 
 	@ViewBuilder
 	var poweredBy: some View {
-		HStack(spacing: CGFloat(.smallSpacing)) {
-			Spacer()
-
-			Text(FontIcon.bolt.rawValue)
-				.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-				.foregroundStyle(Color(colorEnum: .accent))
-
-			Text(LocalizableString.Subscriptions.poweredByMosaic.localized)
-				.font(.system(size: CGFloat(.caption)))
-				.foregroundStyle(Color(colorEnum: .text))
-
-			Spacer()
-		}
-		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
-					  insideVerticalPadding: CGFloat(.smallSidePadding),
-					  cornerRadius: CGFloat(.smallCornerRadius))
+		let isPremium = viewModel.canShowPremium && viewModel.isSubscribed
+		ForecastPoweredByView(isPremium: isPremium)
 	}
 }
 

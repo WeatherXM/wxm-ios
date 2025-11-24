@@ -1,5 +1,5 @@
 //
-//  MosaicCardView.swift
+//  HyperLocalCardView.swift
 //  wxm-ios
 //
 //  Created by Pantelis Giazitsis on 4/11/25.
@@ -8,14 +8,14 @@
 import SwiftUI
 import Toolkit
 
-struct MosaicCardView: View {
+struct HyperLocalCardView: View {
 	let isFreeTrialAvailable: Bool
 	let plansAction: VoidCallback
 
     var body: some View {
 		VStack(spacing: CGFloat(.largeSpacing)) {
 			VStack(spacing: CGFloat(.smallSpacing)) {
-				Text(LocalizableString.Forecast.mosaic.localized)
+				Text(LocalizableString.Forecast.hyperLocal.localized)
 					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 					.foregroundStyle(Color(colorEnum: .wxmPrimary))
 
@@ -24,7 +24,7 @@ struct MosaicCardView: View {
 					.foregroundStyle(Color(colorEnum: .text))
 			}
 
-			Text(LocalizableString.Forecast.mosaicCardDescription.localized)
+			Text(LocalizableString.Forecast.hyperLocalCardDescription.localized)
 				.font(.system(size: CGFloat(.normalFontSize)))
 				.foregroundStyle(Color(colorEnum: .chartsTertiary))
 				.multilineTextAlignment(.center)
@@ -64,5 +64,5 @@ struct MosaicCardView: View {
 }
 
 #Preview {
-	MosaicCardView(isFreeTrialAvailable: true) {}
+	HyperLocalCardView(isFreeTrialAvailable: true) {}
 }
