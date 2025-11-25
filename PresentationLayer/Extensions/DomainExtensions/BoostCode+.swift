@@ -18,7 +18,7 @@ extension BoostCode {
 			case .correction:
 				return LocalizableString.RewardAnalytics.compensation.localized
 			case .cellBounty:
-				return LocalizableString.RewardAnalytics.cellBounties.localized
+				return LocalizableString.RewardAnalytics.cellBounty.localized
 			case .unknown:
 				return LocalizableString.RewardAnalytics.otherBoost.localized
 		}
@@ -78,7 +78,7 @@ extension BoostCode {
 			case .correction:
 				return LocalizableString.RewardAnalytics.compensationRewards.localized
 			case .cellBounty:
-				return LocalizableString.RewardAnalytics.cellBountiesRewards.localized
+				return LocalizableString.RewardAnalytics.cellBountyRewards.localized
 			case .unknown:
 				return LocalizableString.RewardAnalytics.otherRewards.localized
 		}
