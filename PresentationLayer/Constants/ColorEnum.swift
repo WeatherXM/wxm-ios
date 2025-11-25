@@ -72,6 +72,8 @@ public enum ColorEnum: String {
 	case lastRun
 	case tooltip
 	case textDarkStable
+	case cellBountiesFill
+	case cellBountiesPrimary
 	case otherRewardFill
 	case otherRewardChart
 	case otherRewardPrimary

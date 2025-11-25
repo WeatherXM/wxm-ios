@@ -115,6 +115,7 @@ public enum BoostCode: Codable, RawRepresentable, Hashable, Comparable, Sendable
 	case betaReward
 	case correction(String)
 	case trov2
+	case cellBounties
 	case unknown(String)
 
 	public init?(rawValue: String) {
@@ -123,6 +124,8 @@ public enum BoostCode: Codable, RawRepresentable, Hashable, Comparable, Sendable
 				self = .betaReward
 			case "trov2":
 				self = .trov2
+			case "cell_bounties":
+				self = .cellBounties
 			case let str where str.hasPrefix("correction"):
 				self = .correction(rawValue)
 			default:
@@ -136,6 +139,8 @@ public enum BoostCode: Codable, RawRepresentable, Hashable, Comparable, Sendable
 				return "beta_rewards"
 			case .trov2:
 				return "trov2"
+			case .cellBounties:
+				return "cell_bounties"
 			case .correction(let raw):
 				return raw
 			case .unknown(let raw):

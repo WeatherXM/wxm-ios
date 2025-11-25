@@ -24,6 +24,7 @@ public extension NetworkDeviceRewardsResponse {
 		case base
 		case boost
 		case correction
+		case cellBounties = "cell_bounties"
 	}
 
 	struct RewardsData: Codable, Sendable {

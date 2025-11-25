@@ -17,7 +17,7 @@ extension NetworkDeviceRewardsResponse.RewardItem {
 		switch type {
 			case .base:
 				return .chartPrimary
-			case .boost, .correction:
+			case .boost, .correction, .cellBounties:
 				return code?.chartColor
 		}
 	}
@@ -30,7 +30,7 @@ extension NetworkDeviceRewardsResponse.RewardItem {
 		switch type {
 			case .base:
 				return LocalizableString.RewardAnalytics.base.localized
-			case .boost, .correction:
+			case .boost, .correction, .cellBounties:
 				return code?.displayName
 		}
 	}
@@ -43,7 +43,7 @@ extension NetworkDeviceRewardsResponse.RewardItem {
 		switch type {
 			case .base:
 				return LocalizableString.RewardAnalytics.baseRewards.localized
-			case .boost, .correction:
+			case .boost, .correction, .cellBounties:
 				return code?.legendTitle
 		}
 	}

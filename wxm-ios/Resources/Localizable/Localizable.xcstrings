@@ -8470,6 +8470,28 @@
         }
       }
     },
+    "reward_analytics_cell_bounties" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell Bounties"
+          }
+        }
+      }
+    },
+    "reward_analytics_cell_bounties_rewards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cell Bounties Rewards"
+          }
+        }
+      }
+    },
     "reward_analytics_compensation" : {
       "extractionState" : "manual",
       "localizations" : {
