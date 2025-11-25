@@ -24,7 +24,7 @@
     "_developerTeamID" : "G6DMWDA6X5",
     "_disableDialogs" : false,
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 784654521.94368196,
+    "_lastSynchronizedDate" : 785751076.66612697,
     "_locale" : "en_US",
     "_renewalBillingIssuesEnabled" : false,
     "_storefront" : "USA",
@@ -50,9 +50,42 @@
           ],
           "displayPrice" : "39.99",
           "familyShareable" : false,
+          "groupNumber" : 3,
+          "internalID" : "6755390368",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Annually subscription ",
+              "displayName" : "Annually ",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.weatherxm.app.year.trial",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Annually",
+          "subscriptionGroupID" : "21826160",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "39.99",
+          "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "6755037103",
-          "introductoryOffer" : null,
+          "introductoryOffer" : {
+            "internalID" : "9B847D05",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1M"
+          },
           "localizations" : [
             {
               "description" : "Annually subscription",
@@ -62,7 +95,7 @@
           ],
           "productID" : "com.weatherxm.year",
           "recurringSubscriptionPeriod" : "P1Y",
-          "referenceName" : "Annually",
+          "referenceName" : "Annually with free trial",
           "subscriptionGroupID" : "21826160",
           "type" : "RecurringSubscription",
           "winbackOffers" : [
@@ -91,6 +124,39 @@
           "productID" : "com.weatherxm.app.monthly",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Monthly",
+          "subscriptionGroupID" : "21826160",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "3.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "6755390065",
+          "introductoryOffer" : {
+            "internalID" : "18D482ED",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1M"
+          },
+          "localizations" : [
+            {
+              "description" : "Monthly subscription",
+              "displayName" : "Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.weatherxm.app.month.trial",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Monthly with free trial",
           "subscriptionGroupID" : "21826160",
           "type" : "RecurringSubscription",
           "winbackOffers" : [
