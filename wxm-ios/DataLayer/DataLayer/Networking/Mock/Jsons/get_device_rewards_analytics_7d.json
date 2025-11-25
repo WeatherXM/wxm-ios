@@ -45,8 +45,8 @@
 					"value": 1.4353223
 				},
 				{
-					"type": "cell_bounties",
-					"code": "cell_bounties",
+					"type": "boost",
+					"code": "cell-bounty-873f728d0ffffff",
 					"value": 0.2353223
 				}
 			]
@@ -70,8 +70,8 @@
 					"value": 1.4353223
 				},
 				{
-					"type": "cell_bounties",
-					"code": "cell_bounties",
+					"type": "boost",
+					"code": "cell-bounty-873f728d0ffffff",
 					"value": 1.0353223
 				}
 			]
@@ -100,8 +100,8 @@
 					"value": 0.4353223
 				},
 				{
-					"type": "cell_bounties",
-					"code": "cell_bounties",
+					"type": "boost",
+					"code": "cell-bounty-873f728d0ffffff",
 					"value": 0.1353223
 				}
 			]
@@ -125,8 +125,8 @@
 					"value": 1.2
 				},
 				{
-					"type": "cell_bounties",
-					"code": "cell_bounties",
+					"type": "boost",
+					"code": "cell-bounty-873f728d0ffffff",
 					"value": 0.6353223
 				}
 			]
@@ -186,8 +186,8 @@
 			"boost_period_end": "2025-09-11T00:00:00.000Z"
 		},
 		{
-			"code": "cell_bounties",
-			"type": "cell_bounties",
+			"code": "cell-bounty-873f728d0ffffff",
+			"type": "CellBounty",
 			"boost_period_start": "2025-09-10T00:00:00.000Z",
 			"boost_period_end": "2025-09-11T00:00:00.000Z",
 			"current_rewards": 2.017276,
