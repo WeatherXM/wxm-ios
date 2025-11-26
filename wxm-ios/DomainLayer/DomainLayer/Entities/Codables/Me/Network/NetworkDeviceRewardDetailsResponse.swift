@@ -124,7 +124,7 @@ public enum BoostCode: Codable, RawRepresentable, Hashable, Comparable, Sendable
 				self = .betaReward
 			case "trov2":
 				self = .trov2
-			case let str where str.hasPrefix("cell-bounty"):
+			case let str where str.hasPrefix("cell_bounty"):
 				self = .cellBounty(rawValue)
 			case let str where str.hasPrefix("correction"):
 				self = .correction(rawValue)
