@@ -192,7 +192,7 @@ class MockRemoteConfigManager: RemoteConfigManagerImplementation, @unchecked Sen
 
 				// For testing
 				if key == .announcementActionUrl {
-					return "weatherxm://announcement/weatherxm_pro" as? T
+					return "weatherxm://announcement/premium" as? T
 				}
 
 				return "Dummy Text" as? T
