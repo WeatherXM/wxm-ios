@@ -20,7 +20,9 @@ struct ForecastPoweredByView: View {
 					.foregroundStyle(Color(colorEnum: .accent))
 			} else {
 				Image(asset: .meteoblueLogo)
-					.resizable()
+                    .renderingMode(.template)
+                    .resizable()
+                    .foregroundStyle(Color(colorEnum: .text))
 					.aspectRatio(contentMode: .fit)
 					.frame(width: 50.0, height: 18.0)
 			}
