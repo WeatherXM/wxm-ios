@@ -8036,7 +8036,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You’ve earned over 100 $WXM and kept at least 20% unclaimed."
+            "value" : "You’ve kept at least 80 $WXM unclaimed."
           }
         }
       }
