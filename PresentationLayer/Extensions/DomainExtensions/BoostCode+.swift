@@ -17,6 +17,8 @@ extension BoostCode {
 				return LocalizableString.RewardAnalytics.rollouts.localized
 			case .correction:
 				return LocalizableString.RewardAnalytics.compensation.localized
+			case .cellBounty:
+				return LocalizableString.RewardAnalytics.cellBounty.localized
 			case .unknown:
 				return LocalizableString.RewardAnalytics.otherBoost.localized
 		}
@@ -30,6 +32,8 @@ extension BoostCode {
 				return .troRewardsPrimary
 			case .correction:
 				return .correctionRewardsPrimary
+			case .cellBounty:
+				return .cellBountiesPrimary
 			case .unknown:
 				return .otherRewardPrimary
 		}
@@ -43,6 +47,8 @@ extension BoostCode {
 				return .troRewardsFill
 			case .correction:
 				return .correctionRewardsFill
+			case .cellBounty:
+				return .cellBountiesFill
 			case .unknown:
 				return .otherRewardFill
 		}
@@ -56,6 +62,8 @@ extension BoostCode {
 				return .troRewardsPrimary
 			case .correction:
 				return .correctionRewardsFill
+			case .cellBounty:
+				return .cellBountiesFill
 			case .unknown:
 				return .otherRewardChart
 		}
@@ -69,6 +77,8 @@ extension BoostCode {
 				return LocalizableString.RewardAnalytics.rolloutsRewards.localized
 			case .correction:
 				return LocalizableString.RewardAnalytics.compensationRewards.localized
+			case .cellBounty:
+				return LocalizableString.RewardAnalytics.cellBountyRewards.localized
 			case .unknown:
 				return LocalizableString.RewardAnalytics.otherRewards.localized
 		}
