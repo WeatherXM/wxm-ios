@@ -40,6 +40,8 @@ extension LocalizableString {
 		case purchaseFailedError
 		case poweredByWeatherXM
 		case poweredByMeteoBlue
+        case loginToGetPremiumAlert
+
 	}
 }
 
@@ -126,6 +128,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_powered_by_weatherxm"
 			case .poweredByMeteoBlue:
 				"subscriptions_powered_by_meteo_blue"
+            case .loginToGetPremiumAlert:
+                "subscriptions_login_to_get_premium_alert"
 		}
 	}
 }

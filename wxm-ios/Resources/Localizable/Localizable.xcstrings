@@ -11440,6 +11440,17 @@
         }
       }
     },
+    "subscriptions_login_to_get_premium_alert" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You need to login to get premium forecast."
+          }
+        }
+      }
+    },
     "subscriptions_manage_subscription" : {
       "extractionState" : "manual",
       "localizations" : {
