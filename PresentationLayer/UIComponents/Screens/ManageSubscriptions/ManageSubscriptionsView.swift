@@ -12,7 +12,7 @@ struct ManageSubscriptionsView: View {
 	@StateObject var viewModel: ManageSubscriptionsViewModel
 	@EnvironmentObject var navigationObject: NavigationObject
 
-	private let premiumFeaturesBullets: [(String, String)] = [(LocalizableString.Subscriptions.mosaicForecast.localized, LocalizableString.Subscriptions.mosaicForecastDescription.localized),
+	private let premiumFeaturesBullets: [(String, String)] = [(LocalizableString.Subscriptions.hyperLocalForecast.localized, LocalizableString.Subscriptions.hyperLocalForecastDescription.localized),
 															 (LocalizableString.Subscriptions.hourlyForecast.localized, LocalizableString.Subscriptions.hourlyForecastDescription.localized)
 	]
 	

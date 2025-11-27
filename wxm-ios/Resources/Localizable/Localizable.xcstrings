@@ -11418,6 +11418,28 @@
         }
       }
     },
+    "subscriptions_hyper_local_forecast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HYPER LOCAL forecast"
+          }
+        }
+      }
+    },
+    "subscriptions_hyper_local_forecast_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We tested 30 forecast models to see which ones match real weather the best. The best model today might not be the best for the next few days! We pick the top models in your area each day to give you the most reliable forecast."
+          }
+        }
+      }
+    },
     "subscriptions_manage_subscription" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11425,28 +11447,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Manage subscription"
-          }
-        }
-      }
-    },
-    "subscriptions_mosaic_forecast" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "MOSAIC forecast"
-          }
-        }
-      }
-    },
-    "subscriptions_mosaic_forecast_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "We tested 30 forecast models to see which ones match real weather the best. The best model today might not be the best for the next few days! We pick the top models in your area each day to give you the most reliable forecast."
           }
         }
       }

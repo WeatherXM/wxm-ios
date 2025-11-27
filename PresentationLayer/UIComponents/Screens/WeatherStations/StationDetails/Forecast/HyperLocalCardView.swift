@@ -15,7 +15,7 @@ struct HyperLocalCardView: View {
     var body: some View {
 		VStack(spacing: CGFloat(.largeSpacing)) {
 			VStack(spacing: CGFloat(.smallSpacing)) {
-				Text(LocalizableString.Forecast.hyperLocal.localized)
+                Text(LocalizableString.Forecast.hyperLocal.localized.uppercased())
 					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
 					.foregroundStyle(Color(colorEnum: .wxmPrimary))
 

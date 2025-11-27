@@ -18,8 +18,8 @@ extension LocalizableString {
 		case active
 		case premiumFeatures
 		case premiumForecast
-		case mosaicForecast
-		case mosaicForecastDescription
+		case hyperLocalForecast
+		case hyperLocalForecastDescription
 		case hourlyForecast
 		case hourlyForecastDescription
 		case getPremium
@@ -82,10 +82,10 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_premium_features"
 			case .premiumForecast:
 				"subscriptions_premium_forecast"
-			case .mosaicForecast:
-				"subscriptions_mosaic_forecast"
-			case .mosaicForecastDescription:
-				"subscriptions_mosaic_forecast_description"
+			case .hyperLocalForecast:
+				"subscriptions_hyper_local_forecast"
+			case .hyperLocalForecastDescription:
+				"subscriptions_hyper_local_forecast_description"
 			case .hourlyForecast:
 				"subscriptions_hourly_forecast"
 			case .hourlyForecastDescription:
