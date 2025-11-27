@@ -13,6 +13,10 @@ import Combine
 class ManageSubscriptionsViewModel: ObservableObject {
 	@Published var isLoading: Bool = false
 	@Published var products: [StoreProduct] = []
+    @Published var isLoggedIn: Bool = false
+    @Published var showLoginAlert: Bool = false
+    private(set) var loginAlertConfiguration: WXMAlertConfiguration?
+    private var cancellableSet: Set<AnyCancellable> = .init()
 	var state: ManageSubscriptionsView.State {
 		if products.isEmpty {
 			return .standard
@@ -31,6 +35,10 @@ class ManageSubscriptionsViewModel: ObservableObject {
 	init(useCase: MeUseCaseApi) {
 		self.useCase = useCase
 		observeTransactionChanges()
+
+        MainScreenViewModel.shared.$isUserLoggedIn.sink { [weak self] isLoggedIn in
+            self?.isLoggedIn = isLoggedIn
+        }.store(in: &cancellableSet)
 	}
 
 	func refresh() async {
@@ -50,6 +58,11 @@ class ManageSubscriptionsViewModel: ObservableObject {
 	}
 
 	func handleGetPremiumTap() {
+        guard isLoggedIn else {
+            showLogin()
+            return
+        }
+
 		let viewModel = ViewModelsFactory.getSubscriptionsViewModel()
 		Router.shared.navigateTo(.subscriptions(viewModel))
 	}
@@ -57,6 +70,11 @@ class ManageSubscriptionsViewModel: ObservableObject {
 	func handleManageSubscriptionTap() {
 		LinkNavigationHelper().openUrl(DisplayedLinks.appStoreSubscriptions.linkURL)
 	}
+
+    func signupButtonTapped() {
+        showLoginAlert = false
+        Router.shared.navigateTo(.register(ViewModelsFactory.getRegisterViewModel(completion: nil)))
+    }
 }
 
 private extension ManageSubscriptionsViewModel {
@@ -67,6 +85,15 @@ private extension ManageSubscriptionsViewModel {
 			}
 		}.store(in: &cacncellables)
 	}
+
+    func showLogin() {
+        let conf = WXMAlertConfiguration(title: LocalizableString.Subscriptions.getPremium.localized,
+                                         text: LocalizableString.Subscriptions.loginToGetPremiumAlert.localized.attributedMarkdown ?? "",
+                                         primaryButtons: [.init(title: LocalizableString.login.localized,
+                                                                action: { Router.shared.navigateTo(.signIn(ViewModelsFactory.getSignInViewModel())) })])
+        loginAlertConfiguration = conf
+        showLoginAlert = true
+    }
 }
 
 extension ManageSubscriptionsViewModel: HashableViewModel {

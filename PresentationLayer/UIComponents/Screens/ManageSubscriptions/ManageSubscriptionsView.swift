@@ -55,6 +55,24 @@ struct ManageSubscriptionsView: View {
 			}
 			.spinningLoader(show: $viewModel.isLoading)
 		}
+        .wxmAlert(show: $viewModel.showLoginAlert) {
+            WXMAlertView(show: $viewModel.showLoginAlert,
+                         configuration: viewModel.loginAlertConfiguration!) {
+                Button {
+                    viewModel.signupButtonTapped()
+                } label: {
+                    HStack {
+                        Text(LocalizableString.dontHaveAccount.localized)
+                            .font(.system(size: CGFloat(.normalFontSize), weight: .bold))
+                            .foregroundColor(Color(colorEnum: .text))
+
+                        Text(LocalizableString.signUp.localized.uppercased())
+                            .font(.system(size: CGFloat(.normalFontSize)))
+                            .foregroundColor(Color(colorEnum: .wxmPrimary))
+                    }
+                }
+            }
+        }
 		.onAppear {
 			navigationObject.navigationBarColor = Color(colorEnum: .bg)
 			navigationObject.title = LocalizableString.Subscriptions.manageSubscription.localized
