@@ -15,6 +15,7 @@ import CoreLocation
 
 private enum Announcement: String {
 	case weatherxmPro = "weatherxm_pro"
+    case premium
 }
 
 @MainActor
@@ -256,6 +257,9 @@ private extension DeepLinkHandler {
 				let viewModel = ViewModelsFactory.getProPromotionalViewModel()
 				router.showBottomSheet(.proPromo(viewModel))
 				break
+            case .premium:
+                let viewModel = ViewModelsFactory.getManageSubsriptionViewModel()
+                router.navigateTo(.manageSubscription(viewModel))
 		}
 	}
 }
