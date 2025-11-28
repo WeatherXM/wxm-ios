@@ -13,6 +13,9 @@ struct StationWidgetView: View {
 	let entry: StationTimelineEntry
 	@Environment(\.widgetFamily) var family: WidgetFamily
     @Environment(\.widgetRenderingMode) var renderingMode
+    private var isTinted: Bool {
+        renderingMode == .accented
+    }
 
     var body: some View {
         Group {
@@ -121,7 +124,10 @@ private extension StationWidgetView {
 
 			Spacer()
 
-			WeatherOverviewView(mode: .minimal, weather: device.weather, noDataText: followState.weatherNoDataText)
+			WeatherOverviewView(mode: .minimal,
+                                weather: device.weather,
+                                noDataText: followState.weatherNoDataText,
+                                dataViewBackground: isTinted ? .noColor : .top)
 		}
 		.padding(.vertical, CGFloat(.smallSidePadding))
 		.widgetBackground {
@@ -137,7 +143,10 @@ private extension StationWidgetView {
 			titleView(device: device, followState: followState)
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 
-			WeatherOverviewView(mode: uiMode, weather: device.weather, noDataText: followState.weatherNoDataText)
+			WeatherOverviewView(mode: uiMode,
+                                weather: device.weather,
+                                noDataText: followState.weatherNoDataText,
+                                dataViewBackground: isTinted ? .noColor : .top)
 
 			Spacer(minLength: 0.0)
 		}
@@ -153,7 +162,12 @@ private extension StationWidgetView {
 			titleView(device: device, followState: followState)
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 
-			WeatherOverviewView(mode: .large, weather: device.weather, showSecondaryFields: true, noDataText: followState.weatherNoDataText)
+			WeatherOverviewView(mode: .large,
+                                weather: device.weather,
+                                showSecondaryFields: true,
+                                noDataText: followState.weatherNoDataText,
+                                dataViewBackground: isTinted ? .noColor : .top,
+                                secondaryFieldsViewBackground: isTinted ? .noColor : .layer1)
 				.cornerRadius(CGFloat(.cardCornerRadius))
 
 		}
