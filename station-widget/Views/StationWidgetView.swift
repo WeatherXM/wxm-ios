@@ -12,24 +12,34 @@ import WidgetKit
 struct StationWidgetView: View {
 	let entry: StationTimelineEntry
 	@Environment(\.widgetFamily) var family: WidgetFamily
+    @Environment(\.widgetRenderingMode) var renderingMode
 
-	var body: some View {
-		Group {
-			switch entry.timelineCase {
-				case .station(let device, let followState):
-					stationView(device: device, followState: followState, uiMode: entry.weatherOverViewMode)
-				case .loggedOut:
-					LoggedOutView()
-				case .empty:
-					emptyView
-				case .error(let info):
-					errorView(info: info)
-				case .selectStation:
-					selectStationView
-			}
-		}
-		.widgetURL(entry.timelineCase.widgetUrl)
-	}
+    var body: some View {
+        Group {
+            switch entry.timelineCase {
+                case .station(let device, let followState):
+                    stationView(device: device, followState: followState, uiMode: entry.weatherOverViewMode)
+                        .modify { view in
+                            if renderingMode == .accented {
+                                view
+                                    .luminanceToAlpha()
+                                    .widgetAccentable()
+                            } else {
+                                view
+                            }
+                        }
+                case .loggedOut:
+                    LoggedOutView()
+                case .empty:
+                    emptyView
+                case .error(let info):
+                    errorView(info: info)
+                case .selectStation:
+                    selectStationView
+            }
+        }
+        .widgetURL(entry.timelineCase.widgetUrl)
+    }
 }
 
 private extension StationWidgetView {
@@ -290,7 +300,7 @@ struct StationWidgetView_Preview: PreviewProvider {
 										   errorInfo: nil, // .init(title: "This is an error title",
 										   // description: LocalizableString.Error.noInternetAccess.localized),
 										   isLoggedIn: true))
-			.previewContext(WidgetPreviewContext(family: .systemMedium))
+			.previewContext(WidgetPreviewContext(family: .systemLarge))
 		}
 		.containerBackground(for: .widget) {
 			Color(colorEnum: .top)
