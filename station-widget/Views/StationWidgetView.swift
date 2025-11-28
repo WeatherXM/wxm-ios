@@ -12,24 +12,37 @@ import WidgetKit
 struct StationWidgetView: View {
 	let entry: StationTimelineEntry
 	@Environment(\.widgetFamily) var family: WidgetFamily
+    @Environment(\.widgetRenderingMode) var renderingMode
+    private var isTinted: Bool {
+        renderingMode == .accented
+    }
 
-	var body: some View {
-		Group {
-			switch entry.timelineCase {
-				case .station(let device, let followState):
-					stationView(device: device, followState: followState, uiMode: entry.weatherOverViewMode)
-				case .loggedOut:
-					LoggedOutView()
-				case .empty:
-					emptyView
-				case .error(let info):
-					errorView(info: info)
-				case .selectStation:
-					selectStationView
-			}
-		}
-		.widgetURL(entry.timelineCase.widgetUrl)
-	}
+    var body: some View {
+        Group {
+            switch entry.timelineCase {
+                case .station(let device, let followState):
+                    stationView(device: device, followState: followState, uiMode: entry.weatherOverViewMode)
+                        .modify { view in
+                            if isTinted {
+                                view
+                                    .luminanceToAlpha()
+                                    .widgetAccentable()
+                            } else {
+                                view
+                            }
+                        }
+                case .loggedOut:
+                    LoggedOutView()
+                case .empty:
+                    emptyView
+                case .error(let info):
+                    errorView(info: info)
+                case .selectStation:
+                    selectStationView
+            }
+        }
+        .widgetURL(entry.timelineCase.widgetUrl)
+    }
 }
 
 private extension StationWidgetView {
@@ -111,7 +124,10 @@ private extension StationWidgetView {
 
 			Spacer()
 
-			WeatherOverviewView(mode: .minimal, weather: device.weather, noDataText: followState.weatherNoDataText)
+			WeatherOverviewView(mode: .minimal,
+                                weather: device.weather,
+                                noDataText: followState.weatherNoDataText,
+                                dataViewBackground: isTinted ? .noColor : .top)
 		}
 		.padding(.vertical, CGFloat(.smallSidePadding))
 		.widgetBackground {
@@ -127,7 +143,10 @@ private extension StationWidgetView {
 			titleView(device: device, followState: followState)
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 
-			WeatherOverviewView(mode: uiMode, weather: device.weather, noDataText: followState.weatherNoDataText)
+			WeatherOverviewView(mode: uiMode,
+                                weather: device.weather,
+                                noDataText: followState.weatherNoDataText,
+                                dataViewBackground: isTinted ? .noColor : .top)
 
 			Spacer(minLength: 0.0)
 		}
@@ -143,7 +162,12 @@ private extension StationWidgetView {
 			titleView(device: device, followState: followState)
 				.padding(.horizontal, CGFloat(.mediumSidePadding))
 
-			WeatherOverviewView(mode: .large, weather: device.weather, showSecondaryFields: true, noDataText: followState.weatherNoDataText)
+			WeatherOverviewView(mode: .large,
+                                weather: device.weather,
+                                showSecondaryFields: true,
+                                noDataText: followState.weatherNoDataText,
+                                dataViewBackground: isTinted ? .noColor : .top,
+                                secondaryFieldsViewBackground: isTinted ? .noColor : .layer1)
 				.cornerRadius(CGFloat(.cardCornerRadius))
 
 		}
@@ -290,7 +314,7 @@ struct StationWidgetView_Preview: PreviewProvider {
 										   errorInfo: nil, // .init(title: "This is an error title",
 										   // description: LocalizableString.Error.noInternetAccess.localized),
 										   isLoggedIn: true))
-			.previewContext(WidgetPreviewContext(family: .systemMedium))
+			.previewContext(WidgetPreviewContext(family: .systemLarge))
 		}
 		.containerBackground(for: .widget) {
 			Color(colorEnum: .top)

@@ -14,6 +14,8 @@ struct WeatherOverviewView: View {
     var showSecondaryFields: Bool = false
     let noDataText: LocalizableString
     var lastUpdatedText: String?
+    var dataViewBackground: ColorEnum = .top
+    var secondaryFieldsViewBackground: ColorEnum = .layer1
     var buttonTitle: String?
     var isButtonEnabled: Bool = true
     var buttonAction: (() -> Void)?
@@ -41,14 +43,14 @@ struct WeatherOverviewView: View {
                     noDataView
                 }
             }
-            .WXMCardStyle(backgroundColor: Color(colorEnum: .top),
+            .WXMCardStyle(backgroundColor: Color(colorEnum: dataViewBackground),
 						  insideHorizontalPadding: CGFloat(.defaultSidePadding),
 						  insideVerticalPadding: mainViewVerticalPadding,
 						  cornerRadius: CGFloat(.cardCornerRadius))
 
 			if showSecondaryFields {
 				secondaryFieldsView
-					.WXMCardStyle(backgroundColor: Color(colorEnum: .layer1),
+					.WXMCardStyle(backgroundColor: Color(colorEnum: secondaryFieldsViewBackground),
 								  insideHorizontalPadding: CGFloat(.defaultSidePadding),
 								  insideVerticalPadding: 0.0,
 								  cornerRadius: CGFloat(.cardCornerRadius))
