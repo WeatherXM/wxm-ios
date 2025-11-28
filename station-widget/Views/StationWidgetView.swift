@@ -23,7 +23,7 @@ struct StationWidgetView: View {
                 case .station(let device, let followState):
                     stationView(device: device, followState: followState, uiMode: entry.weatherOverViewMode)
                         .modify { view in
-                            if renderingMode == .accented {
+                            if isTinted {
                                 view
                                     .luminanceToAlpha()
                                     .widgetAccentable()
