@@ -13,14 +13,21 @@ public struct NetworkDeviceForecastResponse: Codable, Sendable {
     public var hourly: [CurrentWeather]? = []
     public var daily: CurrentWeather? = .init()
 	public var address: String? = nil
+    public var isPremium: Bool = false
 
     public init() {}
 
-    public init(tz: String, date: String, hourly: [CurrentWeather]?, daily: CurrentWeather? = nil, address: String? = nil) {
+    public init(tz: String,
+                date: String,
+                hourly: [CurrentWeather]?,
+                daily: CurrentWeather? = nil,
+                address: String? = nil,
+                isPremium: Bool = false) {
         self.tz = tz
         self.date = date
         self.hourly = hourly
         self.daily = daily
 		self.address = address
+        self.isPremium = isPremium
     }
 }
