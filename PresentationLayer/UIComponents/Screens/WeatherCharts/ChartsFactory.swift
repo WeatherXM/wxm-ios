@@ -30,17 +30,16 @@ class ChartsFactory {
         let dates = startingDate.dailyHourlySamples(timeZone: timeZone)
         for (index, date) in dates.enumerated() {
             let timestamp = date.toTimestamp(with: timeZone)
+            timestamps.append(timestamp.timestampToDate(timeZone: timeZone).twelveHourPeriodTime)
             let xVal = Double(index)
 
             let element = hourlyWeatherData.first(where: { $0.timestamp == timestamp })
             WeatherField.allCases.forEach { type in
                 var chartDataEntry: ChartDataEntry?
                 if let element {
-                    chartDataEntry = getChartDataEntry(type: type, element: element, xVal: xVal)
-                    timestamps.append(timestamp.timestampToDate(timeZone: timeZone).twelveHourPeriodTime)
+                    chartDataEntry = getChartDataEntry(type: type, element: element, xVal: xVal)                    
                 } else if includeGaps {
                     chartDataEntry = ChartDataEntry(x: xVal, y: .nan)
-                    timestamps.append(timestamp.timestampToDate(timeZone: timeZone).twelveHourPeriodTime)
                 }
 
                 if let chartDataEntry {
