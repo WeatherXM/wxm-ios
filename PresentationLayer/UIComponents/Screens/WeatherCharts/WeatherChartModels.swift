@@ -16,7 +16,7 @@ public struct WeatherChartModels {
 
     var availableChartTypes: [ForecastChartType] {
         ForecastChartType.allCases.filter { type in
-            type.weatherFields.allSatisfy { dataModels[$0]?.entries.isEmpty == false }
+            type.weatherFields.reduce(false) { $0 || (dataModels[$1]?.entries.isEmpty == false) }
         }
     }
 
