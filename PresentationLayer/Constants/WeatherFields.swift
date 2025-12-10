@@ -260,7 +260,10 @@ extension WeatherField {
 			case .feelsLike:
 				return createWeatherLiterals(from: weather.feelsLike, unitsManager: unitsManager)
 			case .humidity:
-				return createWeatherLiterals(from: Double(weather.humidity ?? 0), unitsManager: unitsManager)
+                guard let humidity = weather.humidity else {
+                    return nil
+                }
+				return createWeatherLiterals(from: Double(humidity), unitsManager: unitsManager)
 			case .wind:
 				return createWeatherLiterals(from: weather.windSpeed,
 											 addditonalInfo: weather.windDirection,
@@ -292,7 +295,10 @@ extension WeatherField {
 			case .dewPoint:
 				return createWeatherLiterals(from: weather.dewPoint, unitsManager: unitsManager)
 			case .uv:
-				return createWeatherLiterals(from: Double(weather.uvIndex ?? 0), unitsManager: unitsManager)
+                guard let uvIndex = weather.uvIndex else {
+                    return nil
+                }
+				return createWeatherLiterals(from: Double(uvIndex), unitsManager: unitsManager)
 			case .precipitationProbability:
 				return createWeatherLiterals(from: weather.precipitationProbability, unitsManager: unitsManager)
 		}

@@ -65,22 +65,23 @@ private extension StationForecastCardView {
 
     @ViewBuilder
     func fieldView(for field: WeatherField) -> some View {
-        if let weather = forecast.daily {
-			let hourlyIcon = field.hourlyIcon(from: weather)
+        if let weather = forecast.daily,
+           let fieldText = getFieldText(weatherField: field,
+                                        weather: weather,
+                                        unitsManager: unitsManager) {
+            let hourlyIcon = field.hourlyIcon(from: weather)
             HStack(spacing: 0.0) {
-				Image(asset: hourlyIcon.icon)
-					.resizable()
+                Image(asset: hourlyIcon.icon)
+                    .resizable()
                     .renderingMode(.template)
                     .foregroundColor(Color(colorEnum: .darkGrey))
-					.frame(width: 20.0, height: 20.0)
-					.rotationEffect(Angle(degrees: hourlyIcon.rotation))
+                    .frame(width: 20.0, height: 20.0)
+                    .rotationEffect(Angle(degrees: hourlyIcon.rotation))
 
-                Text(getFieldText(weatherField: field,
-                                  weather: weather,
-                                  unitsManager: unitsManager))
-                .font(.system(size: CGFloat(.caption)))
-                .foregroundColor(Color(colorEnum: .text))
-                .fixedSize(horizontal: false, vertical: true)
+                Text(fieldText)
+                    .font(.system(size: CGFloat(.caption)))
+                    .foregroundColor(Color(colorEnum: .text))
+                    .fixedSize(horizontal: false, vertical: true)
             }
         } else {
             EmptyView()
@@ -89,8 +90,10 @@ private extension StationForecastCardView {
 
     func getFieldText(weatherField: WeatherField,
                       weather: CurrentWeather,
-                      unitsManager: WeatherUnitsManager) -> String {
-        let literals = weatherField.weatherLiterals(from: weather, unitsManager: unitsManager)
-        return "\(literals?.value ?? "")\(weatherField.shouldHaveSpaceWithUnit ? " " : "")\(literals?.unit ?? "")"
+                      unitsManager: WeatherUnitsManager) -> String? {
+        guard let literals = weatherField.weatherLiterals(from: weather, unitsManager: unitsManager) else {
+            return nil
+        }
+        return "\(literals.value)\(weatherField.shouldHaveSpaceWithUnit ? " " : "")\(literals.unit)"
     }
 }
