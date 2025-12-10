@@ -101,7 +101,10 @@ private extension HistoryViewModel {
         }
 
         let timeZone = TimeZone(identifier: historicalData?.first?.tz ?? "") ?? .current
-		let chartModels = chartsFactory.createHourlyCharts(timeZone: timeZone, startingDate: date.startOfDay(timeZone: timeZone), hourlyWeatherData: hourlyWeatherData)
+		let chartModels = chartsFactory.createHourlyCharts(timeZone: timeZone,
+                                                           startingDate: date.startOfDay(timeZone: timeZone),
+                                                           hourlyWeatherData: hourlyWeatherData,
+                                                           includeGaps: true)
         currentHistoryData = chartModels
         generateDelegate()
     }

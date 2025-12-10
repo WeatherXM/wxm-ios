@@ -20,14 +20,16 @@ class ChartsFactory {
         weatherUnitFormatter = WeatherUnitsConverter(userDefaultsRepository: userDefaultsRepository, unitConverter: unitConverter)
     }
 
-	func createHourlyCharts(timeZone: TimeZone, startingDate: Date, hourlyWeatherData: [CurrentWeather]) -> WeatherChartModels {
+    func createHourlyCharts(timeZone: TimeZone,
+                            startingDate: Date,
+                            hourlyWeatherData: [CurrentWeather],
+                            includeGaps: Bool) -> WeatherChartModels {
         var entries: [WeatherField: [ChartDataEntry]] = [:]
 
         var timestamps = [String]()
         let dates = startingDate.dailyHourlySamples(timeZone: timeZone)
         for (index, date) in dates.enumerated() {
             let timestamp = date.toTimestamp(with: timeZone)
-            timestamps.append(timestamp.timestampToDate(timeZone: timeZone).twelveHourPeriodTime)
             let xVal = Double(index)
 
             let element = hourlyWeatherData.first(where: { $0.timestamp == timestamp })
@@ -35,8 +37,10 @@ class ChartsFactory {
                 var chartDataEntry: ChartDataEntry?
                 if let element {
                     chartDataEntry = getChartDataEntry(type: type, element: element, xVal: xVal)
-                } else {
+                    timestamps.append(timestamp.timestampToDate(timeZone: timeZone).twelveHourPeriodTime)
+                } else if includeGaps {
                     chartDataEntry = ChartDataEntry(x: xVal, y: .nan)
+                    timestamps.append(timestamp.timestampToDate(timeZone: timeZone).twelveHourPeriodTime)
                 }
 
                 if let chartDataEntry {

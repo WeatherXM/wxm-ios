@@ -211,7 +211,10 @@ private extension ForecastDetailsViewModel {
 		}
 
 		chartDelegate.selectedIndex = 0
-		return ChartsFactory().createHourlyCharts(timeZone: timezone, startingDate: date, hourlyWeatherData: data)
+		return ChartsFactory().createHourlyCharts(timeZone: timezone,
+                                                  startingDate: date,
+                                                  hourlyWeatherData: data,
+                                                  includeGaps: false)
 	}
 
 	func updateDailyItem() {
