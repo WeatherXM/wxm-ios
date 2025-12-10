@@ -88,24 +88,24 @@ public struct Hex: Codable, Sendable {
 // MARK: - CurrentWeather
 
 public struct CurrentWeather: Codable, Sendable {
-    public var timestamp: String? = ""
-    public var temperature: Double? = 0.0
-    public var temperatureMax: Double? = 0.0
-    public var temperatureMin: Double? = 0.0
-    public var humidity: Int? = 0
-    public var windSpeed: Double? = 0.0
-    public var windGust: Double? = 0.0
-    public var windDirection: Int? = 0
-    public var uvIndex: Int? = 0
-    public var precipitation: Double? = 0.0
-    public var precipitationProbability: Double? = 0.0
-    public var precipitationAccumulated: Double? = 0.0
-    public var dewPoint: Double? = 0.0
-    public var solarIrradiance: Double? = 0.0
-    public var cloudCover: Double? = 0.0
-    public var pressure: Double? = 0.0
-    public var icon: String? = ""
-    public var feelsLike: Double? = 0.0
+    public var timestamp: String?
+    public var temperature: Double?
+    public var temperatureMax: Double?
+    public var temperatureMin: Double?
+    public var humidity: Int?
+    public var windSpeed: Double?
+    public var windGust: Double?
+    public var windDirection: Int?
+    public var uvIndex: Int?
+    public var precipitation: Double?
+    public var precipitationProbability: Double?
+    public var precipitationAccumulated: Double?
+    public var dewPoint: Double?
+    public var solarIrradiance: Double?
+    public var cloudCover: Double?
+    public var pressure: Double?
+    public var icon: String?
+    public var feelsLike: Double?
     public init() {}
 
     enum CodingKeys: String, CodingKey {

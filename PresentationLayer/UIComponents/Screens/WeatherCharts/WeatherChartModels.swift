@@ -14,6 +14,12 @@ public struct WeatherChartModels {
     var tz: String?
     var dataModels: [WeatherField: WeatherChartDataModel]
 
+    var availableChartTypes: [ForecastChartType] {
+        ForecastChartType.allCases.filter { type in
+            type.weatherFields.allSatisfy { dataModels[$0]?.entries.isEmpty == false }
+        }
+    }
+
     public var dateStringRepresentation: String? {
         markDate?.getDateStringRepresentation()
     }

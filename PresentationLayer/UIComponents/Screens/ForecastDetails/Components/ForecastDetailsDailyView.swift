@@ -129,7 +129,7 @@ private extension ForecastDetailsDailyView {
 	var charts: some View {
 		if let chartModels = item.chartModels, let delegate = item.chartDelegate {
 			ChartsContainer(historyData: chartModels,
-							chartTypes: ForecastChartType.allCases,
+                            chartTypes: chartModels.availableChartTypes,
 							delegate: delegate)
 				.id(chartModels.markDate)
 		} else {
