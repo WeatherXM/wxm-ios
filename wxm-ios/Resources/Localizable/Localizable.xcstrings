@@ -11484,13 +11484,13 @@
         }
       }
     },
-    "subscriptions_powered_by_meteo_blue" : {
+    "subscriptions_powered_by" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "powered by Meteoblue"
+            "value" : "powered by"
           }
         }
       }

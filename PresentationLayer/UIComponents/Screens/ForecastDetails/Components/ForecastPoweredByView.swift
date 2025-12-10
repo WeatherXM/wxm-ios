@@ -18,18 +18,18 @@ struct ForecastPoweredByView: View {
 				Text(FontIcon.bolt.rawValue)
 					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
 					.foregroundStyle(Color(colorEnum: .accent))
-			} else {
-				Image(asset: .meteoblueLogo)
-                    .renderingMode(.template)
-                    .resizable()
-                    .foregroundStyle(Color(colorEnum: .text))
-					.aspectRatio(contentMode: .fit)
-					.frame(width: 50.0, height: 18.0)
 			}
 
-			Text(isPremium ? LocalizableString.Subscriptions.poweredByWeatherXM.localized : LocalizableString.Subscriptions.poweredByMeteoBlue.localized)
+			Text(LocalizableString.Subscriptions.poweredBy.localized)
 				.font(.system(size: CGFloat(.caption)))
 				.foregroundStyle(Color(colorEnum: .text))
+
+            Image(asset: isPremium ? .weatherXMLogoText : .meteoblueLogo)
+                .renderingMode(.template)
+                .resizable()
+                .foregroundStyle(Color(colorEnum: .text))
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 50.0, height: 18.0)
 
 			Spacer()
 		}
