@@ -151,11 +151,11 @@ extension MockMeRepositoryImpl: MeRepository {
 																						  result: .success(history))
 		return Just(response).eraseToAnyPublisher()
 	}
-	
-	func getUserDeviceForecastById(deviceId: String,
-								   fromDate: String,
-								   toDate: String,
-								   exclude: String) throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never> {
+
+    func getUserDeviceForecastById(deviceId: String,
+                                   fromDate: String,
+                                   toDate: String,
+                                   exclude: String) async throws -> DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse> {
 		let forecast = [NetworkDeviceForecastResponse]()
 		let response = DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>(request: nil,
 																						   response: nil,
@@ -163,7 +163,7 @@ extension MockMeRepositoryImpl: MeRepository {
 																						   metrics: nil,
 																						   serializationDuration: 0,
 																						   result: .success(forecast))
-		return Just(response).eraseToAnyPublisher()
+		return response
 	}
 	
 	func getUserDeviceRewardAnalytics(deviceId: String,

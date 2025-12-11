@@ -99,7 +99,7 @@ private extension StationForecastViewModel {
 			let getUserDeviceForecastById = try await useCase?.getUserDeviceForecastById(deviceId: deviceId,
 																						 fromDate: getCurrentDateInStringForForecast(),
 																						 toDate: getΤοDateForWeeklyForecastCall(),
-																						 exclude: "").toAsync()
+																						 exclude: "")
 			return getUserDeviceForecastById?.result
 		} catch { return nil }
 	}

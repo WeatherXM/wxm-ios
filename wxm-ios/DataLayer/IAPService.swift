@@ -46,13 +46,26 @@ public class IAPService: @unchecked Sendable {
 		return set
 	}
 
+    public func getEntitledTransactionIds() async -> Set<String> {
+        var set = Set<String>()
+        for await result in Transaction.currentEntitlements {
+            if case .verified(let transaction) = result {
+                let transactionID = result.jwsRepresentation
+                set.insert(transactionID)
+            }
+        }
+
+        return set
+    }
+
 	public func getEntitledProducts() async throws -> [Product] {
 		let entitledIDs = await getEntitledProductIds()
 		guard !entitledIDs.isEmpty else {
 			return []
 		}
 
-		return try await Product.products(for: Array(entitledIDs))
+		let products = try await Product.products(for: Array(entitledIDs))
+        return products
 	}
 
 	public func purchase(productId: String) async throws {

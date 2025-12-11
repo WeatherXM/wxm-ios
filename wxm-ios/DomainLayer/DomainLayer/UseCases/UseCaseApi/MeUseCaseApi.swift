@@ -28,7 +28,7 @@ public protocol MeUseCaseApi: Sendable {
 	func setFrequency(_ serialNumber: String, frequency: Frequency) async throws -> NetworkErrorResponse?
 	func getFirmwares(testSearch: String) throws -> AnyPublisher<DataResponse<[NetworkFirmwareResponse], NetworkErrorResponse>, Never>
 	func getUserDeviceById(deviceId: String) throws -> AnyPublisher<Result<DeviceDetails, NetworkErrorResponse>, Never>
-	func getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String) throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never>
+	func getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String) async throws -> DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>
 	func getUserDeviceRewards(deviceId: String, mode: DeviceRewardsMode) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsResponse, NetworkErrorResponse>, Never>
 	func getUserDevicesRewards(mode: DeviceRewardsMode) throws -> AnyPublisher<DataResponse<NetworkDevicesRewardsResponse, NetworkErrorResponse>, Never>
 	func deleteAccount() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>

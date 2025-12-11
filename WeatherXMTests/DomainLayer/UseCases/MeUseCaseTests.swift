@@ -106,16 +106,12 @@ struct MeUseCaseTests {
 		}
 	}
 
-	@Test func getUserDeviceForecastsById() async throws {
-		try await confirmation { confirm in
-			try useCase.getUserDeviceForecastById(deviceId: "1",
-												  fromDate: "",
-												  toDate: "").sink { response in
-				#expect((try? response.result.get()) != nil)
-				confirm()
-			}.store(in: &cancellableWrapper.cancellableSet)
-		}
-	}
+    @Test func getUserDeviceForecastsById() async throws {
+        let response = try await useCase.getUserDeviceForecastById(deviceId: "1",
+                                                                   fromDate: "",
+                                                                   toDate: "")
+        #expect((try? response.result.get()) != nil)
+    }
 
 	@Test func getUserDeviceRewardsById() async throws {
 		try await confirmation { confirm in

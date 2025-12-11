@@ -135,12 +135,17 @@ public struct MeRepositoryImpl: MeRepository {
     }
 
     public func getUserDeviceForecastById(deviceId: String,
-										  fromDate: String,
-										  toDate: String,
-										  exclude: String) throws -> AnyPublisher<DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>, Never> {
-        let builder = MeApiRequestBuilder.getUserDeviceForecastById(deviceId: deviceId, fromDate: fromDate, toDate: toDate, exclude: exclude)
+                                          fromDate: String,
+                                          toDate: String,
+                                          exclude: String) async throws -> DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse> {
+        let transactionIds = await iAPService?.getEntitledTransactionIds() ?? []
+        let builder = MeApiRequestBuilder.getUserDeviceForecastById(deviceId: deviceId,
+                                                                    fromDate: fromDate,
+                                                                    toDate: toDate,
+                                                                    exclude: exclude,
+                                                                    token: transactionIds.first)
         let urlRequest = try builder.asURLRequest()
-        return ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName)
+        return try await ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName).toAsync()
     }
 
 	public func getUserDeviceRewardAnalytics(deviceId: String, mode: DeviceRewardsMode) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsResponse, NetworkErrorResponse>, Never> {

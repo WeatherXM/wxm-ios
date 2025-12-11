@@ -29,6 +29,7 @@ struct ParameterConstants {
         static let fromDate = "fromDate"
         static let toDate = "toDate"
         static let exclude = "exclude"
+        static let token = "token"
         static let friendlyName = "friendlyName"
 		static let lat = "lat"
 		static let lon = "lon"

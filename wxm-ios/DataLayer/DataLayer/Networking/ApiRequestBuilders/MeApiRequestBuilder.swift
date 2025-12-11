@@ -46,7 +46,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	case getUserDeviceById(deviceId: String)
 	case getUserDeviceInfoById(deviceId: String)
 	case getUserDeviceHistoryById(deviceId: String, fromDate: String, toDate: String, exclude: String)
-	case getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String)
+    case getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String, token: String?)
 	case getUserDeviceRewards(deviceId: String, mode: String)
 	case getUserDevicesRewards(mode: String)
 	case getUserDevicePhotos(deviceId: String)
@@ -117,7 +117,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/devices/\(deviceId)/info"
 			case let .getUserDeviceHistoryById(deviceId, _, _, _):
 				return "me/devices/\(deviceId)/history"
-			case let .getUserDeviceForecastById(deviceId, _, _, _):
+			case let .getUserDeviceForecastById(deviceId, _, _, _, _):
 				return "me/devices/\(deviceId)/forecast"
 			case let .getUserDeviceRewards(deviceId, _):
 				return "me/devices/\(deviceId)/rewards"
@@ -170,19 +170,18 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 					ParameterConstants.Me.toDate: toDate,
 					ParameterConstants.Me.exclude: exclude
 				]
-			case let .getUserDeviceForecastById(_, fromDate, toDate, exclude):
-				if exclude.isEmpty {
-					return [
-						ParameterConstants.Me.fromDate: fromDate,
-						ParameterConstants.Me.toDate: toDate
-					]
-				} else {
-					return [
-						ParameterConstants.Me.fromDate: fromDate,
-						ParameterConstants.Me.toDate: toDate,
-						ParameterConstants.Me.exclude: exclude
-					]
+			case let .getUserDeviceForecastById(_, fromDate, toDate, exclude, token):
+                var params = [ParameterConstants.Me.fromDate: fromDate,
+                              ParameterConstants.Me.toDate: toDate]
+				if !exclude.isEmpty {
+                    params[ParameterConstants.Me.exclude] = exclude
 				}
+
+                if let token {
+                    params[ParameterConstants.Me.token] = token
+                }
+                
+                return params
 			case let .getUserDeviceRewards(_, mode), let .getUserDevicesRewards(mode):
 				return [ParameterConstants.Me.mode: mode]
 			case let .setFriendlyName(_, name):
