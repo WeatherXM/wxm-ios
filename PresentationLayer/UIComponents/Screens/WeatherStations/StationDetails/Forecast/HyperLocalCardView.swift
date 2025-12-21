@@ -15,9 +15,15 @@ struct HyperLocalCardView: View {
     var body: some View {
 		VStack(spacing: CGFloat(.largeSpacing)) {
 			VStack(spacing: CGFloat(.smallSpacing)) {
-                Text(LocalizableString.Forecast.hyperLocal.localized.uppercased())
-					.font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
-					.foregroundStyle(Color(colorEnum: .wxmPrimary))
+                HStack {
+                    Text(FontIcon.sparkles.rawValue)
+                        .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.smallTitleFontSize)))
+                        .foregroundStyle(Color(colorEnum: .reward_score_high))
+
+                    Text(LocalizableString.Forecast.hyperLocal.localized.uppercased())
+                        .font(.system(size: CGFloat(.largeTitleFontSize), weight: .bold))
+                        .foregroundStyle(Color(colorEnum: .crypto))
+                }
 
 				Text(LocalizableString.Forecast.smarterSharper.localized)
 					.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
@@ -37,8 +43,8 @@ struct HyperLocalCardView: View {
 						Spacer()
 
 						Text(LocalizableString.Forecast.seeThePlans.localized)
-							.font(.system(size: CGFloat(.largeFontSize)))
-							.foregroundStyle(Color(colorEnum: .bg))
+                            .font(.system(size: CGFloat(.largeFontSize), weight: .bold))
+							.foregroundStyle(Color(colorEnum: .text))
 							.multilineTextAlignment(.center)
 
 						Spacer()
@@ -47,7 +53,7 @@ struct HyperLocalCardView: View {
 				}
 				.background {
 					Capsule()
-						.fill(Color(.wxmPrimary))
+						.fill(Color(.crypto))
 				}
 
 				if isFreeTrialAvailable {

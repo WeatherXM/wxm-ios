@@ -5253,7 +5253,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hyper Local"
+            "value" : "Hyperlocal Forecast"
           }
         }
       }
@@ -5341,7 +5341,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Smarter. Sharper. Sunnier."
+            "value" : "Smarter. Sharper. More Accurate."
           }
         }
       }
