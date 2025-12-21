@@ -40,41 +40,44 @@ struct ForecastDetailsView: View {
 									}
 								}
 							}
-
-							poweredBy
 						}.padding(.horizontal, CGFloat(.mediumSidePadding))
 
-						VStack(spacing: CGFloat(.largeSpacing)) {
-							dailyForecast
-								.padding(.horizontal, CGFloat(.mediumSidePadding))
-							
-							ZStack {
-								if let item = viewModel.detailsDailyItem {
-									ForecastDetailsDailyView(viewModel: viewModel,
-															 item: item,
-															 scrollProxy: proxy)
-										.padding(.horizontal, CGFloat(.mediumSidePadding))
-								}
-							}
-							.overlay {
-								if isTransitioning {
-									Color(colorEnum: .topBG)
-								}
-							}
-							.onChange(of: viewModel.isTransitioning) { newValue in
-								withAnimation {
-									isTransitioning = newValue
-								}
-							}
+                        VStack(spacing: CGFloat(.largeSpacing)) {
+                            if viewModel.canShowPremium, !viewModel.isSubscribed {
+                                HyperLocalCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
+                                    viewModel.handleSeePlansTap()
+                                }
+                                .wxmShadow()
+                                .padding(.horizontal, CGFloat(.mediumSidePadding))
+                            }
 
-							if viewModel.canShowPremium, !viewModel.isSubscribed {
-								HyperLocalCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
-									viewModel.handleSeePlansTap()
-								}
-								.wxmShadow()
-								.padding(.horizontal)
-								.padding(.bottom)
-							}
+                            dailyForecast
+                                .padding(.horizontal, CGFloat(.mediumSidePadding))
+
+                            VStack(spacing: CGFloat(.defaultSpacing)) {
+                                ZStack {
+                                    if let item = viewModel.detailsDailyItem {
+                                        ForecastDetailsDailyView(viewModel: viewModel,
+                                                                 item: item,
+                                                                 scrollProxy: proxy)
+                                        .padding(.horizontal, CGFloat(.mediumSidePadding))
+                                    }
+                                }
+                                .overlay {
+                                    if isTransitioning {
+                                        Color(colorEnum: .topBG)
+                                    }
+                                }
+                                .onChange(of: viewModel.isTransitioning) { newValue in
+                                    withAnimation {
+                                        isTransitioning = newValue
+                                    }
+                                }
+
+                                poweredBy
+                                    .padding(.horizontal)
+                            }
+                            .padding(.bottom)
 						}
 						.clipped()
 						.iPadMaxWidth()

@@ -23,9 +23,13 @@ struct StationForecastView: View {
                     viewModel.refresh(completion: completion)
                 } content: {
                     VStack(spacing: CGFloat(.largeSpacing)) {
-
-						ForecastPoweredByView(isPremium: viewModel.isSubscribed)
-							.padding(.horizontal)
+                        if !viewModel.isSubscribed {
+                            HyperLocalCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
+                                viewModel.handleViewPlansTap()
+                            }
+                            .wxmShadow()
+                            .padding(.horizontal)                         
+                        }
 
 						hourlyView
 
@@ -61,14 +65,9 @@ struct StationForecastView: View {
 							.padding(.horizontal)
 						}
 
-						if !viewModel.isSubscribed {
-							HyperLocalCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
-								viewModel.handleViewPlansTap()
-							}
-							.wxmShadow()
-							.padding(.horizontal)
-							.padding(.bottom)
-						}
+                        ForecastPoweredByView(isPremium: viewModel.isSubscribed)
+                            .padding(.horizontal)
+                            .padding(.bottom)
 					}
 					.iPadMaxWidth()
 					.padding(.vertical)
