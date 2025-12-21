@@ -9,30 +9,29 @@ import SwiftUI
 
 struct ForecastPoweredByView: View {
 	let isPremium: Bool
+    private var imageSize: CGSize {
+        isPremium ? CGSize(width: 140.0, height: 20.0) : CGSize(width: 70.0, height: 20.0)
+    }
 
     var body: some View {
-		HStack(spacing: CGFloat(.smallSpacing)) {
-			Spacer()
+        VStack(spacing: CGFloat(.smallSpacing)) {
+            HStack(spacing: CGFloat(.smallSpacing)) {
+                Spacer()
 
-			if isPremium {
-				Text(FontIcon.bolt.rawValue)
-					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-					.foregroundStyle(Color(colorEnum: .accent))
-			}
+                Text(LocalizableString.Subscriptions.poweredBy.localized.capitalizedSentence)
+                    .font(.system(size: CGFloat(.caption)))
+                    .foregroundStyle(Color(colorEnum: .text))
 
-			Text(LocalizableString.Subscriptions.poweredBy.localized)
-				.font(.system(size: CGFloat(.caption)))
-				.foregroundStyle(Color(colorEnum: .text))
+                Spacer()
+            }
 
             Image(asset: isPremium ? .weatherXMLogoText : .meteoblueLogo)
                 .renderingMode(.template)
                 .resizable()
                 .foregroundStyle(Color(colorEnum: .text))
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 50.0, height: 18.0)
-
-			Spacer()
-		}
+                .frame(width: imageSize.width, height: imageSize.height)
+        }
 		.WXMCardStyle(backgroundColor: Color(colorEnum: .blueTint),
 					  insideVerticalPadding: CGFloat(.smallSidePadding),
 					  cornerRadius: CGFloat(.smallCornerRadius))
@@ -40,6 +39,6 @@ struct ForecastPoweredByView: View {
 }
 
 #Preview {
-    ForecastPoweredByView(isPremium: false)
+    ForecastPoweredByView(isPremium: true)
 		.padding()
 }
