@@ -240,10 +240,11 @@ private extension CustomSegmentView {
                 Spacer()
             }
         }
+        .sizeObserver(size: $containerSize)
+        .padding(CGFloat(.minimumPadding))
         .background {
             Color(colorEnum: .top)
         }
-        .sizeObserver(size: $containerSize)
         .cornerRadius(CGFloat(.buttonCornerRadius))
         .animation(.easeIn(duration: 0.3), value: selectedIndex)
     }
@@ -379,7 +380,7 @@ struct CustomSegmentView_Buttons_Previews: PreviewProvider {
     static var previews: some View {
         CustomSegmentView(options: [.init(title: "basic"),
                                     .init(fontIcon: .bolt, title: "hyperlocal")],
-                          selectedIndex: .constant(0),
+                          selectedIndex: .constant(1),
                           style: .buttons)
     }
 }
