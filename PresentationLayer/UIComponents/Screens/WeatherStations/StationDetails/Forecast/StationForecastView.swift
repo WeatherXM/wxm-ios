@@ -29,6 +29,12 @@ struct StationForecastView: View {
                             }
                             .wxmShadow()
                             .padding(.horizontal)                         
+                        } else {
+                            CustomSegmentView(options: [.init(title: LocalizableString.Forecast.basicForecast.localized),
+                                                        .init(fontIcon: .sparkles, title: LocalizableString.Forecast.hyperlocal.localized)],
+                                              selectedIndex: $viewModel.selectedTabIndex,
+                                              style: .buttons)
+                            .padding(.horizontal)
                         }
 
 						hourlyView

@@ -23,6 +23,8 @@ struct CustomSegmentView: View {
 				0.0
 			case .compact:
 				0.0
+            case .buttons:
+                0.0
 		}
 	}
 
@@ -34,6 +36,8 @@ struct CustomSegmentView: View {
 				tintColor ?? .wxmPrimary
 			case .compact:
 					.darkGrey
+            case .buttons:
+                tintColor ?? .wxmPrimary
 		}
 	}
 
@@ -56,6 +60,8 @@ struct CustomSegmentView: View {
                 plainStyle
 			case .compact:
 				compactStyle
+            case .buttons:
+                buttonsStyle
         }
     }
 }
@@ -65,6 +71,7 @@ extension CustomSegmentView {
         case normal
         case plain
 		case compact
+        case buttons
     }
 
 	struct Segment: Equatable {
@@ -184,6 +191,62 @@ private extension CustomSegmentView {
 		.background(Color(colorEnum: .layer1))
 		.animation(.easeIn(duration: 0.3), value: selectedIndex)
 	}
+
+    @ViewBuilder
+    var buttonsStyle: some View {
+        ZStack {
+            HStack(spacing: CGFloat(.minimumSpacing)) {
+                let count = segments.count
+                ForEach(0 ..< count, id: \.self) { index in
+                    let segment = segments[index]
+                    Button {
+                        selectedIndex = index
+                    } label: {
+                        HStack(spacing: CGFloat(.minimumSpacing)) {
+                            Spacer()
+
+                            let isSelected = selectedIndex == index
+                            if let fontIcon = segment.fontIcon {
+                                Text(fontIcon.rawValue)
+                                    .font(.fontAwesome(font: isSelected ? .FAProSolid : .FAPro,
+                                                       size: CGFloat(.normalFontSize)))
+                                    .foregroundStyle(Color(colorEnum: isSelected ? .text : .darkGrey))
+                            }
+
+                            Text(segment.title)
+                                .font(.system(size: CGFloat(.normalFontSize), weight: .medium))
+                                .foregroundStyle(Color(colorEnum: isSelected ? .text : .darkGrey))
+
+                            Spacer()
+                        }
+                        .padding(CGFloat(.smallSidePadding))
+                        .sizeObserver(size: $sizes[index].size)
+                    }
+                }
+            }
+        }
+        .background {
+            HStack {
+                let size = selectorSizeForIndex(selectedIndex)
+                LinearGradient(gradient: Gradient(colors: [Color(colorEnum: .chartPrimary),
+                                                           Color(colorEnum: .accent)]),
+                               startPoint: .leading,
+                               endPoint: .trailing)
+                .cornerRadius(CGFloat(.buttonCornerRadius))
+                .frame(width: size.width,
+                       height: size.height)
+                .offset(x: selectorOffsetForIndex(selectedIndex))
+
+                Spacer()
+            }
+        }
+        .background {
+            Color(colorEnum: .top)
+        }
+        .sizeObserver(size: $containerSize)
+        .cornerRadius(CGFloat(.buttonCornerRadius))
+        .animation(.easeIn(duration: 0.3), value: selectedIndex)
+    }
 
     @ViewBuilder
     var segmentsView: some View {
@@ -311,3 +374,13 @@ struct CustomSegmentView_Compact_Previews: PreviewProvider {
 						  style: .compact)
 	}
 }
+
+struct CustomSegmentView_Buttons_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomSegmentView(options: [.init(title: "basic"),
+                                    .init(fontIcon: .bolt, title: "hyperlocal")],
+                          selectedIndex: .constant(0),
+                          style: .buttons)
+    }
+}
+

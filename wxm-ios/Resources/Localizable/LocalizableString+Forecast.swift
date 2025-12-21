@@ -26,6 +26,8 @@ extension LocalizableString {
 		case hyperLocalCardDescription
 		case seeThePlans
 		case freeSubscriptionText
+        case basicForecast
+        case hyperlocal
 	}
 }
 
@@ -71,6 +73,10 @@ extension LocalizableString.Forecast: WXMLocalizable {
 				return "forecast_see_the_plans"
 			case .freeSubscriptionText:
 				return "forecast_free_subscription_text"
+            case .basicForecast:
+                return "forecast_basic_forecast"
+            case .hyperlocal:
+                return "forecast_hyperlocal"
 		}
 	}
 }

@@ -24,6 +24,7 @@ class StationForecastViewModel: ObservableObject {
 	@Published var showTemperatureBarsInfo: Bool = false
 	@Published var isSubscribed: Bool = false
 	@Published var isFreeTrialAvailable: Bool = false
+    @Published var selectedTabIndex: Int = 0
 
     var overallMinTemperature: Double? {
         forecasts.min { ($0.daily?.temperatureMin ?? 0.0) < ($1.daily?.temperatureMin ?? 0.0) }?.daily?.temperatureMin

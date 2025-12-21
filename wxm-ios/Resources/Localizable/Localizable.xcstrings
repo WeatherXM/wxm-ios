@@ -5192,6 +5192,17 @@
         }
       }
     },
+    "forecast_basic_forecast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basic Forecast"
+          }
+        }
+      }
+    },
     "forecast_daily_conditions" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5265,6 +5276,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "We’ve picked the top performed models in your area to give you the most accurate forecast possible."
+          }
+        }
+      }
+    },
+    "forecast_hyperlocal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hyperlocal"
           }
         }
       }
