@@ -97,10 +97,12 @@ private extension StationForecastViewModel {
 		}
 		
 		do {
+            let isPremium = selectedTabIndex == 1
 			let getUserDeviceForecastById = try await useCase?.getUserDeviceForecastById(deviceId: deviceId,
 																						 fromDate: getCurrentDateInStringForForecast(),
 																						 toDate: getΤοDateForWeeklyForecastCall(),
-																						 exclude: "")
+																						 exclude: "",
+                                                                                         isPremium: isPremium)
 			return getUserDeviceForecastById?.result
 		} catch { return nil }
 	}

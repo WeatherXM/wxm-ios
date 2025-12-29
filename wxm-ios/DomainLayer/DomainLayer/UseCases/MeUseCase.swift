@@ -100,11 +100,13 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
     public func getUserDeviceForecastById(deviceId: String,
 										  fromDate: String,
 										  toDate: String,
-										  exclude: String = "") async throws -> DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse> {
+										  exclude: String = "",
+                                          isPremium: Bool) async throws -> DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse> {
         let getUserDeviceForecastById = try await meRepository.getUserDeviceForecastById(deviceId: deviceId,
                                                                                          fromDate: fromDate,
                                                                                          toDate: toDate,
-                                                                                         exclude: exclude)
+                                                                                         exclude: exclude,
+                                                                                         isPremium: isPremium)
         return getUserDeviceForecastById
     }
 

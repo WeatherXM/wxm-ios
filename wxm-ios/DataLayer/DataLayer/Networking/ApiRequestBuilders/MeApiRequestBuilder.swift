@@ -46,7 +46,8 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	case getUserDeviceById(deviceId: String)
 	case getUserDeviceInfoById(deviceId: String)
 	case getUserDeviceHistoryById(deviceId: String, fromDate: String, toDate: String, exclude: String)
-    case getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String, token: String?)
+    case getUserDeviceForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String)
+    case getUserDevicePremiumForecastById(deviceId: String, fromDate: String, toDate: String, exclude: String, token: String?)
 	case getUserDeviceRewards(deviceId: String, mode: String)
 	case getUserDevicesRewards(mode: String)
 	case getUserDevicePhotos(deviceId: String)
@@ -68,7 +69,7 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 	private var method: HTTPMethod {
 		switch self {
 			case .getUser, .getUserWallet, .getDevices, .getFirmwares, .getUserDeviceById,
-					.getUserDeviceHistoryById, .getUserDeviceForecastById, .getUserDeviceRewards, 
+                    .getUserDeviceHistoryById, .getUserDeviceForecastById, .getUserDevicePremiumForecastById, .getUserDeviceRewards,
 					.getUserDevicesRewards, .getUserDevicePhotos, .getDeviceFirmwareById, .getUserDeviceInfoById, .deviceSupport:
 				return .get
 			case .saveUserWallet, .claimDevice, .setDeviceFrequency, .setFriendlyName, .disclaimDevice,
@@ -117,8 +118,10 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 				return "me/devices/\(deviceId)/info"
 			case let .getUserDeviceHistoryById(deviceId, _, _, _):
 				return "me/devices/\(deviceId)/history"
-			case let .getUserDeviceForecastById(deviceId, _, _, _, _):
+			case let .getUserDeviceForecastById(deviceId, _, _, _):
 				return "me/devices/\(deviceId)/forecast"
+            case let .getUserDevicePremiumForecastById(deviceId, _, _, _, _):
+                return "me/devices/\(deviceId)/forecast/premium"
 			case let .getUserDeviceRewards(deviceId, _):
 				return "me/devices/\(deviceId)/rewards"
 			case .getUserDevicesRewards:
@@ -170,17 +173,25 @@ enum MeApiRequestBuilder: URLRequestConvertible {
 					ParameterConstants.Me.toDate: toDate,
 					ParameterConstants.Me.exclude: exclude
 				]
-			case let .getUserDeviceForecastById(_, fromDate, toDate, exclude, token):
+			case let .getUserDeviceForecastById(_, fromDate, toDate, exclude):
                 var params = [ParameterConstants.Me.fromDate: fromDate,
                               ParameterConstants.Me.toDate: toDate]
 				if !exclude.isEmpty {
                     params[ParameterConstants.Me.exclude] = exclude
 				}
 
+                return params
+            case let .getUserDevicePremiumForecastById(_, fromDate, toDate, exclude, token):
+                var params = [ParameterConstants.Me.fromDate: fromDate,
+                              ParameterConstants.Me.toDate: toDate]
+                if !exclude.isEmpty {
+                    params[ParameterConstants.Me.exclude] = exclude
+                }
+
                 if let token {
                     params[ParameterConstants.Me.token] = token
                 }
-                
+
                 return params
 			case let .getUserDeviceRewards(_, mode), let .getUserDevicesRewards(mode):
 				return [ParameterConstants.Me.mode: mode]

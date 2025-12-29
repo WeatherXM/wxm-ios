@@ -155,7 +155,8 @@ extension MockMeRepositoryImpl: MeRepository {
     func getUserDeviceForecastById(deviceId: String,
                                    fromDate: String,
                                    toDate: String,
-                                   exclude: String) async throws -> DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse> {
+                                   exclude: String,
+                                   isPremium: Bool) async throws -> DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse> {
 		let forecast = [NetworkDeviceForecastResponse]()
 		let response = DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>(request: nil,
 																						   response: nil,

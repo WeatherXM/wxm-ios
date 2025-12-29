@@ -63,7 +63,8 @@ public protocol MeRepository {
     func getUserDeviceForecastById(deviceId: String,
 								   fromDate: String,
 								   toDate: String,
-								   exclude: String) async throws -> DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>
+								   exclude: String,
+                                   isPremium: Bool) async throws -> DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse>
 	func getUserDeviceRewardAnalytics(deviceId: String, mode: DeviceRewardsMode) throws -> AnyPublisher<DataResponse<NetworkDeviceRewardsResponse, NetworkErrorResponse>, Never>
 	func getUserDevicesRewardAnalytics(mode: DeviceRewardsMode) throws -> AnyPublisher<DataResponse<NetworkDevicesRewardsResponse, NetworkErrorResponse>, Never>
     func deleteAccount() throws -> AnyPublisher<DataResponse<EmptyEntity, NetworkErrorResponse>, Never>

@@ -137,13 +137,22 @@ public struct MeRepositoryImpl: MeRepository {
     public func getUserDeviceForecastById(deviceId: String,
                                           fromDate: String,
                                           toDate: String,
-                                          exclude: String) async throws -> DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse> {
-        let transactionIds = await iAPService?.getEntitledTransactionIds() ?? []
-        let builder = MeApiRequestBuilder.getUserDeviceForecastById(deviceId: deviceId,
+                                          exclude: String,
+                                          isPremium: Bool) async throws -> DataResponse<[NetworkDeviceForecastResponse], NetworkErrorResponse> {
+        var builder = MeApiRequestBuilder.getUserDeviceForecastById(deviceId: deviceId,
                                                                     fromDate: fromDate,
                                                                     toDate: toDate,
-                                                                    exclude: exclude,
-                                                                    token: transactionIds.first)
+                                                                    exclude: exclude)
+        if isPremium {
+            let transactionIds = await iAPService?.getEntitledTransactionIds() ?? []
+
+            builder = MeApiRequestBuilder.getUserDevicePremiumForecastById(deviceId: deviceId,
+                                                                           fromDate: fromDate,
+                                                                           toDate: toDate,
+                                                                           exclude: exclude,
+                                                                           token: transactionIds.first)
+        }
+
         let urlRequest = try builder.asURLRequest()
         return try await ApiClient.shared.requestCodableAuthorized(urlRequest, mockFileName: builder.mockFileName).toAsync()
     }

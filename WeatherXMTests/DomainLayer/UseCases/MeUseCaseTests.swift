@@ -109,7 +109,8 @@ struct MeUseCaseTests {
     @Test func getUserDeviceForecastsById() async throws {
         let response = try await useCase.getUserDeviceForecastById(deviceId: "1",
                                                                    fromDate: "",
-                                                                   toDate: "")
+                                                                   toDate: "",
+                                                                   isPremium: false)
         #expect((try? response.result.get()) != nil)
     }
 
