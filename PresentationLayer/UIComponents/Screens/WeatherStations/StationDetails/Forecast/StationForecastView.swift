@@ -32,16 +32,21 @@ struct StationForecastView: View {
                     content()
                         .tag(0)
                         .clipped()
-                    
+                        .gesture(DragGesture())
+
                     content()
                         .clipped()
                         .tag(1)
+                        .gesture(DragGesture())
                 })
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
                 .zIndex(0)
                 .animation(.easeOut(duration: 0.3), value: viewModel.selectedTabIndex)
             }
+        }
+        .bottomSheet(show: $viewModel.showTemperatureBarsInfo) {
+            TemperatureExplanationView()
         }
     }
 }
@@ -106,9 +111,6 @@ private extension StationForecastView {
             }
         }
         .wxmEmptyView(show: Binding(get: { viewModel.viewState == .hidden }, set: { _ in }), configuration: viewModel.hiddenViewConfiguration)
-        .bottomSheet(show: $viewModel.showTemperatureBarsInfo) {
-            TemperatureExplanationView()
-        }
         .fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)
         .spinningLoader(show: Binding(get: { viewModel.viewState == .loading }, set: { _ in }), hideContent: true)
     }
