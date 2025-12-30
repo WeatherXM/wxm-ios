@@ -14,82 +14,105 @@ struct StationForecastView: View {
 
     var body: some View {
         ZStack {
-			Color(colorEnum: .bg)
-				.ignoresSafeArea()
-			
-            ScrollViewReader { _ in
-				TrackableScroller(showIndicators: false,
-								  offsetObject: viewModel.offsetObject) { completion in
-                    viewModel.refresh(completion: completion)
-                } content: {
-                    VStack(spacing: CGFloat(.largeSpacing)) {
-                        if !viewModel.isSubscribed {
-                            HyperLocalCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
-                                viewModel.handleViewPlansTap()
-                            }
-                            .wxmShadow()
-                            .padding(.horizontal)                         
-                        } else {
-                            CustomSegmentView(options: [.init(title: LocalizableString.Forecast.basicForecast.localized),
-                                                        .init(fontIcon: .sparkles, title: LocalizableString.Forecast.hyperlocal.localized)],
-                                              selectedIndex: $viewModel.selectedTabIndex,
-                                              style: .buttons)
-                            .padding(.horizontal)
-                        }
-
-						hourlyView
-
-						VStack(spacing: CGFloat(.mediumSpacing)) {
-							HStack {
-								Text(LocalizableString.Forecast.nextSevenDays.localized)
-									.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-									.foregroundColor(Color(colorEnum: .darkestBlue))
-
-								Spacer()
-
-								Button {
-									viewModel.handleNextSevenDaysInfoTap()
-								} label: {
-									Text(FontIcon.infoCircle.rawValue)
-										.font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
-										.foregroundColor(Color(colorEnum: .wxmPrimary))
-								}
-							}
-							.padding(.horizontal)
-
-							ForEach(viewModel.forecasts, id: \.date) { forecast in
-								Button {
-									viewModel.handleForecastTap(forecast: forecast)
-								} label: {
-									StationForecastCardView(forecast: forecast,
-															minWeekTemperature: viewModel.overallMinTemperature ?? 0.0,
-															maxWeekTemperature: viewModel.overallMaxTemperature ?? 0.0)
-									.wxmShadow()
-								}
-								.buttonStyle(.plain)
-							}
-							.padding(.horizontal)
-						}
-
-                        ForecastPoweredByView(isPremium: viewModel.isSubscribed)
-                            .padding(.horizontal)
-                            .padding(.bottom)
-					}
-					.iPadMaxWidth()
-					.padding(.vertical)
+            Color(colorEnum: .bg)
+                .ignoresSafeArea()
+            VStack (spacing: CGFloat(.largeSpacing)) {
+                if viewModel.isSubscribed {
+                    CustomSegmentView(options: [.init(title: LocalizableString.Forecast.basicForecast.localized),
+                                                .init(fontIcon: .sparkles, title: LocalizableString.Forecast.hyperlocal.localized)],
+                                      selectedIndex: $viewModel.selectedTabIndex,
+                                      style: .buttons)
+                    .iPadMaxWidth()
+                    .padding(.horizontal)
+                    .padding(.top)
+                    .zIndex(1)
                 }
+
+                TabViewWrapper(selection: $viewModel.selectedTabIndex, content: {
+                    content()
+                        .tag(0)
+                        .clipped()
+                    
+                    content()
+                        .clipped()
+                        .tag(1)
+                })
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+                .zIndex(0)
+                .animation(.easeOut(duration: 0.3), value: viewModel.selectedTabIndex)
             }
         }
-		.wxmEmptyView(show: Binding(get: { viewModel.viewState == .hidden }, set: { _ in }), configuration: viewModel.hiddenViewConfiguration)
-		.bottomSheet(show: $viewModel.showTemperatureBarsInfo) {
-			TemperatureExplanationView()
-		}
-        .fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)
-        .spinningLoader(show: Binding(get: { viewModel.viewState == .loading }, set: { _ in }), hideContent: true)
     }
 }
 
 private extension StationForecastView {
+    @ViewBuilder
+    func content() -> some View {
+        ScrollViewReader { _ in
+            TrackableScroller(showIndicators: false,
+                              offsetObject: viewModel.offsetObject) { completion in
+                viewModel.refresh(completion: completion)
+            } content: {
+                VStack(spacing: CGFloat(.largeSpacing)) {
+                    if !viewModel.isSubscribed {
+                        HyperLocalCardView(isFreeTrialAvailable: viewModel.isFreeTrialAvailable) {
+                            viewModel.handleViewPlansTap()
+                        }
+                        .wxmShadow()
+                        .padding(.horizontal)
+                    }
+
+                    hourlyView
+
+                    VStack(spacing: CGFloat(.mediumSpacing)) {
+                        HStack {
+                            Text(LocalizableString.Forecast.nextSevenDays.localized)
+                                .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
+                                .foregroundColor(Color(colorEnum: .darkestBlue))
+
+                            Spacer()
+
+                            Button {
+                                viewModel.handleNextSevenDaysInfoTap()
+                            } label: {
+                                Text(FontIcon.infoCircle.rawValue)
+                                    .font(.fontAwesome(font: .FAPro, size: CGFloat(.mediumFontSize)))
+                                    .foregroundColor(Color(colorEnum: .wxmPrimary))
+                            }
+                        }
+                        .padding(.horizontal)
+
+                        ForEach(viewModel.forecasts, id: \.date) { forecast in
+                            Button {
+                                viewModel.handleForecastTap(forecast: forecast)
+                            } label: {
+                                StationForecastCardView(forecast: forecast,
+                                                        minWeekTemperature: viewModel.overallMinTemperature ?? 0.0,
+                                                        maxWeekTemperature: viewModel.overallMaxTemperature ?? 0.0)
+                                .wxmShadow()
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        .padding(.horizontal)
+                    }
+
+                    ForecastPoweredByView(isPremium: viewModel.isSubscribed)
+                        .padding(.horizontal)
+                        .padding(.bottom)
+                }
+                .iPadMaxWidth()
+                .padding(.vertical)
+            }
+        }
+        .wxmEmptyView(show: Binding(get: { viewModel.viewState == .hidden }, set: { _ in }), configuration: viewModel.hiddenViewConfiguration)
+        .bottomSheet(show: $viewModel.showTemperatureBarsInfo) {
+            TemperatureExplanationView()
+        }
+        .fail(show: Binding(get: { viewModel.viewState == .fail }, set: { _ in }), obj: viewModel.failObj)
+        .spinningLoader(show: Binding(get: { viewModel.viewState == .loading }, set: { _ in }), hideContent: true)
+    }
+
 	@ViewBuilder
 	var hourlyView: some View {
 		let hourlyItems = viewModel.hourlyItems
