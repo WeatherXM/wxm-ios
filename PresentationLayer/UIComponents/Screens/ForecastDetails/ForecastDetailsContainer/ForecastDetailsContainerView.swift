@@ -17,7 +17,6 @@ struct ForecastDetailsContainerView: View {
                 .ignoresSafeArea()
 
             VStack (spacing: CGFloat(.defaultSpacing)) {
-                
                 if viewModel.viewModels.count > 1 {
                     NavigationTitleView(title: .constant(viewModel.navigationTitle),
                                         subtitle: .constant(viewModel.navigationSubtitle)) {
