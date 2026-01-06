@@ -17,17 +17,23 @@ class ForecastContainerViewModel: ObservableObject {
     @Published var viewModels: [StationForecastViewModel] = []
     private let useCase: MeUseCaseApi?
     private var cancellables: Set<AnyCancellable> = []
+    private var device: DeviceDetails?
+    private var followState: UserDeviceFollowState?
     private lazy var basicForecastViewModel = {
-        StationForecastViewModel(containerDelegate: containerDelegate,
-                                 useCase: useCase,
-                                 trackScrollOffset: false,
-                                 isPremium: false)
+        let vm = StationForecastViewModel(containerDelegate: containerDelegate,
+                                          useCase: useCase,
+                                          trackScrollOffset: false,
+                                          isPremium: false)
+        vm.delegate = self
+        return vm
     }()
     private lazy var premiumForecastViewModel = {
-        StationForecastViewModel(containerDelegate: containerDelegate,
-                                 useCase: useCase,
-                                 trackScrollOffset: false,
-                                 isPremium: true)
+        let vm = StationForecastViewModel(containerDelegate: containerDelegate,
+                                          useCase: useCase,
+                                          trackScrollOffset: false,
+                                          isPremium: true)
+        vm.delegate = self
+        return vm
     }()
 
     init(containerDelegate: StationDetailsViewModelDelegate? = nil, useCase: MeUseCaseApi?) {
@@ -40,6 +46,9 @@ class ForecastContainerViewModel: ObservableObject {
 extension ForecastContainerViewModel: StationDetailsViewModelChild {
     @MainActor
     func refreshWithDevice(_ device: DeviceDetails?, followState: UserDeviceFollowState?, error: NetworkErrorResponse?) async {
+        self.device = device
+        self.followState = followState
+
         let subscribedProducts = try? await useCase?.getSubscribedProducts()
         self.isSubscribed = subscribedProducts?.isEmpty == false
 
@@ -55,6 +64,62 @@ extension ForecastContainerViewModel: StationDetailsViewModelChild {
     
     func showLoading() {
         viewModels.forEach { $0.showLoading() }
+    }
+}
+
+extension ForecastContainerViewModel: StationForecastViewModelDelegate {
+    func handleForecastTap(forecast: NetworkDeviceForecastResponse) {
+        guard let device,
+                let index = basicForecastViewModel.forecasts.firstIndex(where: { $0.date == forecast.date }) else {
+            return
+        }
+
+        let conf = ForecastDetailsViewModel.Configuration(forecasts: basicForecastViewModel.forecasts,
+                                                          selectedforecastIndex: index,
+                                                          selectedHour: nil,
+                                                          device: device,
+                                                          followState: followState)
+
+        var premiumConf: ForecastDetailsViewModel.Configuration?
+        if isSubscribed {
+            let conf = ForecastDetailsViewModel.Configuration(forecasts: premiumForecastViewModel.forecasts,
+                                                              selectedforecastIndex: index,
+                                                              selectedHour: nil,
+                                                              device: device,
+                                                              followState: followState)
+            premiumConf = conf
+        }
+
+        let viewModel = ViewModelsFactory.getForecastDetailsContainerViewModel(configuration: conf,
+                                                                               premiumConfiguration: premiumConf)
+        Router.shared.navigateTo(.forecastDetailsContainer(viewModel))
+    }
+
+    func handleWeatherTap(weather: CurrentWeather) {
+        guard let device, let timezone = basicForecastViewModel.forecasts.first?.tz.toTimezone else {
+            return
+        }
+
+        let selectedHour = weather.timestamp?.timestampToDate().getHour(with: timezone)
+        let conf = ForecastDetailsViewModel.Configuration(forecasts: basicForecastViewModel.forecasts,
+                                                          selectedforecastIndex: 0,
+                                                          selectedHour: selectedHour,
+                                                          device: device,
+                                                          followState: followState)
+
+        var premiumConf: ForecastDetailsViewModel.Configuration?
+        if isSubscribed {
+            let conf = ForecastDetailsViewModel.Configuration(forecasts: premiumForecastViewModel.forecasts,
+                                                              selectedforecastIndex: 0,
+                                                              selectedHour: selectedHour,
+                                                              device: device,
+                                                              followState: followState)
+            premiumConf = conf
+        }
+
+        let viewModel = ViewModelsFactory.getForecastDetailsContainerViewModel(configuration: conf,
+                                                                               premiumConfiguration: premiumConf)
+        Router.shared.navigateTo(.forecastDetailsContainer(viewModel))
     }
 }
 

@@ -11,8 +11,15 @@ import DomainLayer
 import Combine
 
 @MainActor
+protocol StationForecastViewModelDelegate: AnyObject {
+    func handleForecastTap(forecast: NetworkDeviceForecastResponse)
+    func handleWeatherTap(weather: CurrentWeather)
+}
+
+@MainActor
 class StationForecastViewModel: ObservableObject {
     weak var containerDelegate: StationDetailsViewModelDelegate?
+    weak var delegate: StationForecastViewModelDelegate?
     let offsetObject: TrackableScrollOffsetObject = TrackableScrollOffsetObject()
 	@Published private(set) var forecasts: [NetworkDeviceForecastResponse] = [] {
 		didSet {
@@ -62,6 +69,11 @@ class StationForecastViewModel: ObservableObject {
     }
 
 	func handleForecastTap(forecast: NetworkDeviceForecastResponse) {
+        if let delegate {
+            delegate.handleForecastTap(forecast: forecast)
+            return
+        }
+
 		guard let device, let index = forecasts.firstIndex(where: { $0.date == forecast.date }) else {
 			return
 		}
@@ -184,6 +196,11 @@ private extension StationForecastViewModel {
 	}
 
 	func handleTap(for weather: CurrentWeather) {
+        if let delegate {
+            delegate.handleWeatherTap(weather: weather)
+            return
+        }
+
 		guard let device, let timezone = forecasts.first?.tz.toTimezone else {
 			return
 		}

@@ -42,3 +42,9 @@ class ForecastDetailsContainerViewModel: ObservableObject {
         self.fontIconState = configuration.fontAwesomeState
     }
 }
+
+extension ForecastDetailsContainerViewModel: HashableViewModel {
+    nonisolated func hash(into hasher: inout Hasher) {
+        hasher.combine(navigationTitle)
+    }
+}

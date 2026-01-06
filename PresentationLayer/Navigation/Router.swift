@@ -62,6 +62,8 @@ enum Route: Hashable, Equatable {
 				hasher.combine(vm)
 			case .forecastDetails(let vm):
 				hasher.combine(vm)
+            case .forecastDetailsContainer(let vm):
+                hasher.combine(vm)
 			case .claimStationSelection(let vm):
 				hasher.combine(vm)
 			case .claimStationContainer(let vm):
@@ -137,6 +139,8 @@ enum Route: Hashable, Equatable {
 				"deleteAccountSuccess"
 			case .forecastDetails:
 				"forecastDetails"
+            case .forecastDetailsContainer:
+                "forecastDetailsContainer"
 			case .claimStationSelection:
 				"claimStationSelection"
 			case .claimStationContainer:
@@ -187,6 +191,7 @@ enum Route: Hashable, Equatable {
 	case rewardBoosts(RewardBoostsViewModel)
 	case deleteAccountSuccess(DeleteAccountViewModel)
 	case forecastDetails(ForecastDetailsViewModel)
+    case forecastDetailsContainer(ForecastDetailsContainerViewModel)
 	case claimStationSelection(ClaimStationSelectionViewModel)
 	case claimStationContainer(ClaimDeviceContainerViewModel)
 	case rewardAnalytics(RewardAnalyticsViewModel)
@@ -276,6 +281,10 @@ extension Route {
 				NavigationContainerView {
 					ForecastDetailsView(viewModel: forecastDetailsViewModel)
 				}
+            case .forecastDetailsContainer(let forecastDetailsContainerViewModel):
+                NavigationContainerView {
+                    ForecastDetailsContainerView(viewModel: forecastDetailsContainerViewModel)
+                }
 			case .claimStationSelection(let claimStationSelectionViewModel):
 				NavigationContainerView {
 					ClaimStationSelectionView(viewModel: claimStationSelectionViewModel)
