@@ -31,9 +31,9 @@ enum ViewModelsFactory {
         return vm
     }
 
-    static func getStationForecastViewModel(delegate: StationDetailsViewModelDelegate) -> StationForecastViewModel {
+    static func getStationForecastViewModel(delegate: StationDetailsViewModelDelegate, trackScrollOffset: Bool, isPremium: Bool) -> StationForecastViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)
-        let vm = StationForecastViewModel(useCase: useCase)
+        let vm = StationForecastViewModel(useCase: useCase, trackScrollOffset: trackScrollOffset, isPremium: isPremium)
         vm.containerDelegate = delegate
         return vm
     }

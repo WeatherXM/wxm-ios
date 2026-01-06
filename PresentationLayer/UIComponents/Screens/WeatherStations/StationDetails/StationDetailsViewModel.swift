@@ -39,7 +39,7 @@ class StationDetailsViewModel: ObservableObject {
 		}
 	}
     private(set) lazy var overviewVM = ViewModelsFactory.getStationOverviewViewModel(device: nil, delegate: self)
-    private(set) lazy var forecastVM = ViewModelsFactory.getStationForecastViewModel(delegate: self)
+    private(set) lazy var forecastVM = ViewModelsFactory.getForecastContainerViewModel(delegate: self)
     private(set) lazy var rewardsVM = ViewModelsFactory.getStationRewardsViewModel(deviceId: deviceId, delegate: self)
     private(set) var loginAlertConfiguration: WXMAlertConfiguration?
 	private(set) var notificationsAlertConfiguration: WXMAlertConfiguration?

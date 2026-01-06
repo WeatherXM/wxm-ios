@@ -15,7 +15,7 @@ struct ForecastContainerView: View {
             Color(colorEnum: .bg)
                 .ignoresSafeArea()
 
-            VStack (spacing: CGFloat(.largeSpacing)) {
+            VStack (spacing: 0.0) {
                 if viewModel.isSubscribed {
                     CustomSegmentView(options: [.init(title: LocalizableString.Forecast.basicForecast.localized),
                                                 .init(fontIcon: .sparkles, title: LocalizableString.Forecast.hyperlocal.localized)],
@@ -33,6 +33,7 @@ struct ForecastContainerView: View {
                         StationForecastView(viewModel: viewModel)
                             .tag(index)
                     }
+                    .padding(.top, CGFloat(.defaultSidePadding))
                 })
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))

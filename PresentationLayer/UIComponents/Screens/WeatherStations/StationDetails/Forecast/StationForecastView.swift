@@ -16,34 +16,8 @@ struct StationForecastView: View {
         ZStack {
             Color(colorEnum: .bg)
                 .ignoresSafeArea()
-            VStack (spacing: CGFloat(.largeSpacing)) {
-                if viewModel.isSubscribed {
-                    CustomSegmentView(options: [.init(title: LocalizableString.Forecast.basicForecast.localized),
-                                                .init(fontIcon: .sparkles, title: LocalizableString.Forecast.hyperlocal.localized)],
-                                      selectedIndex: $viewModel.selectedTabIndex,
-                                      style: .buttons)
-                    .iPadMaxWidth()
-                    .padding(.horizontal)
-                    .padding(.top)
-                    .zIndex(1)
-                }
 
-                TabViewWrapper(selection: $viewModel.selectedTabIndex, content: {
-                    content()
-                        .tag(0)
-                        .clipped()
-                        .gesture(DragGesture())
-
-                    content()
-                        .clipped()
-                        .tag(1)
-                        .gesture(DragGesture())
-                })
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
-                .zIndex(0)
-                .animation(.easeOut(duration: 0.3), value: viewModel.selectedTabIndex)
-            }
+            content()
         }
         .bottomSheet(show: $viewModel.showTemperatureBarsInfo) {
             TemperatureExplanationView()

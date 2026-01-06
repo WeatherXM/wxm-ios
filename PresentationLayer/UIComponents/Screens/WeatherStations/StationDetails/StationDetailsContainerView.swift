@@ -143,7 +143,7 @@ private struct StationDetailsView: View {
 										.tag(index)
 										.conditionalOSsafeAreaTopInset(titleViewSize.height)
 								case .forecast:
-									StationForecastView(viewModel: viewModel.forecastVM)
+									ForecastContainerView(viewModel: viewModel.forecastVM)
 										.tag(index)
 										.conditionalOSsafeAreaTopInset(titleViewSize.height)
 										.clipped()

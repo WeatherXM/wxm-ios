@@ -24,7 +24,6 @@ class StationForecastViewModel: ObservableObject {
 	@Published var showTemperatureBarsInfo: Bool = false
 	@Published var isSubscribed: Bool = false
 	@Published var isFreeTrialAvailable: Bool = false
-    @Published var selectedTabIndex: Int = 0
 
     var overallMinTemperature: Double? {
         forecasts.min { ($0.daily?.temperatureMin ?? 0.0) < ($1.daily?.temperatureMin ?? 0.0) }?.daily?.temperatureMin
@@ -39,12 +38,15 @@ class StationForecastViewModel: ObservableObject {
 	private var followState: UserDeviceFollowState?
     private var cancellables: Set<AnyCancellable> = []
 	private let useCase: MeUseCaseApi?
+    private let isPremium: Bool
 
-	init(containerDelegate: StationDetailsViewModelDelegate? = nil, useCase: MeUseCaseApi?) {
+    init(containerDelegate: StationDetailsViewModelDelegate? = nil, useCase: MeUseCaseApi?, trackScrollOffset: Bool, isPremium: Bool) {
         self.containerDelegate = containerDelegate
         self.useCase = useCase
-        observeOffset()
-		observeTransactionChanges()
+        self.isPremium = isPremium
+        if trackScrollOffset {
+            observeOffset()
+        }
     }
 
     func refresh(completion: @escaping VoidCallback) {
@@ -97,7 +99,6 @@ private extension StationForecastViewModel {
 		}
 		
 		do {
-            let isPremium = selectedTabIndex == 1
 			let getUserDeviceForecastById = try await useCase?.getUserDeviceForecastById(deviceId: deviceId,
 																						 fromDate: getCurrentDateInStringForForecast(),
 																						 toDate: getΤοDateForWeeklyForecastCall(),
@@ -121,14 +122,6 @@ private extension StationForecastViewModel {
 			self.containerDelegate?.didEndScrollerDragging()
 		}
     }
-
-	func observeTransactionChanges() {
-		useCase?.transactionProductsPublisher?.sink { [weak self] _ in
-			Task {
-				await self?.containerDelegate?.shouldRefresh()
-			}
-		}.store(in: &cancellables)
-	}
 
     func generateHiddenViewConfiguration() -> WXMEmptyView.Configuration {
         let description: String = LocalizableString.hiddenContentDescription( device?.name ?? "").localized
@@ -241,6 +234,6 @@ extension StationForecastViewModel: StationDetailsViewModelChild {
 extension StationForecastViewModel {
 
     static var mockInstance: StationForecastViewModel {
-		StationForecastViewModel(useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self))
+		StationForecastViewModel(useCase: SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self), trackScrollOffset: false, isPremium: false)
     }
 }
