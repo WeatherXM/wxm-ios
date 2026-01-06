@@ -122,6 +122,8 @@
 		264DD5082B9F3BCB002691FF /* LocalizableString+ExplorerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264DD5072B9F3BCB002691FF /* LocalizableString+ExplorerList.swift */; };
 		264E2F5329DC3533009580A2 /* ThemeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264E2F5229DC3533009580A2 /* ThemeEnum.swift */; };
 		264E2F6129DC5AEE009580A2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 264E2F6029DC5AEE009580A2 /* Settings.bundle */; };
+		265547562F0508F2008F3755 /* ForecastContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265547552F0508F2008F3755 /* ForecastContainerView.swift */; };
+		265547582F05091A008F3755 /* ForecastContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265547572F05091A008F3755 /* ForecastContainerViewModel.swift */; };
 		2655F1812AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
 		2655F1822AD3FA8400BB19D5 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */; };
 		2656A9A12E04142A002F0294 /* NetworkGrowthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */; };
@@ -946,6 +948,8 @@
 		264DD5072B9F3BCB002691FF /* LocalizableString+ExplorerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+ExplorerList.swift"; sourceTree = "<group>"; };
 		264E2F5229DC3533009580A2 /* ThemeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeEnum.swift; sourceTree = "<group>"; };
 		264E2F6029DC5AEE009580A2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		265547552F0508F2008F3755 /* ForecastContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastContainerView.swift; sourceTree = "<group>"; };
+		265547572F05091A008F3755 /* ForecastContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastContainerViewModel.swift; sourceTree = "<group>"; };
 		2655F1802AD3FA8400BB19D5 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
 		2656A9A02E04142A002F0294 /* NetworkGrowthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGrowthView.swift; sourceTree = "<group>"; };
 		265742492E8562A90070E1B3 /* StationSupportViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationSupportViewModelTests.swift; sourceTree = "<group>"; };
@@ -2031,6 +2035,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		265547512F0508BC008F3755 /* ForecastContainer */ = {
+			isa = PBXGroup;
+			children = (
+				265547552F0508F2008F3755 /* ForecastContainerView.swift */,
+				265547572F05091A008F3755 /* ForecastContainerViewModel.swift */,
+			);
+			path = ForecastContainer;
+			sourceTree = "<group>";
+		};
 		266105A52AE023B2000E4712 /* Extenstions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2069,6 +2082,7 @@
 		2664832729C35ABA00748F9C /* Forecast */ = {
 			isa = PBXGroup;
 			children = (
+				265547512F0508BC008F3755 /* ForecastContainer */,
 				2675479029A9181E008BCF40 /* CustomRangeSlider.swift */,
 				2664832F29C36B0900748F9C /* StationForeCastCardView+Content.swift */,
 				2664832D29C364FE00748F9C /* StationForecastCardView.swift */,
@@ -4334,6 +4348,7 @@
 				264813FE2D8D7CF000BCCC31 /* ProPromotionalView.swift in Sources */,
 				2637F9A12E8167DC0096250F /* StationSupportViewModel.swift in Sources */,
 				26AA21E92BF4FA3B00B91A7C /* SelectLocationMapView.swift in Sources */,
+				265547562F0508F2008F3755 /* ForecastContainerView.swift in Sources */,
 				26A3B3DC2B18D2480002F35F /* TabBarVisibilityHandler.swift in Sources */,
 				26C8EFF22E3B7437005DC9DD /* KeyboardObserver.swift in Sources */,
 				26FC21C72D12F7F000FC79B1 /* PhotoVerificationStateViewModel.swift in Sources */,
@@ -4580,6 +4595,7 @@
 				2664833229C370D900748F9C /* WeatherFields.swift in Sources */,
 				26D47E7F2A122A540078723A /* WeatherFormatter.swift in Sources */,
 				26EAF82B2D008DB6009EEB31 /* PhotoIntroExamplesView.swift in Sources */,
+				265547582F05091A008F3755 /* ForecastContainerViewModel.swift in Sources */,
 				26AA21E62BF4F61B00B91A7C /* ClaimDeviceLocationViewModel.swift in Sources */,
 				26AF27922A0CD6F60067A1B8 /* WeatherLineChart.swift in Sources */,
 				26A4116029B618CA00A2C10B /* WeatherOverviewView+Content.swift in Sources */,

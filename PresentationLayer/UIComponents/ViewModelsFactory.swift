@@ -38,6 +38,12 @@ enum ViewModelsFactory {
         return vm
     }
 
+    static func getForecastContainerViewModel(delegate: StationDetailsViewModelDelegate?) -> ForecastContainerViewModel {
+        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)
+        let vm = ForecastContainerViewModel(containerDelegate: delegate, useCase: useCase)
+        return vm
+    }
+
     static func getStationRewardsViewModel(deviceId: String, delegate: StationDetailsViewModelDelegate) -> StationRewardsViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(RewardsUseCaseApi.self)
         return StationRewardsViewModel(deviceId: deviceId, containerDelegate: delegate, useCase: useCase)
