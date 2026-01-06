@@ -639,6 +639,8 @@
 		26D6574C2DBFABE000990B80 /* NumericTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6574B2DBFABE000990B80 /* NumericTests.swift */; };
 		26D6574E2DBFC06400990B80 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6574D2DBFC06400990B80 /* StringTests.swift */; };
 		26D6A6232B10F9A900425110 /* IPadConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D6A6222B10F9A900425110 /* IPadConstants.swift */; };
+		26D957342F0D3B1E005F18DB /* ForecastDetailsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D957332F0D3B1E005F18DB /* ForecastDetailsContainerView.swift */; };
+		26D957362F0D3B34005F18DB /* ForecastDetailsContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D957352F0D3B34005F18DB /* ForecastDetailsContainerViewModel.swift */; };
 		26DD42CB29AF56B9008E277E /* Toolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; };
 		26DD42CC29AF56B9008E277E /* Toolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26DD42AA29AF4634008E277E /* Toolkit.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26DD42E129B0F741008E277E /* StationDetailsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */; };
@@ -1411,6 +1413,8 @@
 		26D6574B2DBFABE000990B80 /* NumericTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTests.swift; sourceTree = "<group>"; };
 		26D6574D2DBFC06400990B80 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		26D6A6222B10F9A900425110 /* IPadConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadConstants.swift; sourceTree = "<group>"; };
+		26D957332F0D3B1E005F18DB /* ForecastDetailsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsContainerView.swift; sourceTree = "<group>"; };
+		26D957352F0D3B34005F18DB /* ForecastDetailsContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDetailsContainerViewModel.swift; sourceTree = "<group>"; };
 		26DD42A529AF4633008E277E /* Toolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolkit.xcodeproj; path = "wxm-ios/Toolkit/Toolkit.xcodeproj"; sourceTree = "<group>"; };
 		26DD42E029B0F741008E277E /* StationDetailsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsContainerView.swift; sourceTree = "<group>"; };
 		26DD42E329B0FA9B008E277E /* StationDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -2691,6 +2695,7 @@
 		268B5C382BCE804600E63655 /* ForecastDetails */ = {
 			isa = PBXGroup;
 			children = (
+				26D9572F2F0D3AD7005F18DB /* ForecastDetailsContainer */,
 				268B5C392BCE808200E63655 /* ForecastDetailsView.swift */,
 				268B5C3B2BCE809E00E63655 /* ForecastDetailsViewModel.swift */,
 				268B5C3D2BCE959F00E63655 /* Components */,
@@ -3269,6 +3274,15 @@
 				26A0A9892DC0BCD2005A6646 /* DomainExtensions */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		26D9572F2F0D3AD7005F18DB /* ForecastDetailsContainer */ = {
+			isa = PBXGroup;
+			children = (
+				26D957332F0D3B1E005F18DB /* ForecastDetailsContainerView.swift */,
+				26D957352F0D3B34005F18DB /* ForecastDetailsContainerViewModel.swift */,
+			);
+			path = ForecastDetailsContainer;
 			sourceTree = "<group>";
 		};
 		26DD42A629AF4633008E277E /* Products */ = {
@@ -4329,6 +4343,7 @@
 				26ACC5F92EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift in Sources */,
 				267547F729A9181E008BCF40 /* FailView.swift in Sources */,
 				2612AC482AB49E4000285896 /* Filters+.swift in Sources */,
+				26D957362F0D3B34005F18DB /* ForecastDetailsContainerViewModel.swift in Sources */,
 				2612AC1A2AB45B1700285896 /* FilterView.swift in Sources */,
 				26325B032BE11A7900182C59 /* ClaimDeviceBeginViewModel.swift in Sources */,
 				2612AC1C2AB45B2800285896 /* FilterViewModel.swift in Sources */,
@@ -4478,6 +4493,7 @@
 				267547B529A9181E008BCF40 /* SettingsView.swift in Sources */,
 				26F149E72BDFC9EA0029F981 /* ClaimStationSelectionTypes.swift in Sources */,
 				267547A429A9181E008BCF40 /* SettingsViewModel.swift in Sources */,
+				26D957342F0D3B1E005F18DB /* ForecastDetailsContainerView.swift in Sources */,
 				267548CF29A91A87008BCF40 /* ShadowEnum.swift in Sources */,
 				26F149EB2BDFF0520029F981 /* ClaimDeviceContainerViewModel.swift in Sources */,
 				267548EE29A91A87008BCF40 /* Shape+.swift in Sources */,

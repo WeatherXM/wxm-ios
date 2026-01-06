@@ -22,25 +22,25 @@ struct ForecastDetailsView: View {
 			ScrollViewReader { proxy in
 				ScrollView(showsIndicators: false) {
 					VStack(spacing: CGFloat(.largeSpacing)) {
-						VStack(spacing: CGFloat(.smallSpacing)) {
-							NavigationTitleView(title: .constant(viewModel.navigationTitle),
-												subtitle: .constant(viewModel.navigationSubtitle)) {
-								Group {
-									if let faIcon = viewModel.fontIconState {
-										Button {
-											viewModel.handleTopButtonTap()
-										} label: {
-											Text(faIcon.icon.rawValue)
-												.font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
-												.foregroundColor(Color(colorEnum: faIcon.color))
-										}
-										.disabled(!viewModel.isTopButtonEnabled)
-									} else {
-										EmptyView()
-									}
-								}
-							}
-						}.padding(.horizontal, CGFloat(.mediumSidePadding))
+                        if viewModel.showNavigationBar {
+                            NavigationTitleView(title: .constant(viewModel.navigationTitle),
+                                                subtitle: .constant(viewModel.navigationSubtitle)) {
+                                Group {
+                                    if let faIcon = viewModel.fontIconState {
+                                        Button {
+                                            viewModel.handleTopButtonTap()
+                                        } label: {
+                                            Text(faIcon.icon.rawValue)
+                                                .font(.fontAwesome(font: faIcon.font, size: CGFloat(.mediumFontSize)))
+                                                .foregroundColor(Color(colorEnum: faIcon.color))
+                                        }
+                                        .disabled(!viewModel.isTopButtonEnabled)
+                                    } else {
+                                        EmptyView()
+                                    }
+                                }
+                            }.padding(.horizontal, CGFloat(.mediumSidePadding))
+                        }
 
                         VStack(spacing: CGFloat(.largeSpacing)) {
                             if viewModel.canShowPremium, !viewModel.isSubscribed {

@@ -19,7 +19,9 @@ struct StationForecastViewModelTests {
 		containerDelegate = .init()
 		meUseCase = MockMeUseCase()
 		viewModel = .init(containerDelegate: containerDelegate,
-						  useCase: meUseCase)
+						  useCase: meUseCase,
+                          trackScrollOffset: false,
+                          isPremium: false)
 	}
 
     @Test func refresh() async throws {

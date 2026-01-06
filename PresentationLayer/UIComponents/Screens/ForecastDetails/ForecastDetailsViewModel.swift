@@ -48,16 +48,18 @@ class ForecastDetailsViewModel: ObservableObject {
 	var canShowPremium: Bool {
 		true
 	}
-	private let useCase: MeUseCaseApi?
-	private var cancellableSet: Set<AnyCancellable> = []
+    let showNavigationBar: Bool
+    private let useCase: MeUseCaseApi?
+    private var cancellableSet: Set<AnyCancellable> = []
 
-	init(configuration: Configuration, meUseCase: MeUseCaseApi?, linkNavigation: LinkNavigation = LinkNavigationHelper()) {
+    init(configuration: Configuration, meUseCase: MeUseCaseApi?, linkNavigation: LinkNavigation = LinkNavigationHelper(), showNavigationBar: Bool = true) {
 		self.useCase = meUseCase
 		self.forecasts = configuration.forecasts
 		self.fontIconState = configuration.fontAwesomeState
 		self.navigationTitle = configuration.navigationTitle
 		self.navigationSubtitle = configuration.navigationSubtitle
 		self.linkNavigation = linkNavigation
+        self.showNavigationBar = showNavigationBar
 		if !forecasts.isEmpty {
 			self.selectedForecastIndex = configuration.selectedforecastIndex
 		}

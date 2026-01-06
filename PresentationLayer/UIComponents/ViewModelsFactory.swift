@@ -195,6 +195,12 @@ enum ViewModelsFactory {
 		return RewardBoostsViewModel(boost: boost, device: device, date: date, useCase: useCase)
 	}
 
+    static func getForecastDetailsContainerViewModel(configuration: ForecastDetailsViewModel.Configuration,
+                                                     premiumConfiguration: ForecastDetailsViewModel.Configuration?) -> ForecastDetailsContainerViewModel {
+        let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
+        return ForecastDetailsContainerViewModel(configuration: configuration, premiumConfiguration: premiumConfiguration, meUseCase: useCase)
+    }
+
 	static func getForecastDetailsViewModel(configuration: ForecastDetailsViewModel.Configuration) -> ForecastDetailsViewModel {
 		let useCase = SwinjectHelper.shared.getContainerForSwinject().resolve(MeUseCaseApi.self)!
 		return ForecastDetailsViewModel(configuration: configuration, meUseCase: useCase)
