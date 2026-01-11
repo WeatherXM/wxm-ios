@@ -154,6 +154,7 @@
 		2666D50A2BBC4E80003B30C0 /* StationChipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2666D5092BBC4E80003B30C0 /* StationChipsView.swift */; };
 		2666D57D2BC96077003B30C0 /* LocalizableString+Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2666D57C2BC96077003B30C0 /* LocalizableString+Forecast.swift */; };
 		2666D57F2BC977D0003B30C0 /* StationForecastMiniCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2666D57E2BC977D0003B30C0 /* StationForecastMiniCardView.swift */; };
+		2669F8062F1426E1009ABDE1 /* SubscriptionPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2669F8052F1426E1009ABDE1 /* SubscriptionPlanView.swift */; };
 		266B018F2B836EC6007AC689 /* NoRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B018E2B836EC6007AC689 /* NoRewardsView.swift */; };
 		266B01912B836FE6007AC689 /* rocket.json in Resources */ = {isa = PBXBuildFile; fileRef = 266B01902B836FE6007AC689 /* rocket.json */; };
 		266B01932B8380FA007AC689 /* AnnouncementCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B01922B8380FA007AC689 /* AnnouncementCardView.swift */; };
@@ -984,6 +985,7 @@
 		2666D5722BC9171B003B30C0 /* git_version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = git_version.sh; sourceTree = "<group>"; };
 		2666D57C2BC96077003B30C0 /* LocalizableString+Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalizableString+Forecast.swift"; sourceTree = "<group>"; };
 		2666D57E2BC977D0003B30C0 /* StationForecastMiniCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationForecastMiniCardView.swift; sourceTree = "<group>"; };
+		2669F8052F1426E1009ABDE1 /* SubscriptionPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPlanView.swift; sourceTree = "<group>"; };
 		266B018E2B836EC6007AC689 /* NoRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRewardsView.swift; sourceTree = "<group>"; };
 		266B01902B836FE6007AC689 /* rocket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocket.json; sourceTree = "<group>"; };
 		266B01922B8380FA007AC689 /* AnnouncementCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCardView.swift; sourceTree = "<group>"; };
@@ -2964,6 +2966,7 @@
 				26ACC5E42EBDF9A100BCECD9 /* SubscriptionsView.swift */,
 				26ACC6022EC33D0600BCECD9 /* SubscriptionsViewModel.swift */,
 				26ACC6072EC3424700BCECD9 /* SubscriptionCardView.swift */,
+				2669F8052F1426E1009ABDE1 /* SubscriptionPlanView.swift */,
 			);
 			path = Subscriptions;
 			sourceTree = "<group>";
@@ -4477,6 +4480,7 @@
 				269EC1672E3274930099DB78 /* StationAlertsManager.swift in Sources */,
 				26FFCCDD2BD28E3900880AAD /* WeatherChartTypes.swift in Sources */,
 				2672C7802AA9DA4600E1FDCC /* ScrollingPagerView.swift in Sources */,
+				2669F8062F1426E1009ABDE1 /* SubscriptionPlanView.swift in Sources */,
 				26348DFC2A42FCB9000846C6 /* SearchView+Content.swift in Sources */,
 				266D6FAF2A41F32100A19E8B /* SearchView.swift in Sources */,
 				26D5C0482E40D2EB0040CDAF /* StationRewardsChipViewModel.swift in Sources */,
