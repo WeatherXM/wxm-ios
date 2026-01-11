@@ -112,7 +112,7 @@
          referenceType = "1">
       </LocationScenarioReference>
       <StoreKitConfigurationFileReference
-         identifier = "../../WeatherXM.storekit">
+         identifier = "../../WXM.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction

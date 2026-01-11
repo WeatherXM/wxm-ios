@@ -376,6 +376,7 @@
 		267EC4292A98C3D300F2C37E /* WXMAlertModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4272A98C3D300F2C37E /* WXMAlertModifier.swift */; };
 		267EC42A2A98C3D300F2C37E /* WXMAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267EC4282A98C3D300F2C37E /* WXMAlertView.swift */; };
 		268028AA2AF298290031379C /* Indication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268028A92AF298290031379C /* Indication.swift */; };
+		26835B732F13A541005034B0 /* WXM.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 26835B722F13A541005034B0 /* WXM.storekit */; };
 		26862DD22E86CBD000B56C21 /* PublicHex+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26862DCE2E86CBBF00B56C21 /* PublicHex+.swift */; };
 		268645982A6FA7C100EB85B1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268645972A6FA7C100EB85B1 /* Router.swift */; };
 		268B5C372BCE7CF900E63655 /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B5C362BCE7CF900E63655 /* NavigationTitleView.swift */; };
@@ -465,7 +466,6 @@
 		26AB9F472A7BEA0700855912 /* CTAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F462A7BEA0700855912 /* CTAView.swift */; };
 		26AB9F582A822DB500855912 /* UserDeviceFollowState+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */; };
 		26ACC5DD2EBD006600BCECD9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26ACC5DC2EBD006600BCECD9 /* StoreKit.framework */; };
-		26ACC5E22EBDE28500BCECD9 /* WeatherXM.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 26ACC5E12EBDE28500BCECD9 /* WeatherXM.storekit */; };
 		26ACC5E52EBDF9A100BCECD9 /* SubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5E42EBDF9A100BCECD9 /* SubscriptionsView.swift */; };
 		26ACC5F72EC1E9F700BCECD9 /* ManageSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5F62EC1E9F700BCECD9 /* ManageSubscriptionsView.swift */; };
 		26ACC5F92EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */; };
@@ -1184,6 +1184,7 @@
 		267EC4282A98C3D300F2C37E /* WXMAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXMAlertView.swift; sourceTree = "<group>"; };
 		267EDF5F2B67B5AC00C221B1 /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
 		268028A92AF298290031379C /* Indication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indication.swift; sourceTree = "<group>"; };
+		26835B722F13A541005034B0 /* WXM.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = WXM.storekit; sourceTree = "<group>"; };
 		26862DCE2E86CBBF00B56C21 /* PublicHex+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PublicHex+.swift"; sourceTree = "<group>"; };
 		268645972A6FA7C100EB85B1 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		268B5C362BCE7CF900E63655 /* NavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitleView.swift; sourceTree = "<group>"; };
@@ -1271,7 +1272,6 @@
 		26AB9F462A7BEA0700855912 /* CTAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAView.swift; sourceTree = "<group>"; };
 		26AB9F572A822DB500855912 /* UserDeviceFollowState+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDeviceFollowState+.swift"; sourceTree = "<group>"; };
 		26ACC5DC2EBD006600BCECD9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		26ACC5E12EBDE28500BCECD9 /* WeatherXM.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = WeatherXM.storekit; sourceTree = "<group>"; };
 		26ACC5E42EBDF9A100BCECD9 /* SubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsView.swift; sourceTree = "<group>"; };
 		26ACC5F62EC1E9F700BCECD9 /* ManageSubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsView.swift; sourceTree = "<group>"; };
 		26ACC5F82EC1EA2000BCECD9 /* ManageSubscriptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsViewModel.swift; sourceTree = "<group>"; };
@@ -3561,7 +3561,7 @@
 		B52BCC682824FB8F00EA3DA5 = {
 			isa = PBXGroup;
 			children = (
-				26ACC5E12EBDE28500BCECD9 /* WeatherXM.storekit */,
+				26835B722F13A541005034B0 /* WXM.storekit */,
 				26DF1F692D5651E30001E936 /* wxm-ios.xctestplan */,
 				266D17F72AC70A8C007CDB06 /* station-widgetExtension.entitlements */,
 				267E22BC2AC1B17C00B9E196 /* ci_scripts */,
@@ -3947,7 +3947,6 @@
 				26CD5BA52AF50FAD0097093F /* GoogleService-Info.plist in Resources */,
 				26C5D6A72CD8BDDB004940D0 /* weather_overcast_night.json in Resources */,
 				26C5D6BB2CD8BDDB004940D0 /* deprecated_weather_wind.json in Resources */,
-				26ACC5E22EBDE28500BCECD9 /* WeatherXM.storekit in Resources */,
 				26C5D6BF2CD8BDDB004940D0 /* weather_extreme_night_rain.json in Resources */,
 				26C5D6A42CD8BDDB004940D0 /* partly_cloudy_day.json in Resources */,
 				26C5D6992CD8BDDB004940D0 /* weather_overcast_drizzle.json in Resources */,
@@ -3988,6 +3987,7 @@
 				26E85B112C7752A70062667E /* LocalizableUnits.xcstrings in Resources */,
 				B52BCC7C2824FB9000EA3DA5 /* Preview Assets.xcassets in Resources */,
 				26C5D6A12CD8BDDB004940D0 /* weather_extreme_night_drizzle.json in Resources */,
+				26835B732F13A541005034B0 /* WXM.storekit in Resources */,
 				26C5D6A92CD8BDDB004940D0 /* weather_extreme_day_snow.json in Resources */,
 				26C5D6A32CD8BDDB004940D0 /* weather_extreme_day_sleet.json in Resources */,
 				26C5D6B22CD8BDDB004940D0 /* weather_extreme_night_sleet.json in Resources */,
@@ -4686,7 +4686,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = G6DMWDA6X5;
+				DEVELOPMENT_TEAM = CT25WS6QSY;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Release/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -4721,7 +4721,7 @@
 				CODE_SIGN_ENTITLEMENTS = "station-intent/station-intent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = CT25WS6QSY;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Release/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -4756,7 +4756,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6DMWDA6X5;
+				DEVELOPMENT_TEAM = CT25WS6QSY;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Debug/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -4875,7 +4875,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = G6DMWDA6X5;
+				DEVELOPMENT_TEAM = CT25WS6QSY;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Release/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -4913,7 +4913,7 @@
 				CODE_SIGN_ENTITLEMENTS = "station-widgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = CT25WS6QSY;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Release/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -4950,7 +4950,7 @@
 				CODE_SIGN_ENTITLEMENTS = "station-widgetExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G6DMWDA6X5;
+				DEVELOPMENT_TEAM = CT25WS6QSY;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "Resources/Debug/*";
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -5053,7 +5053,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"wxm-ios/PreviewContent\"";
-				DEVELOPMENT_TEAM = G6DMWDA6X5;
+				DEVELOPMENT_TEAM = CT25WS6QSY;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = (
 					"Resources/Release/*",
@@ -5222,12 +5222,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "wxm-ios/wxm-ios.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"wxm-ios/PreviewContent\"";
-				DEVELOPMENT_TEAM = G6DMWDA6X5;
+				DEVELOPMENT_TEAM = CT25WS6QSY;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = (
 					"Resources/Release/*",
@@ -5259,6 +5260,7 @@
 				OTHER_SWIFT_FLAGS = "-DMAIN_APP";
 				PRODUCT_BUNDLE_IDENTIFIER = com.weatherxm.app.debug;
 				PRODUCT_NAME = WeatherXM;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -5280,7 +5282,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"wxm-ios/PreviewContent\"";
-				DEVELOPMENT_TEAM = G6DMWDA6X5;
+				DEVELOPMENT_TEAM = CT25WS6QSY;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = (
 					"Resources/Staging/*",
