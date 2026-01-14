@@ -11363,6 +11363,28 @@
         }
       }
     },
+    "subscriptions_annual" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Annual"
+          }
+        }
+      }
+    },
+    "subscriptions_cancel_anytime_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel anytime. No long-term commitments."
+          }
+        }
+      }
+    },
     "subscriptions_cancel_subscription" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11396,6 +11418,61 @@
         }
       }
     },
+    "subscriptions_free" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Free"
+          }
+        }
+      }
+    },
+    "subscriptions_free_subscription_bullet_0" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "24-hour-ahead 3-hourly forecast"
+          }
+        }
+      }
+    },
+    "subscriptions_free_subscription_bullet_1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7-day daily forecast"
+          }
+        }
+      }
+    },
+    "subscriptions_free_subscription_bullet_2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basic weather parameters"
+          }
+        }
+      }
+    },
+    "subscriptions_free_subscription_bullet_3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard forecast accuracy"
+          }
+        }
+      }
+    },
     "subscriptions_free_trial" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11403,6 +11480,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d %@ Free Trial"
+          }
+        }
+      }
+    },
+    "subscriptions_get_most_accurate_forecasts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get the most accurate forecasts"
           }
         }
       }
@@ -11480,6 +11568,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Manage subscription"
+          }
+        }
+      }
+    },
+    "subscriptions_monthly" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monthly"
           }
         }
       }
@@ -11583,6 +11682,50 @@
         }
       }
     },
+    "subscriptions_premium_subscription_bulllet_0" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything in Free"
+          }
+        }
+      }
+    },
+    "subscriptions_premium_subscription_bulllet_1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "24-hour-ahead hourly forecast"
+          }
+        }
+      }
+    },
+    "subscriptions_premium_subscription_bulllet_2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced accuracy from the best hyperlocal forecast models"
+          }
+        }
+      }
+    },
+    "subscriptions_premium_subscription_bulllet_3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priority updates for new features"
+          }
+        }
+      }
+    },
     "subscriptions_premium_subscription_unlocked" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11590,6 +11733,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Premium features unlocked!"
+          }
+        }
+      }
+    },
+    "subscriptions_premium_suscription_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We test 40+ forecast models against real weather. Every day, we automatically pick the best-performing models for your station, so your forecast stays as accurate as possible."
           }
         }
       }
@@ -11678,6 +11832,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Just the basics. Premium features are locked.\nUpgrade your subscription to unlock them!"
+          }
+        }
+      }
+    },
+    "subscriptions_upgrade_to_premium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgrade to Premium"
           }
         }
       }

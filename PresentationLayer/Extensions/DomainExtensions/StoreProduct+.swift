@@ -18,6 +18,19 @@ extension StoreProduct {
 					 trial: self.trialPeriodString)
 	}
 
+    var toSubscriptionPlan: SubscriptionPlanView.Plan {
+        return .init(fontIcon: .sparkles,
+                     title: LocalizableString.Subscriptions.premium.localized,
+                     isCurrent: isSubscribed,
+                     price: pricePeriodString,
+                     period: nil,
+                     description: LocalizableString.Subscriptions.premiumSuscriptionDescription.localized,
+                     bullets: [LocalizableString.Subscriptions.premiumSubscriptionBulllet0.localized,
+                               LocalizableString.Subscriptions.premiumSubscriptionBulllet1.localized,
+                               LocalizableString.Subscriptions.premiumSubscriptionBulllet2.localized,
+                               LocalizableString.Subscriptions.premiumSubscriptionBulllet3.localized])
+    }
+
 	var pricePeriodString: String {
 		guard let perUnit = period?.perUnit else {
 			return ""
@@ -85,6 +98,22 @@ extension StoreProduct.Period {
 
 		return unitString
 	}
+}
+
+extension StoreProduct.PeriodUnit {
+    var tabTitle: String {
+        switch self {
+            case .day:
+                LocalizableString.daily.localized
+            case .week:
+                LocalizableString.week.localized
+            case .month:
+                LocalizableString.Subscriptions.monthly.localized
+            case .year:
+                LocalizableString.Subscriptions.annual.localized
+        }
+    }
+
 }
 
 extension StoreProductError {

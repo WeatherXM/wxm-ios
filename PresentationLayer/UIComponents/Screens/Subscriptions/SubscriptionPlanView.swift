@@ -40,6 +40,14 @@ struct SubscriptionPlanView: View {
                 }
 
                 VStack(spacing: CGFloat(.smallSpacing)) {
+                    if let description = plan.description {
+                        Text(description)
+                            .multilineTextAlignment(.leading)
+                            .font(.system(size: CGFloat(.normalFontSize)))
+                            .foregroundStyle(Color(colorEnum: .text))
+
+                    }
+
                     ForEach(plan.bullets, id: \.self) { bullet in
                         HStack(spacing: CGFloat(.smallSpacing)) {
                             Text(FontIcon.check.rawValue)
@@ -47,6 +55,7 @@ struct SubscriptionPlanView: View {
                                 .foregroundStyle(Color(colorEnum: .wxmPrimary))
 
                             Text(bullet)
+                                .multilineTextAlignment(.leading)
                                 .font(.system(size: CGFloat(.normalFontSize)))
                                 .foregroundStyle(Color(colorEnum: .text))
 
@@ -67,12 +76,17 @@ struct SubscriptionPlanView: View {
 }
 
 extension SubscriptionPlanView {
-    struct Plan {
+    struct Plan: Equatable, Identifiable {
+        var id: String {
+            title + price
+        }
+        
         let fontIcon: FontIcon
         let title: String
         let isCurrent: Bool
         let price: String
         let period: String?
+        let description: String?
         let bullets: [String]
     }
 }
@@ -118,6 +132,7 @@ private extension SubscriptionPlanView {
                                      isCurrent: true,
                                      price: "$0",
                                      period: "/year",
+                                     description: "Desc",
                                      bullets: ["24-hour-ahead 3-hourly forecast",
                                               "7-day daily forecast"]),
                          isSelected: true)

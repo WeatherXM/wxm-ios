@@ -11,17 +11,19 @@ import Toolkit
 
 @MainActor
 class SubscriptionsViewModel: ObservableObject {
-	@Published var cards: [SubscriptionCardView.Card] = []
+	@Published var plans: [[SubscriptionPlanView.Plan]] = []
 	@Published var isLoading: Bool = true
 	@Published var isSuccess: Bool = false
 	@Published var isFailed: Bool = false
-	@Published var selectedCard: SubscriptionCardView.Card?
+    @Published var currentTabIndex: Int = 0
+    @Published var segments: [String] = []
+	@Published var selectedPlan: SubscriptionPlanView.Plan?
 	var canContinue: Bool {
 		guard let subscribedProduct else {
 			return true
 		}
 
-		return subscribedProduct.toSubcriptionViewCard != selectedCard
+		return true//subscribedProduct.toSubcriptionViewCard != selectedCard
 	}
 	var failSuccessObject: FailSuccessStateObject?
 
@@ -42,8 +44,13 @@ class SubscriptionsViewModel: ObservableObject {
 			let products: [StoreProduct] = try await useCase.getAvailableSubscriptionProducts()
 			self.products = products
 			self.subscribedProduct = products.first(where: { $0.isSubscribed })
-			self.cards = products.map { $0.toSubcriptionViewCard }
-			self.selectedCard = self.subscribedProduct?.toSubcriptionViewCard ?? cards.first
+
+            let periods = products.compactMap { $0.period?.unit?.tabTitle }
+            self.segments = periods
+
+            let sortedProducts = products.sorted(by: { ($0.period?.unit ?? .day) < ($1.period?.unit ?? .day)})
+			self.plans = sortedProducts.map { [generateFreePlan(), $0.toSubscriptionPlan] }
+            self.selectedPlan = self.subscribedProduct?.toSubscriptionPlan ?? plans.first?.first
 		} catch {
 			print(error)
 			showFail(errorDescription: error.localizedDescription)
@@ -51,11 +58,11 @@ class SubscriptionsViewModel: ObservableObject {
 	}
 
 	func continueButtonTapped() {
-		guard let selectedCard, let index = cards.firstIndex(of: selectedCard) else {
-			return
-		}
+//		guard let selectedPlan, let index = plans.firstIndex(of: selectedPlan) else {
+//			return
+//		}
 
-		let prodcut = products[index]
+		let prodcut = products[0]
 		Task { @MainActor in
 			do {
 				try await useCase.subscribeToProduct(prodcut)
@@ -107,6 +114,23 @@ private extension SubscriptionsViewModel {
 		failSuccessObject = object
 		isFailed = true
 	}
+
+    func generateFreePlan() -> SubscriptionPlanView.Plan {
+        let currencyFormatter = NumberFormatter()
+        currencyFormatter.numberStyle = .currency
+        currencyFormatter.locale = .current
+        let price = currencyFormatter.string(from: 0 as NSNumber)
+        return .init(fontIcon: .check,
+                     title: LocalizableString.Subscriptions.free.localized,
+                     isCurrent: subscribedProduct == nil,
+                     price: price ?? "-",
+                     period: nil,
+                     description: nil,
+                     bullets: [LocalizableString.Subscriptions.freeSubscriptionBullet0.localized,
+                               LocalizableString.Subscriptions.freeSubscriptionBullet1.localized,
+                               LocalizableString.Subscriptions.freeSubscriptionBullet2.localized,
+                               LocalizableString.Subscriptions.freeSubscriptionBullet3.localized])
+    }
 }
 
 extension SubscriptionsViewModel: HashableViewModel {

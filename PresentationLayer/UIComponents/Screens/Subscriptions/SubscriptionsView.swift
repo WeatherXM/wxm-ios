@@ -17,31 +17,25 @@ struct SubscriptionsView: View {
 			Color(colorEnum: .bg)
 				.ignoresSafeArea()
 			VStack {
-				ScrollView {
-					VStack(spacing: CGFloat(.mediumSpacing)) {
-						HStack {
-							Text(LocalizableString.Subscriptions.selectPlan.localized)
-								.font(.system(size: CGFloat(.largeFontSize), weight: .bold))
-								.foregroundStyle(Color(colorEnum: .text))
+                if !viewModel.segments.isEmpty {
+                    CustomSegmentView(options: viewModel.segments.map { .init(title: $0) },
+                                      selectedIndex: $viewModel.currentTabIndex,
+                                      style: .buttons)
+                    .padding(.horizontal, CGFloat(.mediumSidePadding))
+                    .padding(.top, CGFloat(.mediumSidePadding))
+                }
 
-							Spacer()
-						}
+                TabViewWrapper(selection: $viewModel.currentTabIndex) {
+                    ForEach(Array(viewModel.plans.enumerated()), id: \.offset) { index, plans in
+                        plansView(for: plans)
+                            .tag(index)
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+                .zIndex(0)
+                .animation(.easeOut(duration: 0.3), value: viewModel.currentTabIndex)
 
-						ForEach(viewModel.cards) { card in
-							Button {
-								viewModel.selectedCard = card
-							} label: {
-								SubscriptionCardView(card: card, isSelected: viewModel.selectedCard == card)
-							}
-						}
-					}
-					.padding(CGFloat(.mediumSidePadding))
-					.iPadMaxWidth()
-				}
-				.scrollIndicators(.hidden)
-				.refreshable {
-					await viewModel.refresh()
-				}
 
 				Button {
 					viewModel.continueButtonTapped()
@@ -61,8 +55,33 @@ struct SubscriptionsView: View {
 			await viewModel.refresh()
 		}
 		.onAppear {
-			navigationObject.title = LocalizableString.Subscriptions.manageSubscription.localized
+			navigationObject.title = LocalizableString.Subscriptions.upgradeToPremium.localized
+            navigationObject.subtitle = LocalizableString.Subscriptions.getMostAccurateForecasts.localized
 		}
+    }
+}
+
+private extension SubscriptionsView {
+    @ViewBuilder
+    func plansView(for plans: [SubscriptionPlanView.Plan]) -> some View {
+        ScrollView {
+            VStack(spacing: CGFloat(.mediumSpacing)) {
+
+                ForEach(plans) { plan in
+                    Button {
+                        viewModel.selectedPlan = plan
+                    } label: {
+                        SubscriptionPlanView(plan: plan, isSelected: viewModel.selectedPlan == plan)
+                    }
+                }
+            }
+            .padding(CGFloat(.mediumSidePadding))
+            .iPadMaxWidth()
+        }
+        .scrollIndicators(.hidden)
+        .refreshable {
+            await viewModel.refresh()
+        }
     }
 }
 
@@ -71,3 +90,4 @@ struct SubscriptionsView: View {
 		SubscriptionsView(viewModel: ViewModelsFactory.getSubscriptionsViewModel())
 	}
 }
+

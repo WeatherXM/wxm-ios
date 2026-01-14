@@ -16,6 +16,7 @@ extension LocalizableString {
 		case standardDescription
 		case premium
 		case active
+        case free
 		case premiumFeatures
 		case premiumForecast
 		case hyperLocalForecast
@@ -41,7 +42,20 @@ extension LocalizableString {
 		case poweredByWeatherXM
 		case poweredBy
         case loginToGetPremiumAlert
-
+        case upgradeToPremium
+        case getMostAccurateForecasts
+        case monthly
+        case annual
+        case freeSubscriptionBullet0
+        case freeSubscriptionBullet1
+        case freeSubscriptionBullet2
+        case freeSubscriptionBullet3
+        case premiumSuscriptionDescription
+        case premiumSubscriptionBulllet0
+        case premiumSubscriptionBulllet1
+        case premiumSubscriptionBulllet2
+        case premiumSubscriptionBulllet3
+        case cancelAnytimeDescription
 	}
 }
 
@@ -112,6 +126,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_premium_available_until"
 			case .freeTrial:
 				"subscriptions_free_trial"
+            case .free:
+                "subscriptions_free"
 			case .perUnitPrice:
 				"subscriptions_per_unit_price"
 			case .afterTrialCharge:
@@ -130,6 +146,34 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_powered_by"
             case .loginToGetPremiumAlert:
                 "subscriptions_login_to_get_premium_alert"
-		}
+            case .upgradeToPremium:
+                "subscriptions_upgrade_to_premium"
+            case .getMostAccurateForecasts:
+                "subscriptions_get_most_accurate_forecasts"
+            case .monthly:
+                "subscriptions_monthly"
+            case .annual:
+                "subscriptions_annual"
+            case .freeSubscriptionBullet0:
+                "subscriptions_free_subscription_bullet_0"
+            case .freeSubscriptionBullet1:
+                "subscriptions_free_subscription_bullet_1"
+            case .freeSubscriptionBullet2:
+                "subscriptions_free_subscription_bullet_2"
+            case .freeSubscriptionBullet3:
+                "subscriptions_free_subscription_bullet_3"
+            case .premiumSuscriptionDescription:
+                "subscriptions_premium_suscription_description"
+            case .premiumSubscriptionBulllet0:
+                "subscriptions_premium_subscription_bulllet_0"
+            case .premiumSubscriptionBulllet1:
+                "subscriptions_premium_subscription_bulllet_1"
+            case .premiumSubscriptionBulllet2:
+                "subscriptions_premium_subscription_bulllet_2"
+            case .premiumSubscriptionBulllet3:
+                "subscriptions_premium_subscription_bulllet_3"
+            case .cancelAnytimeDescription:
+                "subscriptions_cancel_anytime_description"
+        }
 	}
 }
