@@ -244,7 +244,7 @@ private struct ContentView: View {
 	@ViewBuilder
 	var subscriptionView: some View {
 		Button {
-			Router.shared.navigateTo(.manageSubscription(ViewModelsFactory.getManageSubsriptionViewModel()))
+			Router.shared.navigateTo(.subscriptions(ViewModelsFactory.getSubscriptionsViewModel()))
 		} label: {
 			HStack(spacing: CGFloat(.smallToMediumSpacing)) {
 				Text(ProfileField.subscription.icon.rawValue)
