@@ -28,7 +28,8 @@ extension StoreProduct {
                      bullets: [LocalizableString.Subscriptions.premiumSubscriptionBulllet0.localized,
                                LocalizableString.Subscriptions.premiumSubscriptionBulllet1.localized,
                                LocalizableString.Subscriptions.premiumSubscriptionBulllet2.localized,
-                               LocalizableString.Subscriptions.premiumSubscriptionBulllet3.localized])
+                               LocalizableString.Subscriptions.premiumSubscriptionBulllet3.localized],
+                     productId: identifier)
     }
 
 	var pricePeriodString: String {

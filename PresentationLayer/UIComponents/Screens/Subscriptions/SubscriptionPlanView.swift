@@ -88,6 +88,7 @@ extension SubscriptionPlanView {
         let period: String?
         let description: String?
         let bullets: [String]
+        let productId: String?
     }
 }
 
@@ -134,6 +135,7 @@ private extension SubscriptionPlanView {
                                      period: "/year",
                                      description: "Desc",
                                      bullets: ["24-hour-ahead 3-hourly forecast",
-                                              "7-day daily forecast"]),
+                                              "7-day daily forecast"],
+                                    productId: nil),
                          isSelected: true)
 }

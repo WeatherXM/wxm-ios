@@ -40,11 +40,15 @@ struct SubscriptionsView: View {
 				Button {
 					viewModel.continueButtonTapped()
 				} label: {
-					Text(LocalizableString.continue.localized)
+                    HStack(spacing: CGFloat(.smallToMediumSpacing)) {
+                        Text(FontIcon.sparkles.rawValue)
+                            .font(.fontAwesome(font: .FAPro, size: CGFloat(.largeFontSize)))
+                        Text(LocalizableString.Subscriptions.upgradeToPremium.localized)
+                    }
 				}
 				.buttonStyle(WXMButtonStyle.filled())
 				.padding(CGFloat(.mediumSidePadding))
-				.disabled(!viewModel.canContinue)
+				.disabled(!viewModel.isCTAEnabled)
 				.iPadMaxWidth()
 			}
 			.spinningLoader(show: $viewModel.isLoading)

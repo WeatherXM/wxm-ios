@@ -18,12 +18,8 @@ class SubscriptionsViewModel: ObservableObject {
     @Published var currentTabIndex: Int = 0
     @Published var segments: [String] = []
 	@Published var selectedPlan: SubscriptionPlanView.Plan?
-	var canContinue: Bool {
-		guard let subscribedProduct else {
-			return true
-		}
-
-		return true//subscribedProduct.toSubcriptionViewCard != selectedCard
+	var isCTAEnabled: Bool {
+        products.contains(where: { $0.identifier == selectedPlan?.productId })
 	}
 	var failSuccessObject: FailSuccessStateObject?
 
@@ -58,14 +54,13 @@ class SubscriptionsViewModel: ObservableObject {
 	}
 
 	func continueButtonTapped() {
-//		guard let selectedPlan, let index = plans.firstIndex(of: selectedPlan) else {
-//			return
-//		}
+        guard let selectedPlan, let product = products.first(where: { $0.identifier == selectedPlan.productId }) else {
+			return
+		}
 
-		let prodcut = products[0]
 		Task { @MainActor in
 			do {
-				try await useCase.subscribeToProduct(prodcut)
+				try await useCase.subscribeToProduct(product)
 
 				showSuccess()
 
@@ -129,7 +124,8 @@ private extension SubscriptionsViewModel {
                      bullets: [LocalizableString.Subscriptions.freeSubscriptionBullet0.localized,
                                LocalizableString.Subscriptions.freeSubscriptionBullet1.localized,
                                LocalizableString.Subscriptions.freeSubscriptionBullet2.localized,
-                               LocalizableString.Subscriptions.freeSubscriptionBullet3.localized])
+                               LocalizableString.Subscriptions.freeSubscriptionBullet3.localized],
+                     productId: nil)
     }
 }
 
