@@ -30,7 +30,8 @@ extension StoreProduct {
                                LocalizableString.Subscriptions.premiumSubscriptionBulllet1.localized,
                                LocalizableString.Subscriptions.premiumSubscriptionBulllet2.localized,
                                LocalizableString.Subscriptions.premiumSubscriptionBulllet3.localized],
-                     productId: identifier)
+                     productId: identifier,
+                     isWarning: false)
     }
 
 	var pricePeriodString: String {

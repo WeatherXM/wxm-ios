@@ -17,36 +17,26 @@ struct SubscriptionsView: View {
 			Color(colorEnum: .bg)
 				.ignoresSafeArea()
 			VStack {
-                if !viewModel.segments.isEmpty {
-                    CustomSegmentView(options: viewModel.segments.map { .init(title: $0) },
-                                      selectedIndex: $viewModel.currentTabIndex,
-                                      style: .buttons)
-                    .padding(.horizontal, CGFloat(.mediumSidePadding))
-                    .padding(.top, CGFloat(.mediumSidePadding))
-                }
-
-                TabViewWrapper(selection: $viewModel.currentTabIndex) {
-                    ForEach(Array(viewModel.plans.enumerated()), id: \.offset) { index, plans in
+                switch viewModel.viewState {
+                    case .free(let plans):
+                        freeStateView(plans: plans)
+                    case .premium(let plans):
                         plansView(for: plans)
-                            .tag(index)
-                    }
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
-                .zIndex(0)
-                .animation(.easeOut(duration: 0.3), value: viewModel.currentTabIndex)
-
 
 				Button {
 					viewModel.continueButtonTapped()
 				} label: {
                     HStack(spacing: CGFloat(.smallToMediumSpacing)) {
-                        Text(FontIcon.sparkles.rawValue)
-                            .font(.fontAwesome(font: .FAPro, size: CGFloat(.largeFontSize)))
-                        Text(LocalizableString.Subscriptions.upgradeToPremium.localized)
+                        if let fontIcon = viewModel.ctaFontIcon {
+                            Text(fontIcon.rawValue)
+                                .font(.fontAwesome(font: .FAPro, size: CGFloat(.largeFontSize)))
+                        }
+
+                        Text(viewModel.ctaText)
                     }
 				}
-				.buttonStyle(WXMButtonStyle.filled())
+                .buttonStyle(WXMButtonStyle.filled(textColor: .textWhite, fillColor: viewModel.ctaBackgroundColor))
 				.padding(CGFloat(.mediumSidePadding))
 				.disabled(!viewModel.isCTAEnabled)
 				.iPadMaxWidth()
@@ -65,7 +55,38 @@ struct SubscriptionsView: View {
     }
 }
 
+extension SubscriptionsView {
+    enum State {
+        case free([[SubscriptionPlanView.Plan]])
+        case premium([SubscriptionPlanView.Plan])
+    }
+}
+
 private extension SubscriptionsView {
+    @ViewBuilder
+    func freeStateView(plans: [[SubscriptionPlanView.Plan]]) -> some View {
+        VStack(spacing: 0) {
+            if !viewModel.segments.isEmpty {
+                CustomSegmentView(options: viewModel.segments.map { .init(title: $0) },
+                                  selectedIndex: $viewModel.currentTabIndex,
+                                  style: .buttons)
+                .padding(.horizontal, CGFloat(.mediumSidePadding))
+                .padding(.top, CGFloat(.mediumSidePadding))
+            }
+
+            TabViewWrapper(selection: $viewModel.currentTabIndex) {
+                ForEach(Array(plans.enumerated()), id: \.offset) { index, plans in
+                    plansView(for: plans)
+                        .tag(index)
+                }
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+            .zIndex(0)
+            .animation(.easeOut(duration: 0.3), value: viewModel.currentTabIndex)
+        }
+    }
+
     @ViewBuilder
     func plansView(for plans: [SubscriptionPlanView.Plan]) -> some View {
         ScrollView {
@@ -75,7 +96,8 @@ private extension SubscriptionsView {
                     Button {
                         viewModel.selectedPlan = plan
                     } label: {
-                        SubscriptionPlanView(plan: plan, isSelected: viewModel.selectedPlan == plan)
+                        SubscriptionPlanView(plan: plan,
+                                             isSelected: viewModel.selectedPlan == plan)
                     }
                 }
             }

@@ -102,4 +102,5 @@ enum FontIcon: String {
 	case userRobotXmarks = "user-robot-xmarks"
 	case wallet
 	case xmark
+    case warning
 }

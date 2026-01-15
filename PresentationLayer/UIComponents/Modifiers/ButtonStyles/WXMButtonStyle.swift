@@ -78,9 +78,10 @@ struct WXMButtonStyle: ButtonStyle {
 }
 
 extension WXMButtonStyle {
-    static func filled(fixedSize: Bool = false) -> Self {
-        Self.init(textColor: .top,
-                  fillColor: .wxmPrimary,
+    static func filled(textColor: ColorEnum = .top, fixedSize: Bool = false, fillColor: ColorEnum = .wxmPrimary) -> Self {
+        Self.init(textColor: textColor,
+                  fillColor: fillColor,
+                  strokeColor: fillColor,
                   fixedSize: fixedSize)
     }
 

@@ -56,6 +56,12 @@ extension LocalizableString {
         case premiumSubscriptionBulllet2
         case premiumSubscriptionBulllet3
         case cancelAnytimeDescription
+        case downgradeToFreeplan
+        case downgradeToFreeAlertTitle
+        case downgradeToFreeAlertMessage
+        case downgrade
+        case stayOnPremium
+        case youAreOnPremium
 	}
 }
 
@@ -174,6 +180,18 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
                 "subscriptions_premium_subscription_bulllet_3"
             case .cancelAnytimeDescription:
                 "subscriptions_cancel_anytime_description"
+            case .downgradeToFreeplan:
+                "subscriptions_downgrade_to_freeplan"
+            case .downgradeToFreeAlertTitle:
+                "subscriptions_downgrade_to_free_alert_title"
+            case .downgradeToFreeAlertMessage:
+                "subscriptions_downgrade_to_free_alert_message"
+            case .downgrade:
+                "subscriptions_downgrade"
+            case .stayOnPremium:
+                "subscriptions_stay_on_premium"
+            case .youAreOnPremium:
+                "subscriptions_you_are_on_premium"
         }
 	}
 }

@@ -13,10 +13,10 @@ struct SubscriptionPlanView: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: CGFloat(.mediumSpacing)) {
-            Text(plan.fontIcon.rawValue)
+            Text(plan.isWarning && isSelected ? FontIcon.warning.rawValue : plan.fontIcon.rawValue)
                 .font(.fontAwesome(font: .FAPro, size: CGFloat(.smallTitleFontSize)))
-                .foregroundStyle(Color(colorEnum: .darkGrey))
-                .WXMCardStyle(backgroundColor: Color(.layer1),
+                .foregroundStyle(plan.isWarning && isSelected ? Color(colorEnum: .warning) : Color(colorEnum: .darkGrey))
+                .WXMCardStyle(backgroundColor: plan.isWarning && isSelected ? Color(colorEnum: .warningTint) : Color(.layer1),
                               insideHorizontalPadding: CGFloat(.smallToMediumSidePadding),
                               insideVerticalPadding: CGFloat(.smallToMediumSidePadding), cornerRadius: CGFloat(.buttonCornerRadius))
 
@@ -77,7 +77,7 @@ struct SubscriptionPlanView: View {
         }
         .WXMCardStyle()
         .indication(show: .constant(isSelected),
-                    borderColor: Color(colorEnum: .wxmPrimary),
+                    borderColor: plan.isWarning ? .warning : .wxmPrimary,
                     bgColor: Color(colorEnum: .wxmPrimary)) {
             EmptyView()
         }
@@ -100,6 +100,7 @@ extension SubscriptionPlanView {
         let description: String?
         let bullets: [String]
         let productId: String?
+        let isWarning: Bool
     }
 }
 
@@ -112,7 +113,7 @@ private extension SubscriptionPlanView {
             .padding(.horizontal, CGFloat(.smallToMediumSidePadding))
             .padding(.vertical, CGFloat(.minimumPadding))
             .background {
-                Capsule().foregroundStyle(Color(colorEnum: .crypto))
+                Capsule().foregroundStyle(Color(colorEnum: .layer1))
             }
     }
 
@@ -148,6 +149,7 @@ private extension SubscriptionPlanView {
                                      description: "Desc",
                                      bullets: ["24-hour-ahead 3-hourly forecast",
                                               "7-day daily forecast"],
-                                    productId: nil),
+                                    productId: nil,
+                                     isWarning: true),
                          isSelected: true)
 }

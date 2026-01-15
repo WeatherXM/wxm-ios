@@ -11,7 +11,7 @@ import Toolkit
 
 @MainActor
 class SubscriptionsViewModel: ObservableObject {
-	@Published var plans: [[SubscriptionPlanView.Plan]] = []
+    @Published var viewState: SubscriptionsView.State = .free([[]])
 	@Published var isLoading: Bool = true
 	@Published var isSuccess: Bool = false
 	@Published var isFailed: Bool = false
@@ -19,8 +19,53 @@ class SubscriptionsViewModel: ObservableObject {
     @Published var segments: [String] = []
 	@Published var selectedPlan: SubscriptionPlanView.Plan?
 	var isCTAEnabled: Bool {
-        products.contains(where: { $0.identifier == selectedPlan?.productId })
+        switch viewState {
+            case .free(_):
+                return products.contains(where: { $0.identifier == selectedPlan?.productId })
+            case .premium(_):
+                let isFreeSelected = selectedPlan?.productId == nil
+                return isFreeSelected
+        }
 	}
+    var ctaText: String {
+        switch viewState {
+            case .free(_):
+                return LocalizableString.Subscriptions.upgradeToPremium.localized
+            case .premium(_):
+                let isFreeSelected = selectedPlan?.productId == nil
+                if  isFreeSelected {
+                    return LocalizableString.Subscriptions.downgradeToFreeplan.localized
+                }
+
+                return LocalizableString.Subscriptions.youAreOnPremium.localized
+        }
+    }
+    var ctaFontIcon: FontIcon? {
+        switch viewState {
+            case .free(_):
+                return .sparkles
+            case .premium(_):
+                let isFreeSelected = selectedPlan?.productId == nil
+                if  isFreeSelected {
+                    return nil
+                }
+
+                return .sparkles
+        }
+    }
+    var ctaBackgroundColor: ColorEnum {
+        switch viewState {
+            case .free:
+                return .wxmPrimary
+            case .premium(_):
+                let isFreeSelected = selectedPlan?.productId == nil
+                if  isFreeSelected {
+                    return .warningTint
+                }
+
+                return .wxmPrimary
+        }
+    }
 	var failSuccessObject: FailSuccessStateObject?
 
 	private let useCase: MeUseCaseApi
@@ -41,12 +86,20 @@ class SubscriptionsViewModel: ObservableObject {
 			self.products = products
 			self.subscribedProduct = products.first(where: { $0.isSubscribed })
 
-            let periods = products.compactMap { $0.period?.unit?.tabTitle }
-            self.segments = periods
+            if let subscribedProduct {
+                let freePlan = generateFreePlan(isWarning: true)
+                let plans = [subscribedProduct.toSubscriptionPlan, freePlan]
+                self.selectedPlan = self.subscribedProduct?.toSubscriptionPlan ?? freePlan
+                viewState = .premium(plans)
+            } else {
+                let periods = products.compactMap { $0.period?.unit?.tabTitle }
+                self.segments = periods
 
-            let sortedProducts = products.sorted(by: { ($0.period?.unit ?? .day) < ($1.period?.unit ?? .day)})
-			self.plans = sortedProducts.map { [generateFreePlan(), $0.toSubscriptionPlan] }
-            self.selectedPlan = self.subscribedProduct?.toSubscriptionPlan ?? plans.first?.first
+                let sortedProducts = products.sorted(by: { ($0.period?.unit ?? .day) < ($1.period?.unit ?? .day)})
+                let plans = sortedProducts.map { [generateFreePlan(isWarning: false), $0.toSubscriptionPlan] }
+                viewState = .free(plans)
+                self.selectedPlan = self.subscribedProduct?.toSubscriptionPlan ?? plans.first?.first
+            }
 		} catch {
 			print(error)
 			showFail(errorDescription: error.localizedDescription)
@@ -110,7 +163,7 @@ private extension SubscriptionsViewModel {
 		isFailed = true
 	}
 
-    func generateFreePlan() -> SubscriptionPlanView.Plan {
+    func generateFreePlan(isWarning: Bool) -> SubscriptionPlanView.Plan {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.numberStyle = .currency
         currencyFormatter.locale = .current
@@ -126,7 +179,8 @@ private extension SubscriptionsViewModel {
                                LocalizableString.Subscriptions.freeSubscriptionBullet1.localized,
                                LocalizableString.Subscriptions.freeSubscriptionBullet2.localized,
                                LocalizableString.Subscriptions.freeSubscriptionBullet3.localized],
-                     productId: nil)
+                     productId: nil,
+                     isWarning: isWarning)
     }
 }
 

@@ -11418,6 +11418,50 @@
         }
       }
     },
+    "subscriptions_downgrade" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downgrade"
+          }
+        }
+      }
+    },
+    "subscriptions_downgrade_to_free_alert_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to downgrade to Free plan? If you downgrade you will lose access to: \n24-hour-ahead hourly forecast\nAdvanced accuracy from the best forecast hyperlocal models\nPriority updates for new features"
+          }
+        }
+      }
+    },
+    "subscriptions_downgrade_to_free_alert_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downgrade to Free?"
+          }
+        }
+      }
+    },
+    "subscriptions_downgrade_to_freeplan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downgrade to Free Plan"
+          }
+        }
+      }
+    },
     "subscriptions_free" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11836,6 +11880,9 @@
         }
       }
     },
+    "subscriptions_stay_on_premium" : {
+      "extractionState" : "manual"
+    },
     "subscriptions_upgrade_to_premium" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11843,6 +11890,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Upgrade to Premium"
+          }
+        }
+      }
+    },
+    "subscriptions_you_are_on_premium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are currently on Premium Plan"
           }
         }
       }
