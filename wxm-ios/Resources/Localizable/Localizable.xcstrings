@@ -11435,7 +11435,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Are you sure you want to downgrade to Free plan? If you downgrade you will lose access to: \n24-hour-ahead hourly forecast\nAdvanced accuracy from the best forecast hyperlocal models\nPriority updates for new features"
+            "value" : "Are you sure you want to downgrade to Free plan? If you downgrade you will lose access to: \n- 24-hour-ahead hourly forecast\n- Advanced accuracy from the best forecast hyperlocal models\n- Priority updates for new features"
           }
         }
       }
@@ -11881,7 +11881,15 @@
       }
     },
     "subscriptions_stay_on_premium" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stay on Premium"
+          }
+        }
+      }
     },
     "subscriptions_upgrade_to_premium" : {
       "extractionState" : "manual",

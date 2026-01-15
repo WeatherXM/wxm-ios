@@ -19,6 +19,8 @@ class SubscriptionsViewModel: ObservableObject {
     @Published var currentTabIndex: Int = 0
     @Published var segments: [String] = []
 	@Published var selectedPlan: SubscriptionPlanView.Plan?
+    @Published var showDowngradeAlert: Bool = false
+    var downgradeAlertConfiguration: WXMAlertConfiguration?
 	var isCTAEnabled: Bool {
         switch viewState {
             case .free(_):
@@ -136,17 +138,31 @@ class SubscriptionsViewModel: ObservableObject {
                 }
             case .premium:
                 // Downgrade
-                let downgradeAction: AlertHelper.AlertObject.Action = (LocalizableString.Subscriptions.downgrade.localized, { _ in
+                let conf = WXMAlertConfiguration(title: LocalizableString.Subscriptions.downgradeToFreeAlertTitle.localized,
+                                                 text: LocalizableString.Subscriptions.downgradeToFreeAlertMessage.localized.attributedMarkdown ?? "",
+                                                 canDismiss: false,
+                                                 buttonsLayout: .horizontal,
+                                                 secondaryButtons: [.init(title: LocalizableString.Subscriptions.downgrade.localized,
+                                                                          action: { [weak self] in
+                    self?.showDowngradeAlert = false
                     LinkNavigationHelper().openUrl(UIApplication.openSettingsURLString)
-                })
-                let stayAction: AlertHelper.AlertObject.Action = (LocalizableString.Subscriptions.stayOnPremium.localized, { _ in  })
-                let alertObject = AlertHelper.AlertObject(title: LocalizableString.Subscriptions.downgradeToFreeAlertTitle.localized,
-                                                          message: LocalizableString.Subscriptions.downgradeToFreeAlertMessage.localized,
-                                                          cancelActionTitle: downgradeAction.title,
-                                                          cancelAction: { downgradeAction.action(nil) },
-                                                          okAction: stayAction)
+                })],
+                                                 primaryButtons: [.init(title: LocalizableString.Subscriptions.stayOnPremium.localized,
+                                                                        action: { [weak self] in self?.showDowngradeAlert = false})])
 
-                AlertHelper().showAlert(alertObject)
+                downgradeAlertConfiguration = conf
+                showDowngradeAlert = true
+//                let downgradeAction: AlertHelper.AlertObject.Action = (LocalizableString.Subscriptions.downgrade.localized, { _ in
+//                    LinkNavigationHelper().openUrl(UIApplication.openSettingsURLString)
+//                })
+//                let stayAction: AlertHelper.AlertObject.Action = (LocalizableString.Subscriptions.stayOnPremium.localized, { _ in  })
+//                let alertObject = AlertHelper.AlertObject(title: LocalizableString.Subscriptions.downgradeToFreeAlertTitle.localized,
+//                                                          message: LocalizableString.Subscriptions.downgradeToFreeAlertMessage.localized,
+//                                                          cancelActionTitle: downgradeAction.title,
+//                                                          cancelAction: { downgradeAction.action(nil) },
+//                                                          okAction: stayAction)
+//
+//                AlertHelper().showAlert(alertObject)
         }
 
 	}

@@ -52,6 +52,13 @@ struct SubscriptionsView: View {
 			navigationObject.title = LocalizableString.Subscriptions.upgradeToPremium.localized
             navigationObject.subtitle = LocalizableString.Subscriptions.getMostAccurateForecasts.localized
 		}
+        .wxmAlert(show: $viewModel.showDowngradeAlert) {
+            WXMAlertView(show: $viewModel.showDowngradeAlert,
+                         configuration: viewModel.downgradeAlertConfiguration!) {
+                EmptyView()
+            }
+        }
+
     }
 }
 
