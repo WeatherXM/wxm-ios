@@ -120,6 +120,7 @@ private extension SubscriptionsViewModel {
                      isCurrent: subscribedProduct == nil,
                      price: price ?? "-",
                      period: nil,
+                     trialText: nil,
                      description: nil,
                      bullets: [LocalizableString.Subscriptions.freeSubscriptionBullet0.localized,
                                LocalizableString.Subscriptions.freeSubscriptionBullet1.localized,

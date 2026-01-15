@@ -11479,7 +11479,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%d %@ Free Trial"
+            "value" : "Try for free for %d %@ "
           }
         }
       }

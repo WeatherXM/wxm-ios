@@ -39,6 +39,16 @@ struct SubscriptionPlanView: View {
                     Spacer()
                 }
 
+                if let freeTrialText = plan.trialText {
+                    HStack(alignment: .bottom, spacing: CGFloat(.smallSpacing)) {
+                        Text(freeTrialText)
+                            .font(.system(size: CGFloat(.normalFontSize)))
+                            .foregroundStyle(Color(colorEnum: .success))
+
+                        Spacer()
+                    }
+                }
+
                 VStack(spacing: CGFloat(.smallSpacing)) {
                     if let description = plan.description {
                         Text(description)
@@ -86,6 +96,7 @@ extension SubscriptionPlanView {
         let isCurrent: Bool
         let price: String
         let period: String?
+        let trialText: String?
         let description: String?
         let bullets: [String]
         let productId: String?
@@ -133,6 +144,7 @@ private extension SubscriptionPlanView {
                                      isCurrent: true,
                                      price: "$0",
                                      period: "/year",
+                                     trialText: nil,
                                      description: "Desc",
                                      bullets: ["24-hour-ahead 3-hourly forecast",
                                               "7-day daily forecast"],

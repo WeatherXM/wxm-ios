@@ -24,6 +24,7 @@ extension StoreProduct {
                      isCurrent: isSubscribed,
                      price: pricePeriodString,
                      period: nil,
+                     trialText: trialPeriodString,
                      description: LocalizableString.Subscriptions.premiumSuscriptionDescription.localized,
                      bullets: [LocalizableString.Subscriptions.premiumSubscriptionBulllet0.localized,
                                LocalizableString.Subscriptions.premiumSubscriptionBulllet1.localized,
