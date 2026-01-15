@@ -18,11 +18,11 @@ extension StoreProduct {
 					 trial: self.trialPeriodString)
 	}
 
-    var toSubscriptionPlan: SubscriptionPlanView.Plan {
+    func toSubscriptionPlan(showPrice: Bool) -> SubscriptionPlanView.Plan {
         return .init(fontIcon: .sparkles,
                      title: LocalizableString.Subscriptions.premium.localized,
                      isCurrent: isSubscribed,
-                     price: pricePeriodString,
+                     price: showPrice ? pricePeriodString : nil,
                      period: nil,
                      trialText: trialPeriodString,
                      description: LocalizableString.Subscriptions.premiumSuscriptionDescription.localized,

@@ -33,10 +33,12 @@ struct SubscriptionPlanView: View {
                     }
                 }
 
-                HStack(alignment: .bottom, spacing: CGFloat(.smallSpacing)) {
-                    Text(priceAttributedString(price: plan.price, period: plan.period))
+                if let price = plan.price {
+                    HStack(alignment: .bottom, spacing: CGFloat(.smallSpacing)) {
+                        Text(priceAttributedString(price: price, period: plan.period))
 
-                    Spacer()
+                        Spacer()
+                    }
                 }
 
                 if let freeTrialText = plan.trialText {
@@ -88,13 +90,13 @@ struct SubscriptionPlanView: View {
 extension SubscriptionPlanView {
     struct Plan: Equatable, Identifiable {
         var id: String {
-            title + price
+            title + (price ?? "")
         }
         
         let fontIcon: FontIcon
         let title: String
         let isCurrent: Bool
-        let price: String
+        let price: String?
         let period: String?
         let trialText: String?
         let description: String?

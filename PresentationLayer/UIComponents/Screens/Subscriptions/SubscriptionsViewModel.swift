@@ -8,6 +8,7 @@
 import Foundation
 import DomainLayer
 import Toolkit
+import UIKit
 
 @MainActor
 class SubscriptionsViewModel: ObservableObject {
@@ -87,18 +88,18 @@ class SubscriptionsViewModel: ObservableObject {
 			self.subscribedProduct = products.first(where: { $0.isSubscribed })
 
             if let subscribedProduct {
-                let freePlan = generateFreePlan(isWarning: true)
-                let plans = [subscribedProduct.toSubscriptionPlan, freePlan]
-                self.selectedPlan = self.subscribedProduct?.toSubscriptionPlan ?? freePlan
+                let freePlan = generateFreePlan(isWarning: true, showPrice: false)
+                let plans = [subscribedProduct.toSubscriptionPlan(showPrice: false), freePlan]
+                self.selectedPlan = self.subscribedProduct?.toSubscriptionPlan(showPrice: false) ?? freePlan
                 viewState = .premium(plans)
             } else {
                 let periods = products.compactMap { $0.period?.unit?.tabTitle }
                 self.segments = periods
 
                 let sortedProducts = products.sorted(by: { ($0.period?.unit ?? .day) < ($1.period?.unit ?? .day)})
-                let plans = sortedProducts.map { [generateFreePlan(isWarning: false), $0.toSubscriptionPlan] }
+                let plans = sortedProducts.map { [generateFreePlan(isWarning: false, showPrice: true), $0.toSubscriptionPlan(showPrice: true)] }
                 viewState = .free(plans)
-                self.selectedPlan = self.subscribedProduct?.toSubscriptionPlan ?? plans.first?.first
+                self.selectedPlan = self.subscribedProduct?.toSubscriptionPlan(showPrice: true) ?? plans.first?.first
             }
 		} catch {
 			print(error)
@@ -107,30 +108,47 @@ class SubscriptionsViewModel: ObservableObject {
 	}
 
 	func continueButtonTapped() {
-        guard let selectedPlan, let product = products.first(where: { $0.identifier == selectedPlan.productId }) else {
-			return
-		}
+        switch viewState {
+            case .free:
+                guard let selectedPlan, let product = products.first(where: { $0.identifier == selectedPlan.productId }) else {
+                    return
+                }
 
-		Task { @MainActor in
-			do {
-				try await useCase.subscribeToProduct(product)
+                Task { @MainActor in
+                    do {
+                        try await useCase.subscribeToProduct(product)
 
-				showSuccess()
+                        showSuccess()
 
-				WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .billingFlowResult,
-																		  .success: .custom("\(0)")])
-			} catch let productError as StoreProductError {
-				let successState: Int = productError == .purchaseCancelled ? 0 : -1
-				WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .billingFlowResult,
-																		  .success: .custom("\(successState)")])
+                        WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .billingFlowResult,
+                                                                                  .success: .custom("\(0)")])
+                    } catch let productError as StoreProductError {
+                        let successState: Int = productError == .purchaseCancelled ? 0 : -1
+                        WXMAnalytics.shared.trackEvent(.viewContent, parameters: [.contentName: .billingFlowResult,
+                                                                                  .success: .custom("\(successState)")])
 
-				if productError != .purchaseCancelled {
-					showFail(errorDescription: productError.localizedDescription)
-				}
-			} catch {
-				showFail(errorDescription: error.localizedDescription)
-			}
-		}
+                        if productError != .purchaseCancelled {
+                            showFail(errorDescription: productError.localizedDescription)
+                        }
+                    } catch {
+                        showFail(errorDescription: error.localizedDescription)
+                    }
+                }
+            case .premium:
+                // Downgrade
+                let downgradeAction: AlertHelper.AlertObject.Action = (LocalizableString.Subscriptions.downgrade.localized, { _ in
+                    LinkNavigationHelper().openUrl(UIApplication.openSettingsURLString)
+                })
+                let stayAction: AlertHelper.AlertObject.Action = (LocalizableString.Subscriptions.stayOnPremium.localized, { _ in  })
+                let alertObject = AlertHelper.AlertObject(title: LocalizableString.Subscriptions.downgradeToFreeAlertTitle.localized,
+                                                          message: LocalizableString.Subscriptions.downgradeToFreeAlertMessage.localized,
+                                                          cancelActionTitle: downgradeAction.title,
+                                                          cancelAction: { downgradeAction.action(nil) },
+                                                          okAction: stayAction)
+
+                AlertHelper().showAlert(alertObject)
+        }
+
 	}
 }
 
@@ -163,7 +181,7 @@ private extension SubscriptionsViewModel {
 		isFailed = true
 	}
 
-    func generateFreePlan(isWarning: Bool) -> SubscriptionPlanView.Plan {
+    func generateFreePlan(isWarning: Bool, showPrice: Bool) -> SubscriptionPlanView.Plan {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.numberStyle = .currency
         currencyFormatter.locale = .current
@@ -171,7 +189,7 @@ private extension SubscriptionsViewModel {
         return .init(fontIcon: .check,
                      title: LocalizableString.Subscriptions.free.localized,
                      isCurrent: subscribedProduct == nil,
-                     price: price ?? "-",
+                     price: showPrice ? price : nil,
                      period: nil,
                      trialText: nil,
                      description: nil,
