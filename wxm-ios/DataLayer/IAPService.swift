@@ -73,6 +73,8 @@ public class IAPService: @unchecked Sendable {
 			throw IAPEerror.noProductWithId(productId)
 		}
 
+        await Transaction.clearUnfinishedTransactionsPrePurchase()
+        
 		let result = try await product.purchase()
 		switch result {
 			case .success(let verificationResult):
@@ -116,4 +118,18 @@ public extension IAPService {
 		case purchaseIsPending
 		case purchaseFailed
 	}
+}
+
+extension Transaction {
+    /// Fixes a bug where unfinished but expired transactions block future purchases.
+    static func clearUnfinishedTransactionsPrePurchase() async {
+        for await unfinished in Transaction.unfinished {
+            let unsafe = unfinished.unsafePayloadValue
+            guard (unsafe.expirationDate ?? .now) < .now else { continue }
+            switch unfinished {
+            case let .unverified(t, _): await t.finish()
+            case let .verified(t): await t.finish()
+            }
+        }
+    }
 }
