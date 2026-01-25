@@ -228,8 +228,8 @@ private extension CustomSegmentView {
         .background {
             HStack {
                 let size = selectorSizeForIndex(selectedIndex)
-                LinearGradient(gradient: Gradient(colors: [Color(colorEnum: .chartPrimary),
-                                                           Color(colorEnum: .accent)]),
+                LinearGradient(gradient: Gradient(colors: [Color(colorEnum: .crypto),
+                                                           Color(colorEnum: .chartPrimary)]),
                                startPoint: .leading,
                                endPoint: .trailing)
                 .cornerRadius(CGFloat(.buttonCornerRadius))

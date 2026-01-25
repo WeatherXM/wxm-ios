@@ -25,7 +25,7 @@ struct ForecastDetailsViewModelTests {
 						   hourly: [.mockInstance])]
 		followState = nil
 		linkNavigation = .init()
-		viewModel = .init(configuration: .init(forecasts: forecasts, selectedforecastIndex: 0, selectedHour: nil, device: device, followState: followState),
+        viewModel = .init(configuration: .init(isPremium: false, forecasts: forecasts, selectedforecastIndex: 0, selectedHour: nil, device: device, followState: followState),
 						  meUseCase: MockMeUseCase(),
 						  linkNavigation: linkNavigation)
 	}

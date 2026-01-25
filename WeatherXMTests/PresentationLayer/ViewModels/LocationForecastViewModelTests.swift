@@ -16,7 +16,8 @@ struct LocationForecastViewModelTests {
 
 	init() {
 		useCase = .init()
-		self.viewModel = .init(configuration: .init(forecasts: [.init()],
+        self.viewModel = .init(configuration: .init(isPremium: false,
+                                                    forecasts: [.init()],
 													selectedforecastIndex: 0,
 													selectedHour: nil,
 													navigationTitle: "Title",
