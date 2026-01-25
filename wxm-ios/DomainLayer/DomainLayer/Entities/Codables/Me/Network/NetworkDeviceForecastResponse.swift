@@ -13,7 +13,7 @@ public struct NetworkDeviceForecastResponse: Codable, Sendable {
     public var hourly: [CurrentWeather]? = []
     public var daily: CurrentWeather? = .init()
 	public var address: String? = nil
-    public var isPremium: Bool = false
+    public var isPremium: Bool? = false
 
     public init() {}
 
