@@ -77,6 +77,29 @@ private extension SubscriptionsView {
                 CustomSegmentView(options: viewModel.segments.map { .init(title: $0) },
                                   selectedIndex: $viewModel.currentTabIndex,
                                   style: .buttons)
+                .overlay {
+                    if let badge = viewModel.badgeText {
+                        VStack {
+                            HStack(alignment: .top) {
+                                Spacer()
+
+                                Text(badge)
+                                    .font(.system(size: CGFloat(.littleCaption), weight: .bold))
+                                    .foregroundStyle(Color(colorEnum: .darkBg))
+                                    .padding(.horizontal, CGFloat(.smallSidePadding))
+                                    .padding(.vertical, 2.0)
+                                    .background {
+                                        Capsule()
+                                            .fill(Color(colorEnum: .success))
+                                    }
+                            }
+
+                            Spacer()
+                        }
+                        .offset(CGSize(width: 0.0, height: -CGFloat(.smallSidePadding)))
+                    }
+                }
+
                 .padding(.horizontal, CGFloat(.mediumSidePadding))
                 .padding(.top, CGFloat(.mediumSidePadding))
             }

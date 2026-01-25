@@ -69,6 +69,9 @@ class SubscriptionsViewModel: ObservableObject {
                 return .wxmPrimary
         }
     }
+    var badgeText: String? {
+        products.first?.trialPeriodBadgeString
+    }
 	var failSuccessObject: FailSuccessStateObject?
 
 	private let useCase: MeUseCaseApi
@@ -152,17 +155,6 @@ class SubscriptionsViewModel: ObservableObject {
 
                 downgradeAlertConfiguration = conf
                 showDowngradeAlert = true
-//                let downgradeAction: AlertHelper.AlertObject.Action = (LocalizableString.Subscriptions.downgrade.localized, { _ in
-//                    LinkNavigationHelper().openUrl(UIApplication.openSettingsURLString)
-//                })
-//                let stayAction: AlertHelper.AlertObject.Action = (LocalizableString.Subscriptions.stayOnPremium.localized, { _ in  })
-//                let alertObject = AlertHelper.AlertObject(title: LocalizableString.Subscriptions.downgradeToFreeAlertTitle.localized,
-//                                                          message: LocalizableString.Subscriptions.downgradeToFreeAlertMessage.localized,
-//                                                          cancelActionTitle: downgradeAction.title,
-//                                                          cancelAction: { downgradeAction.action(nil) },
-//                                                          okAction: stayAction)
-//
-//                AlertHelper().showAlert(alertObject)
         }
 
 	}

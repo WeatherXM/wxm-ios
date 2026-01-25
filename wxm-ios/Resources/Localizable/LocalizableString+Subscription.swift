@@ -33,6 +33,7 @@ extension LocalizableString {
 		case nextBillingDate(String)
 		case premiumAvailableUntil
 		case freeTrial(Int, String)
+        case freePeriod(Int, String)
 		case perUnitPrice(String, String)
 		case afterTrialCharge(String)
 		case noProductError(String)
@@ -62,6 +63,7 @@ extension LocalizableString {
         case downgrade
         case stayOnPremium
         case youAreOnPremium
+        case perFormat(String)
 	}
 }
 
@@ -72,9 +74,11 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 			case .purchaseFailedDescription(let text),
 				 .nextBillingDate(let text),
 				 .afterTrialCharge(let text),
-				 .noProductError(let text):
+				 .noProductError(let text),
+                 .perFormat(let text):
 				localized = String(format: localized, text)
-			case .freeTrial(let count, let text):
+			case .freeTrial(let count, let text),
+                 .freePeriod(let count, let text):
 				localized = String(format: localized, count, text)
 			case .perUnitPrice(let text0, let text1):
 				localized = String(format: localized, text0, text1)
@@ -132,6 +136,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				"subscriptions_premium_available_until"
 			case .freeTrial:
 				"subscriptions_free_trial"
+            case .freePeriod:
+                "subscriptions_free_period"
             case .free:
                 "subscriptions_free"
 			case .perUnitPrice:
@@ -192,6 +198,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
                 "subscriptions_stay_on_premium"
             case .youAreOnPremium:
                 "subscriptions_you_are_on_premium"
+            case .perFormat:
+                "subscriptions_per_format"
         }
 	}
 }

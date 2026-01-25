@@ -46,6 +46,12 @@ struct SubscriptionPlanView: View {
                         Text(freeTrialText)
                             .font(.system(size: CGFloat(.normalFontSize)))
                             .foregroundStyle(Color(colorEnum: .success))
+                            .padding(.horizontal, CGFloat(.smallToMediumSidePadding))
+                            .padding(.vertical, CGFloat(.minimumPadding))
+                            .background {
+                                Capsule()
+                                    .fill(Color(colorEnum: .successTint))
+                            }
 
                         Spacer()
                     }

@@ -22,8 +22,8 @@ extension StoreProduct {
         return .init(fontIcon: .sparkles,
                      title: LocalizableString.Subscriptions.premium.localized,
                      isCurrent: isSubscribed,
-                     price: showPrice ? pricePeriodString : nil,
-                     period: nil,
+                     price: showPrice ? displayPrice : nil,
+                     period: pricePeriodString,
                      trialText: trialPeriodString,
                      description: LocalizableString.Subscriptions.premiumSuscriptionDescription.localized,
                      bullets: [LocalizableString.Subscriptions.premiumSubscriptionBulllet0.localized,
@@ -39,7 +39,7 @@ extension StoreProduct {
 			return ""
 		}
 
-		return "\(displayPrice)/\(perUnit)"
+        return LocalizableString.Subscriptions.perFormat(perUnit).localized
 	}
 
 	var pricePeriodLiteralString: String {
@@ -69,6 +69,14 @@ extension StoreProduct {
 		
 		return LocalizableString.Subscriptions.freeTrial(trialPeriod.value, trialPeriod.unitString?.localized ?? "").localized
 	}
+
+    var trialPeriodBadgeString: String? {
+        guard hasFreeTrial, let trialPeriod else {
+            return nil
+        }
+
+        return LocalizableString.Subscriptions.freePeriod(trialPeriod.value, trialPeriod.unitString?.localized.lowercased() ?? "").localized
+    }
 }
 
 extension StoreProduct.Period {

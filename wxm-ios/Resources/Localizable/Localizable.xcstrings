@@ -11473,6 +11473,17 @@
         }
       }
     },
+    "subscriptions_free_period" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d %@ free"
+          }
+        }
+      }
+    },
     "subscriptions_free_subscription_bullet_0" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11634,6 +11645,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next billing date %@"
+          }
+        }
+      }
+    },
+    "subscriptions_per_format" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per %@"
           }
         }
       }
