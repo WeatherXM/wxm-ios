@@ -12,6 +12,7 @@ struct ChartCardView: View {
     @EnvironmentObject var delegate: ChartDelegate
     let type: any ChartCardProtocol
     let chartDataModels: [WeatherChartDataModel]
+    var isPremium: Bool = false
 
 	private let unitsManager: WeatherUnitsManager = .default
 
@@ -21,6 +22,7 @@ struct ChartCardView: View {
                 Image(asset: type.icon)
                     .renderingMode(.template)
                     .foregroundColor(Color(colorEnum: .text))
+                    .premiumMask(enabled: isPremium)
 
                 Text(type.description)
                     .font(.system(size: CGFloat(.mediumFontSize), weight: .bold))

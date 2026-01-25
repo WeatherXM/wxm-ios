@@ -45,7 +45,7 @@ class StationForecastViewModel: ObservableObject {
 	private var followState: UserDeviceFollowState?
     private var cancellables: Set<AnyCancellable> = []
 	private let useCase: MeUseCaseApi?
-    private let isPremium: Bool
+    let isPremium: Bool
 
     init(containerDelegate: StationDetailsViewModelDelegate? = nil, useCase: MeUseCaseApi?, trackScrollOffset: Bool, isPremium: Bool) {
         self.containerDelegate = containerDelegate
@@ -78,7 +78,8 @@ class StationForecastViewModel: ObservableObject {
 			return
 		}
 
-		let conf = ForecastDetailsViewModel.Configuration(forecasts: forecasts,
+		let conf = ForecastDetailsViewModel.Configuration(isPremium: false,
+                                                          forecasts: forecasts,
 														  selectedforecastIndex: index,
 														  selectedHour: nil,
 														  device: device,
@@ -186,7 +187,7 @@ private extension StationForecastViewModel {
 		}
 
 		hourlyItems = filtered.map { weather in
-			return weather.toMiniCardItem(with: timezone, action: { [weak  self] in
+			return weather.toMiniCardItem(with: timezone, isPremium: isPremium, action: { [weak  self] in
 				self?.handleTap(for: weather)
 
 				WXMAnalytics.shared.trackEvent(.selectContent, parameters: [.contentType: .hourlyDetailsCard,
@@ -206,7 +207,8 @@ private extension StationForecastViewModel {
 		}
 
 		let selectedHour = weather.timestamp?.timestampToDate().getHour(with: timezone)
-		let conf = ForecastDetailsViewModel.Configuration(forecasts: forecasts,
+		let conf = ForecastDetailsViewModel.Configuration(isPremium: false,
+                                                          forecasts: forecasts,
 														  selectedforecastIndex: 0,
 														  selectedHour: selectedHour,
 														  device: device,

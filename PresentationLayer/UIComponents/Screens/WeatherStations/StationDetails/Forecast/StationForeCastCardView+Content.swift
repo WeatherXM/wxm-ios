@@ -57,7 +57,8 @@ private extension StationForecastCardView {
                               maxWeeklyTemp: maxWeekTemperature.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0),
                               minDailyTemp: forecast.daily?.temperatureMin?.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0) ?? 0.0,
                               maxDailyTemp: forecast.daily?.temperatureMax?.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0) ?? 0.0)
-            
+            .premiumMask(enabled: isPremium)
+
 			Text("\(forecast.daily?.temperatureMax?.toTemeratureString(for: unitsManager.temperatureUnit) ?? "")")
 				.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
         }
@@ -77,6 +78,7 @@ private extension StationForecastCardView {
                     .foregroundColor(Color(colorEnum: .darkGrey))
                     .frame(width: 20.0, height: 20.0)
                     .rotationEffect(Angle(degrees: hourlyIcon.rotation))
+                    .premiumMask(enabled: isPremium)
 
                 Text(fieldText)
                     .font(.system(size: CGFloat(.caption)))

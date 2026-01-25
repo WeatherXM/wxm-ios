@@ -34,22 +34,24 @@ extension NetworkDeviceForecastResponse {
 }
 
 extension CurrentWeather {
-	func toMiniCardItem(with timeZone: TimeZone, action: VoidCallback? = nil) -> StationForecastMiniCardView.Item {
+    func toMiniCardItem(with timeZone: TimeZone, isPremium: Bool, action: VoidCallback? = nil) -> StationForecastMiniCardView.Item {
 		let precipitationLiterals = WeatherField.precipitationProbability.weatherLiterals(from: self, unitsManager: WeatherUnitsManager.default)
 		let precipitationProb = "\(precipitationLiterals?.value ?? "")\(WeatherField.precipitationProbability.shouldHaveSpaceWithUnit ? " " : "")\(precipitationLiterals?.unit ?? "")"
 
-		return .init(time: timestamp?.timestampToDate(timeZone: timeZone).transactionsTimeFormat(timeZone: timeZone) ?? "",
+		return .init(isPremium: isPremium,
+                     time: timestamp?.timestampToDate(timeZone: timeZone).transactionsTimeFormat(timeZone: timeZone) ?? "",
 					 animationString: icon?.getAnimationString(),
 					 temperature: temperature?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "",
 					 precipitation: precipitationProb,
 					 action: action)
 	}
 
-	func toDailyMiniCardItem(with timeZone: TimeZone, action: VoidCallback? = nil) -> StationForecastMiniCardView.Item {
+	func toDailyMiniCardItem(with timeZone: TimeZone, isPremium: Bool, action: VoidCallback? = nil) -> StationForecastMiniCardView.Item {
 		let precipitationLiterals = WeatherField.precipitationProbability.weatherLiterals(from: self, unitsManager: WeatherUnitsManager.default)
 		let precipitationProb = "\(precipitationLiterals?.value ?? "")\(WeatherField.precipitationProbability.shouldHaveSpaceWithUnit ? " " : "")\(precipitationLiterals?.unit ?? "")"
 
-		return .init(time: timestamp?.timestampToDate(timeZone: timeZone).getWeekDay(.abbreviated) ?? "",
+		return .init(isPremium: isPremium,
+                     time: timestamp?.timestampToDate(timeZone: timeZone).getWeekDay(.abbreviated) ?? "",
 					 animationString: icon?.getAnimationString(),
 					 temperature: temperatureMax?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
 					 secondaryTemperature: temperatureMin?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",

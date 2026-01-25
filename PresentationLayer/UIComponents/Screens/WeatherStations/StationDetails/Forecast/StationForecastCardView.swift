@@ -12,6 +12,7 @@ import Toolkit
 struct StationForecastCardView: View {
 	let mainVM: MainScreenViewModel = .shared
 	let unitsManager: WeatherUnitsManager = .default
+    let isPremium: Bool
     let forecast: NetworkDeviceForecastResponse
     let minWeekTemperature: Double
     let maxWeekTemperature: Double
@@ -46,7 +47,8 @@ struct StationForecastCardView_Previews: PreviewProvider {
         let hourlyWeather = CurrentWeather.mockInstance
         forecast.hourly = [hourlyWeather]
         forecast.daily = CurrentWeather.mockInstance
-        return StationForecastCardView(forecast: forecast,
+        return StationForecastCardView(isPremium: true,
+                                       forecast: forecast,
                                        minWeekTemperature: 8.0,
                                        maxWeekTemperature: 20.0)
     }

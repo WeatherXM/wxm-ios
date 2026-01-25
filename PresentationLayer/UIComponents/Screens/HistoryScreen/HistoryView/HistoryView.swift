@@ -26,6 +26,7 @@ struct HistoryView: View {
 						if let historyData = viewModel.currentHistoryData, !historyData.isEmpty() {
 							ChartsContainer(historyData: historyData,
 											chartTypes: ChartCardType.allCases,
+                                            isPremium: false,
 											delegate: viewModel.chartDelegate)
 							.id(historyData.markDate)
 						}

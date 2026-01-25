@@ -12,6 +12,7 @@ import SwiftUI
 struct ChartsContainer: View {
     let historyData: WeatherChartModels
 	let chartTypes: [any ChartCardProtocol]
+    let isPremium: Bool
     @StateObject var delegate: ChartDelegate
 
     var body: some View {
@@ -19,7 +20,8 @@ struct ChartsContainer: View {
 			ForEach(0..<chartTypes.count, id: \.self) { index in
 				let chart = chartTypes[index]
                 ChartCardView(type: chart,
-                              chartDataModels: chart.weatherFields.compactMap { historyData.dataModels[$0] })
+                              chartDataModels: chart.weatherFields.compactMap { historyData.dataModels[$0] },
+                              isPremium: isPremium)
                 .environmentObject(delegate)
 				.id(chart.scrollId)
             }

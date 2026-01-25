@@ -13,6 +13,7 @@ import Combine
 
 @MainActor
 class ForecastDetailsViewModel: ObservableObject {
+    let isPremium: Bool
 	let forecasts: [NetworkDeviceForecastResponse]
 	let navigationTitle: String
 	let navigationSubtitle: String?
@@ -53,6 +54,7 @@ class ForecastDetailsViewModel: ObservableObject {
     private var cancellableSet: Set<AnyCancellable> = []
 
     init(configuration: Configuration, meUseCase: MeUseCaseApi?, linkNavigation: LinkNavigation = LinkNavigationHelper(), showNavigationBar: Bool = true) {
+        self.isPremium = configuration.isPremium
 		self.useCase = meUseCase
 		self.forecasts = configuration.forecasts
 		self.fontIconState = configuration.fontAwesomeState
@@ -123,7 +125,8 @@ private extension ForecastDetailsViewModel {
 			}
 
 			let hourlyIcon = field.hourlyIcon(from: daily)
-			return ForecastFieldCardView.Item(icon: hourlyIcon.icon,
+            return ForecastFieldCardView.Item(isPremium: isPremium,
+                                              icon: hourlyIcon.icon,
 											  iconRotation: hourlyIcon.rotation,
 											  title: field.displayTitle,
 											  value: attributedString(literals: literals,
@@ -175,7 +178,7 @@ private extension ForecastDetailsViewModel {
 			return []
 		}
 
-		let hourlyItems: [StationForecastMiniCardView.Item] = hourly.map { $0.toMiniCardItem(with: timezone)}
+		let hourlyItems: [StationForecastMiniCardView.Item] = hourly.map { $0.toMiniCardItem(with: timezone, isPremium: isPremium)}
 
 		return hourlyItems
 	}
@@ -189,7 +192,7 @@ private extension ForecastDetailsViewModel {
 		}
 
 		return dailyForecasts.enumerated().map { index, element in
-			return element.toDailyMiniCardItem(with: timezone) { [weak self] in
+			return element.toDailyMiniCardItem(with: timezone, isPremium: isPremium) { [weak self] in
 				self?.isTransitioning = true
 				
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -245,6 +248,7 @@ extension ForecastDetailsViewModel: HashableViewModel {
 
 extension ForecastDetailsViewModel {
 	struct Configuration {
+        let isPremium: Bool
 		let forecasts: [NetworkDeviceForecastResponse]
 		let selectedforecastIndex: Int
 		let selectedHour: Int?
@@ -252,11 +256,13 @@ extension ForecastDetailsViewModel {
 		let navigationSubtitle: String?
 		var fontAwesomeState: StateFontAwesome? = nil
 
-		init(forecasts: [NetworkDeviceForecastResponse],
+        init(isPremium: Bool,
+             forecasts: [NetworkDeviceForecastResponse],
 			 selectedforecastIndex: Int,
 			 selectedHour: Int?,
 			 device: DeviceDetails,
 			 followState: UserDeviceFollowState?) {
+            self.isPremium = isPremium
 			self.forecasts = forecasts
 			self.selectedforecastIndex = selectedforecastIndex
 			self.selectedHour = selectedHour
@@ -265,12 +271,14 @@ extension ForecastDetailsViewModel {
 			self.fontAwesomeState = followState?.state.FAIcon
 		}
 
-		init(forecasts: [NetworkDeviceForecastResponse],
+		init(isPremium: Bool,
+             forecasts: [NetworkDeviceForecastResponse],
 			 selectedforecastIndex: Int,
 			 selectedHour: Int?,
 			 navigationTitle: String,
 			 navigationSubtitle: String? = nil,
 			 fontAwesomeState: StateFontAwesome? = nil) {
+            self.isPremium = isPremium
 			self.forecasts = forecasts
 			self.selectedforecastIndex = selectedforecastIndex
 			self.selectedHour = selectedHour

@@ -59,7 +59,8 @@ struct ForecastDetailsContainerView: View {
 
 #Preview {
     let forecasts: [NetworkDeviceForecastResponse] = (0..<6).map { _ in .init(tz: "Europe/Athens", date: "", hourly: (0..<24).map {_ in .mockInstance }, daily: .mockInstance) }
-    let configuration = ForecastDetailsViewModel.Configuration(forecasts: forecasts,
+    let configuration = ForecastDetailsViewModel.Configuration(isPremium: false,
+                                                               forecasts: forecasts,
                                                                selectedforecastIndex: 0,
                                                                selectedHour: nil,
                                                                device: .mockDevice,

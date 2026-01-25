@@ -74,7 +74,8 @@ extension ForecastContainerViewModel: StationForecastViewModelDelegate {
             return
         }
 
-        let conf = ForecastDetailsViewModel.Configuration(forecasts: basicForecastViewModel.forecasts,
+        let conf = ForecastDetailsViewModel.Configuration(isPremium: false,
+                                                          forecasts: basicForecastViewModel.forecasts,
                                                           selectedforecastIndex: index,
                                                           selectedHour: nil,
                                                           device: device,
@@ -82,7 +83,8 @@ extension ForecastContainerViewModel: StationForecastViewModelDelegate {
 
         var premiumConf: ForecastDetailsViewModel.Configuration?
         if isSubscribed {
-            let conf = ForecastDetailsViewModel.Configuration(forecasts: premiumForecastViewModel.forecasts,
+            let conf = ForecastDetailsViewModel.Configuration(isPremium: true,
+                                                              forecasts: premiumForecastViewModel.forecasts,
                                                               selectedforecastIndex: index,
                                                               selectedHour: nil,
                                                               device: device,
@@ -101,7 +103,8 @@ extension ForecastContainerViewModel: StationForecastViewModelDelegate {
         }
 
         let selectedHour = weather.timestamp?.timestampToDate().getHour(with: timezone)
-        let conf = ForecastDetailsViewModel.Configuration(forecasts: basicForecastViewModel.forecasts,
+        let conf = ForecastDetailsViewModel.Configuration(isPremium: false,
+                                                          forecasts: basicForecastViewModel.forecasts,
                                                           selectedforecastIndex: 0,
                                                           selectedHour: selectedHour,
                                                           device: device,
@@ -109,7 +112,8 @@ extension ForecastContainerViewModel: StationForecastViewModelDelegate {
 
         var premiumConf: ForecastDetailsViewModel.Configuration?
         if isSubscribed {
-            let conf = ForecastDetailsViewModel.Configuration(forecasts: premiumForecastViewModel.forecasts,
+            let conf = ForecastDetailsViewModel.Configuration(isPremium: true,
+                                                              forecasts: premiumForecastViewModel.forecasts,
                                                               selectedforecastIndex: 0,
                                                               selectedHour: selectedHour,
                                                               device: device,

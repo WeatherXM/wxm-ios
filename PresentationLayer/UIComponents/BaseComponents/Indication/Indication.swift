@@ -15,6 +15,7 @@ private struct IndicationModifier<V: View>: ViewModifier {
 	let borderWidth: CGFloat
 	let bgColor: Color
 	let cornerRadius: CGFloat
+    let isPremium: Bool
 	let content: () -> V
 
 	func body(content: Content) -> some View {
@@ -27,7 +28,7 @@ private struct IndicationModifier<V: View>: ViewModifier {
 						  insideHorizontalPadding: 0.0,
 						  insideVerticalPadding: 0.0,
 						  cornerRadius: cornerRadius)
-			.strokeBorder(color: borderColor, lineWidth: borderWidth, radius: cornerRadius)
+            .strokeBorder(color: borderColor, lineWidth: borderWidth, radius: cornerRadius, isPremium: isPremium)
 		} else {
 			content
 		}
@@ -41,12 +42,14 @@ extension View {
 								   borderWidth: CGFloat = 1.0,
 								   bgColor: Color,
 								   cornerRadius: CGFloat = CGFloat(.cardCornerRadius),
+                                   isPremium: Bool = false,
 								   content: @escaping () -> Content) -> some View {
 		modifier(IndicationModifier(show: show,
 									borderColor: borderColor,
 									borderWidth: borderWidth,
 									bgColor: bgColor,
 									cornerRadius: cornerRadius,
+                                    isPremium: isPremium,
 									content: content))
 	}
 }

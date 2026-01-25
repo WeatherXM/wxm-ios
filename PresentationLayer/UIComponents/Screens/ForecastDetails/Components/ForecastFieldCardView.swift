@@ -12,12 +12,14 @@ struct ForecastFieldCardView: View {
 
 	var body: some View {
 		VStack(spacing: CGFloat(.minimumSpacing)) {
+            
 			Image(asset: item.icon)
 				.resizable()
 				.renderingMode(.template)
 				.foregroundColor(Color(colorEnum: .darkGrey))
 				.frame(width: 35.0, height: 35.0)
 				.rotationEffect(Angle(degrees: item.iconRotation))
+                .premiumMask(enabled: item.isPremium)
 
 			VStack(spacing: 0.0) {
 				Text(item.title)
@@ -35,6 +37,7 @@ struct ForecastFieldCardView: View {
 
 extension ForecastFieldCardView {
 	struct Item {
+        let isPremium: Bool
 		let icon: AssetEnum
 		let iconRotation: Double
 		let title: String
@@ -44,7 +47,8 @@ extension ForecastFieldCardView {
 }
 
 #Preview {
-	ForecastFieldCardView(item: .init(icon: .windDirIconSmall,
+    ForecastFieldCardView(item: .init(isPremium: false,
+                                      icon: .windDirIconSmall,
 									  iconRotation: 45,
 									  title: "Wind",
 									  value: "6 high"))

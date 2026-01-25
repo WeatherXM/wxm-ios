@@ -155,7 +155,8 @@ private extension ForecastDetailsView {
 #Preview {
 	NavigationContainerView {
 		let forecasts: [NetworkDeviceForecastResponse] = (0..<6).map { _ in .init(tz: "Europe/Athens", date: "", hourly: (0..<24).map {_ in .mockInstance }, daily: .mockInstance) }
-		ForecastDetailsView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(configuration: .init(forecasts: forecasts,
+        ForecastDetailsView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(configuration: .init(isPremium: false,
+                                                                                                          forecasts: forecasts,
 																										  selectedforecastIndex: 0,
 																										  selectedHour: nil,
 																										  device: .mockDevice,

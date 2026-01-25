@@ -47,7 +47,7 @@ struct NetworkDeviceForecastResponseTests {
 	func testToMiniCardItem() {
 		let weather = CurrentWeather.mockInstance
 		let timeZone = TimeZone(identifier: "Europe/Athens")!
-		let item = weather.toMiniCardItem(with: timeZone)
+        let item = weather.toMiniCardItem(with: timeZone, isPremium: false)
 
 		#expect(item.temperature == weather.temperature?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1))
 		#expect(item.animationString == weather.icon?.getAnimationString())
@@ -59,7 +59,7 @@ struct NetworkDeviceForecastResponseTests {
 	func testToDailyMiniCardItem() {
 		let weather = CurrentWeather.mockInstance
 		let timeZone = TimeZone(identifier: "Europe/Athens")!
-		let item = weather.toDailyMiniCardItem(with: timeZone)
+		let item = weather.toDailyMiniCardItem(with: timeZone, isPremium: false)
 
 		#expect(item.temperature == weather.temperatureMax?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0))
 		#expect(item.secondaryTemperature == weather.temperatureMin?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0))

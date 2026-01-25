@@ -66,7 +66,8 @@ private extension StationForecastView {
                             Button {
                                 viewModel.handleForecastTap(forecast: forecast)
                             } label: {
-                                StationForecastCardView(forecast: forecast,
+                                StationForecastCardView(isPremium: viewModel.isPremium,
+                                                        forecast: forecast,
                                                         minWeekTemperature: viewModel.overallMinTemperature ?? 0.0,
                                                         maxWeekTemperature: viewModel.overallMaxTemperature ?? 0.0)
                                 .wxmShadow()

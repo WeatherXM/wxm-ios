@@ -260,7 +260,8 @@ private extension HomeViewModel {
 		}
 
 		let selectedHour = Date().getHour(with: timezone)
-		let conf = ForecastDetailsViewModel.Configuration(forecasts: forecasts,
+		let conf = ForecastDetailsViewModel.Configuration(isPremium: false,
+                                                          forecasts: forecasts,
 														  selectedforecastIndex: 0,
 														  selectedHour: selectedHour,
 														  navigationTitle: title ?? forecasts.first?.address ?? "",

@@ -130,6 +130,7 @@ private extension ForecastDetailsDailyView {
 		if let chartModels = item.chartModels, let delegate = item.chartDelegate {
 			ChartsContainer(historyData: chartModels,
                             chartTypes: chartModels.availableChartTypes,
+                            isPremium: viewModel.isPremium,
 							delegate: delegate)
 				.id(chartModels.markDate)
 		} else {
@@ -174,7 +175,8 @@ private extension ForecastDetailsDailyView {
 														 hourly: (0..<24).map {_ in .mockInstance },
 														 daily: .mockInstance)
 	
-	ForecastDetailsDailyView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(configuration: .init(forecasts: [forecast],
+    ForecastDetailsDailyView(viewModel: ViewModelsFactory.getForecastDetailsViewModel(configuration: .init(isPremium: false,
+                                                                                                           forecasts: [forecast],
 																										   selectedforecastIndex: 0,
 																										   selectedHour: nil,
 																										   device: .mockDevice,

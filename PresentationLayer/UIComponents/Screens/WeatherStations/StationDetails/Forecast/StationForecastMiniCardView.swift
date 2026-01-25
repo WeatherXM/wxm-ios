@@ -49,6 +49,7 @@ struct StationForecastMiniCardView: View {
 					Text(fontIcon.rawValue)
 						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
 						.foregroundStyle(Color(colorEnum: .darkestBlue))
+                        .premiumMask(enabled: item.isPremium)
 
 					Text(item.precipitation)
 						.foregroundColor(Color(colorEnum: .darkestBlue))
@@ -61,7 +62,10 @@ struct StationForecastMiniCardView: View {
 						  insideVerticalPadding: CGFloat(.smallSidePadding))
 		}
 		.allowsHitTesting(item.action != nil)
-		.indication(show: .constant(isSelected), borderColor: Color(colorEnum: .wxmPrimary), bgColor: Color(colorEnum: .wxmPrimary)) {
+		.indication(show: .constant(isSelected),
+                    borderColor: Color(colorEnum: .wxmPrimary),
+                    bgColor: Color(colorEnum: .wxmPrimary),
+                    isPremium: item.isPremium) {
 			EmptyView()
 		}
     }
@@ -69,6 +73,7 @@ struct StationForecastMiniCardView: View {
 
 extension StationForecastMiniCardView {
 	struct Item {
+        let isPremium: Bool
 		let time: String
 		let animationString: String?
 		let temperature: String
@@ -99,7 +104,7 @@ private extension StationForecastMiniCardView {
 }
 
 #Preview {
-	StationForecastMiniCardView(item: CurrentWeather.mockInstance.toMiniCardItem(with: .current), isSelected: true)
+	StationForecastMiniCardView(item: CurrentWeather.mockInstance.toMiniCardItem(with: .current, isPremium: true), isSelected: true)
 		.wxmShadow()
 		.frame(width: StationForecastMiniCardView.defaultWidth)
 		.padding()
