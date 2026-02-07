@@ -61,7 +61,7 @@ extension CurrentWeather {
 					 animationString: icon?.getAnimationString(),
 					 temperature: temperatureMax?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
 					 secondaryTemperature: temperatureMin?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0) ?? "",
-					 precipitation: precipitationProb,
+                     precipitation: isPremium ? nil : precipitationProb,
 					 action: action)
 	}
 

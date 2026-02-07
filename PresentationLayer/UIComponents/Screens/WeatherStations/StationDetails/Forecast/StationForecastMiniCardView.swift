@@ -44,18 +44,20 @@ struct StationForecastMiniCardView: View {
 					}
 				}
 
-				HStack(spacing: CGFloat(.minimumSpacing)) {
-					let fontIcon = WeatherField.precipitationProbability.fontIcon(from: nil).icon
-					Text(fontIcon.rawValue)
-						.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
-						.foregroundStyle(Color(colorEnum: .darkestBlue))
-                        .premiumMask(enabled: item.isPremium)
+                if let precipitation = item.precipitation {
+                    HStack(spacing: CGFloat(.minimumSpacing)) {
+                        let fontIcon = WeatherField.precipitationProbability.fontIcon(from: nil).icon
+                        Text(fontIcon.rawValue)
+                            .font(.fontAwesome(font: .FAProSolid, size: CGFloat(.caption)))
+                            .foregroundStyle(Color(colorEnum: .darkestBlue))
+                            .premiumMask(enabled: item.isPremium)
 
-					Text(item.precipitation)
-						.foregroundColor(Color(colorEnum: .darkestBlue))
-						.font(.system(size: CGFloat(.normalFontSize)))
-						.lineLimit(1)
-				}
+                        Text(precipitation)
+                            .foregroundColor(Color(colorEnum: .darkestBlue))
+                            .font(.system(size: CGFloat(.normalFontSize)))
+                            .lineLimit(1)
+                    }
+                }
 			}
 			.WXMCardStyle(backgroundColor: isSelected ? Color(colorEnum: .layer1) : Color(colorEnum: .top),
                           insideHorizontalPadding: 0.0,
@@ -78,7 +80,7 @@ extension StationForecastMiniCardView {
 		let animationString: String?
 		let temperature: String
 		var secondaryTemperature: String?
-		var precipitation: String
+		var precipitation: String?
 		var action: VoidCallback?
 	}
 }
