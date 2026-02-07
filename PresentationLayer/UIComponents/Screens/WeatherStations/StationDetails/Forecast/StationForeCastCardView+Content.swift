@@ -16,10 +16,9 @@ extension StationForecastCardView {
                 VStack(alignment: .leading, spacing: CGFloat(.smallSpacing)) {
                     temperatureBar
 
-                    HStack(spacing: 0.0) {
+                    HStack(spacing: CGFloat(.defaultSpacing)) {
                         ForEach(fields, id: \.self) { field in
-                            fieldView(for: field)
-                            Spacer(minLength: 0.0)
+                            fieldView(for: field)                            
                         }
                     }
                 }
@@ -44,7 +43,8 @@ private extension StationForecastCardView {
     }
 
     var fields: [WeatherField] {
-		[.precipitationProbability, .dailyPrecipitation, .wind, .humidity]
+        isPremium ? [.wind, .humidity] :
+        [.precipitationProbability, .dailyPrecipitation, .wind, .humidity]
     }
 
     @ViewBuilder
@@ -56,8 +56,8 @@ private extension StationForecastCardView {
             CustomRangeSlider(minWeeklyTemp: minWeekTemperature.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0),
                               maxWeeklyTemp: maxWeekTemperature.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0),
                               minDailyTemp: forecast.daily?.temperatureMin?.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0) ?? 0.0,
-                              maxDailyTemp: forecast.daily?.temperatureMax?.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0) ?? 0.0)
-            .premiumMask(enabled: isPremium)
+                              maxDailyTemp: forecast.daily?.temperatureMax?.toTemeratureUnit(unitsManager.temperatureUnit).rounded(toPlaces: 0) ?? 0.0,
+                              isPremium: isPremium)
 
 			Text("\(forecast.daily?.temperatureMax?.toTemeratureString(for: unitsManager.temperatureUnit) ?? "")")
 				.font(.system(size: CGFloat(.titleFontSize), weight: .bold))
@@ -93,7 +93,7 @@ private extension StationForecastCardView {
     func getFieldText(weatherField: WeatherField,
                       weather: CurrentWeather,
                       unitsManager: WeatherUnitsManager) -> String? {
-        guard let literals = weatherField.weatherLiterals(from: weather, unitsManager: unitsManager) else {
+        guard let literals = weatherField.weatherLiterals(from: weather, unitsManager: unitsManager, isPremium: isPremium) else {
             return nil
         }
         return "\(literals.value)\(weatherField.shouldHaveSpaceWithUnit ? " " : "")\(literals.unit)"

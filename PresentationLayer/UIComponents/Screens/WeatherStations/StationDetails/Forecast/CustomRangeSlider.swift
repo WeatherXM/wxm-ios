@@ -12,6 +12,7 @@ struct CustomRangeSlider: View {
     var maxWeeklyTemp: CGFloat
     var minDailyTemp: CGFloat
     var maxDailyTemp: CGFloat
+    var isPremium: Bool
 
     private let sliderHeight: CGFloat = 14.0
 
@@ -52,11 +53,12 @@ private extension CustomRangeSlider {
 
             Spacer(minLength: 0.0)
         }
+        .premiumMask(enabled: isPremium)
     }
 }
 
 struct Previews_CustomRangeSlider_Previews: PreviewProvider {
     static var previews: some View {
-		CustomRangeSlider(minWeeklyTemp: 7.0, maxWeeklyTemp: 19.0, minDailyTemp: 9.0, maxDailyTemp: 18.0)
+		CustomRangeSlider(minWeeklyTemp: 7.0, maxWeeklyTemp: 19.0, minDailyTemp: 9.0, maxDailyTemp: 18.0, isPremium: true)
     }
 }
