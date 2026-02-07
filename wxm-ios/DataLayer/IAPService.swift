@@ -50,7 +50,7 @@ public class IAPService: @unchecked Sendable {
         var set = Set<String>()
         for await result in Transaction.currentEntitlements {
             if case .verified(let transaction) = result {
-                let transactionID = result.jwsRepresentation
+                let transactionID = "\(transaction.id)"
                 set.insert(transactionID)
             }
         }
@@ -96,7 +96,7 @@ public class IAPService: @unchecked Sendable {
 
 private extension IAPService {
 	func observeUpdates() -> Task<Void, Never> {
-		Task { [weak self] in
+		Task { @MainActor [weak self] in
 			for await result in Transaction.updates {
 				self?.handleTransactionResult(result)
 			}
