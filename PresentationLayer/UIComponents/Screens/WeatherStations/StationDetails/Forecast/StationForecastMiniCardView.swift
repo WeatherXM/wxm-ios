@@ -58,7 +58,7 @@ struct StationForecastMiniCardView: View {
 				}
 			}
 			.WXMCardStyle(backgroundColor: isSelected ? Color(colorEnum: .layer1) : Color(colorEnum: .top),
-						  insideHorizontalPadding: CGFloat(.mediumSidePadding),
+                          insideHorizontalPadding: 0.0,
 						  insideVerticalPadding: CGFloat(.smallSidePadding))
 		}
 		.allowsHitTesting(item.action != nil)

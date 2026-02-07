@@ -249,7 +249,8 @@ extension WeatherField {
 	func weatherLiterals(from weather: CurrentWeather?,
 						 unitsManager: WeatherUnitsManager,
 						 includeDirection: Bool = true,
-						 isForHourlyForecast: Bool = false) -> WeatherValueLiterals? {
+						 isForHourlyForecast: Bool = false,
+                         isPremium: Bool = false) -> WeatherValueLiterals? {
 		guard let weather else {
 			return nil
 		}
@@ -278,7 +279,7 @@ extension WeatherField {
 				/// In case of hourly weather forecast the `precipitationAccumulated` is received in `precipitation` property
 				/// So ONLY for this case we generate the precipitation accumulated string from different property
 				if isForHourlyForecast {
-					return createWeatherLiterals(from: weather.precipitation, unitsManager: unitsManager)
+                    return createWeatherLiterals(from: weather.precipitation, unitsManager: unitsManager, isAccumulated: isPremium)
 				}
 				return createWeatherLiterals(from: weather.precipitationAccumulated, unitsManager: unitsManager)
 			case .windGust:

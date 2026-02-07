@@ -35,14 +35,20 @@ extension NetworkDeviceForecastResponse {
 
 extension CurrentWeather {
     func toMiniCardItem(with timeZone: TimeZone, isPremium: Bool, action: VoidCallback? = nil) -> StationForecastMiniCardView.Item {
-		let precipitationLiterals = WeatherField.precipitationProbability.weatherLiterals(from: self, unitsManager: WeatherUnitsManager.default)
-		let precipitationProb = "\(precipitationLiterals?.value ?? "")\(WeatherField.precipitationProbability.shouldHaveSpaceWithUnit ? " " : "")\(precipitationLiterals?.unit ?? "")"
+		let precipitationProbLiterals = WeatherField.precipitationProbability.weatherLiterals(from: self, unitsManager: WeatherUnitsManager.default)
+		let precipitationProb = "\(precipitationProbLiterals?.value ?? "")\(WeatherField.precipitationProbability.shouldHaveSpaceWithUnit ? " " : "")\(precipitationProbLiterals?.unit ?? "")"
+
+        let precipitationLiterals = WeatherField.dailyPrecipitation.weatherLiterals(from: self,
+                                                                                    unitsManager: WeatherUnitsManager.default,
+                                                                                    isForHourlyForecast: true,
+                                                                                    isPremium: isPremium)
+        let precipitation = "\(precipitationLiterals?.value ?? "")\(WeatherField.precipitation.shouldHaveSpaceWithUnit ? " " : "")\(precipitationLiterals?.unit ?? "")"
 
 		return .init(isPremium: isPremium,
                      time: timestamp?.timestampToDate(timeZone: timeZone).transactionsTimeFormat(timeZone: timeZone) ?? "",
 					 animationString: icon?.getAnimationString(),
 					 temperature: temperature?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1) ?? "",
-					 precipitation: precipitationProb,
+                     precipitation: isPremium ? precipitation : precipitationProb,
 					 action: action)
 	}
 
