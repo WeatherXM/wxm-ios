@@ -24,21 +24,30 @@ struct SubscriptionsView: View {
                         plansView(for: plans)
                 }
 
-				Button {
-					viewModel.continueButtonTapped()
-				} label: {
-                    HStack(spacing: CGFloat(.smallToMediumSpacing)) {
-                        if let fontIcon = viewModel.ctaFontIcon {
-                            Text(fontIcon.rawValue)
-                                .font(.fontAwesome(font: .FAPro, size: CGFloat(.largeFontSize)))
-                        }
+                VStack(spacing: CGFloat(.smallSpacing)) {
+                    Button {
+                        viewModel.continueButtonTapped()
+                    } label: {
+                        HStack(spacing: CGFloat(.smallToMediumSpacing)) {
+                            if let fontIcon = viewModel.ctaFontIcon {
+                                Text(fontIcon.rawValue)
+                                    .font(.fontAwesome(font: .FAPro, size: CGFloat(.largeFontSize)))
+                            }
 
-                        Text(viewModel.ctaText)
+                            Text(viewModel.ctaText)
+                        }
                     }
-				}
-                .buttonStyle(WXMButtonStyle.filled(textColor: .textWhite, fillColor: viewModel.ctaBackgroundColor))
-				.padding(CGFloat(.mediumSidePadding))
-				.disabled(!viewModel.isCTAEnabled)
+                    .buttonStyle(WXMButtonStyle.filled(textColor: .textWhite, fillColor: viewModel.ctaBackgroundColor))
+                    .disabled(!viewModel.isCTAEnabled)
+
+                    if case .free = viewModel.viewState {
+                        Text(LocalizableString.Subscriptions.cancelAnytimeDescription.localized)
+                            .font(.system(size: CGFloat(.caption)))
+                            .foregroundStyle(Color(colorEnum: .text))
+
+                    }
+                }
+                .padding(CGFloat(.mediumSidePadding))
 				.iPadMaxWidth()
 			}
 			.spinningLoader(show: $viewModel.isLoading)
@@ -73,7 +82,7 @@ private extension SubscriptionsView {
     @ViewBuilder
     func freeStateView(plans: [[SubscriptionPlanView.Plan]]) -> some View {
         VStack(spacing: 0) {
-            if !viewModel.segments.isEmpty {
+            if viewModel.segments.count > 2 {
                 CustomSegmentView(options: viewModel.segments.map { .init(title: $0) },
                                   selectedIndex: $viewModel.currentTabIndex,
                                   style: .buttons)
@@ -99,7 +108,6 @@ private extension SubscriptionsView {
                         .offset(CGSize(width: 0.0, height: -CGFloat(.smallSidePadding)))
                     }
                 }
-
                 .padding(.horizontal, CGFloat(.mediumSidePadding))
                 .padding(.top, CGFloat(.mediumSidePadding))
             }
