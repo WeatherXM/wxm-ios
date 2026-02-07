@@ -50,7 +50,7 @@ struct SubscriptionsView: View {
                 .padding(CGFloat(.mediumSidePadding))
 				.iPadMaxWidth()
 			}
-			.spinningLoader(show: $viewModel.isLoading)
+			.spinningLoader(show: $viewModel.isLoading, hideContent: true)
 			.success(show: $viewModel.isSuccess, obj: viewModel.failSuccessObject)
 			.fail(show: $viewModel.isFailed, obj: viewModel.failSuccessObject)
 		}
