@@ -233,7 +233,8 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 
 	public func getRequiredTokensForTrial() async -> Double? {
 		let userInfo = try? await meRepository.getUser(useCache: true).toAsync().result.get()
-		guard let address = userInfo?.wallet?.address,
+        guard await existsProductEligibleForIntroOffer(),
+              let address = userInfo?.wallet?.address,
 			  let rewards = try? await networkRepository.getRewardsWithdraw(wallet: address).toAsync().result.get(),
 			  let cumulative = rewards.cumulativeAmount?.toEthDouble,
 			  let totalClaimed = rewards.totalClaimed?.toEthDouble else {
@@ -241,7 +242,7 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		}
 
 		let diff = cumulative - totalClaimed
-        return 80.0 - diff
+        return max(0.0, 80.0 - diff)
 	}
 
 	public func getSubscribedProducts() async throws -> [StoreProduct] {
@@ -287,4 +288,20 @@ private extension MeUseCase {
 
 		return try? await networkRepository.getRewardsWithdraw(wallet: wallet).toAsync().result.get()
 	}
+
+    func getAvailableProducts() async throws -> [Product] {
+        guard let produtsString: String = Bundle.main.getConfiguration(for: .appStoreProducts) else {
+            return []
+        }
+        let productsArray = produtsString.components(separatedBy: ",")
+        let products = try await meRepository.getAvailableSubscriptionProducts(identifiers: productsArray)
+
+        return products
+    }
+
+    func existsProductEligibleForIntroOffer() async -> Bool {
+        var products = try? await getAvailableProducts()
+        let introOffers = await products?.asyncCompactMap { await $0.subscription?.isEligibleForIntroOffer }
+        return introOffers?.contains(true) == true
+    }
 }
