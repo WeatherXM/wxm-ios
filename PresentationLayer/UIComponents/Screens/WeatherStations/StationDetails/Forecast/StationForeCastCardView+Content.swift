@@ -43,7 +43,6 @@ private extension StationForecastCardView {
     }
 
     var fields: [WeatherField] {
-        isPremium ? [.wind, .humidity] :
         [.precipitationProbability, .dailyPrecipitation, .wind, .humidity]
     }
 
