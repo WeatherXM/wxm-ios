@@ -242,7 +242,7 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		}
 
 		let diff = cumulative - totalClaimed
-        return max(0.0, 80.0 - diff)
+        return max(0.0, 100.0 - diff)
 	}
 
 	public func getSubscribedProducts() async throws -> [StoreProduct] {
@@ -277,7 +277,7 @@ private extension MeUseCase {
 			return false
 		}
 
-        let isEligibleForIntroOffer = cumulative - totalClaimed >= 80.0
+        let isEligibleForIntroOffer = cumulative - totalClaimed >= 100.0
 		return isEligibleForIntroOffer
 	}
 
