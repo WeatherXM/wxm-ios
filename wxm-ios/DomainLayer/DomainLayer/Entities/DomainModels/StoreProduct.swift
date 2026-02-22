@@ -50,7 +50,10 @@ public struct StoreProduct {
 			self.trialPeriod = nil
 		}
 
-        if let launchOffer = product.subscription?.promotionalOffers.first {
+        let launchOffersString: String? = Bundle.main.getConfiguration(for: .launchOfferIds)
+        let launchOffersArray = launchOffersString?.components(separatedBy: ",") ?? []
+
+        if let launchOffer = product.subscription?.promotionalOffers.first(where: { launchOffersArray.contains($0.id ?? "") }) {
             let launchPrice = launchOffer.displayPrice
             let promoLaunchOfferPeriod = launchOffer.period
             self.promoLaunchDisplayPrice = launchPrice

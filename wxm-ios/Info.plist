@@ -10,6 +10,8 @@
 	<string>$(AppGroup)</string>
 	<key>AppStoreProducts</key>
 	<string>$(AppStoreProducts)</string>
+	<key>LaunchOfferIds</key>
+	<string>$(LaunchOfferIds)</string>
 	<key>AppStoreUrl</key>
 	<string>$(AppStoreUrl)</string>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>

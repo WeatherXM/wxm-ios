@@ -18,6 +18,7 @@ setupConfiguration(){
 	echo "SupportUrl = ${SUPPORT_URL};" >> $CONFIGURATION_PATH
 	echo "MixpanelToken = ${MIXPANEL_TOKEN};" >> $CONFIGURATION_PATH
     echo "AppStoreProducts = ${APP_STORE_PRODUCTS};" >> $CONFIGURATION_PATH
+    echo "LaunchOfferIds = ${LAUNCH_OFFER_IDS};" >> $CONFIGURATION_PATH
 
     echo "$(<$CONFIGURATION_PATH)"
 }

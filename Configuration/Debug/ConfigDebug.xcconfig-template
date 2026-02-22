@@ -32,3 +32,5 @@ BranchName = branch;
 MixpanelToken = {The application token from mixpanel};
 
 AppStoreProducts = {The App Store product ids with a comma separated string}
+
+LaunchOfferIds = {The App Store product launch offer ids with a comma separated string}
