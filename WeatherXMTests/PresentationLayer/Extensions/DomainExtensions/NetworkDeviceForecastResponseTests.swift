@@ -52,7 +52,7 @@ struct NetworkDeviceForecastResponseTests {
 		#expect(item.temperature == weather.temperature?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 1))
 		#expect(item.animationString == weather.icon?.getAnimationString())
 		#expect(!item.time.isEmpty)
-		#expect(!item.precipitation.isEmpty)
+        #expect(item.precipitation?.isEmpty == false)
 	}
 
 	@Test
@@ -65,7 +65,7 @@ struct NetworkDeviceForecastResponseTests {
 		#expect(item.secondaryTemperature == weather.temperatureMin?.toTemeratureString(for: WeatherUnitsManager.default.temperatureUnit, decimals: 0))
 		#expect(item.animationString == weather.icon?.getAnimationString())
 		#expect(!item.time.isEmpty)
-		#expect(!item.precipitation.isEmpty)
+		#expect(item.precipitation?.isEmpty == false)
 	}
 
 	@Test
