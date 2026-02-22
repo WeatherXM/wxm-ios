@@ -11801,7 +11801,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Everything in Free"
+            "value" : "Everything in **Free**"
           }
         }
       }
