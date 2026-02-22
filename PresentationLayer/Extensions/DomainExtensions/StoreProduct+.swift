@@ -19,15 +19,16 @@ extension StoreProduct {
 	}
 
     func toSubscriptionPlan(showPrice: Bool) -> SubscriptionPlanView.Plan {
-        let offer = SubscriptionPlanView.Offer(offerText: nil,
+        let offer = SubscriptionPlanView.Offer(offerText: launchOfferText,
                                                trialTitle: trialPeriodString?.title,
                                                trialDescription: trialPeriodString?.description)
+        let price = promoLaunchDisplayPrice ?? displayPrice
         return .init(fontIcon: .sparkles,
                      title: LocalizableString.Subscriptions.premium.localized,
-                     subtitle: LocalizableString.Subscriptions.premium.localized,
+                     subtitle: subtitle,
                      offer: offer,
                      isCurrent: isSubscribed,
-                     price: showPrice ? displayPrice : nil,
+                     price: showPrice ? price : nil,
                      period: pricePeriodString,
                      description: LocalizableString.Subscriptions.premiumSuscriptionDescription.localized,
                      bullets: [LocalizableString.Subscriptions.premiumSubscriptionBulllet0.localized,
@@ -46,6 +47,24 @@ extension StoreProduct {
 
         return LocalizableString.Subscriptions.perFormat(perUnit).localized
 	}
+
+    var subtitle: String? {
+        guard let promoLaunchPeriod else {
+            return nil
+        }
+        
+        return LocalizableString.Subscriptions.premiumSubtitle(promoLaunchPeriod.value,
+                                                               promoLaunchPeriod.unitString?.localized ?? "",
+                                                               displayPrice).localized
+    }
+
+    var launchOfferText: String? {
+        guard let promoLaunchPeriod else {
+            return nil
+        }
+
+        return LocalizableString.Subscriptions.limitedLaunchOffer.localized
+    }
 
 	var pricePeriodLiteralString: String {
 		guard let perUnit = period?.perUnit else {

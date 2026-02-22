@@ -11641,6 +11641,17 @@
         }
       }
     },
+    "subscriptions_limited_launch_offer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limited-time launch offer"
+          }
+        }
+      }
+    },
     "subscriptions_login_to_get_premium_alert" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11835,6 +11846,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Premium features unlocked!"
+          }
+        }
+      }
+    },
+    "subscriptions_premium_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "for the next %d %@. Standard price %@."
           }
         }
       }

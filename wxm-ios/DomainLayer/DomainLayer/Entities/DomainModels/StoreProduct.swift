@@ -20,6 +20,8 @@ public struct StoreProduct {
 	public let expirationDate: Date?
 	public let hasFreeTrial: Bool
 	public let trialPeriod: Period?
+    public let promoLaunchDisplayPrice: String?
+    public let promoLaunchPeriod: Period?
 
 	init(product: Product,
 		 isSubscribed: Bool,
@@ -47,6 +49,17 @@ public struct StoreProduct {
 		} else {
 			self.trialPeriod = nil
 		}
+
+        if let launchOffer = product.subscription?.promotionalOffers.first {
+            let launchPrice = launchOffer.displayPrice
+            let promoLaunchOfferPeriod = launchOffer.period
+            self.promoLaunchDisplayPrice = launchPrice
+            self.promoLaunchPeriod = .init(value: launchOffer.periodCount,
+                                           unit: PeriodUnit(unit: promoLaunchOfferPeriod.unit))
+        } else {
+            self.promoLaunchDisplayPrice = nil
+            self.promoLaunchPeriod = nil
+        }
 	}
 }
 

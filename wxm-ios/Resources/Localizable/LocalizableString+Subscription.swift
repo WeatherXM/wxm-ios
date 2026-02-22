@@ -18,6 +18,8 @@ extension LocalizableString {
 		case active
         case free
         case freeSubtitle
+        case premiumSubtitle(Int, String, String)
+        case limitedLaunchOffer
         case bestAccuracy
 		case premiumFeatures
 		case premiumForecast
@@ -87,6 +89,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				localized = String(format: localized, text0, text1)
             case .freeTrialDescription(let count, let text, let tokens):
                 localized = String(format: localized, count, text, tokens)
+            case .premiumSubtitle(let count, let text0, let text1):
+                localized = String(format: localized, count, text0, text1)
 			default: break
 		}
 
@@ -149,6 +153,10 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
                 "subscriptions_free"
             case .freeSubtitle:
                 "subscriptions_free_subtitle"
+            case .premiumSubtitle:
+                "subscriptions_premium_subtitle"
+            case .limitedLaunchOffer:
+                "subscriptions_limited_launch_offer"
             case .bestAccuracy:
                 "subscriptions_best_accuracy"
 			case .perUnitPrice:
