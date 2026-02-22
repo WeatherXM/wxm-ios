@@ -15,14 +15,17 @@ extension StoreProduct {
 		return .init(title: self.name.uppercased(),
 					 price: self.pricePeriodString,
 					 description: desc,
-					 trial: self.trialPeriodString)
+                     trial: self.trialPeriodString?.title)
 	}
 
     func toSubscriptionPlan(showPrice: Bool) -> SubscriptionPlanView.Plan {
+        let offer = SubscriptionPlanView.Offer(offerText: nil,
+                                               trialTitle: trialPeriodString?.title,
+                                               trialDescription: trialPeriodString?.description)
         return .init(fontIcon: .sparkles,
                      title: LocalizableString.Subscriptions.premium.localized,
                      subtitle: LocalizableString.Subscriptions.premium.localized,
-                     offer: nil,
+                     offer: offer,
                      isCurrent: isSubscribed,
                      price: showPrice ? displayPrice : nil,
                      period: pricePeriodString,
@@ -64,12 +67,15 @@ extension StoreProduct {
 		return LocalizableString.Subscriptions.premiumAvailableUntil.localized
 	}
 
-	var trialPeriodString: String? {
+    var trialPeriodString: (title: String, description: String)? {
 		guard hasFreeTrial, let trialPeriod else {
 			return nil
 		}
-		
-		return LocalizableString.Subscriptions.freeTrial(trialPeriod.value, trialPeriod.unitString?.localized ?? "").localized
+
+        let title = LocalizableString.Subscriptions.freeTrialTitle(trialPeriod.value, trialPeriod.unitString?.localized ?? "").localized
+        let description = LocalizableString.Subscriptions.freeTrialDescription(trialPeriod.value, trialPeriod.unitString?.localized ?? "", 200).localized
+
+        return (title, description)
 	}
 
     var trialPeriodBadgeString: String? {

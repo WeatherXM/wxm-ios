@@ -53,6 +53,9 @@
         }
       }
     },
+    "•" : {
+
+    },
     "+ %@ %@" : {
       "localizations" : {
         "en" : {
@@ -11556,7 +11559,18 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Try for free for %d %@ "
+            "value" : "%d- %@ Free Premium Trial"
+          }
+        }
+      }
+    },
+    "subscriptions_free_trial_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’re eligible for an exclusive %d-%@ Premium trial for holding %d+ $WXM. Start now and enjoy full access at no cost."
           }
         }
       }

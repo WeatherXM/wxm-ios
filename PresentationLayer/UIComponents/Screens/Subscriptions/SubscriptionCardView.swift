@@ -80,6 +80,6 @@ extension SubscriptionCardView {
 	SubscriptionCardView(card: .init(title: "MONTHLY",
 									 price: "$3.99/month",
 									 description: "then $3.99 per month. Cancel anytime.",
-									 trial: LocalizableString.Subscriptions.freeTrial(1, "Week").localized),
+									 trial: LocalizableString.Subscriptions.freeTrialTitle(1, "Week").localized),
 						 isSelected: true)
 }

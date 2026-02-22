@@ -75,20 +75,36 @@ struct SubscriptionPlanView: View {
 
                     ForEach(plan.bullets, id: \.self) { bullet in
                         HStack(spacing: CGFloat(.smallSpacing)) {
-                            Text("•")
-                                .font(.fontAwesome(font: .FAPro, size: CGFloat(.normalFontSize)))
-                                .foregroundStyle(Color(colorEnum: .darkGrey))
-                                .frame(width: 18.0, height: 18.0)
-                                .background {
-                                    Color(colorEnum: .cryptoOpacity)
-                                }
-                                .cornerRadius(6.0,
-                                              corners: .allCorners)
-                                .strokeBorder(color: Color(colorEnum: .darkGrey).opacity(0.2),
-                                              lineWidth: 1.0,
-                                              radius: 6.0)
+                            if plan.isPremium {
+                                Text(FontIcon.check.rawValue)
+                                    .font(.fontAwesome(font: .FAPro, size: CGFloat(.minimumFontSize)))
+                                    .foregroundStyle(Color(colorEnum: .text))
+                                    .padding(CGFloat(.minimumPadding))
+                                    .background {
+                                        Color(colorEnum: .successTint)
+                                    }
+                                    .cornerRadius(6.0,
+                                                  corners: .allCorners)
+                                    .strokeBorder(color: Color(colorEnum: .success).opacity(0.35),
+                                                  lineWidth: 1.0,
+                                                  radius: 6.0)
 
-                            Text(bullet)
+                            } else {
+                                Text("•")
+                                    .font(.fontAwesome(font: .FAPro, size: CGFloat(.normalFontSize)))
+                                    .foregroundStyle(Color(colorEnum: .darkGrey))
+                                    .frame(width: 18.0, height: 18.0)
+                                    .background {
+                                        Color(colorEnum: .cryptoOpacity)
+                                    }
+                                    .cornerRadius(6.0,
+                                                  corners: .allCorners)
+                                    .strokeBorder(color: Color(colorEnum: .darkGrey).opacity(0.2),
+                                                  lineWidth: 1.0,
+                                                  radius: 6.0)
+                            }
+
+                            Text(bullet.attributedMarkdown ?? "")
                                 .multilineTextAlignment(.leading)
                                 .font(.system(size: CGFloat(.normalFontSize)))
                                 .foregroundStyle(Color(colorEnum: .darkestBlue))
@@ -239,8 +255,9 @@ private extension SubscriptionPlanView {
 
                     Text(trialDescription)
                         .font(.system(size: CGFloat(.caption)))
-                        .foregroundStyle(Color(colorEnum: .text))
+                        .foregroundStyle(Color(colorEnum: .darkGrey))
                 }
+                .multilineTextAlignment(.leading)
 
                 Spacer()
             }
@@ -278,10 +295,10 @@ private extension SubscriptionPlanView {
                                      price: "$0",
                                      period: "per year",
                                      description: "Desc",
-                                     bullets: ["24-hour-ahead 3-hourly forecast",
+                                     bullets: ["24-hour-ahead 3-hourly **forecast**",
                                                "7-day daily forecast"],
                                      productId: nil,
                                      isWarning: true,
-                                     isPremium: true),
+                                     isPremium: false),
                          isSelected: true)
 }

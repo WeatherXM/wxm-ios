@@ -59,14 +59,14 @@ class SubscriptionsViewModel: ObservableObject {
     var ctaBackgroundColor: ColorEnum {
         switch viewState {
             case .free:
-                return .wxmPrimary
+                return .crypto
             case .premium(_):
                 let isFreeSelected = selectedPlan?.productId == nil
                 if  isFreeSelected {
                     return .warningTint
                 }
 
-                return .wxmPrimary
+                return .crypto
         }
     }
     var badgeText: String? {
@@ -102,7 +102,7 @@ class SubscriptionsViewModel: ObservableObject {
                 self.segments = periods
 
                 let sortedProducts = products.sorted(by: { ($0.period?.unit ?? .day) < ($1.period?.unit ?? .day)})
-                let plans = sortedProducts.map { [generateFreePlan(isWarning: false, showPrice: true), $0.toSubscriptionPlan(showPrice: true)] }
+                let plans = sortedProducts.map { [$0.toSubscriptionPlan(showPrice: true), generateFreePlan(isWarning: false, showPrice: true)] }
                 viewState = .free(plans)
                 self.selectedPlan = self.subscribedProduct?.toSubscriptionPlan(showPrice: true) ?? plans.first?.first
             }
@@ -196,7 +196,7 @@ private extension SubscriptionsViewModel {
         let price = currencyFormatter.string(from: 0 as NSNumber)
         return .init(fontIcon: .check,
                      title: LocalizableString.Subscriptions.free.localized,
-                     subtitle: LocalizableString.Subscriptions.free.localized,
+                     subtitle: LocalizableString.Subscriptions.freeSubtitle.localized,
                      offer: nil,
                      isCurrent: subscribedProduct == nil,
                      price: showPrice ? price : nil,
