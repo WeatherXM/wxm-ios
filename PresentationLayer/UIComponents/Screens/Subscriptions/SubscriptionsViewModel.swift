@@ -69,6 +69,19 @@ class SubscriptionsViewModel: ObservableObject {
                 return .crypto
         }
     }
+    var ctaTextColor: ColorEnum {
+        switch viewState {
+            case .free:
+                return .textInverse
+            case .premium(_):
+                let isFreeSelected = selectedPlan?.productId == nil
+                if  isFreeSelected {
+                    return .text
+                }
+                return .textInverse
+        }
+    }
+
     var badgeText: String? {
         products.first?.trialPeriodBadgeString
     }

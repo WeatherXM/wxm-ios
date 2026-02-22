@@ -37,7 +37,7 @@ struct SubscriptionsView: View {
                             Text(viewModel.ctaText)
                         }
                     }
-                    .buttonStyle(WXMButtonStyle.filled(textColor: .textInverse, fillColor: viewModel.ctaBackgroundColor))
+                    .buttonStyle(WXMButtonStyle.filled(textColor: viewModel.ctaTextColor, fillColor: viewModel.ctaBackgroundColor))
                     .disabled(!viewModel.isCTAEnabled)
 
                     if case .free = viewModel.viewState {
