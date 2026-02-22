@@ -196,17 +196,19 @@ private extension SubscriptionsViewModel {
         let price = currencyFormatter.string(from: 0 as NSNumber)
         return .init(fontIcon: .check,
                      title: LocalizableString.Subscriptions.free.localized,
+                     subtitle: LocalizableString.Subscriptions.free.localized,
+                     offer: nil,
                      isCurrent: subscribedProduct == nil,
                      price: showPrice ? price : nil,
                      period: nil,
-                     trialText: nil,
                      description: nil,
                      bullets: [LocalizableString.Subscriptions.freeSubscriptionBullet0.localized,
                                LocalizableString.Subscriptions.freeSubscriptionBullet1.localized,
                                LocalizableString.Subscriptions.freeSubscriptionBullet2.localized,
                                LocalizableString.Subscriptions.freeSubscriptionBullet3.localized],
                      productId: nil,
-                     isWarning: isWarning)
+                     isWarning: isWarning,
+                     isPremium: false)
     }
 }
 

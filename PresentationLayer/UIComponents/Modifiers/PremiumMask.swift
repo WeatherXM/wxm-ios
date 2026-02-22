@@ -9,13 +9,13 @@ import SwiftUI
 
 private struct PremiumMaskModifier: ViewModifier {
     let enabled: Bool
+    let colors: [Color]
 
     func body(content: Content) -> some View {
         content
             .overlay {
                 if enabled {
-                    LinearGradient(gradient: Gradient(colors: [Color(colorEnum: .chartPrimary),
-                                                               Color(colorEnum: .accent)]),
+                    LinearGradient(gradient: Gradient(colors: colors),
                                    startPoint: .leading,
                                    endPoint: .trailing)
                     .mask {
@@ -28,8 +28,10 @@ private struct PremiumMaskModifier: ViewModifier {
 
 extension View {
     @ViewBuilder
-    func premiumMask(enabled: Bool) -> some View {
-        modifier(PremiumMaskModifier(enabled: enabled))
+    func premiumMask(enabled: Bool,
+                     colors: [Color] = [Color(colorEnum: .chartPrimary),
+                                        Color(colorEnum: .accent)]) -> some View {
+        modifier(PremiumMaskModifier(enabled: enabled, colors: colors))
     }
 }
 

@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum FontSizeEnum: CaseIterable {
+    case minimumFontSize
 	case caption
 	case smallFontSize
 	case normalFontSize
@@ -26,6 +27,8 @@ enum FontSizeEnum: CaseIterable {
 
 	var sizeValue: CGFloat {
 		switch self {
+            case .minimumFontSize:
+                return 8.0
 			case .littleCaption:
 				return 11
 			case .caption:

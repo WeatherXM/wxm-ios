@@ -39,6 +39,7 @@ public enum ColorEnum: String {
     case layer1
 	case lightLayer2
     case crypto
+    case cryptoOpacity
     case accent
     case chartSecondaryLine
     case toastInfoBg

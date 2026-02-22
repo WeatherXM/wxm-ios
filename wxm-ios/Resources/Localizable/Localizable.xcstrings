@@ -11374,6 +11374,17 @@
         }
       }
     },
+    "subscriptions_best_accuracy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best Accuracy"
+          }
+        }
+      }
+    },
     "subscriptions_cancel_anytime_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11524,6 +11535,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standard forecast accuracy"
+          }
+        }
+      }
+    },
+    "subscriptions_free_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forecasts for general tracking"
           }
         }
       }

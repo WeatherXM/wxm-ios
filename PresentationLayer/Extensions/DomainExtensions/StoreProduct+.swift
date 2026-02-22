@@ -21,17 +21,19 @@ extension StoreProduct {
     func toSubscriptionPlan(showPrice: Bool) -> SubscriptionPlanView.Plan {
         return .init(fontIcon: .sparkles,
                      title: LocalizableString.Subscriptions.premium.localized,
+                     subtitle: LocalizableString.Subscriptions.premium.localized,
+                     offer: nil,
                      isCurrent: isSubscribed,
                      price: showPrice ? displayPrice : nil,
                      period: pricePeriodString,
-                     trialText: trialPeriodString,
                      description: LocalizableString.Subscriptions.premiumSuscriptionDescription.localized,
                      bullets: [LocalizableString.Subscriptions.premiumSubscriptionBulllet0.localized,
                                LocalizableString.Subscriptions.premiumSubscriptionBulllet1.localized,
                                LocalizableString.Subscriptions.premiumSubscriptionBulllet2.localized,
                                LocalizableString.Subscriptions.premiumSubscriptionBulllet3.localized],
                      productId: identifier,
-                     isWarning: false)
+                     isWarning: false,
+                     isPremium: true)
     }
 
 	var pricePeriodString: String {

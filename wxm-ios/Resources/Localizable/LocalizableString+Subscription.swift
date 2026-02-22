@@ -17,6 +17,8 @@ extension LocalizableString {
 		case premium
 		case active
         case free
+        case freeSubtitle
+        case bestAccuracy
 		case premiumFeatures
 		case premiumForecast
 		case hyperLocalForecast
@@ -140,6 +142,10 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
                 "subscriptions_free_period"
             case .free:
                 "subscriptions_free"
+            case .freeSubtitle:
+                "subscriptions_free_subtitle"
+            case .bestAccuracy:
+                "subscriptions_best_accuracy"
 			case .perUnitPrice:
 				"subscriptions_per_unit_price"
 			case .afterTrialCharge:
