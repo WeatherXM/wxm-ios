@@ -260,7 +260,7 @@ private extension ProfileViewModel {
 		let availableProducts = try? await meUseCase.getAvailableSubscriptionProducts()
 		let hasFreeTrial = availableProducts?.contains(where: { $0.hasFreeTrial }) ?? false
 		if hasFreeTrial {
-			claimTrialText = (LocalizableString.Profile.claimFreeTrial.localized, LocalizableString.Profile.claimFreeTrialUnlockedDescription.localized)
+            claimTrialText = (LocalizableString.Profile.claimFreeTrial.localized, LocalizableString.Profile.claimFreeTrialUnlockedDescription(Int(MeUseCase.requiredTokensForFreeTrial)).localized)
 			return
 		}
 

@@ -8061,7 +8061,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You’ve kept at least 80 $WXM unclaimed."
+            "value" : "You’ve kept at least %d $WXM unclaimed."
           }
         }
       }

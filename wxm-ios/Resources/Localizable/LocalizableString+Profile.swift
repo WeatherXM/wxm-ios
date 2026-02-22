@@ -31,7 +31,7 @@ extension LocalizableString {
 		case premiumSubscription
 		case premiumSubscriptionDescription
 		case claimFreeTrial
-		case claimFreeTrialUnlockedDescription
+		case claimFreeTrialUnlockedDescription(Int)
 		case claimFreeTrialLocked
 		case claimFreeTrialLockedDescription(Double)
 		case totalClaimedInfoTitle
@@ -47,8 +47,10 @@ extension LocalizableString.Profile: WXMLocalizable {
 		switch self {
 			case .claimFromWebDescription(let text), .claimFromWebAlertMessage(let text):
 				localized = String(format: localized, text)
-			case .claimFreeTrialLockedDescription(let count):
+            case .claimFreeTrialLockedDescription(let count):
 				localized = String(format: localized, count)
+            case .claimFreeTrialUnlockedDescription(let count):
+                localized = String(format: localized, count)
 			default:
 				break
 		}

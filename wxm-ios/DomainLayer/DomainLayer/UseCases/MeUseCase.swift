@@ -12,6 +12,7 @@ import Toolkit
 import StoreKit
 
 public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
+    public static let requiredTokensForFreeTrial = 200.0
     private let meRepository: MeRepository
 	private let networkRepository: NetworkRepository
     private let filtersRepository: FiltersRepository
@@ -242,7 +243,7 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		}
 
 		let diff = cumulative - totalClaimed
-        return max(0.0, 100.0 - diff)
+        return max(0.0, Self.requiredTokensForFreeTrial - diff)
 	}
 
 	public func getSubscribedProducts() async throws -> [StoreProduct] {
@@ -277,7 +278,7 @@ private extension MeUseCase {
 			return false
 		}
 
-        let isEligibleForIntroOffer = cumulative - totalClaimed >= 100.0
+        let isEligibleForIntroOffer = cumulative - totalClaimed >= Self.requiredTokensForFreeTrial
 		return isEligibleForIntroOffer
 	}
 
