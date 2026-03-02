@@ -208,16 +208,8 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 		let productsArray = produtsString.components(separatedBy: ",")
 		let products = try await meRepository.getAvailableSubscriptionProducts(identifiers: productsArray)
 		let subscribedProductIds = await meRepository.getSubscribedProductIds()
-		let isUserEligbleForIntroOffer = await isUserEligbleForIntroOffer()
+        let isUserEligbleForTrial = await self.isUserEligbleFreeTrial()
 		return await products.asyncCompactMap { product in
-			if !isUserEligbleForIntroOffer && product.introductoryOffer() != nil {
-				return nil
-			}
-
-			if isUserEligbleForIntroOffer && product.introductoryOffer() == nil {
-				return nil
-			}
-
 			let isEligibleForIntro = await product.isUserEligibleForIntroductoryOffer()
 			let renewalDate = await product.getRenewalDate(productId: product.id)
 			let isCanceled = await product.isCanceled(productId: product.id)
@@ -228,7 +220,7 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 								renewalDate: renewalDate,
 								isCanceled: isCanceled,
 								expirationDate: expirationDate,
-								hasFreeTrial: isEligibleForIntro)
+								hasFreeTrial: isUserEligbleForTrial && isEligibleForIntro)
 		}.sorted(by: { $0.period?.unit ?? .day < $1.period?.unit ?? .day})
 	}
 
@@ -269,7 +261,7 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 }
 
 private extension MeUseCase {
-	func isUserEligbleForIntroOffer() async -> Bool {
+	func isUserEligbleFreeTrial() async -> Bool {
 		let userInfo = try? await meRepository.getUser(useCache: true).toAsync().result.get()
 		guard let address = userInfo?.wallet?.address,
 			  let rewards = await getRewardsWithdraw(wallet: address),
@@ -278,8 +270,8 @@ private extension MeUseCase {
 			return false
 		}
 
-        let isEligibleForIntroOffer = cumulative - totalClaimed >= Self.requiredTokensForFreeTrial
-		return isEligibleForIntroOffer
+        let isUserEligbleFreeTrial = cumulative - totalClaimed >= Self.requiredTokensForFreeTrial
+		return isUserEligbleFreeTrial
 	}
 
 	func getRewardsWithdraw(wallet: String) async -> NetworkUserRewardsResponse? {

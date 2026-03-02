@@ -44,25 +44,21 @@ public struct StoreProduct {
 		self.isCanceled = isCanceled
 		self.expirationDate = expirationDate
 		self.hasFreeTrial = hasFreeTrial
-		if let introductoryOfferPeriod = product.subscription?.introductoryOffer?.period {
-			self.trialPeriod = .init(value: introductoryOfferPeriod.value, unit: PeriodUnit(unit: introductoryOfferPeriod.unit))
+
+        if hasFreeTrial {
+            self.trialPeriod = .init(value: 2, unit: .month)
+        } else {
+            self.trialPeriod = nil
+        }
+
+		if let introductoryOffer = product.subscription?.introductoryOffer {
+            let introductoryOfferPeriod = introductoryOffer.period
+			self.promoLaunchPeriod = .init(value: introductoryOffer.periodCount, unit: PeriodUnit(unit: introductoryOfferPeriod.unit))
 		} else {
-			self.trialPeriod = nil
+			self.promoLaunchPeriod = nil
 		}
 
-        let launchOffersString: String? = Bundle.main.getConfiguration(for: .launchOfferIds)
-        let launchOffersArray = launchOffersString?.components(separatedBy: ",") ?? []
-
-        if let launchOffer = product.subscription?.promotionalOffers.first(where: { launchOffersArray.contains($0.id ?? "") }) {
-            let launchPrice = launchOffer.displayPrice
-            let promoLaunchOfferPeriod = launchOffer.period
-            self.promoLaunchDisplayPrice = launchPrice
-            self.promoLaunchPeriod = .init(value: launchOffer.periodCount,
-                                           unit: PeriodUnit(unit: promoLaunchOfferPeriod.unit))
-        } else {
-            self.promoLaunchDisplayPrice = nil
-            self.promoLaunchPeriod = nil
-        }
+        self.promoLaunchDisplayPrice = product.subscription?.introductoryOffer?.displayPrice
 	}
 }
 
