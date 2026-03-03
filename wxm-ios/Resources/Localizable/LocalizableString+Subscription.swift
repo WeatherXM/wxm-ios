@@ -37,7 +37,7 @@ extension LocalizableString {
 		case nextBillingDate(String)
 		case premiumAvailableUntil
 		case freeTrialTitle(Int, String)
-        case freeTrialDescription(Int, String, Int)
+        case freeTrialDescription(Int, String, Int, String)
         case freePeriod(Int, String)
 		case perUnitPrice(String, String)
 		case afterTrialCharge(String)
@@ -87,8 +87,8 @@ extension LocalizableString.Subscriptions: WXMLocalizable {
 				localized = String(format: localized, count, text)
 			case .perUnitPrice(let text0, let text1):
 				localized = String(format: localized, text0, text1)
-            case .freeTrialDescription(let count, let text, let tokens):
-                localized = String(format: localized, count, text, tokens)
+            case .freeTrialDescription(let count, let text, let tokens, let promoCode):
+                localized = String(format: localized, count, text, tokens, promoCode)
             case .premiumSubtitle(let count, let text0, let text1):
                 localized = String(format: localized, count, text0, text1)
 			default: break

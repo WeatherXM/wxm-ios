@@ -9,6 +9,8 @@ import Foundation
 import DomainLayer
 import Toolkit
 import UIKit
+import StoreKit
+import Combine
 
 @MainActor
 class SubscriptionsViewModel: ObservableObject {
@@ -90,9 +92,11 @@ class SubscriptionsViewModel: ObservableObject {
 	private let useCase: MeUseCaseApi
 	private var subscribedProduct: StoreProduct?
 	private var products: [StoreProduct] = []
+    private var cacncellables: Set<AnyCancellable> = .init()
 
 	init(useCase: MeUseCaseApi) {
 		self.useCase = useCase
+        observeTransactionChanges()
 	}
 
 	func refresh() async {
@@ -134,6 +138,12 @@ class SubscriptionsViewModel: ObservableObject {
 
                 Task { @MainActor in
                     do {
+                        if product.hasFreeTrial,
+                            let mainScene = UIApplication.shared.mainWindowScene {
+                            try await AppStore.presentOfferCodeRedeemSheet(in: mainScene)
+                            return
+                        }
+
                         try await useCase.subscribeToProduct(product)
 
                         showSuccess()
@@ -174,6 +184,24 @@ class SubscriptionsViewModel: ObservableObject {
 }
 
 private extension SubscriptionsViewModel {
+    func observeTransactionChanges() {
+        useCase.transactionProductsPublisher?.receive(on: DispatchQueue.main).sink { [weak self] _ in
+            Task { @MainActor in
+                await self?.refresh()
+            }
+        }.store(in: &cacncellables)
+
+
+        NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                Task { @MainActor in
+                    await self?.refresh()
+                }
+            }
+            .store(in: &cacncellables)
+    }
+
 	func showSuccess() {
 		let object = FailSuccessStateObject(type: .subscription,
 											title: LocalizableString.Subscriptions.premiumSubscriptionUlocked.localized,

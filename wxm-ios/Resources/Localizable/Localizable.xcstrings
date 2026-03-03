@@ -11570,7 +11570,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You’re eligible for an exclusive %d-%@ Premium trial for holding %d+ $WXM. Start now and enjoy full access at no cost."
+            "value" : "You’re eligible for an exclusive %d-%@ Premium trial for holding %d+ $WXM. Use the promo code %@ during checkout and enjoy full access at no cost."
           }
         }
       }

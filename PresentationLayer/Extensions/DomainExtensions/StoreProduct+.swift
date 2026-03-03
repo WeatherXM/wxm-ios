@@ -92,7 +92,7 @@ extension StoreProduct {
 		}
 
         let title = LocalizableString.Subscriptions.freeTrialTitle(trialPeriod.value, trialPeriod.unitString?.localized ?? "").localized
-        let description = LocalizableString.Subscriptions.freeTrialDescription(trialPeriod.value, trialPeriod.unitString?.localized ?? "", 200).localized
+        let description = LocalizableString.Subscriptions.freeTrialDescription(trialPeriod.value, trialPeriod.unitString?.localized ?? "", 200, "PROMO-CODE-HERE").localized
 
         return (title, description)
 	}
