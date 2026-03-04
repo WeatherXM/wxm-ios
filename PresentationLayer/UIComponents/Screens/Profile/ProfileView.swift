@@ -264,40 +264,9 @@ private struct ContentView: View {
 				Spacer()
 			}
 			.WXMCardStyle()
-			.indication(show: .init(get: { viewModel.claimTrialText != nil },
-									set: { _ in }),
-						borderColor: Color(colorEnum: .wxmPrimary),
-						bgColor: Color(colorEnum: .blueTint)) {
-				claimTrialView
-					.padding(.vertical, CGFloat(.smallToMediumSpacing))
-					.padding(.horizontal, CGFloat(.defaultSidePadding))
-			}
 			.wxmShadow()
 		}
 		.buttonStyle(.plain)
-	}
-
-	@ViewBuilder
-	var claimTrialView: some View {
-		if let trialText = viewModel.claimTrialText {
-			HStack(spacing: CGFloat(.smallToMediumSpacing)) {
-				Text(FontIcon.crown.rawValue)
-					.font(.fontAwesome(font: .FAProSolid, size: CGFloat(.mediumFontSize)))
-					.foregroundColor(Color(colorEnum: .wxmPrimary))
-
-				VStack(alignment: .leading, spacing: CGFloat(.minimumSpacing)) {
-					Text(trialText.title)
-						.font(.system(size: CGFloat(.mediumFontSize), weight: .bold))
-						.foregroundColor(Color(colorEnum: .text))
-
-					Text(trialText.description)
-						.font(.system(size: CGFloat(.normalFontSize)))
-						.foregroundColor(Color(colorEnum: .text))
-				}
-
-				Spacer()
-			}
-		}
 	}
 
 	@ViewBuilder

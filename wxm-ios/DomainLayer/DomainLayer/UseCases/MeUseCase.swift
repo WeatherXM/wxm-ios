@@ -12,7 +12,6 @@ import Toolkit
 import StoreKit
 
 public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
-    public static let requiredTokensForFreeTrial = 200.0
     private let meRepository: MeRepository
 	private let networkRepository: NetworkRepository
     private let filtersRepository: FiltersRepository
@@ -225,17 +224,7 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 	}
 
 	public func getRequiredTokensForTrial() async -> Double? {
-		let userInfo = try? await meRepository.getUser(useCache: true).toAsync().result.get()
-        guard await existsProductEligibleForIntroOffer(),
-              let address = userInfo?.wallet?.address,
-			  let rewards = try? await networkRepository.getRewardsWithdraw(wallet: address).toAsync().result.get(),
-			  let cumulative = rewards.cumulativeAmount?.toEthDouble,
-			  let totalClaimed = rewards.totalClaimed?.toEthDouble else {
-			return nil
-		}
-
-		let diff = cumulative - totalClaimed
-        return max(0.0, Self.requiredTokensForFreeTrial - diff)
+        return nil;
 	}
 
 	public func getSubscribedProducts() async throws -> [StoreProduct] {
@@ -262,16 +251,7 @@ public struct MeUseCase: @unchecked Sendable, MeUseCaseApi {
 
 private extension MeUseCase {
 	func isUserEligbleFreeTrial() async -> Bool {
-		let userInfo = try? await meRepository.getUser(useCache: true).toAsync().result.get()
-		guard let address = userInfo?.wallet?.address,
-			  let rewards = await getRewardsWithdraw(wallet: address),
-			  let cumulative = rewards.cumulativeAmount?.toEthDouble,
-			  let totalClaimed = rewards.totalClaimed?.toEthDouble else {
-			return false
-		}
-
-        let isUserEligbleFreeTrial = cumulative - totalClaimed >= Self.requiredTokensForFreeTrial
-		return isUserEligbleFreeTrial
+        return false;
 	}
 
 	func getRewardsWithdraw(wallet: String) async -> NetworkUserRewardsResponse? {

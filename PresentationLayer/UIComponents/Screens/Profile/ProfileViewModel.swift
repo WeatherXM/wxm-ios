@@ -52,7 +52,6 @@ class ProfileViewModel: ObservableObject {
 		}
 	}
 	@Published var isSubscribed = false
-	@Published var claimTrialText: (title: String, description: String)?
 
 	var claimWebAppUrl: String {
 		let urlString = DisplayedLinks.claimToken.linkURL
@@ -140,7 +139,6 @@ class ProfileViewModel: ObservableObject {
 			}
 
 			await self?.checkIfIsSubscribed()
-			await self?.updateClaimTrialText()
 		}
 	}
 
@@ -247,29 +245,6 @@ private extension ProfileViewModel {
 	func checkIfIsSubscribed() async {
 		let subscribedProducts = try? await meUseCase.getSubscribedProducts()
 		isSubscribed = subscribedProducts?.isEmpty	== false
-	}
-
-	@MainActor
-	func updateClaimTrialText() async {
-		guard isLoggedIn,
-			  !isSubscribed else {
-			claimTrialText = nil
-			return
-		}
-
-		let availableProducts = try? await meUseCase.getAvailableSubscriptionProducts()
-		let hasFreeTrial = availableProducts?.contains(where: { $0.hasFreeTrial }) ?? false
-		if hasFreeTrial {
-            claimTrialText = (LocalizableString.Profile.claimFreeTrial.localized, LocalizableString.Profile.claimFreeTrialUnlockedDescription(Int(MeUseCase.requiredTokensForFreeTrial)).localized)
-			return
-		}
-
-		if let requiredTokensForTrial = await meUseCase.getRequiredTokensForTrial() {
-			claimTrialText = (LocalizableString.Profile.claimFreeTrialLocked.localized, LocalizableString.Profile.claimFreeTrialLockedDescription(requiredTokensForTrial).localized)
-			return
-		}
-
-		claimTrialText = nil
 	}
 
 	@MainActor

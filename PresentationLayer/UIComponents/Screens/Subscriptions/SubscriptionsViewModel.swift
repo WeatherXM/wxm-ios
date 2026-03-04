@@ -111,8 +111,8 @@ class SubscriptionsViewModel: ObservableObject {
 
             if let subscribedProduct {
                 let freePlan = generateFreePlan(isWarning: true, showPrice: false)
-                let plans = [subscribedProduct.toSubscriptionPlan(showPrice: false), freePlan]
-                self.selectedPlan = self.subscribedProduct?.toSubscriptionPlan(showPrice: false) ?? freePlan
+                let plans = [subscribedProduct.toSubscriptionPlan(showPrice: true), freePlan]
+                self.selectedPlan = self.subscribedProduct?.toSubscriptionPlan(showPrice: true) ?? freePlan
                 viewState = .premium(plans)
             } else {
                 let periods = products.compactMap { $0.period?.unit?.tabTitle }
