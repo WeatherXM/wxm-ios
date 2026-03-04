@@ -19,7 +19,6 @@ public enum ConfigurationKey: String {
 	case branchName = "BranchName"
 	case mixpanelToken = "MixpanelToken"
 	case appStoreProducts = "AppStoreProducts"
-    case launchOfferIds = "LaunchOfferIds"
 }
 
 public extension Bundle {
