@@ -258,8 +258,8 @@ private extension DeepLinkHandler {
 				router.showBottomSheet(.proPromo(viewModel))
 				break
             case .premium:
-                let viewModel = ViewModelsFactory.getManageSubsriptionViewModel()
-                router.navigateTo(.manageSubscription(viewModel))
+                let viewModel = ViewModelsFactory.getSubscriptionsViewModel()
+                router.navigateTo(.subscriptions(viewModel))
 		}
 	}
 }
